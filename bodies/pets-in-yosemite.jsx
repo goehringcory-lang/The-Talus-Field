@@ -47,7 +47,7 @@ window.ARTICLE_BODIES["pets-in-yosemite"] = function PetsInYosemiteBody() {
       <h2>Why the rules are this strict</h2>
 
       <p>
-        It is not bureaucratic fussiness, and knowing the reasons makes them easier to respect. Dog scent reads as predator to the wildlife whose home this is; a single leashed dog on a trail measurably empties the surrounding forest of its animals for hours. Dogs carry diseases that jump to coyotes and foxes. And the traffic runs the other way too: coyotes in the Valley have learned to lure loose dogs, and a mountain lion does not distinguish your spaniel from its ordinary groceries. The leash is for the ecosystem and for the dog, in that order, and both reasons are load-bearing.
+        The rules have reasons, and knowing them makes the rules easier to follow. Dog scent reads as predator to the wildlife whose home this is; a single leashed dog on a trail measurably empties the surrounding forest of its animals for hours. Dogs carry diseases that jump to coyotes and foxes. And the traffic runs the other way too: coyotes in the Valley have learned to lure loose dogs, and a mountain lion does not distinguish your spaniel from its ordinary groceries. The leash protects the wildlife first and the dog second.
       </p>
 
       <h2>Service animals</h2>
@@ -59,7 +59,7 @@ window.ARTICLE_BODIES["pets-in-yosemite"] = function PetsInYosemiteBody() {
       <h2>The honest recommendation</h2>
 
       <p>
-        Should you bring the dog to Yosemite? If your trip is a campground-based, meadow-strolling, scenery-and-picnics sort of visit: yes, cheerfully. The dog gets pavement miles with world-class views, and you get a warm alarm clock. If your trip is built around trails, then no, and the kindest version of no. Summer boarding options exist in <a href="/articles/yosemite-gateway-towns-compared">the gateway towns</a> (Oakhurst and Mariposa both have kennels; book ahead in peak season), and a dog waiting comfortably in air conditioning beats a dog waiting illegally in a hot car by every measure, including the up-to-$5,000 citation. Plan the trip first, then decide honestly which trip it is. The dog, to its credit, will forgive either answer.
+        Should you bring the dog to Yosemite? If your trip is a campground-based, meadow-strolling, scenery-and-picnics sort of visit: yes, cheerfully. The dog gets pavement miles with world-class views, and you get a warm alarm clock. If your trip is built around trails, no. Summer boarding options exist in <a href="/articles/yosemite-gateway-towns-compared">the gateway towns</a> (Oakhurst and Mariposa both have kennels; book ahead in peak season), and a dog waiting comfortably in air conditioning beats a dog waiting illegally in a hot car by every measure, including the up-to-$5,000 citation. Plan the trip first, then decide which kind of trip it is.
       </p>
 
       <LodgingCta

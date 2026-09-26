@@ -10,7 +10,7 @@ window.ARTICLE_BODIES["is-bear-spray-allowed-in-yosemite"] = function IsBearSpra
       </p>
 
       <p>
-        That is the whole answer, and most people who search for it want the next part: why a tool that is genuinely excellent everywhere else is banned here, and what you are supposed to do instead.
+        The next question is usually why a tool that works well everywhere else is banned here, and what you are supposed to do instead.
       </p>
 
       <h2>The rule</h2>
@@ -20,31 +20,31 @@ window.ARTICLE_BODIES["is-bear-spray-allowed-in-yosemite"] = function IsBearSpra
       </p>
 
       <p>
-        It is worth knowing that a compendium is revised, so the wording and the list can change between seasons. The current version is published on the park's own site, and it is the only authority worth quoting on this. If you are reading a forum thread from four years ago, read the compendium instead.
+        A compendium is revised, so the wording and the list can change between seasons. The current version is published on the park's own site, and it is the only authority worth quoting on this.
       </p>
 
       <h2>Why: there are no grizzly bears here</h2>
 
       <p>
-        Bear spray is spectacularly effective against grizzly bears. The landmark study, Smith and Herrero in the <em>Journal of Wildlife Management</em> in 2008, looked at 83 bear spray incidents in Alaska involving 175 people and found it stopped aggressive behaviour 92% of the time, a better record than firearms. That finding gets repeated so widely and so confidently that it has bled into advice for parks it does not apply to.
+        Bear spray is highly effective against grizzly bears. The landmark study, Smith and Herrero in the <em>Journal of Wildlife Management</em> in 2008, looked at 83 bear spray incidents in Alaska involving 175 people and found it stopped aggressive behaviour 92% of the time, a better record than firearms. That finding is widely repeated, including in advice for parks where it does not apply.
       </p>
 
       <p>
-        Yosemite is one of those parks. There have been no grizzlies here since about 1895, when the last one was shot near Crescent Lake; the California grizzly has been extinct for more than a century, and the bear on the state flag is a memorial rather than a field guide. What Yosemite has is American black bears, <em>Ursus americanus</em>, somewhere between 300 and 500 of them.
+        Yosemite is one of those parks. There have been no grizzlies here since about 1895, when the last one was shot near Crescent Lake; the California grizzly has been extinct for more than a century, and the bear on the state flag is a memorial. What Yosemite has is American black bears, <em>Ursus americanus</em>, somewhere between 300 and 500 of them.
       </p>
 
       <p>
-        They are a different animal, and not only in size. An adult male black bear here runs 250 to 350 pounds against a grizzly's potential 700-plus, but the behavioural profile matters more than the mass. Grizzlies are territorial and defensive. Black bears are opportunistic and, overwhelmingly, avoidant. The encounter that bear spray exists to solve, a defensive charge from an animal that wants you gone, is not the encounter you will have in Yosemite. What you will have is a bear that wants your food and would rather not deal with you at all.
+        They are a different animal. An adult male black bear here runs 250 to 350 pounds against a grizzly's potential 700-plus, but the behavioural profile matters more than the mass. Grizzlies are territorial and defensive. Black bears are opportunistic and, overwhelmingly, avoidant. Bear spray is designed for a defensive charge. In Yosemite the usual encounter is a bear that wants your food and would rather avoid you.
       </p>
 
       <h2>Why: it does not repel bears here, it recruits them</h2>
 
       <p>
-        This is the part that surprises people. A USGS study found that capsaicin residue left on surfaces actually <em>attracts</em> bears. Spray a picnic table, a tent, a car door, and what you have created is a scented object in a park where bears are already conditioned to investigate scented objects. You are not repelling bears. You are seasoning the landscape.
+        A USGS study found that capsaicin residue left on surfaces actually <em>attracts</em> bears. Spray a picnic table, a tent, a car door, and what you have created is a scented object in a park where bears are already conditioned to investigate scented objects.
       </p>
 
       <p>
-        The second problem is people. In a park taking over 3.5 million visitors a year, the odds of bear spray being deployed against a human, by accident or otherwise, are not theoretical. And the park's Bear Team reports the more common failure: visitors mis-deploying spray at bears that were doing nothing threatening, which harms and stresses an animal that was behaving normally and teaches it nothing useful.
+        The second problem is people. In a park taking over 3.5 million visitors a year, the odds of bear spray being deployed against a human, by accident or otherwise, are real. And the park's Bear Team reports the more common failure: visitors mis-deploying spray at bears that were doing nothing threatening, which harms and stresses an animal that was behaving normally.
       </p>
 
       <h2>What to carry instead</h2>
@@ -54,7 +54,7 @@ window.ARTICLE_BODIES["is-bear-spray-allowed-in-yosemite"] = function IsBearSpra
       </p>
 
       <p>
-        The rest is storage rather than deterrence, and it is where the actual risk lives. Food goes in the bear locker, not the car, overnight. Anything with a scent counts, including trash, sunscreen and toothpaste. A bear that never gets a reward never becomes the bear that has to be dealt with later. <a href="/articles/yosemite-bears-safety-guide">The bear safety guide</a> covers the encounter playbook, the food storage rules in detail, and the incident data, and <a href="/articles/pack-your-car-for-yosemite">packing your car</a> covers the cooler.
+        The rest is food storage, which is where the actual risk lies. Food goes in the bear locker, not the car, overnight. Anything with a scent counts, including trash, sunscreen and toothpaste. A bear that never gets a reward never becomes the bear that has to be dealt with later. <a href="/articles/yosemite-bears-safety-guide">The bear safety guide</a> covers the encounter playbook, the food storage rules in detail, and the incident data, and <a href="/articles/pack-your-car-for-yosemite">packing your car</a> covers the cooler.
       </p>
 
       <h2>Is bear spray legal in California?</h2>
@@ -68,7 +68,7 @@ window.ARTICLE_BODIES["is-bear-spray-allowed-in-yosemite"] = function IsBearSpra
       </p>
 
       <p>
-        So check the specific unit you are entering rather than the state you are in. For Yosemite the answer is settled and it is no. If your itinerary continues to Yellowstone, Glacier, Grand Teton or Denali, buy bear spray when you get there, carry it, and know how to use it: in grizzly country it is the single most effective deterrent a hiker has. It just is not this country.
+        So check the specific unit you are entering rather than the state you are in. For Yosemite the answer is settled and it is no. If your itinerary continues to Yellowstone, Glacier, Grand Teton or Denali, buy bear spray when you get there, carry it, and know how to use it: in grizzly country it is the single most effective deterrent a hiker has.
       </p>
 
       <h2>The short version</h2>

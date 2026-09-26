@@ -22,7 +22,7 @@ window.ARTICLE_BODIES["yosemite-wilderness-permits-guide"] = function YosemiteWi
       </p>
 
       <p>
-        <strong>The seven-day release.</strong> The remaining 40 percent of every quota goes online at 7 a.m. Pacific exactly seven days before the start date, first come, first served. This is the honest second chance, and for flexible hikers it is often the better first chance: no lottery, no waiting weeks for results, just a calendar alarm and a fast click. Famous trailheads disappear in the first minutes. Everything else lingers, sometimes for days. If your plan is "somewhere quiet in the high country next weekend" rather than "the exact classic route," the seven-day release will almost always feed you.
+        <strong>The seven-day release.</strong> The remaining 40 percent of every quota goes online at 7 a.m. Pacific exactly seven days before the start date, first come, first served. This is the realistic second chance, and for flexible hikers it is often the better first chance: no lottery, no waiting weeks for results, just a calendar alarm and a fast click. Famous trailheads disappear in the first minutes. Everything else lingers, sometimes for days. If your plan is "somewhere quiet in the high country next weekend" rather than "the exact classic route," the seven-day release will almost always feed you.
       </p>
 
       <blockquote>The trailhead is the reservation. Flexibility about the trailhead is the whole strategy.</blockquote>

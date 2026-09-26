@@ -301,7 +301,7 @@ window.ARTICLE_BODIES["when-to-visit-yosemite-2026-crowd-forecast"] = function W
       </p>
 
       <p>
-        2026 removes the valve entirely in a year that was already pacing at record demand. That is the basis of the dashed line above, and it is why the people who study this park's traffic were not surprised by Memorial Day weekend. The only force left to cap a July Saturday is the road network itself: when the Valley loop saturates, the line simply backs up outside the gates, which is what the Memorial Day lines looked like in practice. The park's own August accounting, though, is more favorable than this paragraph expected: two days of significant delays all year, both over that weekend, with summer Saturday waits averaging about 30 minutes and topping out near an hour.
+        2026 removes the valve entirely in a year that was already pacing at record demand. That is the basis of the dashed line above, and it is why the people who study this park's traffic were not surprised by Memorial Day weekend. The only force left to cap a July Saturday is the road network itself: when the Valley loop saturates, the line backs up outside the gates, which is what the Memorial Day lines looked like in practice. The park's own August accounting, though, is more favorable than this paragraph expected: two days of significant delays all year, both over that weekend, with summer Saturday waits averaging about 30 minutes and topping out near an hour.
       </p>
 
       <h2>How I built the forecast</h2>
@@ -311,7 +311,7 @@ window.ARTICLE_BODIES["when-to-visit-yosemite-2026-crowd-forecast"] = function W
       </p>
 
       <p>
-        Honest caveats: the 2026 figures are preliminary and the Park Service revises them. A bad smoke season can erase an August. A government shutdown, a Merced River flood, a midsummer policy reversal would all bend the curve. This is a forecast built on five months of data, not a promise, and the July count above is the first real test it has passed. But the direction is not in doubt, and the direction is up.
+        Caveats: the 2026 figures are preliminary and the Park Service revises them. A bad smoke season can erase an August. A government shutdown, a Merced River flood, a midsummer policy reversal would all bend the curve. This is a forecast built on five months of data, not a promise, and the July count above is the first real test it has passed. But the direction is not in doubt, and the direction is up.
       </p>
 
       <h2>The crowd calendar</h2>

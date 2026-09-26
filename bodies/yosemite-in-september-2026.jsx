@@ -6,41 +6,37 @@ window.ARTICLE_BODIES["yosemite-in-september-2026"] = function YosemiteInSeptemb
   return (
     <>
       <p className="dropcap">
-        A man stopped me on the Valley loop in the first week of September last year, holding his phone up with a photograph of Yosemite Falls at full flood, and asked which trail got him to that. The honest answer was a time machine. The fall had been dry for six weeks. He had booked the trip in February off a photograph taken in May, which is the single most common way a Yosemite trip disappoints someone, and it is entirely avoidable.
+        A man stopped me on the Valley loop in the first week of September last year, holding his phone up with a photograph of Yosemite Falls at full flood, and asked which trail got him to that. None of them, that month. The fall had been dry for six weeks. He had booked the trip in February off a photograph taken in May, which is the single most common way a Yosemite trip disappoints someone, and it is entirely avoidable.
       </p>
 
       <p>
-        September is the month the park is quietly at its best and looks, on paper, like it is running out. The waterfalls are down to their bones. The concessions start closing in the first two weeks. The shuttles stop. And underneath all of that, the high country is in the finest condition it reaches all year, the crowds thin out after Labor Day, and the light gets better every week.
-      </p>
-
-      <p>
-        Here is what the month actually offers, and what it takes away.
+        On paper, September looks like the month the park runs out. The waterfalls are low. The concessions start closing in the first two weeks. The shuttles stop. And underneath all of that, the high country is in the finest condition it reaches all year, and the crowds thin out after Labor Day.
       </p>
 
       <h2>The waterfalls are done, and that is not a reason to skip it</h2>
 
       <p>
-        Yosemite Falls is dry. Not thin: dry. It runs on snowmelt from a shallow basin above the rim, and by September there is no snow left to melt. Mirror Lake is a meadow, which is what it is for most of the year and what surprises people who saw the spring photograph. Bridalveil, Vernal and Nevada still run, because their creeks drain bigger and higher ground, but they run thin.
+        Yosemite Falls is dry. It runs on snowmelt from a shallow basin above the rim, and by September there is no snow left to melt. Mirror Lake is a meadow, which is what it is for most of the year and what surprises people who saw the spring photograph. Bridalveil, Vernal and Nevada still run, because their creeks drain bigger and higher ground, but they run thin.
       </p>
 
       <p>
-        Go for the walls, not the water. September is the month the Valley stops being about waterfalls and becomes about granite: El Capitan in low afternoon light, the Cathedral Rocks across the meadow, Half Dome catching the last of it. If waterfalls are the reason for the trip, the trip belongs in May, and <a href="/articles/yosemite-waterfalls-guide">the waterfalls guide</a> has the month-by-month version of that argument.
+        In September the Valley is about granite: El Capitan in low afternoon light, the Cathedral Rocks across the meadow, Half Dome catching the last of it. If waterfalls are the reason for the trip, the trip belongs in May, and <a href="/articles/yosemite-waterfalls-guide">the waterfalls guide</a> has the month-by-month version of that argument.
       </p>
 
       <h2>The high country is the reason to come</h2>
 
       <p>
-        Tioga Road is open, the whole 39 miles of it, and the high country in September is better than the high country in July: the mosquitoes are gone, the afternoon thunderstorms are less reliable, the meadows have turned, and the crowds have gone back to school. Tuolumne Meadows, Olmsted Point, Tenaya Lake and the Cathedral Lakes trail are all at their best.
+        Tioga Road is open, the whole 39 miles of it, and the high country in September is better than the high country in July: the mosquitoes are gone, the afternoon thunderstorms are less reliable, the meadows have turned, and the crowds are smaller. Tuolumne Meadows, Olmsted Point, Tenaya Lake and the Cathedral Lakes trail are all at their best.
       </p>
 
       <p>
-        With two caveats that catch people out this year. The Tuolumne store and grill close on <strong>September 20</strong>, which removes the only food and the only reliable indoor shelter along the entire road, and the Tuolumne shuttle and the hikers bus both stop on <strong>September 13</strong>, after which the high country is drive-yourself. There has never been gas at Tuolumne. Fill up at Crane Flat on the way in and carry lunch, and the month is a gift. <a href="/articles/tuolumne-meadows-in-a-day">The Tuolumne day</a> covers the drive properly, and <a href="/articles/cathedral-lakes-day-hike">Cathedral Lakes</a> is the hike to spend a September day on.
+        Two caveats catch people out this year. The Tuolumne store and grill close on <strong>September 20</strong>, which removes the only food and the only reliable indoor shelter along the entire road, and the Tuolumne shuttle and the hikers bus both stop on <strong>September 13</strong>, after which the high country is drive-yourself. There has never been gas at Tuolumne. Fill up at Crane Flat on the way in and carry lunch. <a href="/articles/tuolumne-meadows-in-a-day">The Tuolumne day</a> covers the drive properly, and <a href="/articles/cathedral-lakes-day-hike">Cathedral Lakes</a> is the hike to spend a September day on.
       </p>
 
       <h2>What closes, and when</h2>
 
       <p>
-        This is the month the park contracts, and it does it in the first three weeks rather than at the end. The dates worth knowing: Jennie's Ice Cream and the Wawona stable finish on <strong>September 6</strong>; the Curry Village and Yosemite Valley Lodge pools on <strong>September 7</strong>; the Tuolumne store and grill on <strong>September 20</strong>. Of the High Sierra Camps, Glen Aulin and Sunrise close on September 6 and May Lake on September 9, with Vogelsang and Merced Lake shut for the whole season.
+        The park contracts in the first three weeks of the month. The dates worth knowing: Jennie's Ice Cream and the Wawona stable finish on <strong>September 6</strong>; the Curry Village and Yosemite Valley Lodge pools on <strong>September 7</strong>; the Tuolumne store and grill on <strong>September 20</strong>. Of the High Sierra Camps, Glen Aulin and Sunrise close on September 6 and May Lake on September 9, with Vogelsang and Merced Lake shut for the whole season.
       </p>
 
       <p>
@@ -58,7 +54,7 @@ window.ARTICLE_BODIES["yosemite-in-september-2026"] = function YosemiteInSeptemb
       </p>
 
       <p>
-        This is the kind of thing that turns a planned day into an improvised one, and it is worth checking again the week you travel: <a href="/now">the Park Bulletin</a> carries the current edition's version. <a href="/articles/mist-trail-the-real-guide">The Mist Trail guide</a> covers the hike itself and the detour.
+        Check again the week you travel: <a href="/now">the Park Bulletin</a> carries the current edition's version. <a href="/articles/mist-trail-the-real-guide">The Mist Trail guide</a> covers the hike itself and the detour.
       </p>
 
       <h2>Half Dome, and the best permit odds of the year</h2>
@@ -84,11 +80,11 @@ window.ARTICLE_BODIES["yosemite-in-september-2026"] = function YosemiteInSeptemb
       <h2>Crowds, and the Labor Day line</h2>
 
       <p>
-        The month splits cleanly. Before Labor Day the Valley behaves like August: busy by mid-morning, worse at weekends, and parking gone in the three hubs by nine. After Labor Day it thins noticeably, and by the last week of the month a weekday morning in the Valley is genuinely quiet.
+        The month splits cleanly. Before Labor Day the Valley behaves like August: busy by mid-morning, worse at weekends, and parking gone in the three hubs by nine. After Labor Day it thins noticeably, and by the last week of the month a weekday morning in the Valley is quiet.
       </p>
 
       <p>
-        If the dates are flexible at all, take the second half. Same roads, same cables, better light, a fraction of the traffic. That is the whole argument of <a href="/articles/when-to-visit-yosemite-2026-crowd-forecast">the crowd forecast</a>, and September is where it pays best.
+        If the dates are flexible at all, take the second half. The roads and cables are the same and the traffic is a fraction. That is the argument of <a href="/articles/when-to-visit-yosemite-2026-crowd-forecast">the crowd forecast</a>, and September is where it pays best.
       </p>
 
       <h2>What is on in the evenings</h2>
@@ -108,7 +104,7 @@ window.ARTICLE_BODIES["yosemite-in-september-2026"] = function YosemiteInSeptemb
       </p>
 
       <p>
-        They are the same month. The difference is entirely in what you expected. <a href="/articles/first-time-yosemite-overwhelm">Start with the basics</a> if this is your first visit, and <a href="/planning">plan the trip end to end</a> if you want the full framework.
+        They are the same month. <a href="/articles/first-time-yosemite-overwhelm">Start with the basics</a> if this is your first visit, and <a href="/planning">plan the trip end to end</a> if you want the full framework.
       </p>
     </>
   );

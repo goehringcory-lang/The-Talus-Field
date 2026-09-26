@@ -6,11 +6,11 @@ window.ARTICLE_BODIES["horsetail-fall-firefall"] = function HorsetailFallFirefal
   return (
     <>
       <p className="dropcap">
-        The first time I watched <strong>Horsetail Fall</strong> catch fire, I almost missed it. This was years ago, a February evening cold enough that the puddles at the El Capitan Picnic Area had skinned over with ice, and I had spent twenty minutes convinced the show was a bust. The fall was flowing, barely, a thin ribbon down the east shoulder of El Capitan, and the light was going flat and grey the way Valley light does in the last half hour of a winter day. Then the sun dropped into a gap under the cloud deck to the west, and the ribbon turned amber, then orange, then something close to molten. For about ten minutes, a strip of water a few feet wide looked like lava pouring off a 3,000-foot wall. Then the sun set, the color drained out in under a minute, and a few hundred people standing around me in the snow exhaled at the same time.
+        The first time I watched <strong>Horsetail Fall</strong> catch fire, I almost missed it. This was years ago, a February evening cold enough that the puddles at the El Capitan Picnic Area had skinned over with ice, and I had spent twenty minutes convinced the show was a bust. The fall was flowing, barely, a thin ribbon down the east shoulder of El Capitan, and the light was going flat and grey the way Valley light does in the last half hour of a winter day. Then the sun dropped into a gap under the cloud deck to the west, and the ribbon turned amber, then deep orange. For about ten minutes, a strip of water a few feet wide looked like lava pouring off a 3,000-foot wall. Then the sun set, the color drained out in under a minute, and a few hundred people standing around me in the snow exhaled at the same time.
       </p>
 
       <p>
-        That is the <strong>firefall</strong>. It is a real thing, it is not enhanced or exaggerated in the photographs, and it is also one of the most oversold and misunderstood events in the park. After twenty seasons of watching people plan whole trips around it, I want to explain how it actually works, why most evenings fail, and how to think about it like a naturalist instead of a lottery player. If you just need the window, the conditions checklist, and the live water and weather, <a href="/firefall">the firefall page</a> is the short version, kept current each season.
+        That is the <strong>firefall</strong>. It is real, the photographs do not exaggerate it, and it is one of the most oversold and misunderstood events in the park. After twenty seasons of watching people plan whole trips around it, I want to explain how it actually works, why most evenings fail, and how to think about it like a naturalist instead of a lottery player. If you just need the window, the conditions checklist, and the live water and weather, <a href="/firefall">the firefall page</a> is the short version, kept current each season.
       </p>
 
       <h2>What is actually happening</h2>
@@ -20,16 +20,16 @@ window.ARTICLE_BODIES["horsetail-fall-firefall"] = function HorsetailFallFirefal
       </p>
 
       <p>
-        The firefall effect is an alignment problem. For a stretch of roughly two weeks in mid-to-late February, the setting sun lines up with the Valley's east-west axis in a way that puts direct, low-angle light on the strip of cliff Horsetail runs down, while the surrounding rock has already fallen into shadow. Sunset light is red-orange to begin with, because it is passing through the maximum thickness of atmosphere. Backlit and sidelit at that angle, the falling water and its mist pick up that color and glow against a dark wall. The physics is the same as any alpenglow. The theater of it comes from the contrast: one bright orange ribbon, everything around it dusk.
+        The firefall effect is an alignment problem. For a stretch of roughly two weeks in mid-to-late February, the setting sun lines up with the Valley's east-west axis in a way that puts direct, low-angle light on the strip of cliff Horsetail runs down, while the surrounding rock has already fallen into shadow. Sunset light is red-orange to begin with, because it is passing through the maximum thickness of atmosphere. Backlit and sidelit at that angle, the falling water and its mist pick up that color and glow against a dark wall. The physics is the same as any alpenglow. What makes it striking is the contrast: one orange ribbon against a wall already in shadow.
       </p>
 
       <p>
-        The same solar geometry occurs in late October, on the other side of the winter solstice. Almost nobody has heard of an October firefall, because in October there is almost never water in the fall. Which brings up the actual math.
+        The same solar geometry occurs in late October, on the other side of the winter solstice. Almost nobody has heard of an October firefall, because in October there is almost never water in the fall.
       </p>
 
       <h2>Three conditions, and all of them must hold</h2>
 
-      <p>The firefall requires three independent things to be true at the same time, and the failure of any one of them cancels the show entirely.</p>
+      <p>The firefall requires three independent conditions at once. If any one fails, there is no show.</p>
 
       <p>
         <strong>One: water in the fall.</strong> Horsetail needs recent rain or warm-enough days to melt snow on El Capitan's summit. A cold, dry February leaves the drainage frozen or empty. A big storm the week before, followed by mild afternoons, is the ideal setup. This is the condition that fails most often in drought years, and no amount of planning from another state can control it.
@@ -44,7 +44,7 @@ window.ARTICLE_BODIES["horsetail-fall-firefall"] = function HorsetailFallFirefal
       </p>
 
       <p>
-        Now the honest arithmetic. Condition three gives you about fourteen to eighteen candidate evenings a year. February weather being what it is, a good number of those evenings are cloudy, and in a lean snow year some or all of them are dry. The years when everything converges for several evenings running produce the famous photographs. There are also years when the firefall effectively does not happen at all. If you visit on one specific evening, your odds are genuinely uncertain, and anyone selling you certainty is selling something.
+        The arithmetic. Condition three gives you about fourteen to eighteen candidate evenings a year. February weather being what it is, a good number of those evenings are cloudy, and in a lean snow year some or all of them are dry. The years when everything converges for several evenings running produce the famous photographs. There are also years when the firefall effectively does not happen at all. If you visit on one specific evening, your odds are uncertain, and anyone promising otherwise is wrong.
       </p>
 
       <blockquote>The firefall is not an event the park schedules. It is a coincidence the park permits you to watch.</blockquote>
@@ -56,7 +56,7 @@ window.ARTICLE_BODIES["horsetail-fall-firefall"] = function HorsetailFallFirefal
       </p>
 
       <p>
-        Horsetail's natural firefall was known to photographers earlier, but it entered the broader imagination through <strong>Galen Rowell</strong>, whose 1973 photograph of the lit fall, shot on film after he spotted the glow and famously scrambled to get in position before the light died, became the reference image. For decades afterward it remained a specialist's event, a February appointment for landscape photographers and almost no one else. Social media ended that era around the mid-2010s. The photographs travel well, the dates are predictable, and the viewing area is a short flat walk from a road. The crowds arrived accordingly.
+        Horsetail's natural firefall was known to photographers earlier, but it entered the broader imagination through <strong>Galen Rowell</strong>, whose 1973 photograph of the lit fall, shot on film after he spotted the glow and famously scrambled to get in position before the light died, became the reference image. For decades afterward it remained a specialist's event, a February appointment for landscape photographers and almost no one else. Social media ended that era around the mid-2010s. The photographs travel well, the dates are predictable, and the viewing area is a short flat walk from a road. The crowds followed.
       </p>
 
       <h2>The modern crowd reality</h2>
@@ -74,20 +74,20 @@ window.ARTICLE_BODIES["horsetail-fall-firefall"] = function HorsetailFallFirefal
       <h2>Photography, briefly</h2>
 
       <p>
-        A telephoto lens helps more than anything else. The fall is a thin feature on an enormous wall, and the classic frames are shot at 100mm and beyond, compressed tight on the glowing ribbon and the surrounding rock. A tripod matters because the good light is dim light. Expose for the highlights and let the wall go dark; the darkness is the picture. The glow typically builds for a few minutes, peaks near sunset, and is finished about ten minutes later, so decide your composition before it starts rather than during.
+        A telephoto lens helps more than anything else. The fall is a thin feature on an enormous wall, and the classic frames are shot at 100mm and beyond, compressed tight on the glowing ribbon and the surrounding rock. A tripod matters because the good light is dim light. Expose for the highlights and let the wall go dark. The glow typically builds for a few minutes, peaks near sunset, and is finished about ten minutes later, so decide your composition before it starts rather than during.
       </p>
 
       <p>
-        Phones underwhelm here, and it is worth saying plainly. A phone's wide lens renders the fall as a faint orange thread on a big grey cliff, and computational night modes tend to brighten the shadows that give the scene its drama. Take the phone picture, then put the phone away and watch. If photography is a main goal of the trip, the <a href="/articles/yosemite-photography-spots">photography guide</a> covers where else that same February light earns its keep.
+        Phones underwhelm here. A phone's wide lens renders the fall as a faint orange thread on a big grey cliff, and computational night modes tend to brighten the shadows that give the scene its drama. Take the phone picture, then put the phone away and watch. If photography is a main goal of the trip, the <a href="/articles/yosemite-photography-spots">photography guide</a> covers where else that same February light earns its keep.
       </p>
 
       <h2>The naturalist's framing</h2>
 
       <p>
-        Here is where I land after twenty Februaries. The firefall is real, it is beautiful, and it is worth attempting once, with the odds understood in advance. But the healthiest way to plan a February trip is to treat the firefall as a possible bonus on top of a season that needs no bonus. Mid-February in Yosemite Valley means snow on the oaks, full winter flow starting in the creeks, coyotes hunting the meadows in daylight, and weekday crowds thinner than almost any other time of year. If the evening clouds over, you have lost ten minutes of orange. You still spent a winter day in Yosemite Valley, and the people who go home disappointed by that were watching the wrong things.
+        After twenty Februaries, my view is that the firefall is worth attempting once, with the odds understood in advance. But the healthiest way to plan a February trip is to treat the firefall as a possible bonus on top of a season that needs no bonus. Mid-February in Yosemite Valley means snow on the oaks, full winter flow starting in the creeks, coyotes hunting the meadows in daylight, and weekday crowds thinner than almost any other time of year. If the evening clouds over, you have lost ten minutes of orange. You still spent a winter day in Yosemite Valley.
       </p>
 
-      <p>Check the water, check the weather, check the current rules, and go stand in the snow with everyone else. If the wall lights up, you will understand the fuss in about thirty seconds. If it does not, look behind you. The Valley at dusk in February has never once failed to be worth the walk.</p>
+      <p>Check the water, check the weather, check the current rules, and go stand in the snow with everyone else. If the wall lights up, you will understand the fuss in about thirty seconds. If it does not, the Valley at dusk in February is still worth the walk.</p>
 
       <h3>Sources</h3>
       <ul style={{ fontSize: 14 }}>

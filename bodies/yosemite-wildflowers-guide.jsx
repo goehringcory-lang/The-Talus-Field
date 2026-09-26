@@ -10,7 +10,7 @@ window.ARTICLE_BODIES["yosemite-wildflowers-guide"] = function YosemiteWildflowe
       </p>
 
       <p>
-        This is the single most useful thing to understand about Yosemite wildflowers, and almost nobody arrives knowing it. Visitors ask when the flowers bloom, expecting a date. The honest answer is a question back: at what elevation? The park runs from about 2,000 feet at the Arch Rock entrance to over 13,000 feet at its highest peaks, and spring moves uphill at a rate of very roughly a thousand feet a month. There is a bloom happening somewhere in or near the park from March through August. You just have to drive to the right altitude.
+        This is the most useful thing to know about Yosemite wildflowers, and few visitors arrive knowing it. Visitors ask when the flowers bloom, expecting a date. The answer depends on elevation. The park runs from about 2,000 feet at the Arch Rock entrance to over 13,000 feet at its highest peaks, and spring moves uphill at a rate of very roughly a thousand feet a month. There is a bloom happening somewhere in or near the park from March through August. You just have to drive to the right altitude.
       </p>
 
       <blockquote>In Yosemite, the bloom is not a date. It is an elevation.</blockquote>
@@ -64,7 +64,7 @@ window.ARTICLE_BODIES["yosemite-wildflowers-guide"] = function YosemiteWildflowe
       </p>
 
       <p>
-        This band is also where you see <strong>fire followers</strong>. Several Sierra plants are adapted to bloom hard after a burn: their seeds wait in the soil for decades until fire clears the canopy and chemical cues in smoke and charred wood trigger germination. The most visible result is lupine. In the years after the 2013 Rim Fire, whole hillsides along Big Oak Flat Road turned solid purple, a display that simply did not exist before the burn and will fade as the forest closes back in. A burned slope three or four Junes after the fire is often the best flower show at its elevation. It is worth recalibrating your eye to see burn scars that way.
+        This band is also where you see <strong>fire followers</strong>. Several Sierra plants are adapted to bloom hard after a burn: their seeds wait in the soil for decades until fire clears the canopy and chemical cues in smoke and charred wood trigger germination. The most visible result is lupine. In the years after the 2013 Rim Fire, whole hillsides along Big Oak Flat Road turned solid purple, a display that did not exist before the burn and will fade as the forest closes back in. A burned slope three or four Junes after the fire is often the best flower show at its elevation. It is worth recalibrating your eye to see burn scars that way.
       </p>
 
       <h2>July and August: the high country, 8,000 to 10,000 feet</h2>
@@ -84,13 +84,13 @@ window.ARTICLE_BODIES["yosemite-wildflowers-guide"] = function YosemiteWildflowe
       <h2>Manners, and a word about trampling</h2>
 
       <p>
-        Two rules, both absolute. <strong>Never pick anything.</strong> It is illegal in a national park, and a picked flower is a plant that sets no seed in a growing season that, up high, allows no second chance. <strong>Stay on trails and boardwalks in meadows.</strong> Meadow sod is wet, soft, and slow to heal; a social trail stamped into a subalpine meadow by one summer of photographers can take a decade to close. The photograph from the trail's edge is the same photograph. The park's meadow restoration crews spend real money undoing footprints.
+        Two rules, both absolute. <strong>Never pick anything.</strong> It is illegal in a national park, and a picked flower is a plant that sets no seed in a growing season that, up high, allows no second chance. <strong>Stay on trails and boardwalks in meadows.</strong> Meadow sod is wet, soft, and slow to heal; a social trail stamped into a subalpine meadow by one summer of photographers can take a decade to close. The park's meadow restoration crews spend real money undoing footprints.
       </p>
 
       <h2>Honest expectations</h2>
 
       <p>
-        Yosemite is not a superbloom park. If you have seen photographs of desert valleys carpeted horizon to horizon in orange, leave that image at home. The Sierra bloom is longer, quieter, and more dispersed: a canyon wall of poppies in March, a white tree over a green river in May, a meadow gone purple for two weeks in July. It rewards attention more than it rewards arrival. But it also cannot really be missed. Because the bloom climbs, there is no month between March and August without one, and a single long day in early summer can drive through three of them: azaleas on the Valley floor in the morning, lupine at McGurk at midday, the first shooting stars at Lukens Lake before dinner. Build the elevation into the plan, the way you would build in the <a href="/map">driving</a>, and the mountain will meet you with something open.
+        Yosemite is not a superbloom park. If you have seen photographs of desert valleys carpeted horizon to horizon in orange, leave that image at home. The Sierra bloom is longer, quieter, and more dispersed: a canyon wall of poppies in March, a white tree over a green river in May, a meadow gone purple for two weeks in July. It is also hard to miss. Because the bloom climbs, there is no month between March and August without one, and a single long day in early summer can drive through three of them: azaleas on the Valley floor in the morning, lupine at McGurk at midday, the first shooting stars at Lukens Lake before dinner. Build the elevation into the plan, the way you would build in the <a href="/map">driving</a>, and the mountain will meet you with something open.
       </p>
 
       <h3>Sources</h3>

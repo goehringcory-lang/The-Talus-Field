@@ -14,11 +14,11 @@ window.ARTICLE_BODIES["yosemite-with-kids-no-reservations-2026"] = function Yose
       </p>
 
       <p>
-        Good news. Yosemite dropped the timed-entry reservation system for 2026. No reservation needed to drive into the park. That's new, and it means the spontaneous family trip is back on the table for the first time in years. The park is open. You just need to know what you're doing once you get there.
+        Yosemite dropped the timed-entry reservation system for 2026. No reservation needed to drive into the park. That's new, and it means the spontaneous family trip is back on the table for the first time in years.
       </p>
 
       <p>
-        I've worked as a naturalist in Yosemite for close to two decades. I've watched thousands of families come through, the ones who have the trip of their lives and the ones who spend six hours in a parking lot and leave frustrated. The difference is rarely about fitness or money or how far they traveled. It's about three things: what time they showed up, what they did first, and whether they let their kids set the pace.
+        I've worked as a naturalist in Yosemite for close to two decades. I've watched thousands of families come through, the ones who have the trip of their lives and the ones who spend six hours in a parking lot and leave frustrated. The difference is rarely fitness or money. It is mostly what time they showed up, what they did first, and whether they let their kids set the pace.
       </p>
 
       <p>
@@ -44,15 +44,15 @@ window.ARTICLE_BODIES["yosemite-with-kids-no-reservations-2026"] = function Yose
       </p>
 
       <p>
-        <strong>Download offline maps.</strong> Cell service in Yosemite is unreliable at best and nonexistent in most of the Valley. Download Google Maps offline or grab the NPS app before you lose signal. You will need navigation. Your kids will not be able to YouTube.
+        <strong>Download offline maps.</strong> Cell service in Yosemite is unreliable at best and nonexistent in most of the Valley. Download Google Maps offline or grab the NPS app before you lose signal. You will need navigation.
       </p>
 
       <h2>Get there before the Valley wakes up</h2>
 
-      <p>The single most important sentence in this article: arrive before 9 AM.</p>
+      <p>Arrive before 9 AM.</p>
 
       <p>
-        Yosemite doesn't have a reservation system anymore, but parking in the Valley hasn't changed. The main lots fill up between 9 and 11 AM on weekends, between 10 and noon on weekdays. Once they're full, you're circling. With kids in the car, that's a recipe for a meltdown, theirs and yours.
+        Yosemite doesn't have a reservation system anymore, but parking in the Valley hasn't changed. The main lots fill up between 9 and 11 AM on weekends, between 10 and noon on weekdays. Once they're full, you're circling.
       </p>
 
       <p>
@@ -64,17 +64,17 @@ window.ARTICLE_BODIES["yosemite-with-kids-no-reservations-2026"] = function Yose
       </p>
 
       <p>
-        <strong>The YARTS bus move.</strong> Here's the insider tip most guides skip. YARTS (the regional bus system) runs from Mariposa, El Portal, and other gateway towns directly into Yosemite Valley. Children under five ride free, and one child aged six to twelve rides free with each full-fare adult, so check the count against your group before assuming the whole back seat travels free. You skip the parking fight entirely, arrive relaxed, and get dropped off right in the Village. Check the YARTS schedule the night before. Buses run several times a day in summer. This is the single best logistics hack for families, and almost nobody uses it.
+        <strong>The YARTS bus move.</strong> YARTS (the regional bus system) runs from Mariposa, El Portal, and other gateway towns directly into Yosemite Valley. Children under five ride free, and one child aged six to twelve rides free with each full-fare adult, so check the count against your group before assuming the whole back seat travels free. You skip the parking and get dropped off in the Village. Check the YARTS schedule the night before. Buses run several times a day in summer. Few families use it.
       </p>
 
       <h2>Your first two hours</h2>
 
       <p>
-        You're parked (or you stepped off the bus). The kids are awake. The clock is ticking on their enthusiasm. Don't waste it.
+        You're parked (or you stepped off the bus). The kids are awake. Use the first hours while their energy is high.
       </p>
 
       <p>
-        <strong>First stop: Yosemite Valley Visitor Center.</strong> Walk in, go to the desk, and ask for a Junior Ranger booklet. This is free, and it is the best parenting tool the National Park Service has ever invented.
+        <strong>First stop: Yosemite Valley Visitor Center.</strong> Walk in, go to the desk, and ask for a Junior Ranger booklet. This is free, and it is the most useful thing the park hands out to parents.
       </p>
 
       <p>
@@ -82,11 +82,11 @@ window.ARTICLE_BODIES["yosemite-with-kids-no-reservations-2026"] = function Yose
       </p>
 
       <p>
-        Pick up the booklet first thing. Give the kids their assignments. Everything that follows is easier because of this.
+
       </p>
 
       <p>
-        While you're at the visitor center, check the ranger program schedule posted at the door. Free ranger-led programs, nature walks, campfire talks, evening programs, run all summer. Some are specifically designed for kids. They're excellent, they're free, and they fill in the "what do we do at 4 PM when everyone's tired?" gap perfectly.
+        While you're at the visitor center, check the ranger program schedule posted at the door. Free ranger-led programs, nature walks, campfire talks, evening programs, run all summer. Some are specifically designed for kids. They are a good answer to the 4 PM slump.
       </p>
 
       <p>
@@ -96,13 +96,12 @@ window.ARTICLE_BODIES["yosemite-with-kids-no-reservations-2026"] = function Yose
       <h2>The hikes that actually work with kids</h2>
 
       <p>
-        I'm going to be honest about which trails work for which kids, because most Yosemite family guides recommend the Mist Trail as a "must-do family hike," and I think that's irresponsible. The Mist Trail is a legitimate workout with 600 granite steps, cliff exposure, and crowds that can make it dangerous. It's an outstanding hike for fit teens and adults. It's a miserable experience for a six-year-old. If your kids are 12 and up and in good shape, read the <a href="/articles/mist-trail-the-real-guide">Mist Trail guide</a> separately.
+        Here is which trails work for which kids, because most Yosemite family guides recommend the Mist Trail as a "must-do family hike," and I think that's irresponsible. The Mist Trail is a legitimate workout with 600 granite steps, cliff exposure, and crowds that can make it dangerous. It's an outstanding hike for fit teens and adults. It's a miserable experience for a six-year-old. If your kids are 12 and up and in good shape, read the <a href="/articles/mist-trail-the-real-guide">Mist Trail guide</a> separately.
       </p>
 
-      <p>Here's what actually works.</p>
 
       <p>
-        <strong>Lower Yosemite Fall Loop, the obvious first hike.</strong> One mile, fully paved, mostly flat. Stroller-friendly the entire way. The trail loops from the shuttle stop to the base of Lower Yosemite Fall, which is a 320-foot waterfall that's roaring in spring and trickling by August. In peak flow (May and June), the mist at the base soaks everyone. Kids love this. In late summer, the dry fall bed is a massive granite amphitheater your kids can explore. Either version is great. Allow 45 minutes to an hour. <em>(All ages. Strollers: yes. Best in May to June for water, July to August for rock scrambling in the dry bed.)</em>
+        <strong>Lower Yosemite Fall Loop, the obvious first hike.</strong> One mile, fully paved, mostly flat. Stroller-friendly the entire way. The trail loops from the shuttle stop to the base of Lower Yosemite Fall, which is a 320-foot waterfall that's roaring in spring and trickling by August. In peak flow (May and June), the mist at the base soaks everyone. In late summer, the dry fall bed is a massive granite amphitheater your kids can explore. Allow 45 minutes to an hour. <em>(All ages. Strollers: yes. Best in May to June for water, July to August for rock scrambling in the dry bed.)</em>
       </p>
 
       <p>
@@ -110,7 +109,7 @@ window.ARTICLE_BODIES["yosemite-with-kids-no-reservations-2026"] = function Yose
       </p>
 
       <p>
-        <strong>Mirror Lake, the adventure walk.</strong> Two miles to the lake on a packed-dirt road that's stroller-possible with real wheels (not an umbrella stroller). The lake itself is seasonal, full in spring, a sandy meadow by late summer. But the walk along Tenaya Creek is beautiful regardless, and at the "lake" site there are boulders to climb, creek edges to explore, and a quiet feeling that the Valley doesn't usually give you. <em>(Ages 3+. Under-2s fine in a carrier. Over-8s will want to scramble on the rocks.)</em>
+        <strong>Mirror Lake, the adventure walk.</strong> Two miles to the lake on a packed-dirt road that's stroller-possible with real wheels (not an umbrella stroller). The lake itself is seasonal, full in spring, a sandy meadow by late summer. But the walk along Tenaya Creek is beautiful regardless, and at the "lake" site there are boulders to climb, creek edges to explore, and fewer people than elsewhere in the Valley. <em>(Ages 3+. Under-2s fine in a carrier. Over-8s will want to scramble on the rocks.)</em>
       </p>
 
       <p>
@@ -118,25 +117,25 @@ window.ARTICLE_BODIES["yosemite-with-kids-no-reservations-2026"] = function Yose
       </p>
 
       <p>
-        <strong>If you have the whole day and older kids.</strong> Two hikes off the beaten path are worth the drive. <strong>McGurk Meadow</strong> (1.6 miles round trip, flat, off Glacier Point Road) is a wildflower meadow with a historic sheepherder's cabin that kids find fascinating. <strong>Lukens Lake</strong> (2.4 miles round trip, minimal elevation, off Tioga Road) is a shallow alpine lake warm enough to wade in by August, surrounded by wildflower meadows. Both are quiet, beautiful, and see a fraction of the Valley crowds. You'll need Glacier Point Road or Tioga Road to be open. Check conditions before driving up.
+        <strong>If you have the whole day and older kids.</strong> Two hikes off the beaten path are worth the drive. <strong>McGurk Meadow</strong> (1.6 miles round trip, flat, off Glacier Point Road) is a wildflower meadow with a historic sheepherder's cabin that kids find fascinating. <strong>Lukens Lake</strong> (2.4 miles round trip, minimal elevation, off Tioga Road) is a shallow alpine lake warm enough to wade in by August, surrounded by wildflower meadows. Both are quiet and see a fraction of the Valley crowds. You'll need Glacier Point Road or Tioga Road to be open. Check conditions before driving up.
       </p>
 
       <h2>Water, rocks, and the stuff kids actually remember</h2>
 
       <p>
-        Here's what I've learned watching families in Yosemite for nearly two decades. Kids don't remember the vista. They remember the creek. They remember the bear box. They remember the ranger badge and the moment they touched snow in June and the lizard doing push-ups on a warm rock that nobody rushed them past.
+        In nearly two decades of watching families here, I've found that kids don't remember the vista. They remember the creek. They remember the bear box. They remember the ranger badge and the moment they touched snow in June and the lizard doing push-ups on a warm rock that nobody rushed them past.
       </p>
 
       <p>
-        Plan for that. Budget unstructured time near water and rocks. The best Yosemite day with kids has two hours of "hiking" and four hours of sitting by a creek while your children throw pebbles into the current. That's not a wasted day. That's the trip.
+        Plan for that. Budget unstructured time near water and rocks. The best Yosemite day with kids has two hours of "hiking" and four hours of sitting by a creek while your children throw pebbles into the current.
       </p>
 
       <p>
-        <strong>Swimming and creek play.</strong> The Merced River runs through the Valley with sandy beaches, granite slabs, and calm pools, but the water is snowmelt, and the current is dangerous before mid-July. <a href="/articles/swimming-in-the-merced">The swimming guide</a> is the long version of this paragraph, and worth reading before a river day with small children. I cannot stress this enough. The Merced looks calm and it is not calm in spring. People drown in this river. Do not let kids wade above their knees before mid-July, and never let them near the water above any waterfall. By late July, the current mellows and there are legitimately great swimming and wading spots. Housekeeping Camp has the best river access for families: sandy beach, granite slabs, calm water in midsummer. The Cascade Picnic Area is quieter, with picnic tables, a pit toilet, and its own stretch of wadeable river.
+        <strong>Swimming and creek play.</strong> The Merced River runs through the Valley with sandy beaches, granite slabs, and calm pools, but the water is snowmelt, and the current is dangerous before mid-July. <a href="/articles/swimming-in-the-merced">The swimming guide</a> is the long version of this paragraph, and worth reading before a river day with small children. The Merced looks calm and it is not calm in spring. People drown in this river. Do not let kids wade above their knees before mid-July, and never let them near the water above any waterfall. By late July, the current mellows and there are legitimately great swimming and wading spots. Housekeeping Camp has the best river access for families: sandy beach, granite slabs, calm water in midsummer. The Cascade Picnic Area is quieter, with picnic tables, a pit toilet, and its own stretch of wadeable river.
       </p>
 
       <p>
-        <strong>Picnic spots.</strong> Skip the Village Store bench. The <a href="/map?stop=cascade-picnic-area">Cascade Picnic Area</a> is shaded, has tables, has a bathroom, and sits on the river. El Capitan Meadow has no tables but has the best views in the Valley. Bring a blanket and eat lunch with 3,000 feet of granite in front of you. Sentinel Bridge has a spot on the south bank of the Merced with river access and shade. All of these are better than any restaurant in the park, and your cooler food is better than anything you'd buy.
+        <strong>Picnic spots.</strong> Skip the Village Store bench. The <a href="/map?stop=cascade-picnic-area">Cascade Picnic Area</a> is shaded, has tables, has a bathroom, and sits on the river. El Capitan Meadow has no tables but has the best views in the Valley. Bring a blanket and eat lunch with 3,000 feet of granite in front of you. Sentinel Bridge has a spot on the south bank of the Merced with river access and shade.
       </p>
 
       <h2>The stuff that will ruin your day</h2>
@@ -160,23 +159,23 @@ window.ARTICLE_BODIES["yosemite-with-kids-no-reservations-2026"] = function Yose
       </p>
 
       <p>
-        <strong>Overscheduling.</strong> You do not need to see everything. You need to see three things well. The family that hikes one trail, eats lunch by the river, gets the Junior Ranger badge, and watches sunset from a meadow has a better trip than the family that drives to eight viewpoints and sees none of them. Let your kids set the pace. Stop when they want to stop. The meadow with no agenda is where the trip actually happens.
+        <strong>Overscheduling.</strong> You do not need to see everything. You need to see three things well. The family that hikes one trail, eats lunch by the river, gets the Junior Ranger badge, and watches sunset from a meadow has a better trip than the family that drives to eight viewpoints and sees none of them. Let your kids set the pace and stop when they want to stop.
       </p>
 
       <h2>If you have a second day</h2>
 
-      <p>Lucky you. Here are three options, depending on what's open and what your kids can handle.</p>
+      <p>Three options, depending on what's open and what your kids can handle.</p>
 
       <p>
         <strong>Glacier Point by car.</strong> <a href="/articles/glacier-point-road-open-2026">Glacier Point Road opened May 9</a> this year. The drive takes about an hour from the Valley. The viewpoint at the end is fenced and safe for kids, and the view, Half Dome at eye level, the Valley 3,200 feet below, the entire Clark Range spread out to the south, is arguably the best in the park. No hiking required. Drive up, get out, look, eat lunch at the picnic area, drive back. On the way, stop at the Sentinel Dome trailhead for an easy 2.2-mile round trip to a bald granite dome with 360-degree views. Kids love the scramble to the top.
       </p>
 
       <p>
-        <strong>Mariposa Grove.</strong> The giant sequoias. A free shuttle runs from a parking area to the grove (the road to the grove is closed to private vehicles). The lower grove loop is about 2 miles on a paved trail, stroller-accessible and flat enough for all ages. The Grizzly Giant is 2,700 years old and 96 feet around. Let that land on your kids. The shuttle ride is part of the fun for small children.
+        <strong>Mariposa Grove.</strong> The giant sequoias. A free shuttle runs from a parking area to the grove (the road to the grove is closed to private vehicles). The lower grove loop is about 2 miles on a paved trail, stroller-accessible and flat enough for all ages. The Grizzly Giant is 2,700 years old and 96 feet around. The shuttle ride is part of the fun for small children.
       </p>
 
       <p>
-        <strong>Tioga Road and Tuolumne Meadows.</strong> If <a href="/articles/tioga-road-opening-weekend-2026">Tioga Road is open</a> (it typically opens late May to early June, and is open this year as of May 15), the drive from the Valley up to Tuolumne Meadows is one of the great road trips in the American West. The meadow at 8,600 feet is cool, wide, and crisscrossed with easy walking paths. Soda Springs, a natural carbonated spring bubbling out of the ground, is a short walk from the road and kids think it's magic (because it kind of is). The water is fizzy. They can taste it. No reservation needed to drive Tioga Road.
+        <strong>Tioga Road and Tuolumne Meadows.</strong> If <a href="/articles/tioga-road-opening-weekend-2026">Tioga Road is open</a> (it typically opens late May to early June, and is open this year as of May 15), the drive from the Valley up to Tuolumne Meadows is one of the great road trips in the American West. The meadow at 8,600 feet is cool, wide, and crisscrossed with easy walking paths. Soda Springs, a natural carbonated spring bubbling out of the ground, is a short walk from the road and kids like tasting the fizzy water. No reservation needed to drive Tioga Road.
       </p>
 
       <h2>The naturalist's cheat sheet</h2>
@@ -239,7 +238,7 @@ window.ARTICLE_BODIES["yosemite-with-kids-no-reservations-2026"] = function Yose
 
       <h3>The one thing to remember</h3>
       <p>
-        Your kids don't need to see everything. They need to see one waterfall, throw rocks in one creek, and earn one Junior Ranger badge. That's a perfect day.
+        Your kids don't need to see everything. They need to see one waterfall, throw rocks in one creek, and earn one Junior Ranger badge.
       </p>
 
       <p style={{ marginTop: 32, fontStyle: "italic", color: "var(--ink-3)" }}>

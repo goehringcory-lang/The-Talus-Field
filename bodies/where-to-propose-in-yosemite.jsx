@@ -6,7 +6,7 @@ window.ARTICLE_BODIES["where-to-propose-in-yosemite"] = function WhereToProposeI
   return (
     <>
       <p className="dropcap">
-        I have seen the ring come out of jacket pockets, backpack hip belts, socks, water bottles, and once, memorably, a bear canister. The bear canister proposal was at Cathedral Lakes. The man could not get the lid open. His partner stood there watching him wrestle with bear-proof plastic at 9,500 feet while the alpine lake reflected Cathedral Peak behind them. He got it open. She said yes. The lid had left a red mark on his palm. That was the detail she mentioned when she told me the story afterward. Not the lake. Not the mountain. The mark on his hand from trying.
+        I have seen the ring come out of jacket pockets, backpack hip belts, socks, water bottles, and once, memorably, a bear canister. The bear canister proposal was at Cathedral Lakes. The man could not get the lid open. His partner stood there watching him wrestle with bear-proof plastic at 9,500 feet while the alpine lake reflected Cathedral Peak behind them. He got it open. She said yes. The lid had left a red mark on his palm. When she told me the story afterward, that mark was the detail she mentioned.
       </p>
 
       <p>
@@ -26,7 +26,7 @@ window.ARTICLE_BODIES["where-to-propose-in-yosemite"] = function WhereToProposeI
       <p>Good.</p>
 
       <p>
-        The best proposals I have witnessed in this park were the simplest. Two people, a question, a view. The regulations are not obstacles to romance. They are guardrails that force you toward what actually works. Yosemite does not need decoration. It has been decorating itself for roughly ten million years. The glacier-carved walls, the 3,000-foot waterfalls, the sugar pines, the light that comes through the Valley at golden hour and turns the granite the color of warm bread. You do not need to add to this. You need to show up and pay attention to it.
+        The best proposals I have witnessed in this park were the simplest. Two people, a question, a view. The regulations push you toward what works. The glacier-carved walls, the 3,000-foot waterfalls and the evening light on the granite need nothing added.
       </p>
 
       <p>
@@ -36,7 +36,7 @@ window.ARTICLE_BODIES["where-to-propose-in-yosemite"] = function WhereToProposeI
       <h2>The Famous Walls</h2>
 
       <p>
-        Let me walk through the iconic proposal spots, because you are going to consider them and you should know what you are getting into.
+        Here are the famous proposal spots, because you are going to consider them and you should know what you are getting into.
       </p>
 
       <p>
@@ -48,7 +48,7 @@ window.ARTICLE_BODIES["where-to-propose-in-yosemite"] = function WhereToProposeI
       </p>
 
       <p>
-        <strong>Tunnel View</strong> is the single most photographed spot in the park, near where Ansel Adams made "Clearing Winter Storm" around 1937 from Inspiration Point, establishing an entire visual vocabulary for how Americans see Yosemite. El Capitan on the left, Bridalveil Fall on the right, Half Dome centered in the distance. It is genuinely magnificent. It is also a pullout on a highway. Cars idle. Exhaust hangs in the air on still mornings. People stand three deep at the stone wall. I have seen proposals here that worked, but they worked despite the location, not because of it. The view deserves its fame. The experience of standing at the overlook in peak season does not.
+        <strong>Tunnel View</strong> is the single most photographed spot in the park, near where Ansel Adams made "Clearing Winter Storm" around 1937 from Inspiration Point, establishing an entire visual vocabulary for how Americans see Yosemite. El Capitan on the left, Bridalveil Fall on the right, Half Dome centered in the distance. It is magnificent. It is also a pullout on a highway. Cars idle. Exhaust hangs in the air on still mornings. People stand three deep at the stone wall. I have seen proposals here that worked, but they worked despite the location. In peak season the overlook is crowded and loud.
       </p>
 
       <p>
@@ -56,7 +56,7 @@ window.ARTICLE_BODIES["where-to-propose-in-yosemite"] = function WhereToProposeI
       </p>
 
       <p>
-        I need to be honest about this place. In 2018, Vishnu Viswanath and Meenakshi Moorthy fell to their deaths from the cliffs near Taft Point while taking photographs. These are not isolated incidents. The beauty of Taft Point is inseparable from its danger, and proposals at cliff edges with fatal exposure carry a weight I do not think most people have fully considered. If you go, stay well back from the edge. The view is stunning from twenty feet back. It is not worth more from twenty feet closer.
+        In 2018, Vishnu Viswanath and Meenakshi Moorthy fell to their deaths from the cliffs near Taft Point while taking photographs. These are not isolated incidents. The beauty of Taft Point is inseparable from its danger, and proposals at cliff edges with fatal exposure carry a weight I do not think most people have fully considered. If you go, stay well back from the edge.
       </p>
 
       <p>
@@ -74,41 +74,41 @@ window.ARTICLE_BODIES["where-to-propose-in-yosemite"] = function WhereToProposeI
       </p>
 
       <p>
-        <strong>McGurk Meadow</strong> requires a short hike, about 1.6 miles round trip from a trailhead on Glacier Point Road, and it rewards the effort with a wet meadow ringed by lodgepole pines where wildflowers bloom through June and July. The meadow has a boardwalk to protect the plants, and the walk itself passes through a quiet forest with an old pioneer cabin along the trail. I have never seen more than a handful of people here, even on busy weekends. The meadow is not dramatic. It is gentle. That is its power.
+        <strong>McGurk Meadow</strong> requires a short hike, about 1.6 miles round trip from a trailhead on Glacier Point Road, and it rewards the effort with a wet meadow ringed by lodgepole pines where wildflowers bloom through June and July. The meadow has a boardwalk to protect the plants, and the walk itself passes through a quiet forest with an old pioneer cabin along the trail. I have never seen more than a handful of people here, even on busy weekends. The meadow is quiet rather than dramatic.
       </p>
 
       <p>
-        <strong>Dewey Point</strong> is the longer walk, about 8 miles round trip from the same Glacier Point Road corridor, and it delivers a Valley rim view similar to Glacier Point but without any of the infrastructure or crowds. You stand at the edge of the south rim and look across to El Capitan and the Valley floor. The silence is the first thing you notice. No idling engines, no gift shop chatter, no shutter clicks from strangers. Just wind in the red firs and the enormous space of the Valley below.
+        <strong>Dewey Point</strong> is the longer walk, about 8 miles round trip from the same Glacier Point Road corridor, and it delivers a Valley rim view similar to Glacier Point but without any of the infrastructure or crowds. You stand at the edge of the south rim and look across to El Capitan and the Valley floor. It is quiet: no engines or gift shop, only wind in the red firs.
       </p>
 
       <p>
-        <strong>Cook's Meadow at dawn</strong> is the simplest option and one of the best. This is the large meadow in the heart of Yosemite Village, boardwalk paths crossing through it, with views of Half Dome, Yosemite Falls, and Sentinel Rock. At midday it is a crowded crossroads. At first light it is empty and silver with dew. The meadow fills with mist some mornings, and when it clears, the walls of the Valley emerge one at a time like curtains opening. If you are staying in the Valley and want something easy and private, set an alarm. Get there before the world wakes up. The park is different before 7 a.m. and most people never see that version of it.
+        <strong>Cook's Meadow at dawn</strong> is the simplest option and one of the best. This is the large meadow in the heart of Yosemite Village, boardwalk paths crossing through it, with views of Half Dome, Yosemite Falls, and Sentinel Rock. At midday it is a crowded crossroads. At first light it is empty and silver with dew. The meadow fills with mist some mornings, and when it clears, the walls of the Valley appear one at a time. If you are staying in the Valley and want something easy and private, set an alarm and get there before 7 a.m.
       </p>
 
       <h2>Proposals You Walk To</h2>
 
       <p>
-        There is something to be said for earning the moment. A proposal at the end of a hike has a built-in narrative: you walked together, you climbed together, you arrived somewhere together. The effort becomes part of the story.
+        There is something to be said for earning the moment. At the end of a hike, the effort becomes part of the story.
       </p>
 
       <p>
-        <strong>The top of Vernal Fall</strong> is 2.4 miles from Happy Isles on the <a href="/articles/mist-trail-the-real-guide">Mist Trail</a>, gaining about 1,000 feet of elevation on a granite staircase that gets drenched in waterfall spray during spring. When you reach the top, the Merced River slides over a broad granite lip and drops 317 feet into the canyon below. There is a railing at the overlook and a wide, flat area to rest. The hike is strenuous enough to feel earned and short enough to be accessible for most fit adults. In May and June, when the fall is running at full volume, the sound is so consuming it becomes a kind of silence. You cannot hear anything else. The world narrows to the water, the granite, and the person next to you.
+        <strong>The top of Vernal Fall</strong> is 2.4 miles from Happy Isles on the <a href="/articles/mist-trail-the-real-guide">Mist Trail</a>, gaining about 1,000 feet of elevation on a granite staircase that gets drenched in waterfall spray during spring. When you reach the top, the Merced River slides over a broad granite lip and drops 317 feet into the canyon below. There is a railing at the overlook and a wide, flat area to rest. The hike is strenuous enough to feel earned and short enough to be accessible for most fit adults. In May and June, at full volume, the fall drowns out everything else.
       </p>
 
       <p>
-        <strong>Cathedral Lakes</strong>, where our bear canister story began, is a 7.6-mile round trip from the trailhead on Tioga Road in <a href="/articles/first-time-yosemite-overwhelm">Tuolumne Meadows</a>. The trail climbs through lodgepole forest and breaks out into subalpine meadows before reaching the lower lake at about 9,500 feet. Cathedral Peak, a sharp granite spire, rises directly above the lake. The water is cold and clear and reflects the peak like a mirror on calm mornings. This is the High Sierra, austere and luminous, and it requires Tioga Road to be open, typically late May through November. The hike is moderate but the elevation gain and altitude make it feel harder than the mileage suggests. Bring water. Bring sunscreen. Bring the ring somewhere you can actually reach it.
+        <strong>Cathedral Lakes</strong>, where our bear canister story began, is a 7.6-mile round trip from the trailhead on Tioga Road in <a href="/articles/first-time-yosemite-overwhelm">Tuolumne Meadows</a>. The trail climbs through lodgepole forest and breaks out into subalpine meadows before reaching the lower lake at about 9,500 feet. Cathedral Peak, a sharp granite spire, rises directly above the lake. The water is cold and clear and reflects the peak like a mirror on calm mornings. It requires Tioga Road to be open, typically late May through November. The hike is moderate but the elevation gain and altitude make it feel harder than the mileage suggests. Bring water. Bring sunscreen. Bring the ring somewhere you can actually reach it.
       </p>
 
       <p>
-        <strong>Mirror Lake in spring</strong> is a mostly flat 2-mile walk from the shuttle stop, and in April and May, when snowmelt fills the lake bed, it creates a reflection of Half Dome so perfect it looks fabricated. By late summer the lake dries to a meadow, so timing matters. The spring window, roughly late April through early June depending on snowpack, is when this spot earns its name. The walk is easy, the crowds are lighter than you might expect for something this accessible, and the reflection of Half Dome in still water is one of the most quietly staggering things in the park.
+        <strong>Mirror Lake in spring</strong> is a mostly flat 2-mile walk from the shuttle stop, and in April and May, when snowmelt fills the lake bed, it creates a reflection of Half Dome so perfect it looks fabricated. By late summer the lake dries to a meadow, so timing matters. The spring window, roughly late April through early June depending on snowpack, is when this spot earns its name. The walk is easy, the crowds are lighter than you might expect for something this accessible, and the reflection of Half Dome in still water is one of the best views in the park.
       </p>
 
       <p>
-        <strong>Lembert Dome</strong> in Tuolumne Meadows is about 3.8 miles round trip to the summit of a glacially polished granite dome at 9,450 feet. The final push is a scramble up smooth rock, nothing technical but you will use your hands, and the top opens to a view of the entire Tuolumne high country: meadows, the Tuolumne River, Cathedral Range, Mount Dana. At 8,600 feet of base elevation, the air is thin and the sky is a shade of blue that does not exist in the Valley. This is the proposal spot for people who want altitude, solitude, and the feeling of standing on top of something.
+        <strong>Lembert Dome</strong> in Tuolumne Meadows is about 3.8 miles round trip to the summit of a glacially polished granite dome at 9,450 feet. The final push is a scramble up smooth rock, nothing technical but you will use your hands, and the top opens to a view of the entire Tuolumne high country: meadows, the Tuolumne River, Cathedral Range, Mount Dana. At 8,600 feet of base elevation, the air is thin. This is the spot for people who want altitude and solitude.
       </p>
 
       <p>
-        <strong>North Dome</strong> is the proposal location I would choose if someone asked me, and almost nobody knows about it. The trail is about 10 miles round trip from the Porcupine Creek trailhead off Tioga Road, mostly flat through forest with a final descent to the dome itself. And then you see it. Half Dome, directly across the Valley, closer than from any other vantage point, at eye level, filling your entire field of vision. Glacier Point is visible below and across the gap. The Valley floor is a green ribbon far below. You are looking at the <a href="/articles/so-you-want-to-hike-half-dome">most famous rock face in North America</a> from a place where, on a Tuesday in June, you might be completely alone. No railing. No parking lot. No gift shop. Just granite underfoot and granite across the sky. The hike back out is uphill and longer than you expect, so plan accordingly.
+        <strong>North Dome</strong> is the proposal location I would choose if someone asked me, and almost nobody knows about it. The trail is about 10 miles round trip from the Porcupine Creek trailhead off Tioga Road, mostly flat through forest with a final descent to the dome itself. From the dome, Half Dome sits directly across the Valley, closer than from any other vantage point, at eye level, filling your entire field of vision. Glacier Point is visible below and across the gap. The Valley floor is a green ribbon far below. You are looking at the <a href="/articles/so-you-want-to-hike-half-dome">most famous rock face in North America</a> from a place where, on a Tuesday in June, you might be completely alone. There is no railing. The hike back out is uphill and longer than you expect, so plan accordingly.
       </p>
 
       <h2>The Dark Ones</h2>
@@ -116,11 +116,11 @@ window.ARTICLE_BODIES["where-to-propose-in-yosemite"] = function WhereToProposeI
       <p>Some of the best proposals happen after sunset.</p>
 
       <p>
-        Yosemite has some of the darkest skies in the Sierra Nevada foothills, particularly in the high country. Tuolumne Meadows, at 8,600 feet, is far from any significant light pollution, and on a clear moonless night the Milky Way is not a suggestion in the sky but a physical presence, a river of light dense enough to cast faint shadows on the granite.
+        Yosemite has some of the darkest skies in the Sierra Nevada foothills, particularly in the high country. Tuolumne Meadows, at 8,600 feet, is far from any significant light pollution, and on a clear moonless night the Milky Way is bright enough to cast faint shadows on the granite.
       </p>
 
       <p>
-        The math matters. Check a moon phase calendar. You want a new moon or as close to it as possible. The Milky Way core is best positioned from about late May through September, rising in the southeast and arcing overhead by midnight. A June new moon with clear skies in Tuolumne is one of the most beautiful things available on this planet, full stop.
+        The math matters. Check a moon phase calendar. You want a new moon or as close to it as possible. The Milky Way core is best positioned from about late May through September, rising in the southeast and arcing overhead by midnight. A June new moon with clear skies in Tuolumne is about as good as night skies get.
       </p>
 
       <p>
@@ -128,7 +128,7 @@ window.ARTICLE_BODIES["where-to-propose-in-yosemite"] = function WhereToProposeI
       </p>
 
       <p>
-        The logistics of a night proposal are simple but require thought. Bring a headlamp with a red light mode so you do not destroy your night vision. Know your route in daylight first. Tell someone where you are going. And give your eyes thirty minutes to fully adapt to the dark once you turn off the headlamp. The Milky Way does not reveal itself to people staring at phone screens. It reveals itself to people who wait.
+        The logistics of a night proposal are simple but require thought. Bring a headlamp with a red light mode so you do not destroy your night vision. Know your route in daylight first. Tell someone where you are going. And give your eyes thirty minutes to fully adapt to the dark once you turn off the headlamp.
       </p>
 
       <h2>Waterfall Season</h2>
@@ -136,7 +136,7 @@ window.ARTICLE_BODIES["where-to-propose-in-yosemite"] = function WhereToProposeI
       <p>If timing is flexible, spring changes everything.</p>
 
       <p>
-        Yosemite's waterfalls peak between late April and early June, fed by Sierra snowmelt, and during that window the park operates on a different frequency. Yosemite Falls, at 2,425 feet one of the tallest waterfalls in North America, throws so much water that the mist plume rises hundreds of feet above the base and drifts across the meadow like weather. The sound reaches you before you see the falls. It is not background noise. It is an environment.
+        Yosemite's waterfalls peak between late April and early June, fed by Sierra snowmelt, and during that window the park operates on a different frequency. Yosemite Falls, at 2,425 feet one of the tallest waterfalls in North America, throws so much water that the mist plume rises hundreds of feet above the base and drifts across the meadow like weather. You hear the falls before you see them.
       </p>
 
       <p>
@@ -144,7 +144,7 @@ window.ARTICLE_BODIES["where-to-propose-in-yosemite"] = function WhereToProposeI
       </p>
 
       <p>
-        <strong>Vernal Fall on the Mist Trail</strong> in spring is not a hike. It is a commitment. The granite staircase above the footbridge runs directly through the fall's spray zone, and in peak flow you will be soaked completely by the time you reach the top. Waterproof your ring box. Waterproof your phone. Accept that you will be drenched and laughing and that this is actually the ideal state in which to ask someone to marry you. The combination of physical effort, cold water, roaring sound, and arrival at the top, where the falls drop away and the river stretches upstream into the canyon, is one of the most exhilarating experiences in the park. If you are the kind of couple that finishes a hike soaking wet and grinning, this is your spot.
+        <strong>Vernal Fall on the Mist Trail</strong> in spring is a serious outing. The granite staircase above the footbridge runs directly through the fall's spray zone, and in peak flow you will be soaked completely by the time you reach the top. Waterproof your ring box. Waterproof your phone. Accept that you will be drenched and laughing and that this is actually the ideal state in which to ask someone to marry you. The combination of physical effort, cold water, roaring sound, and arrival at the top, where the falls drop away and the river stretches upstream into the canyon, is one of the most exhilarating experiences in the park. If you are the kind of couple that finishes a hike soaking wet and grinning, this is your spot.
       </p>
 
       <h2>The Off-Season Play</h2>
@@ -154,11 +154,11 @@ window.ARTICLE_BODIES["where-to-propose-in-yosemite"] = function WhereToProposeI
       </p>
 
       <p>
-        <strong>October</strong> is the best-kept secret in Yosemite. The summer crowds thin dramatically after Labor Day. The black oaks in the Valley turn gold and orange. The light drops lower and warmer. The waterfalls are mostly dry, but the Merced River still runs, and the reflection of golden oaks in the river, backed by granite walls, is a different kind of beautiful. The air is cool and clean. Glacier Point Road is usually still open. Tioga Road often stays open into early November. The Valley in October feels like a place exhaling after holding its breath all summer.
+        <strong>October</strong> is the best-kept secret in Yosemite. The summer crowds thin dramatically after Labor Day. The black oaks in the Valley turn gold and orange. The light drops lower and warmer. The waterfalls are mostly dry, but the Merced River still runs, and the reflection of golden oaks in the river, backed by granite walls, is a different kind of beautiful. The air is cool and clean. Glacier Point Road is usually still open. Tioga Road often stays open into early November.
       </p>
 
       <p>
-        <strong>December through February</strong> offers true solitude. Visitor numbers drop by more than 80 percent from summer peaks. The Valley floor can be dusted with snow while the granite walls glow in low winter light. Yosemite Falls often resumes flowing with early winter storms. The Ahwahnee Hotel, now officially called The Majestic Yosemite Hotel but still The Ahwahnee to anyone who has been here longer than the trademark dispute, is warm and lit and serves as a basecamp for winter proposals that is hard to argue with. Ansel Adams married Virginia Best in the park in 1928, in the middle of a landscape he would spend the rest of his life photographing. Winter Yosemite is where that kind of quiet devotion lives.
+        <strong>December through February</strong> offers true solitude. Visitor numbers drop by more than 80 percent from summer peaks. The Valley floor can be dusted with snow while the granite walls glow in low winter light. Yosemite Falls often resumes flowing with early winter storms. The Ahwahnee Hotel, now officially called The Majestic Yosemite Hotel but still The Ahwahnee to anyone who has been here longer than the trademark dispute, is warm and lit and serves as a basecamp for winter proposals that is hard to argue with. Ansel Adams married Virginia Best in the park in 1928, in the middle of a landscape he would spend the rest of his life photographing.
       </p>
 
       <p>
@@ -178,7 +178,7 @@ window.ARTICLE_BODIES["where-to-propose-in-yosemite"] = function WhereToProposeI
       </p>
 
       <p>
-        <strong>The ring.</strong> Do not carry it loose in your pocket. Do not put it in an outside pocket of your backpack where it can fall out when you reach for a water bottle. Use a hard-sided box, stash it in an interior zip pocket, and check on it at every rest stop. I have seen exactly two rings lost in the park. One went into the Merced River at the Vernal Fall footbridge. One rolled off a granite slab on Sentinel Dome. Neither was recovered. Granite is unforgiving and rivers do not give things back.
+        <strong>The ring.</strong> Do not carry it loose in your pocket. Do not put it in an outside pocket of your backpack where it can fall out when you reach for a water bottle. Use a hard-sided box, stash it in an interior zip pocket, and check on it at every rest stop. I have seen exactly two rings lost in the park. One went into the Merced River at the Vernal Fall footbridge. One rolled off a granite slab on Sentinel Dome. Neither was recovered.
       </p>
 
       <p>
@@ -186,11 +186,11 @@ window.ARTICLE_BODIES["where-to-propose-in-yosemite"] = function WhereToProposeI
       </p>
 
       <p>
-        <strong>The Yosemite Chapel.</strong> If you want the proposal to double as a location scouting trip, know that the Yosemite Chapel, built in 1879, is the oldest structure in the Valley and hosts weddings regularly. The first recorded wedding there was in 1884. It sits in a meadow below Sentinel Rock with a view that would make any architect weep. Weddings at the chapel require a Special Use Permit from the NPS and are booked well in advance. For couples thinking about what comes after the engagement, the chapel is worth a quiet visit.
+        <strong>The Yosemite Chapel.</strong> If you want the proposal to double as a location scouting trip, know that the Yosemite Chapel, built in 1879, is the oldest structure in the Valley and hosts weddings regularly. The first recorded wedding there was in 1884. It sits in a meadow below Sentinel Rock with a view of the north wall. Weddings at the chapel require a Special Use Permit from the NPS and are booked well in advance. For couples thinking about what comes after the engagement, the chapel is worth a quiet visit.
       </p>
 
       <p>
-        <strong>Timing.</strong> I have said this several ways already, but it deserves a final emphasis. Early morning and late afternoon are different parks than midday. The light is better. The crowds are thinner. The animals are more active. The air is cooler. If your plan involves any of the popular viewpoints, sunrise is not just an advantage. It is the difference between a private moment and a public performance. Set the alarm.
+        <strong>Timing.</strong> Early morning and late afternoon are different parks than midday. The light is better, the crowds thinner, the air cooler. If your plan involves any of the popular viewpoints, sunrise is the difference between a private moment and a public performance. Set the alarm.
       </p>
 
       <p>
@@ -217,11 +217,11 @@ window.ARTICLE_BODIES["where-to-propose-in-yosemite"] = function WhereToProposeI
       </p>
 
       <p>
-        I do not know their names. I do not know what he said. I know that the oak above them was the most beautiful thing in a park full of beautiful things, and they were not looking at it. They were looking at each other. The leaves kept falling around them like the park was doing the decorating no one is allowed to do.
+        I do not know their names. I do not know what he said. The oak above them was dropping yellow leaves, and they were looking at each other, not at it.
       </p>
 
       <p>
-        After twenty years of watching, the pattern is this: the proposals that work are the ones where both people are present. Not performing. Not documenting. Not worrying about the angle or the light or the crowd behind them. Just there, in the park, looking at each other. Everything else is scenery. And Yosemite has plenty of that to spare.
+        After twenty years of watching, the pattern is this: the proposals that work are the ones where both people are paying attention to each other rather than to the camera, the light or the crowd.
       </p>
 
       <AffiliateNote />

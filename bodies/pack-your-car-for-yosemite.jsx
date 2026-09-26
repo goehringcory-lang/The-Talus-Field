@@ -78,7 +78,7 @@ window.ARTICLE_BODIES["pack-your-car-for-yosemite"] = function PackYourCarForYos
       </p>
 
       <p>
-        Long pants, too. Even if you hike in shorts, having pants in the car means you can switch for an evening program, a mosquito-heavy meadow walk at dusk, or a late-afternoon breeze at Taft Point that turns cold fast. I keep a full change of clothes in a dry bag in the trunk. On the trips I need it, I'm very glad it's there.
+        Long pants, too. Even if you hike in shorts, having pants in the car means you can switch for an evening program, a mosquito-heavy meadow walk at dusk, or a late-afternoon breeze at Taft Point that turns cold fast. I keep a full change of clothes in a dry bag in the trunk. I need it on more trips than I expect.
       </p>
 
       <h2>A ground mat at the tailgate</h2>
@@ -194,7 +194,7 @@ window.ARTICLE_BODIES["pack-your-car-for-yosemite"] = function PackYourCarForYos
       </p>
 
       <p>
-        A bear breaking into your car is not a funny story for Instagram. It's a $500 to $5,000 repair bill, a trashed interior, lost food, and a bear that's now more likely to do it again. Every car break-in teaches that bear that cars contain food. Eventually, a bear that's broken into enough cars gets euthanized. Your laziness about the bear box has a body count. Use it.
+        A bear breaking into your car means a $500 to $5,000 repair bill, a trashed interior, lost food, and a bear that's now more likely to do it again. Every car break-in teaches that bear that cars contain food. Eventually, a bear that's broken into enough cars gets euthanized. Your laziness about the bear box has a body count. Use it.
       </p>
 
       <h2>How to load the car</h2>

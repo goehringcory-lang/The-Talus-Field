@@ -84,7 +84,7 @@ window.ARTICLE_BODIES["yosemite-camping-complete-guide"] = function YosemiteCamp
       <h2>The cancellation game</h2>
 
       <p>
-        You missed the 7 AM window. The campground you wanted is sold out for every date in July. This is not the end. This is where the cancellation game begins.
+        You missed the 7 AM window. The campground you wanted is sold out for every date in July. Cancellations are the next step.
       </p>
 
       <p>
@@ -136,7 +136,7 @@ window.ARTICLE_BODIES["yosemite-camping-complete-guide"] = function YosemiteCamp
       </p>
 
       <p>
-        But the riverside sites are genuinely beautiful. Loops E and F back up to the Merced River, and from those spots you can fall asleep to moving water. Site numbers in the high 100s and 200s along those loops are the ones locals would pick. The interior loops are tighter, more exposed, and closer to the road. Generator hours are 7 to 9 AM, noon to 2 PM, and 5 to 7 PM. If you are in a tent next to an RV, those hours will define your morning.
+        But the riverside sites are beautiful. Loops E and F back up to the Merced River, and from those spots you can fall asleep to moving water. Site numbers in the high 100s and 200s along those loops are the ones locals would pick. The interior loops are tighter, more exposed, and closer to the road. Generator hours are 7 to 9 AM, noon to 2 PM, and 5 to 7 PM. If you are in a tent next to an RV, those hours will define your morning.
       </p>
 
       <p>
@@ -186,7 +186,7 @@ window.ARTICLE_BODIES["yosemite-camping-complete-guide"] = function YosemiteCamp
       <h2>The road out of the Valley</h2>
 
       <p>
-        The Valley gets all the attention. The campgrounds outside it get all the peace. If you are the kind of camper who values quiet over proximity, these three deserve your consideration.
+        The Valley gets all the attention. The campgrounds outside it get all the peace. If you value quiet over proximity, consider these three.
       </p>
 
       <h3>Wawona</h3>
@@ -262,7 +262,7 @@ window.ARTICLE_BODIES["yosemite-camping-complete-guide"] = function YosemiteCamp
       </p>
 
       <p>
-        Important note for 2026: White Wolf has portable toilets only and no drinking water due to sewer system damage. Bring your own water or a reliable filtration system. This is not a small inconvenience. It changes the character of the place. But it also keeps the crowds thinner, and if you are self-sufficient, White Wolf rewards that self-sufficiency with solitude.
+        Important note for 2026: White Wolf has portable toilets only and no drinking water due to sewer system damage. Bring your own water or a reliable filtration system. This is not a small inconvenience. It changes the character of the place. But it also keeps the crowds thinner, and if you are self-sufficient, White Wolf offers solitude in return.
       </p>
 
       <p>
@@ -390,7 +390,7 @@ window.ARTICLE_BODIES["yosemite-camping-complete-guide"] = function YosemiteCamp
       <h2>What to Do When Yosemite Campgrounds Are Full</h2>
 
       <p>
-        It is July. Every campground in Yosemite is booked. The cancellation alerts have gone silent. You are staring at your phone, questioning your life choices. Here is what you do.
+        It is July. Every campground in Yosemite is booked. The cancellation alerts have gone silent. Here is what to do.
       </p>
 
       <h3>National forest land</h3>
@@ -462,11 +462,11 @@ window.ARTICLE_BODIES["yosemite-camping-complete-guide"] = function YosemiteCamp
       </p>
 
       <p>
-        Winter camping in Yosemite is genuinely beautiful and genuinely cold. The Valley floor gets snow. Temperatures drop below freezing at night. The falls, if there has been rain, are spectacular. The silence in a snow-covered campground is unlike any other silence I know. If you have a four-season tent and a sleeping bag rated to 15 degrees, winter camping in Yosemite is an experience that will rearrange your understanding of the place.
+        Winter camping in Yosemite is beautiful and cold. The Valley floor gets snow. Temperatures drop below freezing at night. The falls, if there has been rain, are spectacular. The silence in a snow-covered campground is unlike any other silence I know. If you have a four-season tent and a sleeping bag rated to 15 degrees, winter camping in Yosemite is an experience that will rearrange your understanding of the place.
       </p>
 
       <p>
-        During <a href="/articles/yosemite-during-smoke-season">smoke season</a>, which has increasingly affected August and September, campground air quality can deteriorate rapidly. Check AirNow.gov before booking and monitor conditions during your stay. Camping in heavy smoke is unpleasant at best and genuinely dangerous for people with respiratory conditions.
+        During <a href="/articles/yosemite-during-smoke-season">smoke season</a>, which has increasingly affected August and September, campground air quality can deteriorate rapidly. Check AirNow.gov before booking and monitor conditions during your stay. Camping in heavy smoke is unpleasant at best and dangerous for people with respiratory conditions.
       </p>
 
       <h2>A few things people never mention</h2>

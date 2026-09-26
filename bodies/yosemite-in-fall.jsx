@@ -10,21 +10,21 @@ window.ARTICLE_BODIES["yosemite-in-fall"] = function YosemiteInFallBody() {
       </p>
 
       <p>
-        Fall is the season I recommend most often and the season people book least. The reason for both is the same: the waterfalls are gone. If your mental image of Yosemite came from a photograph, that photograph was taken in May, and September will look wrong to you. What I want to do here is make the trade explicit, because it is a good trade and almost nobody lays it out honestly. You are giving up water. You are getting back everything else, and you are getting it on a schedule that closes down one door at a time until the park is in winter.
+        Fall is the season I recommend most often and the season people book least. The reason for both is the same: the waterfalls are gone. If your mental image of Yosemite came from a photograph, that photograph was taken in May, and September will look wrong to you. What I want to do here is make the trade explicit, because it is a good trade and few guides spell it out. You are giving up water. You are getting back everything else, and you are getting it on a schedule that closes down one door at a time until the park is in winter.
       </p>
 
       <h2>The trade, stated plainly</h2>
 
       <p>
-        Start with the crowds, because the numbers are stark and they are the whole argument. Averaged across 2010 to 2024, July brings about 625,000 people through Yosemite and August about 607,000. September drops to roughly 511,000. October falls to about 389,000, which is a little over 60 percent of a July. November collapses to around 196,000, under a third of the summer peak.
+        Start with the crowds, because the numbers are stark. Averaged across 2010 to 2024, July brings about 625,000 people through Yosemite and August about 607,000. September drops to roughly 511,000. October falls to about 389,000, which is a little over 60 percent of a July. November collapses to around 196,000, under a third of the summer peak.
       </p>
 
       <p>
-        That October figure is the one to sit with. It is not a marginal improvement. It is a different park operating under the same name, on the same roads, with the same granite, and with nearly four in ten of the summer visitors simply absent. Trailhead lots that require a pre-dawn arrival in July have midmorning parking in October. The Mist Trail, which in June is a queue, is a trail again. And with the day-use reservation system retired for 2026, the summer months are absorbing that demand without a throttle, which sharpens the contrast further. The <a href="/articles/when-to-visit-yosemite-2026-crowd-forecast">crowd forecast</a> has the week-by-week detail.
+        The October figure matters most. It is not a marginal improvement: the same roads and the same granite, with nearly four in ten of the summer visitors absent. Trailhead lots that require a pre-dawn arrival in July have midmorning parking in October. The Mist Trail, which in June is a queue, is a trail again. And with the day-use reservation system retired for 2026, the summer months are absorbing that demand without a throttle, which sharpens the contrast further. The <a href="/articles/when-to-visit-yosemite-2026-crowd-forecast">crowd forecast</a> has the week-by-week detail.
       </p>
 
       <p>
-        Against that, the honest cost. By September, Yosemite Falls is a stain on the cliff or nothing at all. Most of the water in it is snowmelt, and the snow is usually gone by the end of July, so the fall does what the snowpack does. It will not come back in any convincing way until the November storms arrive, and in a dry autumn not until December. If you are bringing someone to Yosemite for the first time and the falls are the reason, fall is the wrong season and no amount of good weather fixes it.
+        Against that, the cost. By September, Yosemite Falls is a stain on the cliff or nothing at all. Most of the water in it is snowmelt, and the snow is usually gone by the end of July, so the fall does what the snowpack does. It will not come back in any convincing way until the November storms arrive, and in a dry autumn not until December. If you are bringing someone to Yosemite for the first time and the falls are the reason, fall is the wrong season and no amount of good weather fixes it.
       </p>
 
       <blockquote>Fall is the best season in Yosemite for everything except the one thing most people come for.</blockquote>
@@ -32,11 +32,11 @@ window.ARTICLE_BODIES["yosemite-in-fall"] = function YosemiteInFallBody() {
       <h2>The calendar is a sequence of closing doors</h2>
 
       <p>
-        This is the part that generic fall guides get wrong by treating autumn as a single block of time. It is not. Yosemite in fall is a series of dated and semi-dated closures, and which week you pick determines which park you get. Here they are in order.
+        Generic fall guides treat autumn as a single block of time. Yosemite in fall is a series of dated and semi-dated closures, and which week you pick determines which park you get. Here they are in order.
       </p>
 
       <p>
-        <strong>Labor Day.</strong> The crowd cliff. Nothing closes, but the family-vacation season ends and midweek visitation drops immediately. The first two weeks of September are, in my opinion, the single best stretch of the year in Yosemite: summer access, summer weather, and autumn emptiness at the same time. Everything is still open. Nothing has shut down yet.
+        <strong>Labor Day.</strong> The crowd cliff. Nothing closes, but the family-vacation season ends and midweek visitation drops immediately. The first two weeks of September are, in my opinion, the single best stretch of the year in Yosemite: summer access, summer weather, and autumn emptiness at the same time. Everything is still open.
       </p>
 
       <p>
@@ -48,7 +48,7 @@ window.ARTICLE_BODIES["yosemite-in-fall"] = function YosemiteInFallBody() {
       </p>
 
       <p>
-        <strong>Any storm from mid-October onward.</strong> Tioga Road closes when snow arrives, and this is the closure that ruins itineraries, because it has no date. The historical median is November 12, and in most years the road survives October: the Park Service's own record of seasonal dates has only five October closures in it. But it is a judgment call made on a forecast, not a calendar, and it can happen early: Tioga closed on October 21 in 2021 and on October 17 in 2004. It can also run long, and the 2010 season did not end until January 17. Treat every high-country plan after roughly October 10 as conditional, and check the road before you commit a driving day to it. The rest of the park is unaffected, which is the saving grace: a Tioga closure costs you the high country, not the trip.
+        <strong>Any storm from mid-October onward.</strong> Tioga Road closes when snow arrives, and this is the closure that ruins itineraries, because it has no date. The historical median is November 12, and in most years the road survives October: the Park Service's own record of seasonal dates has only five October closures in it. But it is a judgment call made on a forecast, not a calendar, and it can happen early: Tioga closed on October 21 in 2021 and on October 17 in 2004. It can also run long, and the 2010 season did not end until January 17. Treat every high-country plan after roughly October 10 as conditional, and check the road before you commit a driving day to it. The rest of the park is unaffected, so a Tioga closure costs you the high country but leaves the trip intact.
       </p>
 
       <p>
@@ -58,7 +58,7 @@ window.ARTICLE_BODIES["yosemite-in-fall"] = function YosemiteInFallBody() {
       <h2>Fall color: the received wisdom is wrong</h2>
 
       <p>
-        You will read, in more than one place, that Yosemite has no fall color because the trees are conifers. That is half a fact used badly. Most of the forest is evergreen, correct. But the Valley floor is not forest, it is meadow and oak woodland and riparian corridor, and those are exactly the places deciduous trees live.
+        You will read, in more than one place, that Yosemite has no fall color because the trees are conifers. That is half right. Most of the forest is evergreen, correct. But the Valley floor is not forest, it is meadow and oak woodland and riparian corridor, and those are exactly the places deciduous trees live.
       </p>
 
       <p>
@@ -66,7 +66,7 @@ window.ARTICLE_BODIES["yosemite-in-fall"] = function YosemiteInFallBody() {
       </p>
 
       <p>
-        Timing: the show generally starts in early October and runs until the first serious snowstorm ends it. On the Valley floor at 4,000 feet, peak is usually late October into mid-November. That is later than most visitors assume, and it is the source of a specific scheduling irony worth naming. <strong>The best fall color in Yosemite Valley arrives after the high country has already closed.</strong> Mid-October is the compromise date: decent color starting, Tioga usually still open. Late October and early November trade the high country away for the better color. There is no week that gives you both at their best, and anyone who tells you otherwise is selling something.
+        Timing: the show generally starts in early October and runs until the first serious snowstorm ends it. On the Valley floor at 4,000 feet, peak is usually late October into mid-November. That is later than most visitors assume, and it creates a scheduling problem. <strong>The best fall color in Yosemite Valley arrives after the high country has already closed.</strong> Mid-October is the compromise date: decent color starting, Tioga usually still open. Late October and early November trade the high country away for the better color. There is no week that gives you both at their best.
       </p>
 
       <p>
@@ -81,11 +81,11 @@ window.ARTICLE_BODIES["yosemite-in-fall"] = function YosemiteInFallBody() {
       </p>
 
       <p>
-        <strong>The bears are in hyperphagia.</strong> Starting in September, black bears shift into a physiological state of near-continuous eating to build the fat they will overwinter on. The numbers are genuinely difficult to believe: a bear in hyperphagia can take in up to 20,000 calories a day, forage as much as 20 hours out of 24, and put on two to three pounds daily. The park's own bear team has described the daily target in acorn terms, roughly eleven pounds of acorns, which is a useful image for understanding what a bear is doing in a black oak grove in October.
+        <strong>The bears are in hyperphagia.</strong> Starting in September, black bears shift into a physiological state of near-continuous eating to build the fat they will overwinter on. The numbers are hard to believe: a bear in hyperphagia can take in up to 20,000 calories a day, forage as much as 20 hours out of 24, and put on two to three pounds daily. The park's own bear team has described the daily target in acorn terms, roughly eleven pounds of acorns, which is a useful image for understanding what a bear is doing in a black oak grove in October.
       </p>
 
       <p>
-        Two consequences for a visitor. First, fall is the best bear-viewing season of the year, better than spring, because the animals are out longer and less cautious. Second, and more important, the Valley bear population goes up in autumn. Large transient males that spend the summer in the backcountry come down to Yosemite Valley, Wawona, and El Portal specifically for the acorn crop. There are more bears near people in October than in July, they are more motivated, and a car with food in it is a more attractive target than at any other time of year. Food storage discipline is not a summer rule that relaxes in the shoulder season, it is a rule that matters most in the shoulder season. The <a href="/articles/yosemite-bears-safety-guide">bear guide</a> has the full protocol, including why the bear spray you packed is illegal here.
+        Two consequences for a visitor. First, fall is the best bear-viewing season of the year, better than spring, because the animals are out longer and less cautious. Second, and more important, the Valley bear population goes up in autumn. Large transient males that spend the summer in the backcountry come down to Yosemite Valley, Wawona, and El Portal specifically for the acorn crop. There are more bears near people in October than in July, they are more motivated, and a car with food in it is a more attractive target than at any other time of year. Food storage matters more in the shoulder season than in summer. The <a href="/articles/yosemite-bears-safety-guide">bear guide</a> has the full protocol, including why the bear spray you packed is illegal here.
       </p>
 
       <p>
@@ -99,11 +99,11 @@ window.ARTICLE_BODIES["yosemite-in-fall"] = function YosemiteInFallBody() {
       <h2>Smoke, but the other kind</h2>
 
       <p>
-        Autumn is prescribed fire season in Yosemite, and this genuinely surprises visitors who arrive expecting clear skies after wildfire season has ended. Once fall brings cooler temperatures and enough moisture to make burning controllable, park fire crews run planned burns in Yosemite Valley, around Crane Flat, and in the Studhorse units near Wawona. Smoke from those projects is routinely visible in the Valley, in Foresta, and in El Portal.
+        Autumn is prescribed fire season in Yosemite, and this surprises visitors who arrive expecting clear skies after wildfire season has ended. Once fall brings cooler temperatures and enough moisture to make burning controllable, park fire crews run planned burns in Yosemite Valley, around Crane Flat, and in the Studhorse units near Wawona. Smoke from those projects is routinely visible in the Valley, in Foresta, and in El Portal.
       </p>
 
       <p>
-        Two things to hold at once. This is good work, and it is the reason a fire in these units later will not be catastrophic. It also means your October photographs may have haze in them and your throat may be scratchy for a day, and it is not something you can forecast months out, because the burns are scheduled against weather windows and get postponed constantly. The practical move is to check conditions when you arrive rather than planning around it. Note that this is a different phenomenon from summer wildfire smoke, which behaves differently and is worth understanding separately: <a href="/articles/yosemite-during-smoke-season">the smoke season guide</a> covers the geography of how smoke sits in these canyons and the real-time tools for reading it.
+        This is good work, and it is the reason a fire in these units later will not be catastrophic. It also means your October photographs may have haze in them and your throat may be scratchy for a day, and it is not something you can forecast months out, because the burns are scheduled against weather windows and get postponed constantly. The practical move is to check conditions when you arrive rather than planning around it. Note that this is a different phenomenon from summer wildfire smoke, which behaves differently and is worth understanding separately: <a href="/articles/yosemite-during-smoke-season">the smoke season guide</a> covers the geography of how smoke sits in these canyons and the real-time tools for reading it.
       </p>
 
       <h2>Weather, and the thing that catches people</h2>
@@ -113,13 +113,13 @@ window.ARTICLE_BODIES["yosemite-in-fall"] = function YosemiteInFallBody() {
       </p>
 
       <p>
-        The thing that catches people is not the cold, it is the daylight. By late October, sunset in the Valley is early and the walls make it earlier still, because the sun drops behind a 3,000-foot cliff well before it reaches the horizon. A hike that was comfortable in September, started at the same hour, finishes in the dark in November. Carry a headlamp from October onward and treat it as required equipment rather than an optional one. The <a href="/articles/pack-your-car-for-yosemite">car kit</a> covers the rest of the shoulder-season load, and the short version is: add layers, add the headlamp, and from late October keep chains in the trunk even if the forecast is clear, because the storm that closes Tioga is the same storm that puts chain control on your drive home.
+        What catches people is the daylight. By late October, sunset in the Valley is early and the walls make it earlier still, because the sun drops behind a 3,000-foot cliff well before it reaches the horizon. A hike that was comfortable in September, started at the same hour, finishes in the dark in November. Carry a headlamp from October onward and treat it as required equipment rather than an optional one. The <a href="/articles/pack-your-car-for-yosemite">car kit</a> covers the rest of the shoulder-season load, and the short version is: add layers, add the headlamp, and from late October keep chains in the trunk even if the forecast is clear, because the storm that closes Tioga is the same storm that puts chain control on your drive home.
       </p>
 
       <h2>How I would actually build the trip</h2>
 
       <p>
-        <strong>If you want the high country:</strong> go in September, ideally the two weeks after Labor Day. Tioga and Glacier Point Roads are open, the weather is stable, Tuolumne is empty in a way it never is in July, and the crowd drop has already happened. Accept that there is no fall color yet and no waterfall to speak of. This is the best week of the year in Yosemite and I will argue about it.
+        <strong>If you want the high country:</strong> go in September, ideally the two weeks after Labor Day. Tioga and Glacier Point Roads are open, the weather is stable, Tuolumne is empty in a way it never is in July, and the crowd drop has already happened. Accept that there is no fall color yet and no waterfall to speak of. In my view this is the best week of the year in Yosemite.
       </p>
 
       <p>
@@ -127,7 +127,7 @@ window.ARTICLE_BODIES["yosemite-in-fall"] = function YosemiteInFallBody() {
       </p>
 
       <p>
-        <strong>If you want the park nearly to yourself:</strong> go the first two weeks of November. Peak color on the Valley floor, under 200,000 people for the whole month, and a genuine chance of the best photographic conditions of the year, which is fresh snow on the rims above autumn color on the floor. You are giving up the high country entirely and accepting that weather may reroute your days. Go anyway.
+        <strong>If you want the park nearly to yourself:</strong> go the first two weeks of November. Peak color on the Valley floor, under 200,000 people for the whole month, and a real chance of the best photographic conditions of the year, which is fresh snow on the rims above autumn color on the floor. You are giving up the high country entirely and accepting that weather may reroute your days.
       </p>
 
       <p>
@@ -141,7 +141,7 @@ window.ARTICLE_BODIES["yosemite-in-fall"] = function YosemiteInFallBody() {
       </p>
 
       <p>
-        Pick your week by which door matters most to you. If it is Half Dome, you are hiking before October 13. If it is Tioga Road, you are gambling after mid-October. If it is the black oaks going gold in Cook's Meadow with the first snow on the rim behind them, you are coming in November and you are going to have the place almost to yourself. That's the trip.
+        Pick your week by which door matters most to you. If it is Half Dome, you are hiking before October 13. If it is Tioga Road, you are gambling after mid-October. If it is the black oaks going gold in Cook's Meadow with the first snow on the rim behind them, you are coming in November and you are going to have the place almost to yourself.
       </p>
 
       <LodgingCta

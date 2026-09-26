@@ -10,7 +10,7 @@ window.ARTICLE_BODIES["where-to-eat-yosemite"] = function WhereToEatYosemiteBody
       </p>
 
       <p>
-        I live in El Portal, and I eat in these places. None of the recommendations are affiliate links, and none are sponsored. If a restaurant isn't on the list, that doesn't make it bad. It means I don't have anything useful to say about it. Chains exist. There's a Chipotle in Oakhurst, and if you need one, you'll find it. That's not what this list is for. Further down there's also a complete roster of what exists in the Mariposa area, which is a different thing and worth having.
+        I live in El Portal, and I eat in these places. None of the recommendations are affiliate links, and none are sponsored. If a restaurant isn't on the list, that doesn't make it bad. It means I don't have anything useful to say about it. Chains exist. There's a Chipotle in Oakhurst, and if you need one, you'll find it. This list is not for those. Further down there is also a complete roster of what exists in the Mariposa area.
       </p>
 
       <h2>Is there food in Yosemite National Park?</h2>
@@ -26,15 +26,15 @@ window.ARTICLE_BODIES["where-to-eat-yosemite"] = function WhereToEatYosemiteBody
       <h2>Where to eat in Yosemite Valley</h2>
 
       <p>
-        <strong>Curry Village Pizza Deck.</strong> Order the Half Dome: house pepperoni and ricotta with fennel and a chili oil drizzle. You eat it on the wooden deck under the granite face of Glacier Point Apron at the end of a long day, with beer on tap, picnic tables, and a line of people who've been doing the same thing all summer. There's almost always a wait, and the wait is part of it. It's the only restaurant inside the park I'd go out of my way for. It isn't the best pizza in California. It is the best pizza in Yosemite Valley by a wide margin, and on the right summer evening it is the best meal of the trip. The location is officially Curry Village; most people still call it Curry Village.
+        <strong>Curry Village Pizza Deck.</strong> Order the Half Dome: house pepperoni and ricotta with fennel and a chili oil drizzle. You eat it on the wooden deck under the granite face of Glacier Point Apron at the end of a long day, with beer on tap, picnic tables, and a line of people who've been doing the same thing all summer. There's almost always a wait. It's the only restaurant inside the park I'd go out of my way for. It is the best pizza in Yosemite Valley by a wide margin, and on a summer evening it is often the best meal of the trip. The location is officially Curry Village; most people still call it Curry Village.
       </p>
 
       <p>
-        <strong>Base Camp Eatery, Yosemite Valley Lodge.</strong> This is the busiest room in the park and the one most visitors actually eat in, so leaving it off a list would be a disservice even though nobody drives to it. It's a food court: you order at touchscreen kiosks, pick up at a counter, and sit at a long communal table. Grill, pizza, a hot line, breakfast from early. What it's good for is speed and hours, not cooking. At 7 a.m. on a July morning it is the fastest hot breakfast on the Valley floor, and at 8 p.m. it is often the last kitchen still taking orders. That second fact is the one to plan around.
+        <strong>Base Camp Eatery, Yosemite Valley Lodge.</strong> This is the busiest room in the park and the one most visitors actually eat in, so leaving it off a list would be a disservice even though nobody drives to it. It's a food court: you order at touchscreen kiosks, pick up at a counter, and sit at a long communal table. Grill, pizza, a hot line, breakfast from early. It is good for speed and hours. At 7 a.m. on a July morning it is the fastest hot breakfast on the Valley floor, and at 8 p.m. it is often the last kitchen still taking orders. That second fact is the one to plan around.
       </p>
 
       <p>
-        <strong>Degnan's Kitchen, Yosemite Village.</strong> If you want a halfway decent lunch inside the park for under twenty dollars, this is the only place. Order a sandwich at the counter, take it outside, and eat it on a bench. The bread is real, the meat is fine, the line moves. If you forgot to pack a cooler, <a href="/map?stop=degnans-deli">Degnan's</a> is the fallback that does not feel like a fallback. If you slept inside the park, a coffee and a breakfast sandwich here at 7 a.m. is one of the better moves in the Valley. Upstairs in the same building, the Loft at Degnan's ran for years as a seasonal sit-down room with a bar and a wood-fired oven. It's closed now, which takes away the one answer the Valley had to the question people ask on the third rainy afternoon: where can we sit indoors, inside the park, that is not a hotel dining room.
+        <strong>Degnan's Kitchen, Yosemite Village.</strong> If you want a halfway decent lunch inside the park for under twenty dollars, this is the only place. Order a sandwich at the counter, take it outside, and eat it on a bench. The bread is good and the line moves. If you forgot to pack a cooler, <a href="/map?stop=degnans-deli">Degnan's</a> is a decent fallback. If you slept inside the park, a coffee and a breakfast sandwich here at 7 a.m. is one of the better moves in the Valley. Upstairs in the same building, the Loft at Degnan's ran for years as a seasonal sit-down room with a bar and a wood-fired oven. It's closed now, which takes away the one answer the Valley had to the question people ask on the third rainy afternoon: where can we sit indoors, inside the park, that is not a hotel dining room.
       </p>
 
       <p>
@@ -42,7 +42,7 @@ window.ARTICLE_BODIES["where-to-eat-yosemite"] = function WhereToEatYosemiteBody
       </p>
 
       <p>
-        <strong>The Mountain Room, Yosemite Valley Lodge.</strong> The Valley's sit-down dinner option short of The Ahwahnee: a proper dining room with a wall of glass pointed at Yosemite Falls. Get a reservation in summer, and time it for the falls: you're booking this room for the view, not the food.
+        <strong>The Mountain Room, Yosemite Valley Lodge.</strong> The Valley's sit-down dinner option short of The Ahwahnee: a proper dining room with a wall of glass pointed at Yosemite Falls. Get a reservation in summer, and time it for the falls, because the view is the reason to book.
       </p>
 
       <p>
@@ -86,7 +86,7 @@ window.ARTICLE_BODIES["where-to-eat-yosemite"] = function WhereToEatYosemiteBody
       </p>
 
       <p>
-        <strong>1850 Restaurant &amp; Brewing Co., Mariposa.</strong> The sit-down dinner option in town. Wood-fired pizzas, a burger that is genuinely good, a short list of house-brewed beers, and a patio that fills on summer evenings. Closed Monday and Tuesday. Service can drag when the dining room's full, but the food's worth the wait.
+        <strong>1850 Restaurant &amp; Brewing Co., Mariposa.</strong> The sit-down dinner option in town. Wood-fired pizzas, a good burger, a short list of house-brewed beers, and a patio that fills on summer evenings. Closed Monday and Tuesday. Service can drag when the dining room's full, but the food's worth the wait.
       </p>
 
       <p>
@@ -94,7 +94,7 @@ window.ARTICLE_BODIES["where-to-eat-yosemite"] = function WhereToEatYosemiteBody
       </p>
 
       <p>
-        <strong>Tacos Sonora, Mariposa.</strong> A taco truck permanently parked at 5034 Coakley Circle. Fast, cheap, and exactly what it should be. Two carne asada tacos and a horchata, no frills, no table to sit at. The post-hike, pre-drive, no-decisions-required option. Open weekdays until 7 p.m., Saturday until 4 p.m., closed Sunday.
+        <strong>Tacos Sonora, Mariposa.</strong> A taco truck permanently parked at 5034 Coakley Circle. Fast and cheap. Two carne asada tacos and a horchata, no frills, no table to sit at. A good stop after a hike. Open weekdays until 7 p.m., Saturday until 4 p.m., closed Sunday.
       </p>
 
       <p>
@@ -110,11 +110,11 @@ window.ARTICLE_BODIES["where-to-eat-yosemite"] = function WhereToEatYosemiteBody
       </p>
 
       <p>
-        <strong>The Elderberry House at Chateau du Sureau, Oakhurst.</strong> The fine-dining option, and the only restaurant in the region that is its own destination. Erna Kubin-Clanin opened the place in 1984 and the kitchen is still doing a rotating multi-course prix fixe that changes daily, with optional wine pairings out of a cellar that is taken seriously. Well over $100 a person before wine, and reservations are required well in advance. This is the anniversary dinner, the last-night splurge, the meal you build the rest of the day around.
+        <strong>The Elderberry House at Chateau du Sureau, Oakhurst.</strong> The fine-dining option, and the only restaurant in the region that is its own destination. Erna Kubin-Clanin opened the place in 1984 and the kitchen is still doing a rotating multi-course prix fixe that changes daily, with optional wine pairings out of a cellar that is taken seriously. Well over $100 a person before wine, and reservations are required well in advance. This is the anniversary or last-night dinner.
       </p>
 
       <p>
-        <strong>Latte Da Cafe, Lee Vining.</strong> The east-side breakfast and coffee stop. Whether you're coming over Tioga Pass from Mammoth or Bishop or down from Lake Tahoe, this is the first real coffee on the route in either direction. The pastries are made in-house, the drip is honest, and the staff is the kind that remembers you the second time. Park behind the building, walk in, eat outside. Going east on a Tuesday in July, this is where the trip starts.
+        <strong>Latte Da Cafe, Lee Vining.</strong> The east-side breakfast and coffee stop. Whether you're coming over Tioga Pass from Mammoth or Bishop or down from Lake Tahoe, this is the first real coffee on the route in either direction. The pastries are made in-house and the drip coffee is good. Park behind the building, walk in, eat outside. 
       </p>
 
       <p>
@@ -124,11 +124,11 @@ window.ARTICLE_BODIES["where-to-eat-yosemite"] = function WhereToEatYosemiteBody
       <h2>Everything that exists, by area</h2>
 
       <p>
-        The recommendations above are opinions. This part isn't. The roster below is the August 2026 revision of the Mariposa eating-out list, a single sheet kept current locally and handed out at visitor desks and lodge counters. It records what exists and roughly where, nothing more: no hours, no prices, no judgment, and inclusion is not a recommendation from anybody, including me. It does the one thing a review list can't: tell you that a town of four hundred people has a cafe in it at all. Names are as the sheet prints them where a business's own styling is unclear.
+        The recommendations above are opinions. The roster below is the August 2026 revision of the Mariposa eating-out list, a single sheet kept current locally and handed out at visitor desks and lodge counters. It records what exists and roughly where, nothing more: no hours, no prices, no judgment, and inclusion is not a recommendation from anybody, including me. It does the one thing a review list can't: tell you that a town of four hundred people has a cafe in it at all. Names are as the sheet prints them where a business's own styling is unclear.
       </p>
 
       <p>
-        One caveat before the list. It covers Mariposa County plus Fish Camp, which is why Oakhurst, Bass Lake, Groveland and Lee Vining are absent: those are Madera, Tuolumne and Mono counties. And it lists a few places that are not aimed at visitors, the Senior Center being the obvious one. Read it as a census, not a menu.
+        One caveat before the list. It covers Mariposa County plus Fish Camp, which is why Oakhurst, Bass Lake, Groveland and Lee Vining are absent: those are Madera, Tuolumne and Mono counties. And it lists a few places that are not aimed at visitors, the Senior Center being the obvious one. 
       </p>
 
       <p>
@@ -209,13 +209,13 @@ window.ARTICLE_BODIES["where-to-eat-yosemite"] = function WhereToEatYosemiteBody
       </p>
 
       <p>
-        The best lunch in Yosemite is a sandwich you made in a parking lot, eaten on a granite slab beside the Merced. It costs four dollars, saves you an hour in line, and it's the meal people talk about afterwards.
+        The best lunch in Yosemite is a sandwich you made in a parking lot, eaten on a granite slab beside the Merced. It costs four dollars and saves you an hour in line.
       </p>
 
       <h2>What closes, and when</h2>
 
       <p>
-        Almost no other list covers this, and it's the part that ruins evenings. The park's food service contracts and shuts down through September, weeks before the roads do. In the 2026 season the Tuolumne store and grill closed on September 20 and Jennie's Ice Cream at Curry Village on September 6. Valley service holds up longest and thins out anyway: the taqueria and the Loft go first, then the deck, then the hours shorten on everything left.
+        Few lists cover this, and it ruins evenings. The park's food service contracts and shuts down through September, weeks before the roads do. In the 2026 season the Tuolumne store and grill closed on September 20 and Jennie's Ice Cream at Curry Village on September 6. Valley service holds up longest and thins out anyway: the taqueria and the Loft go first, then the deck, then the hours shorten on everything left.
       </p>
 
       <p>
@@ -225,7 +225,7 @@ window.ARTICLE_BODIES["where-to-eat-yosemite"] = function WhereToEatYosemiteBody
       <h2>The takeaway</h2>
 
       <p>
-        Food isn't the point of a Yosemite trip. The park is. A meal that doesn't slow you down or empty your wallet did its job. Pack a cooler, eat the pizza at Curry Village one night, eat the brisket in Mariposa one night, drink the coffee in Lee Vining one morning, and the rest of the time eat lunch on a granite slab next to the river. That's the part you'll remember.
+        Food is not the point of a Yosemite trip. Pack a cooler, eat the pizza at Curry Village one night, eat the brisket in Mariposa one night, drink the coffee in Lee Vining one morning, and the rest of the time eat lunch on a granite slab next to the river.
       </p>
 
       <p style={{ marginTop: 32, fontStyle: "italic", color: "var(--ink-3)" }}>

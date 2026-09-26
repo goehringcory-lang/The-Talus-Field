@@ -14,13 +14,13 @@ window.ARTICLE_BODIES["yosemite-glaciers-climate"] = function YosemiteGlaciersBo
       </p>
 
       <p>
-        This is not a story about crisis (though crisis is part of it). It's a story about reading time. Glaciers keep a record. Every winter's snow adds to the ice and every summer's melt takes some of it away, and the balance between those two is a readable account of the climate that produced them. Yosemite's remnants are too small and too wet to hold the layered ice-core record that polar glaciers do, meltwater percolates down and blurs the years, but their extent, thickness and movement have been measured on and off since Muir, and that record is long enough to say something exact about what has changed.
+        Glaciers keep a record. Every winter's snow adds to the ice and every summer's melt takes some of it away, and the balance between those two is a readable account of the climate that produced them. Yosemite's remnants are too small and too wet to hold the layered ice-core record that polar glaciers do, meltwater percolates down and blurs the years, but their extent, thickness and movement have been measured on and off since Muir, and that record is long enough to say something exact about what has changed.
       </p>
 
       <h2>How glaciers archive climate</h2>
 
       <p>
-        A glacier is a time machine that works by accumulation. When snow falls on a glacier in winter, it lands on existing ice. It compresses under the weight of subsequent snowfall. Over years, it becomes firn. Over decades, it becomes glacier ice. The transformation happens because the weight of overlying snow removes air spaces, compacting the material until it's dense enough to flow slowly downslope under its own weight.
+        A glacier builds by accumulation. When snow falls on a glacier in winter, it lands on existing ice. It compresses under the weight of subsequent snowfall. Over years, it becomes firn. Over decades, it becomes glacier ice. The transformation happens because the weight of overlying snow removes air spaces, compacting the material until it's dense enough to flow slowly downslope under its own weight.
       </p>
 
       <p>
@@ -28,23 +28,23 @@ window.ARTICLE_BODIES["yosemite-glaciers-climate"] = function YosemiteGlaciersBo
       </p>
 
       <p>
-        Yosemite's glaciers sit high enough (most above 10,000 feet, with the highest near 13,000) that they still accumulate snow in most years. They are small compared to glaciers in the greater Sierra, and they are shrinking. But they are still there, and the records they hold are recent enough to be directly relevant to understanding how Yosemite's mountain environment is changing right now.
+        Yosemite's glaciers sit high enough (most above 10,000 feet, with the highest near 13,000) that they still accumulate snow in most years. They are small compared to glaciers in the greater Sierra, and they are shrinking. Their records are recent enough to show how Yosemite's high country is changing now.
       </p>
 
       <p>
         Two glaciers remain in Yosemite: the <strong>Lyell</strong> and the <strong>Maclure</strong>. Both sit at the headwaters of the Tuolumne River beneath the park's highest peaks, and neither is a roadside stop. The usual approach is a multi-day walk from Tuolumne Meadows, which puts them behind <a href="/articles/tioga-road-opening-weekend-2026">Tioga Road</a>'s season: late June through October in most years. The Dana Glacier, which is often named alongside them, lies east of the Mount Dana ridgeline and outside the park, in the Ansel Adams Wilderness.
       </p>
 
-      <p>The data is unambiguous: both glaciers have retreated and thinned, and one of them has stopped moving.</p>
+      <p>Both glaciers have retreated and thinned, and one of them has stopped moving.</p>
 
       <h2>The recession timeline</h2>
 
       <p>
-        Lyell's decline is the one that has been measured most closely, and the numbers are specific: about 60 percent of its area gone since 1900, and about 120 vertical feet of thinning. Thinning is the part that matters for what it is. A glacier moves because it is thick enough that its own weight deforms the ice at the bottom. Below that threshold it is a snowfield that happens to be old, which is what the stationary stakes of 2012 were recording. Park scientists have said Lyell could disappear within a decade or so, depending on the droughts ahead.
+        Lyell's decline is the one that has been measured most closely, and the numbers are specific: about 60 percent of its area gone since 1900, and about 120 vertical feet of thinning. Thinning determines what it is. A glacier moves because it is thick enough that its own weight deforms the ice at the bottom. Below that threshold it is a snowfield that happens to be old, which is what the stationary stakes of 2012 were recording. Park scientists have said Lyell could disappear within a decade or so, depending on the droughts ahead.
       </p>
 
       <p>
-        Why does this matter for climate? Because the position of a glacier's terminus is determined by a balance between snow accumulation on the upper glacier and melt on the lower glacier. If the terminus moves upslope and uphill, it means one of two things has happened (or both): less snow is accumulating in the upper glacier, or more melt is happening on the lower glacier. Either way, the signal is clear: the climate has warmed.
+        The position of a glacier's terminus is determined by a balance between snow accumulation on the upper glacier and melt on the lower glacier. If the terminus moves upslope, less snow is accumulating on the upper glacier, more melt is happening on the lower glacier, or both.
       </p>
 
       <p>
@@ -52,29 +52,29 @@ window.ARTICLE_BODIES["yosemite-glaciers-climate"] = function YosemiteGlaciersBo
       </p>
 
       <p>
-        The Maclure is on the same path, further back. It still moves, which is the whole difference between the two, and it is expected to outlast its neighbour. The 1928 <em>Nature Notes</em> Vol. 7, No. 9 entry titled "A Nature Guide Party Conquers Mt. Lyell" offers direct observations from that era of the ice's extent and appearance, and set beside repeat photography from the same vantages, the retreat is not subtle.
+        The Maclure is on the same path, further back. It still moves, and it is expected to outlast its neighbour. The 1928 <em>Nature Notes</em> Vol. 7, No. 9 entry titled "A Nature Guide Party Conquers Mt. Lyell" offers direct observations from that era of the ice's extent and appearance, and set beside repeat photography from the same vantages, the retreat is obvious.
       </p>
 
       <p>
-        What makes the glacier data particularly valuable is precision. A retreat of even a few hundred feet represents a measurable change in climate. And that change happened in ninety years, which is recent enough that we have other records to compare it to. Temperature records. Precipitation records. Streamflow measurements. The glacier data doesn't exist in isolation. It's one data stream among many, and it corroborates what the others show: the Sierra Nevada has warmed, particularly at high elevations, and the warming has been especially pronounced in recent decades.
+        What makes the glacier data particularly valuable is precision. A retreat of even a few hundred feet represents a measurable change in climate. That change happened in ninety years, recent enough to compare against temperature, precipitation and streamflow records. The glacier data corroborates what the others show: the Sierra Nevada has warmed, particularly at high elevations, and the warming has been especially pronounced in recent decades.
       </p>
 
       <h2>Where the water goes</h2>
 
       <p>
-        This is the question that matters most for Yosemite and the broader San Francisco Bay Area. Something close to a third of California's developed water supply comes off the Sierra Nevada, nearly all of it as snowmelt. When glaciers shrink, they're not just a climate signal. They're a declining water source.
+        This is the question that matters most for Yosemite and the broader San Francisco Bay Area. Something close to a third of California's developed water supply comes off the Sierra Nevada, nearly all of it as snowmelt. Shrinking glaciers are a climate signal and a declining water source.
       </p>
 
       <p>
-        The mechanism is straightforward. In summer, glacier melt feeds streams. A glacier is like a high-elevation reservoir. It accumulates snow in winter (when the water that falls is locked in ice), and releases it gradually in summer (through melt). This steady summer release helps sustain streamflow during the dry season. Without glaciers, the same amount of snow might fall, but much of it would melt in spring, and the stream would be lower in summer.
+        In summer, glacier melt feeds streams, so a glacier works like a high-elevation reservoir. It accumulates snow in winter (when the water that falls is locked in ice), and releases it gradually in summer (through melt). This steady summer release helps sustain streamflow during the dry season. Without glaciers, the same amount of snow might fall, but much of it would melt in spring, and the stream would be lower in summer.
       </p>
 
       <p>
-        It is worth being precise about what the glaciers themselves still contribute, which is very little. Both sit in the Tuolumne headwaters, so neither the Merced nor Tenaya Creek has any glacial ice in its watershed at all, and the surviving remnants are far too small to be a meaningful share of even the Tuolumne's late-summer flow. The thing that keeps the high streams running into August is the snowpack, and the glaciers matter chiefly as the most legible gauge of what is happening to it. When the ice that took centuries to build cannot hold itself together, that is a statement about the snow years underneath.
+        The glaciers themselves now contribute very little. Both sit in the Tuolumne headwaters, so neither the Merced nor Tenaya Creek has any glacial ice in its watershed at all, and the surviving remnants are far too small to be a meaningful share of even the Tuolumne's late-summer flow. The thing that keeps the high streams running into August is the snowpack, and the glaciers matter chiefly as the most legible gauge of what is happening to it.
       </p>
 
       <p>
-        The implications extend beyond aesthetics. The aquatic ecosystems in these streams depend on cold water from glacier melt. The fish that live in them (mostly native trout and adjacent populations of other coldwater species) are cold-water adapted. They thrive when glacier-fed streams stay cold and well-oxygenated. As glacier melt declines and stream temperatures warm, these populations may struggle.
+        The aquatic ecosystems in these streams depend on cold water from glacier melt. The fish that live in them (mostly native trout and adjacent populations of other coldwater species) are cold-water adapted. They thrive when glacier-fed streams stay cold and well-oxygenated. As glacier melt declines and stream temperatures warm, these populations may struggle.
       </p>
 
       <p>
@@ -84,7 +84,7 @@ window.ARTICLE_BODIES["yosemite-glaciers-climate"] = function YosemiteGlaciersBo
       <h2>Reading a deglaciated landscape</h2>
 
       <p>
-        When a glacier retreats, it leaves behind a landscape that tells the story of its presence and its loss. Immediately adjacent to where Lyell Glacier's terminus sat in 1933, the terrain is now bare, weathered granodiorite. The rock shows no lichen (lichen colonizes slowly, and ninety years is not long enough for significant colonization on exposed granite at high elevation). It shows no soil development. It's pristine stone, freshly revealed, looking not so much ancient as newly born.
+        A retreating glacier leaves a readable landscape. Immediately adjacent to where Lyell Glacier's terminus sat in 1933, the terrain is now bare, weathered granodiorite. The rock shows no lichen (lichen colonizes slowly, and ninety years is not long enough for significant colonization on exposed granite at high elevation). It shows no soil development.
       </p>
 
       <p>
@@ -92,11 +92,11 @@ window.ARTICLE_BODIES["yosemite-glaciers-climate"] = function YosemiteGlaciersBo
       </p>
 
       <p>
-        The moraine (the ridge of rocky debris pushed downslope by the glacier) marks the maximum extent during the last few centuries. Some of Lyell's moraine material dates from the 1600s and 1700s. That moraine has been colonized by substantial plants, even small trees, by now. The contrast between the moraine landscape (vegetated, soil-developed, integrated into the alpine ecosystem) and the freshly deglaciated terrain (bare rock, pioneer stage) is dramatic. You can literally walk backward in time as you hike away from the glacier, watching the landscape transition from very recent exposure to older, more developed terrain.
+        The moraine (the ridge of rocky debris pushed downslope by the glacier) marks the maximum extent during the last few centuries. Some of Lyell's moraine material dates from the 1600s and 1700s. That moraine has been colonized by substantial plants, even small trees, by now. The contrast between the moraine landscape (vegetated, soil-developed, integrated into the alpine ecosystem) and the freshly deglaciated terrain (bare rock, pioneer stage) is clear. Walking away from the glacier, you pass from recently exposed rock to older, more developed terrain.
       </p>
 
       <p>
-        This landscape reading is available to any visitor willing to hike to the glacier. The cairn that the 1933 ranger built may be gone, but the terrain itself is a more precise cairn. The bare rock marks where the glacier no longer reaches. The lichen patterns mark time. The moraine marks what the glacier used to do.
+        This landscape reading is available to any visitor willing to hike to the glacier. The cairn that the 1933 ranger built may be gone, but bare rock, lichen and moraine mark the same history.
       </p>
 
       <h2>What the data means, and what it doesn't</h2>
@@ -106,7 +106,7 @@ window.ARTICLE_BODIES["yosemite-glaciers-climate"] = function YosemiteGlaciersBo
       </p>
 
       <p>
-        The cause is not mysterious. The Sierra Nevada has warmed measurably over the past century, with the clearest signal in wintertime low temperatures, and most of that change concentrated in recent decades. Summer temperatures have warmed more than winter temperatures. This is precisely what you'd expect to see if you asked a climate model to show you how greenhouse gas accumulation would affect a mountain range. The warming is consistent with climate projections. It's not noise. It's signal.
+        The Sierra Nevada has warmed measurably over the past century, with the clearest signal in wintertime low temperatures, and most of that change concentrated in recent decades. Summer temperatures have warmed more than winter temperatures. The warming is consistent with climate projections for greenhouse gas accumulation.
       </p>
 
       <p>
@@ -114,7 +114,7 @@ window.ARTICLE_BODIES["yosemite-glaciers-climate"] = function YosemiteGlaciersBo
       </p>
 
       <p>
-        For Yosemite, this means that the park's landscape, the streams that define it, and the ecosystems that depend on those streams are in transition. Not crisis, necessarily, but change. The same warming that has shrunk Lyell Glacier is also reshaping how <a href="/articles/giant-sequoias-fire-adaptation">giant sequoia groves respond to fire</a>, both archives of climate written into the park, in ice and in bark. The question is not whether change will happen. The question is what Yosemite will do to adapt as it happens.
+        For Yosemite, this means that the park's landscape, the streams that define it, and the ecosystems that depend on those streams are in transition. The same warming that has shrunk Lyell Glacier is also reshaping how <a href="/articles/giant-sequoias-fire-adaptation">giant sequoia groves respond to fire</a>, both archives of climate written into the park, in ice and in bark.
       </p>
 
       <h3>Further reading</h3>
