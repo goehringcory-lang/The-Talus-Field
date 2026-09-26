@@ -4656,68 +4656,6 @@ main:focus { outline: none; }
 }
 .guide-stop-ex__links a { color: var(--ink); font-weight: 600; }
 
-/* The planner demo: one seeded day as a vertical timeline. */
-.guide-itin-demo {
-  border: 1px solid var(--ink);
-  background: var(--paper-2);
-  padding: 26px 28px;
-  margin: 28px 0 12px;
-}
-.guide-itin-demo__list {
-  list-style: none;
-  margin: 16px 0 0;
-  padding: 0;
-}
-.guide-itin-demo__block {
-  display: flex;
-  align-items: baseline;
-  gap: 14px;
-  border: 1px solid var(--rule);
-  background: var(--paper);
-  padding: 10px 14px;
-  margin: 0;
-}
-.guide-itin-demo__block + .guide-itin-demo__block { margin-top: 6px; }
-.guide-itin-demo__time {
-  font-family: var(--sans);
-  font-size: 11px;
-  font-weight: 600;
-  letter-spacing: 0.08em;
-  color: var(--ink-3);
-  flex: 0 0 74px;
-  font-feature-settings: "tnum";
-}
-.guide-itin-demo__label {
-  font-family: var(--serif);
-  font-size: 15px;
-  line-height: 1.45;
-  flex: 1 1 auto;
-  min-width: 0;
-}
-.guide-itin-demo__dur {
-  font-family: var(--sans);
-  font-size: 11px;
-  font-weight: 600;
-  color: var(--ink-3);
-  white-space: nowrap;
-}
-.guide-itin-demo__drive {
-  font-family: var(--sans);
-  font-size: 11px;
-  font-style: italic;
-  color: var(--ink-3);
-  border-left: 1px dotted var(--ink-3);
-  margin: 0 0 0 110px;
-  padding: 5px 0 5px 12px;
-}
-.guide-itin-demo__note {
-  font-family: var(--sans);
-  font-size: 12.5px;
-  line-height: 1.6;
-  color: var(--ink-3);
-  margin: 16px 0 0;
-}
-
 /* The offline toggle: same screenshot, service on or off. */
 .guide-offline { margin: 28px 0 12px; }
 .guide-offline__demo {
@@ -4952,9 +4890,6 @@ main:focus { outline: none; }
   }
   .guide-outcomes { grid-template-columns: 1fr; }
   .guide-stop-ex { padding: 20px 16px; }
-  .guide-itin-demo { padding: 20px 14px; }
-  .guide-itin-demo__time { flex-basis: 62px; }
-  .guide-itin-demo__drive { margin-left: 76px; }
   .guide-compare th, .guide-compare td { padding: 10px 10px; font-size: 13.5px; }
   .guide-trust__grid { grid-template-columns: 1fr; gap: 12px; }
   .guide-offline__cols { grid-template-columns: 1fr; }
@@ -9135,4 +9070,73 @@ html[data-nav-mode="pinned"] { scroll-padding-top: 62px; }
 }
 @media (prefers-reduced-motion: reduce) {
   .start-map__pin { transition: none; }
+}
+
+/* /guide: "Day one, laid out", the pane under the hero. The app's one-day
+   Valley plan on the Park Service's Valley map. The pins sit on the map's own
+   features, so they stay small and quiet; the map is the picture. Below 760px
+   the map keeps a readable 700px width and scrolls sideways. */
+.guide-dayone { padding: 88px 0 72px; display: grid; gap: 40px; }
+.guide-dayone__head { max-width: 780px; }
+.guide-dayone__head h2 { font-family: var(--serif); font-size: clamp(38px, 4.6vw, 62px); line-height: 1.03; font-weight: 500; letter-spacing: -0.01em; margin: 14px 0 18px; color: var(--hp-ink); }
+.guide-dayone__head h2 em { color: var(--hp-accent); }
+.guide-dayone__dek { font-family: var(--serif); font-size: 21px; line-height: 1.45; color: #3d5249; margin: 0; }
+.guide-dayone__map { margin: 0; display: grid; gap: 12px; }
+.guide-dayone__scroll { border: 1px solid var(--hp-rule); border-radius: 6px; overflow: hidden; }
+.guide-dayone__frame { position: relative; aspect-ratio: 1280 / 500; }
+.guide-dayone__frame picture, .guide-dayone__img { display: block; width: 100%; height: 100%; }
+.guide-dayone__img { object-fit: cover; }
+.guide-dayone__route { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; }
+.guide-dayone__route polyline { fill: none; stroke: var(--hp-accent); stroke-width: 1.6; stroke-opacity: 0.55; stroke-dasharray: 5 5; stroke-linecap: round; stroke-linejoin: round; }
+.guide-dayone__pin { position: absolute; width: 22px; height: 22px; margin: -11px 0 0 -11px; box-sizing: border-box; border-radius: 50%; border: 2px solid #fffdf7; background: var(--hp-ink); color: var(--hp-on-accent); box-shadow: 0 1px 3px rgba(20, 35, 30, 0.35); font-family: var(--sans); font-size: 11px; font-weight: 600; line-height: 18px; text-align: center; }
+.guide-dayone__pin.is-last, .guide-dayone__num.is-last { background: var(--hp-accent); }
+.guide-dayone__map figcaption { display: flex; justify-content: space-between; gap: 24px; font-family: var(--sans); font-size: 13px; color: var(--hp-muted); }
+.guide-dayone__map figcaption b { font-weight: 600; letter-spacing: 0.14em; color: var(--hp-ink); margin-right: 8px; }
+.guide-dayone__swipe { display: none; }
+.guide-dayone__dayhead { display: flex; justify-content: space-between; gap: 16px; padding-bottom: 12px; border-bottom: 1px solid var(--hp-ink); font-family: var(--sans); font-size: 13px; color: var(--hp-muted); }
+.guide-dayone__dayhead span:first-child { font-weight: 600; letter-spacing: 0.14em; color: var(--hp-ink); }
+.guide-dayone__cols { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); column-gap: 56px; align-items: start; }
+.guide-dayone__cols ol { list-style: none; margin: 0; padding: 0; }
+.guide-dayone__drive { display: block; padding: 6px 0 0 48px; font-family: var(--sans); font-size: 11.5px; font-style: italic; color: var(--hp-muted); }
+.guide-dayone__stop { display: grid; grid-template-columns: 34px minmax(0, 1fr) auto; gap: 14px; align-items: center; padding: 8px 0 11px; border-bottom: 1px solid #e3e1d6; }
+.guide-dayone__num { width: 30px; height: 30px; border-radius: 50%; background: var(--hp-ink); color: var(--hp-on-accent); font-family: var(--sans); font-size: 13px; font-weight: 600; display: flex; align-items: center; justify-content: center; }
+.guide-dayone__name { display: grid; gap: 1px; }
+.guide-dayone__name strong { font-family: var(--serif); font-size: 21px; line-height: 1.15; font-weight: 500; color: var(--hp-ink); }
+.guide-dayone__name span { font-family: var(--sans); font-size: 12.5px; color: var(--hp-muted); }
+.guide-dayone__time { display: grid; justify-items: end; gap: 3px; font-family: var(--sans); font-size: 14px; font-weight: 600; font-variant-numeric: tabular-nums; color: var(--hp-ink); white-space: nowrap; }
+.guide-dayone__time em { font-style: normal; font-size: 10.5px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--hp-accent-deep); background: #f3e2d6; border-radius: 3px; padding: 2px 6px; }
+.guide-dayone__swapcard { margin: 10px 0 6px 48px; padding: 12px 14px; border-radius: 5px; background: var(--hp-accent); color: var(--hp-on-accent); font-family: var(--serif); font-size: 17px; line-height: 1.35; }
+.guide-dayone__swapcard b { display: block; margin-bottom: 3px; font-family: var(--sans); font-size: 11px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; }
+.guide-dayone__photos { display: grid; grid-template-columns: 1.55fr 1fr 1fr 1fr; gap: 16px; }
+.guide-dayone__photos figure { position: relative; margin: 0; height: 200px; border-radius: 6px; overflow: hidden; }
+.guide-dayone__photos picture, .guide-dayone__photos img { display: block; width: 100%; height: 100%; object-fit: cover; }
+.guide-dayone__photos figcaption { position: absolute; left: 0; right: 0; bottom: 0; display: grid; gap: 2px; padding: 36px 14px 12px; background: linear-gradient(transparent, rgba(20, 35, 30, 0.82)); color: var(--hp-on-accent); font-family: var(--sans); font-size: 11px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; }
+.guide-dayone__photos .is-lead figcaption > span:first-child { color: var(--hp-gold); }
+.guide-dayone__line { font-family: var(--serif); font-size: 18px; font-weight: 400; letter-spacing: 0; line-height: 1.25; text-transform: none; }
+.guide-dayone__close { display: flex; justify-content: space-between; align-items: center; gap: 40px; }
+.guide-dayone__close > p { margin: 0; max-width: 760px; font-family: var(--serif); font-size: 21px; line-height: 1.4; color: #3d5249; }
+.guide-dayone__cta { display: flex; align-items: center; gap: 20px; flex-wrap: wrap; }
+.guide-dayone__cta a { font-family: var(--sans); font-size: 15px; font-weight: 500; color: var(--hp-accent); }
+.guide-dayone__credits { margin: -24px 0 0; font-family: var(--sans); font-size: 11px; line-height: 1.6; color: var(--hp-muted); }
+@media (max-width: 1000px) {
+  .guide-dayone__cols { grid-template-columns: 1fr; }
+  .guide-dayone__close { flex-direction: column; align-items: flex-start; gap: 20px; }
+}
+@media (max-width: 760px) {
+  .guide-dayone { padding: 56px 0 48px; gap: 28px; }
+  .guide-dayone__dek, .guide-dayone__close > p { font-size: 19px; }
+  .guide-dayone__map { margin: 0 -16px; }
+  .guide-dayone__scroll { border-radius: 0; border-left: 0; border-right: 0; overflow-x: auto; overflow-y: hidden; }
+  .guide-dayone__frame { width: 700px; }
+  .guide-dayone__pin { width: 20px; height: 20px; margin: -10px 0 0 -10px; font-size: 10px; line-height: 16px; }
+  .guide-dayone__map figcaption { padding: 0 16px; font-size: 11px; }
+  .guide-dayone__swipe { display: inline; }
+  .guide-dayone__dayhead { flex-direction: column; gap: 4px; }
+  .guide-dayone__swapcard { margin-left: 0; font-size: 16px; }
+  .guide-dayone__name strong { font-size: 19px; }
+  .guide-dayone__photos { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; }
+  .guide-dayone__photos figure { height: 120px; }
+  .guide-dayone__photos .is-lead { grid-column: 1 / -1; height: 230px; }
+  .guide-dayone__photos figcaption { padding: 24px 8px 8px; font-size: 10px; letter-spacing: 0.1em; }
+  .guide-dayone__credits { margin-top: -12px; }
 }

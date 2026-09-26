@@ -847,81 +847,194 @@ function GuideStopExample() {
     }
   }, "Open this stop in the real app →"), " ", "It is one of five sample entries anyone can read in full, no account needed."));
 }
-var ITIN_DEMO = [{
-  time: "8:00 a.m.",
-  label: "Tunnel View",
-  mins: 25
+var DAY_ONE = [{
+  name: "Tunnel View",
+  sub: "The moment the valley opens",
+  mins: 25,
+  x: 118,
+  y: 434,
+  swap: true
 }, {
-  drive: 14
+  name: "Bridalveil Fall",
+  sub: "Five-minute paved walk, flows all year",
+  mins: 30,
+  drive: 15,
+  x: 301,
+  y: 428
 }, {
-  time: "8:39 a.m.",
-  label: "Bridalveil Fall",
-  mins: 30
+  name: "Mirror Lake",
+  sub: "Two flat miles, closest to Half Dome",
+  mins: 90,
+  drive: 30,
+  x: 1130,
+  y: 119
 }, {
-  drive: 30
+  name: "Lunch at Curry Village",
+  sub: "Pizza patio, no reservation",
+  mins: 60,
+  drive: 15,
+  x: 966,
+  y: 236,
+  anchor: "Midday"
 }, {
-  time: "9:39 a.m.",
-  label: "Valley loop drive, Tunnel View to Curry Village",
-  mins: 60
+  name: "The Ahwahnee lobby",
+  sub: "The 1927 Great Lounge, open to anyone",
+  mins: 45,
+  drive: 10,
+  x: 933,
+  y: 130
 }, {
-  drive: 30
+  name: "El Capitan Meadow",
+  sub: "Climbers on the wall right now",
+  mins: 60,
+  drive: 25,
+  x: 535,
+  y: 340
 }, {
-  time: "11:09 a.m.",
-  label: "Cook's Meadow Loop",
-  mins: 60
+  name: "Cook's Meadow Loop",
+  sub: "Flat boardwalk mile, bears at dusk",
+  mins: 60,
+  drive: 20,
+  x: 812,
+  y: 132
 }, {
-  drive: 13
-}, {
-  time: "12:22 p.m.",
-  label: "Lunch at Curry Village",
-  mins: 60
-}, {
-  drive: 12
-}, {
-  time: "1:34 p.m.",
-  label: "The Ahwahnee, lobby visit",
-  mins: 45
-}, {
-  drive: 12
-}, {
-  time: "2:31 p.m.",
-  label: "Mirror Lake, before the crowd",
-  mins: 90
-}, {
-  drive: 22
-}, {
-  time: "4:23 p.m.",
-  label: "El Capitan Meadow, watching the wall",
-  mins: 60
-}, {
-  drive: 18
-}, {
-  time: "5:41 p.m.",
-  label: "Sentinel Bridge, the last hour",
-  mins: 60
+  name: "Sentinel Bridge",
+  sub: "Half Dome in the last light",
+  mins: 60,
+  drive: 0,
+  x: 796,
+  y: 170,
+  anchor: "Sunset"
 }];
-function GuideItineraryExample() {
-  return React.createElement("div", {
-    className: "guide-itin-demo"
+var DAY_ONE_PHOTOS = [{
+  image: "img/half-dome-merced-river-spring.jpg",
+  n: 8,
+  label: "Sentinel Bridge, the last hour",
+  line: "Half Dome catches the day's last light. Stay past the first gold.",
+  alt: "Half Dome above the Merced River from the Valley floor"
+}, {
+  image: "img/tunnel-view-valley-spring.jpg",
+  n: 1,
+  label: "Tunnel View",
+  alt: "El Capitan, Bridalveil Fall and Half Dome from the Tunnel View overlook"
+}, {
+  image: "img/mirror-lake-mount-watkins.jpg",
+  n: 3,
+  label: "Mirror Lake",
+  alt: "Mount Watkins reflected in Mirror Lake"
+}, {
+  image: "img/el-capitan-snow-spring.jpg",
+  n: 6,
+  label: "El Capitan Meadow",
+  alt: "El Capitan in last light above the Merced River"
+}];
+function dayOneDuration(mins) {
+  var h = Math.floor(mins / 60);
+  var m = mins % 60;
+  if (!h) return `${m} min`;
+  return m ? `${h} h ${m}` : `${h} h`;
+}
+function GuideDayOne() {
+  var onSite = DAY_ONE.reduce((sum, s) => sum + s.mins, 0);
+  var between = DAY_ONE.reduce((sum, s) => sum + (s.drive || 0), 0);
+  var route = DAY_ONE.map(s => `${s.x},${s.y}`).join(" ");
+  var last = DAY_ONE.length;
+  var half = Math.ceil(DAY_ONE.length / 2);
+  var columns = [DAY_ONE.slice(0, half), DAY_ONE.slice(half)];
+  return React.createElement("section", {
+    className: "hp-wrap guide-dayone",
+    "aria-labelledby": "guide-dayone-title"
+  }, React.createElement("header", {
+    className: "guide-dayone__head"
+  }, React.createElement("p", {
+    className: "hp-eyebrow"
+  }, "DAY ONE, STRAIGHT FROM THE APP"), React.createElement("h2", {
+    id: "guide-dayone-title"
+  }, "Your first day in the Valley, ", React.createElement("em", null, "already in order.")), React.createElement("p", {
+    className: "guide-dayone__dek"
+  }, "Eight stops in driving order, each with an honest time budget, lunch and sunset pinned where they belong, and the fallback written in for the lot that fills at ten. This is the app's one-day Valley plan as it ships. Days two and three do the same for Glacier Point and Tioga Road.")), React.createElement("figure", {
+    className: "guide-dayone__map"
   }, React.createElement("div", {
-    className: "eyebrow eyebrow--moss"
-  }, "From the planner · Day 1 · Yosemite Valley"), React.createElement("ol", {
-    className: "guide-itin-demo__list"
-  }, ITIN_DEMO.map((row, i) => row.drive ? React.createElement("li", {
-    className: "guide-itin-demo__drive",
-    key: `d${i}`
-  }, "drive · ", row.drive, " min") : React.createElement("li", {
-    className: "guide-itin-demo__block",
-    key: row.label
-  }, React.createElement("span", {
-    className: "guide-itin-demo__time"
-  }, row.time), React.createElement("span", {
-    className: "guide-itin-demo__label"
-  }, row.label), React.createElement("span", {
-    className: "guide-itin-demo__dur"
-  }, row.mins, " min")))), React.createElement("p", {
-    className: "guide-itin-demo__note"
-  }, "This is the one-day Valley preset exactly as the planner lays it out: every duration is the stop's own time budget, every drive is computed from the real distance between the two coordinates. Drag any block and the day re-flows around it. The day ends on Sentinel Bridge because that is where the last light goes."));
+    className: "guide-dayone__scroll"
+  }, React.createElement("div", {
+    className: "guide-dayone__frame"
+  }, React.createElement(ResponsiveImage, {
+    image: "img/nps-yosemite-valley-map.jpg",
+    alt: "National Park Service map of Yosemite Valley, with the eight stops of day one numbered in driving order",
+    sizes: "(max-width: 760px) 700px, (max-width: 1400px) 92vw, 1280px",
+    className: "guide-dayone__img"
+  }), React.createElement("svg", {
+    className: "guide-dayone__route",
+    viewBox: "0 0 1280 500",
+    preserveAspectRatio: "none",
+    "aria-hidden": "true"
+  }, React.createElement("polyline", {
+    points: route,
+    vectorEffect: "non-scaling-stroke"
+  })), DAY_ONE.map((s, i) => React.createElement("span", {
+    key: s.name,
+    className: "guide-dayone__pin" + (i === last - 1 ? " is-last" : ""),
+    style: {
+      left: `${s.x / 1280 * 100}%`,
+      top: `${s.y / 500 * 100}%`
+    },
+    "aria-hidden": "true"
+  }, i + 1)))), React.createElement("figcaption", null, React.createElement("span", null, React.createElement("b", null, "YOSEMITE VALLEY, DAY 1"), " Numbered in drive order. ", React.createElement("span", {
+    className: "guide-dayone__swipe"
+  }, "Swipe the map for stops 3 to 8.")), React.createElement("span", null, "Map: National Park Service"))), React.createElement("div", {
+    className: "guide-dayone__day"
+  }, React.createElement("div", {
+    className: "guide-dayone__dayhead"
+  }, React.createElement("span", null, "THE DAY"), React.createElement("span", null, DAY_ONE.length, " stops · ", dayOneDuration(onSite), " at the stops · ", dayOneDuration(between), " between them")), React.createElement("div", {
+    className: "guide-dayone__cols"
+  }, columns.map((col, c) => React.createElement("ol", {
+    key: c,
+    start: c * half + 1
+  }, col.map((s, j) => {
+    var n = c * half + j + 1;
+    return React.createElement("li", {
+      key: s.name
+    }, s.drive ? React.createElement("span", {
+      className: "guide-dayone__drive"
+    }, s.drive, " min drive") : null, React.createElement("div", {
+      className: "guide-dayone__stop"
+    }, React.createElement("span", {
+      className: "guide-dayone__num" + (n === last ? " is-last" : ""),
+      "aria-hidden": "true"
+    }, n), React.createElement("span", {
+      className: "guide-dayone__name"
+    }, React.createElement("strong", null, s.name), React.createElement("span", null, s.sub)), React.createElement("span", {
+      className: "guide-dayone__time"
+    }, dayOneDuration(s.mins), s.anchor ? React.createElement("em", null, s.anchor) : null)), s.swap ? React.createElement("p", {
+      className: "guide-dayone__swapcard"
+    }, React.createElement("b", null, "Lot full? The swap is written in."), " It usually is between 10 a.m. and 4 p.m. Drive on in and catch Valley View on the way out. Lower angle, same valley.") : null);
+  }))))), React.createElement("div", {
+    className: "guide-dayone__photos"
+  }, DAY_ONE_PHOTOS.map((p, i) => React.createElement("figure", {
+    key: p.image,
+    className: i === 0 ? "is-lead" : ""
+  }, React.createElement(ResponsiveImage, {
+    image: p.image,
+    alt: p.alt,
+    sizes: i === 0 ? "(max-width: 760px) 100vw, 480px" : "(max-width: 760px) 33vw, 280px"
+  }), React.createElement("figcaption", null, React.createElement("span", null, p.n, " · ", p.label), p.line ? React.createElement("span", {
+    className: "guide-dayone__line"
+  }, p.line) : null)))), React.createElement("div", {
+    className: "guide-dayone__close"
+  }, React.createElement("p", null, "Every stop carries its parking, its timing and its swap. The app builds your day in this order, then keeps working where the signal stops."), React.createElement("div", {
+    className: "guide-dayone__cta"
+  }, React.createElement(BuyNowButton, {
+    location: "guide_day_one"
+  }), React.createElement("a", {
+    href: `${GUIDE_APP_BASE}/preview`,
+    onClick: () => {
+      if (window.track) window.track("guide_sample_click", {
+        location: "guide_day_one"
+      });
+    }
+  }, "Read the free sample ↗"))), React.createElement("p", {
+    className: "guide-dayone__credits"
+  }, "Photos via Wikimedia Commons: Dexter Perkins (CC0), Kyle D (public domain), Mutineer (CC0), Anita Ritenour (CC BY 2.0). Map: U.S. National Park Service (public domain)."));
 }
 function GuideOfflineDemo() {
   var [off, setOff] = React.useState(true);
@@ -1220,7 +1333,7 @@ function GuidePage({
         location: "guide_hero"
       });
     }
-  }, "read the free sample first ↗"), " ", "Five complete entries from the real app, no account needed."))), React.createElement("div", {
+  }, "read the free sample first ↗"), " ", "Five complete entries from the real app, no account needed."))), React.createElement(GuideDayOne, null), React.createElement("div", {
     className: "hp-wrap hp-section"
   }, React.createElement("div", {
     className: "guide-layout"
@@ -1228,7 +1341,7 @@ function GuidePage({
     className: "prose guide-prose"
   }, React.createElement("h2", null, "What a wrong morning costs"), React.createElement("p", null, "Yosemite charges its real fees in hours. The Glacier Point lot fills by mid-morning in July; arrive at ten and the hour of driving becomes three of circling. Miss the early window at the Mist Trail and the day reorganizes itself around a shuttle line. The $35 your car pays at the entrance covers seven days no matter what you do with them. What those days contain is decided by timing, and timing is exactly what a list of famous viewpoints doesn't give you."), React.createElement("p", null, "That's the problem this guide is built against. Time budgets tell you what actually fits before lunch. Swaps tell you where to go the second a lot is full. And because all of it lives on your phone and works without signal, the answer is there at the moment the day wobbles, which is never a moment with bars."), React.createElement("p", null, "The guide is ", React.createElement(LivePrice, null), ". Everything else about your trip costs more and decides less."), React.createElement("h2", null, "The picnic table in El Portal"), React.createElement("p", null, "This guide is the conversation you'd get if you sat across from me at a picnic table in El Portal and said, \"I have three days. Show me how to do this well.\" Which stops are worth your morning, which can wait, where to park, how long each one actually takes, and what to do instead when the lot is full."), React.createElement("p", null, "The internet has a thousand free articles telling you to drive to Glacier Point, walk through the Mariposa Grove, and look up at El Capitan from the Yosemite Valley floor. You don't need those repeated in a different font. This guide assumes you've done that reading and starts where the lists stop: the parking, the timing, the order, and the fallback."), React.createElement("h2", null, "Sixty seconds inside the app"), React.createElement("p", null, "Five screens, in the order a trip actually uses them. These are unedited captures from the current 2026 build, the same one buyers open. Tap a step to hold it."), React.createElement(GuideWalkthrough, null), React.createElement("h2", null, "Every screen, unedited"), React.createElement("p", null, "The full set: ten screens from the current build, captured on a phone. What you see here is the product, not a mockup."), React.createElement(AppShots, null), React.createElement("h2", null, "New in the September 2026 build"), React.createElement("p", null, "The guide keeps changing after you buy it, and this is what the last month added. Eight more screens, captured the same way, from the same build."), React.createElement(AppShots, {
     shots: NEW_SHOTS
-  }), React.createElement("p", null, "Not pictured, because a phone screen does not hold them well: the offline map now carries the park's infrastructure, the five entrances, the visitor and wilderness centers with their hours, the eighteen Valley shuttle stops numbered as the park numbers them, picnic areas, gas, EV charging, showers, laundry, stores and the clinic, every kind of pin drawn with its own mark, and a \"Go to\" row that flies the map to a region. The front page's conditions panel gained live parking-lot status, and the same status prints on the map's parking pins. The Secret Guide grew by thirteen entries, and every one of them, along with the ten new photographs, arrived as a silent update. Nothing here cost an existing buyer anything, and that is the arrangement for the rest of the 18 months."), React.createElement("h2", null, "What it does for the day"), React.createElement(GuideOutcomes, null), React.createElement("h2", null, "Read one stop, in full"), React.createElement("p", null, "This is the guide's first stop, quoted word for word from the app. Every one of the 94 entries is built this way: the numbers up top, the read underneath, the fallback printed on the page, and, where the record allows it, a sourced note from a century of park naturalists' field bulletins."), React.createElement(GuideStopExample, null), React.createElement("h2", null, "A day, built in driving order"), React.createElement("p", null, "This is what the planner does with a day. Stops go in, and the day comes back as a timeline: each block sized by its real time budget, each gap computed from the actual driving distance between the two coordinates. No spreadsheet, no guessing whether four things fit before lunch."), React.createElement(GuideItineraryExample, null), React.createElement("h2", null, "Turn the service off"), React.createElement("p", null, "Cell service dies at the Wawona Tunnel, on most of Glacier Point Road, and along nearly all of Tioga. The guide treats that as the normal case, not the failure case."), React.createElement(GuideOfflineDemo, null), React.createElement("h2", null, "The free site, and the guide"), React.createElement("p", null, "Everything this site publishes stays free: the articles, the trip map, the itineraries, the conditions board. The guide is not those pages repackaged. It is the field version: the complete library, the planner, and the offline download that makes both of them work standing in a pullout with no bars."), React.createElement(GuideCompare, {
+  }), React.createElement("p", null, "Not pictured, because a phone screen does not hold them well: the offline map now carries the park's infrastructure, the five entrances, the visitor and wilderness centers with their hours, the eighteen Valley shuttle stops numbered as the park numbers them, picnic areas, gas, EV charging, showers, laundry, stores and the clinic, every kind of pin drawn with its own mark, and a \"Go to\" row that flies the map to a region. The front page's conditions panel gained live parking-lot status, and the same status prints on the map's parking pins. The Secret Guide grew by thirteen entries, and every one of them, along with the ten new photographs, arrived as a silent update. Nothing here cost an existing buyer anything, and that is the arrangement for the rest of the 18 months."), React.createElement("h2", null, "What it does for the day"), React.createElement(GuideOutcomes, null), React.createElement("h2", null, "Read one stop, in full"), React.createElement("p", null, "This is the guide's first stop, quoted word for word from the app. Every one of the 94 entries is built this way: the numbers up top, the read underneath, the fallback printed on the page, and, where the record allows it, a sourced note from a century of park naturalists' field bulletins."), React.createElement(GuideStopExample, null), React.createElement("h2", null, "Turn the service off"), React.createElement("p", null, "Cell service dies at the Wawona Tunnel, on most of Glacier Point Road, and along nearly all of Tioga. The guide treats that as the normal case, not the failure case."), React.createElement(GuideOfflineDemo, null), React.createElement("h2", null, "The free site, and the guide"), React.createElement("p", null, "Everything this site publishes stays free: the articles, the trip map, the itineraries, the conditions board. The guide is not those pages repackaged. It is the field version: the complete library, the planner, and the offline download that makes both of them work standing in a pullout with no bars."), React.createElement(GuideCompare, {
     go: go
   }), React.createElement("p", {
     style: {

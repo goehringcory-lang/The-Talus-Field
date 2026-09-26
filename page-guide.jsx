@@ -1,4 +1,4 @@
-/* global React, NewsletterInline, HpGuideBand, HpLetter */
+/* global React, NewsletterInline, HpGuideBand, HpLetter, ResponsiveImage */
 
 // Public URL of the PWA. Override at runtime via window.GUIDE_APP_BASE.
 const GUIDE_APP_BASE =
@@ -832,55 +832,164 @@ function GuideStopExample() {
   );
 }
 
-// The seeded one-day Valley plan, exactly as the in-app planner slots it:
-// stop order and time budgets from apps/guide/src/content (itineraries.ts
-// VALLEY_DAY + stops.ts timeBudgetMin), drive buffers from the planner's own
-// heuristic in apps/guide/src/trip/slotting.ts (haversine distance at 22 mph
-// plus 10 min park-and-walk, clamped 10-75; flat 30 when a coordinate is
-// missing). Recompute if the preset or the budgets change; do not eyeball.
-const ITIN_DEMO = [
-  { time: "8:00 a.m.", label: "Tunnel View", mins: 25 },
-  { drive: 14 },
-  { time: "8:39 a.m.", label: "Bridalveil Fall", mins: 30 },
-  { drive: 30 },
-  { time: "9:39 a.m.", label: "Valley loop drive, Tunnel View to Curry Village", mins: 60 },
-  { drive: 30 },
-  { time: "11:09 a.m.", label: "Cook's Meadow Loop", mins: 60 },
-  { drive: 13 },
-  { time: "12:22 p.m.", label: "Lunch at Curry Village", mins: 60 },
-  { drive: 12 },
-  { time: "1:34 p.m.", label: "The Ahwahnee, lobby visit", mins: 45 },
-  { drive: 12 },
-  { time: "2:31 p.m.", label: "Mirror Lake, before the crowd", mins: 90 },
-  { drive: 22 },
-  { time: "4:23 p.m.", label: "El Capitan Meadow, watching the wall", mins: 60 },
-  { drive: 18 },
-  { time: "5:41 p.m.", label: "Sentinel Bridge, the last hour", mins: 60 },
+// Day one, laid out: the pane directly under the hero. The seeded one-day
+// Valley plan on the Park Service's own Valley map. Stop order and time
+// budgets come from apps/guide/src/content (itineraries.ts VALLEY_DAY +
+// stops.ts timeBudgetMin); `drive` is the minutes the app's own
+// driveMinutesBetween (apps/guide/src/trip/slotting.ts) prints between that
+// stop and the one before it, run against the real content, not eyeballed.
+// No clock times: the planner anchors lunch and sunset to the date, so a
+// clock printed here would be wrong most of the year. `x`/`y` place each pin
+// on the feature the NPS map itself labels, in the 1280 x 500 frame of
+// img/nps-yosemite-valley-map.jpg (a crop of the public-domain NPS Yosemite
+// Valley map, via Wikimedia Commons). Re-run the drive numbers and re-place
+// the pins if the preset changes.
+const DAY_ONE = [
+  { name: "Tunnel View", sub: "The moment the valley opens", mins: 25, x: 118, y: 434, swap: true },
+  { name: "Bridalveil Fall", sub: "Five-minute paved walk, flows all year", mins: 30, drive: 15, x: 301, y: 428 },
+  { name: "Mirror Lake", sub: "Two flat miles, closest to Half Dome", mins: 90, drive: 30, x: 1130, y: 119 },
+  { name: "Lunch at Curry Village", sub: "Pizza patio, no reservation", mins: 60, drive: 15, x: 966, y: 236, anchor: "Midday" },
+  { name: "The Ahwahnee lobby", sub: "The 1927 Great Lounge, open to anyone", mins: 45, drive: 10, x: 933, y: 130 },
+  { name: "El Capitan Meadow", sub: "Climbers on the wall right now", mins: 60, drive: 25, x: 535, y: 340 },
+  { name: "Cook's Meadow Loop", sub: "Flat boardwalk mile, bears at dusk", mins: 60, drive: 20, x: 812, y: 132 },
+  { name: "Sentinel Bridge", sub: "Half Dome in the last light", mins: 60, drive: 0, x: 796, y: 170, anchor: "Sunset" },
 ];
 
-function GuideItineraryExample() {
+const DAY_ONE_PHOTOS = [
+  { image: "img/half-dome-merced-river-spring.jpg", n: 8, label: "Sentinel Bridge, the last hour", line: "Half Dome catches the day's last light. Stay past the first gold.", alt: "Half Dome above the Merced River from the Valley floor" },
+  { image: "img/tunnel-view-valley-spring.jpg", n: 1, label: "Tunnel View", alt: "El Capitan, Bridalveil Fall and Half Dome from the Tunnel View overlook" },
+  { image: "img/mirror-lake-mount-watkins.jpg", n: 3, label: "Mirror Lake", alt: "Mount Watkins reflected in Mirror Lake" },
+  { image: "img/el-capitan-snow-spring.jpg", n: 6, label: "El Capitan Meadow", alt: "El Capitan in last light above the Merced River" },
+];
+
+function dayOneDuration(mins) {
+  const h = Math.floor(mins / 60);
+  const m = mins % 60;
+  if (!h) return `${m} min`;
+  return m ? `${h} h ${m}` : `${h} h`;
+}
+
+function GuideDayOne() {
+  const onSite = DAY_ONE.reduce((sum, s) => sum + s.mins, 0);
+  const between = DAY_ONE.reduce((sum, s) => sum + (s.drive || 0), 0);
+  const route = DAY_ONE.map((s) => `${s.x},${s.y}`).join(" ");
+  const last = DAY_ONE.length;
+  const half = Math.ceil(DAY_ONE.length / 2);
+  const columns = [DAY_ONE.slice(0, half), DAY_ONE.slice(half)];
+
   return (
-    <div className="guide-itin-demo">
-      <div className="eyebrow eyebrow--moss">From the planner · Day 1 · Yosemite Valley</div>
-      <ol className="guide-itin-demo__list">
-        {ITIN_DEMO.map((row, i) =>
-          row.drive ? (
-            <li className="guide-itin-demo__drive" key={`d${i}`}>
-              drive · {row.drive} min
-            </li>
-          ) : (
-            <li className="guide-itin-demo__block" key={row.label}>
-              <span className="guide-itin-demo__time">{row.time}</span>
-              <span className="guide-itin-demo__label">{row.label}</span>
-              <span className="guide-itin-demo__dur">{row.mins} min</span>
-            </li>
-          )
-        )}
-      </ol>
-      <p className="guide-itin-demo__note">
-        This is the one-day Valley preset exactly as the planner lays it out: every duration is the stop's own time budget, every drive is computed from the real distance between the two coordinates. Drag any block and the day re-flows around it. The day ends on Sentinel Bridge because that is where the last light goes.
+    <section className="hp-wrap guide-dayone" aria-labelledby="guide-dayone-title">
+      <header className="guide-dayone__head">
+        <p className="hp-eyebrow">DAY ONE, STRAIGHT FROM THE APP</p>
+        <h2 id="guide-dayone-title">
+          Your first day in the Valley, <em>already in order.</em>
+        </h2>
+        <p className="guide-dayone__dek">
+          Eight stops in driving order, each with an honest time budget, lunch and sunset pinned where they belong, and the fallback written in for the lot that fills at ten. This is the app's one-day Valley plan as it ships. Days two and three do the same for Glacier Point and Tioga Road.
+        </p>
+      </header>
+
+      <figure className="guide-dayone__map">
+        <div className="guide-dayone__scroll">
+          <div className="guide-dayone__frame">
+            <ResponsiveImage
+              image="img/nps-yosemite-valley-map.jpg"
+              alt="National Park Service map of Yosemite Valley, with the eight stops of day one numbered in driving order"
+              sizes="(max-width: 760px) 700px, (max-width: 1400px) 92vw, 1280px"
+              className="guide-dayone__img"
+            />
+            <svg className="guide-dayone__route" viewBox="0 0 1280 500" preserveAspectRatio="none" aria-hidden="true">
+              <polyline points={route} vectorEffect="non-scaling-stroke" />
+            </svg>
+            {DAY_ONE.map((s, i) => (
+              <span
+                key={s.name}
+                className={"guide-dayone__pin" + (i === last - 1 ? " is-last" : "")}
+                style={{ left: `${(s.x / 1280) * 100}%`, top: `${(s.y / 500) * 100}%` }}
+                aria-hidden="true"
+              >
+                {i + 1}
+              </span>
+            ))}
+          </div>
+        </div>
+        <figcaption>
+          <span><b>YOSEMITE VALLEY, DAY 1</b> Numbered in drive order. <span className="guide-dayone__swipe">Swipe the map for stops 3 to 8.</span></span>
+          <span>Map: National Park Service</span>
+        </figcaption>
+      </figure>
+
+      <div className="guide-dayone__day">
+        <div className="guide-dayone__dayhead">
+          <span>THE DAY</span>
+          <span>{DAY_ONE.length} stops · {dayOneDuration(onSite)} at the stops · {dayOneDuration(between)} between them</span>
+        </div>
+        <div className="guide-dayone__cols">
+          {columns.map((col, c) => (
+            <ol key={c} start={c * half + 1}>
+              {col.map((s, j) => {
+                const n = c * half + j + 1;
+                return (
+                  <li key={s.name}>
+                    {s.drive ? <span className="guide-dayone__drive">{s.drive} min drive</span> : null}
+                    <div className="guide-dayone__stop">
+                      <span className={"guide-dayone__num" + (n === last ? " is-last" : "")} aria-hidden="true">{n}</span>
+                      <span className="guide-dayone__name">
+                        <strong>{s.name}</strong>
+                        <span>{s.sub}</span>
+                      </span>
+                      <span className="guide-dayone__time">
+                        {dayOneDuration(s.mins)}
+                        {s.anchor ? <em>{s.anchor}</em> : null}
+                      </span>
+                    </div>
+                    {s.swap ? (
+                      <p className="guide-dayone__swapcard">
+                        <b>Lot full? The swap is written in.</b> It usually is between 10 a.m. and 4 p.m. Drive on in and catch Valley View on the way out. Lower angle, same valley.
+                      </p>
+                    ) : null}
+                  </li>
+                );
+              })}
+            </ol>
+          ))}
+        </div>
+      </div>
+
+      <div className="guide-dayone__photos">
+        {DAY_ONE_PHOTOS.map((p, i) => (
+          <figure key={p.image} className={i === 0 ? "is-lead" : ""}>
+            <ResponsiveImage
+              image={p.image}
+              alt={p.alt}
+              sizes={i === 0 ? "(max-width: 760px) 100vw, 480px" : "(max-width: 760px) 33vw, 280px"}
+            />
+            <figcaption>
+              <span>{p.n} · {p.label}</span>
+              {p.line ? <span className="guide-dayone__line">{p.line}</span> : null}
+            </figcaption>
+          </figure>
+        ))}
+      </div>
+
+      <div className="guide-dayone__close">
+        <p>Every stop carries its parking, its timing and its swap. The app builds your day in this order, then keeps working where the signal stops.</p>
+        <div className="guide-dayone__cta">
+          <BuyNowButton location="guide_day_one" />
+          <a
+            href={`${GUIDE_APP_BASE}/preview`}
+            onClick={() => {
+              if (window.track) window.track("guide_sample_click", { location: "guide_day_one" });
+            }}
+          >
+            Read the free sample ↗
+          </a>
+        </div>
+      </div>
+      <p className="guide-dayone__credits">
+        Photos via Wikimedia Commons: Dexter Perkins (CC0), Kyle D (public domain), Mutineer (CC0), Anita Ritenour (CC BY 2.0). Map: U.S. National Park Service (public domain).
       </p>
-    </div>
+    </section>
   );
 }
 
@@ -1322,6 +1431,8 @@ function GuidePage({ go }) {
         </div>
       </HpGuideBand>
 
+      <GuideDayOne />
+
       <div className="hp-wrap hp-section">
         <div className="guide-layout">
 
@@ -1391,14 +1502,6 @@ function GuidePage({ go }) {
             </p>
 
             <GuideStopExample />
-
-            <h2>A day, built in driving order</h2>
-
-            <p>
-              This is what the planner does with a day. Stops go in, and the day comes back as a timeline: each block sized by its real time budget, each gap computed from the actual driving distance between the two coordinates. No spreadsheet, no guessing whether four things fit before lunch.
-            </p>
-
-            <GuideItineraryExample />
 
             <h2>Turn the service off</h2>
 
