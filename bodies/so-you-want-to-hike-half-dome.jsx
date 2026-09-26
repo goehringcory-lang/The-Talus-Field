@@ -10,23 +10,23 @@ window.ARTICLE_BODIES["so-you-want-to-hike-half-dome"] = function SoYouWantToHik
       </p>
 
       <p>
-        Everybody does. It's the silhouette on the license plate, the logo on the beer can, the thing your friend did last summer that they won't shut up about. And I'm not going to tell you you're wrong for wanting it. The cables are unlike anything I've ever done anywhere else in the national park system. You clip your hands onto those steel cables, lean into the granite at a 45-degree angle, and pull yourself up 400 vertical feet of rock with nothing between you and the Valley floor but air and gravity. Your arms burn. Your legs shake. The whole world drops away beneath you. And when you stand on top, at 8,839 feet, looking out at a panorama that stretches from the Clark Range to the Cathedral Peaks, it feels earned in a way that very few things in life feel earned.
+        Everybody does. It's the silhouette on the license plate, the logo on the beer can, the thing your friend did last summer that they won't shut up about. And I'm not going to tell you you're wrong for wanting it. The cables are unlike anything I've ever done anywhere else in the national park system. You clip your hands onto those steel cables, lean into the granite at a 45-degree angle, and pull yourself up 400 vertical feet of rock with nothing between you and the Valley floor but air and gravity. It is hard on the arms and legs, and the exposure is real. When you stand on top, at 8,839 feet, looking out at a panorama that stretches from the Clark Range to the Cathedral Peaks, it feels earned.
       </p>
 
       <p>It's worth doing once.</p>
 
       <p>
-        I mean that. If the stars align, if you get the permit, if you're in the shape, if the weather cooperates, do it. It's a genuine bucket-list hike. But I want to be honest with you about what "if the stars align" actually means, because for most people planning a Yosemite trip, the stars don't align. And that's where this article goes somewhere you might not expect.
+        If you get the permit, you're in shape, and the weather cooperates, do it. But for most people planning a Yosemite trip, those conditions don't all line up, and that is what the rest of this article is about.
       </p>
 
       <h2>The hike itself</h2>
 
       <p>
-        Let's start with what you're signing up for. The Half Dome day hike is a 14 to 16 mile round trip from Happy Isles in Yosemite Valley with about 4,800 feet of total elevation gain. The National Park Service says most hikers take 10 to 12 hours. Some take longer. You're leaving before sunrise and getting back after dark unless you're in serious shape and moving fast.
+        The Half Dome day hike is a 14 to 16 mile round trip from Happy Isles in Yosemite Valley with about 4,800 feet of total elevation gain. The National Park Service says most hikers take 10 to 12 hours. Some take longer. You're leaving before sunrise and getting back after dark unless you're in serious shape and moving fast.
       </p>
 
       <p>
-        The route follows the Mist Trail or the John Muir Trail (or one up and the other down) past <a href="/articles/yosemite-waterfalls-guide">Vernal Fall and Nevada Fall</a>, two of the most famous waterfalls in the world, and then up through Little Yosemite Valley to the base of the subdome. That's where the real drama begins.
+        The route follows the Mist Trail or the John Muir Trail (or one up and the other down) past <a href="/articles/yosemite-waterfalls-guide">Vernal Fall and Nevada Fall</a>, two of the most famous waterfalls in the world, and then up through Little Yosemite Valley to the base of the subdome. 
       </p>
 
       <p>
@@ -43,8 +43,6 @@ window.ARTICLE_BODIES["so-you-want-to-hike-half-dome"] = function SoYouWantToHik
 
       <h2>The permit problem</h2>
 
-      <p>Here's where the dream starts running into reality.</p>
-
       <p>
         You need a permit to hike past the subdome, seven days a week, whenever the cables are up. The cables typically go up the Friday before Memorial Day and come down the day after Columbus Day. No permit means a ranger turns you around. No exceptions.
       </p>
@@ -56,7 +54,7 @@ window.ARTICLE_BODIES["so-you-want-to-hike-half-dome"] = function SoYouWantToHik
       <p>There are two ways to get a day-hiker permit, and both are lotteries.</p>
 
       <p>
-        <strong>The preseason lottery</strong> has its application window during the month of March, with results emailed in mid-April. You can request permits for up to six people and specify your preferred dates or a date range. Here's the catch: in 2024, 35,289 applications were submitted. The success rate was 22%. That means roughly four out of five people who applied didn't get a permit for any of their requested dates.
+        <strong>The preseason lottery</strong> has its application window during the month of March, with results emailed in mid-April. You can request permits for up to six people and specify your preferred dates or a date range. In 2024, 35,289 applications were submitted. The success rate was 22%. That means roughly four out of five people who applied didn't get a permit for any of their requested dates.
       </p>
 
       <p>
@@ -76,10 +74,8 @@ window.ARTICLE_BODIES["so-you-want-to-hike-half-dome"] = function SoYouWantToHik
       </p>
 
       <p>
-        <strong>The bottom line:</strong> If you're planning a Yosemite trip around specific dates, there's roughly a one-in-five chance you'll get a Half Dome permit. If your entire trip hinges on that permit, you're building a vacation on a coin flip. And if you don't get the permit, you might spend your best hiking day in Yosemite feeling like the trip was incomplete.
+        If you're planning a Yosemite trip around specific dates, there's roughly a one-in-five chance you'll get a Half Dome permit. If your entire trip hinges on that permit, you're building a vacation on a coin flip. And if you don't get the permit, you might spend your best hiking day in Yosemite feeling like the trip was incomplete.
       </p>
-
-      <p>I don't want that for you.</p>
 
       <h2>Here's what I actually want to tell you</h2>
 
@@ -91,7 +87,7 @@ window.ARTICLE_BODIES["so-you-want-to-hike-half-dome"] = function SoYouWantToHik
         But if what you're really after is an incredible full-day hike in Yosemite with a summit that makes your jaw drop and views that make you feel like you're standing on top of the Sierra Nevada, I want to tell you about Clouds Rest.
       </p>
 
-      <p>Because Clouds Rest is the better hike. And I don't say that lightly.</p>
+      <p>Clouds Rest is the better hike.</p>
 
       <h2>Clouds Rest from Sunrise trailhead</h2>
 
@@ -99,7 +95,7 @@ window.ARTICLE_BODIES["so-you-want-to-hike-half-dome"] = function SoYouWantToHik
         Clouds Rest is a 9,926-foot peak on the north rim of Tenaya Canyon. Its summit is more than a thousand feet higher than Half Dome. From the top, you get a 360-degree panorama that includes Half Dome itself (looking down at it from above), Tenaya Canyon (one of the most dramatic canyons in the park), Yosemite Valley, the Cathedral Range, Mount Hoffmann, and the entire high country stretching to the Sierra crest. On a clear day, you can see from the foothills to the peaks of the Ritter Range.
       </p>
 
-      <p>The view is bigger than Half Dome's. In every direction.</p>
+      <p>The view is bigger than Half Dome's in every direction.</p>
 
       <p>And you don't need a permit.</p>
 
@@ -107,7 +103,7 @@ window.ARTICLE_BODIES["so-you-want-to-hike-half-dome"] = function SoYouWantToHik
         The hike starts at the Sunrise Lakes trailhead on Tioga Road, about 1.4 miles east of Olmsted Point at the south end of Tenaya Lake. It's 14 miles round trip with roughly 2,300 feet of elevation gain in two separate pushes. The trailhead sits at 8,151 feet, which means you start high and stay high the entire day. No climbing 4,800 feet from the Valley floor. No Mist Trail staircase with a thousand other people. No heat radiating off the Valley walls in July.
       </p>
 
-      <p>That last point matters more than you think.</p>
+      <p>The heat matters more than most people expect.</p>
 
       <h2>Why this is better than Half Dome in July and August</h2>
 
@@ -116,7 +112,7 @@ window.ARTICLE_BODIES["so-you-want-to-hike-half-dome"] = function SoYouWantToHik
       </p>
 
       <p>
-        Clouds Rest from Sunrise trailhead starts at 8,150 feet. The air is cooler. The trail is shaded through lodgepole forest for most of the first several miles. You're sharing the trail with maybe a few dozen people all day, not hundreds. There's no permit lottery, no subdome checkpoint, no conga line. Just you, the granite, and the biggest views in the park.
+        Clouds Rest from Sunrise trailhead starts at 8,150 feet. The air is cooler. The trail is shaded through lodgepole forest for most of the first several miles. You're sharing the trail with maybe a few dozen people all day, not hundreds. There's no permit lottery, no subdome checkpoint, no conga line.
       </p>
 
       <p>
@@ -126,7 +122,7 @@ window.ARTICLE_BODIES["so-you-want-to-hike-half-dome"] = function SoYouWantToHik
       <h2>The trail, section by section</h2>
 
       <p>
-        <strong>Miles 0 to 1.5: The flat approach.</strong> From the trailhead, cross Tenaya Creek (early season: expect wet feet; by July you can rock-hop) and follow signs toward Clouds Rest and Sunrise High Sierra Camp. The first mile and a half is gentle, rolling through forest over granite slabs. This is your warmup. Enjoy it.
+        <strong>Miles 0 to 1.5: The flat approach.</strong> From the trailhead, cross Tenaya Creek (early season: expect wet feet; by July you can rock-hop) and follow signs toward Clouds Rest and Sunrise High Sierra Camp. The first mile and a half is gentle, rolling through forest over granite slabs. This is the warmup.
       </p>
 
       <p>
@@ -138,7 +134,7 @@ window.ARTICLE_BODIES["so-you-want-to-hike-half-dome"] = function SoYouWantToHik
       </p>
 
       <p>
-        <strong>Miles 4.5 to 5.5: The second climb.</strong> The trail turns west and begins its second major ascent, another 1,000 feet up toward the Clouds Rest ridgeline. This one is steady but less steep than the first. As you climb, the trees thin and the views start opening up. You'll catch your first glimpses down into Tenaya Canyon, sheer granite walls dropping thousands of feet. This is the moment you realize what you're hiking toward.
+        <strong>Miles 4.5 to 5.5: The second climb.</strong> The trail turns west and begins its second major ascent, another 1,000 feet up toward the Clouds Rest ridgeline. This one is steady but less steep than the first. As you climb, the trees thin and the views start opening up. You'll catch your first glimpses down into Tenaya Canyon, sheer granite walls dropping thousands of feet. 
       </p>
 
       <p>
@@ -162,7 +158,7 @@ window.ARTICLE_BODIES["so-you-want-to-hike-half-dome"] = function SoYouWantToHik
       </p>
 
       <p>
-        Half Dome rises to the south, and you're looking down at it. That's the thing that gets people. You spent your whole trip staring up at Half Dome from the Valley, and now you're above it. Tenaya Canyon drops away to the north in one of the most dramatic vertical landscapes in the Sierra. To the west, Yosemite Valley unfolds: El Capitan, Bridalveil Fall, the whole sweep of it. To the east, the Cathedral Range and the high country. To the south, the Clark Range and the Merced watershed.
+        Half Dome rises to the south, and you're looking down at it. You spent your whole trip staring up at Half Dome from the Valley, and now you're above it. Tenaya Canyon drops away to the north in one of the most dramatic vertical landscapes in the Sierra. To the west, Yosemite Valley unfolds: El Capitan, Bridalveil Fall, the whole sweep of it. To the east, the Cathedral Range and the high country. To the south, the Clark Range and the Merced watershed.
       </p>
 
       <p>
@@ -231,7 +227,7 @@ window.ARTICLE_BODIES["so-you-want-to-hike-half-dome"] = function SoYouWantToHik
           <tr><td><strong>Permit required</strong></td><td>Yes, lottery, ~20% odds</td><td>No</td></tr>
           <tr><td><strong>Typical time</strong></td><td>10 to 14 hours</td><td>7 to 10 hours</td></tr>
           <tr><td><strong>Crowds on trail</strong></td><td>Heavy (Mist Trail, cables)</td><td>Light to moderate</td></tr>
-          <tr><td><strong>The cables</strong></td><td>Unique, iconic, nothing like it</td><td>No cables, open granite ridge</td></tr>
+          <tr><td><strong>The cables</strong></td><td>Unique, nothing like it</td><td>No cables, open granite ridge</td></tr>
           <tr><td><strong>Summit views</strong></td><td>Spectacular, mostly south/west</td><td>360-degree, higher elevation</td></tr>
           <tr><td><strong>Available</strong></td><td>Cable season (late May to mid-October)</td><td>Whenever Tioga Road is open</td></tr>
           <tr><td><strong>Heat exposure</strong></td><td>Significant (Valley start, low elevation)</td><td>Minimal (high elevation start)</td></tr>
@@ -244,7 +240,7 @@ window.ARTICLE_BODIES["so-you-want-to-hike-half-dome"] = function SoYouWantToHik
       </p>
 
       <p>
-        Clouds Rest gives you everything else. The bigger views, the higher summit, the quieter trail, the cooler temperatures, the freedom from lottery stress, and a ridgeline walk that is, in its own way, just as thrilling as the cables. Different, but equal.
+        Clouds Rest gives you everything else. The bigger views, the higher summit, the quieter trail, the cooler temperatures, the freedom from lottery stress, and a ridgeline walk as thrilling as the cables.
       </p>
 
       <h2>If you still want Half Dome</h2>
@@ -254,10 +250,10 @@ window.ARTICLE_BODIES["so-you-want-to-hike-half-dome"] = function SoYouWantToHik
       </p>
 
       <p>
-        But if the permit doesn't come through, or if you're visiting in June before the cables go up, or if the idea of the Mist Trail in August makes you feel tired just thinking about it, go do Clouds Rest. Drive up Tioga Road, park at the Sunrise trailhead, walk seven miles through some of the most beautiful high country in the Sierra Nevada, and stand on a summit that's higher than Half Dome, quieter than Half Dome, and (I'll say it) more beautiful than Half Dome.
+        But if the permit doesn't come through, or if you're visiting in June before the cables go up, or if the idea of the Mist Trail in August makes you feel tired just thinking about it, go do Clouds Rest. Drive up Tioga Road, park at the Sunrise trailhead, walk seven miles through some of the most beautiful high country in the Sierra Nevada, and stand on a summit that's higher than Half Dome, quieter than Half Dome, and more beautiful than Half Dome.
       </p>
 
-      <p>You won't feel like you missed anything. You'll feel like you found something better.</p>
+      <p>You won't feel like you missed anything.</p>
     </>
   );
 };

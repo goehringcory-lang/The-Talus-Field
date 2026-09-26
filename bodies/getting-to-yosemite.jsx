@@ -6,17 +6,17 @@ window.ARTICLE_BODIES["getting-to-yosemite"] = function GettingToYosemiteBody() 
   return (
     <>
       <p className="dropcap">
-        Every year I meet visitors at the Valley Visitor Center who have already had the worst hour of their trip, and it happened before they reached the park. They trusted a phone that routed them up a forest road, or they aimed for the entrance nearest their hotel instead of the one nearest their first stop, or they discovered at 6,000 feet in November that "carry chains" is not a suggestion. None of this is hard to avoid. It just requires knowing something most guides skip: Yosemite has five entrances, they are nothing alike, and the right one depends on where you are coming from, what month it is, and what you want to see first.
+        Every year I meet visitors at the Valley Visitor Center who have already had the worst hour of their trip, and it happened before they reached the park. They trusted a phone that routed them up a forest road, or they aimed for the entrance nearest their hotel instead of the one nearest their first stop, or they discovered at 6,000 feet in November that "carry chains" is not a suggestion. All of it is avoidable. Yosemite has five entrances, they are nothing alike, and the right one depends on where you are coming from, what month it is, and what you want to see first.
       </p>
 
       <p>
-        So here is the geography lesson I give at the information desk, written down.
+        This is the geography lesson I give at the information desk.
       </p>
 
       <h2>The five entrances, and who each one is for</h2>
 
       <p>
-        <strong>Arch Rock Entrance, Highway 140.</strong> The road from Merced and Mariposa, following the Merced River up its canyon into the Valley. This is the all-weather route: it stays at the lowest elevation of any approach, which means it sees the least snow and the least chain control in winter, and it delivers you into Yosemite Valley faster than any other entrance. From San Francisco, call it three hours and forty-five minutes without traffic, and anyone weighing whether that drive works as a single day should read <a href="/articles/yosemite-day-trip-from-bay-area">the honest math on a Bay Area day trip</a> before committing to it. If you are visiting between November and March, or you simply want the shortest drive to the postcard, this is your entrance. It is also the route YARTS buses run year-round, which matters more than most visitors realize (more on that below).
+        <strong>Arch Rock Entrance, Highway 140.</strong> The road from Merced and Mariposa, following the Merced River up its canyon into the Valley. This is the all-weather route: it stays at the lowest elevation of any approach, which means it sees the least snow and the least chain control in winter, and it delivers you into Yosemite Valley faster than any other entrance. From San Francisco, call it three hours and forty-five minutes without traffic, and anyone weighing whether that drive works as a single day should read <a href="/articles/yosemite-day-trip-from-bay-area">the honest math on a Bay Area day trip</a> before committing to it. If you are visiting between November and March, or you want the shortest drive to the postcard, this is your entrance. It is also the route YARTS buses run year-round, which matters more than most visitors realize (more on that below).
       </p>
 
       <p>
@@ -28,11 +28,11 @@ window.ARTICLE_BODIES["getting-to-yosemite"] = function GettingToYosemiteBody() 
       </p>
 
       <p>
-        <strong>Tioga Pass Entrance, Highway 120 from the east.</strong> The only entrance on the east side of the Sierra, at 9,945 feet the highest highway pass in California, and the one with an asterisk the size of a snowbank. Tioga Road closes with the first serious snow, usually in November, and does not reopen until the plows finish in late May or June. In 2026 it opened on May 15. When it is open, this is the door to Tuolumne Meadows and the entire high country, and the approach from Lee Vining and Mono Lake is one of the great mountain drives in the country. Reno is about three hours away; Mammoth Lakes under an hour. When it is closed, there is no eastern entrance at all, and the detour around the range runs the better part of a day. Never plan a winter or spring trip that assumes Tioga. Check first, and read our <a href="/articles/tioga-road-opening-weekend-2026">Tioga opening guide</a> for what the early season up there actually looks like.
+        <strong>Tioga Pass Entrance, Highway 120 from the east.</strong> The only entrance on the east side of the Sierra, at 9,945 feet the highest highway pass in California, and the one with the biggest caveat. Tioga Road closes with the first serious snow, usually in November, and does not reopen until the plows finish in late May or June. In 2026 it opened on May 15. When it is open, this is the door to Tuolumne Meadows and the entire high country, and the approach from Lee Vining and Mono Lake is a steep, scenic climb. Reno is about three hours away; Mammoth Lakes under an hour. When it is closed, there is no eastern entrance at all, and the detour around the range runs the better part of a day. Never plan a winter or spring trip that assumes Tioga. Check first, and read our <a href="/articles/tioga-road-opening-weekend-2026">Tioga opening guide</a> for what the early season up there actually looks like.
       </p>
 
       <p>
-        <strong>Hetch Hetchy Entrance, Evergreen Road off Highway 120.</strong> The odd one out. It leads only to the Hetch Hetchy Reservoir area, it is open daylight hours only, and it connects to nothing else in the park; you cannot continue from Hetch Hetchy into the Valley without coming back out. Which is exactly why it stays quiet, and why <a href="/articles/hetch-hetchy-the-other-yosemite-valley">the other Yosemite Valley</a> is worth a day of its own.
+        <strong>Hetch Hetchy Entrance, Evergreen Road off Highway 120.</strong> It leads only to the Hetch Hetchy Reservoir area, it is open daylight hours only, and it connects to nothing else in the park; you cannot continue from Hetch Hetchy into the Valley without coming back out. That is why it stays quiet, and why <a href="/articles/hetch-hetchy-the-other-yosemite-valley">the other Yosemite Valley</a> is worth a day of its own.
       </p>
 
       <Placeholder
@@ -48,29 +48,29 @@ window.ARTICLE_BODIES["getting-to-yosemite"] = function GettingToYosemiteBody() 
       <h2>Do not trust your phone</h2>
 
       <p>
-        This deserves its own section because the Park Service has been begging people about it for years. GPS units and phone map apps routinely route Yosemite-bound drivers onto roads that are closed in winter, unpaved, or simply wrong. The classic failure is a navigation app deciding that a forest road shaves eleven minutes off Highway 120, or routing an east-side trip over Tioga Pass in February, when Tioga Pass does not exist in February. Pick your highway from a real map before you leave, aim the phone at the entrance station rather than a lodge name, and when the app and the highway signs disagree, believe the signs.
+        The Park Service has warned about this for years. GPS units and phone map apps routinely route Yosemite-bound drivers onto roads that are closed in winter, unpaved, or wrong. The classic failure is a navigation app deciding that a forest road shaves eleven minutes off Highway 120, or routing an east-side trip over Tioga Pass in February, when Tioga Pass is closed. Pick your highway from a real map before you leave, aim the phone at the entrance station rather than a lodge name, and when the app and the highway signs disagree, believe the signs.
       </p>
 
       <p>
-        Related: <a href="/articles/cell-service-in-yosemite">cell service dies well before the park boundary</a> on every approach. Download offline maps the night before, and remember that once inside, the park runs on paper. The map they hand you at the gate is genuinely good.
+        Related: <a href="/articles/cell-service-in-yosemite">cell service dies well before the park boundary</a> on every approach. Download offline maps the night before, and remember that once inside, the park runs on paper. The map they hand you at the gate is good.
       </p>
 
       <h2>Winter changes the math</h2>
 
       <p>
-        From roughly November through March, chain control can go up on any road into the park, and the law requires you to carry chains when it does, even in a four-wheel drive with snow tires. Rangers turn cars around at the checkpoints; it is not a bluff. Highway 140 needs chains least often, which is why it is the standing winter recommendation. Highway 41 and 120 both climb higher and ice sooner. Buy chains that fit your car before you leave home (they are cheaper at a city auto-parts store than anywhere within a hundred miles of the park), and practice putting them on once in your driveway. Ten minutes of feeling silly in dry weather beats forty-five minutes of roadside education in a snowstorm.
+        From roughly November through March, chain control can go up on any road into the park, and the law requires you to carry chains when it does, even in a four-wheel drive with snow tires. Rangers turn cars around at the checkpoints. Highway 140 needs chains least often, which is why it is the standing winter recommendation. Highway 41 and 120 both climb higher and ice sooner. Buy chains that fit your car before you leave home (they are cheaper at a city auto-parts store than anywhere within a hundred miles of the park), and practice putting them on once in your driveway. Ten minutes in a dry driveway beats forty-five on the shoulder in a snowstorm.
       </p>
 
       <h2>The gate itself</h2>
 
       <p>
-        Two things about the entrance station in 2026. First, there is no reservation to show: the day-use reservation systems of 2020 through 2025 are gone, and you simply drive up, which moves the real bottleneck from the gate to <a href="/articles/yosemite-valley-parking-guide">the parking lots in Yosemite Valley</a>. Second, the gate is cashless. The $35 vehicle fee (good for seven days) goes on a card, or you flash an $80 America the Beautiful annual pass. Buying your pass in advance on Recreation.gov moves the line faster. International visitors should know about the $100 per-person surcharge that took effect in January 2026; <a href="/articles/yosemite-trip-cost-budget-2026">the trip-cost guide</a> covers how that math works. Entrance lines are worst from mid-morning on summer weekends, which is one more argument for the before-8-a.m. arrival that every other article on this site is already making. If you are down to one or two days, <a href="/articles/yosemite-in-one-or-two-days">plan the day around the early gate</a>, not the other way around.
+        Two things about the entrance station in 2026. First, there is no reservation to show: the day-use reservation systems of 2020 through 2025 are gone, and you drive up, which moves the real bottleneck from the gate to <a href="/articles/yosemite-valley-parking-guide">the parking lots in Yosemite Valley</a>. Second, the gate is cashless. The $35 vehicle fee (good for seven days) goes on a card, or you flash an $80 America the Beautiful annual pass. Buying your pass in advance on Recreation.gov moves the line faster. International visitors should know about the $100 per-person surcharge that took effect in January 2026; <a href="/articles/yosemite-trip-cost-budget-2026">the trip-cost guide</a> covers how that math works. Entrance lines are worst from mid-morning on summer weekends, which is one more argument for the before-8-a.m. arrival that every other article on this site is already making. If you are down to one or two days, <a href="/articles/yosemite-in-one-or-two-days">plan the day around the early gate</a>, not the other way around.
       </p>
 
       <h2>The bus nobody considers</h2>
 
       <p>
-        YARTS, the regional transit system, is the answer to a question most visitors never think to ask: what if I just did not drive? Buses run into Yosemite Valley year-round on Highway 140 (connecting from the Amtrak station in Merced, through Mariposa and El Portal) and seasonally, roughly May through September, on Highway 41 from Fresno, Highway 120 from Sonora, and Highway 395 from Mammoth Lakes and Lee Vining. The bus skips the entrance line, and you step off in the Valley with no parking problem to solve, because the free Valley shuttle takes it from there. Whether the fare also covers your park entrance fee is currently unsettled: the Park Service says bus riders do not pay it, while YARTS' own fares page says it is not included. Budget for it either way. For a car-free trip built around Amtrak and YARTS, or for the one driver in the family who would rather look out the window, it is quietly one of the best deals in the park, and <a href="/articles/yosemite-shuttle-and-yarts">the shuttle and YARTS guide</a> has the routes, fares, and the cases where driving still wins.
+        YARTS, the regional transit system, is the option most visitors never consider. Buses run into Yosemite Valley year-round on Highway 140 (connecting from the Amtrak station in Merced, through Mariposa and El Portal) and seasonally, roughly May through September, on Highway 41 from Fresno, Highway 120 from Sonora, and Highway 395 from Mammoth Lakes and Lee Vining. The bus skips the entrance line, and you step off in the Valley with no parking problem to solve, because the free Valley shuttle takes it from there. Whether the fare also covers your park entrance fee is currently unsettled: the Park Service says bus riders do not pay it, while YARTS' own fares page says it is not included. Budget for it either way. For a car-free trip built around Amtrak and YARTS, or for the one driver in the family who would rather look out the window, it is one of the better deals in the park, and <a href="/articles/yosemite-shuttle-and-yarts">the shuttle and YARTS guide</a> has the routes, fares, and the cases where driving still wins.
       </p>
 
       <h2>The short version</h2>
@@ -84,7 +84,7 @@ window.ARTICLE_BODIES["getting-to-yosemite"] = function GettingToYosemiteBody() 
       </ol>
 
       <p>
-        Pick the entrance to match the trip, not the hotel deal. The road you choose is the first decision of the visit, and it is one of the few you get to make entirely from your kitchen table.
+        Pick the entrance to match the trip, not the hotel deal. It is the first decision of the visit, and you can make it before you leave home.
       </p>
 
       <LodgingCta

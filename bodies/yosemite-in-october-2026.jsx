@@ -6,7 +6,7 @@ window.ARTICLE_BODIES["yosemite-in-october-2026"] = function YosemiteInOctober20
   return (
     <>
       <p className="dropcap">
-        October is usually the easy month to write about: the crowds are gone, Tioga Road is still open, the oaks turn, and the only real question is whether the first storm comes early. October 2026 starts with a different question. A wildfire is burning northeast of Wawona, Glacier Point Road has been closed since the evening of September 23, and the mornings in the Valley have been smoky. The month is still worth taking. It just needs a different plan than the one in last year's photographs.
+        October is usually the easy month to write about: the crowds are gone, Tioga Road is still open, the oaks turn, and the only real question is whether the first storm comes early. October 2026 starts with a different question. A wildfire is burning northeast of Wawona, Glacier Point Road has been closed since the evening of September 23, and the mornings in the Valley have been smoky. The month is still worth the trip, with a different plan than last year's.
       </p>
 
       <p>

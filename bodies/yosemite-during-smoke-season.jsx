@@ -6,18 +6,17 @@ window.ARTICLE_BODIES["yosemite-during-smoke-season"] = function YosemiteDuringS
   return (
     <>
       <p className="dropcap">
-        The first time I watched Yosemite Valley fill with wildfire smoke from a fire I couldn't see, the smoke arrived as a smell before it arrived as a sight. By midday, El Capitan was a gray suggestion behind a wall that started at about 200 feet up. By late afternoon, the entire upper Valley had vanished. The visitors who'd planned to drive to Glacier Point that day were standing at Tunnel View looking at gauze. The visitors who flexed and drove up <a href="/articles/tioga-road-opening-weekend-2026">Tioga Road to Tuolumne</a> were sitting at 8,600 feet in clean air, watching the smoke stay in the lower elevations, and having a much better day.
+        The first time I watched Yosemite Valley fill with wildfire smoke from a fire I couldn't see, the smoke arrived as a smell before it arrived as a sight. By midday, El Capitan was barely visible behind a layer of smoke that started about 200 feet up. By late afternoon, the entire upper Valley had vanished. The visitors who'd planned to drive to Glacier Point that day were standing at Tunnel View looking at haze. The visitors who flexed and drove up <a href="/articles/tioga-road-opening-weekend-2026">Tioga Road to Tuolumne</a> were sitting at 8,600 feet in clean air, with the smoke below them.
       </p>
 
       <p>
-        This is not a freak-event scenario anymore. Smoke season in California now runs from roughly July through October most years, and parts of June in dry years. Yosemite is in the middle of one of the most fire-prone regions in the West. The question is no longer whether your trip will overlap with smoke. It's whether you have a plan for when it does.
+        Smoke is now routine. Smoke season in California now runs from roughly July through October most years, and parts of June in dry years. Yosemite is in the middle of one of the most fire-prone regions in the West. Plan for your trip to overlap with it.
       </p>
 
       <p>
-        The good news is that planning around smoke is doable. The bad news is that almost no guide actually tells you how. The official sources (the NPS air quality page, AirNow, the fire situation reports) are accurate but generic. They tell you to check the AQI. They don't tell you how to use that information to actually save your trip.
+        Planning around smoke is doable, though few guides explain how. The official sources (the NPS air quality page, AirNow, the fire situation reports) are accurate but generic. They tell you to check the AQI. They don't tell you what to do with the number.
       </p>
 
-      <p>Here's how.</p>
 
       <h2>The geography of smoke in Yosemite</h2>
 
@@ -38,7 +37,7 @@ window.ARTICLE_BODIES["yosemite-during-smoke-season"] = function YosemiteDuringS
       </p>
 
       <blockquote>
-        The point is that "smoke in Yosemite" is not one thing. The same day can be hazardous in the Valley and decent at Tuolumne. The right move is often to drive 90 minutes uphill rather than to cancel.
+        The same day can be hazardous in the Valley and decent at Tuolumne. The right move is often to drive 90 minutes uphill rather than to cancel.
       </blockquote>
 
       <h2>The real-time toolkit</h2>
@@ -69,7 +68,7 @@ window.ARTICLE_BODIES["yosemite-during-smoke-season"] = function YosemiteDuringS
       </p>
 
       <p>
-        Check these the night before you drive in. Check them again before any major hike. Don't trust yesterday's reading. Smoke conditions can change in two hours.
+        Check these the night before you drive in and again before any major hike. Smoke conditions can change in two hours.
       </p>
 
       <h2>Decision tree: flex, push through, or cancel</h2>
@@ -91,7 +90,7 @@ window.ARTICLE_BODIES["yosemite-during-smoke-season"] = function YosemiteDuringS
       </p>
 
       <p>
-        <strong>If the AQI is forecast above 200,</strong> seriously consider canceling or rescheduling. Driving four hours to look at gauze is not a vacation. Most lodging and tour providers will work with you if you call far enough in advance.
+        <strong>If the AQI is forecast above 200,</strong> seriously consider canceling or rescheduling. Most lodging and tour providers will work with you if you call far enough in advance.
       </p>
 
       <p>
@@ -100,14 +99,13 @@ window.ARTICLE_BODIES["yosemite-during-smoke-season"] = function YosemiteDuringS
 
       <h2>Tactics that actually work</h2>
 
-      <p>A few things that aren't obvious until you've done them.</p>
 
       <p>
         <strong>Mornings are usually better than afternoons.</strong> Smoke patterns often peak in the late afternoon as wind picks up. Early starts (in the park by 6 a.m.) frequently catch a cleaner window before the day's smoke arrives.
       </p>
 
       <p>
-        <strong>Wind direction matters more than fire distance.</strong> A fire 80 miles away with a direct wind can put smoke in the Valley faster than a fire 20 miles away with the wind blowing the other direction. Watch the National Weather Service forecast for wind direction, not just the fire perimeter.
+        <strong>Wind direction matters more than fire distance.</strong> A fire 80 miles away with a direct wind can put smoke in the Valley faster than a fire 20 miles away with the wind blowing the other direction. Watch the National Weather Service forecast for wind direction as well as the fire perimeter.
       </p>
 
       <p>
@@ -119,7 +117,7 @@ window.ARTICLE_BODIES["yosemite-during-smoke-season"] = function YosemiteDuringS
       </p>
 
       <p>
-        <strong>N95 masks help.</strong> They're not a magic shield, but they reduce the dose of fine particulate you're inhaling, especially during exertion. Pack a few. They're cheap and they take up no space.
+        <strong>N95 masks help.</strong> They reduce the dose of fine particulate you're inhaling, especially during exertion. Pack a few. They're cheap and they take up no space.
       </p>
 
       <h2>Special considerations</h2>
@@ -143,17 +141,17 @@ window.ARTICLE_BODIES["yosemite-during-smoke-season"] = function YosemiteDuringS
       <h2>A note on photography</h2>
 
       <p>
-        This is a small consolation. Smoke can produce some specific, beautiful photographic conditions: a deep red sun at sunrise and sunset, layered atmospheric depth on the canyon walls, soft morning light that's normally only available in winter haze. Photographers who don't cancel and instead embrace the conditions sometimes get images they couldn't get on a clear day.
+        Smoke can produce useful photographic conditions: a deep red sun at sunrise and sunset, layered atmospheric depth on the canyon walls, soft morning light that's normally only available in winter haze. Photographers who work with the conditions sometimes get images they couldn't get on a clear day.
       </p>
 
       <p>
-        The catch is that this only works at certain smoke densities and with the right light. A Valley view at AQI 250 is not photogenic. It's a wall of gray. The interesting conditions tend to come at AQI 75 to 130, with sun angles low and the smoke catching the light.
+        The catch is that this only works at certain smoke densities and with the right light. A Valley view at AQI 250 is a wall of gray. The interesting conditions tend to come at AQI 75 to 130, with sun angles low and the smoke catching the light.
       </p>
 
       <h2>The takeaway</h2>
 
       <p>
-        Smoke is part of California summer now. The visitors who plan around it have good trips. The ones who pretend it isn't there get burned, sometimes literally and almost always experientially.
+        Smoke is part of California summer now, and the visitors who plan around it have better trips.
       </p>
 
       <p>
@@ -161,14 +159,14 @@ window.ARTICLE_BODIES["yosemite-during-smoke-season"] = function YosemiteDuringS
       </p>
 
       <p>
-        The Sierra is not going to stop being a fire-prone landscape. Your trip planning has to adapt. The version of Yosemite you're going to fall in love with is the one you actually got to see, not the one you canceled because the smoke arrived and you didn't have a backup.
+        The Sierra will remain fire-prone, so a backup plan is part of any summer or fall trip.
       </p>
 
       <p>
         And remember: in 2026 the entrance reservation system is gone, which means the smoke decision and the crowd decision now compound on the same day. See <a href="/articles/yosemite-without-reservations-2026">the 2026 crowd strategy</a> for the other half of it.
       </p>
 
-      <p>Plan for both. Visit anyway.</p>
+      <p>Plan for both.</p>
 
       <h3>Sources</h3>
       <ul style={{ fontSize: 14 }}>

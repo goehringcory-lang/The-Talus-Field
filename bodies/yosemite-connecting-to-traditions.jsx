@@ -6,7 +6,7 @@ window.ARTICLE_BODIES["yosemite-connecting-to-traditions"] = function YosemiteCo
   return (
     <>
       <p className="dropcap">
-        The Park Service runs a summer and fall series at the Yosemite Museum called Connecting to Traditions, and it is one of the few things in the park you can walk up to, sit with, and learn from directly. Indigenous artists demonstrate basket weaving, beadwork, acorn preparation, and stone tool knapping, the living practices of the peoples who have tended this valley for thousands of years, long before it was a park. The demonstrations are free, open to all, and this is the season to go.
+        The Park Service runs a summer and fall series at the Yosemite Museum called Connecting to Traditions, and it is one of the few places in the park to learn from Indigenous practitioners directly. Indigenous artists demonstrate basket weaving, beadwork, acorn preparation, and stone tool knapping, the living practices of the peoples who have tended this valley for thousands of years, long before it was a park. The demonstrations are free, open to all, and this is the season to go.
       </p>
 
       <h2>The schedule</h2>

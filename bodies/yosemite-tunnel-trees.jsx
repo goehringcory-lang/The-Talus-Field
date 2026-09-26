@@ -10,7 +10,7 @@ window.ARTICLE_BODIES["yosemite-tunnel-trees"] = function YosemiteTunnelTreesBod
       </p>
 
       <p>
-        The park explained how it was done in its own magazine. In April 1929, <em>Yosemite Nature Notes</em> ran a piece called "Tunneled Trees of Mariposa and Other Groves." It is not an apology. It is a set of measurements, a little history, and a note about how well the photographs were selling.
+        The park explained how it was done in its own magazine. In April 1929, <em>Yosemite Nature Notes</em> ran a piece called "Tunneled Trees of Mariposa and Other Groves." It consists of measurements, some history, and a note about how well the photographs were selling.
       </p>
 
       <p>
@@ -52,11 +52,11 @@ window.ARTICLE_BODIES["yosemite-tunnel-trees"] = function YosemiteTunnelTreesBod
       </p>
 
       <p>
-        On when it was cut, the archive does not agree with itself. The 1929 article prints a letter from a Frank Strausser of San Diego, who claimed to have entered the grove in August 1880 with a party of Knights Templar from Philadelphia, and to have sat up with the driver while workmen cleared the blocks of freshly chopped heartwood off the roadway so that his stage could be the first vehicle through. He claimed, on that basis, to have been the first passenger ever carried through the Wawona tree. Fifty-five years later, <a href="/archive/1984/vol-47-no-17/">the same magazine dated the cutting to 1881</a>, in a note about early photographs the park had just acquired. Both are in the record. Only one of them is a memory.
+        On when it was cut, the archive does not agree with itself. The 1929 article prints a letter from a Frank Strausser of San Diego, who claimed to have entered the grove in August 1880 with a party of Knights Templar from Philadelphia, and to have sat up with the driver while workmen cleared the blocks of freshly chopped heartwood off the roadway so that his stage could be the first vehicle through. He claimed, on that basis, to have been the first passenger ever carried through the Wawona tree. Fifty-five years later, <a href="/archive/1984/vol-47-no-17/">the same magazine dated the cutting to 1881</a>, in a note about early photographs the park had just acquired. Both are in the record; the 1880 date rests on one man's recollection.
       </p>
 
       <p>
-        The California Tree was tunneled around 1895, for a reason that is entirely logistical: when snow and mud shut the road into the upper grove, the stage passengers still needed a big tree to be driven through. It is twenty-one feet through and 248 feet high, and it stands about a hundred yards east of the Grizzly Giant. It is still there, and still open.
+        The California Tree was tunneled around 1895, for a logistical reason: when snow and mud shut the road into the upper grove, the stage passengers still needed a big tree to be driven through. It is twenty-one feet through and 248 feet high, and it stands about a hundred yards east of the Grizzly Giant. It is still there, and still open.
       </p>
 
       <h2>The part that gives it away</h2>
@@ -70,11 +70,11 @@ window.ARTICLE_BODIES["yosemite-tunnel-trees"] = function YosemiteTunnelTreesBod
       </p>
 
       <p>
-        That is the whole argument, in the park's own voice, printed in the park's own scientific bulletin. The hole was worth cutting because of what it did for circulation. Nobody in April 1929 seems to have found this worth arguing about.
+        That is the argument, printed in the park's own scientific bulletin: the hole was worth cutting for the publicity. Nobody in April 1929 seems to have questioned it.
       </p>
 
       <p>
-        It is worth knowing that this same magazine changed its mind about things, in public, on a fairly regular schedule. Eight years later a park naturalist used <a href="/archive/1937/vol-16-no-4/">the April 1937 issue</a> to work through, in print, how the nightly bear-feeding show at the garbage pits had gotten away from the park. That one is for another installment.
+        The same magazine changed its mind in public fairly often. Eight years later a park naturalist used <a href="/archive/1937/vol-16-no-4/">the April 1937 issue</a> to work through, in print, how the nightly bear-feeding show at the garbage pits had gotten away from the park. That one is for another installment.
       </p>
 
       <h2>The winter it stopped</h2>
@@ -94,17 +94,17 @@ window.ARTICLE_BODIES["yosemite-tunnel-trees"] = function YosemiteTunnelTreesBod
       </blockquote>
 
       <p>
-        Forty-two years after the measurements, one clause in somebody else's inventory of losses.
+        Forty-two years after the measurements, the tree got one clause in a visitor's list of losses.
       </p>
 
       <h2>What you can still walk through</h2>
 
       <p>
-        Two of the three are still standing, and both are on foot only now. No stage, no cavalry, no vehicles at all.
+        Two of the three are still standing, and both are on foot only now. No vehicles are allowed.
       </p>
 
       <p>
-        <strong>The Dead Giant, Tuolumne Grove.</strong> The trailhead is on Tioga Road a short distance east of the Crane Flat junction. The route in is the old Big Oak Flat Road, about a mile down and roughly five hundred feet of descent, which means the walk back is five hundred feet of climb at 6,000 feet of elevation. That is the part people underestimate. The tunnel is still cut through the stump, and you can still walk the road grade through it, which is worth doing precisely because it is the same surface the 1878 coach used. Carry water for the climb out.
+        <strong>The Dead Giant, Tuolumne Grove.</strong> The trailhead is on Tioga Road a short distance east of the Crane Flat junction. The route in is the old Big Oak Flat Road, about a mile down and roughly five hundred feet of descent, which means the walk back is five hundred feet of climb at 6,000 feet of elevation. The tunnel is still cut through the stump, and you can still walk the road grade through it, the same surface the 1878 coach used. Carry water for the climb out.
       </p>
 
       <p>
@@ -118,15 +118,15 @@ window.ARTICLE_BODIES["yosemite-tunnel-trees"] = function YosemiteTunnelTreesBod
       <h2>Why the archive is worth reading</h2>
 
       <p>
-        The point of going back through these is not nostalgia, and it is definitely not a chance to feel superior to 1929. It is that the park's thinking is preserved with the dates on it, month by month, for five decades, and you can watch it turn.
+        The value of these issues is that the park's thinking is preserved with the dates on it, month by month, for five decades, and you can watch it turn.
       </p>
 
       <p>
-        In April 1929, the tunnel through a two-thousand-year-old sequoia was an accomplishment worth measuring to the half inch and worth putting on a postcard. By 1971 it was one line in a list of things a visitor missed. No retraction was ever printed. The magazine simply stopped writing about the trees that way, and then the tree fell, and then nobody proposed a replacement.
+        In April 1929, the tunnel through a two-thousand-year-old sequoia was an accomplishment worth measuring to the half inch and worth putting on a postcard. By 1971 it was one line in a list of things a visitor missed. No retraction was ever printed. The magazine stopped writing about the trees that way, and then the tree fell, and then nobody proposed a replacement.
       </p>
 
       <p>
-        Those are the two documents. They are eleven pages and forty-two years apart, and the argument between them is the whole history of how this place learned to be a park.
+        The two documents are forty-two years apart, and together they record how the park's attitude to its trees changed.
       </p>
 
       <h3>In the archive</h3>

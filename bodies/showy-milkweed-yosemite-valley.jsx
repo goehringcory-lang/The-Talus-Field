@@ -20,7 +20,7 @@ window.ARTICLE_BODIES["showy-milkweed-yosemite-valley"] = function ShowyMilkweed
       </p>
 
       <p>
-        That is enough to name it. But the flower rewards a closer look, because it is one of the strangest structures in the Sierra.
+        That is enough to name it. The flower is worth a closer look: it is one of the strangest structures in the Sierra.
       </p>
 
       <h2>The most complicated flower in the meadow</h2>
@@ -64,7 +64,7 @@ window.ARTICLE_BODIES["showy-milkweed-yosemite-valley"] = function ShowyMilkweed
       <h2>Where and when to see milkweed in Yosemite Valley</h2>
 
       <p>
-        Look on open, sunny ground rather than in the shady forest. The Valley's big meadows are the reliable places to find it, Cook's Meadow among the best, and it grows out through the grass, not just around the edges. The sunnier roadside verges and old pullouts along Northside and Southside Drives hold it too. It wants heat and open ground, so the bright, unshaded stretches are exactly where it does best.
+        Look on open, sunny ground rather than in the shady forest. The Valley's big meadows are the reliable places to find it, Cook's Meadow among the best, and it grows out through the grass as well as around the edges. The sunnier roadside verges and old pullouts along Northside and Southside Drives hold it too. It wants heat and open ground, so the bright, unshaded stretches are exactly where it does best.
       </p>
 
       <p>
@@ -78,7 +78,7 @@ window.ARTICLE_BODIES["showy-milkweed-yosemite-valley"] = function ShowyMilkweed
       </p>
 
       <p>
-        Milkweed asks nothing of the people who walk past it. It has its pollinators, its poisons, and its one devoted butterfly. For the next couple of weeks it is doing the most consequential work on the Valley floor in plain sight, at knee height, on the ground everyone else is walking over. Slow down at the next sunny roadside and look. The monarchs already have.
+        Milkweed asks nothing of the people who walk past it. It has its pollinators, its poisons, and its one devoted butterfly. For the next couple of weeks it is doing the most consequential work on the Valley floor in plain sight, at knee height, on the ground everyone else is walking over. Slow down at the next sunny roadside and look.
       </p>
 
       <h3>Further reading</h3>

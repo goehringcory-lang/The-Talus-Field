@@ -6,11 +6,11 @@ window.ARTICLE_BODIES["yosemite-waterfalls-guide"] = function YosemiteWaterfalls
   return (
     <>
       <p className="dropcap">
-        There is a conversation I have every August, usually near the Lower Yosemite Fall footbridge, with a visitor holding up a phone. The phone shows a photograph of <strong>Yosemite Falls</strong> at full thunder, 2,425 feet of whitewater filling the frame. The cliff in front of us shows a dark stain on granite and a quiet pool. The visitor wants to know what happened to the waterfall. The answer, which I have now delivered for twenty seasons in various tones of apology, is that nothing happened to it. The photograph was taken in May. It is now August. Yosemite's waterfalls are not features. They are events, and most of them are over by midsummer.
+        There is a conversation I have every August, usually near the Lower Yosemite Fall footbridge, with a visitor holding up a phone. The phone shows a photograph of <strong>Yosemite Falls</strong> at full thunder, 2,425 feet of whitewater filling the frame. The cliff in front of us shows a dark stain on granite and a quiet pool. The visitor wants to know what happened to the waterfall. The answer, which I have given for twenty seasons, is that the photograph was taken in May and it is now August. Most of Yosemite's waterfalls are seasonal, and most are over by midsummer.
       </p>
 
       <p>
-        This is the single most useful thing to understand before planning a waterfall trip, and it is the thing the internet is worst at telling you. Waterfall photos are almost never captioned with the month they were taken. The park's marketing runs on peak-flow imagery year-round. So people arrive in September expecting the postcard and find the plumbing turned off, and they assume they did something wrong. They didn't. They just weren't told the schedule.
+        This is the single most useful thing to understand before planning a waterfall trip, and it is the thing the internet is worst at telling you. Waterfall photos are almost never captioned with the month they were taken. The park's marketing runs on peak-flow imagery year-round. So people arrive in September expecting the postcard and find the falls dry, and assume they did something wrong. Nobody told them the schedule.
       </p>
 
       <p>Here is the schedule.</p>
@@ -18,11 +18,11 @@ window.ARTICLE_BODIES["yosemite-waterfalls-guide"] = function YosemiteWaterfalls
       <h2>Why the falls behave this way</h2>
 
       <p>
-        Nearly every famous waterfall in Yosemite is fed by <strong>snowmelt</strong>, not by springs, <a href="/articles/yosemite-glaciers-climate">the park's two remaining glaciers</a>, or reliable year-round rivers. The creeks that pour over the Valley rim (Yosemite Creek, Ribbon Creek, Sentinel Creek, Horsetail's seep) drain small, shallow granite basins above the walls. Those basins hold no meaningful groundwater. They hold snow. When the Sierra snowpack melts, roughly April through June, the creeks surge and the falls detonate. When the snow above the rim is gone, usually sometime in July, the creeks drop with it, and by late summer several of the most photographed waterfalls on Earth are dry streaks on rock.
+        Nearly every famous waterfall in Yosemite is fed by <strong>snowmelt</strong>, not by springs, <a href="/articles/yosemite-glaciers-climate">the park's two remaining glaciers</a>, or reliable year-round rivers. The creeks that pour over the Valley rim (Yosemite Creek, Ribbon Creek, Sentinel Creek, Horsetail's seep) drain small, shallow granite basins above the walls. Those basins hold no meaningful groundwater. They hold snow. When the Sierra snowpack melts, roughly April through June, the creeks surge and the falls peak. When the snow above the rim is gone, usually sometime in July, the creeks drop with it, and by late summer several of the most photographed waterfalls on Earth are dry streaks on rock.
       </p>
 
       <p>
-        The exceptions matter just as much. <strong>Vernal and Nevada Falls</strong> sit on the main stem of the Merced River, which drains hundreds of square miles of high country and never stops flowing. <strong>Bridalveil Fall</strong> drains a forested basin that releases its water slowly, so it runs all year, thinning to a veil by autumn but never quitting. Knowing which falls are creek-fed and which are river-fed is the whole game.
+        The exceptions matter just as much. <strong>Vernal and Nevada Falls</strong> sit on the main stem of the Merced River, which drains hundreds of square miles of high country and never stops flowing. <strong>Bridalveil Fall</strong> drains a forested basin that releases its water slowly, so it runs all year, thinning to a veil by autumn but never quitting. Planning comes down to knowing which falls are creek-fed and which are river-fed.
       </p>
 
       <blockquote>April through June is the show. Everything else is the off-season, and nobody puts that on the poster.</blockquote>
@@ -34,7 +34,7 @@ window.ARTICLE_BODIES["yosemite-waterfalls-guide"] = function YosemiteWaterfalls
       </p>
 
       <p>
-        And then it leaves. In a typical year the flow thins visibly through July and is <strong>often gone entirely by late August</strong>, leaving a dark stain on the cliff until the first storms of November wet it again. In a big snow year it may limp into September. In a lean one it can quit in early August. If Yosemite Falls is the reason for your trip, book spring, full stop.
+        In a typical year the flow thins visibly through July and is <strong>often gone entirely by late August</strong>, leaving a dark stain on the cliff until the first storms of November wet it again. In a big snow year it may limp into September. In a lean one it can quit in early August. If Yosemite Falls is the reason for your trip, book spring, full stop.
       </p>
 
       <p>
@@ -48,13 +48,13 @@ window.ARTICLE_BODIES["yosemite-waterfalls-guide"] = function YosemiteWaterfalls
       </p>
 
       <p>
-        The Ahwahneechee called it <strong>Pohono</strong>, often translated as spirit of the puffing wind, and the name is a field observation. Bridalveil rarely falls straight. Afternoon breezes catch the column and swing it sideways across the cliff face, sometimes lifting the lower half into pure mist before it reaches the ground. In light wind it does not fall so much as drift. The approach trail and viewing area were rebuilt in a multi-year restoration finished in 2023, and the short paved walk to the base is an easy add to any Valley day. Expect to get wet at the viewpoint in May. That is the product working as intended.
+        The Ahwahneechee called it <strong>Pohono</strong>, often translated as spirit of the puffing wind, and the name is a field observation. Bridalveil rarely falls straight. Afternoon breezes catch the column and swing it sideways across the cliff face, sometimes lifting the lower half into pure mist before it reaches the ground. The approach trail and viewing area were rebuilt in a multi-year restoration finished in 2023, and the short paved walk to the base is an easy add to any Valley day. Expect to get wet at the viewpoint in May.
       </p>
 
       <h2>The Mist Trail corridor: Vernal and Nevada</h2>
 
       <p>
-        Up the Merced canyon east of the Valley, the river drops off the high country in two clean steps: <strong>Nevada Fall</strong> (594 feet) and then <strong>Vernal Fall</strong> (317 feet), the pair geologists call the Giant Staircase. Because these are river falls, not creek falls, they are the answer to the late-summer visitor's question: they flow impressively in every month of the year. In spring they are violent; the Mist Trail alongside Vernal earns its name by soaking every hiker to the skin through May and June. By September they are merely large, which by any other park's standard is still enormous.
+        Up the Merced canyon east of the Valley, the river drops off the high country in two clean steps: <strong>Nevada Fall</strong> (594 feet) and then <strong>Vernal Fall</strong> (317 feet), the pair geologists call the Giant Staircase. Because these are river falls, not creek falls, they are the answer to the late-summer visitor's question: they flow impressively in every month of the year. In spring they are violent; the Mist Trail alongside Vernal earns its name by soaking every hiker to the skin through May and June. By September they are smaller but still substantial.
       </p>
 
       <p>
@@ -64,7 +64,7 @@ window.ARTICLE_BODIES["yosemite-waterfalls-guide"] = function YosemiteWaterfalls
       <h2>The ephemeral giants</h2>
 
       <p>
-        <strong>Ribbon Fall</strong>, on the west shoulder of El Capitan, is the tallest single uninterrupted drop in North America at <strong>1,612 feet</strong>, higher than any one tier of Yosemite Falls. Almost nobody has heard of it, because almost nobody sees it. Its watershed is tiny, and the fall exists for roughly <strong>April through June</strong> and then vanishes so completely that summer visitors stare at the cliff and see nothing at all. In May it is astonishing. Catch it from the Valley loop road pullouts west of El Capitan Meadow.
+        <strong>Ribbon Fall</strong>, on the west shoulder of El Capitan, is the tallest single uninterrupted drop in North America at <strong>1,612 feet</strong>, higher than any one tier of Yosemite Falls. Few visitors have heard of it. Its watershed is tiny, and the fall exists for roughly <strong>April through June</strong> and then vanishes so completely that summer visitors stare at the cliff and see nothing at all. In May, look for it from the Valley loop road pullouts west of El Capitan Meadow.
       </p>
 
       <p>
@@ -78,11 +78,11 @@ window.ARTICLE_BODIES["yosemite-waterfalls-guide"] = function YosemiteWaterfalls
       <h2>Hetch Hetchy: Wapama, and the honest warning</h2>
 
       <p>
-        In the park's northwest corner, <a href="/articles/hetch-hetchy-the-other-yosemite-valley">Hetch Hetchy</a> keeps its own pair of falls above the reservoir. <strong>Tueeulala Falls</strong> is a wispy free-leaper that dries by early summer. <strong>Wapama Falls</strong> is the serious one, a broad, brawling cascade dropping well over a thousand feet, and the flat trail from O'Shaughnessy Dam crosses footbridges directly beneath it. At moderate flow this is the best waterfall shower in the park. At peak flow it is genuinely dangerous: snowmelt surges can send water over the bridges themselves, hikers have been swept off and killed there, and the park closes the crossings when flow demands it. If the bridges are running white, the view from the near side is the whole hike. Turn around.
+        In the park's northwest corner, <a href="/articles/hetch-hetchy-the-other-yosemite-valley">Hetch Hetchy</a> keeps its own pair of falls above the reservoir. <strong>Tueeulala Falls</strong> is a wispy free-leaper that dries by early summer. <strong>Wapama Falls</strong> is the serious one, a broad, brawling cascade dropping well over a thousand feet, and the flat trail from O'Shaughnessy Dam crosses footbridges directly beneath it. At moderate flow this is the best waterfall shower in the park. At peak flow it is dangerous: snowmelt surges can send water over the bridges themselves, hikers have been swept off and killed there, and the park closes the crossings when flow demands it. If the bridges are running white, the view from the near side is the whole hike. Turn around.
       </p>
 
       <p>
-        Hetch Hetchy sits low, around 3,900 feet, so it melts out early. April and May are the window; by July the trail is hot and Tueeulala is a memory.
+        Hetch Hetchy sits low, around 3,900 feet, so it melts out early. April and May are the window; by July the trail is hot and Tueeulala is dry.
       </p>
 
       <h2>Waterfall flow by month</h2>
@@ -160,7 +160,7 @@ window.ARTICLE_BODIES["yosemite-waterfalls-guide"] = function YosemiteWaterfalls
       <h2>Moonbows, briefly</h2>
 
       <p>
-        On clear nights around the <strong>full moons of April, May, and June</strong>, the spray at the base of Lower Yosemite Fall can throw a <strong>moonbow</strong>, a lunar rainbow arcing through the mist. To the naked eye it reads as a pale silver band; a camera on a tripod pulls the colors out. You need heavy spray, a bright moon low enough to hit it, and dark-adjusted patience. Spring full-moon nights at the Lower Fall bridge draw a small crowd of tripods for exactly this reason, and it is one of the few world-class sights in the park that happens after bedtime.
+        On clear nights around the <strong>full moons of April, May, and June</strong>, the spray at the base of Lower Yosemite Fall can throw a <strong>moonbow</strong>, a lunar rainbow arcing through the mist. To the naked eye it reads as a pale silver band; a camera on a tripod pulls the colors out. You need heavy spray, a bright moon low enough to hit it, and dark-adjusted patience. Spring full-moon nights at the Lower Fall bridge draw a small crowd of tripods for exactly this reason,
       </p>
 
       <h2>The takeaway</h2>
@@ -170,7 +170,7 @@ window.ARTICLE_BODIES["yosemite-waterfalls-guide"] = function YosemiteWaterfalls
       </p>
 
       <p>
-        And if your trip is already booked for August or September: adjust expectations, not plans. Walk the Mist Trail for Vernal and Nevada, stand under Bridalveil, and save the Lower Yosemite Fall loop for a spring return. The falls will be back. They always come back. They just refuse to perform on demand, which, after twenty seasons of watching them, I have come to regard as the most honest thing about them.
+        And if your trip is already booked for August or September: adjust your expectations. Walk the Mist Trail for Vernal and Nevada, stand under Bridalveil, and save the Lower Yosemite Fall loop for a spring return. The rim falls return with the next spring's snowmelt.
       </p>
 
       <h3>Sources</h3>

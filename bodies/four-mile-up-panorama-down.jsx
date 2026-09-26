@@ -10,7 +10,7 @@ window.ARTICLE_BODIES["four-mile-up-panorama-down"] = function FourMileUpPanoram
       </p>
 
       <p>
-        It isn't the most famous hike. That's the <a href="/articles/mist-trail-the-real-guide">Mist Trail</a>. It isn't the most dramatic, either. That's <a href="/articles/so-you-want-to-hike-half-dome">Half Dome</a>, which is also the hardest. But in my experience it's the most complete. In one day you climb 3,200 feet out of the Valley, stand at one of the great viewpoints in the American West, then drop through three different ecosystems and past two major waterfalls, and you finish at Happy Isles wondering how one park fit all of that into a single walk. Most people <a href="/articles/glacier-point-how-to-visit">drive to Glacier Point</a> and look at the view. On this hike you earn it, and then the trail keeps handing you new ones for the next eight miles down.
+        It isn't the most famous hike. That's the <a href="/articles/mist-trail-the-real-guide">Mist Trail</a>. It isn't the most dramatic, either. That's <a href="/articles/so-you-want-to-hike-half-dome">Half Dome</a>, which is also the hardest. But in my experience it's the most complete. In one day you climb 3,200 feet out of the Valley, stand at one of the great viewpoints in the American West, then drop through three different ecosystems and past two major waterfalls, and you finish at Happy Isles. Most people <a href="/articles/glacier-point-how-to-visit">drive to Glacier Point</a> and look at the view. On this hike you earn it, and the views continue for the eight miles down.
       </p>
 
       <p>I've done this loop more times than I can count. Here's how to do it well.</p>
@@ -22,7 +22,7 @@ window.ARTICLE_BODIES["four-mile-up-panorama-down"] = function FourMileUpPanoram
       </p>
 
       <p>
-        Give yourself 8 to 10 hours, trailhead to trailhead. Fast hikers finish in 7. Most people take 9 or 10, and that's fine. You're out here for the views, not the pace, so don't rush it.
+        Give yourself 8 to 10 hours, trailhead to trailhead. Fast hikers finish in 7. Most people take 9 or 10.
       </p>
 
       <h2>Why up the Four Mile and down the Panorama</h2>
@@ -32,15 +32,15 @@ window.ARTICLE_BODIES["four-mile-up-panorama-down"] = function FourMileUpPanoram
       <p>There are three reasons.</p>
 
       <p>
-        First, the Four Mile Trail is a steady uphill grind: 3,200 feet of gain in 4.8 miles, over roughly 58 switchbacks. It's the hardest part of the day, so do it while your legs are fresh and the morning is cool. Flip the loop and you're climbing out of the Illilouette drainage on tired legs in the afternoon heat. That's worse.
+        First, the Four Mile Trail is a steady uphill grind: 3,200 feet of gain in 4.8 miles, over roughly 58 switchbacks. It's the hardest part of the day, so do it while your legs are fresh and the morning is cool. Flip the loop and you're climbing out of the Illilouette drainage on tired legs in the afternoon heat.
       </p>
 
       <p>
-        Second, Glacier Point hits harder when you've climbed to it. You spend three hours in forest and granite while the views open up bit by bit: the Valley floor far below, then Half Dome rising over the rim at Union Point, then the whole panorama at the top. Drive up and you start with the best thing you'll see. Hike up and it's the reward.
+        Second, Glacier Point hits harder when you've climbed to it. You spend three hours in forest and granite while the views open up bit by bit: the Valley floor far below, then Half Dome rising over the rim at Union Point, then the whole panorama at the top. Drive up and you start with the best view of the day.
       </p>
 
       <p>
-        Third, the Panorama descent is a pleasure. You're walking downhill through waterfall country with Half Dome in front of you for miles. Your legs are working, but they aren't suffering. The hard part is behind you, and you get to enjoy this.
+        Third, the Panorama descent is a pleasure. You're walking downhill through waterfall country with Half Dome in front of you for miles. The hard part is behind you.
       </p>
 
       <h2>Getting to the Four Mile Trailhead</h2>
@@ -60,19 +60,19 @@ window.ARTICLE_BODIES["four-mile-up-panorama-down"] = function FourMileUpPanoram
       </p>
 
       <p>
-        The first mile is the steepest and the most exposed. You gain height fast on rocky switchbacks with little shade, and in summer this stretch bakes in the morning sun. Wear a hat and sunscreen. That isn't optional. (If you haven't read my <a href="/kit">day pack packing list</a>, read it before this hike. On a day like this, what's in your pack decides whether you have a great time or a miserable one.)
+        The first mile is the steepest and the most exposed. You gain height fast on rocky switchbacks with little shade, and in summer this stretch bakes in the morning sun. Wear a hat and sunscreen. (If you haven't read my <a href="/kit">day pack packing list</a>, read it before this hike. On a day like this, what's in your pack decides whether you have a great time or a miserable one.)
       </p>
 
       <p>
-        By mile two you're well above the Valley floor and the views start to open. El Capitan shows up across the Valley, and so does Yosemite Falls. The exposure feels real now: you're on the wall, climbing toward the rim.
+        By mile two you're well above the Valley floor and the views start to open. El Capitan shows up across the Valley, and so does Yosemite Falls. The exposure increases as you climb toward the rim.
       </p>
 
       <p>
-        <strong>Union Point</strong> comes at about mile three. It's a named viewpoint with a small flat spot to sit and rest, and the view is exceptional: Yosemite Falls straight across the Valley, El Capitan to the west, Half Dome coming into view to the east. Plenty of people turn around here thinking they've "done the Four Mile Trail." They haven't, but I get why they stop. It's that good.
+        <strong>Union Point</strong> comes at about mile three. It's a named viewpoint with a small flat spot to sit and rest, and the view is exceptional: Yosemite Falls straight across the Valley, El Capitan to the west, Half Dome coming into view to the east. Plenty of people turn around here thinking they've "done the Four Mile Trail." They haven't, but the view explains why they stop.
       </p>
 
       <p>
-        The last mile and a half from Union Point to Glacier Point is gentler, winding through forest with the odd opening. The switchbacks ease off. You're tired, but you're close. Then you step out at the Glacier Point railing, with Half Dome, Nevada Fall, Vernal Fall and the whole High Sierra laid out in front of you, and the three hours of climbing pay off on the spot.
+        The last mile and a half from Union Point to Glacier Point is gentler, winding through forest with the odd opening. The switchbacks ease off. Then you step out at the Glacier Point railing, with Half Dome, Nevada Fall, Vernal Fall and the whole High Sierra laid out in front of you.
       </p>
 
       <p>
@@ -96,13 +96,13 @@ window.ARTICLE_BODIES["four-mile-up-panorama-down"] = function FourMileUpPanoram
       </p>
 
       <p>
-        Spend at least thirty minutes at Glacier Point. Eat something real. Refill if the fountain is running. Use the restroom. You've done the hard part. The next eight miles are almost all downhill, but they're still eight miles.
+        Spend at least thirty minutes at Glacier Point. Eat something real. Refill if the fountain is running. Use the restroom. The next eight miles are almost all downhill, but they are still eight miles.
       </p>
 
       <h2>The Panorama Trail, the best descent in the park</h2>
 
       <p>
-        From Glacier Point the Panorama Trail heads east along the rim, then drops toward Illilouette Creek. It earns its name: for the first two miles, Half Dome, Clouds Rest and the Clark Range fill the horizon the whole way. The scale is almost disorienting. Half Dome, which looks like a wall from the Valley, turns out to be a narrow fin of granite with a sheer face and a domed back.
+        From Glacier Point the Panorama Trail heads east along the rim, then drops toward Illilouette Creek. It earns its name: for the first two miles, Half Dome, Clouds Rest and the Clark Range fill the horizon the whole way. Half Dome, which looks like a wall from the Valley, turns out to be a narrow fin of granite with a sheer face and a domed back.
       </p>
 
       <h3>Illilouette Fall and Creek, Mile 2.5</h3>
@@ -116,7 +116,7 @@ window.ARTICLE_BODIES["four-mile-up-panorama-down"] = function FourMileUpPanoram
       </p>
 
       <p>
-        After the bridge, the trail climbs out of the drainage. This is the hike's surprise: 800 feet of gain over about a mile and a half, on legs that are already tired. It isn't as steep as the Four Mile Trail, but it feels harder, because you thought the climbing was over. It wasn't. Save some energy for it.
+        After the bridge, the trail climbs out of the drainage. This is the hike's surprise: 800 feet of gain over about a mile and a half, on legs that are already tired. It isn't as steep as the Four Mile Trail, but it comes late in the day. Save some energy for it.
       </p>
 
       <h3>The descent to Nevada Fall, Miles 4 to 6</h3>
@@ -134,7 +134,7 @@ window.ARTICLE_BODIES["four-mile-up-panorama-down"] = function FourMileUpPanoram
       </p>
 
       <p>
-        <strong>The Mist Trail</strong> is shorter (about 2.5 miles to Happy Isles), steeper and more dramatic. It runs down beside Nevada Fall and then Vernal Fall, and in places the spray soaks you through. The granite steps along Vernal Fall are the most photographed stretch of trail in Yosemite. It's spectacular. It's also steep, the uneven stone steps are brutal on tired knees, and wet rock can be slippery. If your legs feel solid and you want the waterfalls up close, take the Mist Trail.
+        <strong>The Mist Trail</strong> is shorter (about 2.5 miles to Happy Isles), steeper and more dramatic. It runs down beside Nevada Fall and then Vernal Fall, and in places the spray soaks you through. The granite steps along Vernal Fall are the most photographed stretch of trail in Yosemite. It is also steep, the uneven stone steps are brutal on tired knees, and wet rock can be slippery. If your legs feel solid and you want the waterfalls up close, take the Mist Trail.
       </p>
 
       <p>
@@ -142,7 +142,7 @@ window.ARTICLE_BODIES["four-mile-up-panorama-down"] = function FourMileUpPanoram
       </p>
 
       <p>
-        <strong>The John Muir Trail</strong> is longer (about 4 miles to Happy Isles), gentler and easier on the knees. It switchbacks down through forest with the occasional distant look at Nevada Fall. It's less dramatic, but a lot more comfortable at the end of a long day. After 13 miles and 4,000 feet of elevation change, your knees will have an opinion about which way you go. Listen to them.
+        <strong>The John Muir Trail</strong> is longer (about 4 miles to Happy Isles), gentler and easier on the knees. It switchbacks down through forest with the occasional distant look at Nevada Fall. It's less dramatic, but a lot more comfortable at the end of a long day. After 13 miles and 4,000 feet of elevation change, your knees may decide for you.
       </p>
 
       <p>
@@ -198,24 +198,24 @@ window.ARTICLE_BODIES["four-mile-up-panorama-down"] = function FourMileUpPanoram
       <p>I've hiked most of the trails in this park, and I've led programs on dozens of them. This loop is the one I keep coming back to.</p>
 
       <p>
-        The Four Mile Trail shows you what Yosemite really is: not a postcard, but a vertical landscape you feel in your legs and your lungs. You climb the wall of the Valley, the same wall the glaciers carved, and by the time you reach the rim you understand the scale of the place in a way no roadside pullout can give you.
+        The Four Mile Trail climbs the glacier-carved wall of the Valley, and by the time you reach the rim you have a sense of the park's scale that no roadside pullout gives.
       </p>
 
       <p>
-        Glacier Point is the reward: the whole park spread out below you, Half Dome at eye level, the Sierra running to the horizon.
+        Glacier Point has the view: the whole park spread out below you, Half Dome at eye level, the Sierra running to the horizon.
       </p>
 
       <p>
-        And the Panorama Trail is the variety: waterfalls, creek crossings, granite traverses, forest, and a slow, satisfying descent through just about everything Yosemite has in a single afternoon.
+        The Panorama Trail adds waterfalls, creek crossings, granite traverses and forest in a single afternoon.
       </p>
 
       <p>No other hike in the park does all three.</p>
 
       <p>
-        Start early. Carry enough water. Bring a filter. And slow down at Union Point, at Glacier Point, at the Illilouette bridge and at the top of Nevada Fall. Those stops are what make this hike what it is.
+        Start early. Carry enough water. Bring a filter. And slow down at Union Point, at Glacier Point, at the Illilouette bridge and at the top of Nevada Fall.
       </p>
 
-      <p>It's 13 miles and 4,000 feet of elevation change, and every step is worth it.</p>
+      <p>It's 13 miles and 4,000 feet of elevation change.</p>
     </>
   );
 };

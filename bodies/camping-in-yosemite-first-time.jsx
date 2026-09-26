@@ -24,7 +24,7 @@ window.ARTICLE_BODIES["camping-in-yosemite-first-time"] = function CampingInYose
       </p>
 
       <p>
-        This is not a complaint, and it is not a reason to skip it. Sleeping on the Valley floor is still the best way to experience this park, for the plain reason that you are inside it at the hours when it is worth being inside it: the ninety minutes after the day visitors leave, and the ninety before they come back. But if you arrive expecting solitude and find a village, you will spend the first evening disappointed by something that was never on offer, and you will miss the thing that is.
+        This is not a complaint, and it is not a reason to skip it. Sleeping on the Valley floor is still the best way to experience this park, for the plain reason that you are inside it at the hours when it is worth being inside it: the ninety minutes after the day visitors leave, and the ninety before they come back. But if you arrive expecting solitude and find a village, you will spend the first evening disappointed by something that was never on offer.
       </p>
 
       <blockquote>Arrive expecting solitude and you will spend the first evening disappointed by something that was never on offer.</blockquote>
@@ -72,7 +72,7 @@ window.ARTICLE_BODIES["camping-in-yosemite-first-time"] = function CampingInYose
       </p>
 
       <p>
-        What goes in it is not "food." It is anything with a smell. Food, obviously, and drinks, and the cooler itself even when empty. Also toothpaste. Sunscreen. Lip balm. Bug spray. Soap and shampoo. Dish rags. Trash, until you carry it to the dumpster. The half-eaten granola bar in the door pocket of your car, which is the single most common violation in this park and the reason the parking lots are full of vehicles with peeled door frames. Nothing scented stays in the car overnight, and nothing scented stays out on the table while you walk to the bathroom.
+        What goes in it is anything with a smell. Food, obviously, and drinks, and the cooler itself even when empty. Also toothpaste. Sunscreen. Lip balm. Bug spray. Soap and shampoo. Dish rags. Trash, until you carry it to the dumpster. The half-eaten granola bar in the door pocket of your car, which is the single most common violation in this park and the reason the parking lots are full of vehicles with peeled door frames. Nothing scented stays in the car overnight, and nothing scented stays out on the table while you walk to the bathroom.
       </p>
 
       <p>
@@ -80,7 +80,7 @@ window.ARTICLE_BODIES["camping-in-yosemite-first-time"] = function CampingInYose
       </p>
 
       <p>
-        The rule is enforced, with fines running as high as five thousand dollars. But the fine is not the argument. The argument is that a bear that gets human food once comes back, gets bolder, and eventually gets killed for it, and that the chain of events starts with somebody's hands being full. <a href="/articles/yosemite-bears-safety-guide">The bear guide covers the rest of it</a>. For your first night, one habit carries most of the weight: latch it every single time, including the times you are coming right back.
+        The rule is enforced, with fines running as high as five thousand dollars. The stronger argument is that a bear that gets human food once comes back, gets bolder, and eventually gets killed for it, and that the chain of events starts with somebody's hands being full. <a href="/articles/yosemite-bears-safety-guide">The bear guide covers the rest of it</a>. For your first night, one habit carries most of the weight: latch it every single time, including the times you are coming right back.
       </p>
 
       <blockquote>Bears do not need hours. They need the ninety seconds you spent walking to the restroom.</blockquote>
@@ -92,7 +92,7 @@ window.ARTICLE_BODIES["camping-in-yosemite-first-time"] = function CampingInYose
       </p>
 
       <p>
-        Yosemite Valley sits at about 4,000 feet. Tuolumne Meadows sits at about 8,600. That is not a detail, it is a different climate, and the park sells them both under one name. A July night on the Valley floor is genuinely mild. A July night in Tuolumne can drop into the high thirties, and it will do that under a clear sky on the same date that the Valley is pleasant. People pack one sleeping bag for "summer in Yosemite," and half of them are packing for the wrong half of the park.
+        Yosemite Valley sits at about 4,000 feet. Tuolumne Meadows sits at about 8,600. That is a different climate, and the park sells both under one name. A July night on the Valley floor is mild. A July night in Tuolumne can drop into the high thirties, and it will do that under a clear sky on the same date that the Valley is pleasant. People pack one sleeping bag for "summer in Yosemite," and half of them are packing for the wrong half of the park.
       </p>
 
       <p>
@@ -106,7 +106,7 @@ window.ARTICLE_BODIES["camping-in-yosemite-first-time"] = function CampingInYose
       <h2>The campground runs on a clock nobody posts at the entrance</h2>
 
       <p>
-        Four times govern the day, and knowing them in advance is most of the difference between feeling like a local and feeling like an intruder.
+        Four times govern the day. Learn them before you arrive.
       </p>
 
       <p>
@@ -122,7 +122,7 @@ window.ARTICLE_BODIES["camping-in-yosemite-first-time"] = function CampingInYose
       </p>
 
       <p>
-        <strong>Wood fires in Yosemite Valley are restricted to the evening in the summer months.</strong> This is air quality, not fire danger: the Valley is a granite box with cold air sinking into it, smoke settles and stays, and a hundred and fifty morning campfires make a haze that the whole floor has to breathe. In the cooler months the restriction lifts. Check the current hours when you check in, because the window and the season it applies to both get adjusted.
+        <strong>Wood fires in Yosemite Valley are restricted to the evening in the summer months.</strong> The reason is air quality: the Valley is a granite box with cold air sinking into it, smoke settles and stays, and a hundred and fifty morning campfires make a haze that the whole floor has to breathe. In the cooler months the restriction lifts. Check the current hours when you check in, because the window and the season it applies to both get adjusted.
       </p>
 
       <p>
@@ -140,7 +140,7 @@ window.ARTICLE_BODIES["camping-in-yosemite-first-time"] = function CampingInYose
       </p>
 
       <p>
-        Two fixes, both free. Pitch the tent once in the yard or the living room before you leave, and run the stove once. Not to test whether they work, but so your hands know the sequence. And aim to be in the site by mid-afternoon. In the summer that leaves hours of light; in October it is the difference between a camp and a scramble.
+        Two fixes, both free. Pitch the tent once in the yard or the living room before you leave, and run the stove once. The point is for your hands to learn the sequence. And aim to be in the site by mid-afternoon. In the summer that leaves hours of light; in October it is the difference between a camp and a scramble.
       </p>
 
       <p>
@@ -162,13 +162,13 @@ window.ARTICLE_BODIES["camping-in-yosemite-first-time"] = function CampingInYose
       </p>
 
       <p>
-        And the jays. Steller's jays work the campgrounds from first light, hopping table to bear box in that strutting way they have, and they are watching your lunch with more attention than you are. An unattended sandwich is a donated sandwich. This is genuinely one of the pleasures of the place once you stop taking it personally.
+        And the jays. Steller's jays work the campgrounds from first light, hopping table to bear box in that strutting way they have, and they are watching your lunch with more attention than you are. Leave a sandwich unattended and it is gone. Once you stop taking it personally, the jays are one of the pleasures of the place.
       </p>
 
       <h2>The oaks drop branches on hot afternoons</h2>
 
       <p>
-        Here is the one that almost nobody knows, and it is the sort of thing a first-timer has no way to learn except by being told.
+        Almost nobody knows this one, and a first-timer has no way to learn it except by being told.
       </p>
 
       <p>
@@ -176,7 +176,7 @@ window.ARTICLE_BODIES["camping-in-yosemite-first-time"] = function CampingInYose
       </p>
 
       <p>
-        The practical response is undramatic and worth doing: on a hot, windless afternoon, do not pitch your tent directly under the spread of a big oak if you have another option in the site, and do not set an infant carrier, or a folding chair holding someone who cannot move quickly, directly beneath one. If you hear cracking overhead, move first and look second. That is the whole precaution. The Park Service raises this every summer, and it is the kind of thing that reads as alarmist right up until you have seen the size of what comes down.
+        The precaution is simple: on a hot, windless afternoon, do not pitch your tent directly under the spread of a big oak if you have another option in the site, and do not set an infant carrier, or a folding chair holding someone who cannot move quickly, directly beneath one. If you hear cracking overhead, move first and look second. The Park Service raises this every summer. It reads as alarmist until you have seen the size of what comes down.
       </p>
 
       <Placeholder
@@ -200,7 +200,7 @@ window.ARTICLE_BODIES["camping-in-yosemite-first-time"] = function CampingInYose
       </p>
 
       <p>
-        <strong>Booking a riverside loop for late spring in a big snow year.</strong> The low-lying Valley sites nearest the Merced are lovely in August and can flood or close in a high-runoff May. That is a recurring event, not a freak one.
+        <strong>Booking a riverside loop for late spring in a big snow year.</strong> The low-lying Valley sites nearest the Merced are lovely in August and can flood or close in a high-runoff May. It happens regularly.
       </p>
 
       <p>
@@ -230,13 +230,13 @@ window.ARTICLE_BODIES["camping-in-yosemite-first-time"] = function CampingInYose
       </p>
 
       <p>
-        You are not visiting Yosemite at that point. You are in it, on the ground, on the same floor that Ahwahneechee families tended with fire for centuries and that the ice left when it pulled back. The reservation was hard. The box is awkward. The showers do not exist. None of that is what you remember.
+        By then you are living in the park, on the ground, on the same floor that Ahwahneechee families tended with fire for centuries and that the ice left when it pulled back. The reservation was hard. The box is awkward. The showers do not exist. None of that is what you remember.
       </p>
 
       <LodgingCta
         destination="Mariposa, California"
         heading="For the night the campground plan does not survive"
-        note="A closure, a flooded loop, a reservation that never came through, or a first night that simply did not work. Every camper eventually has one of these, and solving it with a live availability search of the nearest gateway beats driving Highway 140 after dark looking for vacancy signs. Mariposa here; the other towns are one page over."
+        note="A closure, a flooded loop, a reservation that never came through, or a first night that did not work. Every camper eventually has one of these, and solving it with a live availability search of the nearest gateway beats driving Highway 140 after dark looking for vacancy signs. Mariposa here; the other towns are one page over."
         list="article_cta"
         slug="camping-in-yosemite-first-time"
         cta="Search Mariposa lodging →"

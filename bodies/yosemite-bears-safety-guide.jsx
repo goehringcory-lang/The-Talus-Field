@@ -6,7 +6,7 @@ window.ARTICLE_BODIES["yosemite-bears-safety-guide"] = function YosemiteBearsSaf
   return (
     <>
       <p className="dropcap">
-        You packed bear spray. You saw it on every packing list for every national park trip you've ever planned. It's sitting in the side pocket of your pack right now, and when you get to the Yosemite entrance station, a ranger is going to confiscate it. Because bear spray is illegal in Yosemite. Not just discouraged. Illegal. Possession and use are both prohibited. It is classified as a weapon under National Park Service regulations, alongside pellet guns and crossbows. This surprises roughly half the visitors I talk to on any given day.
+        You packed bear spray. You saw it on every packing list for every national park trip you've ever planned. It's sitting in the side pocket of your pack right now, and when you get to the Yosemite entrance station, a ranger is going to confiscate it. Bear spray is illegal in Yosemite, not merely discouraged. Possession and use are both prohibited. It is classified as a weapon under National Park Service regulations, alongside pellet guns and crossbows. This surprises roughly half the visitors I talk to on any given day.
       </p>
 
       <p>
@@ -26,7 +26,7 @@ window.ARTICLE_BODIES["yosemite-bears-safety-guide"] = function YosemiteBearsSaf
       </p>
 
       <p>
-        The NPS ban on bear spray in Yosemite is laid out in the Superintendent's Compendium, which classifies it alongside "pellet guns, BB guns, bows and arrows, crossbows, blowguns, spearguns, spear-fishing equipment, and nets." Possession is prohibited. Use is prohibited. It is a weapon, and weapons are not permitted. The reasons are practical, not bureaucratic. Bear spray is not needed for black bears. The encounters that would theoretically justify it simply do not happen here. A USGS study found that capsaicin residue left on surfaces actually attracts bears. You are not repelling bears; you are seasoning the landscape.
+        The NPS ban on bear spray in Yosemite is laid out in the Superintendent's Compendium, which classifies it alongside "pellet guns, BB guns, bows and arrows, crossbows, blowguns, spearguns, spear-fishing equipment, and nets." Possession is prohibited. Use is prohibited. It is a weapon, and weapons are not permitted. The reasons are practical, not bureaucratic. Bear spray is not needed for black bears. The encounters that would theoretically justify it do not happen here. A USGS study found that capsaicin residue left on surfaces actually attracts bears.
       </p>
 
       <p>
@@ -220,7 +220,7 @@ window.ARTICLE_BODIES["yosemite-bears-safety-guide"] = function YosemiteBearsSaf
       </p>
 
       <p>
-        I have watched people form a semicircle around a sow and two cubs in Cook's Meadow while she stress-huffed and jaw-popped and tried to find an exit. I have watched people sprint toward a bear in Upper Pines Campground with their phones out. I have watched a man chase a bear into the tree line for a better angle. These behaviors are not just reckless. They are the reason bears become habituated, then food-conditioned, then "problem bears," and then dead bears. That escalation is well-documented and entirely preventable.
+        I have watched people form a semicircle around a sow and two cubs in Cook's Meadow while she stress-huffed and jaw-popped and tried to find an exit. I have watched people sprint toward a bear in Upper Pines Campground with their phones out. I have watched a man chase a bear into the tree line for a better angle. Behavior like this is the reason bears become habituated, then food-conditioned, then "problem bears," and then dead bears. That escalation is well-documented and entirely preventable.
       </p>
 
       <p>

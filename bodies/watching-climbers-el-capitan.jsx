@@ -6,45 +6,45 @@ window.ARTICLE_BODIES["watching-climbers-el-capitan"] = function WatchingClimber
   return (
     <>
       <p className="dropcap">
-        The first time I really understood <strong>El Capitan</strong>, I wasn't looking at the rock. It was a September evening in my second season here, and I had stopped in El Capitan Meadow to watch the last light leave the Valley. As the wall went from gold to gray to black, small points of light began to appear on it, scattered across the face like early stars. Headlamps. There were people up there, a dozen or more, cooking dinner and settling into their hanging camps two thousand feet off the deck, and they would still be there in the morning, and the morning after that. I had driven past the wall a hundred times by then. That was the night it stopped being scenery.
+        The first time I really understood <strong>El Capitan</strong>, I wasn't looking at the rock. It was a September evening in my second season here, and I had stopped in El Capitan Meadow to watch the last light leave the Valley. As the wall went from gold to gray to black, small points of light began to appear on it, scattered across the face like early stars. Headlamps. There were people up there, a dozen or more, cooking dinner and settling into their hanging camps two thousand feet off the deck, and they would still be there in the morning, and the morning after that. I had driven past the wall a hundred times by then without noticing them.
       </p>
 
       <p>Twenty seasons later, I still stop. Watching climbers on El Capitan is the best free spectator sport in the National Park system, and most visitors drive past it without knowing the show is on.</p>
 
-      <p>This is how to watch it: where to stand, what you're actually seeing, the history that made this particular rock famous, and how to be a decent audience member.</p>
+      <p>This is how to watch it: where to stand, what you're seeing, the history behind the rock, and how to behave as a spectator.</p>
 
       <h2>The wall</h2>
 
       <p>
-        El Capitan rises about <strong>3,000 vertical feet</strong> from the Valley floor, a single unbroken sweep of granite, the largest exposed granite monolith of its kind. Those are the numbers, and the numbers do not help, because the wall defeats your sense of scale on sight. There is nothing on it to measure against: no trees on the face, no buildings nearby, nothing but rock and sky. Your eye reads it as big the way it reads a cloud as big, vaguely and without consequence.
+        El Capitan rises about <strong>3,000 vertical feet</strong> from the Valley floor, a single unbroken sweep of granite, the largest exposed granite monolith of its kind. The numbers do little for your sense of scale, because there is nothing on the face to measure against: no trees, no buildings, only rock and sky.
       </p>
 
       <p>
-        The correction arrives when you find a climber on it. Unaided, you almost certainly can't; a human being on El Capitan is smaller than the period at the end of this sentence held at arm's length. Through binoculars, a red dot resolves into a person, and then the person recalibrates the whole wall. The ledge that looked like a scratch is a feature the size of a parking lot. The crack system that looked like a hairline is wide enough to swallow a body. Once you have done this conversion, you cannot undo it, and the wall never looks vague again.
+        Finding a climber on it fixes that. Unaided, you almost certainly can't; a human being on El Capitan is smaller than the period at the end of this sentence held at arm's length. Through binoculars, a red dot resolves into a person, and then the person recalibrates the whole wall. The ledge that looked like a scratch is a feature the size of a parking lot. The crack system that looked like a hairline is wide enough to swallow a body.
       </p>
 
       <h2>Where to watch</h2>
 
       <p>
-        <strong>El Capitan Meadow</strong>, on Northside Drive directly beneath the wall, is the classic gallery. The meadow gives you the full face at a viewing angle steep enough to feel it and far enough back to see all of it. Pull <strong>fully off the road</strong> into the marked turnouts; Northside Drive is a busy one-way corridor, and a half-parked car here is both a hazard and a citation. Bring binoculars. This is the single most important piece of equipment for the entire enterprise. Without them you are looking at a rock; with them you are watching people.
+        <strong>El Capitan Meadow</strong>, on Northside Drive directly beneath the wall, is the classic gallery. The meadow gives you the full face at a viewing angle steep enough to feel it and far enough back to see all of it. Pull <strong>fully off the road</strong> into the marked turnouts; Northside Drive is a busy one-way corridor, and a half-parked car here is both a hazard and a citation. Bring binoculars. They are the one piece of equipment that matters; without them you cannot pick out the climbers.
       </p>
 
       <p>
-        The second angle is from <strong>El Capitan Bridge</strong>, where the road crosses the Merced. The bridge view is more oblique and adds the river in the foreground, and in spring it puts the wall's reflection at your feet. Photographers tend to prefer it; spectators tracking a specific party tend to prefer the meadow. Both are flat, roadside, and effortless, which puts El Capitan viewing firmly on the short list of <a href="/articles/yosemite-for-non-hikers">great Yosemite experiences that require no hiking at all</a>. Both spots are pinned on <a href="/map">our interactive Valley map</a> if you're building a driving day around them.
+        The second angle is from <strong>El Capitan Bridge</strong>, where the road crosses the Merced. The bridge view is more oblique and adds the river in the foreground, and in spring it puts the wall's reflection at your feet. Photographers tend to prefer it; spectators tracking a specific party tend to prefer the meadow. Both are flat and roadside, which puts El Capitan viewing firmly on the short list of <a href="/articles/yosemite-for-non-hikers">great Yosemite experiences that require no hiking at all</a>. Both spots are pinned on <a href="/map">our interactive Valley map</a> if you're building a driving day around them.
       </p>
 
       <h2>What you're actually looking at</h2>
 
       <p>
-        Most parties on El Capitan are climbing multi-day routes, and the most famous of these is <strong>The Nose</strong>, the great prow where the southwest and southeast faces meet. A typical ascent takes several days. The climbers you're watching are not just climbing; they are running a small vertical expedition. Through binoculars you can pick out the whole logistics train: the leader inching up a crack system, the belayer paying out rope from an anchor, and below them the <strong>haul bags</strong>, heavy duffels of water, food, and gear that get winched up the wall pitch by pitch and that climbers, with reason, call pigs.
+        Most parties on El Capitan are climbing multi-day routes, and the most famous of these is <strong>The Nose</strong>, the great prow where the southwest and southeast faces meet. A typical ascent takes several days. The climbers you're watching are running a small vertical expedition. Through binoculars you can pick out the whole logistics train: the leader inching up a crack system, the belayer paying out rope from an anchor, and below them the <strong>haul bags</strong>, heavy duffels of water, food, and gear that get winched up the wall pitch by pitch and that climbers, with reason, call pigs.
       </p>
 
       <p>
-        At night the climbers sleep where they stop, on natural ledges if the route offers one, and otherwise on <strong>portaledges</strong>: collapsible cots that hang from a single anchor point against the bare face. Through a spotting scope in the late afternoon you can watch a team assemble one, a small act of homemaking performed over half a mile of air.
+        At night the climbers sleep where they stop, on natural ledges if the route offers one, and otherwise on <strong>portaledges</strong>: collapsible cots that hang from a single anchor point against the bare face. Through a spotting scope in the late afternoon you can watch a team assemble one.
       </p>
 
       <p>
-        Then comes the part I told you about. At dusk, the headlamps come on, and the dark wall becomes a constellation of climbers cooking, sorting gear, and settling in. It is one of the best free evening shows in the park, and it pairs naturally with the Valley's other after-dark spectacle; on a moonless night you can watch the wall's lights come out and then <a href="/articles/yosemite-stargazing-where-to-look-up">stay for the real stars</a>.
+        At dusk, the headlamps come on, and the dark wall becomes a constellation of climbers cooking, sorting gear, and settling in. It is one of the best free evening shows in the park, and it pairs naturally with the Valley's other after-dark spectacle; on a moonless night you can watch the wall's lights come out and then <a href="/articles/yosemite-stargazing-where-to-look-up">stay for the real stars</a>.
       </p>
 
       <blockquote>The wall at dusk is a neighborhood turning its lights on, hung sideways in the sky.</blockquote>
@@ -52,7 +52,7 @@ window.ARTICLE_BODIES["watching-climbers-el-capitan"] = function WatchingClimber
       <h2>How this rock got famous</h2>
 
       <p>
-        Four stories, told in the meadow so often they've worn grooves.
+        Four ascents account for most of the rock's fame.
       </p>
 
       <p>
@@ -68,13 +68,13 @@ window.ARTICLE_BODIES["watching-climbers-el-capitan"] = function WatchingClimber
       </p>
 
       <p>
-        <strong>2018.</strong> Honnold and Caldwell, roped this time, set a speed record on The Nose of <strong>under two hours</strong>. Harding's 47 days to less than two hours, on the same line of weakness up the same rock, is the entire sixty-year arc of American climbing compressed into a single comparison.
+        <strong>2018.</strong> Honnold and Caldwell, roped this time, set a speed record on The Nose of <strong>under two hours</strong>. Harding's 47 days to less than two hours, on the same line of weakness up the same rock, sums up sixty years of change in American climbing.
       </p>
 
       <h2>Ask a Climber</h2>
 
       <p>
-        In season, the park runs a program built precisely for the person standing in the meadow squinting upward: <strong>Ask a Climber</strong>. Climbing rangers set up <strong>spotting scopes</strong> at El Capitan Meadow or El Capitan Bridge and spend the afternoon pointing out parties on the wall, explaining what the climbers are doing, and answering everything from "how do they go to the bathroom" (there is a container system, and packing it out is mandatory) to real questions about route history. The scopes turn the red dot into a person with a facial expression.
+        In season, the park runs a program built precisely for the person standing in the meadow squinting upward: <strong>Ask a Climber</strong>. Climbing rangers set up <strong>spotting scopes</strong> at El Capitan Meadow or El Capitan Bridge and spend the afternoon pointing out parties on the wall, explaining what the climbers are doing, and answering everything from "how do they go to the bathroom" (there is a container system, and packing it out is mandatory) to real questions about route history. Through the scopes, a red dot becomes a recognizable person.
       </p>
 
       <p>
@@ -90,7 +90,7 @@ window.ARTICLE_BODIES["watching-climbers-el-capitan"] = function WatchingClimber
       <h2>When the show runs</h2>
 
       <p>
-        Climbing on El Capitan is a <strong>spring and fall</strong> sport. The wall faces the sun, and in midsummer the granite bakes; the sustained heat makes multi-day ascents somewhere between miserable and dangerous, so July and August afternoons are thin. Winter is worse: storms arrive fast, and a wall that sheds water and ice onto climbers who cannot retreat quickly is a genuinely hazardous place. So the reliable spectating windows are roughly <strong>April through early June</strong> and <strong>September through October</strong>, when the meadow fills with tourists looking up and the wall fills with parties. You may see climbers in other months. You will see them in those.
+        Climbing on El Capitan is a <strong>spring and fall</strong> sport. The wall faces the sun, and in midsummer the granite bakes; the sustained heat makes multi-day ascents somewhere between miserable and dangerous, so July and August afternoons are thin. Winter is worse: storms arrive fast, and a wall that sheds water and ice onto climbers who cannot retreat quickly is a hazardous place. So the reliable spectating windows are roughly <strong>April through early June</strong> and <strong>September through October</strong>, when the meadow fills with tourists looking up and the wall fills with parties. You may see climbers in other months, but those are the reliable ones.
       </p>
 
       <h2>Spectator etiquette</h2>
@@ -104,11 +104,11 @@ window.ARTICLE_BODIES["watching-climbers-el-capitan"] = function WatchingClimber
       </p>
 
       <p>
-        <strong>Stay off the meadow where it's signed.</strong> El Capitan Meadow's turf is fragile and has been loved half to death; the park has restoration areas fenced or signed, and the viewing is exactly as good from the roadside and the designated paths. The meadow is part of the show. Don't stand on the stage.
+        <strong>Stay off the meadow where it's signed.</strong> El Capitan Meadow's turf is fragile and has been loved half to death; the park has restoration areas fenced or signed, and the viewing is exactly as good from the roadside and the designated paths.
       </p>
 
       <p>
-        <strong>Never shine a light at the wall after dark.</strong> A powerful flashlight or car spotlight aimed at climbers ruins their night vision at the precise moment they are managing ropes and anchors in the dark, and dazzling someone two thousand feet up a cliff is not a prank, it is a hazard. Watch the headlamps. Don't answer them.
+        <strong>Never shine a light at the wall after dark.</strong> A powerful flashlight or car spotlight aimed at climbers ruins their night vision at the precise moment they are managing ropes and anchors in the dark, and dazzling someone two thousand feet up a cliff is a hazard.
       </p>
 
       <h2>The raven and the human</h2>
@@ -118,7 +118,7 @@ window.ARTICLE_BODIES["watching-climbers-el-capitan"] = function WatchingClimber
       </p>
 
       <p>
-        This is not a point against the climbers. It is the whole lesson of the place. Nothing else in the Valley tells you what 3,000 feet of granite actually is, because nothing else puts a human body on it for scale and then makes you watch that body commit to days of work a raven discharges between meals. You stand in the grass, the binoculars come down, and the Valley quietly resizes itself around you.
+        The comparison is the point. Nothing else in the Valley shows what 3,000 feet of granite means, because nothing else puts a human body on it for scale and shows the days of work that body needs to climb it.
       </p>
 
       <p>That's the show. Bring binoculars, stay for the headlamps.</p>
