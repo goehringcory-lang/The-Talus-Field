@@ -50,7 +50,7 @@ export const DINING_AREAS: { id: DiningArea; title: string; note?: string }[] = 
     id: 'glacier-mariposa',
     title: 'Glacier Point & Wawona',
     note:
-      'Thin on purpose: this is picnic country. Pack the cooler before you drive up, and treat what follows as backup rather than plan.',
+      'Few options. Pack a cooler before you drive up; treat what follows as backup.',
   },
   {
     id: 'tuolumne',
@@ -95,7 +95,7 @@ const seed: DiningInput[] = [
     hoursNote: 'through October 25; from October 26, 6:30 a.m. to 11 a.m., coffee and a light breakfast',
     coord: [-119.5726, 37.7377], // shared Curry Village pin (stops.ts)
     description:
-      'Coffee, pastries, and oatmeal inside Seven Tents Pavilion, the earliest breakfast in the east Valley and the right first stop before the Mist Trail. Expect a line once the doors have been open an hour.',
+      'Coffee, pastries, and oatmeal inside Seven Tents Pavilion, the earliest breakfast in the east Valley, on the way to the Mist Trail. Expect a line once the doors have been open an hour.',
   },
   {
     id: 'lodge-starbucks',
@@ -109,7 +109,7 @@ const seed: DiningInput[] = [
     hoursNote: 'through October 14; from October 15, 7 a.m. to 3 p.m.',
     coord: [-119.599, 37.7433], // moved 2026-09: OSM Yosemite Valley Lodge food court and NPS "Yosemite Valley Lodge"
     description:
-      'A full Starbucks next to Base Camp Eatery, the only chain in the park. The one food counter in the Valley where you know the menu before you walk in.',
+      'A full Starbucks next to Base Camp Eatery, the only chain in the park.',
   },
   {
     id: 'degnans-kitchen',
@@ -123,7 +123,7 @@ const seed: DiningInput[] = [
     hoursNote: 'limited service 11 – 11:30 while the line switches to lunch',
     coord: [-119.5853, 37.7481],
     description:
-      'Proper deli sandwiches, breakfast items, and espresso in the old Degnan family store, and the best cheap move in the Valley. A 7 a.m. breakfast sandwich here beats every buffet in the park on price and speed, and the made-to-order sandwich is the trail lunch.',
+      'Deli sandwiches, breakfast items, and espresso in the old Degnan family store. Breakfast sandwiches from 7 a.m., cheaper and faster than the buffets; made-to-order sandwiches pack for a trail lunch.',
   },
   {
     id: 'loft-at-degnans',
@@ -137,7 +137,7 @@ const seed: DiningInput[] = [
       'runs limited weekend afternoons in recent seasons and is not listed in the current Guide; check the door',
     coord: [-119.5853, 37.7481], // shared Degnan's pin
     description:
-      'The A-frame room upstairs: pizzas, rice bowls, and local beer under the big beams when it operates, which lately is weekends only. A find when open, never the plan.',
+      'The A-frame room upstairs: pizzas, rice bowls, and local beer under the big beams when it operates, which lately is weekends only. Do not plan on it.',
   },
   {
     id: 'base-camp-eatery',
@@ -152,7 +152,7 @@ const seed: DiningInput[] = [
       'lunch and dinner close at 8 p.m. from October 12; breakfast opens at 7 a.m. from October 25',
     coord: [-119.599, 37.7433], // moved 2026-09: OSM Base Camp Eatery at Yosemite Valley Lodge
     description:
-      'The park\'s food court: breakfast until 10:30, then burgers, pizza, salads, and rice bowls from self-order kiosks. Not memorable, reliably open, and the widest menu for a family that cannot agree.',
+      'The park\'s food court: breakfast until 10:30, then burgers, pizza, salads, and rice bowls from self-order kiosks. Reliably open, with the widest menu in the Valley.',
   },
   {
     id: 'village-grill',
@@ -167,7 +167,7 @@ const seed: DiningInput[] = [
     season: 'Through October 25',
     coord: [-119.5853, 37.7481], // shared Village pin
     description:
-      'Burgers, grilled sandwiches, and fries eaten on a big outdoor deck in the Village. Fine fuel at lunch if you are already there; closes with the season.',
+      'Burgers, grilled sandwiches, and fries on a big outdoor deck in the Village. Closes with the season.',
   },
   {
     id: 'meadow-grill',
@@ -180,7 +180,7 @@ const seed: DiningInput[] = [
     closed: 'Closed for the season. The stand returns in spring.',
     coord: [-119.5735, 37.7383],
     description:
-      'Tacos, burrito bowls, and quesadillas from the stand at the edge of the Curry Village lot. The fastest hot dinner in the east Valley when the Pizza Deck line has gone long.',
+      'Tacos, burrito bowls, and quesadillas from the stand at the edge of the Curry Village lot. The fastest hot dinner in the east Valley when the Pizza Deck line is long.',
   },
   {
     id: 'curry-pizza-deck',
@@ -195,7 +195,7 @@ const seed: DiningInput[] = [
     coord: [-119.5726, 37.7377],
     stopId: 'curry-village-pizza',
     description:
-      'Pizza and pitchers on a wooden deck under the Glacier Point Apron, and the one restaurant in the park worth going out of your way for. There is almost always a line at dinner; the line is part of it.',
+      'Pizza and pitchers on a wooden deck under the Glacier Point Apron. Expect a line at dinner.',
   },
   {
     id: 'bar-1899',
@@ -209,7 +209,7 @@ const seed: DiningInput[] = [
     hoursNote: 'through October 24; from October 25, 4 p.m. to 9 p.m.',
     coord: [-119.5726, 37.7377],
     description:
-      'The Curry Village bar, named for the camp\'s founding year: draft beer, cocktails, and bar food beside the Pizza Deck. Where the deck crowd migrates when the evening cools.',
+      'The Curry Village bar, named for the camp\'s founding year: draft beer, cocktails, and bar food beside the Pizza Deck.',
   },
   {
     id: 'seven-tents',
@@ -222,7 +222,7 @@ const seed: DiningInput[] = [
     hours: '7 – 10, 5:30 – 8:30',
     coord: [-119.5726, 37.7377],
     description:
-      'The big rebuilt Curry Village dining hall, named for the camp\'s original seven tents: all-you-can-eat breakfast and dinner buffets. Volume and convenience for camp guests, not a destination.',
+      'The big rebuilt Curry Village dining hall, named for the camp\'s original seven tents: all-you-can-eat breakfast and dinner buffets.',
   },
   {
     id: 'jennies-ice-cream',
@@ -235,7 +235,7 @@ const seed: DiningInput[] = [
     closed: 'Closed for the season. Scoops return in spring.',
     coord: [-119.5726, 37.7377],
     description:
-      'Scoops named for Jennie Curry, at the end of a hot afternoon on the shuttle loop. Does exactly one job.',
+      'Ice cream named for Jennie Curry, on the shuttle loop.',
   },
   {
     id: 'mountain-room',
@@ -248,10 +248,10 @@ const seed: DiningInput[] = [
     hours: '5 – 10',
     hoursNote: 'last seating 9:30; from October 26, 5 to 9 p.m. with last seating at 8:30',
     reservations:
-      'Reservations are accepted and worth making for a window table; walk-ins wait at the door. In spring the view of Yosemite Falls does most of the work.',
+      'Reservations are accepted; make one for a window table. Walk-ins wait at the door.',
     coord: [-119.599, 37.7433], // moved 2026-09: OSM Mountain Room at Yosemite Valley Lodge
     description:
-      'Steaks, trout, and California standards behind a two-story window aimed at Yosemite Falls. The best proper dinner in the park that does not require planning your evening around it.',
+      'Steaks, trout, and California standards behind a two-story window facing Yosemite Falls. A sit-down dinner that does not need booking far ahead.',
   },
   {
     id: 'mountain-room-lounge',
@@ -265,7 +265,7 @@ const seed: DiningInput[] = [
     hoursNote: 'Monday to Friday; noon to 10 p.m. Saturday and Sunday',
     coord: [-119.599, 37.7433], // moved 2026-09: OSM Mountain Room Lounge at Yosemite Valley Lodge
     description:
-      'The Lodge bar: a big open fireplace, beer and cocktails, and a short food menu. Buy a s\'mores kit and use the fire; it is the Valley\'s most dependable bad-weather afternoon.',
+      'The Lodge bar: a big open fireplace, beer and cocktails, and a short food menu. S\'mores kits are sold for the fire. A dependable bad-weather stop.',
   },
   {
     id: 'ahwahnee-dining-room',
@@ -279,11 +279,11 @@ const seed: DiningInput[] = [
     hoursNote:
       'Sunday brunch 7 a.m. to 3 p.m.; from October 25, lunch ends at 2 p.m. and Sunday brunch ends at 2 p.m.',
     reservations:
-      'Dinner is prix fixe, reserved ahead, with a dress expectation of roughly collared-shirt level. Breakfast and lunch are far easier to get into and buy the same room for a fraction of the bill.',
+      'Dinner is prix fixe, reserved ahead, with a dress expectation of roughly collared-shirt level. Breakfast and lunch are easier to get into and cost far less, in the same room.',
     coord: [-119.5743, 37.7462], // shared Ahwahnee pin (stops.ts)
     stopId: 'ahwahnee-hotel',
     description:
-      'The grandest dining room in any national park, sugar-pine trestles and stone under 34-foot ceilings, serving hotel food at special-occasion prices. Go once, for the room.',
+      'Sugar-pine trestles and stone under 34-foot ceilings, serving hotel food at special-occasion prices.',
   },
   {
     id: 'ahwahnee-bar',
@@ -298,7 +298,7 @@ const seed: DiningInput[] = [
     coord: [-119.5743, 37.7462],
     stopId: 'ahwahnee-hotel',
     description:
-      'The smart move at the Ahwahnee: cocktails and a real small-plates menu, no reservation and no dress code, with the Great Lounge and its fireplaces a room away. The hotel experience at bar prices.',
+      'Cocktails and a small-plates menu, no reservation and no dress code, with the Great Lounge and its fireplaces a room away. Bar prices.',
   },
   {
     id: 'ahwahnee-sweet-shop',
@@ -311,7 +311,7 @@ const seed: DiningInput[] = [
     hours: '7 – 10',
     coord: [-119.5743, 37.7462],
     description:
-      'Espresso, pastries, and packaged sweets off the hotel lobby. The quiet morning coffee in the east Valley when the Curry line is around the corner.',
+      'Espresso, pastries, and packaged sweets off the hotel lobby. A quieter alternative to the Curry Village coffee line.',
   },
   {
     id: 'village-store',
@@ -325,7 +325,7 @@ const seed: DiningInput[] = [
     hoursNote: 'through September 29; from September 30, 8 a.m. to 8 p.m.',
     coord: [-119.5853, 37.7481], // shared Village pin
     description:
-      'The biggest grocery in the park: produce, cooler staples, beer, firewood, and a large souvenir floor. Prices run well above a supermarket, so provision outside and use this for what you forgot.',
+      'The biggest grocery in the park: produce, cooler staples, beer, firewood, and a large souvenir floor. Prices run well above a supermarket; provision outside the park.',
   },
   {
     id: 'curry-grocery',
@@ -373,7 +373,7 @@ const seed: DiningInput[] = [
     season: 'Road season',
     coord: [-119.5731, 37.7283], // shared Glacier Point pin (stops.ts)
     description:
-      'Grab-and-go sandwiches, snacks, ice cream, and drinks at the gift shop behind the most famous view in the park. Enough for lunch on the terrace, nothing more. Closes with Glacier Point Road.',
+      'Grab-and-go sandwiches, snacks, ice cream, and drinks at the Glacier Point gift shop. Enough for lunch on the terrace. Closes with Glacier Point Road.',
   },
   // The Wawona Hotel Dining Room is deliberately not listed: it has been
   // closed with the hotel since December 2024 (structural condition
@@ -390,7 +390,7 @@ const seed: DiningInput[] = [
     hours: '8 – 8',
     coord: [-119.6556, 37.5384],
     description:
-      'Groceries, grab-and-go food, ice, and firewood at the south end of the park, still open through the hotel closure. The provisioning stop for the Mariposa Grove and the last easy food until Oakhurst going south.',
+      'Groceries, grab-and-go food, ice, and firewood at the south end of the park, still open through the hotel closure. The stop for Mariposa Grove supplies and the last food until Oakhurst going south.',
   },
   {
     id: 'pine-tree-market',
@@ -404,7 +404,7 @@ const seed: DiningInput[] = [
     hoursNote: 'independent store; hours are the market\'s own, not the park\'s',
     coord: [-119.645, 37.5479], // moved 2026-09: Census geocoder for 7995 Chilnualna Falls Rd and OSM agree within 90 m
     description:
-      'The independent full grocery tucked into the Wawona community: real produce, a meat counter, and staples. The best actual grocery inside the park boundary, and most visitors never learn it exists.',
+      'The independent full grocery in the Wawona community: produce, a meat counter, and staples.',
   },
 
   // ---------------------------------------------------------------------------
@@ -438,7 +438,7 @@ const seed: DiningInput[] = [
     coord: [-119.3590, 37.8741], // shared Tuolumne grill/store pin (stops.ts)
     stopId: 'tuolumne-meadows-grill',
     description:
-      'When it is open, burgers, breakfast, and soft-serve from a walk-up window at 8,600 feet, eaten at picnic tables full of hikers and climbers. It is the unofficial living room of the high country, and it is dark until next season.',
+      'When it is open, burgers, breakfast, and soft-serve from a walk-up window at 8,600 feet, eaten at picnic tables full of hikers and climbers. Closed until next season.',
   },
   {
     id: 'tuolumne-store',
@@ -453,7 +453,7 @@ const seed: DiningInput[] = [
     season: 'Summer, with Tioga Road',
     coord: [-119.3590, 37.8741],
     description:
-      'When it is open, the canvas-sided general store that provisions the high country: groceries, camp fuel, beer, and a post office window where thru-hikers collect resupply boxes. It is struck for the winter with the grill.',
+      'When it is open, the canvas-sided general store that provisions the high country: groceries, camp fuel, beer, and a post office window where thru-hikers collect resupply boxes. It closes for the winter with the grill.',
   },
   {
     id: 'tuolumne-lodge-dining',
@@ -500,7 +500,7 @@ const seed: DiningInput[] = [
     coord: [-119.858, 37.8758], // moved 2026-09: OSM Evergreen Lodge, restaurant and store within 15 m
     stopId: 'evergreen-lodge',
     description:
-      'The 1921 lodge on the Hetch Hetchy road: a proper restaurant, a century-old tavern with a deck under the pines, and breakfast through dinner daily in season. The only reliable food and drink on the corridor; time the dam trip so this is the reward on the way out.',
+      'The 1921 lodge on the Hetch Hetchy road: a proper restaurant, a century-old tavern with a deck under the pines, and breakfast through dinner daily in season. The only reliable food and drink on the corridor.',
   },
   {
     id: 'evergreen-general-store',
@@ -513,7 +513,7 @@ const seed: DiningInput[] = [
     coord: [-119.858, 37.8758], // moved 2026-09: OSM Evergreen Lodge store
     stopId: 'evergreen-lodge',
     description:
-      'Sandwiches, coffee, ice, and forgotten sunscreen. The last provisions before the dead-end road to the dam, where there is nothing.',
+      'Sandwiches, coffee, ice, and sunscreen. The last store before the road to the dam, which has no services.',
   },
 
   // ---------------------------------------------------------------------------
@@ -530,7 +530,7 @@ const seed: DiningInput[] = [
     order: 1,
     hours: '9 – 7',
     description:
-      'The closest grocery to the Arch Rock Entrance, fifteen minutes from the Valley floor, with gas next door. Small but real: cooler staples, beer, and ice at prices gentler than the Village Store.',
+      'The closest grocery to the Arch Rock Entrance, fifteen minutes from the Valley floor, with gas next door. Small: cooler staples, beer, and ice at prices gentler than the Village Store.',
   },
   {
     id: 'yosemite-view-dining',
@@ -542,7 +542,7 @@ const seed: DiningInput[] = [
     price: '$$$',
     order: 2,
     description:
-      'The riverside hotel\'s two options: a sit-down dining room over the Merced and a casual pizza and beer bar. Useful precisely because it is there, open latish, and five minutes from the gate.',
+      'The riverside hotel\'s two options: a sit-down dining room over the Merced and a casual pizza and beer bar. Open fairly late, five minutes from the gate.',
   },
   {
     id: 'june-bug-cafe',
@@ -555,7 +555,7 @@ const seed: DiningInput[] = [
     order: 3,
     coord: [-119.9331, 37.5757],
     description:
-      'The hostel kitchen that outcooks most restaurants on the corridor: scratch-made, hiker-sized plates at communal tables, with vegetarians treated as people. Worth the ten-minute detour off 140.',
+      'The hostel kitchen: scratch-made, hiker-sized plates at communal tables, with vegetarian options. Ten minutes off 140.',
   },
   {
     id: 'happy-burger',
@@ -569,7 +569,7 @@ const seed: DiningInput[] = [
     hoursNote: 'open early to evening, daily',
     coord: [-119.9703, 37.49], // moved 2026-09: OSM "Happy Burger Diner", Hwy 140 at 12th St
     description:
-      'A gold-rush-town diner claiming the largest menu in the Sierra, burgers through burritos through pie, with a patio and milkshakes. The reliable family stop on the 140 corridor.',
+      'A gold-rush-town diner claiming the largest menu in the Sierra, burgers through burritos through pie, with a patio and milkshakes.',
   },
   {
     id: 'eighteen-fifty',
@@ -583,7 +583,7 @@ const seed: DiningInput[] = [
     hoursNote: 'closed Mondays',
     coord: [-119.97, 37.4897], // moved 2026-09: OSM "1850", 5114 Hwy 140
     description:
-      'Mariposa\'s brewery restaurant, named for the county\'s founding year: house beers, smoked meats, and serious burgers. The first-choice proper dinner on the 140 side.',
+      'Mariposa\'s brewery restaurant, named for the county\'s founding year: house beers, smoked meats, and burgers.',
   },
   {
     id: 'charles-street',
@@ -597,7 +597,7 @@ const seed: DiningInput[] = [
     hoursNote: 'dinner only, closed Sundays',
     coord: [-119.9670, 37.4849],
     description:
-      'Old-school steak-and-seafood dinner house in a historic downtown building, run the same way for decades. Where Mariposa goes for anniversaries.',
+      'Old-school steak-and-seafood dinner house in a historic downtown building, run the same way for decades.',
   },
   {
     id: 'fredricks-of-savourys',
@@ -626,7 +626,7 @@ const seed: DiningInput[] = [
       'Closed. The cafe shut when its owner retired in 2022 and has not reopened; for breakfast in Mariposa, Happy Burger opens early daily.',
     coord: [-119.9660, 37.4855],
     description:
-      'Breakfast and lunch in a restored 1940s diner: eggs, biscuits, sandwiches, and pastry. The morning stop before the hour drive up to the Valley.',
+      'Breakfast and lunch in a restored 1940s diner: eggs, biscuits, sandwiches, and pastry. An hour\'s drive from the Valley.',
   },
   {
     id: 'iron-door',
@@ -639,7 +639,7 @@ const seed: DiningInput[] = [
     order: 1,
     coord: [-120.2320, 37.8385],
     description:
-      'Claims to be the oldest continuously operating saloon in California, pouring since the 1850s, with dollar bills on the ceiling and a full grill menu. The obligatory 120-corridor stop, and a decent burger besides.',
+      'Claims to be the oldest continuously operating saloon in California, pouring since the 1850s, with dollar bills on the ceiling and a full grill menu.',
   },
   {
     id: 'firefall-coffee',
@@ -654,7 +654,7 @@ const seed: DiningInput[] = [
       'Directory listings have shown it closed since 2025, and it no longer answers online. Do not count on coffee here; Priest Station Cafe serves breakfast daily until 11 a.m.',
     coord: [-120.2325, 37.8386],
     description:
-      'The local roaster on Main Street: espresso, pastries, and light breakfast from 7 a.m. The right coffee before the last hour of Highway 120.',
+      'The local roaster on Main Street: espresso, pastries, and light breakfast from 7 a.m.',
   },
   {
     id: 'priest-station',
@@ -667,7 +667,7 @@ const seed: DiningInput[] = [
     order: 3,
     coord: [-120.2726, 37.814], // moved 2026-09: OSM "Priest Station Cafe" (single source)
     description:
-      'Burgers and comfort plates on a deck hanging over the edge of Priest Grade, run by descendants of the 1855 stage stop\'s founders. The view down the canyon is the reason to time a meal here.',
+      'Burgers and comfort plates on a deck hanging over the edge of Priest Grade, run by descendants of the 1855 stage stop\'s founders. The deck looks down the canyon.',
   },
   {
     id: 'buck-meadows-restaurant',
@@ -679,7 +679,7 @@ const seed: DiningInput[] = [
     price: '$$',
     order: 4,
     description:
-      'Roadhouse portions twenty minutes from the Big Oak Flat Entrance: burgers, steaks, and pie in a room full of people who just left the park. The last full menu before the gate.',
+      'Roadhouse portions twenty minutes from the Big Oak Flat Entrance: burgers, steaks, and pie The last full menu before the gate.',
   },
   {
     id: 'rush-creek-dining',
@@ -693,7 +693,7 @@ const seed: DiningInput[] = [
     reservations: 'Restaurant reservations recommended in summer; the tavern serves lunch through late evening, walk-in.',
     coord: [-119.8818, 37.8127], // moved 2026-09: OSM Rush Creek Lodge (34001 Hwy 120), half a mile from the Big Oak Flat entrance
     description:
-      'The polished sibling of the Evergreen Lodge, minutes from the gate: a restaurant, a lively tavern, a firepit terrace, and a general store below. The best-executed dinner on the 120 side.',
+      'The polished sibling of the Evergreen Lodge, minutes from the gate: a restaurant, a lively tavern, a firepit terrace, and a general store below.',
   },
   {
     id: 'south-gate-brewing',
@@ -706,7 +706,7 @@ const seed: DiningInput[] = [
     order: 1,
     coord: [-119.6603, 37.3331], // moved 2026-09: OSM and the Census geocoder for 40233 Enterprise Dr agree within 36 m
     description:
-      'Oakhurst\'s brewpub: house beers, wood-fired pizzas, and burgers in a room that fills by 6 on summer nights. The default good dinner on the southern corridor.',
+      'Oakhurst\'s brewpub: house beers, wood-fired pizzas, and burgers in a room that fills by 6 on summer nights.',
   },
   {
     id: 'elderberry-house',
@@ -718,10 +718,10 @@ const seed: DiningInput[] = [
     price: '$$$$',
     order: 2,
     hoursNote: 'dinner Wednesday through Sunday',
-    reservations: 'Reservations essentially required; nothing about the room is casual.',
+    reservations: 'Reservations essentially required; the room is formal.',
     coord: [-119.661, 37.3272], // moved 2026-09: OSM Chateau du Sureau and the Census geocoder for 48688 Victoria Ln
     description:
-      'Erna Kubin-Clanin\'s famed estate restaurant at a Relais & Châteaux inn, improbably parked in a Sierra foothill town: multi-course European-Californian tasting menus and a deep cellar. The one true special-occasion meal within an hour of the park.',
+      'Erna Kubin-Clanin\'s estate restaurant at a Relais & Châteaux inn: multi-course European-Californian tasting menus and a deep cellar.',
   },
   {
     id: 'jackalopes',
@@ -734,7 +734,7 @@ const seed: DiningInput[] = [
     order: 1,
     coord: [-119.635, 37.4731], // moved 2026-09: OSM Tenaya Lodge (1122 Hwy 41) and Jackalopes
     description:
-      'The casual all-day room at the big Tenaya resort, two miles from the South Entrance: burgers, salads, and a bar that stays open after the park empties, breakfast through dinner daily. The resort also runs a deli with the same long hours, so nobody leaves unfed.',
+      'The casual all-day room at the big Tenaya resort, two miles from the South Entrance: burgers, salads, and a bar that stays open after the park empties, breakfast through dinner daily. The resort also runs a deli with the same long hours.',
   },
   {
     id: 'embers-tenaya',
@@ -749,7 +749,7 @@ const seed: DiningInput[] = [
       'Closed until further notice, per the resort. Check visittenaya.com before planning a dinner here; Jackalope\'s at the same resort serves dinner daily.',
     coord: [-119.635, 37.4731], // moved 2026-09: OSM Tenaya Lodge (1122 Hwy 41)
     description:
-      'Tenaya\'s fine-dining room: steaks, seafood, and California wine in a lodge setting. When it reopens, the dress-up dinner south of the park while Wawona\'s dining room is dark.',
+      'Tenaya\'s fine-dining room: steaks, seafood, and California wine in a lodge setting. The formal dinner option south of the park while Wawona\'s dining room is closed.',
   },
   {
     id: 'narrow-gauge-inn',
@@ -764,7 +764,7 @@ const seed: DiningInput[] = [
     hoursNote: 'dinner, typically closed early in the week; call first',
     coord: [-119.6437, 37.4547], // moved 2026-09: OSM hotel, 48571 CA-41
     description:
-      'A creaky mountain dining room and buffalo-head bar at the century-old inn beside the Sugar Pine Railroad. Seasonal, dinner-oriented, and worth confirming before counting on it.',
+      'A mountain dining room and buffalo-head bar at the century-old inn beside the Sugar Pine Railroad. Seasonal and dinner-oriented; confirm hours first.',
   },
   {
     id: 'whoa-nellie-deli',
@@ -778,7 +778,7 @@ const seed: DiningInput[] = [
     season: 'Late April into fall',
     coord: [-119.1136, 37.9474], // moved 2026-09: OSM, the Mobil at 22 Vista Point Rd, Hwy 120 and 395
     description:
-      'The famous one: fish tacos, buffalo meatloaf, and mango margaritas inside a gas station at the foot of Tioga Pass, with Mono Lake out the window. Open from late April into the fall, a season that runs close to the pass\'s but not in step with it; every eastbound crossing should end here at least once.',
+      'Fish tacos, buffalo meatloaf, and mango margaritas inside a gas station at the foot of Tioga Pass, with Mono Lake out the window. Open from late April into the fall, a season that runs close to the pass\'s but not in step with it.',
   },
   {
     id: 'mono-cone',
@@ -792,7 +792,7 @@ const seed: DiningInput[] = [
     season: 'Spring to fall',
     coord: [-119.1213, 37.9573],
     description:
-      'A walk-up burger-and-soft-serve shack that has fed 395 travelers for generations. Line out front, cones the size of the drive you just did.',
+      'A walk-up burger-and-soft-serve shack that has fed 395 travelers for generations. Expect a line; large cones.',
   },
   {
     id: 'nicelys',
@@ -805,7 +805,7 @@ const seed: DiningInput[] = [
     order: 3,
     coord: [-119.1210, 37.9580],
     description:
-      'The 1965 diner at the center of Lee Vining: big breakfasts, patty melts, and pie, and open year-round, with a couple of closed midweek days in winter. The morning move before driving up the pass.',
+      'The 1965 diner at the center of Lee Vining: big breakfasts, patty melts, and pie, and open year-round, with a couple of closed midweek days in winter.',
   },
   {
     id: 'latte-da',
@@ -819,7 +819,7 @@ const seed: DiningInput[] = [
     season: 'April to late fall',
     coord: [-119.1207, 37.9585],
     description:
-      'Espresso and baked goods out of the 1920s El Mono Motel office, in a garden with Mono Lake light. The correct coffee before Tioga Pass.',
+      'Espresso and baked goods out of the 1920s El Mono Motel office, with a garden.',
   },
 ]
 

@@ -610,7 +610,7 @@ const seed: AmenityInput[] = [
     kind: 'picnic',
     region: 'valley',
     coord: [-119.599215, 37.736346], // NPS API places: Swinging Bridge
-    note: 'On the Merced below Yosemite Falls, the classic reflection of the fall in the river. Tables, grills, and the footbridge across to the Lodge side.',
+    note: 'On the Merced below Yosemite Falls, with a reflection of the fall in the river. Tables, grills, and the footbridge across to the Lodge side.',
   },
   {
     id: 'el-capitan-picnic',
