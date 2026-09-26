@@ -1,4 +1,4 @@
-/* global React, LodgingCta, ResponsiveImage, HomeLink, HpPageHead, HpHeading, HpRow, HpArticleCard, HpGuideBand, HpLetter */
+/* global React, LodgingCta, ResponsiveImage, HomeLink, HpPageHead, HpHeading, HpArticleCard, HpGuideBand, HpLetter */
 
 // =============================================================================
 // THE PLANNING GUIDE — `/planning`.
@@ -116,6 +116,9 @@ function PlanningGuide({ go }) {
   // showing, when the parts are not rendered. A jump from there clears the
   // filters first and scrolls once the guide is back.
   const [pendingPart, setPendingPart] = useStatePg(null);
+  // The trip selector's plan carries its own lodging search when the stay is
+  // undecided; Part One's then steps aside rather than asking twice.
+  const [planLodging, setPlanLodging] = useStatePg(false);
   useEffectPg(() => {
     if (pendingPart == null || listing) return;
     const el = document.getElementById(`part-${pendingPart}`);
@@ -140,7 +143,7 @@ function PlanningGuide({ go }) {
         crumbs={[{ label: "Home", route: "home" }, { label: "The Planning Guide" }]}
         eyebrow="THE PLANNING GUIDE"
         title={<>Yosemite,<br />planned <em>properly.</em></>}
-        intro="The questions that come up before, during, and after a Yosemite trip, answered in the order most visitors actually run into them. Drawn from the full archive of The Talus Field, organized to read like a guide rather than a search result."
+        intro="The questions that come up before, during, and after a Yosemite trip, answered in the order most visitors actually run into them."
         actions={<>
           <HomeLink go={go} location="planning_hero" className="hp-button" href="#trip-selector">Build a plan for your trip &nbsp; ↓</HomeLink>
           <a className="hp-link" href="#part-1" onClick={jumpToPart(1)}>Read the guide in order ↓</a>
@@ -175,7 +178,7 @@ function PlanningGuide({ go }) {
       />
 
       <section className="hp-wrap hp-section hp-planning__selector" id="trip-selector" tabIndex={-1}>
-        <window.TripSelector go={go} onApplyIntent={applyIntent} />
+        <window.TripSelector go={go} onApplyIntent={applyIntent} onPlan={(p) => setPlanLodging(p.lodging)} />
       </section>
 
       <section className="hp-wrap hp-planning__filters" ref={resultsRef}>
@@ -189,7 +192,7 @@ function PlanningGuide({ go }) {
           browse={filters.browse}
           count={filters.count}
           resultCount={matches.length}
-          note="Drawn from the whole archive, not only the five parts below."
+          note="Drawn from every article, not only the five parts below."
         />
       </section>
 
@@ -236,7 +239,7 @@ function PlanningGuide({ go }) {
                 {/* "Before you book" is the one part of this guide with an actual
                     deadline attached, so the lodging board and a live availability
                     search belong here rather than at the end. */}
-                {p.lodging && (
+                {p.lodging && !planLodging && (
                   <div className="hp-part__lodging">
                     <LodgingCta
                       destination="Yosemite National Park"
@@ -267,14 +270,14 @@ function PlanningGuide({ go }) {
             go={go}
             location="planning_hub"
             title="Reading is planning. This is the trip."
-            intro="The Field Guide app carries the same advice into the park: 50-plus stops with parking and timing notes, offline maps, a day-by-day planner, and the secret guide. Works with no signal, which is most of the park."
+            intro="The Field Guide app carries the same advice into the park: every stop with parking and timing notes, offline maps, a day-by-day planner, and the Secret Guide. Works with no signal, which is most of the park."
             sample
           />
           <HpLetter
             eyebrow="ONE YOSEMITE EMAIL A WEEK"
             title="Get the conditions before you go"
             heading="Get the conditions before you go"
-            blurb="Reservation windows, road openings, what's booked out: one Yosemite email a week while you plan. Free."
+            blurb="Reservation windows, road openings, what's booked out, while you plan."
             location="planning_hub"
             tag="planning"
           />

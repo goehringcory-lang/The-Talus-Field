@@ -62,6 +62,7 @@ function PlanningGuide({
     setJumped(true);
   };
   var [pendingPart, setPendingPart] = useStatePg(null);
+  var [planLodging, setPlanLodging] = useStatePg(false);
   useEffectPg(() => {
     if (pendingPart == null || listing) return;
     var el = document.getElementById(`part-${pendingPart}`);
@@ -98,7 +99,7 @@ function PlanningGuide({
     }],
     eyebrow: "THE PLANNING GUIDE",
     title: React.createElement(React.Fragment, null, "Yosemite,", React.createElement("br", null), "planned ", React.createElement("em", null, "properly.")),
-    intro: "The questions that come up before, during, and after a Yosemite trip, answered in the order most visitors actually run into them. Drawn from the full archive of The Talus Field, organized to read like a guide rather than a search result.",
+    intro: "The questions that come up before, during, and after a Yosemite trip, answered in the order most visitors actually run into them.",
     actions: React.createElement(React.Fragment, null, React.createElement(HomeLink, {
       go: go,
       location: "planning_hero",
@@ -139,7 +140,8 @@ function PlanningGuide({
     tabIndex: -1
   }, React.createElement(window.TripSelector, {
     go: go,
-    onApplyIntent: applyIntent
+    onApplyIntent: applyIntent,
+    onPlan: p => setPlanLodging(p.lodging)
   })), React.createElement("section", {
     className: "hp-wrap hp-planning__filters",
     ref: resultsRef
@@ -153,7 +155,7 @@ function PlanningGuide({
     browse: filters.browse,
     count: filters.count,
     resultCount: matches.length,
-    note: "Drawn from the whole archive, not only the five parts below."
+    note: "Drawn from every article, not only the five parts below."
   })), listing ? React.createElement("section", {
     className: "hp-wrap hp-section hp-planning__results"
   }, matches.length > 0 ? React.createElement("div", {
@@ -198,7 +200,7 @@ function PlanningGuide({
       article: a,
       go: go,
       location: "planning_part"
-    }))), p.lodging && React.createElement("div", {
+    }))), p.lodging && !planLodging && React.createElement("div", {
       className: "hp-part__lodging"
     }, React.createElement(LodgingCta, {
       destination: "Yosemite National Park",
@@ -225,13 +227,13 @@ function PlanningGuide({
     go: go,
     location: "planning_hub",
     title: "Reading is planning. This is the trip.",
-    intro: "The Field Guide app carries the same advice into the park: 50-plus stops with parking and timing notes, offline maps, a day-by-day planner, and the secret guide. Works with no signal, which is most of the park.",
+    intro: "The Field Guide app carries the same advice into the park: every stop with parking and timing notes, offline maps, a day-by-day planner, and the Secret Guide. Works with no signal, which is most of the park.",
     sample: true
   }), React.createElement(HpLetter, {
     eyebrow: "ONE YOSEMITE EMAIL A WEEK",
     title: "Get the conditions before you go",
     heading: "Get the conditions before you go",
-    blurb: "Reservation windows, road openings, what's booked out: one Yosemite email a week while you plan. Free.",
+    blurb: "Reservation windows, road openings, what's booked out, while you plan.",
     location: "planning_hub",
     tag: "planning"
   })));

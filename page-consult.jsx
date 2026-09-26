@@ -126,7 +126,7 @@ function ConsultPage({ go }) {
         eyebrow="SUNDAY FIELD NOTES / FREE"
         title="Not ready to book?"
         heading="Not ready to book?"
-        blurb="Sunday Field Notes answers most planning questions eventually, one short letter a week, written from inside the park. Free."
+        blurb="Sunday Field Notes answers most planning questions eventually, written from inside the park."
         location="consult"
         tag="consult"
       />

@@ -6,7 +6,6 @@ var {
 } = React;
 var RESPONSIVE_WIDTHS = [400, 800, 1200, 1600];
 var SIZES_HERO = "(max-width: 700px) 100vw, 700px";
-var SIZES_BODY = SIZES_HERO;
 var SIZES_CARD = "(max-width: 700px) 100vw, (max-width: 1100px) 50vw, 360px";
 function slugifyImage(image) {
   var base = String(image).split("/").pop() || "";
@@ -564,7 +563,7 @@ var NAV_GROUPS = [{
     }, {
       key: "planning",
       label: "The Planning Guide",
-      note: "The whole archive, in trip order"
+      note: "Every article, in trip order"
     }, {
       key: "itineraries",
       label: "Itineraries",
@@ -635,7 +634,7 @@ var NAV_GROUPS = [{
     links: [{
       key: "dates",
       label: "Dates that matter",
-      note: "Lotteries, release mornings, road windows, as calendar files"
+      note: "Lotteries, release mornings, road windows, for your calendar"
     }, {
       key: "tioga-opening",
       label: "Tioga Road opening",
@@ -813,7 +812,7 @@ function NavWaitsFeature({
     waits: null
   }), React.createElement("p", {
     className: "hp-navfeat__text"
-  }, "Read from the Park Service's own feed. A dash means no current reading."), link({
+  }, "Posted by the National Park Service. A dash means no wait is posted right now."), link({
     key: "conditions",
     hash: "cond-waits",
     label: "Gates and lots on Conditions ↗"
@@ -1685,7 +1684,8 @@ function HpLetter({
   cta = "Send me the letter ↗",
   terms = "Free to read. One letter a week. Unsubscribe whenever.",
   paper,
-  stamp = "THE SUNDAY LETTER"
+  stamp = "THE SUNDAY LETTER",
+  children
 }) {
   return React.createElement("section", {
     className: "hp-letter hp-wrap hp-section",
@@ -1696,7 +1696,7 @@ function HpLetter({
     stamp: stamp
   }), React.createElement("div", null, React.createElement("p", {
     className: "hp-eyebrow"
-  }, eyebrow), React.createElement("h2", null, title), React.createElement(NewsletterInline, {
+  }, eyebrow), React.createElement("h2", null, title), children, React.createElement(NewsletterInline, {
     heading: heading,
     blurb: blurb,
     location: location,
@@ -1827,7 +1827,7 @@ function Footer({
     }
   }, c.label))), link("films", "Films"), React.createElement("li", null, React.createElement("a", {
     href: "/archive/"
-  }, "Nature Notes archive")))), React.createElement("div", null, React.createElement("h4", null, "The journal"), React.createElement("ul", null, link("about", "About"), link("newsletter", "Newsletter"), link("contact", "Contact"), link("search", "Search"), link("places", "Directory")))), React.createElement("div", {
+  }, "Nature Notes archive")))), React.createElement("div", null, React.createElement("h4", null, "The journal"), React.createElement("ul", null, link("about", "About"), link("newsletter", "Newsletter"), link("contact", "Contact")))), React.createElement("div", {
     className: "site-footer__disclosure"
   }, "Some links on this site are affiliate links. If you book or buy through one, The Talus Field may earn a small commission at no extra cost to you. ", React.createElement("a", {
     href: "/affiliate",
@@ -1838,6 +1838,12 @@ function Footer({
   }, "Full disclosure here.")), React.createElement("div", {
     className: "site-footer__legal"
   }, React.createElement("div", null, "© ", new Date().getFullYear(), " The Talus Field. Independent. Not affiliated with the National Park Service."), React.createElement("div", null, React.createElement("a", {
+    href: "/places",
+    onClick: e => {
+      e.preventDefault();
+      go("places");
+    }
+  }, "Directory"), React.createElement("a", {
     href: "/advertise",
     onClick: e => {
       e.preventDefault();
@@ -1900,15 +1906,15 @@ var KEEP_GOING = {
     links: [{
       key: "planning",
       label: "The Planning Guide",
-      note: "The same archive, ordered for a real trip"
+      note: "Every article, ordered for a real trip"
     }, {
       key: "search",
       label: "Search",
-      note: "By title, section, or dek"
+      note: "By title, section, or summary"
     }, {
       href: "/archive/",
       label: "Nature Notes archive",
-      note: "The park's own bulletin, 512 issues"
+      note: "The park's naturalist newsletter, from 1922"
     }, {
       key: "films",
       label: "Films",
@@ -1953,7 +1959,7 @@ var KEEP_GOING = {
     }, {
       key: "planning",
       label: "The Planning Guide",
-      note: "The whole archive, in trip order"
+      note: "Every article, in trip order"
     }, {
       key: "explore",
       label: "Site index",
@@ -2002,7 +2008,7 @@ var KEEP_GOING = {
     }, {
       key: "planning",
       label: "The Planning Guide",
-      note: "The whole archive, in trip order"
+      note: "Every article, in trip order"
     }, {
       key: "cat:trails",
       label: "Trails and hikes",
@@ -2066,7 +2072,7 @@ var KEEP_GOING = {
     }, {
       key: "now",
       label: "The Park Bulletin",
-      note: "What the park says about this week"
+      note: "What is open and on in the park now"
     }, {
       key: "tioga-opening",
       label: "Tioga Road opening",
@@ -2110,9 +2116,9 @@ var KEEP_GOING = {
       label: "The Planning Guide",
       note: "Five answers in, a plan out"
     }, {
-      key: "guide",
-      label: "The Field Guide",
-      note: "These dates on your trip board, with reminders"
+      key: "conditions",
+      label: "Conditions",
+      note: "What is open on your dates"
     }]
   },
   international: {
@@ -2163,9 +2169,9 @@ var KEEP_GOING = {
       label: "Conditions",
       note: "Before you drive in"
     }, {
-      key: "guide",
-      label: "The Field Guide",
-      note: "The same stops, offline"
+      key: "stay",
+      label: "Where to stay",
+      note: "The nights the trip needs"
     }]
   },
   consult: {
@@ -2242,9 +2248,9 @@ var KEEP_GOING = {
   },
   about: {
     links: [{
-      key: "newsletter",
-      label: "Newsletter",
-      note: "One letter a week"
+      key: "start-here",
+      label: "Start here",
+      note: "The first-trip questions, answered plainly"
     }, {
       key: "articles",
       label: "All articles",
@@ -2323,7 +2329,7 @@ var KEEP_GOING = {
     }, {
       key: "planning",
       label: "The Planning Guide",
-      note: "The whole archive, in trip order"
+      note: "Every article, in trip order"
     }, {
       key: "partners",
       label: "Group codes",
@@ -2334,7 +2340,7 @@ var KEEP_GOING = {
     links: [{
       key: "now",
       label: "The Park Bulletin",
-      note: "The same board, without the wait"
+      note: "Closures, programs and hours"
     }, {
       key: "articles",
       label: "All articles",
@@ -2372,7 +2378,7 @@ var KEEP_GOING = {
     }, {
       key: "planning",
       label: "The Planning Guide",
-      note: "The whole archive, in trip order"
+      note: "Every article, in trip order"
     }]
   },
   notfound: {
@@ -2684,18 +2690,13 @@ function NewsletterInline({
   blurb,
   location,
   tag,
-  incentive,
-  abTest,
-  variant: variantProp,
+  variant = "",
   cta,
   modifier,
   inputLabel
 }) {
   var [done, setDone] = useState(false);
   var subscribed = isSubscribed();
-  var variant = abTest ? window.abVariant(abTest) : variantProp || "";
-  var forceIncentive = abTest && variant === "b";
-  var showIncentive = forceIncentive || incentive !== false && !blurb;
   var ref = useNewsletterImpression(location, tag, !subscribed && !done, variant);
   if (subscribed && !done) {
     return React.createElement("div", {
@@ -2710,7 +2711,7 @@ function NewsletterInline({
   return React.createElement("div", {
     className: ["nlbox", modifier].filter(Boolean).join(" "),
     ref: ref
-  }, React.createElement("h3", null, heading || "Sunday Field Notes"), React.createElement("p", null, showIncentive ? "Subscribe and unlock the interactive Yosemite map: vistas, trailheads, parking turnouts, places to eat, and a trip builder that saves on your device. A short note follows on Sundays." : blurb || "A short note on Sundays, when there is something to say."), inputLabel && !done && React.createElement("label", {
+  }, React.createElement("h3", null, heading || "Sunday Field Notes"), React.createElement("p", null, blurb || "A short note on Sundays, when there is something to say."), inputLabel && !done && React.createElement("label", {
     htmlFor: `${location}-email`
   }, inputLabel), done ? React.createElement("p", {
     className: "nlbox__done"
@@ -3169,55 +3170,11 @@ function WebcamStrip({
   }, "Yosemite Conservancy / Pixelcaster")));
 }
 var GUIDE_PROMO_APP_BASE = typeof window !== "undefined" && window.GUIDE_APP_BASE || "https://guide.thetalusfieldjournal.com";
-function GuidePromo({
-  go,
-  location,
-  title,
-  body,
-  cta,
-  sample = true,
-  style
-}) {
-  return React.createElement("div", {
-    style: style
-  }, React.createElement("a", {
-    className: "band-guide",
-    href: "/guide",
-    onClick: e => {
-      e.preventDefault();
-      if (window.track) window.track("guide_cta_click", {
-        location: location || "unknown"
-      });
-      if (go) go("guide");else window.location.href = "/guide";
-    }
-  }, React.createElement("div", {
-    className: "band-guide__eyebrow"
-  }, "The Field Guide · $3.99 · Offline app"), React.createElement("div", {
-    className: "band-guide__title",
-    style: {
-      marginBottom: 10
-    }
-  }, title || "The park, in your pocket."), React.createElement("p", {
-    className: "band-guide__body"
-  }, body || "The app version of this journal: 50-plus stops with parking and timing notes, offline maps, a trip planner, and the secret guide. Works with no signal, which is most of the park. One purchase, eighteen months of access."), React.createElement("div", {
-    className: "mono band-guide__cta"
-  }, cta || "See the Field Guide →")), sample && React.createElement("p", {
-    className: "band-guide__sample"
-  }, "Not sure yet? Five entries are free to read, no email required:", " ", React.createElement("a", {
-    href: `${GUIDE_PROMO_APP_BASE}/preview`,
-    onClick: () => {
-      if (window.track) window.track("guide_sample_click", {
-        location: location || "unknown"
-      });
-    }
-  }, "preview the guide →")));
-}
 Object.assign(window, {
   Placeholder,
   ResponsiveImage,
   preloadResponsive,
   SIZES_HERO,
-  SIZES_BODY,
   SIZES_CARD,
   MotifMountains,
   MotifSun,
@@ -3230,7 +3187,6 @@ Object.assign(window, {
   MapLightbox,
   EntranceWaits,
   WebcamStrip,
-  GuidePromo,
   HomeLink,
   HomeMasthead,
   HpHeading,

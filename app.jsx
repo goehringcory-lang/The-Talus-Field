@@ -229,9 +229,8 @@ function markNavPending(pending) {
 // anchor on / once turned the homepage's own hero CTA into a 404 on reload.
 // Since August 2026 "start-here" IS a route key, so /#start-here (old shared
 // links to the homepage block) now lands on the /start-here hub page, which
-// answers the same question. The homepage block keeps id="start-here" for
-// in-page scrolling only; do not link that anchor from anywhere while the
-// route exists, because a Back through the hash entry re-routes.
+// answers the same question. The homepage's own section is id="home-start-here"
+// for exactly that reason.
 function legacyHashToRoute(hash) {
   if (!hash) return null;
   const h = hash.replace(/^#+/, "");

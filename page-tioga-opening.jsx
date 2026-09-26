@@ -108,7 +108,7 @@ function TiogaOpeningPage({ go }) {
         crumbs={[{ label: "Home", route: "home" }, { label: "Tioga opening" }]}
         eyebrow="SEASONAL EVENT · LATE SPRING"
         title="The Tioga Road opening"
-        intro="Every spring, plow crews cut Highway 120 out of the snowpack and the highest road in the park comes back. The opening date is not a date: it is announced only days ahead, it varies by weeks from year to year, and the first weekends are unlike any other time on the road. This page is the standing version: how the opening works, what is actually open in week one, and how to drive it well."
+        intro="Every spring, plow crews cut Highway 120 out of the snowpack and the highest road in the park comes back. The opening date is not a date: it is announced only days ahead, it varies by weeks from year to year, and the first weekends are unlike any other time on the road. Below: how the opening works, what is actually open in week one, and how to drive it well."
       />
 
 
@@ -268,16 +268,20 @@ function TiogaOpeningPage({ go }) {
         go={go}
         location="tioga-opening"
         title="Planning the high-country trip around it?"
-        intro="The Field Guide app carries the Tioga Road stops with parking notes, offline maps for the stretch with no signal, and a day-by-day planner for the rest of the trip. One purchase, eighteen months of access."
+        intro="The Field Guide app carries the Tioga Road stops with parking notes, offline maps for the stretch with no signal, and a day-by-day planner for the rest of the trip."
         sample
       />
       <HpLetter
-        eyebrow="SUNDAY FIELD NOTES / FREE"
+        eyebrow="ROAD ALERTS / FREE"
         title="Email me the day it opens"
         heading="Email me the day it opens"
-        blurb="One email the day the park announces Tioga Road is open, and one when it closes for the season, sent to the people who asked for it. Sunday Field Notes carries the plowing progress in between. Free."
+        blurb="One email the day the park announces Tioga Road is open, and one when it closes for the season, sent to the people who asked for it. Sunday Field Notes carries the plowing progress in between."
         location="tioga-opening"
         tag="alert-tioga"
+        cta="Email me ↗"
+        terms="Only when Tioga Road opens or closes. Unsubscribe whenever."
+        stamp="ROAD ALERTS"
+        paper={<>Tioga opens.<br />Tioga closes.<br /><em>You hear once.</em></>}
       />
     </div>
   );

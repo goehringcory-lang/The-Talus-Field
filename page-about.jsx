@@ -1,4 +1,4 @@
-/* global React, Placeholder, MotifMountains, HpPageHead, HpLetter */
+/* global React, Placeholder, HpPageHead, HpLetter */
 
 function AboutPage({ go }) {
   return (

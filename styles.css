@@ -63,7 +63,6 @@
   --sans:  'Inter', -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Arial, sans-serif;
   --mono:  ui-monospace, 'SF Mono', Menlo, Consolas, monospace;
 
-  --measure: 60ch;
   --gutter: clamp(16px, 3vw, 36px);
 }
 
@@ -231,8 +230,6 @@ main:focus { outline: none; }
   will-change: transform;
 }
 .rockfall__rock svg { display: block; width: 100%; height: 100%; }
-
-/* ===== Directory. Quiet "for operators" strip ===== */
 
 /* ===== The pitch card (.places-pitch: /advertise, /partners) =====
    A design card: eyebrow, serif title, the two-column terms, the tiers as
@@ -574,10 +571,6 @@ main:focus { outline: none; }
 .series-band a:hover { color: var(--hp-accent); }
 .series-band__nav { margin-left: auto; display: flex; gap: 14px; }
 
-/* ===== Article cards ===== */
-
-/* ===== Section headers ===== */
-
 /* ===== Forms (.field) =====
    The design's form face: a small label over a card-coloured box with a
    hairline border, the accent on focus. The same face as the letter form. */
@@ -750,10 +743,6 @@ main:focus { outline: none; }
   transform-origin: 0 50%;
 }
 
-/* ===== Resume band (home) =====
-   One quiet line for a reader with an unfinished article, rendered by
-   ResumeReading in page-home.jsx. */
-
 /* ===== Stat block (planning articles) ===== */
 .statblock {
   border-block: 1px solid var(--hp-rule);
@@ -776,8 +765,6 @@ main:focus { outline: none; }
   color: var(--hp-ink);
   font-feature-settings: "tnum";
 }
-
-/* ===== Page header ===== */
 
 /* ===== Filter chip (.chip) =====
    The design's filter chip, the same face as the intent chips (.ichip):
@@ -811,7 +798,7 @@ main:focus { outline: none; }
   position: relative;
 }
 .nlbox::before {
-  content: "Dispatch";
+  content: "Sunday Field Notes";
   display: block;
   font: 600 9px var(--sans);
   letter-spacing: 1.7px;
@@ -842,16 +829,6 @@ main:focus { outline: none; }
 }
 .nlbox__already a, .nlbox__done a { border-bottom: 1px solid var(--hp-accent); }
 .nlbox__done { font: 400 19px/1.4 var(--serif); color: var(--hp-accent); margin: 0; padding: 8px 0; }
-
-/* ===== Hero (front-page lede) ===== */
-.hero {
-  padding: 56px 0 48px;
-  border-bottom: 1px solid var(--rule);
-}
-
-.hero h1 { margin-bottom: 28px; max-width: 14ch; }
-
-/* ===== Map trigger (Places page) ===== */
 
 /* ===== Homepage webcam tiles ===== */
 /* The webcam strip. It used to carry an inline repeat(4) grid, which a
@@ -1026,7 +1003,6 @@ main:focus { outline: none; }
 
 /* ===== Responsive ===== */
 @media (max-width: 880px) {
-  
   .site-footer__grid { grid-template-columns: 1fr 1fr; }
   .statblock { grid-template-columns: 1fr 1fr; }
 }
@@ -1044,7 +1020,6 @@ main:focus { outline: none; }
   :root { --gutter: 16px; }
 
   h1 { font-size: clamp(34px, 8.5vw, 48px); }
-  
 
   /* Inline grids on home, articles, article, guide, newsletter pages.
      React renders style props as kebab-case in the DOM, so we can target them. */
@@ -1052,27 +1027,6 @@ main:focus { outline: none; }
     grid-template-columns: 1fr !important;
     gap: 28px !important;
   }
-
-  /* Section padding overrides for inline-styled paddingTop. Halve generous spacing. */
-  section.wrap[style*="padding-top: 96"],
-  section.wrap[style*="padding-top: 80"] { padding-top: 48px !important; }
-  section.wrap[style*="padding-top: 64"],
-  section.wrap[style*="padding-top: 56"] { padding-top: 40px !important; }
-
-  /* Hero. Less padding, no big gap. */
-  .hero { padding: 32px 0 32px; }
-  
-  
-
-  /* Section heads */
-  
-  
-
-    
-
-    
-  
-  
 
   /* Forms. Bump font to 16px to stop iOS zoom on focus. */
   .field input, .field textarea, .field select { font-size: 16px; }
@@ -1086,25 +1040,9 @@ main:focus { outline: none; }
   .site-footer__masthead { font-size: 26px; }
   .site-footer__legal { flex-direction: column; align-items: flex-start; }
 
-  /* Inline forms (newsletter page, etc.) wrap their button onto a new line. */
-  
-  
-  
-
-    
-  
-
-    
-  
-  
-
   /* Stat block */
   .statblock { grid-template-columns: 1fr 1fr; gap: 16px; }
   .statblock__item .val { font-size: 16px; }
-
-  /* Places strip */
-  
-  
 
   /* Chips wrap nicely, and reach the 44px tap floor: they are the primary
      filter control on /search and /articles. */
@@ -1113,14 +1051,6 @@ main:focus { outline: none; }
 
   /* Eyebrow and mono labels: up from 10/11px for sunlight legibility. */
   .mono { font-size: 13px; }
-
-  /* Home: dispatch teaser and Field Guide band tighten with the page. */
-  
-  
-  
-  .band-guide { padding: 28px 20px; }
-  .band-guide__title { font-size: 28px; }
-  .band-guide__body { font-size: 16px; }
 }
 
 /* ===== Page transitions ===== */
@@ -1161,11 +1091,6 @@ main:focus { outline: none; }
   font-family: var(--sans);
 }
 .kit__tab:last-child { border-right: none; }
-.kit__tab:hover { background: var(--paper-2); color: var(--ink); }
-.kit__tab.is-active {
-  background: var(--ink);
-  color: var(--paper);
-}
 .kit__tab-roman {
   font-family: var(--display);
   font-style: italic;
@@ -1323,8 +1248,6 @@ main:focus { outline: none; }
   border-bottom: 1px solid var(--moss);
   padding-bottom: 1px;
 }
-.kit-check__link:hover,
-.kit-check__article:hover { color: var(--ink); border-bottom-color: var(--ink); }
 
 /* The John box callout (any item carrying a vendor link) */
 .kit-check--callout {
@@ -1780,132 +1703,6 @@ main:focus { outline: none; }
   color: var(--ink-3);
 }
 .map-sidebar__email-fine--sent { color: var(--moss); font-style: normal; }
-
-/* ===== Home: the edition rule =====
-   The masthead states the brand; this states the issue. Full width, directly
-   under the masthead and above the lede, so the page opens like a dated
-   publication. Rendered inside HomeHero, which means it is baked into
-   index.html's static shell — the issue label is the one date-derived slot in
-   that shell and is filled by React on boot (see gen-home-shell.mjs). */
-
-@media (min-width: 1101px), (min-width: 560px) and (max-width: 880px) {
-  
-  
-  /* The figure spans the plate's content box and the stage bleeds 24px past
-     it, so the phone's left edge is 209 - 24 + 20 = 205px in from the
-     figure's right edge; the pins reach 9px further, and the key stops 8px
-     short of them. */
-  
-  
-  
-  
-}
-
-.nlbox--rail {
-  margin: 0;
-  padding: 26px 22px 24px;
-}
-.nlbox--rail.nlbox--subscribed { padding: 20px 22px; }
-.nlbox--rail h3 { font-size: 24px; }
-.nlbox--rail p { font-size: 15px; margin-bottom: 16px; }
-.nlbox--rail .nlbox__form {
-  border-bottom: 0;
-  align-items: center;
-  gap: 12px;
-}
-.nlbox--rail .nlbox__form input {
-  border-bottom: 1px solid var(--ink);
-  font-size: 16px;
-}
-.nlbox--rail .nlbox__form button {
-  white-space: nowrap;
-  background: var(--ink);
-  color: var(--paper);
-  padding: 12px 16px;
-}
-.nlbox--rail .nlbox__form button:hover { background: var(--moss); color: var(--paper); }
-
-/* The lodging unit is the shared LodgingCta component; it only needs its
-   page-level margins dropped inside the rail. */
-
-@media (max-width: 880px) {
-  /* One column, and the rail's units interleave with the editorial rather than
-     stacking above or below it as a block. Ordering the whole rail would put
-     three asks (including the purchase) ahead of every word of writing, which
-     is the storefront failure this redesign exists to undo; ordering it last
-     would bury all three under a full page of editorial.
-     `display: contents` on the two columns promotes their children to direct
-     children of .home-body, which is what makes a single `order` sequence
-     across both possible: Bulletin, guide, letter, answers, lodging, entries.
-     Every child is ordered explicitly, because an unset order is 0 and would
-     jump the queue. */
-  
-  
-  
-  
-  
-  
-  #start-here { order: 5; }
-  
-  
-  
-  
-  
-  
-  
-  
-  
-}
-
-/* ===== Home: Park Bulletin teaser =====
-   The current /now edition rendered as a dated notebook line above the webcam
-   strip (HomeBulletin in page-home.jsx). Same quiet-band family as
-   .resume-band. Class names kept from the dispatch era to avoid churn. */
-
-/* ===== The Field Guide card (GuidePromo) =====
-   The compact form of the design's Field Guide band, for pages whose one
-   guide ask sits inside a column: the band's ink plate, gold-grey eyebrow,
-   serif title and the pale button face. */
-.band-guide {
-  display: block;
-  color: var(--hp-paper);
-  background: var(--hp-ink);
-  border-radius: 3px;
-  padding: 34px 32px;
-  margin-top: 24px;
-}
-.band-guide__eyebrow {
-  font: 600 9px var(--sans);
-  letter-spacing: 1.7px;
-  text-transform: uppercase;
-  color: #c7d0b7;
-  margin-bottom: 16px;
-}
-.band-guide__title {
-  font: 400 36px/1.05 var(--serif);
-  letter-spacing: -1px;
-  color: var(--hp-paper);
-}
-.band-guide__body {
-  font: 13px/1.85 var(--sans);
-  color: #d1d9cb;
-  margin: 0 0 22px;
-  max-width: 560px;
-}
-.band-guide__cta {
-  display: inline-flex;
-  border-radius: 3px;
-  background: #f3e9ca;
-  color: var(--hp-ink);
-  padding: 13px 20px;
-  font: 600 12px var(--sans);
-  letter-spacing: normal;
-  text-transform: none;
-  transition: background .2s;
-}
-.band-guide:hover .band-guide__cta { background: #fff6dc; }
-.band-guide__sample { font: 12px/1.6 var(--sans); color: var(--hp-muted); margin: 12px 0 0; }
-.band-guide__sample a { color: var(--hp-ink); border-bottom: 1px solid #a7afa4; }
 
 /* ===== Itineraries page (/itineraries) =====
    Each plan is a design section: the heading, the dek and season line, then
@@ -2676,10 +2473,6 @@ main:focus { outline: none; }
   display: flex;
   align-items: stretch;
   border-bottom: 1px solid transparent;
-}
-.map-sidebar__region:has(.map-sidebar__region-stops),
-.map-sidebar__region:has(.map-sidebar__region-empty) {
-  /* When body is rendered, give the head a soft separator. */
 }
 .map-sidebar__region:has(.map-sidebar__region-stops) .map-sidebar__region-head,
 .map-sidebar__region:has(.map-sidebar__region-empty) .map-sidebar__region-head {
@@ -5955,7 +5748,7 @@ kbd {
    ============================================================ */
 @media print {
   html, body { background: #fff; color: #000; }
-  .hp-navigation,.readbar,.skip-link,.nlbox,.band-guide,.share-row,.keep-going,.site-footer,.lightbox,.navprogress,.totop,.kbd-hint {
+  .hp-navigation,.readbar,.skip-link,.nlbox,.share-row,.keep-going,.site-footer,.lightbox,.navprogress,.totop,.kbd-hint {
     display: none !important;
   }
   .page { animation: none; }
@@ -6044,7 +5837,6 @@ kbd {
   color: var(--ink-1);
   cursor: pointer;
 }
-.dates__chip.is-on { background: var(--ink); color: var(--paper, #fff); border-color: var(--ink); }
 .dates__chip:focus-visible { outline: 2px solid var(--moss); outline-offset: 2px; }
 
 .feecalc { margin: 12px 0 28px; border-top: 2px solid var(--ink); padding-top: 18px; }
@@ -6058,7 +5850,6 @@ kbd {
 .feecalc__form small { font-family: var(--sans); font-size: 13.5px; line-height: 1.45; color: var(--ink-2); }
 .feecalc__options { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 16px; }
 .feecalc__option { border: 1px solid var(--rule); padding: 16px 18px; }
-.feecalc__option.is-best { border: 2px solid var(--moss); }
 .feecalc__option-head { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; margin-bottom: 8px; }
 .feecalc__option-label { font-family: var(--sans); font-size: 12px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink-1); }
 .feecalc__option-total { font-family: var(--display); font-size: 28px; color: var(--ink); }
@@ -6341,16 +6132,6 @@ kbd {
   line-height:1.85;
   margin:15px 0 29px
 }
-.hp-design .hp-articles {
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:38px
-}
-.hp-design .hp-featured {
-  border:1px solid var(--hp-rule);
-  border-radius:3px;
-  overflow:hidden
-}
 .hp-design .hp-photo {
   height:260px;
   position:relative
@@ -6369,27 +6150,14 @@ kbd {
   font-size:8px;
   letter-spacing:1.2px
 }
-.hp-design .hp-cardbody {
-  padding:25px 27px
-}
-.hp-design .hp-cardbody .hp-eyebrow {
-  display:flex;
-  justify-content:space-between;
-  font-size:8px
-}
-.hp-design .hp-cardbody .hp-eyebrow span {
-  color:var(--hp-muted)
-}
 :where(.hp-design) h3 {
   font-size:32px;
   margin-bottom:12px
 }
-.hp-design .hp-cardbody>p:not(.hp-eyebrow),
 .hp-design .hp-row p:not(.hp-eyebrow) {
   font-size:12px;
   color:var(--hp-muted)
 }
-.hp-design .hp-cardbody b,
 .hp-design .hp-row b {
   font-size:10px;
   font-weight:600;
@@ -6397,7 +6165,6 @@ kbd {
   justify-content:space-between;
   margin-top:18px
 }
-.hp-design .hp-cardbody b span,
 .hp-design .hp-row b span {
   color:var(--hp-accent);
   font-size:17px
@@ -6871,15 +6638,8 @@ kbd {
 .hp-design .hp-sub {
   font-size:12px
 }
-.hp-design .hp-articles {
-  grid-template-columns:1fr;
-  gap:26px
-}
 .hp-design .hp-photo {
   height:240px
-}
-.hp-design .hp-cardbody {
-  padding:22px
 }
 .hp-design .hp-row {
   grid-template-columns:105px 1fr;
@@ -7671,8 +7431,6 @@ html[data-nav-mode="pinned"] { scroll-padding-top: 62px; }
   .nlbox { padding: 26px 22px; }
   .nlbox h3 { font-size: 28px; }
   .statblock { grid-template-columns: 1fr 1fr; gap: 16px; }
-  .band-guide { padding: 28px 22px; }
-  .band-guide__title { font-size: 30px; }
   .hp-design .hp-note { padding: 24px 22px; }
 }
 
@@ -7848,7 +7606,6 @@ html[data-nav-mode="pinned"] { scroll-padding-top: 62px; }
   --stay-book: #8a3315;
   --stay-book-hover: #a8431f;
   --stay-book-ink: #f7f1e1;
-  --stay-card: var(--hp-card);
   --stay-alt: #efeadc;
 }
 .stay-page .hp-eyebrow { text-transform: uppercase; }

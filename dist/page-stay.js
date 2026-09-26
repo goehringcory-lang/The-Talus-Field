@@ -1878,13 +1878,13 @@ function StayPage({
     go: go,
     location: "stay",
     title: "Booked the beds. Now the days.",
-    intro: "The Field Guide app carries the stops, the parking notes, offline maps for a park with no signal, and a day-by-day planner that knows how long the drives actually take. One purchase, eighteen months of access.",
+    intro: "The Field Guide app carries the stops, the parking notes, offline maps for a park with no signal, and a day-by-day planner that knows how long the drives actually take.",
     sample: true
   }), React.createElement(HpLetter, {
     eyebrow: "SUNDAY FIELD NOTES / FREE",
     title: "Rooms come back. Someone has to be watching.",
     heading: "Rooms come back. Someone has to be watching.",
-    blurb: "Sunday Field Notes carries what is opening, closing, and quietly becoming available in the park, written from inside it. One short letter a week. Free.",
+    blurb: "Sunday Field Notes carries what is opening, closing, and quietly becoming available in the park, written from inside it.",
     location: "stay",
     tag: "lodging"
   }), React.createElement(StayStickyBar, {

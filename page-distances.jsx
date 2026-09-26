@@ -179,14 +179,14 @@ function DistancesPage({ go }) {
         go={go}
         location="distances"
         title="The drive is only the first part"
-        intro="The Field Guide app carries the trailhead parking notes, offline maps for a park with no cell service, and a day planner that knows how long it really takes to cross the park. One purchase, eighteen months of access."
+        intro="The Field Guide app carries the trailhead parking notes, offline maps for a park with no cell service, and a day planner that knows how long it really takes to cross the park."
         sample
       />
       <HpLetter
         eyebrow="SUNDAY FIELD NOTES / FREE"
         title="Road status, Sundays"
         heading="Road status, Sundays"
-        blurb="Tioga and Glacier Point open late and close early, and chain controls arrive without much notice. One short letter a week with what the roads are doing. Free."
+        blurb="Tioga and Glacier Point open late and close early, and chain controls arrive without much notice. Sunday Field Notes carries what the roads are doing."
         location="distances"
         tag="distances"
       />

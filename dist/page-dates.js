@@ -277,22 +277,24 @@ function DatesPage({
     list: "page_dates",
     slug: "dates",
     cta: "Search lodging around Yosemite →"
-  }), React.createElement(GuidePromo, {
+  }))), React.createElement(HpGuideBand, {
     go: go,
     location: "dates",
-    title: "In the Field Guide, these dates sit on your trip board",
-    body: "Enter your trip once and the guide draws every deadline against it, reminds your phone the morning each one opens, and keeps working where the park has no signal. One purchase, eighteen months of access.",
-    style: {
-      marginTop: 56,
-      marginBottom: 40
-    }
-  }), React.createElement("div", {
-    className: "dates__interest"
+    title: "In the Field Guide, these dates sit on your trip board.",
+    intro: "Enter your trip once and the guide draws every deadline against it, reminds your phone the morning each one opens, and keeps working where the park has no signal.",
+    sample: true
+  }), React.createElement(HpLetter, {
+    eyebrow: "REMIND ME / FREE",
+    title: `${TAG_LABELS[interest]}: the nudge before the date`,
+    heading: `${TAG_LABELS[interest]}: the nudge before the date`,
+    blurb: "A short letter on Sundays, and a dated line the week a window you asked about opens.",
+    location: "dates",
+    tag: interest
   }, React.createElement("div", {
-    className: "eyebrow eyebrow--moss"
-  }, "Remind me"), React.createElement("p", {
+    className: "dates__interest"
+  }, React.createElement("p", {
     className: "dates__hint"
-  }, "Pick what you are waiting on. The Sunday letter carries a dated nudge to the people who asked for that one, and nothing else."), React.createElement("div", {
+  }, "Pick what you are waiting on. The letter carries a dated nudge to the people who asked for that one, and nothing else."), React.createElement("div", {
     className: "dates__chips",
     role: "radiogroup",
     "aria-label": "What to remind you about"
@@ -303,12 +305,6 @@ function DatesPage({
     "aria-checked": interest === t,
     className: `dates__chip${interest === t ? " is-on" : ""}`,
     onClick: () => setInterest(t)
-  }, TAG_LABELS[t])))), React.createElement(NewsletterInline, {
-    key: interest,
-    location: "dates",
-    tag: interest,
-    heading: `${TAG_LABELS[interest]}: the nudge before the date`,
-    blurb: "A short letter on Sundays, and a dated line the week a window you asked about opens. Free."
-  }))));
+  }, TAG_LABELS[t]))))));
 }
 window.DatesPage = DatesPage;

@@ -132,8 +132,9 @@ The only new words are labels in the design's eyebrow voice:
   below).
 - **The `/stay` booking colour** (`--stay-book`) and the one-colour-one-action
   rule. **`LodgingCta`** keeps the look PR #413 accepted on `/planning`.
-- **`GuidePromo` on `/dates`.** Its reminder chips drive the letter's tag,
-  so the card and the letter stay in the column.
+- ~~**`GuidePromo` on `/dates`.**~~ Retired in the September 2026 cleanup:
+  `/dates` now ends in `HpGuideBand` and `HpLetter`, with the reminder chips
+  passed into the letter as `children`. `GuidePromo` and `.band-guide` are gone.
 - **The Park Bulletin's mono date labels and status colours.** They carry
   meaning (the ledger's dates, open/warn/closed) and were checked for
   contrast in the September redesign.
