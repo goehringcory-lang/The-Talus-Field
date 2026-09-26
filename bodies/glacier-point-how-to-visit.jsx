@@ -10,13 +10,13 @@ window.ARTICLE_BODIES["glacier-point-how-to-visit"] = function GlacierPointHowTo
           As of September 26, 2026, Glacier Point Road is temporarily closed for the Dome Fire, and the park says it will reopen when conditions allow. Hikers can still reach the point: the park says the Four Mile and Panorama Trails remain open. The concessioner's Glacier Point Tour and its one-way hiker ticket run on the road, and its listing still shows them through October 12 with no fire notice, so confirm they are running before you buy. Check
           <a href="/now">the Park Bulletin</a> for the road's status on the day you are going.
         </em>
-        Glacier Point is on every first visitor's list, and it fails more of those visitors than any other place in the park. Not the view, which does exactly what the photographs promise. The plan. The road is closed for roughly half the year. In summer the parking lot at the end of it fills by mid-morning, and the Park Service now turns the overflow around and sends it to a shuttle eleven miles back down the road. And the drive is about an hour each way from Yosemite Valley, a number most people learn in the car. This is the standing guide: what is at the top, how the road works and when it is open, the shuttle rule that governs a summer visit, the walks that start from the road, the bus up, and the ski route that is the only way in from December to spring.
+        Glacier Point is on every first visitor's list, and more of those visits go wrong here than anywhere else in the park. The view is as advertised; the problem is the plan. The road is closed for roughly half the year. In summer the parking lot at the end of it fills by mid-morning, and the Park Service now turns the overflow around and sends it to a shuttle eleven miles back down the road. And the drive is about an hour each way from Yosemite Valley, a number most people learn in the car. This is the standing guide: what is at the top, how the road works and when it is open, the shuttle rule that governs a summer visit, the walks that start from the road, the bus up, and the ski route that is the only way in from December to spring.
       </p>
 
       <h2>What is at the top</h2>
 
       <p>
-        The Park Service puts the overlook at <strong>3,214 feet above Curry Village</strong>, and the number is the whole experience. You are not looking at Half Dome from below, the way the Valley shows it, or from the side, the way Tunnel View does. You are level with it, close enough to read the joints in its face, with the Merced canyon dropping away underneath you and Vernal and Nevada Falls stacked in it like two steps of a staircase. Yosemite Falls is across the Valley. East, past Half Dome, the Clark Range and the high peaks hold snow into early summer.
+        The Park Service puts the overlook at <strong>3,214 feet above Curry Village</strong>, and that height is what you came for. The Valley shows Half Dome from below and Tunnel View from the side; here you are level with it, close enough to read the joints in its face, with the Merced canyon dropping away underneath you and Vernal and Nevada Falls stacked in it like two steps of a staircase. Yosemite Falls is across the Valley. East, past Half Dome, the Clark Range and the high peaks hold snow into early summer.
       </p>
 
       <p>
@@ -24,7 +24,7 @@ window.ARTICLE_BODIES["glacier-point-how-to-visit"] = function GlacierPointHowTo
       </p>
 
       <p>
-        A naturalist's note on what you are seeing, because the view is an argument as well as a picture. The Valley below is U-shaped, flat-floored and straight-walled, and the waterfalls fall from side valleys that hang in the air far above the floor. Both are the signature of ice: a trunk glacier deepened the main canyon far faster than the side streams could cut down, and when it melted, the side valleys were left stranded on the rim with their creeks pouring out of them. The stepped Merced canyon under your feet, the giant staircase of the geologists, is the same story told in the canyon's own granite. Once you have seen the shape of the thing from up here you cannot unsee it from the floor.
+        A naturalist's note on what you are seeing. The Valley below is U-shaped, flat-floored and straight-walled, and the waterfalls fall from side valleys that hang in the air far above the floor. Both are the signature of ice: a trunk glacier deepened the main canyon far faster than the side streams could cut down, and when it melted, the side valleys were left stranded on the rim with their creeks pouring out of them. The stepped Merced canyon under your feet, the giant staircase of the geologists, is the same story told in the canyon's own granite.
       </p>
 
 
@@ -45,7 +45,7 @@ window.ARTICLE_BODIES["glacier-point-how-to-visit"] = function GlacierPointHowTo
       </p>
 
       <p>
-        The road is the visit, not the approach to it. Badger Pass, the ski area, is five miles in. The McGurk Meadow trailhead follows, then the turn for Bridalveil Creek Campground, then the shared Sentinel Dome and Taft Point trailhead a couple of miles short of the end, then Washburn Point, whose lot sits just south of Glacier Point and whose view of Vernal and Nevada Falls is more direct than the point's own. Most people who drive straight through and complain about the parking never stopped at Washburn, which is the answer to the parking.
+        The road has its own stops. Badger Pass, the ski area, is five miles in. The McGurk Meadow trailhead follows, then the turn for Bridalveil Creek Campground, then the shared Sentinel Dome and Taft Point trailhead a couple of miles short of the end, then Washburn Point, whose lot sits just south of Glacier Point and whose view of Vernal and Nevada Falls is more direct than the point's own. Most people who drive straight through and complain about the parking never stopped at Washburn, which is the answer to the parking.
       </p>
 
       <p>
@@ -55,7 +55,7 @@ window.ARTICLE_BODIES["glacier-point-how-to-visit"] = function GlacierPointHowTo
       <h2>The season, in the park's own dates</h2>
 
       <p>
-        The Park Service's standing language is that the road is open to cars "from approximately late May through October or November," and the standing language undersells how wide the window swings. The park publishes the dates, and over the twenty-six seasons from 2000 through 2025 <strong>Glacier Point Road opened as early as March 28 (2015) and as late as July 15 (2023, a construction year)</strong>, with most openings falling in May. It did not open at all in 2022, when it was closed for a rehabilitation project. The closing is a weather call, made after the first significant snowfall: <strong>most closings land in November</strong>, the earliest on record in that span was October 31 (2003) and the latest was December 12 (2008), and in 2021 the road stayed open into the first week of December.
+        The Park Service's standing language is that the road is open to cars "from approximately late May through October or November," but the window swings wider than that. The park publishes the dates, and over the twenty-six seasons from 2000 through 2025 <strong>Glacier Point Road opened as early as March 28 (2015) and as late as July 15 (2023, a construction year)</strong>, with most openings falling in May. It did not open at all in 2022, when it was closed for a rehabilitation project. The closing is a weather call, made after the first significant snowfall: <strong>most closings land in November</strong>, the earliest on record in that span was October 31 (2003) and the latest was December 12 (2008), and in 2021 the road stayed open into the first week of December.
       </p>
 
       <p>
@@ -73,7 +73,7 @@ window.ARTICLE_BODIES["glacier-point-how-to-visit"] = function GlacierPointHowTo
       </p>
 
       <p>
-        The practical reading is simpler than the rule. A summer visit to Glacier Point has two good hours, early and late, and a shuttle in between. Arrive before ten and the day is yours, including the hikes. Arrive at noon on a July Saturday and plan on Badger Pass, a twenty-minute wait and a ride, and a last bus down at half past five that ends any idea of staying for the light. Arrive after 4:30 and you drive again, into the evening the lot was built for. The park frames the rule as mid-May to September. In October the same lot can fill for sunset with nobody managing it, and that is the case the next section is about.
+        In practice, a summer visit to Glacier Point has two good hours, early and late, and a shuttle in between. Arrive before ten and the day is yours, including the hikes. Arrive at noon on a July Saturday and plan on Badger Pass, a twenty-minute wait and a ride, and a last bus down at half past five that ends any idea of staying for the light. Arrive after 4:30 and you drive again, into the evening the lot was built for. The park frames the rule as mid-May to September. In October the same lot can fill for sunset with nobody managing it, and that is the case the next section is about.
       </p>
 
       <h2>The hour decides the rest</h2>
@@ -93,7 +93,7 @@ window.ARTICLE_BODIES["glacier-point-how-to-visit"] = function GlacierPointHowTo
       <h2>The walks, from the point and from the road</h2>
 
       <p>
-        The Park Service's own numbers, which are the ones to use. From the shared trailhead a couple of miles short of the end of the road, <strong>Sentinel Dome is 2 miles round trip with 400 feet of gain</strong>, one to two hours, and finishes on a bare granite cap with a 360-degree view that includes El Capitan, Half Dome, and Yosemite Falls; the park's one instruction is to <strong>stay off the dome in a thunderstorm</strong>. From the same lot, <strong>Taft Point is 2.2 miles round trip</strong>, with about 200 feet of climbing on the way back, through forest and meadow to a rim overlook that faces El Capitan and Yosemite Falls across the Valley. The Fissures beside Taft Point are joints in the granite, narrow cracks with drops the park puts at up to 2,000 feet, and a short railing guards the point itself and nothing else. The two trails join through the Pohono Trail into a loop of roughly five miles, which is the walk most first visitors should do on a day the Mist Trail is a queue. Pit toilets are at the trailhead lot. Pets and bicycles are not allowed on any of these trails.
+        These are the Park Service's numbers. From the shared trailhead a couple of miles short of the end of the road, <strong>Sentinel Dome is 2 miles round trip with 400 feet of gain</strong>, one to two hours, and finishes on a bare granite cap with a 360-degree view that includes El Capitan, Half Dome, and Yosemite Falls; the park's one instruction is to <strong>stay off the dome in a thunderstorm</strong>. From the same lot, <strong>Taft Point is 2.2 miles round trip</strong>, with about 200 feet of climbing on the way back, through forest and meadow to a rim overlook that faces El Capitan and Yosemite Falls across the Valley. The Fissures beside Taft Point are joints in the granite, narrow cracks with drops the park puts at up to 2,000 feet, and a short railing guards the point itself and nothing else. The two trails join through the Pohono Trail into a loop of roughly five miles, which is the walk most first visitors should do on a day the Mist Trail is a queue. Pit toilets are at the trailhead lot. Pets and bicycles are not allowed on any of these trails.
       </p>
 
       <p>
@@ -147,15 +147,15 @@ window.ARTICLE_BODIES["glacier-point-how-to-visit"] = function GlacierPointHowTo
       <h2>Three shapes of a Glacier Point day</h2>
 
       <p>
-        <strong>The morning drive.</strong> Leave the Valley before first light, drive through the Badger Pass turnoff while it is unstaffed, park at the end of the road, walk the 300 yards, and stay at the railing longer than feels reasonable. Washburn Point on the way down, McGurk Meadow if it is June, and back in the Valley by lunch.
+        <strong>The morning drive.</strong> Leave the Valley before first light, drive through the Badger Pass turnoff while it is unstaffed, park at the end of the road, walk the 300 yards, and take your time at the railing. Washburn Point on the way down, McGurk Meadow if it is June, and back in the Valley by lunch.
       </p>
 
       <p>
-        <strong>The hike day.</strong> Drive early or ride the shuttle to the Sentinel Dome and Taft Point lot, walk the loop, eat on the rim, and cover the last stretch to the point in the afternoon with your legs already loose. Or buy the one-way bus ticket and come down the Four Mile or the Panorama Trail on foot, which turns the drive into a descent and the descent into the day.
+        <strong>The hike day.</strong> Drive early or ride the shuttle to the Sentinel Dome and Taft Point lot, walk the loop, eat on the rim, and cover the last stretch to the point in the afternoon with your legs already loose. Or buy the one-way bus ticket and come down the Four Mile or the Panorama Trail on foot, which makes the descent the main event.
       </p>
 
       <p>
-        <strong>The sunset.</strong> Arrive after 4:30 pm with an hour in hand, take Washburn Point if the end of the road is full, and stay until the color has gone off Half Dome. Drive down slowly. If you want to do it without the parking anxiety at all, book a night at Bridalveil Creek and drive the road as if it were yours, because for that night it is. <a href="/map">The trip-planner map</a> will place the point, the trailhead, and the campground on the road for you.
+        <strong>The sunset.</strong> Arrive after 4:30 pm with an hour in hand, take Washburn Point if the end of the road is full, and stay until the color has gone off Half Dome. Drive down slowly. If you want to do it without the parking anxiety at all, book a night at Bridalveil Creek and drive the road at any hour. <a href="/map">The trip-planner map</a> will place the point, the trailhead, and the campground on the road for you.
       </p>
     </>
   );

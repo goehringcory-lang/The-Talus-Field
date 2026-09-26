@@ -14,7 +14,7 @@ window.ARTICLE_BODIES["glacier-point-road-open-2026"] = function GlacierPointRoa
       </p>
 
       <p>
-        If you have been waiting for this, here is what to know about the road in the first weeks of the season. Not the road in general. Not the road in July. The road now, in this snowpack year, with what is and is not actually working at the top.
+        If you have been waiting for this, here is what to know about the road in its first weeks this season, in this snowpack year, with what is and is not actually working at the top.
       </p>
 
       <h2>What is open at the top</h2>

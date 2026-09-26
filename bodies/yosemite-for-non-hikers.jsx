@@ -32,7 +32,7 @@ window.ARTICLE_BODIES["yosemite-for-non-hikers"] = function YosemiteForNonHikers
       <p>Some quick context that matters.</p>
 
       <p>
-        Yosemite Valley sits at about 4,000 feet in a granite trough roughly a mile wide and seven miles long. The roads that loop around the Valley pass within view of, or directly under, almost every iconic feature in the park. <strong>Tunnel View, El Capitan, Bridalveil Fall, Cathedral Rocks, Cook's Meadow, Yosemite Falls, Half Dome, Sentinel Rock, the Royal Arches</strong> can all be seen from a car. Many can be seen from a car without getting out. Several can be photographed from the parking lot.
+        Yosemite Valley sits at about 4,000 feet in a granite trough roughly a mile wide and seven miles long. The roads that loop around the Valley pass within view of, or directly under, almost every well-known feature in the park. <strong>Tunnel View, El Capitan, Bridalveil Fall, Cathedral Rocks, Cook's Meadow, Yosemite Falls, Half Dome, Sentinel Rock, the Royal Arches</strong> can all be seen from a car. Many can be seen from a car without getting out. Several can be photographed from the parking lot.
       </p>
 
       <p>
@@ -54,7 +54,7 @@ window.ARTICLE_BODIES["yosemite-for-non-hikers"] = function YosemiteForNonHikers
       </p>
 
       <p>
-        <strong>Wheelchair accessible</strong> is the Park Service's own designation, and in Yosemite it is applied narrowly and honestly. The routes that carry it in the Valley are short and genuinely flat: the Cook's Meadow loop, the eastern leg of the Lower Yosemite Fall trail, the Big Trees Loop in Mariposa Grove, the path from the Glacier Point lot to the overlook.
+        <strong>Wheelchair accessible</strong> is the Park Service's own designation, and in Yosemite it is applied narrowly and honestly. The routes that carry it in the Valley are short and flat: the Cook's Meadow loop, the eastern leg of the Lower Yosemite Fall trail, the Big Trees Loop in Mariposa Grove, the path from the Glacier Point lot to the overlook.
       </p>
 
       <p>
@@ -72,7 +72,7 @@ window.ARTICLE_BODIES["yosemite-for-non-hikers"] = function YosemiteForNonHikers
       </p>
 
       <p>
-        <strong>Accessibility placards.</strong> Bring yours and hang it. In Yosemite, a placard is not just a parking privilege. It opens roads and pullouts that are otherwise closed to cars, including <a href="/articles/mariposa-grove-how-to-visit">the drive up Mariposa Grove Road to the Grizzly Giant parking area</a> and, during the February Horsetail Fall event, the closed stretch of Northside Drive and the El Capitan Picnic Area. A placard vehicle can drive to places everyone else is walking a mile and a half to reach.
+        <strong>Accessibility placards.</strong> Bring yours and hang it. In Yosemite, a placard does more than grant parking. It opens roads and pullouts that are otherwise closed to cars, including <a href="/articles/mariposa-grove-how-to-visit">the drive up Mariposa Grove Road to the Grizzly Giant parking area</a> and, during the February Horsetail Fall event, the closed stretch of Northside Drive and the El Capitan Picnic Area. A placard vehicle can drive to places everyone else is walking a mile and a half to reach.
       </p>
 
       <p>
@@ -94,7 +94,7 @@ window.ARTICLE_BODIES["yosemite-for-non-hikers"] = function YosemiteForNonHikers
       </p>
 
       <p>
-        The itinerary below runs west to east on Southside Drive, then east to west on Northside Drive. It can be done in three to four hours including a stop for lunch, and it includes most of the iconic views in Yosemite Valley.
+        The itinerary below runs west to east on Southside Drive, then east to west on Northside Drive. It can be done in three to four hours including a stop for lunch, and it includes most of the famous views in Yosemite Valley.
       </p>
 
       <p>
@@ -161,7 +161,7 @@ window.ARTICLE_BODIES["yosemite-for-non-hikers"] = function YosemiteForNonHikers
 
       <ul>
         <li><strong>Olmsted Point.</strong> A parking lot view back into the head of Tenaya Canyon, including the back side of Half Dome. The view is available from the lot; the short spur to the lower viewpoint is over bare granite and is not a smooth surface. (At night, it's also the best <a href="/articles/yosemite-stargazing-where-to-look-up">stargazing pullout</a> in the park.)</li>
-        <li><strong>Tenaya Lake.</strong> A subalpine lake with a granite shoreline and several pullouts. The east end has a small beach a short flat walk from the parking area, and it is the easiest place in the high country to simply sit by water.</li>
+        <li><strong>Tenaya Lake.</strong> A subalpine lake with a granite shoreline and several pullouts. The east end has a small beach a short flat walk from the parking area, and it is the easiest place in the high country to sit by water.</li>
         <li><strong>Tuolumne Meadows.</strong> A broad alpine meadow at 8,600 feet with pullouts along its length. Most of the meadow views require no walking at all. The Soda Springs path is mostly flat but it is a dirt road surface, not pavement.</li>
       </ul>
 
@@ -222,7 +222,7 @@ window.ARTICLE_BODIES["yosemite-for-non-hikers"] = function YosemiteForNonHikers
       </p>
 
       <p>
-        <strong>The park film, <em>Spirit of Yosemite</em></strong>, plays in the theater behind the Exploration Center on the hour and the half hour, from mid-morning to late afternoon, year-round. It is captioned and audio described. Twenty-odd minutes in a seat, indoors, is a genuinely useful thing to have in the middle of a day for a group that is pacing itself.
+        <strong>The park film, <em>Spirit of Yosemite</em></strong>, plays in the theater behind the Exploration Center on the hour and the half hour, from mid-morning to late afternoon, year-round. It is captioned and audio described. Twenty-odd minutes in a seat, indoors, is a useful thing to have in the middle of a day for a group that is pacing itself.
       </p>
 
       <p>
@@ -294,7 +294,7 @@ window.ARTICLE_BODIES["yosemite-for-non-hikers"] = function YosemiteForNonHikers
       </p>
 
       <p>
-        For photography, the iconic views (Tunnel View, Valley View, Sentinel Bridge, Cook's Meadow, Glacier Point) are all reachable without hiking. The best-known Yosemite photographs are mostly taken from these places. A photographer who never takes a trail can produce a complete portfolio.
+        For photography, the classic views (Tunnel View, Valley View, Sentinel Bridge, Cook's Meadow, Glacier Point) are all reachable without hiking. The best-known Yosemite photographs are mostly taken from these places. A photographer who never takes a trail can produce a complete portfolio.
       </p>
 
       <h2>Multi-generational trips</h2>

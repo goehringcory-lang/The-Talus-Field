@@ -14,7 +14,7 @@ window.ARTICLE_BODIES["mist-trail-the-real-guide"] = function MistTrailBody() {
       </p>
 
       <p>
-        Here's the rest, from someone who has hiked it more times than he can count and has watched thousands of people try it in everything from perfect sunshine to sideways rain.
+        The rest comes from someone who has hiked it many times, in sunshine and in sideways rain.
       </p>
 
       <h2>What the Mist Trail actually is</h2>
@@ -30,7 +30,7 @@ window.ARTICLE_BODIES["mist-trail-the-real-guide"] = function MistTrailBody() {
       </p>
 
       <p>
-        <strong>The top of Vernal Fall</strong> (1.3 miles from Happy Isles, 1,000 ft gain). This is where the trail earns the "mist" in its name. You climb a granite staircase right next to the fall, and when it's running at peak volume (May and June), you get drenched. Not sprinkled. Drenched. The granite steps are wet, steep, and uneven. A metal railing is bolted into the rock on the exposed side. At the top there's an emerald pool above the fall and a view down the canyon. It's hard work, and it's a thrill.
+        <strong>The top of Vernal Fall</strong> (1.3 miles from Happy Isles, 1,000 ft gain). This is where the trail earns the "mist" in its name. You climb a granite staircase right next to the fall, and when it's running at peak volume (May and June), you get drenched. The granite steps are wet, steep, and uneven. A metal railing is bolted into the rock on the exposed side. At the top there's an emerald pool above the fall and a view down the canyon.
       </p>
 
       <p>
@@ -52,11 +52,11 @@ window.ARTICLE_BODIES["mist-trail-the-real-guide"] = function MistTrailBody() {
       </p>
 
       <p>
-        This is where most Mist Trail injuries happen. Not people falling off the trail: people slipping on wet granite stairs in the wrong shoes.
+        This is where most Mist Trail injuries happen, and most are people slipping on wet granite stairs in the wrong shoes.
       </p>
 
       <p>
-        <strong>Shoes matter on this trail more than any other trail in Yosemite.</strong> Hiking boots or trail shoes with real tread are the minimum. Running shoes with worn-out soles are a slip waiting to happen. Flip-flops, sandals, and fashion sneakers are genuinely dangerous on wet granite, and I say that without exaggeration. I've watched people go down hard on these stairs in shoes that had no business being on a wet rock face.
+        <strong>Shoes matter on this trail more than any other trail in Yosemite.</strong> Hiking boots or trail shoes with real tread are the minimum. Running shoes with worn-out soles are a slip waiting to happen. Flip-flops, sandals, and fashion sneakers are dangerous on wet granite. I've watched people go down hard on these stairs in shoes that had no business being on a wet rock face.
       </p>
 
       <p>
@@ -66,7 +66,7 @@ window.ARTICLE_BODIES["mist-trail-the-real-guide"] = function MistTrailBody() {
       <h2>You will get wet</h2>
 
       <p>
-        This isn't a gentle misting. In May and June, when the Merced River is running at full snowmelt volume, the spray zone below Vernal Fall feels like standing in a rainstorm for twenty minutes. Your clothes get soaked through. So does your phone, your camera and your pack.
+        In May and June, when the Merced River is running at full snowmelt volume, the spray zone below Vernal Fall feels like standing in a rainstorm for twenty minutes. Your clothes get soaked through. So does your phone, your camera and your pack.
       </p>
 
       <p>Here's how to deal with it.</p>
@@ -84,13 +84,13 @@ window.ARTICLE_BODIES["mist-trail-the-real-guide"] = function MistTrailBody() {
       </p>
 
       <p>
-        Pack a dry shirt in a ziplock and change at the top. That one move is the difference between a great day and shivering the rest of the way.
+        Pack a dry shirt in a ziplock and change at the top. Otherwise you shiver the rest of the way.
       </p>
 
       <h2>When to go</h2>
 
       <p>
-        <strong>Peak waterfall (May through mid-June).</strong> The big show. Vernal Fall is thundering, the mist zone is intense, the granite is soaked, and Nevada Fall is at full power. This is the version people come for. It's also the most crowded and the most slippery.
+        <strong>Peak waterfall (May through mid-June).</strong> Vernal Fall is thundering, the mist zone is intense, the granite is soaked, and Nevada Fall is at full power. This is the version people come for. It's also the most crowded and the most slippery.
       </p>
 
       <p>
@@ -112,11 +112,11 @@ window.ARTICLE_BODIES["mist-trail-the-real-guide"] = function MistTrailBody() {
       <h2>The safety talk</h2>
 
       <p>
-        I'll be blunt here, because the internet makes this trail look like a walk in the park, and it isn't one.
+        The internet makes this trail look like an easy walk. It isn't one.
       </p>
 
       <p>
-        In 2025, roughly 30% of Yosemite's search-and-rescue operations originated on the Mist Trail corridor. Thirty percent, from one trail. The park averages close to one fatality a month on this trail and the falls above it. That's not a scare tactic. It's just the number.
+        In 2025, roughly 30% of Yosemite's search-and-rescue operations originated on the Mist Trail corridor. The park averages close to one fatality a month on this trail and the falls above it.
       </p>
 
       <p>
@@ -124,15 +124,15 @@ window.ARTICLE_BODIES["mist-trail-the-real-guide"] = function MistTrailBody() {
       </p>
 
       <p>
-        The pools above Vernal Fall and Nevada Fall look calm and inviting. They aren't. The current is powerful, the granite is frictionless when wet, and the lip of the fall is just downstream. There is no second chance. If you go past the railing, you are in the kill zone. The NPS signs aren't being dramatic. They're being accurate.
+        The pools above Vernal Fall and Nevada Fall look calm and inviting. They aren't. The current is powerful, the granite is frictionless when wet, and the lip of the fall is just downstream. Past the railing, a slip is not survivable. The NPS signs are accurate.
       </p>
 
       <p>
-        Stay behind the railings. Don't wade. Don't swim in the pools above the falls. Don't walk on the wet granite near the edge "for a photo." This is the single most important safety rule on this trail, and it's the rule that, when broken, has killed people. Swimming in the Emerald Pool and the Silver Apron isn't just a bad idea, it's prohibited; <a href="/articles/swimming-in-the-merced">the swimming guide</a> lays out where in this park you may and may not get in the water, and what the Park Service has documented happening here.
+        Stay behind the railings. Don't wade. Don't swim in the pools above the falls. Don't walk on the wet granite near the edge "for a photo." This is the single most important safety rule on this trail, and it's the rule that, when broken, has killed people. Swimming in the Emerald Pool and the Silver Apron is prohibited; <a href="/articles/swimming-in-the-merced">the swimming guide</a> lays out where in this park you may and may not get in the water, and what the Park Service has documented happening here.
       </p>
 
       <p>
-        The trail itself hurts a lot of people too. Not fatally, but with twisted ankles, broken wrists, heat exhaustion, and falls on wet granite that require a ranger assist or a helicopter. That 30% SAR number isn't only about the falls. It's people underestimating the trail, running out of water, wearing the wrong shoes, and getting in over their heads on steep, wet rock. This trail is beautiful and it is dangerous, and those two things are true at the same time.
+        The trail itself hurts a lot of people too. Not fatally, but with twisted ankles, broken wrists, heat exhaustion, and falls on wet granite that require a ranger assist or a helicopter. That 30% SAR number isn't only about the falls. It's people underestimating the trail, running out of water, wearing the wrong shoes, and getting in over their heads on steep, wet rock.
       </p>
 
       <p>
@@ -160,11 +160,11 @@ window.ARTICLE_BODIES["mist-trail-the-real-guide"] = function MistTrailBody() {
       <h2>Is it worth it</h2>
 
       <p>
-        Yes, no qualifiers. The Mist Trail in peak waterfall season is one of the great hiking experiences in the United States. The granite canyon, the thundering water, the work of the stairs and the view from the top add up to something you won't find anywhere else.
+        Yes. In peak waterfall season the Mist Trail is one of the best day hikes in the United States.
       </p>
 
       <p>
-        Just don't show up in flip-flops with one bottle of water and no idea what you're walking into. Online, it looks like a casual stroll past a pretty waterfall. It isn't. It's a real hike in a real mountain environment, and the people who prepare for it have a great day. The people who don't are the ones writing the Reddit posts about how they slipped on the stairs, ran out of water, and wished they'd stayed at the hotel.
+        Just don't show up in flip-flops with one bottle of water and no idea what you're walking into. It is a real mountain hike, and the people who prepare for it have a good day. The people who don't are the ones writing the Reddit posts about how they slipped on the stairs, ran out of water, and wished they'd stayed at the hotel.
       </p>
 
       <p>
@@ -172,7 +172,7 @@ window.ARTICLE_BODIES["mist-trail-the-real-guide"] = function MistTrailBody() {
       </p>
 
       <p>
-        Then plan on getting soaked. The Mist Trail earned its name, and it's worth every wet, steep, breathless step.
+        Then plan on getting soaked.
       </p>
 
       <AffiliateNote />

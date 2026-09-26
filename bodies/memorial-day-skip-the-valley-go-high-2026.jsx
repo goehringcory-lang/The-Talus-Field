@@ -6,21 +6,21 @@ window.ARTICLE_BODIES["memorial-day-skip-the-valley-go-high-2026"] = function Me
   return (
     <>
       <p className="dropcap">
-        So you booked Yosemite for Memorial Day weekend 2026. Bold. The first reservation-free Memorial Day since 2023, the unofficial start of summer, every Bay Area family with a long weekend and the same idea you had. Brave.
+        So you booked Yosemite for Memorial Day weekend 2026: the first reservation-free Memorial Day since 2023, the unofficial start of summer, and every Bay Area family with a long weekend and the same idea you had.
       </p>
 
       <p>
-        Here is the good news: you can still have a spectacular trip. Here is the short answer, the one thing almost nobody arriving this weekend will do: skip Yosemite Valley and go up to the high country instead. Both Glacier Point Road and Tioga Road are open early this year, so the best places to be on Yosemite's Memorial Day weekend are 4,000 feet above the crowded Valley floor. Pivot. Don't even think about the Valley.
+        You can still have a good trip. The short answer is the one thing almost nobody arriving this weekend will do: skip Yosemite Valley and go up to the high country instead. Both Glacier Point Road and Tioga Road are open early this year, so the best places to be on Yosemite's Memorial Day weekend are 4,000 feet above the crowded Valley floor.
       </p>
 
       <p>
-        I'm not being dramatic. Let me show you the shape of the problem, and then let me show you the way out, because this year the way out is better than usual.
+        Here is the problem, and then the way out, which this year is better than usual.
       </p>
 
       <h2>Yosemite Valley crowds on Memorial Day: a parking lot. Literally.</h2>
 
       <p>
-        The National Park Service <a href="/articles/yosemite-needs-a-reservation-system">dropped the day-use reservation system</a> for the 2026 season. No cap on cars, no gate to stop you. Sounds great until you remember that the parking lots are the same size they were in 2019 and the Valley is still seven miles long. The constraint didn't disappear. It just moved from the entrance gate to the parking lot.
+        The National Park Service <a href="/articles/yosemite-needs-a-reservation-system">dropped the day-use reservation system</a> for the 2026 season. No cap on cars, no gate to stop you. But the parking lots are the same size they were in 2019 and the Valley is still seven miles long. The constraint moved from the entrance gate to the parking lot.
       </p>
 
       <p>
@@ -28,7 +28,7 @@ window.ARTICLE_BODIES["memorial-day-skip-the-valley-go-high-2026"] = function Me
       </p>
 
       <p>
-        That's the rare moment where the rangers and I agree completely. So listen to us both. Go up, not in.
+        The rangers and I agree on this one: go up.
       </p>
 
       <h2>Why the Yosemite high country is the move this year</h2>
@@ -47,7 +47,7 @@ window.ARTICLE_BODIES["memorial-day-skip-the-valley-go-high-2026"] = function Me
       </ul>
 
       <p>
-        So while ten thousand people fight for a parking space 4,000 feet down in the Valley, you can be standing on a granite dome with Half Dome at eye level and almost nobody around you. That is not a consolation prize. On a holiday weekend, it's the better trip.
+        So while ten thousand people fight for a parking space 4,000 feet down in the Valley, you can be standing on a granite dome with Half Dome at eye level and almost nobody around you. On a holiday weekend, it is the better trip.
       </p>
 
       <p>
@@ -61,20 +61,20 @@ window.ARTICLE_BODIES["memorial-day-skip-the-valley-go-high-2026"] = function Me
       </p>
 
       <p>
-        Want to actually stretch your legs? Two of Yosemite's best short hikes share a trailhead a few miles before the end of the road:
+        If you want to stretch your legs, two of Yosemite's best short hikes share a trailhead a few miles before the end of the road:
       </p>
 
       <ul>
         <li><strong><a href="/map?stop=sentinel-dome">Sentinel Dome</a>.</strong> About 2 miles round trip, roughly 400 feet of climbing, topping out at 8,122 feet on a bare granite summit with a true 360-degree panorama: Half Dome, El Capitan, the Cathedral Range, the Clark Range, the Sierra crest. Grandparents can do it. Six-year-olds can do it. Pick this one for the view and the photo.</li>
-        <li><strong>Taft Point.</strong> Also about 2.2 miles round trip, mostly easy, ending at a mostly unfenced clifftop and the Taft Point Fissures, deep granite cracks that drop away as much as 2,000 feet beneath your boots, with the viewpoint itself hanging over the Valley floor. It is thrilling and it is genuinely dangerous: every accident here comes from someone stepping too close for a photo. The view from six feet back is identical to the view from one foot back. Stand back.</li>
+        <li><strong>Taft Point.</strong> Also about 2.2 miles round trip, mostly easy, ending at a mostly unfenced clifftop and the Taft Point Fissures, deep granite cracks that drop away as much as 2,000 feet beneath your boots, with the viewpoint itself hanging over the Valley floor. It is also dangerous: every accident here comes from someone stepping too close for a photo. The view from six feet back is identical to the view from one foot back. Stand back.</li>
       </ul>
 
       <p>
-        Can't decide between them? We wrote a whole piece on how to choose, and you can link the two into one quiet loop. The Four Mile Trail down to the Valley is a different day, 4.8 miles and 3,200 feet of descent with <a href="/articles/four-mile-up-panorama-down">a plan of its own</a>, not a detour to tack onto this one.
+        We wrote a piece on choosing between them, and you can link the two into one quiet loop. The Four Mile Trail down to the Valley is a different day, 4.8 miles and 3,200 feet of descent with <a href="/articles/four-mile-up-panorama-down">a plan of its own</a>, not a detour to tack onto this one.
       </p>
 
       <p>
-        A couple of honest notes: there was <strong>no drinking water</strong> at Glacier Point when the road opened and the snack stand runs on the road's schedule, so bring a full water bottle and a sandwich. The Glacier Point tour bus, on the other hand, has run from Yosemite Valley Lodge since the road opened on May 9, twice a day, so you can ride up and walk down if you would rather not drive.
+        Two notes: there was <strong>no drinking water</strong> at Glacier Point when the road opened and the snack stand runs on the road's schedule, so bring a full water bottle and a sandwich. The Glacier Point tour bus, on the other hand, has run from Yosemite Valley Lodge since the road opened on May 9, twice a day, so you can ride up and walk down if you would rather not drive.
       </p>
 
       <p style={{ fontStyle: "italic", color: "var(--ink-3)" }}>
@@ -89,8 +89,8 @@ window.ARTICLE_BODIES["memorial-day-skip-the-valley-go-high-2026"] = function Me
 
       <ul>
         <li><strong>Olmsted Point</strong>. The moment the high country opens up in front of you, and the only place you'll see the <em>back</em> of Half Dome, with <a href="/articles/clouds-rest-hike">Clouds Rest</a> and Tenaya Canyon spread out below. Watch your footing; there can still be snow and ice near the point in late May.</li>
-        <li><strong>Tenaya Lake</strong>. An alpine lake right off the road. It'll likely still be ice-rimmed this early, which is its own kind of beautiful. The east-end beach is a flat, easy stroll to the water, no real hike required.</li>
-        <li><strong>Tuolumne Meadows</strong> (8,600 feet). The vast subalpine heart of the high country at the foot of the Cathedral Range. Stand at the edge and let the mountains do the work. Two short legs are reliable this early: <strong>Pothole Dome</strong> at the west end (a one-mile scramble up polished granite to a meadow panorama) and the flat walk to <strong>Soda Springs and Parsons Lodge</strong> (1.4 miles round trip, naturally carbonated springs the kids will love). Stay on the paths. The meadow is soaked and fragile this time of year.</li>
+        <li><strong>Tenaya Lake</strong>. An alpine lake right off the road. It will likely still be ice-rimmed this early. The east-end beach is a flat, easy stroll to the water, no real hike required.</li>
+        <li><strong>Tuolumne Meadows</strong> (8,600 feet). The vast subalpine heart of the high country at the foot of the Cathedral Range. Two short legs are reliable this early: <strong>Pothole Dome</strong> at the west end (a one-mile scramble up polished granite to a meadow panorama) and the flat walk to <strong>Soda Springs and Parsons Lodge</strong> (1.4 miles round trip, naturally carbonated springs the kids will love). Stay on the paths. The meadow is soaked and fragile this time of year.</li>
       </ul>
 
       <p>
@@ -112,13 +112,13 @@ window.ARTICLE_BODIES["memorial-day-skip-the-valley-go-high-2026"] = function Me
       </p>
 
       <p>
-        And if your plans go sideways anyway (lots full, weather turns, a road closes), don't fight the park. Flex. There's almost always a great option the crowd hasn't thought of. (The Valley's marquee hike, the Mist Trail, goes under weekday closures for repair work later in the summer, Monday through Thursday from 7 a.m. to 3:30 p.m. from July 27 through October, but over Memorial Day weekend it is fully open and will be mobbed.)
+        And if your plans go sideways anyway (lots full, weather turns, a road closes), don't fight the park. There is almost always an option the crowd hasn't thought of. (The Valley's marquee hike, the Mist Trail, goes under weekday closures for repair work later in the summer, Monday through Thursday from 7 a.m. to 3:30 p.m. from July 27 through October, but over Memorial Day weekend it is fully open and will be mobbed.)
       </p>
 
       <h2>What I'd tell a friend</h2>
 
       <p>
-        Skip the Valley on Saturday. Genuinely, skip it. Get up early, point the car uphill, and spend the morning on Glacier Point Road or Tioga Road while everyone else circles a full parking lot 4,000 feet below. You will not get the classic head-craning-up-at-the-falls Valley shot this trip. You'll get something better: a high granite view with room to breathe, on the one weekend of the year when that's the smartest thing you can possibly do.
+        Skip the Valley on Saturday. Get up early, point the car uphill, and spend the morning on Glacier Point Road or Tioga Road while everyone else circles a full parking lot 4,000 feet below. You will not get the classic head-craning-up-at-the-falls Valley shot this trip. You'll get a high granite view with room to breathe, on the weekend when that is the right call.
       </p>
 
       <p>

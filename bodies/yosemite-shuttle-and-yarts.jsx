@@ -32,7 +32,7 @@ window.ARTICLE_BODIES["yosemite-shuttle-and-yarts"] = function YosemiteShuttleAn
       </p>
 
       <p>
-        Every bus in the fleet carries a wheelchair lift and tie-downs. Service animals meeting the legal definition ride; pets do not, which is the constraint that shapes a <a href="/articles/pets-in-yosemite">dog-owner's day</a> in the Valley more than any other. Bikes do not go on board either. There are racks at the stops instead, and in season Yosemite Conservancy underwrites a bike share that is free for short trips, which pairs well with the twelve-plus miles of paved bike path on the Valley floor. On a warm afternoon the bike is genuinely faster than the bus.
+        Every bus in the fleet carries a wheelchair lift and tie-downs. Service animals meeting the legal definition ride; pets do not, which is the constraint that shapes a <a href="/articles/pets-in-yosemite">dog-owner's day</a> in the Valley more than any other. Bikes do not go on board either. There are racks at the stops instead, and in season Yosemite Conservancy underwrites a bike share that is free for short trips, which pairs well with the twelve-plus miles of paved bike path on the Valley floor. On a warm afternoon the bike is faster than the bus.
       </p>
 
       <Placeholder
@@ -70,7 +70,7 @@ window.ARTICLE_BODIES["yosemite-shuttle-and-yarts"] = function YosemiteShuttleAn
       </p>
 
       <p>
-        <strong>Highway 140, from Merced.</strong> The backbone, and the only route that runs year-round, seven days a week. It leaves from the Amtrak station in Merced and calls at Mariposa, Midpines, and El Portal on its way up the Merced canyon. Figure about two and a half hours end to end. Because it connects to a train, this is the route that makes a genuinely car-free Yosemite trip possible from San Francisco, Sacramento, or Los Angeles.
+        <strong>Highway 140, from Merced.</strong> The backbone, and the only route that runs year-round, seven days a week. It leaves from the Amtrak station in Merced and calls at Mariposa, Midpines, and El Portal on its way up the Merced canyon. Figure about two and a half hours end to end. Because it connects to a train, this is the route that makes a car-free Yosemite trip possible from San Francisco, Sacramento, or Los Angeles.
       </p>
 
       <p>
@@ -89,7 +89,7 @@ window.ARTICLE_BODIES["yosemite-shuttle-and-yarts"] = function YosemiteShuttleAn
         In the Valley, YARTS sets down at Yosemite Valley Lodge, Yosemite Village, Curry Village, and the visitor center stop, all of which are on the free shuttle, so the handoff between the two systems is seamless. You can pay onboard with a card or exact cash, or reserve ahead at the YARTS ticketing site; walk-ons are accepted as space allows, but a reservation a day out is cheap insurance on a summer weekend. Buses are air-conditioned, have a restroom on board, are wheelchair accessible, and will take a bike in the underfloor compartment if there is room and it is bagged. Children under five ride free, one child aged six to twelve rides free with each full-fare adult, and there are reduced fares for seniors, riders with disabilities, and veterans.
       </p>
 
-      <h2>The entrance fee question, which is genuinely unresolved</h2>
+      <h2>The entrance fee question, which is unresolved</h2>
 
       <p>
         For years the headline argument for YARTS was that the fare included your park entrance fee, and the Park Service's own pages still say that riders arriving by YARTS do not pay it. YARTS' own fares page currently says the opposite: that applicable Yosemite entrance and non-resident fees are not included in the fare and remain the responsibility of each passenger.
@@ -104,7 +104,7 @@ window.ARTICLE_BODIES["yosemite-shuttle-and-yarts"] = function YosemiteShuttleAn
       <h2>When the bus actually beats driving</h2>
 
       <p>
-        This is where most transit writing goes soft, so here is the honest version, including the cases where the answer is no.
+        Here is when transit works, including the cases where it does not.
       </p>
 
       <p>

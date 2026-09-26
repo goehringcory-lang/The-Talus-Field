@@ -74,7 +74,7 @@ window.ARTICLE_BODIES["yosemite-from-los-angeles"] = function YosemiteFromLosAng
       </ul>
 
       <p>
-        Midweek is not a marginal improvement on this drive. It is the difference between the straight-through plan working and not working.
+        On this drive, midweek decides whether the straight-through plan works at all.
       </p>
 
       <h2>Where to break the drive</h2>

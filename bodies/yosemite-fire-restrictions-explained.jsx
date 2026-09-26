@@ -6,11 +6,11 @@ window.ARTICLE_BODIES["yosemite-fire-restrictions-explained"] = function Yosemit
   return (
     <>
       <p className="dropcap">
-        You bought a bundle of firewood at the gas station in Mariposa, because that is what you do before a Yosemite camping trip. You get to the site, unload the cooler, and find a ranger notice zip-tied to the fire ring: no wood fires. Not tonight, not this week, not until further notice. The bundle rides home unopened. This is not a hypothetical. Yosemite is under Stage 1 fire restrictions right now, and every summer a fresh set of visitors arrives not knowing that the rules changed since the last time they camped here, or that they ever change at all.
+        You bought a bundle of firewood at the gas station in Mariposa, because that is what you do before a Yosemite camping trip. You get to the site, unload the cooler, and find a ranger notice zip-tied to the fire ring: no wood fires until further notice. The bundle rides home unopened. Yosemite is under Stage 1 fire restrictions right now, and every summer a fresh set of visitors arrives not knowing that the rules changed since the last time they camped here, or that they ever change at all.
       </p>
 
       <p>
-        The restrictions are not complicated once someone lays them out, but nobody hands you the list at the entrance station. Here is what is actually banned, what still works, why the line sits where it does, and how to check whether any of this has changed by the time your trip starts.
+        The restrictions are not complicated once someone lays them out, but nobody hands you the list at the entrance station. Here is what is banned, what still works, why the line sits where it does, and how to check whether any of this has changed by the time your trip starts.
       </p>
 
       <h2>What is in effect right now</h2>
@@ -20,7 +20,7 @@ window.ARTICLE_BODIES["yosemite-fire-restrictions-explained"] = function Yosemit
       </p>
 
       <p>
-        This is separate from, and layered on top of, the small lightning-caused fires that made news partway through August. An early-morning storm on August 12 started eight fires in the park, including ones near Aspen Valley, Dewey Point, and Wawona Road; the largest reported was a couple of acres. None triggered evacuations or site closures. Those fires are not why your campfire is banned. They are one symptom of the same dry conditions that triggered the restrictions a few days before the storm, and they are worth knowing about mainly because they explain why the park is not in a hurry to lift the ban.
+        This is separate from, and layered on top of, the small lightning-caused fires that made news partway through August. An early-morning storm on August 12 started eight fires in the park, including ones near Aspen Valley, Dewey Point, and Wawona Road; the largest reported was a couple of acres. None triggered evacuations or site closures. They did not cause the ban. They came from the same dry conditions that triggered the restrictions a few days earlier, and they help explain why the park is in no hurry to lift it.
       </p>
 
       <h2>What is actually banned</h2>
@@ -44,7 +44,7 @@ window.ARTICLE_BODIES["yosemite-fire-restrictions-explained"] = function Yosemit
       </p>
 
       <p>
-        <strong>Above 8,000 feet, in the wilderness, campfires are allowed in existing fire rings, up to 9,600 feet.</strong> That upper bound is not a fire-danger rule, it is a standing, year-round wilderness regulation: above 9,600 feet, wood is scarce and slow to regenerate at that elevation, so fires are prohibited there regardless of fire restrictions. The 8,000-to-9,600-foot band is the one place in the park right now where a genuine wood campfire, built in a ring that already exists, is legal. That is most of the high country above Tuolumne Meadows and along the Sierra crest, and almost none of the Valley, Wawona, or the areas most visitors camp in.
+        <strong>Above 8,000 feet, in the wilderness, campfires are allowed in existing fire rings, up to 9,600 feet.</strong> That upper bound is a standing, year-round wilderness regulation rather than a fire-danger rule: above 9,600 feet, wood is scarce and slow to regenerate at that elevation, so fires are prohibited there regardless of fire restrictions. The 8,000-to-9,600-foot band is the one place in the park right now where a wood campfire, built in a ring that already exists, is legal. That is most of the high country above Tuolumne Meadows and along the Sierra crest, and almost none of the Valley, Wawona, or the areas most visitors camp in.
       </p>
 
       <Placeholder
@@ -64,13 +64,13 @@ window.ARTICLE_BODIES["yosemite-fire-restrictions-explained"] = function Yosemit
       </p>
 
       <p>
-        Stage 1 restrictions do not adjust that evening window. They cancel it. Right now, in the Valley and at Hodgdon Meadow, there is no evening exception, because the wood-fire ban is total below 8,000 feet regardless of the hour. When the restrictions lift, the standing evening-only rule comes back into force for whatever remains of the summer season. Two different rules, two different reasons, and only one of them is active on any given week.
+        Stage 1 restrictions cancel that evening window. Right now, in the Valley and at Hodgdon Meadow, there is no evening exception, because the wood-fire ban is total below 8,000 feet regardless of the hour. When the restrictions lift, the standing evening-only rule comes back into force for whatever remains of the summer season.
       </p>
 
       <h2>Why the line sits at 8,000 feet, and why it moves</h2>
 
       <p>
-        Fuel moisture, the amount of water held in dead grass, brush, and duff, drops fastest at lower, hotter, drier elevations. The Valley floor and the foothill approaches dry out first and stay driest longest. The high country holds moisture later into the season, sees fewer visitors overall, and has a shorter, cooler fire season by nature. Drawing the restriction line by elevation targets the terrain that is actually dangerous rather than banning fires park-wide when only part of the park is at risk.
+        Fuel moisture, the amount of water held in dead grass, brush, and duff, drops fastest at lower, hotter, drier elevations. The Valley floor and the foothill approaches dry out first and stay driest longest. The high country holds moisture later into the season, sees fewer visitors overall, and has a shorter, cooler fire season by nature. Drawing the restriction line by elevation targets the most dangerous terrain instead of banning fires park-wide when only part of the park is at risk.
       </p>
 
       <p>
@@ -90,7 +90,7 @@ window.ARTICLE_BODIES["yosemite-fire-restrictions-explained"] = function Yosemit
       <h2>What this means for your specific trip</h2>
 
       <p>
-        <strong>Car camping in a Valley or Wawona campground.</strong> Bring a camp stove. The bundle of firewood you were going to buy at the gate is not usable right now except as fuel for nothing. Marshmallows are not off the table, they just need a canister stove instead of a fire, and a lot of campers do this anyway once they realize a stove is faster and does not leave you smelling like smoke in the tent.
+        <strong>Car camping in a Valley or Wawona campground.</strong> Bring a camp stove. Firewood bought at the gate is of no use right now. Marshmallows can be toasted over a canister stove, and a lot of campers do this anyway once they realize a stove is faster and does not leave you smelling like smoke in the tent.
       </p>
 
       <p>
@@ -108,7 +108,7 @@ window.ARTICLE_BODIES["yosemite-fire-restrictions-explained"] = function Yosemit
       <h2>This is a different question from whether your trip will be smoky</h2>
 
       <p>
-        The two get conflated constantly, and they are answered by different pages and solved by different packing lists. Fire restrictions are about ignition: whether you personally can start a flame. Smoke is about air quality: whether a fire burning somewhere else, in the park or upwind of it, is putting particulate into the air you are breathing. You can have a trip under full fire restrictions with perfectly clear skies, and you can have a trip with no restrictions at all where the Valley is gray from a fire three counties away. Neither condition predicts the other.
+        The two get confused often, but different pages answer them. Fire restrictions are about ignition: whether you personally can start a flame. Smoke is about air quality: whether a fire burning somewhere else, in the park or upwind of it, is putting particulate into the air you are breathing. You can have a trip under full fire restrictions with perfectly clear skies, and you can have a trip with no restrictions at all where the Valley is gray from a fire three counties away. Neither condition predicts the other.
       </p>
 
       <p>
@@ -118,7 +118,7 @@ window.ARTICLE_BODIES["yosemite-fire-restrictions-explained"] = function Yosemit
       <h2>Violating the ban is not a technicality</h2>
 
       <p>
-        Fire restriction violations are enforceable federal citations, and if an unattended or illegal fire escapes and requires a suppression response, the person responsible can be held liable for the cost of putting it out, which is a categorically larger number than any fine. Every fall, Yosemite's fire crews run planned burns specifically because prescribed fire keeps the forest from becoming the kind of fuel load that turns an escaped campfire into the summer's news story. A ranger who finds an unattended fire during Stage 1 restrictions is not treating it as a judgment call.
+        Fire restriction violations are enforceable federal citations, and if an unattended or illegal fire escapes and requires a suppression response, the person responsible can be held liable for the cost of putting it out, which can far exceed any fine. Every fall, Yosemite's fire crews run planned burns specifically because prescribed fire keeps the forest from becoming the kind of fuel load that turns an escaped campfire into the summer's news story. A ranger who finds an unattended fire during Stage 1 restrictions is not treating it as a judgment call.
       </p>
 
       <h2>When restrictions usually lift</h2>
@@ -128,13 +128,13 @@ window.ARTICLE_BODIES["yosemite-fire-restrictions-explained"] = function Yosemit
       </p>
 
       <p>
-        That overlaps almost exactly with the shoulder season this site already covers in detail. <a href="/articles/yosemite-in-fall">The fall guide</a> walks through the sequence of closures that follows Labor Day, and <a href="/articles/yosemite-during-smoke-season">the smoke season guide</a> covers the separate, related question of air quality when a fire is actually burning nearby. Fire restrictions, smoke, and the shoulder-season calendar are three different systems that happen to move on roughly the same clock, and a September or early-October trip can run into any combination of the three.
+        That overlaps almost exactly with the shoulder season this site already covers in detail. <a href="/articles/yosemite-in-fall">The fall guide</a> walks through the sequence of closures that follows Labor Day, and <a href="/articles/yosemite-during-smoke-season">the smoke season guide</a> covers the separate, related question of air quality when a fire is actually burning nearby. Fire restrictions, smoke, and the shoulder-season closures are separate but move on roughly the same schedule, and a September or early-October trip can run into any combination of the three.
       </p>
 
       <h2>The practical version</h2>
 
       <p>
-        Check the fire restrictions page in the days before you leave, not when you booked. Pack a camp stove regardless of what the restrictions say on the day you check, because conditions can tighten between booking and arrival. If a wood fire at 9 p.m. under the stars was the whole point of the trip for you, that experience is currently available only above 8,000 feet, in an existing ring, and it comes back everywhere else the week the park says the conditions allow it. Until then, the granite, the water, and the trails are exactly as available as they always are. Just cook on a stove.
+        Check the fire restrictions page in the days before you leave, not when you booked. Pack a camp stove regardless of what the restrictions say on the day you check, because conditions can tighten between booking and arrival. If a wood fire at 9 p.m. under the stars was the whole point of the trip for you, that experience is currently available only above 8,000 feet, in an existing ring, and it comes back everywhere else the week the park says the conditions allow it. Until then, cook on a stove.
       </p>
 
       <h3>Sources</h3>

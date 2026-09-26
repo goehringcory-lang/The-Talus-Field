@@ -6,27 +6,27 @@ window.ARTICLE_BODIES["tuolumne-meadows-in-a-day"] = function TuolumneMeadowsInA
   return (
     <>
       <p className="dropcap">
-        Most people meet Tuolumne Meadows through a windshield at forty miles an hour on their way to Mono Lake, and come away thinking it was scenery, not a destination. That is a real failure of itinerary design, not of the place. Yosemite Valley is a canyon: you stand at the bottom and look up. Tuolumne is the opposite country, a broad open meadow at around 8,600 feet with the river running through it and granite domes standing loose around the edges, and you are on top of it rather than under it. It is worth a day. This is how to spend one, no climbing required.
+        Most people meet Tuolumne Meadows through a windshield at forty miles an hour on their way to Mono Lake, and come away thinking it was scenery, not a destination. That is a failure of itinerary design. Yosemite Valley is a canyon: you stand at the bottom and look up. Tuolumne is the opposite country, a broad open meadow at around 8,600 feet with the river running through it and granite domes standing loose around the edges, and you are on top of it rather than under it. It is worth a day. This is how to spend one, no climbing required.
       </p>
 
       <h2>The drive, and the two hours nobody budgets</h2>
 
       <p>
-        Tuolumne Meadows sits on Tioga Road, Highway 120 through the park, roughly 55 to 60 miles from Yosemite Valley. Call it an hour and a half each way in no traffic, and closer to two in July. That is three to four hours of driving bracketing your day, which is the number that quietly ruins Tuolumne itineraries: people leave the Valley at ten, arrive at noon, eat, walk for an hour, and drive home having seen a meadow through a window.
+        Tuolumne Meadows sits on Tioga Road, Highway 120 through the park, roughly 55 to 60 miles from Yosemite Valley. Call it an hour and a half each way in no traffic, and closer to two in July. That is three to four hours of driving bracketing your day, and that is what ruins Tuolumne itineraries: people leave the Valley at ten, arrive at noon, eat, walk for an hour, and drive home having seen a meadow through a window.
       </p>
 
       <p>
-        Leave early. The drive is genuinely part of the day, climbing from 4,000 feet in the Valley to 8,600 at the meadows and to 9,945 at Tioga Pass, the highest highway pass in California. From the east side it is a much shorter approach: Lee Vining to Tioga Pass is about twelve miles, and the meadows are a few miles further in.
+        Leave early. The drive is part of the day, climbing from 4,000 feet in the Valley to 8,600 at the meadows and to 9,945 at Tioga Pass, the highest highway pass in California. From the east side it is a much shorter approach: Lee Vining to Tioga Pass is about twelve miles, and the meadows are a few miles further in.
       </p>
 
       <p>
-        Tioga Road opened on May 15 this year, unusually early, and it is open now. <a href="/articles/tioga-road-opening-weekend-2026">The opening-weekend piece</a> covers the early-season version of this day, which is a different animal, and <a href="/tioga-opening">the Tioga Road opening page</a> tracks when the road comes back each spring. One current caution: there is water distribution system construction near the visitor center, with one-way traffic control and short holds. Budget a few extra minutes and do not treat a queue as a closure. There is no vehicle reservation required to enter Yosemite in 2026.
+        Tioga Road opened on May 15 this year, unusually early, and it is open now. <a href="/articles/tioga-road-opening-weekend-2026">The opening-weekend piece</a> covers the early-season version of this day, which is a different trip, and <a href="/tioga-opening">the Tioga Road opening page</a> tracks when the road comes back each spring. One current caution: there is water distribution system construction near the visitor center, with one-way traffic control and short holds. Budget a few extra minutes and do not treat a queue as a closure. There is no vehicle reservation required to enter Yosemite in 2026.
       </p>
 
       <h2>What is actually open, which changes every year</h2>
 
       <p>
-        This is the section to read before you go, because the high country's services are seasonal, thin, and have been seriously disrupted for several years running. The failure this section exists to prevent is driving two hours to a building that is not open.
+        This is the section to read before you go, because the high country's services are seasonal, thin, and have been seriously disrupted for several years running. The point is to avoid driving two hours to a building that is not open.
       </p>
 
       <p>
@@ -38,7 +38,7 @@ window.ARTICLE_BODIES["tuolumne-meadows-in-a-day"] = function TuolumneMeadowsInA
       </p>
 
       <p>
-        Every one of those is a moving target. The honest instruction is to call the park's information line before you commit a day to a meal or a bed up there, and in the meantime to pack as though nothing is open: your own lunch, your own water, and more of both than you think. That is also the better way to do this day.
+        Every one of those is a moving target. Call the park's information line before you commit a day to a meal or a bed up there, and in the meantime pack as though nothing is open: your own lunch, your own water, and more of both than you think. That is also the better way to do this day.
       </p>
 
       <Placeholder
@@ -54,7 +54,7 @@ window.ARTICLE_BODIES["tuolumne-meadows-in-a-day"] = function TuolumneMeadowsInA
       <h2>The walks that are not hikes</h2>
 
       <p>
-        The high country's reputation is for big days: Clouds Rest, Mount Dana, Cathedral Lakes. That reputation is why families and non-hikers skip it, and it is wrong. Tuolumne has an unusually good supply of very short walks that deliver the whole landscape, because at 8,600 feet you are already standing in the view. Distances below are round trip.
+        The high country's reputation is for big days: Clouds Rest, Mount Dana, Cathedral Lakes. That reputation keeps families and non-hikers away, and it is misleading. Tuolumne has an unusually good supply of very short walks that deliver the whole landscape, because at 8,600 feet you are already standing in the view. Distances below are round trip.
       </p>
 
       <p>
@@ -66,7 +66,7 @@ window.ARTICLE_BODIES["tuolumne-meadows-in-a-day"] = function TuolumneMeadowsInA
       </p>
 
       <p>
-        <strong>Soda Springs and Parsons Memorial Lodge. A mile and a half, a hundred feet, an hour and a quarter.</strong> Flat, on an old road, from the Lembert Dome lot across the meadow. At the end there are springs bubbling up naturally carbonated out of the ground, which children find frankly unbelievable, and a stone Sierra Club lodge from 1915 where a good deal of the argument about what national parks are for was thrashed out.
+        <strong>Soda Springs and Parsons Memorial Lodge. A mile and a half, a hundred feet, an hour and a quarter.</strong> Flat, on an old road, from the Lembert Dome lot across the meadow. At the end there are springs bubbling up naturally carbonated out of the ground, which children tend not to believe, and a stone Sierra Club lodge from 1915 where a good deal of the argument about what national parks are for was thrashed out.
       </p>
 
       <p>
@@ -88,14 +88,14 @@ window.ARTICLE_BODIES["tuolumne-meadows-in-a-day"] = function TuolumneMeadowsInA
       </p>
 
       <p>
-        <strong>Dog Lake</strong> shares its trailhead: also two and eight tenths of a mile, 650 feet, one honest climb and then a shallow, unusually warm lake with Mount Dana and Mount Gibbs on the skyline. It is the most swimmable water in the high country, which is a low bar cleared convincingly.
+        <strong>Dog Lake</strong> shares its trailhead: also two and eight tenths of a mile, 650 feet, one steady climb and then a shallow, unusually warm lake with Mount Dana and Mount Gibbs on the skyline. It is the most swimmable water in the high country.
       </p>
 
       <p>
         <strong>Gaylor Lakes</strong>, right at the Tioga Pass entrance, is two and six tenths of a mile and 500 feet, and starts at almost 10,000 feet, so it feels harder than it reads. <strong>Elizabeth Lake</strong> is four and eight tenths of a mile and 1,000 feet from the campground. And <a href="/articles/cathedral-lakes-day-hike">Cathedral Lakes</a>, the high country's most famous day hike, is a genuine 11 miles: a full day on its own, not something to bolt onto this one.
       </p>
 
-      <blockquote>The mistake is not choosing the wrong hike. It is choosing a hike at all when what the day needed was a meadow, a lunch, and three hours of not driving.</blockquote>
+      <blockquote>The common mistake is choosing a hike when what the day needed was a meadow, a lunch, and three hours of not driving.</blockquote>
 
       <h2>The altitude is real, and it is the reason your day went badly</h2>
 
@@ -104,7 +104,7 @@ window.ARTICLE_BODIES["tuolumne-meadows-in-a-day"] = function TuolumneMeadowsInA
       </p>
 
       <p>
-        The mitigations are unglamorous and they work: drink considerably more water than you want to, eat more than you planned, go slower than feels natural on the first walk of the day, and treat the first hour up there as an adjustment rather than an achievement. If a headache does not respond to water, food, and rest, the treatment is elevation loss, and you have a car and a road that descends 4,000 feet. Use it rather than pushing on.
+        The mitigations are simple: drink considerably more water than you want to, eat more than you planned, go slower than feels natural on the first walk of the day, and treat the first hour up there as an adjustment rather than an achievement. If a headache does not respond to water, food, and rest, the treatment is elevation loss, and you have a car and a road that descends 4,000 feet. Use it rather than pushing on.
       </p>
 
       <h2>The afternoon storm, which ends the day earlier than you want</h2>
@@ -131,7 +131,7 @@ window.ARTICLE_BODIES["tuolumne-meadows-in-a-day"] = function TuolumneMeadowsInA
 
       <ol>
         <li><strong>Leave the Valley by seven.</strong> Fill the tank at Crane Flat as you turn onto Tioga Road.</li>
-        <li><strong>Tuolumne Grove on the way, if you have the appetite.</strong> Two and a half miles and 500 feet down among two dozen giant sequoias, with the entire climb on the return. Skip it if the day is already full; it is a real hike wearing a roadside stop's clothes.</li>
+        <li><strong>Tuolumne Grove on the way, if you have the appetite.</strong> Two and a half miles and 500 feet down among two dozen giant sequoias, with the entire climb on the return. Skip it if the day is already full; it is a real hike despite the roadside trailhead.</li>
         <li><strong>Olmsted Point, mid-morning.</strong> Half a mile, and the moment the scale of the place lands.</li>
         <li><strong>Pothole Dome, late morning.</strong> Exposed granite, done before the weather thinks about it.</li>
         <li><strong>Lunch in the meadow or at Tenaya Lake.</strong> Yours, from the car, because the alternative may not be open.</li>
@@ -148,13 +148,13 @@ window.ARTICLE_BODIES["tuolumne-meadows-in-a-day"] = function TuolumneMeadowsInA
         <li>Pack all food and water. Seasonal services up there cannot be assumed and several are still disrupted.</li>
         <li>The best short walks are Olmsted Point (half a mile), Pothole Dome (one mile), and Soda Springs (a mile and a half). None require being a hiker.</li>
         <li>Tenaya Lake is the family stop: sandy beach, flat loop, cold water.</li>
-        <li>Do exposed granite in the morning. Afternoon thunderstorms are the season's normal behavior, not bad luck.</li>
+        <li>Do exposed granite in the morning. Afternoon thunderstorms are the season's normal behavior.</li>
         <li>The altitude is 8,600 feet. Drink more, eat more, go slower, and descend if a headache will not shift.</li>
         <li>Cathedral Lakes is a separate day. Do not staple it onto this one.</li>
       </ol>
 
       <p>
-        The reason to give Tuolumne a whole day rather than a scenic hour is that it is the only part of Yosemite where the landscape lets you stand still in the middle of it. The Valley is a place you look at. The meadows are a place you are in, and being in it takes longer than driving through it, which is the entire argument.
+        The reason to give Tuolumne a whole day rather than a scenic hour is that it is the only part of Yosemite where the landscape lets you stand still in the middle of it. In the Valley you look up at the landscape. In the meadows you are standing in it, and that takes longer than driving through.
       </p>
 
       <h2>Sources</h2>

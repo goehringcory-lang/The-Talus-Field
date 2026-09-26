@@ -16,17 +16,17 @@ window.ARTICLE_BODIES["what-is-a-talus-field"] = function WhatIsATalusFieldBody(
       </p>
 
       <p>
-        The defining feature is the angle. Loose angular rock piles up until it reaches the steepest slope it can hold without sliding, and then it stops. That limit is the <strong>angle of repose</strong>, and for Sierra granite blocks it lands somewhere between about 30 and 35 degrees. Every talus field you have ever seen is sitting at roughly the same angle, which is why they all look related from across a valley. The mountain is not choosing that shape. Friction is.
+        The defining feature is the angle. Loose angular rock piles up until it reaches the steepest slope it can hold without sliding, and then it stops. That limit is the <strong>angle of repose</strong>, and for Sierra granite blocks it lands somewhere between about 30 and 35 degrees. Every talus field you have ever seen is sitting at roughly the same angle, which is why they all look related from across a valley. Friction sets that shape.
       </p>
 
       <p>
-        The blocks are angular rather than rounded because they have not travelled far or been worked by water. A river cobble is smooth because it has been tumbled for miles. A talus block fell, hit, and stopped. The sharp edges are the tell that this rock is close to home.
+        The blocks are angular rather than rounded because they have not travelled far or been worked by water. A river cobble is smooth because it has been tumbled for miles. A talus block fell, hit, and stopped. The sharp edges show the rock has not moved far from where it broke off.
       </p>
 
       <h2>How Yosemite builds them</h2>
 
       <p>
-        Yosemite makes talus faster than most landscapes, because it has more cliff than most landscapes. The Valley's walls were steepened by glaciers that have since gone, and steep granite unsupported by ice is a wall waiting to shed.
+        Yosemite makes talus faster than most landscapes, because it has more cliff than most landscapes. The Valley's walls were steepened by glaciers that have since gone, and steep granite without ice to support it sheds rock.
       </p>
 
       <p>

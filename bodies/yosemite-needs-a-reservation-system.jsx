@@ -24,7 +24,7 @@ window.ARTICLE_BODIES["yosemite-needs-a-reservation-system"] = function Yosemite
       </blockquote>
 
       <p>
-        Read it again. There are two mandates in that sentence: conserve the resource, and provide for enjoyment. Not one or the other. Both. And the second mandate comes with a condition: enjoyment must happen in a way that leaves the park unimpaired for the people who come after us.
+        There are two mandates in that sentence: conserve the resource, and provide for enjoyment. The second mandate comes with a condition: enjoyment must happen in a way that leaves the park unimpaired for the people who come after us.
       </p>
 
       <p>
@@ -38,7 +38,7 @@ window.ARTICLE_BODIES["yosemite-needs-a-reservation-system"] = function Yosemite
       </p>
 
       <p>
-        This is not an exaggeration and it is not an isolated incident. Since the reservation system was dropped for the 2026 season, Yosemite has recorded more than 836,000 visits through late May, roughly 100,000 more than the same period last year. March 2026 visitation jumped nearly 45 percent over the previous year. On peak days throughout the spring, Valley parking lots have been filling by 7 a.m.
+        It was not an isolated incident. Since the reservation system was dropped for the 2026 season, Yosemite has recorded more than 836,000 visits through late May, roughly 100,000 more than the same period last year. March 2026 visitation jumped nearly 45 percent over the previous year. On peak days throughout the spring, Valley parking lots have been filling by 7 a.m.
       </p>
 
       <p>
@@ -50,13 +50,13 @@ window.ARTICLE_BODIES["yosemite-needs-a-reservation-system"] = function Yosemite
       </p>
 
       <p>
-        The reservation system, which Yosemite ran in various forms from 2020 through 2025 (every year except 2023), was not perfect. It required advance planning. It frustrated some spontaneous visitors. But it did something essential: it spread the demand across the day so that the people who showed up could actually use the park. Under reservations, the Valley felt, for the first time in decades, like a place where you could park your car, walk to a trailhead, and breathe. That was not a minor improvement. That was the park working the way it was designed to work.
+        The reservation system, which Yosemite ran in various forms from 2020 through 2025 (every year except 2023), was not perfect. It required advance planning. It frustrated some spontaneous visitors. But it did something essential: it spread the demand across the day so that the people who showed up could actually use the park. Under reservations, the Valley felt, for the first time in decades, like a place where you could park your car, walk to a trailhead, and breathe. That was the park working as designed.
       </p>
 
       <h2>Failure two: the resource is being damaged</h2>
 
       <p>
-        Memorial Day weekend 2026 was not just inconvenient. It was destructive.
+        Memorial Day weekend 2026 was destructive.
       </p>
 
       <p>
@@ -64,11 +64,11 @@ window.ARTICLE_BODIES["yosemite-needs-a-reservation-system"] = function Yosemite
       </p>
 
       <p>
-        Yosemite's meadows are not grass fields. They are complex ecosystems, home to rare sedges, native grasses, and invertebrate communities that have evolved over millennia in the Sierra's specific hydrology. A car driven onto a wet meadow compresses the soil, destroys root systems, and creates channels that alter water flow. The damage from a single vehicle can take years to recover. Multiply that by dozens of cars across a holiday weekend, and the cost to the resource is not theoretical. It is visible.
+        Yosemite's meadows are complex ecosystems, home to rare sedges, native grasses, and invertebrate communities that have evolved over millennia in the Sierra's specific hydrology. A car driven onto a wet meadow compresses the soil, destroys root systems, and creates channels that alter water flow. The damage from a single vehicle can take years to recover. Multiply that by dozens of cars across a holiday weekend, and the cost to the resource is visible.
       </p>
 
       <p>
-        This is the second failure. The Organic Act does not say "conserve the scenery unless the parking lot is full." It says conserve. Period. And the condition on enjoyment, that it must leave the park "unimpaired for the enjoyment of future generations," means that when overcrowding causes direct, physical damage to the resource, the park is violating its own founding mandate. Cars on meadows is not a parking problem. It is a conservation failure.
+        This is the second failure. The Organic Act does not say "conserve the scenery unless the parking lot is full." It says conserve. And the condition on enjoyment, that it must leave the park "unimpaired for the enjoyment of future generations," means that when overcrowding causes direct, physical damage to the resource, the park is violating its own founding mandate. Cars on meadows are a conservation failure.
       </p>
 
       <h2>The data we already had</h2>
@@ -96,7 +96,7 @@ window.ARTICLE_BODIES["yosemite-needs-a-reservation-system"] = function Yosemite
       </p>
 
       <p>
-        That analysis is technically true and practically meaningless. Nobody was arguing that Tuesday mornings in April needed reservations. The problem has always been weekends from May through September, and especially holiday weekends. A season-wide evaluation that averages peak and off-peak days together will always dilute the severity of the peaks. It is an analytical choice that obscures the very problem it should be addressing.
+        That analysis is accurate and beside the point. Nobody was arguing that Tuesday mornings in April needed reservations. The problem has always been weekends from May through September, and especially holiday weekends. A season-wide evaluation that averages peak and off-peak days together will always dilute the severity of the peaks. It is an analytical choice that obscures the very problem it should be addressing.
       </p>
 
       <p>
@@ -104,7 +104,7 @@ window.ARTICLE_BODIES["yosemite-needs-a-reservation-system"] = function Yosemite
       </p>
 
       <p>
-        Superintendent McPadden said the park would rely on "real-time traffic monitoring" and promotion of areas outside the Valley. Those are fine supplemental tools. They are not substitutes for managing the number of vehicles that enter the park on a given day. You cannot real-time-monitor your way out of a parking lot that filled three hours ago.
+        Superintendent McPadden said the park would rely on "real-time traffic monitoring" and promotion of areas outside the Valley. Those are useful supplements, but they do not substitute for managing the number of vehicles that enter the park on a given day. Monitoring does nothing for a parking lot that filled three hours ago.
       </p>
 
       <h2>Why this matters beyond Yosemite</h2>
@@ -114,15 +114,15 @@ window.ARTICLE_BODIES["yosemite-needs-a-reservation-system"] = function Yosemite
       </p>
 
       <p>
-        But there is a limit to what planning can fix. When the infrastructure cannot support the number of people who show up, no amount of advice about arriving before sunrise will solve the problem. The family that got turned away, the couple that spent ninety minutes in an entrance line, the solo hiker who watched cars drive onto a meadow: those people did not have a good experience. Some of them will not come back. And a person who drives away from a national park angry is a person who stops caring about national parks.
+        But there is a limit to what planning can fix. When the infrastructure cannot support the number of people who show up, no amount of advice about arriving before sunrise will solve the problem. The family that got turned away, the couple that spent ninety minutes in an entrance line, the solo hiker who watched cars drive onto a meadow: those people did not have a good experience. Some of them will not come back. A person who drives away angry may stop caring about national parks.
       </p>
 
       <p>
-        The reservation system was imperfect. It needed refinement, not elimination. Dynamic pricing, better shoulder-season incentives, improved cancellation policies, expanded public transit: all of these were available paths forward. Dropping the system entirely was the wrong call.
+        The reservation system was imperfect. It needed refinement. Dynamic pricing, better shoulder-season incentives, improved cancellation policies, expanded public transit: all of these were available paths forward. Dropping the system entirely was the wrong call.
       </p>
 
       <p>
-        The data supports reservations. The staff supports reservations. The visitors, when surveyed at parks that had them, overwhelmingly support reservations. The Organic Act demands that enjoyment and conservation happen together. Right now, Yosemite is delivering neither.
+        The data, the staff, and the visitors surveyed at parks that had them all support reservations. The Organic Act demands that enjoyment and conservation happen together. Right now, Yosemite is delivering neither.
       </p>
 
       <p>

@@ -16,18 +16,18 @@ window.ARTICLE_BODIES["tioga-road-opening-weekend-2026"] = function TiogaRoadOpe
       <h2>What's open on Tioga Road opening weekend</h2>
 
       <p>
-        There is a difference between "the road is open" and "Tuolumne Meadows is open for the season," and opening weekend lives entirely in the first one. On Friday the pavement is plowed, but most of what you might picture, the store, the grill, the lodge, the campground services, the wilderness center staff. All of that comes online over the following weeks.
+        There is a difference between "the road is open" and "Tuolumne Meadows is open for the season," and opening weekend lives entirely in the first one. On Friday the pavement is plowed, but the store, the grill, the lodge, the campground services and the wilderness center staff come online over the following weeks.
       </p>
 
       <p>
-        What you get on opening weekend is the road itself. A ribbon of asphalt through twelve-foot snow walls, glassy half-frozen lakes, snowmelt creeks running hard, and a high country still pulling itself out of winter. That is a spectacular thing to drive through. It is also a spectacular thing to be unprepared for.
+        What you get on opening weekend is the road itself: pavement between twelve-foot snow walls, half-frozen lakes, and snowmelt creeks running hard. It is a good drive and a bad one to be unprepared for.
       </p>
 
       <p>
         Snow conditions in mid-May still include big drifts at Olmsted Point, ice along Tenaya Lake's shaded shore, and lingering snowpack on most trails above 8,500 feet.
       </p>
 
-      <p>Here is the honest breakdown as it stood on opening weekend, with the dates the rest of Tuolumne came online this year.</p>
+      <p>Here is what was open on opening weekend, with the dates the rest of Tuolumne came online this year.</p>
 
       <h3>What's open</h3>
 
@@ -66,20 +66,20 @@ window.ARTICLE_BODIES["tioga-road-opening-weekend-2026"] = function TiogaRoadOpe
       </p>
 
       <p>
-        <strong>Arrive early.</strong> Before 8 a.m. is the target if you want to beat the congestion and the full parking lots, especially on opening weekend. Sunrise at Olmsted is one of the best photographs you will ever take in Yosemite, and you will share it with almost no one.
+        <strong>Arrive early.</strong> Before 8 a.m. is the target if you want to beat the congestion and the full parking lots, especially on opening weekend. Sunrise at Olmsted is a strong photograph, and you will share it with almost no one.
       </p>
 
       <h2>The best Tioga Road stops and short hikes for opening weekend</h2>
 
-      <p>Here is how I would build the day, and how I do build the day, every single year that the road opens.</p>
+      <p>Here is how I build the day every year the road opens.</p>
 
       <h3>Stop one: Olmsted Point</h3>
 
       <p>
-        You can see Half Dome from a lot of angles in Yosemite, but only from Olmsted Point do you see its back side, the broad northern face, with Clouds Rest rising to its left and Tenaya Canyon dropping away below. The short nature trail south of the parking lot is usually walkable on opening weekend; the slickrock catches the sun and dries fast, even with snow patches in the shaded hollows. The glacial erratics scattered across the polished granite are doing a lot of teaching, if you let them. Each one was carried here by an ice sheet and left when the ice melted out from under it.
+        You can see Half Dome from a lot of angles in Yosemite, but only from Olmsted Point do you see its back side, the broad northern face, with Clouds Rest rising to its left and Tenaya Canyon dropping away below. The short nature trail south of the parking lot is usually walkable on opening weekend; the slickrock catches the sun and dries fast, even with snow patches in the shaded hollows. The boulders scattered across the polished granite are glacial erratics. Each one was carried here by an ice sheet and left when the ice melted out from under it.
       </p>
 
-      <p>Wear shoes with grip. Bring sunglasses. Snow glare at altitude is fierce.</p>
+      <p>Wear shoes with grip. Bring sunglasses. Snow glare at altitude is intense.</p>
 
       <h3>Stop two: Tenaya Lake</h3>
 
@@ -91,12 +91,12 @@ window.ARTICLE_BODIES["tioga-road-opening-weekend-2026"] = function TiogaRoadOpe
         The full Tenaya Lake Loop Trail crosses the inlet on <a href="https://yosemite.org/projects/tenaya-lake-loop-trail-2021/" target="_blank" rel="noopener noreferrer">a boardwalk that Yosemite Conservancy donors helped fund</a> and then traces the south shore through forest. That south shore holds snow and mud longer than anywhere else in the area. If you want to attempt the full loop around the lake, bring waterproof boots, expect slush, and stay on the trail. The <a href="https://yosemite.org/projects/tenaya-lake-loop-trail-revegetation-2023/" target="_blank" rel="noopener noreferrer">revegetation work along the loop</a> is fragile, and meadow soils take years to recover from a single boot print in the wrong place.
       </p>
 
-      <p>For most people, an unhurried hour along the east beach is exactly the right move.</p>
+      <p>For most people, an hour along the east beach is enough.</p>
 
       <h3>Stop three: a short wander in Tuolumne Meadows</h3>
 
       <p>
-        A few more miles east, the road drops into the great open of Tuolumne. The meadow itself will be a patchwork of last year's brown grass, the first hints of green, sheets of meltwater, and lingering drifts. Do not walk across the meadow. Pull off at one of the half-dozen designated pullouts, stand at the edge, and let the Cathedral Range do the work.
+        A few more miles east, the road drops into Tuolumne Meadows. The meadow itself will be a patchwork of last year's brown grass, the first hints of green, sheets of meltwater, and lingering drifts. Do not walk across the meadow. Pull off at one of the half-dozen designated pullouts and look from the edge.
       </p>
 
       <p>If you want to stretch your legs, two short options are reliable on opening weekend:</p>
@@ -113,23 +113,23 @@ window.ARTICLE_BODIES["tioga-road-opening-weekend-2026"] = function TiogaRoadOpe
       <h2>Driving Tioga Pass east to Lee Vining and Mono Lake</h2>
 
       <p>
-        This is the part that makes opening weekend a full trip rather than a day in the park, and the pass is the reason <a href="/articles/yosemite-from-los-angeles">the Highway 395 route from Los Angeles</a> exists at all for the summer months. Once you cross Tioga Pass at 9,945 feet, the road drops more than 3,000 feet in twelve miles down to the Mono Basin, and the world changes underneath you. Granite gives way to volcanic landscape. The Sierra wall stands behind you, the Great Basin opens ahead, and Mono Lake spreads out below with its white tufa towers and a summer population of up to two million migratory birds.
+        This is the part that makes opening weekend a full trip rather than a day in the park, and the pass is the reason <a href="/articles/yosemite-from-los-angeles">the Highway 395 route from Los Angeles</a> exists at all for the summer months. Once you cross Tioga Pass at 9,945 feet, the road drops more than 3,000 feet in twelve miles down to the Mono Basin, and granite gives way to volcanic landscape. The Sierra wall stands behind you, the Great Basin opens ahead, and Mono Lake spreads out below with its white tufa towers and a summer population of up to two million migratory birds.
       </p>
 
       <p>
-        Three pullouts are worth the brake-tap on the way down. <strong>Tioga Lake</strong> just below the pass, where Mount Dana sits in the reflection. <strong>Ellery Lake</strong> a mile farther. And the <strong>Mono Lake Vista Point</strong> before the canyon drops, where the Mono Basin opens up for the first time.
+        Three pullouts are worth a stop on the way down. <strong>Tioga Lake</strong> just below the pass, where Mount Dana sits in the reflection. <strong>Ellery Lake</strong> a mile farther. And the <strong>Mono Lake Vista Point</strong> before the canyon drops, where the Mono Basin opens up for the first time.
       </p>
 
       <h3>Where to eat in Lee Vining</h3>
 
-      <p>Lee Vining has more lore than it has dining options, and not all of the lore is still earned.</p>
+      <p>Lee Vining has few dining options, and the most famous one has slipped.</p>
 
       <p>
-        <strong>Whoa Nellie Deli</strong> at the Tioga Gas Mart is the famous one. The fish tacos built its reputation in the late 1990s, and they are still on the menu. The original chef, Matt Toomey, left in 2012 to open his own place in Mammoth, and over the years the deli has slipped a little. Portions are still generous, the view of Mono Lake from the picnic tables is still wonderful, and the summer live music, Thursday evenings and Sunday afternoons in 2026, is still a great scene. But prices have crept up, the food is more uneven than it used to be, and the "world famous" billing is doing a lot of heavy lifting now. Go for the experience and the view. Order the tacos and the fries. Manage your expectations.
+        <strong>Whoa Nellie Deli</strong> at the Tioga Gas Mart is the famous one. The fish tacos built its reputation in the late 1990s, and they are still on the menu. The original chef, Matt Toomey, left in 2012 to open his own place in Mammoth, and over the years the deli has slipped a little. Portions are still generous, the view of Mono Lake from the picnic tables is still wonderful, and the summer live music, Thursday evenings and Sunday afternoons in 2026, is still a great scene. But prices have crept up, the food is more uneven than it used to be, and the "world famous" billing oversells it now. Go for the experience and the view. Order the tacos and the fries. Manage your expectations.
       </p>
 
       <p>
-        <strong>Latte Da Coffee Café</strong> at the El Mono Motel, just down Highway 395 in town, is what I find myself recommending more often these days. It is small, and the coffee is organic. There is a garden out back with a few tables, and the pace is exactly the opposite of the Mobil-station bustle. Pastries, espresso, an unhurried breakfast. The El Mono Motel itself is one of those quirky eleven-room places that the eastern Sierra still has a few of, every room decorated differently, and the café is folded right into it. If you are doing a full day on the road, Latte Da in the morning and a Whoa Nellie picnic in the afternoon is a nice way to honor both eras.
+        <strong>Latte Da Coffee Café</strong> at the El Mono Motel, just down Highway 395 in town, is what I find myself recommending more often these days. It is small, and the coffee is organic. There is a garden out back with a few tables, and it is quieter than the Mobil station. Pastries, espresso, an unhurried breakfast. The El Mono Motel itself is one of those quirky eleven-room places that the eastern Sierra still has a few of, every room decorated differently, and the café is folded right into it. If you are doing a full day on the road, Latte Da in the morning and a Whoa Nellie picnic in the afternoon covers both.
       </p>
 
       <p>
@@ -139,11 +139,11 @@ window.ARTICLE_BODIES["tioga-road-opening-weekend-2026"] = function TiogaRoadOpe
       <h3>Make a day of Mono Lake</h3>
 
       <p>
-        If you have a few hours left in the afternoon, drive south of Lee Vining on Highway 395 to <strong>South Tufa</strong> at the Mono Lake Tufa State Natural Reserve (south on 395, then east on Highway 120, about ten miles all told). Three dollars per person at the Forest Service fee station, and your America the Beautiful pass covers it. A boardwalk and a one-mile loop carry you through a forest of calcium carbonate towers that grew underwater at freshwater springs, then emerged when the lake dropped after Los Angeles began diverting the basin's streams in 1941. The story of how the lake was saved is one of the great American conservation stories, and the <strong>Mono Lake Committee Information Center and Bookstore</strong> in downtown Lee Vining (open 9 a.m. to 5 p.m. daily) is the right place to learn it. Their HD film, "The Mono Lake Story," is the primer.
+        If you have a few hours left in the afternoon, drive south of Lee Vining on Highway 395 to <strong>South Tufa</strong> at the Mono Lake Tufa State Natural Reserve (south on 395, then east on Highway 120, about ten miles all told). Three dollars per person at the Forest Service fee station, and your America the Beautiful pass covers it. A boardwalk and a one-mile loop carry you through a forest of calcium carbonate towers that grew underwater at freshwater springs, then emerged when the lake dropped after Los Angeles began diverting the basin's streams in 1941. The <strong>Mono Lake Committee Information Center and Bookstore</strong> in downtown Lee Vining (open 9 a.m. to 5 p.m. daily) is the place to learn how the lake was saved. Their HD film, "The Mono Lake Story," is the primer.
       </p>
 
       <p>
-        In mid-May the lake is filling with nesting California gulls (the eared grebes and phalaropes that make Mono Lake famous arrive later, in summer and fall). By August the shoreline is carpeted in dark, shifting bands of brine flies. If you have never seen a million birds eating a trillion flies, it is something to come back for.
+        In mid-May the lake is filling with nesting California gulls (the eared grebes and phalaropes that make Mono Lake famous arrive later, in summer and fall). By August the shoreline is carpeted in dark, shifting bands of brine flies. The birds come to eat them.
       </p>
 
       <h2>What to pack for Tioga Road in May</h2>
@@ -167,7 +167,7 @@ window.ARTICLE_BODIES["tioga-road-opening-weekend-2026"] = function TiogaRoadOpe
       <h2>A note on visiting responsibly in the early season</h2>
 
       <p>
-        Early-season Tioga Road is the most fragile version of Tioga Road. The meadow soils are saturated. The vegetation is just emerging. The trails are soft. A single off-trail boot print in the wrong place in May can leave a scar that will still be visible in August.
+        In early season the meadow soils are saturated, the vegetation is just emerging, and the trails are soft. A single off-trail boot print in the wrong place in May can leave a scar that will still be visible in August.
       </p>
 
       <p>
@@ -175,7 +175,7 @@ window.ARTICLE_BODIES["tioga-road-opening-weekend-2026"] = function TiogaRoadOpe
       </p>
 
       <p>
-        The whole reason the high country is worth visiting is that someone in 1864, and 1890, and 1916, and 1984, and every year since, decided it was worth protecting. Treat it like the inheritance it is.
+        The high country is protected because of decisions made in 1864, 1890, 1916 and 1984. Leave it as you found it.
       </p>
 
       <h2>Tioga Road 2026: frequently asked questions</h2>
@@ -211,7 +211,7 @@ window.ARTICLE_BODIES["tioga-road-opening-weekend-2026"] = function TiogaRoadOpe
 
       <h3>How long does it take to drive Tioga Road?</h3>
       <p>
-        Tioga Road runs 39 miles from Crane Flat to Tuolumne Meadows and about 47 to the Tioga Pass entrance station. Allow roughly 90 minutes one-way without stops, or a full day with Olmsted Point, Tenaya Lake, and Tuolumne Meadows. With Lee Vining and Mono Lake added on, plan a long, perfect day.
+        Tioga Road runs 39 miles from Crane Flat to Tuolumne Meadows and about 47 to the Tioga Pass entrance station. Allow roughly 90 minutes one-way without stops, or a full day with Olmsted Point, Tenaya Lake, and Tuolumne Meadows. With Lee Vining and Mono Lake added on, plan a long day.
       </p>
 
       <p style={{ marginTop: 32, fontStyle: "italic", color: "var(--ink-3)" }}>

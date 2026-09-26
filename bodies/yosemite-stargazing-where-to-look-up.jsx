@@ -54,7 +54,7 @@ window.ARTICLE_BODIES["yosemite-stargazing-where-to-look-up"] = function Yosemit
       </p>
 
       <p>
-        If your goal is the core, plan for <strong>mid-July through mid-August on a new moon week</strong>. Plan for any other dark sky, and almost any clear, moonless Yosemite night will deliver something extraordinary.
+        If your goal is the core, plan for <strong>mid-July through mid-August on a new moon week</strong>. Plan for any other dark sky, and almost any clear, moonless Yosemite night will show far more than a city sky.
       </p>
 
       <h2>Where to go: by accessibility</h2>
@@ -98,7 +98,7 @@ window.ARTICLE_BODIES["yosemite-stargazing-where-to-look-up"] = function Yosemit
       </p>
 
       <p>
-        <strong>Taft Point.</strong> Same trailhead. Different direction. The cliff edge offers a dramatic foreground for night-sky photography (the Valley below, Cathedral Rocks on the far wall). Bring a friend; the cliff at night is genuinely dangerous if you're not paying attention.
+        <strong>Taft Point.</strong> Same trailhead. Different direction. The cliff edge offers a dramatic foreground for night-sky photography (the Valley below, Cathedral Rocks on the far wall). Bring a friend; the cliff at night is dangerous if you're not paying attention.
       </p>
 
       <p>
@@ -121,7 +121,7 @@ window.ARTICLE_BODIES["yosemite-stargazing-where-to-look-up"] = function Yosemit
         <strong>Glen Aulin and beyond.</strong> The Tuolumne River canyon, especially in the Glen Aulin to Waterwheel Falls area, is dramatically dark and far from any light source. Wilderness camping required.
       </p>
 
-      <p>These spots reward the effort. They require permits for overnight stays.</p>
+      <p>These spots require permits for overnight stays.</p>
 
       <h2>The Star Parties</h2>
 

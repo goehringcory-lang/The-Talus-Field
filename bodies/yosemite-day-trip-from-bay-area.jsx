@@ -6,11 +6,11 @@ window.ARTICLE_BODIES["yosemite-day-trip-from-bay-area"] = function YosemiteDayT
   return (
     <>
       <p className="dropcap">
-        It is a bit under two hundred miles from San Francisco to Yosemite Valley. On a map that is nothing: a morning's drive, an easy out-and-back for a Saturday, the sort of distance people cover for a wedding without thinking about it. Every summer a great many people look at that map and reach the obvious conclusion, and a large fraction of them arrive in the Valley at half past eleven, spend four hours in a place that deserves four days, and drive home in the dark wondering why the most famous landscape in California felt like a parking lot with a waterfall in it.
+        It is a bit under two hundred miles from San Francisco to Yosemite Valley. On a map that looks like an easy out-and-back for a Saturday. Every summer a great many people look at that map and reach the obvious conclusion, and a large fraction of them arrive in the Valley at half past eleven, spend four hours in a place that deserves four days, and drive home in the dark wondering why the trip felt like a day in a parking lot.
       </p>
 
       <p>
-        The day trip is not impossible. I have done it, and I have watched thousands of people do it, and some of them have a genuinely good day. But it works on a narrow set of conditions, and almost everything written about it quietly omits the arithmetic. So here is the arithmetic first, and then, if you are going anyway, how to spend the hours you actually get.
+        The day trip is not impossible. I have done it, and I have watched thousands of people do it, and some of them have a good day. But it works on a narrow set of conditions, and most of what is written about it omits the arithmetic. So here is the arithmetic first, and then, if you are going anyway, how to spend the hours you actually get.
       </p>
 
       <h2>The number that decides everything</h2>
@@ -24,11 +24,11 @@ window.ARTICLE_BODIES["yosemite-day-trip-from-bay-area"] = function YosemiteDayT
       </p>
 
       <p>
-        Now set that against daylight, because daylight is the actual budget.
+        Set that against daylight, which is the real budget.
       </p>
 
       <p>
-        Around the summer solstice, Yosemite Valley gets close to fifteen hours of it, with sunrise near half past five and sunset around twenty past eight. Leave the Bay at five in the morning and you are on the Valley floor by nine or nine thirty; leave the Valley at five in the afternoon and you are home around ten at night. That is a seventeen-hour day for seven or eight hours in the park, and it is a real, workable, tiring day.
+        Around the summer solstice, Yosemite Valley gets close to fifteen hours of it, with sunrise near half past five and sunset around twenty past eight. Leave the Bay at five in the morning and you are on the Valley floor by nine or nine thirty; leave the Valley at five in the afternoon and you are home around ten at night. That is a seventeen-hour day for seven or eight hours in the park, and it is a workable, tiring day.
       </p>
 
       <p>
@@ -44,7 +44,7 @@ window.ARTICLE_BODIES["yosemite-day-trip-from-bay-area"] = function YosemiteDayT
       </p>
 
       <p>
-        <strong>Highway 120, through Groveland to the Big Oak Flat entrance,</strong> is the shorter line from San Francisco and San Jose and the natural pick from roughly May into October, especially if any part of your day involves the high country. The climb out of the Central Valley is the Priest Grade, and it comes in two versions: the old one, which is short, steep, narrow, and closed to trailers and heavy vehicles, and the new one, which is longer, gentler, and full of curves. Take the new one. The eleven minutes are not worth the conversation you will have with your passengers.
+        <strong>Highway 120, through Groveland to the Big Oak Flat entrance,</strong> is the shorter line from San Francisco and San Jose and the natural pick from roughly May into October, especially if any part of your day involves the high country. The climb out of the Central Valley is the Priest Grade, and it comes in two versions: the old one, which is short, steep, narrow, and closed to trailers and heavy vehicles, and the new one, which is longer, gentler, and full of curves. Take the new one. The old one saves about eleven minutes.
       </p>
 
       <p>
@@ -52,25 +52,25 @@ window.ARTICLE_BODIES["yosemite-day-trip-from-bay-area"] = function YosemiteDayT
       </p>
 
       <p>
-        From roughly November into March, chain control can go up on any approach to this park. Carrying a set that fits your car is required inside a control area regardless of what you drive; whether you have to actually fit them depends on the level, and under the lighter levels an all-wheel-drive vehicle on snow tires is usually waved through. Under the strictest level everybody chains up. Either way the set has to be in the car, and this is not a bluff: cars do get turned around at the checkpoints. Buy chains before you leave the Bay, where they are cheaper than anywhere within a hundred miles of the park, and put them on once in your driveway so the first time is not in a storm on a shoulder.
+        From roughly November into March, chain control can go up on any approach to this park. Carrying a set that fits your car is required inside a control area regardless of what you drive; whether you have to actually fit them depends on the level, and under the lighter levels an all-wheel-drive vehicle on snow tires is usually waved through. Under the strictest level everybody chains up. Either way the set has to be in the car: cars do get turned around at the checkpoints. Buy chains before you leave the Bay, where they are cheaper than anywhere within a hundred miles of the park, and put them on once in your driveway so the first time is not in a storm on a shoulder.
       </p>
 
       <h2>The gate is not the bottleneck. The parking lot is.</h2>
 
       <p>
-        In 2026 there is no day-use reservation to show. The systems that ran from 2020 through 2025 are gone, and you simply drive up. The entrance fee is $35 per vehicle, good for seven days, and the gate takes cards only. An $80 America the Beautiful pass covers it if you have one, and the $100 per-person surcharge introduced in January 2026 applies to non-US visitors.
+        In 2026 there is no day-use reservation to show. The systems that ran from 2020 through 2025 are gone, and you drive up. The entrance fee is $35 per vehicle, good for seven days, and the gate takes cards only. An $80 America the Beautiful pass covers it if you have one, and the $100 per-person surcharge introduced in January 2026 applies to non-US visitors.
       </p>
 
       <p>
-        What removing the reservation did was move the queue rather than remove it. On peak summer weekends the entrance lines run an hour or more from mid-morning through late afternoon, and the Valley day-use lots fill early. The reported pattern over the 2026 season has been lots full somewhere between seven and eight in the morning on the busiest weekends, which is before a driver who left San Francisco at five in the morning can physically arrive.
+        Removing the reservation moved the queue. On peak summer weekends the entrance lines run an hour or more from mid-morning through late afternoon, and the Valley day-use lots fill early. The reported pattern over the 2026 season has been lots full somewhere between seven and eight in the morning on the busiest weekends, which is before a driver who left San Francisco at five in the morning can physically arrive.
       </p>
 
       <p>
-        That single fact reshapes the whole trip. A day-tripper who leaves at five on a July Saturday is arriving into a full Valley. There is nowhere to put the car, and the answer at that point is to keep circling, which is how people end up spending ninety minutes of a seven-hour visit looking for a space. <a href="/articles/yosemite-valley-parking-guide">The parking guide</a> is worth reading before you go, and the operating principle is the one the Park Service repeats every year: park once, and then do not move the car. The free Valley shuttle runs from early morning until late evening and reaches nearly everything you would drive to.
+        That reshapes the trip. A day-tripper who leaves at five on a July Saturday is arriving into a full Valley. There is nowhere to put the car, and the answer at that point is to keep circling, which is how people end up spending ninety minutes of a seven-hour visit looking for a space. <a href="/articles/yosemite-valley-parking-guide">The parking guide</a> is worth reading before you go, and the operating principle is the one the Park Service repeats every year: park once, and then do not move the car. The free Valley shuttle runs from early morning until late evening and reaches nearly everything you would drive to.
       </p>
 
       <p>
-        The corollary, and it is the most useful sentence in this article: a Bay Area day trip on a summer Saturday is a fundamentally different and worse trip than the same day trip on a Tuesday. Midweek is not a marginal improvement here. It is the difference between the trip working and not working.
+        The most useful point in this article: a Bay Area day trip on a summer Saturday is a fundamentally different and worse trip than the same day trip on a Tuesday. Midweek often decides whether the trip works at all.
       </p>
 
       <Placeholder
@@ -86,11 +86,11 @@ window.ARTICLE_BODIES["yosemite-day-trip-from-bay-area"] = function YosemiteDayT
       <h2>The one day that works</h2>
 
       <p>
-        Assume you arrive around nine thirty and need to be driving out by four thirty. Seven hours. Here is the version that produces a good day rather than a frantic one, and its governing rule is that you pick one part of the park and let the rest go.
+        Assume you arrive around nine thirty and need to be driving out by four thirty. Seven hours. This is the version that produces a good day, and its rule is that you pick one part of the park and let the rest go.
       </p>
 
       <p>
-        <strong>Stop at Tunnel View on the way in</strong> if you came up Highway 41 or over from 120 via Wawona Road. It is twenty minutes including the photograph, it is the single best orientation to the Valley's geography that exists, and it is free. If you came in on 140 it is a detour and worth taking on the way out instead, in better light.
+        <strong>Stop at Tunnel View on the way in</strong> if you came up Highway 41 or over from 120 via Wawona Road. It is twenty minutes including the photograph, it is the single best orientation to the Valley's geography that exists, and it costs nothing. If you came in on 140 it is a detour and worth taking on the way out instead, in better light.
       </p>
 
       <p>
@@ -118,31 +118,31 @@ window.ARTICLE_BODIES["yosemite-day-trip-from-bay-area"] = function YosemiteDayT
       </p>
 
       <p>
-        That is a full, unhurried, genuinely good day, and every item on it is flat, paved or nearly so, and inside a two-mile radius. It works because it does not fight the geography.
+        That is a full, unhurried day, and every item on it is flat, paved or nearly so, and inside a two-mile radius. 
       </p>
 
       <h2>The plans that do not work</h2>
 
       <p>
-        Three specific ambitions eat day trips, and all three are reasonable-sounding.
+        Three reasonable-sounding additions eat day trips.
       </p>
 
       <p>
-        <strong>Adding Glacier Point.</strong> It is about thirty miles from the Valley and roughly an hour each way, so it is a two-hour round trip out of your seven before you have stood anywhere. The view is genuinely one of the great ones on the continent, and there is a version of the day trip built entirely around it, arriving late afternoon for the light. What does not work is treating it as a bonus stop on a Valley day. Pick one.
+        <strong>Adding Glacier Point.</strong> It is about thirty miles from the Valley and roughly an hour each way, so it is a two-hour round trip out of your seven before you have stood anywhere. The view is one of the great ones on the continent, and there is a version of the day trip built entirely around it, arriving late afternoon for the light. What does not work is treating it as a bonus stop on a Valley day. Pick one.
       </p>
 
       <p>
-        <strong>Adding Mariposa Grove.</strong> About an hour to Wawona, then a mandatory seasonal shuttle to the grove itself, then the walk, then all of it in reverse. Three hours minimum, realistically more with a shuttle wait. On a day trip it is the whole trip, not an addition, and it is a fine whole trip. <a href="/articles/mariposa-grove-how-to-visit">The grove guide</a> covers doing it properly.
+        <strong>Adding Mariposa Grove.</strong> About an hour to Wawona, then a mandatory seasonal shuttle to the grove itself, then the walk, then all of it in reverse. Three hours minimum, realistically more with a shuttle wait. On a day trip it takes the whole day, which is a fine day. <a href="/articles/mariposa-grove-how-to-visit">The grove guide</a> covers doing it properly.
       </p>
 
       <p>
-        <strong>Adding a real hike.</strong> The Mist Trail to the top of Vernal Fall is not a long hike, but it is a serious one, and on a day-trip schedule you will be climbing it in the middle of a hot afternoon with a four-hour drive waiting for you. People do this and then drive home exhausted, which is the actual safety issue with Yosemite day trips: the dangerous part is not the trail, it is Highway 120 at ten at night with a driver who has been awake since four.
+        <strong>Adding a real hike.</strong> The Mist Trail to the top of Vernal Fall is not a long hike, but it is a serious one, and on a day-trip schedule you will be climbing it in the middle of a hot afternoon with a four-hour drive waiting for you. People do this and then drive home exhausted, which is the actual safety issue with Yosemite day trips: the dangerous part is Highway 120 at ten at night with a driver who has been awake since four.
       </p>
 
       <h2>The train, which is better than it sounds</h2>
 
       <p>
-        There is a car-free version, and for some people it is strictly better.
+        There is a car-free version, and for some people it is better.
       </p>
 
       <p>
@@ -164,7 +164,7 @@ window.ARTICLE_BODIES["yosemite-day-trip-from-bay-area"] = function YosemiteDayT
       </p>
 
       <p>
-        Which is the buried point. The entrance fee is not per day. A day-tripper pays $35 for one day; a family that stays two nights in a gateway town pays the same $35 for three. Set the marginal cost of the second day against a night in Mariposa, Groveland, or El Portal, and the overnight starts looking less like an indulgence and more like the cheaper way to buy park-hours. <a href="/articles/yosemite-trip-cost-budget-2026">The trip-cost guide</a> works the whole calculation.
+        The entrance fee is not per day. A day-tripper pays $35 for one day; a family that stays two nights in a gateway town pays the same $35 for three. Set the marginal cost of the second day against a night in Mariposa, Groveland, or El Portal, and the overnight is often the cheaper way to buy time in the park. <a href="/articles/yosemite-trip-cost-budget-2026">The trip-cost guide</a> works the whole calculation.
       </p>
 
       <h2>When the day trip is genuinely the right call</h2>
@@ -174,7 +174,7 @@ window.ARTICLE_BODIES["yosemite-day-trip-from-bay-area"] = function YosemiteDayT
       </p>
 
       <p>
-        <strong>Midweek, from October into April.</strong> This is the real answer, and almost nobody does it. The Valley in November on a Wednesday is close to empty, the parking problem does not exist, the entrance line does not exist, the waterfalls are running again after the autumn rains, and the light is low all day, which is the light this place was made for. You get fewer hours and you get better ones. <a href="/articles/yosemite-in-winter">Winter here</a> is the most underrated season in the park.
+        <strong>Midweek, from October into April.</strong> This is the real answer, and almost nobody does it. The Valley in November on a Wednesday is close to empty, the parking problem does not exist, the entrance line does not exist, the waterfalls are running again after the autumn rains, and the light is low all day. You get fewer hours, and better ones. <a href="/articles/yosemite-in-winter">Winter here</a> is the most underrated season in the park.
       </p>
 
       <p>
@@ -182,7 +182,7 @@ window.ARTICLE_BODIES["yosemite-day-trip-from-bay-area"] = function YosemiteDayT
       </p>
 
       <p>
-        <strong>The reconnaissance.</strong> You have never been, you are not sure it is for you, and you would rather spend a Tuesday finding out than book three nights on faith. Entirely reasonable. Go, do the Valley loop above, and come back properly.
+        <strong>The reconnaissance.</strong> You have never been, you are not sure it is for you, and you would rather spend a Tuesday finding out than book three nights on faith. Go, do the Valley loop above, and come back properly.
       </p>
 
       <p>
@@ -192,7 +192,7 @@ window.ARTICLE_BODIES["yosemite-day-trip-from-bay-area"] = function YosemiteDayT
       <h2>And when it is not</h2>
 
       <p>
-        If what you want is a day in mountains, in trees, on a trail, away from a city, and Yosemite is simply the name you know for that, then the day trip is the wrong tool and there are better ones within an hour of your house.
+        If what you want is a day in mountains, in trees, on a trail, away from a city, and Yosemite is only the name you know for that, then the day trip is the wrong tool and there are better ones within an hour of your house.
       </p>
 
       <p>
@@ -200,13 +200,13 @@ window.ARTICLE_BODIES["yosemite-day-trip-from-bay-area"] = function YosemiteDayT
       </p>
 
       <p>
-        Every one of those gives you six to ten hours on the ground for two to three hours of driving. Yosemite gives you five to seven hours on the ground for eight or nine hours of driving. If the goal is a day outside, that comparison is not close. If the goal is Yosemite specifically, then the honest recommendation is not a better day trip. It is a night in a gateway town, an entrance at seven in the morning, and a park that has not woken up yet.
+        Every one of those gives you six to ten hours on the ground for two to three hours of driving. Yosemite gives you five to seven hours on the ground for eight or nine hours of driving. If the goal is a day outside, the local parks win. If the goal is Yosemite specifically, the recommendation is a night in a gateway town, an entrance at seven in the morning, before the crowds arrive.
       </p>
 
       <h2>If you are going anyway</h2>
 
       <p>
-        Which most people will, and that is fine. The short version:
+        Most people will. The short version:
       </p>
 
       <p>
@@ -214,7 +214,7 @@ window.ARTICLE_BODIES["yosemite-day-trip-from-bay-area"] = function YosemiteDayT
       </p>
 
       <p>
-        And know what you are buying. You are not seeing Yosemite in a day, and anyone who tells you otherwise is selling something. You are seeing a mile of the Valley floor in the middle of the day, which is the least interesting mile at the least interesting hour, and it is still going to be one of the more startling things you have looked at. The Valley does not need your best light or your best hours to land. It just does better with them.
+        And know what you are buying. You are not seeing Yosemite in a day, You are seeing a mile of the Valley floor in the middle of the day, which is the least interesting mile at the least interesting hour, and it is still going to be one of the more startling things you have looked at. 
       </p>
 
       <LodgingCta

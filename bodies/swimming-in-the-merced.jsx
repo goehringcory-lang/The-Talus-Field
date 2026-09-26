@@ -6,7 +6,7 @@ window.ARTICLE_BODIES["swimming-in-the-merced"] = function SwimmingInTheMercedBo
   return (
     <>
       <p className="dropcap">
-        On a hot August afternoon the Merced River is the best thing in Yosemite Valley, and it is not close. Green water over pale granite, black oaks throwing shade onto sand, El Capitan standing over the whole business, and a temperature drop of twenty degrees the moment you get in. It is also the setting for a steady run of rescues and drownings, year after year, and the Park Service pulls fifteen to twenty people out of the water in a normal season. Both of those sentences are true about the same river. The distance between them is mostly the calendar, and secondarily about knowing the rules.
+        On a hot August afternoon the Merced River is the best thing in Yosemite Valley: green water over pale granite, shade from the black oaks, El Capitan overhead, and a temperature drop of twenty degrees the moment you get in. It is also the setting for a steady run of rescues and drownings, year after year, and the Park Service pulls fifteen to twenty people out of the water in a normal season. The difference is mostly the calendar, and secondarily knowing the rules.
       </p>
 
       <h2>The season is the safety rule</h2>
@@ -20,7 +20,7 @@ window.ARTICLE_BODIES["swimming-in-the-merced"] = function SwimmingInTheMercedBo
       </p>
 
       <p>
-        As a rough guide: the swimming season runs from about mid-July into September, and in June the answer is almost always not yet. But the transition does not happen on a date, and I am not going to pretend otherwise, because it moves several weeks in either direction with the snowpack. In a heavy year the river can still be running spring volumes well into July. What you actually want is not a date at all: it is the flow on the day you are standing there.
+        As a rough guide: the swimming season runs from about mid-July into September, and in June the answer is almost always not yet. But the transition does not happen on a date: it moves several weeks in either direction with the snowpack. In a heavy year the river can still be running spring volumes well into July. What matters is the flow on the day you are standing there.
       </p>
 
       <h2>How to check before you get in</h2>
@@ -36,15 +36,15 @@ window.ARTICLE_BODIES["swimming-in-the-merced"] = function SwimmingInTheMercedBo
       <h2>Cold water is what actually gets people</h2>
 
       <p>
-        The mental model most visitors carry is hypothermia: cold water is dangerous because you slowly get too cold. That model is wrong in a way that kills strong swimmers, because the dangerous part happens in the first minute, not the first hour.
+        The mental model most visitors carry is hypothermia: cold water is dangerous because you slowly get too cold. That model kills strong swimmers, because the dangerous part happens in the first minute.
       </p>
 
       <p>
-        Going into cold water triggers an involuntary gasp, followed by breathing you cannot control. If your head is under at the moment of the gasp, you inhale water. If it is not, you spend the next half minute or so hyperventilating and unable to hold a breath, which is exactly when a current is deciding where you go. Then, over the following minutes, your hands and forearms stop doing what you ask of them, well before you feel dangerously cold. People do not drown in snowmelt because they are bad swimmers. They drown because the ability to swim is temporarily removed from them.
+        Going into cold water triggers an involuntary gasp, followed by breathing you cannot control. If your head is under at the moment of the gasp, you inhale water. If it is not, you spend the next half minute or so hyperventilating and unable to hold a breath, which is exactly when a current is deciding where you go. Then, over the following minutes, your hands and forearms stop doing what you ask of them, well before you feel dangerously cold. Strong swimmers drown in snowmelt because the cold temporarily takes away their ability to swim.
       </p>
 
       <p>
-        The behavioral consequences are worth stating plainly. Get in gradually rather than jumping, so the gasp happens while you are standing up in shallow water. Do not enter cold water alone. Do not enter it upstream of anything you would not want to be swept into. And treat the first thirty seconds as the hazard, rather than the swim.
+        Get in gradually rather than jumping, so the gasp happens while you are standing up in shallow water. Do not enter cold water alone. Do not enter it upstream of anything you would not want to be swept into. And treat the first thirty seconds as the hazard, rather than the swim.
       </p>
 
       <Placeholder
@@ -60,7 +60,7 @@ window.ARTICLE_BODIES["swimming-in-the-merced"] = function SwimmingInTheMercedBo
       <h2>Where people swim</h2>
 
       <p>
-        Swimming is permitted in the Merced through Yosemite Valley, and there are no lifeguards anywhere on it. There is no designated swimming area and no supervised beach. What there are, instead, are a handful of places where the river has laid down sand and slowed enough to be sensible.
+        Swimming is permitted in the Merced through Yosemite Valley, and there are no lifeguards anywhere on it. There is no designated swimming area and no supervised beach. There are a handful of places where the river has laid down sand and slowed enough to be sensible.
       </p>
 
       <p>
@@ -68,7 +68,7 @@ window.ARTICLE_BODIES["swimming-in-the-merced"] = function SwimmingInTheMercedBo
       </p>
 
       <p>
-        <strong>Cathedral Beach</strong>, downstream, is wider and deeper, with El Capitan filling the view upstream. Better for adults who want to actually swim, and worth more caution earlier in the season because the current through it is stronger than Sentinel's.
+        <strong>Cathedral Beach</strong>, downstream, is wider and deeper, with El Capitan filling the view upstream. Better for adults who want to swim, and worth more caution earlier in the season because the current through it is stronger than Sentinel's.
       </p>
 
       <p>
@@ -76,7 +76,7 @@ window.ARTICLE_BODIES["swimming-in-the-merced"] = function SwimmingInTheMercedBo
       </p>
 
       <p>
-        <strong>Wawona</strong>, on the South Fork of the Merced at 4,000 feet with a much smaller drainage above it, has the warmest swimming in the park and is worth the drive on a heat-wave afternoon. <strong>Tenaya Lake</strong>, at 8,150 feet on Tioga Road, is the opposite proposition: a real sand beach and genuinely cold water, covered in <a href="/articles/tuolumne-meadows-in-a-day">the Tuolumne day guide</a>.
+        <strong>Wawona</strong>, on the South Fork of the Merced at 4,000 feet with a much smaller drainage above it, has the warmest swimming in the park and is worth the drive on a heat-wave afternoon. <strong>Tenaya Lake</strong>, at 8,150 feet on Tioga Road, is the opposite proposition: a real sand beach and cold water, covered in <a href="/articles/tuolumne-meadows-in-a-day">the Tuolumne day guide</a>.
       </p>
 
       <h2>Where you must not, which is not a matter of judgment</h2>
@@ -86,7 +86,7 @@ window.ARTICLE_BODIES["swimming-in-the-merced"] = function SwimmingInTheMercedBo
       </p>
 
       <p>
-        The Emerald Pool closure is the one people argue with, because it is a beautiful green pool at the top of a hard climb on a hot day, and the water above it looks flat. The Park Service has documented what happens there. In one afternoon, five teenagers were injured sliding down the closed Silver Apron. On another, two eighteen-year-olds swimming in the Emerald Pool were caught by a current they had not seen in water cold enough to take their breath, and one of them was pulled out by a passing stranger. Those are the incidents where everyone lived.
+        The Emerald Pool closure is the one people argue with, because it is a beautiful green pool at the top of a hard climb on a hot day, and the water above it looks flat. The Park Service has documented what happens there. In one afternoon, five teenagers were injured sliding down the closed Silver Apron. On another, two eighteen-year-olds swimming in the Emerald Pool were caught by a current they had not seen in water cold enough to take their breath, and one of them was pulled out by a passing stranger. In both incidents everyone lived.
       </p>
 
       <p>
@@ -98,11 +98,11 @@ window.ARTICLE_BODIES["swimming-in-the-merced"] = function SwimmingInTheMercedBo
       <h2>Rafting, and the flotation rule</h2>
 
       <p>
-        The Valley's classic float runs from Stoneman Bridge down to Sentinel Beach, a slow three miles through the middle of the Valley, and it may be the single best way to spend a ninety-degree afternoon in Yosemite. Rafts are rented in season at Curry Village, with a shuttle back. Season, price and age or weight minimums move year to year, so check current-season details rather than trusting a number you read somewhere, including here.
+        The Valley's classic float runs from Stoneman Bridge down to Sentinel Beach, a slow three miles through the middle of the Valley, and it is a good way to spend a ninety-degree afternoon. Rafts are rented in season at Curry Village, with a shuttle back. Season, price and age or weight minimums move year to year, so check current-season details rather than trusting a number you read somewhere, including here.
       </p>
 
       <p>
-        If you bring your own inflatable, the rules that matter are these. Boating is restricted above Little Yosemite Valley and below El Capitan Bridge. Children under thirteen must wear a life jacket on the water at all times. And when the Pohono Bridge gauge is above four feet at eight in the morning, everybody wears one, regardless of age or competence. A pool inflatable is not a raft, a river is not a lake, and the Merced has moved plenty of people off cheap flotation and into the water.
+        If you bring your own inflatable, the rules that matter are these. Boating is restricted above Little Yosemite Valley and below El Capitan Bridge. Children under thirteen must wear a life jacket on the water at all times. And when the Pohono Bridge gauge is above four feet at eight in the morning, everybody wears one, regardless of age or competence. The Merced has tipped plenty of people off pool inflatables and into the water.
       </p>
 
       <h2>The hazards that are not the cold</h2>
@@ -126,17 +126,17 @@ window.ARTICLE_BODIES["swimming-in-the-merced"] = function SwimmingInTheMercedBo
       <h2>Getting in without wrecking the bank</h2>
 
       <p>
-        The Park Service asks visitors to enter and leave the river <strong>only at sandy beaches</strong>, and this is not merely an erosion-control nicety. The Merced through the Valley is a protected Wild and Scenic river, and the few miles of riverbank through the developed part of the Valley take an enormous amount of foot traffic. Banks that get scrambled up and down collapse, the vegetation that holds them goes, and the beach itself eventually goes with it. Sections are fenced and revegetating for exactly this reason.
+        The Park Service asks visitors to enter and leave the river <strong>only at sandy beaches</strong>, for erosion control. The Merced through the Valley is a protected Wild and Scenic river, and the few miles of riverbank through the developed part of the Valley take an enormous amount of foot traffic. Banks that get scrambled up and down collapse, the vegetation that holds them goes, and the beach itself eventually goes with it. Sections are fenced and revegetating for exactly this reason.
       </p>
 
       <p>
-        So: walk to the sand, get in from the sand, get out at the sand. It also happens to be the safest way in, which is not a coincidence. The places where the bank is intact and steep are the places where the current is doing the work.
+        So: walk to the sand, get in from the sand, get out at the sand. It is also the safest way in: the places where the bank is intact and steep are the places where the current is doing the work.
       </p>
 
       <h2>With children</h2>
 
       <p>
-        Pick Sentinel Beach or the Swinging Bridge shallows and stay there. Put small children in life jackets even when they are only standing in ankle-deep water, because the transition from ankle-deep to over-their-head can be one step on a shelving sandbar. Water shoes for everyone. Assign one adult to watch the water and nothing else, and rotate that job, because drowning is famously quiet and a group of adults who are all half-watching is a group where nobody is watching. <a href="/articles/yosemite-with-kids-no-reservations-2026">The guide to Yosemite with kids</a> has more on structuring a Valley day around a river afternoon rather than treating it as the thing you do if there is time left, which is the right way around.
+        Pick Sentinel Beach or the Swinging Bridge shallows and stay there. Put small children in life jackets even when they are only standing in ankle-deep water, because the transition from ankle-deep to over-their-head can be one step on a shelving sandbar. Water shoes for everyone. Assign one adult to watch the water and nothing else, and rotate that job, because drowning is famously quiet and a group of adults who are all half-watching is a group where nobody is watching. <a href="/articles/yosemite-with-kids-no-reservations-2026">The guide to Yosemite with kids</a> has more on structuring a Valley day around a river afternoon rather than fitting it in if there is time left.
       </p>
 
       <h2>The short version</h2>
@@ -153,7 +153,7 @@ window.ARTICLE_BODIES["swimming-in-the-merced"] = function SwimmingInTheMercedBo
       </ol>
 
       <p>
-        None of this is an argument against getting in the water. It is an argument against getting in the water the way most people do it: with no plan at all, in flip-flops, on the hottest afternoon of the year, having driven four hours and wanting to be cold. An hour on a sandbar with cold water on your legs and a wall of granite going gold above you is one of the great cheap pleasures available in a national park. It costs almost nothing to take it seriously enough to keep it that way.
+        None of this argues against getting in the water. It argues against doing it with no plan, in flip-flops, on the hottest afternoon of the year. An hour on a sandbar in cold water is one of the cheapest pleasures in the park, and the precautions above cost almost nothing.
       </p>
 
       <h2>Sources</h2>

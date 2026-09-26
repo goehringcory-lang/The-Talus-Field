@@ -118,11 +118,11 @@ window.ARTICLE_BODIES["yosemite-wildlife-viewing-guide"] = function YosemiteWild
       </p>
 
       <p>
-        What the rulebook does not say is that the rules are also simply how you see more. Distance, quiet, and stillness are the entire craft of wildlife watching. The visitor who runs toward the bear gets thirty seconds of a bear leaving. The one who stops, backs against a tree, and waits gets twenty minutes of a bear being a bear. Every rule that protects the animal also lengthens the sighting.
+        What the rulebook does not say is that the rules are also how you see more. Distance, quiet, and stillness are the entire craft of wildlife watching. The visitor who runs toward the bear gets thirty seconds of a bear leaving. The one who stops, backs against a tree, and waits gets twenty minutes of a bear being a bear. Every rule that protects the animal also lengthens the sighting.
       </p>
 
       <p>
-        So the kit is modest: binoculars, something warm, something to sit on, and a tolerance for standing still while nothing happens. Pick a meadow edge. Arrive at an hour that feels unreasonable. The first fifteen minutes after you stop moving are when the meadow decides you are scenery, and that is when it starts up again around you: the deer stepping out of the trees, the jay resuming its rounds, the coyote you did not notice was already there. The animals were never the missing part. The stillness was.
+        So the kit is modest: binoculars, something warm, something to sit on, and a tolerance for standing still while nothing happens. Pick a meadow edge. Arrive at an hour that feels unreasonable. The first fifteen minutes after you stop moving are when the meadow decides you are scenery, and that is when it starts up again around you: the deer stepping out of the trees, the jay resuming its rounds, the coyote you did not notice was already there.
       </p>
 
       <p>

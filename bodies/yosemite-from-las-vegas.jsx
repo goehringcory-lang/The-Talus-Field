@@ -6,7 +6,7 @@ window.ARTICLE_BODIES["yosemite-from-las-vegas"] = function YosemiteFromLasVegas
   return (
     <>
       <p className="dropcap">
-        A great many first trips to Yosemite begin at an airport in Nevada. Las Vegas is where the cheap flights land, where the Southwest road trip starts, and where a visitor who has already seen the Grand Canyon and Zion looks at the map and notices Yosemite. The map is not wrong. What it hides is that there are two entirely different drives between the two places, that the calendar chooses which one you get, and that the shorter, more beautiful one does not exist for about half the year. Nobody planning from a routing app in February finds that out until the road sign at Lee Vining tells them.
+        A great many first trips to Yosemite begin at an airport in Nevada. Las Vegas is where the cheap flights land, where the Southwest road trip starts, and where a visitor who has already seen the Grand Canyon and Zion looks at the map and notices Yosemite. The map leaves out that there are two entirely different drives between the two places, that the calendar chooses which one you get, and that the shorter, more beautiful one does not exist for about half the year. Nobody planning from a routing app in February finds that out until the road sign at Lee Vining tells them.
       </p>
 
       <p>
@@ -16,7 +16,7 @@ window.ARTICLE_BODIES["yosemite-from-las-vegas"] = function YosemiteFromLasVegas
       <h2>The number that decides everything</h2>
 
       <p>
-        The Park Service's own directions page gives two figures for Las Vegas, and the difference between them is this article. In season, by US 95 and Highway 120 over Tioga Pass, it is <strong>400 miles and about eight hours to Yosemite Valley</strong>, and the page dates that road June through October. In winter, by I-15 and Highway 41 through Bakersfield and Fresno, it is <strong>495 miles and eight to ten hours</strong>. Both figures are to the Valley floor in clear conditions, with no stops that matter. Both are longer than the routing app will admit, because the app does not know that the last stretch of either road, seventy-odd miles from Lee Vining or ninety-odd from Fresno, is slow mountain highway with a fee station and a line at the end of it.
+        The Park Service's own directions page gives two figures for Las Vegas, and this article is about the difference between them. In season, by US 95 and Highway 120 over Tioga Pass, it is <strong>400 miles and about eight hours to Yosemite Valley</strong>, and the page dates that road June through October. In winter, by I-15 and Highway 41 through Bakersfield and Fresno, it is <strong>495 miles and eight to ten hours</strong>. Both figures are to the Valley floor in clear conditions, with no stops that matter. Both are longer than the routing app will admit, because the app does not know that the last stretch of either road, seventy-odd miles from Lee Vining or ninety-odd from Fresno, is slow mountain highway with a fee station and a line at the end of it.
       </p>
 
       <p>

@@ -93,7 +93,7 @@ window.ARTICLE_BODIES["highway-140-closed-yosemite"] = function Highway140Closed
       </p>
 
       <p>
-        For anyone driving from the Bay Area or the Central Valley, the answer is simpler and worse. The park's own figures for the 140 approach are four hours from San Francisco, two and three-quarters from Manteca, and two and a half from Modesto, all to the Valley floor. With 140 shut, the routing app will send you up Highway 120 through Groveland or down 99 to Fresno and up 41, and both add real time to a drive that <a href="/articles/yosemite-day-trip-from-bay-area">already did not fit in a day</a>. Add the entrance queue at whichever gate now carries the 140 traffic as well as its own.
+        For anyone driving from the Bay Area or the Central Valley, the answer is simpler, and worse. The park's own figures for the 140 approach are four hours from San Francisco, two and three-quarters from Manteca, and two and a half from Modesto, all to the Valley floor. With 140 shut, the routing app will send you up Highway 120 through Groveland or down 99 to Fresno and up 41, and both add real time to a drive that <a href="/articles/yosemite-day-trip-from-bay-area">already did not fit in a day</a>. Add the entrance queue at whichever gate now carries the 140 traffic as well as its own.
       </p>
 
       <h2>What a closure does to the booking</h2>

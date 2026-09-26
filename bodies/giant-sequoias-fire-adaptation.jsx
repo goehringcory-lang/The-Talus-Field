@@ -6,19 +6,19 @@ window.ARTICLE_BODIES["giant-sequoias-fire-adaptation"] = function GiantSequoias
   return (
     <>
       <p className="dropcap">
-        Walk into the Mariposa Grove on a quiet morning and run your hands across the trunk of a fire-scarred sequoia. What you're touching is a narrative written in bark. Some of these scars date back centuries. Some mark fires that burned centuries before that. The bark beneath your palm is neither smooth nor pristine; it's blackened in places, thick with the residue of heat that would have killed any other tree on the Sierra Nevada.
+        Walk into the Mariposa Grove on a quiet morning and run your hands across the trunk of a fire-scarred sequoia. The bark is a record of the fires the tree survived. Some of these scars date back centuries. Some mark fires that burned centuries before that. The bark beneath your palm is blackened in places, thick with the residue of heat that would have killed any other tree on the Sierra Nevada.
       </p>
 
-      <p>This is the fundamental paradox of the giant sequoia: the very mechanism that kills its competitors is what allows it to thrive.</p>
+      <p>The giant sequoia's advantage is that the fire that kills its competitors spares it.</p>
 
       <p>
-        Fire scars on old sequoias read like tree rings in reverse. The park's naturalists were reading them a century ago. "Scars of the Giant Sequoia," in <em>Nature Notes</em> Vol. 8, No. 4 (1929), reports that every mature tree in the Mariposa Grove had been "burned well into the heartwood at the base of their massive trunks," and that the grove's most prominent trees were the most severely burned of all, "probably because they have witnessed a greater number of fires during the centuries before the less affected trees sprouted into existence." Fire scarring, in other words, tracked a tree's age rather than its bad luck. That's not luck. That's adaptation so complete that the tree has essentially enrolled fire into its survival strategy.
+        Fire scars on old sequoias read like tree rings in reverse. The park's naturalists were reading them a century ago. "Scars of the Giant Sequoia," in <em>Nature Notes</em> Vol. 8, No. 4 (1929), reports that every mature tree in the Mariposa Grove had been "burned well into the heartwood at the base of their massive trunks," and that the grove's most prominent trees were the most severely burned of all, "probably because they have witnessed a greater number of fires during the centuries before the less affected trees sprouted into existence." Fire scarring, in other words, tracked a tree's age rather than its bad luck. The tree is adapted so thoroughly that fire works in its favor.
       </p>
 
       <h2>The chemistry of survival</h2>
 
       <p>
-        Giant sequoia bark contains a substance called tannin, present in concentrations high enough to make the wood itself quite resistant to flame. But here's what matters more: the bark is thick. Exceptionally thick. By the time a sequoia has grown to what we might call mature (three centuries, give or take), its bark can be two feet deep. It's so loose and fibrous that it barely conducts heat inward. A fire roars across the surface, chars the outer layer, and that charring actually insulates the living wood beneath it from the heat of the blaze.
+        Giant sequoia bark contains a substance called tannin, present in concentrations high enough to make the wood itself quite resistant to flame. More important, the bark is thick. By the time a sequoia has grown to what we might call mature (three centuries, give or take), its bark can be two feet deep. It's so loose and fibrous that it barely conducts heat inward. A fire roars across the surface, chars the outer layer, and that charring actually insulates the living wood beneath it from the heat of the blaze.
       </p>
 
       <p>
@@ -30,21 +30,21 @@ window.ARTICLE_BODIES["giant-sequoias-fire-adaptation"] = function GiantSequoias
       </p>
 
       <p>
-        This is not resilience by luck. It's resilience by design. Or rather, by selection. The trees that couldn't survive fire didn't become dominant in the mixed forest of the Sierra Nevada high country. The ones that could did.
+        This is the result of selection. The trees that couldn't survive fire didn't become dominant in the mixed forest of the Sierra Nevada high country. The ones that could did.
       </p>
 
       <h2>How fire kills what sequoias escape</h2>
 
       <p>
-        The forest ecology of Yosemite is legible if you understand that fire is not a disturbance to be prevented but a part of the system's normal operation. A meadow's absence of trees is not absence because the landscape favors meadows. It's absence because fire repeatedly cleared competing species from space that would otherwise fill with white fir and incense cedar.
+        The forest ecology of Yosemite is legible if you understand that fire is not a disturbance to be prevented but a part of the system's normal operation. Where a meadow holds no trees, it is often because fire repeatedly cleared competing species from space that would otherwise fill with white fir and incense cedar.
       </p>
 
       <p>
-        When a fire burns through a mixed coniferous forest, the outcome depends on the fire's intensity and duration, but also on which trees are present. A low-intensity fire, creeping through the understory at ground level, will pass beneath the canopy of tall conifers, consuming brush and fallen logs and the lower branches of smaller trees. In a forest without sequoias, white fir and Douglas-fir can survive this kind of fire, though often with damage. But here's what the fire also does: it creates ideal conditions for sequoia seedlings. Sequoia seeds are tiny. They're no bigger than an oat seed. They need bare mineral soil to establish. They need light, which fire provides by removing competing vegetation. They don't need deep soil. A sequoia can grow in the ash-enriched soil immediately following a burn.
+        When a fire burns through a mixed coniferous forest, the outcome depends on the fire's intensity and duration, but also on which trees are present. A low-intensity fire, creeping through the understory at ground level, will pass beneath the canopy of tall conifers, consuming brush and fallen logs and the lower branches of smaller trees. In a forest without sequoias, white fir and Douglas-fir can survive this kind of fire, though often with damage. The fire also creates ideal conditions for sequoia seedlings. Sequoia seeds are no bigger than an oat seed. They need bare mineral soil to establish. They need light, which fire provides by removing competing vegetation. They don't need deep soil. A sequoia can grow in the ash-enriched soil immediately following a burn.
       </p>
 
       <p>
-        The trees that were killed or damaged by that fire were competing for the same space. They're gone now, or weakened, just as the fire weakened them before. The sequoia grows into that opening, unchallenged.
+        The trees that were killed or damaged by that fire were competing for the same space. They are gone now, or weakened. The sequoia grows into that opening, unchallenged.
       </p>
 
       <p>
@@ -52,7 +52,7 @@ window.ARTICLE_BODIES["giant-sequoias-fire-adaptation"] = function GiantSequoias
       </p>
 
       <p>
-        The dynamic shows up wherever a grove has burned and then been left alone: seedlings and saplings come up thickest in the openings a fire has cleared, on the bare mineral soil it exposed. Those young trees are not anomalies. They are the forest regenerating as it had for thousands of years before the suppression era.
+        The dynamic shows up wherever a grove has burned and then been left alone: seedlings and saplings come up thickest in the openings a fire has cleared, on the bare mineral soil it exposed. Those young trees are the forest regenerating as it had for thousands of years before the suppression era.
       </p>
 
       <h2>Reading fire history in bark</h2>
@@ -75,17 +75,17 @@ window.ARTICLE_BODIES["giant-sequoias-fire-adaptation"] = function GiantSequoias
         For about a hundred and fifty years, the policy governing Yosemite National Park was clear: prevent fire at all costs. This made intuitive sense to early park managers. Fire was dangerous. Fire destroyed trees. And for a sequoia grove, which exists in the western imagination as a kind of cathedral, the idea of letting the cathedral burn was unthinkable.
       </p>
 
-      <p>What the policy didn't account for was that the cathedral had been burning regularly for two thousand years. And what the trees didn't account for was what would happen if they weren't.</p>
+      <p>The policy did not account for the fact that the groves had been burning regularly for two thousand years.</p>
 
       <p>
         In the absence of fire, the forest changed. Shade-tolerant species colonized the understory. Fuel accumulated on the ground: dead wood, needles, smaller branches. The forest became denser, darker. Sequoia seedlings couldn't find the light they needed. And simultaneously, if a fire did occur despite prevention efforts, it would be hotter, longer, and more devastating than the low-intensity fires that had shaped this ecosystem for millennia. (This is the chain of consequence behind <a href="/articles/yosemite-during-smoke-season">the smoke seasons</a> California now sees most years: a century of suppression created the fuel load for the megafires that put gauze over the sky every summer.)
       </p>
 
       <p>
-        The shift in understanding began slowly, with observations like those recorded in 1929, and has continued since. Today, land managers in Yosemite accept that fire is not a failure of policy but a necessity. Restoration burns are now part of the standard practice in groves like Mariposa, Tuolumne, and Merced. These burns are carefully planned, timed for weather conditions that keep them low-intensity, and intended to mimic the fire regimes that shaped these forests before fire suppression began.
+        The shift in understanding began slowly, with observations like those recorded in 1929, and has continued since. Today, land managers in Yosemite accept fire as a necessity. Restoration burns are now part of the standard practice in groves like Mariposa, Tuolumne, and Merced. These burns are carefully planned, timed for weather conditions that keep them low-intensity, and intended to mimic the fire regimes that shaped these forests before fire suppression began.
       </p>
 
-      <p>The sequoias have already demonstrated what they can survive. Our job is to stop preventing it.</p>
+      <p>The burns return the conditions the sequoias evolved under.</p>
 
       <h2>The practical reading</h2>
 
@@ -94,11 +94,11 @@ window.ARTICLE_BODIES["giant-sequoias-fire-adaptation"] = function GiantSequoias
       </p>
 
       <p>
-        Count the scars if you can. Try to gauge which ones are oldest (they're usually the deepest, the most weathered, the most integrated into the tree's form). Think about what was happening on the slope below when that fire burned. Think about which trees didn't survive it. Think about which ones did, and why.
+        Count the scars if you can. Try to gauge which ones are oldest (they're usually the deepest, the most weathered, the most integrated into the tree's form). Then consider which trees on the slope below did not survive that fire, and why this one did.
       </p>
 
       <p>
-        The sequoia doesn't call attention to its scars. It simply carries them, as evidence that the forest's most spectacular trees are not exceptional despite the fires they endure. They are exceptional because of them.
+        The sequoia doesn't call attention to its scars. It carries them. The forest's largest trees are exceptional because of the fires they endure.
       </p>
 
       <h3>Further reading</h3>

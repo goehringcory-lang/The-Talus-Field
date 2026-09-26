@@ -6,15 +6,15 @@ window.ARTICLE_BODIES["cathedral-lakes-day-hike"] = function CathedralLakesDayHi
   return (
     <>
       <p className="dropcap">
-        The first time I sat on the granite shelf above Lower Cathedral Lake, late July, midday, I watched a yellow-bellied marmot sun itself on a rock for forty minutes while a chickaree complained from a hemlock about thirty feet behind me. Cathedral Peak rose straight out of the lake on the opposite side. There were maybe nine other people in sight, spread across a hundred acres of granite shoreline. The water was 55 degrees, glacially clear, the inverted reflection of Cathedral so sharp on a windless day that the picture you take with your phone looks like one of those puzzles where you can't tell which side is up.
+        The first time I sat on the granite shelf above Lower Cathedral Lake, late July, midday, I watched a yellow-bellied marmot sun itself on a rock for forty minutes while a chickaree complained from a hemlock about thirty feet behind me. Cathedral Peak rose straight out of the lake on the opposite side. There were maybe nine other people in sight, spread across a hundred acres of granite shoreline. The water was 55 degrees and clear, and on a windless day the reflection of Cathedral is sharp enough that a phone photo is hard to read right side up.
       </p>
 
       <p>
-        This is not a hike that will surprise the people who already know it. Cathedral Lakes has been one of Yosemite's standard high-country day hikes since John Muir camped on the shoulder of Cathedral Peak in 1869 and described it in <em>My First Summer in the Sierra</em> as "one of Nature's cathedrals, hewn from the living rock." It is on every best hikes in Yosemite list. It still earns the listing.
+        Cathedral Lakes has been one of Yosemite's standard high-country day hikes since John Muir camped on the shoulder of Cathedral Peak in 1869 and described it in <em>My First Summer in the Sierra</em> as "one of Nature's cathedrals, hewn from the living rock." It is on every best hikes in Yosemite list. It still earns the listing.
       </p>
 
       <p>
-        What follows is how to do it well, what to actually look at, and the parts of it that almost nobody mentions.
+        What follows is how to do it, what to look at, and a few things most guides leave out.
       </p>
 
       <h2>Cathedral Lakes trail distance, elevation, and trailhead</h2>
@@ -38,7 +38,7 @@ window.ARTICLE_BODIES["cathedral-lakes-day-hike"] = function CathedralLakesDayHi
       </p>
 
       <p>
-        Plan five to seven hours for the round trip, including real time at the lakes. This is a hike where the lakes are the destination, not waypoints.
+        Plan five to seven hours for the round trip, including time at the lakes.
       </p>
 
       <h2>Best time to hike Cathedral Lakes</h2>
@@ -56,7 +56,7 @@ window.ARTICLE_BODIES["cathedral-lakes-day-hike"] = function CathedralLakesDayHi
       </p>
 
       <p>
-        This is one of the busier high-country day hikes. On summer weekends, the trail at peak hours can feel like a parade. The lakes themselves are large enough to absorb the crowd, and you can almost always find a granite shelf to yourself along the shore. But if you want solitude, weekday hikes or early starts (trailhead by 7 a.m.) are dramatically better. If you're basing yourself in the Valley or a <a href="/articles/yosemite-gateway-towns-compared">gateway town</a>, the drive to the trailhead takes roughly 90 minutes from Yosemite Village via Tioga Road. For getting around Yosemite by car, this is one of the drives that's worth it.
+        This is one of the busier high-country day hikes. On summer weekends the trail is crowded at peak hours. The lakes themselves are large enough to absorb the crowd, and you can almost always find a granite shelf to yourself along the shore. But if you want solitude, weekday hikes or early starts (trailhead by 7 a.m.) are dramatically better. If you're basing yourself in the Valley or a <a href="/articles/yosemite-gateway-towns-compared">gateway town</a>, the drive to the trailhead takes roughly 90 minutes from Yosemite Village via Tioga Road.
       </p>
 
       <h2>What to see on the Cathedral Lakes trail</h2>
@@ -70,15 +70,15 @@ window.ARTICLE_BODIES["cathedral-lakes-day-hike"] = function CathedralLakesDayHi
       </p>
 
       <p>
-        <strong>The forest climb.</strong> Three miles through dense lodgepole pine, with mountain hemlock mixing in at higher elevations. This is the unglamorous middle of the hike, but it's where most of the bird life is. Western tanagers, Cassin's finches, mountain chickadees, and several warbler species all use this forest. The chickarees (Douglas's squirrels) will let you know when you're close to their cone caches. Stop walking for thirty seconds and listen. The forest is louder than you think.
+        <strong>The forest climb.</strong> Three miles through dense lodgepole pine, with mountain hemlock mixing in at higher elevations. This is the unglamorous middle of the hike, but it's where most of the bird life is. Western tanagers, Cassin's finches, mountain chickadees, and several warbler species all use this forest. The chickarees (Douglas's squirrels) will let you know when you're close to their cone caches. Stop walking for thirty seconds and listen.
       </p>
 
       <p>
-        <strong>The lodgepole bark beetles.</strong> Look at the trunks of the lodgepoles as you climb. Many have the characteristic exit holes and pitch tubes of mountain pine beetle activity. The Sierra has been losing significant lodgepole stands to beetle outbreaks driven by warmer winters and drought-stressed trees, and the Cathedral approach is part of that larger pattern. The standing dead trees you walk past are not scenery. They're an ecological transition still playing out.
+        <strong>The lodgepole bark beetles.</strong> Look at the trunks of the lodgepoles as you climb. Many have the characteristic exit holes and pitch tubes of mountain pine beetle activity. The Sierra has been losing significant lodgepole stands to beetle outbreaks driven by warmer winters and drought-stressed trees, and the Cathedral approach is part of that larger pattern. The standing dead trees along the trail are part of that transition.
       </p>
 
       <p>
-        <strong>The Cathedral Peak view.</strong> About two miles in, the trail breaks out of forest and gives you the first clear view of Cathedral Peak. Stop. Cathedral Peak is one of the most distinctively shaped peaks in the Sierra, a slender granite spire with two main summits, and the reason for 150 years of religious-architecture metaphors that no one can seem to resist.
+        <strong>The Cathedral Peak view.</strong> About two miles in, the trail breaks out of forest and gives you the first clear view of Cathedral Peak. Stop. Cathedral Peak is one of the most distinctively shaped peaks in the Sierra, a slender granite spire with two main summits, and the source of 150 years of church metaphors.
       </p>
 
       <p>
@@ -94,11 +94,11 @@ window.ARTICLE_BODIES["cathedral-lakes-day-hike"] = function CathedralLakesDayHi
       </p>
 
       <p>
-        <strong>Upper Cathedral Lake.</strong> Smaller, with Cathedral Peak even closer overhead. The setting is more enclosed, the water colder, the mood different. Many hikers visit only the Lower. Doing both gives you two readings of the same basin, and the Upper is the quieter one.
+        <strong>Upper Cathedral Lake.</strong> Smaller, with Cathedral Peak even closer overhead. The setting is more enclosed and the water colder. Many hikers visit only the Lower. Doing both gives you two readings of the same basin, and the Upper is the quieter one.
       </p>
 
       <p>
-        <strong>Cathedral Peak itself.</strong> The rock you're looking at is a particular granodiorite called Cathedral Peak Granodiorite, named for this peak. Geologists know it for having unusually large potassium feldspar crystals, commonly 2 to 3 inches long, embedded throughout the rock. Walk up to the slabs and look closely. The feldspar phenocrysts show up as off-white blocky crystals studding the gray-pink groundmass. This is the same rock that makes up much of Tuolumne's high country. You've been walking on it all day.
+        <strong>Cathedral Peak itself.</strong> The rock you're looking at is a particular granodiorite called Cathedral Peak Granodiorite, named for this peak. Geologists know it for having unusually large potassium feldspar crystals, commonly 2 to 3 inches long, embedded throughout the rock. Walk up to the slabs and look closely. The feldspar phenocrysts show up as off-white blocky crystals studding the gray-pink groundmass. The same rock makes up much of Tuolumne's high country, including most of the trail.
       </p>
 
       <p>
@@ -116,7 +116,7 @@ window.ARTICLE_BODIES["cathedral-lakes-day-hike"] = function CathedralLakesDayHi
       </p>
 
       <p>
-        Sitting on the granite at Lower Cathedral Lake, you are sitting in roughly the same place Muir sat in 1869. The basin has not been logged. The lake has not been dammed. The peak has not been turned into a tourist attraction. That continuity is part of what makes this hike feel like more than a hike.
+        Sitting on the granite at Lower Cathedral Lake, you are sitting in roughly the same place Muir sat in 1869. The basin has not been logged. The lake has not been dammed. The peak has not been turned into a tourist attraction.
       </p>
 
       <h2>What to bring on a Cathedral Lakes day hike</h2>
@@ -126,7 +126,7 @@ window.ARTICLE_BODIES["cathedral-lakes-day-hike"] = function CathedralLakesDayHi
       </p>
 
       <p>
-        Bring a real lunch. Sitting at the lake for an hour is part of the trip. A sandwich is better than a bar.
+        Bring a real lunch; plan to sit at the lake for an hour.
       </p>
 
       <p>
@@ -150,17 +150,17 @@ window.ARTICLE_BODIES["cathedral-lakes-day-hike"] = function CathedralLakesDayHi
       <h2>Cathedral Pass to Sunrise: the through-hike option</h2>
 
       <p>
-        If you have the legs and the logistics, the through-hike from Tuolumne Meadows over Cathedral Pass to Sunrise High Sierra Camp or the trailhead at Tenaya Lake is one of the great Yosemite point-to-points. Roughly 13 miles with significant elevation change, crossing the high meadows above Cathedral Lakes that almost no day hikers see. You need a shuttle or a very understanding friend with a car at the far end. It is a serious day, not casual. But the high meadows above the lakes, with Cathedral Peak behind you and the Clark Range opening to the south, are worth the commitment.
+        If you have the legs and the logistics, the through-hike from Tuolumne Meadows over Cathedral Pass to Sunrise High Sierra Camp or the trailhead at Tenaya Lake is one of the great Yosemite point-to-points. Roughly 13 miles with significant elevation change, crossing the high meadows above Cathedral Lakes that almost no day hikers see. You need a shuttle or a very understanding friend with a car at the far end. It is a long day. The high meadows above the lakes, with Cathedral Peak behind you and the Clark Range to the south, are the reason to do it.
       </p>
 
       <h2>Why Cathedral Lakes is worth the drive to Tuolumne</h2>
 
       <p>
-        Cathedral Lakes is the standard high-country day hike from Tuolumne for a reason. The trail is good. The destination is real. The peak is one of the most photogenic and historically resonant in the Sierra. If you're still <a href="/planning">planning your Yosemite trip</a>, this hike belongs on the short list.
+        Cathedral Lakes is the standard high-country day hike from Tuolumne for a reason. The trail is well built, and the peak is among the most photographed and written-about in the Sierra. If you're still <a href="/planning">planning your Yosemite trip</a>, this hike belongs on the short list.
       </p>
 
       <p>
-        Plan an early start, bring a real lunch, sit on the granite for an hour after you arrive, and look closely at the rock under your hands. The crystals you're sitting on were cooling underground when this part of California was still under shallow seas. The peak above you was first described to a wider world by a Scotsman with a notebook in 1869. You are sitting in good company.
+        Plan an early start, bring a real lunch, sit on the granite for an hour after you arrive, and look closely at the rock under your hands. The crystals you're sitting on were cooling underground when this part of California was still under shallow seas. The peak above you was first described to a wider readership by a Scotsman with a notebook in 1869.
       </p>
 
       <h2>Sources</h2>

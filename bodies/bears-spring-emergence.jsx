@@ -6,13 +6,13 @@ window.ARTICLE_BODIES["bears-spring-emergence"] = function BearsSpringEmergenceB
   return (
     <>
       <p className="dropcap">
-        In April, if the weather permits and you're in the right place in Yosemite backcountry, you might see bears of the season out of their winter dens. The earliest are out well before that: the park's own naturalists put the usual start in the middle of March. They move slowly at first, stiff-legged, their dark bodies silhouetted against patches of remaining snow. A bear that emerges in April has just spent something like four to five months in a state that is almost, but not quite, hibernation. Scientists call it torpor. The distinction matters, because the bear's body has not simply been dormant. It has been radically reprogrammed.
+        In April, if the weather permits and you're in the right place in Yosemite backcountry, you might see bears of the season out of their winter dens. The earliest are out well before that: the park's own naturalists put the usual start in the middle of March. They move slowly at first, stiff-legged, often still on patches of snow. A bear that emerges in April has just spent something like four to five months in a state that is almost, but not quite, hibernation. Scientists call it torpor. The distinction matters: the bear's body has not been dormant. It has been reprogrammed.
       </p>
 
       <p>That reprogramming, and the desperate metabolic consequences of it, explains why spring in Yosemite is the season when bears are most dangerous to humans and most vulnerable to starvation.</p>
 
       <p>
-        A bear enters its den in November or December, at the end of the fall feeding season when mast crops (acorns, pine seeds) have been picked clean and stored in the bear's body as fat. The den is usually in a hollow tree or a rock crevice, something protected and small enough that the bear can warm it with its own body heat. The bear eats nothing. Drinks nothing. Its metabolism drops.
+        A bear enters its den in November or December, at the end of the fall feeding season when mast crops (acorns, pine seeds) have been picked clean and stored in the bear's body as fat. The den is usually in a hollow tree or a rock crevice, something protected and small enough that the bear can warm it with its own body heat. The bear neither eats nor drinks, and its metabolism drops.
       </p>
 
       <p>
@@ -22,15 +22,15 @@ window.ARTICLE_BODIES["bears-spring-emergence"] = function BearsSpringEmergenceB
       <p>This is not sleep. The bear can wake if disturbed. But under normal circumstances, it remains in a state of profound torpor, its body a closed system burning stored fat at minimal rate.</p>
 
       <p>
-        Then, in spring, something triggers the emergence. Not hunger, exactly. The bear has stored enough fat that starvation is not an immediate concern when it wakes. What changes is that the days lengthen and the temperature outside the den begins to rise. The bear's circadian rhythm, responding to these light and temperature signals, begins to reset. Hormone levels change. The body's metabolism begins to increase. The torpor is interrupted. The bear wakes.
+        In spring the bear emerges, and hunger is not the main trigger: it has stored enough fat that starvation is not an immediate concern when it wakes. What changes is that the days lengthen and the temperature outside the den begins to rise. The bear's circadian rhythm, responding to these light and temperature signals, begins to reset. Hormone levels change. Metabolism increases and the bear wakes.
       </p>
 
-      <p>And it wakes desperately hungry.</p>
+      <p>It wakes very hungry.</p>
 
       <h2>The metabolic emergency of spring</h2>
 
       <p>
-        The physiology of torpor emergence creates an immediate problem. The bear has been burning fat for five months. It has lost somewhere between 15 and 30 percent of its body weight. A healthy female black bear might weigh 150 pounds in fall and 100 pounds in spring. A large male might start at 300 pounds and finish at 180. That's not just weight loss. That's significant lean muscle loss as well as fat loss.
+        The physiology of torpor emergence creates an immediate problem. The bear has been burning fat for five months. It has lost somewhere between 15 and 30 percent of its body weight. A healthy female black bear might weigh 150 pounds in fall and 100 pounds in spring. A large male might start at 300 pounds and finish at 180. Much of that loss is lean muscle, not only fat.
       </p>
 
       <p>
@@ -46,7 +46,7 @@ window.ARTICLE_BODIES["bears-spring-emergence"] = function BearsSpringEmergenceB
       </p>
 
       <p>
-        C. A. Harwell, then the park naturalist, described this season in "Our Yosemite Bears" in the March 1931 <em>Nature Notes</em>, and his account complicates the picture. Bears come out of their dens "usually by the middle of March," he wrote, and "they are careful how they break their long hibernation fast." The park was still running artificial feeding platforms in those years, opening them on April 1, and even then, Harwell noted, "few of them come in to eat our food." What the bears worked through instead was what the season offered: tender plants, roots dug out of the ground, mice and frogs caught in the meadows, termites and ants from broken logs. The bears were not desperate in an absolute sense. They were desperate in a relative sense: their body was demanding high-calorie food, and the landscape was offering low-calorie food.
+        C. A. Harwell, then the park naturalist, described this season in "Our Yosemite Bears" in the March 1931 <em>Nature Notes</em>, and his account complicates the picture. Bears come out of their dens "usually by the middle of March," he wrote, and "they are careful how they break their long hibernation fast." The park was still running artificial feeding platforms in those years, opening them on April 1, and even then, Harwell noted, "few of them come in to eat our food." What the bears worked through instead was what the season offered: tender plants, roots dug out of the ground, mice and frogs caught in the meadows, termites and ants from broken logs. The problem was relative: their bodies needed high-calorie food, and the landscape offered low-calorie food.
       </p>
 
       <h2>The behavioral signature of spring hunger</h2>
@@ -56,30 +56,30 @@ window.ARTICLE_BODIES["bears-spring-emergence"] = function BearsSpringEmergenceB
       </p>
 
       <p>
-        By May, a spring bear is actively foraging for hours each day, moving extensively through meadows and along stream margins, investigating potential food sources. The bear is more likely to approach human settlements, to attempt entry into cabins or food storage areas, to persist in areas where human food or garbage is available. (Anyone who has <a href="/articles/working-in-yosemite">lived in employee housing</a> in the Valley has stories about spring bears at the tent cabins; this is the season when bear-box discipline matters most.) The motivation is not aggression. It's hunger.
+        By May, a spring bear is actively foraging for hours each day, moving extensively through meadows and along stream margins, investigating potential food sources. The bear is more likely to approach human settlements, to attempt entry into cabins or food storage areas, to persist in areas where human food or garbage is available. (Anyone who has <a href="/articles/working-in-yosemite">lived in employee housing</a> in the Valley has stories about spring bears at the tent cabins; this is the season when bear-box discipline matters most.) The motivation is hunger.
       </p>
 
       <p>
         The difference in bear behavior between a spring bear (just emerged, metabolically desperate) and a fall bear (recently fed, with adequate fat stores and no immediate metabolic pressure) is measurable. Fall bears are more predictable, more likely to avoid humans, more likely to be deterred by noise or barriers. Spring bears are less predictable, more likely to persist in attempting to access human food, more likely to escalate an encounter if they perceive a threat to a food source.
       </p>
 
-      <p>This is when bears are most likely to be killed by humans, not because they are aggressive, but because they are desperate, and desperation makes them bold.</p>
+      <p>This is when bears are most likely to be killed by humans, because hunger makes them bold.</p>
 
       <h2>How to read a bear and understand its urgency</h2>
 
       <p>
-        If you see a bear in Yosemite in April or May, you are seeing a metabolically driven animal. Its body is in a state of transition and stress. It has not eaten a substantial meal in five months. Its digestive system is waking up. Its metabolism is accelerating. Its caloric demands are high. Its food options are limited.
+        If you see a bear in Yosemite in April or May, you are seeing a metabolically driven animal. It has not eaten a substantial meal in five months, its digestive system is still waking up, and its food options are limited.
       </p>
 
       <p>
-        A bear that is actively foraging, moving systematically through a meadow, turning over rocks and logs, is demonstrating this hunger. The intensity of the foraging behavior is a direct reflection of metabolic need. A spring bear forages more intently than a summer bear, because the spring bear has a more urgent need.
+        A bear that is actively foraging, moving systematically through a meadow, turning over rocks and logs, is demonstrating this hunger. The intensity of the foraging behavior is a direct reflection of metabolic need.
       </p>
 
       <p>
-        Additionally, a bear's behavior toward humans is different in spring. A spring bear that hears humans approaching is more likely to hold its ground, to continue foraging, or to move slowly away. A fall bear in the same situation is more likely to flee. This is not increased aggression. It's prioritization. The spring bear's food needs are greater. The bear is less likely to abandon a potential food source due to human presence.
+        Additionally, a bear's behavior toward humans is different in spring. A spring bear that hears humans approaching is more likely to hold its ground, to continue foraging, or to move slowly away. A fall bear in the same situation is more likely to flee. The spring bear's food needs are greater, so it is less likely to abandon a potential food source due to human presence.
       </p>
 
-      <p>The practical implication is that spring is the season to be most cautious around bears. Not because bears are more dangerous by nature, but because bears are more motivated, and more likely to take risks to obtain food.</p>
+      <p>The practical implication: spring is the season to be most cautious around bears, because they are more motivated and more likely to take risks to obtain food.</p>
 
       <h2>The historical record and modern observations</h2>
 
@@ -88,23 +88,23 @@ window.ARTICLE_BODIES["bears-spring-emergence"] = function BearsSpringEmergenceB
       </p>
 
       <p>
-        The observations are not sensationalized. They are factual records of what one naturalist watched: when bears emerged, what they ate, how they behaved. Modern work on black bears elsewhere in the Sierra Nevada describes the same underlying sequence, a period of acute metabolic need meeting a landscape that is not yet producing much food, and a rising probability of human conflict as the season goes on.
+        The observations are plain records of what one naturalist watched: when bears emerged, what they ate, how they behaved. Modern work on black bears elsewhere in the Sierra Nevada describes the same underlying sequence, a period of acute metabolic need meeting a landscape that is not yet producing much food, and a rising probability of human conflict as the season goes on.
       </p>
 
       <h2>What spring teaches about bear ecology</h2>
 
       <p>
-        Understanding the biology of spring emergence changes how you read a bear encounter. A bear is not stupid or reckless when it tries to access a campsite garbage can in May. It's responding to a biological imperative: metabolic demand created by torpor and emergence. The bear is not choosing to be bold. It's compelled by its own physiology.
+        Understanding the biology of spring emergence changes how you read a bear encounter. A bear that tries to access a campsite garbage can in May is responding to the metabolic demand created by torpor and emergence.
       </p>
 
       <p>
-        This doesn't mean bears are not dangerous. Bears are large, strong, and potentially lethal predators. But the danger is not unpredictable. It flows directly from the conditions of the season: the bear's metabolic state, the availability of food, the bear's desperation. A bear in April is more dangerous than a bear in August, not because the April bear is inherently more aggressive, but because the April bear is hungrier and more motivated.
+        This doesn't mean bears are not dangerous. Bears are large, strong, and potentially lethal predators. But the danger is predictable. It follows from the season: the bear's metabolic state and the availability of food. A bear in April is more dangerous than a bear in August because it is hungrier.
       </p>
 
-      <p>For humans in Yosemite, this means spring requires <a href="/articles/yosemite-bears-safety-guide">the most rigorous food storage practices</a>. It means avoiding surprise encounters by making noise on the trail. May and June overlap exactly with peak season on <a href="/articles/mist-trail-the-real-guide">the Mist Trail</a> and the other Valley hikes, when bears are foraging the same lower meadows that visitors pass through. It means understanding that a bear's boldness in spring is an expression of metabolic urgency, not malice.</p>
+      <p>For humans in Yosemite, this means spring requires <a href="/articles/yosemite-bears-safety-guide">the most rigorous food storage practices</a>. It means avoiding surprise encounters by making noise on the trail. May and June overlap exactly with peak season on <a href="/articles/mist-trail-the-real-guide">the Mist Trail</a> and the other Valley hikes, when bears are foraging the same lower meadows that visitors pass through. A bear's boldness in spring comes from hunger.</p>
 
       <p>
-        For the bears themselves, spring in Yosemite is often a period of high stress. If natural food is not readily available, bears may starve despite successfully emerging from torpor. If food is available (as it is in years with abundant mast crops the previous fall, or in locations where humans provide easy access to food), bears thrive. The harsh spring season has shaped bear behavior and ecology for centuries.
+        For the bears themselves, spring in Yosemite is often a period of high stress. If natural food is not readily available, bears may starve despite successfully emerging from torpor. If food is available (as it is in years with abundant mast crops the previous fall, or in locations where humans provide easy access to food), bears thrive.
       </p>
 
       <h3>Further reading</h3>

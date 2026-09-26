@@ -10,7 +10,7 @@ window.ARTICLE_BODIES["water-ouzels-waterfalls"] = function WaterOuzelsBody() {
       </p>
 
       <p>
-        This is the water ouzel, also called the American dipper (<em>Cinclus mexicanus</em>). It's the most remarkable niche specialist in the Yosemite high country, and it has engineered its entire life around the specific conditions that make <a href="/articles/yosemite-waterfalls-guide">peak-season waterfalls</a> possible.
+        This is the water ouzel, also called the American dipper (<em>Cinclus mexicanus</em>). It's the most specialized bird in the Yosemite high country, and it has engineered its entire life around the specific conditions that make <a href="/articles/yosemite-waterfalls-guide">peak-season waterfalls</a> possible.
       </p>
 
       <p>To understand how an ouzel survives in that torrent is to understand a fundamental principle of ecological specialization: extreme adaptation to a specific environment creates extraordinary capabilities that seem impossible to anyone unfamiliar with that environment.</p>
@@ -72,7 +72,7 @@ window.ARTICLE_BODIES["water-ouzels-waterfalls"] = function WaterOuzelsBody() {
       <h2>Reading ouzel presence as a landscape indicator</h2>
 
       <p>
-        For anyone hiking Yosemite's streams, the presence or absence of water ouzels is worth noting. If you see an ouzel (they're dark gray-brown, compact, and extremely mobile), you're in a stream reach that is cold, fast-moving, and well-oxygenated. The presence of the bird confirms the condition of the stream.
+        For anyone hiking Yosemite's streams, the presence or absence of water ouzels tells you something. If you see an ouzel (they're dark gray-brown, compact, and extremely mobile), you're in a stream reach that is cold, fast-moving, and well-oxygenated. The presence of the bird confirms the condition of the stream.
       </p>
 
       <p>
@@ -84,13 +84,13 @@ window.ARTICLE_BODIES["water-ouzels-waterfalls"] = function WaterOuzelsBody() {
       </p>
 
       <p>
-        Additionally, the presence of ouzels during peak water flow season (late spring through early summer, when snowmelt is at its maximum) indicates that peak flow is healthy and well-oxygenated. The bird is not just present in the water. It's thriving, nesting, raising fledglings. This is only possible if the water conditions are optimal.
+        Additionally, the presence of ouzels during peak water flow season (late spring through early summer, when snowmelt is at its maximum) indicates that peak flow is healthy and well-oxygenated. The bird is nesting and raising fledglings in it, which it can do only if the water conditions are right.
       </p>
 
       <h2>Engineer or engineered?</h2>
 
       <p>
-        Here's a question that doesn't have a simple answer: does the ouzel engineer the waterfall ecosystem, or does the waterfall ecosystem engineer the ouzel? The answer is probably both, in a feedback loop that has been operating for thousands of years.
+        Does the ouzel engineer the waterfall ecosystem, or does the waterfall ecosystem engineer the ouzel? The answer is probably both, in a feedback loop that has been operating for thousands of years.
       </p>
 
       <p>
@@ -102,7 +102,7 @@ window.ARTICLE_BODIES["water-ouzels-waterfalls"] = function WaterOuzelsBody() {
       </p>
 
       <p>
-        This is ecosystem specialization at its extreme. The ouzel is not just adapted to the waterfall environment. The ouzel is so highly adapted that it cannot thrive in any other environment. Remove the cascade, and the ouzel disappears. Add the cascade back, and the ouzel will reappear (or can be reestablished). The bird and the ecosystem are interdependent.
+        This is ecosystem specialization at its extreme. The ouzel is so closely adapted to the waterfall environment that it cannot thrive in any other. Remove the cascade, and the ouzel disappears. Add the cascade back, and the ouzel will reappear (or can be reestablished). The bird and the ecosystem are interdependent.
       </p>
 
       <h2>The practical observation</h2>

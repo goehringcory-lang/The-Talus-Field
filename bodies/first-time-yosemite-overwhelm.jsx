@@ -6,7 +6,7 @@ window.ARTICLE_BODIES["first-time-yosemite-overwhelm"] = function FirstTimeYosem
   return (
     <>
       <p className="dropcap">
-        There's a guide somewhere on the internet (probably half a dozen of them, actually) telling you that on your first trip to Yosemite, you need to see Tunnel View, Cook's Meadow, Glacier Point, the Mariposa Grove, and Tuolumne Meadows. Maybe Half Dome. Maybe El Capitan. The list is always pretty much the same.
+        Somewhere on the internet there is a guide (probably half a dozen) telling you that on your first trip to Yosemite, you need to see Tunnel View, Cook's Meadow, Glacier Point, the Mariposa Grove, and Tuolumne Meadows. Maybe Half Dome. Maybe El Capitan. The list is always pretty much the same.
       </p>
 
       <p>I'm not going to argue with the list.</p>
@@ -19,7 +19,7 @@ window.ARTICLE_BODIES["first-time-yosemite-overwhelm"] = function FirstTimeYosem
         These places earned their fame. Don't skip them. I'm a senior naturalist who has worked in this park for close to two decades, and I still pull over at Tunnel View almost every time I drive through it.
       </p>
 
-      <p>But here's what most guides don't tell you.</p>
+      <p>What most guides leave out is timing.</p>
 
       <p>
         Most people visit these places in the worst possible way. They arrive at Tunnel View at one in the afternoon in July, find the lot full and the overlook three-deep, take a photo over a stranger's shoulder, and leave. They drive Glacier Point Road during a smoke event and see Half Dome through gauze. They hike the Mist Trail in a conga line. They walk through the Mariposa Grove at the busiest hour of the busiest day and never once stand alone next to a 2,500-year-old tree. Then they go home and tell their friends Yosemite was beautiful but… crowded. And it was. They visited the busiest version of the busiest places at the busiest time.
@@ -34,7 +34,7 @@ window.ARTICLE_BODIES["first-time-yosemite-overwhelm"] = function FirstTimeYosem
       <h2 id="sec-0-research-the-real-kind">Research, the real kind</h2>
 
       <p>
-        The first is <strong>research</strong>. And not the kind you get from the first three results on Google. The seasons in Yosemite behave differently than they do almost anywhere else in the United States. Tioga Road, the highway that takes you to Tuolumne, doesn't open until late May or early June, and in heavy snow years not until July. Waterfalls peak in May and are mostly dry by August. Wildflower bloom in the high country can run six weeks behind the Valley floor. Smoke from regional fires can shut down vistas for entire weeks. None of this is a secret. But the difference between a trip planned around it and a trip that isn't is enormous.
+        The first is <strong>research</strong>. Not the first three results on Google. The seasons in Yosemite behave differently than they do almost anywhere else in the United States. Tioga Road, the highway that takes you to Tuolumne, doesn't open until late May or early June, and in heavy snow years not until July. Waterfalls peak in May and are mostly dry by August. Wildflower bloom in the high country can run six weeks behind the Valley floor. Smoke from regional fires can shut down vistas for entire weeks. None of this is a secret. But the difference between a trip planned around it and a trip that isn't is enormous.
       </p>
 
       <p>
@@ -56,7 +56,7 @@ window.ARTICLE_BODIES["first-time-yosemite-overwhelm"] = function FirstTimeYosem
       <p>This site is for the people willing to do all three.</p>
 
       <p>
-        What I hope to do here is help you understand Yosemite as it actually works, which is a more complicated, more textured, more interesting place than most guides have time to tell you about. Yes, you can absolutely check off the El Capitan box and the Half Dome box and the Mariposa Grove box and feel great about it. You should. But the reason to do this work (the research, the self-knowledge, the flexibility) is that with a small amount of effort, the same trip becomes something else. You can stand at Tunnel View at the right hour, in the right month, and have it nearly to yourself. You can walk into a sequoia grove with no one in earshot. You can hike a trail two miles off the standard list and not see another human all afternoon. You can experience the most-visited version of the most-visited national park in the country the way it's supposed to be experienced. Quiet, wild, weird, alive.
+        What I hope to do here is help you understand Yosemite as it actually works, which is more complicated than most guides have room to explain. You can check off the El Capitan box and the Half Dome box and the Mariposa Grove box and feel great about it. You should. But the reason to do this work (the research, the self-knowledge, the flexibility) is that with a small amount of effort, the same trip becomes something else. You can stand at Tunnel View at the right hour, in the right month, and have it nearly to yourself. You can walk into a sequoia grove with no one in earshot. You can hike a trail two miles off the standard list and not see another human all afternoon. You can experience the most-visited version of the most-visited national park in the country the way it's supposed to be experienced. Quiet, wild, weird, alive.
       </p>
 
       <p>That's the whole pitch.</p>

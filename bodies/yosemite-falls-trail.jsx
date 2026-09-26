@@ -6,7 +6,7 @@ window.ARTICLE_BODIES["yosemite-falls-trail"] = function YosemiteFallsTrailBody(
   return (
     <>
       <p className="dropcap">
-        Two different walks go by the name Yosemite Falls, and people pick the wrong one in both directions. One is a paved mile at the bottom of the waterfall that takes half an hour and asks nothing of you. The other is a trail built in the 1870s that climbs 2,700 feet up the north wall of the Valley, in the sun, on loose granite, with no water anywhere on it. It is easy to start up the second in sandals because the sign said Yosemite Falls, and easy for a strong hiker to skip the first because it looks like a sidewalk. This is both of them, in the order most people meet them, with the numbers the Park Service publishes and the honest turnaround point on the big one.
+        Two different walks go by the name Yosemite Falls, and people pick the wrong one in both directions. One is a paved mile at the bottom of the waterfall that takes half an hour and asks nothing of you. The other is a trail built in the 1870s that climbs 2,700 feet up the north wall of the Valley, in the sun, on loose granite, with no water anywhere on it. It is easy to start up the second in sandals because the sign said Yosemite Falls, and easy for a strong hiker to skip the first because it looks like a sidewalk. This is both of them, in the order most people meet them, with the numbers the Park Service publishes and the sensible turnaround point on the big one.
       </p>
 
       <h2>One waterfall in three pieces</h2>
@@ -32,7 +32,7 @@ window.ARTICLE_BODIES["yosemite-falls-trail"] = function YosemiteFallsTrailBody(
       <h2>The Lower Yosemite Fall loop: the one everyone should walk</h2>
 
       <p>
-        The Park Service's figures for the Lower Yosemite Fall Trail are <strong>a one-mile loop, about 50 feet of elevation gain, easy, 30 minutes</strong>. It is paved throughout and open all year, and it is the short walk that shows you the whole of Yosemite Falls, upper and lower, before ending at a wooden footbridge across Yosemite Creek at the base of the lower fall. In spring and early summer, when the fall peaks, the Park Service's own description is that you can expect to get sprayed standing on that bridge. It is not exaggerating. Exhibits along the loop cover the natural and cultural history of the area.
+        The Park Service's figures for the Lower Yosemite Fall Trail are <strong>a one-mile loop, about 50 feet of elevation gain, easy, 30 minutes</strong>. It is paved throughout and open all year, and it is the short walk that shows you the whole of Yosemite Falls, upper and lower, before ending at a wooden footbridge across Yosemite Creek at the base of the lower fall. In spring and early summer, when the fall peaks, the Park Service's own description is that you can expect to get sprayed standing on that bridge. Exhibits along the loop cover the natural and cultural history of the area.
       </p>
 
       <p>
@@ -44,7 +44,7 @@ window.ARTICLE_BODIES["yosemite-falls-trail"] = function YosemiteFallsTrailBody(
       </p>
 
       <p>
-        One rule, and it is the rule that matters here. <strong>Stay on the paved trail.</strong> Above the footbridge the creek bed is a jumble of boulders that look like an invitation to scramble closer, and the Park Service is direct about them: the rocks are slippery even when dry, and scrambling off-trail there has led to serious injuries. In winter, expect ice in places, especially on the short climb to the footbridge on the western side.
+        One rule matters here. <strong>Stay on the paved trail.</strong> Above the footbridge the creek bed is a jumble of boulders that look like an invitation to scramble closer, and the Park Service is direct about them: the rocks are slippery even when dry, and scrambling off-trail there has led to serious injuries. In winter, expect ice in places, especially on the short climb to the footbridge on the western side.
       </p>
 
       <Placeholder
@@ -73,7 +73,7 @@ window.ARTICLE_BODIES["yosemite-falls-trail"] = function YosemiteFallsTrailBody(
       </p>
 
       <p>
-        The trail is not the only hard climb out of the Valley, and it is worth knowing how it compares. The Mist Trail to Vernal and Nevada Falls carries its own crowd and its own wet granite staircase; <a href="/articles/mist-trail-the-real-guide">the Mist Trail guide</a> covers that one. The Yosemite Falls Trail has fewer people above Columbia Rock, a much bigger climb, and more sun. Which of the two to pick on a given day usually comes down to the heat.
+        The trail is not the only hard climb out of the Valley. The Mist Trail to Vernal and Nevada Falls carries its own crowd and its own wet granite staircase; <a href="/articles/mist-trail-the-real-guide">the Mist Trail guide</a> covers that one. The Yosemite Falls Trail has fewer people above Columbia Rock, a much bigger climb, and more sun. Which of the two to pick on a given day usually comes down to the heat.
       </p>
 
       <h2>Columbia Rock: the honest turnaround</h2>
@@ -87,13 +87,13 @@ window.ARTICLE_BODIES["yosemite-falls-trail"] = function YosemiteFallsTrailBody(
       </p>
 
       <p>
-        Above that point the trail changes. The Park Service calls the upper half <strong>steep and rocky</strong>, and it is where the day's difficulty lives. If the first mile was hard work, the honest answer is that the next two are harder, and there is no shame in taking the viewpoint as the destination.
+        Above that point the trail changes. The Park Service calls the upper half <strong>steep and rocky</strong>, and it is the harder half. If the first mile was hard work, the next two are harder, and there is no shame in taking the viewpoint as the destination.
       </p>
 
       <h2>Above Columbia Rock: the upper half</h2>
 
       <p>
-        The upper switchbacks are where the day is decided, and three things make them hard. The first is <strong>exposure to the sun</strong>: the Park Service notes that the upper portion receives <strong>no shade until late afternoon or early evening</strong>, which on a summer morning or midday means the whole climb is in direct sun. The second is the footing. There are long stretches of loose sand over rock, and the Park Service lists <strong>sprained ankles and knee injuries</strong> as common here. The third is simply the length of the climb, which keeps going well after it feels like it should have stopped.
+        Three things make the upper switchbacks hard. The first is <strong>exposure to the sun</strong>: the Park Service notes that the upper portion receives <strong>no shade until late afternoon or early evening</strong>, which on a summer morning or midday means the whole climb is in direct sun. The second is the footing. There are long stretches of loose sand over rock, and the Park Service lists <strong>sprained ankles and knee injuries</strong> as common here. The third is the length of the climb, which keeps going well after it feels like it should have stopped.
       </p>
 
       <p>
@@ -101,13 +101,13 @@ window.ARTICLE_BODIES["yosemite-falls-trail"] = function YosemiteFallsTrailBody(
       </p>
 
       <p>
-        The Park Service also asks hikers to <strong>know their limits</strong>, and it is specific that pre-existing medical conditions can be easily exacerbated on the steep ascent. That line is worth reading twice if anyone in your group has a heart or breathing condition, because the trail offers no easy way out once you are high on the wall.
+        The Park Service also asks hikers to <strong>know their limits</strong>, and it is specific that pre-existing medical conditions can be easily exacerbated on the steep ascent. That matters if anyone in your group has a heart or breathing condition, because the trail offers no easy way out once you are high on the wall.
       </p>
 
       <h2>The top, and the two ways to keep going</h2>
 
       <p>
-        The top of the trail is a surprise. After the size of the waterfall from below, <strong>Yosemite Creek</strong> above the lip is small, the Park Service notes, a mountain stream running over granite toward an edge you cannot quite see. That is exactly why it is dangerous. The Park Service asks hikers to use extreme caution near the creek, to remember they are directly above a waterfall, and <strong>not to swim or wade in the creek above the fall</strong>. The water that looks gentle here goes over a 1,430-foot drop a short distance downstream.
+        The top of the trail is a surprise. After the size of the waterfall from below, <strong>Yosemite Creek</strong> above the lip is small, the Park Service notes, a mountain stream running over granite toward an edge you cannot quite see. That is why it is dangerous. The Park Service asks hikers to use extreme caution near the creek, to remember they are directly above a waterfall, and <strong>not to swim or wade in the creek above the fall</strong>. The water that looks gentle here goes over a 1,430-foot drop a short distance downstream.
       </p>
 
       <p>
@@ -129,7 +129,7 @@ window.ARTICLE_BODIES["yosemite-falls-trail"] = function YosemiteFallsTrailBody(
       </p>
 
       <p>
-        <strong>Summer</strong> is hot and dry. The Park Service warns that the loose decomposed granite gets slippery, and by August the fall may be only a trickle. The Valley and Columbia Rock views are still there, so a summer hike is a trip for the view and the climb, not for the water. Start at first light or not at all.
+        <strong>Summer</strong> is hot and dry. The Park Service warns that the loose decomposed granite gets slippery, and by August the fall may be only a trickle. The Valley and Columbia Rock views are still there, so a summer hike is for the view and the climb. Start at first light or not at all.
       </p>
 
       <p>
@@ -165,7 +165,7 @@ window.ARTICLE_BODIES["yosemite-falls-trail"] = function YosemiteFallsTrailBody(
       </p>
 
       <p>
-        Check <a href="/conditions">conditions</a> before you go, especially for ice in winter and for heat in summer. Then start early. Every piece of advice on this trail comes back to that.
+        Check <a href="/conditions">conditions</a> before you go, especially for ice in winter and for heat in summer. Then start early.
       </p>
     </>
   );

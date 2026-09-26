@@ -6,11 +6,11 @@ window.ARTICLE_BODIES["clouds-rest-hike"] = function CloudsRestHikeBody() {
   return (
     <>
       <p className="dropcap">
-        Most people arrive at Clouds Rest by way of a refusal. The Half Dome lottery said no in March, or it said no again two days before the hike, or the trip landed in the weeks after the cables came down, and somebody at a trailhead or on a forum said the same sentence: do Clouds Rest instead, it is higher and there is no permit. That sentence is true, and it undersells the mountain. Clouds Rest is a 9,926-foot summit reached by a maintained trail from Tioga Road, no lottery and no cables, ending on a granite spine with the whole park arranged around it and Half Dome sitting below you. It is the best big summit day in Yosemite that you can simply decide to do. This is how it goes, and when.
+        Most people arrive at Clouds Rest by way of a refusal. The Half Dome lottery said no in March, or it said no again two days before the hike, or the trip landed in the weeks after the cables came down, and somebody at a trailhead or on a forum said the same sentence: do Clouds Rest instead, it is higher and there is no permit. That sentence is true, and it undersells the hike. Clouds Rest is a 9,926-foot summit reached by a maintained trail from Tioga Road, no lottery and no cables, ending on a granite spine with the whole park arranged around it and Half Dome sitting below you. It is the best big summit day in Yosemite that needs no permit. This is how it goes, and when.
       </p>
 
       <p>
-        The site has recommended this hike before, in passing, inside <a href="/articles/so-you-want-to-hike-half-dome">the Half Dome piece</a> and in the monthly notes. It has never had the guide the recommendation deserves. What follows is the trail from the trailhead the Park Service measures from, the season it lives in, the overnight version, and the few weeks each autumn when it becomes the only summit of its kind still open.
+        The site has recommended this hike before, in passing, inside <a href="/articles/so-you-want-to-hike-half-dome">the Half Dome piece</a> and in the monthly notes. It has never had a full guide. What follows is the trail from the trailhead the Park Service measures from, the season it lives in, the overnight version, and the few weeks each autumn when it becomes the only summit of its kind still open.
       </p>
 
       <h2>The numbers, from the Sunrise Lakes trailhead</h2>

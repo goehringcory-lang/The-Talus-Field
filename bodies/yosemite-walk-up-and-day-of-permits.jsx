@@ -6,21 +6,21 @@ window.ARTICLE_BODIES["yosemite-walk-up-and-day-of-permits"] = function Yosemite
   return (
     <>
       <p className="dropcap">
-        Almost everything written about Yosemite permits is written for someone sitting at home in March with a calendar open. This is written for the other person: the one already inside the park, or checking into a motel in Mariposa tonight, holding nothing. Every guide they find tells them what they should have done twenty-four weeks ago. The useful question is different and nobody answers it. What can I still get today?
+        Almost everything written about Yosemite permits is written for someone sitting at home in March with a calendar open. This is written for the other person: the one already inside the park, or checking into a motel in Mariposa tonight, holding nothing. Every guide they find tells them what they should have done twenty-four weeks ago. The useful question is what they can still get today, and few guides answer it.
       </p>
 
       <p>
-        The honest answer has three parts. A great deal of Yosemite requires no permit and never did. One important thing has a genuine day-of path that most visitors never use. And one famous thing is simply closed to you, and no amount of showing up early changes that. Knowing which is which saves a day.
+        The answer has three parts. A great deal of Yosemite requires no permit and never did. One important thing has a real day-of path that most visitors never use. And one famous thing is closed to you, and no amount of showing up early changes that. Knowing which is which saves a day.
       </p>
 
       <h2>First: most of this park needs no permit at all</h2>
 
       <p>
-        Start here, because the permit anxiety around Yosemite is wildly out of proportion to the permit reality.
+        Start here, because the anxiety about Yosemite permits is out of proportion to the requirements.
       </p>
 
       <p>
-        <strong>Getting in.</strong> There is no day-use or peak-hours entry reservation for 2026. The systems that ran from 2020 through 2025 are gone, including the February weekend requirement for <a href="/articles/horsetail-fall-firefall">Horsetail Fall</a>. You pay at the gate and drive in. What is rationing your visit now is not paperwork, it is <a href="/articles/yosemite-valley-parking-guide">the number of parking spaces in Yosemite Valley</a>, which is a harder problem than a reservation and one you solve by arriving before nine or after five.
+        <strong>Getting in.</strong> There is no day-use or peak-hours entry reservation for 2026. The systems that ran from 2020 through 2025 are gone, including the February weekend requirement for <a href="/articles/horsetail-fall-firefall">Horsetail Fall</a>. You pay at the gate and drive in. What rations your visit now is <a href="/articles/yosemite-valley-parking-guide">the number of parking spaces in Yosemite Valley</a>, which is a harder problem than a reservation and one you solve by arriving before nine or after five.
       </p>
 
       <p>
@@ -50,11 +50,11 @@ window.ARTICLE_BODIES["yosemite-walk-up-and-day-of-permits"] = function Yosemite
       </p>
 
       <p>
-        Here is the part that matters if you are already here, and it is the detail that catches people. Those last-minute permits stay bookable until they sell out, but not right up to the start date. The park's published reservation window stops taking online bookings a few days out, three by its own reckoning, and whatever the exact cutoff is on the day you look, the practical rule does not move: there is no booking tonight for a walk that starts tomorrow morning. Once you are inside that window, the counter at a wilderness center is the only door left.
+        If you are already here, this is the detail that catches people. Those last-minute permits stay bookable until they sell out, but not right up to the start date. The park's published reservation window stops taking online bookings a few days out, three by its own reckoning, and whatever the exact cutoff is on the day you look, the practical rule does not move: there is no booking tonight for a walk that starts tomorrow morning. Once you are inside that window, the counter at a wilderness center is the only door left.
       </p>
 
       <p>
-        After that, one door remains, and it is a narrow one. Whatever quota went unclaimed can be issued in person at a wilderness center on the start date of the trip. The Park Service's own language about this is worth quoting almost exactly, because it is unusually blunt for a government website: while unreserved permits will be available in person on the start date, few, if any, unused permits will be available. That is not discouragement for its own sake. In July, at Happy Isles or Cathedral Lakes, the honest number is zero. Two drainages over, on a Tuesday, at a trailhead nobody has heard of, it is sometimes not zero, and the rangers behind the desk know exactly which ones those are. Ask the question that way. Do not ask whether they have anything for the John Muir Trail; ask what they have at all, and then decide whether you want it.
+        Whatever quota went unclaimed can be issued in person at a wilderness center on the start date of the trip. The Park Service's own language about this is worth quoting almost exactly, because it is unusually blunt for a government website: while unreserved permits will be available in person on the start date, few, if any, unused permits will be available. In July, at Happy Isles or Cathedral Lakes, the number is zero. Two drainages over, on a Tuesday, at a trailhead nobody has heard of, it is sometimes not zero, and the rangers behind the desk know exactly which ones those are. Ask the question that way. Do not ask whether they have anything for the John Muir Trail; ask what they have at all, and then decide whether you want it.
       </p>
 
       <h2>Where to stand, and by when</h2>
@@ -80,17 +80,17 @@ window.ARTICLE_BODIES["yosemite-walk-up-and-day-of-permits"] = function Yosemite
       <h2>Off-season, the whole system relaxes</h2>
 
       <p>
-        Roughly November through April, the quota season ends and Yosemite wilderness permits become free, unlimited, and self-issued at trailhead registers. No lottery, no Recreation.gov, no counter. It is the single largest gap between how hard this park looks to get into and how easy it actually is at the right time of year, and almost nobody takes it, because the same weather that opens the door makes the walking serious. <a href="/articles/yosemite-in-winter">Winter in Yosemite</a> covers what you are signing up for.
+        Roughly November through April, the quota season ends and Yosemite wilderness permits become free, unlimited, and self-issued at trailhead registers. No lottery, no Recreation.gov, no counter. It is the largest gap between how hard this park looks to get into and how easy it is at the right time of year, and almost nobody takes it, because the same weather that opens the door makes the walking serious. <a href="/articles/yosemite-in-winter">Winter in Yosemite</a> covers what you are signing up for.
       </p>
 
       <h2>Half Dome: the daily lottery is the day-of answer</h2>
 
       <p>
-        The cables are the one thing you cannot talk your way onto. Permits are required every day the cables are up, rangers check them at a checkpoint below the subdome, and hiking past it without one is a citation, not a warning. There is no walk-up window, no standby line, and no ranger who will make an exception. You can hike to the base of the subdome without a permit, and many people do, and the view from there is genuinely worth the walk.
+        The cables are the one thing you cannot talk your way onto. Permits are required every day the cables are up, rangers check them at a checkpoint below the subdome, and hiking past it without one is a citation, not a warning. There is no walk-up window, no standby line, and no ranger who will make an exception. You can hike to the base of the subdome without a permit, and many people do, and the view from there is worth the walk.
       </p>
 
       <p>
-        But there is a real day-of path, and it is badly publicized. Alongside the March preseason lottery, Yosemite runs a <strong>daily lottery</strong> every day the cables are up. You apply on Recreation.gov two days before you want to hike, in a window that runs from midnight to 4 p.m. Pacific, and results come by email that evening. Apply Thursday, hike Saturday. It costs ten dollars per application plus ten dollars per person if you win.
+        There is a day-of path, though it is poorly publicized. Alongside the March preseason lottery, Yosemite runs a <strong>daily lottery</strong> every day the cables are up. You apply on Recreation.gov two days before you want to hike, in a window that runs from midnight to 4 p.m. Pacific, and results come by email that evening. Apply Thursday, hike Saturday. It costs ten dollars per application plus ten dollars per person if you win.
       </p>
 
       <p>
@@ -104,7 +104,7 @@ window.ARTICLE_BODIES["yosemite-walk-up-and-day-of-permits"] = function Yosemite
       <h2>A bed tonight</h2>
 
       <p>
-        Camping is the hardest same-day problem in Yosemite and the one with the least satisfying answer, so here is the honest state of it rather than a list that will be wrong by next season.
+        Camping is the hardest same-day problem in Yosemite and the one with the least satisfying answer, so here is its current state rather than a list that will be wrong by next season.
       </p>
 
       <p>
@@ -141,7 +141,7 @@ window.ARTICLE_BODIES["yosemite-walk-up-and-day-of-permits"] = function Yosemite
       </ol>
 
       <p>
-        The pattern under all of it is the same one that governs this park generally. Yosemite meters the few places everyone has heard of, and leaves the rest wide open. A visitor who arrives with nothing booked and insists on the famous thing will have a bad day. A visitor who arrives with nothing booked and asks what is available will get a permit, a trail, and a campsite, and will probably end up somewhere quieter than the plan they failed to make.
+        The same pattern governs the park generally. Yosemite meters the few places everyone has heard of, and leaves the rest wide open. A visitor who arrives with nothing booked and insists on the famous thing will have a bad day. A visitor who arrives with nothing booked and asks what is available will get a permit, a trail, and a campsite, and will probably end up somewhere quieter than the original plan.
       </p>
     </>
   );

@@ -6,21 +6,21 @@ window.ARTICLE_BODIES["yosemite-in-june-2026"] = function YosemiteInJune2026Body
   return (
     <>
       <p className="dropcap">
-        Every June, I watch the same thing happen. A family pulls into Yosemite Valley at 11 a.m. on a Saturday, spends forty minutes looking for parking, finds a spot at the overflow lot near the stables, walks to Lower Yosemite Fall, takes a photo, and leaves. They drove five hours for ninety minutes in a crowd. They didn't know the waterfalls were already fading. They didn't know the high country was open. They didn't know that two hours north of where they were standing, there were alpine lakes with nobody at them.
+        Every June, I watch the same thing happen. A family pulls into Yosemite Valley at 11 a.m. on a Saturday, spends forty minutes looking for parking, finds a spot at the overflow lot near the stables, walks to Lower Yosemite Fall, takes a photo, and leaves. They drove five hours for ninety minutes in a crowd. They didn't know the waterfalls were already fading, that the high country was open, or that two hours north of where they were standing, there were alpine lakes with nobody at them.
       </p>
 
       <p>
-        June is the month when the Valley is at its most crowded and, in a good year, at its most spectacular. Waterfalls hit their peak. The high country opens. The days are the longest of the year. Everything the park is famous for is happening at once. But with historically low snowpack and no reservation system, this June is shaping up to be the month that separates the visits that work from the ones that don't.
+        June is the month when the Valley is at its most crowded and, in a good year, at its most spectacular. Waterfalls hit their peak. The high country opens. The days are the longest of the year. With historically low snowpack and no reservation system, planning matters more than usual this June.
       </p>
 
       <p>
-        Here is how to be on the right side of that line.
+        Here is how to plan for it.
       </p>
 
       <h2>The waterfalls</h2>
 
       <p>
-        The Sierra Nevada snowpack on April 1, 2026 was measured at roughly 18 percent of average, the second-lowest figure in recorded history. I covered what low snowpack means for the park this year in detail. Snowpack is the bank account that funds Yosemite's waterfalls, and this year the account is nearly empty.
+        The Sierra Nevada snowpack on April 1, 2026 was measured at roughly 18 percent of average, the second-lowest figure in recorded history. I covered what low snowpack means for the park this year in detail. Snowmelt feeds Yosemite's waterfalls, and this year there is little of it.
       </p>
 
       <p>
@@ -28,7 +28,7 @@ window.ARTICLE_BODIES["yosemite-in-june-2026"] = function YosemiteInJune2026Body
       </p>
 
       <p>
-        If seeing waterfalls at full power is a priority, the first two weeks of June are your window. After that, you are watching the decline. They will still be worth seeing. But the roaring, mist-soaking experience visitors imagine when they picture Yosemite Falls is a narrow window this year, and it is closing fast.
+        If seeing waterfalls at full power is a priority, the first two weeks of June are your window. After that the falls are in decline. They will still be worth seeing, but the full-volume Yosemite Falls most visitors picture is a short window this year.
       </p>
 
       <p>
@@ -42,7 +42,7 @@ window.ARTICLE_BODIES["yosemite-in-june-2026"] = function YosemiteInJune2026Body
       </p>
 
       <p>
-        This matters more than usual in 2026. With no reservation system managing Valley crowds, the high country is the single best pressure valve available to you. Tuolumne Meadows, Cathedral Lakes, Tenaya Lake, the Dana Fork, Lembert Dome: these places are two hours from the Valley floor and they are a different park entirely. I drove up on the opening weekend and counted eight cars at the Cathedral Lakes trailhead at 9 a.m. on a Saturday. That same morning, the Valley had been full since 7:30. If your trip overlaps with a <a href="/articles/yosemite-without-reservations-2026">Valley gridlock day</a>, Tuolumne is the answer.
+        This matters more than usual in 2026. With no reservation system managing Valley crowds, the high country is the best way around them. Tuolumne Meadows, Cathedral Lakes, Tenaya Lake, the Dana Fork, Lembert Dome: these places are two hours from the Valley floor and far less crowded. I drove up on the opening weekend and counted eight cars at the Cathedral Lakes trailhead at 9 a.m. on a Saturday. That same morning, the Valley had been full since 7:30. If your trip overlaps with a <a href="/articles/yosemite-without-reservations-2026">Valley gridlock day</a>, Tuolumne is the answer.
       </p>
 
       <p>
@@ -70,7 +70,7 @@ window.ARTICLE_BODIES["yosemite-in-june-2026"] = function YosemiteInJune2026Body
       <h2>Crowds in June 2026</h2>
 
       <p>
-        There is no way to sugarcoat this. June 2026 is shaping up to be the most crowded month in the park in years. The reservation system is gone, and the numbers reflect it. More than 836,000 visits were recorded through late May, roughly 100,000 more than the same period last year. On <a href="/articles/memorial-day-skip-the-valley-go-high-2026">Memorial Day weekend</a>, Valley parking lots were full by mid-morning and entrance waits exceeded ninety minutes.
+        June 2026 is shaping up to be the most crowded month in the park in years. The reservation system is gone, and the numbers reflect it. More than 836,000 visits were recorded through late May, roughly 100,000 more than the same period last year. On <a href="/articles/memorial-day-skip-the-valley-go-high-2026">Memorial Day weekend</a>, Valley parking lots were full by mid-morning and entrance waits exceeded ninety minutes.
       </p>
 
       <p>
@@ -78,15 +78,15 @@ window.ARTICLE_BODIES["yosemite-in-june-2026"] = function YosemiteInJune2026Body
       </p>
 
       <p>
-        <strong>Arrive before 7 a.m.</strong> On any Friday through Sunday, and especially on holidays, Valley parking lots will fill early. If you arrive at 10 a.m. on a Saturday, you will not find parking at any major trailhead. This is not an exaggeration. I watched it happen every weekend in May.
+        <strong>Arrive before 7 a.m.</strong> On any Friday through Sunday, and especially on holidays, Valley parking lots will fill early. If you arrive at 10 a.m. on a Saturday, you will not find parking at any major trailhead. I watched it happen every weekend in May.
       </p>
 
       <p>
-        <strong>Park once and use the shuttle.</strong> The free Valley shuttle runs two routes, the Valleywide about every 22 to 32 minutes and the shorter East Valley about every 18 to 22, and between them they stop at every major trailhead, the Visitor Center, Curry Village, and the Ahwahnee. Getting around the Valley without moving your car is a skill worth learning before you arrive.
+        <strong>Park once and use the shuttle.</strong> The free Valley shuttle runs two routes, the Valleywide about every 22 to 32 minutes and the shorter East Valley about every 18 to 22, and between them they stop at every major trailhead, the Visitor Center, Curry Village, and the Ahwahnee.
       </p>
 
       <p>
-        <strong>Visit midweek.</strong> Tuesday through Thursday, the park is a fundamentally different place. If you have flexibility, this is the single biggest quality-of-life improvement you can make. If you are still deciding <a href="/articles/yosemite-gateway-towns-compared">where to stay in or near Yosemite</a>, booking midweek dates also opens up more lodging options.
+        <strong>Visit midweek.</strong> Tuesday through Thursday, the park is far less crowded. If you have flexibility, this is the biggest improvement you can make. If you are still deciding <a href="/articles/yosemite-gateway-towns-compared">where to stay in or near Yosemite</a>, booking midweek dates also opens up more lodging options.
       </p>
 
       <p>
@@ -100,7 +100,7 @@ window.ARTICLE_BODIES["yosemite-in-june-2026"] = function YosemiteInJune2026Body
       <h2>Bears in June 2026</h2>
 
       <p>
-        Bear-related property damage in Yosemite increased 316 percent year over year according to recent park reporting. Drought years make wild food scarcer. When natural berry and nut crops are thin, bears look for alternatives. Your cooler in the back seat is an alternative.
+        Bear-related property damage in Yosemite increased 316 percent year over year according to recent park reporting. Drought years make wild food scarcer. When natural berry and nut crops are thin, bears look for alternatives, including coolers left in cars.
       </p>
 
       <p>
@@ -108,7 +108,7 @@ window.ARTICLE_BODIES["yosemite-in-june-2026"] = function YosemiteInJune2026Body
       </p>
 
       <p>
-        A bear that learns to associate cars with food is a bear that eventually gets killed. I do not say that to be dramatic. I say it because it happens every year in this park, and every year it starts with someone who thought the rules were suggestions.
+        A bear that learns to associate cars with food eventually gets killed. It happens every year in this park, and it starts with someone who ignored the storage rules.
       </p>
 
       <h2>What to pack</h2>
@@ -128,19 +128,15 @@ window.ARTICLE_BODIES["yosemite-in-june-2026"] = function YosemiteInJune2026Body
       <h2>Two Junes</h2>
 
       <p>
-        June 2026 in Yosemite is a compression event. Low snowpack pushed everything earlier: the waterfalls, the road openings, the wildflower bloom, the bear activity. No reservations pushed everything more crowded. The result is a month where the park is both more accessible and more strained than in recent memory.
+        Low snowpack pushed everything earlier: the waterfalls, the road openings, the wildflower bloom, the bear activity. The end of reservations made everything more crowded.
       </p>
 
       <p>
-        If you are visiting in the first two weeks, you will see waterfalls and wildflowers and the high country waking up and the Valley at its most alive. If you are visiting in the last two weeks, the waterfalls will be fading, the Mist Trail may be partially closed, and the heat will be climbing. Both versions of June are worth the trip. But they are different trips, and planning for the one you are actually getting is the difference between a great visit and a frustrating one.
+        If you are visiting in the first two weeks, you will see waterfalls and wildflowers and the high country waking up and the Valley at its busiest. If you are visiting in the last two weeks, the waterfalls will be fading, the Mist Trail may be partially closed, and the heat will be climbing. Both are worth the trip, but they call for different plans.
       </p>
 
       <p>
         <a href="/articles/first-time-yosemite-overwhelm">Start with the basics</a> if this is your first time. <a href="/planning">Plan your trip end to end</a> if you want the full framework.
-      </p>
-
-      <p>
-        The people who have the best June trips are not the ones who see the most. They are the ones who showed up knowing what kind of June they were walking into. This year, that matters more than it usually does.
       </p>
 
       <p>

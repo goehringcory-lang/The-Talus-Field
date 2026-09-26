@@ -6,25 +6,25 @@ window.ARTICLE_BODIES["yosemite-trip-cost-budget-2026"] = function YosemiteTripC
   return (
     <>
       <p className="dropcap">
-        People ask me what a Yosemite trip costs and I always give the same answer: it depends entirely on how you want to do it. Which is true but unhelpful. So here's the actually helpful version.
+        People ask me what a Yosemite trip costs and I always give the same answer: it depends on how you do it. Here are the numbers.
       </p>
 
       <p>
-        I've worked in this park for years. I've watched people do Yosemite for $50 a day and I've watched people do it for $800 a day. Both groups had great trips. The difference isn't quality. It's choices. And the choices are more straightforward than the internet makes them seem.
+        I've worked in this park for years. I've watched people do Yosemite for $50 a day and I've watched people do it for $800 a day. Both groups had good trips. The difference is a handful of choices, and they are simpler than they look online.
       </p>
 
       <p>
-        Let me walk through every cost category, give you real 2026 numbers, and then show you what three very different Yosemite trips actually add up to.
+        Below is every cost category with 2026 numbers, then three sample trips added up.
       </p>
 
       <h2>Entrance fees</h2>
 
       <p>
-        The big one that everyone knows about: <strong>$35 per vehicle</strong> for a seven-day pass. That's per car, not per person. A family of five pays the same $35 as a solo traveler.
+        The main one: <strong>$35 per vehicle</strong> for a seven-day pass. That's per car, not per person. A family of five pays the same $35 as a solo traveler.
       </p>
 
       <p>
-        If you're visiting more than one national park this year, or if you'll visit Yosemite more than twice, buy the <strong>America the Beautiful annual pass for $80</strong>. It covers every national park and federal recreation area in the country for a full year. One of the best deals in the federal government.
+        If you're visiting more than one national park this year, or if you'll visit Yosemite more than twice, buy the <strong>America the Beautiful annual pass for $80</strong>. It covers every national park and federal recreation area in the country for a full year. 
       </p>
 
       <p>
@@ -32,7 +32,7 @@ window.ARTICLE_BODIES["yosemite-trip-cost-budget-2026"] = function YosemiteTripC
       </p>
 
       <p>
-        New for 2026, and it changes the math for visitors from abroad: since January 1, international visitors pay a <strong>$100 surcharge per person age 16 and older</strong>, on top of the standard entrance fee. A car of four foreign visitors pays the $35 vehicle fee plus $400. For a group like that, the $250 nonresident America the Beautiful annual pass can pay for itself in a single visit. The surcharge does not apply to U.S. residents.
+        New for 2026: since January 1, international visitors pay a <strong>$100 surcharge per person age 16 and older</strong>, on top of the standard entrance fee. A car of four foreign visitors pays the $35 vehicle fee plus $400. For a group like that, the $250 nonresident America the Beautiful annual pass can pay for itself in a single visit. The surcharge does not apply to U.S. residents.
       </p>
 
       <p>
@@ -42,7 +42,7 @@ window.ARTICLE_BODIES["yosemite-trip-cost-budget-2026"] = function YosemiteTripC
       <h2>Lodging: the biggest variable</h2>
 
       <p>
-        This is where trips diverge. Here's the real range:
+        This is where trips diverge. The range:
       </p>
 
       <p>
@@ -68,7 +68,7 @@ window.ARTICLE_BODIES["yosemite-trip-cost-budget-2026"] = function YosemiteTripC
       <h2>Food: bring your own or eat in the park</h2>
 
       <p>
-        Park food is fine but expensive. Here's what you're looking at:
+        Park food is fine but expensive.
       </p>
 
       <p>
@@ -76,7 +76,7 @@ window.ARTICLE_BODIES["yosemite-trip-cost-budget-2026"] = function YosemiteTripC
       </p>
 
       <p>
-        <strong>The Ahwahnee Dining Room:</strong> Breakfast is $25–$35 (the buffet runs about $32). As of April 2026, dinner is prix fixe only: $95 for five courses or $125 for seven courses ($135/$165 with wine pairings). Reservations are required; walk-ins are no longer accepted. It's a memorable experience and worth doing once if the budget allows, but it's not an everyday meal.
+        <strong>The Ahwahnee Dining Room:</strong> Breakfast is $25–$35 (the buffet runs about $32). As of April 2026, dinner is prix fixe only: $95 for five courses or $125 for seven courses ($135/$165 with wine pairings). Reservations are required; walk-ins are no longer accepted. It is worth doing once if the budget allows.
       </p>
 
       <p>
@@ -88,13 +88,13 @@ window.ARTICLE_BODIES["yosemite-trip-cost-budget-2026"] = function YosemiteTripC
       </p>
 
       <p>
-        My advice: bring a cooler, stock it before you arrive, and plan to eat one meal per day at a park restaurant if you want the experience. Trail lunches of sandwiches, fruit, and trail mix are better than anything you'll buy in the park anyway.
+        My advice: bring a cooler, stock it before you arrive, and plan to eat one meal per day at a park restaurant if you want the experience. Trail lunches of sandwiches, fruit, and trail mix are better than most of what the park sells.
       </p>
 
       <h2>Gas and driving</h2>
 
       <p>
-        The drive to Yosemite is not trivial, and gas costs add up.
+        Gas costs add up.
       </p>
 
       <p>
@@ -110,17 +110,17 @@ window.ARTICLE_BODIES["yosemite-trip-cost-budget-2026"] = function YosemiteTripC
       </p>
 
       <p>
-        <strong>Once you're in the park:</strong> Gas is available at Wawona and at Crane Flat (both have 24-hour pay-at-the-pump with credit card). There's also a station in El Portal, just outside the Arch Rock entrance. All are expensive, typically $0.50 to $1.00 more per gallon than in gateway towns like Mariposa or Oakhurst. Fill up before you enter. The <a href="/articles/yosemite-in-one-or-two-days">driving and parking logistics</a> inside the park are their own adventure, but you won't burn much gas on the Valley shuttle loop.
+        <strong>Once you're in the park:</strong> Gas is available at Wawona and at Crane Flat (both have 24-hour pay-at-the-pump with credit card). There's also a station in El Portal, just outside the Arch Rock entrance. All are expensive, typically $0.50 to $1.00 more per gallon than in gateway towns like Mariposa or Oakhurst. Fill up before you enter. The <a href="/articles/yosemite-in-one-or-two-days">driving and parking logistics</a> inside the park take planning, but you won't burn much gas on the Valley shuttle loop.
       </p>
 
       <p>
-        <strong>Don't forget parking:</strong> Parking in Yosemite is free but competitive. There's no paid parking anywhere in the park. The cost isn't money. It's time.
+        <strong>Don't forget parking:</strong> Parking in Yosemite is free but competitive. There's no paid parking anywhere in the park. The cost is time.
       </p>
 
       <h2>Gear: what you actually need</h2>
 
       <p>
-        The outdoor industry wants you to believe you need $2,000 of gear to visit a national park. You don't.
+        You do not need $2,000 of gear to visit a national park.
       </p>
 
       <Placeholder
@@ -134,11 +134,11 @@ window.ARTICLE_BODIES["yosemite-trip-cost-budget-2026"] = function YosemiteTripC
       />
 
       <p>
-        <strong>Shoes:</strong> Sturdy, broken-in shoes with good tread. If you own hiking boots, great. If you don't, a pair of trail runners ($80–$150) will handle every trail in Yosemite except Half Dome. Running shoes and fashion sneakers are genuinely not safe on the steep, wet granite of the <a href="/articles/mist-trail-the-real-guide">park's most popular hikes</a>. This is the one gear purchase I'd say is non-negotiable.
+        <strong>Shoes:</strong> Sturdy, broken-in shoes with good tread. If you own hiking boots, great. If you don't, a pair of trail runners ($80–$150) will handle every trail in Yosemite except Half Dome. Running shoes and fashion sneakers are not safe on the steep, wet granite of the <a href="/articles/mist-trail-the-real-guide">park's most popular hikes</a>. This is the one gear purchase I'd say is non-negotiable.
       </p>
 
       <p>
-        <strong>Layers:</strong> Yosemite's temperature swings are dramatic. A summer day can go from 40°F at dawn to 95°F by noon to 55°F after sunset. Bring a warm layer (fleece or puffy jacket) and a rain layer even in summer. You probably already own these.
+        <strong>Layers:</strong> Temperatures swing widely. A summer day can go from 40°F at dawn to 95°F by noon to 55°F after sunset. Bring a warm layer (fleece or puffy jacket) and a rain layer even in summer. You probably already own these.
       </p>
 
       <p>
@@ -164,7 +164,7 @@ window.ARTICLE_BODIES["yosemite-trip-cost-budget-2026"] = function YosemiteTripC
       </p>
 
       <p>
-        <strong>Free programs:</strong> Ranger talks and evening programs are completely free. Yosemite Conservancy naturalist walks and stargazing programs are affordable: sunset walks are $15 per person and stargazing programs are $25 per person. The stargazing programs are some of the best things happening in the park.
+        <strong>Free programs:</strong> Ranger talks and evening programs are completely free. Yosemite Conservancy naturalist walks and stargazing programs are affordable: sunset walks are $15 per person and stargazing programs are $25 per person. The stargazing programs are among the best things in the park.
       </p>
 
       <p>
@@ -172,7 +172,7 @@ window.ARTICLE_BODIES["yosemite-trip-cost-budget-2026"] = function YosemiteTripC
       </p>
 
       <p>
-        For budgeting, guided programs are optional but genuinely good. If you're a first-time visitor and can fit one into the budget, a guided program with a naturalist who knows the park will change what you see and understand about Yosemite.
+        For budgeting, guided programs are optional but good. If you're a first-time visitor and can fit one into the budget, a guided program with a naturalist who knows the park will change what you see and understand about Yosemite.
       </p>
 
       <h2>The three budget tiers</h2>
@@ -194,7 +194,7 @@ window.ARTICLE_BODIES["yosemite-trip-cost-budget-2026"] = function YosemiteTripC
       </ul>
 
       <p>
-        This is a real trip. A great trip. You eat well, you see everything, and you wake up in the park. Camping in Yosemite is not a compromise. It's the best way to be here.
+        You eat well, see the main sights, and wake up in the park. Camping is a good way to do Yosemite.
       </p>
 
       <h3>Comfortable mid-range: ~$1,400–$1,800 total ($700–$900 per person)</h3>
@@ -210,7 +210,7 @@ window.ARTICLE_BODIES["yosemite-trip-cost-budget-2026"] = function YosemiteTripC
       </ul>
 
       <p>
-        This is the trip most people end up doing. Private room, some good meals, a mix of self-guided and guided activities. It's comfortable without being extravagant, and you don't feel like you're pinching pennies the whole time.
+        This is the trip most people end up doing. Private room, some good meals, a mix of self-guided and guided activities. It is comfortable without being extravagant.
       </p>
 
       <h3>Splurge: ~$3,500–$5,000+ total ($1,750–$2,500 per person)</h3>
@@ -226,7 +226,7 @@ window.ARTICLE_BODIES["yosemite-trip-cost-budget-2026"] = function YosemiteTripC
       </ul>
 
       <p>
-        This is the trip where everything is dialed. You're sleeping in a historic lodge, eating well, and getting the VIP version of the park. It's a special-occasion trip and it's worth every dollar for the right celebration.
+        You sleep in a historic lodge and eat well. It is a special-occasion trip.
       </p>
 
       <h2>Hidden costs people forget</h2>
@@ -240,17 +240,17 @@ window.ARTICLE_BODIES["yosemite-trip-cost-budget-2026"] = function YosemiteTripC
       </p>
 
       <p>
-        <strong>The gift shop purchase:</strong> Everyone says they won't. Everyone does. Budget $20 for the mug or the patch or the sticker.
+        <strong>The gift shop purchase:</strong> Budget $20 for the mug or the patch or the sticker.
       </p>
 
       <h2>The bottom line</h2>
 
       <p>
-        Yosemite can be done cheaply. That's the thing that surprises people most. The park itself doesn't cost much. Thirty-five dollars to get in, free shuttles, free trails, free ranger programs. The expensive part is lodging, and even that is manageable if you <a href="/articles/yosemite-gateway-towns-compared">camp or stay in a gateway town</a>.
+        Yosemite can be done cheaply. The park itself doesn't cost much. Thirty-five dollars to get in, free shuttles, free trails, free ranger programs. The expensive part is lodging, and even that is manageable if you <a href="/articles/yosemite-gateway-towns-compared">camp or stay in a gateway town</a>.
       </p>
 
       <p>
-        Don't let the cost keep you from going. The people having the best time in this park are not always the ones spending the most money. They're the ones who showed up, planned well, and spent their time outside instead of in a hotel room. If you're starting from scratch, my <a href="/articles/first-time-yosemite-overwhelm">first-timer's guide to Yosemite</a> ties it all together.
+        Don't let the cost keep you from going. The people having the best time here are not always the ones spending the most. If you're starting from scratch, my <a href="/articles/first-time-yosemite-overwhelm">first-timer's guide to Yosemite</a> ties it all together.
       </p>
 
       <LodgingCta

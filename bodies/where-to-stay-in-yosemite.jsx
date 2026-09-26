@@ -6,17 +6,17 @@ window.ARTICLE_BODIES["where-to-stay-in-yosemite"] = function WhereToStayInYosem
   return (
     <>
       <p className="dropcap">
-        The question I field more than any other, after twenty seasons of living and working in this park, is some version of "where should we stay?" And the honest first answer is that <strong>staying inside the park changes the trip</strong> in a way no other single decision does. The people sleeping in the Valley are standing under Yosemite Falls at seven in the morning with the mist still hanging and nobody around. The people sleeping in a gateway town are, at that same moment, sitting in the entrance line. Both groups paid to visit Yosemite. Only one of them is in it when the park is at its best, which is the first two hours and the last two hours of the day. So the case for in-park lodging is easy to make. What is harder, and what this article is for, is sorting out which in-park option actually fits your trip, because the six of them have almost nothing in common except a reservation system.
+        The question I field more than any other, after twenty seasons of living and working in this park, is some version of "where should we stay?" My first answer is that <strong>staying inside the park changes the trip</strong> in a way no other single decision does. The people sleeping in the Valley are standing under Yosemite Falls at seven in the morning with the mist still hanging and nobody around. The people sleeping in a gateway town are, at that same moment, sitting in the entrance line. Only one group is in the park for the first two hours and the last two hours of the day, which are its best. This article sorts out which in-park option actually fits your trip, because the six of them have almost nothing in common except a reservation system.
       </p>
 
       <p>
-        One piece of mechanics up front, because it explains everything else: every hotel, lodge, and tent cabin inside Yosemite is run by a single <strong>park concessioner</strong>, and all of it books through one website, <strong>travelyosemite.com</strong>. There is no Marriott inside the park, no Airbnb, no boutique alternative. One operator, one inventory, one booking window. I'll come back to how to work that system, because working it is most of the battle. First, the options themselves, ranked honestly.
+        One piece of mechanics first: every hotel, lodge, and tent cabin inside Yosemite is run by a single <strong>park concessioner</strong>, and all of it books through one website, <strong>travelyosemite.com</strong>. There is no Marriott or Airbnb inside the park. I'll come back to how to work that booking system. First, the options, ranked.
       </p>
 
       <h2 id="sec-0-the-ahwahnee-the-splurge-and-when-it-ear">The Ahwahnee: the splurge, and when it earns it</h2>
 
       <p>
-        <strong>The Ahwahnee</strong> opened in 1927 and is a <strong>National Historic Landmark</strong>, which is a category of building, not a marketing phrase. The Great Lounge with its floor-to-ceiling windows, the stenciled beams, the massive stone fireplaces, the dining room with its 34-foot ceiling: this is one of the great park lodges in the national system, in the same conversation as Old Faithful Inn and the Grand Canyon's El Tovar. Queens and presidents have stayed here. The building sits under the Royal Arches at the quiet east end of the Valley, and the walk out the front door at dusk, with Half Dome going pink above the meadow, is the whole argument.
+        <strong>The Ahwahnee</strong> opened in 1927 and is a <strong>National Historic Landmark</strong>, a federal designation. The Great Lounge with its floor-to-ceiling windows, the stenciled beams, the massive stone fireplaces, the dining room with its 34-foot ceiling: this is one of the great park lodges in the national system, in the same conversation as Old Faithful Inn and the Grand Canyon's El Tovar. Queens and presidents have stayed here. The building sits under the Royal Arches at the quiet east end of the Valley, and at dusk Half Dome turns pink above the meadow outside the front door.
       </p>
 
       <Placeholder
@@ -30,7 +30,7 @@ window.ARTICLE_BODIES["where-to-stay-in-yosemite"] = function WhereToStayInYosem
       />
 
       <p>
-        Now the honest part. The rooms are nice hotel rooms, not extraordinary ones, and you are paying <strong>several times the rate of Yosemite Valley Lodge</strong> for them. What the money actually buys is the public spaces, the address, and the feeling of the place: afternoon light in the Great Lounge, a drink by the fire after a day on the trails, dinner in a dining room that requires you to look up. If you will use those things, if you are marking an anniversary or a retirement or <a href="/articles/where-to-propose-in-yosemite">a once-in-a-lifetime trip</a>, the Ahwahnee is worth it. If you plan to leave at dawn and return at dark and use the room as a place to sleep, it is emphatically not, and the Lodge will make you just as happy for a fraction of the cost. One good compromise I recommend constantly: stay somewhere cheaper and come to the Ahwahnee for <a href="/articles/where-to-eat-yosemite">a meal or a drink</a>. The Great Lounge does not check room keys.
+        The rooms are nice hotel rooms, not extraordinary ones, and you are paying <strong>several times the rate of Yosemite Valley Lodge</strong> for them. What the money actually buys is the public spaces, the address, and the feeling of the place: afternoon light in the Great Lounge, a drink by the fire after a day on the trails, dinner in a dining room that requires you to look up. If you will use those things, if you are marking an anniversary or a retirement or <a href="/articles/where-to-propose-in-yosemite">a once-in-a-lifetime trip</a>, the Ahwahnee is worth it. If you plan to leave at dawn and return at dark and use the room as a place to sleep, it is not, and the Lodge will make you just as happy for a fraction of the cost. One good compromise I recommend constantly: stay somewhere cheaper and come to the Ahwahnee for <a href="/articles/where-to-eat-yosemite">a meal or a drink</a>. The Great Lounge does not check room keys.
       </p>
 
       <h2 id="sec-1-yosemite-valley-lodge-the-location-is-th">Yosemite Valley Lodge: the location is the product</h2>
@@ -42,13 +42,13 @@ window.ARTICLE_BODIES["where-to-stay-in-yosemite"] = function WhereToStayInYosem
       <blockquote>You are not buying the room. You are buying the two hours a day the day-trippers never see.</blockquote>
 
       <p>
-        For most first-time visitors with a hotel budget, this is the correct answer, full stop. It books out accordingly. Rate it a solid, unromantic first place for value among the roofed options: not the cheapest, not the grandest, but the one where location, comfort, and price line up.
+        For most first-time visitors with a hotel budget, this is the answer, and it books out accordingly. Among the roofed options it ranks first for value: not the cheapest or the grandest, but the best balance of location, comfort, and price.
       </p>
 
       <h2 id="sec-2-curry-village-canvas-bear-boxes-and-prox">Curry Village: canvas, bear boxes, and proximity</h2>
 
       <p>
-        <strong>Curry Village</strong> has been putting visitors in tents at the base of Glacier Point since 1899, and the current version is a dense grid of <strong>canvas tent cabins</strong> (wood frame, canvas walls and roof, real beds, no plumbing) plus a smaller number of hard-sided cabins, some with private baths. The tent cabins are the cheapest roofed beds in Yosemite Valley, and the tradeoffs are exactly what the canvas implies. You will hear your neighbors, and they will hear you. Unheated tents are genuinely cold in spring and fall (heated ones exist and go first). Bathrooms and showers are in shared <strong>communal bathhouses</strong>, a walk away in the dark.
+        <strong>Curry Village</strong> has been putting visitors in tents at the base of Glacier Point since 1899, and the current version is a dense grid of <strong>canvas tent cabins</strong> (wood frame, canvas walls and roof, real beds, no plumbing) plus a smaller number of hard-sided cabins, some with private baths. The tent cabins are the cheapest roofed beds in Yosemite Valley, and the tradeoffs follow from the canvas. You will hear your neighbors, and they will hear you. Unheated tents are cold in spring and fall (heated ones exist and go first). Bathrooms and showers are in shared <strong>communal bathhouses</strong>, a walk away in the dark.
       </p>
 
       <Placeholder
@@ -62,7 +62,7 @@ window.ARTICLE_BODIES["where-to-stay-in-yosemite"] = function WhereToStayInYosem
       />
 
       <p>
-        And you must use the <strong>bear box</strong>. Every tent cabin has a steel food locker outside, and everything with a scent, food, toothpaste, sunscreen, the gum in your daypack, goes in it, every time, because canvas is not a barrier a bear respects. This is not theoretical; it is the single rule the staff will repeat to you at check-in, and they mean it.
+        And you must use the <strong>bear box</strong>. Every tent cabin has a steel food locker outside, and everything with a scent, food, toothpaste, sunscreen, the gum in your daypack, goes in it, every time, because canvas is not a barrier a bear respects. Staff repeat this rule at check-in.
       </p>
 
       <p>
@@ -76,7 +76,7 @@ window.ARTICLE_BODIES["where-to-stay-in-yosemite"] = function WhereToStayInYosem
       </p>
 
       <p>
-        It sounds austere and it is, but here is what it actually delivers: you can cook your own meals over a fire, which no other lodging option in the Valley allows, the river beach is steps away for the hot afternoons, and the whole place runs at a family summer-camp register that a hotel cannot replicate. For a family of four on a budget who would otherwise be choosing between a motel outside the park and <a href="/articles/yosemite-camping-complete-guide">a campsite they failed to win</a>, Housekeeping Camp is the answer that splits the difference: camping's economics and campfires with a real bed and no tent to pitch. It is summer-seasonal, it books out nearly as fast as everything else, and it remains the best-kept non-secret in the Valley.
+        It is austere, but you can cook your own meals over a fire, which no other lodging option in the Valley allows, the river beach is steps away for the hot afternoons, and the place feels like a family summer camp. For a family of four on a budget who would otherwise be choosing between a motel outside the park and <a href="/articles/yosemite-camping-complete-guide">a campsite they failed to win</a>, Housekeeping Camp is the answer that splits the difference: camping's economics and campfires with a real bed and no tent to pitch. It is summer-seasonal, it books out nearly as fast as everything else, and few first-time visitors know about it.
       </p>
 
       <h2 id="sec-4-the-high-country-white-wolf-and-tuolumne">The high country: White Wolf and Tuolumne Meadows</h2>
@@ -86,7 +86,7 @@ window.ARTICLE_BODIES["where-to-stay-in-yosemite"] = function WhereToStayInYosem
       </p>
 
       <p>
-        These are not bases for a Valley trip; the Valley is an hour and a half or more away. They are bases for the high country itself, for hikers and returning visitors, and a night at Tuolumne under that sky is one of the best sleeps the park sells.
+        These are not bases for a Valley trip; the Valley is an hour and a half or more away. They are bases for the high country itself, for hikers and returning visitors, and a night at Tuolumne suits exactly that trip.
       </p>
 
       <h2 id="sec-5-how-the-booking-actually-works">How the booking actually works</h2>
@@ -96,11 +96,11 @@ window.ARTICLE_BODIES["where-to-stay-in-yosemite"] = function WhereToStayInYosem
       </p>
 
       <p>
-        Missing the release is not the end, and this is the part most people never learn: <strong>rooms come back</strong>. Cancellation policies mean people drop reservations continuously, with a distinct wave in the final weeks before any date as plans collapse. The strategy is unglamorous and it works: <strong>check the website daily</strong>, at varied times, in the four to six weeks before your trip. I have watched people assemble three-night Valley stays in June out of one-night cancellations. Persistence beats luck.
+        Missing the release is not the end: <strong>rooms come back</strong>. Cancellation policies mean people drop reservations continuously, with a distinct wave in the final weeks before any date as plans collapse. The strategy is simple: <strong>check the website daily</strong>, at varied times, in the four to six weeks before your trip. I have watched people assemble three-night Valley stays in June out of one-night cancellations.
       </p>
 
       <p>
-        The other lever is the calendar. <strong>Winter is dramatically easier and cheaper.</strong> The seasonal operations close, but the Ahwahnee, the Lodge, and a reduced Curry Village run all year, rates drop, and midweek availability in January is a different universe from July. If your goal is a night at the Ahwahnee without a fight, <a href="/articles/yosemite-in-winter">winter</a> is when it happens. <a href="/articles/yosemite-in-winter">The winter guide</a> quotes the concessioner's published floor rates for the Ahwahnee, the Lodge and Curry Village, and the blackout weeks around them, so you know what "cheaper" means before you search.
+        The other lever is the calendar. <strong>Winter is dramatically easier and cheaper.</strong> The seasonal operations close, but the Ahwahnee, the Lodge, and a reduced Curry Village run all year, rates drop, and midweek availability in January is far better than in July. If your goal is a night at the Ahwahnee without a fight, <a href="/articles/yosemite-in-winter">winter</a> is when it happens. <a href="/articles/yosemite-in-winter">The winter guide</a> quotes the concessioner's published floor rates for the Ahwahnee, the Lodge and Curry Village, and the blackout weeks around them, so you know what "cheaper" means before you search.
       </p>
 
       <h2 id="sec-6-the-alternative-for-honesty-s-sake">The alternative, for honesty's sake</h2>
@@ -110,7 +110,7 @@ window.ARTICLE_BODIES["where-to-stay-in-yosemite"] = function WhereToStayInYosem
       </p>
 
       <p>
-        But if you can get a bed inside the boundary, get it. Rank them like this: Valley Lodge for most first-timers, Housekeeping Camp for families who half-camp, Curry Village for hikers on a budget, the Ahwahnee when the occasion justifies it, the high-country camps for people whose trip is the high country. Then set the reminder for 366 days out, and if you miss it, start checking daily. The park rewards the stubborn.
+        But if you can get a bed inside the boundary, get it. Rank them like this: Valley Lodge for most first-timers, Housekeeping Camp for families who half-camp, Curry Village for hikers on a budget, the Ahwahnee when the occasion justifies it, the high-country camps for people whose trip is the high country. Then set the reminder for 366 days out, and if you miss it, start checking daily.
       </p>
 
       <LodgingCta

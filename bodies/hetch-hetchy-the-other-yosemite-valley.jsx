@@ -74,7 +74,7 @@ window.ARTICLE_BODIES["hetch-hetchy-the-other-yosemite-valley"] = function Hetch
       </p>
 
       <p>
-        This is the part of the loss that's hard to convey to anyone who hasn't been here. Hetch Hetchy is not a sad fragment of a lost valley. It is a real place, geologically and ecologically of the same family as Yosemite Valley, and the sense you get standing on the dam looking east into the reservoir is not "this used to be something." It is "this still is something, and it is connected to a thing that was destroyed but isn't entirely lost."
+        This part is hard to convey to anyone who hasn't been here. Hetch Hetchy is a real place, geologically and ecologically of the same family as Yosemite Valley, and the sense you get standing on the dam looking east into the reservoir is not "this used to be something." It is "this still is something, and it is connected to a thing that was destroyed but isn't entirely lost."
       </p>
 
       <p>
@@ -193,7 +193,7 @@ window.ARTICLE_BODIES["hetch-hetchy-the-other-yosemite-valley"] = function Hetch
         Drive up early, walk to Wapama, eat lunch at the base of the falls, walk back. Stand on the dam for a moment on the way out and look east into the reservoir. Picture the meadow that's down there. Then notice the granite, the falls, the eagles overhead, the valley you can see.
       </p>
 
-      <p>That's the trip.</p>
+      <p>That is the whole trip.</p>
 
       <h3>Sources</h3>
       <ul style={{ fontSize: 14 }}>

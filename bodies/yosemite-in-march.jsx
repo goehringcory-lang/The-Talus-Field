@@ -6,11 +6,11 @@ window.ARTICLE_BODIES["yosemite-in-march"] = function YosemiteInMarchBody() {
   return (
     <>
       <p className="dropcap">
-        March is the month I have stopped trying to predict. I live in El Portal, down the Merced River canyon from Yosemite Valley, and in the span of four recent Marches I have watched this park buried and closed for weeks under record snow, watched a blizzard shut every road into it on the first weekend of the month, watched five feet of new snow land on Tuolumne Meadows in two weeks, and watched a March so hot and dry it erased roughly half the winter's snowpack in thirty days. Same month. Same park. Nobody planning a trip gets to know in advance which of those Marches they have booked.
+        March is the month I have stopped trying to predict. I live in El Portal, down the Merced River canyon from Yosemite Valley, and in the span of four recent Marches I have watched this park buried and closed for weeks under record snow, watched a blizzard shut every road into it on the first weekend of the month, watched five feet of new snow land on Tuolumne Meadows in two weeks, and watched a March so hot and dry it erased roughly half the winter's snowpack in thirty days. Nobody planning a trip gets to know in advance which of those Marches they have booked.
       </p>
 
       <p>
-        That is the honest frame for this month: a tale of two seasons, running on the same calendar page. One March is spring. The afternoon touches 70 degrees in the Valley, the waterfalls are audibly coming back to life, the redbud is blooming along the highway, and you have the place at a fraction of its summer crowds. The other March is the biggest winter month of the year, the one the Sierra has an actual name for. You cannot choose between them. What you can do is plan a trip that works in either, and that is a solvable problem. Here is how.
+        This month is two seasons on the same calendar page. One March is spring. The afternoon touches 70 degrees in the Valley, the waterfalls are audibly coming back to life, the redbud is blooming along the highway, and you have the place at a fraction of its summer crowds. The other March is the biggest winter month of the year, the one the Sierra has an actual name for. You cannot choose between them. What you can do is plan a trip that works in either, and that is a solvable problem. Here is how.
       </p>
 
       <h2>The month that cannot pick a season</h2>
@@ -46,7 +46,7 @@ window.ARTICLE_BODIES["yosemite-in-march"] = function YosemiteInMarchBody() {
       </p>
 
       <p>
-        The two winter amenities are the honest fine print of a March trip, because both of them end as the month begins. The <strong>Curry Village ice rink</strong> skates its final sessions in the first days of March; in 2026 the season ended on March 2. <strong>Badger Pass</strong> traditionally runs into late March or early April, but that tradition is wobbling: in 2026 it closed for the season on March 18, and the winter before that it never opened at all. If skiing or the Dewey Point snowshoe is the point of your trip, come early in the month and check the operating status before you drive up, because when Badger is done, so is your trailhead.
+        The two winter amenities are the fine print of a March trip, because both of them end as the month begins. The <strong>Curry Village ice rink</strong> skates its final sessions in the first days of March; in 2026 the season ended on March 2. <strong>Badger Pass</strong> traditionally runs into late March or early April, but that tradition is wobbling: in 2026 it closed for the season on March 18, and the winter before that it never opened at all. If skiing or the Dewey Point snowshoe is the point of your trip, come early in the month and check the operating status before you drive up, because when Badger is done, so is your trailhead.
       </p>
 
       <h2>Driving in: assume chains until the forecast proves otherwise</h2>
