@@ -6,77 +6,77 @@ window.ARTICLE_BODIES["where-to-eat-yosemite"] = function WhereToEatYosemiteBody
   return (
     <>
       <p className="dropcap">
-        Food is the part of a Yosemite trip that visitors plan least and complain about most. The Valley is not a culinary destination. Most of the gateway towns aren't either. But there are eight or nine places across the region worth driving to, a shorter list worth eating at when you are already nearby, and a set of facts about where food exists at all that nobody tells you until you are hungry at 8,600 feet with the nearest open kitchen an hour away.
+        Food is the part of a Yosemite trip people plan least and complain about most. The Valley isn't a culinary destination, and most of the gateway towns aren't either. Still, there are eight or nine places across the region worth driving to, a shorter list worth eating at when you're already nearby, and a handful of facts about where food exists at all that nobody mentions until you're hungry at 8,600 feet and the nearest open kitchen is an hour away.
       </p>
 
       <p>
-        I live in El Portal. I eat in these places. The recommendations are not affiliate links and they are not sponsored. If a restaurant is not recommended here, it does not mean it is bad; it means I have nothing useful to say about it. Chains exist. Chipotle exists in Oakhurst. If you need a Chipotle, you will find one. That is not what the recommendations are for. Separately, further down, there is a complete roster of what exists in the Mariposa area, which is a different thing and worth having.
+        I live in El Portal, and I eat in these places. None of the recommendations are affiliate links, and none are sponsored. If a restaurant isn't on the list, that doesn't make it bad. It means I don't have anything useful to say about it. Chains exist. There's a Chipotle in Oakhurst, and if you need one, you'll find it. That's not what this list is for. Further down there's also a complete roster of what exists in the Mariposa area, which is a different thing and worth having.
       </p>
 
       <h2>Is there food in Yosemite National Park?</h2>
 
       <p>
-        Yes, but almost all of it is in one square mile. <strong>Yosemite Valley</strong> has the park's only real concentration of food service: eleven counters, decks and dining rooms clustered in Yosemite Village, at Yosemite Valley Lodge, and around Curry Village. Outside the Valley the park thins out fast. <strong>Wawona</strong> has a general store. <strong>Tuolumne Meadows</strong>, up on Tioga Road, has a seasonal store and grill and the dining tent at Tuolumne Meadows Lodge, all of which close in September. <strong>Crane Flat</strong> and <strong>El Portal</strong> have small markets. <strong>Yosemite West</strong>, despite the name and the vacation rentals, has no restaurant, no store, and no gas.
+        Yes, but nearly all of it sits inside one square mile. <strong>Yosemite Valley</strong> has the park's only real concentration of food service: eleven counters, decks and dining rooms clustered in Yosemite Village, at Yosemite Valley Lodge, and around Curry Village. Leave the Valley and the options thin out fast. <strong>Wawona</strong> has a general store. <strong>Tuolumne Meadows</strong>, up on Tioga Road, has a seasonal store and grill and the dining tent at Tuolumne Meadows Lodge, all of which close in September. <strong>Crane Flat</strong> and <strong>El Portal</strong> have small markets. <strong>Yosemite West</strong>, despite the name and the vacation rentals, has no restaurant, no store, and no gas.
       </p>
 
       <p>
-        Two practical consequences. If you are staying anywhere other than the Valley, plan on either a drive or a cooler. And if you arrive after about 9 p.m., assume everything is shut: this is a national park, not a town, and the kitchens keep park hours.
+        That leaves you with two practical rules. If you're staying anywhere but the Valley, plan on a drive or a cooler. And if you roll in after about 9 p.m., assume everything's shut: this is a national park, not a town, and the kitchens keep park hours.
       </p>
 
       <h2>Where to eat in Yosemite Valley</h2>
 
       <p>
-        <strong>Curry Village Pizza Deck.</strong> The Half Dome is the order: house pepperoni and ricotta with fennel and a chili oil drizzle. Eaten on the wooden deck under the granite face of Glacier Point Apron at the end of a long day, beer on tap, picnic tables, and a line of people who have been doing the same thing all summer. There is almost always a wait, and the wait is part of the experience. This is the only restaurant inside the park I would go out of my way to eat at. It is not the best pizza in California. It is the best pizza in Yosemite Valley by a wide margin, and on the right summer evening it is the best meal of the trip. The location is officially Curry Village; most people still call it Curry Village.
+        <strong>Curry Village Pizza Deck.</strong> Order the Half Dome: house pepperoni and ricotta with fennel and a chili oil drizzle. You eat it on the wooden deck under the granite face of Glacier Point Apron at the end of a long day, with beer on tap, picnic tables, and a line of people who've been doing the same thing all summer. There's almost always a wait, and the wait is part of it. It's the only restaurant inside the park I'd go out of my way for. It isn't the best pizza in California. It is the best pizza in Yosemite Valley by a wide margin, and on the right summer evening it is the best meal of the trip. The location is officially Curry Village; most people still call it Curry Village.
       </p>
 
       <p>
-        <strong>Base Camp Eatery, Yosemite Valley Lodge.</strong> The busiest room in the park and the one most visitors actually eat in, which is why leaving it off a list is a disservice even when nobody drives to it. It is a food court: order at touchscreen kiosks, collect at a counter, sit at a long communal table. Grill, pizza, a hot line, breakfast from early. The value in it is throughput and hours, not cooking. At 7 a.m. on a July morning it is the fastest hot breakfast on the Valley floor, and at 8 p.m. it is often the last kitchen still taking orders. Plan meals around that second fact more than the first.
+        <strong>Base Camp Eatery, Yosemite Valley Lodge.</strong> This is the busiest room in the park and the one most visitors actually eat in, so leaving it off a list would be a disservice even though nobody drives to it. It's a food court: you order at touchscreen kiosks, pick up at a counter, and sit at a long communal table. Grill, pizza, a hot line, breakfast from early. What it's good for is speed and hours, not cooking. At 7 a.m. on a July morning it is the fastest hot breakfast on the Valley floor, and at 8 p.m. it is often the last kitchen still taking orders. That second fact is the one to plan around.
       </p>
 
       <p>
-        <strong>Degnan's Kitchen, Yosemite Village.</strong> The only place inside the park to get a halfway decent lunch for under twenty dollars. Order a sandwich at the counter, take it outside, eat it on a bench. The bread is real, the meat is fine, the line moves. If you forgot to pack a cooler, <a href="/map?stop=degnans-deli">Degnan's</a> is the fallback that does not feel like a fallback. A coffee and a breakfast sandwich there at 7 a.m. is also one of the better moves in the Valley if you slept inside the park. Upstairs in the same building, the Loft at Degnan's ran for years as a seasonal sit-down room with a bar and a wood-fired oven. It is closed, which removes the one answer the Valley had to the question people ask on the third rainy afternoon: where can we sit indoors, inside the park, that is not a hotel dining room.
+        <strong>Degnan's Kitchen, Yosemite Village.</strong> If you want a halfway decent lunch inside the park for under twenty dollars, this is the only place. Order a sandwich at the counter, take it outside, and eat it on a bench. The bread is real, the meat is fine, the line moves. If you forgot to pack a cooler, <a href="/map?stop=degnans-deli">Degnan's</a> is the fallback that does not feel like a fallback. If you slept inside the park, a coffee and a breakfast sandwich here at 7 a.m. is one of the better moves in the Valley. Upstairs in the same building, the Loft at Degnan's ran for years as a seasonal sit-down room with a bar and a wood-fired oven. It's closed now, which takes away the one answer the Valley had to the question people ask on the third rainy afternoon: where can we sit indoors, inside the park, that is not a hotel dining room.
       </p>
 
       <p>
-        <strong>The Curry Village cluster.</strong> Four separate operations share one compound and get treated as one place, which is why visitors think Curry Village has a pizza deck and nothing else. <strong>Meadow Grill Taqueria</strong>, at the Village Store, is counter-service tacos and burritos beside the deck, outdoor seating, and the shortest path from a trailhead to a hot meal on the Valley floor. <strong>Coffee Corner</strong> opens early and is the reason you do not have to drive to Yosemite Village for a coffee before a Mist Trail start. <strong>Bar 1899</strong> is the small indoor bar. <strong>Seven Tents Pavilion</strong> is the big buffet hall, mostly serving the tent-cabin guests. All four are seasonal to some degree, and the taqueria is usually the first Valley kitchen to close when the summer ends.
+        <strong>The Curry Village cluster.</strong> Four separate operations share one compound, and people lump them together, which is why most visitors think Curry Village has a pizza deck and nothing else. <strong>Meadow Grill Taqueria</strong>, at the Village Store, is counter-service tacos and burritos beside the deck, outdoor seating, and the shortest path from a trailhead to a hot meal on the Valley floor. <strong>Coffee Corner</strong> opens early and is why you don't have to drive to Yosemite Village for a coffee before a Mist Trail start. <strong>Bar 1899</strong> is the small indoor bar. <strong>Seven Tents Pavilion</strong> is the big buffet hall, mostly serving the tent-cabin guests. All four are seasonal to some degree, and the taqueria is usually the first Valley kitchen to close when the summer ends.
       </p>
 
       <p>
-        <strong>The Mountain Room, Yosemite Valley Lodge.</strong> The Valley's sit-down dinner option short of The Ahwahnee: a proper dining room with a wall of glass pointed at Yosemite Falls. Reservations are worth having in summer, and the falls are worth timing: the view is the reason to book this room rather than the food.
+        <strong>The Mountain Room, Yosemite Valley Lodge.</strong> The Valley's sit-down dinner option short of The Ahwahnee: a proper dining room with a wall of glass pointed at Yosemite Falls. Get a reservation in summer, and time it for the falls: you're booking this room for the view, not the food.
       </p>
 
       <p>
-        <strong>The Ahwahnee Dining Room.</strong> The special-occasion meal that does not require driving to Oakhurst. As of April 2026 the Ahwahnee moved to prix fixe only, five courses at $95 a person or seven at $125, dinner service, reservations required. This is not a spontaneous stop. If the night calls for it, book ahead. The room itself, thirty-four-foot ceilings and granite piers, is most of what you are paying for, and it is worth it once.
+        <strong>The Ahwahnee Dining Room.</strong> The special-occasion meal that does not require driving to Oakhurst. As of April 2026 the Ahwahnee moved to prix fixe only, five courses at $95 a person or seven at $125, dinner service, reservations required. It's not a spontaneous stop, so if the night calls for it, book ahead. The room itself, thirty-four-foot ceilings and granite piers, is most of what you're paying for, and it's worth it once.
       </p>
 
       <p>
-        There is also a <strong>Starbucks</strong> at Yosemite Valley Lodge, inside Base Camp Eatery, which arrived in 2018 and generated more correspondence than any other food decision the park has made. It is a Starbucks. It has the shortest line in the Valley when the Degnan's counter is twenty deep, and that is the entire case for it.
+        There is also a <strong>Starbucks</strong> at Yosemite Valley Lodge, inside Base Camp Eatery, which arrived in 2018 and generated more correspondence than any other food decision the park has made. It's a Starbucks. It has the shortest line in the Valley when the Degnan's counter is twenty deep, and that's the whole case for it.
       </p>
 
       <h2>Wawona, Fish Camp and the south end of the park</h2>
 
       <p>
-        The south end is thin and getting thinner. The <strong>Wawona General Store</strong> is the reliable one: groceries, sandwiches, the sort of resupply that turns a day trip into a picnic, twenty minutes from the Mariposa Grove. The Wawona Hotel dining room has kept an intermittent schedule in recent seasons, so do not build an evening around it without checking that week.
+        The south end is thin and getting thinner. The <strong>Wawona General Store</strong> is the reliable one: groceries, sandwiches, the sort of resupply that turns a day trip into a picnic, twenty minutes from the Mariposa Grove. The Wawona Hotel dining room has kept an intermittent schedule in recent seasons, so don't build an evening around it without checking that week.
       </p>
 
       <p>
-        Two miles south of the gate, <strong>Fish Camp</strong> covers what Wawona does not, and it is closer than most people staying at the south end realise. <strong>Embers</strong> at Tenaya Lodge is the sit-down dinner, the nearest real restaurant to the Mariposa Grove, and <strong>Jackalopes</strong>, the bar in the same building, takes the walk-ins when Embers is booked. The <strong>Pine Tree Market</strong> and the <strong>Fish Camp General Store</strong> handle groceries and a sandwich. Past that you are driving to Oakhurst, another fifteen minutes down Highway 41.
+        Two miles south of the gate, <strong>Fish Camp</strong> covers what Wawona does not, and it's closer than most people staying at the south end realise. <strong>Embers</strong> at Tenaya Lodge is the sit-down dinner, the nearest real restaurant to the Mariposa Grove, and <strong>Jackalopes</strong>, the bar in the same building, takes the walk-ins when Embers is booked. The <strong>Pine Tree Market</strong> and the <strong>Fish Camp General Store</strong> handle groceries and a sandwich. Past that, you're driving to Oakhurst, another fifteen minutes down Highway 41.
       </p>
 
       <h2>Tuolumne Meadows and the high country</h2>
 
       <p>
-        This is the section that strands people. Tuolumne Meadows has a seasonal store and grill and the dining tent at <strong>Tuolumne Meadows Lodge</strong>, a canvas room serving breakfast and a fixed dinner with reservations, and that is the entire food supply along thirty-nine miles of Tioga Road. All of it opens with the summer and <strong>closes in September</strong>, in the 2026 season on September 20, several weeks before the road itself closes for the winter. There is no gas at Tuolumne either: <a href="/articles/tuolumne-meadows-in-a-day">the Tuolumne day</a> covers that trap in full.
+        This is where people get stranded. Tuolumne Meadows has a seasonal store and grill and the dining tent at <strong>Tuolumne Meadows Lodge</strong>, a canvas room serving breakfast and a fixed dinner with reservations, and that's the entire food supply along thirty-nine miles of Tioga Road. All of it opens with the summer and <strong>closes in September</strong>, in the 2026 season on September 20, several weeks before the road itself closes for the winter. There is no gas at Tuolumne either: <a href="/articles/tuolumne-meadows-in-a-day">the Tuolumne day</a> covers that trap in full.
       </p>
 
       <p>
-        Plan the high country as a cooler day. Buy food at Crane Flat on the way up or in Lee Vining on the way over, eat it on a granite slab, and treat anything you find open at 8,600 feet as a bonus rather than a plan.
+        Treat the high country as a cooler day. Buy food at Crane Flat on the way up or in Lee Vining on the way over, eat it on a granite slab, and treat anything you find open at 8,600 feet as a bonus rather than a plan.
       </p>
 
       <h2>Yosemite West restaurants: there are none</h2>
 
       <p>
-        Yosemite West is a residential subdivision inside the park boundary off Wawona Road, and it is almost entirely vacation rentals. It has no restaurant, no store, no gas station and no shuttle. Guests are frequently surprised by this, because the booking listings emphasize the location and not the logistics. From Yosemite West the nearest food is the Valley, roughly forty minutes down and back, or Wawona, roughly half an hour south. If you are staying there, shop before you arrive. A full kitchen and an empty valley are a good combination only if you brought groceries.
+        Yosemite West is a residential subdivision inside the park boundary off Wawona Road, and it is almost entirely vacation rentals. It has no restaurant, no store, no gas station and no shuttle. Guests are often caught off guard, because the listings sell the location and skip the logistics. From Yosemite West the nearest food is the Valley, roughly forty minutes down and back, or Wawona, roughly half an hour south. If you're staying there, shop before you arrive. A full kitchen and an empty valley work out fine, as long as you brought groceries.
       </p>
 
       <h2>Restaurants near Yosemite: the gateway towns</h2>
@@ -86,11 +86,11 @@ window.ARTICLE_BODIES["where-to-eat-yosemite"] = function WhereToEatYosemiteBody
       </p>
 
       <p>
-        <strong>1850 Restaurant &amp; Brewing Co., Mariposa.</strong> The sit-down dinner option in town. Wood-fired pizzas, a burger that is genuinely good, a short list of house-brewed beers, and a patio that fills on summer evenings. Closed Monday and Tuesday. Service can be slow when the dining room is full; the food is worth it.
+        <strong>1850 Restaurant &amp; Brewing Co., Mariposa.</strong> The sit-down dinner option in town. Wood-fired pizzas, a burger that is genuinely good, a short list of house-brewed beers, and a patio that fills on summer evenings. Closed Monday and Tuesday. Service can drag when the dining room's full, but the food's worth the wait.
       </p>
 
       <p>
-        <strong>Smokin Oak BBQ, Mariposa.</strong> Opened in late 2024; the adjacent Twisted Cedar Tap House followed in early 2025, pouring mead, beer and cider on draft. Brisket cooked the right number of hours, served on butcher paper. Sides are the usual lineup, all competent; the slaw is the one to get. Closed Monday and Tuesday. Lunch is the move. By 7 p.m. they are often sold out of brisket and the move shifts to the pulled pork, which is also fine.
+        <strong>Smokin Oak BBQ, Mariposa.</strong> Opened in late 2024; the adjacent Twisted Cedar Tap House followed in early 2025, pouring mead, beer and cider on draft. Brisket cooked the right number of hours, served on butcher paper. Sides are the usual lineup, all competent; the slaw is the one to get. Closed Monday and Tuesday. Go at lunch. By 7 p.m. they're often out of brisket, and you're on to the pulled pork, which is also fine.
       </p>
 
       <p>
@@ -98,7 +98,7 @@ window.ARTICLE_BODIES["where-to-eat-yosemite"] = function WhereToEatYosemiteBody
       </p>
 
       <p>
-        <strong>El Portal</strong> is the last stop on Highway 140 before the Arch Rock entrance, and it has more than its size suggests: the <strong>Cedar House Restaurant</strong> and the <strong>Canyon Bar</strong> at the Yosemite View Lodge, the <strong>River Restaurant</strong> at the Cedar Lodge, and <strong>Parkside Pizza</strong>. None of them is a reason to drive out of the park, which is the only reason none is on the list above, but all four are open to the public and not just to lodge guests, and on a night when the Valley kitchens have shut they are twenty-five minutes closer than Mariposa. The market here is the one I shop at and the last fuel and groceries before the gate.
+        <strong>El Portal</strong> is the last stop on Highway 140 before the Arch Rock entrance, and it has more than its size suggests: the <strong>Cedar House Restaurant</strong> and the <strong>Canyon Bar</strong> at the Yosemite View Lodge, the <strong>River Restaurant</strong> at the Cedar Lodge, and <strong>Parkside Pizza</strong>. None of them is worth driving out of the park for, which is the only reason they're not on the list above. But all four are open to the public, not just lodge guests, and on a night when the Valley kitchens have shut, they're twenty-five minutes closer than Mariposa. The market here is where I shop, and it's the last fuel and groceries before the gate.
       </p>
 
       <p>
@@ -106,7 +106,7 @@ window.ARTICLE_BODIES["where-to-eat-yosemite"] = function WhereToEatYosemiteBody
       </p>
 
       <p>
-        <strong>South Gate Brewing Company, Oakhurst.</strong> The post-park dinner default for visitors based in Oakhurst, Bass Lake or Fish Camp. Wood-fired pizzas with dough stretched to order, Blonde Ale-battered fish and chips, a long list of their own beers, and a dining room with enough seating to absorb a Saturday night without a two-hour wait. Vegan and gluten-free options exist and are not afterthoughts. Open daily. The default answer for "where should we eat" in Oakhurst.
+        <strong>South Gate Brewing Company, Oakhurst.</strong> The post-park dinner default for visitors based in Oakhurst, Bass Lake or Fish Camp. Wood-fired pizzas with dough stretched to order, Blonde Ale-battered fish and chips, a long list of their own beers, and a dining room with enough seating to absorb a Saturday night without a two-hour wait. Vegan and gluten-free options are there and aren't afterthoughts. Open daily. If you're in Oakhurst asking "where should we eat," this is the answer.
       </p>
 
       <p>
@@ -114,17 +114,17 @@ window.ARTICLE_BODIES["where-to-eat-yosemite"] = function WhereToEatYosemiteBody
       </p>
 
       <p>
-        <strong>Latte Da Cafe, Lee Vining.</strong> The east-side breakfast and coffee stop. Coming over Tioga Pass from Mammoth or Bishop or down from Lake Tahoe, this is the first real coffee on the route in either direction. The pastries are made in-house, the drip is honest, and the staff is the kind that remembers you the second time. Park behind the building, walk in, eat outside. Going east on a Tuesday in July, this is where the trip starts.
+        <strong>Latte Da Cafe, Lee Vining.</strong> The east-side breakfast and coffee stop. Whether you're coming over Tioga Pass from Mammoth or Bishop or down from Lake Tahoe, this is the first real coffee on the route in either direction. The pastries are made in-house, the drip is honest, and the staff is the kind that remembers you the second time. Park behind the building, walk in, eat outside. Going east on a Tuesday in July, this is where the trip starts.
       </p>
 
       <p>
-        <strong>Groveland</strong>, on Highway 120, has a historic main street with the Iron Door Saloon on it and enough places to eat for a two-night stay. It is off the Mariposa roster below because it is in Tuolumne County, not because there is nothing there. Where to base yourself is a bigger question than where to eat, and <a href="/articles/yosemite-gateway-towns-compared">the gateway towns comparison</a> answers it properly.
+        <strong>Groveland</strong>, on Highway 120, has a historic main street with the Iron Door Saloon on it and enough places to eat for a two-night stay. It's missing from the Mariposa roster below because it's in Tuolumne County, not because there's nothing there. Where to base yourself is a bigger question than where to eat, and <a href="/articles/yosemite-gateway-towns-compared">the gateway towns comparison</a> answers it properly.
       </p>
 
       <h2>Everything that exists, by area</h2>
 
       <p>
-        The recommendations above are opinions. This is not. The roster below is the August 2026 revision of the Mariposa eating-out list, a single sheet kept current locally and handed out at visitor desks and lodge counters. It records what exists and roughly where, nothing more: no hours, no prices, no judgment, and inclusion is not a recommendation from anybody, including me. It is useful for the thing a review list cannot do, which is tell you that a town of four hundred people has a cafe in it at all. Names are as the sheet prints them where a business's own styling is unclear.
+        The recommendations above are opinions. This part isn't. The roster below is the August 2026 revision of the Mariposa eating-out list, a single sheet kept current locally and handed out at visitor desks and lodge counters. It records what exists and roughly where, nothing more: no hours, no prices, no judgment, and inclusion is not a recommendation from anybody, including me. It does the one thing a review list can't: tell you that a town of four hundred people has a cafe in it at all. Names are as the sheet prints them where a business's own styling is unclear.
       </p>
 
       <p>
@@ -136,7 +136,7 @@ window.ARTICLE_BODIES["where-to-eat-yosemite"] = function WhereToEatYosemiteBody
       </p>
 
       <p>
-        <strong>Highway 140, between Merced and the park.</strong> Catheys Valley has the Chevron and that is the whole list, which is worth knowing at 10 p.m. Midpines has the June Bug Cafe at the Yosemite Bug, the one stop on that stretch people drive to on purpose. Up Triangle Road in Bootjack: the Bootjack Market, Sierra Cider and Steve's Sportsman's Cafe.
+        <strong>Highway 140, between Merced and the park.</strong> Catheys Valley has the Chevron, and that's the whole list, which is worth knowing at 10 p.m. Midpines has the June Bug Cafe at the Yosemite Bug, the one stop on that stretch people drive to on purpose. Up Triangle Road in Bootjack: the Bootjack Market, Sierra Cider and Steve's Sportsman's Cafe.
       </p>
 
       <p>
@@ -148,7 +148,7 @@ window.ARTICLE_BODIES["where-to-eat-yosemite"] = function WhereToEatYosemiteBody
       </p>
 
       <p>
-        <strong>Yosemite Valley.</strong> Seven Tents Pavilion, Bar 1899, Coffee Corner, the pizza counter and the Taqueria at Meadow Grill, all at Curry Village; Degnan's Kitchen and the Village Grill in Yosemite Village; Base Camp Eatery, Starbucks and the Mountain Room, with its lounge, at Yosemite Valley Lodge; and the Ahwahnee dining room and bar. Which is more than the Valley feels like it has when you are standing in a line at one of them.
+        <strong>Yosemite Valley.</strong> Seven Tents Pavilion, Bar 1899, Coffee Corner, the pizza counter and the Taqueria at Meadow Grill, all at Curry Village; Degnan's Kitchen and the Village Grill in Yosemite Village; Base Camp Eatery, Starbucks and the Mountain Room, with its lounge, at Yosemite Valley Lodge; and the Ahwahnee dining room and bar. That's more than it feels like when you're standing in line at one of them.
       </p>
 
       <p>
@@ -156,11 +156,11 @@ window.ARTICLE_BODIES["where-to-eat-yosemite"] = function WhereToEatYosemiteBody
       </p>
 
       <p>
-        <strong>Trucks and pop-ups.</strong> Ten of them work the county, and they are the part of the food scene no visitor finds by searching: All About the Wurst, Birrieria El Campeon, Dixon's Fixin's, Fishworks, L &amp; J Mexican Food, the Lemon Drop Trailer, Mariposa Sips &amp; Sweets, Sal's Taco Truck, the Tacos Sonora truck and Yosemite Pizza. Trucks move, so a name is all this can give you. Check the county fairgrounds, the Saturday farmers market and the brewery patios, in that order.
+        <strong>Trucks and pop-ups.</strong> Ten of them work the county, and they are the part of the food scene no visitor finds by searching: All About the Wurst, Birrieria El Campeon, Dixon's Fixin's, Fishworks, L &amp; J Mexican Food, the Lemon Drop Trailer, Mariposa Sips &amp; Sweets, Sal's Taco Truck, the Tacos Sonora truck and Yosemite Pizza. Trucks move, so a name is all you get here. Check the county fairgrounds, the Saturday farmers market and the brewery patios, in that order.
       </p>
 
       <p>
-        The same sheet carries a catering column, fifteen operators working the county, which is the answer nobody has when a group trip turns into a dinner for twenty or a small wedding turns real. If that is the trip you are planning, <a href="/articles/where-to-propose-in-yosemite">the proposal guide</a> covers the venue half of the problem.
+        The same sheet carries a catering column, fifteen operators working the county, which is the answer nobody has when a group trip turns into dinner for twenty or a small wedding turns real. If that's the trip you're planning, <a href="/articles/where-to-propose-in-yosemite">the proposal guide</a> covers the venue half of the problem.
       </p>
 
       <h2>The short version, by area</h2>
@@ -199,33 +199,33 @@ window.ARTICLE_BODIES["where-to-eat-yosemite"] = function WhereToEatYosemiteBody
       </table>
 
       <p>
-        Hours and closing days move with the season and with staffing, and the park's own concessioner hours change more than the towns' do. <a href="/now">The Park Bulletin</a> carries what is open in the current <em>Yosemite Guide</em> edition; treat the table as the shape of the thing, not as today's schedule.
+        Hours and closing days move with the season and with staffing, and the park's own concessioner hours change more than the towns' do. <a href="/now">The Park Bulletin</a> carries what is open in the current <em>Yosemite Guide</em> edition; think of the table as the general shape, not today's schedule.
       </p>
 
       <h2>Can you bring your own food into Yosemite?</h2>
 
       <p>
-        Yes, and for most trips you should. There is no restriction on bringing food into the park, no inspection at the gate, and no rule against a cooler. The rule that does exist is about <strong>storage</strong>, and it is federal law rather than advice: food stays within arm's reach during the day and goes into a bear locker at night, never left in a car overnight, never in a truck bed. To a bear, food means anything with a scent, which includes trash, sunscreen and toothpaste. <a href="/articles/yosemite-bears-safety-guide">The bear guide</a> covers what happens when people get this wrong, and <a href="/articles/pack-your-car-for-yosemite">the packing piece</a> covers the cooler.
+        Yes, and on most trips you should. There is no restriction on bringing food into the park, no inspection at the gate, and no rule against a cooler. The rule that does exist is about <strong>storage</strong>, and it is federal law rather than advice: food stays within arm's reach during the day and goes into a bear locker at night, never left in a car overnight, never in a truck bed. To a bear, food means anything with a scent, which includes trash, sunscreen and toothpaste. <a href="/articles/yosemite-bears-safety-guide">The bear guide</a> covers what happens when people get this wrong, and <a href="/articles/pack-your-car-for-yosemite">the packing piece</a> covers the cooler.
       </p>
 
       <p>
-        The best lunch in Yosemite is a sandwich you made in a parking lot, eaten on a granite slab beside the Merced. It costs four dollars, it saves an hour of queueing, and it is the meal people describe afterwards.
+        The best lunch in Yosemite is a sandwich you made in a parking lot, eaten on a granite slab beside the Merced. It costs four dollars, saves you an hour in line, and it's the meal people talk about afterwards.
       </p>
 
       <h2>What closes, and when</h2>
 
       <p>
-        This is the part almost no other list covers, and it is the part that ruins evenings. The park's food service contracts and shuts down through September, weeks before the roads do. In the 2026 season the Tuolumne store and grill closed on September 20 and Jennie's Ice Cream at Curry Village on September 6. Valley service holds up longest and thins out anyway: the taqueria and the Loft go first, then the deck, then the hours shorten on everything left.
+        Almost no other list covers this, and it's the part that ruins evenings. The park's food service contracts and shuts down through September, weeks before the roads do. In the 2026 season the Tuolumne store and grill closed on September 20 and Jennie's Ice Cream at Curry Village on September 6. Valley service holds up longest and thins out anyway: the taqueria and the Loft go first, then the deck, then the hours shorten on everything left.
       </p>
 
       <p>
-        In winter the Valley keeps a genuine core open, Degnan's, Base Camp and the hotel dining rooms among them, but the high country has nothing at all, and Tioga Road is closed regardless. If you are visiting between October and May, check what is actually open before you plan a meal around it. <a href="/articles/yosemite-in-winter">The winter guide</a> has the rest of that picture.
+        In winter the Valley keeps a genuine core open, Degnan's, Base Camp and the hotel dining rooms among them, but the high country has nothing at all, and Tioga Road is closed regardless. If you're visiting between October and May, check what's actually open before you plan a meal around it. <a href="/articles/yosemite-in-winter">The winter guide</a> has the rest of that picture.
       </p>
 
       <h2>The takeaway</h2>
 
       <p>
-        Food in Yosemite is not the trip. The trip is the park. A meal that does not slow you down or empty your wallet is a meal that did its job. Pack a cooler, eat the pizza at Curry Village one night, eat the brisket in Mariposa one night, drink the coffee in Lee Vining one morning, and the rest of the time eat lunch on a granite slab next to the river. That is the part of the trip you will remember.
+        Food isn't the point of a Yosemite trip. The park is. A meal that doesn't slow you down or empty your wallet did its job. Pack a cooler, eat the pizza at Curry Village one night, eat the brisket in Mariposa one night, drink the coffee in Lee Vining one morning, and the rest of the time eat lunch on a granite slab next to the river. That's the part you'll remember.
       </p>
 
       <p style={{ marginTop: 32, fontStyle: "italic", color: "var(--ink-3)" }}>
