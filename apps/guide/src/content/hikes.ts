@@ -47,7 +47,7 @@ const seed: HikeT[] = [
     stopId: 'cooks-meadow-loop',
     coord: [-119.5896, 37.7435], // same pin as stop cooks-meadow-loop
     description:
-      'A flat meadow circuit with Yosemite Falls, Half Dome, and Sentinel Rock all in view at once. The best effort-to-scenery ratio in the park.',
+      'A flat meadow circuit with Yosemite Falls, Half Dome, and Sentinel Rock all in view at once, for almost no effort.',
   },
   {
     id: 'bridalveil-fall',
@@ -143,7 +143,7 @@ const seed: HikeT[] = [
     trailhead: 'Upper Yosemite Fall trailhead at Camp 4',
     coord: [-119.6021, 37.742], // web-derived: Camp 4 trailhead; TODO verify on the ground
     description:
-      'The first mile of switchbacks on the Yosemite Falls Trail, ending at a railed perch with Half Dome and Sentinel Rock across the valley. A fair sample of the big climb at a third of the price.',
+      'The first mile of switchbacks on the Yosemite Falls Trail, ending at a railed perch with Half Dome and Sentinel Rock across the valley. A sample of the full climb for a third of the effort.',
   },
   {
     id: 'vernal-fall-mist-trail',
@@ -161,7 +161,7 @@ const seed: HikeT[] = [
     hazard:
       'The granite staircase beside the fall is soaked and slick through early summer. Never enter the Emerald Pool above the fall.',
     description:
-      'The stone steps up through Vernal Fall’s spray, the most famous mile in the park. Bring a shell in spring or plan on hiking wet.',
+      'The stone steps up through Vernal Fall’s spray, the park’s most-hiked mile. Bring a shell in spring or plan on hiking wet.',
   },
   {
     id: 'nevada-fall',
@@ -180,7 +180,7 @@ const seed: HikeT[] = [
     hazard:
       'The granite stairs are soaked and slick through early summer. Never enter the Emerald Pool or the river above either fall; the current above the brinks is far stronger than it looks.',
     description:
-      'Past Vernal Fall to the brink of its bigger sibling, then down the John Muir Trail for the Liberty Cap panorama. The best big-waterfall day the Valley offers.',
+      'Past Vernal Fall to the brink of its bigger sibling, then down the John Muir Trail for the Liberty Cap panorama. Two big waterfalls in one day.',
   },
   {
     id: 'upper-yosemite-fall',
@@ -196,7 +196,7 @@ const seed: HikeT[] = [
     trailhead: 'Upper Yosemite Fall trailhead at Camp 4',
     coord: [-119.6021, 37.742], // same pin as columbia-rock hike
     description:
-      'Dozens of switchbacks to the notch where the whole fall leaves the rim. Start early: the trail bakes by mid-morning and the climb earns every foot.',
+      'Dozens of switchbacks to the notch where the fall leaves the rim. Start early: the trail bakes by mid-morning.',
   },
   {
     id: 'four-mile-trail',
@@ -214,7 +214,7 @@ const seed: HikeT[] = [
     coord: [-119.602, 37.7339], // same pin as stop four-mile-trailhead
     season: 'Upper trail closes in snow, November or December to May',
     description:
-      'The switchbacked climb from the Valley floor to Glacier Point, with the falls and Half Dome rearranging themselves the whole way up. Hike it one-way if someone can meet you on top.',
+      'The switchbacked climb from the Valley floor to Glacier Point, with the falls and Half Dome in view most of the way up. Hike it one-way if someone can meet you on top.',
   },
   {
     id: 'half-dome',
@@ -236,7 +236,7 @@ const seed: HikeT[] = [
     hazard:
       'The cable route climbs bare granite at a 45-degree pitch. Do not start up if the rock is wet or storms are forecast, and turn around if clouds build.',
     description:
-      'The park’s signature endurance day: past both falls, up Sub Dome’s stairs, then the cables to the summit plateau. Ten to twelve hours for most parties, and worth training for.',
+      'The park’s signature endurance day: past both falls, up Sub Dome’s stairs, then the cables to the summit plateau. Ten to twelve hours for most parties; train for it.',
   },
   {
     id: 'eagle-peak',
@@ -252,7 +252,7 @@ const seed: HikeT[] = [
     stopId: 'eagle-peak',
     coord: [-119.6021, 37.742], // Camp 4 start; the linked stop pins the summit
     description:
-      'The Yosemite Falls climb, then a few more quiet miles to the highest of the Three Brothers. A Half Dome-caliber day with a fraction of the company.',
+      'The Yosemite Falls climb, then a few more quiet miles to the highest of the Three Brothers. A Half Dome-length day with far fewer people.',
   },
   {
     id: 'snow-creek-trail',
@@ -287,7 +287,7 @@ const seed: HikeT[] = [
     coord: [-119.6282, 37.6705], // same pin as stop mcgurk-meadow
     season: 'Glacier Point Road season',
     description:
-      'A gentle forest walk to a wildflower meadow and a collapsing sheepherder’s cabin. July is the flower show.',
+      'A gentle forest walk to a wildflower meadow and a collapsing sheepherder’s cabin. Flowers peak in July.',
   },
   {
     id: 'dewey-point',
@@ -304,7 +304,7 @@ const seed: HikeT[] = [
     coord: [-119.6282, 37.6705], // same pin as stop mcgurk-meadow
     season: 'Glacier Point Road season',
     description:
-      'Through McGurk Meadow to an unrailed rim point 3,000 feet above the west Valley, looking straight across at El Capitan. The best rim view most visitors never hear about.',
+      'Through McGurk Meadow to an unrailed rim point 3,000 feet above the west Valley, looking straight across at El Capitan.',
   },
   {
     id: 'taft-point',
@@ -323,7 +323,7 @@ const seed: HikeT[] = [
     hazard:
       'Past one short railing at the lookout, the point and the Fissures are open drops, the Fissures alone as deep as 2,000 feet. Keep children in hand.',
     description:
-      'An easy walk to the Fissures, deep slots in the rim, and a ledge over the Valley railed at one spot and open everywhere else. Vertigo as a destination.',
+      'An easy walk to the Fissures, deep slots in the rim, and a ledge over the Valley railed at one spot and open everywhere else. Watch children closely.',
   },
   {
     id: 'sentinel-dome',
@@ -374,7 +374,7 @@ const seed: HikeT[] = [
     stopId: 'glacier-point',
     coord: [-119.5731, 37.7283], // same pin as stop glacier-point
     description:
-      'The first leg of the Panorama Trail, dropping to the footbridge above the fall almost nobody visits. The climb is all on the way back.',
+      'The first leg of the Panorama Trail, dropping to the footbridge above the fall. The climb is all on the way back.',
   },
   {
     id: 'panorama-trail',
@@ -392,7 +392,7 @@ const seed: HikeT[] = [
     stopId: 'glacier-point',
     coord: [-119.5731, 37.7283], // same pin as stop glacier-point
     description:
-      'Off the rim past Illilouette, Nevada, and Vernal Falls with Half Dome turning in view the whole way. Mostly downhill, but the miles and one real climb still count.',
+      'Off the rim past Illilouette, Nevada, and Vernal Falls with Half Dome in view most of the way. Mostly downhill, but the miles and one real climb still count.',
   },
   {
     id: 'pohono-trail',
@@ -410,7 +410,7 @@ const seed: HikeT[] = [
     stopId: 'glacier-point',
     coord: [-119.5731, 37.7283], // same pin as stop glacier-point
     description:
-      'The south rim end to end: Sentinel Dome, Taft Point, and Dewey, Crocker, and Stanford Points strung on one long, quiet day. Needs a car at each end.',
+      'The south rim end to end: Sentinel Dome, Taft Point, and Dewey, Crocker, and Stanford Points in one long day. Needs a car at each end.',
   },
   {
     id: 'mono-meadow',
@@ -443,7 +443,7 @@ const seed: HikeT[] = [
     coord: [-119.6039, 37.6668], // same pin as stop ostrander-lake
     season: 'Glacier Point Road season',
     description:
-      'A long walk through lodgepole and old burns, gentle for the first half and steep near the end, to a granite-bowled lake under Horse Ridge. Solitude is the point.',
+      'A long walk through lodgepole and old burns, gentle for the first half and steep near the end, to a granite-bowled lake under Horse Ridge. Few other parties.',
   },
   {
     id: 'wawona-meadow-loop',
@@ -474,7 +474,7 @@ const seed: HikeT[] = [
     trailhead: 'Wawona Store day-use parking',
     coord: [-119.6565, 37.5385], // OSM-derived: Wawona Store lot; the walk follows Forest Drive to the river trail (no public parking at the road-end); TODO verify on the ground
     description:
-      'An easy walk up the South Fork of the Merced to a bouncing footbridge over granite pools. The swimming holes below it are Wawona’s summer secret.',
+      'An easy walk up the South Fork of the Merced to a bouncing footbridge over granite pools. Swimming holes below it in summer.',
   },
   {
     id: 'chilnualna-falls',
@@ -509,7 +509,7 @@ const seed: HikeT[] = [
     stopId: 'mariposa-grove',
     coord: [-119.63, 37.5068], // moved 2026-09 to the Welcome Plaza, same as the mariposa-grove stop
     description:
-      'The lower grove’s greatest hits: the Fallen Monarch, the Bachelor and Three Graces, the 3,000-year-old Grizzly Giant, and the California Tunnel Tree.',
+      'The lower grove’s main trees: the Fallen Monarch, the Bachelor and Three Graces, the 3,000-year-old Grizzly Giant, and the California Tunnel Tree.',
   },
   {
     id: 'mariposa-grove-guardians-loop',
@@ -526,7 +526,7 @@ const seed: HikeT[] = [
     stopId: 'mariposa-grove',
     coord: [-119.63, 37.5068], // moved 2026-09 to the Welcome Plaza, same as the mariposa-grove stop
     description:
-      'Past the Grizzly Giant and on into the upper grove, where the sequoias keep going and the people do not. Wawona Point’s overlook, on the Mariposa Grove Trail beyond the loop, is the optional bonus.',
+      'Past the Grizzly Giant and on into the upper grove, where the sequoias continue and the crowds thin. Wawona Point’s overlook, on the Mariposa Grove Trail beyond the loop, is the optional bonus.',
   },
 
   // --- Tuolumne Meadows & Tioga Road ----------------------------------------
@@ -560,7 +560,7 @@ const seed: HikeT[] = [
     coord: [-119.6152, 37.8505], // TODO: verify on the ground — moved 2026-09 ~600 m to the trailhead: NPS places, Recreation.gov and the OSM lot agree
     season: 'Tioga Road season',
     description:
-      'A short hop over a forested rise to a shallow lake rimmed by one of the park’s best July flower meadows. An ideal first high-country leg-stretcher.',
+      'A short hop over a forested rise to a shallow lake rimmed by a meadow that flowers in July. An easy first high-country walk.',
   },
   {
     id: 'harden-lake',
@@ -576,7 +576,7 @@ const seed: HikeT[] = [
     coord: [-119.6486, 37.8697], // web-derived: White Wolf road-end; TODO verify on the ground
     season: 'Tioga Road season',
     description:
-      'A nearly flat walk on old roadbed from White Wolf to a quiet, boulder-dotted lake in the forest. Wildflowers line the sandy stretches in early summer.',
+      'A nearly flat walk on old roadbed from White Wolf to a boulder-dotted lake in the forest. Wildflowers line the sandy stretches in early summer.',
   },
   {
     id: 'may-lake',
@@ -593,7 +593,7 @@ const seed: HikeT[] = [
     coord: [-119.4912341, 37.8324607], // same pin as stop may-lake
     season: 'Tioga Road season',
     description:
-      'A short granite-benched climb to a High Sierra Camp lake sitting under Mount Hoffmann’s wall. High-country payoff at day-hike-with-kids effort.',
+      'A short granite-benched climb to a High Sierra Camp lake sitting under Mount Hoffmann’s wall. Easy enough for children.',
   },
   {
     id: 'mount-hoffmann',
@@ -610,7 +610,7 @@ const seed: HikeT[] = [
     coord: [-119.4912341, 37.8324607], // same pin as stop may-lake
     season: 'Tioga Road season',
     description:
-      'Past May Lake and up scree to the park’s geographic center, with a summit view that inventories the whole map. The last stretch is a hands-on scramble.',
+      'Past May Lake and up scree to the park’s geographic center, with a summit view across most of the park. The last stretch is a hands-on scramble.',
   },
   {
     id: 'olmsted-point',
@@ -627,7 +627,7 @@ const seed: HikeT[] = [
     coord: [-119.4852, 37.8107], // same pin as stop olmsted-point
     season: 'Tioga Road season',
     description:
-      'The short walk from the pullout to the dome’s open granite, where Half Dome’s back side and Clouds Rest fill the canyon. Worth doing even on a driving day.',
+      'The short walk from the pullout to the dome’s open granite, where Half Dome’s back side and Clouds Rest fill the canyon. Short enough for a driving day.',
   },
   {
     id: 'tenaya-lake-loop',
@@ -680,7 +680,7 @@ const seed: HikeT[] = [
     hazard:
       'The summit ridge narrows to a few feet with long drops on both sides. Skip it in wind, in lightning weather, or when the rock is wet.',
     description:
-      'The summit that looks down on Half Dome, at the end of a long but never brutal day from Tenaya Lake. Many who have done both call it the better hike.',
+      'The summit that looks down on Half Dome, at the end of a long but never brutal day from Tenaya Lake.',
   },
   {
     id: 'north-dome',
@@ -697,7 +697,7 @@ const seed: HikeT[] = [
     coord: [-119.5454, 37.8066], // moved 2026-09 to the Porcupine Creek trailhead (NPS, Recreation.gov, OSM)
     season: 'Tioga Road season',
     description:
-      'Forest and meadow walking, then steep rock steps down onto a dome directly across from Half Dome’s face, the best straight-on view there is. The Indian Rock arch is a short, steep side trip.',
+      'Forest and meadow walking, then steep rock steps down onto a dome directly across from Half Dome’s face. The Indian Rock arch is a short, steep side trip.',
   },
   {
     id: 'pothole-dome',
@@ -714,7 +714,7 @@ const seed: HikeT[] = [
     coord: [-119.39455, 37.87693], // TODO: verify on the ground — moved 2026-09 to the NPS Pothole Dome trailhead (the pothole-dome-sunset secret spot's pin)
     season: 'Tioga Road season',
     description:
-      'Around the meadow’s edge and up easy glacier-polished granite for the full sweep of Tuolumne Meadows. Ten minutes of climbing, an hour of wanting to stay.',
+      'Around the meadow’s edge and up easy glacier-polished granite for a view over all of Tuolumne Meadows. About ten minutes of climbing.',
   },
   {
     id: 'soda-springs-parsons-lodge',
@@ -748,7 +748,7 @@ const seed: HikeT[] = [
     coord: [-119.339, 37.8783], // same pin as stop lyell-canyon (Dog Lake lot)
     season: 'Tioga Road season',
     description:
-      'Around the back of the dome and up its bare granite shoulder to the summit over Tuolumne Meadows. The classic high-country sunset perch.',
+      'Around the back of the dome and up its bare granite shoulder to the summit over Tuolumne Meadows. A common sunset spot.',
   },
   {
     id: 'dog-lake',
@@ -765,7 +765,7 @@ const seed: HikeT[] = [
     coord: [-119.339, 37.8783], // same pin as stop lyell-canyon (Dog Lake lot)
     season: 'Tioga Road season',
     description:
-      'One stiff climb, then a warm, shallow lake with Mount Dana and Mount Gibbs on the horizon. The high country’s most swimmable water.',
+      'One stiff climb, then a warm, shallow lake with Mount Dana and Mount Gibbs on the horizon. Warm enough to swim.',
   },
   {
     id: 'elizabeth-lake',
@@ -781,7 +781,7 @@ const seed: HikeT[] = [
     coord: [-119.3554, 37.8712], // web-derived: trailhead inside the campground; TODO verify on the ground
     season: 'Tioga Road season',
     description:
-      'A steady forest climb from the campground to a cirque lake under Unicorn Peak’s horn. Arrive by mid-morning and the reflection is glass.',
+      'A steady forest climb from the campground to a cirque lake under Unicorn Peak’s horn. Arrive by mid-morning for a still reflection.',
   },
   {
     id: 'cathedral-lakes',
@@ -799,7 +799,7 @@ const seed: HikeT[] = [
     coord: [-119.374706, 37.872634], // same pin as stop cathedral-lakes
     season: 'Tioga Road season',
     description:
-      'Up the John Muir Trail to two lakes arranged around Cathedral Peak’s spire, the high country’s signature postcard. Go on a weekday if you can.',
+      'Up the John Muir Trail to two lakes below Cathedral Peak. Go on a weekday; the trailhead lot fills early.',
   },
   {
     id: 'glen-aulin',
@@ -816,7 +816,7 @@ const seed: HikeT[] = [
     coord: [-119.3535, 37.8774], // moved 2026-09 to the Lembert Dome lot trailhead (Recreation.gov Young Lakes via Glen Aulin)
     season: 'Tioga Road season',
     description:
-      'Down the Tuolumne River past a parade of cascades to the White Cascade pool at Glen Aulin camp. The grade is gentle; the mileage and the return climb are the work.',
+      'Down the Tuolumne River past a series of cascades to the White Cascade pool at Glen Aulin camp. The grade is gentle; the mileage and the return climb are the work.',
   },
   {
     id: 'lyell-canyon',
@@ -834,7 +834,7 @@ const seed: HikeT[] = [
     coord: [-119.339, 37.8783], // same pin as stop lyell-canyon
     season: 'Tioga Road season',
     description:
-      'The John Muir Trail up a dead-flat subalpine canyon, the river meandering alongside for miles. The rare big-mileage day with no climbing bill.',
+      'The John Muir Trail up a dead-flat subalpine canyon, the river meandering alongside for miles. Long mileage with little climbing.',
   },
   {
     id: 'mono-pass',
@@ -868,7 +868,7 @@ const seed: HikeT[] = [
     coord: [-119.258173, 37.9101685], // same pin as stop gaylor-lake
     season: 'Tioga Road season',
     description:
-      'One breathless ridge straight from the entrance station, then alpine lake basins and a silver-mine ghost site above 10,000 feet. The fastest route to true alpine country in the park.',
+      'A steep ridge climb from the entrance station, then alpine lake basins and a silver-mine site above 10,000 feet. The shortest route to alpine terrain in the park.',
   },
   {
     id: 'mount-dana',
@@ -886,7 +886,7 @@ const seed: HikeT[] = [
     hazard:
       'The summit is 13,061 feet and the route above the meadows is an unsigned use path, not a maintained trail: altitude sickness, route-finding, and afternoon lightning are the real risks. Start early and turn around if weather builds.',
     description:
-      'The park’s second-highest summit by its relentless west shoulder, with Mono Lake filling the view east. No trail junctions, no mercy, no regrets.',
+      'The park’s second-highest summit by its relentless west shoulder, with Mono Lake filling the view east. No trail junctions and no let-up.',
   },
 
   // --- Hetch Hetchy & Evergreen Road ---------------------------------------
@@ -940,7 +940,7 @@ const seed: HikeT[] = [
     hazard:
       'Rattlesnake country with poison oak along the trail, largely shadeless in summer heat, and the Wapama Falls bridges en route can close in high water.',
     description:
-      'Past Wapama and on along the canyon wall to a run of slickrock cascades where the day-hikers thin to nobody. Hot by midsummer; spring is the season.',
+      'Past Wapama and on along the canyon wall to a run of slickrock cascades where day-hikers thin out. Hot by midsummer; spring is the season.',
   },
   {
     id: 'poopenaut-valley',
@@ -957,7 +957,7 @@ const seed: HikeT[] = [
     hazard:
       'The climb out is relentless and largely shadeless and bakes by late morning; carry more water than three miles suggests. Rattlesnake country, and the river runs dam-released cold and fast. Stay out of the current.',
     description:
-      'One of the park’s steepest maintained miles, straight down to the Tuolumne River below the dam. Short, brutal on the way out, and utterly empty.',
+      'One of the park’s steepest maintained miles, straight down to the Tuolumne River below the dam. Short, very steep on the way out, and rarely busy.',
   },
   {
     id: 'carlon-falls',
@@ -972,7 +972,7 @@ const seed: HikeT[] = [
     trailhead: 'Carlon day-use area, Evergreen Road',
     coord: [-119.8615, 37.8143], // TODO: verify on the ground — moved 2026-09 to the Carlon trailhead, same as the stop
     description:
-      'An easy river walk on the South Fork Tuolumne to a wide fall that typically runs all year, with a swimming hole at its base. The locals’ summer afternoon.',
+      'An easy river walk on the South Fork Tuolumne to a wide fall that typically runs all year, with a swimming hole at its base. Popular with locals on summer afternoons.',
   },
   {
     id: 'merced-grove',
@@ -988,7 +988,7 @@ const seed: HikeT[] = [
     stopId: 'merced-grove',
     coord: [-119.8422, 37.763], // moved 2026-09 to the trailhead lot (OSM, Recreation.gov), same as the stop
     description:
-      'A downhill road-grade walk to the park’s smallest and quietest sequoia grove, about twenty big trees with no shuttle and no crowd. Save something for the climb out.',
+      'A downhill road-grade walk to the park’s smallest sequoia grove, about twenty big trees with no shuttle. The climb is on the return.',
   },
 ]
 

@@ -469,7 +469,7 @@ export const BACKUP_PLANS: BackupPlan[] = [
   {
     trigger: 'rain',
     title: 'The rain day',
-    note: 'Rain is the falls turned up. Work the valley close to the car: the paved falls walks take ten wet minutes each, the museum and the Ahwahnee great room are dry, and if the storm breaks, Tunnel View in clearing weather is the most famous light in the park.',
+    note: 'Stay in the valley, close to the car. The paved falls walks take ten wet minutes each, the falls run higher in rain, and the museum and the Ahwahnee great room are dry. If the storm breaks, go to Tunnel View for the clearing weather.',
     stops: [
       'lower-yosemite-fall',
       'bridalveil-fall',
@@ -482,7 +482,7 @@ export const BACKUP_PLANS: BackupPlan[] = [
   {
     trigger: 'smoke',
     title: 'The smoke day',
-    note: 'Smoke pools by elevation and drainage, so the move is to check the morning AQI and drive to the clear end of the park, most often up. Tuolumne at 8,600 feet frequently sits above what the valley is breathing. If the whole park reads unhealthy, make it a short day: the smoke-season essentials page covers the thresholds.',
+    note: 'Check the morning AQI and drive to the clear end of the park, usually uphill: smoke pools by elevation and drainage, and Tuolumne at 8,600 feet often sits above the valley\'s smoke. If the whole park reads unhealthy, make it a short day: the smoke-season essentials page covers the thresholds.',
     stops: [
       'olmsted-point',
       'tenaya-lake',

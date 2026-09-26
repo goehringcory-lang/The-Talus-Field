@@ -16,7 +16,7 @@ export const SECRET_GUIDE_META = {
   title: 'The Secret Guide',
   eyebrow: 'Included with purchase',
   teaser:
-    'The quiet vistas, the trails past where the crowds turn around, the parking moves that save a morning, the camping you can actually get, and the park after dark. None of it makes the brochures. Every entry is pinned on the map, works offline, and drops into your trip plan.',
+    'Uncrowded viewpoints, trails past where most hikers turn around, parking when the main lots fill, campsites you can get, and the park after dark. Every entry is pinned on the map, works offline, and drops into your trip plan.',
   // The foot line of the folio: what every entry in the section carries.
   // Each one is a fact about the app, not the park, so it cannot go stale.
   promises: ['Pinned on the map', 'Works offline', 'Drops into the plan'],
@@ -28,29 +28,29 @@ export const SECRET_GUIDE_CATEGORIES: { id: SecretCategoryT; title: string; tagl
     id: 'vistas',
     title: 'Quiet Vistas',
     tagline:
-      'The views without the queues. Small water, empty riverbanks, reflections, and the compositions people hike right past.',
+      'Viewpoints without the queues: small waterfalls, riverbanks, and reflections near the main sights.',
   },
   {
     id: 'trails',
     title: 'Hidden Trails',
     tagline:
-      'Real trails to real destinations, starting past the point where the crowds turn around, inside the park and just over its line.',
+      'Trails that continue past where most hikers turn around, inside the park and just outside it.',
   },
   {
     id: 'parking',
     title: 'Parking',
-    tagline: 'Where to put the car when the lot you wanted is full, and the move that turns a full lot into a better day.',
+    tagline: 'Where to park when the lot you wanted is full.',
   },
   {
     id: 'camping',
     title: 'Camping',
-    tagline: 'Quiet, legal places to sleep, with paperwork you can actually get, on both sides of the boundary.',
+    tagline: 'Legal places to sleep, with permits you can get, inside and outside the boundary.',
   },
   {
     id: 'after-dark',
     title: 'After Dark',
     tagline:
-      'What the park does once the light goes. Headlamps on El Capitan, a moonbow at the falls, the Milky Way at 8,300 feet.',
+      'The park after sunset: headlamps on El Capitan, a moonbow at the falls, the Milky Way at 8,300 feet.',
   },
 ]
 
