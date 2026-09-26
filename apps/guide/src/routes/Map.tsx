@@ -1481,7 +1481,7 @@ export default function Map() {
               points are still on each stop's page.
             </>
           ) : mapDownloaded ? (
-            <>Map downloaded. Works offline, even in airplane mode, down to trailhead scale.</>
+            <>Map downloaded. Works offline, down to trailhead scale.</>
           ) : !online ? (
             <>
               Offline, and the park map is not downloaded to this phone: only
@@ -1847,8 +1847,8 @@ function InfoPane({
         </li>
         <li>
           {mapDownloaded
-            ? 'Done on this device. The map pans and zooms in airplane mode.'
-            : 'Once downloaded, this map pans and zooms in airplane mode.'}
+            ? 'Done on this device. The map works offline.'
+            : 'Once downloaded, this map works offline.'}
         </li>
         <li>
           For turn-by-turn <em>driving</em> directions, also download an

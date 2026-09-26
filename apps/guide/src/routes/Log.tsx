@@ -182,7 +182,7 @@ export default function Log() {
         <PageHeader
           eyebrow="Your record of the park"
           title="Field log"
-          intro="Everything you marked while you were out there, gathered on one page: the stops you reached, the species you settled, the find-it hunts, and your own notes. It fills itself in as you use the guide."
+          intro="Stops you reached, species you identified, hunts you finished, and your notes. It fills in as you use the guide."
         />
 
         {hasAnything ? (

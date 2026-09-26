@@ -139,7 +139,7 @@ function PendingImportCard() {
       }
     >
       The trip you built on the map is waiting: {count} {count === 1 ? 'entry' : 'entries'}.{' '}
-      <Link to={`/trip?import=${ids.join(',')}`}>Add it to your plan →</Link>
+      <Link to={`/trip?import=${ids.join(',')}`}>Add it to your trip →</Link>
     </Callout>
   )
 }
@@ -326,7 +326,7 @@ export default function Home() {
         <header className="home-hero">
           <span className="eyebrow">Yosemite National Park · {EDITION_LABEL}</span>
           <h1 className="home-hero__title">Field Guide</h1>
-          <p className="home-hero__sig">The whole guide, on one page.</p>
+          <p className="home-hero__sig">Every section of the guide, below.</p>
         </header>
 
         <ParkNowPanel />
@@ -378,7 +378,7 @@ export default function Home() {
                 <path d="M9 3v15M15 6v15" />
               </svg>
               <span className="instrument-tile__label">Topo map</span>
-              <span className="instrument-tile__note">Every stop pinned · works in airplane mode</span>
+              <span className="instrument-tile__note">Every stop pinned · works offline</span>
             </Link>
             <Link to="/hikes" className="instrument-tile">
               <svg className="instrument-tile__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
@@ -411,7 +411,7 @@ export default function Home() {
                 <path d="M15.5 8.5l-2 5-5 2 2-5 5-2z" />
               </svg>
               <span className="instrument-tile__label">Bearing compass</span>
-              <span className="instrument-tile__note">Points at any stop · sun on the rose · airplane mode</span>
+              <span className="instrument-tile__note">Points at any stop · sun on the rose · works offline</span>
             </Link>
             {/* The Help card earns its tile: it is the page a buyer opens
                 once, in trouble, and it has to be findable without knowing
@@ -434,7 +434,7 @@ export default function Home() {
                 <circle cx="12" cy="10" r="2.2" />
               </svg>
               <span className="instrument-tile__label">You are near</span>
-              <span className="instrument-tile__note">Nearest entry as you move · read aloud · for the passenger, while the app is open</span>
+              <span className="instrument-tile__note">Nearest entry as you move, read aloud. For passengers.</span>
             </Link>
           </div>
         </section>
@@ -446,18 +446,18 @@ export default function Home() {
               to="/dining"
               title="Eating in the park"
               icon={PLAN_ICONS.dining}
-              teaser="Every counter, dining room, bar, and grocery inside the park, from the Curry pizza deck to the Ahwahnee, with the hours the park publishes and what each place is actually for."
+              teaser="Every place to eat or buy food in the park, with published hours."
               meta={`${DINING.filter((v) => v.area !== 'gateway').length} places · hours from the current Yosemite Guide`}
             />
             <ToolCard
               to="/dining#gateway"
               title="The gateway towns"
               icon={PLAN_ICONS.gateway}
-              teaser="Where dinner improves outside the gates: Mariposa, Groveland, Oakhurst, Fish Camp, El Portal, and Lee Vining, one corridor per entrance."
+              teaser="Restaurants in the gateway towns, by entrance: Mariposa, Groveland, Oakhurst, Fish Camp, El Portal, and Lee Vining."
               meta={`${DINING.filter((v) => v.area === 'gateway').length} places · ${GATEWAY_TOWNS.length} corridors`}
             >
               <div className="tool-card__sub">
-                <Link to="/essentials/eating-in-the-park">The realistic tiers →</Link>
+                <Link to="/essentials/eating-in-the-park">Eating in the park, by budget →</Link>
                 <Link to="/essentials/bear-safety">The food rules →</Link>
               </div>
             </ToolCard>
@@ -470,7 +470,7 @@ export default function Home() {
             <ToolCard
               to="/essentials"
               title="Know before you go"
-              teaser="Entrances, reservations, crowds, bears, heat, smoke, budgets, and the packing checklists. The logistics layer under the whole trip."
+              teaser="Entrances, reservations, crowds, bears, heat, smoke, budgets, and the packing checklists."
               meta={`${ESSENTIALS.length} topics`}
             >
               <div className="tool-card__sub">
@@ -481,7 +481,7 @@ export default function Home() {
             <ToolCard
               to="/wildlife"
               title="What did I see?"
-              teaser="Quick identification for the animals, birds, and trees you actually meet: the one or two field marks that settle it, plus the safety notes that matter."
+              teaser="Quick identification for common animals, birds, and trees, with the field marks that confirm each one and safety notes."
               meta="Mammals · birds · trees · reptiles"
             >
               <div className="tool-card__sub">
@@ -517,7 +517,7 @@ export default function Home() {
             </span>
             <span className="packs-panel__note">
               {downloadedCount === PACK_IDS.length
-                ? 'The whole guide works in airplane mode · Manage →'
+                ? 'The whole guide works offline · Manage →'
                 : 'Download the guide and map before you leave wifi →'}
             </span>
           </Link>

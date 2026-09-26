@@ -77,11 +77,11 @@ export default function Saved() {
         <PageHeader
           eyebrow="Your bookmarks"
           title="Saved"
-          intro="Stops, hikes, and places to eat you marked with the bookmark, and the entries you opened last. Kept on this device; with sync on, the bookmarks travel to your other devices too."
+          intro="Bookmarked stops, hikes, and restaurants, plus recently opened entries. Stored on this device, and synced if sync is on."
         />
 
         {nothing && (
-          <EmptyState note="Nothing saved yet. Tap the bookmark on any stop, Secret Guide entry, hike, or restaurant and it lands here." />
+          <EmptyState note="Nothing saved yet. Tap the bookmark on any entry to save it here." />
         )}
 
         {savedStops.length > 0 && (

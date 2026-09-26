@@ -376,8 +376,8 @@ export default function Trip() {
 
         <header className="trip-head">
           <div>
-            <p className="eyebrow">Plan your days</p>
-            <h1 className="trip-head__title">Your trip plan</h1>
+            <p className="eyebrow">Plan</p>
+            <h1 className="trip-head__title">Your trip</h1>
           </div>
           <div className="trip-dates">
             <label className="field">

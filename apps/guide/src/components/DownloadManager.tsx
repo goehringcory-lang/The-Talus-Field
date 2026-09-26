@@ -106,7 +106,7 @@ export default function DownloadManager() {
       <p style={{ color: 'var(--ink-2)', fontSize: 14, lineHeight: 1.55, margin: '0 0 8px' }}>
         Download the guide before you leave wifi. Everything below together is
         about {formatBytes(totalBytes)}; once it's on the device, the whole app
-        works in airplane mode.
+        works offline.
       </p>
       {isIOS() && !isStandalonePWA() && (
         <p style={{ color: 'var(--ink-3)', fontSize: 13, lineHeight: 1.55, margin: '0 0 8px' }}>

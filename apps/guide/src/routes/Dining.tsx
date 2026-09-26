@@ -107,7 +107,7 @@ export default function Dining() {
         <PageHeader
           eyebrow="Fuel, coffee, and the one splurge"
           title="Where to eat"
-          intro="Every food and drink option inside the park, with the hours the park publishes, then the gateway-town places actually worth a table. The strategy layer, cooler first, lives in the essentials."
+          intro="Every place to eat in the park, with published hours, plus the gateway-town restaurants worth the drive. Food storage and cooler tips are in Essentials."
         />
 
         <Callout tone="warn">
@@ -168,7 +168,7 @@ export default function Dining() {
         <p className="page-footnote">
           The playbook that ties this together, cooler lunches, the pizza-deck night, when the
           Ahwahnee is worth it, is in{' '}
-          <Link to="/essentials/eating-in-the-park">Eating in the park: the realistic tiers</Link>.
+          <Link to="/essentials/eating-in-the-park">Eating in the park: options by budget</Link>.
           And everything scented follows the <Link to="/essentials/bear-safety">bear rules</Link>:
           food lockers or arm&apos;s reach, never loose in the car overnight.
         </p>

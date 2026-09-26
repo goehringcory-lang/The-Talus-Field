@@ -234,7 +234,7 @@ export default function Today() {
 
         {inWindow && todayBlocks.length === 0 && (
           <EmptyState
-            note={<>Nothing planned for today. The day is open.</>}
+            note={<>Nothing planned for today.</>}
             action={
               <Link className="more-link" to="/trip">
                 Drop something onto today →
@@ -284,7 +284,7 @@ export default function Today() {
         )}
 
         {inWindow && dayOver && (
-          <p className="today-done">That's the day. Nothing else planned.</p>
+          <p className="today-done">Nothing else planned today.</p>
         )}
 
         {inWindow && todayBlocks.length > 0 && (

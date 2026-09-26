@@ -24,7 +24,7 @@ function InstallStep() {
   const [sheet, setSheet] = useState(false)
 
   if (isStandalonePWA()) {
-    return <p>Already installed on this device. You're reading the home-screen copy now.</p>
+    return <p>Installed on this device. This is the home-screen copy.</p>
   }
   if (isIOS()) {
     // iOS cannot show an OS install dialog, so the button opens the app's own
@@ -93,7 +93,7 @@ export default function Welcome() {
         <PageHeader
           eyebrow="The Field Guide · Setup"
           title="Two minutes now saves you in the canyon."
-          intro="Most of Yosemite has no cell signal. The guide is built for that, but only after this page's downloads are on your phone."
+          intro="Most of the park has no cell signal. Download everything below before you go."
         />
 
         <section className="page-section">
