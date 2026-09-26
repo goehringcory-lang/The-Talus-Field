@@ -1533,5 +1533,458 @@
     "reuse": "wildlife-great-gray-owl.jpg",
     "subject": "The quick-ID plate; the dusk entry reuses it with its own caption",
     "queries": []
+  },
+  {
+    "file": "hike-lower-yosemite-fall.jpg",
+    "slot": "hike:lower-yosemite-fall",
+    "tier": 2,
+    "subject": "Lower Yosemite Fall from its loop trail",
+    "categories": [
+      "Lower Yosemite Fall Trail",
+      "Lower Yosemite Fall"
+    ],
+    "portraitOk": true
+  },
+  {
+    "file": "hike-cooks-meadow.jpg",
+    "slot": "hike:cooks-meadow",
+    "tier": 2,
+    "subject": "Cook’s Meadow, or a view named as taken from it",
+    "files": [
+      "Yosemite Valley Fall Morning.jpg",
+      "Cook's Meadow.jpg"
+    ]
+  },
+  {
+    "file": "hike-bridalveil-fall.jpg",
+    "slot": "hike:bridalveil-fall",
+    "tier": 2,
+    "subject": "Bridalveil Fall",
+    "categories": [
+      "Bridalveil Fall"
+    ],
+    "portraitOk": true
+  },
+  {
+    "file": "hike-valley-loop-trail.jpg",
+    "slot": "hike:valley-loop-trail",
+    "tier": 2,
+    "subject": "The Valley Loop Trail",
+    "categories": [
+      "Valley Loop Trail"
+    ]
+  },
+  {
+    "file": "hike-artist-point.jpg",
+    "slot": "hike:artist-point",
+    "tier": 2,
+    "subject": "Yosemite Valley from Artist Point",
+    "files": [
+      "Panoramic view of Yosemite Valley from Artist's Point, Yosemite National Park, California, 1850-1930 (CHS-2366).jpg",
+      "X764.YOSEMITE VALLEY FROM ARTIST POINT CALIFORNIA (23318343469).jpg"
+    ]
+  },
+  {
+    "file": "hike-inspiration-point.jpg",
+    "slot": "hike:inspiration-point",
+    "tier": 2,
+    "subject": "Yosemite Valley from Inspiration Point",
+    "categories": [
+      "Yosemite Valley from Inspiration Point"
+    ]
+  },
+  {
+    "file": "hike-columbia-rock.jpg",
+    "slot": "hike:columbia-rock",
+    "tier": 2,
+    "subject": "The view from Columbia Rock",
+    "files": [
+      "California-Yosemite-Head of the Valley from Columbia Rock LCCN00649828.jpg"
+    ]
+  },
+  {
+    "file": "hike-vernal-fall-mist-trail.jpg",
+    "slot": "hike:vernal-fall-mist-trail",
+    "tier": 2,
+    "subject": "The Mist Trail at Vernal Fall",
+    "categories": [
+      "Mist Trail"
+    ],
+    "portraitOk": true
+  },
+  {
+    "file": "hike-nevada-fall.jpg",
+    "slot": "hike:nevada-fall",
+    "tier": 2,
+    "subject": "Nevada Fall",
+    "categories": [
+      "Nevada Fall"
+    ]
+  },
+  {
+    "file": "hike-upper-yosemite-fall.jpg",
+    "slot": "hike:upper-yosemite-fall",
+    "tier": 2,
+    "subject": "The Upper Yosemite Fall trail or the fall from it",
+    "categories": [
+      "Upper Yosemite Fall Trail",
+      "Upper Yosemite Fall"
+    ],
+    "portraitOk": true
+  },
+  {
+    "file": "hike-half-dome.jpg",
+    "slot": "hike:half-dome",
+    "tier": 2,
+    "subject": "The Half Dome cables and trail",
+    "categories": [
+      "Half Dome Cables and Trail"
+    ],
+    "portraitOk": true
+  },
+  {
+    "file": "hike-eagle-peak.jpg",
+    "slot": "hike:eagle-peak",
+    "tier": 2,
+    "subject": "Eagle Peak, highest of the Three Brothers",
+    "categories": [
+      "Three Brothers (Yosemite)"
+    ]
+  },
+  {
+    "file": "hike-snow-creek-trail.jpg",
+    "slot": "hike:snow-creek-trail",
+    "tier": 2,
+    "subject": "Snow Creek, the creek the trail is named for",
+    "files": [
+      "2006-06-05 - Snow Creek Falls (Yosemite).jpg"
+    ],
+    "portraitOk": true
+  },
+  {
+    "file": "hike-mcgurk-meadow.jpg",
+    "slot": "hike:mcgurk-meadow",
+    "tier": 2,
+    "subject": "McGurk Meadow",
+    "files": [
+      "McGurk Meadow - panoramio.jpg"
+    ]
+  },
+  {
+    "file": "hike-dewey-point.jpg",
+    "slot": "hike:dewey-point",
+    "tier": 2,
+    "subject": "Dewey Point",
+    "categories": [
+      "Dewey Point"
+    ],
+    "portraitOk": true
+  },
+  {
+    "file": "hike-taft-point.jpg",
+    "slot": "hike:taft-point",
+    "tier": 2,
+    "subject": "Taft Point and the Fissures",
+    "categories": [
+      "Taft Point"
+    ],
+    "portraitOk": true
+  },
+  {
+    "file": "hike-sentinel-dome.jpg",
+    "slot": "hike:sentinel-dome",
+    "tier": 2,
+    "subject": "Sentinel Dome",
+    "categories": [
+      "Sentinel Dome"
+    ]
+  },
+  {
+    "file": "hike-sentinel-taft-loop.jpg",
+    "slot": "hike:sentinel-taft-loop",
+    "tier": 2,
+    "subject": "A view from Taft Point or Sentinel Dome",
+    "categories": [
+      "Views from Taft Point",
+      "Views from Sentinel Dome"
+    ]
+  },
+  {
+    "file": "hike-illilouette-fall.jpg",
+    "slot": "hike:illilouette-fall",
+    "tier": 2,
+    "subject": "Illilouette Fall",
+    "categories": [
+      "Illilouette Falls"
+    ],
+    "portraitOk": true
+  },
+  {
+    "file": "hike-panorama-trail.jpg",
+    "slot": "hike:panorama-trail",
+    "tier": 2,
+    "subject": "The Panorama Trail",
+    "categories": [
+      "Panorama Trail"
+    ]
+  },
+  {
+    "file": "hike-pohono-trail.jpg",
+    "slot": "hike:pohono-trail",
+    "tier": 2,
+    "subject": "The Pohono Trail",
+    "categories": [
+      "Pohono Trail"
+    ],
+    "portraitOk": true
+  },
+  {
+    "file": "hike-chilnualna-falls.jpg",
+    "slot": "hike:chilnualna-falls",
+    "tier": 2,
+    "subject": "Chilnualna Falls",
+    "categories": [
+      "Chilnualna Falls"
+    ],
+    "portraitOk": true
+  },
+  {
+    "file": "hike-grizzly-giant-loop.jpg",
+    "slot": "hike:grizzly-giant-loop",
+    "tier": 2,
+    "subject": "The Grizzly Giant",
+    "categories": [
+      "Grizzly Giant"
+    ],
+    "portraitOk": true
+  },
+  {
+    "file": "hike-mariposa-grove-guardians-loop.jpg",
+    "slot": "hike:mariposa-grove-guardians-loop",
+    "tier": 2,
+    "subject": "The upper Mariposa Grove",
+    "files": [
+      "Mariposa Grove - upper grove panorama (natural colors).jpg",
+      "Mariposa Grove - upper grove panorama.jpg"
+    ]
+  },
+  {
+    "file": "hike-tuolumne-grove.jpg",
+    "slot": "hike:tuolumne-grove",
+    "tier": 2,
+    "subject": "Giant sequoias of the Tuolumne Grove",
+    "categories": [
+      "Tuolumne Grove Trail",
+      "Tuolumne Grove"
+    ],
+    "portraitOk": true
+  },
+  {
+    "file": "hike-may-lake.jpg",
+    "slot": "hike:may-lake",
+    "tier": 2,
+    "subject": "May Lake",
+    "categories": [
+      "May Lake"
+    ]
+  },
+  {
+    "file": "hike-mount-hoffmann.jpg",
+    "slot": "hike:mount-hoffmann",
+    "tier": 2,
+    "subject": "Mount Hoffmann",
+    "categories": [
+      "Mount Hoffmann"
+    ],
+    "portraitOk": true
+  },
+  {
+    "file": "hike-olmsted-point.jpg",
+    "slot": "hike:olmsted-point",
+    "tier": 2,
+    "subject": "Olmsted Point",
+    "categories": [
+      "Olmsted Point"
+    ]
+  },
+  {
+    "file": "hike-tenaya-lake-loop.jpg",
+    "slot": "hike:tenaya-lake-loop",
+    "tier": 2,
+    "subject": "Tenaya Lake",
+    "categories": [
+      "Tenaya Lake"
+    ]
+  },
+  {
+    "file": "hike-clouds-rest.jpg",
+    "slot": "hike:clouds-rest",
+    "tier": 2,
+    "subject": "Clouds Rest",
+    "categories": [
+      "Clouds Rest"
+    ],
+    "portraitOk": true
+  },
+  {
+    "file": "hike-north-dome.jpg",
+    "slot": "hike:north-dome",
+    "tier": 2,
+    "subject": "North Dome, or Half Dome seen from it",
+    "categories": [
+      "Half Dome seen from North Dome",
+      "North Dome"
+    ]
+  },
+  {
+    "file": "hike-pothole-dome.jpg",
+    "slot": "hike:pothole-dome",
+    "tier": 2,
+    "subject": "Pothole Dome",
+    "categories": [
+      "Pothole Dome"
+    ],
+    "portraitOk": true
+  },
+  {
+    "file": "hike-soda-springs-parsons-lodge.jpg",
+    "slot": "hike:soda-springs-parsons-lodge",
+    "tier": 2,
+    "subject": "Parsons Memorial Lodge or the Soda Springs cabin",
+    "categories": [
+      "Parsons Memorial Lodge",
+      "Soda Springs Cabin"
+    ]
+  },
+  {
+    "file": "hike-lembert-dome.jpg",
+    "slot": "hike:lembert-dome",
+    "tier": 2,
+    "subject": "Lembert Dome",
+    "categories": [
+      "Lembert Dome"
+    ]
+  },
+  {
+    "file": "hike-dog-lake.jpg",
+    "slot": "hike:dog-lake",
+    "tier": 2,
+    "subject": "Dog Lake above Tuolumne Meadows",
+    "categories": [
+      "Dog Lake (California)"
+    ],
+    "portraitOk": true
+  },
+  {
+    "file": "hike-elizabeth-lake.jpg",
+    "slot": "hike:elizabeth-lake",
+    "tier": 2,
+    "subject": "Unicorn Peak above Elizabeth Lake",
+    "files": [
+      "File--Scenic-Peaks-Unicorn Peak- Unicorn Peak near Elizabeth Lake. HJ Windsor. 1968 A-4573. A-37-j-6. (ad8a6145-7762-40a5-9c8c-8b55edf830f2).jpg"
+    ]
+  },
+  {
+    "file": "hike-cathedral-lakes.jpg",
+    "slot": "hike:cathedral-lakes",
+    "tier": 2,
+    "subject": "Cathedral Lakes under Cathedral Peak",
+    "categories": [
+      "Cathedral Lakes"
+    ],
+    "portraitOk": true
+  },
+  {
+    "file": "hike-glen-aulin.jpg",
+    "slot": "hike:glen-aulin",
+    "tier": 2,
+    "subject": "White Cascade at Glen Aulin",
+    "files": [
+      "Glen Aulin Falls 2.jpg"
+    ],
+    "categories": [
+      "Glen Aulin High Sierra Camp"
+    ],
+    "portraitOk": true
+  },
+  {
+    "file": "hike-lyell-canyon.jpg",
+    "slot": "hike:lyell-canyon",
+    "tier": 2,
+    "subject": "Lyell Canyon",
+    "categories": [
+      "Lyell Canyon"
+    ],
+    "portraitOk": true
+  },
+  {
+    "file": "hike-mono-pass.jpg",
+    "slot": "hike:mono-pass",
+    "tier": 2,
+    "subject": "The Mono Pass trail",
+    "files": [
+      "Alpine meadow and lake (19374339176).jpg"
+    ],
+    "categories": [
+      "Mono Pass"
+    ]
+  },
+  {
+    "file": "hike-gaylor-lakes.jpg",
+    "slot": "hike:gaylor-lakes",
+    "tier": 2,
+    "subject": "Gaylor Lakes",
+    "categories": [
+      "Gaylor Lakes"
+    ],
+    "portraitOk": true
+  },
+  {
+    "file": "hike-mount-dana.jpg",
+    "slot": "hike:mount-dana",
+    "tier": 2,
+    "subject": "Mount Dana",
+    "categories": [
+      "Mount Dana"
+    ]
+  },
+  {
+    "file": "hike-wapama-falls.jpg",
+    "slot": "hike:wapama-falls",
+    "tier": 2,
+    "subject": "Wapama Falls",
+    "categories": [
+      "Wapama Falls"
+    ],
+    "portraitOk": true
+  },
+  {
+    "file": "hike-rancheria-falls.jpg",
+    "slot": "hike:rancheria-falls",
+    "tier": 2,
+    "subject": "Rancheria Falls",
+    "files": [
+      "Rapids below Rancheria Falls - panoramio.jpg",
+      "Campsites at Rancheria Falls above Hetch Hetchy. - panoramio.jpg"
+    ]
+  },
+  {
+    "file": "hike-poopenaut-valley.jpg",
+    "slot": "hike:poopenaut-valley",
+    "tier": 2,
+    "subject": "Poopenaut Valley below the dam",
+    "files": [
+      "Looking west at the Poopenaut Valley along the Tuolumne just downstream of the O'Shaughnessy Dam - panoramio.jpg"
+    ]
+  },
+  {
+    "file": "hike-merced-grove.jpg",
+    "slot": "hike:merced-grove",
+    "tier": 2,
+    "subject": "Giant sequoias of the Merced Grove",
+    "categories": [
+      "Merced Grove"
+    ],
+    "portraitOk": true
   }
 ]

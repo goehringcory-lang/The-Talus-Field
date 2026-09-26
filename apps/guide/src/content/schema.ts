@@ -232,6 +232,16 @@ export const Hike = z.object({
   permit: z.string().optional(),          // 1 sentence; renders as a badge + note
   hazard: z.string().optional(),          // 1-2 plain sentences
   description: z.string(),                // 1-3 plain sentences, house voice
+  // The trail's lead photo on /hike/:id. Only a photo whose Commons category,
+  // title or description names this trail or its destination (manifest slot
+  // `hike:<id>`, or the trailhead stop's own verified photo); a hike with no
+  // such photo carries none rather than a lookalike.
+  photo: z
+    .object({
+      src: z.string().regex(/^\/photos\/[a-z0-9-]+\.jpg$/),
+      alt: z.string(),                    // what the frame shows
+    })
+    .optional(),
 })
 
 export type HikeT = z.infer<typeof Hike>
