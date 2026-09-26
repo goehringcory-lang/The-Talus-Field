@@ -7,7 +7,7 @@ window.ARTICLE_BODIES["glacier-point-road-open-2026"] = function GlacierPointRoa
     <>
       <p className="dropcap">
         <em style={{ display: "block", marginBottom: "1rem", fontSize: 14 }}>
-          Road and trail status below describes the opening of the 2026 season, in May. As of September 23, 2026, the road is open, and the park says it typically closes for the winter sometime in November; overnight parking on it ends October 15. The Ostrander Lake Trail and all areas and trails south of it are closed for the Dome Fire. Conditions change: check
+          Road and trail status below describes the opening of the 2026 season, in May. As of September 26, 2026, the road is temporarily closed for the Dome Fire, for smoke and to keep it clear for firefighting, and the park says it will reopen when conditions allow. Glacier Point can still be reached on foot: the park says the Four Mile and Panorama Trails remain open to hikers. The Ostrander Lake Trail and all areas and trails south of it are closed for the fire. Overnight parking on the road ends October 15, and the park says it typically closes for the winter sometime in November. <a href="/articles/yosemite-in-october-2026">The October edition</a> covers the fire. Conditions change: check
           <a href="/now">the Park Bulletin</a> or the recorded line, 209-372-0200, for the day you are going.
         </em>
         Glacier Point Road is open for the 2026 season. The Park Service plowed it through the back end of winter, the gate at Chinquapin came up on May 9 after just under six months of closure, and cars are again climbing the sixteen miles to a viewpoint at 7,200 feet that puts you at eye level with Half Dome.

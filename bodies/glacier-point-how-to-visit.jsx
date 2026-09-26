@@ -6,6 +6,10 @@ window.ARTICLE_BODIES["glacier-point-how-to-visit"] = function GlacierPointHowTo
   return (
     <>
       <p className="dropcap">
+        <em style={{ display: "block", marginBottom: "1rem", fontSize: 14 }}>
+          As of September 26, 2026, Glacier Point Road is temporarily closed for the Dome Fire, and the park says it will reopen when conditions allow. Hikers can still reach the point: the park says the Four Mile and Panorama Trails remain open. The concessioner's Glacier Point Tour and its one-way hiker ticket run on the road, and its listing still shows them through October 12 with no fire notice, so confirm they are running before you buy. Check
+          <a href="/now">the Park Bulletin</a> for the road's status on the day you are going.
+        </em>
         Glacier Point is on every first visitor's list, and it fails more of those visitors than any other place in the park. Not the view, which does exactly what the photographs promise. The plan. The road is closed for roughly half the year. In summer the parking lot at the end of it fills by mid-morning, and the Park Service now turns the overflow around and sends it to a shuttle eleven miles back down the road. And the drive is about an hour each way from Yosemite Valley, a number most people learn in the car. This is the standing guide: what is at the top, how the road works and when it is open, the shuttle rule that governs a summer visit, the walks that start from the road, the bus up, and the ski route that is the only way in from December to spring.
       </p>
 

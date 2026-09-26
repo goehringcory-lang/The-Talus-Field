@@ -8,7 +8,7 @@
 Publisher: The Talus Field (https://thetalusfieldjournal.com). Editor: Cory Goehring.
 Citation guidance and the annotated page index: https://thetalusfieldjournal.com/llms.txt
 Canonical article URL pattern: https://thetalusfieldjournal.com/articles/<slug>
-Contents: 74 articles. Most recent update: 2026-09-25.
+Contents: 74 articles. Most recent update: 2026-09-26.
 
 Not in this file: the Yosemite Nature Notes archive, all 512 issues of the
 National Park Service's Yosemite bulletin (1922-2003), transcribed in full
@@ -336,10 +336,10 @@ Do the phone work in the last town: send the plan, screenshot the reservations a
 ## Glacier Point: How to Visit and When the Road Is Open
 
 URL: https://thetalusfieldjournal.com/articles/glacier-point-how-to-visit
-Section: Planning. Published: 2026-09-17. Last updated: 2026-09-17.
+Section: Planning. Published: 2026-09-17. Last updated: 2026-09-26.
 Summary: Glacier Point: the drive, the road's open dates since 2000, the summer Badger Pass shuttle rule, sunrise vs sunset, every hike off the road, the bus, winter.
 
-Glacier Point is on every first visitor's list, and it fails more of those visitors than any other place in the park. Not the view, which does exactly what the photographs promise. The plan. The road is closed for roughly half the year. In summer the parking lot at the end of it fills by mid-morning, and the Park Service now turns the overflow around and sends it to a shuttle eleven miles back down the road. And the drive is about an hour each way from Yosemite Valley, a number most people learn in the car. This is the standing guide: what is at the top, how the road works and when it is open, the shuttle rule that governs a summer visit, the walks that start from the road, the bus up, and the ski route that is the only way in from December to spring.
+As of September 26, 2026, Glacier Point Road is temporarily closed for the Dome Fire, and the park says it will reopen when conditions allow. Hikers can still reach the point: the park says the Four Mile and Panorama Trails remain open. The concessioner's Glacier Point Tour and its one-way hiker ticket run on the road, and its listing still shows them through October 12 with no fire notice, so confirm they are running before you buy. Checkthe Park Bulletin for the road's status on the day you are going.Glacier Point is on every first visitor's list, and it fails more of those visitors than any other place in the park. Not the view, which does exactly what the photographs promise. The plan. The road is closed for roughly half the year. In summer the parking lot at the end of it fills by mid-morning, and the Park Service now turns the overflow around and sends it to a shuttle eleven miles back down the road. And the drive is about an hour each way from Yosemite Valley, a number most people learn in the car. This is the standing guide: what is at the top, how the road works and when it is open, the shuttle rule that governs a summer visit, the walks that start from the road, the bus up, and the ski route that is the only way in from December to spring.
 
 ### What is at the top
 
@@ -6111,10 +6111,10 @@ You won't feel like you missed anything. You'll feel like you found something be
 ## Glacier Point Road open 2026: a plan for the early season
 
 URL: https://thetalusfieldjournal.com/articles/glacier-point-road-open-2026
-Section: Seasonal Guides. Published: 2026-05-11. Last updated: 2026-09-23.
+Section: Seasonal Guides. Published: 2026-05-11. Last updated: 2026-09-26.
 Summary: Seventeen miles to a 7,200-foot viewpoint at eye level with Half Dome. What is open at the top, what is not, and how to plan early-season 2026.
 
-Road and trail status below describes the opening of the 2026 season, in May. As of September 23, 2026, the road is open, and the park says it typically closes for the winter sometime in November; overnight parking on it ends October 15. The Ostrander Lake Trail and all areas and trails south of it are closed for the Dome Fire. Conditions change: checkthe Park Bulletin or the recorded line, 209-372-0200, for the day you are going.Glacier Point Road is open for the 2026 season. The Park Service plowed it through the back end of winter, the gate at Chinquapin came up on May 9 after just under six months of closure, and cars are again climbing the sixteen miles to a viewpoint at 7,200 feet that puts you at eye level with Half Dome.
+Road and trail status below describes the opening of the 2026 season, in May. As of September 26, 2026, the road is temporarily closed for the Dome Fire, for smoke and to keep it clear for firefighting, and the park says it will reopen when conditions allow. Glacier Point can still be reached on foot: the park says the Four Mile and Panorama Trails remain open to hikers. The Ostrander Lake Trail and all areas and trails south of it are closed for the fire. Overnight parking on the road ends October 15, and the park says it typically closes for the winter sometime in November. The October edition covers the fire. Conditions change: checkthe Park Bulletin or the recorded line, 209-372-0200, for the day you are going.Glacier Point Road is open for the 2026 season. The Park Service plowed it through the back end of winter, the gate at Chinquapin came up on May 9 after just under six months of closure, and cars are again climbing the sixteen miles to a viewpoint at 7,200 feet that puts you at eye level with Half Dome.
 
 If you have been waiting for this, here is what to know about the road in the first weeks of the season. Not the road in general. Not the road in July. The road now, in this snowpack year, with what is and is not actually working at the top.
 
