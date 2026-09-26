@@ -1266,7 +1266,7 @@ function BulletinPage({ go }) {
         {state === "loading" && <p className="bulletin-loading">Loading the current edition…</p>}
         {state === "error" && (
           <p className="bulletin-loading">
-            The bulletin didn't load. The live layer still works:{" "}
+            The bulletin didn't load. The conditions page still has{" "}
             <a href="/conditions" onClick={toConditions}>webcams, entrance waits, and forecasts</a>.
           </p>
         )}
@@ -1288,7 +1288,7 @@ function BulletinPage({ go }) {
                 <span>
                   {edition.notice ||
                     `This edition of the Yosemite Guide ended ${bulletinDate(edition.end)}, and the next one is being condensed now. Dates below may have passed; hours and phone numbers usually hold between editions.`}{" "}
-                  The <a href="/conditions" onClick={toConditions}>live layer</a> (webcams, entrance waits, forecasts) stays current.
+                  The <a href="/conditions" onClick={toConditions}>conditions page</a> (webcams, entrance waits, forecasts) stays current.
                 </span>
               </p>
             )}
@@ -1348,7 +1348,7 @@ function BulletinPage({ go }) {
             <BulletinSection
               id="bulletin-details"
               title="Hours, transit & numbers"
-              dek="These change little between editions, so they sit folded. Open the one you need."
+              dek="Hours, transit, and phone numbers. Open the one you need."
             >
               <BulletinReference data={data} today={today} />
             </BulletinSection>
@@ -1374,15 +1374,15 @@ function BulletinPage({ go }) {
       <HpGuideBand
         go={go}
         location="now"
-        title="The Bulletin covers the week. This covers the trip."
-        intro="The Field Guide app: 50-plus stops with parking and timing notes, offline maps, a trip planner, and the secret guide. Works with no signal, which is most of the park. One purchase, eighteen months of access."
+        title="The Bulletin covers the park today. This covers the trip."
+        intro="The Field Guide app: every stop with parking and timing notes, offline maps, a trip planner, and the Secret Guide. Works with no signal, which is most of the park."
         sample
       />
       <HpLetter
         eyebrow="SUNDAY FIELD NOTES / FREE"
         title="When the next edition drops, hear about it"
         heading="When the next edition drops, hear about it"
-        blurb="The Sunday letter carries what changed on this board, plus whatever else the week earned. Free."
+        blurb="Sunday Field Notes carries what changed on this board, plus whatever else the week earned."
         location="now"
         tag="now"
       />

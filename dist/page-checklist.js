@@ -465,13 +465,13 @@ function ChecklistPage({
     go: go,
     location: "checklist",
     title: "The checklist rides along.",
-    intro: "The Field Guide app packs a night-before checklist next to 50-plus stops with parking and timing notes, offline maps, and a trip planner. Everything this page prepares you for, on your phone, with no signal required.",
+    intro: "The Field Guide app packs a night-before checklist next to every stop with parking and timing notes, offline maps, and a trip planner. Everything this page prepares you for, on your phone, with no signal required.",
     sample: true
   }), React.createElement(HpLetter, {
     eyebrow: "SUNDAY FIELD NOTES / FREE",
     title: "Want updates through the season?",
     heading: "Want updates through the season?",
-    blurb: "One Yosemite email a week, when there is something to say. Free. Subscribers hear about updates to this checklist first.",
+    blurb: "Subscribers hear about updates to this checklist first.",
     location: "checklist",
     tag: "checklist"
   }));

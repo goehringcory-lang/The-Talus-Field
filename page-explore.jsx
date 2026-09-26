@@ -94,7 +94,7 @@ function ExplorePage({ go }) {
     {
       route: "search",
       name: "Search",
-      note: "Titles, deks, and section names across the whole catalog, as you type. Article bodies are not indexed; the page says so rather than letting a miss read as an absence.",
+      note: "Article titles, summaries, and section names, as you type.",
     },
   ];
 
@@ -237,7 +237,7 @@ function ExplorePage({ go }) {
         go={go}
         eyebrow="Park now"
         title="What is open, and what is coming."
-        dek="The pages read from the park's own feeds and its own Guide, then the dates people plan a trip around. Each date page is a decision aid, not a calendar."
+        dek="Live conditions, the current edition of the park's newspaper, and the dates people plan a trip around."
         entries={parkNow}
       />
 

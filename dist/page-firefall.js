@@ -73,13 +73,13 @@ function FirefallPage({
     go: go,
     location: "firefall",
     title: "Planning the February trip around it?",
-    intro: "The Field Guide app carries the winter stops, parking notes for the viewing areas, offline maps for a park with no signal, and a day-by-day planner for the rest of the trip. One purchase, eighteen months of access.",
+    intro: "The Field Guide app carries the winter stops, parking notes for the viewing areas, offline maps for a park with no signal, and a day-by-day planner for the rest of the trip.",
     sample: true
   }), React.createElement(HpLetter, {
     eyebrow: "SUNDAY FIELD NOTES / FREE",
     title: "February, watched from inside the park",
     heading: "February, watched from inside the park",
-    blurb: "Sunday Field Notes carries the firefall window as it develops: water in the fall, the week's weather, and what the rules are this year. One short letter a week. Free.",
+    blurb: "Sunday Field Notes carries the firefall window as it develops: water in the fall, the week's weather, and what the rules are this year.",
     location: "firefall",
     tag: "firefall"
   }));

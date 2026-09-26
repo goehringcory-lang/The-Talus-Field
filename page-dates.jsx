@@ -1,4 +1,4 @@
-/* global React, HpPageHead, NewsletterInline, GuidePromo, LodgingCta, DEADLINES */
+/* global React, HpPageHead, HpGuideBand, HpLetter, LodgingCta, DEADLINES */
 
 // =============================================================================
 // DATES — `/dates` route. The dates that decide a Yosemite trip, in one table,
@@ -339,17 +339,27 @@ function DatesPage({ go }) {
           cta="Search lodging around Yosemite →"
         />
 
-        <GuidePromo
-          go={go}
-          location="dates"
-          title="In the Field Guide, these dates sit on your trip board"
-          body="Enter your trip once and the guide draws every deadline against it, reminds your phone the morning each one opens, and keeps working where the park has no signal. One purchase, eighteen months of access."
-          style={{ marginTop: 56, marginBottom: 40 }}
-        />
+        </div>
+      </div>
 
+      <HpGuideBand
+        go={go}
+        location="dates"
+        title="In the Field Guide, these dates sit on your trip board."
+        intro="Enter your trip once and the guide draws every deadline against it, reminds your phone the morning each one opens, and keeps working where the park has no signal."
+        sample
+      />
+
+      <HpLetter
+        eyebrow="REMIND ME / FREE"
+        title={`${TAG_LABELS[interest]}: the nudge before the date`}
+        heading={`${TAG_LABELS[interest]}: the nudge before the date`}
+        blurb="A short letter on Sundays, and a dated line the week a window you asked about opens."
+        location="dates"
+        tag={interest}
+      >
         <div className="dates__interest">
-          <div className="eyebrow eyebrow--moss">Remind me</div>
-          <p className="dates__hint">Pick what you are waiting on. The Sunday letter carries a dated nudge to the people who asked for that one, and nothing else.</p>
+          <p className="dates__hint">Pick what you are waiting on. The letter carries a dated nudge to the people who asked for that one, and nothing else.</p>
           <div className="dates__chips" role="radiogroup" aria-label="What to remind you about">
             {Object.keys(TAG_LABELS).map((t) => (
               <button
@@ -365,15 +375,7 @@ function DatesPage({ go }) {
             ))}
           </div>
         </div>
-        <NewsletterInline
-          key={interest}
-          location="dates"
-          tag={interest}
-          heading={`${TAG_LABELS[interest]}: the nudge before the date`}
-          blurb="A short letter on Sundays, and a dated line the week a window you asked about opens. Free."
-        />
-        </div>
-      </div>
+      </HpLetter>
     </div>
   );
 }

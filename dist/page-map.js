@@ -1570,18 +1570,7 @@ function TripNextSteps({
       e.preventDefault();
       go("affiliate");
     }
-  }, "Disclosure."))), React.createElement("p", {
-    className: "map-sidebar__next-line"
-  }, "This trip, offline, at the trailhead: the Field Guide app is $3.99 for eighteen months.", " ", React.createElement("a", {
-    href: "/guide",
-    onClick: e => {
-      e.preventDefault();
-      if (window.track) window.track("guide_teaser_click", {
-        location: "map_sidebar"
-      });
-      go("guide");
-    }
-  }, "See the guide →")));
+  }, "Disclosure."))));
 }
 function TripPlannerSidebar({
   features,

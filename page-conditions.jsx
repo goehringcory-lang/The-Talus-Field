@@ -382,7 +382,7 @@ function ConditionsReadout({ waits, lots }) {
           ))}
         </ul>
       ) : (
-        <p className="readout__quiet">The park's live feeds are quiet right now. Everything below still links straight to the source.</p>
+        <p className="readout__quiet">No live numbers from the park right now. Everything below still links straight to the park's own pages.</p>
       )}
       <p className="readout__foot">National Park Service. Both readings refresh every five minutes.</p>
     </aside>
@@ -457,7 +457,7 @@ function ConditionsPage({ go }) {
         <section id="cond-roads" tabIndex={-1}>
           <HpHeading eyebrow="05 / SOURCES, NOT GUESSES" title="Roads and closures" />
           <p className="hp-sub">
-            Road status changes faster than any page can promise, this one included, so nothing here claims to know whether a gate is open. These three do.
+            Road status changes faster than any page can promise. For whether a gate is open right now, check these three.
           </p>
           <ul className="conditions__list">
             <li className="conditions__row">
@@ -508,7 +508,7 @@ function ConditionsPage({ go }) {
         go={go}
         location="conditions"
         title="Past the entrance, this page stops loading."
-        intro="Most of the park has no signal. The Field Guide app is built for exactly that: offline maps, 50-plus stops with parking and timing notes, and a trip planner that works from the trailhead."
+        intro="Most of the park has no signal. The Field Guide app is built for exactly that: offline maps, every stop with parking and timing notes, and a trip planner that works from the trailhead."
         sample
       />
       {/* id: the masthead's Park now panel links here ("Get road alerts"). */}
@@ -517,7 +517,7 @@ function ConditionsPage({ go }) {
         eyebrow="ROAD ALERTS / FREE"
         title="Email me when a road changes"
         heading="Email me when a road changes"
-        blurb="One email when Tioga Road, Glacier Point Road, or a highway into the park opens or closes, sent to the people who asked for it. The Sunday note carries the rest of the week from inside the park. Free."
+        blurb="One email when Tioga Road, Glacier Point Road, or a highway into the park opens or closes, sent to the people who asked for it. Sunday Field Notes carries the rest of the week from inside the park."
         location="conditions"
         tag="alert-roads"
         cta="Email me ↗"

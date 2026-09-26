@@ -107,13 +107,13 @@ function WebcamsPage({
     go: go,
     location: "webcams",
     title: "No signal past the gate",
-    intro: "Cameras are for before you leave. Once you are in the park there is no service to load one. The Field Guide app carries offline maps, trailhead parking notes and GPS that works with the phone in airplane mode. One purchase, eighteen months of access.",
+    intro: "Cameras are for before you leave. Once you are in the park there is no service to load one. The Field Guide app carries offline maps, trailhead parking notes and GPS that works with the phone in airplane mode.",
     sample: true
   }), React.createElement(HpLetter, {
     eyebrow: "SUNDAY FIELD NOTES / FREE",
     title: "What the cameras are showing this week",
     heading: "What the cameras are showing this week",
-    blurb: "One short Sunday letter on what the park is doing right now: what is open, what is flowing, and what changed. Free.",
+    blurb: "What the park is doing right now: what is open, what is flowing, and what changed.",
     location: "webcams",
     tag: "webcams"
   }));

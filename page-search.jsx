@@ -538,14 +538,14 @@ function SearchPage({ go }) {
             go={go}
             location="search"
             title="Looking for something in the park, not the archive?"
-            intro="The Field Guide app carries the stops, the hikes, and the maps offline, with a planner that turns your dates into a schedule. $3.99 for eighteen months."
+            intro="The Field Guide app carries the stops, the hikes, and the maps offline, with a planner that turns your dates into a schedule."
             sample
           />
           <HpLetter
             eyebrow="SUNDAY FIELD NOTES / FREE"
             title="One letter a week"
             heading="One letter a week"
-            blurb="Sunday Field Notes: what opened, what closed, and what the week ahead looks like from inside the park. Free."
+            blurb="Sunday Field Notes: what opened, what closed, and what the week ahead looks like from inside the park."
             location="search"
             tag="search"
           />

@@ -224,13 +224,13 @@ function IntentFilters({
     type: "button",
     className: "ichip" + (browse ? " ichip--on" : ""),
     "aria-pressed": browse,
-    title: "List the whole archive, with any chips above still applied.",
+    title: "List every article, with your picks above still applied.",
     onClick: onToggleBrowse
   }, browse ? "Everything ×" : "Every entry", React.createElement("span", {
     className: "ichip__n"
   }, pool.length)), React.createElement("span", {
     className: "intentf__row-note"
-  }, !browse ? `The guide below curates ${curated} of these. This shows the rest.` : selected ? "The whole archive, narrowed by the chips above." : "Take this off to read the five-part guide in order."))));
+  }, !browse ? `The guide below curates ${curated} of these. This shows the rest.` : selected ? "Every article, narrowed by your picks above." : "Take this off to read the five-part guide in order."))));
 }
 function PlanLink({
   href,
@@ -374,7 +374,8 @@ function TripPlan({
 }
 function TripSelector({
   go,
-  onApplyIntent
+  onApplyIntent,
+  onPlan
 }) {
   var [answers, setAnswers] = useStateIn(() => {
     var fromUrl = readAnswersFromUrl();
@@ -432,6 +433,12 @@ function TripSelector({
   var answered = window.TRIP_QUESTIONS.filter(isAnswered).length;
   var plan = complete ? window.buildTripPlan(answers) : null;
   var matchCount = plan ? window.filterArticlesByIntent(window.ARTICLES, plan.intent).length : 0;
+  var planHasLodging = !!(plan && plan.lodging);
+  useEffectIn(() => {
+    if (onPlan) onPlan({
+      lodging: planHasLodging
+    });
+  }, [planHasLodging]);
   return React.createElement("section", {
     className: "tripsel",
     "aria-label": "Trip selector"
@@ -445,7 +452,7 @@ function TripSelector({
     className: "tripsel__title"
   }, "Five questions, then a plan."), React.createElement("p", {
     className: "tripsel__dek"
-  }, "Answer these and this page stops being an archive. You get the handful of entries that apply to your trip, the day plan the season actually allows, and an honest read on whether you need anything paid.")), React.createElement("div", {
+  }, "Answer these five and you get the handful of entries that apply to your trip, the day plan the season actually allows, and an honest read on whether you need anything paid.")), React.createElement("div", {
     className: "tripsel__meter"
   }, React.createElement("span", {
     className: "tripsel__count"
@@ -495,7 +502,7 @@ function TripSelector({
     className: "tripsel__bar"
   }, React.createElement("p", {
     className: "tripsel__progress"
-  }, complete ? "Every answer is in. The day plan below is capped to what the month's roads allow." : "A plan built from two answers is a guess wearing a plan's clothes. Answer all five and the reading list, the day plan, and the arrival time appear together."), React.createElement("div", {
+  }, complete ? "Every answer is in. The day plan below is capped to what the month's roads allow." : "Answer all five and the reading list, the day plan, and the arrival time appear together."), React.createElement("div", {
     className: "tripsel__acts"
   }, answered > 0 && React.createElement("button", {
     type: "button",

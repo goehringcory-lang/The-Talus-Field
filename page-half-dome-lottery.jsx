@@ -372,14 +372,14 @@ function HalfDomeLotteryPage({ go }) {
         go={go}
         location="half-dome-lottery"
         title="Planning the trip around a permit day?"
-        intro="The Field Guide app carries the trailhead parking notes, offline maps for a park with no signal, and a day-by-day planner that flexes when the lottery says Tuesday instead of Saturday. One purchase, eighteen months of access."
+        intro="The Field Guide app carries the trailhead parking notes, offline maps for a park with no signal, and a day-by-day planner that flexes when the lottery says Tuesday instead of Saturday."
         sample
       />
       <HpLetter
         eyebrow="SUNDAY FIELD NOTES / FREE"
         title="The permit calendar, in your inbox"
         heading="The permit calendar, in your inbox"
-        blurb="Sunday Field Notes flags the lottery calendar as it comes: when the March window opens, when results land, and when the late-season odds turn favorable. One short letter a week. Free."
+        blurb="Sunday Field Notes flags the lottery calendar as it comes: when the March window opens, when results land, and when the late-season odds turn favorable."
         location="half-dome-lottery"
         tag="half-dome-lottery"
       />

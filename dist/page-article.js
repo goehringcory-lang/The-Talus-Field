@@ -85,7 +85,6 @@ function ArticlePage({
   var [Body, setBody] = React.useState(() => (window.ARTICLE_BODIES || {})[slug] || null);
   var [bodyState, setBodyState] = React.useState(() => (window.ARTICLE_BODIES || {})[slug] ? "ready" : "loading");
   var proseRef = React.useRef(null);
-  var [midHost, setMidHost] = React.useState(null);
   var [toc, setToc] = React.useState([]);
   React.useEffect(() => {
     if (bodyState !== "ready") {
@@ -257,27 +256,6 @@ function ArticlePage({
       saveUnfinished();
     };
   }, [bodyState, slug]);
-  React.useEffect(() => {
-    setMidHost(null);
-    if (bodyState !== "ready") return;
-    var host = null;
-    var raf = requestAnimationFrame(() => {
-      var prose = proseRef.current;
-      if (!prose || prose.querySelector("[data-nl-mid]")) return;
-      var blocks = Array.from(prose.children).filter(el => !el.classList.contains("statblock") && !el.hasAttribute("data-nl-mid"));
-      if (blocks.length < 8) return;
-      var anchor = blocks[Math.floor(blocks.length / 2)];
-      if (!anchor) return;
-      host = document.createElement("div");
-      host.setAttribute("data-nl-mid", "1");
-      anchor.insertAdjacentElement("afterend", host);
-      setMidHost(host);
-    });
-    return () => {
-      cancelAnimationFrame(raf);
-      if (host && host.parentNode) host.parentNode.removeChild(host);
-    };
-  }, [bodyState, slug, Body]);
   if (!article) return React.createElement("div", {
     className: "wrap",
     style: {
@@ -436,7 +414,7 @@ function ArticlePage({
     className: "label"
   }, "Updated"), React.createElement("span", {
     className: "val"
-  }, article.date)), React.createElement("div", {
+  }, article.isoModified && formatIsoDate(article.isoModified) || article.date)), React.createElement("div", {
     className: "statblock__item"
   }, React.createElement("span", {
     className: "label"
@@ -470,41 +448,7 @@ function ArticlePage({
   }, "Read how recommendations get made ↗"))), React.createElement(ShareRow, {
     title: article.title,
     slug: slug
-  }), midHost && ReactDOM.createPortal(React.createElement(NewsletterInline, {
-    location: "article_mid",
-    tag: newsletterTag("article-mid", article.cat),
-    heading: "Keep reading next week",
-    blurb: "Sunday Field Notes: one short letter, only when there is something worth saying."
-  }), midHost), React.createElement("a", {
-    className: "hp-note",
-    href: "/map",
-    onClick: e => {
-      e.preventDefault();
-      go("map");
-    }
-  }, React.createElement("p", {
-    className: "hp-eyebrow"
-  }, "THE MAP / FREE"), React.createElement("h3", null, "Plan it on the interactive map."), React.createElement("p", null, "Every vista, trailhead, parking turnout, and meal worth the stop, on one map. A free newsletter signup opens it; then build a trip from the pins."), React.createElement("b", null, "Open the map ", React.createElement("span", null, "↗")))))), tripIntent && React.createElement(HpGuideBand, {
-    go: go,
-    location: "article_end",
-    title: "The park, in your pocket.",
-    intro: "The app version of this journal: offline maps, GPS at the trailhead, and every stop with parking and timing notes. Works with no signal, which is most of the park. $3.99, eighteen months of access.",
-    sample: true
-  }), (() => {
-    var endVariant = window.abVariant ? window.abVariant("article_end_copy") : "a";
-    var offers = endVariant === "b" ? END_NEWSLETTER_OFFER_B : END_NEWSLETTER_OFFER;
-    var offer = offers[article.cat] || {};
-    var heading = offer.heading || "Sunday Field Notes";
-    return React.createElement(HpLetter, {
-      eyebrow: "SUNDAY FIELD NOTES / FREE",
-      title: heading,
-      heading: heading,
-      blurb: offer.blurb || "One letter a week. If you found this useful, you'll probably like the rest.",
-      location: "article_end",
-      tag: newsletterTag("article-end", article.cat),
-      variant: endVariant
-    });
-  })(), related.length > 0 && React.createElement("section", {
+  })))), related.length > 0 && React.createElement("section", {
     className: "hp-wrap hp-section hp-article__related"
   }, React.createElement(HpHeading, {
     go: go,
@@ -534,6 +478,26 @@ function ArticlePage({
     }
   }, a.title), React.createElement("span", {
     className: "relrail__dek"
-  }, a.seoDek || a.dek))))));
+  }, a.seoDek || a.dek))))), tripIntent && React.createElement(HpGuideBand, {
+    go: go,
+    location: "article_end",
+    title: "The park, in your pocket.",
+    intro: "The app version of this journal: offline maps, GPS at the trailhead, and every stop with parking and timing notes. Works with no signal, which is most of the park.",
+    sample: true
+  }), (() => {
+    var endVariant = window.abVariant ? window.abVariant("article_end_copy") : "a";
+    var offers = endVariant === "b" ? END_NEWSLETTER_OFFER_B : END_NEWSLETTER_OFFER;
+    var offer = offers[article.cat] || {};
+    var heading = offer.heading || "Sunday Field Notes";
+    return React.createElement(HpLetter, {
+      eyebrow: "SUNDAY FIELD NOTES / FREE",
+      title: heading,
+      heading: heading,
+      blurb: offer.blurb || "One letter a week. If you found this useful, you'll probably like the rest.",
+      location: "article_end",
+      tag: newsletterTag("article-end", article.cat),
+      variant: endVariant
+    });
+  })());
 }
 window.ArticlePage = ArticlePage;

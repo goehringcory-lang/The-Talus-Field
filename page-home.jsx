@@ -1,4 +1,4 @@
-/* global React, HomeLink, ResponsiveImage, HpHeading, HpRow, HpCard, HpGuideBand, HpLetter */
+/* global React, HomeLink, ResponsiveImage, HpHeading, HpCard, HpGuideBand, HpLetter */
 // The approved visitor-first homepage, and the source of truth for the design
 // system (the Hp* components in components.jsx). Its sections are built from the
 // shared Hp* components, which the pages rebuilt on the system reuse; only the

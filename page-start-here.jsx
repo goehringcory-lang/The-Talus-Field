@@ -535,14 +535,14 @@ function StartHerePage({ go }) {
         go={go}
         location={START_LOCATION}
         title="The first trip is the one that needs a guide"
-        intro="The Field Guide app carries 57 hikes with parking and timing notes, offline maps for a park with no cell service, and the local tactics for every major region. One purchase, eighteen months of access."
+        intro="The Field Guide app carries 57 hikes with parking and timing notes, offline maps for a park with no cell service, and the local tactics for every major region."
         sample
       />
       <HpLetter
         eyebrow="SUNDAY FIELD NOTES / FREE"
         title="The Sunday Letter"
         heading="The Sunday Letter"
-        blurb="What is open, what is booking out, and what the week looked like from inside the park. One letter a week while you plan. Free."
+        blurb="What is open, what is booking out, and what the week looked like from inside the park."
         location={START_LOCATION}
         tag="start-here"
       />

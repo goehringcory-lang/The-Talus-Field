@@ -228,7 +228,7 @@ function KitPage({
     go: go,
     location: "kit",
     title: "One more thing for the trunk.",
-    intro: "The Field Guide app weighs nothing and works with no signal: offline maps, 50-plus stops with parking and timing notes, and a trip planner. The last item on the packing list.",
+    intro: "The Field Guide app weighs nothing and works with no signal: offline maps, every stop with parking and timing notes, and a trip planner. The last item on the packing list.",
     sample: true
   }), React.createElement(HpLetter, {
     eyebrow: "SUNDAY FIELD NOTES / FREE",

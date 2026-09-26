@@ -12,7 +12,6 @@ const { useState, useEffect, useMemo, useRef } = React;
 const RESPONSIVE_WIDTHS = [400, 800, 1200, 1600];
 // sizes presets for the three image contexts on the site.
 const SIZES_HERO = "(max-width: 700px) 100vw, 700px";
-const SIZES_BODY = SIZES_HERO;
 const SIZES_CARD = "(max-width: 700px) 100vw, (max-width: 1100px) 50vw, 360px";
 
 function slugifyImage(image) {
@@ -605,7 +604,7 @@ const NAV_GROUPS = [
         heading: "Decide",
         links: [
           { key: "start-here", label: "Start here", note: "Your first trip, the questions in order" },
-          { key: "planning", label: "The Planning Guide", note: "The whole archive, in trip order" },
+          { key: "planning", label: "The Planning Guide", note: "Every article, in trip order" },
           { key: "itineraries", label: "Itineraries", note: "Half-day to three-day plans, in drive order" },
           { key: "consult", label: "Trip consults", note: "Thirty minutes, one on one. Paid" },
         ],
@@ -649,7 +648,7 @@ const NAV_GROUPS = [
       {
         heading: "The calendar",
         links: [
-          { key: "dates", label: "Dates that matter", note: "Lotteries, release mornings, road windows, as calendar files" },
+          { key: "dates", label: "Dates that matter", note: "Lotteries, release mornings, road windows, for your calendar" },
           { key: "tioga-opening", label: "Tioga Road opening", note: "When the high country actually opens" },
           { key: "firefall", label: "Firefall", note: "Whether to plan a trip around Horsetail Fall" },
           { key: "half-dome-lottery", label: "Half Dome lottery", note: "The permit odds, plainly" },
@@ -779,7 +778,7 @@ function NavWaitsFeature({ live, link }) {
     <div className="hp-navfeat hp-navfeat--waits">
       <p className="hp-menu__heading">Entrance waits, live</p>
       {live ? <EntranceWaits variant="menu" /> : <GateReadout waits={null} />}
-      <p className="hp-navfeat__text">Read from the Park Service's own feed. A dash means no current reading.</p>
+      <p className="hp-navfeat__text">Posted by the National Park Service. A dash means no wait is posted right now.</p>
       {link({ key: "conditions", hash: "cond-waits", label: "Gates and lots on Conditions ↗" }, "hp-link")}
     </div>
   );
@@ -1486,14 +1485,16 @@ function HpPostcard({ paper, stamp = "THE SUNDAY LETTER" }) {
 
 // The letter: the postcard beside the Sunday Letter form. `heading` and
 // `blurb` are NewsletterInline's (the heading is visually hidden, since the
-// section's h2 stands in for it); `paper` is the postcard's line.
-function HpLetter({ id, eyebrow, title, heading, blurb, location, tag, variant, cta = "Send me the letter ↗", terms = "Free to read. One letter a week. Unsubscribe whenever.", paper, stamp = "THE SUNDAY LETTER" }) {
+// section's h2 stands in for it); `paper` is the postcard's line; `children`
+// sit between the h2 and the form (/dates puts its reminder chips there).
+function HpLetter({ id, eyebrow, title, heading, blurb, location, tag, variant, cta = "Send me the letter ↗", terms = "Free to read. One letter a week. Unsubscribe whenever.", paper, stamp = "THE SUNDAY LETTER", children }) {
   return (
     <section className="hp-letter hp-wrap hp-section" id={id} tabIndex={id ? -1 : undefined}>
       <HpPostcard paper={paper} stamp={stamp} />
       <div>
         <p className="hp-eyebrow">{eyebrow}</p>
         <h2>{title}</h2>
+        {children}
         <NewsletterInline heading={heading} blurb={blurb} location={location} tag={tag} variant={variant} cta={cta} modifier="hp-newsletter" inputLabel="Your email address" />
         {terms && <p className="hp-terms">{terms}</p>}
       </div>
@@ -1647,8 +1648,6 @@ function Footer({ go }) {
               {link("about", "About")}
               {link("newsletter", "Newsletter")}
               {link("contact", "Contact")}
-              {link("search", "Search")}
-              {link("places", "Directory")}
             </ul>
           </div>
         </div>
@@ -1658,6 +1657,7 @@ function Footer({ go }) {
         <div className="site-footer__legal">
           <div>© {new Date().getFullYear()} The Talus Field. Independent. Not affiliated with the National Park Service.</div>
           <div>
+            <a href="/places" onClick={(e) => { e.preventDefault(); go("places"); }}>Directory</a>
             <a href="/advertise" onClick={(e) => { e.preventDefault(); go("advertise"); }}>Advertise</a>
             <a href="/widget" onClick={(e) => { e.preventDefault(); go("widget"); }}>Conditions widget</a>
             <a href="/partners" onClick={(e) => { e.preventDefault(); go("partners"); }}>Group codes</a>
@@ -1715,9 +1715,9 @@ window.Breadcrumbs = Breadcrumbs;
 const KEEP_GOING = {
   // --- Reading surfaces ---
   articles: { links: [
-    { key: "planning", label: "The Planning Guide", note: "The same archive, ordered for a real trip" },
-    { key: "search", label: "Search", note: "By title, section, or dek" },
-    { href: "/archive/", label: "Nature Notes archive", note: "The park's own bulletin, 512 issues" },
+    { key: "planning", label: "The Planning Guide", note: "Every article, ordered for a real trip" },
+    { key: "search", label: "Search", note: "By title, section, or summary" },
+    { href: "/archive/", label: "Nature Notes archive", note: "The park's naturalist newsletter, from 1922" },
     { key: "films", label: "Films", note: "The NPS Nature Notes series" },
   ] },
   films: { links: [
@@ -1732,7 +1732,7 @@ const KEEP_GOING = {
   ] },
   search: { links: [
     { key: "articles", label: "All articles", note: "Everything published, newest first" },
-    { key: "planning", label: "The Planning Guide", note: "The whole archive, in trip order" },
+    { key: "planning", label: "The Planning Guide", note: "Every article, in trip order" },
     { key: "explore", label: "Site index", note: "Every page on the site" },
   ] },
 
@@ -1750,7 +1750,7 @@ const KEEP_GOING = {
   ] },
   kit: { links: [
     { key: "checklist", label: "First-week checklist", note: "The week before you go, in order" },
-    { key: "planning", label: "The Planning Guide", note: "The whole archive, in trip order" },
+    { key: "planning", label: "The Planning Guide", note: "Every article, in trip order" },
     { key: "cat:trails", label: "Trails and hikes", note: "Where the kit gets used" },
   ] },
   itineraries: { links: [
@@ -1771,7 +1771,7 @@ const KEEP_GOING = {
   ] },
   webcams: { links: [
     { key: "conditions", label: "Conditions", note: "Forecasts and live entrance waits" },
-    { key: "now", label: "The Park Bulletin", note: "What the park says about this week" },
+    { key: "now", label: "The Park Bulletin", note: "What is open and on in the park now" },
     { key: "tioga-opening", label: "Tioga Road opening", note: "The view the cameras do not cover" },
     { key: "map", label: "The trip map", note: "Where the views actually are" },
   ] },
@@ -1785,7 +1785,7 @@ const KEEP_GOING = {
     { key: "half-dome-lottery", label: "The Half Dome lottery", note: "The mechanics, the odds, what to climb instead" },
     { key: "tioga-opening", label: "Tioga Road opening", note: "The window, watched from inside the park" },
     { key: "planning", label: "The Planning Guide", note: "Five answers in, a plan out" },
-    { key: "guide", label: "The Field Guide", note: "These dates on your trip board, with reminders" },
+    { key: "conditions", label: "Conditions", note: "What is open on your dates" },
   ] },
   international: { links: [
     { key: "start-here", label: "Start here", note: "The first-trip questions, answered plainly" },
@@ -1802,7 +1802,7 @@ const KEEP_GOING = {
   map: { links: [
     { key: "itineraries", label: "Itineraries", note: "Start from a plan instead" },
     { key: "conditions", label: "Conditions", note: "Before you drive in" },
-    { key: "guide", label: "The Field Guide", note: "The same stops, offline" },
+    { key: "stay", label: "Where to stay", note: "The nights the trip needs" },
   ] },
   consult: { links: [
     { key: "planning", label: "The Planning Guide", note: "The free version" },
@@ -1832,7 +1832,7 @@ const KEEP_GOING = {
 
   // --- The journal ---
   about: { links: [
-    { key: "newsletter", label: "Newsletter", note: "One letter a week" },
+    { key: "start-here", label: "Start here", note: "The first-trip questions, answered plainly" },
     { key: "articles", label: "All articles", note: "Everything published, newest first" },
     { key: "contact", label: "Contact", note: "Trip questions, corrections, press" },
   ] },
@@ -1858,11 +1858,11 @@ const KEEP_GOING = {
   ] },
   guide: { links: [
     { key: "map", label: "The Map", note: "The free version, in the browser" },
-    { key: "planning", label: "The Planning Guide", note: "The whole archive, in trip order" },
+    { key: "planning", label: "The Planning Guide", note: "Every article, in trip order" },
     { key: "partners", label: "Group codes", note: "For lodging and rental hosts" },
   ] },
   newsletter: { links: [
-    { key: "now", label: "The Park Bulletin", note: "The same board, without the wait" },
+    { key: "now", label: "The Park Bulletin", note: "Closures, programs and hours" },
     { key: "articles", label: "All articles", note: "Everything published, newest first" },
     { key: "about", label: "About the journal", note: "Who writes this, and why" },
   ] },
@@ -1874,7 +1874,7 @@ const KEEP_GOING = {
   explore: { links: [
     { key: "search", label: "Search", note: "If you know what you are looking for" },
     { key: "articles", label: "All articles", note: "Everything published, newest first" },
-    { key: "planning", label: "The Planning Guide", note: "The whole archive, in trip order" },
+    { key: "planning", label: "The Planning Guide", note: "Every article, in trip order" },
   ] },
   notfound: { links: [
     { key: "explore", label: "Site index", note: "Every page on the site" },
@@ -2219,23 +2219,12 @@ window.useNewsletterImpression = useNewsletterImpression;
 // Inline newsletter box. `location` is the unique GA4 identifier for the
 // placement; `tag` is the Buttondown segmentation tag for that source.
 // ============================================================
-// `cta` overrides the button label and `modifier` appends a class to the box,
-// both optional and both defaulting to the shipped look, so every existing call
-// site is unchanged. The homepage rail uses them to render the letter as a
-// framed unit with a solid button.
-function NewsletterInline({ heading, blurb, location, tag, incentive, abTest, variant: variantProp, cta, modifier, inputLabel }) {
+// HpLetter is the one caller: it passes the copy, the button label, the
+// `hp-newsletter` modifier, the visible input label, and `variant` when the
+// caller runs a copy test (article_end_copy), so each arm's rate is sliceable.
+function NewsletterInline({ heading, blurb, location, tag, variant = "", cta, modifier, inputLabel }) {
   const [done, setDone] = useState(false);
   const subscribed = isSubscribed();
-  // Optional A/B. Either the component self-buckets (abTest = test key) and
-  // bucket "b" forces the map-first incentive copy over the caller's blurb, or
-  // the caller controls the copy itself and just passes `variant` for tagging.
-  // Either way variant is tagged onto the GA4 events for per-arm rates.
-  const variant = abTest ? window.abVariant(abTest) : (variantProp || "");
-  const forceIncentive = abTest && variant === "b";
-  // Lead with the interactive-map incentive by default, but never override a
-  // caller's explicit blurb (so existing per-placement copy is untouched)
-  // unless the A/B bucket says to.
-  const showIncentive = forceIncentive || (incentive !== false && !blurb);
   // Only count an impression when an actual ask is on screen, not the
   // subscribed soft state or the post-submit confirmation.
   const ref = useNewsletterImpression(location, tag, !subscribed && !done, variant);
@@ -2251,9 +2240,7 @@ function NewsletterInline({ heading, blurb, location, tag, incentive, abTest, va
   return (
     <div className={["nlbox", modifier].filter(Boolean).join(" ")} ref={ref}>
       <h3>{heading || "Sunday Field Notes"}</h3>
-      <p>{showIncentive
-          ? "Subscribe and unlock the interactive Yosemite map: vistas, trailheads, parking turnouts, places to eat, and a trip builder that saves on your device. A short note follows on Sundays."
-          : (blurb || "A short note on Sundays, when there is something to say.")}</p>
+      <p>{blurb || "A short note on Sundays, when there is something to say."}</p>
       {inputLabel && !done && <label htmlFor={`${location}-email`}>{inputLabel}</label>}
       {done ? (
         <p className="nlbox__done">
@@ -2644,58 +2631,18 @@ function WebcamStrip({ variant }) {
 }
 
 // ============================================================
-// Field Guide promo band. The one reusable purchase ask for
-// editorial pages: the homepage's inverted-ink plate (.band-guide
-// styles), stacked single-column for 680px article columns, with
-// copy tailored per page by the caller. Fires guide_cta_click with
-// a per-placement location so each surface measures separately;
-// the optional sample line points at the app's free preview and
-// fires guide_sample_click, same as the /guide page's sample links.
+// The Field Guide app's origin, for HpGuideBand's free-preview line.
 // ============================================================
 const GUIDE_PROMO_APP_BASE =
   (typeof window !== "undefined" && window.GUIDE_APP_BASE) ||
   "https://guide.thetalusfieldjournal.com";
 
-function GuidePromo({ go, location, title, body, cta, sample = true, style }) {
-  return (
-    <div style={style}>
-      <a
-        className="band-guide"
-        href="/guide"
-        onClick={(e) => {
-          e.preventDefault();
-          if (window.track) window.track("guide_cta_click", { location: location || "unknown" });
-          if (go) go("guide"); else window.location.href = "/guide";
-        }}
-      >
-        <div className="band-guide__eyebrow">The Field Guide · $3.99 · Offline app</div>
-        <div className="band-guide__title" style={{ marginBottom: 10 }}>
-          {title || "The park, in your pocket."}
-        </div>
-        <p className="band-guide__body">
-          {body || "The app version of this journal: 50-plus stops with parking and timing notes, offline maps, a trip planner, and the secret guide. Works with no signal, which is most of the park. One purchase, eighteen months of access."}
-        </p>
-        <div className="mono band-guide__cta">{cta || "See the Field Guide →"}</div>
-      </a>
-      {sample && (
-        <p className="band-guide__sample">
-          Not sure yet? Five entries are free to read, no email required:{" "}
-          <a
-            href={`${GUIDE_PROMO_APP_BASE}/preview`}
-            onClick={() => { if (window.track) window.track("guide_sample_click", { location: location || "unknown" }); }}
-          >preview the guide →</a>
-        </p>
-      )}
-    </div>
-  );
-}
-
 // Expose
 Object.assign(window, {
   Placeholder, ResponsiveImage, preloadResponsive,
-  SIZES_HERO, SIZES_BODY, SIZES_CARD,
+  SIZES_HERO, SIZES_CARD,
   MotifMountains, MotifSun, MotifTrees,
   Header, Footer, BackToTop, NewsletterInline, ExitIntentNewsletter, MapLightbox,
-  EntranceWaits, WebcamStrip, GuidePromo,
+  EntranceWaits, WebcamStrip,
   HomeLink, HomeMasthead, HpHeading, HpRow, HpCard, HpArticleCard, HpPageHead, HpGuideBand, HpLetter, HpPostcard,
 });

@@ -114,13 +114,13 @@ function ItinerariesPage({
     go: go,
     location: "itineraries",
     title: "These plans, offline, in the park.",
-    intro: "The Field Guide app carries the same curated stops with parking and timing notes, offline maps that keep working in the dead zones between them, and a day-by-day planner. One purchase, eighteen months of access.",
+    intro: "The Field Guide app carries the same curated stops with parking and timing notes, offline maps that keep working in the dead zones between them, and a day-by-day planner.",
     sample: true
   }), React.createElement(HpLetter, {
     eyebrow: "SUNDAY FIELD NOTES / FREE",
     title: "Get the conditions before you go",
     heading: "Get the conditions before you go",
-    blurb: "Roads open and close, trails change, and the plans above age with them. One Sunday email carries what changed. Free.",
+    blurb: "Roads open and close, trails change, and the plans above age with them. One Sunday email carries what changed.",
     location: "itineraries",
     tag: "itineraries"
   }));

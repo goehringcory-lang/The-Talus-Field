@@ -379,8 +379,6 @@ window.articleFitsMonth = function (slug, monthKey) {
 // Lookups and filtering
 // ---------------------------------------------------------------------------
 
-window.EMPTY_INTENT = { stage: [], who: [], topic: [], month: "" };
-
 // A selection may carry a `month` alongside the three facets. It is NOT a facet
 // (there are no month chips, and a reader never asks for "articles about
 // February"); it is the trip selector's `when` answer riding along with the
@@ -522,20 +520,6 @@ window.relaxIntent = function (intent, monthKey) {
     if (n > 0 && n <= CEILING && !fallback) fallback = candidates[i];
   }
   return fallback || { stage: [], who: [], topic: [], month: month };
-};
-
-// Human-readable list of what is currently selected, for the results line.
-window.intentSummary = function (selection) {
-  var parts = [];
-  var month = window.intentMonthOf(selection);
-  if (month) parts.push(window.intentMonthLabel(month));
-  window.INTENT_FACETS.forEach(function (facet) {
-    (selection[facet.id] || []).forEach(function (id) {
-      var opt = facet.options.find(function (o) { return o.id === id; });
-      if (opt) parts.push(opt.label);
-    });
-  });
-  return parts;
 };
 
 // ---------------------------------------------------------------------------

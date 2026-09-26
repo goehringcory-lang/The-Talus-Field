@@ -1,4 +1,4 @@
-/* global React, ReactDOM, Placeholder, NewsletterInline, MotifMountains, preloadResponsive, SIZES_HERO, ShareRow, MapLightbox, HpPageHead, HpHeading, HpGuideBand, HpLetter */
+/* global React, Placeholder, MotifMountains, preloadResponsive, SIZES_HERO, ShareRow, MapLightbox, HpPageHead, HpHeading, HpGuideBand, HpLetter */
 
 // Paragraph-shaped lines for the body's loading state. Widths are fixed, not
 // random, so the skeleton is the same on every render and never shifts.
@@ -111,11 +111,8 @@ function ArticlePage({ slug, go }) {
     () => ((window.ARTICLE_BODIES || {})[slug] ? "ready" : "loading")
   );
 
-  // Mid-article newsletter unit lives in a DOM node injected into the rendered
-  // body (see effect below); proseRef locates the body, midHost is the portal
-  // target once it exists.
+  // The rendered body, for the heading scrape and the photo plates below.
   const proseRef = React.useRef(null);
-  const [midHost, setMidHost] = React.useState(null);
 
   // Once the body is ready, scrape its H2 section headings, give each a
   // stable id, and expose a jump list for long pieces (>= 5 sections).
@@ -305,40 +302,6 @@ function ArticlePage({ slug, go }) {
     };
   }, [bodyState, slug]);
 
-  // Inject a mid-article newsletter unit. Article bodies are opaque <Body/>
-  // fragments; once "ready" their block-level elements are direct children of
-  // .prose, so we insert a host node after the middle block and portal the unit
-  // into it. The data-nl-mid guard plus teardown on slug/body change keep it
-  // idempotent across SPA article-to-article navigation. Short articles (fewer
-  // than 8 blocks) skip it so they are not interrupted and so mid and end units
-  // never collide.
-  React.useEffect(() => {
-    setMidHost(null);
-    if (bodyState !== "ready") return;
-    let host = null;
-    const raf = requestAnimationFrame(() => {
-      const prose = proseRef.current;
-      if (!prose || prose.querySelector("[data-nl-mid]")) return;
-      const blocks = Array.from(prose.children).filter(
-        (el) => !el.classList.contains("statblock") && !el.hasAttribute("data-nl-mid")
-      );
-      if (blocks.length < 8) return;
-      const anchor = blocks[Math.floor(blocks.length / 2)];
-      if (!anchor) return;
-      host = document.createElement("div");
-      host.setAttribute("data-nl-mid", "1");
-      anchor.insertAdjacentElement("afterend", host);
-      setMidHost(host);
-    });
-    // Remove the injected host on slug/body change before React re-renders the
-    // body, so the foreign node never interleaves with reconciliation and no
-    // empty host is orphaned into the next article.
-    return () => {
-      cancelAnimationFrame(raf);
-      if (host && host.parentNode) host.parentNode.removeChild(host);
-    };
-  }, [bodyState, slug, Body]);
-
   if (!article) return <div className="wrap" style={{ padding: 80 }}>Not found.</div>;
   const cat = window.findCategory(article.cat);
   // Related rail: same-section pieces the reader has not finished come first,
@@ -506,7 +469,7 @@ function ArticlePage({ slug, go }) {
                 <div className="statblock">
                   <div className="statblock__item"><span className="label">Best for</span><span className="val">First visits</span></div>
                   <div className="statblock__item"><span className="label">Reading time</span><span className="val">{article.read}</span></div>
-                  <div className="statblock__item"><span className="label">Updated</span><span className="val">{article.date}</span></div>
+                  <div className="statblock__item"><span className="label">Updated</span><span className="val">{(article.isoModified && formatIsoDate(article.isoModified)) || article.date}</span></div>
                   <div className="statblock__item"><span className="label">Section</span><span className="val">{cat.label}</span></div>
                 </div>
               )}
@@ -537,66 +500,9 @@ function ArticlePage({ slug, go }) {
                 months; this is the articles' equivalent, and article_share
                 finally makes editorial referrals measurable. */}
             <ShareRow title={article.title} slug={slug} />
-
-            {midHost && ReactDOM.createPortal(
-              <NewsletterInline
-                location="article_mid"
-                tag={newsletterTag("article-mid", article.cat)}
-                heading="Keep reading next week"
-                blurb="Sunday Field Notes: one short letter, only when there is something worth saying."
-              />,
-              midHost
-            )}
-
-            {/* Map CTA. Points readers at the interactive map (the whole map
-                opens with a free newsletter signup). */}
-            <a className="hp-note" href="/map" onClick={(e) => { e.preventDefault(); go("map"); }}>
-              <p className="hp-eyebrow">THE MAP / FREE</p>
-              <h3>Plan it on the interactive map.</h3>
-              <p>
-                Every vista, trailhead, parking turnout, and meal worth the stop, on one map. A free newsletter signup opens it; then build a trip from the pins.
-              </p>
-              <b>Open the map <span>↗</span></b>
-            </a>
           </div>
         </div>
       </article>
-
-      {/* Field Guide: trip-intent readers (trails, planning, seasonal) only,
-          the same one guide ask this slot always carried, now the shared
-          design band (guide_cta_click / guide_sample_click, location
-          article_end, as before). */}
-      {tripIntent && (
-        <HpGuideBand
-          go={go}
-          location="article_end"
-          title="The park, in your pocket."
-          intro="The app version of this journal: offline maps, GPS at the trailhead, and every stop with parking and timing notes. Works with no signal, which is most of the park. $3.99, eighteen months of access."
-          sample
-        />
-      )}
-
-      {(() => {
-        // article_end copy test: arm a keeps the standing section offers,
-        // arm b leads with concrete utility. Copy is chosen here (the
-        // caller-controlled A/B path); NewsletterInline just tags the
-        // variant onto its GA4 events.
-        const endVariant = window.abVariant ? window.abVariant("article_end_copy") : "a";
-        const offers = endVariant === "b" ? END_NEWSLETTER_OFFER_B : END_NEWSLETTER_OFFER;
-        const offer = offers[article.cat] || {};
-        const heading = offer.heading || "Sunday Field Notes";
-        return (
-          <HpLetter
-            eyebrow="SUNDAY FIELD NOTES / FREE"
-            title={heading}
-            heading={heading}
-            blurb={offer.blurb || "One letter a week. If you found this useful, you'll probably like the rest."}
-            location="article_end"
-            tag={newsletterTag("article-end", article.cat)}
-            variant={endVariant}
-          />
-        );
-      })()}
 
       {/* Related */}
       {related.length > 0 && (
@@ -631,6 +537,43 @@ function ArticlePage({ slug, go }) {
           </ul>
         </section>
       )}
+
+      {/* Field Guide: trip-intent readers (trails, planning, seasonal) only,
+          the same one guide ask this slot always carried, now the shared
+          design band (guide_cta_click / guide_sample_click, location
+          article_end, as before). */}
+      {tripIntent && (
+        <HpGuideBand
+          go={go}
+          location="article_end"
+          title="The park, in your pocket."
+          intro="The app version of this journal: offline maps, GPS at the trailhead, and every stop with parking and timing notes. Works with no signal, which is most of the park."
+          sample
+        />
+      )}
+
+      {(() => {
+        // article_end copy test: arm a keeps the standing section offers,
+        // arm b leads with concrete utility. Copy is chosen here (the
+        // caller-controlled A/B path); NewsletterInline just tags the
+        // variant onto its GA4 events.
+        const endVariant = window.abVariant ? window.abVariant("article_end_copy") : "a";
+        const offers = endVariant === "b" ? END_NEWSLETTER_OFFER_B : END_NEWSLETTER_OFFER;
+        const offer = offers[article.cat] || {};
+        const heading = offer.heading || "Sunday Field Notes";
+        return (
+          <HpLetter
+            eyebrow="SUNDAY FIELD NOTES / FREE"
+            title={heading}
+            heading={heading}
+            blurb={offer.blurb || "One letter a week. If you found this useful, you'll probably like the rest."}
+            location="article_end"
+            tag={newsletterTag("article-end", article.cat)}
+            variant={endVariant}
+          />
+        );
+      })()}
+
     </div>
   );
 }

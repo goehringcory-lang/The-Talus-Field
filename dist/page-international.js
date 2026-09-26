@@ -154,13 +154,13 @@ function InternationalPage({
     go: go,
     location: "international",
     title: "The park, offline, in your pocket",
-    intro: "No roaming plan reaches most of Yosemite. The Field Guide app downloads the maps, the parking notes and the day planner to your phone before the gate, in plain English. One purchase, eighteen months of access.",
+    intro: "No roaming plan reaches most of Yosemite. The Field Guide app downloads the maps, the parking notes and the day planner to your phone before the gate, in plain English.",
     sample: true
   }), React.createElement(HpLetter, {
     eyebrow: "SUNDAY FIELD NOTES / FREE",
     title: "What changed since you read this",
     heading: "What changed since you read this",
-    blurb: "Fees, road openings and the park's rules move between the day you book and the day you land. One short letter on Sundays, from inside the park. Free.",
+    blurb: "Fees, road openings and the park's rules move between the day you book and the day you land. The Sunday letter carries it, from inside the park.",
     location: "international",
     tag: "international"
   }));

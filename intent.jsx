@@ -273,7 +273,7 @@ function IntentFilters({ articles, value, onToggle, onClear, onClearMonth, onTog
               type="button"
               className={"ichip" + (browse ? " ichip--on" : "")}
               aria-pressed={browse}
-              title="List the whole archive, with any chips above still applied."
+              title="List every article, with your picks above still applied."
               onClick={onToggleBrowse}
             >
               {browse ? "Everything ×" : "Every entry"}
@@ -283,7 +283,7 @@ function IntentFilters({ articles, value, onToggle, onClear, onClearMonth, onTog
               {!browse
                 ? `The guide below curates ${curated} of these. This shows the rest.`
                 : selected
-                  ? "The whole archive, narrowed by the chips above."
+                  ? "Every article, narrowed by your picks above."
                   : "Take this off to read the five-part guide in order."}
             </span>
           </div>
@@ -431,7 +431,7 @@ function TripPlan({ plan, go, onApplyIntent, matchCount }) {
   );
 }
 
-function TripSelector({ go, onApplyIntent }) {
+function TripSelector({ go, onApplyIntent, onPlan }) {
   const [answers, setAnswers] = useStateIn(() => {
     const fromUrl = readAnswersFromUrl();
     if (fromUrl) return fromUrl;
@@ -500,6 +500,10 @@ function TripSelector({ go, onApplyIntent }) {
 
   const plan = complete ? window.buildTripPlan(answers) : null;
   const matchCount = plan ? window.filterArticlesByIntent(window.ARTICLES, plan.intent).length : 0;
+  // Tell the page whether the plan carries its own lodging search, so
+  // /planning can drop Part One's while the plan's is on screen (one ask once).
+  const planHasLodging = !!(plan && plan.lodging);
+  useEffectIn(() => { if (onPlan) onPlan({ lodging: planHasLodging }); }, [planHasLodging]);
 
   return (
     <section className="tripsel" aria-label="Trip selector">
@@ -508,7 +512,7 @@ function TripSelector({ go, onApplyIntent }) {
           <div className="eyebrow eyebrow--moss">Start here</div>
           <h2 className="tripsel__title">Five questions, then a plan.</h2>
           <p className="tripsel__dek">
-            Answer these and this page stops being an archive. You get the handful of entries that apply to your trip, the day plan the season actually allows, and an honest read on whether you need anything paid.
+            Answer these five and you get the handful of entries that apply to your trip, the day plan the season actually allows, and an honest read on whether you need anything paid.
           </p>
         </div>
         {/* The progress rail restates the count the footer states in words. It
@@ -573,7 +577,7 @@ function TripSelector({ go, onApplyIntent }) {
         <p className="tripsel__progress">
           {complete
             ? "Every answer is in. The day plan below is capped to what the month's roads allow."
-            : "A plan built from two answers is a guess wearing a plan's clothes. Answer all five and the reading list, the day plan, and the arrival time appear together."}
+            : "Answer all five and the reading list, the day plan, and the arrival time appear together."}
         </p>
         <div className="tripsel__acts">
           {answered > 0 && (

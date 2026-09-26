@@ -1876,17 +1876,6 @@ function TripNextSteps({ tripFeatures, go }) {
         >check your dates →</window.AvailabilityLink>
         <span className="map-sidebar__next-disclosure"> Affiliate link. <a href="/affiliate" onClick={(e) => { e.preventDefault(); go("affiliate"); }}>Disclosure.</a></span>
       </p>
-      <p className="map-sidebar__next-line">
-        This trip, offline, at the trailhead: the Field Guide app is $3.99 for eighteen months.{" "}
-        <a
-          href="/guide"
-          onClick={(e) => {
-            e.preventDefault();
-            if (window.track) window.track("guide_teaser_click", { location: "map_sidebar" });
-            go("guide");
-          }}
-        >See the guide →</a>
-      </p>
     </div>
   );
 }
