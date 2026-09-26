@@ -42,9 +42,9 @@ type SeasonalInput = z.input<typeof SeasonalEvents>[number]
 // full-moon instant — early-morning UTC instants (e.g. June 2028) land a
 // calendar day earlier here than in UTC-based lists, by design.
 const MOON_BASE =
-  'A full moon washes out the Milky Way, so save the dark-sky ambitions for another week. The valley gets something in trade: granite holds moonlight, and Tunnel View or Sentinel Bridge stays readable all night without a headlamp.'
+  'A full moon washes out the Milky Way, so plan stargazing for another week. Moonlit granite keeps Tunnel View and Sentinel Bridge visible all night without a headlamp.'
 const MOON_MOONBOW =
-  ' This is also moonbow season. On the nights around full, if Yosemite Falls is running hard, its spray can carry a faint lunar rainbow at the base after dark. A camera on a rock will find it before your eyes do.'
+  ' This is also moonbow season. On the nights around full, if Yosemite Falls is running hard, its spray can carry a faint lunar rainbow at the base after dark. A braced camera picks it up before the eye does.'
 
 const FULL_MOONS: { date: string; name: string; time: string; moonbow?: boolean }[] = [
   { date: '2026-07-29', name: 'Buck Moon', time: '7:35 a.m.' },
@@ -109,15 +109,15 @@ const fullMoonEntries: SeasonalInput[] = FULL_MOONS.map((m) => ({
 //   second Monday in October; preseason lottery has run March 1-31).
 
 const TIOGA_CLOSE_DESC =
-  'Tioga Road typically closes for the season with the first storm that sticks, most often in early November, occasionally late October or into December. Closing day is the weather\'s call, not the calendar\'s. When it closes, the whole Tuolumne region of this guide goes with it until spring plowing.'
+  'Tioga Road typically closes for the season with the first storm that sticks, most often in early November, occasionally late October or into December. The weather sets the date. When it closes, the Tuolumne region of this guide goes with it until spring plowing.'
 const GLACIER_CLOSE_DESC =
   'Glacier Point Road typically closes with the first lasting snow in November. Glacier Point, Sentinel Dome, and Taft Point go with it; in winter the road is plowed only as far as the Badger Pass ski area.'
 const FALLS_DRY_DESC =
-  'Most years, by late summer, Yosemite Falls quietly stops. It is not broken, it is seasonal: the fall runs on snowmelt and returns with the first autumn storms. Bridalveil and Vernal keep running all year, thinner. The wall is still worth standing under.'
+  'Most years Yosemite Falls stops by late summer. It runs on snowmelt and returns with the first autumn storms. Bridalveil and Vernal keep running all year, thinner.'
 const FALL_COLOR_DESC =
-  'The valley\'s big-leaf maples, dogwoods, and black oaks turn in the second half of October, and by then the summer crowds are gone. Cook\'s Meadow and the river bends along Northside Drive do most of the work. The quietest good light of the year.'
+  'The valley\'s big-leaf maples, dogwoods, and black oaks turn in the second half of October, and by then the summer crowds are gone. Cook\'s Meadow and the river bends along Northside Drive show the most color.'
 const STAR_PARTY_DESC =
-  'On summer Saturday nights, amateur astronomy clubs have historically set up telescopes at Glacier Point and pointed them at whatever the sky offers. Specific club weekends appear in this programs list once published; if your trip hits a summer Saturday, check before you plan the evening.'
+  'On summer Saturday nights, amateur astronomy clubs have historically set up telescopes at Glacier Point. Specific club weekends appear in this programs list once published; if your trip hits a summer Saturday, check before you plan the evening.'
 
 const windowEntries: SeasonalInput[] = [
   {
@@ -136,7 +136,7 @@ const windowEntries: SeasonalInput[] = [
     location: 'Mist Trail, Vernal and Nevada Fall corridor',
     url: 'https://www.nps.gov/yose/planyourvisit/conditions.htm',
     description:
-      'The Mist Trail is closed for trail repairs Monday through Thursday, 7 a.m. to 3:30 p.m., from July 27 through the end of October 2026. It is open Fridays, Saturdays, Sundays, and holidays, and on weekdays before 7 and after 3:30 when conditions allow. During the closure a signed detour on the John Muir Trail is the way to Vernal Fall, Nevada Fall, and everything beyond. If the falls are the point of a weekday, start very early or take the detour, and check conditions before committing. After the repairs end, winter takes over: the Mist Trail above the Vernal Fall footbridge and the John Muir Trail between Clark Point and the Panorama Trail junction may close for the season in November.',
+      'The Mist Trail is closed for trail repairs Monday through Thursday, 7 a.m. to 3:30 p.m., from July 27 through the end of October 2026. It is open Fridays, Saturdays, Sundays, and holidays, and on weekdays before 7 and after 3:30 when conditions allow. During the closure a signed detour on the John Muir Trail leads to Vernal Fall, Nevada Fall, and everything beyond. On a weekday, start before 7 or take the detour, and check conditions first. After the repairs end, winter takes over: the Mist Trail above the Vernal Fall footbridge and the John Muir Trail between Clark Point and the Panorama Trail junction may close for the season in November.',
     stopIds: ['mist-trail'],
   },
   {
@@ -152,7 +152,7 @@ const windowEntries: SeasonalInput[] = [
     location: 'Tioga Road and Tuolumne Meadows',
     url: 'https://www.nps.gov/yose/planyourvisit/guide.htm',
     description:
-      'The high country closes down well before the road does. The free Tuolumne Meadows shuttle to Olmsted Point and the Tuolumne hikers bus both stop running after September 13. The Tuolumne Meadows store and grill close after September 20. The High Sierra Camps at Glen Aulin and Sunrise close September 6 and May Lake September 9; Vogelsang and Merced Lake are closed for the whole season, and White Wolf lodge, store, and dining room never opened. EV charging in Tuolumne is out. Plan a mid-September high-country day as a self-supported one: fuel, food, and water from the valley or Crane Flat.',
+      'High-country services close well before the road. The free Tuolumne Meadows shuttle to Olmsted Point and the Tuolumne hikers bus both stop running after September 13. The Tuolumne Meadows store and grill close after September 20. The High Sierra Camps at Glen Aulin and Sunrise close September 6 and May Lake September 9; Vogelsang and Merced Lake are closed for the whole season, and White Wolf lodge, store, and dining room never opened. EV charging in Tuolumne is out. Plan a mid-September high-country day as self-supported: fuel, food, and water from the valley or Crane Flat.',
     stopIds: ['soda-springs-parsons-lodge', 'tuolumne-meadows-grill', 'may-lake', 'olmsted-point'],
   },
   {
@@ -167,7 +167,7 @@ const windowEntries: SeasonalInput[] = [
     location: 'Yosemite Valley and Wawona',
     url: 'https://www.nps.gov/yose/planyourvisit/guide.htm',
     description:
-      'Early September is when the summer schedule ends. Jennie\'s Ice Cream at Curry closes after September 6 and the Wawona stable finishes the same day. The Curry and Yosemite Valley Lodge pools close after September 7, when the Village, Curry, and Lodge stores also start closing at 9 instead of 10 and the Meadow Grill taqueria moves to a 5 p.m. close. Bike rentals drop to 9 to 6 from September 8. Raft rentals are already done for the year, and the Wawona Hotel and its dining room are closed for renovation. None of this closes the park, but it does mean a late dinner or a late errand needs checking first.',
+      'The summer schedule ends in early September. Jennie\'s Ice Cream at Curry closes after September 6 and the Wawona stable finishes the same day. The Curry and Yosemite Valley Lodge pools close after September 7, when the Village, Curry, and Lodge stores also start closing at 9 instead of 10 and the Meadow Grill taqueria moves to a 5 p.m. close. Bike rentals drop to 9 to 6 from September 8. Raft rentals are already done for the year, and the Wawona Hotel and its dining room are closed for renovation. Check hours before a late dinner or errand.',
     stopIds: ['curry-village', 'wawona-hotel-history-center'],
   },
   {
@@ -183,7 +183,7 @@ const windowEntries: SeasonalInput[] = [
     location: 'Tioga Road, Tuolumne Meadows, and Glacier Point Road',
     url: 'https://www.nps.gov/yose/planyourvisit/guide.htm',
     description:
-      'Autumn in the high country is drive-yourself and self-supported. The Tuolumne store, grill, lodge, shuttle, and hikers bus are done for the year, the Tuolumne Meadows Visitor Center closes after September 27, and the Tuolumne Meadows Wilderness Center after October 14, when overnight permits for Tioga Road trailheads move to self-registration on its front porch. From October 15 there is no overnight parking on Tioga Road or Glacier Point Road. Both roads typically close for the winter sometime in November, and with Tioga closed there is no way to or from Highway 395 through the park. Chain restrictions are possible from November on, and when they apply every vehicle must carry chains, four-wheel drive and rentals included. Road status: 209/372-0200, press 1 then 1.',
+      'Tuolumne services are closed for the season: the store, grill, lodge, shuttle, and hikers bus. The Tuolumne Meadows Visitor Center closes after September 27 and the Tuolumne Meadows Wilderness Center after October 14; then overnight permits for Tioga Road trailheads are self-registered on its front porch. From October 15 there is no overnight parking on Tioga Road or Glacier Point Road. Both roads typically close for the winter in November; with Tioga closed there is no route to or from Highway 395 through the park. Chain restrictions are possible from November, and when they apply every vehicle must carry chains, four-wheel drive and rentals included. Road status: 209/372-0200, press 1 then 1.',
     stopIds: ['soda-springs-parsons-lodge', 'olmsted-point', 'glacier-point'],
   },
   {
@@ -199,7 +199,7 @@ const windowEntries: SeasonalInput[] = [
     location: 'Yosemite Valley, Wawona, Crane Flat, and Glacier Point',
     url: 'https://www.nps.gov/yose/planyourvisit/guide.htm',
     description:
-      'The park closes its seasonal counters one at a time through October. The Glacier Point Tour and its one-way hiker drop-off, and the full-day Grand Tour, run through October 11. The Housekeeping Camp store closes after October 12 (the laundry stays open), and the Happy Isles Art & Nature Center, with its art classes, after October 16. The Valley Wilderness Center and the Big Oak Flat permit desk close after October 18; after that, overnight permits are self-registered outside the Valley Welcome Center or on the Big Oak Flat porch, and rental bear canisters are only at the Valley Welcome Center. October 25 is the big day: bike rentals, the Village Grill, the Mountaineering School, the Glacier Point gift shop, the Crane Flat store (its pumps stay open), and the Wawona golf course all close. The Wawona Visitor Center follows after October 31. Campgrounds need a reservation through October 26; after that Wawona and Hodgdon Meadow are first-come, first-served, Camp 4 needs a reservation until November 9, and Upper Pines year-round.',
+      'Most seasonal services close October 25: bike rentals, the Village Grill, the Mountaineering School, the Glacier Point gift shop, the Crane Flat store (its pumps stay open), and the Wawona golf course. Before that: the Glacier Point Tour, its one-way hiker drop-off, and the full-day Grand Tour run through October 11. The Housekeeping Camp store closes after October 12; the laundry stays open. The Happy Isles Art & Nature Center and its art classes close after October 16. The Valley Wilderness Center and the Big Oak Flat permit desk close after October 18; then overnight permits are self-registered outside the Valley Welcome Center or on the Big Oak Flat porch, and rental bear canisters are only at the Valley Welcome Center. After: the Wawona Visitor Center closes after October 31. Campgrounds need a reservation through October 26; after that Wawona and Hodgdon Meadow are first-come, first-served, Camp 4 needs a reservation until November 9, and Upper Pines year-round.',
     stopIds: ['curry-village', 'glacier-point', 'wawona-hotel-history-center'],
   },
   {
@@ -233,7 +233,7 @@ const windowEntries: SeasonalInput[] = [
     dateEnd: '2026-08-15',
     location: 'Glacier Point Amphitheater',
     description:
-      'Amateur astronomy clubs set up telescopes at the Glacier Point Amphitheater and point them at whatever the sky offers, in cooperation with the park. Free, drop in any time after 8:30 p.m.; programs run two to four hours and are canceled if it clouds over. The published 2026 weekends are July 17 and 18, July 31 and August 1, August 7 and 8, and August 14 and 15, and each night appears as its own event in this list. Transportation to Glacier Point is on you, and it is an hour from the valley in the dark.',
+      'Amateur astronomy clubs set up telescopes at the Glacier Point Amphitheater, in cooperation with the park. Free, drop in any time after 8:30 p.m.; programs run two to four hours and are canceled if it clouds over. The published 2026 weekends are July 17 and 18, July 31 and August 1, August 7 and 8, and August 14 and 15, and each night appears as its own event in this list. No transport is provided; Glacier Point is an hour\'s drive from the valley in the dark.',
     stopIds: ['glacier-point'],
   },
   {
@@ -249,7 +249,7 @@ const windowEntries: SeasonalInput[] = [
     dateEnd: '2026-10-13',
     url: 'https://www.recreation.gov/permits/234652',
     description:
-      'The cables that make the summit walkable typically go up the Friday before Memorial Day and come down after the second Monday in October; in 2026 that pattern lands on roughly these dates. The park confirms each season, and a late snowpack can delay the start. A permit is required every day the cables are up.',
+      'The summit cables typically go up the Friday before Memorial Day and come down after the second Monday in October; in 2026 that pattern lands on roughly these dates. The park confirms each season, and a late snowpack can delay the start. A permit is required every day the cables are up.',
   },
   {
     id: 'yosemite-falls-dry-2026',
@@ -306,7 +306,7 @@ const windowEntries: SeasonalInput[] = [
     dateEnd: '2027-03-01',
     location: 'Curry Village',
     description:
-      'The outdoor rink at Curry Village is scheduled to open November 13, 2026, if conditions allow, and typically runs into early March, with Half Dome standing over the ice. Sessions last two and a half hours and start at noon, 3:30, and 7 p.m., with an extra 8:30 a.m. session on weekends. Skate rentals on site; sessions are ticketed at the rink.',
+      'The outdoor rink at Curry Village is scheduled to open November 13, 2026, if conditions allow, and typically runs into early March. Sessions last two and a half hours and start at noon, 3:30, and 7 p.m., with an extra 8:30 a.m. session on weekends. Skate rentals on site; sessions are ticketed at the rink.',
     stopIds: ['curry-village'],
   },
   {
@@ -318,7 +318,7 @@ const windowEntries: SeasonalInput[] = [
     dateEnd: '2027-03-15',
     location: 'Badger Pass, Glacier Point Road',
     description:
-      'California\'s oldest ski area typically runs from mid-December into March, snow permitting. In winter Glacier Point Road is plowed exactly this far: downhill and tubing at the area, and the groomed track toward Glacier Point is the valley\'s cross-country door. Opening depends entirely on early-season snow, and the concessioner confirms each year.',
+      'California\'s oldest ski area typically runs from mid-December into March, snow permitting. In winter Glacier Point Road is plowed exactly this far: downhill and tubing at the area, and the groomed cross-country track toward Glacier Point starts here. Opening depends on early-season snow, and the concessioner confirms each year.',
   },
   {
     id: 'bracebridge-dinner-2026',
@@ -342,7 +342,7 @@ const windowEntries: SeasonalInput[] = [
     location: 'El Capitan picnic area, Northside Drive',
     url: 'https://www.nps.gov/yose/planyourvisit/horsetailfall.htm',
     description:
-      'For about two weeks in late February, if Horsetail Fall is running and the sunset sky is clear, the last light hits the fall head-on and it glows like a ribbon of fire on El Capitan\'s east face. Three things have to line up: water in the fall, a clear western horizon, and you in position an hour early. The park has managed the crowd differently each year, sometimes with reservations and road closures, so check the park\'s Horsetail Fall page once February details post.',
+      'For about two weeks in late February, if Horsetail Fall is running and the sunset sky is clear, the last light hits the fall head-on and the fall turns orange on El Capitan\'s east face. Three things have to line up: water in the fall, a clear western horizon, and you in position an hour early. The park has managed the crowd differently each year, sometimes with reservations and road closures, so check the park\'s Horsetail Fall page once February details post.',
     stopIds: ['el-capitan-meadow'],
   },
   {
@@ -365,7 +365,7 @@ const windowEntries: SeasonalInput[] = [
     dateEnd: '2027-06-15',
     url: 'https://www.nps.gov/yose/planyourvisit/tiogaopen.htm',
     description:
-      'Glacier Point Road typically reopens in May, stretching into June after a heavy winter. It usually beats Tioga Road open by a few weeks. Until then the only way to that view is a long ski or a longer walk.',
+      'Glacier Point Road typically reopens in May, stretching into June after a heavy winter. It usually beats Tioga Road open by a few weeks. Until then Glacier Point is reachable only on skis or on foot.',
   },
   {
     id: 'waterfall-peak-2027',
@@ -375,7 +375,7 @@ const windowEntries: SeasonalInput[] = [
     dateStart: '2027-05-01',
     dateEnd: '2027-06-15',
     description:
-      'The falls run on snowmelt and this is the crescendo: Yosemite Falls at full throat, Bridalveil throwing spray across the road, the Mist Trail earning its name. If waterfalls are the reason for the trip, these are the weeks. Peak moves with the snowpack, earlier in dry years, later in big ones.',
+      'The falls run on snowmelt and peak in these weeks: Yosemite Falls at full flow, Bridalveil spraying across the road, heavy spray on the Mist Trail. Peak moves with the snowpack, earlier in dry years, later in big ones.',
     stopIds: ['bridalveil-fall', 'mist-trail'],
   },
   {
@@ -387,7 +387,7 @@ const windowEntries: SeasonalInput[] = [
     dateEnd: '2027-06-30',
     url: 'https://www.nps.gov/yose/planyourvisit/tiogaopen.htm',
     description:
-      'Plowing starts in mid-April and Tioga Road typically reopens somewhere between late May and late June, depending entirely on the snowpack. Big winters push it toward July. Opening weekend in the high country is its own event, with snowbanks over your head at the pass.',
+      'Plowing starts in mid-April and Tioga Road typically reopens somewhere between late May and late June, depending on the snowpack. Big winters push it toward July. On opening weekend the snowbanks at the pass can stand taller than a person.',
   },
   {
     id: 'half-dome-cables-2027',
@@ -398,7 +398,7 @@ const windowEntries: SeasonalInput[] = [
     dateEnd: '2027-10-12',
     url: 'https://www.recreation.gov/permits/234652',
     description:
-      'The cables that make the summit walkable typically go up the Friday before Memorial Day and come down after the second Monday in October; in 2027 that pattern lands on roughly these dates. The park confirms each season, and a late snowpack can delay the start. A permit is required every day the cables are up.',
+      'The summit cables typically go up the Friday before Memorial Day and come down after the second Monday in October; in 2027 that pattern lands on roughly these dates. The park confirms each season, and a late snowpack can delay the start. A permit is required every day the cables are up.',
   },
   {
     id: 'star-party-season-2027',
@@ -465,7 +465,7 @@ const windowEntries: SeasonalInput[] = [
     location: 'El Capitan picnic area, Northside Drive',
     url: 'https://www.nps.gov/yose/planyourvisit/horsetailfall.htm',
     description:
-      'For about two weeks in late February, if Horsetail Fall is running and the sunset sky is clear, the last light hits the fall head-on and it glows like a ribbon of fire on El Capitan\'s east face. Three things have to line up: water in the fall, a clear western horizon, and you in position an hour early. The park has managed the crowd differently each year, sometimes with reservations and road closures, so check the park\'s Horsetail Fall page once February details post.',
+      'For about two weeks in late February, if Horsetail Fall is running and the sunset sky is clear, the last light hits the fall head-on and the fall turns orange on El Capitan\'s east face. Three things have to line up: water in the fall, a clear western horizon, and you in position an hour early. The park has managed the crowd differently each year, sometimes with reservations and road closures, so check the park\'s Horsetail Fall page once February details post.',
     stopIds: ['el-capitan-meadow'],
   },
   {
@@ -488,7 +488,7 @@ const windowEntries: SeasonalInput[] = [
     dateEnd: '2028-06-15',
     url: 'https://www.nps.gov/yose/planyourvisit/tiogaopen.htm',
     description:
-      'Glacier Point Road typically reopens in May, stretching into June after a heavy winter. It usually beats Tioga Road open by a few weeks. Until then the only way to that view is a long ski or a longer walk.',
+      'Glacier Point Road typically reopens in May, stretching into June after a heavy winter. It usually beats Tioga Road open by a few weeks. Until then Glacier Point is reachable only on skis or on foot.',
   },
   {
     id: 'waterfall-peak-2028',
@@ -498,7 +498,7 @@ const windowEntries: SeasonalInput[] = [
     dateStart: '2028-05-01',
     dateEnd: '2028-06-15',
     description:
-      'The falls run on snowmelt and this is the crescendo: Yosemite Falls at full throat, Bridalveil throwing spray across the road, the Mist Trail earning its name. If waterfalls are the reason for the trip, these are the weeks. Peak moves with the snowpack, earlier in dry years, later in big ones.',
+      'The falls run on snowmelt and peak in these weeks: Yosemite Falls at full flow, Bridalveil spraying across the road, heavy spray on the Mist Trail. Peak moves with the snowpack, earlier in dry years, later in big ones.',
     stopIds: ['bridalveil-fall', 'mist-trail'],
   },
   {
@@ -510,7 +510,7 @@ const windowEntries: SeasonalInput[] = [
     dateEnd: '2028-06-30',
     url: 'https://www.nps.gov/yose/planyourvisit/tiogaopen.htm',
     description:
-      'Plowing starts in mid-April and Tioga Road typically reopens somewhere between late May and late June, depending entirely on the snowpack. Big winters push it toward July. Opening weekend in the high country is its own event, with snowbanks over your head at the pass.',
+      'Plowing starts in mid-April and Tioga Road typically reopens somewhere between late May and late June, depending on the snowpack. Big winters push it toward July. On opening weekend the snowbanks at the pass can stand taller than a person.',
   },
   {
     id: 'half-dome-cables-2028',
@@ -521,7 +521,7 @@ const windowEntries: SeasonalInput[] = [
     dateEnd: '2028-10-10',
     url: 'https://www.recreation.gov/permits/234652',
     description:
-      'The cables that make the summit walkable typically go up the Friday before Memorial Day and come down after the second Monday in October; in 2028 that pattern lands on roughly these dates. The park confirms each season, and a late snowpack can delay the start. A permit is required every day the cables are up.',
+      'The summit cables typically go up the Friday before Memorial Day and come down after the second Monday in October; in 2028 that pattern lands on roughly these dates. The park confirms each season, and a late snowpack can delay the start. A permit is required every day the cables are up.',
   },
   {
     id: 'star-party-season-2028',
@@ -587,7 +587,7 @@ const dayEntries: SeasonalInput[] = [
     dateEnd: '2027-03-01',
     url: 'https://www.recreation.gov/permits/234652',
     description:
-      'If the recent pattern holds, the month-long preseason lottery for Half Dome permits opens today on recreation.gov. It stays open all month; there is no advantage to applying on day one, only a penalty for forgetting.',
+      'If the recent pattern holds, the month-long preseason lottery for Half Dome permits opens today on recreation.gov. It stays open all month; applying on day one gives no advantage.',
   },
   {
     id: 'half-dome-lottery-closes-2027',
@@ -598,7 +598,7 @@ const dayEntries: SeasonalInput[] = [
     dateEnd: '2027-03-31',
     url: 'https://www.recreation.gov/permits/234652',
     description:
-      'Last day of the typical preseason lottery window for Half Dome permits on recreation.gov. Results have historically arrived in mid-April. After this, the daily lottery, two days ahead, is the remaining door.',
+      'Last day of the typical preseason lottery window for Half Dome permits on recreation.gov. Results have historically arrived in mid-April. After this, the daily lottery, two days ahead, is the remaining option.',
   },
   {
     id: 'half-dome-lottery-opens-2028',
@@ -609,7 +609,7 @@ const dayEntries: SeasonalInput[] = [
     dateEnd: '2028-03-01',
     url: 'https://www.recreation.gov/permits/234652',
     description:
-      'If the recent pattern holds, the month-long preseason lottery for Half Dome permits opens today on recreation.gov. It stays open all month; there is no advantage to applying on day one, only a penalty for forgetting.',
+      'If the recent pattern holds, the month-long preseason lottery for Half Dome permits opens today on recreation.gov. It stays open all month; applying on day one gives no advantage.',
   },
   {
     id: 'half-dome-lottery-closes-2028',
@@ -620,7 +620,7 @@ const dayEntries: SeasonalInput[] = [
     dateEnd: '2028-03-31',
     url: 'https://www.recreation.gov/permits/234652',
     description:
-      'Last day of the typical preseason lottery window for Half Dome permits on recreation.gov. Results have historically arrived in mid-April. After this, the daily lottery, two days ahead, is the remaining door.',
+      'Last day of the typical preseason lottery window for Half Dome permits on recreation.gov. Results have historically arrived in mid-April. After this, the daily lottery, two days ahead, is the remaining option.',
   },
 ]
 
@@ -662,7 +662,7 @@ const meteorEntries: SeasonalInput[] = [
     location: PERSEIDS_LOCATION,
     url: 'https://www.imo.net/resources/calendar/',
     description:
-      'The Perseids peak on the night of August 12 into the 13th, the most reliable meteor shower of the year, weather permitting. The moon works in your favor in 2026: a thin waning crescent that week, essentially out of the sky, so a clear night should run close to the shower\'s full rate. Glacier Point\'s open horizon, or the Olmsted Point and Tenaya Lake pullouts on Tioga Road, are considerably darker than the valley floor. Best after 11 p.m., once the radiant climbs higher in Perseus.',
+      'The Perseids peak on the night of August 12 into the 13th, the most reliable meteor shower of the year, weather permitting. The moon is favorable in 2026: a thin waning crescent that week, essentially out of the sky, so a clear night should run close to the shower\'s full rate. Glacier Point\'s open horizon, or the Olmsted Point and Tenaya Lake pullouts on Tioga Road, are considerably darker than the valley floor. Best after 11 p.m., once the radiant climbs higher in Perseus.',
     stopIds: RIM_STOP_IDS,
   },
   // Geminids 2026: IMO peak Dec 13/14. Nearest full moons: 2026-11-24
@@ -680,7 +680,7 @@ const meteorEntries: SeasonalInput[] = [
     location: GEMINIDS_LOCATION,
     url: 'https://www.imo.net/resources/calendar/',
     description:
-      'The Geminids peak on the night of December 13 into 14, reliably the strongest shower of the year, over 100 meteors an hour under a dark sky and clear weather. The moon cooperates in 2026 too, a thin crescent that sets by early evening, leaving the rest of the night moonless. The high country is not an option by mid-December: Tioga Road and Glacier Point Road are almost always closed for the season, so this is a valley-floor watch. Cook\'s Meadow or El Capitan Meadow, well back from the lodges\' lights, are the best the valley offers, a mediocre observatory next to the rim but good enough on a clear night.',
+      'The Geminids peak on the night of December 13 into 14, reliably the strongest shower of the year, over 100 meteors an hour under a dark sky and clear weather. The moon cooperates in 2026 too, a thin crescent that sets by early evening, leaving the rest of the night moonless. The high country is not an option by mid-December: Tioga Road and Glacier Point Road are almost always closed for the season, so this is a valley-floor watch. Cook\'s Meadow or El Capitan Meadow, well back from the lodges\' lights, are the darkest spots in the valley.',
     stopIds: VALLEY_MEADOW_STOP_IDS,
   },
   // Perseids 2027: IMO peak Aug 12/13. Nearest full moon: 2027-08-17
@@ -712,7 +712,7 @@ const meteorEntries: SeasonalInput[] = [
     location: GEMINIDS_LOCATION,
     url: 'https://www.imo.net/resources/calendar/',
     description:
-      'The Geminids peak on the night of December 13 into 14, and in 2027 that night is also the full Cold Moon, about the worst pairing the calendar can produce. The sky stays bright from dusk to dawn and only the brightest fireballs will show, clear skies or not. Tioga Road and Glacier Point Road are closed for the season by then regardless, so the only option is the valley floor, and this is a year to expect a short list of meteors rather than skip the shower outright.',
+      'The Geminids peak on the night of December 13 into 14, and in 2027 that night is also the full Cold Moon. The sky stays bright from dusk to dawn and only the brightest fireballs will show, clear skies or not. Tioga Road and Glacier Point Road are closed for the season by then regardless, so the only option is the valley floor; expect few meteors.',
     stopIds: VALLEY_MEADOW_STOP_IDS,
   },
   // Lyrids 2027: IMO peak Apr 22. FULL_MOONS lists the Pink Moon at
@@ -728,7 +728,7 @@ const meteorEntries: SeasonalInput[] = [
     location: LYRIDS_LOCATION,
     url: 'https://www.imo.net/resources/calendar/',
     description:
-      'The Lyrids peak on the night of April 22, a modest shower, usually 10 to 20 meteors an hour at best even on a clear night, but the only one on the spring calendar. The moon turns full on April 20, two days before peak, and will be up most of the night, bright enough to bury the fainter streaks. Glacier Point Road and Tioga Road are still closed for the season in April, so the valley floor is the only option regardless of the moon: an open meadow away from the lodges\' lights is the best this shower gets this year.',
+      'The Lyrids peak on the night of April 22, a modest shower, usually 10 to 20 meteors an hour at best even on a clear night, but the only one on the spring calendar. The moon turns full on April 20, two days before peak, and will be up most of the night, bright enough to bury the fainter streaks. Glacier Point Road and Tioga Road are still closed for the season in April, so the valley floor is the only option regardless of the moon: an open meadow away from the lodges\' lights is the best option this year.',
     stopIds: VALLEY_MEADOW_STOP_IDS,
   },
   // Perseids 2028: IMO peak Aug 12/13. Nearest full moon: 2028-08-05
@@ -781,7 +781,7 @@ const meteorEntries: SeasonalInput[] = [
     location: LYRIDS_LOCATION,
     url: 'https://www.imo.net/resources/calendar/',
     description:
-      'The Lyrids peak on the night of April 22, a modest shower but a genuinely good year for it: the moon is a thin waning crescent that week, close to new, and barely a factor if the sky cooperates. Glacier Point Road and Tioga Road are still closed for the season in April, so the valley floor is the only option regardless, and an open meadow away from the lodges\' lights works well.',
+      'The Lyrids peak on the night of April 22, a modest shower but a good year for it: the moon is a thin waning crescent that week, close to new, and barely a factor if the sky cooperates. Glacier Point Road and Tioga Road are still closed for the season in April, so the valley floor is the only option regardless, and an open meadow away from the lodges\' lights works well.',
     stopIds: VALLEY_MEADOW_STOP_IDS,
   },
 ]
@@ -800,13 +800,13 @@ const meteorEntries: SeasonalInput[] = [
 // date; only the high-country window is still ahead and included for 2026.
 
 const WILDFLOWERS_VALLEY_DESC =
-  'The lowest-elevation bloom typically runs mid-April through May, and it starts outside the park entirely. The Merced River Canyon along Highway 140 is snow-free earliest of any approach road, and redbud and California poppies typically color the roadside for miles before the entrance station. Valley meadows follow a few weeks behind. Neither waits for the high country, which is still under snow this whole window.'
+  'The lowest-elevation bloom typically runs mid-April through May, and it starts outside the park entirely. The Merced River Canyon along Highway 140 is snow-free earliest of any approach road, and redbud and California poppies typically color the roadside for miles before the entrance station. Valley meadows follow a few weeks behind. The high country is still under snow through this window.'
 const DOGWOOD_DESC =
-  'The valley\'s understory dogwoods typically flower in the first three weeks of May, white blossoms against dark conifer trunks along Southside Drive and near Pohono Bridge. It is the most photographed bloom in the park and a short window, usually gone within a couple of weeks of opening. Overcast light suits it better than midday sun, so a slow drive on a cloudy morning is worth planning around if the trip lands here.'
+  'The valley\'s understory dogwoods typically flower in the first three weeks of May, white blossoms against dark conifer trunks along Southside Drive and near Pohono Bridge. The window is short, usually gone within a couple of weeks of opening. Overcast light suits it better than midday sun, so a slow drive on a cloudy morning suits it.'
 const WILDFLOWERS_MEADOWS_DESC =
-  'Mid-elevation meadows typically peak from mid-June into mid-July, later at McGurk Meadow on Glacier Point Road, where July is the real flower show, than at lower, earlier-blooming Wawona Meadow. Both are easy, flat walks built for wandering rather than mileage. Glacier Point Road has to be open to reach McGurk; it usually is well before this window closes.'
+  'Mid-elevation meadows typically peak from mid-June into mid-July, later at McGurk Meadow on Glacier Point Road, where July is peak, than at lower, earlier-blooming Wawona Meadow. Both are easy, flat walks. Glacier Point Road has to be open to reach McGurk; it usually is well before this window closes.'
 const WILDFLOWERS_HIGH_DESC =
-  'High-country meadows typically bloom from mid-July into mid-August, once the snowmelt clears and the ground warms at 8,600 feet. Lupine and paintbrush color the meadow edges around Tuolumne, later and shorter-lived than anything at valley elevation. Timing tracks the snowpack: a big winter pushes the bloom toward August, a light one brings it forward. The Soda Springs walk from the Lembert Dome lot is the easy way to see it up close.'
+  'High-country meadows typically bloom from mid-July into mid-August, once the snowmelt clears and the ground warms at 8,600 feet. Lupine and paintbrush color the meadow edges around Tuolumne, later and shorter-lived than anything at valley elevation. Timing tracks the snowpack: a big winter pushes the bloom toward August, a light one brings it forward. The Soda Springs walk from the Lembert Dome lot is an easy way to see it up close.'
 const WILDFLOWERS_SOURCE_URL = 'https://www.nps.gov/yose/learn/nature/wildflowers.htm'
 
 const wildflowerEntries: SeasonalInput[] = [
