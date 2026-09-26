@@ -455,7 +455,7 @@ function SearchPage({
   var articleResults = results.filter(r => r.entry.type === "article");
   var otherResults = results.filter(r => r.entry.type !== "article");
   return React.createElement("div", {
-    className: "page hp-search"
+    className: "page hp-searchpage"
   }, React.createElement(HpPageHead, {
     go: go,
     crumbs: [{

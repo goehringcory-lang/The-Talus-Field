@@ -414,7 +414,7 @@ function SearchPage({ go }) {
   const otherResults = results.filter((r) => r.entry.type !== "article");
 
   return (
-    <div className="page hp-search">
+    <div className="page hp-searchpage">
       <HpPageHead
         go={go}
         crumbs={[{ label: "Home", route: "home" }, { label: "Search" }]}
