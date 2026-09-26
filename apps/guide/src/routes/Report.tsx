@@ -106,7 +106,7 @@ export default function Report() {
         <PageHeader
           eyebrow="Report a problem"
           title={subject ? subject.title : 'Something wrong in the guide?'}
-          intro="Hours change, turnouts move, trails close. Tell us what you found and we check it against the park's own sources before the guide changes. Reports written with no signal wait on this phone and send when it has one."
+          intro="Report something that has changed. We check it against park sources before updating the guide. Reports written offline send once you have signal."
         />
 
         {result === 'sent' || result === 'queued' ? (
@@ -173,7 +173,7 @@ export default function Report() {
                 </Button>
               )}
               {fixState === 'denied' && (
-                <p className="card__note">Location is off for this site, so no position is attached. The report still helps.</p>
+                <p className="card__note">Location is off for this site, so no position is attached.</p>
               )}
             </div>
 

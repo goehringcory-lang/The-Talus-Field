@@ -338,7 +338,7 @@ export default function HikeDetail() {
             <p className="hike-detail__note">
               The trail data for this hike isn't saved on this device yet. Reconnect once, or
               download the Trail tracks pack under{' '}
-              <Link to="/account">Account → Offline</Link>, and the profile works in airplane mode.
+              <Link to="/account">Account → Offline</Link>, and the profile works offline.
             </p>
           )}
           {trackState.status === 'none' && (
@@ -365,7 +365,7 @@ export default function HikeDetail() {
               <p className="hike-detail__note">Shared. Open the file in your maps app to import the track.</p>
             )}
             {gpxResult === 'downloaded' && (
-              <p className="hike-detail__note">Downloaded. Import the .gpx into Gaia, Caltopo, organic maps, or a Garmin.</p>
+              <p className="hike-detail__note">Downloaded. Import the .gpx into Gaia, Caltopo, Organic Maps, or a Garmin.</p>
             )}
             {gpxResult === 'failed' && (
               <p className="hike-detail__note">

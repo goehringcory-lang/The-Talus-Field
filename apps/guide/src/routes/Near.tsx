@@ -176,7 +176,7 @@ export default function Near() {
         <PageHeader
           eyebrow="Companion"
           title="You are near"
-          intro="The nearest entry in the guide comes up as you move, with the paragraph that says why it is worth stopping. For the passenger: the driver does not look at this."
+          intro="Shows the nearest guide entry as you move, and why it's worth stopping. For passengers, not drivers."
         />
 
         {!wanted && geo.status === 'idle' && (

@@ -297,7 +297,7 @@ export default function Programs() {
         <PageHeader
           eyebrow="What's on in the park"
           title="Programs during your trip"
-          intro="Ranger walks, Junior Ranger tables, Conservancy programs, tours, and star parties, day by day for the dates you pick. Sync while you have signal; the list stays readable in the park without it."
+          intro="Ranger walks, Junior Ranger tables, Conservancy programs, tours, and star parties, day by day for the dates you pick. Sync with signal. The list works offline."
         />
 
         <div className="programs-dates">
@@ -440,7 +440,7 @@ export default function Programs() {
         {loading && allEvents.length === 0 && <ProgramsSkeleton />}
 
         {byDay.length === 0 && !loading && allEvents.length === 0 && !error && (
-          <EmptyState note="Nothing listed for these dates yet. Programs post seasonally; sync again closer to your trip, and check the Yosemite Guide PDF for the printed schedule." />
+          <EmptyState note="No programs listed for these dates yet. Sync closer to your trip, or check the printed Yosemite Guide." />
         )}
         {byDay.length === 0 && allEvents.length > 0 && (
           <EmptyState note="Nothing matches the current filters." />

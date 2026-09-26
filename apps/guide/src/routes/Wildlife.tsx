@@ -47,7 +47,7 @@ export default function Wildlife() {
         <PageHeader
           eyebrow="Quick ID"
           title="What did I see?"
-          intro="The animals, birds, and trees a visitor actually crosses paths with, and the one or two marks that settle each identification. Check off what you see; the guide keeps your trip list. Works offline like the rest of the guide."
+          intro="Common animals, birds, and trees, with the field marks that confirm each one. Check off what you see. Works offline."
         />
 
         <div className="hikes-chips" role="group" aria-label="Filter by kind">

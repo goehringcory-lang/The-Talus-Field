@@ -115,7 +115,7 @@ export default function Hunts() {
         <PageHeader
           eyebrow="For young naturalists"
           title="Find it"
-          intro="A looking list for each region: things a child can genuinely spot from the trail or the pullout, not a quiz. Check them off as you go, or print the page and leave the phone in the car."
+          intro="Things kids can find from the trail or a pullout, by region. Check them off or print the page."
         />
 
         <div className="hunts__actions no-print">

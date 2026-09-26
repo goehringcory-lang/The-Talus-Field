@@ -159,7 +159,7 @@ export default function Compass() {
         <PageHeader
           eyebrow="Instrument"
           title="Bearing compass"
-          intro="Pick a stop and the rose points at it: distance, true bearing, your heading, and the sun on the same dial. Computed on this device from sensors alone, so it works in airplane mode. GPS needs no data connection."
+          intro="Pick a stop to see its distance and bearing, your heading, and the sun. Works offline."
         />
 
         <label className="compass-target">
