@@ -8,7 +8,7 @@
 // figure depending on format negotiation (AVIF vs JPG) and tile content.
 // =============================================================================
 
-import { REGIONS, getStopsByRegion, SECRET_SPOTS, type Region } from '../content'
+import { REGIONS, getStopsByRegion, SECRET_SPOTS, HIKES, type Region } from '../content'
 import { WILDLIFE } from '../content/wildlife'
 import { TRACKS, trackUrl } from '../trails/track'
 import { precachePhotoUrls, type PhotoFormat } from '../utils/photo'
@@ -57,6 +57,12 @@ function regionPhotoUrls(region: (typeof REGIONS)[number], format: PhotoFormat):
     for (const photo of stop.photos) {
       for (const url of precachePhotoUrls(photo.src, format)) urls.add(url)
     }
+  }
+  // Day-hike lead photos ride with their region too: /hike/:id is paid
+  // content, and a trail page is most needed exactly where there is no signal.
+  for (const hike of HIKES) {
+    if (hike.region !== region.id || !hike.photo) continue
+    for (const url of precachePhotoUrls(hike.photo.src, format)) urls.add(url)
   }
   return Array.from(urls)
 }
@@ -107,7 +113,7 @@ export function buildPacks(format: PhotoFormat): Pack[] {
     return {
       id: regionPackId(region.id),
       label: REGION_LABELS[region.id],
-      detail: 'Every photo in the region, all sizes',
+      detail: 'Every stop and trail photo in the region, all sizes',
       cacheName: RUNTIME_CACHE,
       urls,
       approxBytes: urls.length * PHOTO_BYTES_PER_URL,

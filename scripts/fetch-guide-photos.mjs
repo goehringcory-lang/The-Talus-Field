@@ -25,7 +25,10 @@
 // `queries`. Categories are pulled first and ranked ahead of search results,
 // because a category is a human assertion about the subject and a query
 // string is not — see commonsCategory() for why that distinction is what the
-// remaining slots needed. Everything after the ranking is unchanged.
+// remaining slots needed. Everything after the ranking is unchanged. An entry
+// may also carry `files` (exact Commons file titles), pulled ahead of both,
+// for a subject with no category whose files name it in their own title or
+// description — see commonsFiles().
 //
 // Sources:
 //   commons — Wikimedia Commons, filtered to commercial-use-safe licenses
@@ -313,6 +316,24 @@ async function commonsCategory(category, enabled, opts) {
   return commonsCandidates(pages, enabled, opts)
 }
 
+// Candidates from exact Commons file titles (`files` in a manifest entry).
+//
+// For a subject with no category of its own, the one sure thing is a file
+// whose own title or description names the place ("Head of the Valley from
+// Columbia Rock", "Rapids below Rancheria Falls"). Naming the file records
+// that reading in the manifest, where a review can re-check it, instead of
+// hoping a query string lands on it again. Same gates as every other path;
+// the listed order is kept, because the list IS the reviewer's ranking.
+async function commonsFiles(files, enabled, opts) {
+  const titles = files.map((f) => (/^file:/i.test(f) ? f : `File:${f}`))
+  const pages = await commonsQuery(
+    { action: 'query', format: 'json', titles: titles.join('|'), ...COMMONS_IMAGEINFO },
+    `${titles.length} named file(s)`,
+  )
+  const order = (t) => titles.findIndex((x) => x.replace(/_/g, ' ') === t)
+  return commonsCandidates(pages, enabled, opts).sort((a, b) => order(a.title) - order(b.title))
+}
+
 async function pexelsSearch(query, opts = {}) {
   const params = new URLSearchParams({
     query,
@@ -481,7 +502,19 @@ async function cmdFetch(args) {
         },
       ]
     } else {
-      // Commons categories first, when the manifest names any: a curated
+      // Named files before anything else: a reviewer already read them.
+      if (sources.includes('commons') && (entry.files ?? []).length > 0) {
+        try {
+          const found = await commonsFiles(entry.files, enabled, { portraitOk: !!entry.portraitOk })
+          picked.push(...found.map((c) => ({ ...c, via: 'file' })))
+          const missing = entry.files.length - found.length
+          if (missing > 0) console.log(`  ⚠ ${entry.file}: ${missing} named file(s) missing or failed a gate`)
+        } catch (err) {
+          console.error(`! ${entry.file} [files]: ${err.message}`)
+        }
+      }
+
+      // Commons categories next, when the manifest names any: a curated
       // category is a subject guarantee a query string can't make. Every
       // listed category contributes (unlike queries, where the first hit
       // wins) — these slots are obscure enough that one category often

@@ -22,6 +22,9 @@ import { UNVERIFIED_HIKE_IDS } from '../near/unverified'
 import Button from '../components/ui/Button'
 import { Chip } from '../components/ui/Chip'
 import PageHeader from '../components/ui/PageHeader'
+import Plate from '../components/Plate'
+import ResponsivePhoto from '../components/ResponsivePhoto'
+import { PHOTO_CREDITS, formatCredit } from '../content/photoCredits'
 import { REGION_SHORT, getHikeById, getStopById } from '../content'
 import { DIFFICULTY_LABEL, formatElevation, formatTime } from '../content/labels'
 import { directionsUrl } from '../map/kinds'
@@ -156,6 +159,25 @@ export default function HikeDetail() {
           title={hike.title}
           intro={hike.description}
         />
+
+        {/* The trail's own photograph, when a verified one exists; a hike
+            without one shows nothing rather than the "Photo coming" tile. */}
+        {hike.photo && (
+          <Plate
+            className="hike-detail__plate"
+            tag="Plate · Trail"
+            credit={PHOTO_CREDITS[hike.photo.src] ? formatCredit(PHOTO_CREDITS[hike.photo.src]) : undefined}
+          >
+            <ResponsivePhoto
+              src={hike.photo.src}
+              alt={hike.photo.alt}
+              loading="eager"
+              width={1200}
+              height={900}
+              style={{ aspectRatio: '4 / 3', objectFit: 'cover', width: '100%', display: 'block' }}
+            />
+          </Plate>
+        )}
 
         <p className="hike-detail__chips">
           <Chip variant="meta">{hike.distanceMi} mi{hike.route === 'one-way' ? ' one-way' : ''}</Chip>

@@ -177,3 +177,7 @@
   stroke: var(--paper);
   stroke-width: 2;
 }
+
+.hike-detail__plate {
+  margin: 0 0 var(--s4);
+}
