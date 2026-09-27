@@ -9022,10 +9022,31 @@ html[data-nav-mode="pinned"] { scroll-padding-top: 62px; }
 .ff-split { display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr); gap: 56px; align-items: start; }
 .ff-split--end { align-items: end; }
 
-/* Head: the photograph in the aside, then the fact row and the jump list. */
-.ff-hero { margin: 0; }
-.ff-hero img { width: 100%; height: 520px; object-fit: cover; border-radius: 3px; }
-.ff-hero figcaption { font: 11px var(--sans); color: var(--hp-muted); margin-top: 8px; }
+/* Head: the photograph as a full-width cover behind the title, then the fact
+   row and the jump list. The photo is portrait, so the cover crops a band
+   through the glow; the wash darkens the copy's side (left on wide screens,
+   the whole plate on phones) so the cream type holds contrast over the rock. */
+.ff-cover { position: relative; isolation: isolate; overflow: hidden; background: #0f1a24; color: #f7f1e1; }
+.ff-cover picture, .ff-cover__img { position: absolute; inset: 0; width: 100%; height: 100%; }
+.ff-cover__img { object-fit: cover; object-position: 50% 72%; z-index: -2; }
+.ff-cover::before {
+  content: ""; position: absolute; inset: 0; z-index: -1;
+  background:
+    linear-gradient(90deg, rgba(8, 14, 22, 0.86) 0%, rgba(8, 14, 22, 0.66) 38%, rgba(8, 14, 22, 0.12) 72%, rgba(8, 14, 22, 0) 100%),
+    linear-gradient(180deg, rgba(8, 14, 22, 0.35) 0%, rgba(8, 14, 22, 0) 30%);
+}
+.hp-design .ff-cover .hp-pagehead { position: relative; min-height: 640px; display: flex; flex-direction: column; justify-content: flex-end; padding-block: 48px 72px; border-bottom: 0; }
+.hp-design .ff-cover .hp-pagehead__copy { max-width: 560px; }
+.hp-design .ff-cover h1 { color: #fbf6ea; text-shadow: 0 2px 24px rgba(0, 0, 0, 0.35); }
+.hp-design .ff-cover .hp-eyebrow { color: #f0a36b; }
+.hp-design .ff-cover .hp-intro { color: rgba(247, 241, 225, 0.9); max-width: 500px; }
+.hp-design .ff-cover .hp-link { color: #fbf6ea; border-bottom-color: rgba(247, 241, 225, 0.55); }
+.hp-design .ff-cover .crumbs, .hp-design .ff-cover .crumbs a { color: rgba(247, 241, 225, 0.78); border-bottom-color: rgba(247, 241, 225, 0.35); }
+.hp-design .ff-cover .crumbs a:hover, .hp-design .ff-cover .crumbs [aria-current="page"] { color: #fbf6ea; }
+.hp-design .ff-cover .crumbs li + li::before { color: rgba(247, 241, 225, 0.5); }
+.hp-design .ff-cover .aff-disclosure { color: rgba(247, 241, 225, 0.72); }
+.hp-design .ff-cover .aff-disclosure a { color: #fbf6ea; }
+.ff-cover__credit { position: absolute; right: 16px; bottom: 10px; margin: 0; font: 10px var(--sans); color: rgba(247, 241, 225, 0.72); text-shadow: 0 1px 3px rgba(0, 0, 0, 0.6); }
 
 .ff-facts { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); margin: 0; border-bottom: 1px solid var(--hp-rule); }
 .ff-facts > div { display: grid; grid-template-columns: auto 1fr; column-gap: 12px; padding: 22px 24px 22px 0; }
@@ -9257,7 +9278,10 @@ html[data-nav-mode="pinned"] { scroll-padding-top: 62px; }
   .ff-sources ul { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 }
 @media (max-width: 760px) {
-  .ff-hero img { height: 300px; }
+  .ff-cover::before { background: linear-gradient(180deg, rgba(8, 14, 22, 0.55) 0%, rgba(8, 14, 22, 0.62) 45%, rgba(8, 14, 22, 0.88) 100%); }
+  .ff-cover__img { object-position: 55% 45%; }
+  .hp-design .ff-cover .hp-pagehead { min-height: 560px; padding-block: 28px 56px; }
+  .ff-cover__credit { right: 12px; bottom: 8px; }
   .ff-facts { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .ff-facts > div { padding: 16px 12px 16px 0; }
   .ff-facts > div + div { padding-left: 12px; }
