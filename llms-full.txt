@@ -1082,7 +1082,7 @@ Check the fire restrictions page in the days before you leave, not when you book
 ## Yosemite itinerary for 3, 4 or 5 days: one park per day
 
 URL: https://thetalusfieldjournal.com/articles/yosemite-in-three-to-five-days
-Section: Planning. Published: 2026-08-23. Last updated: 2026-08-23.
+Section: Planning. Published: 2026-08-23. Last updated: 2026-09-26.
 Summary: A Yosemite itinerary for 3, 4, or 5 days: the Valley, Glacier Point, the Tioga high country, and Hetch Hetchy, one park per day, plus the winter version.
 
 The third day changes a Yosemite trip. A one-day visit is triage, and we have argued at length that triage done early and done well is a great trip. A two-day visit is triage plus one earned view from above the Valley floor. On the third day, nothing is the only chance you will get. You can wait out a morning of weather, take the wrong turn, stay an extra hour at the place that turned out to be the point, and the trip absorbs it. Most of the bad advice about Yosemite itineraries comes from people planning day three the way you have to plan day one, as a checklist against a clock.
@@ -1091,7 +1091,7 @@ The organizing idea comes from the shape of the park: Yosemite is four parks und
 
 ### The roads decide the menu
 
-First, the constraint. Two of the four parks hang off seasonal roads. Glacier Point Road typically opens in mid-to-late May; in 2026 it opened on May 9, and it closes again on September 8 for another season of construction, so this year the rim is a spring-and-summer proposition even by its own standards. Tioga Road opened May 15 in 2026, unusually early, and closes with the first serious snow, typically in November. From roughly November into May, in a normal year, the menu is shorter: the Valley, Wawona, and Hetch Hetchy, which are exactly the plowed roads. The winter version of this itinerary is at the bottom of the piece, and it is a full trip.
+First, the constraint. Two of the four parks hang off seasonal roads. Glacier Point Road typically opens in mid-to-late May; in 2026 it opened on May 9, and it closes for the winter with the first serious snow, typically in November. Tioga Road opened May 15 in 2026, unusually early, and closes with the first serious snow, typically in November. From roughly November into May, in a normal year, the menu is shorter: the Valley, Wawona, and Hetch Hetchy, which are exactly the plowed roads. The winter version of this itinerary is at the bottom of the piece, and it is a full trip.
 
 So the first step in planning a three-to-five-day visit is checking which of the four parks your dates can reach. The trip selector does this arithmetic for you month by month, the Park Bulletin carries the current road status, and the Park Service's road line is the last word in the shoulder weeks. Every plan below assumes you have done that check.
 
@@ -2897,7 +2897,7 @@ And if your trip is already booked for August or September: adjust your expectat
 ## Yosemite Photography Spots: The Light, and When to Be There
 
 URL: https://thetalusfieldjournal.com/articles/yosemite-photography-spots
-Section: Planning. Published: 2026-07-12. Last updated: 2026-07-12.
+Section: Planning. Published: 2026-07-12. Last updated: 2026-09-26.
 Summary: Yosemite photography guide: Tunnel View, Valley View, Glacier Point, and five more proven spots, plus the best light, seasons, firefall, and moonbow timing.
 
 I have stood at Tunnel View a few hundred times over twenty seasons, and I have never once had it to myself. There is always somebody with a camera, at dawn in January, at midnight in August, in a whiteout in March. For years I treated this as a reason to go elsewhere, the way locals everywhere treat their postcard views. I was wrong. The famous spots are famous because they work: the geology, the light angles, and the sightlines converge in a handful of places, and generations of photographers have already run the experiment for you. Ansel Adams did not shoot from secret locations. He shot from turnouts.
@@ -2918,7 +2918,7 @@ Tunnel View. The east end of the Wawona Tunnel on Highway 41, with parking lots 
 
 Valley View, also called Gates of the Valley. A small riverside pullout on Northside Drive near the west end of the Valley, easy to miss because you reach it on the one-way road out of the park. El Capitan rises on the left, Bridalveil Fall spills on the right, and the Merced River runs through the foreground, often glassy enough for reflections in late summer and fall. This is the low-elevation counterpart to Tunnel View, river instead of overlook, and it is the better sunset spot: the last light on El Capitan's nose, doubled in the water, lasts about five minutes. The pullout holds maybe a dozen cars. On a promising evening it fills.
 
-Glacier Point. The 7,200-foot overlook at the end of Glacier Point Road, staring straight across at Half Dome with Vernal and Nevada Falls stacked in the canyon below. Sunset is the event here. Half Dome's face catches the last direct light, then holds alpenglow, the pink afterlight on high rock, for several minutes after the sun is down. Most of the crowd leaves when the sun disappears. Stay twenty minutes. Then, if you are willing to drive the road down in the dark, stay longer: Glacier Point is also one of the best night-sky locations you can reach by car, which is its own article. The road closes from roughly mid-October to late May, so this is a summer and early-fall spot.
+Glacier Point. The 7,200-foot overlook at the end of Glacier Point Road, staring straight across at Half Dome with Vernal and Nevada Falls stacked in the canyon below. Sunset is the event here. Half Dome's face catches the last direct light, then holds alpenglow, the pink afterlight on high rock, for several minutes after the sun is down. Most of the crowd leaves when the sun disappears. Stay twenty minutes. Then, if you are willing to drive the road down in the dark, stay longer: Glacier Point is also one of the best night-sky locations you can reach by car, which is its own article. The road typically closes for the season sometime in November and reopens in late May, so this is a summer and fall spot.
 
 Sentinel Bridge. A footbridge-width road bridge over the Merced near Yosemite Village, and the classic Half Dome reflection. Look upstream and Half Dome sits above a bend in the river; on calm evenings the face and its reflection light up together. This is an evening shot, best in the last hour before sunset when the granite goes amber, and best in late summer and autumn when the river runs slow and flat. In spring the Merced is fast and the reflection shatters. The bridge is a two-minute walk from parking and a shuttle stop, which makes it the easiest serious photograph in the Valley.
 
@@ -2968,7 +2968,7 @@ Pick the spot by the hour: Tunnel View and Glacier Point in late afternoon, Vall
 ## Yosemite Firefall: How Horsetail Fall Works in February
 
 URL: https://thetalusfieldjournal.com/articles/horsetail-fall-firefall
-Section: Seasonal Guides. Published: 2026-07-12. Last updated: 2026-07-16.
+Section: Seasonal Guides. Published: 2026-07-12. Last updated: 2026-09-26.
 Summary: How the Yosemite firefall works: when Horsetail Fall glows in February, the three conditions required, viewing at El Capitan Picnic Area, and honest odds.
 
 The first time I watched Horsetail Fall catch fire, I almost missed it. This was years ago, a February evening cold enough that the puddles at the El Capitan Picnic Area had skinned over with ice, and I had spent twenty minutes convinced the show was a bust. The fall was flowing, barely, a thin ribbon down the east shoulder of El Capitan, and the light was going flat and grey the way Valley light does in the last half hour of a winter day. Then the sun dropped into a gap under the cloud deck to the west, and the ribbon turned amber, then deep orange. For about ten minutes, a strip of water a few feet wide looked like lava pouring off a 3,000-foot wall. Then the sun set, the color drained out in under a minute, and a few hundred people standing around me in the snow exhaled at the same time.
@@ -2991,7 +2991,7 @@ One: water in the fall. Horsetail needs recent rain or warm-enough days to melt 
 
 Two: a clear western horizon at sunset. The light has to travel from the horizon, up the Merced canyon, and onto the cliff without hitting a cloud bank. February is the middle of storm season. A sky that is 90 percent clear does not help you if the remaining 10 percent is a low deck sitting exactly where the sun goes down. I have watched perfect afternoons die in the last five minutes because of a cloud shelf over the Coast Ranges that nobody in the Valley could even see.
 
-Three: the sun angle. This is the only condition you can schedule. The window runs roughly the second week of February through the last week, with the strongest color usually in the middle of that span. Outside those dates, the sunset light either misses the fall or does not isolate it against shadowed rock.
+Three: the sun angle. This is the only condition you can schedule. The window runs roughly from the middle of February to the end of the month, with the strongest color usually in the middle of that span. Outside those dates, the sunset light either misses the fall or does not isolate it against shadowed rock.
 
 The arithmetic. Condition three gives you about fourteen to eighteen candidate evenings a year. February weather being what it is, a good number of those evenings are cloudy, and in a lean snow year some or all of them are dry. The years when everything converges for several evenings running produce the famous photographs. There are also years when the firefall effectively does not happen at all. If you visit on one specific evening, your odds are uncertain, and anyone promising otherwise is wrong.
 
@@ -3205,12 +3205,12 @@ Some links in this piece are affiliate links. If you buy or book through one, Th
 ## Yosemite Wildflowers: The Bloom Calendar Climbs the Mountain
 
 URL: https://thetalusfieldjournal.com/articles/yosemite-wildflowers-guide
-Section: Wildlife and Nature. Published: 2026-07-12. Last updated: 2026-07-12.
+Section: Wildlife and Nature. Published: 2026-07-12. Last updated: 2026-09-26.
 Summary: Yosemite wildflowers by month and elevation: Merced canyon poppies, Valley dogwood and azalea, McGurk Meadow lupine, and Tuolumne's short alpine summer.
 
 I live in El Portal, in the Merced River canyon at about 2,000 feet, which means my spring starts in February. The western redbud goes first: bare gray branches on the canyon walls suddenly covered in small magenta flowers, weeks before a single leaf appears, while the high country above me is still under ten feet of snow. By the time the redbud fades in April, the California poppies have taken over the south-facing slopes. By the time the poppies dry out in May, the dogwoods are blooming on the Valley floor, 2,000 feet above my house. By the time the dogwoods drop their bracts in June, the shooting stars are opening at 8,000 feet. In twenty seasons here I have learned to think of the bloom not as an event but as a wave, one that starts in the canyon in late winter and takes five months to climb the mountain.
 
-This is the most useful thing to know about Yosemite wildflowers, and few visitors arrive knowing it. Visitors ask when the flowers bloom, expecting a date. The answer depends on elevation. The park runs from about 2,000 feet at the Arch Rock entrance to over 13,000 feet at its highest peaks, and spring moves uphill at a rate of very roughly a thousand feet a month. There is a bloom happening somewhere in or near the park from March through August. You just have to drive to the right altitude.
+This is the most useful thing to know about Yosemite wildflowers, and few visitors arrive knowing it. Visitors ask when the flowers bloom, expecting a date. The answer depends on elevation. The park runs from about 2,000 feet at the Arch Rock entrance to over 13,000 feet at its highest peaks, and spring moves uphill at a rate of very roughly a thousand feet a month. There is a bloom happening somewhere in or near the park from February through August. You just have to drive to the right altitude.
 
 In Yosemite, the bloom is not a date. It is an elevation.
 
@@ -6159,7 +6159,7 @@ The door is open. Walk through it.
 ## Mist Trail, Yosemite: what the internet isn't telling you
 
 URL: https://thetalusfieldjournal.com/articles/mist-trail-the-real-guide
-Section: Trails and Hikes. Published: 2026-05-11. Last updated: 2026-08-27.
+Section: Trails and Hikes. Published: 2026-05-11. Last updated: 2026-09-26.
 Summary: The most hiked trail in any national park. The honest answers about shoes, water, when to go, and whether you can actually die out there.
 
 The Mist Trail is the most hiked trail in Yosemite, and it might be the most hiked trail in any national park. On a Saturday in June, a thousand people walk some version of it. On Reddit it gets more questions than every other Yosemite trail put together: Is it hard? How wet will I get? Can my kids do it? What shoes do I need? Is it worth it? Can I die?
@@ -6218,7 +6218,7 @@ Late season (August through October). The falls slow to a trickle, the trail is 
 
 Time of day. Go early. Happy Isles fills by 8 a.m. on summer weekends. The closest parking is the trailhead lot at Curry Village, pinned on the site's map. Early on, the trail is in shade, so you hike cooler and get better light on the falls. By afternoon it's in full sun, and the heat coming off the granite stairs is brutal.
 
-2026 weekday restrictions. Starting June 30, 2026, the Mist Trail between Vernal Fall and Nevada Fall is closed Monday through Thursday, 7 a.m. to 3:30 p.m., for trail repairs, through the end of October. On those days, either time it so you reach that section after 3:30 or take the JMT bypass between the two falls. Weekends aren't affected. And the bypass got better this summer: the JMT's "Ice Cut" segment, between Clark Point and the Panorama Trail junction, reopened in late July 2026 after nearly three years closed for storm and ice damage, so the full Mist Trail-JMT loop is open again.
+2026 weekday restrictions. Starting July 27, 2026, the Mist Trail between Vernal Fall and Nevada Fall is closed Monday through Thursday, 7 a.m. to 3:30 p.m., for trail repairs, through the end of October. On those days, either time it so you reach that section after 3:30 or take the JMT bypass between the two falls. Weekends aren't affected. And the bypass got better this summer: the JMT's "Ice Cut" segment, between Clark Point and the Panorama Trail junction, reopened in late July 2026 after nearly three years closed for storm and ice damage, so the full Mist Trail-JMT loop is open again.
 
 ### The safety talk
 
