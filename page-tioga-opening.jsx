@@ -1,4 +1,4 @@
-/* global React, HpPageHead, LodgingCta, HpGuideBand, HpLetter, FjLayout, FjPull, FjRidge, FjCard, FjPlate */
+/* global React, HpPageHead, LodgingCta, HpGuideBand, HpLetter, FjLayout, FjPull, FjRidge, FjCard, FjPlate, AffiliateDisclosure */
 
 // =============================================================================
 // TIOGA OPENING — `/tioga-opening` route. The second evergreen event page
@@ -169,7 +169,9 @@ function TiogaOpeningPage({ go }) {
             }
           />
         }
-      />
+      >
+        <AffiliateDisclosure />
+      </HpPageHead>
 
 
       <FjLayout>

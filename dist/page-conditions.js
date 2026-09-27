@@ -417,6 +417,114 @@ function ConditionsReadout({
     className: "readout__foot"
   }, "National Park Service. Both readings refresh every five minutes."));
 }
+var COND_SEASON_KIT = [{
+  id: "winter",
+  months: [12, 1, 2, 3],
+  label: "Winter",
+  items: [{
+    id: "traction",
+    what: "Traction cleats for your boots",
+    why: "They prevent the most common winter injury in the park, a fall on a paved path."
+  }, {
+    id: "chains",
+    what: "Chains in the trunk",
+    why: "When chain control is posted, every vehicle must carry them, four-wheel drives and rentals included."
+  }, {
+    id: "insulated-jacket",
+    what: "An insulated jacket",
+    why: "Synthetic fill keeps working if the snow is wet.",
+    q: "insulated jacket"
+  }, {
+    id: "warm-hat",
+    what: "A warm hat",
+    why: "The cheapest fix for a cold evening.",
+    q: "beanie"
+  }]
+}, {
+  id: "spring",
+  months: [4, 5],
+  label: "Spring",
+  items: [{
+    id: "rain-shell",
+    what: "A rain jacket",
+    why: "In May and June it keeps you warm on the Mist Trail, where the spray is heaviest.",
+    q: "rain jacket"
+  }, {
+    id: "puffy",
+    what: "A puffy for the high roads",
+    why: "When Tioga opens, temperatures swing 30 to 40 degrees between dawn and afternoon.",
+    q: "insulated jacket"
+  }, {
+    id: "boots",
+    what: "Waterproof boots",
+    why: "High trails stay wet, muddy, or partly snow-covered into early summer."
+  }]
+}, {
+  id: "summer",
+  months: [6, 7, 8, 9],
+  label: "Summer",
+  items: [{
+    id: "sun-hat",
+    what: "A wide-brim sun hat",
+    why: "Granite reflects. A baseball cap is not enough above 7,000 feet.",
+    q: "sun hat"
+  }, {
+    id: "sun-shirt",
+    what: "A long-sleeve sun shirt",
+    why: "Light color, hood if you can find it. Wear it even in heat.",
+    q: "sun hoody"
+  }, {
+    id: "rain-shell",
+    what: "A packable rain shell",
+    why: "Afternoon thunderstorms are common in the summer high country.",
+    q: "rain jacket"
+  }, {
+    id: "water",
+    what: "Water, more than you think",
+    why: "Two liters a person is a floor at elevation. The Four Mile and Yosemite Falls trails have none."
+  }]
+}, {
+  id: "autumn",
+  months: [10, 11],
+  label: "Autumn",
+  items: [{
+    id: "fleece",
+    what: "A warm layer",
+    why: "High points run 15 to 20 degrees cooler than the Valley floor, and windier.",
+    q: "fleece"
+  }, {
+    id: "headlamp",
+    what: "A headlamp",
+    why: "The days shorten fast; a hike that finished at dusk in September finishes in the dark."
+  }, {
+    id: "chains",
+    what: "Chains, from late October",
+    why: "Storms are possible from late October, and chain control means every vehicle carries them."
+  }]
+}];
+function condParkMonth() {
+  try {
+    return Number(new Intl.DateTimeFormat("en-US", {
+      timeZone: "America/Los_Angeles",
+      month: "numeric"
+    }).format(new Date()));
+  } catch (_e) {
+    return new Date().getMonth() + 1;
+  }
+}
+function CondSeasonKit() {
+  var month = condParkMonth();
+  var season = COND_SEASON_KIT.find(x => x.months.indexOf(month) !== -1) || COND_SEASON_KIT[2];
+  return React.createElement("div", {
+    className: "cond-kit"
+  }, React.createElement(RecommendedCard, {
+    heading: "What " + season.label.toLowerCase() + " calls for",
+    note: "Dress for the highest point of your day, not the Valley floor.",
+    items: season.items,
+    list: "conditions_season_kit",
+    slug: season.id
+  }));
+}
 function ConditionsPage({
   go
 }) {
@@ -452,7 +560,7 @@ function ConditionsPage({
       waits: waits,
       lots: lots
     })
-  }), React.createElement("section", {
+  }, React.createElement(AffiliateDisclosure, null, "The seasonal gear list under the forecasts has Patagonia affiliate links. If you buy through one, The Talus Field may earn a commission at no extra cost to you.")), React.createElement("section", {
     className: "hp-wrap hp-section cond-section",
     id: "cond-waits",
     tabIndex: -1
@@ -496,7 +604,7 @@ function ConditionsPage({
     }
   }), React.createElement("p", {
     className: "hp-sub"
-  }, "The park spans 9,000 feet of elevation, so one forecast is never enough. These are National Weather Service point forecasts for the three places most trips actually go."), React.createElement(ConditionsElevation, null)), React.createElement("div", {
+  }, "The park spans 9,000 feet of elevation, so one forecast is never enough. These are National Weather Service point forecasts for the three places most trips actually go."), React.createElement(ConditionsElevation, null), React.createElement(CondSeasonKit, null)), React.createElement("div", {
     className: "hp-wrap hp-section cond-section cond-split"
   }, React.createElement("section", null, React.createElement(HpHeading, {
     eyebrow: "04 / THE VALLEY LOTS",

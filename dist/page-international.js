@@ -114,7 +114,7 @@ function InternationalPage({
         }]
       })
     })
-  }), React.createElement(FjLayout, null, React.createElement("section", {
+  }, React.createElement(AffiliateDisclosure, null)), React.createElement(FjLayout, null, React.createElement("section", {
     className: "prose"
   }, React.createElement("h2", null, "The 2026 non-resident fee"), React.createElement("p", null, "Every visitor pays the entrance fee: ", money(F.vehicle), " per car for seven days, ", money(F.motorcycle), " per motorcycle, ", money(F.perPerson), " per person on foot, by bicycle or by bus, children under ", F.perPersonFreeUnder, " free. On top of that, since January 1, 2026, a visitor who is not a US citizen or resident pays a non-resident fee of ", money(F.surcharge), " per person aged ", F.surchargeAgeFrom, " and older, unless that person is covered by an annual pass. It applies at eleven parks: ", F.surchargeParks.slice(0, -1).join(", "), " and ", F.surchargeParks.slice(-1)[0], ". The fee-free days the park publishes each year are now for US residents only; a non-resident pays the full amount on those days too."), React.createElement("div", {
     className: "fj-tablewrap fj-tablewrap--fit"

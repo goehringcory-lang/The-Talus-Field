@@ -112,7 +112,7 @@ function TermsPage({ go }) {
 
 function AffiliatePage({ go }) {
   return (
-    <LegalShell go={go} title="Affiliate Disclosure" eyebrow="Legal" updated="August 1, 2026" sections={6} numberedHeads={false}>
+    <LegalShell go={go} title="Affiliate Disclosure" eyebrow="Legal" updated="September 26, 2026" sections={6} numberedHeads={false}>
       <p>The Talus Field currently participates in two affiliate programs: Patagonia's, run through the Impact network, and the Expedia Group Travel Creator Program, run through Partnerize, which powers every lodging availability link on the site. Those links appear in the planning articles, on <a href="/stay">the lodging board</a>, and on the trip-planning pages that end in a decision about where to sleep. The lodging board may also carry one Expedia-supplied banner image, labeled "Advertisement" where it appears; it works on the same commission terms as the text links and has no influence on what this site recommends. An application to a camping program (Hipcamp) is pending; until it is approved, camping links are plain outbound links that earn nothing. When the list changes, this page changes the same day.</p>
 
       <p>What that means in plain language: when an article on this site links to a product, a book, or a piece of lodging, that link may be an affiliate link. If you click through and make a purchase or a booking, I receive a small commission. The price you pay does not change. Whether or not you use the affiliate link, the recommendation in the article is the same.</p>
@@ -128,7 +128,7 @@ function AffiliatePage({ go }) {
       <p>I will not accept payment to recommend something. I have turned down sponsorships from at least four gear companies and one regional tourism board. If that ever changes, I will tell you about it on this page and in the newsletter, on the same day.</p>
 
       <h2>How to identify an affiliate link</h2>
-      <p>Every article that contains affiliate links includes a short note at the end of the article saying so, with a link back to this page. Inline affiliate links are marked with a small icon (★) on hover.</p>
+      <p>Every page that contains affiliate links says so near the top, under the byline or the page heading, before the first link. Articles repeat the note at the end, and every boxed lodging or gear recommendation carries its own line, each linking back to this page. Inline affiliate links are marked with a small icon (★) on hover.</p>
 
       <h2>Directory listings</h2>
       <p>The Directory contains two kinds of entries. Most are personal recommendations: lodgings I have stayed in, guides I have worked with, outfitters I have used. Those entries are unpaid. A small number are paid placements from operators who have applied for a listing and met an editorial standard I would apply to anyone. Paid placements are clearly labeled wherever they appear, and a paid placement does not change the editorial blurb. An operator does not get a more flattering description by paying.</p>

@@ -74,7 +74,7 @@ window.ARTICLE_BODIES["yosemite-in-october-2026"] = function YosemiteInOctober20
       </p>
 
       <p>
-        Fill the tank below, carry lunch and warm layers, and call the road line before you set out: <strong>209/372-0200, press 1 then 1</strong>. <a href="/articles/tuolumne-meadows-in-a-day">The Tuolumne day</a> covers the drive, and <a href="/articles/clouds-rest-hike">Clouds Rest</a> is the big hike to take off the road while it is still open.
+        Fill the tank below, carry lunch and <AffLink q="fleece" list="article_inline" slug="yosemite-in-october-2026" name="Fleece">warm layers</AffLink>, and call the road line before you set out: <strong>209/372-0200, press 1 then 1</strong>. <a href="/articles/tuolumne-meadows-in-a-day">The Tuolumne day</a> covers the drive, and <a href="/articles/clouds-rest-hike">Clouds Rest</a> is the big hike to take off the road while it is still open.
       </p>
 
       <h2>Half Dome: the last days of the cables</h2>
@@ -194,6 +194,8 @@ window.ARTICLE_BODIES["yosemite-in-october-2026"] = function YosemiteInOctober20
       <p>
         The first half of the month holds the most: Half Dome through the 13th, the Glacier Point bus through the 11th if it runs, overnight parking on the high roads through the 14th, and the last staffed permit desks through the 18th. The second half is quieter and colder, with Tioga Road open until the first storm says otherwise. <a href="/planning">The Planning Guide</a> has the rest of the trip, and <a href="/conditions">the conditions board</a> has the live gate waits the week you go.
       </p>
+
+      <AffiliateNote />
     </>
   );
 };

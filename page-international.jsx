@@ -1,4 +1,4 @@
-/* global React, HpPageHead, LodgingCta, FEES, calcEntryFees, FEE_MODES, HpGuideBand, HpLetter, FjLayout, FjPull, FjRidge, FjCard, FjPlate */
+/* global React, HpPageHead, LodgingCta, FEES, calcEntryFees, FEE_MODES, HpGuideBand, HpLetter, FjLayout, FjPull, FjRidge, FjCard, FjPlate, AffiliateDisclosure */
 
 // =============================================================================
 // INTERNATIONAL — `/international` route. The page for the reader arriving
@@ -116,7 +116,9 @@ function InternationalPage({ go }) {
             }
           />
         }
-      />
+      >
+        <AffiliateDisclosure />
+      </HpPageHead>
 
 
       <FjLayout>

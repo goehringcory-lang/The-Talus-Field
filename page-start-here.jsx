@@ -1,4 +1,4 @@
-/* global React, HpPageHead, HpHeading, HpArticleCard, HpGuideBand, HpLetter, HomeLink, ResponsiveImage, LodgingCta */
+/* global React, HpPageHead, HpHeading, HpArticleCard, HpGuideBand, HpLetter, HomeLink, ResponsiveImage, LodgingCta, AffiliateDisclosure */
 
 // =============================================================================
 // START HERE — `/start-here` route. The first-time visitor hub.
@@ -421,7 +421,9 @@ function StartHerePage({ go }) {
             <figcaption><span>Tunnel View, the first stop of a first morning</span><span>{hero.credit}</span></figcaption>
           </figure>
         }
-      />
+      >
+        <AffiliateDisclosure />
+      </HpPageHead>
 
       <div className="hp-wrap">
         <dl className="start-facts" aria-label="The short answers">

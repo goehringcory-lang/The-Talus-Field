@@ -110,18 +110,18 @@ window.planningSeriesFor = function (slug) {
 // verifies this map stays in sync with the files in bodies/.
 // ============================================================
 window.BODY_VERSIONS = {
-  "yosemite-in-october-2026": 2,
+  "yosemite-in-october-2026": 3,
   "yosemite-falls-trail": 2,
   "cell-service-in-yosemite": 3,
   "glacier-point-how-to-visit": 3,
-  "clouds-rest-hike": 2,
+  "clouds-rest-hike": 3,
   "yosemite-from-las-vegas": 2,
   "highway-140-closed-yosemite": 2,
   "yosemite-from-los-angeles": 2,
   "yosemite-facelift-volunteer-guide": 4,
   "bracebridge-dinner-and-vintners-holidays": 4,
   "yosemite-fire-restrictions-explained": 3,
-  "yosemite-in-three-to-five-days": 5,
+  "yosemite-in-three-to-five-days": 6,
   "yosemite-winter-hikes": 4,
   "camping-in-yosemite-first-time": 2,
   "first-yosemite-backpacking-trip": 4,
@@ -131,7 +131,7 @@ window.BODY_VERSIONS = {
   "swimming-in-the-merced": 3,
   "yosemite-valley-parking-guide": 2,
   "yosemite-shuttle-and-yarts": 4,
-  "yosemite-walk-up-and-day-of-permits": 4,
+  "yosemite-walk-up-and-day-of-permits": 5,
   "yosemite-in-fall": 5,
   "yosemite-tunnel-trees": 3,
   "yosemite-wildlife-viewing-guide": 5,
@@ -140,7 +140,7 @@ window.BODY_VERSIONS = {
   "yosemite-waterfalls-guide": 5,
   "yosemite-photography-spots": 5,
   "horsetail-fall-firefall": 5,
-  "yosemite-in-winter": 8,
+  "yosemite-in-winter": 9,
   "where-to-stay-in-yosemite": 13,
   "yosemite-wildflowers-guide": 5,
   "watching-climbers-el-capitan": 3,
@@ -149,31 +149,31 @@ window.BODY_VERSIONS = {
   "yosemite-accessibility-guide": 5,
   "pets-in-yosemite": 6,
   "yosemite-ranger-programs": 5,
-  "yosemite-camping-complete-guide": 11,
+  "yosemite-camping-complete-guide": 12,
   "where-to-propose-in-yosemite": 3,
   "is-bear-spray-allowed-in-yosemite": 3,
   "yosemite-bears-safety-guide": 120,
-  "yosemite-heat-safety-guide": 6,
+  "yosemite-heat-safety-guide": 7,
   "when-to-visit-yosemite-2026-crowd-forecast": 5,
   "yosemite-trip-cost-budget-2026": 10,
   "yosemite-in-september-2026": 2,
-  "yosemite-in-june-2026": 5,
+  "yosemite-in-june-2026": 6,
   "cathedral-lakes-day-hike": 3,
   "yosemite-needs-a-reservation-system": 81,
-  "memorial-day-skip-the-valley-go-high-2026": 83,
-  "four-mile-up-panorama-down": 79,
+  "memorial-day-skip-the-valley-go-high-2026": 84,
+  "four-mile-up-panorama-down": 80,
   "yosemite-with-kids-no-reservations-2026": 80,
-  "tioga-road-opening-weekend-2026": 79,
+  "tioga-road-opening-weekend-2026": 80,
   "so-you-want-to-hike-half-dome": 79,
-  "glacier-point-road-open-2026": 82,
-  "mist-trail-the-real-guide": 88,
+  "glacier-point-road-open-2026": 83,
+  "mist-trail-the-real-guide": 89,
   "first-time-yosemite-overwhelm": 88,
   "yosemite-without-reservations-2026": 86,
   "yosemite-during-smoke-season": 77,
   "yosemite-gateway-towns-compared": 97,
-  "pack-your-car-for-yosemite": 85,
+  "pack-your-car-for-yosemite": 86,
   "yosemite-for-non-hikers": 82,
-  "yosemite-stargazing-where-to-look-up": 80,
+  "yosemite-stargazing-where-to-look-up": 81,
   "hetch-hetchy-the-other-yosemite-valley": 79,
   "what-is-a-talus-field": 3,
   "yosemite-glaciers-climate": 79,
@@ -368,7 +368,7 @@ window.KIT = {
           id: "carry-sleep",
           title: "Carry & sleep system",
           items: [
-            { id: "overnight-pack:pack", name: "55 to 65L pack", note: "Bigger than you need is worse than tighter than you want.", aff: window.buildPatagoniaAffiliateLink("https://www.patagonia.com/search/?q=backpacking+pack") },
+            { id: "overnight-pack:pack", name: "55 to 65L pack", note: "Bigger than you need is worse than tighter than you want.", aff: "#" },
             { id: "overnight-pack:tent", name: "Three-season tent", note: "Freestanding, two doors, under three pounds if you can afford it.", aff: "#" },
             { id: "overnight-pack:footprint", name: "Tent footprint", aff: "#" },
             { id: "overnight-pack:stakes", name: "Extra tent stakes", note: "Longer stakes hold in sandy, rocky soil.", aff: "#" },
@@ -704,7 +704,7 @@ window.KIT = {
             { id: "car-trip:camp-shoes", name: "Camp shoes or sandals", aff: "#" },
             { id: "car-trip:socks", name: "Extra socks, two pairs per day", aff: window.buildPatagoniaAffiliateLink("https://www.patagonia.com/search/?q=hiking+socks") },
             { id: "car-trip:swimwear", name: "Swimwear", note: "The Merced swimming holes are real, cold, and worth it.", aff: window.buildPatagoniaAffiliateLink("https://www.patagonia.com/search/?q=boardshorts") },
-            { id: "car-trip:underwear", name: "Underwear, plus extras", aff: window.buildPatagoniaAffiliateLink("https://www.patagonia.com/search/?q=underwear") },
+            { id: "car-trip:underwear", name: "Underwear, plus extras", aff: "#" },
             { id: "car-trip:sleepwear", name: "Dedicated sleepwear", aff: "#" },
             { id: "car-trip:gaiters", name: "Low gaiters", aff: "#" }
           ]
@@ -744,9 +744,15 @@ window.KIT.lists.forEach((l) => {
   l.allItems = (l.groups || []).flatMap((g) => g.items || []);
 });
 
+// `aff: true` marks an article whose body carries affiliate markup (a
+// LodgingCta, AvailabilityLink, AffLink, RecommendedCard, or a hand-written
+// data-aff-network anchor). page-article.jsx reads it to put the
+// AffiliateDisclosure line under the byline, before the first link;
+// scripts/check-affiliate-links.mjs fails when the flag and the body disagree.
 window.ARTICLES = [
   {
     slug: "yosemite-in-october-2026",
+    aff: true,
     cat: "seasonal",
     title: "Yosemite in October 2026: A Fire, a Closed Road, and the Last Weeks of the High Country",
     dek: "The Dome Fire has closed Glacier Point Road and put smoke in the Valley's mornings. Tioga Road is open until the first storm, the Half Dome cables come down on the 13th, and the park closes its seasonal counters one by one. What is different this October, by date.",
@@ -803,6 +809,7 @@ window.ARTICLES = [
   },
   {
     slug: "clouds-rest-hike",
+    aff: true,
     cat: "trails",
     title: "Clouds Rest Hike: The Summit Above Half Dome, and When to Go",
     dek: "Higher than Half Dome, no lottery, no cables, and a granite spine for a finish. The Park Service's numbers from the Sunrise Lakes trailhead, the route in the order it arrives, water, altitude and the summit-before-noon rule, why you are driving to the trailhead, the overnight version and its quota, the through-hike to the Valley, and the weeks each October when the cables are down and Tioga Road is still open, with the park's own dates on how wide that gap has been.",
@@ -817,6 +824,7 @@ window.ARTICLES = [
   },
   {
     slug: "yosemite-from-las-vegas",
+    aff: true,
     cat: "planning",
     title: "Las Vegas to Yosemite: The Drive, and the Pass That Decides",
     dek: "The Park Service quotes 400 miles and eight hours from Las Vegas to Yosemite Valley over Tioga Pass, and 495 miles and up to ten around the bottom of the mountains when the pass is shut. Which drive you get is decided by the calendar. The Tonopah road and the Death Valley road to US 395 and when each is the right one, why the two parks' seasons are nearly opposite, the pass itself and the fees at the top of it, the Lee Vining night that makes the trip work, the winter road through Bakersfield and the better winter shape hidden in the park's own detour table, the loop and which way round to drive it, and the summer bus from Mammoth Lakes.",
@@ -831,6 +839,7 @@ window.ARTICLES = [
   },
   {
     slug: "highway-140-closed-yosemite",
+    aff: true,
     cat: "planning",
     title: "Highway 140 Closed? How to Get Into Yosemite Anyway",
     dek: "The all-weather road into Yosemite is the one that closes without a schedule: ten times in twenty years, for rock, for fire, for a motorhome on the shoulder. What a closure notice actually says, why the two barricade names decide whether your trip is intact, the two detours from Mariposa and what each costs, when to keep the room and when to move it, what happens to the bus, how to check Caltrans and the park in the right order, and the rock shed that will add planned closures to the canyon for the rest of the decade.",
@@ -845,6 +854,7 @@ window.ARTICLES = [
   },
   {
     slug: "yosemite-from-los-angeles",
+    aff: true,
     cat: "planning",
     title: "Los Angeles to Yosemite: The Drive and Where to Break It",
     dek: "The Park Service quotes 313 miles and six hours from Los Angeles to Yosemite Valley, and the routing app quotes less. Neither number is the one to plan around. The four pieces of the drive up I-5, 99, and 41, when to leave so the Valley has room for the car, the Oakhurst overnight that makes the trip work, what winter does to the Grapevine and the mountain, the eastern road over Tioga Pass and when it is worth it, and the train and the Fresno bus for anyone who would rather not drive.",
@@ -873,6 +883,7 @@ window.ARTICLES = [
   },
   {
     slug: "bracebridge-dinner-and-vintners-holidays",
+    aff: true,
     cat: "seasonal",
     title: "Bracebridge Dinner and Vintners' Holidays: An Honest Guide",
     dek: "Two names, two different events, one confusing set of web copy. What the Bracebridge Dinner and Vintners' Holidays actually cost, what each ticket buys, when they sell out, and an honest read on whether either is worth a trip built around a single very expensive evening.",
@@ -901,6 +912,7 @@ window.ARTICLES = [
   },
   {
     slug: "yosemite-in-three-to-five-days",
+    aff: true,
     cat: "planning",
     title: "Yosemite itinerary for 3, 4 or 5 days: one park per day",
     dek: "The third day is the first one that is not triage. Yosemite is four parks wearing one name, the Valley, the rim, the high country, and the far corners, and a three-to-five-day trip works by giving each one its own day. The order that survives the roads, the winter version, and the day with nothing on it.",
@@ -915,6 +927,7 @@ window.ARTICLES = [
   },
   {
     slug: "yosemite-winter-hikes",
+    aff: true,
     cat: "trails",
     title: "Yosemite winter hikes: the trails that stay open",
     dek: "Two thirds of the trail map closes when the snow settles in, and nothing at the gate tells you which trails are in the surviving third. The winter inventory: the Valley floor loops, Columbia Rock, the Mist Trail's winter route, Hetch Hetchy, the sequoias on foot, and the cleats that make it all walkable.",
@@ -929,6 +942,7 @@ window.ARTICLES = [
   },
   {
     slug: "yosemite-in-march",
+    aff: true,
     cat: "seasonal",
     title: "Yosemite in March: Weather, Snow, and a Tale of Two Seasons",
     dek: "One March is spring: 70 degrees in the Valley, waterfalls waking up, poppies in the canyon. The other is the biggest winter month of the year, the one the Sierra named. You cannot pick which one you get, but you can plan a trip that works in either. Here is how.",
@@ -943,6 +957,7 @@ window.ARTICLES = [
   },
   {
     slug: "camping-in-yosemite-first-time",
+    aff: true,
     cat: "planning",
     title: "Camping in Yosemite for the First Time",
     dek: "The reservation is the part everyone plans for. Nobody prepares you for four o'clock on the first afternoon: a site smaller than the photo, a steel box your cooler will not fit inside, and three hours of daylight. What a night in a Yosemite campground is actually like.",
@@ -971,6 +986,7 @@ window.ARTICLES = [
   },
   {
     slug: "yosemite-day-trip-from-bay-area",
+    aff: true,
     cat: "planning",
     title: "Yosemite Day Trip From San Francisco: The Honest Math",
     dek: "Nine hours of driving buys seven hours in the park in June and five in December, and the Valley lots are full before a driver who left San Francisco at five can arrive. When the day trip works, when it does not, and the one-day plan that produces a good day instead of a frantic one.",
@@ -1055,6 +1071,7 @@ window.ARTICLES = [
   },
   {
     slug: "yosemite-walk-up-and-day-of-permits",
+    aff: true,
     cat: "planning",
     title: "Yosemite Walk-Up Permits: What You Can Still Get Today",
     dek: "Every permit guide is written for someone planning six months out. This one is for the visitor already inside the park holding nothing: what needs no permit at all, the wilderness release and the three-day wall, the Half Dome daily lottery, and how to find a bed tonight.",
@@ -1069,6 +1086,7 @@ window.ARTICLES = [
   },
   {
     slug: "yosemite-in-fall",
+    aff: true,
     cat: "seasonal",
     title: "Yosemite in Fall: What Closes, and What You Get Instead",
     dek: "September through November is the season I recommend most and people book least, because the waterfalls are gone. Here is the trade laid out honestly: the crowd numbers, the closures in the order they happen, when the black oaks actually turn, and the two animals that make autumn a different park.",
@@ -1180,6 +1198,7 @@ window.ARTICLES = [
   },
   {
     slug: "yosemite-in-winter",
+    aff: true,
     cat: "seasonal",
     title: "Yosemite in Winter: The Season the Crowds Forget",
     dek: "The Valley stays open all year, and almost nobody comes. What actually closes, the chain rules explained plainly, Badger Pass and the Dewey Point snowshoe, the rink under Half Dome, and why clearing storms are the photographs of the year.",
@@ -1194,6 +1213,7 @@ window.ARTICLES = [
   },
   {
     slug: "where-to-stay-in-yosemite",
+    aff: true,
     cat: "planning",
     title: "Where to Stay in Yosemite: Every In-Park Option, Ranked",
     dek: "Six in-park options, one concessioner, and almost nothing in common: the Ahwahnee's real value, the Lodge's unbeatable address, Curry Village's canvas tradeoffs, the Housekeeping Camp sleeper pick, and the 366-day booking game that decides all of it.",
@@ -1235,6 +1255,7 @@ window.ARTICLES = [
   },
   {
     slug: "getting-to-yosemite",
+    aff: true,
     cat: "planning",
     title: "Getting to Yosemite: Which of the Five Entrances to Use",
     dek: "Yosemite has five entrances and they are nothing alike. Which highway fits which trip, real drive times, why your phone's routing cannot be trusted, what winter chain control means, and the YARTS bus that solves parking entirely.",
@@ -1263,6 +1284,7 @@ window.ARTICLES = [
   },
   {
     slug: "yosemite-accessibility-guide",
+    aff: true,
     cat: "planning",
     title: "Yosemite Accessibility: What Works, and How to Plan for It",
     dek: "The best view in Yosemite Valley is from a flat, paved loop. Wheelchair-accessible trails, the accessible Valley shuttle, Deaf services, the free Access Pass, and the planning arithmetic the brochures soften.",
@@ -1277,6 +1299,7 @@ window.ARTICLES = [
   },
   {
     slug: "pets-in-yosemite",
+    aff: true,
     cat: "planning",
     title: "Dogs in Yosemite: The Rules, the Two Trails, an Honest Answer",
     dek: "Yosemite is one of the least dog-friendly parks in the country, by design, and nobody tells you before the drive. Where a leashed dog can actually go, the two legal trails, campground rules, and when to leave the dog home.",
@@ -1305,6 +1328,7 @@ window.ARTICLES = [
   },
   {
     slug: "yosemite-camping-complete-guide",
+    aff: true,
     cat: "planning",
     title: "Camping in Yosemite: The Dirt on All 13 Campgrounds",
     dek: "Thirteen campgrounds, three booking windows, and a bear box you will come to respect. Twenty years of sleeping on this ground: how to get a site when they vanish in minutes, which campgrounds are worth it, and where to go when everything is full.",
@@ -1319,6 +1343,7 @@ window.ARTICLES = [
   },
   {
     slug: "where-to-propose-in-yosemite",
+    aff: true,
     cat: "planning",
     title: "Where to Propose in Yosemite, From Twenty Years of Watching",
     dek: "A naturalist who has watched hundreds of proposals on which Yosemite spots actually work, which famous overlooks are too crowded to bother with, the regulations nobody mentions, and why the simplest moments are the ones that land.",
@@ -1361,6 +1386,7 @@ window.ARTICLES = [
   },
   {
     slug: "yosemite-heat-safety-guide",
+    aff: true,
     cat: "seasonal",
     title: "Yosemite Heat Safety: A Naturalist's Survival Guide",
     dek: "Yosemite Valley is a granite oven in July and August. A naturalist on which trails will cook you, the water math, where to swim safely, and how to escape the heat uphill.",
@@ -1389,6 +1415,7 @@ window.ARTICLES = [
   },
   {
     slug: "yosemite-trip-cost-budget-2026",
+    aff: true,
     cat: "planning",
     title: "Yosemite Trip Cost in 2026: Three Budgets, Real Numbers",
     dek: "Entrance fees, lodging, food, gas, gear, and guided programs, with real 2026 numbers and three full trip totals: shoestring, comfortable mid-range, and splurge.",
@@ -1417,6 +1444,7 @@ window.ARTICLES = [
   },
   {
     slug: "yosemite-in-june-2026",
+    aff: true,
     cat: "seasonal",
     title: "Yosemite in June 2026: Two Junes, One Month",
     dek: "Low snowpack pushed everything earlier and the reservation system is gone. The waterfalls, the road openings, the crowds, the bears, and how to plan for the June you are actually getting.",
@@ -1459,6 +1487,7 @@ window.ARTICLES = [
   },
   {
     slug: "memorial-day-skip-the-valley-go-high-2026",
+    aff: true,
     cat: "seasonal",
     title: "Yosemite on Memorial Day 2026: skip the Valley, go high",
     dek: "Yosemite Valley will be a parking lot on Memorial Day weekend 2026. With Tioga Road and Glacier Point Road both open early, the move is to skip the Valley and spend the weekend 4,000 feet up in the high country.",
@@ -1487,6 +1516,7 @@ window.ARTICLES = [
   },
   {
     slug: "yosemite-in-one-or-two-days",
+    aff: true,
     cat: "planning",
     title: "One day in Yosemite: an itinerary for one or two days",
     dek: "One day in Yosemite is enough if you start early and do less. A deliberate one-or-two-day itinerary for 2026: the Valley waterfall sequence, what to skip, and what a second day above the floor earns you.",
@@ -1551,6 +1581,7 @@ window.ARTICLES = [
   },
   {
     slug: "four-mile-up-panorama-down",
+    aff: true,
     cat: "trails",
     title: "Four Mile Trail up, Panorama down: my favorite Yosemite hike",
     dek: "Up the Four Mile Trail to Glacier Point, down the Panorama Trail past Illilouette and Nevada Falls. A 13-mile loop that climbs 3,200 feet and gives you back the whole park. The logistics that make it work.",
@@ -1565,6 +1596,7 @@ window.ARTICLES = [
   },
   {
     slug: "yosemite-with-kids-no-reservations-2026",
+    aff: true,
     cat: "planning",
     title: "Yosemite with kids: a naturalist's honest last-minute guide",
     dek: "A senior Yosemite naturalist's honest guide to visiting with kids in 2026, no advance reservations needed. Kid-friendly hikes, timing tricks, YARTS bus tips, and what most families get wrong.",
@@ -1579,6 +1611,7 @@ window.ARTICLES = [
   },
   {
     slug: "tioga-road-opening-weekend-2026",
+    aff: true,
     cat: "seasonal",
     title: "Tioga Road opening 2026: a plan for opening weekend",
     dek: "Tioga Road and Tioga Pass open Friday, May 15, well ahead of the long-term average. What's open in Tuolumne Meadows, the road conditions, the short hikes that actually work in mid-May, and how to make a day of it east to Lee Vining and Mono Lake.",
@@ -1607,6 +1640,7 @@ window.ARTICLES = [
   },
   {
     slug: "glacier-point-road-open-2026",
+    aff: true,
     cat: "seasonal",
     title: "Glacier Point Road open 2026: a plan for the early season",
     dek: "The road climbs seventeen miles to a viewpoint at 7,200 feet that puts you at eye level with Half Dome. What is open at the top, what is not, and how to think about the first weeks of the 2026 season.",
@@ -1621,6 +1655,7 @@ window.ARTICLES = [
   },
   {
     slug: "mist-trail-the-real-guide",
+    aff: true,
     cat: "trails",
     title: "Mist Trail, Yosemite: what the internet isn't telling you",
     dek: "The most hiked trail in any national park generates more questions than every other Yosemite trail combined. The honest answers about shoes, water, when to go, and whether you can actually die out there.",
@@ -1733,6 +1768,7 @@ window.ARTICLES = [
   },
   {
     slug: "yosemite-stargazing-where-to-look-up",
+    aff: true,
     cat: "seasonal",
     title: "Yosemite stargazing: where to look up, and when",
     dek: "On a moonless August night at Olmsted Point, the Milky Way doesn't look like a thin band. It casts shadows. Where to go, when to go, and how to see the sky the way our ancestors did.",
@@ -1747,6 +1783,7 @@ window.ARTICLES = [
   },
   {
     slug: "yosemite-for-non-hikers",
+    aff: true,
     cat: "planning",
     title: "Yosemite for non-hikers: see the park without a trail",
     dek: "Yosemite is built for non-hikers more thoroughly than almost any park in the country. A complete visit is possible without ever putting on hiking boots. Here's how to plan one.",
@@ -1761,6 +1798,7 @@ window.ARTICLES = [
   },
   {
     slug: "pack-your-car-for-yosemite",
+    aff: true,
     cat: "planning",
     title: "How to pack your car for a Yosemite trip",
     dek: "Nobody writes about packing the car. But the car is the base camp for most Yosemite trips, and what's in it decides whether a flat tire is an inconvenience or a crisis.",
@@ -1775,6 +1813,7 @@ window.ARTICLES = [
   },
   {
     slug: "yosemite-gateway-towns-compared",
+    aff: true,
     cat: "planning",
     title: "Where to stay near Yosemite: the best town for your trip",
     dek: "Pick the wrong gateway town and you'll burn hours of every day on the road. Pick the right one and the rest of the trip gets easier. A side-by-side from someone who's stayed in all five.",
@@ -1803,6 +1842,7 @@ window.ARTICLES = [
   },
   {
     slug: "yosemite-without-reservations-2026",
+    aff: true,
     cat: "planning",
     title: "Do you need a reservation for Yosemite in 2026? No. The plan",
     dek: "The reservation system was a throttle. With it gone in 2026, the park hasn't gotten easier. It's gotten harder. Here's the real strategy.",
@@ -1817,6 +1857,7 @@ window.ARTICLES = [
   },
   {
     slug: "first-time-yosemite-overwhelm",
+    aff: true,
     cat: "planning",
     title: "First time in Yosemite: the guide to read before you book",
     dek: "The bucket list isn't the problem. The strategy is. Three things turn a Yosemite visit from “we saw the things” into one of the best weeks of your life.",

@@ -2483,6 +2483,16 @@ function AffiliateNote() {
   }, "Full disclosure."));
 }
 window.AffiliateNote = AffiliateNote;
+function AffiliateDisclosure({
+  children
+}) {
+  return React.createElement("p", {
+    className: "aff-disclosure"
+  }, children || "This page has affiliate links. If you buy or book through one, The Talus Field may earn a commission at no extra cost to you, and the recommendations do not change for it.", " ", React.createElement("a", {
+    href: "/affiliate"
+  }, "How that works."));
+}
+window.AffiliateDisclosure = AffiliateDisclosure;
 var EXPEDIA_SEARCH_BASE = "https://www.expedia.com/Hotel-Search?destination=";
 function expediaSearchUrl(destination) {
   return EXPEDIA_SEARCH_BASE + encodeURIComponent(destination);
@@ -2501,7 +2511,7 @@ function AvailabilityLink({
     className: ["aff-link", className].filter(Boolean).join(" "),
     href: href,
     target: "_blank",
-    rel: "sponsored noopener noreferrer",
+    rel: "sponsored noopener",
     "data-aff-network": "expedia",
     "data-aff-list": list || "page",
     "data-aff-item-slug": slug || "",
@@ -2567,7 +2577,7 @@ function ExpediaBanner({
   }, React.createElement("a", {
     href: b.href,
     target: "_blank",
-    rel: "sponsored noopener noreferrer",
+    rel: "sponsored noopener",
     "data-aff-network": "expedia",
     "data-aff-list": list || "banner",
     "data-aff-item-slug": slug || "",
@@ -2585,11 +2595,82 @@ function ExpediaBanner({
     href: "/affiliate"
   }, "Disclosure.")));
 }
+function patagoniaSearchUrl(q) {
+  return "https://www.patagonia.com/search/?q=" + encodeURIComponent(q).replace(/%20/g, "+");
+}
+function AffLink({
+  network = "patagonia",
+  url,
+  q,
+  list,
+  slug,
+  name,
+  className,
+  children
+}) {
+  var dest = url || (q ? patagoniaSearchUrl(q) : "");
+  var href = window.buildAffiliateLink ? window.buildAffiliateLink(network, dest) : dest;
+  return React.createElement("a", {
+    className: ["aff-link", className].filter(Boolean).join(" "),
+    href: href,
+    target: "_blank",
+    rel: "sponsored noopener",
+    "data-aff-network": network,
+    "data-aff-list": list || "page",
+    "data-aff-item-slug": slug || "",
+    "data-aff-name": name || q || dest
+  }, children);
+}
+function RecommendedCard({
+  heading,
+  note,
+  items,
+  list,
+  slug,
+  network = "patagonia",
+  source = "Patagonia"
+}) {
+  var linked = (items || []).some(it => it.q || it.url);
+  return React.createElement("aside", {
+    className: "rec-card",
+    "aria-label": heading || "What to bring"
+  }, React.createElement("h3", {
+    className: "rec-card__head"
+  }, heading || "What to bring"), note && React.createElement("p", {
+    className: "rec-card__note"
+  }, note), React.createElement("ul", {
+    className: "rec-card__list"
+  }, (items || []).map(it => React.createElement("li", {
+    key: it.id,
+    className: "rec-card__item"
+  }, React.createElement("span", {
+    className: "rec-card__text"
+  }, React.createElement("strong", {
+    className: "rec-card__what"
+  }, it.what), it.why && React.createElement("span", {
+    className: "rec-card__why"
+  }, it.why)), (it.q || it.url) && React.createElement(AffLink, {
+    network: it.network || network,
+    q: it.q,
+    url: it.url,
+    list: list,
+    slug: (slug ? slug + ":" : "") + it.id,
+    name: it.what,
+    className: "rec-card__link"
+  }, it.label || source, " ↗")))), linked && React.createElement("p", {
+    className: "rec-card__disclosure"
+  }, source, " links are affiliate links. Any equivalent does the same job, and the list does not change for them. ", React.createElement("a", {
+    href: "/affiliate"
+  }, "Disclosure.")));
+}
 Object.assign(window, {
   expediaSearchUrl,
   AvailabilityLink,
   LodgingCta,
-  ExpediaBanner
+  ExpediaBanner,
+  patagoniaSearchUrl,
+  AffLink,
+  RecommendedCard
 });
 var READ_LAST_KEY = "tfg.read.last";
 var READ_DONE_KEY = "tfg.read.done";

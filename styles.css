@@ -1292,6 +1292,19 @@ main:focus { outline: none; }
 }
 .article-aff-note a { color: var(--ink-2); text-decoration: underline; }
 
+/* Top-of-page affiliate disclosure (window.AffiliateDisclosure): one quiet
+   line under an article's byline or in a standing page's head, before the
+   first affiliate link. Same voice and colour as the end note. */
+.aff-disclosure {
+  margin: 14px 0 0;
+  max-width: 62ch;
+  font-family: var(--sans);
+  font-size: 13px;
+  line-height: 1.55;
+  color: var(--ink-3);
+}
+.aff-disclosure a { color: var(--ink-2); text-decoration: underline; }
+
 @media (max-width: 720px) {
   .kit-group__title { font-size: 21px; }
   .kit-check__name { font-size: 17px; }
@@ -4897,6 +4910,84 @@ main:focus { outline: none; }
   margin: 14px 0 0;
 }
 .lodging-cta__disclosure a { color: var(--ink-3); text-decoration: underline; }
+
+/* "What to bring" box (window.RecommendedCard): the gear sibling of
+   .lodging-cta, same paper, rule and moss edge so the two read as one family
+   of boxed, disclosed recommendations. Each row is the advice first and the
+   link second, small and to the right, never a button. */
+.rec-card {
+  margin: 36px 0;
+  padding: 22px 24px 20px;
+  background: var(--paper-2);
+  border: 1px solid var(--rule-soft);
+  border-left: 3px solid var(--moss);
+}
+.rec-card .rec-card__head {
+  font-family: var(--sans);
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 1.55;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--moss);
+  margin: 0 0 8px;
+}
+.rec-card .rec-card__note {
+  font-family: var(--sans);
+  font-size: 15px;
+  line-height: 1.6;
+  color: var(--ink-2);
+  margin: 0 0 6px;
+}
+.rec-card .rec-card__list { list-style: none; margin: 0; padding: 0; }
+.rec-card .rec-card__item {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 8px 20px;
+  padding: 10px 0;
+  margin: 0;
+  border-bottom: 1px solid var(--rule-soft);
+}
+.rec-card .rec-card__item:last-child { border-bottom: none; }
+.rec-card .rec-card__text { min-width: 0; }
+.rec-card .rec-card__what {
+  display: block;
+  font-family: var(--sans);
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--ink);
+}
+.rec-card .rec-card__why {
+  display: block;
+  font-family: var(--sans);
+  font-size: 14px;
+  line-height: 1.55;
+  color: var(--ink-2);
+  margin-top: 2px;
+}
+.rec-card .rec-card__link {
+  flex: none;
+  font-family: var(--sans);
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--moss);
+  text-decoration: none;
+  border-bottom: 1px solid currentColor;
+  white-space: nowrap;
+}
+.rec-card .rec-card__link:hover { color: var(--moss-2); }
+.rec-card .rec-card__disclosure {
+  font-family: var(--sans);
+  font-size: 12px;
+  color: var(--ink-3);
+  line-height: 1.55;
+  margin: 12px 0 0;
+}
+.rec-card .rec-card__disclosure a { color: var(--ink-3); text-decoration: underline; }
+@media (max-width: 520px) {
+  .rec-card .rec-card__item { flex-direction: column; }
+}
 
 /* Expedia-supplied banner creative (window.ExpediaBanner): renders nothing
    until affiliate.js's EXPEDIA_BANNER fields are filled. Centered and capped
@@ -9787,3 +9878,8 @@ html[data-nav-mode="pinned"] { scroll-padding-top: 62px; }
 .hp-contact__direct .hp-contact__note { margin: 0; }
 .hp-contact__mail a, .hp-contact__aside a { overflow-wrap: anywhere; }
 @media (max-width: 1100px) { .hp-contact__direct { margin-left: 0; } }
+
+/* /conditions: the season's kit under the forecast transect (CondSeasonKit).
+   A reading-width RecommendedCard, not a new board section. */
+.cond-kit { max-width: 720px; margin-top: 32px; }
+.cond-kit .rec-card { margin: 0; }

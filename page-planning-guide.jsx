@@ -1,4 +1,4 @@
-/* global React, LodgingCta, ResponsiveImage, HomeLink, HpPageHead, HpHeading, HpArticleCard, HpGuideBand, HpLetter */
+/* global React, LodgingCta, ResponsiveImage, HomeLink, HpPageHead, HpHeading, HpArticleCard, HpGuideBand, HpLetter, AffiliateDisclosure */
 
 // =============================================================================
 // THE PLANNING GUIDE — `/planning`.
@@ -175,7 +175,9 @@ function PlanningGuide({ go }) {
             })}
           </nav>
         }
-      />
+      >
+        <AffiliateDisclosure />
+      </HpPageHead>
 
       <section className="hp-wrap hp-section hp-planning__selector" id="trip-selector" tabIndex={-1}>
         <window.TripSelector go={go} onApplyIntent={applyIntent} onPlan={(p) => setPlanLodging(p.lodging)} />

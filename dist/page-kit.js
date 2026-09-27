@@ -177,7 +177,7 @@ function KitPage({
         className: "kit-check__link kit-check__aff",
         href: it.aff,
         target: "_blank",
-        rel: "sponsored noopener noreferrer",
+        rel: "sponsored noopener",
         "data-aff-network": "patagonia",
         "data-aff-list": list.slug,
         "data-aff-item-slug": it.id,

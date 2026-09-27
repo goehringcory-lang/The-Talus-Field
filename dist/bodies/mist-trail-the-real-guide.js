@@ -10,7 +10,7 @@ window.ARTICLE_BODIES["mist-trail-the-real-guide"] = function MistTrailBody() {
     className: "aff-link",
     href: window.buildPatagoniaAffiliateLink("https://www.patagonia.com/search/?q=rain+jacket"),
     target: "_blank",
-    rel: "sponsored noopener noreferrer",
+    rel: "sponsored noopener",
     "data-aff-network": "patagonia",
     "data-aff-list": "article_inline",
     "data-aff-item-slug": "mist-trail-the-real-guide",

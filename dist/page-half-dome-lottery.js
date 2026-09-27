@@ -85,7 +85,7 @@ function HalfDomeLotteryPage({
         }]
       })
     })
-  }), React.createElement(FjLayout, null, React.createElement("section", {
+  }, React.createElement(AffiliateDisclosure, null)), React.createElement(FjLayout, null, React.createElement("section", {
     className: "prose"
   }, React.createElement("h2", null, "The season"), React.createElement("p", null, "Half Dome has steel cables bolted into the granite for the last 400 vertical feet of the climb. They typically go up the Friday before Memorial Day and come down the day after the second Monday in October, shifting with snow on the route, crew availability and weather. While they are up, a permit is required past the base of the subdome, not just on the cables themselves."), React.createElement("p", null, "The checkpoint sits at the base of the subdome steps, staffed by rangers who check the permit, a government-issued photo ID and the confirmation email. Everyone in the group has to be there together. A maximum of 300 hikers a day go through: roughly 225 day hikers via the two lotteries below, and 75 backpackers via the separate wilderness permit system. If your trip is an overnight that includes Half Dome, you want a wilderness permit with the Half Dome add-on, not a day-hiker lottery permit."), React.createElement("p", null, "No permit means you turn around, and this is federal law rather than a suggestion: ascending the subdome or the cables without one violates 36 CFR 1.6 and carries a fine of up to $5,000 and up to six months in jail. Rangers check every group. The lotteries stay lotteries."), React.createElement("h2", null, "Two lotteries, not one"), React.createElement("ol", {
     className: "fj-pair"

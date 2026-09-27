@@ -1,4 +1,4 @@
-/* global React, HpPageHead, LodgingCta, HpGuideBand, HpLetter, FjLayout, FjPull, FjRidge, FjCard, FjPlate */
+/* global React, HpPageHead, LodgingCta, HpGuideBand, HpLetter, FjLayout, FjPull, FjRidge, FjCard, FjPlate, AffiliateDisclosure */
 
 // =============================================================================
 // DISTANCES — `/distances` route. The drive-time matrix.
@@ -116,7 +116,9 @@ function DistancesPage({ go }) {
             }
           />
         }
-      />
+      >
+        <AffiliateDisclosure />
+      </HpPageHead>
 
 
       <FjLayout>

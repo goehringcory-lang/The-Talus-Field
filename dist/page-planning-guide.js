@@ -134,7 +134,7 @@ function PlanningGuide({
         className: "hp-eyebrow"
       }, String(i + 1).padStart(2, "0"), " / ", p.eyebrow.toUpperCase()), React.createElement("h3", null, p.title), React.createElement("b", null, n, " ", n === 1 ? "entry" : "entries", " ", React.createElement("span", null, "↓"))));
     }))
-  }), React.createElement("section", {
+  }, React.createElement(AffiliateDisclosure, null)), React.createElement("section", {
     className: "hp-wrap hp-section hp-planning__selector",
     id: "trip-selector",
     tabIndex: -1

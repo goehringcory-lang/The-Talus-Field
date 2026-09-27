@@ -10,7 +10,7 @@ window.ARTICLE_BODIES["yosemite-stargazing-where-to-look-up"] = function Yosemit
     className: "aff-link",
     href: window.buildPatagoniaAffiliateLink("https://www.patagonia.com/search/?q=down+jacket"),
     target: "_blank",
-    rel: "sponsored noopener noreferrer",
+    rel: "sponsored noopener",
     "data-aff-network": "patagonia",
     "data-aff-list": "article_inline",
     "data-aff-item-slug": "yosemite-stargazing-where-to-look-up",

@@ -1,4 +1,4 @@
-/* global React, HpPageHead, LodgingCta, HpGuideBand, HpLetter, FjLayout, FjPull, FjRidge, FjCard, FjPlate */
+/* global React, HpPageHead, LodgingCta, HpGuideBand, HpLetter, FjLayout, FjPull, FjRidge, FjCard, FjPlate, AffiliateDisclosure */
 
 // =============================================================================
 // HALF DOME LOTTERY — `/half-dome-lottery` route. The third evergreen event
@@ -109,7 +109,9 @@ function HalfDomeLotteryPage({ go }) {
             }
           />
         }
-      />
+      >
+        <AffiliateDisclosure />
+      </HpPageHead>
 
 
       <FjLayout>

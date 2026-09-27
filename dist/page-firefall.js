@@ -397,7 +397,7 @@ function FirefallPage({
       alt: "Horsetail Fall glowing orange at sunset on the east face of El Capitan",
       sizes: "(max-width: 760px) calc(100vw - 40px), 640px"
     }), React.createElement("figcaption", null, "Photo: Barney Moss / Wikimedia Commons (CC BY 2.0)"))
-  }), React.createElement("div", {
+  }, React.createElement(AffiliateDisclosure, null)), React.createElement("div", {
     className: "hp-wrap"
   }, React.createElement("dl", {
     className: "ff-facts"
@@ -668,7 +668,7 @@ function FirefallPage({
     className: "ff-gear__link",
     href: window.buildAffiliateLink ? window.buildAffiliateLink("patagonia", `https://www.patagonia.com/search/?q=${g.q.replace(/ /g, "+")}`) : `https://www.patagonia.com/search/?q=${g.q.replace(/ /g, "+")}`,
     target: "_blank",
-    rel: "sponsored noopener noreferrer",
+    rel: "sponsored noopener",
     "data-aff-network": "patagonia",
     "data-aff-list": "firefall_gear",
     "data-aff-item-slug": g.id,

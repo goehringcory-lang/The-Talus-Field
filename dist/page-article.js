@@ -337,7 +337,7 @@ function ArticlePage({
     className: "hp-article__dates"
   }, React.createElement("time", {
     dateTime: article.isoModified || article.isoDate
-  }, article.date), React.createElement("span", null, article.read, " read"), article.isoModified && article.isoModified !== article.isoDate && formatIsoDate(article.isoModified) && React.createElement("span", null, "Updated ", formatIsoDate(article.isoModified)))), (() => {
+  }, article.date), React.createElement("span", null, article.read, " read"), article.isoModified && article.isoModified !== article.isoDate && formatIsoDate(article.isoModified) && React.createElement("span", null, "Updated ", formatIsoDate(article.isoModified)))), article.aff && window.AffiliateDisclosure && React.createElement(window.AffiliateDisclosure, null, "This article has affiliate links. If you buy or book through one, The Talus Field may earn a commission at no extra cost to you, and the recommendations do not change for it."), (() => {
     var series = window.planningSeriesFor && window.planningSeriesFor(slug);
     if (!series) return null;
     var prev = series.prev ? window.findArticle(series.prev) : null;

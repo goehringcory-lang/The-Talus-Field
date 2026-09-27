@@ -86,7 +86,7 @@ window.ARTICLE_BODIES["glacier-point-road-open-2026"] = function GlacierPointRoa
       </p>
 
       <p>
-        Also: a wind layer. The temperature spread between the Valley and the rim on a clear May day can be twenty degrees. People underestimate this every year.
+        Also: a <AffLink q="wind jacket" list="article_inline" slug="glacier-point-road-open-2026" name="Wind jacket">wind layer</AffLink>. The temperature spread between the Valley and the rim on a clear May day can be twenty degrees. People underestimate this every year.
       </p>
 
       <h2>The honest takeaway</h2>
@@ -100,6 +100,8 @@ window.ARTICLE_BODIES["glacier-point-road-open-2026"] = function GlacierPointRoa
       </p>
 
       <p>The door is open. Walk through it.</p>
+
+      <AffiliateNote />
     </>
   );
 };

@@ -126,7 +126,7 @@ function TiogaOpeningPage({
         }]
       })
     })
-  }), React.createElement(FjLayout, null, React.createElement("section", {
+  }, React.createElement(AffiliateDisclosure, null)), React.createElement(FjLayout, null, React.createElement("section", {
     className: "prose"
   }, React.createElement("h2", null, "How the opening works"), React.createElement(FjPull, {
     side: true,

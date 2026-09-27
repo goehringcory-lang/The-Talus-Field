@@ -151,7 +151,7 @@ function DistancesPage({
         }]
       })
     })
-  }), React.createElement(FjLayout, null, React.createElement("section", {
+  }, React.createElement(AffiliateDisclosure, null)), React.createElement(FjLayout, null, React.createElement("section", {
     className: "prose"
   }, React.createElement("h2", null, "Gateway towns to Yosemite Valley"), React.createElement("p", null, "Drive times are to the west end of Yosemite Valley in ordinary conditions. Add 15 to 20 minutes to reach Curry Village at the east end, and add more than you think for summer afternoons, when the Valley loop road is the slowest few miles of the trip."), React.createElement(DriveBars, null), React.createElement("div", {
     className: "fj-tablewrap",

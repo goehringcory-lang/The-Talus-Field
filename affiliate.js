@@ -149,3 +149,23 @@ window.buildAffiliateLink = function buildAffiliateLink(network, targetUrl) {
 window.buildPatagoniaAffiliateLink = function buildPatagoniaAffiliateLink(targetUrl) {
   return window.buildAffiliateLink("patagonia", targetUrl);
 };
+
+// TODO(affiliate): programs the site recommends things from but has not
+// joined. Each is a gap a live page already shows, not a wish list; none has
+// an ID, and none gets one here until it is pasted from the network's own
+// dashboard (CLAUDE.md, affiliate rules: never invent an ID). Joining one is
+// a registry entry above, a line on /affiliate, and flipping the dormant
+// items that name it. Ranked by likely revenue in the September 2026 PR.
+//   - REI (AvantLink): traction for the winter hikes, bear canisters,
+//     headlamps, water filters, trekking poles, the overnight checklist's
+//     55 to 65L pack. The kit's largest block of dormant "#" items.
+//   - Booking.com / Stay22 / Hipcamp: already registered above with empty
+//     IDs; the applications are pending (MONETIZATION-IDEAS.md 3.1).
+//   - GetYourGuide or Viator: the guided Valley tours and Glacier Point
+//     tour the trip planning pages mention, booked through the concessioner
+//     today.
+//   - Bookshop.org: field guides and natural-history books for the Nature
+//     Notes archive topics and the species pieces (the archive's one-ask rule
+//     would need an owner decision first).
+//   - Amazon Associates: binoculars and camera gear for the wildlife,
+//     birding and photography pieces, where Patagonia carries nothing.

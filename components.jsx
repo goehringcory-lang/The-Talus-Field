@@ -1967,6 +1967,22 @@ function AffiliateNote() {
 }
 window.AffiliateNote = AffiliateNote;
 
+// The disclosure a reader meets before the first affiliate link: one line
+// under the byline of an article flagged `aff: true` in window.ARTICLES
+// (page-article.jsx), and in the HpPageHead of a standing page that carries
+// affiliate links. AffiliateNote above still closes the body; this is the
+// half the FTC cares about most, because it comes first. `children` replaces
+// the default sentence when a page needs to name its program.
+function AffiliateDisclosure({ children }) {
+  return (
+    <p className="aff-disclosure">
+      {children || "This page has affiliate links. If you buy or book through one, The Talus Field may earn a commission at no extra cost to you, and the recommendations do not change for it."}{" "}
+      <a href="/affiliate">How that works.</a>
+    </p>
+  );
+}
+window.AffiliateDisclosure = AffiliateDisclosure;
+
 // ============================================================
 // Lodging availability links (MONETIZATION-IDEAS.md 3.1)
 // ============================================================
@@ -2009,7 +2025,7 @@ function AvailabilityLink({ destination, children, list, slug, name, className, 
       className={["aff-link", className].filter(Boolean).join(" ")}
       href={href}
       target="_blank"
-      rel="sponsored noopener noreferrer"
+      rel="sponsored noopener"
       data-aff-network="expedia"
       data-aff-list={list || "page"}
       data-aff-item-slug={slug || ""}
@@ -2078,7 +2094,7 @@ function ExpediaBanner({ list, slug }) {
       <a
         href={b.href}
         target="_blank"
-        rel="sponsored noopener noreferrer"
+        rel="sponsored noopener"
         data-aff-network="expedia"
         data-aff-list={list || "banner"}
         data-aff-item-slug={slug || ""}
@@ -2093,7 +2109,81 @@ function ExpediaBanner({ list, slug }) {
   );
 }
 
-Object.assign(window, { expediaSearchUrl, AvailabilityLink, LodgingCta, ExpediaBanner });
+// ============================================================
+// Gear links: AffLink and RecommendedCard
+// ============================================================
+// AffLink is the inline affiliate anchor for anything that is not a lodging
+// search (AvailabilityLink covers those). `network` names an entry in
+// window.AFFILIATES; pass either the destination `url` or, for Patagonia, a
+// category query `q`, which becomes the same /search/?q= URL the kit and
+// /firefall link. Categories rather than products, because /affiliate
+// promises fifty miles on any piece of gear the site names (CLAUDE.md,
+// affiliate rules). Mirrored in scripts/gen-prerender.mjs.
+function patagoniaSearchUrl(q) {
+  return "https://www.patagonia.com/search/?q=" + encodeURIComponent(q).replace(/%20/g, "+");
+}
+
+function AffLink({ network = "patagonia", url, q, list, slug, name, className, children }) {
+  const dest = url || (q ? patagoniaSearchUrl(q) : "");
+  const href = window.buildAffiliateLink ? window.buildAffiliateLink(network, dest) : dest;
+  return (
+    <a
+      className={["aff-link", className].filter(Boolean).join(" ")}
+      href={href}
+      target="_blank"
+      rel="sponsored noopener"
+      data-aff-network={network}
+      data-aff-list={list || "page"}
+      data-aff-item-slug={slug || ""}
+      data-aff-name={name || q || dest}
+    >{children}</a>
+  );
+}
+
+// The small "what to bring" box: two to four items, each a line of advice the
+// page already gives plus, where a joined program carries the category, one
+// link. An item with no `q`/`url` renders linkless, which is the /affiliate
+// guardrail in miniature (the best recommendation stays, unlinked). Carries
+// its own disclosure line, like LodgingCta, so it stays honest wherever it is
+// dropped. Item ids become the GA4 aff_item_slug. Any markup change here must
+// be hand-mirrored in scripts/gen-prerender.mjs.
+function RecommendedCard({ heading, note, items, list, slug, network = "patagonia", source = "Patagonia" }) {
+  const linked = (items || []).some((it) => it.q || it.url);
+  return (
+    <aside className="rec-card" aria-label={heading || "What to bring"}>
+      <h3 className="rec-card__head">{heading || "What to bring"}</h3>
+      {note && <p className="rec-card__note">{note}</p>}
+      <ul className="rec-card__list">
+        {(items || []).map((it) => (
+          <li key={it.id} className="rec-card__item">
+            <span className="rec-card__text">
+              <strong className="rec-card__what">{it.what}</strong>
+              {it.why && <span className="rec-card__why">{it.why}</span>}
+            </span>
+            {(it.q || it.url) && (
+              <AffLink
+                network={it.network || network}
+                q={it.q}
+                url={it.url}
+                list={list}
+                slug={(slug ? slug + ":" : "") + it.id}
+                name={it.what}
+                className="rec-card__link"
+              >{it.label || source} ↗</AffLink>
+            )}
+          </li>
+        ))}
+      </ul>
+      {linked && (
+        <p className="rec-card__disclosure">
+          {source} links are affiliate links. Any equivalent does the same job, and the list does not change for them. <a href="/affiliate">Disclosure.</a>
+        </p>
+      )}
+    </aside>
+  );
+}
+
+Object.assign(window, { expediaSearchUrl, AvailabilityLink, LodgingCta, ExpediaBanner, patagoniaSearchUrl, AffLink, RecommendedCard });
 
 // ============================================================
 // Read history. The article page's progress tracker (page-article.jsx) writes

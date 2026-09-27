@@ -1,4 +1,4 @@
-/* global React, HpPageHead, HpGuideBand, HpLetter, LodgingCta, DEADLINES, FjLayout, FjCard, FjRidge */
+/* global React, HpPageHead, HpGuideBand, HpLetter, LodgingCta, DEADLINES, FjLayout, FjCard, FjRidge, AffiliateDisclosure */
 
 // =============================================================================
 // DATES — `/dates` route. The dates that decide a Yosemite trip, in one table,
@@ -262,7 +262,9 @@ function DatesPage({ go }) {
             ]}
           />
         }
-      />
+      >
+        <AffiliateDisclosure />
+      </HpPageHead>
 
 
       <FjLayout>

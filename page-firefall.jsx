@@ -1,4 +1,4 @@
-/* global React, HpPageHead, HpHeading, HomeLink, ResponsiveImage, WebcamStrip, AvailabilityLink, HpGuideBand, HpLetter */
+/* global React, HpPageHead, HpHeading, HomeLink, ResponsiveImage, WebcamStrip, AvailabilityLink, HpGuideBand, HpLetter, AffiliateDisclosure */
 
 // =============================================================================
 // THE FIREFALL — `/firefall` route. The first evergreen event page
@@ -270,7 +270,9 @@ function FirefallPage({ go }) {
             <figcaption>Photo: Barney Moss / Wikimedia Commons (CC BY 2.0)</figcaption>
           </figure>
         }
-      />
+      >
+        <AffiliateDisclosure />
+      </HpPageHead>
 
       <div className="hp-wrap">
         <dl className="ff-facts">
@@ -489,7 +491,7 @@ function FirefallPage({ go }) {
                 <li key={g.id}>
                   <div><strong>{g.what}</strong><p>{g.why}</p></div>
                   <a className="ff-gear__link" href={window.buildAffiliateLink ? window.buildAffiliateLink("patagonia", `https://www.patagonia.com/search/?q=${g.q.replace(/ /g, "+")}`) : `https://www.patagonia.com/search/?q=${g.q.replace(/ /g, "+")}`}
-                    target="_blank" rel="sponsored noopener noreferrer"
+                    target="_blank" rel="sponsored noopener"
                     data-aff-network="patagonia" data-aff-list="firefall_gear" data-aff-item-slug={g.id} data-aff-name={g.what}>{g.label} ↗</a>
                 </li>
               ))}
