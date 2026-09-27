@@ -52,7 +52,7 @@ pages and are not flagged.
 | # | Page | What is wrong visually | Concept | Status |
 |---|---|---|---|---|
 | 1 | `/half-dome-lottery` | 8,700px of prose in one 680px column, and the one data table is a single dense row. The head has no image. It is the heaviest page on the site. | "The permit ledger": a split head with the Half Dome photo and a field card of the season's key facts, the numbered section index, the odds drawn as bars (preseason and daily, weekday and weekend), the two lotteries as side-by-side cards, a pull quote, and a ridge divider before the fine print. | done |
-| 2 | `/tioga-opening` | A long prose column, and the opening-date table has two rows. No image. | "The snow line": a Tuolumne photo head and a field card, a year strip showing where the 2026 opening and the long-term average fall between May and June, the section index, and the four self-sufficiency rules as a numbered card grid. | todo |
+| 2 | `/tioga-opening` | A long prose column, and the opening-date table has two rows. No image. | "The snow line": a Tuolumne photo head and a field card, a year strip showing where the 2026 opening and the long-term average fall between May and June, the section index, and the four self-sufficiency rules as a numbered card grid. | done |
 | 3 | `/international` | A long column. The fee table is dense. No image. | "Passport stamp": a Tunnel View head with a card of the three fees, the fees table as a price ladder, and the index. | todo |
 | 4 | `/distances` | The drive table is the only visual, and it is plain. No image. | "Road log": drive times from each town drawn as bars on one scale, a winding-road head with a field card, and the index. | todo |
 | 5 | `/dates` | The fixed-windows table is long and flat. The head has no image. | "The year at a glance": a twelve-month strip plotting each fixed window as a band, a topo head, and the index. | todo |
@@ -80,3 +80,12 @@ pages and are not flagged.
   serif lead phrases set inline with sans text; small caption type; no scroll
   cue on the phone table (now an edge fade); and an all-caps eyebrow in the
   source. The archive pixel-diffed at 0 changed pixels.
+- **/tioga-opening** done. The reviewer caught: the strip's "June 1" label
+  sitting off its date (now placed at 51.67%); 8px strip labels (now 10px);
+  strip labels that would overprint as years are added (alternating tick
+  heights, edge labels hang inward); card numerals inside a numbered section
+  reading as a second sequence (card grids now carry none, site-wide); a
+  side pull quote landing before its setup under 1280px (side pulls now show
+  only where they hang in the margin); the live status chip invisible to
+  heading navigation (now an h3 labelling its section); a wrapping card
+  label and a squeezed plate caption.
