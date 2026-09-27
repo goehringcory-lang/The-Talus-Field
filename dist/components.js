@@ -3170,6 +3170,206 @@ function WebcamStrip({
     }
   }, "Yosemite Conservancy / Pixelcaster")));
 }
+var FJ_HEADINGS = ".prose h2:not([data-fj-skip]), .fj-h";
+function fjSlug(text) {
+  return String(text || "").toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "").slice(0, 48) || "section";
+}
+var fjPad = n => String(n).padStart(2, "0");
+function FjLayout({
+  children,
+  numbered = true,
+  label = "On this page",
+  className
+}) {
+  var colRef = React.useRef(null);
+  var [items, setItems] = React.useState([]);
+  var [active, setActive] = React.useState(null);
+  React.useLayoutEffect(() => {
+    var col = colRef.current;
+    if (!col) return undefined;
+    var heads = Array.from(col.querySelectorAll(FJ_HEADINGS));
+    var taken = new Set();
+    setItems(heads.map(h => {
+      if (!h.id) {
+        var id = "s-" + fjSlug(h.textContent);
+        for (var n = 2; taken.has(id) || document.getElementById(id); n++) id = "s-" + fjSlug(h.textContent) + "-" + n;
+        h.id = id;
+      }
+      taken.add(h.id);
+      return {
+        id: h.id,
+        label: h.textContent.trim()
+      };
+    }));
+    var raf = 0;
+    var spy = () => {
+      raf = 0;
+      var line = window.innerHeight * 0.3;
+      var current = null;
+      for (var h of heads) {
+        if (h.getBoundingClientRect().top <= line) current = h.id;else break;
+      }
+      setActive(current);
+    };
+    var onScroll = () => {
+      if (!raf) raf = requestAnimationFrame(spy);
+    };
+    spy();
+    window.addEventListener("scroll", onScroll, {
+      passive: true
+    });
+    return () => {
+      window.removeEventListener("scroll", onScroll);
+      if (raf) cancelAnimationFrame(raf);
+    };
+  }, []);
+  var jump = (e, id) => {
+    var el = document.getElementById(id);
+    if (!el) return;
+    e.preventDefault();
+    var reduce = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    el.scrollIntoView({
+      behavior: reduce ? "auto" : "smooth",
+      block: "start"
+    });
+    try {
+      history.replaceState(history.state, "", "#" + id);
+    } catch (err) {}
+    el.setAttribute("tabindex", "-1");
+    el.focus({
+      preventScroll: true
+    });
+  };
+  var list = React.createElement("ol", null, items.map((it, i) => React.createElement("li", {
+    key: it.id
+  }, React.createElement("a", {
+    href: "#" + it.id,
+    "aria-current": active === it.id ? "location" : undefined,
+    onClick: e => jump(e, it.id)
+  }, React.createElement("span", {
+    "aria-hidden": "true"
+  }, fjPad(i + 1)), it.label))));
+  var many = items.length > 2;
+  return React.createElement("div", {
+    className: ["hp-wrap", "fj-layout", numbered ? "fj-numbered" : null, className].filter(Boolean).join(" ")
+  }, React.createElement("nav", {
+    className: "fj-index",
+    "aria-label": label
+  }, many && React.createElement(React.Fragment, null, React.createElement("p", {
+    className: "hp-eyebrow"
+  }, label), list)), React.createElement("div", {
+    className: "fj-column",
+    ref: colRef
+  }, many && React.createElement("details", {
+    className: "fj-toc"
+  }, React.createElement("summary", null, React.createElement("span", {
+    className: "hp-eyebrow"
+  }, label), React.createElement("span", {
+    className: "fj-toc__count"
+  }, items.length, " sections")), list), children));
+}
+function FjFacts({
+  items,
+  tone,
+  className,
+  label
+}) {
+  return React.createElement("dl", {
+    className: ["fj-facts", tone ? "fj-facts--" + tone : null, className].filter(Boolean).join(" "),
+    "aria-label": label
+  }, items.map(it => React.createElement("div", {
+    key: it.label
+  }, React.createElement("dt", null, it.label), React.createElement("dd", null, it.value, it.note && React.createElement("small", null, it.note)))));
+}
+function FjPull({
+  children,
+  cite,
+  side
+}) {
+  return React.createElement("div", {
+    className: "fj-pull" + (side ? " fj-pull--side" : ""),
+    "aria-hidden": "true"
+  }, React.createElement("p", null, children), cite && React.createElement("span", null, cite));
+}
+function FjRidge() {
+  return React.createElement("div", {
+    className: "fj-ridge",
+    "aria-hidden": "true"
+  }, React.createElement("svg", {
+    viewBox: "0 0 240 48",
+    width: "240",
+    height: "48",
+    focusable: "false"
+  }, React.createElement("path", {
+    className: "fj-ridge__far",
+    d: "M0 46 L30 40 L52 42 L70 34 L88 38 L100 32 L112 36 L124 30"
+  }), React.createElement("path", {
+    className: "fj-ridge__dome",
+    d: "M84 46 L98 40 L110 32 C 116 20, 128 9, 144 7 C 156 6, 164 9, 167 15 L 168 46 Z"
+  }), React.createElement("path", {
+    className: "fj-ridge__far",
+    d: "M168 30 L180 33 L192 28 L206 36 L222 38 L240 46"
+  }), React.createElement("path", {
+    className: "fj-ridge__cables",
+    d: "M121 23 C 128 15, 136 10, 144 9"
+  })));
+}
+function FjCard({
+  eyebrow,
+  title,
+  rows,
+  stamp,
+  foot,
+  children,
+  className
+}) {
+  return React.createElement("div", {
+    className: ["fj-card", className].filter(Boolean).join(" ")
+  }, stamp && React.createElement("span", {
+    className: "fj-card__stamp",
+    "aria-hidden": "true"
+  }, stamp), eyebrow && React.createElement("p", {
+    className: "hp-eyebrow"
+  }, eyebrow), title && React.createElement("p", {
+    className: "fj-card__title"
+  }, title), rows && React.createElement("dl", null, rows.map(r => React.createElement("div", {
+    key: r.label
+  }, React.createElement("dt", null, r.label), React.createElement("dd", null, r.value)))), children, foot && React.createElement("p", {
+    className: "fj-card__foot"
+  }, foot));
+}
+function FjPlate({
+  image,
+  alt,
+  label,
+  credit,
+  card,
+  className
+}) {
+  return React.createElement("div", {
+    className: ["fj-headart", card ? "fj-headart--card" : null, className].filter(Boolean).join(" ")
+  }, React.createElement("figure", {
+    className: "fj-plate"
+  }, React.createElement(ResponsiveImage, {
+    image: image,
+    alt: alt,
+    eager: true,
+    sizes: "(max-width: 760px) calc(100vw - 40px), (max-width: 1100px) 50vw, 620px"
+  }), (label || credit) && React.createElement("figcaption", null, label, credit && React.createElement("span", null, credit))), card);
+}
+function FjSteps({
+  steps,
+  className
+}) {
+  return React.createElement("ol", {
+    className: ["fj-steps", className].filter(Boolean).join(" ")
+  }, steps.map((s, i) => React.createElement("li", {
+    key: i
+  }, React.createElement("span", {
+    className: "fj-steps__n",
+    "aria-hidden": "true"
+  }, fjPad(i + 1)), React.createElement("div", null, s.title && React.createElement("strong", null, s.title), s.text && React.createElement("p", null, s.text)))));
+}
 var GUIDE_PROMO_APP_BASE = typeof window !== "undefined" && window.GUIDE_APP_BASE || "https://guide.thetalusfieldjournal.com";
 Object.assign(window, {
   Placeholder,
@@ -3197,5 +3397,12 @@ Object.assign(window, {
   HpPageHead,
   HpGuideBand,
   HpLetter,
-  HpPostcard
+  HpPostcard,
+  FjLayout,
+  FjFacts,
+  FjPull,
+  FjRidge,
+  FjCard,
+  FjSteps,
+  FjPlate
 });
