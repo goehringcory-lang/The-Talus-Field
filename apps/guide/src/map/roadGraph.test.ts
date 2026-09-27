@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest'
 import { GRAPH_FLAGS, RoadGraph, decodePolyline, encodePolyline, type Pt, type RoadGraphFile } from './roadGraph'
-import { ROADS_URL } from './roads.generated'
+import { ROADS_URL } from './mapData.generated'
 
 const MILE = 1609.34
 
