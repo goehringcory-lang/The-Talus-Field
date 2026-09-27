@@ -1,4 +1,4 @@
-/* global React, HpPageHead, HpHeading, HpGuideBand, HpLetter, LodgingCta */
+/* global React, HpPageHead, HpHeading, HpGuideBand, HpLetter, LodgingCta, AffiliateDisclosure */
 
 // =============================================================================
 // ITINERARIES — `/itineraries` route. The curated day plans from
@@ -59,7 +59,9 @@ function ItinerariesPage({ go }) {
             ))}
           </nav>
         }
-      />
+      >
+        <AffiliateDisclosure />
+      </HpPageHead>
 
       {itineraries.map((it) => (
         <section key={it.id} id={it.id} tabIndex={-1} className="hp-wrap hp-section itin">

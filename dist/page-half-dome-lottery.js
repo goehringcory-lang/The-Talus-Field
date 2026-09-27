@@ -27,7 +27,7 @@ function HalfDomeLotteryPage({
     eyebrow: "PERMIT SEASON · APPLICATIONS OPEN IN MARCH",
     title: "The Half Dome lottery",
     intro: "Most people think there is one Half Dome lottery, that it happens in March, and that losing it ends the year. All three are wrong. There are two lotteries, the second one runs every day the cables are up, and the strategy for each is different. This page is the honest version: the calendar, the published odds, the strategy, and what to do when the answer is no."
-  }), React.createElement("div", {
+  }, React.createElement(AffiliateDisclosure, null)), React.createElement("div", {
     className: "hp-wrap hp-reading"
   }, React.createElement("div", {
     className: "hp-reading__column"

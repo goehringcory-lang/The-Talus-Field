@@ -48,7 +48,7 @@ function ItinerariesPage({
     }, React.createElement("div", null, React.createElement("p", {
       className: "hp-eyebrow"
     }, (it.label || "").toUpperCase()), React.createElement("h3", null, it.title), React.createElement("b", null, it.days.length, " ", it.days.length === 1 ? "day" : "days", " ", React.createElement("span", null, "↓"))))))
-  }), itineraries.map(it => React.createElement("section", {
+  }, React.createElement(AffiliateDisclosure, null)), itineraries.map(it => React.createElement("section", {
     key: it.id,
     id: it.id,
     tabIndex: -1,

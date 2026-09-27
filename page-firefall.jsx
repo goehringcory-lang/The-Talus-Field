@@ -1,4 +1,4 @@
-/* global React, HpPageHead, HpHeading, HomeLink, ResponsiveImage, WebcamStrip, AvailabilityLink, HpGuideBand, HpLetter */
+/* global React, HpPageHead, HpHeading, HomeLink, ResponsiveImage, WebcamStrip, AvailabilityLink, HpGuideBand, HpLetter, AffiliateDisclosure */
 
 // =============================================================================
 // THE FIREFALL — `/firefall` route. The first evergreen event page
@@ -270,7 +270,9 @@ function FirefallPage({ go }) {
             <figcaption>Photo: Barney Moss / Wikimedia Commons (CC BY 2.0)</figcaption>
           </figure>
         }
-      />
+      >
+        <AffiliateDisclosure />
+      </HpPageHead>
 
       <div className="hp-wrap">
         <dl className="ff-facts">

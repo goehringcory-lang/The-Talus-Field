@@ -1967,6 +1967,22 @@ function AffiliateNote() {
 }
 window.AffiliateNote = AffiliateNote;
 
+// The disclosure a reader meets before the first affiliate link: one line
+// under the byline of an article flagged `aff: true` in window.ARTICLES
+// (page-article.jsx), and in the HpPageHead of a standing page that carries
+// affiliate links. AffiliateNote above still closes the body; this is the
+// half the FTC cares about most, because it comes first. `children` replaces
+// the default sentence when a page needs to name its program.
+function AffiliateDisclosure({ children }) {
+  return (
+    <p className="aff-disclosure">
+      {children || "This page has affiliate links. If you buy or book through one, The Talus Field may earn a commission at no extra cost to you, and the recommendations do not change for it."}{" "}
+      <a href="/affiliate">How that works.</a>
+    </p>
+  );
+}
+window.AffiliateDisclosure = AffiliateDisclosure;
+
 // ============================================================
 // Lodging availability links (MONETIZATION-IDEAS.md 3.1)
 // ============================================================

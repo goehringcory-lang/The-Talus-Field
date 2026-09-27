@@ -1,4 +1,4 @@
-/* global React, HpPageHead, HpGuideBand, HpLetter, LodgingCta, DEADLINES */
+/* global React, HpPageHead, HpGuideBand, HpLetter, LodgingCta, DEADLINES, AffiliateDisclosure */
 
 // =============================================================================
 // DATES — `/dates` route. The dates that decide a Yosemite trip, in one table,
@@ -193,7 +193,9 @@ function DatesPage({ go }) {
         eyebrow="DEADLINES"
         title="The Yosemite dates that matter"
         intro="The lotteries, the release mornings, and the road windows that decide a trip, in one table, each one a calendar file. Enter your dates and the ones measured from your trip resolve to real days."
-      />
+      >
+        <AffiliateDisclosure />
+      </HpPageHead>
 
 
       <div className="hp-wrap hp-reading">

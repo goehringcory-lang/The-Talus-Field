@@ -86,7 +86,7 @@ function TiogaOpeningPage({
     eyebrow: "SEASONAL EVENT · LATE SPRING",
     title: "The Tioga Road opening",
     intro: "Every spring, plow crews cut Highway 120 out of the snowpack and the highest road in the park comes back. The opening date is not a date: it is announced only days ahead, it varies by weeks from year to year, and the first weekends are unlike any other time on the road. Below: how the opening works, what is actually open in week one, and how to drive it well."
-  }), React.createElement("div", {
+  }, React.createElement(AffiliateDisclosure, null)), React.createElement("div", {
     className: "hp-wrap hp-reading"
   }, React.createElement("div", {
     className: "hp-reading__column"

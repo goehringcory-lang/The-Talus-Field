@@ -2483,6 +2483,16 @@ function AffiliateNote() {
   }, "Full disclosure."));
 }
 window.AffiliateNote = AffiliateNote;
+function AffiliateDisclosure({
+  children
+}) {
+  return React.createElement("p", {
+    className: "aff-disclosure"
+  }, children || "This page has affiliate links. If you buy or book through one, The Talus Field may earn a commission at no extra cost to you, and the recommendations do not change for it.", " ", React.createElement("a", {
+    href: "/affiliate"
+  }, "How that works."));
+}
+window.AffiliateDisclosure = AffiliateDisclosure;
 var EXPEDIA_SEARCH_BASE = "https://www.expedia.com/Hotel-Search?destination=";
 function expediaSearchUrl(destination) {
   return EXPEDIA_SEARCH_BASE + encodeURIComponent(destination);

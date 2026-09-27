@@ -393,6 +393,15 @@ function ArticlePage({ slug, go }) {
             </span>
           </address>
 
+          {/* Affiliate disclosure before the first link (CLAUDE.md, affiliate
+              rules). Read from the catalog, not the lazy body, so it is in
+              the first commit and nothing shifts when the body arrives. */}
+          {article.aff && window.AffiliateDisclosure && (
+            <window.AffiliateDisclosure>
+              This article has affiliate links. If you buy or book through one, The Talus Field may earn a commission at no extra cost to you, and the recommendations do not change for it.
+            </window.AffiliateDisclosure>
+          )}
+
           {/* Series band: cluster articles surface their Planning Guide
               membership (window.PLANNING_SERIES in data.js) so a search
               lander discovers the hub and the neighboring parts. */}

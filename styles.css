@@ -1292,6 +1292,19 @@ main:focus { outline: none; }
 }
 .article-aff-note a { color: var(--ink-2); text-decoration: underline; }
 
+/* Top-of-page affiliate disclosure (window.AffiliateDisclosure): one quiet
+   line under an article's byline or in a standing page's head, before the
+   first affiliate link. Same voice and colour as the end note. */
+.aff-disclosure {
+  margin: 14px 0 0;
+  max-width: 62ch;
+  font-family: var(--sans);
+  font-size: 13px;
+  line-height: 1.55;
+  color: var(--ink-3);
+}
+.aff-disclosure a { color: var(--ink-2); text-decoration: underline; }
+
 @media (max-width: 720px) {
   .kit-group__title { font-size: 21px; }
   .kit-check__name { font-size: 17px; }

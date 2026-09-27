@@ -1,4 +1,4 @@
-/* global React, HpPageHead, LodgingCta, HpGuideBand, HpLetter */
+/* global React, HpPageHead, LodgingCta, HpGuideBand, HpLetter, AffiliateDisclosure */
 
 // =============================================================================
 // DISTANCES — `/distances` route. The drive-time matrix.
@@ -58,7 +58,9 @@ function DistancesPage({ go }) {
         eyebrow="DRIVE TIMES"
         title="How far is Yosemite from anywhere?"
         intro="Every gateway town, its drive to Yosemite Valley, the entrance it uses, and what the season does to it. The numbers are the ones from the gateway towns guide, in one table, so you can compare two towns instead of looking up one."
-      />
+      >
+        <AffiliateDisclosure />
+      </HpPageHead>
 
 
       <div className="hp-wrap hp-reading">

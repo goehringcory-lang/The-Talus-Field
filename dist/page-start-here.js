@@ -407,7 +407,7 @@ function StartHerePage({
       eager: true,
       sizes: "(max-width: 760px) calc(100vw - 40px), (max-width: 1100px) 50vw, 660px"
     }), React.createElement("figcaption", null, React.createElement("span", null, "Tunnel View, the first stop of a first morning"), React.createElement("span", null, hero.credit)))
-  }), React.createElement("div", {
+  }, React.createElement(AffiliateDisclosure, null)), React.createElement("div", {
     className: "hp-wrap"
   }, React.createElement("dl", {
     className: "start-facts",

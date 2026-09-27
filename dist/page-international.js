@@ -90,7 +90,7 @@ function InternationalPage({
     eyebrow: "INTERNATIONAL VISITORS",
     title: "Yosemite for visitors from outside the United States",
     intro: "Since January 1, 2026, a visitor who does not live in the United States pays more to enter Yosemite, and the rules are easy to get wrong. What the fee is, the cheapest way to pay it, and the handful of things about this park that surprise people who have driven in other countries."
-  }), React.createElement("div", {
+  }, React.createElement(AffiliateDisclosure, null)), React.createElement("div", {
     className: "hp-wrap hp-reading"
   }, React.createElement("div", {
     className: "hp-reading__column"

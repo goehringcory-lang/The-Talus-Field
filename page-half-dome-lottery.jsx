@@ -1,4 +1,4 @@
-/* global React, HpPageHead, LodgingCta, HpGuideBand, HpLetter */
+/* global React, HpPageHead, LodgingCta, HpGuideBand, HpLetter, AffiliateDisclosure */
 
 // =============================================================================
 // HALF DOME LOTTERY — `/half-dome-lottery` route. The third evergreen event
@@ -57,7 +57,9 @@ function HalfDomeLotteryPage({ go }) {
         eyebrow="PERMIT SEASON · APPLICATIONS OPEN IN MARCH"
         title="The Half Dome lottery"
         intro="Most people think there is one Half Dome lottery, that it happens in March, and that losing it ends the year. All three are wrong. There are two lotteries, the second one runs every day the cables are up, and the strategy for each is different. This page is the honest version: the calendar, the published odds, the strategy, and what to do when the answer is no."
-      />
+      >
+        <AffiliateDisclosure />
+      </HpPageHead>
 
 
       <div className="hp-wrap hp-reading">
