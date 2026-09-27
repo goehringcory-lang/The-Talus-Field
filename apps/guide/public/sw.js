@@ -11,6 +11,13 @@ const VERSION = '__BUILD_VERSION__'
 // vite.config.ts alongside VERSION. Activate uses it to drop superseded track
 // files from the unversioned runtime cache.
 const TRACKS_VERSION = '__TRACKS_VERSION__'
+// The 3D map's tile archive version (src/map/tiles.generated.ts), stamped the
+// same way. Tile URLs carry it as a path segment (/vt/<ver>/..., /dem/<ver>/...),
+// and activate drops tiles of any other version from the tile cache.
+const MAP_TILES_VERSION = '__MAP_TILES_VERSION__'
+// The map's road graph (/map/roads-<hash>.json, src/map/roads.generated.ts):
+// content-hashed, cached with the tiles, superseded copies dropped on activate.
+const MAP_ROADS_URL = '__MAP_ROADS_URL__'
 const SHELL_CACHE = `tfg-shell-${VERSION}`
 const RUNTIME_CACHE = 'tfg-runtime'
 // Map tiles. Unversioned on purpose: a downloaded park map survives deploys.
@@ -139,6 +146,7 @@ self.addEventListener('activate', (event) => {
       await purgeHtmlFromCache(RUNTIME_CACHE)
       await purgeHtmlFromCache(TILES_CACHE)
       await purgeStaleTracks()
+      await purgeStaleMapTiles()
       await self.clients.claim()
     })(),
   )
@@ -180,6 +188,27 @@ async function purgeStaleTracks() {
         const url = new URL(req.url)
         if (!url.pathname.startsWith('/tracks/')) return
         if (url.searchParams.get('v') !== TRACKS_VERSION) await cache.delete(req)
+      }),
+    )
+  } catch { /* cache API unavailable — non-fatal */ }
+}
+
+// The tile cache survives deploys so a downloaded map does too, which means a
+// new archive version would otherwise leave the previous 20-odd MB of tiles on
+// the phone for good (the tracks problem again). Keep only this build's
+// version. The Esri raster tiles (/tiles/z/y/x) went with the September 2026
+// basemap swap: this build never asks for one, so they go too.
+async function purgeStaleMapTiles() {
+  if (MAP_TILES_VERSION.startsWith('__')) return
+  try {
+    const cache = await caches.open(TILES_CACHE)
+    const requests = await cache.keys()
+    await Promise.all(
+      requests.map(async (req) => {
+        const path = new URL(req.url).pathname
+        const m = path.match(/^\/(vt|dem)\/([^/]+)\//)
+        const staleRoads = /^\/map\/roads-[0-9a-f]+\.json$/.test(path) && path !== MAP_ROADS_URL && !MAP_ROADS_URL.startsWith('__')
+        if (staleRoads || (m ? m[2] !== MAP_TILES_VERSION : path.startsWith('/tiles/'))) await cache.delete(req)
       }),
     )
   } catch { /* cache API unavailable — non-fatal */ }
@@ -432,7 +461,19 @@ self.addEventListener('fetch', (event) => {
   // cache. Matched by path (origin-agnostic) so localhost dev and production
   // both work without baking the API host into this static file. The Worker
   // sends ACAO * and immutable cache headers, so storing the response is fine.
-  if (/^\/tiles\/\d+\/\d+\/\d+$/.test(url.pathname)) {
+  // The 3D map's vector and elevation tiles (/vt/<ver>/z/x/y.mvt,
+  // /dem/<ver>/z/x/y.webp) take the same path: versioned and immutable, so
+  // cache-first is always right. The legacy /tiles/z/y/x raster stays matched
+  // for an old page still open across the deploy. The style's label glyphs
+  // and sprite sheets (/map-assets/, same-origin) live here too, not in the
+  // runtime cache: the map overview download pack fills this one cache, and
+  // a glyph it fetched must be the glyph this handler finds.
+  if (
+    /^\/tiles\/\d+\/\d+\/\d+$/.test(url.pathname) ||
+    (url.origin === self.location.origin &&
+      (url.pathname.startsWith('/map-assets/') || /^\/map\/roads-[0-9a-f]+\.json$/.test(url.pathname))) ||
+    /^\/(vt\/[a-z0-9-]+\/\d+\/\d+\/\d+\.mvt|dem\/[a-z0-9-]+\/\d+\/\d+\/\d+\.webp)$/.test(url.pathname)
+  ) {
     event.respondWith(
       (async () => {
         const cache = await caches.open(TILES_CACHE)

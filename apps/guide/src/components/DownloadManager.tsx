@@ -1,3 +1,4 @@
+import type React from 'react'
 import { useDownloads, type PackStatus } from '../offline/useDownloads'
 import { formatBytes, type Pack } from '../offline/manifest'
 import { isIOS, isStandalonePWA } from '../utils/platform'
@@ -23,14 +24,24 @@ function Row({
   onDownload,
   onCancel,
   onRemove,
+  neededBy,
+  freeBytes,
 }: {
   pack: Pack
   status: PackStatus
   onDownload: () => void
   onCancel: () => void
   onRemove: () => void
+  /** Labels of downloaded packs that require this one; a non-empty list blocks Remove. */
+  neededBy: string[]
+  /** Free space the browser reports for this origin, or null when it will not say. */
+  freeBytes: number | null
 }) {
   const downloading = status.state === 'downloading'
+  // Said before the tap, not after a failure: a download that cannot fit
+  // fails part-way and leaves a half-filled cache to clean up.
+  const tooBig =
+    status.state !== 'done' && !downloading && freeBytes !== null && pack.approxBytes > freeBytes
   return (
     <div className="download-row">
       {/* Always mounted, so the live region exists before its text changes;
@@ -47,6 +58,17 @@ function Row({
         <div className="download-row__size">
           {pack.detail} · about {formatBytes(pack.approxBytes)}
         </div>
+        {tooBig && (
+          <div className="download-row__size" style={{ color: 'var(--danger)' }}>
+            Not enough free space: this needs {formatBytes(pack.approxBytes)} and the device has{' '}
+            {formatBytes(Math.max(0, freeBytes ?? 0))} for this app.
+          </div>
+        )}
+        {status.state === 'done' && neededBy.length > 0 && (
+          <div className="download-row__size">
+            Kept while {neededBy.join(', ')} {neededBy.length === 1 ? 'is' : 'are'} downloaded.
+          </div>
+        )}
         {(status.state === 'stale' || status.state === 'error') && (
           <div className="download-row__size" style={{ color: 'var(--danger)' }}>
             {statusLabel(status)}
@@ -68,7 +90,7 @@ function Row({
             {status.state === 'stale' || status.state === 'error' ? 'Re-download' : 'Download'}
           </button>
         )}
-        {status.state === 'done' && (
+        {status.state === 'done' && neededBy.length === 0 && (
           <button type="button" className="download-row__btn download-row__btn--ghost" onClick={onRemove}>
             Remove
           </button>
@@ -93,8 +115,21 @@ function Row({
   )
 }
 
-export default function DownloadManager() {
-  const { packs, statuses, storageEstimate, download, cancel, remove } = useDownloads()
+export default function DownloadManager({
+  only,
+  intro,
+}: {
+  /** Show a subset of the packs (the map page lists only the map's). */
+  only?: (pack: Pack) => boolean
+  /** Replaces the default paragraph above the list. */
+  intro?: React.ReactNode
+} = {}) {
+  const all = useDownloads()
+  const { storageEstimate, download, cancel, remove, dependentsOf } = all
+  const packs = only ? all.packs.filter(only) : all.packs
+  const statuses = all.statuses
+  const freeBytes =
+    storageEstimate && storageEstimate.quota > 0 ? storageEstimate.quota - storageEstimate.usage : null
 
   const totalBytes = packs.reduce((sum, p) => sum + p.approxBytes, 0)
   const pending = packs.filter((p) => statuses[p.id]?.state !== 'done')
@@ -103,11 +138,13 @@ export default function DownloadManager() {
   return (
     <section aria-label="Offline downloads">
       <div className="eyebrow" style={{ marginBottom: 6 }}>Offline</div>
-      <p style={{ color: 'var(--ink-2)', fontSize: 14, lineHeight: 1.55, margin: '0 0 8px' }}>
-        Download the guide before you leave wifi. Everything below together is
-        about {formatBytes(totalBytes)}; once it's on the device, the whole app
-        works offline.
-      </p>
+      {intro ?? (
+        <p style={{ color: 'var(--ink-2)', fontSize: 14, lineHeight: 1.55, margin: '0 0 8px' }}>
+          Download the guide before you leave wifi. Everything below together is
+          about {formatBytes(totalBytes)}; once it's on the device, the whole app
+          works offline.
+        </p>
+      )}
       {isIOS() && !isStandalonePWA() && (
         <p style={{ color: 'var(--ink-3)', fontSize: 13, lineHeight: 1.55, margin: '0 0 8px' }}>
           On iPhone or iPad, add the app to your home screen first (Share →
@@ -151,6 +188,8 @@ export default function DownloadManager() {
             onDownload={() => void download(pack)}
             onCancel={() => cancel(pack.id)}
             onRemove={() => void remove(pack)}
+            neededBy={dependentsOf(pack.id).map((p) => p.label)}
+            freeBytes={freeBytes}
           />
         ))}
       </div>

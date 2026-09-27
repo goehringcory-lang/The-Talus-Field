@@ -7,10 +7,11 @@
 // toggling). State is reflected in the URL:
 //   /map?tab=points|itineraries|info&itinerary=1day|2day|3day&stop=<id>
 //
-// Tiles come from the Worker's /tiles proxy and are served cache-first by the
-// service worker, so once the offline map pack is downloaded (Account →
-// Offline) the whole map works in airplane mode. Turn-by-turn routing stays a
-// deeplink into the native Google Maps app.
+// The basemap is a self-hosted vector map on 3D terrain (map/style.ts: the
+// Worker's /vt and /dem tiles, first-party glyphs), served cache-first by the
+// service worker, so once the overview and an area are downloaded (the map's
+// Offline areas, or Account → Offline) that area works in airplane mode.
+// Turn-by-turn routing stays a deeplink into the native Google Maps app.
 // =============================================================================
 
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
@@ -33,10 +34,35 @@ import { getHikeById } from '../content'
 import { hasTrack } from '../trails/track'
 import { useTrack } from '../trails/useTrack'
 import { announceTripAdd } from '../trip/addFeedback'
-import { addHikeToPlan, addStopToPlan, isHikePlanned, isStopPlanned, useTripPlan } from '../trip/useTripPlan'
-import { MAP_ATTRIBUTION, buildMapStyle } from '../map/style'
+import {
+  addHikeToPlan,
+  addPlaceToPlan,
+  addStopToPlan,
+  isHikePlanned,
+  isPlacePlanned,
+  isStopPlanned,
+  moveItemInDay,
+  setItemTravelMode,
+  useTripPlan,
+} from '../trip/useTripPlan'
+import { amenityPlaceId, diningPlaceId } from '../trip/places'
+import { MAP_ATTRIBUTION } from '../map/attribution'
+import { TERRAIN_SPEC, buildMapStyle } from '../map/style'
+import { DEFAULT_PITCH, HOME_CAMERA, MAX_PITCH, PAN_BUFFER_DEG, buildTheme } from '../map/theme'
+import { OFFLINE_REGIONS, type OfflineRegion } from '../map/regions'
+import { TILESET } from '../map/tiles.generated'
 import { isPackCompleted } from '../offline/useDownloads'
-import { MAP_PACK_ID } from '../offline/manifest'
+import { MAP_OVERVIEW_PACK_ID, MAP_PACK_IDS, mapRegionPackId } from '../offline/manifest'
+import DownloadManager from '../components/DownloadManager'
+import TripPanel from '../map/TripPanel'
+import { RoadGraph, type Pt, type RoadGraphFile } from '../map/roadGraph'
+import { ROADS_URL } from '../map/roads.generated'
+import { buildTripDays, dayColor, tripLegsGeojson, tripStopsGeojson, type DayEnd, type TripDay, type TripLeg, type TripStop } from '../map/tripLayer'
+import { TRIP_KIND_LABEL, addTripIcons } from '../map/tripIcons'
+import { TRIP_LEG_LAYERS, TRIP_PIN_LAYER, ensureTripLayers, setTripData, setTripDay, setTripFocus, setTripVisible } from '../map/tripMapLayers'
+import { DAY_FIT_PITCH, dayColors, tripCasing } from '../map/theme'
+import { loadTrack } from '../trails/useTrack'
+import type { TravelModeT } from '../trip/schema'
 import { formatMiles, haversineMiles } from '../utils/geo'
 import { popupPhotoUrl } from '../utils/photo'
 import { LOT_STATUS_LABEL, lotForAmenity } from '../parking/lotMatch'
@@ -48,11 +74,13 @@ import { useOnline } from '../utils/useOnline'
 import './Map.css'
 import { useDocumentTitle } from '../lib/documentTitle'
 
-type Tab = 'points' | 'itineraries' | 'info'
+type Tab = 'points' | 'itineraries' | 'trip' | 'info'
 
 function isTab(value: string | null | undefined): value is Tab {
-  return value === 'points' || value === 'itineraries' || value === 'info'
+  return value === 'points' || value === 'itineraries' || value === 'trip' || value === 'info'
 }
+
+const DAY_RE = /^\d{4}-\d{2}-\d{2}$/
 
 type UrlState = {
   tab: Tab
@@ -64,6 +92,7 @@ type UrlState = {
   // ?planned=1 narrows the map to the trip plan. Deliberately NOT ?trip=:
   // that name carries stop lists on the editorial map's share links.
   planned: boolean
+  day: string | null // the trip day shown alone on the My trip tab (?day=)
 }
 
 const ALL_KINDS = Object.keys(KIND_STYLES) as MapPinKind[]
@@ -93,6 +122,7 @@ function readUrlState(): UrlState {
     // Only hikes with a published track: an unknown id round-trips away.
     hike: hike && hasTrack(hike) ? hike : null,
     planned: params.get('planned') === '1',
+    day: DAY_RE.test(params.get('day') ?? '') ? params.get('day') : null,
   }
 }
 
@@ -105,6 +135,7 @@ function writeUrlState(next: UrlState) {
   if (!next.secret) params.set('secret', '0')
   if (next.hike) params.set('hike', next.hike)
   if (next.planned) params.set('planned', '1')
+  if (next.tab === 'trip' && next.day) params.set('day', next.day)
   const qs = params.toString()
   const newUrl = '/map' + (qs ? `?${qs}` : '')
   if (newUrl !== window.location.pathname + window.location.search) {
@@ -225,6 +256,25 @@ function lotStatusLine(reading: LotReading | null): string | null {
 // Amenities (parking lots, campgrounds) are map-only pins, not Stops, so
 // there is no "Open stop" or "Add to trip". A parking pin also prints its
 // live lot status when the feed has one (see lotStatusLine).
+// "Add to trip" for a place the guide carries but does not treat as a stop: a
+// parking lot, campground, lodge, visitor center or restaurant. It becomes a
+// custom entry linked to the record (trip/places.ts), so its name and pin
+// stay the record's, and it lands on the plan's first day like a stop does.
+function placeTripButton(placeId: string, title: string, label = 'Add to trip'): HTMLButtonElement {
+  const btn = document.createElement('button')
+  btn.type = 'button'
+  btn.className = 'map-popup__btn'
+  btn.textContent = isPlacePlanned(placeId) ? 'In trip ✓' : label
+  btn.addEventListener('click', () => {
+    if (!isPlacePlanned(placeId)) {
+      addPlaceToPlan(placeId, title)
+      announceTripAdd(title)
+    }
+    btn.textContent = 'In trip ✓'
+  })
+  return btn
+}
+
 function buildAmenityPopupContent(amenity: AmenityT, lot: LotReading | null = null): HTMLElement {
   const style = getKindStyle(amenity.kind)
   const root = document.createElement('div')
@@ -279,6 +329,9 @@ function buildAmenityPopupContent(amenity: AmenityT, lot: LotReading | null = nu
     dir.rel = 'noopener'
     dir.textContent = 'Directions →'
     actions.appendChild(dir)
+  }
+  if (amenity.kind !== 'landmark') {
+    actions.appendChild(placeTripButton(amenityPlaceId(amenity.id), amenity.name))
   }
   if (amenity.kind === 'shuttle') {
     const note = document.createElement('span')
@@ -372,6 +425,11 @@ function buildMealPopupContent(group: MealGroup, onOpenDining: () => void): HTML
       excerpt.className = 'map-popup__excerpt'
       excerpt.textContent = extractExcerpt(venue.description)
       block.appendChild(excerpt)
+    }
+    if (venue.coord) {
+      const add = placeTripButton(diningPlaceId(venue.id), venue.name, single ? 'Add to trip' : `Add ${venue.name}`)
+      add.classList.add('map-popup__btn--inline')
+      block.appendChild(add)
     }
     root.appendChild(block)
   }
@@ -618,6 +676,213 @@ function pinKeydownHandler(activate: () => void) {
   }
 }
 
+// What of the map is on this device: the overview (the whole park at driving
+// scale, plus the labels) and which corridors at trailhead scale. A corridor
+// without the overview under it does not count; the download manager never
+// leaves one in that state, but a cleared completion flag could.
+type MapOffline = { overview: boolean; regions: OfflineRegion[] }
+
+function readMapOffline(): MapOffline {
+  const overview = isPackCompleted(MAP_OVERVIEW_PACK_ID)
+  return {
+    overview,
+    regions: overview ? OFFLINE_REGIONS.filter((r) => isPackCompleted(mapRegionPackId(r.id))) : [],
+  }
+}
+
+function listLabels(labels: string[]): string {
+  if (labels.length <= 1) return labels.join('')
+  return `${labels.slice(0, -1).join(', ')} and ${labels[labels.length - 1]}`
+}
+
+/** The downloaded corridors as boxes, for the outline drawn while offline. */
+function offlineAreasGeojson(regions: OfflineRegion[]): GeoJSON.FeatureCollection {
+  return {
+    type: 'FeatureCollection',
+    features: regions.map((r) => {
+      const [w, s, e, n] = r.bbox
+      return {
+        type: 'Feature',
+        properties: { id: r.id, label: r.label },
+        geometry: { type: 'Polygon', coordinates: [[[w, s], [e, s], [e, n], [w, n], [w, s]]] },
+      }
+    }),
+  }
+}
+
+// Sources and layers the page adds at runtime (the hike track, the offline
+// outline, later the trip layer). A scheme change rebuilds the style, and
+// setStyle would drop them; this carries them across in their order.
+function keepRuntimeLayers(
+  previous: maplibregl.StyleSpecification | undefined,
+  next: maplibregl.StyleSpecification,
+): maplibregl.StyleSpecification {
+  if (!previous) return next
+  const sources = { ...next.sources }
+  for (const [id, src] of Object.entries(previous.sources)) if (!(id in sources)) sources[id] = src
+  const known = new Set(next.layers.map((l) => l.id))
+  return { ...next, sources, layers: [...next.layers, ...previous.layers.filter((l) => !known.has(l.id))] }
+}
+
+// The road graph loads once per session, the first time the trip view needs
+// it: it is ~220 KB gzipped and nothing else on the map uses it.
+let roadGraphPromise: Promise<RoadGraph> | null = null
+function loadRoadGraph(): Promise<RoadGraph> {
+  roadGraphPromise ??= fetch(ROADS_URL)
+    .then((res) => {
+      const type = res.headers.get('content-type')
+      if (!res.ok || (type && type.includes('text/html'))) throw new Error('road graph unavailable')
+      return res.json() as Promise<RoadGraphFile>
+    })
+    .then((file) => new RoadGraph(file))
+    .catch((err) => {
+      roadGraphPromise = null
+      throw err
+    })
+  return roadGraphPromise
+}
+
+// When a day counts as running late (the trip panel's "Warn when a day runs
+// past"): sunset by default, or a clock time the reader picks. Device-only.
+const DAY_END_KEY = 'tfg.trip.dayEnd'
+function readDayEnd(): DayEnd {
+  try {
+    const raw = window.localStorage.getItem(DAY_END_KEY)
+    if (raw && /^\d+$/.test(raw)) return { kind: 'fixed', minutes: Number(raw) }
+  } catch {
+    /* unreadable storage: the default */
+  }
+  return { kind: 'sunset' }
+}
+function writeDayEnd(next: DayEnd) {
+  try {
+    if (next.kind === 'sunset') window.localStorage.removeItem(DAY_END_KEY)
+    else window.localStorage.setItem(DAY_END_KEY, String(next.minutes))
+  } catch {
+    /* non-fatal */
+  }
+}
+
+function buildTripStopPopup(
+  stop: TripStop,
+  day: TripDay,
+  color: string,
+  handlers: { onOpen: (href: string) => void; onRemove: () => void },
+): HTMLElement {
+  const root = document.createElement('div')
+  root.className = 'map-popup'
+  const title = document.createElement('strong')
+  title.className = 'map-popup__title'
+  title.textContent = `${stop.order}. ${stop.info.title}`
+  root.appendChild(title)
+  const chip = document.createElement('span')
+  chip.className = 'map-popup__kind'
+  chip.style.color = color
+  chip.textContent = `${day.label} · ${TRIP_KIND_LABEL[stop.kind]}`
+  root.appendChild(chip)
+  const when = document.createElement('p')
+  when.className = 'map-popup__stats'
+  when.textContent = stop.timeRange
+    ? `${stop.timeRange} · ${formatTime(stop.durationMin)}${stop.item.type === 'program' ? ' · published time' : ''}`
+    : `${formatTime(stop.durationMin)} · doesn't fit in the day`
+  root.appendChild(when)
+  if (stop.info.meta.length > 0) {
+    const meta = document.createElement('p')
+    meta.className = 'map-popup__stats map-popup__stats--note'
+    meta.textContent = stop.info.meta.join(' · ')
+    root.appendChild(meta)
+  }
+  for (const w of day.warnings) {
+    if (w.itemId !== stop.itemId || w.kind === 'unrouted') continue
+    const line = document.createElement('p')
+    line.className = 'map-popup__stats map-popup__warning'
+    line.textContent = w.text
+    root.appendChild(line)
+  }
+  const actions = document.createElement('p')
+  actions.className = 'map-popup__actions'
+  if (stop.info.href) {
+    const open = document.createElement('button')
+    open.type = 'button'
+    open.className = 'map-popup__btn'
+    open.textContent = stop.item.type === 'hike' ? 'Open hike →' : 'Open stop →'
+    open.addEventListener('click', () => handlers.onOpen(stop.info.href!))
+    actions.appendChild(open)
+  }
+  const remove = document.createElement('button')
+  remove.type = 'button'
+  remove.className = 'map-popup__btn'
+  remove.textContent = 'Remove from day'
+  remove.addEventListener('click', handlers.onRemove)
+  actions.appendChild(remove)
+  if (stop.coord) {
+    const dir = document.createElement('a')
+    dir.className = 'map-popup__btn map-popup__btn--dir'
+    dir.href = directionsUrl(stop.coord)
+    dir.target = '_blank'
+    dir.rel = 'noopener'
+    dir.textContent = 'Directions →'
+    actions.appendChild(dir)
+  }
+  root.appendChild(actions)
+  return root
+}
+
+function buildTripLegPopup(leg: TripLeg): HTMLElement {
+  const root = document.createElement('div')
+  root.className = 'map-popup'
+  const title = document.createElement('strong')
+  title.className = 'map-popup__title'
+  const word = { drive: 'Drive', walk: 'Walk', shuttle: 'Shuttle' }[leg.mode]
+  title.textContent = `${word}: ${leg.from.info.title} to ${leg.to.info.title}`
+  root.appendChild(title)
+  const stats = document.createElement('p')
+  stats.className = 'map-popup__stats'
+  stats.textContent = [
+    leg.minutes !== null ? `about ${formatTime(Math.max(1, leg.minutes))}` : null,
+    leg.metres !== null ? formatMiles(leg.metres / 1609.34) : null,
+  ]
+    .filter(Boolean)
+    .join(' · ')
+  root.appendChild(stats)
+  const note = document.createElement('p')
+  note.className = 'map-popup__stats map-popup__stats--note'
+  note.textContent =
+    leg.geometry === 'straight'
+      ? 'No route found: drawn as a straight line. The time is still the planner\u2019s estimate.'
+      : leg.mode === 'shuttle' && leg.shuttle
+        ? `Ride from ${leg.shuttle.board} to ${leg.shuttle.alight}. Includes a 10-minute wait allowance; intervals are in the current Yosemite Guide.`
+        : leg.mode === 'drive'
+          ? 'Time from the park\u2019s driving table or a distance estimate, plus parking.'
+          : 'Time at a walking pace, from the distance.'
+  root.appendChild(note)
+  return root
+}
+
+// Room for the trip panel when framing a day: it floats over the map's right
+// edge on wide screens and over the bottom on phones, and a frame computed
+// for the whole canvas puts half the day under it.
+function tripPadding(map: maplibregl.Map): { top: number; bottom: number; left: number; right: number } {
+  const pad = { top: 70, bottom: 70, left: 70, right: 70 }
+  const pane = document.querySelector('.map-pane--trip')
+  if (!pane) return pad
+  const canvas = map.getContainer().getBoundingClientRect()
+  const r = pane.getBoundingClientRect()
+  if (r.width === 0) return pad
+  if (r.height < canvas.height * 0.7) pad.bottom += Math.max(0, canvas.bottom - r.top)
+  else pad.right += Math.max(0, canvas.right - r.left)
+  // Never more padding than the canvas can give: MapLibre refuses to fit then.
+  pad.right = Math.min(pad.right, canvas.width * 0.6)
+  pad.bottom = Math.min(pad.bottom, canvas.height * 0.6)
+  return pad
+}
+
+const [EXT_W, EXT_S, EXT_E, EXT_N] = TILESET.bounds
+const PAN_BOUNDS: [[number, number], [number, number]] = [
+  [EXT_W - PAN_BUFFER_DEG, EXT_S - PAN_BUFFER_DEG],
+  [EXT_E + PAN_BUFFER_DEG, EXT_N + PAN_BUFFER_DEG],
+]
+
 export default function Map() {
   useDocumentTitle('Map')
   const navigate = useNavigate()
@@ -638,12 +903,19 @@ export default function Map() {
   const popupRef = useRef<maplibregl.Popup | null>(null)
   // Camera refits only when the itinerary context changes, not on filter
   // chip toggles: refitting on every tap yanks the map around.
-  const lastFitKeyRef = useRef<string | null>(null)
+  // Starts at 'all' so the unfiltered first render keeps the opening camera
+  // (the Valley in 3D) instead of fitting a flat frame around every pin.
+  const lastFitKeyRef = useRef<string | null>('all')
 
   const [mapReady, setMapReady] = useState(false)
   const online = useOnline()
   const [mapFailed, setMapFailed] = useState(false)
-  const [mapDownloaded, setMapDownloaded] = useState(() => isPackCompleted(MAP_PACK_ID))
+  const [mapOffline, setMapOffline] = useState<MapOffline>(readMapOffline)
+  const mapDownloaded = mapOffline.overview && mapOffline.regions.length === OFFLINE_REGIONS.length
+  // 3D (terrain, tilted) or 2D (flat, north-up). A ref mirrors it for the
+  // scheme-change rebuild, which runs from a listener, not a render.
+  const [is3d, setIs3d] = useState(true)
+  const is3dRef = useRef(true)
   // 'far' below MINOR_PIN_MIN_ZOOM. Drives a data attribute on the map
   // container; the CSS does the hiding, so a zoom never rebuilds a marker.
   const [zoomBand, setZoomBand] = useState<'far' | 'near'>('far')
@@ -664,7 +936,7 @@ export default function Map() {
   // The pack can complete in another tab (or on /account in this one);
   // re-check whenever this tab regains focus so the offline notice is live.
   useEffect(() => {
-    const recheck = () => setMapDownloaded(isPackCompleted(MAP_PACK_ID))
+    const recheck = () => setMapOffline(readMapOffline())
     window.addEventListener('focus', recheck)
     document.addEventListener('visibilitychange', recheck)
     return () => {
@@ -673,11 +945,9 @@ export default function Map() {
     }
   }, [])
 
-  // No offline zoom clamp: the raster source declares maxzoom 14 (see
-  // map/style.ts), so past z14 MapLibre overzooms the SAME z14 tiles the
-  // offline pack carries — z15-16 render offline from cache, just scaled.
-  // The old clamp held airplane-mode users at z14 and cost them trailhead-
-  // scale reading for no saved tiles.
+  // No offline zoom clamp: the vector source declares maxzoom 15 and the
+  // elevation source 13 (map/style.ts), so past those MapLibre overzooms the
+  // same tiles the area packs carry, and trailhead scale draws from cache.
 
   const initial = useMemo(() => readUrlState(), [])
   const [tab, setTab] = useState<Tab>(initial.tab)
@@ -714,7 +984,7 @@ export default function Map() {
   const trackHike = trackHikeId ? getHikeById(trackHikeId) : undefined
 
   // Stops already in the trip plan get a checkmark badge on their pin.
-  const { plan } = useTripPlan()
+  const { plan, removeItem } = useTripPlan()
   const plannedStopIds = useMemo(
     () => new Set(plan.items.filter((it) => it.type === 'stop').map((it) => it.stopId)),
     [plan],
@@ -723,6 +993,33 @@ export default function Map() {
     () => new Set(plan.items.filter((it) => it.type === 'hike').map((it) => it.hikeId)),
     [plan],
   )
+
+  // --- The trip layer (My trip tab) ---------------------------------------
+  // The plan drawn day by day: numbered pins, legs in their travel mode along
+  // the roads, the hikes' trails, and the itinerary panel as its text
+  // alternative. Built from the same plan store and slotting as the board.
+  const [selectedDay, setSelectedDay] = useState<string | null>(initial.day)
+  const [focusedTripItem, setFocusedTripItem] = useState<string | null>(null)
+  const [tripExpanded, setTripExpanded] = useState(false)
+  const [dayEnd, setDayEndState] = useState<DayEnd>(readDayEnd)
+  const setDayEnd = useCallback((next: DayEnd) => {
+    writeDayEnd(next)
+    setDayEndState(next)
+  }, [])
+  const [roadGraph, setRoadGraph] = useState<RoadGraph | null>(null)
+  const [graphState, setGraphState] = useState<'loading' | 'ready' | 'failed'>('loading')
+  // Bumped when the colour scheme changes, so the day colours re-read tokens.
+  const [schemeTick, setSchemeTick] = useState(0)
+  const colors = useMemo(() => {
+    void schemeTick
+    return dayColors()
+  }, [schemeTick])
+  const tripDays = useMemo(() => buildTripDays(plan, roadGraph, dayEnd), [plan, roadGraph, dayEnd])
+  const tripDaysRef = useRef<TripDay[]>(tripDays)
+  useEffect(() => {
+    tripDaysRef.current = tripDays
+  }, [tripDays])
+  const [hikeLines, setHikeLines] = useState<Record<string, Pt[]>>({})
 
   // Only stops with a coord can be mapped. Secret spots (region-less Secret
   // Guide entries) join the pin set alongside core and hidden stops.
@@ -897,8 +1194,9 @@ export default function Map() {
       secret: showSecret,
       hike: trackHikeId,
       planned: plannedOnly,
+      day: selectedDay,
     })
-  }, [tab, selectedItinerary, selectedStopId, kindFilter, showSecret, trackHikeId, plannedOnly])
+  }, [tab, selectedItinerary, selectedStopId, kindFilter, showSecret, trackHikeId, plannedOnly, selectedDay])
 
   // Restore from URL on every router navigation: back/forward (the router
   // owns popstate) and bottom-nav "Map" re-taps that push a bare /map over a
@@ -917,6 +1215,7 @@ export default function Map() {
       setShowSecret(next.secret)
       setPlannedOnly(next.planned)
       setTrackHikeId(next.hike)
+      setSelectedDay(next.day)
       selectStop(next.stop)
     })
     return () => {
@@ -970,23 +1269,26 @@ export default function Map() {
     const map = new maplibregl.Map({
       container: containerRef.current,
       style: buildMapStyle(),
-      center: [-119.55, 37.85],
-      zoom: 9,
-      maxZoom: 16,
-      // Padded park bbox: keeps panning on the cached tile set.
-      maxBounds: [
-        [-120.8, 36.8],
-        [-118.2, 38.8],
-      ],
-      // North-up 2D only: with the compass hidden, an accidental two-finger
-      // rotate or pitch would leave the topo tilted with no way to reset.
-      dragRotate: false,
-      pitchWithRotate: false,
-      touchPitch: false,
+      // Over the Valley's west end looking east: El Capitan on the left,
+      // Half Dome closing the view (map/theme.ts).
+      center: HOME_CAMERA.center,
+      zoom: HOME_CAMERA.zoom,
+      pitch: HOME_CAMERA.pitch,
+      bearing: HOME_CAMERA.bearing,
+      minZoom: 7,
+      maxZoom: 17,
+      maxPitch: MAX_PITCH,
+      // The archive extent plus a small buffer: past it there are no tiles.
+      maxBounds: PAN_BOUNDS,
+      // One finger pans, two rotate and tilt, pinch zooms. The compass in the
+      // navigation control shows the bearing and resets it on a tap, and the
+      // Reset view button restores the whole opening camera.
       attributionControl: { compact: true },
+      // Mid-range phones: the terrain mesh is the expensive part, and a 2x
+      // canvas on a 3x screen is indistinguishable from native at arm's length.
+      pixelRatio: Math.min(window.devicePixelRatio || 1, 2),
     })
-    map.touchZoomRotate.disableRotation()
-    map.addControl(new maplibregl.NavigationControl({ showCompass: false }), 'top-left')
+    map.addControl(new maplibregl.NavigationControl({ visualizePitch: true }), 'top-left')
     map.addControl(new maplibregl.ScaleControl({ unit: 'imperial' }), 'bottom-left')
 
     // Locate-me. GPS itself needs no signal, so this works in airplane mode.
@@ -1049,9 +1351,37 @@ export default function Map() {
       popupRef.current?.remove()
     })
     map.on('load', () => {
+      if (is3dRef.current) map.setTerrain(TERRAIN_SPEC)
       setMapReady(true)
       setMapFailed(false)
     })
+
+    // The trip pins are drawn images (map/tripIcons.ts); a rebuilt style drops
+    // them, and the first frame after asks for them here.
+    map.on('styleimagemissing', (e) => {
+      if (e.id.startsWith('trip-')) addTripIcons(map, dayColors(), tripCasing())
+    })
+
+    // Follow the reader's colour scheme (Account's theme card, or the device
+    // in Auto): the map's tokens are read into the style at build time, so a
+    // scheme change rebuilds it, carrying the page's own layers across.
+    let scheme = buildTheme().scheme
+    const restyle = () => {
+      const next = buildTheme()
+      if (next.scheme === scheme) return
+      scheme = next.scheme
+      setSchemeTick((t) => t + 1)
+      map.setStyle(buildMapStyle(next), {
+        transformStyle: (prev, style) => ({
+          ...keepRuntimeLayers(prev, style),
+          terrain: is3dRef.current ? TERRAIN_SPEC : undefined,
+        }),
+      })
+    }
+    const themeObserver = new MutationObserver(restyle)
+    themeObserver.observe(document.documentElement, { attributes: true, attributeFilter: ['data-theme'] })
+    const darkQuery = window.matchMedia?.('(prefers-color-scheme: dark)')
+    darkQuery?.addEventListener('change', restyle)
     const readBand = () => setZoomBand(map.getZoom() >= MINOR_PIN_MIN_ZOOM ? 'near' : 'far')
     map.on('zoom', readBand)
     readBand()
@@ -1063,11 +1393,277 @@ export default function Map() {
     })
 
     return () => {
+      themeObserver.disconnect()
+      darkQuery?.removeEventListener('change', restyle)
       popupRef.current?.remove()
       popupRef.current = null
       map.remove()
       mapRef.current = null
     }
+  }, [])
+
+  // 2D/3D. 3D drapes the map on the terrain and tilts it; 2D drops the
+  // terrain and returns to north-up, the flat map a reader reads like paper.
+  const toggle3d = useCallback(() => {
+    const map = mapRef.current
+    const next = !is3dRef.current
+    is3dRef.current = next
+    setIs3d(next)
+    if (!map) return
+    if (next) {
+      map.setTerrain(TERRAIN_SPEC)
+      map.easeTo({ pitch: DEFAULT_PITCH, duration: 600 })
+    } else {
+      map.setTerrain(null)
+      map.easeTo({ pitch: 0, bearing: 0, duration: 600 })
+    }
+  }, [])
+
+  const resetView = useCallback(() => {
+    const map = mapRef.current
+    if (!map) return
+    popupRef.current?.remove()
+    map.flyTo({
+      center: HOME_CAMERA.center,
+      zoom: HOME_CAMERA.zoom,
+      pitch: is3dRef.current ? HOME_CAMERA.pitch : 0,
+      bearing: is3dRef.current ? HOME_CAMERA.bearing : 0,
+      essential: true,
+    })
+  }, [])
+
+  // The downloaded corridors, outlined while the device is offline so the
+  // reader can see where the map will draw at trailhead scale. Online the
+  // outline is noise, and the notice above the map says it in words.
+  useEffect(() => {
+    const map = mapRef.current
+    if (!map || !mapReady) return
+    const data = offlineAreasGeojson(mapOffline.regions)
+    const src = map.getSource('offline-areas') as maplibregl.GeoJSONSource | undefined
+    if (src) src.setData(data)
+    else {
+      map.addSource('offline-areas', { type: 'geojson', data })
+      map.addLayer({
+        id: 'offline-areas',
+        type: 'line',
+        source: 'offline-areas',
+        paint: {
+          'line-color': buildTheme().offlineRegion,
+          'line-width': 2,
+          'line-dasharray': [1, 1.5],
+          'line-opacity': 0.8,
+        },
+      })
+    }
+    map.setLayoutProperty('offline-areas', 'visibility', online ? 'none' : 'visible')
+  }, [mapReady, mapOffline, online])
+
+  // The road graph, the first time the trip view opens. Legs draw straight,
+  // marked pending, until it lands; a failure leaves them straight and says so.
+  useEffect(() => {
+    if (tab !== 'trip' || roadGraph) return
+    let cancelled = false
+    loadRoadGraph().then(
+      (g) => {
+        if (cancelled) return
+        setRoadGraph(g)
+        setGraphState('ready')
+      },
+      () => {
+        if (!cancelled) setGraphState('failed')
+      },
+    )
+    return () => {
+      cancelled = true
+    }
+  }, [tab, roadGraph])
+
+  // Trails for the planned hikes: the same track files /hike/:id draws, from
+  // the runtime cache offline. A hike with no track keeps its pin, no line.
+  const plannedHikeKey = useMemo(() => [...plannedHikeIds].sort().join(','), [plannedHikeIds])
+  useEffect(() => {
+    if (tab !== 'trip' || !plannedHikeKey) return
+    let cancelled = false
+    for (const id of plannedHikeKey.split(',')) {
+      if (!hasTrack(id)) continue
+      loadTrack(id).then(
+        (track) => {
+          if (!cancelled) setHikeLines((prev) => (prev[id] ? prev : { ...prev, [id]: track.line }))
+        },
+        () => {
+          /* no track offline: the pin stays */
+        },
+      )
+    }
+    return () => {
+      cancelled = true
+    }
+  }, [tab, plannedHikeKey])
+
+  // Draw the trip: sources, layers and pin images once, data on every change.
+  useEffect(() => {
+    const map = mapRef.current
+    if (!map || !mapReady) return
+    ensureTripLayers(map)
+    addTripIcons(map, colors, tripCasing())
+    const hikes: GeoJSON.FeatureCollection = {
+      type: 'FeatureCollection',
+      features: tripDays.flatMap((d) =>
+        d.stops.flatMap((s) => {
+          const line = s.item.type === 'hike' ? hikeLines[s.item.hikeId] : undefined
+          return line
+            ? [{ type: 'Feature' as const, properties: { day: d.day, color: dayColor(colors, d.index) }, geometry: { type: 'LineString' as const, coordinates: line } }]
+            : []
+        }),
+      ),
+    }
+    setTripData(map, { legs: tripLegsGeojson(tripDays, colors), hikes, stops: tripStopsGeojson(tripDays, colors) })
+  }, [mapReady, tripDays, colors, hikeLines, schemeTick])
+
+  useEffect(() => {
+    const map = mapRef.current
+    if (!map || !mapReady) return
+    ensureTripLayers(map)
+    setTripVisible(map, tab === 'trip')
+    setTripDay(map, selectedDay)
+    setTripFocus(map, focusedTripItem)
+  }, [mapReady, tab, selectedDay, focusedTripItem, schemeTick])
+
+  // Taps on the trip layer: a pin opens its card and marks its row in the
+  // panel; a leg says how long and how far. Registered once; the handlers
+  // read the current days through a ref.
+  useEffect(() => {
+    const map = mapRef.current
+    if (!map || !mapReady) return
+    const findStop = (itemId: string) => {
+      for (const d of tripDaysRef.current) {
+        const stop = d.stops.find((s) => s.itemId === itemId)
+        if (stop) return { stop, day: d }
+      }
+      return null
+    }
+    const onPin = (e: maplibregl.MapLayerMouseEvent) => {
+      const itemId = e.features?.[0]?.properties?.itemId as string | undefined
+      const hit = itemId ? findStop(itemId) : null
+      if (!hit) return
+      setFocusedTripItem(hit.stop.itemId)
+      document.getElementById(`trip-stop-${hit.stop.itemId}`)?.scrollIntoView({ block: 'nearest' })
+      popupRef.current
+        ?.setLngLat(hit.stop.coord!)
+        .setDOMContent(
+          buildTripStopPopup(hit.stop, hit.day, dayColor(dayColors(), hit.day.index), {
+            onOpen: (href) => navigate(href),
+            onRemove: () => {
+              removeItem(hit.stop.itemId)
+              popupRef.current?.remove()
+            },
+          }),
+        )
+        .addTo(map)
+    }
+    const onLeg = (e: maplibregl.MapLayerMouseEvent) => {
+      // A pin sits on the end of its legs; a tap on it is the pin's.
+      if (map.queryRenderedFeatures(e.point, { layers: [TRIP_PIN_LAYER] }).length > 0) return
+      const props = e.features?.[0]?.properties
+      if (!props) return
+      const leg = tripDaysRef.current
+        .flatMap((d) => d.legs)
+        .find((l) => l.from.itemId === props.fromId && l.to.itemId === props.toId)
+      if (!leg) return
+      popupRef.current?.setLngLat(e.lngLat).setDOMContent(buildTripLegPopup(leg)).addTo(map)
+    }
+    const pointer = () => (map.getCanvas().style.cursor = 'pointer')
+    const plain = () => (map.getCanvas().style.cursor = '')
+    const layers = [TRIP_PIN_LAYER, ...TRIP_LEG_LAYERS]
+    map.on('click', TRIP_PIN_LAYER, onPin)
+    for (const id of TRIP_LEG_LAYERS) map.on('click', id, onLeg)
+    for (const id of layers) {
+      map.on('mouseenter', id, pointer)
+      map.on('mouseleave', id, plain)
+    }
+    return () => {
+      map.off('click', TRIP_PIN_LAYER, onPin)
+      for (const id of TRIP_LEG_LAYERS) map.off('click', id, onLeg)
+      for (const id of layers) {
+        map.off('mouseenter', id, pointer)
+        map.off('mouseleave', id, plain)
+      }
+    }
+  }, [mapReady, navigate, removeItem])
+
+  // From the panel: fly to a stop at a good 3D angle and mark it.
+  const focusTripStop = useCallback((stop: TripStop) => {
+    const map = mapRef.current
+    setFocusedTripItem(stop.itemId)
+    if (!map || !stop.coord) return
+    map.flyTo({
+      center: stop.coord,
+      zoom: Math.max(map.getZoom(), 13.5),
+      pitch: is3dRef.current ? 55 : 0,
+    })
+  }, [])
+
+  // Selecting one day frames it; "All days" frames the whole trip.
+  const selectTripDay = useCallback((day: string | null) => {
+    setSelectedDay(day)
+    const map = mapRef.current
+    if (!map) return
+    const pts = tripDaysRef.current
+      .filter((d) => !day || d.day === day)
+      .flatMap((d) => d.stops.map((s) => s.coord!))
+    if (pts.length === 0) return
+    const bounds = new maplibregl.LngLatBounds()
+    for (const p of pts) bounds.extend(p)
+    map.fitBounds(bounds, { padding: tripPadding(map), maxZoom: 14, pitch: is3dRef.current ? DAY_FIT_PITCH : 0 })
+  }, [])
+
+  // "Play day": fly the day stop to stop, pausing at each. Any touch on the
+  // map, a tab change or leaving the page stops it. MapLibre turns the flight
+  // into a jump for readers who ask for reduced motion.
+  const playTokenRef = useRef<{ cancelled: boolean } | null>(null)
+  const stopPlaying = useCallback(() => {
+    if (playTokenRef.current) playTokenRef.current.cancelled = true
+    playTokenRef.current = null
+  }, [])
+  const playDay = useCallback(
+    async (day: TripDay) => {
+      const map = mapRef.current
+      if (!map || day.stops.length === 0) return
+      stopPlaying()
+      const token = { cancelled: false }
+      playTokenRef.current = token
+      setSelectedDay(day.day)
+      const cancel = () => (token.cancelled = true)
+      map.once('mousedown', cancel)
+      map.once('touchstart', cancel)
+      map.once('wheel', cancel)
+      for (const stop of day.stops) {
+        if (token.cancelled) break
+        setFocusedTripItem(stop.itemId)
+        await new Promise<void>((resolve) => {
+          map.once('moveend', () => resolve())
+          map.flyTo({ center: stop.coord!, zoom: 14, pitch: is3dRef.current ? 60 : 0, speed: 0.8 })
+        })
+        if (token.cancelled) break
+        await new Promise((r) => setTimeout(r, 1800))
+      }
+      map.off('mousedown', cancel)
+      map.off('touchstart', cancel)
+      map.off('wheel', cancel)
+      if (playTokenRef.current === token) playTokenRef.current = null
+    },
+    [stopPlaying],
+  )
+  useEffect(() => {
+    if (tab !== 'trip') stopPlaying()
+    return stopPlaying
+  }, [tab, stopPlaying])
+
+  const setLegMode = useCallback((itemId: string, mode: TravelModeT | undefined) => {
+    setItemTravelMode(itemId, mode)
+  }, [])
+  const moveTripItem = useCallback((itemId: string, direction: -1 | 1) => {
+    moveItemInDay(itemId, direction)
   }, [])
 
   // Marker reconciliation — runs whenever the visible set changes.
@@ -1420,6 +2016,19 @@ export default function Map() {
     setTab(next)
   }, [])
 
+  // "Download for offline": the Information pane's Offline areas section,
+  // which carries each area's size, progress and Remove. Scrolled to after
+  // the pane has rendered; focus moves with it for keyboard and screen
+  // reader users, who would otherwise stay on a button that just vanished.
+  const openOfflineAreas = useCallback(() => {
+    setTab('info')
+    requestAnimationFrame(() => {
+      const target = document.getElementById('map-offline')
+      target?.scrollIntoView({ block: 'start' })
+      target?.focus({ preventScroll: true })
+    })
+  }, [])
+
   const handleSelectItinerary = useCallback(
     (key: ItineraryKey | null) => {
       setSelectedItinerary(key)
@@ -1480,22 +2089,33 @@ export default function Map() {
               The map couldn't load. Check your connection and reload. GPS
               points are still on each stop's page.
             </>
-          ) : mapDownloaded ? (
-            <>Map downloaded. Works offline, down to trailhead scale.</>
           ) : !online ? (
-            <>
-              Offline, and the park map is not downloaded to this phone: only
-              areas you have already viewed will draw.{' '}
-              <Link className="map-online-notice__link" to="/account#offline">
-                Offline downloads →
-              </Link>
-            </>
+            mapOffline.overview ? (
+              <>
+                <strong>Offline.</strong> The whole park draws at driving scale
+                {mapOffline.regions.length > 0
+                  ? `; trailhead detail for ${listLabels(mapOffline.regions.map((r) => r.label))} (outlined).`
+                  : '; no area is downloaded at trailhead scale.'}
+              </>
+            ) : (
+              <>
+                <strong>Offline</strong>, and the park map is not downloaded to
+                this phone: only places you have already viewed will draw.{' '}
+                <button type="button" className="map-online-notice__link" onClick={openOfflineAreas}>
+                  Offline areas →
+                </button>
+              </>
+            )
+          ) : mapDownloaded ? (
+            <>Map downloaded. Every area works offline, down to trailhead scale.</>
           ) : (
             <>
               Viewing online.{' '}
-              <Link className="map-online-notice__link" to="/account#offline">
-                Download the map for offline →
-              </Link>
+              <button type="button" className="map-online-notice__link" onClick={openOfflineAreas}>
+                {mapOffline.overview
+                  ? `${mapOffline.regions.length} of ${OFFLINE_REGIONS.length} areas downloaded →`
+                  : 'Download the map for offline →'}
+              </button>
             </>
           )}
         </div>
@@ -1519,6 +2139,14 @@ export default function Map() {
             onClick={() => handleTab('itineraries')}
           >
             Itineraries
+          </button>
+          <button
+            type="button"
+            className="map-tabbar__tab"
+            aria-pressed={tab === 'trip'}
+            onClick={() => handleTab('trip')}
+          >
+            My trip
           </button>
           <button
             type="button"
@@ -1624,7 +2252,26 @@ export default function Map() {
             className="map-page__map"
             data-zoom-band={zoomBand}
             data-kinds={kindFilter ? 'some' : 'all'}
+            data-trip-view={tab === 'trip' || undefined}
           />
+
+          <div className="map-view-controls" role="group" aria-label="Map view controls">
+            <button
+              type="button"
+              className="map-view-controls__btn"
+              aria-pressed={is3d}
+              aria-label="3D terrain"
+              onClick={toggle3d}
+            >
+              3D
+            </button>
+            <button type="button" className="map-view-controls__btn" onClick={resetView}>
+              Reset view
+            </button>
+            <button type="button" className="map-view-controls__btn" onClick={openOfflineAreas}>
+              Offline areas
+            </button>
+          </div>
 
           {mapReady && zoomBand === 'far' && !kindFilter && tab !== 'info' && (
             <p className="map-zoom-hint" role="note">
@@ -1778,8 +2425,28 @@ export default function Map() {
             )}
           </aside>
 
+          <aside className="map-pane map-pane--trip" aria-hidden={tab !== 'trip'} aria-label="Your trip, day by day">
+            <TripPanel
+              days={tripDays}
+              colors={colors}
+              selectedDay={selectedDay}
+              onSelectDay={selectTripDay}
+              focusedItemId={focusedTripItem}
+              onFocusItem={focusTripStop}
+              onSetMode={setLegMode}
+              onMove={moveTripItem}
+              onRemove={removeItem}
+              onPlayDay={playDay}
+              dayEnd={dayEnd}
+              onDayEnd={setDayEnd}
+              graphState={roadGraph ? 'ready' : graphState}
+              expanded={tripExpanded}
+              onToggleExpanded={() => setTripExpanded((v) => !v)}
+            />
+          </aside>
+
           <section className="map-pane map-pane--info" aria-hidden={tab !== 'info'}>
-            <InfoPane presentKinds={presentKinds} mapDownloaded={mapDownloaded} />
+            <InfoPane presentKinds={presentKinds} mapOffline={mapOffline} />
           </section>
         </div>
       </div>
@@ -1825,30 +2492,34 @@ function ItineraryButton({ photos, label, subtitle, count, selected, onClick }: 
 
 function InfoPane({
   presentKinds,
-  mapDownloaded,
+  mapOffline,
 }: {
   presentKinds: MapPinKind[]
-  mapDownloaded: boolean
+  mapOffline: MapOffline
 }) {
+  const allAreas = mapOffline.overview && mapOffline.regions.length === OFFLINE_REGIONS.length
   return (
     <div className="map-info">
       <h1>How the map works offline</h1>
       <p className="lede">
         This map is built to work with zero bars. Download it once and the
-        topo tiles live on your device; the pins are part of the app itself.
+        terrain and map tiles live on your device; the pins are part of the
+        app itself.
       </p>
 
       <h2>Before you leave wifi</h2>
       <ol>
         <li>
-          Open <Link to="/account">Account → Offline</Link> and download the
-          <strong> offline park map</strong> (about 20 MB) and the photo packs
-          for the regions you're visiting.
+          Download the <strong>overview</strong> below and each area you're
+          visiting (the whole park is about 22 MB), and the photo packs in{' '}
+          <Link to="/account">Account → Offline</Link>.
         </li>
         <li>
-          {mapDownloaded
-            ? 'Done on this device. The map works offline.'
-            : 'Once downloaded, this map works offline.'}
+          {allAreas
+            ? 'Done on this device. Every area works offline.'
+            : mapOffline.overview && mapOffline.regions.length > 0
+              ? `On this device: the overview and ${listLabels(mapOffline.regions.map((r) => r.label))}.`
+              : 'Once downloaded, the map works offline.'}
         </li>
         <li>
           For turn-by-turn <em>driving</em> directions, also download an
@@ -1857,6 +2528,21 @@ function InfoPane({
           <strong> Select your own map</strong>, frame the park, download.
         </li>
       </ol>
+
+      <section id="map-offline" className="map-info__offline" tabIndex={-1} aria-labelledby="map-offline-title">
+        <h2 id="map-offline-title">Offline areas</h2>
+        <DownloadManager
+          only={(p) => MAP_PACK_IDS.includes(p.id)}
+          intro={
+            <p>
+              The overview draws the whole park in 3D at driving scale, with
+              every road and label; each area adds trailhead-scale detail. An
+              area needs the overview, which downloads with it. Offline, the
+              map outlines the areas on this device.
+            </p>
+          }
+        />
+      </section>
 
       <h2>In the park</h2>
       <ul>

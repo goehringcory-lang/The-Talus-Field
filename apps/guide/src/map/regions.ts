@@ -37,7 +37,7 @@ export type OfflineRegion = {
   bbox: Bbox
 }
 
-// The corridor boxes are the four the Esri park-map pack used (offline/tiles.ts),
+// The corridor boxes are the four the retired Esri park-map pack used,
 // which were widened stop by stop until every pin in the guide sat inside one.
 export const OFFLINE_REGIONS: OfflineRegion[] = [
   {

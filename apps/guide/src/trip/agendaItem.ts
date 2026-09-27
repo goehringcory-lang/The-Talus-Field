@@ -15,6 +15,7 @@ import { getHikeById, getStopById } from '../content'
 import { DIFFICULTY_LABEL, KIND_LABEL } from '../content/labels'
 import { KIND_STYLES } from '../map/kinds'
 import type { ProgramCategoryT } from '../programs/schema'
+import { resolvePlace } from './places'
 import type { TripItemT } from './schema'
 
 export type AgendaTone = {
@@ -128,6 +129,21 @@ export function itemInfo(item: TripItemT): ItemInfo {
     }
   }
 
+  // A linked map place reads its name, kind and coordinate from the record,
+  // so a renamed lot or a corrected pin reaches the plan. The stored title
+  // stays as the fallback for a place a later edition retires.
+  const place = resolvePlace(item.placeId)
+  if (place) {
+    return {
+      title: place.title,
+      tone: toneForStopKind(place.kind),
+      coord: place.coord,
+      meta: [KIND_STYLES[place.kind].label, ...(item.note ? [item.note] : [])],
+      missing: false,
+      fixed: false,
+    }
+  }
+
   const tone = MEAL_WORDS.test(item.title)
     ? MEAL_TONE
     : LODGING_WORDS.test(item.title)
@@ -136,6 +152,7 @@ export function itemInfo(item: TripItemT): ItemInfo {
   return {
     title: item.title,
     tone,
+    coord: item.coord,
     meta: item.note ? [item.note] : [],
     missing: false,
     fixed: false,

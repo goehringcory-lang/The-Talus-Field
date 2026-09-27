@@ -953,3 +953,383 @@
 .map-pin--landmark {
   opacity: 0.88;
 }
+
+/* 3D/2D, Reset view and Offline areas: one row beside MapLibre's zoom,
+ * compass and locate stack in the top-left, in the instrument voice (mono
+ * label, hairline box) so they read as the map's own controls, not the app's
+ * page buttons. 44px tall for a gloved thumb. */
+.map-view-controls {
+  position: absolute;
+  top: 10px;
+  left: 52px;
+  z-index: 8;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  max-width: calc(100% - 64px);
+}
+.map-view-controls__btn {
+  min-height: 44px;
+  padding: 0 12px;
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--ink);
+  background: color-mix(in oklab, var(--paper) 92%, transparent);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  border: 1px solid var(--rule-soft);
+  border-radius: var(--radius);
+  cursor: pointer;
+}
+.map-view-controls__btn[aria-pressed='true'] {
+  background: var(--ink);
+  color: var(--paper);
+  border-color: var(--ink);
+}
+.map-view-controls__btn:focus-visible {
+  outline: 2px solid var(--moss);
+  outline-offset: 2px;
+}
+
+/* The Information pane's download section. Focus lands here from the map's
+ * Offline areas button, so it needs a visible ring and no outline flash on a
+ * mouse click. */
+.map-info__offline {
+  margin-top: 28px;
+  scroll-margin-top: 12px;
+}
+.map-info__offline:focus {
+  outline: none;
+}
+.map-info__offline:focus-visible {
+  outline: 2px solid var(--moss);
+  outline-offset: 4px;
+}
+
+/* ---------------------------------------------------------------------------
+ * My trip: the itinerary panel beside the map (a side panel on wide screens,
+ * a bottom sheet on phones), and the map in trip view.
+ * ------------------------------------------------------------------------- */
+
+/* In trip view the numbered trip pins are the map's subject; the browse pins
+ * would sit on top of them (DOM markers draw above the canvas) and intercept
+ * their taps, so they step aside until another tab is chosen. */
+.map-page__map[data-trip-view] .maplibregl-marker:not(.maplibregl-user-location-dot) {
+  visibility: hidden;
+}
+
+.map-pane--trip {
+  top: 12px;
+  right: 12px;
+  bottom: 12px;
+  width: min(400px, calc(100% - 24px));
+  background: color-mix(in oklab, var(--paper) 97%, transparent);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  border: 1px solid var(--rule-soft);
+  border-radius: var(--radius);
+  box-shadow: 3px 3px 0 0 color-mix(in oklab, var(--ink) 22%, transparent);
+  overflow: hidden;
+  display: flex;
+}
+
+.trip-panel {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  min-height: 0;
+}
+.trip-panel__handle {
+  display: none;
+}
+.trip-panel__body {
+  overflow-y: auto;
+  padding: 16px 18px 20px;
+  font-family: var(--sans);
+  font-size: 14px;
+  color: var(--ink);
+}
+.trip-panel__title {
+  font-family: var(--display);
+  font-size: 22px;
+  margin: 0 0 10px;
+}
+.trip-panel__empty,
+.trip-panel__note {
+  color: var(--ink-2);
+  line-height: 1.5;
+}
+.trip-panel__days {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-bottom: 10px;
+}
+.trip-panel__days button {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  min-height: 36px;
+  padding: 0 10px;
+  font: 600 11px/1 var(--mono);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--ink);
+  background: transparent;
+  border: 1px solid var(--rule-soft);
+  border-radius: var(--radius);
+  cursor: pointer;
+}
+.trip-panel__days button[aria-pressed='true'] {
+  background: var(--ink);
+  color: var(--paper);
+  border-color: var(--ink);
+}
+.trip-panel__swatch {
+  display: inline-block;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  border: 1.5px solid var(--paper);
+  box-shadow: 0 0 0 1px var(--rule-soft);
+  flex: none;
+}
+.trip-panel__legend {
+  margin: 0 0 10px;
+  font-size: 13px;
+  color: var(--ink-2);
+}
+.trip-panel__legend summary {
+  cursor: pointer;
+  font: 600 11px/2.2 var(--mono);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+.trip-panel__legend ul {
+  list-style: none;
+  padding: 0;
+  margin: 6px 0 10px;
+}
+.trip-panel__legend li {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 22px;
+}
+.trip-panel__faded {
+  opacity: 0.5;
+}
+.trip-panel__end {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+  font-size: 13px;
+  color: var(--ink-2);
+  margin-bottom: 12px;
+}
+.trip-panel__end select,
+.trip-leg select {
+  min-height: 36px;
+  font: 13px var(--sans);
+  color: var(--ink);
+  background: var(--paper);
+  border: 1px solid var(--rule-soft);
+  border-radius: var(--radius);
+  padding: 0 6px;
+}
+.trip-panel__foot {
+  margin: 16px 0 0;
+  font-size: 13px;
+}
+.trip-panel__foot a {
+  color: var(--moss);
+}
+
+.trip-day {
+  border-top: 1px solid var(--rule-soft);
+  padding-top: 12px;
+  margin-top: 12px;
+}
+.trip-day__title {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font: 600 12px/1.3 var(--mono);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  margin: 0 0 8px;
+}
+.trip-day__play {
+  margin-left: auto;
+  min-height: 32px;
+  padding: 0 10px;
+  font: 600 11px/1 var(--mono);
+  text-transform: uppercase;
+  color: var(--ink);
+  background: transparent;
+  border: 1px solid var(--rule-soft);
+  border-radius: var(--radius);
+  cursor: pointer;
+}
+.trip-day__warnings {
+  list-style: none;
+  margin: 0 0 8px;
+  padding: 0;
+}
+.trip-day__warning {
+  font-size: 13px;
+  line-height: 1.45;
+  color: var(--danger);
+  padding: 6px 8px;
+  border-left: 3px solid var(--danger);
+  background: color-mix(in oklab, var(--danger) 8%, transparent);
+  margin-bottom: 4px;
+}
+.trip-day__warning--unrouted {
+  color: var(--ink-2);
+  border-left-color: var(--rule-soft);
+  background: none;
+}
+.trip-day__stops {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.trip-stop {
+  padding: 2px 0;
+}
+.trip-stop[data-focused] .trip-stop__main {
+  background: color-mix(in oklab, var(--ink) 7%, transparent);
+}
+.trip-stop__row {
+  display: flex;
+  align-items: stretch;
+  gap: 2px;
+}
+.trip-stop__main {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-height: 48px;
+  padding: 4px 6px;
+  text-align: left;
+  background: none;
+  border: 0;
+  border-radius: var(--radius);
+  color: inherit;
+  font: inherit;
+  cursor: pointer;
+}
+.trip-stop__num {
+  display: inline-grid;
+  place-items: center;
+  width: 26px;
+  height: 26px;
+  flex: none;
+  border-radius: 50%;
+  color: #fff;
+  font: 600 13px/1 var(--sans);
+  border: 2px solid var(--paper);
+  box-shadow: 0 0 0 1px var(--rule-soft);
+}
+.trip-stop__text {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+.trip-stop__title {
+  font-weight: 600;
+}
+.trip-stop__meta {
+  font: 12px/1.4 var(--mono);
+  color: var(--ink-2);
+}
+.trip-stop__tools,
+.trip-stop__remove {
+  display: flex;
+}
+.trip-stop__tools button,
+.trip-stop__remove {
+  min-width: 36px;
+  min-height: 44px;
+  align-items: center;
+  justify-content: center;
+  background: none;
+  border: 0;
+  color: var(--ink-2);
+  font-size: 16px;
+  cursor: pointer;
+}
+.trip-stop__main:focus-visible,
+.trip-stop__tools button:focus-visible,
+.trip-stop__remove:focus-visible,
+.trip-panel__days button:focus-visible,
+.trip-day__play:focus-visible {
+  outline: 2px solid var(--moss);
+  outline-offset: 1px;
+}
+.trip-leg {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 4px 10px;
+  margin: 2px 0 6px 18px;
+  padding: 4px 0 4px 18px;
+  border-left: 2px dotted var(--rule-soft);
+  font-size: 12px;
+  color: var(--ink-2);
+}
+.trip-leg--short .trip-leg__summary,
+.trip-leg--overlap .trip-leg__summary {
+  color: var(--danger);
+  font-weight: 600;
+}
+.trip-leg__summary {
+  font-family: var(--mono);
+}
+.trip-leg__note {
+  flex-basis: 100%;
+  font-size: 12px;
+}
+.trip-day__unmapped {
+  font-size: 13px;
+  color: var(--ink-2);
+}
+.map-popup__warning {
+  color: var(--danger);
+}
+.map-popup__btn--inline {
+  margin-top: 6px;
+}
+
+@media (max-width: 720px) {
+  /* A bottom sheet: collapsed to its handle so the map leads, expanded to
+   * the lower half on a tap. */
+  .map-pane--trip {
+    top: auto;
+    left: 12px;
+    width: auto;
+    max-height: 60%;
+  }
+  .trip-panel__handle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 44px;
+    background: none;
+    border: 0;
+    border-bottom: 1px solid var(--rule-soft);
+    font: 600 12px/1 var(--mono);
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--ink);
+    cursor: pointer;
+  }
+  .trip-panel:not(.trip-panel--open) .trip-panel__body {
+    display: none;
+  }
+}
