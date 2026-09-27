@@ -2674,7 +2674,11 @@ function FjLayout({ children, numbered = true, marks = "numeric", label = "On th
         h.id = id;
       }
       taken.add(h.id);
-      return { id: h.id, label: h.textContent.trim() };
+      // A heading that numbers itself ("3. How we use it") lends its number
+      // to the index numeral instead of printing it twice.
+      const text = h.textContent.trim();
+      const own = /^(\d+)\.\s+(.*)$/.exec(text);
+      return own ? { id: h.id, label: own[2], num: +own[1] } : { id: h.id, label: text };
     }));
     let raf = 0;
     const spy = () => {
@@ -2707,7 +2711,7 @@ function FjLayout({ children, numbered = true, marks = "numeric", label = "On th
       {items.map((it, i) => (
         <li key={it.id}>
           <a href={"#" + it.id} aria-current={active === it.id ? "location" : undefined} onClick={(e) => jump(e, it.id)}>
-            {marks !== "none" && <span aria-hidden="true">{marks === "roman" ? FJ_ROMAN[i] || i + 1 : fjPad(i + 1)}</span>}{it.label}
+            {marks !== "none" && <span aria-hidden="true">{marks === "roman" ? FJ_ROMAN[i] || i + 1 : fjPad(it.num || i + 1)}</span>}{it.label}
           </a>
         </li>
       ))}

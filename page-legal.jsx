@@ -1,9 +1,9 @@
 /* global React, HpPageHead, FjLayout, FjCard */
 
-// /privacy and /terms carry their own section numbers in the headings, so
-// their index lists them without a second set of marks and the headings take
-// no numeral (`numberedHeads={false}`); /affiliate's headings are unnumbered
-// and take the kit's numerals. `sections` is the count of h2s each page prints.
+// /privacy and /terms carry their own section numbers in the headings
+// (`numberedHeads`), so the headings take no second numeral and FjLayout lifts
+// each number into the index; /affiliate's headings are unnumbered and take
+// the kit's numerals. `sections` is the count of h2s each page prints.
 function LegalShell({ go, title, eyebrow, updated, sections, numberedHeads = true, children }) {
   return (
     <div className="page hp-legal">
@@ -25,7 +25,7 @@ function LegalShell({ go, title, eyebrow, updated, sections, numberedHeads = tru
           />
         }
       />
-      <FjLayout numbered={!numberedHeads} marks={numberedHeads ? "none" : "numeric"} className={numberedHeads ? "fj-layout--plain" : undefined}>
+      <FjLayout numbered={!numberedHeads}>
         <div className="prose">
           {children}
         </div>

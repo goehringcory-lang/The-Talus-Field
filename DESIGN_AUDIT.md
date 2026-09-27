@@ -148,3 +148,21 @@ pages and are not flagged.
   newsletter form with no visible label and an h1-to-h3 jump; a hard-cut
   contour band; small letterhead labels, a 50px gap between stacked fields,
   and a textarea whose top line clipped on phones.
+- **Final cross-page review.** No regressions: /, /planning, /conditions,
+  /guide, /firefall, /start-here, /stay, /articles and an article diffed at 0
+  changed bytes against origin/main (bar lazy-image timing noise), and the
+  archive and /films at 0. It caught: the live widget still widening the
+  /widget head at 390 once the API answered, and clipping its forecast mid-word
+  (the head column can no longer grow, and the embed wraps); the /contact
+  address spilling out of its card near 768 (it wraps, and now sits in a head
+  card, which also fills the one empty head); head-card rows stacking on phones
+  for plain heads but not photo heads (one behaviour now); four charts on four
+  paddings and type scales, only one titled, and rust meaning measured data in
+  one and "typical" in the others (one frame, one scale, a title each, ink for
+  measured data); /consult the one head off-system (now a contour head with a
+  head card that stacks under 1100px); two index numbering styles on the legal
+  pages (numbered headings now lend their number to the index); an 88px head
+  foot on heads with nothing overlapping; two title sizes on card grids; and
+  ISO dates in stamps beside long-form ones.
+
+All flagged pages done.

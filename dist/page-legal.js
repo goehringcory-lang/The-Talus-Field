@@ -33,9 +33,7 @@ function LegalShell({
       }]
     })
   }), React.createElement(FjLayout, {
-    numbered: !numberedHeads,
-    marks: numberedHeads ? "none" : "numeric",
-    className: numberedHeads ? "fj-layout--plain" : undefined
+    numbered: !numberedHeads
   }, React.createElement("div", {
     className: "prose"
   }, children)));

@@ -59,7 +59,9 @@ function TiogaStrip() {
   return React.createElement("figure", {
     className: "tg-strip",
     "aria-hidden": "true"
-  }, React.createElement("div", {
+  }, React.createElement("p", {
+    className: "hp-eyebrow fj-chart-title"
+  }, "Recorded openings, May 1 to June 30"), React.createElement("div", {
     className: "tg-strip__axis"
   }, React.createElement("span", {
     className: "tg-strip__snow"

@@ -9370,8 +9370,6 @@ html[data-nav-mode="pinned"] { scroll-padding-top: 62px; }
   .fj-card { padding: 24px 20px 22px; }
   .fj-card__stamp { width: 86px; height: 86px; top: -40px; right: 10px; font-size: 7.5px; }
   .fj-card__title { font-size: 26px; }
-  .fj-card dl, .fj-headart--card .fj-card dl { grid-template-columns: 1fr; }
-  .fj-card dl > div { row-gap: 2px; }
   .fj-steps li { grid-template-columns: 40px 1fr; gap: 14px; }
   .fj-steps__n { width: 40px; height: 40px; font-size: 17px; }
   .fj-steps li::before { left: 20px; top: 40px; }
@@ -9400,10 +9398,9 @@ html[data-nav-mode="pinned"] { scroll-padding-top: 62px; }
 .hp-design .fj-head .hp-pagehead--split, .hp-design .hp-pagehead--split.fj-head { align-items: start; }
 
 /* Lists recast: an ordered pair of cards, and big-numeral lists. */
-.prose .fj-pair { list-style: none; padding: 0; margin: 24px 0 28px; display: grid; grid-template-columns: 1fr 1fr; gap: 16px; counter-reset: fjpair; }
+.prose .fj-pair { list-style: none; padding: 0; margin: 24px 0 28px; display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
 .prose .fj-pair > li { margin: 0; padding: 22px 22px 20px; background: var(--hp-card); border: 1px solid var(--hp-rule); border-top: 3px solid var(--hp-ink); border-radius: 3px; font-size: 15px; line-height: 1.7; }
-.prose .fj-pair > li::before { counter-increment: fjpair; content: counter(fjpair, decimal-leading-zero); content: counter(fjpair, decimal-leading-zero) / ""; display: block; font: 600 10px var(--sans); letter-spacing: 1.7px; color: var(--hp-accent); margin-bottom: 12px; }
-.prose .fj-pair > li > strong:first-child { display: block; font: 400 25px/1.1 var(--serif); letter-spacing: -0.4px; margin-bottom: 10px; }
+.prose .fj-pair > li > strong:first-child { display: block; font: 400 22px/1.15 var(--serif); letter-spacing: -0.4px; margin-bottom: 10px; }
 .prose .fj-numlist { list-style: none; padding: 0; margin: 24px 0 28px; counter-reset: fjnum; }
 .prose .fj-numlist > li { position: relative; padding: 18px 0 18px 64px; margin: 0; border-top: 1px solid var(--hp-rule); }
 .prose .fj-numlist + h2 { margin-top: 40px; }
@@ -9438,7 +9435,7 @@ html[data-nav-mode="pinned"] { scroll-padding-top: 62px; }
 .hd-odds__draw { min-width: 0; }
 .hd-odds__dots { display: grid; grid-template-columns: repeat(10, 1fr); gap: 4px; max-width: 170px; margin-bottom: 14px; }
 .hd-odds__dots i { display: block; aspect-ratio: 1; border-radius: 50%; border: 1px solid #233e3540; }
-.hd-odds__dots i.is-won { background: var(--hp-accent); border-color: var(--hp-accent); }
+.hd-odds__dots i.is-won { background: var(--hp-ink); border-color: var(--hp-ink); }
 .hd-odds__draw strong { display: block; font: 400 40px/1 var(--serif); letter-spacing: -0.8px; color: var(--hp-ink); }
 .hd-odds__draw span { display: block; margin-top: 6px; font: 600 9px/1.5 var(--sans); letter-spacing: 1.5px; text-transform: uppercase; color: var(--hp-muted); }
 .prose .hd-odds figcaption { margin-top: 20px; padding-top: 14px; border-top: 1px solid var(--hp-rule); }
@@ -9491,7 +9488,6 @@ html[data-nav-mode="pinned"] { scroll-padding-top: 62px; }
 .fj-aside a, .fj-status a { color: var(--hp-ink); text-decoration: underline; text-decoration-color: var(--hp-accent); text-underline-offset: 3px; }
 .fj-status a { color: var(--hp-paper); }
 .prose .fj-pair > li:last-child:nth-child(odd) { grid-column: 1 / -1; }
-.prose ul.fj-pair > li > strong:first-child { font-size: 22px; line-height: 1.15; }
 
 /* A wide table fades at its right edge, the cue that it scrolls, and the fade
    clears as the reader reaches the end. Only where scroll-driven animation
@@ -9508,7 +9504,6 @@ html[data-nav-mode="pinned"] { scroll-padding-top: 62px; }
 }
 /* Card grids carry no numerals: inside a numbered section they read as a
    second sequence. The lead phrase titles each card. */
-.prose .fj-pair > li::before { display: none; }
 @media (max-width: 1100px) {
   .hp-design .hp-pagehead--split.fj-head { grid-template-columns: 1fr; gap: 36px; }
 }
@@ -9730,7 +9725,6 @@ html[data-nav-mode="pinned"] { scroll-padding-top: 62px; }
 @media (max-width: 760px) { .fj-band .fj-facts dd { font-size: 22px; } }
 
 /* The legal pages: an unnumbered index (their headings carry numbers). */
-.fj-layout--plain .fj-index a, .fj-layout--plain .fj-toc a { grid-template-columns: 1fr; }
 .hp-legal .fj-layout { padding-bottom: 80px; }
 .hp-legal .hp-pagehead__aside .fj-card { max-width: 420px; margin-left: auto; }
 @media (max-width: 1100px) { .hp-legal .hp-pagehead__aside .fj-card { margin-left: 0; } }
@@ -9764,3 +9758,32 @@ html[data-nav-mode="pinned"] { scroll-padding-top: 62px; }
 }
 .hp-widget__preview { min-width: 0; overflow: hidden; }
 .hp-widget__preview #talus-conditions { overflow-x: auto; }
+
+/* Final cross-page pass. */
+/* One frame and one type scale for the four charts. */
+.hd-odds, .tg-strip, .ds-bars, .dt-year { padding: 24px 26px 18px; }
+.fj-chart-title.hp-eyebrow { text-transform: uppercase; margin: 0 0 18px; }
+.tg-strip__months, .ds-bars__scale, .dt-year__months > div span, .hd-odds__draw span, .tg-strip small, .ds-bars__town small { font-size: 10px; letter-spacing: 1.2px; }
+@media (max-width: 760px) {
+  .hd-odds, .tg-strip, .ds-bars, .dt-year { padding: 18px 14px 14px; }
+  .tg-strip__months, .ds-bars__scale, .hd-odds__draw span, .tg-strip small, .ds-bars__town small { font-size: 9px; letter-spacing: 1px; }
+  .dt-year__months > div span { font-size: 9px; letter-spacing: 0; }
+}
+/* A head card's room below the head only where a card overlaps a photo. */
+.hp-design .hp-pagehead.fj-head { padding-bottom: 56px; }
+.hp-design .hp-pagehead.fj-head:has(.fj-headart--card) { padding-bottom: 88px; }
+@media (max-width: 1100px) { .hp-design .hp-pagehead.fj-head:has(.fj-headart--card) { padding-bottom: 48px; } }
+@media (max-width: 760px) { .hp-design .hp-pagehead.fj-head, .hp-design .hp-pagehead.fj-head:has(.fj-headart--card) { padding-bottom: 40px; } }
+/* /consult's booking box as a head card. */
+.hp-design .hp-consult .hp-consult__book { border-top: 3px solid var(--hp-accent); padding: 28px 30px; box-shadow: 0 18px 40px -28px #233e3540; }
+@media (max-width: 1100px) { .hp-design .hp-consult .hp-consult__book { margin-left: 0; } }
+/* /widget: the live embed can never widen the head. */
+.hp-widget .hp-pagehead__aside, .hp-widget .hp-pagehead__copy { min-width: 0; }
+@media (max-width: 1100px) { .hp-design .hp-widget .hp-pagehead--split { grid-template-columns: minmax(0, 1fr); } .hp-design .hp-widget__preview { margin-left: 0; } }
+.hp-widget__preview #talus-conditions span, .hp-widget__preview #talus-conditions div { white-space: normal !important; overflow-wrap: anywhere; }
+/* /contact: the direct line as the head card; long address wraps. */
+.hp-contact__direct { max-width: 420px; margin-left: auto; }
+.hp-contact__direct .hp-contact__mail { margin: 0 0 8px; }
+.hp-contact__direct .hp-contact__note { margin: 0; }
+.hp-contact__mail a, .hp-contact__aside a { overflow-wrap: anywhere; }
+@media (max-width: 1100px) { .hp-contact__direct { margin-left: 0; } }

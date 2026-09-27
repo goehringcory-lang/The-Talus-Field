@@ -202,6 +202,7 @@ function windowSpans(it, ruleYears) {
 function YearStrip({ fixed, ruleYears }) {
   return (
     <figure className="dt-year" aria-hidden="true">
+      <p className="hp-eyebrow fj-chart-title">The fixed windows, January to December</p>
       <div className="dt-year__months">
         <span />
         <div>{MONTH_NAMES.map((m) => <span key={m}>{m.slice(0, 3)}</span>)}</div>
@@ -252,7 +253,7 @@ function DatesPage({ go }) {
         aside={
           <FjCard
             eyebrow="THE CALENDAR, IN FOUR LINES"
-            stamp={<>Verified<br />{table.verified}</>}
+            stamp={<>Verified<br />{parseIso(table.verified) ? longDate(parseIso(table.verified)) : table.verified}</>}
             rows={[
               { label: "Fixed windows", value: `${fixed.length}, one calendar file each` },
               { label: "From your trip", value: `${relative.length} rules, resolved to days` },

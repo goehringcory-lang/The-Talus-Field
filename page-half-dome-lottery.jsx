@@ -55,6 +55,7 @@ function LotteryOdds({ season }) {
   ];
   return (
     <figure className="hd-odds" aria-hidden="true">
+      <p className="hp-eyebrow fj-chart-title">The published odds, {season.season} season</p>
       <div className="hd-odds__grids">
         {draws.map((d) => {
           const n = parseInt(d.rate, 10) || 0;

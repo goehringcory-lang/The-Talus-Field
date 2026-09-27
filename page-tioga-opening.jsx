@@ -113,6 +113,7 @@ function TiogaStrip() {
   const avg = tiogaOffset(LONG_TERM_AVERAGE);
   return (
     <figure className="tg-strip" aria-hidden="true">
+      <p className="hp-eyebrow fj-chart-title">Recorded openings, May 1 to June 30</p>
       <div className="tg-strip__axis">
         <span className="tg-strip__snow" />
         {avg != null && (

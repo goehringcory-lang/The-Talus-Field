@@ -60,7 +60,7 @@ function DriveBars() {
   const pct = (m) => `${(Math.min(m, DRIVE_SCALE_MAX) / DRIVE_SCALE_MAX) * 100}%`;
   return (
     <figure className="ds-bars" aria-hidden="true">
-      <p className="hp-eyebrow">To the west end of the Valley, in minutes</p>
+      <p className="hp-eyebrow fj-chart-title">To the west end of the Valley, in minutes</p>
       <ol>
         {TO_VALLEY.map((r) => {
           const d = driveRange(r.time);

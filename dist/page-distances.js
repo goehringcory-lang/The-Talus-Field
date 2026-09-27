@@ -72,7 +72,7 @@ function DriveBars() {
     className: "ds-bars",
     "aria-hidden": "true"
   }, React.createElement("p", {
-    className: "hp-eyebrow"
+    className: "hp-eyebrow fj-chart-title"
   }, "To the west end of the Valley, in minutes"), React.createElement("ol", null, TO_VALLEY.map(r => {
     var d = driveRange(r.time);
     var end = d.hi || DRIVE_SCALE_MAX;

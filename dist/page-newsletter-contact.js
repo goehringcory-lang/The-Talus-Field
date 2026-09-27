@@ -150,10 +150,21 @@ function ContactPage({
     }, {
       label: "Contact"
     }],
-    className: "fj-topo",
+    className: "fj-head fj-topo",
     eyebrow: "CONTACT",
     title: "Send me a note.",
-    intro: "I read everything. I answer most things, eventually. If you are asking a trip-planning question, please include your dates and what kind of trip you are imagining; otherwise I will just write back asking."
+    intro: "I read everything. I answer most things, eventually. If you are asking a trip-planning question, please include your dates and what kind of trip you are imagining; otherwise I will just write back asking.",
+    aside: React.createElement("div", {
+      className: "fj-card hp-contact__direct"
+    }, React.createElement("p", {
+      className: "hp-eyebrow"
+    }, "DIRECT"), React.createElement("p", {
+      className: "hp-contact__mail"
+    }, React.createElement("a", {
+      href: "mailto:cory@thetalusfieldjournal.com"
+    }, "cory@thetalusfieldjournal.com")), React.createElement("p", {
+      className: "hp-contact__note"
+    }, "I check this once or twice a day. Usually faster on Mondays."))
   }), React.createElement("section", {
     className: "hp-wrap hp-section"
   }, React.createElement("div", {
@@ -244,15 +255,7 @@ function ContactPage({
     disabled: sending
   }, sending ? "Sending…" : "Send →")), React.createElement("aside", {
     className: "hp-contact__aside"
-  }, React.createElement("p", {
-    className: "hp-eyebrow"
-  }, "DIRECT"), React.createElement("p", {
-    className: "hp-contact__mail"
-  }, React.createElement("a", {
-    href: "mailto:cory@thetalusfieldjournal.com"
-  }, "cory@thetalusfieldjournal.com")), React.createElement("p", {
-    className: "hp-contact__note"
-  }, "I check this once or twice a day. Usually faster on Mondays."), React.createElement("div", {
+  }, React.createElement("div", {
     className: "hp-contact__heads"
   }, React.createElement("p", {
     className: "hp-eyebrow"

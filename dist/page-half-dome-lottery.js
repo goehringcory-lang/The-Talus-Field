@@ -23,7 +23,9 @@ function LotteryOdds({
   return React.createElement("figure", {
     className: "hd-odds",
     "aria-hidden": "true"
-  }, React.createElement("div", {
+  }, React.createElement("p", {
+    className: "hp-eyebrow fj-chart-title"
+  }, "The published odds, ", season.season, " season"), React.createElement("div", {
     className: "hd-odds__grids"
   }, draws.map(d => {
     var n = parseInt(d.rate, 10) || 0;

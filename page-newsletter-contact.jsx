@@ -112,10 +112,21 @@ function ContactPage({ go }) {
       <HpPageHead
         go={go}
         crumbs={[{ label: "Home", route: "home" }, { label: "Contact" }]}
-        className="fj-topo"
+        className="fj-head fj-topo"
         eyebrow="CONTACT"
         title="Send me a note."
         intro="I read everything. I answer most things, eventually. If you are asking a trip-planning question, please include your dates and what kind of trip you are imagining; otherwise I will just write back asking."
+        aside={
+          <div className="fj-card hp-contact__direct">
+            <p className="hp-eyebrow">DIRECT</p>
+            <p className="hp-contact__mail">
+              <a href="mailto:cory@thetalusfieldjournal.com">cory@thetalusfieldjournal.com</a>
+            </p>
+            <p className="hp-contact__note">
+              I check this once or twice a day. Usually faster on Mondays.
+            </p>
+          </div>
+        }
       />
 
       <section className="hp-wrap hp-section">
@@ -182,14 +193,6 @@ function ContactPage({ go }) {
           )}
 
           <aside className="hp-contact__aside">
-            <p className="hp-eyebrow">DIRECT</p>
-            <p className="hp-contact__mail">
-              <a href="mailto:cory@thetalusfieldjournal.com">cory@thetalusfieldjournal.com</a>
-            </p>
-            <p className="hp-contact__note">
-              I check this once or twice a day. Usually faster on Mondays.
-            </p>
-
             <div className="hp-contact__heads">
               <p className="hp-eyebrow">HEADS UP</p>
               <p className="hp-contact__note">

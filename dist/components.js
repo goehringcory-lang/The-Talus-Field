@@ -3198,9 +3198,15 @@ function FjLayout({
         h.id = id;
       }
       taken.add(h.id);
-      return {
+      var text = h.textContent.trim();
+      var own = /^(\d+)\.\s+(.*)$/.exec(text);
+      return own ? {
         id: h.id,
-        label: h.textContent.trim()
+        label: own[2],
+        num: +own[1]
+      } : {
+        id: h.id,
+        label: text
       };
     }));
     var raf = 0;
@@ -3250,7 +3256,7 @@ function FjLayout({
     onClick: e => jump(e, it.id)
   }, marks !== "none" && React.createElement("span", {
     "aria-hidden": "true"
-  }, marks === "roman" ? FJ_ROMAN[i] || i + 1 : fjPad(i + 1)), it.label))));
+  }, marks === "roman" ? FJ_ROMAN[i] || i + 1 : fjPad(it.num || i + 1)), it.label))));
   var many = items.length > 2;
   return React.createElement("div", {
     className: ["hp-wrap", "fj-layout", numbered ? "fj-numbered" : null, className].filter(Boolean).join(" ")

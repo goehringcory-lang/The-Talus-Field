@@ -157,7 +157,9 @@ function YearStrip({
   return React.createElement("figure", {
     className: "dt-year",
     "aria-hidden": "true"
-  }, React.createElement("div", {
+  }, React.createElement("p", {
+    className: "hp-eyebrow fj-chart-title"
+  }, "The fixed windows, January to December"), React.createElement("div", {
     className: "dt-year__months"
   }, React.createElement("span", null), React.createElement("div", null, MONTH_NAMES.map(m => React.createElement("span", {
     key: m
@@ -225,7 +227,7 @@ function DatesPage({
     intro: "The lotteries, the release mornings, and the road windows that decide a trip, in one table, each one a calendar file. Enter your dates and the ones measured from your trip resolve to real days.",
     aside: React.createElement(FjCard, {
       eyebrow: "THE CALENDAR, IN FOUR LINES",
-      stamp: React.createElement(React.Fragment, null, "Verified", React.createElement("br", null), table.verified),
+      stamp: React.createElement(React.Fragment, null, "Verified", React.createElement("br", null), parseIso(table.verified) ? longDate(parseIso(table.verified)) : table.verified),
       rows: [{
         label: "Fixed windows",
         value: `${fixed.length}, one calendar file each`

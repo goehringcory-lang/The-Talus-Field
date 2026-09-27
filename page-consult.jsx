@@ -36,6 +36,7 @@ function ConsultPage({ go }) {
       <HpPageHead
         go={go}
         crumbs={[{ label: "Home", route: "home" }, { label: "Field consult" }]}
+        className="fj-head fj-topo"
         eyebrow={`ONE ON ONE · ${CONSULT_SLOTS_PER_MONTH} A MONTH`}
         title="Thirty minutes on your Yosemite plan."
         intro={`A call with a naturalist who lives in the park: your dates, your group, your plan, taken apart and put back together by someone who has spent twenty seasons watching plans meet the actual park. ${CONSULT_PRICE}, thirty minutes, ${CONSULT_SLOTS_PER_MONTH} slots a month. When they are gone, they are gone.`}
