@@ -9278,3 +9278,8 @@ html[data-nav-mode="pinned"] { scroll-padding-top: 62px; }
   .ff-conditions dt { font-size: 17px; }
   .ff-book, .ff-ghost { white-space: normal; }
 }
+
+/* /conditions: the season's kit under the forecast transect (CondSeasonKit).
+   A reading-width RecommendedCard, not a new board section. */
+.cond-kit { max-width: 720px; margin-top: 32px; }
+.cond-kit .rec-card { margin: 0; }
