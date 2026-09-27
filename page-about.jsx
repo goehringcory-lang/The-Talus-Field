@@ -1,4 +1,4 @@
-/* global React, Placeholder, HpPageHead, HpLetter */
+/* global React, Placeholder, HpPageHead, HpLetter, FjLayout, FjFacts, FjPull, FjRidge */
 
 function AboutPage({ go }) {
   return (
@@ -22,8 +22,19 @@ function AboutPage({ go }) {
         }
       />
 
-      <div className="hp-wrap hp-reading">
-        <div className="hp-reading__column">
+      <div className="hp-wrap fj-band">
+        <FjFacts
+          label="The journal at a glance"
+          items={[
+            { label: "Kept by", value: "One person" },
+            { label: "About", value: "One park" },
+            { label: "Seasons", value: "Twenty" },
+            { label: "Set in", value: "EB Garamond and Inter" },
+          ]}
+        />
+      </div>
+
+      <FjLayout label="The colophon">
         <div className="prose">
           <p className="dropcap">
             The Talus Field began as a pile of paper. Trip notes, weather entries, copies of permits, lists of what was blooming on which week. The kind of paper that piles up when you live near a place long enough that you stop seeing the postcard and start seeing the year.
@@ -35,6 +46,7 @@ function AboutPage({ go }) {
           </p>
 
           <h2>Shape</h2>
+          <FjPull side cite="Shape">The categories on the site are a rough sort, not a content plan.</FjPull>
 
           <p>
             Entries come out when an entry is ready. There is no schedule. Some are short. Some are several thousand words. Some are trail reports. Some are weather. Some are arguments with myself about what the park does in February. The categories on the site are a rough sort, not a content plan.
@@ -51,14 +63,16 @@ function AboutPage({ go }) {
           </p>
 
           <h2 id="practice">Practice</h2>
+          <FjPull side cite="Practice">If a piece of gear is here, I have walked at least fifty miles in it.</FjPull>
 
           <p>
             Recommendations are for things I have used, walked in, slept in, read cover to cover, or worked alongside. Nothing on the site is built from a search-result roundup or a press kit. If a piece of gear is here, I have walked at least fifty miles in it. If a guidebook is here, I have read it cover to cover. If a lodge is here, I have stayed there or know someone who has, and I will tell you which.
           </p>
 
+          <FjRidge />
           <h2>Editor</h2>
 
-          <p>
+          <p className="fj-signoff">
             Cory Goehring. Lives in Yosemite National Park. Has worked in and around it for twenty seasons, mostly on foot. Reachable at <a href="mailto:cory@thetalusfieldjournal.com">cory@thetalusfieldjournal.com</a> and through <a href="/contact" onClick={(e) => { e.preventDefault(); go("contact"); }}>the contact page</a>.
           </p>
 
@@ -68,8 +82,7 @@ function AboutPage({ go }) {
             Set in EB Garamond and Inter. Hosted independently. Not affiliated with the National Park Service.
           </p>
         </div>
-        </div>
-      </div>
+      </FjLayout>
 
       <HpLetter
         eyebrow="SUNDAY FIELD NOTES / FREE"
