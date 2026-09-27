@@ -154,7 +154,7 @@ window.ARTICLE_BODIES["tioga-road-opening-weekend-2026"] = function TiogaRoadOpe
         <li>Waterproof hiking boots. Not optional. Every trail will have wet, muddy, or partially snow-covered sections.</li>
         <li>Microspikes (Kahtoola or equivalent) in the pack for any shaded snow patch.</li>
         <li>Trekking poles for slush, mud, and slick granite.</li>
-        <li>Layers: a puffy jacket and a shell, even if the forecast looks mild. Temperatures swing 30 to 40 degrees between dawn and afternoon.</li>
+        <li>Layers: a <AffLink q="insulated jacket" list="article_inline" slug="tioga-road-opening-weekend-2026" name="Insulated jacket">puffy jacket</AffLink> and a <AffLink q="rain jacket" list="article_inline" slug="tioga-road-opening-weekend-2026" name="Rain shell">shell</AffLink>, even if the forecast looks mild. Temperatures swing 30 to 40 degrees between dawn and afternoon.</li>
         <li>Sunglasses and sunscreen. Snow glare and 9,000-foot UV are a combination.</li>
         <li>Plenty of water and food. There is no source for either on Tioga Road yet.</li>
         <li>A bear-aware approach to food even on a day hike. Black bears are out of dens, hungry, and <a href="/articles/yosemite-wildlife-viewing-guide">active in the meadows at first and last light</a>. Use the lockers at trailheads.</li>
@@ -217,6 +217,8 @@ window.ARTICLE_BODIES["tioga-road-opening-weekend-2026"] = function TiogaRoadOpe
       <p style={{ marginTop: 32, fontStyle: "italic", color: "var(--ink-3)" }}>
         For more on the early season up high, see <a href="/articles/glacier-point-road-open-2026">Glacier Point Road is open</a>. For 2026 strategy, see <a href="/articles/yosemite-without-reservations-2026">Yosemite without reservations in 2026</a>. Once Tioga is open, the high country also becomes the best <a href="/articles/yosemite-stargazing-where-to-look-up">stargazing</a> in the park.
       </p>
+
+      <AffiliateNote />
     </>
   );
 };

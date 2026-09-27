@@ -60,7 +60,7 @@ window.ARTICLE_BODIES["four-mile-up-panorama-down"] = function FourMileUpPanoram
       </p>
 
       <p>
-        The first mile is the steepest and the most exposed. You gain height fast on rocky switchbacks with little shade, and in summer this stretch bakes in the morning sun. Wear a hat and sunscreen. (If you haven't read my <a href="/kit">day pack packing list</a>, read it before this hike. On a day like this, what's in your pack decides whether you have a great time or a miserable one.)
+        The first mile is the steepest and the most exposed. You gain height fast on rocky switchbacks with little shade, and in summer this stretch bakes in the morning sun. Wear a <AffLink q="sun hat" list="article_inline" slug="four-mile-up-panorama-down" name="Sun hat">hat</AffLink> and sunscreen. (If you haven't read my <a href="/kit">day pack packing list</a>, read it before this hike. On a day like this, what's in your pack decides whether you have a great time or a miserable one.)
       </p>
 
       <p>
@@ -216,6 +216,8 @@ window.ARTICLE_BODIES["four-mile-up-panorama-down"] = function FourMileUpPanoram
       </p>
 
       <p>It's 13 miles and 4,000 feet of elevation change.</p>
+
+      <AffiliateNote />
     </>
   );
 };

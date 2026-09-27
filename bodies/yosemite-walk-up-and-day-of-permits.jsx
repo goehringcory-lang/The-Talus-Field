@@ -116,7 +116,7 @@ window.ARTICLE_BODIES["yosemite-walk-up-and-day-of-permits"] = function Yosemite
       </p>
 
       <p>
-        <strong>Outside the park is not a failure.</strong> National forest campgrounds line every approach highway, several are first come first served, and dispersed camping is legal in much of the Stanislaus and Sierra national forests. <a href="/articles/yosemite-gateway-towns-compared">The gateway towns</a> also carry the last-minute motel inventory, and a room in Mariposa tonight beats three hours of driving to campground entrances that are already full.
+        <strong>Outside the park is not a failure.</strong> National forest campgrounds line every approach highway, several are first come first served, and dispersed camping is legal in much of the Stanislaus and Sierra national forests. <a href="/articles/yosemite-gateway-towns-compared">The gateway towns</a> also carry the last-minute motel inventory, and <AvailabilityLink destination="Mariposa, California" list="article_inline" slug="yosemite-walk-up-and-day-of-permits" name="Mariposa lodging search">a room in Mariposa tonight</AvailabilityLink> beats three hours of driving to campground entrances that are already full.
       </p>
 
       <h2>The day-of playbook</h2>
@@ -143,6 +143,8 @@ window.ARTICLE_BODIES["yosemite-walk-up-and-day-of-permits"] = function Yosemite
       <p>
         The same pattern governs the park generally. Yosemite meters the few places everyone has heard of, and leaves the rest wide open. A visitor who arrives with nothing booked and insists on the famous thing will have a bad day. A visitor who arrives with nothing booked and asks what is available will get a permit, a trail, and a campsite, and will probably end up somewhere quieter than the original plan.
       </p>
+
+      <AffiliateNote />
     </>
   );
 };

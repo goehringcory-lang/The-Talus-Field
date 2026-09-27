@@ -752,6 +752,7 @@ window.KIT.lists.forEach((l) => {
 window.ARTICLES = [
   {
     slug: "yosemite-in-october-2026",
+    aff: true,
     cat: "seasonal",
     title: "Yosemite in October 2026: A Fire, a Closed Road, and the Last Weeks of the High Country",
     dek: "The Dome Fire has closed Glacier Point Road and put smoke in the Valley's mornings. Tioga Road is open until the first storm, the Half Dome cables come down on the 13th, and the park closes its seasonal counters one by one. What is different this October, by date.",
@@ -808,6 +809,7 @@ window.ARTICLES = [
   },
   {
     slug: "clouds-rest-hike",
+    aff: true,
     cat: "trails",
     title: "Clouds Rest Hike: The Summit Above Half Dome, and When to Go",
     dek: "Higher than Half Dome, no lottery, no cables, and a granite spine for a finish. The Park Service's numbers from the Sunrise Lakes trailhead, the route in the order it arrives, water, altitude and the summit-before-noon rule, why you are driving to the trailhead, the overnight version and its quota, the through-hike to the Valley, and the weeks each October when the cables are down and Tioga Road is still open, with the park's own dates on how wide that gap has been.",
@@ -1069,6 +1071,7 @@ window.ARTICLES = [
   },
   {
     slug: "yosemite-walk-up-and-day-of-permits",
+    aff: true,
     cat: "planning",
     title: "Yosemite Walk-Up Permits: What You Can Still Get Today",
     dek: "Every permit guide is written for someone planning six months out. This one is for the visitor already inside the park holding nothing: what needs no permit at all, the wilderness release and the three-day wall, the Half Dome daily lottery, and how to find a bed tonight.",
@@ -1577,6 +1580,7 @@ window.ARTICLES = [
   },
   {
     slug: "four-mile-up-panorama-down",
+    aff: true,
     cat: "trails",
     title: "Four Mile Trail up, Panorama down: my favorite Yosemite hike",
     dek: "Up the Four Mile Trail to Glacier Point, down the Panorama Trail past Illilouette and Nevada Falls. A 13-mile loop that climbs 3,200 feet and gives you back the whole park. The logistics that make it work.",
@@ -1606,6 +1610,7 @@ window.ARTICLES = [
   },
   {
     slug: "tioga-road-opening-weekend-2026",
+    aff: true,
     cat: "seasonal",
     title: "Tioga Road opening 2026: a plan for opening weekend",
     dek: "Tioga Road and Tioga Pass open Friday, May 15, well ahead of the long-term average. What's open in Tuolumne Meadows, the road conditions, the short hikes that actually work in mid-May, and how to make a day of it east to Lee Vining and Mono Lake.",
@@ -1634,6 +1639,7 @@ window.ARTICLES = [
   },
   {
     slug: "glacier-point-road-open-2026",
+    aff: true,
     cat: "seasonal",
     title: "Glacier Point Road open 2026: a plan for the early season",
     dek: "The road climbs seventeen miles to a viewpoint at 7,200 feet that puts you at eye level with Half Dome. What is open at the top, what is not, and how to think about the first weeks of the 2026 season.",

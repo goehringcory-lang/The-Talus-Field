@@ -19,7 +19,31 @@ window.ARTICLE_BODIES["clouds-rest-hike"] = function CloudsRestHikeBody() {
     href: "/kit"
   }, "day-pack basics"), ". Bears use these trails; secure your food at every stop, and read ", React.createElement("a", {
     href: "/articles/yosemite-bears-safety-guide"
-  }, "the bear piece"), " if you are new to the park's rules."), React.createElement("h2", null, "Getting to the trailhead: you are driving"), React.createElement("p", null, "The trailhead is reachable by vehicle only while ", React.createElement("a", {
+  }, "the bear piece"), " if you are new to the park's rules."), React.createElement(RecommendedCard, {
+    heading: "What to wear on Clouds Rest",
+    items: [{
+      id: "footwear",
+      what: "Footwear with real traction",
+      why: "Granite that grips like sandpaper when dry is a different surface when wet."
+    }, {
+      id: "warm-layer",
+      what: "A warm layer for the summit",
+      why: "Often 15 to 20 degrees cooler than the Valley, and windy on a day that felt still below.",
+      q: "fleece"
+    }, {
+      id: "shell",
+      what: "A shell for the ridge",
+      why: "Thunderstorms are most common June through September; be on top before noon.",
+      q: "rain jacket"
+    }, {
+      id: "sun-hat",
+      what: "Sun protection for the upper half",
+      why: "The upper half of the trail is exposed.",
+      q: "sun hat"
+    }],
+    list: "article_gear",
+    slug: "clouds-rest-hike"
+  }), React.createElement("h2", null, "Getting to the trailhead: you are driving"), React.createElement("p", null, "The trailhead is reachable by vehicle only while ", React.createElement("a", {
     href: "/tioga-opening"
   }, "Tioga Road"), " is open, which the Park Service puts at typically late May or early June until sometime in October or November; the road closes for the season after the first significant snowfall. In 2026 the road opened May 15. From Yosemite Valley the drive up to Tenaya Lake is well over an hour, and ", React.createElement("a", {
     href: "/articles/tuolumne-meadows-in-a-day"
@@ -50,5 +74,5 @@ window.ARTICLE_BODIES["clouds-rest-hike"] = function CloudsRestHikeBody() {
     href: "/half-dome-lottery"
   }, "the lottery guide"), " covers the two lotteries, including the daily one that runs two days ahead of the hike, from midnight to 4 pm Pacific, for a share of the 300 places a day. The Park Service caps that trail at about 225 day hikers and 75 backpackers."), React.createElement("p", null, "If you do not hold one, or the date is outside the cable season, or the idea of the Mist Trail in August makes the decision for you, Clouds Rest is not the second choice. It is a higher summit, a bigger view, a cooler start, a trail with a fraction of the company, and a ridge walk that asks something of you without asking for a harness. The people who have done both split more evenly than you would expect. Go stand on the spine and decide for yourself."), React.createElement("p", null, "The practical close, then: check ", React.createElement("a", {
     href: "/conditions"
-  }, "conditions"), " the night before, drive to the Sunrise Lakes trailhead before first light, carry three liters and a warm layer, be on top before noon, stay off the ridge if it is wet or the sky is building, and turn around without argument if either happens. Fourteen miles, 2,300 feet, no permit, and Half Dome under your boots."));
+  }, "conditions"), " the night before, drive to the Sunrise Lakes trailhead before first light, carry three liters and a warm layer, be on top before noon, stay off the ridge if it is wet or the sky is building, and turn around without argument if either happens. Fourteen miles, 2,300 feet, no permit, and Half Dome under your boots."), React.createElement(AffiliateNote, null));
 };

@@ -85,6 +85,18 @@ window.ARTICLE_BODIES["clouds-rest-hike"] = function CloudsRestHikeBody() {
         <strong>What to wear and carry.</strong> Footwear with real traction, layers for a summit that is often 15 to 20 degrees cooler than the Valley and windy on a day that felt still below, sun protection for the exposed upper half, and the <a href="/kit">day-pack basics</a>. Bears use these trails; secure your food at every stop, and read <a href="/articles/yosemite-bears-safety-guide">the bear piece</a> if you are new to the park's rules.
       </p>
 
+      <RecommendedCard
+        heading="What to wear on Clouds Rest"
+        items={[
+          { id: "footwear", what: "Footwear with real traction", why: "Granite that grips like sandpaper when dry is a different surface when wet." },
+          { id: "warm-layer", what: "A warm layer for the summit", why: "Often 15 to 20 degrees cooler than the Valley, and windy on a day that felt still below.", q: "fleece" },
+          { id: "shell", what: "A shell for the ridge", why: "Thunderstorms are most common June through September; be on top before noon.", q: "rain jacket" },
+          { id: "sun-hat", what: "Sun protection for the upper half", why: "The upper half of the trail is exposed.", q: "sun hat" },
+        ]}
+        list="article_gear"
+        slug="clouds-rest-hike"
+      />
+
       <h2>Getting to the trailhead: you are driving</h2>
 
       <p>
@@ -172,6 +184,8 @@ window.ARTICLE_BODIES["clouds-rest-hike"] = function CloudsRestHikeBody() {
       <p>
         The practical close, then: check <a href="/conditions">conditions</a> the night before, drive to the Sunrise Lakes trailhead before first light, carry three liters and a warm layer, be on top before noon, stay off the ridge if it is wet or the sky is building, and turn around without argument if either happens. Fourteen miles, 2,300 feet, no permit, and Half Dome under your boots.
       </p>
+
+      <AffiliateNote />
     </>
   );
 };
