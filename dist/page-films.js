@@ -130,7 +130,17 @@ function FilmsPage({
     className: "hp-wrap hp-films__close"
   }, React.createElement("div", {
     className: "films__credit"
-  }, React.createElement("p", null, "The series ran from 2009 to 2025 under producer Steven M. Bumgardner and a long roster of rangers, scientists, and historians. Your tax dollars paid for these films once already. Watching them is the closest thing to a free trip to the park."))), React.createElement(HpLetter, {
+  }, React.createElement("p", null, "The series ran from 2009 to 2025 under producer Steven M. Bumgardner and a long roster of rangers, scientists, and historians. Your tax dollars paid for these films once already. Watching them is the closest thing to a free trip to the park."), React.createElement("p", null, React.createElement("a", {
+    className: "hp-inline",
+    href: "/guide",
+    onClick: e => {
+      e.preventDefault();
+      if (window.track) window.track("guide_cta_click", {
+        location: "films_close"
+      });
+      go("guide");
+    }
+  }, "The Field Guide"), " ", "quotes the print bulletins at the places they describe, offline, at the stop."))), React.createElement(HpLetter, {
     eyebrow: "SUNDAY FIELD NOTES / FREE",
     title: "Sunday Field Notes",
     heading: "Sunday Field Notes",

@@ -141,6 +141,17 @@ function FilmsPage({ go }) {
             roster of rangers, scientists, and historians. Your tax dollars paid for these
             films once already. Watching them is the closest thing to a free trip to the park.
           </p>
+          {/* The one Field Guide line on this page, in the archive's own words
+              (askBlock in gen-archive.mjs): the guide quotes the print bulletins
+              at the stops they describe. No count, so nothing here can drift. */}
+          <p>
+            <a
+              className="hp-inline"
+              href="/guide"
+              onClick={(e) => { e.preventDefault(); if (window.track) window.track("guide_cta_click", { location: "films_close" }); go("guide"); }}
+            >The Field Guide</a>{" "}
+            quotes the print bulletins at the places they describe, offline, at the stop.
+          </p>
         </div>
       </section>
 
