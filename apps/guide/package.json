@@ -15,10 +15,12 @@
     "check:sales-counts": "jiti scripts/check-sales-counts.ts",
     "audit:candidates": "jiti scripts/fact-audit-candidates.ts",
     "map:tiles": "jiti scripts/gen-map-tiles.ts",
+    "map:data": "jiti scripts/gen-map-data.ts",
     "check:build": "node scripts/check-build-determinism.mjs",
     "test": "vitest run"
   },
   "dependencies": {
+    "@protomaps/basemaps": "^5.7.2",
     "maplibre-gl": "^5.24.0",
     "react": "^19.2.5",
     "react-dom": "^19.2.5",
