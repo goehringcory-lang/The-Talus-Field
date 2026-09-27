@@ -14,6 +14,7 @@
     "check:itineraries": "jiti scripts/check-itineraries.ts",
     "check:sales-counts": "jiti scripts/check-sales-counts.ts",
     "audit:candidates": "jiti scripts/fact-audit-candidates.ts",
+    "map:tiles": "jiti scripts/gen-map-tiles.ts",
     "check:build": "node scripts/check-build-determinism.mjs",
     "test": "vitest run"
   },
@@ -37,6 +38,7 @@
     "eslint-plugin-react-refresh": "^0.5.2",
     "globals": "^17.5.0",
     "jiti": "^2.6.1",
+    "pmtiles": "^4.5.0",
     "sharp": "^0.34.5",
     "typescript": "~6.0.2",
     "typescript-eslint": "^8.58.2",

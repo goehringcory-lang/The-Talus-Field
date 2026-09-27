@@ -14,6 +14,11 @@ export type Env = {
   // Optional: without it every /api/photos route returns 503.
   PHOTO_INBOX?: R2Bucket
 
+  // The Field Guide's 3D map tiles: regional PMTiles archives (vector
+  // basemap + elevation) written by scripts/gen-map-tiles.mjs and served one
+  // tile per URL by routes/maptiles.ts. Optional: without it /vt and /dem 503.
+  MAP_TILES?: R2Bucket
+
   // Vars (wrangler.toml [vars])
   APP_BASE_URL: string         // PWA origin; e.g. https://guide.thetalusfieldjournal.com
   EDITORIAL_BASE_URL: string   // e.g. https://thetalusfieldjournal.com
