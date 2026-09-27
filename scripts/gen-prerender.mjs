@@ -261,6 +261,66 @@ function buildAffiliateLink(network, targetUrl) {
   return targetUrl || "#";
 }
 
+// Gear links. Keep in sync with AffLink / RecommendedCard in components.jsx:
+// same Patagonia category search, same rel and data-aff-* markup, same
+// disclosure copy.
+function patagoniaSearchUrl(q) {
+  return "https://www.patagonia.com/search/?q=" + encodeURIComponent(q).replace(/%20/g, "+");
+}
+function AffLink(props) {
+  const network = props.network || "patagonia";
+  const dest = props.url || (props.q ? patagoniaSearchUrl(props.q) : "");
+  return React.createElement(
+    "a",
+    {
+      className: ["aff-link", props.className].filter(Boolean).join(" "),
+      href: buildAffiliateLink(network, dest),
+      target: "_blank",
+      rel: "sponsored noopener",
+      "data-aff-network": network,
+      "data-aff-list": props.list || "page",
+      "data-aff-item-slug": props.slug || "",
+      "data-aff-name": props.name || props.q || dest,
+    },
+    props.children
+  );
+}
+function RecommendedCard(props) {
+  const items = props.items || [];
+  const heading = props.heading || "What to bring";
+  const source = props.source || "Patagonia";
+  const linked = items.some((it) => it.q || it.url);
+  const kids = [React.createElement("h3", { key: "h", className: "rec-card__head" }, heading)];
+  if (props.note) kids.push(React.createElement("p", { key: "n", className: "rec-card__note" }, props.note));
+  kids.push(
+    React.createElement("ul", { key: "l", className: "rec-card__list" },
+      items.map((it) =>
+        React.createElement("li", { key: it.id, className: "rec-card__item" },
+          React.createElement("span", { className: "rec-card__text" },
+            React.createElement("strong", { className: "rec-card__what" }, it.what),
+            it.why ? React.createElement("span", { className: "rec-card__why" }, it.why) : null),
+          (it.q || it.url)
+            ? React.createElement(AffLink, {
+                network: it.network || props.network || "patagonia",
+                q: it.q,
+                url: it.url,
+                list: props.list,
+                slug: (props.slug ? props.slug + ":" : "") + it.id,
+                name: it.what,
+                className: "rec-card__link",
+              }, (it.label || source) + " ↗")
+            : null)))
+  );
+  if (linked) {
+    kids.push(
+      React.createElement("p", { key: "d", className: "rec-card__disclosure" },
+        source + " links are affiliate links. Any equivalent does the same job, and the list does not change for them. ",
+        React.createElement("a", { href: "/affiliate" }, "Disclosure."))
+    );
+  }
+  return React.createElement("aside", { className: "rec-card", "aria-label": heading }, kids);
+}
+
 function renderBody(slug, src) {
   // Classic runtime so JSX compiles to React.createElement / React.Fragment that
   // resolve against the `React` global we put in the vm sandbox (mirrors the
@@ -284,6 +344,8 @@ function renderBody(slug, src) {
     AffiliateNote,
     AvailabilityLink,
     LodgingCta,
+    AffLink,
+    RecommendedCard,
   };
   vm.createContext(sandbox);
   vm.runInContext(code, sandbox, { filename: `${slug}.jsx` });
