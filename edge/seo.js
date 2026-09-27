@@ -458,10 +458,12 @@ const HUB_PROSE = {
   "/firefall": () =>
     hubProse(
       "The Yosemite Firefall",
-      "For roughly two weeks in mid-to-late February, sunset light can turn Horsetail Fall into a glowing orange ribbon on El Capitan. Three conditions must hold at once: water in the fall from recent rain or snowmelt, a clear western horizon at sunset, and the February sun angle. The glow builds for a few minutes, peaks near sunset, and is finished about ten minutes later."
+      "For about two weeks each February, sunset light can turn Horsetail Fall into a glowing orange ribbon on El Capitan. Three conditions must hold at once: water in the fall from recent rain or snowmelt, a clear western horizon at sunset, and the February sun angle. The glow peaks just before sunset and is finished about ten minutes later."
     ) +
-    `<p>The classic viewing zone is Northside Drive near the El Capitan Picnic Area; parking rules and any reservation requirement change annually, so check the NPS Horsetail Fall page before committing.</p>` +
-    `<p>The full guide: <a href="/articles/horsetail-fall-firefall">the complete firefall article</a>. Live water and weather: <a href="/conditions">the conditions page</a>.</p>`,
+    `<p>February is not the slow season during the window: the dates are fixed by the sun, so rooms inside Yosemite Valley go within days of release and the gateway towns fill closest first, El Portal, then Mariposa and Midpines on Highway 140, then Groveland and Oakhurst. Yosemite Valley Lodge sits beside Yosemite Falls parking, where the walk starts.</p>` +
+    `<p>Park at Yosemite Falls parking and walk about 1.5 miles each way on the pedestrian lane on Northside Drive to the viewing area near El Capitan Picnic Area. Parking, stopping and unloading passengers are prohibited between Lower Yosemite Fall and El Capitan Crossover, so there is no drop-off, and on busy weekends Northside Drive can close for about half an hour after sunset. Reservation rules change every winter; the park posts them on its Horsetail Fall page.</p>` +
+    `<p>Check the weather constantly: the El Capitan webcam in the morning for water on the east shoulder, the hourly sky cover and satellite for cloud on the western horizon, and the Half Dome webcam in the afternoon. Thin high cloud can help; a cloud bank in the west cancels the show.</p>` +
+    `<p>The full guide: <a href="/articles/horsetail-fall-firefall">the complete firefall article</a>. Live water and weather: <a href="/conditions">the conditions page</a>. Every lodging option: <a href="/stay">where to stay</a>.</p>`,
   "/tioga-opening": () =>
     hubProse(
       "The Tioga Road Opening",
@@ -1014,13 +1016,16 @@ function seoForPath(pathname, searchParams) {
       ],
     },
     "/firefall": {
-      // Evergreen event page: no year in the URL or copy, so the same page
+      // Evergreen event page: no year in the URL or title, so the same page
       // accrues rank every February instead of resetting on a dated slug.
-      // FAQ answers come from the published article body
-      // (bodies/horsetail-fall-firefall.jsx) per the no-invented-facts rule.
-      title: `The Yosemite Firefall — dates, conditions, and how to plan — ${SITE_NAME}`,
+      // The FAQ mirrors FF_FAQ in page-firefall.jsx word for word; its road,
+      // parking and reservation answers follow the NPS Horsetail Fall page
+      // and the park's news releases (sources in that file's FF_HISTORY
+      // comment). Re-read both each January when the park posts the year's
+      // plan.
+      title: `The Yosemite Firefall: dates, parking, weather, and where to stay — ${SITE_NAME}`,
       description:
-        "When the Horsetail Fall firefall happens, the three conditions that must line up, and how to plan a February evening around uncertain odds. By a park resident.",
+        "Everything for the Horsetail Fall firefall: the February dates, how to check water and cloud on the webcams, where to park and walk, what to bring, and which rooms fill first.",
       breadcrumb: [["Home", `${SITE_ORIGIN}/`], ["Firefall", null]],
       // Edge-only FAQ: the client entry in app.jsx carries none, so this
       // copy survives hydration on direct loads. A client-side faq added
@@ -1029,19 +1034,51 @@ function seoForPath(pathname, searchParams) {
       faq: [
         {
           q: "When is the Yosemite firefall?",
-          a: "The sun angle that lights Horsetail Fall runs roughly the second week of February through the last week, with the strongest color usually in the middle of that span. The glow builds for a few minutes, peaks near sunset, and is finished about ten minutes later.",
+          a: "Mid to late February, for about two weeks. The sun angle that lights Horsetail Fall runs from roughly the second week of February to the last, with the strongest color usually in the middle of the span. The glow itself lasts about ten minutes at sunset.",
         },
         {
-          q: "What has to happen for the firefall to appear?",
-          a: "Three independent conditions must hold at once: water in Horsetail Fall from recent rain or snowmelt, a clear western horizon at sunset, and the mid-to-late-February sun angle. Any one failing cancels the show entirely.",
+          q: "Do I need a reservation to see the firefall?",
+          a: "It depends on the year. In 2024 and 2025 the park required an entry reservation on the three peak weekends; in 2026 it required none and managed traffic on the road instead. The park posts each year's rules on its Horsetail Fall page, usually in January.",
         },
         {
-          q: "Where do you watch the firefall from?",
-          a: "The classic viewing zone is Northside Drive near the El Capitan Picnic Area. Expect to park at a designated area, often Yosemite Falls parking, walk a mile or more each way, and be in place at least an hour before sunset.",
+          q: "Where do you park for the firefall?",
+          a: "At Yosemite Falls parking, just west of Yosemite Valley Lodge. From there it is about 1.5 miles each way on a pedestrian lane on Northside Drive to the viewing area near El Capitan Picnic Area. If that lot is full, park at Yosemite Village or Curry Village and take the free Valley shuttle to Yosemite Falls.",
         },
         {
-          q: "Do you need a reservation to see the firefall?",
-          a: "In some years the park has required reservations for February weekends, along with parking restrictions and road closures. The rules change year to year; check the NPS Horsetail Fall page and current conditions in the week before your trip.",
+          q: "Can someone drop me off near the viewing area?",
+          a: "No. Parking, stopping and unloading passengers are prohibited between Lower Yosemite Fall and El Capitan Crossover, and on busy weekends Northside Drive can close completely for about half an hour after sunset. There is no loop to circle while you watch. Vehicles with a disability placard are the exception.",
+        },
+        {
+          q: "What time should I get there?",
+          a: "At least an hour before sunset to watch, and by early afternoon on a promising weekend if you want a tripod spot. Allow 40 to 50 minutes for the 1.5-mile walk carrying a chair and gear.",
+        },
+        {
+          q: "What time does the firefall happen?",
+          a: "In the last ten to fifteen minutes before sunset. In late February the sun sets over Yosemite Valley a little before 6 p.m.; the glow peaks just before and is gone within about ten minutes.",
+        },
+        {
+          q: "How do I know if Horsetail Fall is flowing?",
+          a: "No gauge measures it. Look at the El Capitan webcam in the morning for a thin white streak on the east shoulder, and read the week: a storm that left snow on the rim, followed by afternoons above freezing, is the setup. A long cold, dry spell leaves it empty.",
+        },
+        {
+          q: "What if it is cloudy?",
+          a: "A few high, thin clouds are fine and can deepen the color. A cloud bank on the western horizon at sunset cancels the show even under a clear sky overhead. Check the forecast's sky cover for the sunset hour, then the webcams in the afternoon.",
+        },
+        {
+          q: "Is February a quiet time to visit Yosemite?",
+          a: "Not during the firefall window. The rest of the winter is quiet, but the window's dates are the same every year, so rooms inside the Valley go within days of release and the gateway towns fill closest first. Book a refundable room as early as you can.",
+        },
+        {
+          q: "Is the firefall worth it?",
+          a: "Once, with the odds understood. Some years several evenings line up; some years it effectively does not happen. Plan a winter trip that is worth taking without it, and give yourself more than one evening.",
+        },
+        {
+          q: "Is it the same as the old Glacier Point firefall?",
+          a: "No. From the 1870s until January 1968 a bonfire was pushed off Glacier Point on summer evenings. The Horsetail Fall firefall is natural sunset light on falling water, and nothing is lit.",
+        },
+        {
+          q: "Are there restrooms at the viewing area?",
+          a: "Vault toilets, trash and recycling at El Capitan Picnic Area. Pack out everything else.",
         },
       ],
     },
