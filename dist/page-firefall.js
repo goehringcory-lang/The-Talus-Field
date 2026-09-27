@@ -668,7 +668,7 @@ function FirefallPage({
     className: "ff-gear__link",
     href: window.buildAffiliateLink ? window.buildAffiliateLink("patagonia", `https://www.patagonia.com/search/?q=${g.q.replace(/ /g, "+")}`) : `https://www.patagonia.com/search/?q=${g.q.replace(/ /g, "+")}`,
     target: "_blank",
-    rel: "sponsored noopener noreferrer",
+    rel: "sponsored noopener",
     "data-aff-network": "patagonia",
     "data-aff-list": "firefall_gear",
     "data-aff-item-slug": g.id,

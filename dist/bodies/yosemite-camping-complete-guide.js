@@ -28,7 +28,7 @@ window.ARTICLE_BODIES["yosemite-camping-complete-guide"] = function YosemiteCamp
     className: "aff-link",
     href: window.buildAffiliateLink("hipcamp", "https://www.hipcamp.com/"),
     target: "_blank",
-    rel: "sponsored noopener noreferrer",
+    rel: "sponsored noopener",
     "data-aff-network": "hipcamp",
     "data-aff-list": "article_inline",
     "data-aff-item-slug": "yosemite-camping-complete-guide",

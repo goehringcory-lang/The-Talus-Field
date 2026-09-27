@@ -414,7 +414,7 @@ window.ARTICLE_BODIES["yosemite-camping-complete-guide"] = function YosemiteCamp
       <h3>Private land</h3>
 
       <p>
-        The private campgrounds, ranch sites, and canvas-tent operations outside the park cluster around Mariposa, Groveland, and Fish Camp, and that inventory never appears on Recreation.gov, which is exactly why it survives after the federal campgrounds sell out. <a className="aff-link" href={window.buildAffiliateLink("hipcamp", "https://www.hipcamp.com/")} target="_blank" rel="sponsored noopener noreferrer" data-aff-network="hipcamp" data-aff-list="article_inline" data-aff-item-slug="yosemite-camping-complete-guide" data-aff-name="Hipcamp private camping">Hipcamp</a> is where most of it lives: search the gateway town closest to your entrance, read the access notes carefully (some sites are a rough dirt road away from the highway), and check the cancellation policy before you commit.
+        The private campgrounds, ranch sites, and canvas-tent operations outside the park cluster around Mariposa, Groveland, and Fish Camp, and that inventory never appears on Recreation.gov, which is exactly why it survives after the federal campgrounds sell out. <a className="aff-link" href={window.buildAffiliateLink("hipcamp", "https://www.hipcamp.com/")} target="_blank" rel="sponsored noopener" data-aff-network="hipcamp" data-aff-list="article_inline" data-aff-item-slug="yosemite-camping-complete-guide" data-aff-name="Hipcamp private camping">Hipcamp</a> is where most of it lives: search the gateway town closest to your entrance, read the access notes carefully (some sites are a rough dirt road away from the highway), and check the cancellation policy before you commit.
       </p>
 
       <h3>Gateway towns</h3>

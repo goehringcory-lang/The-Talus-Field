@@ -25,7 +25,7 @@ window.ARTICLE_BODIES["memorial-day-skip-the-valley-go-high-2026"] = function Me
     className: "aff-link",
     href: window.buildPatagoniaAffiliateLink("https://www.patagonia.com/search/?q=nano+puff"),
     target: "_blank",
-    rel: "sponsored noopener noreferrer",
+    rel: "sponsored noopener",
     "data-aff-network": "patagonia",
     "data-aff-list": "article_inline",
     "data-aff-item-slug": "memorial-day-skip-the-valley-go-high-2026",

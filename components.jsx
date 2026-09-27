@@ -2009,7 +2009,7 @@ function AvailabilityLink({ destination, children, list, slug, name, className, 
       className={["aff-link", className].filter(Boolean).join(" ")}
       href={href}
       target="_blank"
-      rel="sponsored noopener noreferrer"
+      rel="sponsored noopener"
       data-aff-network="expedia"
       data-aff-list={list || "page"}
       data-aff-item-slug={slug || ""}
@@ -2078,7 +2078,7 @@ function ExpediaBanner({ list, slug }) {
       <a
         href={b.href}
         target="_blank"
-        rel="sponsored noopener noreferrer"
+        rel="sponsored noopener"
         data-aff-network="expedia"
         data-aff-list={list || "banner"}
         data-aff-item-slug={slug || ""}

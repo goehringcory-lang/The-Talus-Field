@@ -156,7 +156,7 @@ function AvailabilityLink(props) {
       className: ["aff-link", props.className].filter(Boolean).join(" "),
       href,
       target: "_blank",
-      rel: "sponsored noopener noreferrer",
+      rel: "sponsored noopener",
       "data-aff-network": "expedia",
       "data-aff-list": props.list || "page",
       "data-aff-item-slug": props.slug || "",

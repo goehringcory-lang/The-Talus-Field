@@ -2501,7 +2501,7 @@ function AvailabilityLink({
     className: ["aff-link", className].filter(Boolean).join(" "),
     href: href,
     target: "_blank",
-    rel: "sponsored noopener noreferrer",
+    rel: "sponsored noopener",
     "data-aff-network": "expedia",
     "data-aff-list": list || "page",
     "data-aff-item-slug": slug || "",
@@ -2567,7 +2567,7 @@ function ExpediaBanner({
   }, React.createElement("a", {
     href: b.href,
     target: "_blank",
-    rel: "sponsored noopener noreferrer",
+    rel: "sponsored noopener",
     "data-aff-network": "expedia",
     "data-aff-list": list || "banner",
     "data-aff-item-slug": slug || "",

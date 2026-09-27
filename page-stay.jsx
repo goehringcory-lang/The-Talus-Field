@@ -821,7 +821,7 @@ function StaySearchLink({ search, list, className, children }) {
       className={["aff-link stay-book", className].filter(Boolean).join(" ")}
       href={search.href}
       target="_blank"
-      rel="sponsored noopener noreferrer"
+      rel="sponsored noopener"
       data-aff-network="expedia"
       data-aff-list={list}
       data-aff-item-slug={search.row.id}

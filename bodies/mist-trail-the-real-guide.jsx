@@ -80,7 +80,7 @@ window.ARTICLE_BODIES["mist-trail-the-real-guide"] = function MistTrailBody() {
       </p>
 
       <p>
-        A <a className="aff-link" href={window.buildPatagoniaAffiliateLink("https://www.patagonia.com/search/?q=rain+jacket")} target="_blank" rel="sponsored noopener noreferrer" data-aff-network="patagonia" data-aff-list="article_inline" data-aff-item-slug="mist-trail-the-real-guide" data-aff-name="Packable rain jacket">rain jacket</a> helps, but you can skip it on a warm day. In July and August, when the falls are lower, you might get misted rather than soaked. In May and June it keeps you warm on the way up, though you'll sweat under it.
+        A <a className="aff-link" href={window.buildPatagoniaAffiliateLink("https://www.patagonia.com/search/?q=rain+jacket")} target="_blank" rel="sponsored noopener" data-aff-network="patagonia" data-aff-list="article_inline" data-aff-item-slug="mist-trail-the-real-guide" data-aff-name="Packable rain jacket">rain jacket</a> helps, but you can skip it on a warm day. In July and August, when the falls are lower, you might get misted rather than soaked. In May and June it keeps you warm on the way up, though you'll sweat under it.
       </p>
 
       <p>
