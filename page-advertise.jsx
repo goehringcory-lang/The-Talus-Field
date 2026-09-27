@@ -1,4 +1,4 @@
-/* global React, HpPageHead, HpHeading, HpLetter */
+/* global React, HpPageHead, HpHeading, HpLetter, FjCard */
 
 function AdvertisePage({ go }) {
   return (
@@ -6,9 +6,22 @@ function AdvertisePage({ go }) {
       <HpPageHead
         go={go}
         crumbs={[{ label: "Home", route: "home" }, { label: "Advertise" }]}
+        className="fj-head fj-topo"
         eyebrow="FOR OPERATORS"
         title="List your business on The Talus Field."
         intro="The Talus Field is read by people actively planning a Yosemite trip. The audience that's about to book lodging, hire a guide, or buy a tour. If you operate a lodge, an inn, a guiding service, an outfitter, a transportation company, or any other Yosemite-adjacent business, a placement in The Directory puts you in front of the right reader at the right moment."
+        aside={
+          <FjCard
+            eyebrow="A LISTING, IN FOUR LINES"
+            stamp={<>Every paid<br />placement<br />labeled</>}
+            rows={[
+              { label: "Placement", value: "Twelve months, renewable" },
+              { label: "Tiers", value: "Standard and featured" },
+              { label: "Reviewed", value: "Before it goes live" },
+              { label: "Rate", value: "Inquire for current rate" },
+            ]}
+          />
+        }
       />
 
       {/* The pitch */}
@@ -62,8 +75,17 @@ function AdvertisePage({ go }) {
       </section>
 
       {/* Why it works. Short editorial */}
-      <section className="hp-wrap hp-section hp-advertise__why">
-        <HpHeading title="Why a directory placement works" />
+      <section className="hp-wrap hp-section hp-advertise__why fj-split">
+        <div>
+          <HpHeading title="Why a directory placement works" />
+          {/* The first paragraph's comparison, set as a ledger. It restates
+              the copy beside it, so assistive tech skips it. */}
+          <div className="fj-ledger" aria-hidden="true">
+            <div><span>A search-engine ad</span><b>A colder audience, at a multiple of the cost</b></div>
+            <div><span>A social post</span><b>Larger, and less qualified</b></div>
+            <div className="is-ours"><span>The directory</span><b>A moment of decision</b></div>
+          </div>
+        </div>
         <div className="hp-advertise__copy">
           <p className="hp-sub">
             The visitors reading The Talus Field are not casual browsers. They've already decided to come to the park. They're working out how to do it well, which means they're looking for a place to sleep, a guide to hire, a class to take, a route to drive. A search-engine ad reaches a colder audience and costs a multiple of what a year of placement here costs. A social post reaches a larger but less qualified audience that mostly will not convert.

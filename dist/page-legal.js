@@ -1,26 +1,53 @@
 function LegalShell({
+  go,
   title,
   eyebrow,
   updated,
+  sections,
+  numberedHeads = true,
   children
 }) {
   return React.createElement("div", {
     className: "page hp-legal"
   }, React.createElement(HpPageHead, {
+    go: go,
+    crumbs: [{
+      label: "Home",
+      route: "home"
+    }, {
+      label: title
+    }],
+    className: "fj-head fj-topo",
     eyebrow: eyebrow.toUpperCase(),
     title: title,
-    intro: `Last updated ${updated}.`
-  }), React.createElement("div", {
-    className: "hp-wrap hp-reading"
+    intro: `Last updated ${updated}.`,
+    aside: React.createElement(FjCard, {
+      eyebrow: "THE DOCUMENT",
+      stamp: React.createElement(React.Fragment, null, "Revised", React.createElement("br", null), updated),
+      rows: [{
+        label: "Last updated",
+        value: updated
+      }, {
+        label: "Sections",
+        value: String(sections)
+      }]
+    })
+  }), React.createElement(FjLayout, {
+    numbered: !numberedHeads
   }, React.createElement("div", {
-    className: "hp-reading__column prose"
+    className: "prose"
   }, children)));
 }
-function PrivacyPage() {
+function PrivacyPage({
+  go
+}) {
   return React.createElement(LegalShell, {
+    go: go,
     title: "Privacy Policy",
     eyebrow: "Legal",
-    updated: "July 8, 2026"
+    updated: "July 8, 2026",
+    sections: 9,
+    numberedHeads: true
   }, React.createElement("p", null, "This privacy policy explains what information The Talus Field collects when you visit this website, subscribe to the newsletter, or use the Field Guide app, how that information is used, and the choices you have about it. It is written to comply with the General Data Protection Regulation (GDPR) and the California Consumer Privacy Act (CCPA)."), React.createElement("h2", null, "1. Who we are"), React.createElement("p", null, "The Talus Field is an independent publication operated by Cory Goehring, based in El Portal, California. You can reach us at cory@thetalusfieldjournal.com."), React.createElement("h2", null, "2. What we collect"), React.createElement("p", null, "When you visit the site, we collect anonymized analytics data: pages viewed, referrer, approximate location at the country level, browser and device type. We use this to understand which articles are useful and which are not. We do not collect IP addresses in identifiable form."), React.createElement("p", null, "When you subscribe to the newsletter, we collect your email address and the date you subscribed. We do not collect your name unless you provide it."), React.createElement("p", null, "When you contact us through the contact form, we collect the name, email, subject, and message you submit."), React.createElement("p", null, "When you buy and sign in to the Field Guide app, we collect the email address or username tied to your purchase and a record of that purchase. Payment is processed by Stripe, and we never see or store your card number. Your trip plan itself, the stops and dates you choose, is stored on your own device, not on our servers."), React.createElement("h2", null, "3. How we use it"), React.createElement("p", null, "Email addresses are used to send the newsletter and only the newsletter. We do not sell, rent, share, or otherwise transfer your email address to any third party. Analytics are used to make the site better. Contact form submissions are used to write you back. Field Guide purchase records are used to confirm your access when you sign in."), React.createElement("h2", null, "4. The Field Guide app and calendar sync"), React.createElement("p", null, "The Field Guide app can add your trip plan to your personal calendar. Two options exist, and both are off until you turn them on from the app's Account page."), React.createElement("p", null, "The Apple Calendar option publishes your trip as a private subscription link that Apple Calendar reads on its own schedule. That link contains only the events in your trip plan."), React.createElement("p", null, "If you connect Google Calendar, you grant The Talus Field permission to manage events on your Google Calendar (the ", React.createElement("code", null, "calendar.events"), " scope) and to see the email address of the Google account you connect. We use this access for one purpose only: to create, update, and remove the trip events you build in the app, in your primary Google calendar. We do not read your existing calendar events, we do not access any other Google data, and we do not use this access for advertising or for any purpose beyond syncing your trip."), React.createElement("p", null, "To keep your trip in sync after you close the app, Google issues a long-lived authorization token, which we store securely on our server and associate with your account. We show you which Google account is connected so you can confirm it is yours."), React.createElement("p", null, "You can disconnect Google Calendar at any time from the Account page. Disconnecting removes the trip events we added to your Google calendar, revokes our authorization token, and deletes it from our server. You can also revoke our access directly from your Google account's security settings at ", React.createElement("a", {
     href: "https://myaccount.google.com/connections",
     target: "_blank",
@@ -31,18 +58,28 @@ function PrivacyPage() {
     rel: "noopener noreferrer"
   }, "Google API Services User Data Policy"), ", including the Limited Use requirements."), React.createElement("h2", null, "5. Cookies"), React.createElement("p", null, "This site uses a single first-party cookie to remember your reading preferences. It does not use advertising cookies, tracking cookies, or third-party cookies. We do not run advertisements."), React.createElement("h2", null, "6. Your rights (GDPR / CCPA)"), React.createElement("p", null, "You have the right to access, correct, export, or delete any personal information we hold about you. To exercise any of these rights, email cory@thetalusfieldjournal.com with the subject line \"Data request.\" We respond within 30 days."), React.createElement("h2", null, "7. Children"), React.createElement("p", null, "This site is not directed at children under 13. We do not knowingly collect information from children."), React.createElement("h2", null, "8. Changes"), React.createElement("p", null, "If this policy changes in any meaningful way, the change will be announced in the newsletter and the \"last updated\" date above will change."), React.createElement("h2", null, "9. Questions"), React.createElement("p", null, "Email cory@thetalusfieldjournal.com."));
 }
-function TermsPage() {
+function TermsPage({
+  go
+}) {
   return React.createElement(LegalShell, {
+    go: go,
     title: "Terms of Service",
     eyebrow: "Legal",
-    updated: "April 1, 2026"
+    updated: "April 1, 2026",
+    sections: 8,
+    numberedHeads: true
   }, React.createElement("p", null, "These terms govern your use of The Talus Field (thetalusfieldjournal.com) and the Field Guide app. By using either, you agree to them. The articles and the interactive trip-planner map on this site are free to browse. The Field Guide app is a paid product; its purchase terms are in section 1."), React.createElement("h2", null, "1. The Field Guide purchase"), React.createElement("p", null, "The Field Guide is a one-time purchase, not a subscription. Payment is processed by Stripe; we never see or store your card number. A purchase grants access to the Field Guide for 18 months from the purchase date, on any device you sign in to, including all updates published during that window. Access is for you and the people traveling with you, not for redistribution."), React.createElement("p", null, "If the guide does not work as described, email cory@thetalusfieldjournal.com within 30 days of purchase and we will refund it in full. After a refund, your access code is deactivated."), React.createElement("h2", null, "2. Use of content"), React.createElement("p", null, "All articles, photographs, and other content on this site are copyrighted by Cory Goehring unless otherwise noted. You may quote up to 300 words in another work with a clear link back to the original article. You may not republish, syndicate, or train machine learning models on any content without written permission."), React.createElement("h2", null, "3. Accuracy"), React.createElement("p", null, "I try to keep everything on this site accurate, and I update articles when conditions change. That said, conditions in Yosemite change constantly. Trail closures, road closures, weather, wildlife behavior, and permit rules are all subject to change without notice. Always verify current conditions with the National Park Service before any trip."), React.createElement("h2", null, "4. No warranty"), React.createElement("p", null, "The site is provided as-is. I make no warranty, express or implied, that any information on the site is accurate, complete, or fit for any particular purpose. You assume all risk for your own choices in the park."), React.createElement("h2", null, "5. Limitation of liability"), React.createElement("p", null, "To the fullest extent permitted by law, The Talus Field is not liable for any injury, loss, or damage arising from your use of this site or your activities in Yosemite National Park. The mountains are real. Walk carefully."), React.createElement("h2", null, "6. Third-party links"), React.createElement("p", null, "The site contains links to third-party sites, including affiliate links to lodging and gear vendors. We are not responsible for the content or practices of those sites."), React.createElement("h2", null, "7. Governing law"), React.createElement("p", null, "These terms are governed by the laws of the State of California."), React.createElement("h2", null, "8. Changes"), React.createElement("p", null, "If these terms change in any meaningful way, the change will be announced in the newsletter and the \"last updated\" date above will change."));
 }
-function AffiliatePage() {
+function AffiliatePage({
+  go
+}) {
   return React.createElement(LegalShell, {
+    go: go,
     title: "Affiliate Disclosure",
     eyebrow: "Legal",
-    updated: "September 26, 2026"
+    updated: "September 26, 2026",
+    sections: 6,
+    numberedHeads: false
   }, React.createElement("p", null, "The Talus Field currently participates in two affiliate programs: Patagonia's, run through the Impact network, and the Expedia Group Travel Creator Program, run through Partnerize, which powers every lodging availability link on the site. Those links appear in the planning articles, on ", React.createElement("a", {
     href: "/stay"
   }, "the lodging board"), ", and on the trip-planning pages that end in a decision about where to sleep. The lodging board may also carry one Expedia-supplied banner image, labeled \"Advertisement\" where it appears; it works on the same commission terms as the text links and has no influence on what this site recommends. An application to a camping program (Hipcamp) is pending; until it is approved, camping links are plain outbound links that earn nothing. When the list changes, this page changes the same day."), React.createElement("p", null, "What that means in plain language: when an article on this site links to a product, a book, or a piece of lodging, that link may be an affiliate link. If you click through and make a purchase or a booking, I receive a small commission. The price you pay does not change. Whether or not you use the affiliate link, the recommendation in the article is the same."), React.createElement("h2", null, "The rule that governs all of it"), React.createElement("p", null, "No program's catalog shapes a recommendation. If the best lodge in a town, the best campground on a road, or the best jacket for a season has no affiliate program, it stays the top recommendation, linkless. Availability links sit under recommendations that were already written; they never decide what gets recommended. If you ever catch this site steering you toward a worse option because it pays, write to me, and I will fix it and say so in the newsletter."), React.createElement("p", null, "Three consequences of that rule, visible on the site right now. Every lodge, tent cabin, and camp inside the park books through the concessioner at travelyosemite.com, so those entries on ", React.createElement("a", {

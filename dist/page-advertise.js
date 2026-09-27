@@ -11,9 +11,27 @@ function AdvertisePage({
     }, {
       label: "Advertise"
     }],
+    className: "fj-head fj-topo",
     eyebrow: "FOR OPERATORS",
     title: "List your business on The Talus Field.",
-    intro: "The Talus Field is read by people actively planning a Yosemite trip. The audience that's about to book lodging, hire a guide, or buy a tour. If you operate a lodge, an inn, a guiding service, an outfitter, a transportation company, or any other Yosemite-adjacent business, a placement in The Directory puts you in front of the right reader at the right moment."
+    intro: "The Talus Field is read by people actively planning a Yosemite trip. The audience that's about to book lodging, hire a guide, or buy a tour. If you operate a lodge, an inn, a guiding service, an outfitter, a transportation company, or any other Yosemite-adjacent business, a placement in The Directory puts you in front of the right reader at the right moment.",
+    aside: React.createElement(FjCard, {
+      eyebrow: "A LISTING, IN FOUR LINES",
+      stamp: React.createElement(React.Fragment, null, "Every paid", React.createElement("br", null), "placement", React.createElement("br", null), "labeled"),
+      rows: [{
+        label: "Placement",
+        value: "Twelve months, renewable"
+      }, {
+        label: "Tiers",
+        value: "Standard and featured"
+      }, {
+        label: "Reviewed",
+        value: "Before it goes live"
+      }, {
+        label: "Rate",
+        value: "Inquire for current rate"
+      }]
+    })
   }), React.createElement("section", {
     className: "hp-wrap hp-section"
   }, React.createElement("div", {
@@ -54,10 +72,15 @@ function AdvertisePage({
       go("affiliate");
     }
   }, "full advertising and affiliate policy"), " is on the disclosure page."))), React.createElement("section", {
-    className: "hp-wrap hp-section hp-advertise__why"
-  }, React.createElement(HpHeading, {
+    className: "hp-wrap hp-section hp-advertise__why fj-split"
+  }, React.createElement("div", null, React.createElement(HpHeading, {
     title: "Why a directory placement works"
   }), React.createElement("div", {
+    className: "fj-ledger",
+    "aria-hidden": "true"
+  }, React.createElement("div", null, React.createElement("span", null, "A search-engine ad"), React.createElement("b", null, "A colder audience, at a multiple of the cost")), React.createElement("div", null, React.createElement("span", null, "A social post"), React.createElement("b", null, "Larger, and less qualified")), React.createElement("div", {
+    className: "is-ours"
+  }, React.createElement("span", null, "The directory"), React.createElement("b", null, "A moment of decision")))), React.createElement("div", {
     className: "hp-advertise__copy"
   }, React.createElement("p", {
     className: "hp-sub"

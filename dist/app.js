@@ -1153,11 +1153,17 @@ function App() {
       go: go
     });
   } else if (route === "privacy") {
-    page = React.createElement(window.PrivacyPage, null);
+    page = React.createElement(window.PrivacyPage, {
+      go: go
+    });
   } else if (route === "terms") {
-    page = React.createElement(window.TermsPage, null);
+    page = React.createElement(window.TermsPage, {
+      go: go
+    });
   } else if (route === "affiliate") {
-    page = React.createElement(window.AffiliatePage, null);
+    page = React.createElement(window.AffiliatePage, {
+      go: go
+    });
   } else if (route === "guide") {
     page = React.createElement(window.GuidePage, {
       go: go

@@ -87,16 +87,38 @@ function InternationalPage({
     }, {
       label: "Visiting from abroad"
     }],
+    className: "fj-head",
     eyebrow: "INTERNATIONAL VISITORS",
     title: "Yosemite for visitors from outside the United States",
-    intro: "Since January 1, 2026, a visitor who does not live in the United States pays more to enter Yosemite, and the rules are easy to get wrong. What the fee is, the cheapest way to pay it, and the handful of things about this park that surprise people who have driven in other countries."
-  }, React.createElement(AffiliateDisclosure, null)), React.createElement("div", {
-    className: "hp-wrap hp-reading"
-  }, React.createElement("div", {
-    className: "hp-reading__column"
-  }, React.createElement("section", {
+    intro: "Since January 1, 2026, a visitor who does not live in the United States pays more to enter Yosemite, and the rules are easy to get wrong. What the fee is, the cheapest way to pay it, and the handful of things about this park that surprise people who have driven in other countries.",
+    aside: React.createElement(FjPlate, {
+      image: "img/tunnel-view-autumn-aniket-deole.jpg",
+      alt: "Tunnel View in autumn: El Capitan, Half Dome and Bridalveil Fall above the Valley",
+      label: "Tunnel View, the first stop inside",
+      credit: "Photo: Aniket Deole / Unsplash",
+      card: React.createElement(FjCard, {
+        eyebrow: "THE FEES, IN FOUR LINES",
+        stamp: React.createElement(React.Fragment, null, "Non-resident", React.createElement("br", null), "Since Jan 1", React.createElement("br", null), "2026"),
+        rows: [{
+          label: "Car, seven days",
+          value: money(F.vehicle)
+        }, {
+          label: "Non-resident fee",
+          value: `${money(F.surcharge)} a person`
+        }, {
+          label: "Non-resident pass",
+          value: money(F.nonResidentAnnual)
+        }, {
+          label: "At the gate",
+          value: "Card only"
+        }]
+      })
+    })
+  }, React.createElement(AffiliateDisclosure, null)), React.createElement(FjLayout, null, React.createElement("section", {
     className: "prose"
-  }, React.createElement("h2", null, "The 2026 non-resident fee"), React.createElement("p", null, "Every visitor pays the entrance fee: ", money(F.vehicle), " per car for seven days, ", money(F.motorcycle), " per motorcycle, ", money(F.perPerson), " per person on foot, by bicycle or by bus, children under ", F.perPersonFreeUnder, " free. On top of that, since January 1, 2026, a visitor who is not a US citizen or resident pays a non-resident fee of ", money(F.surcharge), " per person aged ", F.surchargeAgeFrom, " and older, unless that person is covered by an annual pass. It applies at eleven parks: ", F.surchargeParks.slice(0, -1).join(", "), " and ", F.surchargeParks.slice(-1)[0], ". The fee-free days the park publishes each year are now for US residents only; a non-resident pays the full amount on those days too."), React.createElement("table", null, React.createElement("thead", null, React.createElement("tr", null, React.createElement("th", null, "What"), React.createElement("th", null, "Price"), React.createElement("th", null, "Who it covers"))), React.createElement("tbody", null, React.createElement("tr", null, React.createElement("td", null, "Entrance, private vehicle"), React.createElement("td", null, money(F.vehicle)), React.createElement("td", null, "The car and everyone in it, seven days")), React.createElement("tr", null, React.createElement("td", null, "Entrance, motorcycle"), React.createElement("td", null, money(F.motorcycle)), React.createElement("td", null, "Seven days")), React.createElement("tr", null, React.createElement("td", null, "Entrance, per person"), React.createElement("td", null, money(F.perPerson)), React.createElement("td", null, "On foot, bicycle or bus; under ", F.perPersonFreeUnder, " free")), React.createElement("tr", null, React.createElement("td", null, "Non-resident fee"), React.createElement("td", null, money(F.surcharge), " per person"), React.createElement("td", null, "Age ", F.surchargeAgeFrom, " and older, each entry, unless holding a pass")), React.createElement("tr", null, React.createElement("td", null, "Non-resident annual pass"), React.createElement("td", null, money(F.nonResidentAnnual)), React.createElement("td", null, "The holder's vehicle and its occupants, twelve months, every federal fee site; no non-resident fee")), React.createElement("tr", null, React.createElement("td", null, "Annual pass, US residents"), React.createElement("td", null, money(F.residentAnnual)), React.createElement("td", null, "Residents only")), React.createElement("tr", null, React.createElement("td", null, "Yosemite annual pass"), React.createElement("td", null, money(F.yosemiteAnnual)), React.createElement("td", null, "US citizens and residents only")))), React.createElement("p", {
+  }, React.createElement("h2", null, "The 2026 non-resident fee"), React.createElement("p", null, "Every visitor pays the entrance fee: ", money(F.vehicle), " per car for seven days, ", money(F.motorcycle), " per motorcycle, ", money(F.perPerson), " per person on foot, by bicycle or by bus, children under ", F.perPersonFreeUnder, " free. On top of that, since January 1, 2026, a visitor who is not a US citizen or resident pays a non-resident fee of ", money(F.surcharge), " per person aged ", F.surchargeAgeFrom, " and older, unless that person is covered by an annual pass. It applies at eleven parks: ", F.surchargeParks.slice(0, -1).join(", "), " and ", F.surchargeParks.slice(-1)[0], ". The fee-free days the park publishes each year are now for US residents only; a non-resident pays the full amount on those days too."), React.createElement("div", {
+    className: "fj-tablewrap fj-tablewrap--fit"
+  }, React.createElement("table", null, React.createElement("thead", null, React.createElement("tr", null, React.createElement("th", null, "What"), React.createElement("th", null, "Price"), React.createElement("th", null, "Who it covers"))), React.createElement("tbody", null, React.createElement("tr", null, React.createElement("td", null, "Entrance, private vehicle"), React.createElement("td", null, money(F.vehicle)), React.createElement("td", null, "The car and everyone in it, seven days")), React.createElement("tr", null, React.createElement("td", null, "Entrance, motorcycle"), React.createElement("td", null, money(F.motorcycle)), React.createElement("td", null, "Seven days")), React.createElement("tr", null, React.createElement("td", null, "Entrance, per person"), React.createElement("td", null, money(F.perPerson)), React.createElement("td", null, "On foot, bicycle or bus; under ", F.perPersonFreeUnder, " free")), React.createElement("tr", null, React.createElement("td", null, "Non-resident fee"), React.createElement("td", null, money(F.surcharge), " per person"), React.createElement("td", null, "Age ", F.surchargeAgeFrom, " and older, each entry, unless holding a pass")), React.createElement("tr", null, React.createElement("td", null, "Non-resident annual pass"), React.createElement("td", null, money(F.nonResidentAnnual)), React.createElement("td", null, "The holder's vehicle and its occupants, twelve months, every federal fee site; no non-resident fee")), React.createElement("tr", null, React.createElement("td", null, "Annual pass, US residents"), React.createElement("td", null, money(F.residentAnnual)), React.createElement("td", null, "Residents only")), React.createElement("tr", null, React.createElement("td", null, "Yosemite annual pass"), React.createElement("td", null, money(F.yosemiteAnnual)), React.createElement("td", null, "US citizens and residents only"))))), React.createElement("p", {
     className: "dates__hint"
   }, "Sources: ", React.createElement("a", {
     href: F.sources.yosemite,
@@ -110,7 +132,9 @@ function InternationalPage({
     href: F.sources.conservancy,
     target: "_blank",
     rel: "noopener noreferrer"
-  }, "Know before you go 2026, Yosemite Conservancy ↗"), ". Verified ", F.verified, "."), React.createElement("h2", null, "The cheapest way in"), React.createElement("p", null, "The arithmetic turns on one comparison: the non-resident fee is charged per person and per entry, and the non-resident annual pass is charged once per car. One adult in one car for one week pays", " ", money(F.vehicle + F.surcharge), " at the gate and should. Three adults in the same car pay ", money(F.vehicle + 3 * F.surcharge), " at the gate and ", money(F.nonResidentAnnual), " with a pass. Anyone touring two of the eleven parks should buy the pass before the first gate."), React.createElement(FeeCalculator, null), React.createElement("p", null, "Buy the pass online at Recreation.gov before you fly, or at the entrance station; a digital pass shown on a phone is accepted. Passes and entrance fees are card only at every Yosemite gate, no cash. The car's driver should hold the pass, and every adult in the car should have identification, since residency is what the surcharge turns on."), React.createElement("h2", null, "What else is different here"), React.createElement("ul", null, React.createElement("li", null, React.createElement("strong", null, "No reservation is needed to enter in 2026."), " You pay at the gate and drive in. What rations a summer day now is parking, which is solved by being through the entrance before 8 a.m. or after 4 p.m. The full picture is in", " ", React.createElement("a", {
+  }, "Know before you go 2026, Yosemite Conservancy ↗"), ". Verified ", F.verified, "."), React.createElement("h2", null, "The cheapest way in"), React.createElement("p", null, "The arithmetic turns on one comparison: the non-resident fee is charged per person and per entry, and the non-resident annual pass is charged once per car. One adult in one car for one week pays", " ", money(F.vehicle + F.surcharge), " at the gate and should. Three adults in the same car pay ", money(F.vehicle + 3 * F.surcharge), " at the gate and ", money(F.nonResidentAnnual), " with a pass. Anyone touring two of the eleven parks should buy the pass before the first gate."), React.createElement(FeeCalculator, null), React.createElement("p", null, "Buy the pass online at Recreation.gov before you fly, or at the entrance station; a digital pass shown on a phone is accepted. Passes and entrance fees are card only at every Yosemite gate, no cash. The car's driver should hold the pass, and every adult in the car should have identification, since residency is what the surcharge turns on."), React.createElement("h2", null, "What else is different here"), React.createElement("ul", {
+    className: "fj-pair"
+  }, React.createElement("li", null, React.createElement("strong", null, "No reservation is needed to enter in 2026."), " You pay at the gate and drive in. What rations a summer day now is parking, which is solved by being through the entrance before 8 a.m. or after 4 p.m. The full picture is in", " ", React.createElement("a", {
     href: "/articles/yosemite-without-reservations-2026",
     onClick: e => goA(e, "yosemite-without-reservations-2026")
   }, "the no-reservations strategy"), "."), React.createElement("li", null, React.createElement("strong", null, "The park is the size of a small country and most of it has no mobile signal."), " Download maps before the gate. The drive from the Valley to Tuolumne Meadows is an hour and a half; Glacier Point is an hour;", " ", React.createElement("a", {
@@ -134,7 +158,10 @@ function InternationalPage({
   }, "The bears guide"), " covers what that means in practice."), React.createElement("li", null, React.createElement("strong", null, "Half Dome needs a permit won by lottery, and it fills."), " ", "Everything else on the trail network needs nothing.", " ", React.createElement("a", {
     href: "/dates",
     onClick: e => goR(e, "dates")
-  }, "The dates page"), " has the lottery windows measured against your trip.")), React.createElement("h2", null, "What a week costs, all in"), React.createElement("p", null, "The entrance fee is the smallest line. Lodging, fuel, food and the drive from the airport are the budget, and", " ", React.createElement("a", {
+  }, "The dates page"), " has the lottery windows measured against your trip.")), React.createElement(FjRidge, null), React.createElement("h2", null, "What a week costs, all in"), React.createElement(FjPull, {
+    side: true,
+    cite: "What a week costs"
+  }, "The entrance fee is the smallest line."), React.createElement("p", null, "The entrance fee is the smallest line. Lodging, fuel, food and the drive from the airport are the budget, and", " ", React.createElement("a", {
     href: "/articles/yosemite-trip-cost-budget-2026",
     onClick: e => goA(e, "yosemite-trip-cost-budget-2026")
   }, "the trip-cost breakdown"), " ", "prices a week three ways. A first visit with a few days to spend follows", " ", React.createElement("a", {
@@ -150,7 +177,7 @@ function InternationalPage({
     list: "page_international",
     slug: "international",
     cta: "Search lodging around Yosemite →"
-  }))), React.createElement(HpGuideBand, {
+  })), React.createElement(HpGuideBand, {
     go: go,
     location: "international",
     title: "The park, offline, in your pocket",

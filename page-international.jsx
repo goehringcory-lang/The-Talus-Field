@@ -1,4 +1,4 @@
-/* global React, HpPageHead, LodgingCta, FEES, calcEntryFees, FEE_MODES, HpGuideBand, HpLetter, AffiliateDisclosure */
+/* global React, HpPageHead, LodgingCta, FEES, calcEntryFees, FEE_MODES, HpGuideBand, HpLetter, FjLayout, FjPull, FjRidge, FjCard, FjPlate, AffiliateDisclosure */
 
 // =============================================================================
 // INTERNATIONAL — `/international` route. The page for the reader arriving
@@ -92,16 +92,36 @@ function InternationalPage({ go }) {
       <HpPageHead
         go={go}
         crumbs={[{ label: "Home", route: "home" }, { label: "Visiting from abroad" }]}
+        className="fj-head"
         eyebrow="INTERNATIONAL VISITORS"
         title="Yosemite for visitors from outside the United States"
         intro="Since January 1, 2026, a visitor who does not live in the United States pays more to enter Yosemite, and the rules are easy to get wrong. What the fee is, the cheapest way to pay it, and the handful of things about this park that surprise people who have driven in other countries."
+        aside={
+          <FjPlate
+            image="img/tunnel-view-autumn-aniket-deole.jpg"
+            alt="Tunnel View in autumn: El Capitan, Half Dome and Bridalveil Fall above the Valley"
+            label="Tunnel View, the first stop inside"
+            credit="Photo: Aniket Deole / Unsplash"
+            card={
+              <FjCard
+                eyebrow="THE FEES, IN FOUR LINES"
+                stamp={<>Non-resident<br />Since Jan 1<br />2026</>}
+                rows={[
+                  { label: "Car, seven days", value: money(F.vehicle) },
+                  { label: "Non-resident fee", value: `${money(F.surcharge)} a person` },
+                  { label: "Non-resident pass", value: money(F.nonResidentAnnual) },
+                  { label: "At the gate", value: "Card only" },
+                ]}
+              />
+            }
+          />
+        }
       >
         <AffiliateDisclosure />
       </HpPageHead>
 
 
-      <div className="hp-wrap hp-reading">
-        <div className="hp-reading__column">
+      <FjLayout>
         <section className="prose">
           <h2>The 2026 non-resident fee</h2>
           <p>
@@ -115,6 +135,7 @@ function InternationalPage({ go }) {
             The fee-free days the park publishes each year are now for US
             residents only; a non-resident pays the full amount on those days too.
           </p>
+          <div className="fj-tablewrap fj-tablewrap--fit">
           <table>
             <thead>
               <tr><th>What</th><th>Price</th><th>Who it covers</th></tr>
@@ -129,6 +150,7 @@ function InternationalPage({ go }) {
               <tr><td>Yosemite annual pass</td><td>{money(F.yosemiteAnnual)}</td><td>US citizens and residents only</td></tr>
             </tbody>
           </table>
+          </div>
           <p className="dates__hint">
             Sources: <a href={F.sources.yosemite} target="_blank" rel="noopener noreferrer">Yosemite fees and passes, NPS ↗</a>,{" "}
             <a href={F.sources.passes} target="_blank" rel="noopener noreferrer">America the Beautiful passes, NPS ↗</a>,{" "}
@@ -156,7 +178,7 @@ function InternationalPage({ go }) {
           </p>
 
           <h2>What else is different here</h2>
-          <ul>
+          <ul className="fj-pair">
             <li>
               <strong>No reservation is needed to enter in 2026.</strong> You
               pay at the gate and drive in. What rations a summer day now is
@@ -209,7 +231,9 @@ function InternationalPage({ go }) {
             </li>
           </ul>
 
+          <FjRidge />
           <h2>What a week costs, all in</h2>
+          <FjPull side cite="What a week costs">The entrance fee is the smallest line.</FjPull>
           <p>
             The entrance fee is the smallest line. Lodging, fuel, food and the
             drive from the airport are the budget, and{" "}
@@ -230,9 +254,7 @@ function InternationalPage({ go }) {
           slug="international"
           cta="Search lodging around Yosemite →"
         />
-
-        </div>
-      </div>
+      </FjLayout>
 
       <HpGuideBand
         go={go}

@@ -2723,6 +2723,202 @@ function WebcamStrip({ variant, only }) {
 }
 
 // ============================================================
+// The field-journal kit (September 2026 text-page pass, DESIGN_AUDIT.md).
+// The pieces the prose pages share so a long page reads like the homepage
+// rather than a single column: a numbered section index, a figure strip, a
+// pull quote, a ridgeline divider and an index-card aside. Every class is
+// `fj-` and new, because /styles.css is also the Nature Notes archive's
+// stylesheet and nothing here may reach it.
+// ============================================================
+
+// The headings the index lists and the numerals count. One selector for
+// both, so the index's "03" and the heading's "03" can never disagree.
+// data-fj-skip keeps a heading out (a card's own h2 inside the column).
+const FJ_HEADINGS = ".prose h2:not([data-fj-skip]), .fj-h";
+
+function fjSlug(text) {
+  return String(text || "").toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "").slice(0, 48) || "section";
+}
+const fjPad = (n) => String(n).padStart(2, "0");
+const FJ_ROMAN = ["I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX", "X", "XI", "XII"];
+
+// The reading column with its section index. From 1100px the index is a
+// sticky rail on the left with scroll-spy; below that it is an "On this
+// page" disclosure over the text. Headings keep any id they already carry
+// (pages are deep-linked); the others get one from their text. `numbered`
+// sets the CSS-counter numeral over each heading.
+function FjLayout({ children, numbered = true, marks = "numeric", label = "On this page", className }) {
+  const colRef = React.useRef(null);
+  const [items, setItems] = React.useState([]);
+  const [active, setActive] = React.useState(null);
+
+  React.useLayoutEffect(() => {
+    const col = colRef.current;
+    if (!col) return undefined;
+    const heads = Array.from(col.querySelectorAll(FJ_HEADINGS));
+    const taken = new Set();
+    setItems(heads.map((h) => {
+      if (!h.id) {
+        let id = "s-" + fjSlug(h.textContent);
+        for (let n = 2; taken.has(id) || document.getElementById(id); n++) id = "s-" + fjSlug(h.textContent) + "-" + n;
+        h.id = id;
+      }
+      taken.add(h.id);
+      // A heading that numbers itself ("3. How we use it") lends its number
+      // to the index numeral instead of printing it twice.
+      const text = h.textContent.trim();
+      const own = /^(\d+)\.\s+(.*)$/.exec(text);
+      return own ? { id: h.id, label: own[2], num: +own[1] } : { id: h.id, label: text };
+    }));
+    let raf = 0;
+    const spy = () => {
+      raf = 0;
+      const line = window.innerHeight * 0.3;
+      let current = null;
+      for (const h of heads) { if (h.getBoundingClientRect().top <= line) current = h.id; else break; }
+      setActive(current);
+    };
+    const onScroll = () => { if (!raf) raf = requestAnimationFrame(spy); };
+    spy();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => { window.removeEventListener("scroll", onScroll); if (raf) cancelAnimationFrame(raf); };
+  }, []);
+
+  // In-page jumps scroll without touching the router: a bare "#id" click
+  // would fire popstate, which app.jsx treats as a navigation.
+  const jump = (e, id) => {
+    const el = document.getElementById(id);
+    if (!el) return;
+    e.preventDefault();
+    const reduce = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    el.scrollIntoView({ behavior: reduce ? "auto" : "smooth", block: "start" });
+    try { history.replaceState(history.state, "", "#" + id); } catch (err) { /* sandboxed frames */ }
+    el.setAttribute("tabindex", "-1");
+    el.focus({ preventScroll: true });
+  };
+  const list = (
+    <ol>
+      {items.map((it, i) => (
+        <li key={it.id}>
+          <a href={"#" + it.id} aria-current={active === it.id ? "location" : undefined} onClick={(e) => jump(e, it.id)}>
+            {marks !== "none" && <span aria-hidden="true">{marks === "roman" ? FJ_ROMAN[i] || i + 1 : fjPad(it.num || i + 1)}</span>}{it.label}
+          </a>
+        </li>
+      ))}
+    </ol>
+  );
+  const many = items.length > 2;
+
+  return (
+    <div className={["hp-wrap", "fj-layout", numbered ? "fj-numbered" : null, className].filter(Boolean).join(" ")}>
+      <nav className="fj-index" aria-label={label}>
+        {many && <React.Fragment><p className="hp-eyebrow">{label}</p>{list}</React.Fragment>}
+      </nav>
+      <div className="fj-column" ref={colRef}>
+        {many && (
+          <details className="fj-toc">
+            <summary><span className="hp-eyebrow">{label}</span><span className="fj-toc__count">{items.length} sections</span></summary>
+            {list}
+          </details>
+        )}
+        {children}
+      </div>
+    </div>
+  );
+}
+
+// A strip of figures: a big serif value over a tracked label. The values
+// restate what the page already prints; `tone="ink"` is the dark band.
+function FjFacts({ items, tone, className, label }) {
+  return (
+    <dl className={["fj-facts", tone ? "fj-facts--" + tone : null, className].filter(Boolean).join(" ")} aria-label={label}>
+      {items.map((it) => (
+        <div key={it.label}>
+          <dt>{it.label}</dt>
+          <dd>{it.value}{it.note && <small>{it.note}</small>}</dd>
+        </div>
+      ))}
+    </dl>
+  );
+}
+
+// A pull quote: a sentence the page already says, set large. Hidden from
+// assistive tech, which has just read it in the text. `side` hangs it in the
+// right margin on wide screens.
+function FjPull({ children, cite, side }) {
+  return (
+    <div className={"fj-pull" + (side ? " fj-pull--side" : "")} aria-hidden="true">
+      <p>{children}</p>
+      {cite && <span>{cite}</span>}
+    </div>
+  );
+}
+
+// The section divider: Half Dome's profile on a ridgeline, between rules.
+function FjRidge() {
+  return (
+    <div className="fj-ridge" aria-hidden="true">
+      <svg viewBox="0 0 240 48" width="240" height="48" focusable="false">
+        <path className="fj-ridge__far" d="M0 46 L30 40 L52 42 L70 34 L88 38 L100 32 L112 36 L124 30" />
+        <path className="fj-ridge__dome" d="M84 46 L98 40 L110 32 C 116 20, 128 9, 144 7 C 156 6, 164 9, 167 15 L 168 46 Z" />
+        <path className="fj-ridge__far" d="M168 30 L180 33 L192 28 L206 36 L222 38 L240 46" />
+        <path className="fj-ridge__cables" d="M121 23 C 128 15, 136 10, 144 9" />
+      </svg>
+    </div>
+  );
+}
+
+// The field card: an index card for a head's aside. `rows` are label and
+// value pairs from the page's own copy; `stamp` is the round postmark.
+function FjCard({ eyebrow, title, rows, stamp, foot, children, className }) {
+  return (
+    <div className={["fj-card", className].filter(Boolean).join(" ")}>
+      {stamp && <span className="fj-card__stamp" aria-hidden="true">{stamp}</span>}
+      {eyebrow && <p className="hp-eyebrow">{eyebrow}</p>}
+      {title && <p className="fj-card__title">{title}</p>}
+      {rows && (
+        <dl>
+          {rows.map((r) => (
+            <div key={r.label}><dt>{r.label}</dt><dd>{r.value}</dd></div>
+          ))}
+        </dl>
+      )}
+      {children}
+      {foot && <p className="fj-card__foot">{foot}</p>}
+    </div>
+  );
+}
+
+// The head's photo plate, with the homepage figure's caption line, and an
+// optional field card laid over its lower corner (`card`). The image is the
+// page's LCP, so it loads eagerly.
+function FjPlate({ image, alt, label, credit, card, className }) {
+  return (
+    <div className={["fj-headart", card ? "fj-headart--card" : null, className].filter(Boolean).join(" ")}>
+      <figure className="fj-plate">
+        <ResponsiveImage image={image} alt={alt} eager sizes="(max-width: 760px) calc(100vw - 40px), (max-width: 1100px) 50vw, 620px" />
+        {(label || credit) && <figcaption>{label}{credit && <span>{credit}</span>}</figcaption>}
+      </figure>
+      {card}
+    </div>
+  );
+}
+
+// Steps as a numbered timeline down a rule: `steps` are {title, text}.
+function FjSteps({ steps, className }) {
+  return (
+    <ol className={["fj-steps", className].filter(Boolean).join(" ")}>
+      {steps.map((s, i) => (
+        <li key={i}>
+          <span className="fj-steps__n" aria-hidden="true">{fjPad(i + 1)}</span>
+          <div>{s.title && <strong>{s.title}</strong>}{s.text && <p>{s.text}</p>}</div>
+        </li>
+      ))}
+    </ol>
+  );
+}
+
+// ============================================================
 // The Field Guide app's origin, for HpGuideBand's free-preview line.
 // ============================================================
 const GUIDE_PROMO_APP_BASE =
@@ -2737,4 +2933,5 @@ Object.assign(window, {
   Header, Footer, BackToTop, NewsletterInline, ExitIntentNewsletter, MapLightbox,
   EntranceWaits, WebcamStrip,
   HomeLink, HomeMasthead, HpHeading, HpRow, HpCard, HpArticleCard, HpPageHead, HpGuideBand, HpLetter, HpPostcard,
+  FjLayout, FjFacts, FjPull, FjRidge, FjCard, FjSteps, FjPlate,
 });

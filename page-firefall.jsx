@@ -252,27 +252,43 @@ function FirefallPage({ go }) {
 
   return (
     <div className="page hp-tool hp-firefall">
-      <HpPageHead
-        go={go}
-        crumbs={[{ label: "Home", route: "home" }, { label: "Firefall" }]}
-        eyebrow="HORSETAIL FALL · EL CAPITAN · EVERY FEBRUARY"
-        title="The Yosemite Firefall"
-        intro="For about two weeks each February, the last light of the day can turn Horsetail Fall into a ribbon of orange on El Capitan. It is real, it is brief, and most evenings it does not happen. This page covers the whole trip: the dates, the odds, the rooms, the walk, the weather, and what to wear while you wait."
-        actions={<React.Fragment>
-          <HomeLink go={go} location="firefall_head" className="hp-button" href="#firefall-book">Find a February room <span>↓</span></HomeLink>
-          <HomeLink go={go} location="firefall_head" className="hp-link" href="#firefall-tonight">Is it on tonight? ↓</HomeLink>
-        </React.Fragment>}
-        aside={
-          <figure className="ff-hero">
-            <ResponsiveImage image="img/horsetail-fall-firefall-glow.jpg" eager
-              alt="Horsetail Fall glowing orange at sunset on the east face of El Capitan"
-              sizes="(max-width: 760px) calc(100vw - 40px), 640px" />
-            <figcaption>Photo: Barney Moss / Wikimedia Commons (CC BY 2.0)</figcaption>
-          </figure>
-        }
-      >
-        <AffiliateDisclosure />
-      </HpPageHead>
+      <div className="hp-wrap">
+        {/* The page in thirty seconds. Silent, so every line is on screen, and
+            every line restates this page; re-render it (scripts/video/) if the
+            dates, the walk or the odds change. preload="none": only the poster
+            loads until the reader presses play. It opens the page, above the
+            cover, so the thirty-second version comes before the long one. */}
+        <figure className="ff-video">
+          <video controls muted playsInline preload="none" width="1920" height="1080"
+            poster="/img/firefall-in-30-seconds-poster.jpg"
+            aria-label="The Yosemite Firefall in thirty seconds: about two weeks each February, strongest around the 17th to the 24th; water, a clear western sky and the sun angle have to line up, and most evenings it does not happen; the glow lasts about ten minutes, a little before 6 p.m.; park at Yosemite Falls and walk about 1.5 miles each way, with no stopping or drop-offs near the viewing area; book a refundable room months ahead and plan two or three evenings.">
+            <source src="/img/firefall-in-30-seconds.mp4" type="video/mp4" />
+          </video>
+          <figcaption>The firefall in thirty seconds. No sound. Photos: Barney Moss and Anita Ritenour / Wikimedia Commons (CC BY 2.0).</figcaption>
+        </figure>
+      </div>
+
+      {/* The cover: the photograph runs the full width behind the head, with a
+          dark wash on the copy's side so the title and intro stay legible. */}
+      <div className="ff-cover">
+        <ResponsiveImage image="img/horsetail-fall-firefall-glow.jpg" eager className="ff-cover__img"
+          alt="Horsetail Fall glowing orange at sunset on the east face of El Capitan"
+          sizes="100vw" />
+        <HpPageHead
+          go={go}
+          crumbs={[{ label: "Home", route: "home" }, { label: "Firefall" }]}
+          eyebrow="HORSETAIL FALL · EL CAPITAN · EVERY FEBRUARY"
+          title="The Yosemite Firefall"
+          intro="For about two weeks each February, the last light of the day can turn Horsetail Fall into a ribbon of orange on El Capitan. It is real, it is brief, and most evenings it does not happen. This page covers the whole trip: the dates, the odds, the rooms, the walk, the weather, and what to wear while you wait."
+          actions={<React.Fragment>
+            <HomeLink go={go} location="firefall_head" className="hp-button" href="#firefall-book">Find a February room <span>↓</span></HomeLink>
+            <HomeLink go={go} location="firefall_head" className="hp-link" href="#firefall-tonight">Is it on tonight? ↓</HomeLink>
+          </React.Fragment>}
+        >
+          <AffiliateDisclosure />
+        </HpPageHead>
+        <p className="ff-cover__credit">Photo: Barney Moss / Wikimedia Commons (CC BY 2.0)</p>
+      </div>
 
       <div className="hp-wrap">
         <dl className="ff-facts">

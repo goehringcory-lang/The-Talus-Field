@@ -49,3 +49,6 @@ scripts/data/photo-exif-log.json
 # Cached USGS quad + terrain-tile downloads for scripts/gen-hike-tracks.mjs;
 # regenerated on demand, never committed.
 scripts/data/.trailcache/
+
+# 3D map pipeline: pmtiles CLI, Terrarium tile cache, built archives (uploaded to R2, never committed)
+apps/guide/scripts/.mapcache/

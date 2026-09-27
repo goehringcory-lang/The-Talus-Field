@@ -41,6 +41,18 @@ preview_id = "REPLACE_ME_FOR_LOCAL_DEV"
 binding = "PHOTO_INBOX"
 bucket_name = "talus-photo-inbox"
 
+# The Field Guide 3D map's tiles (/vt and /dem, routes/maptiles.ts): two
+# PMTiles archives per build, basemap/<ver>.pmtiles and dem/<ver>.pmtiles,
+# written by scripts/gen-map-tiles.mjs. Create the bucket BEFORE the deploy
+# that adds this block (a declared-but-missing bucket fails the build), then
+# upload the archives the script prints:
+#   wrangler r2 bucket create talus-map-tiles
+#   wrangler r2 object put talus-map-tiles/basemap/<ver>.pmtiles --file=... --remote
+#   wrangler r2 object put talus-map-tiles/dem/<ver>.pmtiles --file=... --remote
+[[r2_buckets]]
+binding = "MAP_TILES"
+bucket_name = "talus-map-tiles"
+
 # Two daily runs, branched on controller.cron in index.ts:
 #   0 10 * * * (~2-3am Pacific)  — data refresh (NPS programs, weather,
 #     conditions feeds) plus the renewal EMAIL sweep. Quiet-hours work only.
