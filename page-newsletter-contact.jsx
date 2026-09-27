@@ -41,10 +41,11 @@ function NewsletterPage({ go }) {
               setTimeout(() => setDone(true), 0);
             }}
           >
+            <label htmlFor="nl-page-email" className="fj-label">Your email address</label>
             <input
+              id="nl-page-email"
               type="email"
               name="email"
-              aria-label="Email address"
               placeholder="you@email.com"
               required
             />
@@ -55,13 +56,15 @@ function NewsletterPage({ go }) {
         )}
       </HpPageHead>
 
-      <section className="hp-wrap hp-section hp-nlpage__terms">
-        <div>
-          <h3>Cadence</h3>
+      <section className="hp-wrap hp-section hp-nlpage__terms fj-notes">
+        <div className="fj-note">
+          <span className="fj-note__stamp" aria-hidden="true">Sun.</span>
+          <h2>Cadence</h2>
           <p className="hp-sub">Sundays, when there is something to say. Some weeks there is not.</p>
         </div>
-        <div>
-          <h3>Mail</h3>
+        <div className="fj-note">
+          <span className="fj-note__stamp" aria-hidden="true">@</span>
+          <h2>Mail</h2>
           <p className="hp-sub">Used to send the dispatch. Not shared. Unsubscribe at the bottom of any letter.</p>
         </div>
         <p className="hp-nlpage__privacy">
@@ -109,9 +112,21 @@ function ContactPage({ go }) {
       <HpPageHead
         go={go}
         crumbs={[{ label: "Home", route: "home" }, { label: "Contact" }]}
+        className="fj-head fj-topo"
         eyebrow="CONTACT"
         title="Send me a note."
         intro="I read everything. I answer most things, eventually. If you are asking a trip-planning question, please include your dates and what kind of trip you are imagining; otherwise I will just write back asking."
+        aside={
+          <div className="fj-card hp-contact__direct">
+            <p className="hp-eyebrow">DIRECT</p>
+            <p className="hp-contact__mail">
+              <a href="mailto:cory@thetalusfieldjournal.com">cory@thetalusfieldjournal.com</a>
+            </p>
+            <p className="hp-contact__note">
+              I check this once or twice a day. Usually faster on Mondays.
+            </p>
+          </div>
+        }
       />
 
       <section className="hp-wrap hp-section">
@@ -123,7 +138,7 @@ function ContactPage({ go }) {
               <p>I read every note. I will write back when I can, usually within a few days.</p>
             </div>
           ) : (
-            <form onSubmit={submit}>
+            <form onSubmit={submit} className="fj-letterhead">
               <div className="hp-contact__pair">
                 <div className="field">
                   <label htmlFor="contact-name">Your name</label>
@@ -178,14 +193,6 @@ function ContactPage({ go }) {
           )}
 
           <aside className="hp-contact__aside">
-            <p className="hp-eyebrow">DIRECT</p>
-            <p className="hp-contact__mail">
-              <a href="mailto:cory@thetalusfieldjournal.com">cory@thetalusfieldjournal.com</a>
-            </p>
-            <p className="hp-contact__note">
-              I check this once or twice a day. Usually faster on Mondays.
-            </p>
-
             <div className="hp-contact__heads">
               <p className="hp-eyebrow">HEADS UP</p>
               <p className="hp-contact__note">

@@ -1,4 +1,4 @@
-/* global React, HpPageHead, HpGuideBand, HpLetter, LodgingCta, DEADLINES */
+/* global React, HpPageHead, HpGuideBand, HpLetter, LodgingCta, DEADLINES, FjLayout, FjCard, FjRidge */
 
 // =============================================================================
 // DATES — `/dates` route. The dates that decide a Yosemite trip, in one table,
@@ -168,6 +168,62 @@ const TAG_LABELS = {
   "date-roads": "Roads and seasons",
 };
 
+// The fixed windows on one year: a row per window, a bar from its start to its
+// end, January to December. Published windows are solid, typical ones hatched,
+// matching the table's "typical, not published" note. The bars read the same
+// rows the table prints (the cables rule for its first listed year), and the
+// table stays the accessible record; this figure is hidden from assistive tech.
+// It reads no clock: nothing here marks today.
+function yearFraction(month, day) {
+  const days = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
+  let n = day - 1;
+  for (let m = 0; m < month - 1; m++) n += days[m];
+  return n / 365;
+}
+function windowSpans(it, ruleYears) {
+  if (it.kind === "annual") {
+    const a = yearFraction(it.start.month, it.start.day);
+    const b = yearFraction(it.end.month, it.end.day) + 1 / 365;
+    return b >= a ? [[a, b]] : [[a, 1], [0, b]];
+  }
+  if (it.kind === "rule" && ruleYears[0]) {
+    const c = cablesSeason(ruleYears[0]);
+    return [[yearFraction(c.up.getUTCMonth() + 1, c.up.getUTCDate()), yearFraction(c.down.getUTCMonth() + 1, c.down.getUTCDate()) + 1 / 365]];
+  }
+  if (it.kind === "season") {
+    const s = parseIso(it.start); const e = parseIso(it.end);
+    if (!s || !e) return [];
+    const a = yearFraction(s.getUTCMonth() + 1, s.getUTCDate());
+    const b = e.getUTCFullYear() > s.getUTCFullYear() ? 1 : yearFraction(e.getUTCMonth() + 1, e.getUTCDate()) + 1 / 365;
+    return [[a, b]];
+  }
+  return [];
+}
+function YearStrip({ fixed, ruleYears }) {
+  return (
+    <figure className="dt-year" aria-hidden="true">
+      <p className="hp-eyebrow fj-chart-title">The fixed windows, January to December</p>
+      <div className="dt-year__months">
+        <span />
+        <div>{MONTH_NAMES.map((m) => <span key={m}>{m.slice(0, 3)}</span>)}</div>
+      </div>
+      {fixed.map((it) => (
+        <div key={it.id} className={"dt-year__row" + (it.confidence === "typical" ? " is-typical" : "")}>
+          <span className="dt-year__label">{it.title}</span>
+          <div className="dt-year__track">
+            {windowSpans(it, ruleYears).map(([a, b], i) => (
+              b - a < 0.01
+                ? <i key={i} className="is-day" style={{ left: `${a * 100}%` }} />
+                : <i key={i} style={{ left: `${a * 100}%`, width: `${(b - a) * 100}%` }} />
+            ))}
+          </div>
+        </div>
+      ))}
+      <figcaption><span className="dt-year__key" /> Published <span className="dt-year__key is-typical" /> Typical, not published</figcaption>
+    </figure>
+  );
+}
+
 function DatesPage({ go }) {
   const table = window.DEADLINES || { items: [], verified: "", ruleYears: [] };
   const items = table.items || [];
@@ -190,14 +246,26 @@ function DatesPage({ go }) {
       <HpPageHead
         go={go}
         crumbs={[{ label: "Home", route: "home" }, { label: "Dates that matter" }]}
+        className="fj-head fj-topo"
         eyebrow="DEADLINES"
         title="The Yosemite dates that matter"
         intro="The lotteries, the release mornings, and the road windows that decide a trip, in one table, each one a calendar file. Enter your dates and the ones measured from your trip resolve to real days."
+        aside={
+          <FjCard
+            eyebrow="THE CALENDAR, IN FOUR LINES"
+            stamp={<>Verified<br />{parseIso(table.verified) ? longDate(parseIso(table.verified)) : table.verified}</>}
+            rows={[
+              { label: "Fixed windows", value: `${fixed.length}, one calendar file each` },
+              { label: "From your trip", value: `${relative.length} rules, resolved to days` },
+              { label: "Source", value: "The NPS page on each row" },
+              { label: "Format", value: "Calendar files (.ics)" },
+            ]}
+          />
+        }
       />
 
 
-      <div className="hp-wrap hp-reading">
-        <div className="hp-reading__column">
+      <FjLayout>
         <section className="prose">
           <h2>Measured from your trip</h2>
           <p>
@@ -228,7 +296,7 @@ function DatesPage({ go }) {
           {tripOk && (
             <table className="dates__table">
               <thead>
-                <tr><th>Act by</th><th>What</th><th>For</th><th></th></tr>
+                <tr><th>Act by</th><th>What</th><th>For</th><th><span className="fj-sr">Add to calendar</span></th></tr>
               </thead>
               <tbody>
                 {instances.map(({ item, date, forDate }, i) => {
@@ -258,8 +326,8 @@ function DatesPage({ go }) {
                 <li key={it.id}>
                   <strong>{it.title}:</strong>{" "}
                   {it.kind === "relative"
-                    ? `${Math.abs(it.offsetDays) === 168 ? "24 weeks" : Math.abs(it.offsetDays) + " days"} before, ${it.time}.`
-                    : `the 15th of the month, ${it.monthsAhead} months ahead, ${it.time}.`}{" "}
+                    ? `${Math.abs(it.offsetDays) === 168 ? "24 weeks" : Math.abs(it.offsetDays) + " days"} before, ${it.time.replace(/\.$/, "")}.`
+                    : `the 15th of the month, ${it.monthsAhead} months ahead, ${it.time.replace(/\.$/, "")}.`}{" "}
                   {it.detail}{" "}
                   <a href={it.source} target="_blank" rel="noopener noreferrer">NPS ↗</a>
                 </li>
@@ -274,9 +342,10 @@ function DatesPage({ go }) {
             promise, so the calendar entry covers the whole range and the park's
             own announcement settles the day.
           </p>
+          <YearStrip fixed={fixed} ruleYears={table.ruleYears || []} />
           <table className="dates__table">
             <thead>
-              <tr><th>When</th><th>What</th><th></th></tr>
+              <tr><th>When</th><th>What</th><th><span className="fj-sr">Add to calendar</span></th></tr>
             </thead>
             <tbody>
               {fixed.map((it) => (
@@ -309,6 +378,7 @@ function DatesPage({ go }) {
             <a href="/contact" onClick={(e) => goRoute(e, "contact")}>contact page</a> reaches the editor.
           </p>
 
+          <FjRidge />
           <h2>What the dates mean</h2>
           <p>
             The Half Dome mechanics, the odds, and what to climb instead are on{" "}
@@ -338,9 +408,7 @@ function DatesPage({ go }) {
           slug="dates"
           cta="Search lodging around Yosemite →"
         />
-
-        </div>
-      </div>
+      </FjLayout>
 
       <HpGuideBand
         go={go}

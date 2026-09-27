@@ -1,4 +1,4 @@
-/* global React, HpPageHead, HpLetter */
+/* global React, HpPageHead, HpLetter, FjLayout, FjFacts, FjPull, FjSteps, FjRidge */
 
 // =============================================================================
 // FIELD CONSULT — `/consult` route (MONETIZATION-IDEAS.md 3.3). Sells the one
@@ -36,6 +36,7 @@ function ConsultPage({ go }) {
       <HpPageHead
         go={go}
         crumbs={[{ label: "Home", route: "home" }, { label: "Field consult" }]}
+        className="fj-head fj-topo"
         eyebrow={`ONE ON ONE · ${CONSULT_SLOTS_PER_MONTH} A MONTH`}
         title="Thirty minutes on your Yosemite plan."
         intro={`A call with a naturalist who lives in the park: your dates, your group, your plan, taken apart and put back together by someone who has spent twenty seasons watching plans meet the actual park. ${CONSULT_PRICE}, thirty minutes, ${CONSULT_SLOTS_PER_MONTH} slots a month. When they are gone, they are gone.`}
@@ -84,8 +85,19 @@ function ConsultPage({ go }) {
         }
       />
 
-      <div className="hp-wrap hp-reading">
-        <div className="hp-reading__column">
+      <div className="hp-wrap fj-band">
+        <FjFacts
+          label="The consult at a glance"
+          items={[
+            { label: "With", value: "A naturalist, twenty seasons" },
+            { label: "Length", value: "Thirty minutes" },
+            { label: "Slots", value: `${CONSULT_SLOTS_PER_MONTH} a month` },
+            { label: "Format", value: "A call, or in writing" },
+          ]}
+        />
+      </div>
+
+      <FjLayout>
         <section className="prose">
           <h2>What it is</h2>
           <p>
@@ -105,22 +117,35 @@ function ConsultPage({ go }) {
           </p>
 
           <h2>What it is not</h2>
+          <FjPull side cite="What it is not">Lotteries stay lotteries.</FjPull>
           <p>
             Not a booking service, not a guided tour, and not a way around the
             park's permit systems. Lotteries stay lotteries. What a consult does is
             make sure everything outside the lottery is working in your favor.
           </p>
 
+          <FjRidge />
           <h2>How it works</h2>
-          <ol>
-            <li>Pay for the slot. {CONSULT_PRICE}, thirty minutes.</li>
-            <li>Pick a time on the calendar, or reply to the receipt with "written plan" and your details.</li>
-            <li>Talk, or read. Either way you end up with the plan in writing.</li>
-          </ol>
+          <FjSteps
+            steps={[
+              { title: `Pay for the slot. ${CONSULT_PRICE}, thirty minutes.` },
+              { title: <>Pick a time on the calendar, or reply to the receipt with "written plan" and your details.</> },
+              { title: "Talk, or read. Either way you end up with the plan in writing." },
+            ]}
+          />
+          <div className="fj-steps__cta">
+            {live ? (
+              <a className="hp-button" href={CONSULT_PAYMENT_LINK_URL} target="_blank" rel="noopener noreferrer" onClick={() => trackClick("consult_steps")}>
+                Book a consult → {CONSULT_PRICE}
+              </a>
+            ) : (
+              <a className="hp-button" href={CONSULT_MAILTO} onClick={() => trackClick("consult_steps")}>
+                Email about a consult →
+              </a>
+            )}
+          </div>
         </section>
-
-        </div>
-      </div>
+      </FjLayout>
 
       <HpLetter
         eyebrow="SUNDAY FIELD NOTES / FREE"

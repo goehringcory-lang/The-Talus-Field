@@ -1,4 +1,4 @@
-/* global React, HpPageHead, LodgingCta, HpGuideBand, HpLetter */
+/* global React, HpPageHead, LodgingCta, HpGuideBand, HpLetter, FjLayout, FjPull, FjRidge, FjCard, FjPlate */
 
 // =============================================================================
 // HALF DOME LOTTERY — `/half-dome-lottery` route. The third evergreen event
@@ -43,6 +43,38 @@ const LOTTERY_SEASONS = [
   },
 ];
 
+// The published odds, drawn: a hundred applications as a ten-by-ten field of
+// dots, the winners filled. Reads the same LOTTERY_SEASONS row the table
+// prints, so the two cannot disagree; the table stays the accessible record
+// and this figure is hidden from assistive tech.
+function LotteryOdds({ season }) {
+  const draws = [
+    { label: "Preseason lottery", rate: season.preseasonRate },
+    { label: "Daily lottery, weekday", rate: season.dailyWeekday },
+    { label: "Daily lottery, weekend", rate: season.dailyWeekend },
+  ];
+  return (
+    <figure className="hd-odds" aria-hidden="true">
+      <p className="hp-eyebrow fj-chart-title">The published odds, {season.season} season</p>
+      <div className="hd-odds__grids">
+        {draws.map((d) => {
+          const n = parseInt(d.rate, 10) || 0;
+          return (
+            <div key={d.label} className="hd-odds__draw">
+              <div className="hd-odds__dots">
+                {Array.from({ length: 100 }, (_, i) => <i key={i} className={i < n ? "is-won" : undefined} />)}
+              </div>
+              <strong>{d.rate}</strong>
+              <span>{d.label}</span>
+            </div>
+          );
+        })}
+      </div>
+      <figcaption>Of every hundred applications in the {season.season} season, the filled dots drew a permit. National Park Service figures.</figcaption>
+    </figure>
+  );
+}
+
 function HalfDomeLotteryPage({ go }) {
   const goArticle = (e, slug) => {
     e.preventDefault();
@@ -54,14 +86,33 @@ function HalfDomeLotteryPage({ go }) {
       <HpPageHead
         go={go}
         crumbs={[{ label: "Home", route: "home" }, { label: "Half Dome lottery" }]}
+        className="fj-head"
         eyebrow="PERMIT SEASON · APPLICATIONS OPEN IN MARCH"
         title="The Half Dome lottery"
         intro="Most people think there is one Half Dome lottery, that it happens in March, and that losing it ends the year. All three are wrong. There are two lotteries, the second one runs every day the cables are up, and the strategy for each is different. This page is the honest version: the calendar, the published odds, the strategy, and what to do when the answer is no."
+        aside={
+          <FjPlate
+            image="img/half-dome-sunset-glacier-point-joshua-earle.jpg"
+            alt="Half Dome at sunset, seen from Glacier Point"
+            label="Half Dome from Glacier Point"
+            credit="Photo: Joshua Earle / Unsplash"
+            card={
+              <FjCard
+                eyebrow="THE CABLES, IN FOUR LINES"
+                rows={[
+                  { label: "Cables", value: "Last 400 vertical feet" },
+                  { label: "Daily cap", value: "300 hikers" },
+                  { label: "Lotteries", value: "Two: March, and daily" },
+                  { label: "Round trip", value: "14 to 16 miles" },
+                ]}
+              />
+            }
+          />
+        }
       />
 
 
-      <div className="hp-wrap hp-reading">
-        <div className="hp-reading__column">
+      <FjLayout>
         <section className="prose">
           <h2>The season</h2>
           <p>
@@ -91,7 +142,7 @@ function HalfDomeLotteryPage({ go }) {
           </p>
 
           <h2>Two lotteries, not one</h2>
-          <ol>
+          <ol className="fj-pair">
             <li>
               <strong>The preseason lottery.</strong> Applications on
               Recreation.gov through the month of March (Eastern time), results
@@ -143,12 +194,14 @@ function HalfDomeLotteryPage({ go }) {
           </p>
 
           <h2>The published odds</h2>
+          <FjPull side cite="The published odds">Read the application rate, not the date-choice rate, as your odds of hiking.</FjPull>
           <p>
             These are the National Park Service's own figures for the seasons it
             has published. Read the application rate, not the date-choice rate,
             as your odds of hiking: most applications list several dates and
             only one of them can be filled.
           </p>
+          <div className="fj-tablewrap" role="region" aria-label="Published lottery statistics" tabIndex={0}>
           <table>
             <thead>
               <tr>
@@ -175,6 +228,8 @@ function HalfDomeLotteryPage({ go }) {
               ))}
             </tbody>
           </table>
+          </div>
+          <LotteryOdds season={LOTTERY_SEASONS[0]} />
           <p>
             The spread inside those averages is where the strategy lives.
             Saturday is the most requested day of the week, drawing about 21% of
@@ -187,8 +242,9 @@ function HalfDomeLotteryPage({ go }) {
             a weekend one, which is the same fact stated a different way.
           </p>
 
+          <FjRidge />
           <h2>What actually works</h2>
-          <ol>
+          <ol className="fj-numlist">
             <li>
               <strong>Use all seven date choices</strong> in the preseason
               application, and front-load the unpopular ones: a Tuesday in
@@ -224,6 +280,7 @@ function HalfDomeLotteryPage({ go }) {
           </ol>
 
           <h2>If you win</h2>
+          <FjPull side cite="If you win">Sunk cost is a bad reason to be on wet granite at 45 degrees.</FjPull>
           <p>
             Download or print the confirmation email before you leave the
             Valley. Cell service is unreliable at the subdome checkpoint, around
@@ -287,6 +344,7 @@ function HalfDomeLotteryPage({ go }) {
             fall light is extraordinary.
           </p>
 
+          <FjRidge />
           <h2>Fees, cancellation and the fine print</h2>
           <p>
             The application fee is non-refundable in every case; it is the cost
@@ -306,9 +364,9 @@ function HalfDomeLotteryPage({ go }) {
         </section>
 
         {/* The live layer: rules and fees change annually; the sources don't. */}
-        <div style={{ marginTop: 48 }}>
-          <div className="eyebrow eyebrow--moss" style={{ marginBottom: 12 }}>The current year's rules</div>
-          <p style={{ fontFamily: "var(--sans)", fontSize: 13, color: "var(--ink-3)" }}>
+        <div className="fj-aside">
+          <p className="hp-eyebrow">The current year's rules</p>
+          <p>
             Dates, fees, and any rule changes for the current season:{" "}
             <a href="https://www.nps.gov/yose/planyourvisit/hdpermits.htm" target="_blank" rel="noopener noreferrer">the NPS Half Dome permits page</a>{" "}
             and{" "}
@@ -365,8 +423,7 @@ function HalfDomeLotteryPage({ go }) {
 
         {/* The purchase ask: a lottery reader is planning the whole trip
             around one permit day, usually months out. */}
-        </div>
-      </div>
+      </FjLayout>
 
       <HpGuideBand
         go={go}

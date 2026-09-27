@@ -1,4 +1,4 @@
-/* global React, HpPageHead, HpLetter */
+/* global React, HpPageHead, HpLetter, FjLayout, FjPull, FjRidge, FjCard, FjPlate, FjSteps */
 
 // =============================================================================
 // GROUP CODES — `/partners` route (MONETIZATION-IDEAS.md 2.4). The B2B pitch
@@ -85,13 +85,32 @@ function PartnersPage({ go }) {
       <HpPageHead
         go={go}
         crumbs={[{ label: "Home", route: "home" }, { label: "Group codes" }]}
+        className="fj-head"
         eyebrow="FOR LODGING AND HOSPITALITY · GROUP CODES"
         title="Give every guest the field guide."
         intro="The Talus Field Guide is the offline Yosemite app your guests wish they had found before they drove in: 44 stops with tappable GPS and real time budgets, all 57 in-park day hikes, the ranger program schedule on their dates, and a topo map of the park that works when service dies. Buy it in packs, hand a code to every booking, and it arrives as your amenity, not a link they found on their own."
+        aside={
+          <FjPlate
+            image="img/ahwahnee-hotel.jpg"
+            alt="The Ahwahnee hotel's stone facade in Yosemite Valley"
+            label="The Ahwahnee, Yosemite Valley"
+            credit="Photo: Chris Dunstan / Wikimedia Commons (public domain)"
+            card={
+              <FjCard
+                eyebrow="ONE CODE, IN FOUR LINES"
+                rows={[
+                  { label: "Stops", value: "44, in driving order" },
+                  { label: "Day hikes", value: "All 57 in the park" },
+                  { label: "Access", value: "18 months from redeeming" },
+                  { label: "Offline", value: "About 70 MB" },
+                ]}
+              />
+            }
+          />
+        }
       />
 
-      <div className="hp-wrap hp-reading">
-        <div className="hp-reading__column">
+      <FjLayout>
         <section className="prose">
           <h2>The problem this solves</h2>
           <p>
@@ -129,10 +148,8 @@ function PartnersPage({ go }) {
             packet, the check-in screen.
           </p>
         </section>
-        </div>
-      </div>
 
-      <section className="hp-wrap hp-partners__pitch">
+      <section className="hp-partners__pitch fj-pitch">
         <div className="places-pitch">
           <div className="places-pitch__eyebrow">Pricing</div>
           <h2 className="places-pitch__title">What it costs</h2>
@@ -158,29 +175,16 @@ function PartnersPage({ go }) {
         </div>
       </section>
 
-      <div className="hp-wrap hp-reading">
-        <div className="hp-reading__column">
         <section className="prose">
           <h2>How it works</h2>
-          <ol>
-            <li>
-              Write, with your property, your area, and roughly how many bookings
-              a year you would cover. A reply comes from a person in El Portal,
-              not a sales team.
-            </li>
-            <li>
-              Agree on the pricing that fits the property. You get an invoice,
-              payable before the codes are issued.
-            </li>
-            <li>
-              Codes are delivered as a spreadsheet plus a print-ready card for
-              the room or the welcome packet, with your property named on it.
-            </li>
-            <li>
-              Hand a code to each guest however you already talk to them. They
-              redeem it, the guide opens, and their 18 months start that day.
-            </li>
-          </ol>
+          <FjSteps
+            steps={[
+              { text: "Write, with your property, your area, and roughly how many bookings a year you would cover. A reply comes from a person in El Portal, not a sales team." },
+              { text: "Agree on the pricing that fits the property. You get an invoice, payable before the codes are issued." },
+              { text: "Codes are delivered as a spreadsheet plus a print-ready card for the room or the welcome packet, with your property named on it." },
+              { text: "Hand a code to each guest however you already talk to them. They redeem it, the guide opens, and their 18 months start that day." },
+            ]}
+          />
           <p>
             Unredeemed codes stay yours. They do not expire on the shelf inside
             the season you bought them for, and a code that goes unused on one
@@ -188,7 +192,7 @@ function PartnersPage({ go }) {
           </p>
 
           <h2>What your guests actually get</h2>
-          <ul>
+          <ul className="fj-ticks">
             <li>44 stops in driving order, each with GPS, a time budget, and a swap for when the lot is full or the plan dies.</li>
             <li>All 57 in-park day hikes with verified distance, elevation gain, difficulty, an elevation profile, and a GPS track.</li>
             <li>An offline topographic map of the whole park with every stop pinned, downloadable in one tap.</li>
@@ -199,6 +203,7 @@ function PartnersPage({ go }) {
           </ul>
 
           <h2>Why it is worth more than it costs</h2>
+          <FjPull side cite="Why it is worth more">It is the only amenity on the property that changes how the trip goes.</FjPull>
           <p>
             Against a room night, this is a rounding error. It is cheaper than
             the bottled water in the room and it is the only amenity
@@ -216,8 +221,9 @@ function PartnersPage({ go }) {
             write about the trip.
           </p>
 
+          <FjRidge />
           <h2>The terms, plainly</h2>
-          <ul>
+          <ul className="fj-ticks fj-ticks--one">
             <li>Paid by invoice, in advance. Terms are agreed in writing before anything is issued, and there is no minimum you have to commit to before we have talked.</li>
             <li>No revenue share, no commission, and no obligation to link to or recommend anything on this site.</li>
             <li>No exclusivity in either direction. Your neighbors can buy codes too, and you are free to stop at any time.</li>
@@ -227,28 +233,34 @@ function PartnersPage({ go }) {
           </ul>
 
           <h2>Questions that come up</h2>
+          <div className="fj-qa">
+          <h3>Do guests need to install anything?</h3>
           <p>
-            <strong>Do guests need to install anything?</strong> No. The guide is
+            No. The guide is
             a web app. It opens in the browser and can be added to a home screen
             in one step, which is what makes the offline download work.
           </p>
+          <h3>Does a code work for a whole family?</h3>
           <p>
-            <strong>Does a code work for a whole family?</strong> One code is one
+            One code is one
             guest account, usable on every device that guest owns, which covers
             a family traveling together. A group booking that wants a code per
             household should count households, not people.
           </p>
+          <h3>What if a guest never redeems?</h3>
           <p>
-            <strong>What if a guest never redeems?</strong> The code stays valid
+            The code stays valid
             and you can give it to someone else. You are buying access, not a
             printed voucher that dies on the counter.
           </p>
+          <h3>Can we brand it?</h3>
           <p>
-            <strong>Can we brand it?</strong> The card that goes in the room
+            The card that goes in the room
             carries your property's name. The guide itself stays The Talus
             Field's, editorially and visually. That independence is the reason
             the recommendations inside it are worth anything to your guest.
           </p>
+          </div>
         </section>
 
         <div className="hp-partners__ask">
@@ -293,9 +305,7 @@ function PartnersPage({ go }) {
             <a href="/advertise" onClick={(e) => { e.preventDefault(); go("advertise"); }}>the listings page</a>.
           </p>
         </section>
-
-        </div>
-      </div>
+      </FjLayout>
 
       <HpLetter
         eyebrow="SUNDAY FIELD NOTES / FREE"

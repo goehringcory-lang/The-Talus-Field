@@ -1,4 +1,4 @@
-/* global React, HpPageHead, LodgingCta, HpGuideBand, HpLetter */
+/* global React, HpPageHead, LodgingCta, HpGuideBand, HpLetter, FjLayout, FjPull, FjRidge, FjCard, FjPlate */
 
 // =============================================================================
 // TIOGA OPENING — `/tioga-opening` route. The second evergreen event page
@@ -73,25 +73,65 @@ function TiogaStatus() {
       : false;
 
   return (
-    <section style={{ marginTop: 48, border: "1px solid var(--ink)", padding: "24px 28px" }}>
-      <div className="eyebrow eyebrow--moss" style={{ marginBottom: 10 }}>
+    <section className="fj-status" aria-labelledby="tg-status-chip">
+      <p className="hp-eyebrow">
         Tioga Road right now
-      </div>
-      <div style={{ fontFamily: "var(--display)", fontSize: 28, fontWeight: 500, lineHeight: 1.15, marginBottom: 10 }}>
+      </p>
+      <h3 className="fj-status__chip" id="tg-status-chip">
         {row.chip}
-      </div>
+      </h3>
       {row.note && (
-        <p style={{ fontFamily: "var(--serif)", fontSize: 16, color: "var(--ink-2)", lineHeight: 1.5, margin: "0 0 12px" }}>
+        <p className="fj-status__note">
           {row.note}
         </p>
       )}
       {edition && edition.updated && (
-        <p className="mono" style={{ fontSize: 11, textTransform: "uppercase", letterSpacing: "0.14em", color: "var(--ink-3)", margin: 0 }}>
+        <p className="fj-status__stamp">
           {ended ? "Last edition, ended " : "Last checked "}
           {ended ? edition.label : edition.updated}
         </p>
       )}
     </section>
+  );
+}
+
+// The opening dates on one late-spring axis, May 1 to June 30: each recorded
+// year a tick, the long-term average a dashed line. Reads OPENING_HISTORY and
+// LONG_TERM_AVERAGE, the same values the table prints; the table stays the
+// accessible record and this figure is hidden from assistive tech.
+const TIOGA_AXIS_START = { month: 4, day: 1 }; // May 1 (0-based month)
+const TIOGA_AXIS_DAYS = 61;                     // through June 30
+function tiogaOffset(label) {
+  const m = /^(May|June|Jun)\s+(\d{1,2})$/.exec(String(label).trim());
+  if (!m) return null;
+  const day = parseInt(m[2], 10) + (m[1] === "May" ? 0 : 31) - TIOGA_AXIS_START.day;
+  return Math.max(0, Math.min(TIOGA_AXIS_DAYS - 1, day)) / (TIOGA_AXIS_DAYS - 1);
+}
+// Labels near either end of the axis hang inward instead of past the card.
+const tiogaEdge = (x) => (x < 0.08 ? " is-start" : x > 0.92 ? " is-end" : "");
+function TiogaStrip() {
+  const avg = tiogaOffset(LONG_TERM_AVERAGE);
+  return (
+    <figure className="tg-strip" aria-hidden="true">
+      <p className="hp-eyebrow fj-chart-title">Recorded openings, May 1 to June 30</p>
+      <div className="tg-strip__axis">
+        <span className="tg-strip__snow" />
+        {avg != null && (
+          <span className={"tg-strip__avg" + tiogaEdge(avg)} style={{ left: `${avg * 100}%` }}>
+            <b>{LONG_TERM_AVERAGE}</b><small>Long-term average</small>
+          </span>
+        )}
+        {OPENING_HISTORY.map((r, i) => {
+          const x = tiogaOffset(r.date);
+          return x == null ? null : (
+            <span key={r.year} className={"tg-strip__year" + (i % 2 ? " is-alt" : "") + tiogaEdge(x)} style={{ left: `${x * 100}%` }}>
+              <b>{r.date}</b><small>{r.year}</small>
+            </span>
+          );
+        })}
+      </div>
+      <div className="tg-strip__months"><span>May 1</span><span>June 1</span><span>June 30</span></div>
+    </figure>
   );
 }
 
@@ -106,16 +146,36 @@ function TiogaOpeningPage({ go }) {
       <HpPageHead
         go={go}
         crumbs={[{ label: "Home", route: "home" }, { label: "Tioga opening" }]}
+        className="fj-head"
         eyebrow="SEASONAL EVENT · LATE SPRING"
         title="The Tioga Road opening"
         intro="Every spring, plow crews cut Highway 120 out of the snowpack and the highest road in the park comes back. The opening date is not a date: it is announced only days ahead, it varies by weeks from year to year, and the first weekends are unlike any other time on the road. Below: how the opening works, what is actually open in week one, and how to drive it well."
+        aside={
+          <FjPlate
+            image="img/tenaya-lake.jpg"
+            alt="Tenaya Lake below the granite domes along Tioga Road"
+            label="Tenaya Lake, Tioga Road"
+            credit="Photo: Michael Hogarth / Wikimedia Commons (public domain)"
+            card={
+              <FjCard
+                eyebrow="HIGHWAY 120, IN FOUR LINES"
+                rows={[
+                  { label: "Closes", value: "First lasting snow" },
+                  { label: "Opens, on average", value: LONG_TERM_AVERAGE },
+                  { label: "Notice", value: "Less than a week" },
+                  { label: "Tioga Pass", value: "9,945 feet" },
+                ]}
+              />
+            }
+          />
+        }
       />
 
 
-      <div className="hp-wrap hp-reading">
-        <div className="hp-reading__column">
+      <FjLayout>
         <section className="prose">
           <h2>How the opening works</h2>
+          <FjPull side cite="How the opening works">That is a spectacular thing to drive through, and a spectacular thing to be unprepared for.</FjPull>
           <p>
             Tioga Road closes with the first lasting snow, typically in
             November, and reopens when the plowing is done, full stop. The
@@ -164,6 +224,7 @@ function TiogaOpeningPage({ go }) {
               </tr>
             </tbody>
           </table>
+          <TiogaStrip />
           <p>
             The National Park Service publishes the full year-by-year list on its
             own Tioga Road page, which is the source to check if you want the
@@ -171,7 +232,7 @@ function TiogaOpeningPage({ go }) {
           </p>
 
           <h2>The self-sufficiency rules</h2>
-          <ol>
+          <ol className="fj-pair">
             <li>
               <strong>Gas.</strong> Crane Flat is the last fuel on the west
               side, pay-at-pump. The next gas is Lee Vining, on the far side of
@@ -217,9 +278,9 @@ function TiogaOpeningPage({ go }) {
             the outbound links below if the fetch does not land. */}
         <TiogaStatus />
 
-        <div style={{ marginTop: 32 }}>
-          <div className="eyebrow eyebrow--moss" style={{ marginBottom: 12 }}>Check the current status</div>
-          <p style={{ fontFamily: "var(--sans)", fontSize: 13, color: "var(--ink-3)" }}>
+        <div className="fj-aside">
+          <p className="hp-eyebrow">Check the current status</p>
+          <p>
             The current plowing and opening status lives on{" "}
             <a href="https://www.nps.gov/yose/planyourvisit/seasonal.htm" target="_blank" rel="noopener noreferrer">the NPS Tioga Road page</a>,
             and road conditions by phone or text: text "ynptraffic" to 333111.
@@ -231,7 +292,8 @@ function TiogaOpeningPage({ go }) {
           </p>
         </div>
 
-        <section className="prose" style={{ marginTop: 48 }}>
+        <section className="prose">
+          <FjRidge />
           <h2>The bigger day</h2>
           <p>
             The move that turns the opening into a full trip is crossing the
@@ -260,9 +322,7 @@ function TiogaOpeningPage({ go }) {
           slug="tioga-opening"
           cta="Search Lee Vining lodging →"
         />
-
-        </div>
-      </div>
+      </FjLayout>
 
       <HpGuideBand
         go={go}

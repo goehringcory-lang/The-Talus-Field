@@ -124,6 +124,70 @@ var TAG_LABELS = {
   "date-camping": "Campgrounds",
   "date-roads": "Roads and seasons"
 };
+function yearFraction(month, day) {
+  var days = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
+  var n = day - 1;
+  for (var m = 0; m < month - 1; m++) n += days[m];
+  return n / 365;
+}
+function windowSpans(it, ruleYears) {
+  if (it.kind === "annual") {
+    var a = yearFraction(it.start.month, it.start.day);
+    var b = yearFraction(it.end.month, it.end.day) + 1 / 365;
+    return b >= a ? [[a, b]] : [[a, 1], [0, b]];
+  }
+  if (it.kind === "rule" && ruleYears[0]) {
+    var c = cablesSeason(ruleYears[0]);
+    return [[yearFraction(c.up.getUTCMonth() + 1, c.up.getUTCDate()), yearFraction(c.down.getUTCMonth() + 1, c.down.getUTCDate()) + 1 / 365]];
+  }
+  if (it.kind === "season") {
+    var s = parseIso(it.start);
+    var e = parseIso(it.end);
+    if (!s || !e) return [];
+    var _a = yearFraction(s.getUTCMonth() + 1, s.getUTCDate());
+    var _b = e.getUTCFullYear() > s.getUTCFullYear() ? 1 : yearFraction(e.getUTCMonth() + 1, e.getUTCDate()) + 1 / 365;
+    return [[_a, _b]];
+  }
+  return [];
+}
+function YearStrip({
+  fixed,
+  ruleYears
+}) {
+  return React.createElement("figure", {
+    className: "dt-year",
+    "aria-hidden": "true"
+  }, React.createElement("p", {
+    className: "hp-eyebrow fj-chart-title"
+  }, "The fixed windows, January to December"), React.createElement("div", {
+    className: "dt-year__months"
+  }, React.createElement("span", null), React.createElement("div", null, MONTH_NAMES.map(m => React.createElement("span", {
+    key: m
+  }, m.slice(0, 3))))), fixed.map(it => React.createElement("div", {
+    key: it.id,
+    className: "dt-year__row" + (it.confidence === "typical" ? " is-typical" : "")
+  }, React.createElement("span", {
+    className: "dt-year__label"
+  }, it.title), React.createElement("div", {
+    className: "dt-year__track"
+  }, windowSpans(it, ruleYears).map(([a, b], i) => b - a < 0.01 ? React.createElement("i", {
+    key: i,
+    className: "is-day",
+    style: {
+      left: `${a * 100}%`
+    }
+  }) : React.createElement("i", {
+    key: i,
+    style: {
+      left: `${a * 100}%`,
+      width: `${(b - a) * 100}%`
+    }
+  }))))), React.createElement("figcaption", null, React.createElement("span", {
+    className: "dt-year__key"
+  }), " Published ", React.createElement("span", {
+    className: "dt-year__key is-typical"
+  }), " Typical, not published"));
+}
 function DatesPage({
   go
 }) {
@@ -157,14 +221,28 @@ function DatesPage({
     }, {
       label: "Dates that matter"
     }],
+    className: "fj-head fj-topo",
     eyebrow: "DEADLINES",
     title: "The Yosemite dates that matter",
-    intro: "The lotteries, the release mornings, and the road windows that decide a trip, in one table, each one a calendar file. Enter your dates and the ones measured from your trip resolve to real days."
-  }), React.createElement("div", {
-    className: "hp-wrap hp-reading"
-  }, React.createElement("div", {
-    className: "hp-reading__column"
-  }, React.createElement("section", {
+    intro: "The lotteries, the release mornings, and the road windows that decide a trip, in one table, each one a calendar file. Enter your dates and the ones measured from your trip resolve to real days.",
+    aside: React.createElement(FjCard, {
+      eyebrow: "THE CALENDAR, IN FOUR LINES",
+      stamp: React.createElement(React.Fragment, null, "Verified", React.createElement("br", null), parseIso(table.verified) ? longDate(parseIso(table.verified)) : table.verified),
+      rows: [{
+        label: "Fixed windows",
+        value: `${fixed.length}, one calendar file each`
+      }, {
+        label: "From your trip",
+        value: `${relative.length} rules, resolved to days`
+      }, {
+        label: "Source",
+        value: "The NPS page on each row"
+      }, {
+        label: "Format",
+        value: "Calendar files (.ics)"
+      }]
+    })
+  }), React.createElement(FjLayout, null, React.createElement("section", {
     className: "prose"
   }, React.createElement("h2", null, "Measured from your trip"), React.createElement("p", null, "Most of what has to happen before a Yosemite trip is measured backwards from the day you arrive: a Half Dome day permit two days before, a wilderness permit twenty-four weeks before, a Pines campsite five months before. Put in your first and last day in the park and the table below turns those rules into dates."), React.createElement("div", {
     className: "dates__form",
@@ -187,7 +265,9 @@ function DatesPage({
     className: "dates__hint"
   }, "Enter a first day, and a last day no more than a month after it."), tripOk && React.createElement("table", {
     className: "dates__table"
-  }, React.createElement("thead", null, React.createElement("tr", null, React.createElement("th", null, "Act by"), React.createElement("th", null, "What"), React.createElement("th", null, "For"), React.createElement("th", null))), React.createElement("tbody", null, instances.map(({
+  }, React.createElement("thead", null, React.createElement("tr", null, React.createElement("th", null, "Act by"), React.createElement("th", null, "What"), React.createElement("th", null, "For"), React.createElement("th", null, React.createElement("span", {
+    className: "fj-sr"
+  }, "Add to calendar")))), React.createElement("tbody", null, instances.map(({
     item,
     date,
     forDate
@@ -216,13 +296,18 @@ function DatesPage({
     }, "+ Calendar")));
   }))), !tripOk && React.createElement("ul", null, relative.map(it => React.createElement("li", {
     key: it.id
-  }, React.createElement("strong", null, it.title, ":"), " ", it.kind === "relative" ? `${Math.abs(it.offsetDays) === 168 ? "24 weeks" : Math.abs(it.offsetDays) + " days"} before, ${it.time}.` : `the 15th of the month, ${it.monthsAhead} months ahead, ${it.time}.`, " ", it.detail, " ", React.createElement("a", {
+  }, React.createElement("strong", null, it.title, ":"), " ", it.kind === "relative" ? `${Math.abs(it.offsetDays) === 168 ? "24 weeks" : Math.abs(it.offsetDays) + " days"} before, ${it.time.replace(/\.$/, "")}.` : `the 15th of the month, ${it.monthsAhead} months ahead, ${it.time.replace(/\.$/, "")}.`, " ", it.detail, " ", React.createElement("a", {
     href: it.source,
     target: "_blank",
     rel: "noopener noreferrer"
-  }, "NPS ↗")))), React.createElement("h2", null, "Fixed windows"), React.createElement("p", null, "These do not move with your trip. The published ones are policy; the typical ones are what the park has done in recent years and does not promise, so the calendar entry covers the whole range and the park's own announcement settles the day."), React.createElement("table", {
+  }, "NPS ↗")))), React.createElement("h2", null, "Fixed windows"), React.createElement("p", null, "These do not move with your trip. The published ones are policy; the typical ones are what the park has done in recent years and does not promise, so the calendar entry covers the whole range and the park's own announcement settles the day."), React.createElement(YearStrip, {
+    fixed: fixed,
+    ruleYears: table.ruleYears || []
+  }), React.createElement("table", {
     className: "dates__table"
-  }, React.createElement("thead", null, React.createElement("tr", null, React.createElement("th", null, "When"), React.createElement("th", null, "What"), React.createElement("th", null))), React.createElement("tbody", null, fixed.map(it => React.createElement("tr", {
+  }, React.createElement("thead", null, React.createElement("tr", null, React.createElement("th", null, "When"), React.createElement("th", null, "What"), React.createElement("th", null, React.createElement("span", {
+    className: "fj-sr"
+  }, "Add to calendar")))), React.createElement("tbody", null, fixed.map(it => React.createElement("tr", {
     key: it.id
   }, React.createElement("td", null, React.createElement("strong", null, fixedWindow(it, table.ruleYears || [])), React.createElement("br", null), React.createElement("span", {
     className: "dates__time"
@@ -255,7 +340,7 @@ function DatesPage({
   }, "Verified against the National Park Service pages linked above on ", table.verified, ". Each entry carries its source and that date. If a rule on this page disagrees with nps.gov, nps.gov is right and this page is behind; the", " ", React.createElement("a", {
     href: "/contact",
     onClick: e => goRoute(e, "contact")
-  }, "contact page"), " reaches the editor."), React.createElement("h2", null, "What the dates mean"), React.createElement("p", null, "The Half Dome mechanics, the odds, and what to climb instead are on", " ", React.createElement("a", {
+  }, "contact page"), " reaches the editor."), React.createElement(FjRidge, null), React.createElement("h2", null, "What the dates mean"), React.createElement("p", null, "The Half Dome mechanics, the odds, and what to climb instead are on", " ", React.createElement("a", {
     href: "/half-dome-lottery",
     onClick: e => goRoute(e, "half-dome-lottery")
   }, "the Half Dome lottery page"), ". What you can still get holding no permit at all is in", " ", React.createElement("a", {
@@ -277,7 +362,7 @@ function DatesPage({
     list: "page_dates",
     slug: "dates",
     cta: "Search lodging around Yosemite →"
-  }))), React.createElement(HpGuideBand, {
+  })), React.createElement(HpGuideBand, {
     go: go,
     location: "dates",
     title: "In the Field Guide, these dates sit on your trip board.",

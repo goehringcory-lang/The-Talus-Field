@@ -1,25 +1,42 @@
-/* global React, HpPageHead */
+/* global React, HpPageHead, FjLayout, FjCard */
 
-function LegalShell({ title, eyebrow, updated, children }) {
+// /privacy and /terms carry their own section numbers in the headings
+// (`numberedHeads`), so the headings take no second numeral and FjLayout lifts
+// each number into the index; /affiliate's headings are unnumbered and take
+// the kit's numerals. `sections` is the count of h2s each page prints.
+function LegalShell({ go, title, eyebrow, updated, sections, numberedHeads = true, children }) {
   return (
     <div className="page hp-legal">
       <HpPageHead
+        go={go}
+        crumbs={[{ label: "Home", route: "home" }, { label: title }]}
+        className="fj-head fj-topo"
         eyebrow={eyebrow.toUpperCase()}
         title={title}
         intro={`Last updated ${updated}.`}
+        aside={
+          <FjCard
+            eyebrow="THE DOCUMENT"
+            stamp={<>Revised<br />{updated}</>}
+            rows={[
+              { label: "Last updated", value: updated },
+              { label: "Sections", value: String(sections) },
+            ]}
+          />
+        }
       />
-      <div className="hp-wrap hp-reading">
-        <div className="hp-reading__column prose">
+      <FjLayout numbered={!numberedHeads}>
+        <div className="prose">
           {children}
         </div>
-      </div>
+      </FjLayout>
     </div>
   );
 }
 
-function PrivacyPage() {
+function PrivacyPage({ go }) {
   return (
-    <LegalShell title="Privacy Policy" eyebrow="Legal" updated="July 8, 2026">
+    <LegalShell go={go} title="Privacy Policy" eyebrow="Legal" updated="July 8, 2026" sections={9} numberedHeads>
       <p>This privacy policy explains what information The Talus Field collects when you visit this website, subscribe to the newsletter, or use the Field Guide app, how that information is used, and the choices you have about it. It is written to comply with the General Data Protection Regulation (GDPR) and the California Consumer Privacy Act (CCPA).</p>
 
       <h2>1. Who we are</h2>
@@ -60,9 +77,9 @@ function PrivacyPage() {
   );
 }
 
-function TermsPage() {
+function TermsPage({ go }) {
   return (
-    <LegalShell title="Terms of Service" eyebrow="Legal" updated="April 1, 2026">
+    <LegalShell go={go} title="Terms of Service" eyebrow="Legal" updated="April 1, 2026" sections={8} numberedHeads>
       <p>These terms govern your use of The Talus Field (thetalusfieldjournal.com) and the Field Guide app. By using either, you agree to them. The articles and the interactive trip-planner map on this site are free to browse. The Field Guide app is a paid product; its purchase terms are in section 1.</p>
 
       <h2>1. The Field Guide purchase</h2>
@@ -93,9 +110,9 @@ function TermsPage() {
   );
 }
 
-function AffiliatePage() {
+function AffiliatePage({ go }) {
   return (
-    <LegalShell title="Affiliate Disclosure" eyebrow="Legal" updated="August 1, 2026">
+    <LegalShell go={go} title="Affiliate Disclosure" eyebrow="Legal" updated="August 1, 2026" sections={6} numberedHeads={false}>
       <p>The Talus Field currently participates in two affiliate programs: Patagonia's, run through the Impact network, and the Expedia Group Travel Creator Program, run through Partnerize, which powers every lodging availability link on the site. Those links appear in the planning articles, on <a href="/stay">the lodging board</a>, and on the trip-planning pages that end in a decision about where to sleep. The lodging board may also carry one Expedia-supplied banner image, labeled "Advertisement" where it appears; it works on the same commission terms as the text links and has no influence on what this site recommends. An application to a camping program (Hipcamp) is pending; until it is approved, camping links are plain outbound links that earn nothing. When the list changes, this page changes the same day.</p>
 
       <p>What that means in plain language: when an article on this site links to a product, a book, or a piece of lodging, that link may be an affiliate link. If you click through and make a purchase or a booking, I receive a small commission. The price you pay does not change. Whether or not you use the affiliate link, the recommendation in the article is the same.</p>
