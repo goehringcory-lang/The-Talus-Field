@@ -10,6 +10,7 @@ export const MAP_CREDITS = [
   '© OpenStreetMap contributors (basemap, roads and trails; ODbL)',
   'Protomaps (basemap build)',
   'USGS 3DEP, SRTM and GMTED2010 via Mapzen Terrain Tiles (elevation)',
+  'USGS National Map trail linework, NPS source data (trails)',
   'National Park Service (park boundary, place records)',
 ] as const
 

@@ -1,7 +1,7 @@
 import { describe, expect, it } from 'vitest'
 import { buildTripDays, tripLegsGeojson, tripStopsGeojson } from './tripLayer'
 import { RoadGraph, type RoadGraphFile } from './roadGraph'
-import { ROADS_URL } from './roads.generated'
+import { ROADS_URL } from './mapData.generated'
 import { amenityPlaceId } from '../trip/places'
 import { programItemId, stopItemId, type TripItemT, type TripPlanT, type TripProgramItemT } from '../trip/schema'
 
