@@ -55,7 +55,7 @@ pages and are not flagged.
 | 2 | `/tioga-opening` | A long prose column, and the opening-date table has two rows. No image. | "The snow line": a Tuolumne photo head and a field card, a year strip showing where the 2026 opening and the long-term average fall between May and June, the section index, and the four self-sufficiency rules as a numbered card grid. | done |
 | 3 | `/international` | A long column. The fee table is dense. No image. | "Passport stamp": a Tunnel View head with a card of the fees and a round postmark, the eight differences as a card grid, the fee table fitted to a phone, and the index. (The price ladder was dropped: the calculator already draws that comparison.) | done |
 | 4 | `/distances` | The drive table is the only visual, and it is plain. No image. | "Road log": drive times from each town drawn as bars on one scale, a winding-road head with a field card, and the index. | done |
-| 5 | `/dates` | The fixed-windows table is long and flat. The head has no image. | "The year at a glance": a twelve-month strip plotting each fixed window as a band, a topo head, and the index. | todo |
+| 5 | `/dates` | The fixed-windows table is long and flat. The head has no image. | "The year at a glance": a twelve-month strip plotting each fixed window as a band, a topo head, and the index. | done |
 | 6 | `/checklist` | Seven lists with small eyebrows. It reads as one long form. | "Clipboard": a numbered index rail, list sections on ruled field-card panels, and a print-friendly layout that is unchanged in print. | todo |
 | 7 | `/about` | Flat prose under a good head. The five sections look identical. | "Colophon": numbered sections, a pull quote on the name, an editor card with the facts (twenty seasons, El Portal), and a ridge divider. | todo |
 | 8 | `/consult` | Prose after a strong head. "How it works" is a plain list. | "Three steps": the steps as a numbered timeline, "what it is" and "what it is not" as a two-column contrast, and a pull quote. | todo |
@@ -104,3 +104,11 @@ pages and are not flagged.
   colons left on the card titles; units wrapping in the table; tick labels
   off their gridlines; 8px chart text; and the tablet head card stretched
   full width (now a 520px card overlapping the photo, caption beside it).
+- **/dates** done. The reviewer caught: the resolved trip table crushed to a
+  95px column on phones (both tables now stack into rows under 600px); the
+  topo head's card floating at the top of the column (centred now); stamp
+  text too small to read; the topo texture running behind the h1 when the
+  head stacks (it moves under the card); tiny month labels and no January
+  edge on the year strip; a single-day window drawn as a stray sliver (now a
+  dot); an empty calendar column header (now a screen-reader label); and a
+  pre-existing double period after "4 p.m." and "7 a.m." in the rules list.
