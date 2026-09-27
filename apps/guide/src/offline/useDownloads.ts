@@ -208,7 +208,7 @@ export function useDownloads() {
   // tell a cancel from a finish and stop instead of marching into the next
   // pack the user just tried to escape.
   const download = useCallback(
-    async (pack: Pack): Promise<'done' | 'error' | 'cancelled' | 'skipped'> => {
+    async function download(pack: Pack): Promise<'done' | 'error' | 'cancelled' | 'skipped'> {
       if (!cachesAvailable()) {
         setPackStatus(pack.id, { state: 'error', message: 'Offline storage is not available in this browser.' })
         return 'error'
@@ -220,6 +220,19 @@ export function useDownloads() {
       // download of the same pack, and the two then fight over the shared
       // controllers slot (Cancel reaches only one of them).
       if (controllers[pack.id]) return 'skipped'
+
+      // A corridor map without the overview under it draws trailhead-scale
+      // tiles into a blank park, so the overview comes first, once. Its own
+      // row shows the progress; a failure or a cancel there stops this one.
+      if (pack.requires && !readCompleted()[pack.requires]) {
+        const required = packs.find((p) => p.id === pack.requires)
+        if (required) {
+          const outcome = await download(required)
+          if (outcome === 'error' || outcome === 'cancelled') return outcome
+          if (controllers[pack.id]) return 'skipped'
+        }
+      }
+
       const controller = new AbortController()
       controllers[pack.id] = controller
       const total = pack.urls.length
@@ -339,16 +352,26 @@ export function useDownloads() {
         delete controllers[pack.id]
       }
     },
-    [refreshEstimate, setPackStatus],
+    [packs, refreshEstimate, setPackStatus],
   )
 
   const cancel = useCallback((packId: string) => {
     controllers[packId]?.abort()
   }, [])
 
+  /** Downloaded packs that require this one, which keep it from being deleted. */
+  const dependentsOf = useCallback(
+    (packId: string): Pack[] => {
+      const completed = readCompleted()
+      return packs.filter((p) => p.requires === packId && completed[p.id])
+    },
+    [packs],
+  )
+
   const remove = useCallback(
     async (pack: Pack) => {
       if (!cachesAvailable()) return
+      if (dependentsOf(pack.id).length > 0) return
       // Photos are reused across regions and packs share one cache bucket, so
       // deleting this pack's full URL list would silently hole out other
       // still-"Downloaded" packs. Keep anything another completed pack claims.
@@ -370,10 +393,10 @@ export function useDownloads() {
       setPackStatus(pack.id, { state: 'idle' })
       refreshEstimate()
     },
-    [packs, refreshEstimate, setPackStatus],
+    [packs, dependentsOf, refreshEstimate, setPackStatus],
   )
 
-  return { packs, statuses, storageEstimate, download, cancel, remove }
+  return { packs, statuses, storageEstimate, download, cancel, remove, dependentsOf }
 }
 
 /** Cheap read for surfaces that only need "is this pack downloaded". */

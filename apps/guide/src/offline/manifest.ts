@@ -12,7 +12,9 @@ import { REGIONS, getStopsByRegion, SECRET_SPOTS, HIKES, type Region } from '../
 import { WILDLIFE } from '../content/wildlife'
 import { TRACKS, trackUrl } from '../trails/track'
 import { precachePhotoUrls, type PhotoFormat } from '../utils/photo'
-import { buildTileUrls } from './tiles'
+import { OFFLINE_REGIONS, overviewTiles, regionTiles, type OfflineRegionId, type TileAddress } from '../map/regions'
+import { TILESET } from '../map/tiles.generated'
+import { API_BASE } from '../lib/api'
 
 export const RUNTIME_CACHE = 'tfg-runtime'
 export const TILES_CACHE = 'tfg-tiles'
@@ -23,7 +25,17 @@ export const TILES_CACHE = 'tfg-tiles'
 export const SECRET_PACK_ID = 'photos-secret-guide'
 export const WILDLIFE_PACK_ID = 'photos-wildlife'
 export const TRACKS_PACK_ID = 'trail-tracks'
-export const MAP_PACK_ID = 'park-map'
+// The 3D map downloads as an overview (the whole park at orientation scale,
+// plus the label glyphs and sprites) and one pack per road corridor at
+// trailhead scale. A corridor pack requires the overview under it.
+export const MAP_OVERVIEW_PACK_ID = 'map-overview'
+export function mapRegionPackId(region: OfflineRegionId): string {
+  return `map-${region}`
+}
+export const MAP_PACK_IDS: string[] = [
+  MAP_OVERVIEW_PACK_ID,
+  ...OFFLINE_REGIONS.map((r) => mapRegionPackId(r.id)),
+]
 export function regionPackId(region: Region): string {
   return `photos-${region}`
 }
@@ -32,7 +44,7 @@ export const PACK_IDS: string[] = [
   SECRET_PACK_ID,
   WILDLIFE_PACK_ID,
   TRACKS_PACK_ID,
-  MAP_PACK_ID,
+  ...MAP_PACK_IDS,
 ]
 
 export type Pack = {
@@ -43,9 +55,15 @@ export type Pack = {
   urls: string[]
   approxBytes: number
   // Fraction of URLs allowed to fail while still recording the pack as done.
-  // Photo packs tolerate nothing: every photo is paid content. The tile pack
-  // tolerates a few missing tiles at the bbox edge.
+  // Photo packs tolerate nothing: every photo is paid content. The map packs
+  // tolerate a few missing tiles at the bbox edge.
   tolerateMissing: number
+  // A pack that is useless without another one (a map corridor without the
+  // overview under it). Downloading it fetches the required pack first, and
+  // the required pack cannot be deleted while it is downloaded.
+  requires?: string
+  // Map packs only: the corridor's box, for the "downloaded areas" outline.
+  bbox?: [number, number, number, number]
 }
 
 function regionPhotoUrls(region: (typeof REGIONS)[number], format: PhotoFormat): string[] {
@@ -101,11 +119,52 @@ const REGION_LABELS: Record<Region, string> = {
   'hetch-hetchy': 'Hetch Hetchy photos',
 }
 
-// Display estimates. Photos: packs now fetch only the one format this device
+// Display estimate for photos: packs fetch only the one format this device
 // renders (avif/webp/jpg) across the width ladder, plus the small JPEG the map
-// popup needs, so a photo is ~5 URLs averaging ~120 KB. Tiles: ~25 KB average.
+// popup needs, so a photo is ~5 URLs averaging ~120 KB. Map packs need no
+// estimate: gen-map-tiles.ts measured every tile they list.
 const PHOTO_BYTES_PER_URL = 120_000
-const TILE_BYTES = 25_000
+
+// The label glyphs and sprite sheets the style fetches from /map-assets
+// (public/map-assets/README.md). Both schemes' sprites, so switching the
+// colour scheme in the backcountry still draws.
+const MAP_FONTS = ['Noto Sans Regular', 'Noto Sans Medium', 'Noto Sans Italic']
+const MAP_GLYPH_RANGES = ['0-255', '256-511', '8192-8447']
+const MAP_ASSET_URLS = [
+  ...MAP_FONTS.flatMap((f) => MAP_GLYPH_RANGES.map((r) => `/map-assets/fonts/${encodeURIComponent(f)}/${r}.pbf`)),
+  ...['light', 'dark'].flatMap((s) => ['', '@2x'].flatMap((x) => [`/map-assets/sprites/${s}${x}.json`, `/map-assets/sprites/${s}${x}.png`])),
+]
+const MAP_ASSET_BYTES = 910_000
+
+export function mapTileUrl(t: TileAddress): string {
+  return t.kind === 'vt'
+    ? `${API_BASE}/vt/${TILESET.version}/${t.z}/${t.x}/${t.y}.mvt`
+    : `${API_BASE}/dem/${TILESET.version}/${t.z}/${t.x}/${t.y}.webp`
+}
+
+function mapPacks(): Pack[] {
+  const overview: Pack = {
+    id: MAP_OVERVIEW_PACK_ID,
+    label: 'Park map: overview',
+    detail: 'The whole park in 3D at driving scale, with every label. Needed by each area below.',
+    cacheName: TILES_CACHE,
+    urls: [...MAP_ASSET_URLS, ...overviewTiles().map(mapTileUrl)],
+    approxBytes: (TILESET.packs.overview?.bytes ?? 0) + MAP_ASSET_BYTES,
+    tolerateMissing: 0.02,
+  }
+  const regions = OFFLINE_REGIONS.map<Pack>((r) => ({
+    id: mapRegionPackId(r.id),
+    label: `Park map: ${r.label}`,
+    detail: `Trailhead-scale detail. ${r.detail}`,
+    cacheName: TILES_CACHE,
+    urls: regionTiles(r.id).map(mapTileUrl),
+    approxBytes: TILESET.packs[r.id]?.bytes ?? 0,
+    tolerateMissing: 0.02,
+    requires: MAP_OVERVIEW_PACK_ID,
+    bbox: r.bbox,
+  }))
+  return [overview, ...regions]
+}
 
 export function buildPacks(format: PhotoFormat): Pack[] {
   const regionPacks: Pack[] = REGIONS.map((region) => {
@@ -157,21 +216,11 @@ export function buildPacks(format: PhotoFormat): Pack[] {
     tolerateMissing: 0,
   }
 
-  const tileUrls = buildTileUrls()
-  const mapPack: Pack = {
-    id: MAP_PACK_ID,
-    label: 'Offline park map',
-    detail: 'Topo tiles for the whole park and the road corridors',
-    cacheName: TILES_CACHE,
-    urls: tileUrls,
-    approxBytes: tileUrls.length * TILE_BYTES,
-    tolerateMissing: 0.05,
-  }
-
-  return [...regionPacks, secretPack, wildlifePack, tracksPack, mapPack]
+  return [...regionPacks, secretPack, wildlifePack, tracksPack, ...mapPacks()]
 }
 
 export function formatBytes(bytes: number): string {
   if (bytes < 1_000_000) return `${Math.max(1, Math.round(bytes / 1000))} KB`
+  if (bytes < 10_000_000) return `${(bytes / 1_000_000).toFixed(1)} MB`
   return `${Math.round(bytes / 1_000_000)} MB`
 }

@@ -7,10 +7,11 @@
 // toggling). State is reflected in the URL:
 //   /map?tab=points|itineraries|info&itinerary=1day|2day|3day&stop=<id>
 //
-// Tiles come from the Worker's /tiles proxy and are served cache-first by the
-// service worker, so once the offline map pack is downloaded (Account →
-// Offline) the whole map works in airplane mode. Turn-by-turn routing stays a
-// deeplink into the native Google Maps app.
+// The basemap is a self-hosted vector map on 3D terrain (map/style.ts: the
+// Worker's /vt and /dem tiles, first-party glyphs), served cache-first by the
+// service worker, so once the overview and an area are downloaded (the map's
+// Offline areas, or Account → Offline) that area works in airplane mode.
+// Turn-by-turn routing stays a deeplink into the native Google Maps app.
 // =============================================================================
 
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
@@ -34,9 +35,14 @@ import { hasTrack } from '../trails/track'
 import { useTrack } from '../trails/useTrack'
 import { announceTripAdd } from '../trip/addFeedback'
 import { addHikeToPlan, addStopToPlan, isHikePlanned, isStopPlanned, useTripPlan } from '../trip/useTripPlan'
-import { MAP_ATTRIBUTION, buildMapStyle } from '../map/style'
+import { MAP_ATTRIBUTION } from '../map/attribution'
+import { TERRAIN_SPEC, buildMapStyle } from '../map/style'
+import { DEFAULT_PITCH, HOME_CAMERA, MAX_PITCH, PAN_BUFFER_DEG, buildTheme } from '../map/theme'
+import { OFFLINE_REGIONS, type OfflineRegion } from '../map/regions'
+import { TILESET } from '../map/tiles.generated'
 import { isPackCompleted } from '../offline/useDownloads'
-import { MAP_PACK_ID } from '../offline/manifest'
+import { MAP_OVERVIEW_PACK_ID, MAP_PACK_IDS, mapRegionPackId } from '../offline/manifest'
+import DownloadManager from '../components/DownloadManager'
 import { formatMiles, haversineMiles } from '../utils/geo'
 import { popupPhotoUrl } from '../utils/photo'
 import { LOT_STATUS_LABEL, lotForAmenity } from '../parking/lotMatch'
@@ -618,6 +624,60 @@ function pinKeydownHandler(activate: () => void) {
   }
 }
 
+// What of the map is on this device: the overview (the whole park at driving
+// scale, plus the labels) and which corridors at trailhead scale. A corridor
+// without the overview under it does not count; the download manager never
+// leaves one in that state, but a cleared completion flag could.
+type MapOffline = { overview: boolean; regions: OfflineRegion[] }
+
+function readMapOffline(): MapOffline {
+  const overview = isPackCompleted(MAP_OVERVIEW_PACK_ID)
+  return {
+    overview,
+    regions: overview ? OFFLINE_REGIONS.filter((r) => isPackCompleted(mapRegionPackId(r.id))) : [],
+  }
+}
+
+function listLabels(labels: string[]): string {
+  if (labels.length <= 1) return labels.join('')
+  return `${labels.slice(0, -1).join(', ')} and ${labels[labels.length - 1]}`
+}
+
+/** The downloaded corridors as boxes, for the outline drawn while offline. */
+function offlineAreasGeojson(regions: OfflineRegion[]): GeoJSON.FeatureCollection {
+  return {
+    type: 'FeatureCollection',
+    features: regions.map((r) => {
+      const [w, s, e, n] = r.bbox
+      return {
+        type: 'Feature',
+        properties: { id: r.id, label: r.label },
+        geometry: { type: 'Polygon', coordinates: [[[w, s], [e, s], [e, n], [w, n], [w, s]]] },
+      }
+    }),
+  }
+}
+
+// Sources and layers the page adds at runtime (the hike track, the offline
+// outline, later the trip layer). A scheme change rebuilds the style, and
+// setStyle would drop them; this carries them across in their order.
+function keepRuntimeLayers(
+  previous: maplibregl.StyleSpecification | undefined,
+  next: maplibregl.StyleSpecification,
+): maplibregl.StyleSpecification {
+  if (!previous) return next
+  const sources = { ...next.sources }
+  for (const [id, src] of Object.entries(previous.sources)) if (!(id in sources)) sources[id] = src
+  const known = new Set(next.layers.map((l) => l.id))
+  return { ...next, sources, layers: [...next.layers, ...previous.layers.filter((l) => !known.has(l.id))] }
+}
+
+const [EXT_W, EXT_S, EXT_E, EXT_N] = TILESET.bounds
+const PAN_BOUNDS: [[number, number], [number, number]] = [
+  [EXT_W - PAN_BUFFER_DEG, EXT_S - PAN_BUFFER_DEG],
+  [EXT_E + PAN_BUFFER_DEG, EXT_N + PAN_BUFFER_DEG],
+]
+
 export default function Map() {
   useDocumentTitle('Map')
   const navigate = useNavigate()
@@ -638,12 +698,19 @@ export default function Map() {
   const popupRef = useRef<maplibregl.Popup | null>(null)
   // Camera refits only when the itinerary context changes, not on filter
   // chip toggles: refitting on every tap yanks the map around.
-  const lastFitKeyRef = useRef<string | null>(null)
+  // Starts at 'all' so the unfiltered first render keeps the opening camera
+  // (the Valley in 3D) instead of fitting a flat frame around every pin.
+  const lastFitKeyRef = useRef<string | null>('all')
 
   const [mapReady, setMapReady] = useState(false)
   const online = useOnline()
   const [mapFailed, setMapFailed] = useState(false)
-  const [mapDownloaded, setMapDownloaded] = useState(() => isPackCompleted(MAP_PACK_ID))
+  const [mapOffline, setMapOffline] = useState<MapOffline>(readMapOffline)
+  const mapDownloaded = mapOffline.overview && mapOffline.regions.length === OFFLINE_REGIONS.length
+  // 3D (terrain, tilted) or 2D (flat, north-up). A ref mirrors it for the
+  // scheme-change rebuild, which runs from a listener, not a render.
+  const [is3d, setIs3d] = useState(true)
+  const is3dRef = useRef(true)
   // 'far' below MINOR_PIN_MIN_ZOOM. Drives a data attribute on the map
   // container; the CSS does the hiding, so a zoom never rebuilds a marker.
   const [zoomBand, setZoomBand] = useState<'far' | 'near'>('far')
@@ -664,7 +731,7 @@ export default function Map() {
   // The pack can complete in another tab (or on /account in this one);
   // re-check whenever this tab regains focus so the offline notice is live.
   useEffect(() => {
-    const recheck = () => setMapDownloaded(isPackCompleted(MAP_PACK_ID))
+    const recheck = () => setMapOffline(readMapOffline())
     window.addEventListener('focus', recheck)
     document.addEventListener('visibilitychange', recheck)
     return () => {
@@ -673,11 +740,9 @@ export default function Map() {
     }
   }, [])
 
-  // No offline zoom clamp: the raster source declares maxzoom 14 (see
-  // map/style.ts), so past z14 MapLibre overzooms the SAME z14 tiles the
-  // offline pack carries — z15-16 render offline from cache, just scaled.
-  // The old clamp held airplane-mode users at z14 and cost them trailhead-
-  // scale reading for no saved tiles.
+  // No offline zoom clamp: the vector source declares maxzoom 15 and the
+  // elevation source 13 (map/style.ts), so past those MapLibre overzooms the
+  // same tiles the area packs carry, and trailhead scale draws from cache.
 
   const initial = useMemo(() => readUrlState(), [])
   const [tab, setTab] = useState<Tab>(initial.tab)
@@ -970,23 +1035,26 @@ export default function Map() {
     const map = new maplibregl.Map({
       container: containerRef.current,
       style: buildMapStyle(),
-      center: [-119.55, 37.85],
-      zoom: 9,
-      maxZoom: 16,
-      // Padded park bbox: keeps panning on the cached tile set.
-      maxBounds: [
-        [-120.8, 36.8],
-        [-118.2, 38.8],
-      ],
-      // North-up 2D only: with the compass hidden, an accidental two-finger
-      // rotate or pitch would leave the topo tilted with no way to reset.
-      dragRotate: false,
-      pitchWithRotate: false,
-      touchPitch: false,
+      // Over the Valley's west end looking east: El Capitan on the left,
+      // Half Dome closing the view (map/theme.ts).
+      center: HOME_CAMERA.center,
+      zoom: HOME_CAMERA.zoom,
+      pitch: HOME_CAMERA.pitch,
+      bearing: HOME_CAMERA.bearing,
+      minZoom: 7,
+      maxZoom: 17,
+      maxPitch: MAX_PITCH,
+      // The archive extent plus a small buffer: past it there are no tiles.
+      maxBounds: PAN_BOUNDS,
+      // One finger pans, two rotate and tilt, pinch zooms. The compass in the
+      // navigation control shows the bearing and resets it on a tap, and the
+      // Reset view button restores the whole opening camera.
       attributionControl: { compact: true },
+      // Mid-range phones: the terrain mesh is the expensive part, and a 2x
+      // canvas on a 3x screen is indistinguishable from native at arm's length.
+      pixelRatio: Math.min(window.devicePixelRatio || 1, 2),
     })
-    map.touchZoomRotate.disableRotation()
-    map.addControl(new maplibregl.NavigationControl({ showCompass: false }), 'top-left')
+    map.addControl(new maplibregl.NavigationControl({ visualizePitch: true }), 'top-left')
     map.addControl(new maplibregl.ScaleControl({ unit: 'imperial' }), 'bottom-left')
 
     // Locate-me. GPS itself needs no signal, so this works in airplane mode.
@@ -1049,9 +1117,30 @@ export default function Map() {
       popupRef.current?.remove()
     })
     map.on('load', () => {
+      if (is3dRef.current) map.setTerrain(TERRAIN_SPEC)
       setMapReady(true)
       setMapFailed(false)
     })
+
+    // Follow the reader's colour scheme (Account's theme card, or the device
+    // in Auto): the map's tokens are read into the style at build time, so a
+    // scheme change rebuilds it, carrying the page's own layers across.
+    let scheme = buildTheme().scheme
+    const restyle = () => {
+      const next = buildTheme()
+      if (next.scheme === scheme) return
+      scheme = next.scheme
+      map.setStyle(buildMapStyle(next), {
+        transformStyle: (prev, style) => ({
+          ...keepRuntimeLayers(prev, style),
+          terrain: is3dRef.current ? TERRAIN_SPEC : undefined,
+        }),
+      })
+    }
+    const themeObserver = new MutationObserver(restyle)
+    themeObserver.observe(document.documentElement, { attributes: true, attributeFilter: ['data-theme'] })
+    const darkQuery = window.matchMedia?.('(prefers-color-scheme: dark)')
+    darkQuery?.addEventListener('change', restyle)
     const readBand = () => setZoomBand(map.getZoom() >= MINOR_PIN_MIN_ZOOM ? 'near' : 'far')
     map.on('zoom', readBand)
     readBand()
@@ -1063,12 +1152,70 @@ export default function Map() {
     })
 
     return () => {
+      themeObserver.disconnect()
+      darkQuery?.removeEventListener('change', restyle)
       popupRef.current?.remove()
       popupRef.current = null
       map.remove()
       mapRef.current = null
     }
   }, [])
+
+  // 2D/3D. 3D drapes the map on the terrain and tilts it; 2D drops the
+  // terrain and returns to north-up, the flat map a reader reads like paper.
+  const toggle3d = useCallback(() => {
+    const map = mapRef.current
+    const next = !is3dRef.current
+    is3dRef.current = next
+    setIs3d(next)
+    if (!map) return
+    if (next) {
+      map.setTerrain(TERRAIN_SPEC)
+      map.easeTo({ pitch: DEFAULT_PITCH, duration: 600 })
+    } else {
+      map.setTerrain(null)
+      map.easeTo({ pitch: 0, bearing: 0, duration: 600 })
+    }
+  }, [])
+
+  const resetView = useCallback(() => {
+    const map = mapRef.current
+    if (!map) return
+    popupRef.current?.remove()
+    map.flyTo({
+      center: HOME_CAMERA.center,
+      zoom: HOME_CAMERA.zoom,
+      pitch: is3dRef.current ? HOME_CAMERA.pitch : 0,
+      bearing: is3dRef.current ? HOME_CAMERA.bearing : 0,
+      essential: true,
+    })
+  }, [])
+
+  // The downloaded corridors, outlined while the device is offline so the
+  // reader can see where the map will draw at trailhead scale. Online the
+  // outline is noise, and the notice above the map says it in words.
+  useEffect(() => {
+    const map = mapRef.current
+    if (!map || !mapReady) return
+    const data = offlineAreasGeojson(mapOffline.regions)
+    const src = map.getSource('offline-areas') as maplibregl.GeoJSONSource | undefined
+    if (src) src.setData(data)
+    else {
+      map.addSource('offline-areas', { type: 'geojson', data })
+      map.addLayer({
+        id: 'offline-areas',
+        type: 'line',
+        source: 'offline-areas',
+        paint: {
+          'line-color': buildTheme().offlineRegion,
+          'line-width': 2,
+          'line-dasharray': [1, 1.5],
+          'line-opacity': 0.8,
+        },
+      })
+    }
+    map.setLayoutProperty('offline-areas', 'visibility', online ? 'none' : 'visible')
+  }, [mapReady, mapOffline, online])
 
   // Marker reconciliation — runs whenever the visible set changes.
   useEffect(() => {
@@ -1420,6 +1567,19 @@ export default function Map() {
     setTab(next)
   }, [])
 
+  // "Download for offline": the Information pane's Offline areas section,
+  // which carries each area's size, progress and Remove. Scrolled to after
+  // the pane has rendered; focus moves with it for keyboard and screen
+  // reader users, who would otherwise stay on a button that just vanished.
+  const openOfflineAreas = useCallback(() => {
+    setTab('info')
+    requestAnimationFrame(() => {
+      const target = document.getElementById('map-offline')
+      target?.scrollIntoView({ block: 'start' })
+      target?.focus({ preventScroll: true })
+    })
+  }, [])
+
   const handleSelectItinerary = useCallback(
     (key: ItineraryKey | null) => {
       setSelectedItinerary(key)
@@ -1480,22 +1640,33 @@ export default function Map() {
               The map couldn't load. Check your connection and reload. GPS
               points are still on each stop's page.
             </>
-          ) : mapDownloaded ? (
-            <>Map downloaded. Works offline, down to trailhead scale.</>
           ) : !online ? (
-            <>
-              Offline, and the park map is not downloaded to this phone: only
-              areas you have already viewed will draw.{' '}
-              <Link className="map-online-notice__link" to="/account#offline">
-                Offline downloads →
-              </Link>
-            </>
+            mapOffline.overview ? (
+              <>
+                <strong>Offline.</strong> The whole park draws at driving scale
+                {mapOffline.regions.length > 0
+                  ? `; trailhead detail for ${listLabels(mapOffline.regions.map((r) => r.label))} (outlined).`
+                  : '; no area is downloaded at trailhead scale.'}
+              </>
+            ) : (
+              <>
+                <strong>Offline</strong>, and the park map is not downloaded to
+                this phone: only places you have already viewed will draw.{' '}
+                <button type="button" className="map-online-notice__link" onClick={openOfflineAreas}>
+                  Offline areas →
+                </button>
+              </>
+            )
+          ) : mapDownloaded ? (
+            <>Map downloaded. Every area works offline, down to trailhead scale.</>
           ) : (
             <>
               Viewing online.{' '}
-              <Link className="map-online-notice__link" to="/account#offline">
-                Download the map for offline →
-              </Link>
+              <button type="button" className="map-online-notice__link" onClick={openOfflineAreas}>
+                {mapOffline.overview
+                  ? `${mapOffline.regions.length} of ${OFFLINE_REGIONS.length} areas downloaded →`
+                  : 'Download the map for offline →'}
+              </button>
             </>
           )}
         </div>
@@ -1625,6 +1796,24 @@ export default function Map() {
             data-zoom-band={zoomBand}
             data-kinds={kindFilter ? 'some' : 'all'}
           />
+
+          <div className="map-view-controls" role="group" aria-label="Map view controls">
+            <button
+              type="button"
+              className="map-view-controls__btn"
+              aria-pressed={is3d}
+              aria-label="3D terrain"
+              onClick={toggle3d}
+            >
+              3D
+            </button>
+            <button type="button" className="map-view-controls__btn" onClick={resetView}>
+              Reset view
+            </button>
+            <button type="button" className="map-view-controls__btn" onClick={openOfflineAreas}>
+              Offline areas
+            </button>
+          </div>
 
           {mapReady && zoomBand === 'far' && !kindFilter && tab !== 'info' && (
             <p className="map-zoom-hint" role="note">
@@ -1779,7 +1968,7 @@ export default function Map() {
           </aside>
 
           <section className="map-pane map-pane--info" aria-hidden={tab !== 'info'}>
-            <InfoPane presentKinds={presentKinds} mapDownloaded={mapDownloaded} />
+            <InfoPane presentKinds={presentKinds} mapOffline={mapOffline} />
           </section>
         </div>
       </div>
@@ -1825,30 +2014,34 @@ function ItineraryButton({ photos, label, subtitle, count, selected, onClick }: 
 
 function InfoPane({
   presentKinds,
-  mapDownloaded,
+  mapOffline,
 }: {
   presentKinds: MapPinKind[]
-  mapDownloaded: boolean
+  mapOffline: MapOffline
 }) {
+  const allAreas = mapOffline.overview && mapOffline.regions.length === OFFLINE_REGIONS.length
   return (
     <div className="map-info">
       <h1>How the map works offline</h1>
       <p className="lede">
         This map is built to work with zero bars. Download it once and the
-        topo tiles live on your device; the pins are part of the app itself.
+        terrain and map tiles live on your device; the pins are part of the
+        app itself.
       </p>
 
       <h2>Before you leave wifi</h2>
       <ol>
         <li>
-          Open <Link to="/account">Account → Offline</Link> and download the
-          <strong> offline park map</strong> (about 20 MB) and the photo packs
-          for the regions you're visiting.
+          Download the <strong>overview</strong> below and each area you're
+          visiting (the whole park is about 22 MB), and the photo packs in{' '}
+          <Link to="/account">Account → Offline</Link>.
         </li>
         <li>
-          {mapDownloaded
-            ? 'Done on this device. The map works offline.'
-            : 'Once downloaded, this map works offline.'}
+          {allAreas
+            ? 'Done on this device. Every area works offline.'
+            : mapOffline.overview && mapOffline.regions.length > 0
+              ? `On this device: the overview and ${listLabels(mapOffline.regions.map((r) => r.label))}.`
+              : 'Once downloaded, the map works offline.'}
         </li>
         <li>
           For turn-by-turn <em>driving</em> directions, also download an
@@ -1857,6 +2050,21 @@ function InfoPane({
           <strong> Select your own map</strong>, frame the park, download.
         </li>
       </ol>
+
+      <section id="map-offline" className="map-info__offline" tabIndex={-1} aria-labelledby="map-offline-title">
+        <h2 id="map-offline-title">Offline areas</h2>
+        <DownloadManager
+          only={(p) => MAP_PACK_IDS.includes(p.id)}
+          intro={
+            <p>
+              The overview draws the whole park in 3D at driving scale, with
+              every road and label; each area adds trailhead-scale detail. An
+              area needs the overview, which downloads with it. Offline, the
+              map outlines the areas on this device.
+            </p>
+          }
+        />
+      </section>
 
       <h2>In the park</h2>
       <ul>

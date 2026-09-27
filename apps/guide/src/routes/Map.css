@@ -953,3 +953,57 @@
 .map-pin--landmark {
   opacity: 0.88;
 }
+
+/* 3D/2D, Reset view and Offline areas: one row beside MapLibre's zoom,
+ * compass and locate stack in the top-left, in the instrument voice (mono
+ * label, hairline box) so they read as the map's own controls, not the app's
+ * page buttons. 44px tall for a gloved thumb. */
+.map-view-controls {
+  position: absolute;
+  top: 10px;
+  left: 52px;
+  z-index: 8;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  max-width: calc(100% - 64px);
+}
+.map-view-controls__btn {
+  min-height: 44px;
+  padding: 0 12px;
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--ink);
+  background: color-mix(in oklab, var(--paper) 92%, transparent);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  border: 1px solid var(--rule-soft);
+  border-radius: var(--radius);
+  cursor: pointer;
+}
+.map-view-controls__btn[aria-pressed='true'] {
+  background: var(--ink);
+  color: var(--paper);
+  border-color: var(--ink);
+}
+.map-view-controls__btn:focus-visible {
+  outline: 2px solid var(--moss);
+  outline-offset: 2px;
+}
+
+/* The Information pane's download section. Focus lands here from the map's
+ * Offline areas button, so it needs a visible ring and no outline flash on a
+ * mouse click. */
+.map-info__offline {
+  margin-top: 28px;
+  scroll-margin-top: 12px;
+}
+.map-info__offline:focus {
+  outline: none;
+}
+.map-info__offline:focus-visible {
+  outline: 2px solid var(--moss);
+  outline-offset: 4px;
+}
