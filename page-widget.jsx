@@ -1,4 +1,4 @@
-/* global React, HpPageHead, HpLetter */
+/* global React, HpPageHead, HpLetter, FjLayout */
 
 // =============================================================================
 // CONDITIONS WIDGET — `/widget` route (MONETIZATION-IDEAS.md 4.2). The pitch
@@ -49,12 +49,13 @@ function WidgetPage({ go }) {
       <HpPageHead
         go={go}
         crumbs={[{ label: "Home", route: "home" }, { label: "Widget" }]}
+        className="fj-head fj-topo"
         eyebrow="FREE EMBED · FOR YOSEMITE-AREA SITES"
         title="Put the park's conditions on your site."
         intro="A small box with live entrance waits and the three-day Valley forecast, for gateway hotels, rental hosts, and tour operators. One script tag, no account, no cost. Your guests check conditions on your page instead of leaving it."
         aside={
           <div className="hp-widget__preview">
-            <p className="hp-eyebrow">WHAT YOUR VISITORS SEE</p>
+            <h2 className="hp-eyebrow">WHAT YOUR VISITORS SEE</h2>
             {/* Live preview: the real widget, filled by the real script. */}
             <div id="talus-conditions" />
             <p className="hp-terms">
@@ -67,18 +68,22 @@ function WidgetPage({ go }) {
         }
       />
 
-      <div className="hp-wrap hp-reading">
-        <div className="hp-reading__column">
+      <FjLayout>
         <section className="prose">
           <h2>Install it</h2>
           <p>Paste this where you want the box to appear:</p>
         </section>
-        <pre className="hp-widget__snippet">
-          <code>{WIDGET_SNIPPET}</code>
-        </pre>
-        <button type="button" className="hp-button" onClick={copySnippet}>
-          {copied ? "Copied." : "Copy the snippet"}
-        </button>
+        <div className="fj-snippet">
+          <div className="fj-snippet__bar">
+            <span aria-hidden="true"><i /><i /><i /></span>
+            <button type="button" className="hp-button" onClick={copySnippet}>
+              {copied ? "Copied." : "Copy the snippet"}
+            </button>
+          </div>
+          <pre className="hp-widget__snippet" tabIndex={0} role="region" aria-label="Embed snippet">
+            <code>{WIDGET_SNIPPET}</code>
+          </pre>
+        </div>
 
         <section className="prose hp-widget__more">
           <h2>The terms, plainly</h2>
@@ -105,9 +110,7 @@ function WidgetPage({ go }) {
             widget stays free either way.
           </p>
         </section>
-
-        </div>
-      </div>
+      </FjLayout>
 
       <HpLetter
         eyebrow="SUNDAY FIELD NOTES / FREE"
