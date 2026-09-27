@@ -73,6 +73,9 @@ on it needs a third-party key, and every byte it draws can be cached offline.
 | `src/map/data/park-boundary.json` | Generated: the NPS boundary, simplified |
 | `src/map/attribution.ts` | The data credits |
 | `src/map/kinds.ts` | Pin kinds, colours and glyphs |
+| `src/map/tripLayer.ts`, `TripPanel.tsx`, `tripMapLayers.ts`, `tripIcons.ts` | The trip layer: the plan as days of pins, legs and warnings; its panel; its MapLibre layers; its pin shapes |
+| `src/map/roadGraph.ts`, `src/map/roads.generated.ts`, `public/map/roads-<hash>.json` | The road and path graph and the on-device router |
+| `src/trip/shuttle.ts`, `src/trip/places.ts` | Valley shuttle legs; map places a trip can hold |
 | `public/map-assets/` | Label glyphs and sprites (Noto Sans, OFL; sprites, MIT) |
 | `../../workers/src/routes/maptiles.ts` | The Worker's `/vt` and `/dem` tile routes over the R2 archives |
 
@@ -85,8 +88,43 @@ on it needs a third-party key, and every byte it draws can be cached offline.
   for tiles by the new version, and the Worker 404s a version it does not hold.
   Needs Node 22.5+; the script fetches the go-pmtiles CLI itself. Runbook:
   `../../DEPLOY.md`, "3D map tiles (R2)".
-- Park boundary: `npm run map:data` refetches the NPS boundary into
-  `src/map/data/park-boundary.json`.
+- Park boundary and road graph: `npm run map:data` refetches the NPS
+  boundary into `src/map/data/park-boundary.json` and rebuilds the routable
+  road and path graph from OpenStreetMap (Overpass) into
+  `public/map/roads-<hash>.json`, rewriting `src/map/roads.generated.ts`. The
+  Overpass pull is cached in `scripts/.mapcache/`; pass `-- --refresh` for a
+  new one. `roadGraph.test.ts` checks the result against the park's published
+  road distances (Glacier Point about 30 miles from the Valley, Tuolumne about
+  55) and the Valley's one-way loop, so a pull that lost a road fails there.
+
+**Points, parking lots and program starts**
+
+The map draws the guide's own content, not a separate points file: stops and
+the Secret Guide (`src/content/stops.ts`, `secret-spots.ts`), day hikes and
+their trailheads (`hikes.ts`, with verified tracks in `public/tracks/`),
+parking, shuttle stops, visitor centers and the rest (`amenities.ts`, each
+coordinate quoted from the NPS record named on its line), and places to eat
+(`dining.ts`). To add or move one, edit its entry there; the schema check runs
+at build. Program meeting points ride each program's `coord`, which comes from
+the Worker's feed (`workers/src/data/manual-programs.ts` for curated ones).
+A coordinate nobody has checked on the ground keeps its `TODO: verify` comment
+and its entry in `src/near/unverified.ts`.
+
+**The trip layer**
+
+The My trip tab draws the plan (`tfg.trip.plan`, the same store as the trip
+board) day by day: numbered pins shaped by type and coloured by day, legs in
+their travel mode (drive solid along the roads, walk dotted, shuttle
+dash-dot, a hike's trail dashed), and the itinerary panel beside it with every
+time, leg and warning in words. Times come from the planner's own slotting, so
+the map and the board always agree. Schema additions (September 2026, all
+optional, no migration): `travelMode` on every item (`drive` / `walk` /
+`shuttle`, the leg to the next item) and `placeId` / `coord` on custom items
+(a linked parking lot, campground, lodge or restaurant, or a place the reader
+pinned). An older build reading a newer plan drops the new fields, not the
+plan.
+
+Sharing: `/map?tab=trip&day=YYYY-MM-DD` opens the trip view on one day.
 
 **Offline**
 

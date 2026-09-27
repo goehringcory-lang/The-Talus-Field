@@ -545,8 +545,10 @@ export default function Trip() {
 
         <p className="page-footnote">
           Times you haven't set yourself are suggestions built from each stop's time budget plus the
-          drive between stops: the park's published driving times for a leg across the park, an
-          estimate from distance for a short hop, and ten minutes to park and walk each time.
+          way between stops. A drive uses the park's published driving times for a leg across the
+          park, an estimate from distance for a short hop, and ten minutes to park and walk each
+          time; a leg you set to walk or to the Valley shuttle on the map is timed at a walking pace
+          or on the shuttle loop instead.
           Programs keep their published times. A block behind Tioga Road or Glacier Point Road is
           flagged on a day the road is usually closed, or closed today by the park's own road
           status. Drag a block and it stays where you put it. Everything here is stored on this

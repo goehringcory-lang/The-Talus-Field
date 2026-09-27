@@ -15,6 +15,9 @@ const TRACKS_VERSION = '__TRACKS_VERSION__'
 // same way. Tile URLs carry it as a path segment (/vt/<ver>/..., /dem/<ver>/...),
 // and activate drops tiles of any other version from the tile cache.
 const MAP_TILES_VERSION = '__MAP_TILES_VERSION__'
+// The map's road graph (/map/roads-<hash>.json, src/map/roads.generated.ts):
+// content-hashed, cached with the tiles, superseded copies dropped on activate.
+const MAP_ROADS_URL = '__MAP_ROADS_URL__'
 const SHELL_CACHE = `tfg-shell-${VERSION}`
 const RUNTIME_CACHE = 'tfg-runtime'
 // Map tiles. Unversioned on purpose: a downloaded park map survives deploys.
@@ -204,7 +207,8 @@ async function purgeStaleMapTiles() {
       requests.map(async (req) => {
         const path = new URL(req.url).pathname
         const m = path.match(/^\/(vt|dem)\/([^/]+)\//)
-        if (m ? m[2] !== MAP_TILES_VERSION : path.startsWith('/tiles/')) await cache.delete(req)
+        const staleRoads = /^\/map\/roads-[0-9a-f]+\.json$/.test(path) && path !== MAP_ROADS_URL && !MAP_ROADS_URL.startsWith('__')
+        if (staleRoads || (m ? m[2] !== MAP_TILES_VERSION : path.startsWith('/tiles/'))) await cache.delete(req)
       }),
     )
   } catch { /* cache API unavailable — non-fatal */ }
@@ -466,7 +470,8 @@ self.addEventListener('fetch', (event) => {
   // a glyph it fetched must be the glyph this handler finds.
   if (
     /^\/tiles\/\d+\/\d+\/\d+$/.test(url.pathname) ||
-    (url.origin === self.location.origin && url.pathname.startsWith('/map-assets/')) ||
+    (url.origin === self.location.origin &&
+      (url.pathname.startsWith('/map-assets/') || /^\/map\/roads-[0-9a-f]+\.json$/.test(url.pathname))) ||
     /^\/(vt\/[a-z0-9-]+\/\d+\/\d+\/\d+\.mvt|dem\/[a-z0-9-]+\/\d+\/\d+\/\d+\.webp)$/.test(url.pathname)
   ) {
     event.respondWith(

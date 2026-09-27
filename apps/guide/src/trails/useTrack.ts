@@ -19,7 +19,7 @@ export type TrackState =
 
 const memory = new Map<string, TrackT>()
 
-async function loadTrack(hikeId: string): Promise<TrackT> {
+export async function loadTrack(hikeId: string): Promise<TrackT> {
   const cached = memory.get(hikeId)
   if (cached) return cached
   const url = trackUrl(hikeId)

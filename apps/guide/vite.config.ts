@@ -101,6 +101,15 @@ async function mapTilesVersion(): Promise<string> {
   return match[1]
 }
 
+// The road graph's content-hashed path (src/map/roads.generated.ts), so
+// activate can drop superseded graphs from the tile cache.
+async function mapRoadsUrl(): Promise<string> {
+  const source = await readFile(resolve('src/map/roads.generated.ts'), 'utf8')
+  const match = source.match(/^export const ROADS_URL = '(\/map\/roads-[0-9a-f]+\.json)'$/m)
+  if (!match) throw new Error('ROADS_URL not found in src/map/roads.generated.ts')
+  return match[1]
+}
+
 function stampServiceWorker(apiBase: string): Plugin {
   return {
     name: 'tfg-stamp-sw',
@@ -108,6 +117,7 @@ function stampServiceWorker(apiBase: string): Plugin {
     async closeBundle() {
       const tracks = await tracksVersion()
       const mapTiles = await mapTilesVersion()
+      const mapRoads = await mapRoadsUrl()
       // Sorted: readdir order is filesystem-dependent, and this list is both
       // baked into the SW and hashed into its version.
       const assets = (await readdir(resolve('dist/assets')))
@@ -125,6 +135,8 @@ function stampServiceWorker(apiBase: string): Plugin {
         .update(tracks)
         .update('\0')
         .update(mapTiles)
+        .update('\0')
+        .update(mapRoads)
         .digest('hex')
         .slice(0, 16)
       await writeFile(
@@ -134,6 +146,7 @@ function stampServiceWorker(apiBase: string): Plugin {
           .replaceAll('__API_BASE__', apiBase)
           .replaceAll('__TRACKS_VERSION__', tracks)
           .replaceAll('__MAP_TILES_VERSION__', mapTiles)
+          .replaceAll('__MAP_ROADS_URL__', mapRoads)
           .replace('/* __BUILD_ASSETS__ */ []', JSON.stringify(assets)),
       )
     },
