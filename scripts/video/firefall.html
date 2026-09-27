@@ -1,0 +1,244 @@
+<!doctype html>
+<html><head><meta charset="utf-8">
+<style>
+@font-face { font-family: "EB Garamond"; src: url("REPO/fonts/eb-garamond.woff2") format("woff2"); font-weight: 400 800; }
+@font-face { font-family: "EB Garamond"; font-style: italic; src: url("REPO/fonts/eb-garamond-italic.woff2") format("woff2"); font-weight: 400 800; }
+@font-face { font-family: "Inter"; src: url("REPO/fonts/inter.woff2") format("woff2"); font-weight: 100 900; }
+:root { --paper:#f8f5ed; --paper2:#efeadc; --ink:#233e35; --ink2:#3d5249; --muted:#647067; --rule:#c3cabd; --rust:#a4462c; --gold:#d7b879; --cream:#fff9ed; }
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html, body { width: 1920px; height: 1080px; overflow: hidden; background: var(--ink); }
+.scene { position: absolute; inset: 0; opacity: 0; overflow: hidden; }
+.serif { font-family: "EB Garamond", Georgia, serif; }
+.sans { font-family: "Inter", sans-serif; }
+.eyebrow { font-family: "Inter", sans-serif; font-size: 22px; letter-spacing: .16em; font-weight: 600; text-transform: uppercase; }
+.credit { position: absolute; font-family: "Inter", sans-serif; font-size: 16px; letter-spacing: .02em; opacity: .75; }
+.rise { will-change: transform, opacity; }
+
+/* 1: title over the photograph */
+#s1 { background: #0d1a16; }
+#s1 .frame { position: absolute; right: 0; top: 0; width: 1000px; height: 1080px; overflow: hidden; }
+#s1 .photo { position: absolute; inset: 0; width: 1000px; height: 1080px; background: url("REPO/img/horsetail-fall-firefall-glow.jpg") center 42% / cover; transform-origin: 55% 45%; }
+#s1 .fade { position: absolute; right: 0; top: 0; width: 1000px; height: 1080px; background: linear-gradient(90deg, #0d1a16 0%, rgba(13,26,22,.6) 12%, rgba(13,26,22,0) 36%); }
+#s1 .copy { position: absolute; left: 150px; top: 330px; width: 760px; color: var(--cream); }
+#s1 .eyebrow { color: var(--gold); }
+#s1 h1 { font-family: "EB Garamond", serif; font-weight: 500; font-size: 128px; line-height: .98; margin-top: 30px; letter-spacing: -.01em; }
+#s1 p { font-family: "EB Garamond", serif; font-size: 44px; line-height: 1.25; margin-top: 36px; color: #e6dcc6; font-style: italic; }
+#s1 .credit { right: 28px; bottom: 22px; color: #fff; }
+
+/* 2: the window */
+#s2 { background: var(--paper); color: var(--ink); }
+#s2 .copy { position: absolute; left: 150px; top: 150px; width: 1620px; }
+#s2 .eyebrow { color: var(--rust); }
+#s2 h2 { font-family: "EB Garamond", serif; font-weight: 500; font-size: 76px; line-height: 1.08; margin-top: 22px; max-width: 1500px; }
+#s2 svg { position: absolute; left: 150px; top: 520px; }
+#s2 .bar { fill: var(--rule); }
+#s2 .bar.mid { fill: #d09a6f; }
+#s2 .bar.peak { fill: var(--rust); }
+#s2 .lab { font-family: "Inter", sans-serif; font-size: 22px; fill: var(--muted); }
+#s2 .axis { stroke: var(--ink); stroke-width: 2; }
+#s2 .callout { position: absolute; left: 1020px; top: 470px; font-family: "Inter", sans-serif; color: var(--ink); }
+#s2 .callout b { display: block; font-family: "EB Garamond", serif; font-weight: 500; font-size: 58px; color: var(--rust); }
+#s2 .callout span { font-size: 24px; letter-spacing: .12em; text-transform: uppercase; font-weight: 600; }
+#s2 .note { position: absolute; left: 150px; bottom: 70px; font-family: "Inter", sans-serif; font-size: 22px; color: var(--muted); }
+
+/* 3: three conditions */
+#s3 { background: var(--ink); color: var(--cream); }
+#s3 .copy { position: absolute; left: 150px; top: 150px; }
+#s3 .eyebrow { color: var(--gold); }
+#s3 h2 { font-family: "EB Garamond", serif; font-weight: 500; font-size: 86px; margin-top: 22px; }
+#s3 .cards { position: absolute; left: 150px; top: 440px; display: flex; gap: 40px; }
+#s3 .card { width: 510px; height: 300px; border: 2px solid rgba(255,249,237,.28); border-radius: 6px; padding: 44px 44px; }
+#s3 .card svg { width: 64px; height: 64px; stroke: var(--gold); }
+#s3 .card b { display: block; font-family: "EB Garamond", serif; font-weight: 500; font-size: 54px; margin-top: 26px; }
+#s3 .card span { display: block; font-family: "Inter", sans-serif; font-size: 26px; color: #b9c7b9; margin-top: 10px; }
+#s3 .punch { position: absolute; left: 150px; top: 820px; font-family: "EB Garamond", serif; font-style: italic; font-size: 60px; color: var(--gold); }
+
+/* 4: ten minutes */
+#s4 .photo { position: absolute; left: -40px; top: -40px; width: 2400px; height: 1160px; background: url("REPO/img/el-capitan-snow-spring.jpg") 0% 40% / cover; transform-origin: 20% 30%; }
+#s4 .shade { position: absolute; inset: 0; background: linear-gradient(90deg, rgba(0,0,0,0) 30%, rgba(10,16,20,.9) 62%); }
+#s4 .copy { position: absolute; right: 150px; top: 250px; width: 760px; color: var(--cream); text-align: left; }
+#s4 .eyebrow { color: var(--gold); }
+#s4 .big { font-family: "EB Garamond", serif; font-weight: 500; font-size: 220px; line-height: .9; margin-top: 20px; }
+#s4 .big small { font-size: 90px; }
+#s4 p { font-family: "EB Garamond", serif; font-size: 46px; line-height: 1.22; margin-top: 30px; color: #eadfc9; }
+#s4 .credit { right: 28px; bottom: 22px; color: #fff; }
+
+/* 5: park and walk */
+#s5 { background: var(--paper); color: var(--ink); }
+#s5 .copy { position: absolute; left: 150px; top: 110px; }
+#s5 .eyebrow { color: var(--rust); }
+#s5 h2 { font-family: "EB Garamond", serif; font-weight: 500; font-size: 76px; margin-top: 18px; }
+#s5 svg { position: absolute; left: 110px; top: 330px; }
+#s5 .road { fill: none; stroke: var(--ink2); stroke-width: 10; stroke-linecap: round; opacity: .35; }
+#s5 .walk { fill: none; stroke: var(--rust); stroke-width: 9; stroke-linecap: round; stroke-dasharray: 2 18; }
+#s5 .ban { fill: #7a2a10; }
+#s5 .banl { font-family: "Inter", sans-serif; font-size: 24px; font-weight: 700; fill: #fff; letter-spacing: .1em; }
+#s5 .place { font-family: "EB Garamond", serif; font-size: 40px; fill: var(--ink); font-weight: 500; }
+#s5 .small { font-family: "Inter", sans-serif; font-size: 24px; fill: var(--muted); }
+#s5 .walkl { font-family: "Inter", sans-serif; font-size: 28px; fill: var(--rust); font-weight: 600; }
+#s5 .mark { font-family: "Inter", sans-serif; font-size: 34px; font-weight: 800; fill: #fff; }
+#s5 .road-name { font-family: "Inter", sans-serif; font-size: 20px; letter-spacing: .14em; fill: var(--muted); font-weight: 600; }
+#s5 .note { position: absolute; left: 150px; bottom: 60px; font-family: "Inter", sans-serif; font-size: 22px; color: var(--muted); }
+
+/* 6: plan */
+#s6 { background: var(--rust); color: var(--cream); }
+#s6 .copy { position: absolute; left: 150px; top: 150px; }
+#s6 .eyebrow { color: #f3d3b0; }
+#s6 h2 { font-family: "EB Garamond", serif; font-weight: 500; font-size: 86px; margin-top: 22px; }
+#s6 ol { position: absolute; left: 150px; top: 420px; list-style: none; }
+#s6 li { font-family: "EB Garamond", serif; font-size: 58px; line-height: 1.1; margin-bottom: 34px; display: flex; gap: 34px; align-items: baseline; }
+#s6 li i { font-style: normal; font-family: "Inter", sans-serif; font-size: 26px; font-weight: 700; color: #f3d3b0; width: 40px; }
+
+/* 7: end card */
+#s7 { background: var(--paper); color: var(--ink); }
+#s7 .wrap { position: absolute; left: 0; right: 0; top: 280px; text-align: center; }
+#s7 img { height: 170px; }
+#s7 .brand { font-family: "EB Garamond", serif; font-size: 84px; font-weight: 500; margin-top: 20px; }
+#s7 .line { font-family: "EB Garamond", serif; font-style: italic; font-size: 44px; color: var(--ink2); margin-top: 18px; }
+#s7 .url { display: inline-block; margin-top: 44px; font-family: "Inter", sans-serif; font-size: 32px; font-weight: 600; color: var(--cream); background: var(--rust); padding: 18px 36px; border-radius: 4px; letter-spacing: .01em; }
+</style></head>
+<body>
+
+<section class="scene" id="s1">
+  <div class="frame"><div class="photo"></div></div><div class="fade"></div>
+  <div class="copy">
+    <div class="eyebrow rise" data-in="0.3">Horsetail Fall · El Capitan</div>
+    <h1 class="rise" data-in="0.6">The Yosemite Firefall</h1>
+    <p class="rise" data-in="1.2">Ten minutes of orange light on a thin waterfall, a few evenings each February.</p>
+  </div>
+  <div class="credit">Photo: Barney Moss / Wikimedia Commons (CC BY 2.0)</div>
+</section>
+
+<section class="scene" id="s2">
+  <div class="copy">
+    <div class="eyebrow rise" data-in="0.2">When</div>
+    <h2 class="rise" data-in="0.4">About two weeks each February, when the setting sun lines up with the fall.</h2>
+  </div>
+  <svg width="880" height="400" viewBox="-30 0 880 400" id="chart"></svg>
+  <div class="callout rise" data-in="2.0"><span>Strongest color</span><b>About February 17 to 24</b><span style="font-weight:400;letter-spacing:0;text-transform:none;font-size:26px;color:#3d5249">The middle week: best light, biggest crowd.</span></div>
+  <div class="note">Relative sun-angle strength through February. A shape, not a forecast.</div>
+</section>
+
+<section class="scene" id="s3">
+  <div class="copy">
+    <div class="eyebrow rise" data-in="0.2">The odds</div>
+    <h2 class="rise" data-in="0.4">Three things have to line up.</h2>
+  </div>
+  <div class="cards">
+    <div class="card rise" data-in="0.9"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3c3 4.5 6 7.6 6 11a6 6 0 0 1-12 0c0-3.4 3-6.5 6-11z"/></svg><b>Water in the fall</b><span>Changes daily</span></div>
+    <div class="card rise" data-in="1.3"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M7 18h10a4 4 0 0 0 .6-7.95A6 6 0 0 0 6.2 11 3.5 3.5 0 0 0 7 18z"/></svg><b>A clear west</b><span>Changes hourly</span></div>
+    <div class="card rise" data-in="1.7"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg><b>Sun angle</b><span>Fixed: the dates</span></div>
+  </div>
+  <div class="punch rise" data-in="2.6">Most evenings, it does not happen.</div>
+</section>
+
+<section class="scene" id="s4">
+  <div class="photo"></div><div class="shade"></div>
+  <div class="copy">
+    <div class="eyebrow rise" data-in="0.3">The glow</div>
+    <div class="big rise" data-in="0.6">10 <small>minutes</small></div>
+    <p class="rise" data-in="1.2">It comes in the last minutes before sunset, a little before 6 p.m., and is gone within about ten minutes.</p>
+  </div>
+  <div class="credit">Photo: Anita Ritenour / Wikimedia Commons (CC BY 2.0)</div>
+</section>
+
+<section class="scene" id="s5">
+  <div class="copy">
+    <div class="eyebrow rise" data-in="0.2">Parking and the walk</div>
+    <h2 class="rise" data-in="0.4">Park at Yosemite Falls, then walk.</h2>
+  </div>
+  <svg width="1700" height="620" viewBox="0 0 1700 620">
+    <path class="road" d="M40 150 C 400 110, 900 110, 1640 150"/>
+    <path class="road" d="M40 440 C 400 480, 900 480, 1640 440"/>
+    <path class="road" d="M180 142 L 180 452"/>
+    <text class="road-name" x="50" y="62">NORTHSIDE DRIVE · ONE WAY WEST</text>
+    <text class="road-name" x="50" y="530">SOUTHSIDE DRIVE · ONE WAY EAST</text>
+    <text class="small" x="200" y="410">El Capitan Crossover</text>
+    <path id="walkpath" class="walk" d="M1320 124 C 1000 108, 700 108, 380 124"/>
+    <g class="banG" opacity="0"><rect class="ban" x="520" y="160" width="700" height="52" rx="4"/><text class="banl" x="870" y="195" text-anchor="middle">NO PARKING · NO STOPPING · NO DROP-OFFS</text></g>
+    <circle cx="350" cy="126" r="30" fill="#a4462c"/><text class="mark" x="350" y="138" text-anchor="middle">V</text>
+    <text class="place" x="350" y="268" text-anchor="middle">Viewing area</text>
+    <text class="small" x="350" y="302" text-anchor="middle">near El Capitan Picnic Area</text>
+    <rect x="1320" y="94" width="62" height="62" rx="5" fill="#233e35"/><text class="mark" x="1351" y="138" text-anchor="middle">P</text>
+    <text class="place" x="1351" y="268" text-anchor="middle">Yosemite Falls parking</text>
+    <text class="small" x="1351" y="302" text-anchor="middle">beside Yosemite Valley Lodge</text>
+    <text class="walkl walkL" x="850" y="72" text-anchor="middle" opacity="0">About 1.5 miles each way · 40 to 50 min with gear</text>
+  </svg>
+  <div class="note">Schematic, not to scale. West is left. The rules change every winter: read the park's Horsetail Fall page before you go.</div>
+</section>
+
+<section class="scene" id="s6">
+  <div class="copy">
+    <div class="eyebrow rise" data-in="0.2">The short version</div>
+    <h2 class="rise" data-in="0.4">Plan for the odds.</h2>
+  </div>
+  <ol>
+    <li class="rise" data-in="0.8"><i>01</i>Book a refundable room months ahead, not weeks.</li>
+    <li class="rise" data-in="1.2"><i>02</i>Plan two or three evenings, not one.</li>
+    <li class="rise" data-in="1.6"><i>03</i>Weekdays over weekends, always.</li>
+    <li class="rise" data-in="2.0"><i>04</i>Dress for standing still in the cold.</li>
+  </ol>
+</section>
+
+<section class="scene" id="s7">
+  <div class="wrap">
+    <img src="REPO/img/talus-field-mark-masthead.png" alt="">
+    <div class="brand rise" data-in="0.2">The Talus Field</div>
+    <div class="line rise" data-in="0.5">Dates, parking, webcams and where to stay.</div>
+    <div class="url rise" data-in="0.8">thetalusfieldjournal.com/firefall</div>
+  </div>
+</section>
+
+<script>
+// Scene windows in seconds [start, end]; neighbours overlap by FADE for a crossfade.
+const FADE = 0.5;
+const SCENES = [["s1",0,5.2],["s2",5.2,10.4],["s3",10.4,15.6],["s4",15.6,20.2],["s5",20.2,25.4],["s6",25.4,28.4],["s7",28.4,40]];
+const ease = (x) => { x = Math.min(1, Math.max(0, x)); return 1 - Math.pow(1 - x, 3); };
+
+// Sun chart, the page's own curve (FF_DAYS in page-firefall.jsx).
+const DAYS = Array.from({ length: 21 }, (_, i) => { const d = i + 8; const x = (d - 20.5) / 6.2; return { d, v: Math.max(0.08, Math.exp(-x * x)) }; });
+const chart = document.getElementById("chart");
+const W = 820, H = 400, base = H - 40, bw = W / DAYS.length;
+let svg = `<line class="axis" x1="0" y1="${base}" x2="${W}" y2="${base}"/>`;
+DAYS.forEach((o, i) => {
+  const cls = o.v > 0.75 ? "bar peak" : o.v > 0.4 ? "bar mid" : "bar";
+  svg += `<rect class="${cls}" data-i="${i}" data-h="${o.v * (base - 10)}" x="${i * bw + 3}" y="${base}" width="${bw - 6}" height="0"/>`;
+  if (o.d % 4 === 0) svg += `<text class="lab" x="${i * bw + bw / 2}" y="${H - 6}" text-anchor="middle">Feb ${o.d}</text>`;
+});
+chart.innerHTML = svg;
+const bars = [...chart.querySelectorAll("rect")];
+const walk = document.getElementById("walkpath");
+const walkLen = walk.getTotalLength();
+
+function render(t) {
+  for (const [id, a, b] of SCENES) {
+    const el = document.getElementById(id);
+    const op = Math.min(ease((t - a) / FADE + (a === 0 ? 1 : 0)), 1 - ease((t - (b - FADE)) / FADE));
+    el.style.opacity = Math.max(0, op);
+    el.style.zIndex = t >= a ? 2 : 1;
+    const lt = t - a;
+    el.querySelectorAll(".rise").forEach((r) => {
+      const p = ease((lt - parseFloat(r.dataset.in)) / 0.7);
+      r.style.opacity = p;
+      r.style.transform = `translateY(${(1 - p) * 28}px)`;
+    });
+    if (id === "s1") el.querySelector(".photo").style.transform = `scale(${1.04 + 0.08 * (lt / 5.2)})`;
+    if (id === "s4") el.querySelector(".photo").style.transform = `scale(${1.0 + 0.06 * (lt / 4.6)}) translateX(${-lt * 6}px)`;
+    if (id === "s2") bars.forEach((r) => {
+      const p = ease((lt - 0.9 - r.dataset.i * 0.045) / 0.6);
+      const h = r.dataset.h * p;
+      r.setAttribute("height", h); r.setAttribute("y", base - h);
+    });
+    if (id === "s5") {
+      const p = ease((lt - 1.0) / 2.2);
+      walk.style.strokeDasharray = `${walkLen * p} ${walkLen}`;
+      walk.style.strokeDashoffset = 0;
+      el.querySelector(".walkL").setAttribute("opacity", ease((lt - 2.0) / 0.6));
+      el.querySelector(".banG").setAttribute("opacity", ease((lt - 3.0) / 0.6));
+    }
+  }
+}
+window.render = render;
+render(0);
+</script>
+</body></html>
