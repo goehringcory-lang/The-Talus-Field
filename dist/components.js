@@ -3096,13 +3096,14 @@ var WEBCAMS = [{
   alt: "Live view of Wawona"
 }];
 function WebcamStrip({
-  variant
+  variant,
+  only
 }) {
   var camCacheBust = useMemo(() => Math.floor(Date.now() / 300000), []);
   var board = variant === "board";
   return React.createElement(React.Fragment, null, React.createElement("div", {
     className: board ? "cam-grid cam-grid--board" : "cam-grid"
-  }, WEBCAMS.map(cam => React.createElement("a", {
+  }, (only ? only.map(l => WEBCAMS.find(c => c.label === l)).filter(Boolean) : WEBCAMS).map(cam => React.createElement("a", {
     key: cam.img,
     className: "cam-tile",
     href: cam.href,

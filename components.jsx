@@ -2577,8 +2577,10 @@ const WEBCAMS = [
 // The mark carries no timestamp on purpose. Nothing here reads the capture
 // time off the camera, and a clock drawn from the reader's own device would be
 // asserting a freshness this component has not checked. Default is the four-up
-// strip, which /webcams and /firefall still mount.
-function WebcamStrip({ variant }) {
+// strip, which /webcams still mounts. `only` is an optional list of labels
+// that picks cameras and sets their order (/firefall shows El Capitan, its
+// water check, then Half Dome, its cloud check); omitted, all four render.
+function WebcamStrip({ variant, only }) {
   // Bucket the cache-buster to five minutes instead of the exact millisecond.
   // Per-render Date.now() made every one of these four third-party images a
   // guaranteed cold fetch on every visit and every remount; the cameras
@@ -2589,7 +2591,7 @@ function WebcamStrip({ variant }) {
   return (
     <>
       <div className={board ? "cam-grid cam-grid--board" : "cam-grid"}>
-        {WEBCAMS.map(cam => (
+        {(only ? only.map((l) => WEBCAMS.find((c) => c.label === l)).filter(Boolean) : WEBCAMS).map(cam => (
           <a
             key={cam.img}
             className="cam-tile"

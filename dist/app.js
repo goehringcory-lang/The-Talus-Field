@@ -689,8 +689,8 @@ function buildSeo(route) {
       }
     },
     firefall: {
-      title: `The Yosemite Firefall — dates, conditions, and how to plan — ${SITE_NAME}`,
-      description: "When the Horsetail Fall firefall happens, the three conditions that must line up, and how to plan a February evening around uncertain odds. By a park resident.",
+      title: `The Yosemite Firefall: dates, parking, weather, and where to stay — ${SITE_NAME}`,
+      description: "Everything for the Horsetail Fall firefall: the February dates, how to check water and cloud on the webcams, where to park and walk, what to bring, and which rooms fill first.",
       ogType: "website",
       breadcrumb: [["Home", `${SITE_ORIGIN}/`], ["Firefall", null]]
     },
