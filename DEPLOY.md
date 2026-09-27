@@ -424,3 +424,37 @@ returns `{"items":[]}`, an upload from the page appears in the staged list, and
 a run of the workflow (manual or via the button) opens a PR containing the
 processed photo plus its `responsive/` ladder and, for guide photos, the
 credits entries.
+
+## 3D map tiles (R2)
+
+The Field Guide's 3D map draws a vector basemap and a terrain model that the
+guide hosts itself, so nothing on the map needs a third-party key and every tile
+may be cached offline. Two PMTiles archives per build live in the
+`talus-map-tiles` R2 bucket, and the API Worker serves them one tile per URL at
+`/vt/<ver>/{z}/{x}/{y}.mvt` and `/dem/<ver>/{z}/{x}/{y}.webp`
+([workers/src/routes/maptiles.ts](workers/src/routes/maptiles.ts)).
+
+Sources, both licensed for commercial use and offline caching with attribution
+(the map's attribution control carries both): the Protomaps daily build of
+OpenStreetMap (ODbL) and the Mapzen Terrain Tiles on AWS Open Data (USGS 3DEP
+inside the US; SRTM and GMTED2010 at low zoom).
+
+One-time setup, before the first merge that adds the `MAP_TILES` binding:
+
+1. `cd workers && npx wrangler r2 bucket create talus-map-tiles`. A
+   declared-but-missing bucket fails the Workers Build, which ships nothing.
+2. Upload the archives (next section), then merge.
+
+Rebuilding the tiles (a newer OSM snapshot, a new offline region, a wider
+extent):
+
+1. `cd apps/guide && npm run map:tiles` (about a minute; the first run fetches
+   the go-pmtiles CLI into the gitignored `scripts/.mapcache/`). It prints a new
+   version, the pack sizes, and two upload commands.
+2. Run both `npx wrangler r2 object put ... --remote` commands from `workers/`.
+3. Check one tile of each: `curl -sI https://api.thetalusfieldjournal.com/vt/<ver>/12/687/1583.mvt`
+   and the same path under `/dem/` with `.webp` should answer 200.
+4. Commit the regenerated `apps/guide/src/map/tiles.generated.ts` and merge.
+   Old versions can be deleted from the bucket once no installed PWA could
+   still be on a build that names them (a few weeks).
+

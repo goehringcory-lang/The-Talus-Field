@@ -9,6 +9,7 @@ import { checkout } from './routes/checkout'
 import { contact } from './routes/contact'
 import { indexnow } from './routes/indexnow'
 import { ingestNpsWindow, programs } from './routes/programs'
+import { mapTiles } from './routes/maptiles'
 import { parking } from './routes/parking'
 import { photos, photosPage } from './routes/photos'
 import { push } from './routes/push'
@@ -132,6 +133,10 @@ app.get('/tiles/:z/:y/:x', async (c) => {
     },
   })
 })
+
+// The 3D map's vector and elevation tiles (routes/maptiles.ts): root level
+// like /tiles, outside the CORS middleware, ACAO * on every response.
+app.route('/', mapTiles)
 
 // The embeddable conditions widget lives at the ROOT level (like /tiles), NOT
 // under /api/*: it runs on arbitrary third-party origins, so it needs a plain
