@@ -50,10 +50,64 @@ the bundle; `npm run check:build` guards the reason why.
 - **Auth** — `src/auth/`: JWT in localStorage, signed by the Worker to the
   buyer's access expiry. `me.ts` mirrors the Worker's `/api/auth/me` response.
 - **Offline** — `public/sw.js` (hand-rolled service worker) plus
-  `src/offline/` (download packs, tile math) and the DownloadManager on
-  /account.
+  `src/offline/` (download packs) and the DownloadManager on /account and in
+  the map's Information pane.
+- **The map** — `src/routes/Map.tsx` and `src/map/`; see "The 3D map" below.
 - **Trip planner** — `src/trip/` (day slotting, ICS export, and `importTrip.ts`, which takes the editorial map's `/trip?import=` hand-off); `src/sync/` syncs the plan across devices through `/api/trip/plan`.
 - **Architecture notes** — `CLAUDE.md` in this directory is the detailed reference.
+
+## The 3D map
+
+`/map` is MapLibre GL over a self-hosted vector basemap on 3D terrain. Nothing
+on it needs a third-party key, and every byte it draws can be cached offline.
+
+**Where the files live**
+
+| File | What it is |
+|---|---|
+| `src/routes/Map.tsx` | The route: the MapLibre instance, pins, popups, filters, the 2D/3D toggle, Reset view, Offline areas |
+| `src/map/theme.ts` | Every colour and tunable number: fills per scheme, terrain exaggeration (1.4), hillshade, sky, the opening camera |
+| `src/map/style.ts` | Builds the MapLibre style: Protomaps layers, the terrain and hillshade sources (two sources on purpose), sky, the park boundary and the outside-the-park dimming |
+| `src/map/regions.ts` | The tile extent and the offline areas, pure, shared with the tile generator |
+| `src/map/tiles.generated.ts` | Generated: the tile archive version and each offline pack's measured size |
+| `src/map/data/park-boundary.json` | Generated: the NPS boundary, simplified |
+| `src/map/attribution.ts` | The data credits |
+| `src/map/kinds.ts` | Pin kinds, colours and glyphs |
+| `public/map-assets/` | Label glyphs and sprites (Noto Sans, OFL; sprites, MIT) |
+| `../../workers/src/routes/maptiles.ts` | The Worker's `/vt` and `/dem` tile routes over the R2 archives |
+
+**Regenerating the data**
+
+- Tiles: `npm run map:tiles` builds both PMTiles archives (the Protomaps OSM
+  build, the Terrarium elevation) into the gitignored `scripts/.mapcache/out/`,
+  rewrites `src/map/tiles.generated.ts`, and prints the two
+  `wrangler r2 object put` commands. **Upload before merging**: the app asks
+  for tiles by the new version, and the Worker 404s a version it does not hold.
+  Needs Node 22.5+; the script fetches the go-pmtiles CLI itself. Runbook:
+  `../../DEPLOY.md`, "3D map tiles (R2)".
+- Park boundary: `npm run map:data` refetches the NPS boundary into
+  `src/map/data/park-boundary.json`.
+
+**Offline**
+
+The download packs are an overview (the whole park at driving scale, z6-z11,
+plus glyphs and sprites) and four areas at trailhead scale (z12-z15 vector,
+z12-z13 elevation). An area requires the overview: downloading one fetches the
+overview first, and the overview cannot be removed while an area is on the
+device. Sizes shown before a download are measured from the archives, not
+estimated. Offline, the map outlines the downloaded areas and the notice above
+it names them.
+
+To change an area, edit its box in `src/map/regions.ts`, then rerun
+`npm run map:tiles` (the sizes are measured over the new tile lists; a unit
+test fails if the two disagree). Tile versions are path segments, so the
+service worker drops the previous version's tiles when a new build activates.
+
+**Environment**
+
+No new variables. The map reads `VITE_API_BASE` like everything else, and the
+Worker needs the `MAP_TILES` R2 binding in `workers/wrangler.toml` (a bucket,
+not a secret).
 
 ## Deploys
 

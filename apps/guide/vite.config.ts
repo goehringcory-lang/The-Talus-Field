@@ -91,12 +91,23 @@ async function tracksVersion(): Promise<string> {
   return match[1]
 }
 
+// The map tile archives' version (src/map/tiles.generated.ts), read the same
+// way and for the same reason: activate drops tiles of any other version
+// from the unversioned tile cache.
+async function mapTilesVersion(): Promise<string> {
+  const source = await readFile(resolve('src/map/tiles.generated.ts'), 'utf8')
+  const match = source.match(/^ {2}version: "([a-z0-9-]+)",$/m)
+  if (!match) throw new Error('TILESET.version not found in src/map/tiles.generated.ts')
+  return match[1]
+}
+
 function stampServiceWorker(apiBase: string): Plugin {
   return {
     name: 'tfg-stamp-sw',
     apply: 'build',
     async closeBundle() {
       const tracks = await tracksVersion()
+      const mapTiles = await mapTilesVersion()
       // Sorted: readdir order is filesystem-dependent, and this list is both
       // baked into the SW and hashed into its version.
       const assets = (await readdir(resolve('dist/assets')))
@@ -112,6 +123,8 @@ function stampServiceWorker(apiBase: string): Plugin {
         .update(assets.join('\n'))
         .update('\0')
         .update(tracks)
+        .update('\0')
+        .update(mapTiles)
         .digest('hex')
         .slice(0, 16)
       await writeFile(
@@ -120,6 +133,7 @@ function stampServiceWorker(apiBase: string): Plugin {
           .replaceAll('__BUILD_VERSION__', version)
           .replaceAll('__API_BASE__', apiBase)
           .replaceAll('__TRACKS_VERSION__', tracks)
+          .replaceAll('__MAP_TILES_VERSION__', mapTiles)
           .replace('/* __BUILD_ASSETS__ */ []', JSON.stringify(assets)),
       )
     },
