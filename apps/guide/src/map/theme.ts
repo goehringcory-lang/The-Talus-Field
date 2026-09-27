@@ -197,3 +197,43 @@ export function buildTheme(scheme: Scheme = resolvedScheme()): MapTheme {
     offlineRegion: accent,
   }
 }
+
+// --- the trip layer -------------------------------------------------------------
+
+/** The day palette (tokens.css --day-1 to --day-7), in day order. */
+export function dayColors(): string[] {
+  const fallback = ['#0072b2', '#d55e00', '#009e73', '#cc79a7', '#e69f00', '#56b4e9', '#14110c']
+  return fallback.map((f, i) => token(`--day-${i + 1}`, f))
+}
+
+/**
+ * One line style per way of getting there, all in the day's colour. Drive is
+ * solid and follows the roads; hiking is the trail itself, dashed; walking is
+ * dotted; the shuttle is dash-dot. The legend in the trip panel draws these
+ * same arrays, so the key cannot drift from the map.
+ */
+export const TRIP_LINES = {
+  drive: { dash: null, width: 4, label: 'Drive (follows the roads)' },
+  hike: { dash: [2, 1.4], width: 3.5, label: 'Hike (the trail)' },
+  walk: { dash: [0.2, 1.6], width: 4, label: 'Walk' },
+  shuttle: { dash: [3, 1.2, 0.3, 1.2], width: 4, label: 'Valley shuttle' },
+} as const
+
+/** A leg drawn as a straight line (no route found, or the road graph still loading) is faded. */
+export const TRIP_STRAIGHT_OPACITY = 0.5
+
+/** Other days, while one day is selected. */
+export const TRIP_DIMMED_OPACITY = 0.18
+
+/** The paper-coloured casing under every trip line, so it reads on any fill. */
+export function tripCasing(): string {
+  return token('--paper', '#f1ead6')
+}
+
+/**
+ * The tilt a whole day (or the whole trip) is framed at. Gentler than the
+ * opening camera: fitBounds frames a flat plane, and at 50-60 degrees a ridge
+ * between the camera and the Valley (Glacier Point's, most days) hides the
+ * very pins the frame was for.
+ */
+export const DAY_FIT_PITCH = 35

@@ -16,6 +16,7 @@ import {
   hikeItemId,
   programItemId,
   stopItemId,
+  type TravelModeT,
   type TripItemT,
   type TripPlanT,
 } from './schema'
@@ -423,4 +424,66 @@ export function addHikeToPlan(hikeId: string, day?: string) {
 
 export function isHikePlanned(hikeId: string): boolean {
   return read().items.some((it) => it.type === 'hike' && it.hikeId === hikeId)
+}
+
+/**
+ * Add a map place (a parking lot, campground, lodge or restaurant) to the
+ * plan as a custom entry linked by `placeId` (trip/places.ts). One copy per
+ * day: adding the same place to the same day again is a no-op.
+ */
+export function addPlaceToPlan(placeId: string, title: string, day?: string) {
+  const p = read()
+  const target = clampDay(day ?? p.dates.start, p.dates)
+  if (p.items.some((it) => it.type === 'custom' && it.placeId === placeId && it.day === target)) return
+  write({
+    ...p,
+    items: [
+      ...p.items,
+      {
+        type: 'custom',
+        itemId: `custom:${crypto.randomUUID()}`,
+        title,
+        placeId,
+        day: target,
+        eventUid: crypto.randomUUID(),
+      },
+    ],
+    updatedAt: new Date().toISOString(),
+  })
+}
+
+export function isPlacePlanned(placeId: string): boolean {
+  return read().items.some((it) => it.type === 'custom' && it.placeId === placeId)
+}
+
+/** Set how the reader gets from this item to the next; undefined hands the choice back to the guide. */
+export function setItemTravelMode(itemId: string, travelMode: TravelModeT | undefined) {
+  const p = read()
+  if (!p.items.some((it) => it.itemId === itemId)) return
+  write({
+    ...p,
+    items: p.items.map((it) => (it.itemId === itemId ? { ...it, travelMode } : it)),
+    updatedAt: new Date().toISOString(),
+  })
+}
+
+/**
+ * Swap an item with its neighbour among the same day's floating items, in
+ * plan order, which is the order slotting fills a day. Items with a time of
+ * their own (a program, a pinned block) keep it and are not moved past;
+ * returns false when there is nothing to swap with.
+ */
+export function moveItemInDay(itemId: string, direction: -1 | 1): boolean {
+  const p = read()
+  const idx = p.items.findIndex((it) => it.itemId === itemId)
+  const item = p.items[idx]
+  if (!item || item.type === 'program') return false
+  const floating = (it: TripItemT) => it.type !== 'program' && it.day === item.day && !it.startTime
+  let j = idx + direction
+  while (j >= 0 && j < p.items.length && !floating(p.items[j])) j += direction
+  if (j < 0 || j >= p.items.length) return false
+  const items = [...p.items]
+  ;[items[idx], items[j]] = [items[j], items[idx]]
+  write({ ...p, items, updatedAt: new Date().toISOString() })
+  return true
 }

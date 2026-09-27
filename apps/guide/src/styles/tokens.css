@@ -65,6 +65,19 @@
   --panel: #e6dcc1;
   --panel-edge: #c1ad84;
 
+  /* Trip days on the map and in its itinerary panel: the Okabe-Ito
+     colour-blind-safe set in its published order, yellow dropped (it
+     vanishes on paper). Colour is never the only carrier: every pin is
+     numbered and every day is labelled in the legend. A plan longer than
+     seven days reuses them from the top. */
+  --day-1: #0072b2;
+  --day-2: #d55e00;
+  --day-3: #009e73;
+  --day-4: #cc79a7;
+  --day-5: #e69f00;
+  --day-6: #56b4e9;
+  --day-7: #14110c;
+
   /* Ground texture, swapped per scheme and consumed once, by body: halftone
      dots on paper, contour rings on granite. */
   --field-texture: radial-gradient(color-mix(in oklab, var(--ink) 5%, transparent) 1px, transparent 1px);
@@ -1141,6 +1154,13 @@ select:focus-visible {
     --danger:    #d87040;
     --panel:     #252019;
     --panel-edge: #3a3022;
+    --day-1: #56b4e9;
+    --day-2: #f0894b;
+    --day-3: #3cc9a0;
+    --day-4: #e7a3c9;
+    --day-5: #f2b84b;
+    --day-6: #a9dbf7;
+    --day-7: #f0e8d8;
     --field-texture:
       repeating-radial-gradient(circle at 115% -8%, color-mix(in oklab, var(--ink) 5%, transparent) 0 1px, transparent 1px 30px),
       repeating-radial-gradient(circle at -20% 108%, color-mix(in oklab, var(--ink) 4%, transparent) 0 1px, transparent 1px 44px);
@@ -1165,6 +1185,13 @@ select:focus-visible {
   --danger:    #d87040;
   --panel:     #252019;
   --panel-edge: #3a3022;
+  --day-1: #56b4e9;
+  --day-2: #f0894b;
+  --day-3: #3cc9a0;
+  --day-4: #e7a3c9;
+  --day-5: #f2b84b;
+  --day-6: #a9dbf7;
+  --day-7: #f0e8d8;
   --field-texture:
     repeating-radial-gradient(circle at 115% -8%, color-mix(in oklab, var(--ink) 5%, transparent) 0 1px, transparent 1px 30px),
     repeating-radial-gradient(circle at -20% 108%, color-mix(in oklab, var(--ink) 4%, transparent) 0 1px, transparent 1px 44px);

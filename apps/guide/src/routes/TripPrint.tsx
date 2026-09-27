@@ -10,7 +10,7 @@
 
 import { Link } from 'react-router-dom'
 import { slottedToEventFields } from '../trip/ics'
-import { driveMinutesBetween, slotPlan } from '../trip/slotting'
+import { driveMinutesBetween, legNoun, slotPlan } from '../trip/slotting'
 import { useTripPlan } from '../trip/useTripPlan'
 import { formatClock, formatDayHeader } from '../utils/date'
 import './TripPrint.css'
@@ -90,7 +90,7 @@ export default function TripPrint() {
                       <td>
                         <strong>{f.summary}</strong>
                         {drive !== null && drive > 0 && (
-                          <span className="trip-print__drive"> · ~{drive} min drive from the last stop</span>
+                          <span className="trip-print__drive"> · ~{drive} min {legNoun(items[i - 1].item, s.item)} from the last stop</span>
                         )}
                         {f.location && <span className="trip-print__loc">{f.location}</span>}
                       </td>

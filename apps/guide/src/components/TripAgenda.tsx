@@ -40,7 +40,7 @@ import {
 } from '../trip/agendaLayout'
 import { daylightFit } from '../sun/daylight'
 import { useRoadReader, type RoadReading } from '../alerts/roadState'
-import { driveMinutesBetween, toHhmm, type SlottedItem } from '../trip/slotting'
+import { driveMinutesBetween, legNoun, toHhmm, type SlottedItem } from '../trip/slotting'
 import { shortLegsByTarget, type DayLeg } from '../trip/driveCheck'
 import { hikeItemId, stopItemId, type TripItemT } from '../trip/schema'
 import { useTripPlan } from '../trip/useTripPlan'
@@ -713,8 +713,8 @@ export default function TripAgenda({ slotted, windowDays, dayForecasts }: Props)
                           {drive === 0
                             ? 'Same parking area'
                             : lateLegs.get(day)?.has(p.s.item.itemId)
-                              ? `Needs ~${drive} min drive`
-                              : `~${drive} min drive`}
+                              ? `Needs ~${drive} min ${legNoun(prev.s.item, p.s.item)}`
+                              : `~${drive} min ${legNoun(prev.s.item, p.s.item)}`}
                         </span>
                       )}
                       <AgendaBlock

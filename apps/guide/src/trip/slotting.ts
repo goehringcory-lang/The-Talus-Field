@@ -24,7 +24,9 @@ import { getHikeById, getStopById } from '../content'
 import { sunTimes } from '../sun/solar'
 import { haversineMiles } from '../utils/geo'
 import { publishedDriveMinutes } from './driveTimes'
-import type { TripItemT } from './schema'
+import { resolvePlace } from './places'
+import { shuttleLeg, walkMinutes } from './shuttle'
+import type { TravelModeT, TripItemT } from './schema'
 
 export type SlottedItem = {
   item: TripItemT
@@ -81,12 +83,35 @@ const EVENING_TAIL_MIN = 30
 const FALLBACK_SUNSET = 19 * 60
 
 /** Coordinate of a trip item, when its stop, hike, or program carries one.
- *  Custom items have none by design: they take the flat travel buffer. */
+ *  A custom item has one only when it links a map place (`placeId`) or the
+ *  reader pinned it (`coord`); otherwise it takes the flat travel buffer. */
 export function itemCoord(item: TripItemT): [number, number] | undefined {
   if (item.type === 'stop') return getStopById(item.stopId)?.coord
   if (item.type === 'hike') return getHikeById(item.hikeId)?.coord
   if (item.type === 'program') return item.snapshot.coord ?? undefined
-  return undefined
+  return resolvePlace(item.placeId)?.coord ?? item.coord
+}
+
+// A hop this short is a walk whatever the plan says: the map draws it dotted.
+// Pricing is unchanged by the inference, because both estimates clamp to the
+// same ten-minute floor at this distance.
+const WALK_AUTO_MILES = 0.25
+// Longest walk the planner will price as a walk; past it a leg set to walk
+// is still priced as one (the reader chose it), capped like a published leg.
+const MAX_WALK_MIN = 240
+
+/**
+ * How the reader gets from one item to the next: the mode they set on the
+ * leg, else a walk for a hop inside one parking area, else a drive. The map
+ * draws the leg in this mode's line style and every time estimate below
+ * prices it the same way.
+ */
+export function legMode(from: TripItemT, to: TripItemT): TravelModeT {
+  if (from.travelMode) return from.travelMode
+  const a = itemCoord(from)
+  const b = itemCoord(to)
+  if (a && b && haversineMiles(a, b) < WALK_AUTO_MILES) return 'walk'
+  return 'drive'
 }
 
 /** Straight-line buffer between two coordinates: drive + park-and-walk. */
@@ -109,9 +134,27 @@ function legBufferMin(from: TripItemT | undefined, to: TripItemT): number {
   const cb = itemCoord(to)
   const local = travelBufferMin(ca, cb)
   if (!from || !ca || !cb) return local
+  // A mode the reader chose prices the leg its own way. An unset mode keeps
+  // the drive pricing exactly as it was before modes existed, so no plan
+  // written earlier moves by a minute.
+  if (from.travelMode === 'walk') {
+    return Math.min(MAX_WALK_MIN, Math.max(5, walkMinutes(haversineMiles(ca, cb))))
+  }
+  if (from.travelMode === 'shuttle') {
+    const ride = shuttleLeg(ca, cb)
+    // Out of reach of a stop at either end: the shuttle cannot make this leg,
+    // so it is priced as the drive it will be (the map flags it).
+    if (ride) return Math.max(5, ride.totalMin)
+  }
   const published = publishedDriveMinutes(from, to)
   if (published === null) return local
   return Math.min(MAX_PUBLISHED_BUFFER, Math.max(10, published + PARK_AND_WALK_MIN))
+}
+
+/** The leg's noun for the board's transit rows: "drive", "walk" or "shuttle ride". */
+export function legNoun(from: TripItemT, to: TripItemT): string {
+  const mode = legMode(from, to)
+  return mode === 'shuttle' ? 'shuttle ride' : mode
 }
 
 /**
@@ -122,6 +165,9 @@ function legBufferMin(from: TripItemT | undefined, to: TripItemT): number {
  * when either side has no coordinate, 0 when they share a parking area.
  */
 export function driveMinutesBetween(a: TripItemT, b: TripItemT): number | null {
+  // Named for the drive it priced before travel modes; it is the leg's time
+  // in whatever mode the leg takes (legMode), which is what the board's
+  // transit rows, the drive check and the map all mean by it.
   const ca = itemCoord(a)
   const cb = itemCoord(b)
   if (!ca || !cb) return null
