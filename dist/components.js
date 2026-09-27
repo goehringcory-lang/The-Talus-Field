@@ -3248,7 +3248,7 @@ function FjLayout({
     href: "#" + it.id,
     "aria-current": active === it.id ? "location" : undefined,
     onClick: e => jump(e, it.id)
-  }, React.createElement("span", {
+  }, marks !== "none" && React.createElement("span", {
     "aria-hidden": "true"
   }, marks === "roman" ? FJ_ROMAN[i] || i + 1 : fjPad(i + 1)), it.label))));
   var many = items.length > 2;

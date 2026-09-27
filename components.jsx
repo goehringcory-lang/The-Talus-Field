@@ -2707,7 +2707,7 @@ function FjLayout({ children, numbered = true, marks = "numeric", label = "On th
       {items.map((it, i) => (
         <li key={it.id}>
           <a href={"#" + it.id} aria-current={active === it.id ? "location" : undefined} onClick={(e) => jump(e, it.id)}>
-            <span aria-hidden="true">{marks === "roman" ? FJ_ROMAN[i] || i + 1 : fjPad(i + 1)}</span>{it.label}
+            {marks !== "none" && <span aria-hidden="true">{marks === "roman" ? FJ_ROMAN[i] || i + 1 : fjPad(i + 1)}</span>}{it.label}
           </a>
         </li>
       ))}

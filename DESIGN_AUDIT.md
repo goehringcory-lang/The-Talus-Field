@@ -64,7 +64,7 @@ pages and are not flagged.
 | 11 | `/widget` | The preview card is empty when the API is down, so the head looks broken. | "Embed": a topo head, a mock preview drawn in markup as the no-data state, and the install steps numbered. | todo |
 | 12 | `/newsletter` | A big empty band under two thin columns ("Cadence", "Mail"). | "Postmark": the two notes as stamped field cards and a contour band. | todo |
 | 13 | `/contact` | A form and an aside with a lot of dead space. The head has no image. | "Letterhead": a topo head and the aside as a ruled card. | todo |
-| 14 | `/privacy`, `/terms`, `/affiliate` | A long numbered legal column with no navigation. | "Legal ledger": a sticky numbered index (they are the pages that most need it) and a last-updated field card. | todo |
+| 14 | `/privacy`, `/terms`, `/affiliate` | A long numbered legal column with no navigation. | "Legal ledger": a sticky section index (they are the pages that most need it) and a last-updated field card. | done |
 
 ## Progress log
 
@@ -128,3 +128,10 @@ pages and are not flagged.
   now repeats under the steps); the same three facts printed five times (the
   strip leads with the naturalist instead of the price); tablet alignment of
   the strip.
+- **/privacy, /terms, /affiliate** done. The reviewer caught: the stacked
+  card pushed right at tablet widths; no breadcrumbs (the legal routes were
+  rendered without `go`; app.jsx now passes it); the update date twice in the
+  phone head (the card is off on phones); "Sections" printed three times; a
+  stamp that carried no fact (it now reads the revision date); and
+  /affiliate's unnumbered headings getting the numbered pages' plain index
+  (it now takes the kit's numerals).

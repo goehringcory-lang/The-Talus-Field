@@ -1348,11 +1348,11 @@ function App() {
   } else if (route === "contact") {
     page = <window.ContactPage go={go} />;
   } else if (route === "privacy") {
-    page = <window.PrivacyPage />;
+    page = <window.PrivacyPage go={go} />;
   } else if (route === "terms") {
-    page = <window.TermsPage />;
+    page = <window.TermsPage go={go} />;
   } else if (route === "affiliate") {
-    page = <window.AffiliatePage />;
+    page = <window.AffiliatePage go={go} />;
   } else if (route === "guide") {
     page = <window.GuidePage go={go} />;
   } else if (route === "itineraries") {

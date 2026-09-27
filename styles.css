@@ -9685,7 +9685,7 @@ html[data-nav-mode="pinned"] { scroll-padding-top: 62px; }
 }
 
 /* /newsletter: the two terms as stamped field notes on a contour band. */
-.hp-design .hp-nlpage__terms.fj-notes { position: relative; padding-block: 56px; }
+.hp-design .hp-nlpage__terms.fj-notes { position: relative; isolation: isolate; padding-block: 56px; }
 .hp-nlpage__terms.fj-notes::before { content: ""; position: absolute; inset: 0 -56px; z-index: -1; background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 120' fill='none' stroke='%23233e35' stroke-opacity='.09'%3E%3Cpath d='M0 30 C 60 10, 120 50, 200 28 S 330 6, 400 24'/%3E%3Cpath d='M0 54 C 70 34, 130 74, 210 52 S 340 30, 400 48'/%3E%3Cpath d='M0 78 C 60 58, 140 98, 220 76 S 330 54, 400 72'/%3E%3Cpath d='M0 102 C 80 82, 130 118, 230 100 S 340 78, 400 96'/%3E%3C/svg%3E") center / 800px auto repeat; }
 .hp-nlpage__terms .fj-note { position: relative; padding: 26px 28px 24px; background: var(--hp-card); border: 1px solid var(--hp-rule); border-top: 3px solid var(--hp-ink); border-radius: 3px; }
 .hp-nlpage__terms .fj-note h3 { border-top: 0; padding-top: 0; margin-bottom: 8px; }
@@ -9694,7 +9694,7 @@ html[data-nav-mode="pinned"] { scroll-padding-top: 62px; }
 /* /contact: the form as letterhead, its message box on ruled paper, and the
    aside as a field card. */
 .hp-design .fj-letterhead { padding: 30px 32px 28px; background: var(--hp-card); border: 1px solid var(--hp-rule); border-top: 3px solid var(--hp-accent); border-radius: 3px; }
-.fj-letterhead textarea { background: var(--hp-paper) repeating-linear-gradient(to bottom, transparent 0 27px, #d6dacf 27px 28px); background-attachment: local; line-height: 28px; min-height: 196px; }
+.hp-design .fj-letterhead textarea { padding: 8px 13px; line-height: 28px; min-height: 212px; background: var(--hp-card) repeating-linear-gradient(to bottom, transparent 0 27px, #d6dacf 27px 28px) 0 0 / 100% 28px; background-origin: content-box; background-clip: content-box; background-attachment: local; }
 .hp-design .hp-contact .hp-contact__aside { padding: 26px 28px; border: 1px solid var(--hp-rule); border-radius: 3px; background: var(--hp-card); }
 .hp-contact .hp-contact__heads { margin-top: 22px; padding-top: 18px; border-top: 1px solid var(--hp-rule); }
 .hp-contact .hp-contact__note { font-size: 13px; }
@@ -9728,3 +9728,10 @@ html[data-nav-mode="pinned"] { scroll-padding-top: 62px; }
 }
 .fj-band .fj-facts dd { font-size: 28px; }
 @media (max-width: 760px) { .fj-band .fj-facts dd { font-size: 22px; } }
+
+/* The legal pages: an unnumbered index (their headings carry numbers). */
+.fj-layout--plain .fj-index a, .fj-layout--plain .fj-toc a { grid-template-columns: 1fr; }
+.hp-legal .fj-layout { padding-bottom: 80px; }
+.hp-legal .hp-pagehead__aside .fj-card { max-width: 420px; margin-left: auto; }
+@media (max-width: 1100px) { .hp-legal .hp-pagehead__aside .fj-card { margin-left: 0; } }
+@media (max-width: 760px) { .hp-legal .hp-pagehead__aside { display: none; } }
