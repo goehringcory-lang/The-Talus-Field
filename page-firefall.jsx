@@ -252,27 +252,27 @@ function FirefallPage({ go }) {
 
   return (
     <div className="page hp-tool hp-firefall">
-      <HpPageHead
-        go={go}
-        crumbs={[{ label: "Home", route: "home" }, { label: "Firefall" }]}
-        eyebrow="HORSETAIL FALL · EL CAPITAN · EVERY FEBRUARY"
-        title="The Yosemite Firefall"
-        intro="For about two weeks each February, the last light of the day can turn Horsetail Fall into a ribbon of orange on El Capitan. It is real, it is brief, and most evenings it does not happen. This page covers the whole trip: the dates, the odds, the rooms, the walk, the weather, and what to wear while you wait."
-        actions={<React.Fragment>
-          <HomeLink go={go} location="firefall_head" className="hp-button" href="#firefall-book">Find a February room <span>↓</span></HomeLink>
-          <HomeLink go={go} location="firefall_head" className="hp-link" href="#firefall-tonight">Is it on tonight? ↓</HomeLink>
-        </React.Fragment>}
-        aside={
-          <figure className="ff-hero">
-            <ResponsiveImage image="img/horsetail-fall-firefall-glow.jpg" eager
-              alt="Horsetail Fall glowing orange at sunset on the east face of El Capitan"
-              sizes="(max-width: 760px) calc(100vw - 40px), 640px" />
-            <figcaption>Photo: Barney Moss / Wikimedia Commons (CC BY 2.0)</figcaption>
-          </figure>
-        }
-      >
-        <AffiliateDisclosure />
-      </HpPageHead>
+      {/* The cover: the photograph runs the full width behind the head, with a
+          dark wash on the copy's side so the title and intro stay legible. */}
+      <div className="ff-cover">
+        <ResponsiveImage image="img/horsetail-fall-firefall-glow.jpg" eager className="ff-cover__img"
+          alt="Horsetail Fall glowing orange at sunset on the east face of El Capitan"
+          sizes="100vw" />
+        <HpPageHead
+          go={go}
+          crumbs={[{ label: "Home", route: "home" }, { label: "Firefall" }]}
+          eyebrow="HORSETAIL FALL · EL CAPITAN · EVERY FEBRUARY"
+          title="The Yosemite Firefall"
+          intro="For about two weeks each February, the last light of the day can turn Horsetail Fall into a ribbon of orange on El Capitan. It is real, it is brief, and most evenings it does not happen. This page covers the whole trip: the dates, the odds, the rooms, the walk, the weather, and what to wear while you wait."
+          actions={<React.Fragment>
+            <HomeLink go={go} location="firefall_head" className="hp-button" href="#firefall-book">Find a February room <span>↓</span></HomeLink>
+            <HomeLink go={go} location="firefall_head" className="hp-link" href="#firefall-tonight">Is it on tonight? ↓</HomeLink>
+          </React.Fragment>}
+        >
+          <AffiliateDisclosure />
+        </HpPageHead>
+        <p className="ff-cover__credit">Photo: Barney Moss / Wikimedia Commons (CC BY 2.0)</p>
+      </div>
 
       <div className="hp-wrap">
         <dl className="ff-facts">

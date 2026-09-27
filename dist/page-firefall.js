@@ -367,7 +367,15 @@ function FirefallPage({
   var toc = [["#firefall-book", "Book early"], ["#firefall-stay", "Where to stay"], ["#firefall-tonight", "Is it on tonight?"], ["#firefall-dates", "Dates and times"], ["#firefall-parking", "Parking and the walk"], ["#firefall-day", "Hour by hour"], ["#firefall-bring", "What to bring"], ["#firefall-history", "How the park has run it"], ["#firefall-photography", "Photography"], ["#firefall-faq", "Questions"]];
   return React.createElement("div", {
     className: "page hp-tool hp-firefall"
-  }, React.createElement(HpPageHead, {
+  }, React.createElement("div", {
+    className: "ff-cover"
+  }, React.createElement(ResponsiveImage, {
+    image: "img/horsetail-fall-firefall-glow.jpg",
+    eager: true,
+    className: "ff-cover__img",
+    alt: "Horsetail Fall glowing orange at sunset on the east face of El Capitan",
+    sizes: "100vw"
+  }), React.createElement(HpPageHead, {
     go: go,
     crumbs: [{
       label: "Home",
@@ -388,16 +396,10 @@ function FirefallPage({
       location: "firefall_head",
       className: "hp-link",
       href: "#firefall-tonight"
-    }, "Is it on tonight? ↓")),
-    aside: React.createElement("figure", {
-      className: "ff-hero"
-    }, React.createElement(ResponsiveImage, {
-      image: "img/horsetail-fall-firefall-glow.jpg",
-      eager: true,
-      alt: "Horsetail Fall glowing orange at sunset on the east face of El Capitan",
-      sizes: "(max-width: 760px) calc(100vw - 40px), 640px"
-    }), React.createElement("figcaption", null, "Photo: Barney Moss / Wikimedia Commons (CC BY 2.0)"))
-  }, React.createElement(AffiliateDisclosure, null)), React.createElement("div", {
+    }, "Is it on tonight? ↓"))
+  }, React.createElement(AffiliateDisclosure, null)), React.createElement("p", {
+    className: "ff-cover__credit"
+  }, "Photo: Barney Moss / Wikimedia Commons (CC BY 2.0)")), React.createElement("div", {
     className: "hp-wrap"
   }, React.createElement("dl", {
     className: "ff-facts"
