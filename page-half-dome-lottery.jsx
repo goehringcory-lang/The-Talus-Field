@@ -262,8 +262,9 @@ function HalfDomeLotteryPage({ go }) {
               three chance of winning at least once.
             </li>
             <li>
-              <strong>Avoid Saturday.</strong> Sunday is second worst. Tuesday
-              through Thursday are the least competitive days in both lotteries.
+              <strong>Avoid Saturday.</strong> Sunday is second worst. Monday
+              through Thursday draw the fewest preseason applications, 12 to 13%
+              each in 2024, and weekdays draw better odds in the daily lottery.
             </li>
             <li>
               <strong>Split groups larger than six</strong> across two
@@ -285,8 +286,8 @@ function HalfDomeLotteryPage({ go }) {
           <FjPull side cite="If you win">Sunk cost is a bad reason to be on wet granite at 45 degrees.</FjPull>
           <p>
             Download or print the confirmation email before you leave the
-            Valley. Cell service is unreliable at the subdome checkpoint, around
-            8,000 feet on the trail, and the permit is valid for a single day,
+            Valley. Cell service is unreliable at the subdome checkpoint, and the
+            permit is valid for a single day,
             midnight to 11:59 p.m., with no multi-day option for day hikers.
             Bring the photo ID that matches the name on it.
           </p>
