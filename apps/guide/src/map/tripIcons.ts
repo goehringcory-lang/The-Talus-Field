@@ -61,8 +61,16 @@ function drawIcon(kind: TripStopKind, color: string, stroke: string): ImageData 
   return ctx.getImageData(0, 0, SIZE * RATIO, SIZE * RATIO)
 }
 
-/** Register (or replace, after a scheme change) every pin image the trip layer names. */
-export function addTripIcons(map: MapLibreMap, colors: string[], stroke: string) {
+/** The program meeting points layer's pin: the program square in the accent colour. */
+export const PROGRAM_POINT_ICON = 'trip-program-point'
+
+/** Register (or replace, after a scheme change) every pin image the trip and program layers name. */
+export function addTripIcons(map: MapLibreMap, colors: string[], stroke: string, accent: string) {
+  const point = drawIcon('program', accent, stroke)
+  if (point) {
+    if (map.hasImage(PROGRAM_POINT_ICON)) map.updateImage(PROGRAM_POINT_ICON, point)
+    else map.addImage(PROGRAM_POINT_ICON, point, { pixelRatio: RATIO })
+  }
   colors.forEach((color, i) => {
     for (const kind of TRIP_STOP_KINDS) {
       const id = `trip-${kind}-${i}`

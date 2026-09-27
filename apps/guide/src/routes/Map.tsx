@@ -55,12 +55,20 @@ import { isPackCompleted } from '../offline/useDownloads'
 import { MAP_OVERVIEW_PACK_ID, MAP_PACK_IDS, mapRegionPackId } from '../offline/manifest'
 import DownloadManager from '../components/DownloadManager'
 import TripPanel from '../map/TripPanel'
+import MapCard, { type MapCardSelection } from '../map/MapCard'
+import MapSearch from '../map/MapSearch'
+import type { MapHit } from '../map/mapSearch'
+import { programPoints, type ProgramPoint } from '../map/programPoints'
+import { LENGTH_CHOICES, TRAIL_LINE_LAYER, ensureTrailLayers, loadTrails, recolorTrails, setTrailFilter, type TrailFilter } from '../map/trailsLayer'
+import { TRAIL_LABEL, trailColors } from '../map/theme'
+import { usePrograms } from '../programs/usePrograms'
+import { todayIso } from '../utils/date'
 import { RoadGraph, type Pt, type RoadGraphFile } from '../map/roadGraph'
-import { ROADS_URL } from '../map/roads.generated'
+import { ROADS_URL } from '../map/mapData.generated'
 import { buildTripDays, dayColor, tripLegsGeojson, tripStopsGeojson, type DayEnd, type TripDay, type TripLeg, type TripStop } from '../map/tripLayer'
-import { TRIP_KIND_LABEL, addTripIcons } from '../map/tripIcons'
+import { PROGRAM_POINT_ICON, TRIP_KIND_LABEL, addTripIcons } from '../map/tripIcons'
 import { TRIP_LEG_LAYERS, TRIP_PIN_LAYER, ensureTripLayers, setTripData, setTripDay, setTripFocus, setTripVisible } from '../map/tripMapLayers'
-import { DAY_FIT_PITCH, dayColors, tripCasing } from '../map/theme'
+import { DAY_FIT_PITCH, accentColor, dayColors, tripCasing } from '../map/theme'
 import { loadTrack } from '../trails/useTrack'
 import type { TravelModeT } from '../trip/schema'
 import { formatMiles, haversineMiles } from '../utils/geo'
@@ -93,6 +101,7 @@ type UrlState = {
   // that name carries stop lists on the editorial map's share links.
   planned: boolean
   day: string | null // the trip day shown alone on the My trip tab (?day=)
+  trail: string | null // the trail whose card is open (?trail=)
 }
 
 const ALL_KINDS = Object.keys(KIND_STYLES) as MapPinKind[]
@@ -123,6 +132,7 @@ function readUrlState(): UrlState {
     hike: hike && hasTrack(hike) ? hike : null,
     planned: params.get('planned') === '1',
     day: DAY_RE.test(params.get('day') ?? '') ? params.get('day') : null,
+    trail: params.get('trail') && hasTrack(params.get('trail')!) ? params.get('trail') : null,
   }
 }
 
@@ -136,6 +146,11 @@ function writeUrlState(next: UrlState) {
   if (next.hike) params.set('hike', next.hike)
   if (next.planned) params.set('planned', '1')
   if (next.tab === 'trip' && next.day) params.set('day', next.day)
+  if (next.trail) params.set('trail', next.trail)
+  // The camera rides along untouched: it is written on its own schedule (on
+  // moveend, see CAMERA below), and a state write must not drop it.
+  const cam = new URLSearchParams(window.location.search).get('cam')
+  if (cam) params.set('cam', cam)
   const qs = params.toString()
   const newUrl = '/map' + (qs ? `?${qs}` : '')
   if (newUrl !== window.location.pathname + window.location.search) {
@@ -742,6 +757,26 @@ function loadRoadGraph(): Promise<RoadGraph> {
   return roadGraphPromise
 }
 
+// CAMERA: ?cam=lng,lat,zoom,pitch,bearing, so a shared link opens on the view
+// it was shared from. Written with replaceState once the camera settles (never
+// per frame), read once at load, where it overrides the opening camera.
+type Camera = { center: [number, number]; zoom: number; pitch: number; bearing: number }
+function readCamera(): Camera | null {
+  const raw = new URLSearchParams(window.location.search).get('cam')
+  const n = raw?.split(',').map(Number)
+  if (!n || n.length !== 5 || n.some((v) => !Number.isFinite(v))) return null
+  const [lng, lat, zoom, pitch, bearing] = n
+  if (lng < EXT_W - 1 || lng > EXT_E + 1 || lat < EXT_S - 1 || lat > EXT_N + 1) return null
+  return { center: [lng, lat], zoom, pitch: Math.max(0, Math.min(pitch, MAX_PITCH)), bearing }
+}
+function writeCamera(map: maplibregl.Map) {
+  const c = map.getCenter()
+  const cam = [c.lng.toFixed(5), c.lat.toFixed(5), map.getZoom().toFixed(2), map.getPitch().toFixed(0), map.getBearing().toFixed(0)].join(',')
+  const url = new URL(window.location.href)
+  url.searchParams.set('cam', cam)
+  window.history.replaceState(window.history.state, '', url.pathname + url.search)
+}
+
 // When a day counts as running late (the trip panel's "Warn when a day runs
 // past"): sunset by default, or a clock time the reader picks. Device-only.
 const DAY_END_KEY = 'tfg.trip.dayEnd'
@@ -859,6 +894,18 @@ function buildTripLegPopup(leg: TripLeg): HTMLElement {
   return root
 }
 
+// Room for the info card (left on wide screens, bottom on phones).
+function cardPadding(map: maplibregl.Map): { top: number; bottom: number; left: number; right: number } {
+  const pad = { top: 70, bottom: 70, left: 70, right: 70 }
+  const el = document.querySelector('.map-card')
+  if (!el) return pad
+  const canvas = map.getContainer().getBoundingClientRect()
+  const r = el.getBoundingClientRect()
+  if (r.height < canvas.height * 0.7) pad.bottom = Math.min(canvas.height * 0.6, pad.bottom + Math.max(0, canvas.bottom - r.top))
+  else pad.left = Math.min(canvas.width * 0.6, pad.left + Math.max(0, r.right - canvas.left))
+  return pad
+}
+
 // Room for the trip panel when framing a day: it floats over the map's right
 // edge on wide screens and over the bottom on phones, and a frame computed
 // for the whole canvas puts half the day under it.
@@ -914,8 +961,12 @@ export default function Map() {
   const mapDownloaded = mapOffline.overview && mapOffline.regions.length === OFFLINE_REGIONS.length
   // 3D (terrain, tilted) or 2D (flat, north-up). A ref mirrors it for the
   // scheme-change rebuild, which runs from a listener, not a render.
-  const [is3d, setIs3d] = useState(true)
-  const is3dRef = useRef(true)
+  const [initialCamera] = useState(readCamera)
+  // Read once by the map's init effect, which runs once; a ref keeps it out
+  // of that effect's dependencies.
+  const initialCameraRef = useRef(initialCamera)
+  const [is3d, setIs3d] = useState(() => (initialCamera ? initialCamera.pitch > 0 : true))
+  const is3dRef = useRef(initialCamera ? initialCamera.pitch > 0 : true)
   // 'far' below MINOR_PIN_MIN_ZOOM. Drives a data attribute on the map
   // container; the CSS does the hiding, so a zoom never rebuilds a marker.
   const [zoomBand, setZoomBand] = useState<'far' | 'near'>('far')
@@ -1020,6 +1071,28 @@ export default function Map() {
     tripDaysRef.current = tripDays
   }, [tripDays])
   const [hikeLines, setHikeLines] = useState<Record<string, Pt[]>>({})
+
+  // --- Trails, program meeting points, the info card, search --------------
+  const [trailFilter, setTrailFilterState] = useState<TrailFilter>({ difficulties: null, maxMiles: null, visible: true })
+  const [trailsReady, setTrailsReady] = useState(false)
+  const [card, setCard] = useState<MapCardSelection | null>(() => {
+    const hike = initial.trail ? getHikeById(initial.trail) : undefined
+    return hike ? { kind: 'trail', hike } : null
+  })
+  const selectedTrailId = card?.kind === 'trail' ? card.hike.id : null
+  const programsState = usePrograms(plan.dates.start, plan.dates.end)
+  const programPlaces = useMemo(
+    () => programPoints(programsState.events, todayIso()),
+    [programsState.events],
+  )
+  const selectedTrailIdRef = useRef<string | null>(selectedTrailId)
+  useEffect(() => {
+    selectedTrailIdRef.current = selectedTrailId
+  }, [selectedTrailId])
+  const programPointsRef = useRef<ProgramPoint[]>([])
+  useEffect(() => {
+    programPointsRef.current = programPlaces.points
+  }, [programPlaces])
 
   // Only stops with a coord can be mapped. Secret spots (region-less Secret
   // Guide entries) join the pin set alongside core and hidden stops.
@@ -1195,8 +1268,9 @@ export default function Map() {
       hike: trackHikeId,
       planned: plannedOnly,
       day: selectedDay,
+      trail: selectedTrailId,
     })
-  }, [tab, selectedItinerary, selectedStopId, kindFilter, showSecret, trackHikeId, plannedOnly, selectedDay])
+  }, [tab, selectedItinerary, selectedStopId, kindFilter, showSecret, trackHikeId, plannedOnly, selectedDay, selectedTrailId])
 
   // Restore from URL on every router navigation: back/forward (the router
   // owns popstate) and bottom-nav "Map" re-taps that push a bare /map over a
@@ -1271,10 +1345,10 @@ export default function Map() {
       style: buildMapStyle(),
       // Over the Valley's west end looking east: El Capitan on the left,
       // Half Dome closing the view (map/theme.ts).
-      center: HOME_CAMERA.center,
-      zoom: HOME_CAMERA.zoom,
-      pitch: HOME_CAMERA.pitch,
-      bearing: HOME_CAMERA.bearing,
+      center: initialCameraRef.current?.center ?? HOME_CAMERA.center,
+      zoom: initialCameraRef.current?.zoom ?? HOME_CAMERA.zoom,
+      pitch: initialCameraRef.current?.pitch ?? HOME_CAMERA.pitch,
+      bearing: initialCameraRef.current?.bearing ?? HOME_CAMERA.bearing,
       minZoom: 7,
       maxZoom: 17,
       maxPitch: MAX_PITCH,
@@ -1359,7 +1433,7 @@ export default function Map() {
     // The trip pins are drawn images (map/tripIcons.ts); a rebuilt style drops
     // them, and the first frame after asks for them here.
     map.on('styleimagemissing', (e) => {
-      if (e.id.startsWith('trip-')) addTripIcons(map, dayColors(), tripCasing())
+      if (e.id.startsWith('trip-')) addTripIcons(map, dayColors(), tripCasing(), accentColor())
     })
 
     // Follow the reader's colour scheme (Account's theme card, or the device
@@ -1382,6 +1456,7 @@ export default function Map() {
     themeObserver.observe(document.documentElement, { attributes: true, attributeFilter: ['data-theme'] })
     const darkQuery = window.matchMedia?.('(prefers-color-scheme: dark)')
     darkQuery?.addEventListener('change', restyle)
+    map.on('moveend', () => writeCamera(map))
     const readBand = () => setZoomBand(map.getZoom() >= MINOR_PIN_MIN_ZOOM ? 'near' : 'far')
     map.on('zoom', readBand)
     readBand()
@@ -1505,7 +1580,7 @@ export default function Map() {
     const map = mapRef.current
     if (!map || !mapReady) return
     ensureTripLayers(map)
-    addTripIcons(map, colors, tripCasing())
+    addTripIcons(map, colors, tripCasing(), accentColor())
     const hikes: GeoJSON.FeatureCollection = {
       type: 'FeatureCollection',
       features: tripDays.flatMap((d) =>
@@ -1614,7 +1689,8 @@ export default function Map() {
     if (pts.length === 0) return
     const bounds = new maplibregl.LngLatBounds()
     for (const p of pts) bounds.extend(p)
-    map.fitBounds(bounds, { padding: tripPadding(map), maxZoom: 14, pitch: is3dRef.current ? DAY_FIT_PITCH : 0 })
+    // Keep the reader's bearing: fitBounds would otherwise swing north-up.
+    map.fitBounds(bounds, { padding: tripPadding(map), maxZoom: 14, pitch: is3dRef.current ? DAY_FIT_PITCH : 0, bearing: map.getBearing() })
   }, [])
 
   // "Play day": fly the day stop to stop, pausing at each. Any touch on the
@@ -1665,6 +1741,181 @@ export default function Map() {
   const moveTripItem = useCallback((itemId: string, direction: -1 | 1) => {
     moveItemInDay(itemId, direction)
   }, [])
+
+  // The trails layer: every verified day hike on the terrain, coloured by
+  // difficulty. Loaded once (the overview pack keeps it offline).
+  useEffect(() => {
+    const map = mapRef.current
+    if (!map || !mapReady) return
+    let cancelled = false
+    loadTrails().then(
+      (data) => {
+        if (cancelled) return
+        ensureTrailLayers(map, data)
+        setTrailsReady(true)
+      },
+      () => {
+        /* no trails file offline: the pins and the per-hike overlay remain */
+      },
+    )
+    return () => {
+      cancelled = true
+    }
+  }, [mapReady])
+
+  useEffect(() => {
+    const map = mapRef.current
+    if (!map || !trailsReady) return
+    recolorTrails(map)
+    setTrailFilter(map, trailFilter, selectedTrailId)
+  }, [trailsReady, trailFilter, selectedTrailId, schemeTick])
+
+  // Program meeting points: a layer of their own, the programs feed for the
+  // trip's dates grouped by where they meet.
+  useEffect(() => {
+    const map = mapRef.current
+    if (!map || !mapReady) return
+    const data: GeoJSON.FeatureCollection = {
+      type: 'FeatureCollection',
+      features: programPlaces.points.map((p) => ({
+        type: 'Feature' as const,
+        properties: { id: p.id, count: String(p.events.length) },
+        geometry: { type: 'Point' as const, coordinates: p.coord },
+      })),
+    }
+    const src = map.getSource('program-points') as maplibregl.GeoJSONSource | undefined
+    if (src) src.setData(data)
+    else {
+      map.addSource('program-points', { type: 'geojson', data })
+      map.addLayer({
+        id: 'program-points',
+        type: 'symbol',
+        source: 'program-points',
+        minzoom: 11,
+        layout: {
+          'icon-image': PROGRAM_POINT_ICON,
+          'icon-size': 0.8,
+          'icon-allow-overlap': true,
+          'text-field': ['get', 'count'],
+          'text-font': ['Noto Sans Medium'],
+          'text-size': 11,
+          'text-allow-overlap': true,
+        },
+        paint: { 'text-color': '#ffffff' },
+      })
+    }
+    map.setLayoutProperty('program-points', 'visibility', tab === 'points' ? 'visible' : 'none')
+  }, [mapReady, programPlaces, tab, schemeTick])
+
+  // Taps: a trail opens its card; a program point opens its card. A tap that
+  // lands on a trip pin or a DOM pin is theirs.
+  useEffect(() => {
+    const map = mapRef.current
+    if (!map || !mapReady || !trailsReady) return
+    const onTrail = (e: maplibregl.MapLayerMouseEvent) => {
+      const target = e.originalEvent.target
+      if (target instanceof Element && target.closest('.map-pin')) return
+      if (map.getLayer(TRIP_PIN_LAYER) && map.queryRenderedFeatures(e.point, { layers: [TRIP_PIN_LAYER, 'program-points'].filter((l) => map.getLayer(l)) }).length) return
+      const hike = getHikeById(e.features?.[0]?.properties?.id as string)
+      if (hike) setCard({ kind: 'trail', hike })
+    }
+    const onProgram = (e: maplibregl.MapLayerMouseEvent) => {
+      const id = e.features?.[0]?.properties?.id as string
+      const point = programPointsRef.current.find((p) => p.id === id)
+      if (point) setCard({ kind: 'program', point })
+    }
+    const hover = (e: maplibregl.MapLayerMouseEvent) => {
+      map.getCanvas().style.cursor = 'pointer'
+      map.setFilter('trails-selected', ['==', ['get', 'id'], (e.features?.[0]?.properties?.id as string) ?? ''])
+    }
+    const unhover = () => {
+      map.getCanvas().style.cursor = ''
+      map.setFilter('trails-selected', ['==', ['get', 'id'], selectedTrailIdRef.current ?? ''])
+    }
+    map.on('click', TRAIL_LINE_LAYER, onTrail)
+    map.on('mousemove', TRAIL_LINE_LAYER, hover)
+    map.on('mouseleave', TRAIL_LINE_LAYER, unhover)
+    map.on('click', 'program-points', onProgram)
+    return () => {
+      map.off('click', TRAIL_LINE_LAYER, onTrail)
+      map.off('mousemove', TRAIL_LINE_LAYER, hover)
+      map.off('mouseleave', TRAIL_LINE_LAYER, unhover)
+      map.off('click', 'program-points', onProgram)
+    }
+  }, [mapReady, trailsReady])
+
+  // Fly to the selected trail or point at a good 3D angle: the whole trail
+  // in frame, tilted, with room for the card.
+  const flyToCard = useCallback(() => {
+    const map = mapRef.current
+    if (!map || !card) return
+    popupRef.current?.remove()
+    if (card.kind === 'program') {
+      map.flyTo({ center: card.point.coord, zoom: 15, pitch: is3dRef.current ? 55 : 0 })
+      return
+    }
+    const line = hikeLines[card.hike.id]
+    const bounds = new maplibregl.LngLatBounds()
+    if (line) for (const p of line) bounds.extend(p)
+    else if (card.hike.coord) bounds.extend(card.hike.coord)
+    else return
+    loadTrack(card.hike.id).then(
+      (track) => {
+        for (const p of track.line) bounds.extend(p)
+        map.fitBounds(bounds, { padding: cardPadding(map), maxZoom: 15, pitch: is3dRef.current ? 55 : 0, bearing: map.getBearing() })
+      },
+      () => map.fitBounds(bounds, { padding: cardPadding(map), maxZoom: 15, pitch: is3dRef.current ? 55 : 0, bearing: map.getBearing() }),
+    )
+  }, [card, hikeLines])
+
+  const closeCard = useCallback(() => setCard(null), [])
+
+  // A search pick: go there, and open what that thing opens when tapped.
+  const pickSearch = useCallback(
+    (hit: MapHit) => {
+      const map = mapRef.current
+      if (!map) return
+      popupRef.current?.remove()
+      if (hit.kind === 'stop') {
+        // A filter could be hiding it; the reader asked for it by name.
+        setKindFilter(null)
+        setShowSecret(true)
+        setPlannedOnly(false)
+        if (tab !== 'points') setTab('points')
+        selectStop(hit.id)
+        return
+      }
+      if (hit.kind === 'trail') {
+        const hike = getHikeById(hit.id)
+        if (hike) setCard({ kind: 'trail', hike })
+        map.flyTo({ center: hit.coord, zoom: 14, pitch: is3dRef.current ? 55 : 0 })
+        return
+      }
+      if (hit.kind === 'program') {
+        const point = programPointsRef.current.find((p) => p.id === hit.id)
+        if (point) setCard({ kind: 'program', point })
+        map.flyTo({ center: hit.coord, zoom: 15, pitch: is3dRef.current ? 55 : 0 })
+        return
+      }
+      map.flyTo({ center: hit.coord, zoom: Math.max(map.getZoom(), 15), pitch: is3dRef.current ? 55 : 0 })
+      if (hit.kind === 'place') {
+        const amenity = AMENITIES.find((a) => a.id === hit.id)
+        if (amenity) {
+          const { lots, fetchedAt } = parkingRef.current
+          const fresh = fetchedAt !== null && Date.now() - Date.parse(fetchedAt) <= PARKING_HIDE_MS
+          const lot = fresh ? lotForAmenity(amenity, lots) : null
+          popupRef.current
+            ?.setLngLat(amenity.coord)
+            .setDOMContent(buildAmenityPopupContent(amenity, lot ? { lot, fetchedAt } : null))
+            .addTo(map)
+        }
+      } else if (hit.kind === 'meal') {
+        const group = MEAL_GROUPS.find((g) => g.venues.some((v) => v.id === hit.id))
+        if (group) popupRef.current?.setLngLat(group.coord).setDOMContent(buildMealPopupContent(group, openDining)).addTo(map)
+      }
+    },
+    [tab, selectStop, openDining],
+  )
 
   // Marker reconciliation — runs whenever the visible set changes.
   useEffect(() => {
@@ -2211,6 +2462,51 @@ export default function Map() {
               </ChipButton>
             )}
           </div>
+          <div className="map-filterbar__row map-trailfilter" role="group" aria-label="Filter trails">
+            <ChipButton
+              variant="filter"
+              pressed={trailFilter.visible}
+              aria-label="Show trails on the map"
+              onClick={() => setTrailFilterState((f) => ({ ...f, visible: !f.visible }))}
+            >
+              Trails
+            </ChipButton>
+            {(['easy', 'moderate', 'strenuous'] as const).map((d) => (
+              <ChipButton
+                key={d}
+                variant="filter"
+                pressed={trailFilter.difficulties?.has(d) ?? false}
+                aria-label={`${TRAIL_LABEL[d]} trails`}
+                onClick={() =>
+                  setTrailFilterState((f) => {
+                    const next = new Set(f.difficulties ?? [])
+                    if (next.has(d)) next.delete(d)
+                    else next.add(d)
+                    return { ...f, difficulties: next.size === 0 || next.size === 3 ? null : next }
+                  })
+                }
+              >
+                <span className="map-trailfilter__swatch" style={{ background: trailColors()[d] }} aria-hidden />
+                {TRAIL_LABEL[d]}
+              </ChipButton>
+            ))}
+            <label className="map-trailfilter__length">
+              <span className="sr-only">Trail length</span>
+              <select
+                value={trailFilter.maxMiles ?? ''}
+                disabled={!trailFilter.visible}
+                onChange={(e) =>
+                  setTrailFilterState((f) => ({ ...f, maxMiles: e.target.value ? Number(e.target.value) : null }))
+                }
+              >
+                {LENGTH_CHOICES.map((c) => (
+                  <option key={c.label} value={c.max ?? ''}>
+                    {c.label}
+                  </option>
+                ))}
+              </select>
+            </label>
+          </div>
           <div className="map-jump" role="group" aria-label="Go to a region">
             <span className="map-jump__label">Go to</span>
             {REGIONS.map((r) => (
@@ -2271,7 +2567,10 @@ export default function Map() {
             <button type="button" className="map-view-controls__btn" onClick={openOfflineAreas}>
               Offline areas
             </button>
+            <MapSearch programs={programPlaces.points} onPick={pickSearch} />
           </div>
+
+          {card && <MapCard selection={card} onClose={closeCard} onFlyTo={flyToCard} />}
 
           {mapReady && zoomBand === 'far' && !kindFilter && tab !== 'info' && (
             <p className="map-zoom-hint" role="note">
@@ -2566,6 +2865,31 @@ function InfoPane({
         <li>
           Tap a pin. The popup has <strong>Open stop →</strong> (the full
           write-up in this guide) and <strong>Directions →</strong>.
+        </li>
+        <li>
+          The map is 3D: drag with two fingers to tilt and turn it, tap
+          <strong> 3D</strong> for the flat, north-up map, and
+          <strong> Reset view</strong> to come back to the Valley. The search
+          box finds any stop, trail, parking lot, place to eat or program
+          meeting point by name, offline.
+        </li>
+        <li>
+          Every verified day hike is drawn on the terrain, green for easy,
+          amber for moderate, red for strenuous; the Trails chips narrow them
+          by difficulty and length. Tap one for its card, with the elevation
+          profile and <strong>Fly to</strong>.
+        </li>
+        <li>
+          Small accent squares are where the park's programs meet during your
+          trip dates, numbered by how many; tap one for what starts there and
+          when, and add any of them to your trip.
+        </li>
+        <li>
+          <strong>My trip</strong> draws your plan day by day: numbered pins in
+          the order each day runs, drives along the roads, walks dotted, the
+          Valley shuttle dash-dotted, hikes along their trails, and the
+          itinerary beside it with every time and every warning. Pick how you
+          get between two stops there; the trip board's times follow.
         </li>
         <li>
           A moss checkmark marks a stop already in your trip plan.
