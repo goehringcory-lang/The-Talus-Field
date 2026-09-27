@@ -338,7 +338,7 @@ window.ARTICLE_MONTHS = {
   // The loop only closes when Glacier Point Road is open: "When the road is
   // closed, you can still hike the Four Mile Trail to Glacier Point and back. It
   // becomes an out-and-back instead of a loop."
-  "four-mile-up-panorama-down": ["may", "jun", "jul", "aug", "sep", "oct", "nov"],
+  "four-mile-up-panorama-down": ["may", "jun", "jul", "aug", "sep", "oct"],
 
   // Season-dependent, each window quoted from the article's own body.
   // "The cables typically go up the Friday before Memorial Day and come down the
@@ -562,9 +562,9 @@ window.TRIP_MONTHS = [
     arrive: "Labor Day weekend behaves like July: be through the gate before 8 a.m. The Tuesday after it is a different park, with weekday pressure down by a third; keep the early start out of habit, not necessity.",
     note: "The exhale. Crowds ease after Labor Day, the weather usually holds, and the falls are at their lowest." },
   { key: "oct", label: "Oct", name: "October",   tioga: "open",      glacier: "open",      read: "yosemite-in-fall",
-    arrive: "The sleeper month: weekday pressure at less than half of summer's. Midweek needs no gate strategy. On a weekend, in before mid-morning keeps the Valley lots open to you.",
+    arrive: "The sleeper month: weekday pressure down about a third from summer's peak. Midweek needs no gate strategy. On a weekend, in before mid-morning keeps the Valley lots open to you.",
     note: "Fall. Cooler days, color along the Merced, quieter trails, and the first real storms possible late." },
-  { key: "nov", label: "Nov", name: "November",  tioga: "closed",    glacier: "unsettled", read: "yosemite-in-winter",
+  { key: "nov", label: "Nov", name: "November",  tioga: "closed",    glacier: "closed",    read: "yosemite-in-winter",
     arrive: "Quiet except for Thanksgiving week, which fills lodging months out. No entrance strategy needed outside that week; the days are short, so the constraint is daylight, not the gate.",
     note: "The shoulder. Short days, empty trails, the first lasting snow most years, and the high roads closing." },
   { key: "dec", label: "Dec", name: "December",  tioga: "closed",    glacier: "closed",    read: "yosemite-in-winter",

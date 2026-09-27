@@ -40,7 +40,7 @@ window.ARTICLE_BODIES["horsetail-fall-firefall"] = function HorsetailFallFirefal
       </p>
 
       <p>
-        <strong>Three: the sun angle.</strong> This is the only condition you can schedule. The window runs roughly the second week of February through the last week, with the strongest color usually in the middle of that span. Outside those dates, the sunset light either misses the fall or does not isolate it against shadowed rock.
+        <strong>Three: the sun angle.</strong> This is the only condition you can schedule. The window runs roughly from the middle of February to the end of the month, with the strongest color usually in the middle of that span. Outside those dates, the sunset light either misses the fall or does not isolate it against shadowed rock.
       </p>
 
       <p>
