@@ -39,7 +39,8 @@
 //     A Markdown image line, "![alt](url)", is the one exclamation mark
 //     allowed, because it is syntax and not tone.
 //   - Photographs (September 2026: the letter carries a lead photo under the
-//     naturalist observation and one per new article). Every image needs
+//     naturalist observation and at most two more, each under an "also in
+//     season" note about its subject). Every image needs
 //     alt text and an https URL on a host the runbook allows
 //     (thetalusfieldjournal.com, guide.thetalusfieldjournal.com, or a
 //     Wikimedia Commons /thumb/ path on upload.wikimedia.org: never a
@@ -49,9 +50,10 @@
 //     under the owner's name. `--no-image-check` skips the fetch for an
 //     offline dry run. A photo with no "Photo:" credit line under it is a
 //     warning; the runbook says no credit means no photo.
-//   - Subject under 60 characters, preheader under 90, body 400 to 700 words
-//     (captions included): warnings, not errors, since the runbook already
-//     sets those limits and a 710-word letter is not worth losing a week
+//   - Subject under 60 characters, preheader under 90, body 550 to 850 words
+//     (captions included), at most three images: warnings, not errors, since
+//     the runbook already sets those limits and an 860-word letter is not
+//     worth losing a week
 //     over.
 //   - One email per Sunday: if Buttondown already holds a draft or a
 //     scheduled email with this subject, or one scheduled for the same day,
@@ -287,11 +289,11 @@ function validate({ subject, preheader, body, publish }) {
     }
     if (!img.credit) warnings.push(`no "Photo:" credit line under the image ${img.url} (runbook: no credit, no photo)`);
   }
-  if (images.length > 5) warnings.push(`${images.length} images (runbook: a lead photo plus one per new article, never more than five)`);
+  if (images.length > 3) warnings.push(`${images.length} images (runbook: a lead photo plus at most two for the season notes, never more than three)`);
   if (subject && subject.length >= 60) warnings.push(`subject is ${subject.length} characters (runbook: under 60)`);
   if (preheader && preheader.length >= 90) warnings.push(`preheader is ${preheader.length} characters (runbook: under 90)`);
   const words = body.split(/\s+/).filter(Boolean).length;
-  if (words && (words < 400 || words > 700)) warnings.push(`body is ${words} words (runbook: 400 to 700 including captions)`);
+  if (words && (words < 550 || words > 850)) warnings.push(`body is ${words} words (runbook: 550 to 850 including captions)`);
   if (!preheader) warnings.push("no preheader; Buttondown will use the first lines of the body");
   if (!(publish instanceof Date) || Number.isNaN(publish.getTime())) errors.push(`publish date is not a date: ${publish}`);
   else if (publish.getTime() <= Date.now()) errors.push(`publish date ${publish.toISOString()} is in the past`);
