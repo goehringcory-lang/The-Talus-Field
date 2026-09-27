@@ -48,10 +48,13 @@ function NewsletterPage({
       if (window.trackNewsletterSubmit) window.trackNewsletterSubmit("newsletter_page", "newsletter-page");
       setTimeout(() => setDone(true), 0);
     }
-  }, React.createElement("input", {
+  }, React.createElement("label", {
+    htmlFor: "nl-page-email",
+    className: "fj-label"
+  }, "Your email address"), React.createElement("input", {
+    id: "nl-page-email",
     type: "email",
     name: "email",
-    "aria-label": "Email address",
     placeholder: "you@email.com",
     required: true
   }), React.createElement("input", {
@@ -65,10 +68,20 @@ function NewsletterPage({
   }), React.createElement("button", {
     type: "submit"
   }, "Subscribe →"))), React.createElement("section", {
-    className: "hp-wrap hp-section hp-nlpage__terms"
-  }, React.createElement("div", null, React.createElement("h3", null, "Cadence"), React.createElement("p", {
+    className: "hp-wrap hp-section hp-nlpage__terms fj-notes"
+  }, React.createElement("div", {
+    className: "fj-note"
+  }, React.createElement("span", {
+    className: "fj-note__stamp",
+    "aria-hidden": "true"
+  }, "Sun."), React.createElement("h2", null, "Cadence"), React.createElement("p", {
     className: "hp-sub"
-  }, "Sundays, when there is something to say. Some weeks there is not.")), React.createElement("div", null, React.createElement("h3", null, "Mail"), React.createElement("p", {
+  }, "Sundays, when there is something to say. Some weeks there is not.")), React.createElement("div", {
+    className: "fj-note"
+  }, React.createElement("span", {
+    className: "fj-note__stamp",
+    "aria-hidden": "true"
+  }, "@"), React.createElement("h2", null, "Mail"), React.createElement("p", {
     className: "hp-sub"
   }, "Used to send the dispatch. Not shared. Unsubscribe at the bottom of any letter.")), React.createElement("p", {
     className: "hp-nlpage__privacy"
@@ -137,9 +150,21 @@ function ContactPage({
     }, {
       label: "Contact"
     }],
+    className: "fj-head fj-topo",
     eyebrow: "CONTACT",
     title: "Send me a note.",
-    intro: "I read everything. I answer most things, eventually. If you are asking a trip-planning question, please include your dates and what kind of trip you are imagining; otherwise I will just write back asking."
+    intro: "I read everything. I answer most things, eventually. If you are asking a trip-planning question, please include your dates and what kind of trip you are imagining; otherwise I will just write back asking.",
+    aside: React.createElement("div", {
+      className: "fj-card hp-contact__direct"
+    }, React.createElement("p", {
+      className: "hp-eyebrow"
+    }, "DIRECT"), React.createElement("p", {
+      className: "hp-contact__mail"
+    }, React.createElement("a", {
+      href: "mailto:cory@thetalusfieldjournal.com"
+    }, "cory@thetalusfieldjournal.com")), React.createElement("p", {
+      className: "hp-contact__note"
+    }, "I check this once or twice a day. Usually faster on Mondays."))
   }), React.createElement("section", {
     className: "hp-wrap hp-section"
   }, React.createElement("div", {
@@ -150,7 +175,8 @@ function ContactPage({
   }, React.createElement("p", {
     className: "hp-eyebrow"
   }, "SENT"), React.createElement("h2", null, "Got it. Thanks."), React.createElement("p", null, "I read every note. I will write back when I can, usually within a few days.")) : React.createElement("form", {
-    onSubmit: submit
+    onSubmit: submit,
+    className: "fj-letterhead"
   }, React.createElement("div", {
     className: "hp-contact__pair"
   }, React.createElement("div", {
@@ -229,15 +255,7 @@ function ContactPage({
     disabled: sending
   }, sending ? "Sending…" : "Send →")), React.createElement("aside", {
     className: "hp-contact__aside"
-  }, React.createElement("p", {
-    className: "hp-eyebrow"
-  }, "DIRECT"), React.createElement("p", {
-    className: "hp-contact__mail"
-  }, React.createElement("a", {
-    href: "mailto:cory@thetalusfieldjournal.com"
-  }, "cory@thetalusfieldjournal.com")), React.createElement("p", {
-    className: "hp-contact__note"
-  }, "I check this once or twice a day. Usually faster on Mondays."), React.createElement("div", {
+  }, React.createElement("div", {
     className: "hp-contact__heads"
   }, React.createElement("p", {
     className: "hp-eyebrow"

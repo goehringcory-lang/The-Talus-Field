@@ -32,31 +32,37 @@ function WidgetPage({
     }, {
       label: "Widget"
     }],
+    className: "fj-head fj-topo",
     eyebrow: "FREE EMBED · FOR YOSEMITE-AREA SITES",
     title: "Put the park's conditions on your site.",
     intro: "A small box with live entrance waits and the three-day Valley forecast, for gateway hotels, rental hosts, and tour operators. One script tag, no account, no cost. Your guests check conditions on your page instead of leaving it.",
     aside: React.createElement("div", {
       className: "hp-widget__preview"
-    }, React.createElement("p", {
+    }, React.createElement("h2", {
       className: "hp-eyebrow"
     }, "WHAT YOUR VISITORS SEE"), React.createElement("div", {
       id: "talus-conditions"
     }), React.createElement("p", {
       className: "hp-terms"
     }, "Live preview. Waits refresh every few minutes from the National Park Service feed; the forecast is the National Weather Service Valley point forecast. If the box is empty, the data sources are down and the widget shows nothing rather than an error."))
-  }), React.createElement("div", {
-    className: "hp-wrap hp-reading"
-  }, React.createElement("div", {
-    className: "hp-reading__column"
-  }, React.createElement("section", {
+  }), React.createElement(FjLayout, null, React.createElement("section", {
     className: "prose"
-  }, React.createElement("h2", null, "Install it"), React.createElement("p", null, "Paste this where you want the box to appear:")), React.createElement("pre", {
-    className: "hp-widget__snippet"
-  }, React.createElement("code", null, WIDGET_SNIPPET)), React.createElement("button", {
+  }, React.createElement("h2", null, "Install it"), React.createElement("p", null, "Paste this where you want the box to appear:")), React.createElement("div", {
+    className: "fj-snippet"
+  }, React.createElement("div", {
+    className: "fj-snippet__bar"
+  }, React.createElement("span", {
+    "aria-hidden": "true"
+  }, React.createElement("i", null), React.createElement("i", null), React.createElement("i", null)), React.createElement("button", {
     type: "button",
     className: "hp-button",
     onClick: copySnippet
-  }, copied ? "Copied." : "Copy the snippet"), React.createElement("section", {
+  }, copied ? "Copied." : "Copy the snippet")), React.createElement("pre", {
+    className: "hp-widget__snippet",
+    tabIndex: 0,
+    role: "region",
+    "aria-label": "Embed snippet"
+  }, React.createElement("code", null, WIDGET_SNIPPET))), React.createElement("section", {
     className: "prose hp-widget__more"
   }, React.createElement("h2", null, "The terms, plainly"), React.createElement("p", null, "Free, indefinitely. The box carries one small credit line linking to this site's conditions page; that line stays. The styling is self-contained and will not fight your stylesheet. If the widget ever misbehaves on your site, email", " ", React.createElement("a", {
     href: "mailto:cory@thetalusfieldjournal.com"
@@ -68,7 +74,7 @@ function WidgetPage({
       e.preventDefault();
       go("partners");
     }
-  }, "group codes"), " ", "page. Buying one has nothing to do with keeping the other; the widget stays free either way.")))), React.createElement(HpLetter, {
+  }, "group codes"), " ", "page. Buying one has nothing to do with keeping the other; the widget stays free either way."))), React.createElement(HpLetter, {
     eyebrow: "SUNDAY FIELD NOTES / FREE",
     title: "Run a Yosemite-area business?",
     heading: "Run a Yosemite-area business?",
