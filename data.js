@@ -1444,6 +1444,7 @@ window.ARTICLES = [
   },
   {
     slug: "yosemite-in-june-2026",
+    aff: true,
     cat: "seasonal",
     title: "Yosemite in June 2026: Two Junes, One Month",
     dek: "Low snowpack pushed everything earlier and the reservation system is gone. The waterfalls, the road openings, the crowds, the bears, and how to plan for the June you are actually getting.",

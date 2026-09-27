@@ -18,7 +18,12 @@ window.ARTICLE_BODIES["yosemite-in-june-2026"] = function YosemiteInJune2026Body
     href: "/articles/yosemite-needs-a-reservation-system"
   }, "why the park needs a reservation system"), ". For planning your June trip, here is what you need to know:"), React.createElement("p", null, React.createElement("strong", null, "Arrive before 7 a.m."), " On any Friday through Sunday, and especially on holidays, Valley parking lots will fill early. If you arrive at 10 a.m. on a Saturday, you will not find parking at any major trailhead. I watched it happen every weekend in May."), React.createElement("p", null, React.createElement("strong", null, "Park once and use the shuttle."), " The free Valley shuttle runs two routes, the Valleywide about every 22 to 32 minutes and the shorter East Valley about every 18 to 22, and between them they stop at every major trailhead, the Visitor Center, Curry Village, and the Ahwahnee."), React.createElement("p", null, React.createElement("strong", null, "Visit midweek."), " Tuesday through Thursday, the park is far less crowded. If you have flexibility, this is the biggest improvement you can make. If you are still deciding ", React.createElement("a", {
     href: "/articles/yosemite-gateway-towns-compared"
-  }, "where to stay in or near Yosemite"), ", booking midweek dates also opens up more lodging options."), React.createElement("p", null, React.createElement("strong", null, "Go outside the Valley."), " The Valley floor absorbs roughly 90 percent of Yosemite's visitors. ", React.createElement("a", {
+  }, "where to stay in or near Yosemite"), ", booking midweek dates also opens up ", React.createElement(AvailabilityLink, {
+    destination: "Yosemite National Park",
+    list: "article_inline",
+    slug: "yosemite-in-june-2026",
+    name: "Yosemite lodging search"
+  }, "more lodging options"), "."), React.createElement("p", null, React.createElement("strong", null, "Go outside the Valley."), " The Valley floor absorbs roughly 90 percent of Yosemite's visitors. ", React.createElement("a", {
     href: "/articles/hetch-hetchy-the-other-yosemite-valley"
   }, "Hetch Hetchy"), " is fifteen minutes from the Big Oak Flat entrance and rarely crowded. Wawona and the ", React.createElement("a", {
     href: "/articles/giant-sequoias-fire-adaptation"
@@ -32,5 +37,5 @@ window.ARTICLE_BODIES["yosemite-in-june-2026"] = function YosemiteInJune2026Body
     href: "/articles/first-time-yosemite-overwhelm"
   }, "Start with the basics"), " if this is your first time. ", React.createElement("a", {
     href: "/planning"
-  }, "Plan your trip end to end"), " if you want the full framework."), React.createElement("p", null, "Plan accordingly."));
+  }, "Plan your trip end to end"), " if you want the full framework."), React.createElement("p", null, "Plan accordingly."), React.createElement(AffiliateNote, null));
 };

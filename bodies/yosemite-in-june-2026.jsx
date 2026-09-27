@@ -86,7 +86,7 @@ window.ARTICLE_BODIES["yosemite-in-june-2026"] = function YosemiteInJune2026Body
       </p>
 
       <p>
-        <strong>Visit midweek.</strong> Tuesday through Thursday, the park is far less crowded. If you have flexibility, this is the biggest improvement you can make. If you are still deciding <a href="/articles/yosemite-gateway-towns-compared">where to stay in or near Yosemite</a>, booking midweek dates also opens up more lodging options.
+        <strong>Visit midweek.</strong> Tuesday through Thursday, the park is far less crowded. If you have flexibility, this is the biggest improvement you can make. If you are still deciding <a href="/articles/yosemite-gateway-towns-compared">where to stay in or near Yosemite</a>, booking midweek dates also opens up <AvailabilityLink destination="Yosemite National Park" list="article_inline" slug="yosemite-in-june-2026" name="Yosemite lodging search">more lodging options</AvailabilityLink>.
       </p>
 
       <p>
@@ -142,6 +142,8 @@ window.ARTICLE_BODIES["yosemite-in-june-2026"] = function YosemiteInJune2026Body
       <p>
         Plan accordingly.
       </p>
+
+      <AffiliateNote />
     </>
   );
 };
