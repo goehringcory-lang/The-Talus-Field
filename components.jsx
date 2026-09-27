@@ -2650,13 +2650,14 @@ function fjSlug(text) {
   return String(text || "").toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "").slice(0, 48) || "section";
 }
 const fjPad = (n) => String(n).padStart(2, "0");
+const FJ_ROMAN = ["I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX", "X", "XI", "XII"];
 
 // The reading column with its section index. From 1100px the index is a
 // sticky rail on the left with scroll-spy; below that it is an "On this
 // page" disclosure over the text. Headings keep any id they already carry
 // (pages are deep-linked); the others get one from their text. `numbered`
 // sets the CSS-counter numeral over each heading.
-function FjLayout({ children, numbered = true, label = "On this page", className }) {
+function FjLayout({ children, numbered = true, marks = "numeric", label = "On this page", className }) {
   const colRef = React.useRef(null);
   const [items, setItems] = React.useState([]);
   const [active, setActive] = React.useState(null);
@@ -2706,7 +2707,7 @@ function FjLayout({ children, numbered = true, label = "On this page", className
       {items.map((it, i) => (
         <li key={it.id}>
           <a href={"#" + it.id} aria-current={active === it.id ? "location" : undefined} onClick={(e) => jump(e, it.id)}>
-            <span aria-hidden="true">{fjPad(i + 1)}</span>{it.label}
+            <span aria-hidden="true">{marks === "roman" ? FJ_ROMAN[i] || i + 1 : fjPad(i + 1)}</span>{it.label}
           </a>
         </li>
       ))}

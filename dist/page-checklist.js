@@ -1,51 +1,35 @@
+function CheckSheet({
+  label,
+  title,
+  children
+}) {
+  var ref = React.useRef(null);
+  var [done, setDone] = React.useState(0);
+  var [total, setTotal] = React.useState(0);
+  var count = () => {
+    var boxes = ref.current ? ref.current.querySelectorAll('input[type="checkbox"]') : [];
+    setTotal(boxes.length);
+    setDone(Array.from(boxes).filter(b => b.checked).length);
+  };
+  React.useLayoutEffect(count, []);
+  return React.createElement("section", {
+    className: "checklist-section fj-sheet" + (total && done === total ? " is-done" : ""),
+    ref: ref,
+    onChange: count
+  }, React.createElement("div", {
+    className: "fj-sheet__head"
+  }, React.createElement("p", {
+    className: "hp-eyebrow"
+  }, label), total > 0 && React.createElement("span", {
+    className: "fj-sheet__tally",
+    "aria-hidden": "true"
+  }, done, " / ", total)), React.createElement("h2", {
+    className: "fj-h fj-sheet__title"
+  }, title), children);
+}
 function ChecklistPage({
   go
 }) {
-  var sectionStyle = {
-    marginBottom: 40,
-    paddingBottom: 24,
-    borderBottom: "1px solid var(--hp-rule)"
-  };
-  var sectionLabel = {
-    fontFamily: "var(--sans)",
-    fontSize: 9,
-    textTransform: "uppercase",
-    letterSpacing: "1.7px",
-    fontWeight: 600,
-    color: "var(--hp-accent)",
-    marginBottom: 12
-  };
-  var sectionTitle = {
-    fontFamily: "var(--serif)",
-    fontSize: 38,
-    fontWeight: 400,
-    lineHeight: 1.04,
-    letterSpacing: "-1.1px",
-    marginBottom: 18
-  };
-  var item = {
-    display: "block",
-    fontFamily: "var(--sans)",
-    fontSize: 14,
-    lineHeight: 1.7,
-    color: "var(--hp-ink)",
-    padding: "9px 0",
-    borderTop: "1px solid var(--hp-rule)",
-    cursor: "pointer"
-  };
-  var cb = {
-    marginRight: 12,
-    transform: "translateY(2px)",
-    accentColor: "var(--hp-accent)"
-  };
-  var note = {
-    fontFamily: "var(--sans)",
-    fontSize: 12,
-    color: "var(--hp-muted)",
-    lineHeight: 1.7,
-    marginTop: 4,
-    marginLeft: 28
-  };
   var A = ({
     r,
     children
@@ -64,7 +48,7 @@ function ChecklistPage({
           .page-checklist { padding: 0 !important; }
           .page-checklist .hp-pagehead { padding: 0 !important; margin-bottom: 16pt !important; }
           .page-checklist h1 { font-size: 22pt !important; }
-          .page-checklist .checklist-section { page-break-inside: avoid; }
+          .page-checklist .checklist-section { break-inside: auto; page-break-inside: auto; }
           body { background: white !important; color: black !important; }
           a { color: black !important; text-decoration: none !important; }
         }
@@ -76,266 +60,228 @@ function ChecklistPage({
     }, {
       label: "First-week checklist"
     }],
+    className: "fj-head fj-topo",
     eyebrow: "THE FIRST-WEEK CHECKLIST",
     title: "Yosemite, in one printable page.",
-    intro: "A condensed action list for planning a Yosemite trip in 2026, drawn from the full archive of The Talus Field. Print it, check things off, take it in the car. The longer essays behind each line are linked throughout, and collected at the bottom."
+    intro: "A condensed action list for planning a Yosemite trip in 2026, drawn from the full archive of The Talus Field. Print it, check things off, take it in the car. The longer essays behind each line are linked throughout, and collected at the bottom.",
+    aside: React.createElement(FjCard, {
+      eyebrow: "THE CHECKLIST, IN FOUR LINES",
+      rows: [{
+        label: "Sheets",
+        value: "Seven, I to VII"
+      }, {
+        label: "Format",
+        value: "One printable page"
+      }, {
+        label: "Lines",
+        value: "Thirty-nine"
+      }, {
+        label: "Behind each line",
+        value: "A longer essay, linked"
+      }]
+    })
   }, React.createElement("p", {
     className: "hp-byline hp-checklist__tip"
-  }, "Tip: ", React.createElement("strong", null, "Cmd+P"), " (or Ctrl+P) for a clean print version.")), React.createElement("div", {
-    className: "hp-wrap hp-reading"
-  }, React.createElement("div", {
-    className: "hp-reading__column"
-  }, React.createElement("section", {
-    className: "checklist-section",
-    style: sectionStyle
-  }, React.createElement("div", {
-    style: sectionLabel
-  }, "I · Window of arrival"), React.createElement("h2", {
-    style: sectionTitle
-  }, "When to come"), React.createElement("label", {
-    style: item
+  }, "Tip: ", React.createElement("strong", null, "Cmd+P"), " (or Ctrl+P) for a clean print version.")), React.createElement(FjLayout, {
+    numbered: false,
+    marks: "roman",
+    label: "The sheets"
+  }, React.createElement(CheckSheet, {
+    label: "I · Window of arrival",
+    title: "When to come"
+  }, React.createElement("label", {
+    className: "fj-check"
   }, React.createElement("input", {
-    type: "checkbox",
-    style: cb
+    type: "checkbox"
   }), "Late May to early June for ", React.createElement(A, {
     r: "a:mist-trail-the-real-guide"
   }, "peak waterfalls"), " and ", React.createElement(A, {
     r: "a:memorial-day-skip-the-valley-go-high-2026"
   }, "high country"), " still snowy."), React.createElement("label", {
-    style: item
+    className: "fj-check"
   }, React.createElement("input", {
-    type: "checkbox",
-    style: cb
+    type: "checkbox"
   }), "September to October for low crowds and golden light."), React.createElement("label", {
-    style: item
+    className: "fj-check"
   }, React.createElement("input", {
-    type: "checkbox",
-    style: cb
+    type: "checkbox"
   }), "Avoid July and August weekends. Heat plus crowds plus possible smoke."), React.createElement("label", {
-    style: item
+    className: "fj-check"
   }, React.createElement("input", {
-    type: "checkbox",
-    style: cb
+    type: "checkbox"
   }), React.createElement(A, {
     r: "a:yosemite-during-smoke-season"
   }, "Smoke season"), " runs roughly July through October. Build a contingency."), React.createElement("label", {
-    style: item
+    className: "fj-check"
   }, React.createElement("input", {
-    type: "checkbox",
-    style: cb
+    type: "checkbox"
   }), "2026 note: ", React.createElement(A, {
     r: "a:yosemite-without-reservations-2026"
-  }, "no entrance reservation is required"), ". A standard pass is all you need.")), React.createElement("section", {
-    className: "checklist-section",
-    style: sectionStyle
-  }, React.createElement("div", {
-    style: sectionLabel
-  }, "II · What to book in advance"), React.createElement("h2", {
-    style: sectionTitle
-  }, "The non-flexible reservations"), React.createElement("label", {
-    style: item
+  }, "no entrance reservation is required"), ". A standard pass is all you need.")), React.createElement(CheckSheet, {
+    label: "II · What to book in advance",
+    title: "The non-flexible reservations"
+  }, React.createElement("label", {
+    className: "fj-check"
   }, React.createElement("input", {
-    type: "checkbox",
-    style: cb
+    type: "checkbox"
   }), "In-park lodging: 6 to 12 months ahead (Ahwahnee, Valley Lodge, Curry Village). ", React.createElement(A, {
     r: "stay"
   }, "Every option compared"), "."), React.createElement("label", {
-    style: item
+    className: "fj-check"
   }, React.createElement("input", {
-    type: "checkbox",
-    style: cb
+    type: "checkbox"
   }), React.createElement(A, {
     r: "a:yosemite-gateway-towns-compared"
   }, "Gateway-town lodging"), ": 1 to 3 months ahead for summer dates."), React.createElement("label", {
-    style: item
+    className: "fj-check"
   }, React.createElement("input", {
-    type: "checkbox",
-    style: cb
+    type: "checkbox"
   }), React.createElement(A, {
     r: "half-dome-lottery"
   }, "Half Dome preseason lottery"), ": apply March 1 to 31 on Recreation.gov."), React.createElement("label", {
-    style: item
+    className: "fj-check"
   }, React.createElement("input", {
-    type: "checkbox",
-    style: cb
+    type: "checkbox"
   }), React.createElement(A, {
     r: "a:tioga-road-opening-weekend-2026"
   }, "Tuolumne Meadows"), " campground: opens on Recreation.gov in advance; books fast."), React.createElement("label", {
-    style: item
+    className: "fj-check"
   }, React.createElement("input", {
-    type: "checkbox",
-    style: cb
+    type: "checkbox"
   }), React.createElement(A, {
     r: "a:yosemite-wilderness-permits-guide"
-  }, "Wilderness permits"), " for overnight trips: apply 24 weeks ahead via Recreation.gov.")), React.createElement("section", {
-    className: "checklist-section",
-    style: sectionStyle
-  }, React.createElement("div", {
-    style: sectionLabel
-  }, "III · What not to book"), React.createElement("h2", {
-    style: sectionTitle
-  }, "Common mistakes"), React.createElement("label", {
-    style: item
+  }, "Wilderness permits"), " for overnight trips: apply 24 weeks ahead via Recreation.gov.")), React.createElement(CheckSheet, {
+    label: "III · What not to book",
+    title: "Common mistakes"
+  }, React.createElement("label", {
+    className: "fj-check"
   }, React.createElement("input", {
-    type: "checkbox",
-    style: cb
+    type: "checkbox"
   }), "Don't lock a ", React.createElement(A, {
     r: "a:first-time-yosemite-overwhelm"
   }, "rigid day-by-day itinerary"), ". Weather and ", React.createElement(A, {
     r: "a:yosemite-during-smoke-season"
   }, "smoke"), " flex everything."), React.createElement("label", {
-    style: item
+    className: "fj-check"
   }, React.createElement("input", {
-    type: "checkbox",
-    style: cb
+    type: "checkbox"
   }), "Don't pay third-party sites for \"Yosemite passes.\" ", React.createElement(A, {
     r: "a:yosemite-without-reservations-2026"
   }, "Pay $35 at the gate"), " or use America the Beautiful. (International visitors: a $100 per-person surcharge applies in 2026.)"), React.createElement("label", {
-    style: item
+    className: "fj-check"
   }, React.createElement("input", {
-    type: "checkbox",
-    style: cb
+    type: "checkbox"
   }), "Don't book Curry Village if you want quiet sleep. It's loud."), React.createElement("label", {
-    style: item
+    className: "fj-check"
   }, React.createElement("input", {
-    type: "checkbox",
-    style: cb
+    type: "checkbox"
   }), "Don't book ", React.createElement(A, {
     r: "a:yosemite-gateway-towns-compared"
-  }, "Oakhurst"), " if you're focused on the Valley. The drive is the longest of any gateway.")), React.createElement("section", {
-    className: "checklist-section",
-    style: sectionStyle
-  }, React.createElement("div", {
-    style: sectionLabel
-  }, "IV · Gateway choice"), React.createElement("h2", {
-    style: sectionTitle
-  }, "Pick your base"), React.createElement("label", {
-    style: item
+  }, "Oakhurst"), " if you're focused on the Valley. The drive is the longest of any gateway.")), React.createElement(CheckSheet, {
+    label: "IV · Gateway choice",
+    title: "Pick your base"
+  }, React.createElement("label", {
+    className: "fj-check"
   }, React.createElement("input", {
-    type: "checkbox",
-    style: cb
+    type: "checkbox"
   }), React.createElement("strong", null, React.createElement(A, {
     r: "a:yosemite-gateway-towns-compared"
   }, "El Portal")), ": closest to the Valley (25-30 min). Limited dining, year-round access."), React.createElement("label", {
-    style: item
+    className: "fj-check"
   }, React.createElement("input", {
-    type: "checkbox",
-    style: cb
+    type: "checkbox"
   }), React.createElement("strong", null, React.createElement(A, {
     r: "a:yosemite-gateway-towns-compared"
   }, "Mariposa")), ": 45 min from the Valley. Full service, best first-timer pick."), React.createElement("label", {
-    style: item
+    className: "fj-check"
   }, React.createElement("input", {
-    type: "checkbox",
-    style: cb
+    type: "checkbox"
   }), React.createElement("strong", null, React.createElement(A, {
     r: "a:yosemite-gateway-towns-compared"
   }, "Oakhurst")), ": closest to Mariposa Grove. Long drive to the Valley."), React.createElement("label", {
-    style: item
+    className: "fj-check"
   }, React.createElement("input", {
-    type: "checkbox",
-    style: cb
+    type: "checkbox"
   }), React.createElement("strong", null, React.createElement(A, {
     r: "a:yosemite-gateway-towns-compared"
   }, "Groveland")), ": Bay Area approach, near ", React.createElement(A, {
     r: "a:hetch-hetchy-the-other-yosemite-valley"
   }, "Hetch Hetchy"), "."), React.createElement("label", {
-    style: item
+    className: "fj-check"
   }, React.createElement("input", {
-    type: "checkbox",
-    style: cb
+    type: "checkbox"
   }), React.createElement("strong", null, React.createElement(A, {
     r: "a:yosemite-gateway-towns-compared"
   }, "Lee Vining")), ": east side; ", React.createElement(A, {
     r: "a:tioga-road-opening-weekend-2026"
   }, "Tuolumne and Mono Lake"), ". Summer only."), React.createElement("label", {
-    style: item
+    className: "fj-check"
   }, React.createElement("input", {
-    type: "checkbox",
-    style: cb
+    type: "checkbox"
   }), "Checked availability on your actual dates: ", React.createElement(A, {
     r: "stay"
-  }, "the lodging board"), " has a live search per town.")), React.createElement("section", {
-    className: "checklist-section",
-    style: sectionStyle
-  }, React.createElement("div", {
-    style: sectionLabel
-  }, "V · What to pack"), React.createElement("h2", {
-    style: sectionTitle
-  }, "The car kit"), React.createElement("label", {
-    style: item
+  }, "the lodging board"), " has a live search per town.")), React.createElement(CheckSheet, {
+    label: "V · What to pack",
+    title: "The car kit"
+  }, React.createElement("label", {
+    className: "fj-check"
   }, React.createElement("input", {
-    type: "checkbox",
-    style: cb
+    type: "checkbox"
   }), "Day pack with 2 liters water plus a bottle for the trail."), React.createElement("label", {
-    style: item
+    className: "fj-check"
   }, React.createElement("input", {
-    type: "checkbox",
-    style: cb
+    type: "checkbox"
   }), "Hiking shoes with real tread. Sneakers slip on ", React.createElement(A, {
     r: "a:mist-trail-the-real-guide"
   }, "Mist Trail"), " granite."), React.createElement("label", {
-    style: item
+    className: "fj-check"
   }, React.createElement("input", {
-    type: "checkbox",
-    style: cb
+    type: "checkbox"
   }), "Layers. The ", React.createElement(A, {
     r: "a:memorial-day-skip-the-valley-go-high-2026"
   }, "daily temperature swing"), " is 30 to 40 degrees."), React.createElement("label", {
-    style: item
+    className: "fj-check"
   }, React.createElement("input", {
-    type: "checkbox",
-    style: cb
+    type: "checkbox"
   }), "Headlamp plus a spare battery."), React.createElement("label", {
-    style: item
+    className: "fj-check"
   }, React.createElement("input", {
-    type: "checkbox",
-    style: cb
+    type: "checkbox"
   }), React.createElement(A, {
     r: "a:pack-your-car-for-yosemite"
   }, "Tire chains"), ", November through April. Practice once at home."), React.createElement("label", {
-    style: item
+    className: "fj-check"
   }, React.createElement("input", {
-    type: "checkbox",
-    style: cb
+    type: "checkbox"
   }), "Cooler. ", React.createElement(A, {
     r: "a:where-to-eat-yosemite"
   }, "Valley food"), " is limited and overpriced."), React.createElement("label", {
-    style: item
+    className: "fj-check"
   }, React.createElement("input", {
-    type: "checkbox",
-    style: cb
+    type: "checkbox"
   }), "5 gallons of water (not for drinking, for radiators, rinsing, the unexpected)."), React.createElement("label", {
-    style: item
+    className: "fj-check"
   }, React.createElement("input", {
-    type: "checkbox",
-    style: cb
+    type: "checkbox"
   }), "Paper park map (cell service dies past Crane Flat)."), React.createElement("label", {
-    style: item
+    className: "fj-check"
   }, React.createElement("input", {
-    type: "checkbox",
-    style: cb
+    type: "checkbox"
   }), "Sunscreen and a wide-brim hat. UV at elevation is brutal."), React.createElement("label", {
-    style: item
+    className: "fj-check"
   }, React.createElement("input", {
-    type: "checkbox",
-    style: cb
+    type: "checkbox"
   }), "A credit or debit card for the gate (the entrance stations are cashless) or your ", React.createElement(A, {
     r: "a:yosemite-without-reservations-2026"
   }, "America the Beautiful pass"), "."), React.createElement("p", {
-    style: note
-  }, "Bear spray is not permitted in Yosemite. Don't bring it.")), React.createElement("section", {
-    className: "checklist-section",
-    style: sectionStyle
-  }, React.createElement("div", {
-    style: sectionLabel
-  }, "VI · What to skip"), React.createElement("h2", {
-    style: sectionTitle
-  }, "Don't try to do too much"), React.createElement("label", {
-    style: item
+    className: "fj-sheet__note"
+  }, "Bear spray is not permitted in Yosemite. Don't bring it.")), React.createElement(CheckSheet, {
+    label: "VI · What to skip",
+    title: "Don't try to do too much"
+  }, React.createElement("label", {
+    className: "fj-check"
   }, React.createElement("input", {
-    type: "checkbox",
-    style: cb
+    type: "checkbox"
   }), "Don't try to \"do\" Tunnel View, ", React.createElement(A, {
     r: "a:glacier-point-road-open-2026"
   }, "Glacier Point"), ", ", React.createElement(A, {
@@ -343,76 +289,58 @@ function ChecklistPage({
   }, "Mariposa Grove"), ", and ", React.createElement(A, {
     r: "a:tioga-road-opening-weekend-2026"
   }, "Tuolumne"), " in one day. Pick two."), React.createElement("label", {
-    style: item
+    className: "fj-check"
   }, React.createElement("input", {
-    type: "checkbox",
-    style: cb
+    type: "checkbox"
   }), "Don't drive Mariposa Grove to Tuolumne ", React.createElement(A, {
     r: "a:yosemite-in-one-or-two-days"
   }, "in a single day"), " if anyone in your group fatigues."), React.createElement("label", {
-    style: item
+    className: "fj-check"
   }, React.createElement("input", {
-    type: "checkbox",
-    style: cb
+    type: "checkbox"
   }), "Don't hit ", React.createElement(A, {
     r: "a:yosemite-for-non-hikers"
   }, "Lower Yosemite Fall"), " between 11 AM and 3 PM. Come early or after 5 PM."), React.createElement("label", {
-    style: item
+    className: "fj-check"
   }, React.createElement("input", {
-    type: "checkbox",
-    style: cb
+    type: "checkbox"
   }), "Don't expect to swim in the Merced before mid-July. ", React.createElement(A, {
     r: "a:mist-trail-the-real-guide"
-  }, "The current is dangerous"), ".")), React.createElement("section", {
-    className: "checklist-section",
-    style: {
-      ...sectionStyle,
-      borderBottom: "1px solid var(--hp-ink)"
-    }
-  }, React.createElement("div", {
-    style: sectionLabel
-  }, "VII · The non-negotiables"), React.createElement("h2", {
-    style: sectionTitle
-  }, "If you remember nothing else"), React.createElement("label", {
-    style: item
+  }, "The current is dangerous"), ".")), React.createElement(CheckSheet, {
+    label: "VII · The non-negotiables",
+    title: "If you remember nothing else"
+  }, React.createElement("label", {
+    className: "fj-check"
   }, React.createElement("input", {
-    type: "checkbox",
-    style: cb
+    type: "checkbox"
   }), React.createElement(A, {
     r: "a:yosemite-without-reservations-2026"
   }, "Be in the park by 6:30 AM"), " on any peak day. The day's quality is decided before 9."), React.createElement("label", {
-    style: item
+    className: "fj-check"
   }, React.createElement("input", {
-    type: "checkbox",
-    style: cb
+    type: "checkbox"
   }), "Every scented item in the ", React.createElement(A, {
     r: "a:bears-spring-emergence"
   }, "bear box"), " when you leave the car. Trunk is not bear-proof."), React.createElement("label", {
-    style: item
+    className: "fj-check"
   }, React.createElement("input", {
-    type: "checkbox",
-    style: cb
+    type: "checkbox"
   }), "Print the ", React.createElement(A, {
     r: "half-dome-lottery"
   }, "Half Dome permit"), " if you have one. No cell service at the subdome."), React.createElement("label", {
-    style: item
+    className: "fj-check"
   }, React.createElement("input", {
-    type: "checkbox",
-    style: cb
+    type: "checkbox"
   }), "Have a Plan B for every major stop. Parking, weather, and ", React.createElement(A, {
     r: "a:yosemite-during-smoke-season"
   }, "smoke"), " will kill at least one Plan A."), React.createElement("label", {
-    style: item
+    className: "fj-check"
   }, React.createElement("input", {
-    type: "checkbox",
-    style: cb
+    type: "checkbox"
   }), "Pack out everything you bring in. ", React.createElement(A, {
     r: "a:yosemite-needs-a-reservation-system"
   }, "Yosemite is loved enough already"), ".")), React.createElement("section", {
-    style: {
-      marginTop: 56,
-      marginBottom: 56
-    }
+    className: "fj-essays"
   }, React.createElement("p", {
     className: "hp-eyebrow"
   }, "THE LONGER ESSAYS"), React.createElement("p", {
@@ -461,7 +389,7 @@ function ChecklistPage({
       e.preventDefault();
       go("planning");
     }
-  }, "The full Yosemite Planning Guide")))))), React.createElement(HpGuideBand, {
+  }, "The full Yosemite Planning Guide"))))), React.createElement(HpGuideBand, {
     go: go,
     location: "checklist",
     title: "The checklist rides along.",

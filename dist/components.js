@@ -3175,9 +3175,11 @@ function fjSlug(text) {
   return String(text || "").toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "").slice(0, 48) || "section";
 }
 var fjPad = n => String(n).padStart(2, "0");
+var FJ_ROMAN = ["I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX", "X", "XI", "XII"];
 function FjLayout({
   children,
   numbered = true,
+  marks = "numeric",
   label = "On this page",
   className
 }) {
@@ -3248,7 +3250,7 @@ function FjLayout({
     onClick: e => jump(e, it.id)
   }, React.createElement("span", {
     "aria-hidden": "true"
-  }, fjPad(i + 1)), it.label))));
+  }, marks === "roman" ? FJ_ROMAN[i] || i + 1 : fjPad(i + 1)), it.label))));
   var many = items.length > 2;
   return React.createElement("div", {
     className: ["hp-wrap", "fj-layout", numbered ? "fj-numbered" : null, className].filter(Boolean).join(" ")

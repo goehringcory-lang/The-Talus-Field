@@ -56,9 +56,9 @@ pages and are not flagged.
 | 3 | `/international` | A long column. The fee table is dense. No image. | "Passport stamp": a Tunnel View head with a card of the fees and a round postmark, the eight differences as a card grid, the fee table fitted to a phone, and the index. (The price ladder was dropped: the calculator already draws that comparison.) | done |
 | 4 | `/distances` | The drive table is the only visual, and it is plain. No image. | "Road log": drive times from each town drawn as bars on one scale, a winding-road head with a field card, and the index. | done |
 | 5 | `/dates` | The fixed-windows table is long and flat. The head has no image. | "The year at a glance": a twelve-month strip plotting each fixed window as a band, a topo head, and the index. | done |
-| 6 | `/checklist` | Seven lists with small eyebrows. It reads as one long form. | "Clipboard": a numbered index rail, list sections on ruled field-card panels, and a print-friendly layout that is unchanged in print. | todo |
-| 7 | `/about` | Flat prose under a good head. The five sections look identical. | "Colophon": numbered sections, a pull quote on the name, an editor card with the facts (twenty seasons, El Portal), and a ridge divider. | todo |
-| 8 | `/consult` | Prose after a strong head. "How it works" is a plain list. | "Three steps": the steps as a numbered timeline, "what it is" and "what it is not" as a two-column contrast, and a pull quote. | todo |
+| 6 | `/checklist` | Seven lists with small eyebrows. It reads as one long form. | "Clipboard": a numbered index rail, list sections on ruled field-card panels, and a print-friendly layout that is unchanged in print. | done |
+| 7 | `/about` | Flat prose under a good head. The five sections look identical. | "Colophon": numbered sections, a pull quote on the name, an editor card with the facts (twenty seasons, El Portal), and a ridge divider. | done |
+| 8 | `/consult` | Prose after a strong head. "How it works" is a plain list. | "Three steps": the steps as a numbered timeline, "what it is" and "what it is not" as a two-column contrast, and a pull quote. | done |
 | 9 | `/partners` | 6,800px of prose. Pricing sits in a boxed card mid-page. No image. | "Front desk": a lodge photo head, a facts strip (44 stops, 57 hikes, 18 months), "how it works" as a step timeline, what guests get as a two-column ruled list, the index, and the FAQ as disclosures. | todo |
 | 10 | `/advertise` | Small text on a large empty head. The reasoning section is a paragraph wall. | "Listing card": a topo head with a card, the index, and a pull quote. | todo |
 | 11 | `/widget` | The preview card is empty when the API is down, so the head looks broken. | "Embed": a topo head, a mock preview drawn in markup as the no-data state, and the install steps numbered. | todo |
@@ -112,3 +112,19 @@ pages and are not flagged.
   edge on the year strip; a single-day window drawn as a stray sliver (now a
   dot); an empty calendar column header (now a screen-reader label); and a
   pre-existing double period after "4 p.m." and "7 a.m." in the rules list.
+- **/checklist** done. The reviewer caught: ticked boxes printing empty
+  (browsers drop backgrounds in print; the tick now prints black); the
+  "printable page" printing to five pages with half-blank sheets (now three,
+  no forced breaks, tighter print rows, head card and essay list off paper);
+  a card row repeating the print tip beside it; the index numbering 01 to 07
+  against sheets labelled I to VII (the index now takes roman marks); and a
+  completed sheet too quiet to notice.
+- **/about** done. The reviewer caught: the ridge crowding the heading after
+  it (kit-wide fix); pulls quoting the sentence beside them; no new visual
+  under 1280px (a figure strip now opens the page); a sign-off that read as a
+  pull quote; and 9px colophon type.
+- **/consult** done. The reviewer caught: cramped, misaligned steps; a step
+  split mid-sentence; the page ending with no way to book (the head's button
+  now repeats under the steps); the same three facts printed five times (the
+  strip leads with the naturalist instead of the price); tablet alignment of
+  the strip.
