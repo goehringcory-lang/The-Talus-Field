@@ -9686,9 +9686,9 @@ html[data-nav-mode="pinned"] { scroll-padding-top: 62px; }
 
 /* /newsletter: the two terms as stamped field notes on a contour band. */
 .hp-design .hp-nlpage__terms.fj-notes { position: relative; isolation: isolate; padding-block: 56px; }
-.hp-nlpage__terms.fj-notes::before { content: ""; position: absolute; inset: 0 -56px; z-index: -1; background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 120' fill='none' stroke='%23233e35' stroke-opacity='.09'%3E%3Cpath d='M0 30 C 60 10, 120 50, 200 28 S 330 6, 400 24'/%3E%3Cpath d='M0 54 C 70 34, 130 74, 210 52 S 340 30, 400 48'/%3E%3Cpath d='M0 78 C 60 58, 140 98, 220 76 S 330 54, 400 72'/%3E%3Cpath d='M0 102 C 80 82, 130 118, 230 100 S 340 78, 400 96'/%3E%3C/svg%3E") center / 800px auto repeat; }
+.hp-nlpage__terms.fj-notes::before { content: ""; position: absolute; inset: 0 max(-56px, calc((100% - 100vw) / 2)); z-index: -1; -webkit-mask-image: linear-gradient(transparent, #000 18%, #000 82%, transparent); mask-image: linear-gradient(transparent, #000 18%, #000 82%, transparent); background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 120' fill='none' stroke='%23233e35' stroke-opacity='.09'%3E%3Cpath d='M0 30 C 60 10, 120 50, 200 28 S 330 6, 400 24'/%3E%3Cpath d='M0 54 C 70 34, 130 74, 210 52 S 340 30, 400 48'/%3E%3Cpath d='M0 78 C 60 58, 140 98, 220 76 S 330 54, 400 72'/%3E%3Cpath d='M0 102 C 80 82, 130 118, 230 100 S 340 78, 400 96'/%3E%3C/svg%3E") center / 800px auto repeat; }
 .hp-nlpage__terms .fj-note { position: relative; padding: 26px 28px 24px; background: var(--hp-card); border: 1px solid var(--hp-rule); border-top: 3px solid var(--hp-ink); border-radius: 3px; }
-.hp-nlpage__terms .fj-note h3 { border-top: 0; padding-top: 0; margin-bottom: 8px; }
+.hp-nlpage__terms .fj-note h2 { font-size: 30px; border-top: 0; padding-top: 0; margin-bottom: 8px; }
 .fj-note__stamp { position: absolute; top: 18px; right: 20px; width: 52px; height: 52px; border-radius: 50%; border: 1px solid #233e3566; display: grid; place-items: center; font: italic 400 19px var(--serif); color: var(--hp-accent); transform: rotate(-10deg); }
 
 /* /contact: the form as letterhead, its message box on ruled paper, and the
@@ -9735,3 +9735,32 @@ html[data-nav-mode="pinned"] { scroll-padding-top: 62px; }
 .hp-legal .hp-pagehead__aside .fj-card { max-width: 420px; margin-left: auto; }
 @media (max-width: 1100px) { .hp-legal .hp-pagehead__aside .fj-card { margin-left: 0; } }
 @media (max-width: 760px) { .hp-legal .hp-pagehead__aside { display: none; } }
+
+/* Review pass: /partners, /advertise, /widget, /newsletter, /contact. */
+.prose .fj-ticks > li:last-child:nth-child(odd) { grid-column: 1 / -1; }
+.hp-partners .hp-terms, .hp-widget__preview .hp-terms { font-size: 11px; line-height: 1.6; }
+.fj-pitch .places-pitch p.places-pitch__lede { font-size: 15px; color: var(--ink-2); }
+.prose .fj-steps { margin-bottom: 36px; }
+.fj-qa > h3 { font: 400 23px/1.2 var(--serif); letter-spacing: -0.3px; margin: 0; padding-top: 18px; border-top: 1px solid var(--hp-rule); }
+.fj-qa > h3 + p { border-top: 0; padding-top: 6px; }
+.hp-advertise .fj-split .hp-advertise__copy .hp-sub { color: var(--ink-2); font-size: 16px; }
+.hp-advertise .places-pitch__grid li { font-size: 14.5px; color: var(--ink-2); }
+.fj-snippet__bar .hp-button:focus-visible { outline-color: var(--hp-gold); }
+.hp-widget__preview h2.hp-eyebrow { font-family: var(--sans); letter-spacing: 1.7px; line-height: 1.4; }
+.hp-design .hp-widget__preview { border-top: 3px solid var(--hp-accent); box-shadow: 0 18px 40px -28px #233e3540; }
+.hp-widget__preview #talus-conditions:empty { opacity: .7; }
+.hp-nlpage__privacy { margin-top: 20px; }
+.fj-label { display: block; margin-bottom: 6px; font: 600 11px var(--sans); color: var(--hp-ink); }
+.hp-design .hp-nlpage .nlbox__form { flex-wrap: wrap; }
+.hp-nlpage .nlbox__form .fj-label { flex-basis: 100%; }
+.hp-design .hp-nlpage__perk { border-top: 3px solid var(--hp-accent); }
+.fj-letterhead label { font-size: 12px; }
+.hp-design .hp-contact .hp-contact__aside { border-top: 3px solid var(--hp-ink); }
+@media (max-width: 900px) { .fj-split .hp-advertise__copy { margin-top: 12px; } }
+@media (max-width: 760px) {
+  .fj-snippet .hp-widget__snippet { white-space: pre-wrap; word-break: break-all; }
+  .hp-contact__pair { row-gap: 0; }
+  .hp-design .fj-letterhead textarea { min-height: 268px; }
+}
+.hp-widget__preview { min-width: 0; overflow: hidden; }
+.hp-widget__preview #talus-conditions { overflow-x: auto; }

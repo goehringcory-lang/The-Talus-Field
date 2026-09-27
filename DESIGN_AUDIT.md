@@ -59,11 +59,11 @@ pages and are not flagged.
 | 6 | `/checklist` | Seven lists with small eyebrows. It reads as one long form. | "Clipboard": a numbered index rail, list sections on ruled field-card panels, and a print-friendly layout that is unchanged in print. | done |
 | 7 | `/about` | Flat prose under a good head. The five sections look identical. | "Colophon": numbered sections, a pull quote on the name, an editor card with the facts (twenty seasons, El Portal), and a ridge divider. | done |
 | 8 | `/consult` | Prose after a strong head. "How it works" is a plain list. | "Three steps": the steps as a numbered timeline, "what it is" and "what it is not" as a two-column contrast, and a pull quote. | done |
-| 9 | `/partners` | 6,800px of prose. Pricing sits in a boxed card mid-page. No image. | "Front desk": a lodge photo head, a facts strip (44 stops, 57 hikes, 18 months), "how it works" as a step timeline, what guests get as a two-column ruled list, the index, and the FAQ as disclosures. | todo |
-| 10 | `/advertise` | Small text on a large empty head. The reasoning section is a paragraph wall. | "Listing card": a topo head with a card, the index, and a pull quote. | todo |
-| 11 | `/widget` | The preview card is empty when the API is down, so the head looks broken. | "Embed": a topo head, a mock preview drawn in markup as the no-data state, and the install steps numbered. | todo |
-| 12 | `/newsletter` | A big empty band under two thin columns ("Cadence", "Mail"). | "Postmark": the two notes as stamped field cards and a contour band. | todo |
-| 13 | `/contact` | A form and an aside with a lot of dead space. The head has no image. | "Letterhead": a topo head and the aside as a ruled card. | todo |
+| 9 | `/partners` | 6,800px of prose. Pricing sits in a boxed card mid-page. No image. | "Front desk": a lodge photo head, a facts strip (44 stops, 57 hikes, 18 months), "how it works" as a step timeline, what guests get as a two-column ruled list, the index, and the FAQ as a question-and-answer list with real headings (disclosures would have hidden the answers). | done |
+| 10 | `/advertise` | Small text on a large empty head. The reasoning section is a paragraph wall. | "Listing card": a contour head with a card and a postmark, and the reasoning set beside a ledger of what it compares. | done |
+| 11 | `/widget` | The preview card is empty when the API is down, so the head looks broken. | "Embed": a contour head, the preview's empty state drawn as an outline (no invented numbers), the snippet as a dark code card, and the index. | done |
+| 12 | `/newsletter` | A big empty band under two thin columns ("Cadence", "Mail"). | "Postmark": the two notes as stamped field cards and a contour band. | done |
+| 13 | `/contact` | A form and an aside with a lot of dead space. The head has no image. | "Letterhead": a topo head and the aside as a ruled card. | done |
 | 14 | `/privacy`, `/terms`, `/affiliate` | A long numbered legal column with no navigation. | "Legal ledger": a sticky section index (they are the pages that most need it) and a last-updated field card. | done |
 
 ## Progress log
@@ -135,3 +135,16 @@ pages and are not flagged.
   stamp that carried no fact (it now reads the revision date); and
   /affiliate's unnumbered headings getting the numbered pages' plain index
   (it now takes the kit's numerals).
+- **/partners, /advertise, /widget, /newsletter, /contact** done. The
+  reviewer caught: a 24px horizontal scroll on /newsletter at 768 and 1024
+  (the contour band's bleed), and the live widget's own forecast line
+  overflowing /widget once the API answered (now contained); the Copy
+  button's rust focus ring invisible on the dark code card (gold now); the
+  snippet clipped on phones with no keyboard scroll (it wraps, and is a
+  focusable region); an orphan tick in a two-column list; 9px fine print; the
+  pricing card's body weaker than the prose around it; Q and A questions
+  invisible to heading navigation (now h3s); the /advertise argument quieter
+  than its own summary; the preview card off-kit and its heading lost; the
+  newsletter form with no visible label and an h1-to-h3 jump; a hard-cut
+  contour band; small letterhead labels, a 50px gap between stacked fields,
+  and a textarea whose top line clipped on phones.
