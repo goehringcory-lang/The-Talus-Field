@@ -115,7 +115,7 @@ window.ARTICLE_BODIES["yosemite-in-three-to-five-days"] = function YosemiteInThr
     target: "_blank",
     rel: "noopener noreferrer"
   }, "Half Dome Permits for Day Hikers, NPS Yosemite")), React.createElement("li", null, React.createElement("a", {
-    href: "https://www.travelyosemite.com/things-to-do/biking/",
+    href: "https://www.travelyosemite.com/things-to-do/biking",
     target: "_blank",
     rel: "noopener noreferrer"
   }, "Biking in Yosemite Valley, Travel Yosemite"))));

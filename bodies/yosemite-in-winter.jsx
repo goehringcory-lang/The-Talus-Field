@@ -120,7 +120,7 @@ window.ARTICLE_BODIES["yosemite-in-winter"] = function YosemiteInWinterBody() {
       <ul style={{ fontSize: 14 }}>
         <li><a href="https://www.nps.gov/yose/planyourvisit/winter.htm" target="_blank" rel="noopener noreferrer">Winter in Yosemite, NPS Yosemite</a></li>
         <li><a href="https://www.nps.gov/yose/planyourvisit/tirechains.htm" target="_blank" rel="noopener noreferrer">Tire Chain Requirements, NPS Yosemite</a></li>
-        <li><a href="https://www.travelyosemite.com/winter/badger-pass-ski-area/" target="_blank" rel="noopener noreferrer">Badger Pass Ski Area, Travel Yosemite</a></li>
+        <li><a href="https://www.travelyosemite.com/winter/badger-pass-ski-area" target="_blank" rel="noopener noreferrer">Badger Pass Ski Area, Travel Yosemite</a></li>
         <li><a href="https://www.nps.gov/yose/planyourvisit/seasonal.htm" target="_blank" rel="noopener noreferrer">Seasonal Road Closures, NPS Yosemite</a></li>
         <li><a href="https://www.travelyosemite.com/special-offers/specials-packages" target="_blank" rel="noopener noreferrer">Specials &amp; Packages, Travel Yosemite (winter 2026-27 lodging promotions, as published September 2026)</a></li>
       </ul>

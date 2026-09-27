@@ -171,7 +171,7 @@ window.ARTICLE_BODIES["tioga-road-opening-weekend-2026"] = function TiogaRoadOpe
       </p>
 
       <p>
-        Stay on trails. Stay on boardwalks. Use the pullouts. Pack out everything you bring in. Give wildlife room (50 yards from <a href="https://yosemite.org/keep-bears-wild/" target="_blank" rel="noopener noreferrer">black bears</a> is the park standard). <a href="/articles/is-bear-spray-allowed-in-yosemite">Bear spray is not permitted in Yosemite</a>, in the car or on the trail. Store all scented items in lockers or canisters, even snacks in your car at a trailhead.
+        Stay on trails. Stay on boardwalks. Use the pullouts. Pack out everything you bring in. Give wildlife room (50 yards from <a href="https://yosemite.org/projects/keep-bears-wild-campground-food-lockers/" target="_blank" rel="noopener noreferrer">black bears</a> is the park standard). <a href="/articles/is-bear-spray-allowed-in-yosemite">Bear spray is not permitted in Yosemite</a>, in the car or on the trail. Store all scented items in lockers or canisters, even snacks in your car at a trailhead.
       </p>
 
       <p>

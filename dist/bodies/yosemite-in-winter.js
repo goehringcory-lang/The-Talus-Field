@@ -44,7 +44,7 @@ window.ARTICLE_BODIES["yosemite-in-winter"] = function YosemiteInWinterBody() {
     target: "_blank",
     rel: "noopener noreferrer"
   }, "Tire Chain Requirements, NPS Yosemite")), React.createElement("li", null, React.createElement("a", {
-    href: "https://www.travelyosemite.com/winter/badger-pass-ski-area/",
+    href: "https://www.travelyosemite.com/winter/badger-pass-ski-area",
     target: "_blank",
     rel: "noopener noreferrer"
   }, "Badger Pass Ski Area, Travel Yosemite")), React.createElement("li", null, React.createElement("a", {

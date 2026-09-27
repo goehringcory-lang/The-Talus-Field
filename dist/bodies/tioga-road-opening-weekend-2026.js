@@ -29,7 +29,7 @@ window.ARTICLE_BODIES["tioga-road-opening-weekend-2026"] = function TiogaRoadOpe
   }, "active in the meadows at first and last light"), ". Use the lockers at trailheads.")), React.createElement("p", null, "For my full lists, see the ", React.createElement("a", {
     href: "/kit"
   }, "day pack and car trip kit"), "."), React.createElement("h2", null, "A note on visiting responsibly in the early season"), React.createElement("p", null, "In early season the meadow soils are saturated, the vegetation is just emerging, and the trails are soft. A single off-trail boot print in the wrong place in May can leave a scar that will still be visible in August."), React.createElement("p", null, "Stay on trails. Stay on boardwalks. Use the pullouts. Pack out everything you bring in. Give wildlife room (50 yards from ", React.createElement("a", {
-    href: "https://yosemite.org/keep-bears-wild/",
+    href: "https://yosemite.org/projects/keep-bears-wild-campground-food-lockers/",
     target: "_blank",
     rel: "noopener noreferrer"
   }, "black bears"), " is the park standard). ", React.createElement("a", {

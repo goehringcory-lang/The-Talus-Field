@@ -368,7 +368,7 @@ window.KIT = {
           id: "carry-sleep",
           title: "Carry & sleep system",
           items: [
-            { id: "overnight-pack:pack", name: "55 to 65L pack", note: "Bigger than you need is worse than tighter than you want.", aff: window.buildPatagoniaAffiliateLink("https://www.patagonia.com/search/?q=backpacking+pack") },
+            { id: "overnight-pack:pack", name: "55 to 65L pack", note: "Bigger than you need is worse than tighter than you want.", aff: "#" },
             { id: "overnight-pack:tent", name: "Three-season tent", note: "Freestanding, two doors, under three pounds if you can afford it.", aff: "#" },
             { id: "overnight-pack:footprint", name: "Tent footprint", aff: "#" },
             { id: "overnight-pack:stakes", name: "Extra tent stakes", note: "Longer stakes hold in sandy, rocky soil.", aff: "#" },
@@ -704,7 +704,7 @@ window.KIT = {
             { id: "car-trip:camp-shoes", name: "Camp shoes or sandals", aff: "#" },
             { id: "car-trip:socks", name: "Extra socks, two pairs per day", aff: window.buildPatagoniaAffiliateLink("https://www.patagonia.com/search/?q=hiking+socks") },
             { id: "car-trip:swimwear", name: "Swimwear", note: "The Merced swimming holes are real, cold, and worth it.", aff: window.buildPatagoniaAffiliateLink("https://www.patagonia.com/search/?q=boardshorts") },
-            { id: "car-trip:underwear", name: "Underwear, plus extras", aff: window.buildPatagoniaAffiliateLink("https://www.patagonia.com/search/?q=underwear") },
+            { id: "car-trip:underwear", name: "Underwear, plus extras", aff: "#" },
             { id: "car-trip:sleepwear", name: "Dedicated sleepwear", aff: "#" },
             { id: "car-trip:gaiters", name: "Low gaiters", aff: "#" }
           ]
