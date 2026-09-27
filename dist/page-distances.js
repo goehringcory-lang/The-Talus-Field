@@ -55,6 +55,59 @@ var OTHER_LEGS = [{
   to: "Arch Rock Entrance",
   detail: "the entrance El Portal mornings start on, and the reason the town's drive is the shortest of the five."
 }];
+var DRIVE_SCALE_MAX = 120;
+function driveRange(time) {
+  var nums = String(time).match(/\d+/g) || [];
+  var lo = parseInt(nums[0], 10);
+  var hi = nums[1] ? parseInt(nums[1], 10) : null;
+  return {
+    lo,
+    hi,
+    open: /minimum/.test(time)
+  };
+}
+function DriveBars() {
+  var pct = m => `${Math.min(m, DRIVE_SCALE_MAX) / DRIVE_SCALE_MAX * 100}%`;
+  return React.createElement("figure", {
+    className: "ds-bars",
+    "aria-hidden": "true"
+  }, React.createElement("p", {
+    className: "hp-eyebrow"
+  }, "To the west end of the Valley, in minutes"), React.createElement("ol", null, TO_VALLEY.map(r => {
+    var d = driveRange(r.time);
+    var end = d.hi || DRIVE_SCALE_MAX;
+    var cls = [d.open ? "is-seasonal" : null, end / DRIVE_SCALE_MAX > 0.7 ? "is-late" : null].filter(Boolean).join(" ");
+    return React.createElement("li", {
+      key: r.town,
+      className: cls || undefined,
+      style: {
+        "--lo": pct(d.lo)
+      }
+    }, React.createElement("span", {
+      className: "ds-bars__town"
+    }, r.town, React.createElement("small", null, "Hwy ", r.highway.split(" ")[0])), React.createElement("span", {
+      className: "ds-bars__track"
+    }, React.createElement("span", {
+      className: "ds-bars__bar",
+      style: {
+        left: pct(d.lo),
+        width: `calc(${pct(end)} - ${pct(d.lo)})`
+      }
+    }), React.createElement("span", {
+      className: "ds-bars__label",
+      style: {
+        left: pct(end)
+      }
+    }, r.time)));
+  })), React.createElement("div", {
+    className: "ds-bars__scale"
+  }, [0, 30, 60, 90, 120].map(m => React.createElement("span", {
+    key: m,
+    style: {
+      left: pct(m)
+    }
+  }, m))));
+}
 function DistancesPage({
   go
 }) {
@@ -72,20 +125,51 @@ function DistancesPage({
     }, {
       label: "Distances"
     }],
+    className: "fj-head",
     eyebrow: "DRIVE TIMES",
     title: "How far is Yosemite from anywhere?",
-    intro: "Every gateway town, its drive to Yosemite Valley, the entrance it uses, and what the season does to it. The numbers are the ones from the gateway towns guide, in one table, so you can compare two towns instead of looking up one."
-  }), React.createElement("div", {
-    className: "hp-wrap hp-reading"
-  }, React.createElement("div", {
-    className: "hp-reading__column"
-  }, React.createElement("section", {
+    intro: "Every gateway town, its drive to Yosemite Valley, the entrance it uses, and what the season does to it. The numbers are the ones from the gateway towns guide, in one table, so you can compare two towns instead of looking up one.",
+    aside: React.createElement(FjPlate, {
+      image: "img/merced-canyon-road-cory-goehring.jpg",
+      alt: "Highway 140 following the Merced River canyon toward the Arch Rock entrance",
+      label: "Highway 140, the Merced canyon",
+      credit: "Photo: Cory Goehring",
+      card: React.createElement(FjCard, {
+        eyebrow: "THE DRIVE IN, IN FOUR LINES",
+        rows: [{
+          label: "Closest town",
+          value: "El Portal, 25 to 35 min"
+        }, {
+          label: "Most reliable",
+          value: "Highway 140"
+        }, {
+          label: "Seasonal",
+          value: "Lee Vining, over Tioga"
+        }, {
+          label: "To Curry Village",
+          value: "Add 15 to 20 min"
+        }]
+      })
+    })
+  }), React.createElement(FjLayout, null, React.createElement("section", {
     className: "prose"
-  }, React.createElement("h2", null, "Gateway towns to Yosemite Valley"), React.createElement("p", null, "Drive times are to the west end of Yosemite Valley in ordinary conditions. Add 15 to 20 minutes to reach Curry Village at the east end, and add more than you think for summer afternoons, when the Valley loop road is the slowest few miles of the trip."), React.createElement("table", null, React.createElement("thead", null, React.createElement("tr", null, React.createElement("th", null, "From"), React.createElement("th", null, "Miles to the Valley"), React.createElement("th", null, "Drive time"), React.createElement("th", null, "Highway"), React.createElement("th", null, "Season"), React.createElement("th", null, "Town elevation"))), React.createElement("tbody", null, TO_VALLEY.map(r => React.createElement("tr", {
+  }, React.createElement("h2", null, "Gateway towns to Yosemite Valley"), React.createElement("p", null, "Drive times are to the west end of Yosemite Valley in ordinary conditions. Add 15 to 20 minutes to reach Curry Village at the east end, and add more than you think for summer afternoons, when the Valley loop road is the slowest few miles of the trip."), React.createElement(DriveBars, null), React.createElement("div", {
+    className: "fj-tablewrap",
+    role: "region",
+    "aria-label": "Drive times from the gateway towns",
+    tabIndex: 0
+  }, React.createElement("table", null, React.createElement("thead", null, React.createElement("tr", null, React.createElement("th", null, "From"), React.createElement("th", null, "Miles to the Valley"), React.createElement("th", null, "Drive time"), React.createElement("th", null, "Highway"), React.createElement("th", null, "Season"), React.createElement("th", null, "Town elevation"))), React.createElement("tbody", null, TO_VALLEY.map(r => React.createElement("tr", {
     key: r.town
-  }, React.createElement("td", null, React.createElement("strong", null, r.town)), React.createElement("td", null, r.miles, " miles"), React.createElement("td", null, r.time), React.createElement("td", null, r.highway), React.createElement("td", null, r.season), React.createElement("td", null, r.elevation))))), React.createElement("h2", null, "The other legs worth knowing"), React.createElement("p", null, "The Valley is not the only destination, and for some trips it is not even the main one. A base that is far from the Valley can be close to the thing you actually came for."), React.createElement("ul", null, OTHER_LEGS.map(l => React.createElement("li", {
+  }, React.createElement("td", null, React.createElement("strong", null, r.town)), React.createElement("td", null, r.miles, " miles"), React.createElement("td", null, r.time), React.createElement("td", null, r.highway), React.createElement("td", null, r.season), React.createElement("td", null, r.elevation)))))), React.createElement("h2", null, "The other legs worth knowing"), React.createElement("p", null, "The Valley is not the only destination, and for some trips it is not even the main one. A base that is far from the Valley can be close to the thing you actually came for."), React.createElement("ul", {
+    className: "fj-pair"
+  }, OTHER_LEGS.map(l => React.createElement("li", {
     key: `${l.from}-${l.to}`
-  }, React.createElement("strong", null, l.from, " to ", l.to, ":"), " ", l.detail))), React.createElement("p", null, "Oakhurst is the clearest case. It is the longest drive to the Valley of the four year-round towns, and the shortest to the Mariposa Grove by a wide margin. If the sequoias are the trip, the table above is reading the wrong destination."), React.createElement("h2", null, "What the numbers do not say"), React.createElement("p", null, React.createElement("strong", null, "Season changes the answer more than distance does."), " ", "Lee Vining is 75 miles from the Valley for roughly half the year and unreachable from it for the other half, because Tioga Pass closes. Groveland is a thousand feet higher than the Highway 140 towns and gets chain controls they do not. The Highway 140 corridor through Mariposa and El Portal is the lowest and most reliable route in, and in a bad winter that matters more than any of the mileages here. The full picture is in", " ", React.createElement("a", {
+  }, React.createElement("strong", null, l.from, " to ", l.to, React.createElement("span", {
+    className: "fj-colon"
+  }, ":")), " ", l.detail))), React.createElement("p", null, "Oakhurst is the clearest case. It is the longest drive to the Valley of the four year-round towns, and the shortest to the Mariposa Grove by a wide margin. If the sequoias are the trip, the table above is reading the wrong destination."), React.createElement("h2", null, "What the numbers do not say"), React.createElement(FjPull, {
+    side: true,
+    cite: "What the numbers do not say"
+  }, "A day that crosses the park is a driving day, which is the thing most itineraries get wrong."), React.createElement("p", null, React.createElement("strong", null, "Season changes the answer more than distance does."), " ", "Lee Vining is 75 miles from the Valley for roughly half the year and unreachable from it for the other half, because Tioga Pass closes. Groveland is a thousand feet higher than the Highway 140 towns and gets chain controls they do not. The Highway 140 corridor through Mariposa and El Portal is the lowest and most reliable route in, and in a bad winter that matters more than any of the mileages here. The full picture is in", " ", React.createElement("a", {
     href: "/tioga-opening"
   }, "the Tioga Road opening page"), " and in", " ", React.createElement("a", {
     href: "/conditions",
@@ -99,7 +183,7 @@ function DistancesPage({
       e.preventDefault();
       go("conditions");
     }
-  }, "the conditions page"), "."), React.createElement("p", null, React.createElement("strong", null, "Once you are in, you are still driving."), " The Valley to Glacier Point is roughly an hour when the road is open, the Valley to Tuolumne Meadows is an hour and a half, and Hetch Hetchy is a dead end that serves no through route. A day that crosses the park is a driving day, which is the thing most itineraries get wrong."), React.createElement("h2", null, "So which town?"), React.createElement("p", null, "Distance is one input and usually not the deciding one. What a town has, what it costs, what it is like in winter, and which part of the park it opens onto matter more than fifteen minutes of highway. That argument is the whole of", " ", React.createElement("a", {
+  }, "the conditions page"), "."), React.createElement("p", null, React.createElement("strong", null, "Once you are in, you are still driving."), " The Valley to Glacier Point is roughly an hour when the road is open, the Valley to Tuolumne Meadows is an hour and a half, and Hetch Hetchy is a dead end that serves no through route. A day that crosses the park is a driving day, which is the thing most itineraries get wrong."), React.createElement(FjRidge, null), React.createElement("h2", null, "So which town?"), React.createElement("p", null, "Distance is one input and usually not the deciding one. What a town has, what it costs, what it is like in winter, and which part of the park it opens onto matter more than fifteen minutes of highway. That argument is the whole of", " ", React.createElement("a", {
     href: "/articles/yosemite-gateway-towns-compared",
     onClick: e => goArticle(e, "yosemite-gateway-towns-compared")
   }, "the gateway towns comparison"), ", which is where these numbers come from. The lodging itself is on", " ", React.createElement("a", {
@@ -121,7 +205,7 @@ function DistancesPage({
     list: "page_distances",
     slug: "distances",
     cta: "Search lodging by town →"
-  }))), React.createElement(HpGuideBand, {
+  })), React.createElement(HpGuideBand, {
     go: go,
     location: "distances",
     title: "The drive is only the first part",

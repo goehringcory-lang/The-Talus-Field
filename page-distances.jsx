@@ -1,4 +1,4 @@
-/* global React, HpPageHead, LodgingCta, HpGuideBand, HpLetter */
+/* global React, HpPageHead, LodgingCta, HpGuideBand, HpLetter, FjLayout, FjPull, FjRidge, FjCard, FjPlate */
 
 // =============================================================================
 // DISTANCES — `/distances` route. The drive-time matrix.
@@ -44,6 +44,44 @@ const OTHER_LEGS = [
   { from: "El Portal", to: "Arch Rock Entrance", detail: "the entrance El Portal mornings start on, and the reason the town's drive is the shortest of the five." },
 ];
 
+// The table's drive times drawn on one scale: each town a bar from the short
+// end of its range to the long end, so the comparison the page exists for is
+// visible at a glance. Parsed from TO_VALLEY's own strings ("25 to 35 min",
+// "90 min minimum"), so it cannot drift from the table, which stays the
+// accessible record; this figure is hidden from assistive tech.
+const DRIVE_SCALE_MAX = 120; // minutes
+function driveRange(time) {
+  const nums = String(time).match(/\d+/g) || [];
+  const lo = parseInt(nums[0], 10);
+  const hi = nums[1] ? parseInt(nums[1], 10) : null;
+  return { lo, hi, open: /minimum/.test(time) };
+}
+function DriveBars() {
+  const pct = (m) => `${(Math.min(m, DRIVE_SCALE_MAX) / DRIVE_SCALE_MAX) * 100}%`;
+  return (
+    <figure className="ds-bars" aria-hidden="true">
+      <p className="hp-eyebrow">To the west end of the Valley, in minutes</p>
+      <ol>
+        {TO_VALLEY.map((r) => {
+          const d = driveRange(r.time);
+          const end = d.hi || DRIVE_SCALE_MAX;
+          const cls = [d.open ? "is-seasonal" : null, end / DRIVE_SCALE_MAX > 0.7 ? "is-late" : null].filter(Boolean).join(" ");
+          return (
+            <li key={r.town} className={cls || undefined} style={{ "--lo": pct(d.lo) }}>
+              <span className="ds-bars__town">{r.town}<small>Hwy {r.highway.split(" ")[0]}</small></span>
+              <span className="ds-bars__track">
+                <span className="ds-bars__bar" style={{ left: pct(d.lo), width: `calc(${pct(end)} - ${pct(d.lo)})` }} />
+                <span className="ds-bars__label" style={{ left: pct(end) }}>{r.time}</span>
+              </span>
+            </li>
+          );
+        })}
+      </ol>
+      <div className="ds-bars__scale">{[0, 30, 60, 90, 120].map((m) => <span key={m} style={{ left: pct(m) }}>{m}</span>)}</div>
+    </figure>
+  );
+}
+
 function DistancesPage({ go }) {
   const goArticle = (e, slug) => {
     e.preventDefault();
@@ -55,14 +93,33 @@ function DistancesPage({ go }) {
       <HpPageHead
         go={go}
         crumbs={[{ label: "Home", route: "home" }, { label: "Distances" }]}
+        className="fj-head"
         eyebrow="DRIVE TIMES"
         title="How far is Yosemite from anywhere?"
         intro="Every gateway town, its drive to Yosemite Valley, the entrance it uses, and what the season does to it. The numbers are the ones from the gateway towns guide, in one table, so you can compare two towns instead of looking up one."
+        aside={
+          <FjPlate
+            image="img/merced-canyon-road-cory-goehring.jpg"
+            alt="Highway 140 following the Merced River canyon toward the Arch Rock entrance"
+            label="Highway 140, the Merced canyon"
+            credit="Photo: Cory Goehring"
+            card={
+              <FjCard
+                eyebrow="THE DRIVE IN, IN FOUR LINES"
+                rows={[
+                  { label: "Closest town", value: "El Portal, 25 to 35 min" },
+                  { label: "Most reliable", value: "Highway 140" },
+                  { label: "Seasonal", value: "Lee Vining, over Tioga" },
+                  { label: "To Curry Village", value: "Add 15 to 20 min" },
+                ]}
+              />
+            }
+          />
+        }
       />
 
 
-      <div className="hp-wrap hp-reading">
-        <div className="hp-reading__column">
+      <FjLayout>
         <section className="prose">
           <h2>Gateway towns to Yosemite Valley</h2>
           <p>
@@ -71,6 +128,8 @@ function DistancesPage({ go }) {
             end, and add more than you think for summer afternoons, when the
             Valley loop road is the slowest few miles of the trip.
           </p>
+          <DriveBars />
+          <div className="fj-tablewrap" role="region" aria-label="Drive times from the gateway towns" tabIndex={0}>
           <table>
             <thead>
               <tr>
@@ -95,6 +154,7 @@ function DistancesPage({ go }) {
               ))}
             </tbody>
           </table>
+          </div>
 
           <h2>The other legs worth knowing</h2>
           <p>
@@ -102,10 +162,10 @@ function DistancesPage({ go }) {
             even the main one. A base that is far from the Valley can be close to
             the thing you actually came for.
           </p>
-          <ul>
+          <ul className="fj-pair">
             {OTHER_LEGS.map((l) => (
               <li key={`${l.from}-${l.to}`}>
-                <strong>{l.from} to {l.to}:</strong> {l.detail}
+                <strong>{l.from} to {l.to}<span className="fj-colon">:</span></strong> {l.detail}
               </li>
             ))}
           </ul>
@@ -117,6 +177,7 @@ function DistancesPage({ go }) {
           </p>
 
           <h2>What the numbers do not say</h2>
+          <FjPull side cite="What the numbers do not say">A day that crosses the park is a driving day, which is the thing most itineraries get wrong.</FjPull>
           <p>
             <strong>Season changes the answer more than distance does.</strong>{" "}
             Lee Vining is 75 miles from the Valley for roughly half the year and
@@ -143,6 +204,7 @@ function DistancesPage({ go }) {
             driving day, which is the thing most itineraries get wrong.
           </p>
 
+          <FjRidge />
           <h2>So which town?</h2>
           <p>
             Distance is one input and usually not the deciding one. What a town
@@ -171,9 +233,7 @@ function DistancesPage({ go }) {
           slug="distances"
           cta="Search lodging by town →"
         />
-
-        </div>
-      </div>
+      </FjLayout>
 
       <HpGuideBand
         go={go}

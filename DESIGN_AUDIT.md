@@ -54,7 +54,7 @@ pages and are not flagged.
 | 1 | `/half-dome-lottery` | 8,700px of prose in one 680px column, and the one data table is a single dense row. The head has no image. It is the heaviest page on the site. | "The permit ledger": a split head with the Half Dome photo and a field card of the season's key facts, the numbered section index, the odds drawn as bars (preseason and daily, weekday and weekend), the two lotteries as side-by-side cards, a pull quote, and a ridge divider before the fine print. | done |
 | 2 | `/tioga-opening` | A long prose column, and the opening-date table has two rows. No image. | "The snow line": a Tuolumne photo head and a field card, a year strip showing where the 2026 opening and the long-term average fall between May and June, the section index, and the four self-sufficiency rules as a numbered card grid. | done |
 | 3 | `/international` | A long column. The fee table is dense. No image. | "Passport stamp": a Tunnel View head with a card of the fees and a round postmark, the eight differences as a card grid, the fee table fitted to a phone, and the index. (The price ladder was dropped: the calculator already draws that comparison.) | done |
-| 4 | `/distances` | The drive table is the only visual, and it is plain. No image. | "Road log": drive times from each town drawn as bars on one scale, a winding-road head with a field card, and the index. | todo |
+| 4 | `/distances` | The drive table is the only visual, and it is plain. No image. | "Road log": drive times from each town drawn as bars on one scale, a winding-road head with a field card, and the index. | done |
 | 5 | `/dates` | The fixed-windows table is long and flat. The head has no image. | "The year at a glance": a twelve-month strip plotting each fixed window as a band, a topo head, and the index. | todo |
 | 6 | `/checklist` | Seven lists with small eyebrows. It reads as one long form. | "Clipboard": a numbered index rail, list sections on ruled field-card panels, and a print-friendly layout that is unchanged in print. | todo |
 | 7 | `/about` | Flat prose under a good head. The five sections look identical. | "Colophon": numbered sections, a pull quote on the name, an editor card with the facts (twenty seasons, El Portal), and a ridge divider. | todo |
@@ -97,3 +97,10 @@ pages and are not flagged.
   (the three-column table now fits a phone outright); card numerals on an
   unordered list; the calculator note cramped under its results; a cramped
   split head at 768 (heads now stack below 1100px).
+- **/distances** done. The reviewer caught: a gridline cutting through a
+  chart label; the Lee Vining bar reading as "90 to 120" (it now fades out,
+  labelled before the bar); phone labels running past the track (late bars
+  label on their left); a pull quote repeating the bold lead beside it;
+  colons left on the card titles; units wrapping in the table; tick labels
+  off their gridlines; 8px chart text; and the tablet head card stretched
+  full width (now a 520px card overlapping the photo, caption beside it).
