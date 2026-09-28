@@ -8992,6 +8992,54 @@ html[data-nav-mode="pinned"] { scroll-padding-top: 62px; }
   .guide-dayone__credits { margin-top: -12px; }
 }
 
+/* /guide: "The whole park in 3D", the pane under the hero (September 2026).
+   The flythrough leads at full container width, then one laptop capture and
+   two phone captures of the shipping map, then the six-point "how it works".
+   The film is 16:9 and its box is reserved by width/height, so nothing moves
+   when the poster or the first frame arrives. */
+.guide-map3d { padding: 88px 0 72px; display: grid; gap: 40px; border-bottom: 1px solid var(--hp-rule); }
+.guide-map3d__head { max-width: 820px; }
+.guide-map3d__head h2 { font-family: var(--serif); font-size: clamp(38px, 4.6vw, 62px); line-height: 1.03; font-weight: 500; letter-spacing: -0.01em; margin: 14px 0 18px; color: var(--hp-ink); }
+.guide-map3d__head h2 em { color: var(--hp-accent); }
+.guide-map3d__dek { font-family: var(--serif); font-size: 21px; line-height: 1.45; color: #3d5249; margin: 0; }
+.guide-map3d__film { margin: 0; display: grid; gap: 12px; }
+.guide-map3d__video { display: block; width: 100%; height: auto; aspect-ratio: 16 / 9; background: #e7e3d3; border: 1px solid var(--hp-rule); border-radius: 6px; }
+.guide-map3d__film figcaption { display: flex; justify-content: space-between; gap: 24px; font-family: var(--sans); font-size: 13px; color: var(--hp-muted); }
+.guide-map3d__film figcaption b { font-weight: 600; letter-spacing: 0.14em; color: var(--hp-ink); margin-right: 8px; }
+.guide-map3d__shots { display: grid; grid-template-columns: minmax(0, 2.6fr) minmax(0, 1fr) minmax(0, 1fr); gap: 24px; align-items: start; }
+.guide-map3d__shot { margin: 0; display: grid; gap: 12px; }
+.guide-map3d__frame { border: 1px solid var(--hp-rule); border-radius: 6px; overflow: hidden; background: #efe8d6; }
+.guide-map3d__shot:not(.is-wide) .guide-map3d__frame { border-radius: 22px; border: 6px solid var(--hp-ink); }
+.guide-map3d__frame img { display: block; width: 100%; height: auto; }
+.guide-map3d__shot figcaption { font-family: var(--sans); font-size: 13.5px; line-height: 1.5; color: var(--hp-muted); }
+.guide-map3d__howtitle { font-family: var(--sans); font-size: 13px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: var(--hp-ink); margin: 0 0 18px; padding-bottom: 12px; border-bottom: 1px solid var(--hp-ink); }
+.guide-map3d__points { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 28px 40px; counter-reset: map3d; }
+.guide-map3d__points li { counter-increment: map3d; }
+.guide-map3d__points h4 { font-family: var(--serif); font-size: 22px; line-height: 1.2; font-weight: 500; color: var(--hp-ink); margin: 0 0 8px; }
+.guide-map3d__points h4::before { content: counter(map3d, decimal-leading-zero); display: block; margin-bottom: 6px; font-family: var(--sans); font-size: 11px; font-weight: 600; letter-spacing: 0.14em; color: var(--hp-accent); }
+.guide-map3d__points p { font-family: var(--serif); font-size: 17px; line-height: 1.5; color: #3d5249; margin: 0; }
+.guide-map3d__close { display: flex; justify-content: space-between; align-items: center; gap: 40px; }
+.guide-map3d__close > p { margin: 0; max-width: 760px; font-family: var(--serif); font-size: 21px; line-height: 1.4; color: #3d5249; }
+.guide-map3d__cta { display: flex; align-items: center; gap: 20px; flex-wrap: wrap; }
+.guide-map3d__cta a { font-family: var(--sans); font-size: 15px; font-weight: 500; color: var(--hp-accent); }
+@media (max-width: 1000px) {
+  .guide-map3d__shots { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .guide-map3d__shot.is-wide { grid-column: 1 / -1; }
+  .guide-map3d__points { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .guide-map3d__close { flex-direction: column; align-items: flex-start; gap: 20px; }
+}
+@media (max-width: 760px) {
+  .guide-map3d { padding: 56px 0 48px; gap: 28px; }
+  .guide-map3d__dek, .guide-map3d__close > p { font-size: 19px; }
+  .guide-map3d__film { margin: 0 -16px; }
+  .guide-map3d__video { border-radius: 0; border-left: 0; border-right: 0; }
+  .guide-map3d__film figcaption { padding: 0 16px; flex-direction: column; gap: 4px; font-size: 12px; }
+  .guide-map3d__shots { gap: 16px; }
+  .guide-map3d__shot:not(.is-wide) .guide-map3d__frame { border-width: 4px; border-radius: 16px; }
+  .guide-map3d__shot figcaption { font-size: 12.5px; }
+  .guide-map3d__points { grid-template-columns: 1fr; gap: 22px; }
+}
+
 /* ── /firefall (page-firefall.jsx): the whole February trip ────────────────
    The September 2026 redesign. Sections alternate paper and the `.ff-band`
    tint, each on the design's container. Two rules, as on /stay: `.ff-book`,
