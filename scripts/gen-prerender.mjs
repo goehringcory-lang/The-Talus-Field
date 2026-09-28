@@ -8,7 +8,8 @@
 //
 // Bodies are plain React + HTML and register themselves on
 // window.ARTICLE_BODIES[slug]. The only external components any body references
-// are Placeholder / MotifMountains|Sun|Trees / ResponsiveImage; those are stubbed
+// are Placeholder / MotifMountains|Sun|Trees / ResponsiveImage (plus the
+// affiliate units, NatureNotesFilm and EventIcon below); those are stubbed
 // below with markup faithful enough for crawlers (image alt text + credit).
 //
 // IMPORTANT: keep the stubs below in sync with components.jsx. `--check` (wired
@@ -342,6 +343,13 @@ function NatureNotesFilm(props) {
     React.createElement("figcaption", { key: "f", className: "nn-film__cap" }, cap));
 }
 
+// Event-page line icon (EventIcon in components.jsx). Decorative and
+// aria-hidden in the live component, and the fragment is replaced within the
+// first second, so the crawler copy carries no icon at all.
+function EventIcon() {
+  return null;
+}
+
 function renderBody(slug, src) {
   // Classic runtime so JSX compiles to React.createElement / React.Fragment that
   // resolve against the `React` global we put in the vm sandbox (mirrors the
@@ -368,6 +376,7 @@ function renderBody(slug, src) {
     AffLink,
     RecommendedCard,
     NatureNotesFilm,
+    EventIcon,
   };
   vm.createContext(sandbox);
   vm.runInContext(code, sandbox, { filename: `${slug}.jsx` });

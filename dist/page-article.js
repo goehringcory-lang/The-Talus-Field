@@ -29,6 +29,7 @@ function largestSource(img) {
   }
   return best || img.currentSrc || img.src;
 }
+var ARTICLE_SIZES_COVER = "100vw";
 function formatIsoDate(iso) {
   var d = new Date(iso + "T00:00:00");
   if (Number.isNaN(d.getTime())) return null;
@@ -91,6 +92,32 @@ function ArticlePage({
       setToc([]);
       return;
     }
+    if (article && article.feature) {
+      setToc([]);
+      var prose = proseRef.current;
+      if (!prose) return;
+      var onClick = e => {
+        var a = e.target.closest && e.target.closest('.ff-toc a[href^="#"]');
+        if (!a || e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
+        var target = document.getElementById(a.getAttribute("href").slice(1));
+        if (!target) return;
+        e.preventDefault();
+        var reduce = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+        target.scrollIntoView({
+          behavior: reduce ? "auto" : "smooth",
+          block: "start"
+        });
+        target.focus({
+          preventScroll: true
+        });
+        if (window.history && window.history.replaceState) window.history.replaceState(null, "", "#" + target.id);
+        if (window.track) window.track("toc_jump", {
+          slug
+        });
+      };
+      prose.addEventListener("click", onClick);
+      return () => prose.removeEventListener("click", onClick);
+    }
     var raf = requestAnimationFrame(() => {
       var prose = proseRef.current;
       if (!prose) return;
@@ -133,7 +160,7 @@ function ArticlePage({
     };
   }, [slug]);
   React.useEffect(() => {
-    if (article && article.image) preloadResponsive(article.image, SIZES_HERO);
+    if (article && article.image) preloadResponsive(article.image, article.feature ? ARTICLE_SIZES_COVER : SIZES_HERO);
   }, [slug]);
   var articleRef = React.useRef(null);
   var [lightbox, setLightbox] = React.useState(null);
@@ -269,8 +296,12 @@ function ArticlePage({
   var relatedSameCat = related.length > 0 && related.every(a => a.cat === article.cat);
   var upper = t => (t || "").toUpperCase();
   var tripIntent = article.cat === "trails" || article.cat === "planning" || article.cat === "seasonal";
+  var feature = article.feature || null;
+  var bodyEl = bodyState === "ready" && Body ? React.createElement(Body, null) : bodyState === "loading" ? React.createElement(BodySkeleton, null) : React.createElement("p", {
+    className: "hp-article__soon"
+  }, "This article is coming soon.");
   return React.createElement("div", {
-    className: "page hp-article"
+    className: "page hp-article" + (feature ? " hp-event hp-article--feature" : "")
   }, React.createElement("div", {
     className: "readbar",
     "aria-hidden": "true"
@@ -284,93 +315,124 @@ function ArticlePage({
     onClose: closeLightbox
   }), React.createElement("article", {
     ref: articleRef
-  }, React.createElement(HpPageHead, {
-    as: "header",
-    go: go,
-    className: "hp-article__head",
-    crumbs: [{
-      label: "Home",
-      route: "home"
-    }, {
-      label: cat.label,
-      route: `cat:${cat.slug}`
-    }, {
-      label: article.title
-    }],
-    eyebrow: React.createElement("a", {
-      href: `/section/${cat.slug}`,
+  }, (() => {
+    var head = React.createElement(HpPageHead, {
+      as: feature ? "div" : "header",
+      go: go,
+      className: "hp-article__head",
+      crumbs: [{
+        label: "Home",
+        route: "home"
+      }, {
+        label: cat.label,
+        route: `cat:${cat.slug}`
+      }, {
+        label: article.title
+      }],
+      eyebrow: feature && feature.eyebrow ? feature.eyebrow : React.createElement("a", {
+        href: `/section/${cat.slug}`,
+        onClick: e => {
+          e.preventDefault();
+          go(`cat:${cat.slug}`);
+        }
+      }, upper(cat.label)),
+      title: article.title,
+      intro: article.dek,
+      actions: feature && feature.actions ? React.createElement(React.Fragment, null, feature.actions.map(([href, label], i) => React.createElement(HomeLink, {
+        key: href,
+        go: go,
+        location: "article_cover",
+        href: href,
+        className: i === 0 ? "hp-button" : "hp-link"
+      }, label, " ", i === 0 ? React.createElement("span", null, "↓") : "↓"))) : null,
+      aside: feature ? null : React.createElement("div", {
+        className: "hp-article__plate"
+      }, React.createElement(Placeholder, {
+        caption: article.placeholder,
+        image: article.image,
+        credit: article.credit,
+        tag: "PLATE I",
+        size: "lg",
+        eager: true,
+        motif: React.createElement(MotifMountains, null)
+      }))
+    }, React.createElement("address", {
+      className: "hp-article__byline"
+    }, React.createElement("span", {
+      className: "hp-article__avatar",
+      "aria-hidden": "true"
+    }, "CG"), React.createElement("span", null, React.createElement("span", {
+      className: "hp-article__author"
+    }, "By ", React.createElement("a", {
+      href: "/about",
+      rel: "author",
       onClick: e => {
         e.preventDefault();
-        go(`cat:${cat.slug}`);
+        go("about");
       }
-    }, upper(cat.label)),
-    title: article.title,
-    intro: article.dek,
-    aside: React.createElement("div", {
-      className: "hp-article__plate"
-    }, React.createElement(Placeholder, {
-      caption: article.placeholder,
+    }, window.SITE.authorName)), React.createElement("span", {
+      className: "hp-article__bio"
+    }, window.SITE.authorBio)), React.createElement("span", {
+      className: "hp-article__dates"
+    }, React.createElement("time", {
+      dateTime: article.isoModified || article.isoDate
+    }, article.date), React.createElement("span", null, article.read, " read"), article.isoModified && article.isoModified !== article.isoDate && formatIsoDate(article.isoModified) && React.createElement("span", null, "Updated ", formatIsoDate(article.isoModified)))), article.aff && window.AffiliateDisclosure && React.createElement(window.AffiliateDisclosure, null, "This article has affiliate links. If you buy or book through one, The Talus Field may earn a commission at no extra cost to you, and the recommendations do not change for it."), (() => {
+      var series = window.planningSeriesFor && window.planningSeriesFor(slug);
+      if (!series) return null;
+      var prev = series.prev ? window.findArticle(series.prev) : null;
+      var next = series.next ? window.findArticle(series.next) : null;
+      var seriesNav = (a, label) => React.createElement("a", {
+        href: `/articles/${a.slug}`,
+        title: a.title,
+        onClick: e => {
+          e.preventDefault();
+          if (window.track) window.track("series_band_click", {
+            from: slug,
+            to: a.slug
+          });
+          go(`a:${a.slug}`);
+        }
+      }, label);
+      return React.createElement("div", {
+        className: "series-band"
+      }, React.createElement("span", null, "Part of", " ", React.createElement("a", {
+        href: "/planning",
+        onClick: e => {
+          e.preventDefault();
+          if (window.track) window.track("series_band_click", {
+            from: slug,
+            to: "planning-hub"
+          });
+          go("planning");
+        }
+      }, "the Yosemite Planning Guide"), " · ", series.part), (prev || next) && React.createElement("span", {
+        className: "series-band__nav"
+      }, prev && seriesNav(prev, "← Previous"), next && seriesNav(next, "Next →")));
+    })());
+    if (!feature) return head;
+    return React.createElement("header", {
+      className: "ff-cover hp-article__cover",
+      style: feature.focus ? {
+        "--cover-focus": feature.focus
+      } : undefined
+    }, React.createElement(ResponsiveImage, {
       image: article.image,
-      credit: article.credit,
-      tag: "PLATE I",
-      size: "lg",
       eager: true,
-      motif: React.createElement(MotifMountains, null)
-    }))
-  }, React.createElement("address", {
-    className: "hp-article__byline"
-  }, React.createElement("span", {
-    className: "hp-article__avatar",
-    "aria-hidden": "true"
-  }, "CG"), React.createElement("span", null, React.createElement("span", {
-    className: "hp-article__author"
-  }, "By ", React.createElement("a", {
-    href: "/about",
-    rel: "author",
-    onClick: e => {
-      e.preventDefault();
-      go("about");
-    }
-  }, window.SITE.authorName)), React.createElement("span", {
-    className: "hp-article__bio"
-  }, window.SITE.authorBio)), React.createElement("span", {
-    className: "hp-article__dates"
-  }, React.createElement("time", {
-    dateTime: article.isoModified || article.isoDate
-  }, article.date), React.createElement("span", null, article.read, " read"), article.isoModified && article.isoModified !== article.isoDate && formatIsoDate(article.isoModified) && React.createElement("span", null, "Updated ", formatIsoDate(article.isoModified)))), article.aff && window.AffiliateDisclosure && React.createElement(window.AffiliateDisclosure, null, "This article has affiliate links. If you buy or book through one, The Talus Field may earn a commission at no extra cost to you, and the recommendations do not change for it."), (() => {
-    var series = window.planningSeriesFor && window.planningSeriesFor(slug);
-    if (!series) return null;
-    var prev = series.prev ? window.findArticle(series.prev) : null;
-    var next = series.next ? window.findArticle(series.next) : null;
-    var seriesNav = (a, label) => React.createElement("a", {
-      href: `/articles/${a.slug}`,
-      title: a.title,
-      onClick: e => {
-        e.preventDefault();
-        if (window.track) window.track("series_band_click", {
-          from: slug,
-          to: a.slug
-        });
-        go(`a:${a.slug}`);
-      }
-    }, label);
-    return React.createElement("div", {
-      className: "series-band"
-    }, React.createElement("span", null, "Part of", " ", React.createElement("a", {
-      href: "/planning",
-      onClick: e => {
-        e.preventDefault();
-        if (window.track) window.track("series_band_click", {
-          from: slug,
-          to: "planning-hub"
-        });
-        go("planning");
-      }
-    }, "the Yosemite Planning Guide"), " · ", series.part), (prev || next) && React.createElement("span", {
-      className: "series-band__nav"
-    }, prev && seriesNav(prev, "← Previous"), next && seriesNav(next, "Next →")));
-  })()), React.createElement("div", {
+      className: "ff-cover__img",
+      alt: article.placeholder,
+      sizes: ARTICLE_SIZES_COVER
+    }), head, article.credit && React.createElement("p", {
+      className: "ff-cover__credit"
+    }, article.credit));
+  })(), feature && (bodyState === "ready" && Body ? React.createElement("div", {
+    className: "hp-feature",
+    ref: proseRef
+  }, bodyEl) : React.createElement("div", {
     className: "hp-wrap hp-reading"
+  }, React.createElement("div", {
+    className: "hp-reading__column prose"
+  }, bodyEl))), React.createElement("div", {
+    className: "hp-wrap hp-reading" + (feature ? " hp-feature__end" : "")
   }, React.createElement("div", {
     className: "hp-reading__column"
   }, toc.length > 0 && React.createElement("details", {
@@ -391,7 +453,7 @@ function ArticlePage({
         slug
       });
     }
-  }, it.text))))), React.createElement("div", {
+  }, it.text))))), !feature && React.createElement("div", {
     className: "prose",
     ref: proseRef
   }, article.cat === "planning" && React.createElement("div", {
@@ -420,9 +482,7 @@ function ArticlePage({
     className: "label"
   }, "Section"), React.createElement("span", {
     className: "val"
-  }, cat.label))), bodyState === "ready" && Body ? React.createElement(Body, null) : bodyState === "loading" ? React.createElement(BodySkeleton, null) : React.createElement("p", {
-    className: "hp-article__soon"
-  }, "This article is coming soon.")), React.createElement("div", {
+  }, cat.label))), bodyEl), React.createElement("div", {
     className: "hp-article__authorbox"
   }, React.createElement("span", {
     className: "hp-article__avatar",

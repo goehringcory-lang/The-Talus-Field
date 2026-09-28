@@ -166,6 +166,9 @@ function mergeArticles(articles, seoData, ogImages, planningSlugs, relatedFor) {
     o.image = art.image;
     if (ogImages[art.slug]) o.ogImage = ogImages[art.slug];
     if (art.placeholder) o.placeholder = art.placeholder;
+    // A feature article draws its hero as a full-width cover (page-article.jsx),
+    // so edge/seo.js preloads it at the viewport's width, not the plate's.
+    if (art.feature) o.cover = true;
     // Membership in the Planning Guide's five parts (PLANNING_SERIES in
     // data.js). The /planning page renders series members from every section,
     // so edge/seo.js needs this to serve crawlers the same curation readers see.

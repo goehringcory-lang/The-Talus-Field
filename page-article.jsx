@@ -1,4 +1,4 @@
-/* global React, Placeholder, MotifMountains, preloadResponsive, SIZES_HERO, ShareRow, MapLightbox, HpPageHead, HpHeading, HpGuideBand, HpLetter */
+/* global React, Placeholder, MotifMountains, preloadResponsive, SIZES_HERO, ShareRow, MapLightbox, HpPageHead, HpHeading, HpGuideBand, HpLetter, HomeLink, ResponsiveImage */
 
 // Paragraph-shaped lines for the body's loading state. Widths are fixed, not
 // random, so the skeleton is the same on every render and never shifts.
@@ -37,6 +37,13 @@ function largestSource(img) {
   }
   return best || img.currentSrc || img.src;
 }
+
+// A feature article's cover runs the full width of the page (the /firefall
+// cover), so its image takes the viewport's width, not the plate's 700px.
+// edge/seo.js preloads the hero with the same sizes when articles.json marks
+// the entry `cover` (gen-seo-artifacts.mjs sets it from `feature`), so the
+// preload and the <picture> pick the same file.
+const ARTICLE_SIZES_COVER = "100vw";
 
 
 // "Month D, YYYY" for an ISO date string, used to surface a genuine revision
@@ -119,6 +126,29 @@ function ArticlePage({ slug, go }) {
   const [toc, setToc] = React.useState([]);
   React.useEffect(() => {
     if (bodyState !== "ready") { setToc([]); return; }
+    // A feature body (see `feature` below) prints its own jump list and pins
+    // its own section ids, so it gets neither the scrape nor the details
+    // list; its links get the same in-page behaviour instead: smooth scroll,
+    // the anchor kept in the address bar with replaceState, toc_jump.
+    if (article && article.feature) {
+      setToc([]);
+      const prose = proseRef.current;
+      if (!prose) return;
+      const onClick = (e) => {
+        const a = e.target.closest && e.target.closest('.ff-toc a[href^="#"]');
+        if (!a || e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
+        const target = document.getElementById(a.getAttribute("href").slice(1));
+        if (!target) return;
+        e.preventDefault();
+        const reduce = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+        target.scrollIntoView({ behavior: reduce ? "auto" : "smooth", block: "start" });
+        target.focus({ preventScroll: true });
+        if (window.history && window.history.replaceState) window.history.replaceState(null, "", "#" + target.id);
+        if (window.track) window.track("toc_jump", { slug });
+      };
+      prose.addEventListener("click", onClick);
+      return () => prose.removeEventListener("click", onClick);
+    }
     const raf = requestAnimationFrame(() => {
       const prose = proseRef.current;
       if (!prose) return;
@@ -163,7 +193,7 @@ function ArticlePage({ slug, go }) {
   // Preload the hero's responsive srcset so the LCP image fetches before the
   // <picture> mounts.
   React.useEffect(() => {
-    if (article && article.image) preloadResponsive(article.image, SIZES_HERO);
+    if (article && article.image) preloadResponsive(article.image, article.feature ? ARTICLE_SIZES_COVER : SIZES_HERO);
   }, [slug]);
 
   // Reading progress. Depth is measured against the body (.prose), not the
@@ -336,8 +366,20 @@ function ArticlePage({ slug, go }) {
   const upper = (t) => (t || "").toUpperCase();
   const tripIntent = article.cat === "trails" || article.cat === "planning" || article.cat === "seasonal";
 
+  // A feature article (September 2026, the El Capitan redesign): the catalog
+  // entry's `feature` block ({ eyebrow, focus, actions }) moves the page onto
+  // the /firefall system. The head becomes the full-width photo cover, the
+  // body gets the page's full width instead of the reading column (it lays
+  // out its own sections on `hp-wrap`), and the `.hp-event` class brings the
+  // event pages' tokens. Everything else on the page, the byline, the author
+  // box, the share row, the related rail and the two asks, is unchanged.
+  const feature = article.feature || null;
+  const bodyEl = bodyState === "ready" && Body ? <Body /> :
+    bodyState === "loading" ? <BodySkeleton /> :
+    <p className="hp-article__soon">This article is coming soon.</p>;
+
   return (
-    <div className="page hp-article">
+    <div className={"page hp-article" + (feature ? " hp-event hp-article--feature" : "")}>
       <div className="readbar" aria-hidden="true"><div className="readbar__fill" ref={barRef} /></div>
       {lightbox && (
         <MapLightbox src={lightbox.src} alt={lightbox.alt} caption={lightbox.caption} onClose={closeLightbox} />
@@ -346,8 +388,9 @@ function ArticlePage({ slug, go }) {
         {/* The head: the homepage hero's split, the copy beside the plate.
             The plate keeps SIZES_HERO (it never draws wider than 700px here),
             so the Worker's AVIF preload and preloadResponsive still match. */}
+        {(() => { const head = (
         <HpPageHead
-          as="header"
+          as={feature ? "div" : "header"}
           go={go}
           className="hp-article__head"
           crumbs={[
@@ -355,14 +398,23 @@ function ArticlePage({ slug, go }) {
             { label: cat.label, route: `cat:${cat.slug}` },
             { label: article.title },
           ]}
-          eyebrow={
+          eyebrow={feature && feature.eyebrow ? feature.eyebrow :
             <a href={`/section/${cat.slug}`} onClick={(e) => { e.preventDefault(); go(`cat:${cat.slug}`); }}>
               {upper(cat.label)}
             </a>
           }
           title={article.title}
           intro={article.dek}
-          aside={
+          actions={feature && feature.actions ? (
+            <React.Fragment>
+              {feature.actions.map(([href, label], i) => (
+                <HomeLink key={href} go={go} location="article_cover" href={href} className={i === 0 ? "hp-button" : "hp-link"}>
+                  {label} {i === 0 ? <span>↓</span> : "↓"}
+                </HomeLink>
+              ))}
+            </React.Fragment>
+          ) : null}
+          aside={feature ? null :
             <div className="hp-article__plate">
               <Placeholder
                 caption={article.placeholder}
@@ -445,9 +497,30 @@ function ArticlePage({ slug, go }) {
             );
           })()}
         </HpPageHead>
+        );
+        if (!feature) return head;
+        // The cover: the article's own photograph behind the head, the wash
+        // on the copy's side, the credit in the corner. `focus` is the
+        // object-position of the crop, per photograph.
+        return (
+          <header className="ff-cover hp-article__cover" style={feature.focus ? { "--cover-focus": feature.focus } : undefined}>
+            <ResponsiveImage image={article.image} eager className="ff-cover__img" alt={article.placeholder} sizes={ARTICLE_SIZES_COVER} />
+            {head}
+            {article.credit && <p className="ff-cover__credit">{article.credit}</p>}
+          </header>
+        );
+        })()}
+
+        {/* A feature body lays out its own full-width sections; its loading
+            skeleton still sits in the reading column. */}
+        {feature && (bodyState === "ready" && Body ? (
+          <div className="hp-feature" ref={proseRef}>{bodyEl}</div>
+        ) : (
+          <div className="hp-wrap hp-reading"><div className="hp-reading__column prose">{bodyEl}</div></div>
+        ))}
 
         {/* Body: one reading column on the page's wrap. */}
-        <div className="hp-wrap hp-reading">
+        <div className={"hp-wrap hp-reading" + (feature ? " hp-feature__end" : "")}>
           <div className="hp-reading__column">
             {toc.length > 0 && (
               <details className="toc">
@@ -473,7 +546,7 @@ function ArticlePage({ slug, go }) {
                 </ul>
               </details>
             )}
-            <div className="prose" ref={proseRef}>
+            {!feature && <div className="prose" ref={proseRef}>
               {article.cat === "planning" && (
                 <div className="statblock">
                   <div className="statblock__item"><span className="label">Best for</span><span className="val">First visits</span></div>
@@ -483,13 +556,8 @@ function ArticlePage({ slug, go }) {
                 </div>
               )}
 
-              {bodyState === "ready" && Body ? <Body /> :
-               bodyState === "loading" ? (
-                <BodySkeleton />
-              ) : (
-                <p className="hp-article__soon">This article is coming soon.</p>
-              )}
-            </div>
+              {bodyEl}
+            </div>}
 
             {/* Author box. Puts the naturalist credential at the point where
                 trust decisions actually happen: right after the reader has

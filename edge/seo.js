@@ -591,6 +591,7 @@ function seoForPath(pathname, searchParams) {
       prerenderSlug: a.slug,
       articleTitle: a.title,
       heroImagePath: a.image || null,
+      heroCover: !!a.cover,
       image,
       imageWidth: a.ogImage ? a.ogImage.width : null,
       imageHeight: a.ogImage ? a.ogImage.height : null,
@@ -1400,15 +1401,18 @@ function slugifyImagePath(image) {
 
 // Per-route hero LCP preload (C12), mirroring index.html's home-hero preload:
 // a responsive AVIF imagesrcset so the browser fetches the LCP image during HTML
-// parse, ahead of React. Null for external/missing images.
-function heroPreloadTag(imagePath) {
+// parse, ahead of React. Null for external/missing images. `cover` is a feature
+// article's full-width cover (articles.json `cover`), which page-article.jsx
+// draws at 100vw; the imagesizes must match the <picture> or the browser
+// preloads one file and paints another.
+function heroPreloadTag(imagePath, cover) {
   if (!imagePath || /^https?:/i.test(imagePath)) return null;
   const cleaned = imagePath.replace(/^\/+/, "");
   const slash = cleaned.lastIndexOf("/");
   const dir = slash >= 0 ? cleaned.slice(0, slash) : "";
   const base = `/${dir ? dir + "/" : ""}responsive/${slugifyImagePath(cleaned)}`;
   const srcset = [400, 800, 1200, 1600].map((w) => `${base}-${w}.avif ${w}w`).join(", ");
-  return `<link rel="preload" as="image" type="image/avif" imagesrcset="${srcset}" imagesizes="(max-width: 700px) 100vw, 700px" fetchpriority="high" />`;
+  return `<link rel="preload" as="image" type="image/avif" imagesrcset="${srcset}" imagesizes="${cover ? "100vw" : "(max-width: 700px) 100vw, 700px"}" fetchpriority="high" />`;
 }
 
 function escapeHtmlText(s) {
@@ -1574,7 +1578,7 @@ async function handleRequest({ request, next, env }) {
   } else if (seo.prose) {
     proseHtml = seo.prose;
   }
-  const heroPreload = seo.prerenderSlug ? heroPreloadTag(seo.heroImagePath) : null;
+  const heroPreload = seo.prerenderSlug ? heroPreloadTag(seo.heroImagePath, seo.heroCover) : null;
   // Route-aware static H1: the sr-only #seo-static-h1 in index.html carries the
   // homepage title for markup-only parsers. When a prose fragment is injected
   // it brings its own on-topic <h1>, so the static one is removed to avoid a

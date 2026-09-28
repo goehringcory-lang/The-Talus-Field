@@ -304,5 +304,35 @@
     "author": "Almonroth",
     "license": "CC BY-SA 3.0",
     "source": "https://commons.wikimedia.org/wiki/File:Groveland_Historic_District.jpg"
+  },
+  {
+    "file": "el-capitan-climbers-on-the-nose.jpg",
+    "slot": "article:watching-climbers-el-capitan",
+    "tier": 1,
+    "subject": "Climbers on El Capitan: a party, portaledge or haul bag visible on the granite face",
+    "categories": [
+      "Climbers on El Capitan",
+      "The Nose (El Capitan)",
+      "Portaledges"
+    ],
+    "queries": [
+      "El Capitan climbers portaledge",
+      "climbers on El Capitan Yosemite",
+      "The Nose El Capitan climbers"
+    ]
+  },
+  {
+    "file": "el-capitan-headlamps-night.jpg",
+    "slot": "article:watching-climbers-el-capitan",
+    "tier": 1,
+    "subject": "El Capitan at night or dusk, climbers headlamps visible on the wall",
+    "categories": [
+      "El Capitan at night"
+    ],
+    "queries": [
+      "El Capitan night headlamps",
+      "El Capitan climbers night lights",
+      "El Capitan dusk"
+    ]
   }
 ]
