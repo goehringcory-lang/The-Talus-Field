@@ -144,7 +144,7 @@ window.BODY_VERSIONS = {
   "yosemite-in-winter": 10,
   "where-to-stay-in-yosemite": 13,
   "yosemite-wildflowers-guide": 6,
-  "watching-climbers-el-capitan": 3,
+  "watching-climbers-el-capitan": 4,
   "getting-to-yosemite": 8,
   "yosemite-wilderness-permits-guide": 6,
   "yosemite-accessibility-guide": 5,
@@ -1263,11 +1263,19 @@ window.ARTICLES = [
     seoDek: "How to watch climbers on El Capitan: El Capitan Meadow and Bridge viewpoints, the Ask a Climber program, dusk headlamps, Nose history, and best seasons.",
     date: "July 12, 2026",
     isoDate: "2026-07-12",
-    isoModified: "2026-07-12",
+    isoModified: "2026-09-27",
     read: "7 min",
-    placeholder: "El Capitan's 3,000-foot southwest face in afternoon light, seen from the Valley floor",
+    placeholder: "El Capitan across Yosemite Valley from the south rim in summer, the Valley floor far below",
     image: "img/yosemite-valley-granite-summer-cory-goehring.jpg",
     credit: "Photo: Cory Goehring",
+    // The /firefall layout for an article (page-article.jsx): a full-width
+    // photo cover, and a body that lays out its own sections. `focus` is the
+    // cover crop's object-position (El Capitan sits right of centre).
+    feature: {
+      eyebrow: "EL CAPITAN MEADOW · NORTHSIDE DRIVE · SPRING AND FALL",
+      focus: "74% 45%",
+      actions: [["#sec-1-where-to-watch", "Where to stand"], ["#sec-6-when-the-show-runs", "When the show runs"]],
+    },
   },
   {
     slug: "getting-to-yosemite",
