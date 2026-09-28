@@ -725,7 +725,10 @@ function GuideWalkthrough() {
 // The 3D map, the pane under the hero (September 2026, after PRs #466 to
 // #479 shipped it). Every picture is a real capture of the shipping app:
 // the flythrough is 300 frames rendered from the map itself on the camera
-// path Tunnel View to the Valley floor, and the stills are the same build.
+// path Tunnel View to the Valley floor (scripts/record-map-flythrough.mjs,
+// which holds every pin to its coordinate on the terrain before each frame;
+// the first cut captured the pins before the elevation settled, and they
+// floated), and the stills are the same build.
 // Every sentence restates what the map's own Information pane says
 // (apps/guide/src/routes/Map.tsx) or what the offline manifest measures
 // (apps/guide/src/map/tiles.generated.ts); re-read both before editing a
@@ -824,11 +827,11 @@ function GuideMapFilm() {
       preload="none"
       width="1280"
       height="720"
-      poster="/img/guide/map-3d-flythrough-poster.jpg"
+      poster="/img/guide/map-3d-flythrough.v2-poster.jpg"
       aria-label="Ten seconds on the Field Guide's 3D map: from Tunnel View east up Yosemite Valley, past El Capitan and Bridalveil Fall to the Valley floor, with the guide's pins and trails on the terrain"
     >
-      <source src="/img/guide/map-3d-flythrough.webm" type="video/webm" />
-      <source src="/img/guide/map-3d-flythrough.mp4" type="video/mp4" />
+      <source src="/img/guide/map-3d-flythrough.v2.webm" type="video/webm" />
+      <source src="/img/guide/map-3d-flythrough.v2.mp4" type="video/mp4" />
     </video>
   );
 }

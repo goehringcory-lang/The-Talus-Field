@@ -841,13 +841,13 @@ function GuideMapFilm() {
     preload: "none",
     width: "1280",
     height: "720",
-    poster: "/img/guide/map-3d-flythrough-poster.jpg",
+    poster: "/img/guide/map-3d-flythrough.v2-poster.jpg",
     "aria-label": "Ten seconds on the Field Guide's 3D map: from Tunnel View east up Yosemite Valley, past El Capitan and Bridalveil Fall to the Valley floor, with the guide's pins and trails on the terrain"
   }, React.createElement("source", {
-    src: "/img/guide/map-3d-flythrough.webm",
+    src: "/img/guide/map-3d-flythrough.v2.webm",
     type: "video/webm"
   }), React.createElement("source", {
-    src: "/img/guide/map-3d-flythrough.mp4",
+    src: "/img/guide/map-3d-flythrough.v2.mp4",
     type: "video/mp4"
   }));
 }
