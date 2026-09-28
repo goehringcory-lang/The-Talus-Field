@@ -69,7 +69,9 @@ programs.get('/', async (c) => {
 
   let npsEvents: ProgramEventT[]
   let syncedAt: string | null
-  if (stale && !ingestInflight && !liveFetchInflight) {
+  // Without NPS_API_KEY every live fetch is a doomed 403 (ingestNpsWindow and
+  // refreshAlerts skip for the same reason), so serve KV/manual as-is.
+  if (stale && c.env.NPS_API_KEY && !ingestInflight && !liveFetchInflight) {
     // Cold start or cron gap: serve live and backfill KV in the background.
     // Single-flighted per isolate: while a backfill OR an inline live fetch
     // is running, concurrent stale requests serve KV as-is instead of each
