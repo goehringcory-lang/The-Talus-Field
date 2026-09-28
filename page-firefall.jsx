@@ -252,22 +252,6 @@ function FirefallPage({ go }) {
 
   return (
     <div className="page hp-tool hp-firefall">
-      <div className="hp-wrap">
-        {/* The page in thirty seconds. Silent, so every line is on screen, and
-            every line restates this page; re-render it (scripts/video/) if the
-            dates, the walk or the odds change. preload="none": only the poster
-            loads until the reader presses play. It opens the page, above the
-            cover, so the thirty-second version comes before the long one. */}
-        <figure className="ff-video">
-          <video controls muted playsInline preload="none" width="1920" height="1080"
-            poster="/img/firefall-in-30-seconds-poster.jpg"
-            aria-label="The Yosemite Firefall in thirty seconds: about two weeks each February, strongest around the 17th to the 24th; water, a clear western sky and the sun angle have to line up, and most evenings it does not happen; the glow lasts about ten minutes, a little before 6 p.m.; park at Yosemite Falls and walk about 1.5 miles each way, with no stopping or drop-offs near the viewing area; book a refundable room months ahead and plan two or three evenings.">
-            <source src="/img/firefall-in-30-seconds.mp4" type="video/mp4" />
-          </video>
-          <figcaption>The firefall in thirty seconds. No sound. Photos: Barney Moss and Anita Ritenour / Wikimedia Commons (CC BY 2.0).</figcaption>
-        </figure>
-      </div>
-
       {/* The cover: the photograph runs the full width behind the head, with a
           dark wash on the copy's side so the title and intro stay legible. */}
       <div className="ff-cover">
@@ -433,6 +417,19 @@ function FirefallPage({ go }) {
             <h2>When the sun lines up</h2>
             <p className="ff-lede">The sun angle is the only one of the three conditions you can put in a calendar, and it is the same every year. The park posts the year's projected window in January; recent windows have run from about the 10th to the 26th.</p>
             <p className="ff-lede">The middle week gives the strongest color and the biggest crowd. The edges give a softer glow and more room. Two weekday evenings in the middle of the window beat one Saturday at the peak.</p>
+            {/* The page in thirty seconds. Silent, so every line is on screen, and
+                every line restates this page; re-render it (scripts/video/) if the
+                dates, the walk or the odds change. preload="none": only the poster
+                loads until the reader presses play. It sits in the dates section
+                because it opens on the February window and the sun-angle curve. */}
+            <figure className="ff-video">
+              <video controls muted playsInline preload="none" width="1920" height="1080"
+                poster="/img/firefall-in-30-seconds-poster.jpg"
+                aria-label="The Yosemite Firefall in thirty seconds: about two weeks each February, strongest around the 17th to the 24th; water, a clear western sky and the sun angle have to line up, and most evenings it does not happen; the glow lasts about ten minutes, a little before 6 p.m.; park at Yosemite Falls and walk about 1.5 miles each way, with no stopping or drop-offs near the viewing area; book a refundable room months ahead and plan two or three evenings.">
+                <source src="/img/firefall-in-30-seconds.mp4" type="video/mp4" />
+              </video>
+              <figcaption>The firefall in thirty seconds. No sound. Photos: Barney Moss and Anita Ritenour / Wikimedia Commons (CC BY 2.0).</figcaption>
+            </figure>
           </div>
           <div>
             <figure className="ff-sun">

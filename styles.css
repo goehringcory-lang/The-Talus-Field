@@ -9059,7 +9059,7 @@ html[data-nav-mode="pinned"] { scroll-padding-top: 62px; }
 .ff-toc > span { font-size: 10px; font-weight: 600; letter-spacing: 1.6px; text-transform: uppercase; color: var(--hp-muted); }
 .ff-toc a { color: var(--hp-ink); border-bottom: 1px solid #a7afa4; padding-block: 6px 3px; }
 .ff-toc a:hover { color: var(--hp-accent); border-color: var(--hp-accent); }
-.ff-video { margin: 28px auto; max-width: 960px; }
+.ff-video { margin: 28px 0 0; }
 .ff-video video { display: block; width: 100%; height: auto; aspect-ratio: 16 / 9; background: var(--hp-ink); border-radius: 4px; }
 .ff-video figcaption { margin-top: 10px; font: 12px/1.4 var(--sans); color: var(--hp-muted); }
 
