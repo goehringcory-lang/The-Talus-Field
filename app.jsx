@@ -1202,16 +1202,23 @@ function App() {
   // without the guard on .catch, a stale failed fetch would yank the reader
   // back to a page they already left.
   const navTokenRef = useRef(0);
+  // The pathname of the page on screen. A click on a bare "#id" link fires
+  // popstate too; without this the handler below scrolled it back to the top
+  // (the skip link and any in-page anchor landed at y=0).
+  const shownPathRef = useRef(window.location.pathname);
 
   useEffect(() => {
     const onPop = () => {
       const r = pathToRoute(window.location.pathname);
+      const hashOnly = !!window.location.hash && window.location.pathname === shownPathRef.current;
       const token = ++navTokenRef.current;
       markNavPending(true);
       ensureRoute(r)
         .then(() => {
           if (token !== navTokenRef.current) return;
           markNavPending(false);
+          if (hashOnly) return; // same page, new fragment: the browser already scrolled
+          shownPathRef.current = window.location.pathname;
           navigatedRef.current = true;
           document.documentElement.removeAttribute("data-boot"); // see leaveBoot
           setRoute(r);
@@ -1259,6 +1266,7 @@ function App() {
       .then(() => {
         if (token !== navTokenRef.current) return;
         markNavPending(false);
+        shownPathRef.current = path;
         navigatedRef.current = true;
         leaveBoot();
         setRoute(r);

@@ -90,8 +90,21 @@ export async function fetchNpsEvents(
 function normalize(raw: NpsEvent[], dateStart: string, dateEnd: string): ProgramEventT[] {
   const out: ProgramEventT[] = []
   for (const ev of raw) {
-    if (!ev.id || !ev.title) continue
-    const dates = (ev.dates ?? []).filter(
+    // One malformed CMS record (a non-string title, a scalar `dates`) must
+    // drop that event, not throw and discard the whole ingest window.
+    try {
+      normalizeOne(ev, dateStart, dateEnd, out)
+    } catch (err) {
+      console.error('nps normalize: skipped malformed event', ev?.id, err)
+    }
+  }
+  return out
+}
+
+function normalizeOne(ev: NpsEvent, dateStart: string, dateEnd: string, out: ProgramEventT[]): void {
+  {
+    if (!ev.id || !ev.title) return
+    const dates = (Array.isArray(ev.dates) ? ev.dates : []).filter(
       (d) => /^\d{4}-\d{2}-\d{2}$/.test(d) && d >= dateStart && d <= dateEnd,
     )
     const time = ev.times?.[0]
@@ -118,7 +131,6 @@ function normalize(raw: NpsEvent[], dateStart: string, dateEnd: string): Program
       }
     }
   }
-  return out
 }
 
 export function groupByMonth(events: ProgramEventT[]): Map<string, ProgramEventT[]> {

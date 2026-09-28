@@ -9,7 +9,11 @@ function formatPrice(cents) {
 var inventoryPromise = null;
 function fetchInventory() {
   if (!inventoryPromise) {
-    inventoryPromise = fetch(`${GUIDE_API_BASE}/api/inventory`).then(res => res.ok ? res.json() : null).catch(() => {
+    inventoryPromise = fetch(`${GUIDE_API_BASE}/api/inventory`).then(res => {
+      if (res.ok) return res.json();
+      inventoryPromise = null;
+      return null;
+    }).catch(() => {
       inventoryPromise = null;
       return null;
     });

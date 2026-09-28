@@ -2512,6 +2512,7 @@ function MapLightbox({ src, alt, caption, onClose }) {
   const [ty, setTy] = useState(0);
   const [grabbing, setGrabbing] = useState(false);
   const dragRef = useRef(null);
+  const draggedRef = useRef(false);
   const pinchRef = useRef(null);
   const viewportRef = useRef(null);
   const clamp = (v, lo, hi) => Math.min(hi, Math.max(lo, v));
@@ -2569,11 +2570,13 @@ function MapLightbox({ src, alt, caption, onClose }) {
 
   const onMouseDown = (e) => {
     if (e.button !== 0 || scale === 1) return;
-    dragRef.current = { x: e.clientX - tx, y: e.clientY - ty };
+    dragRef.current = { x: e.clientX - tx, y: e.clientY - ty, sx: e.clientX, sy: e.clientY };
+    draggedRef.current = false;
     setGrabbing(true);
   };
   const onMouseMove = (e) => {
     if (!dragRef.current) return;
+    if (Math.abs(e.clientX - dragRef.current.sx) + Math.abs(e.clientY - dragRef.current.sy) > 3) draggedRef.current = true;
     setTx(e.clientX - dragRef.current.x);
     setTy(e.clientY - dragRef.current.y);
   };
@@ -2613,6 +2616,9 @@ function MapLightbox({ src, alt, caption, onClose }) {
   };
 
   const onImageClick = (e) => {
+    // mouseup ends the drag (clearing dragRef) before the click fires, so the
+    // pan is remembered separately; otherwise every pan ends by resetting zoom.
+    if (draggedRef.current) { draggedRef.current = false; return; }
     if (dragRef.current) return;
     if (scale === 1) zoomAt(e.clientX, e.clientY, 2);
     else reset();
