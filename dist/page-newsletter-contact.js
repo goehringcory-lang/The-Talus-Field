@@ -33,13 +33,13 @@ function NewsletterPage({
     }
   }, "the interactive Yosemite map"), ": vistas, trailheads, parking turnouts, picnic spots, and places to eat, with a trip builder that saves your route on your device. It opens the moment you subscribe.")), done ? React.createElement("p", {
     className: "hp-nlpage__done"
-  }, "Thanks. ", React.createElement("a", {
+  }, window.NL_CONFIRM_LINE, " ", React.createElement("a", {
     href: "/map",
     onClick: e => {
       e.preventDefault();
       go("map");
     }
-  }, "The map is open to you →")) : React.createElement("form", {
+  }, "The map is already open to you →")) : React.createElement("form", {
     className: "nlbox__form",
     action: "https://buttondown.com/api/emails/embed-subscribe/goehring",
     method: "post",

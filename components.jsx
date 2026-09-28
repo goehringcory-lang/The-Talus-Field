@@ -2231,6 +2231,15 @@ window.readHistory = readHistory;
 // gates layer their own unlock on top of this. Exposed on window so page-level
 // forms (map gate, guide, newsletter page) can reuse the exact same behavior.
 // ============================================================
+// What a new subscriber has to do next. Buttondown runs double opt-in: an
+// address is held as "unactivated" until its owner clicks the confirmation
+// link, and no letter goes to it before then. Almost half the addresses the
+// forms ever collected (23 of 48 by September 28, 2026) never confirmed, while
+// every form told the reader "You're in." Every post-submit state says this
+// line instead. Change it with the Buttondown setting, never on its own.
+const NL_CONFIRM_LINE = "One step left: open the confirmation email and click the link, or the letter never starts.";
+window.NL_CONFIRM_LINE = NL_CONFIRM_LINE;
+
 function trackNewsletterSubmit(location, tag, variant) {
   if (window.track) window.track("newsletter_signup", { location: location || "unknown", tag: tag || "", variant: variant || "" });
   window.safeStorage.set("tfg.nl.subscribed", "1");
@@ -2322,7 +2331,7 @@ function NewsletterInline({ heading, blurb, location, tag, variant = "", cta, mo
   if (subscribed && !done) {
     return (
       <div className={["nlbox", "nlbox--subscribed", modifier].filter(Boolean).join(" ")} ref={ref}>
-        <p className="nlbox__already">You're on the list. <a href="/map">The interactive map is open to you →</a></p>
+        <p className="nlbox__already">You signed up on this device. No letter yet? Look for the confirmation email and click its link. <a href="/map">The interactive map is open to you →</a></p>
       </div>
     );
   }
@@ -2334,7 +2343,7 @@ function NewsletterInline({ heading, blurb, location, tag, variant = "", cta, mo
       {inputLabel && !done && <label htmlFor={`${location}-email`}>{inputLabel}</label>}
       {done ? (
         <p className="nlbox__done">
-          You're in. <a href="/map">The map is open to you →</a>
+          {NL_CONFIRM_LINE} <a href="/map">The map is already open to you →</a>
         </p>
       ) : (
         <form
@@ -2402,6 +2411,7 @@ function useModalFocus(active, initialSelector) {
 
 function ExitIntentNewsletter({ disabled }) {
   const [open, setOpen] = useState(false);
+  const [done, setDone] = useState(false);
   const firedRef = useRef(false);
 
   useEffect(() => {
@@ -2470,18 +2480,22 @@ function ExitIntentNewsletter({ disabled }) {
         <div className="eyebrow eyebrow--moss" style={{ marginBottom: 12 }}>Before you go</div>
         <h3>One letter a week. Sometimes none.</h3>
         <p>Sunday Field Notes: what is open, what is blooming, and the occasional longer piece. Free, and you can leave anytime.</p>
-        <form
-          className="nlbox__form"
-          action="https://buttondown.com/api/emails/embed-subscribe/goehring"
-          method="post"
-          target="buttondown-target"
-          onSubmit={() => { trackNewsletterSubmit("article_exit_intent", "exit-intent"); setTimeout(() => setOpen(false), 0); }}
-        >
-          <input type="email" name="email" aria-label="Email address" placeholder="you@email.com" required />
-          <input type="hidden" name="tag" value="exit-intent" />
-          <input type="hidden" name="embed" value="1" />
-          <button type="submit">Subscribe →</button>
-        </form>
+        {done ? (
+          <p className="nlbox__done" role="status">{NL_CONFIRM_LINE}</p>
+        ) : (
+          <form
+            className="nlbox__form"
+            action="https://buttondown.com/api/emails/embed-subscribe/goehring"
+            method="post"
+            target="buttondown-target"
+            onSubmit={() => { trackNewsletterSubmit("article_exit_intent", "exit-intent"); setTimeout(() => setDone(true), 0); }}
+          >
+            <input type="email" name="email" aria-label="Email address" placeholder="you@email.com" required />
+            <input type="hidden" name="tag" value="exit-intent" />
+            <input type="hidden" name="embed" value="1" />
+            <button type="submit">Subscribe →</button>
+          </form>
+        )}
       </div>
     </div>
   );

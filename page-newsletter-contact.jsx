@@ -28,7 +28,7 @@ function NewsletterPage({ go }) {
 
         {done ? (
           <p className="hp-nlpage__done">
-            Thanks. <a href="/map" onClick={(e) => { e.preventDefault(); go("map"); }}>The map is open to you →</a>
+            {window.NL_CONFIRM_LINE} <a href="/map" onClick={(e) => { e.preventDefault(); go("map"); }}>The map is already open to you →</a>
           </p>
         ) : (
           <form

@@ -1715,6 +1715,9 @@ function MapView({ go }) {
 // ---------------------------------------------------------------------------
 function TripEmailBox({ tripStopIds, onFallbackCopy, onSubscribed }) {
   const [state, setState] = useState("idle"); // idle | sending | sent | failed
+  // A first-time address also went to Buttondown, which holds it until the
+  // confirmation link is clicked; the sent state says so (NL_CONFIRM_LINE).
+  const [joined, setJoined] = useState(false);
   const emailRef = useRef(null);
   const hpRef = useRef(null);
 
@@ -1743,8 +1746,9 @@ function TripEmailBox({ tripStopIds, onFallbackCopy, onSubscribed }) {
     if (wasSubscribed) {
       // Already on the list: skip the Buttondown POST, keep the send.
       e.preventDefault();
-    } else if (window.trackNewsletterSubmit) {
-      window.trackNewsletterSubmit("map_trip_email", "map-trip");
+    } else {
+      if (window.trackNewsletterSubmit) window.trackNewsletterSubmit("map_trip_email", "map-trip");
+      setTimeout(() => setJoined(true), 0);
     }
     if (window.track) window.track("trip_email_send", { trip_size: ids.length });
     // Unlock the trip builder like any other signup would; deferred a tick so
@@ -1766,6 +1770,9 @@ function TripEmailBox({ tripStopIds, onFallbackCopy, onSubscribed }) {
         <p className="map-sidebar__email-fine map-sidebar__email-fine--sent" role="status">
           Sent. The trip is in your inbox.
         </p>
+        {joined && window.NL_CONFIRM_LINE && (
+          <p className="map-sidebar__email-fine">{window.NL_CONFIRM_LINE}</p>
+        )}
       </div>
     );
   }
@@ -2778,7 +2785,7 @@ function MapAccessGate({ onSubscribed }) {
           <input type="hidden" name="embed" value="1" />
           <button type="submit">Unlock the map →</button>
         </form>
-        <p className="map-gate__fine">Signing up also gets you Sunday Field Notes, one short letter a week. No spam, leave anytime.</p>
+        <p className="map-gate__fine">The map opens the moment you submit. Signing up also gets you Sunday Field Notes, one short letter a week, which starts once you click the link in the confirmation email. No spam, leave anytime.</p>
       </div>
     </div>
   );
