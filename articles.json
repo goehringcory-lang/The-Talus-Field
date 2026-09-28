@@ -1,5 +1,30 @@
 [
   {
+    "slug": "wildfire-in-yosemite-during-your-trip",
+    "cat": "planning",
+    "title": "A Wildfire in Yosemite During Your Trip: What Closes, What Stays Open, and What to Do With the Bookings",
+    "dek": "The park says it is open, the news map is red, and your trip is next week. How to read a Park Service fire notice, what the Empire, Ferguson and Dome Fires did to visitors' plans, why smoke and closures are separate problems, and what happens to a campsite, a permit or a room when a fire comes close.",
+    "seoDek": "Wildfire in Yosemite during your trip: reading the closure list, smoke by area, closed roads, campsite and permit refunds, and when to keep, move or cancel.",
+    "date": "September 28, 2026",
+    "isoDate": "2026-09-28",
+    "isoModified": "2026-09-28",
+    "read": "12 min",
+    "image": "img/half-dome-glacier-point-road-josh-carter.jpg",
+    "ogImage": { "url": "img/responsive/half-dome-glacier-point-road-josh-carter-og.jpg", "width": 1200, "height": 630 },
+    "placeholder": "Half Dome from a Glacier Point Road overlook",
+    "wordCount": 3161,
+    "keywords": ["Yosemite fire", "is Yosemite open during the fire", "Yosemite fire closures", "Dome Fire Yosemite", "Glacier Point Road closed fire", "Yosemite wildfire trip cancel", "Yosemite smoke today", "Recreation.gov refund fire closure", "Yosemite fire refund lodging"],
+    "faq": [
+      { "q": "Is Yosemite open when there is a wildfire in the park?", "a": "Usually, with a list of exceptions. The park's fire updates say Yosemite is open and operating normally with the following exceptions, and the exceptions are specific: named trails, roads and areas. During the Dome Fire in September 2026 they grew from the Chilnualna Falls trail to the Ostrander Lake area, the country east of Wawona Road from Chinquapin to Wawona, and Glacier Point Road, while the Valley and Wawona Road stayed open. Read the list and compare it name by name with your plan." },
+      { "q": "Has a wildfire ever closed Yosemite Valley?", "a": "Yes. The Ferguson Fire closed Yosemite Valley to visitors on July 25, 2018, and by July 31 the closure also covered Wawona Road, the Mariposa Grove, the Merced Grove and Hetch Hetchy. The Mariposa Grove reopened on August 13 and the Valley on August 14. Big Oak Flat Road to Crane Flat and the Tioga Road stayed open throughout. It is the exception: fires in the park usually close an area, such as a road and its trailheads, rather than the Valley." },
+      { "q": "Can I still get to Glacier Point if Glacier Point Road is closed for fire?", "a": "On foot. During the Dome Fire the park said the Four Mile Trail and the Panorama Trail, which reach Glacier Point from the Valley, would remain open to hikers. With the road closed there is no bus at the top, so either trail is an out-and-back from the Valley floor. The trailheads along the road, including Sentinel Dome and Taft Point, are out of reach by car while it is closed." },
+      { "q": "Do I get a refund on a Yosemite campsite if a fire closes the campground?", "a": "Yes. Recreation.gov's policy is that in an emergency closure the Recreation.gov team or facility manager will refund all fees. If the campground stays open and you cancel yourself, the standard terms apply: a $10 service fee is withheld, and a cancellation the day before or the day of arrival also forfeits the first night's fee." },
+      { "q": "What happens to a Yosemite wilderness permit if a fire closes my trailhead?", "a": "The park's wilderness FAQ says both the application fee and the reservation fee are non-refundable. Once a reservation is confirmed you may change the entry date, the group size and the starting trailhead if space is available, so a trailhead on the other side of the park is the move to try first." },
+      { "q": "Where should I check Yosemite fire and smoke information before driving in?", "a": "In order: the park's current conditions page for the closure list, the fire's own updates in the park's news releases for size, containment and a smoke forecast by area, the InciWeb incident page and the park's public information map for the closure lines, fire.airnow.gov for the air monitor by monitor, and the park's phone line, 209/372-0200." }
+    ],
+    "related": ["yosemite-during-smoke-season", "yosemite-fire-restrictions-explained", "glacier-point-how-to-visit", "four-mile-up-panorama-down", "highway-140-closed-yosemite", "yosemite-gateway-towns-compared"]
+  },
+  {
     "slug": "yosemite-in-october-2026",
     "cat": "seasonal",
     "title": "Yosemite in October 2026: A Fire, a Closed Road, and the Last Weeks of the High Country",
@@ -23,7 +48,7 @@
       { "q": "What closes in Yosemite in October 2026?", "a": "The Glacier Point tour ends October 11, wilderness permit pickup at Tuolumne and Wawona October 14, overnight parking on Tioga and Glacier Point Roads October 15, the Happy Isles Art and Nature Center October 16, and the Valley and Big Oak Flat permit desks October 18. On October 25 bike rentals, the Village Grill, the Mountaineering School, the Glacier Point gift shop, the Crane Flat store and the Wawona golf course close. The Wawona Visitor Center closes October 31." },
       { "q": "What is the weather like in Yosemite in October?", "a": "The park's averages put the Valley at a high of 71 and a low of 41 in October, with 1.6 inches of precipitation, and Tuolumne Meadows at 57 and 26, with 1.8 inches. Storms are possible from late October, and when a chain restriction is in effect every vehicle must carry chains, four-wheel drive and rentals included." }
     ],
-    "related": ["yosemite-in-fall", "when-to-visit-yosemite-2026-crowd-forecast", "yosemite-during-smoke-season", "four-mile-up-panorama-down", "tuolumne-meadows-in-a-day", "so-you-want-to-hike-half-dome"]
+    "related": ["yosemite-in-fall", "wildfire-in-yosemite-during-your-trip", "yosemite-during-smoke-season", "four-mile-up-panorama-down", "tuolumne-meadows-in-a-day", "so-you-want-to-hike-half-dome"]
   },
   {
     "slug": "yosemite-falls-trail",
@@ -285,7 +310,7 @@
       { "q": "Can I have a campfire while backpacking in Yosemite right now?", "a": "Only in an existing fire ring between 8,000 and 9,600 feet. Above 9,600 feet, campfires are prohibited year-round because wood is scarce at that elevation. Most trailheads out of Tuolumne Meadows, Glacier Point Road, and the Valley rim start below 8,000 feet, so a stove is the reliable option for at least the first stretch of most routes." },
       { "q": "When do Yosemite's fire restrictions usually end?", "a": "When temperatures drop and real rain falls, not on a fixed date. Yosemite has historically had close to a 90 percent chance of a season-ending precipitation event, two or more inches of rain, by October 31. Restrictions were lifted in September 2022 and in late October 2021 after rain, snow, and cooler temperatures reduced the fire danger." }
     ],
-    "related": ["yosemite-during-smoke-season", "yosemite-camping-complete-guide", "giant-sequoias-fire-adaptation", "yosemite-heat-safety-guide", "yosemite-facelift-volunteer-guide"]
+    "related": ["yosemite-during-smoke-season", "wildfire-in-yosemite-during-your-trip", "yosemite-camping-complete-guide", "giant-sequoias-fire-adaptation", "yosemite-heat-safety-guide", "yosemite-facelift-volunteer-guide"]
   },
   {
     "slug": "yosemite-in-three-to-five-days",
@@ -1825,7 +1850,7 @@
       { "q": "What is a good alternative if Yosemite is too smoky?", "a": "The eastern Sierra often has better air when prevailing winds carry smoke away from the park. Mono Lake, Mammoth Lakes, and the June Lake Loop are worth checking. Smoke also typically clears after cold fronts, so monitoring the forecast 48-72 hours out gives you a real window to reschedule." },
       { "q": "Does wildfire smoke ruin a Yosemite trip?", "a": "Not necessarily. Haze produces warm, diffused light that photographers actively seek. On moderate-smoke days (AQI 50-100) most outdoor activities are fine for healthy adults. On heavy-smoke days (AQI 150+) strenuous outdoor exercise is not recommended, so use the time for indoor sites, driving routes, or the Ahwahnee." }
     ],
-    "related": ["yosemite-heat-safety-guide", "yosemite-fire-restrictions-explained", "when-to-visit-yosemite-2026-crowd-forecast", "yosemite-in-fall", "giant-sequoias-fire-adaptation", "cell-service-in-yosemite"]
+    "related": ["yosemite-heat-safety-guide", "yosemite-fire-restrictions-explained", "when-to-visit-yosemite-2026-crowd-forecast", "yosemite-in-fall", "giant-sequoias-fire-adaptation", "wildfire-in-yosemite-during-your-trip"]
   },
   {
     "slug": "yosemite-without-reservations-2026",

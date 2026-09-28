@@ -1,4 +1,44 @@
 {
+  "wildfire-in-yosemite-during-your-trip": {
+    "wordCount": 3161,
+    "keywords": [
+      "Yosemite fire",
+      "is Yosemite open during the fire",
+      "Yosemite fire closures",
+      "Dome Fire Yosemite",
+      "Glacier Point Road closed fire",
+      "Yosemite wildfire trip cancel",
+      "Yosemite smoke today",
+      "Recreation.gov refund fire closure",
+      "Yosemite fire refund lodging"
+    ],
+    "faq": [
+      {
+        "q": "Is Yosemite open when there is a wildfire in the park?",
+        "a": "Usually, with a list of exceptions. The park's fire updates say Yosemite is open and operating normally with the following exceptions, and the exceptions are specific: named trails, roads and areas. During the Dome Fire in September 2026 they grew from the Chilnualna Falls trail to the Ostrander Lake area, the country east of Wawona Road from Chinquapin to Wawona, and Glacier Point Road, while the Valley and Wawona Road stayed open. Read the list and compare it name by name with your plan."
+      },
+      {
+        "q": "Has a wildfire ever closed Yosemite Valley?",
+        "a": "Yes. The Ferguson Fire closed Yosemite Valley to visitors on July 25, 2018, and by July 31 the closure also covered Wawona Road, the Mariposa Grove, the Merced Grove and Hetch Hetchy. The Mariposa Grove reopened on August 13 and the Valley on August 14. Big Oak Flat Road to Crane Flat and the Tioga Road stayed open throughout. It is the exception: fires in the park usually close an area, such as a road and its trailheads, rather than the Valley."
+      },
+      {
+        "q": "Can I still get to Glacier Point if Glacier Point Road is closed for fire?",
+        "a": "On foot. During the Dome Fire the park said the Four Mile Trail and the Panorama Trail, which reach Glacier Point from the Valley, would remain open to hikers. With the road closed there is no bus at the top, so either trail is an out-and-back from the Valley floor. The trailheads along the road, including Sentinel Dome and Taft Point, are out of reach by car while it is closed."
+      },
+      {
+        "q": "Do I get a refund on a Yosemite campsite if a fire closes the campground?",
+        "a": "Yes. Recreation.gov's policy is that in an emergency closure the Recreation.gov team or facility manager will refund all fees. If the campground stays open and you cancel yourself, the standard terms apply: a $10 service fee is withheld, and a cancellation the day before or the day of arrival also forfeits the first night's fee."
+      },
+      {
+        "q": "What happens to a Yosemite wilderness permit if a fire closes my trailhead?",
+        "a": "The park's wilderness FAQ says both the application fee and the reservation fee are non-refundable. Once a reservation is confirmed you may change the entry date, the group size and the starting trailhead if space is available, so a trailhead on the other side of the park is the move to try first."
+      },
+      {
+        "q": "Where should I check Yosemite fire and smoke information before driving in?",
+        "a": "In order: the park's current conditions page for the closure list, the fire's own updates in the park's news releases for size, containment and a smoke forecast by area, the InciWeb incident page and the park's public information map for the closure lines, fire.airnow.gov for the air monitor by monitor, and the park's phone line, 209/372-0200."
+      }
+    ]
+  },
   "yosemite-falls-trail": {
     "wordCount": 2700,
     "keywords": [

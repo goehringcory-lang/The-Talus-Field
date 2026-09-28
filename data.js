@@ -110,7 +110,8 @@ window.planningSeriesFor = function (slug) {
 // verifies this map stays in sync with the files in bodies/.
 // ============================================================
 window.BODY_VERSIONS = {
-  "yosemite-in-october-2026": 3,
+  "wildfire-in-yosemite-during-your-trip": 1,
+  "yosemite-in-october-2026": 4,
   "yosemite-falls-trail": 3,
   "cell-service-in-yosemite": 3,
   "glacier-point-how-to-visit": 3,
@@ -750,6 +751,21 @@ window.KIT.lists.forEach((l) => {
 // AffiliateDisclosure line under the byline, before the first link;
 // scripts/check-affiliate-links.mjs fails when the flag and the body disagree.
 window.ARTICLES = [
+  {
+    slug: "wildfire-in-yosemite-during-your-trip",
+    aff: true,
+    cat: "planning",
+    title: "A Wildfire in Yosemite During Your Trip: What Closes, What Stays Open, and What to Do With the Bookings",
+    dek: "The park says it is open, the news map is red, and your trip is next week. How to read a Park Service fire notice, what the Empire, Ferguson and Dome Fires did to visitors' plans, why smoke and closures are separate problems, and what happens to a campsite, a permit or a room when a fire comes close.",
+    seoDek: "Wildfire in Yosemite during your trip: reading the closure list, smoke by area, closed roads, campsite and permit refunds, and when to keep, move or cancel.",
+    date: "September 28, 2026",
+    isoDate: "2026-09-28",
+    isoModified: "2026-09-28",
+    read: "12 min",
+    placeholder: "Half Dome from a Glacier Point Road overlook",
+    image: "img/half-dome-glacier-point-road-josh-carter.jpg",
+    credit: "Photo: Josh Carter / Unsplash",
+  },
   {
     slug: "yosemite-in-october-2026",
     aff: true,
@@ -1902,10 +1918,14 @@ window.START_HERE = [
 // Curate a piece when it earns real search impressions, when it anchors a
 // cluster, or when it is the destination that needs the equity.
 window.RELATED = {
+  // A wildfire in Yosemite during your trip: the evergreen decision guide the
+  // Dome Fire week asked for. Onward to smoke, the restrictions, the road it
+  // closed and its hike-in alternative, the other closure guide, and the towns.
+  "wildfire-in-yosemite-during-your-trip": ["yosemite-during-smoke-season", "yosemite-fire-restrictions-explained", "glacier-point-how-to-visit", "four-mile-up-panorama-down", "highway-140-closed-yosemite", "yosemite-gateway-towns-compared"],
   // Yosemite in October 2026: the dated month edition. Onward to the evergreen
   // fall piece, the crowd forecast, and the October decisions the fire and the
   // calendar force: Glacier Point on foot, smoke, Tioga, Half Dome.
-  "yosemite-in-october-2026": ["yosemite-in-fall", "when-to-visit-yosemite-2026-crowd-forecast", "yosemite-during-smoke-season", "four-mile-up-panorama-down", "tuolumne-meadows-in-a-day", "so-you-want-to-hike-half-dome"],
+  "yosemite-in-october-2026": ["yosemite-in-fall", "wildfire-in-yosemite-during-your-trip", "yosemite-during-smoke-season", "four-mile-up-panorama-down", "tuolumne-meadows-in-a-day", "so-you-want-to-hike-half-dome"],
   // The Yosemite Falls Trail: the Valley's most-searched climb, which the
   // catalog had only mentioned in the heat and winter pieces. Onward to the
   // waterfall calendar, the other big Valley climb, and the logistics.
@@ -1983,8 +2003,8 @@ window.RELATED = {
   "tioga-road-opening-weekend-2026": ["cathedral-lakes-day-hike", "tuolumne-meadows-in-a-day", "yosemite-from-las-vegas", "memorial-day-skip-the-valley-go-high-2026", "yosemite-stargazing-where-to-look-up", "when-to-visit-yosemite-2026-crowd-forecast"],
   "glacier-point-road-open-2026": ["four-mile-up-panorama-down", "glacier-point-how-to-visit", "yosemite-photography-spots", "yosemite-stargazing-where-to-look-up", "yosemite-for-non-hikers"],
   "yosemite-heat-safety-guide": ["swimming-in-the-merced", "mist-trail-the-real-guide", "when-to-visit-yosemite-2026-crowd-forecast", "yosemite-during-smoke-season", "yosemite-waterfalls-guide", "yosemite-falls-trail"],
-  "yosemite-during-smoke-season": ["yosemite-heat-safety-guide", "yosemite-fire-restrictions-explained", "when-to-visit-yosemite-2026-crowd-forecast", "yosemite-in-fall", "giant-sequoias-fire-adaptation", "cell-service-in-yosemite"],
-  "yosemite-fire-restrictions-explained": ["yosemite-during-smoke-season", "yosemite-camping-complete-guide", "giant-sequoias-fire-adaptation", "yosemite-heat-safety-guide", "yosemite-facelift-volunteer-guide"],
+  "yosemite-during-smoke-season": ["yosemite-heat-safety-guide", "yosemite-fire-restrictions-explained", "when-to-visit-yosemite-2026-crowd-forecast", "yosemite-in-fall", "giant-sequoias-fire-adaptation", "wildfire-in-yosemite-during-your-trip"],
+  "yosemite-fire-restrictions-explained": ["yosemite-during-smoke-season", "wildfire-in-yosemite-during-your-trip", "yosemite-camping-complete-guide", "giant-sequoias-fire-adaptation", "yosemite-heat-safety-guide", "yosemite-facelift-volunteer-guide"],
   "memorial-day-skip-the-valley-go-high-2026": ["tioga-road-opening-weekend-2026", "tuolumne-meadows-in-a-day", "when-to-visit-yosemite-2026-crowd-forecast", "clouds-rest-hike", "hetch-hetchy-the-other-yosemite-valley", "cathedral-lakes-day-hike"],
   "swimming-in-the-merced": ["yosemite-heat-safety-guide", "yosemite-with-kids-no-reservations-2026", "mist-trail-the-real-guide", "yosemite-waterfalls-guide", "yosemite-in-june-2026"],
   "horsetail-fall-firefall": ["yosemite-in-winter", "yosemite-photography-spots", "yosemite-winter-hikes", "when-to-visit-yosemite-2026-crowd-forecast", "yosemite-in-march"],

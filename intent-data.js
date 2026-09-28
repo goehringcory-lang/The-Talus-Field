@@ -126,6 +126,11 @@ window.ARTICLE_INTENT = {
   // "where to break the drive" section, which answers where to sleep on the
   // way rather than mentioning a town in passing. No ARTICLE_MONTHS entry: the
   // Highway 41 route is open all year and the article says what winter does to it.
+  // The wildfire decision guide answers what a fire does to a trip already
+  // booked: the closure list, the smoke by area, and what happens to a room
+  // and a campsite. `lodging` and `camping` are earned by the reservations
+  // section; `permits` is not, since it only says a trailhead can change.
+  "wildfire-in-yosemite-during-your-trip":     { stage: ["dates-set", "week-before", "in-park"], who: [], topic: ["conditions", "lodging", "camping"] },
   "highway-140-closed-yosemite":               { stage: ["dates-set", "week-before", "in-park"], who: [], topic: ["transportation", "lodging", "conditions"] },
   "yosemite-from-los-angeles":                 { stage: ["before-booking", "dates-set"], who: ["first-trip"], topic: ["transportation", "lodging"] },
   // The Las Vegas drive is the Los Angeles piece's sibling and tags the same
@@ -315,6 +320,8 @@ window.ARTICLE_MONTHS = {
   "yosemite-heat-safety-guide": ["jun", "jul", "aug", "sep"],
   "yosemite-during-smoke-season": ["jul", "aug", "sep", "oct"],
   "yosemite-fire-restrictions-explained": ["jul", "aug", "sep", "oct"],
+  // The body's three fires run July to September and it is written "in the fall".
+  "wildfire-in-yosemite-during-your-trip": ["jul", "aug", "sep", "oct"],
   "bears-spring-emergence": ["mar", "apr", "may", "jun"],
 
   // "The swimming season runs from about mid-July into September, and in June
