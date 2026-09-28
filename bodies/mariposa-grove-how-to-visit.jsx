@@ -1,8 +1,74 @@
-/* global React, Placeholder, MotifTrees */
+/* global React, Placeholder, MotifTrees, NatureNotesFilm */
 
 window.ARTICLE_BODIES = window.ARTICLE_BODIES || {};
 
 window.ARTICLE_BODIES["mariposa-grove-how-to-visit"] = function MariposaGroveHowToVisitBody() {
+  // ── The approach and the four walks ───────────────────────────────────────
+  // Schematic, not to scale. Every distance, time and rule is this article's
+  // own ("The geography", "The shuttle", "Walking up instead", "The four
+  // walks"); the upper-grove distances are the article's "about" figures.
+  const SMALL = { fontFamily: "var(--sans)", fontSize: 12.5, fill: "var(--ink-3)" };
+  const LABEL = { fontFamily: "var(--sans)", fontSize: 13, fill: "var(--ink-2)" };
+  const PLACE = { fontFamily: "var(--serif)", fontSize: 16, fill: "var(--ink)" };
+  const MARK = { fontFamily: "var(--sans)", fontSize: 14, fontWeight: 700, fill: "var(--paper)" };
+  const HEAD = { fontFamily: "var(--sans)", fontSize: 12, fontWeight: 600, letterSpacing: 1.4, fill: "var(--rust)" };
+  const svgStyle = { width: "100%", height: "auto", display: "block" };
+  const WALKS = [
+    { name: "Big Trees Loop", mi: 0.3, note: "0.3 mi, paved, flat, wheelchair accessible" },
+    { name: "Grizzly Giant Loop", mi: 2, note: "about 2 mi, the one to do if you do one" },
+    { name: "Guardians Loop", mi: 6.5, note: "about 6.5 mi, 1,000+ ft of gain" },
+    { name: "Wawona Point", mi: 7, note: "about 7 mi round trip, ends at a view" },
+  ];
+
+  function GroveApproach() {
+    const W = 680, H = 560, y = 110;
+    const x0 = 40, xPlaza = 150, xTop = 600;
+    const scaleL = 170, scaleW = 470, mx = (mi) => scaleL + (mi / 7) * scaleW;
+    return (
+      <svg viewBox={`0 0 ${W} ${H}`} style={svgStyle} role="img"
+        aria-label="Schematic of a Mariposa Grove visit. From the South Entrance on Highway 41, the Welcome Plaza parking is the first right at the roundabout, less than a quarter mile in. Mariposa Grove Road climbs two miles to the Arrival Area and is closed to private vehicles in season; a free shuttle runs about every fifteen minutes and takes about ten minutes. Vehicles with a disability placard may drive the road. The Washburn Trail walks the same two miles. From the Arrival Area, four walks: the Big Trees Loop, 0.3 miles; the Grizzly Giant Loop, about 2 miles; the Guardians Loop, about 6.5 miles; and the trail to Wawona Point, about 7 miles round trip.">
+        <text x={x0} y={24} style={HEAD}>GETTING UP THE HILL</text>
+        <line x1={x0} x2={xPlaza} y1={y} y2={y} stroke="var(--ink-3)" strokeWidth="3" />
+        <path d={`M${xPlaza} ${y} L${xTop} ${y - 50}`} stroke="var(--moss)" strokeWidth="5" fill="none" />
+        <path d={`M${xPlaza} ${y + 22} C ${xPlaza + 200} ${y + 30}, ${xTop - 200} ${y - 10}, ${xTop} ${y - 34}`}
+          stroke="var(--ink-3)" strokeWidth="1.6" strokeDasharray="4 4" fill="none" />
+        <circle cx={x0} cy={y} r="6" fill="var(--ink)" />
+        <text x={x0 - 6} y={y + 26} style={LABEL}>South Entrance</text>
+        <text x={x0 - 6} y={y + 42} style={SMALL}>Highway 41</text>
+        <rect x={xPlaza - 15} y={y - 15} width="30" height="30" rx="3" fill="var(--moss)" />
+        <text x={xPlaza} y={y + 5} textAnchor="middle" style={MARK}>P</text>
+        <text x={xPlaza - 30} y={y - 58} style={PLACE}>Welcome Plaza</text>
+        <text x={xPlaza - 30} y={y - 40} style={SMALL}>park here, under a quarter mile in</text>
+        <circle cx={xTop} cy={y - 50} r="9" fill="var(--rust)" />
+        <text x={xTop + 16} y={y - 78} textAnchor="end" style={PLACE}>Arrival Area</text>
+        <text x={xTop + 16} y={y - 62} textAnchor="end" style={SMALL}>the grove</text>
+        <text x={440} y={y - 48} textAnchor="middle" style={LABEL} transform={`rotate(-6 440 ${y - 48})`}>Mariposa Grove Road, 2 miles</text>
+        <text x={390} y={y + 36} textAnchor="middle" style={SMALL}>Washburn Trail on foot, about 2 miles</text>
+        <g>
+          <rect x={x0} y={y + 62} width={W - x0 * 2} height={52} rx="3" fill="none" stroke="var(--rule-soft)" />
+          <text x={x0 + 14} y={y + 84} style={LABEL}>Free shuttle: about every 15 min, about 10 min up, no reservation.</text>
+          <text x={x0 + 14} y={y + 102} style={SMALL}>The road is closed to private cars in season. A disability placard may drive it.</text>
+        </g>
+        <text x={x0} y={y + 160} style={HEAD}>THE FOUR WALKS FROM THE ARRIVAL AREA</text>
+        {[0, 1, 2, 3, 4, 5, 6, 7].map((m) => (
+          <g key={m}>
+            <line x1={mx(m)} x2={mx(m)} y1={y + 176} y2={H - 30} stroke="var(--rule-soft)" />
+            <text x={mx(m)} y={H - 12} textAnchor="middle" style={SMALL}>{m === 7 ? "7 mi" : m}</text>
+          </g>
+        ))}
+        {WALKS.map((w, i) => {
+          const wy = y + 186 + i * 58;
+          return (
+            <g key={w.name}>
+              <text x={x0} y={wy + 15} style={{ ...LABEL, fill: "var(--ink)" }}>{w.name}</text>
+              <rect x={scaleL} y={wy} width={Math.max(4, mx(w.mi) - scaleL)} height={20} rx="2" fill={i === 1 ? "var(--rust)" : "var(--moss)"} />
+              <text x={scaleL} y={wy + 38} style={SMALL}>{w.note}</text>
+            </g>
+          );
+        })}
+      </svg>
+    );
+  }
   return (
     <>
       <p className="dropcap">
@@ -18,6 +84,13 @@ window.ARTICLE_BODIES["mariposa-grove-how-to-visit"] = function MariposaGroveHow
       <p>
         Once you are through the entrance station you reach a roundabout almost at once, and the <strong>Mariposa Grove Welcome Plaza</strong> is the first right, less than a quarter mile in. That is where you park. The grove itself, what the Park Service calls the Arrival Area, is another two miles up Mariposa Grove Road, and in season that road is closed to private vehicles. A free shuttle covers the two miles. It is not relaxed on quiet days. It is the permanent arrangement the 2018 restoration created, for reasons covered below.
       </p>
+
+      <figure style={{ margin: "30px 0 34px" }}>
+        <GroveApproach />
+        <figcaption style={{ fontFamily: "var(--sans)", fontSize: 13, color: "var(--ink-3)", marginTop: 10 }}>
+          A grove day, drawn from the distances and rules in this article. Schematic, not to scale. Upper-grove distances vary between sources; read the map at the Arrival Area before the long walks.
+        </figcaption>
+      </figure>
 
       <h2>The shuttle</h2>
 
@@ -90,6 +163,9 @@ window.ARTICLE_BODIES["mariposa-grove-how-to-visit"] = function MariposaGroveHow
       <p>
         <strong>The Bachelor and Three Graces</strong> are four trees growing so close that their root systems are effectively one, which is the practical argument for staying on the trail. Sequoia roots are shallow and wide, running out in a plate rather than down in a taproot, and the thing that kills a mature sequoia is almost never fire or disease. It is losing its footing.
       </p>
+
+      <NatureNotesFilm id="big-trees" title="Big Trees" youtubeId="GBiHAGYJXVQ" episode={11}
+        note="The Park Service on how deep snow and a long growing season build a tree the size of the Grizzly Giant." location="article" />
 
       <h2>Winter, when the road closes</h2>
 

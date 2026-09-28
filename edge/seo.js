@@ -1091,8 +1091,10 @@ function seoForPath(pathname, searchParams) {
       description:
         "How the Tioga Road opening actually works: why the date is announced only days ahead, what is really open in week one, and how to drive the early season well. By a park resident.",
       breadcrumb: [["Home", `${SITE_ORIGIN}/`], ["Tioga opening", null]],
-      // Edge-only FAQ: the client entry in app.jsx carries none, so this
-      // copy survives hydration on direct loads. A client-side faq added
+      // Mirrored by TIOGA_FAQ in page-tioga-opening.jsx, which prints the
+      // same four answers on the page; change both. Edge-only FAQ: the
+      // client entry in app.jsx carries none, so this copy survives
+      // hydration on direct loads. A client-side faq added
       // later REPLACES it on first paint (the /planning drift) — change
       // both sides together or neither.
       faq: [
@@ -1106,7 +1108,7 @@ function seoForPath(pathname, searchParams) {
         },
         {
           q: "How long does it take to drive Tioga Road?",
-          a: "About 39 miles from Crane Flat to the Tioga Pass entrance station, roughly 90 minutes one way without stops. With Olmsted Point, Tenaya Lake, and Tuolumne Meadows it is a full day, and adding Lee Vining and Mono Lake makes it a long one.",
+          a: "About 39 miles from Crane Flat to Tuolumne Meadows and about 47 to the Tioga Pass entrance station, roughly 90 minutes one way without stops. With Olmsted Point, Tenaya Lake, and Tuolumne Meadows it is a full day, and adding Lee Vining and Mono Lake makes it a long one.",
         },
         {
           q: "Do I need a reservation to drive Tioga Road?",

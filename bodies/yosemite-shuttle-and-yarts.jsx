@@ -3,6 +3,66 @@
 window.ARTICLE_BODIES = window.ARTICLE_BODIES || {};
 
 window.ARTICLE_BODIES["yosemite-shuttle-and-yarts"] = function YosemiteShuttleAndYartsBody() {
+  // ── Explainer graphic (September 2026 visual pass). Every fact in it is
+  // stated in the body below; the figcaption says so.
+  const SVG_STYLE = { width: "100%", height: "auto", display: "block" };
+  const T_HEAD = { fontFamily: "var(--sans)", fontSize: 12.5, fontWeight: 600, letterSpacing: 1.1, fill: "var(--rust)" };
+  const T_BODY = { fontFamily: "var(--sans)", fontSize: 14, fill: "var(--ink)" };
+  const T_SOFT = { fontFamily: "var(--sans)", fontSize: 13, fill: "var(--ink-2)" };
+  const T_BIG = { fontFamily: "var(--serif)", fontSize: 19, fill: "var(--ink)" };
+
+  // The four YARTS corridors as strip lines, each ending in Yosemite Valley,
+  // with the free Valley shuttle as the handoff at the bottom. A strip, not
+  // a map: the stops are in order, the spacing is not distance.
+  function YartsCorridors() {
+    const W = 600, ROW = 108, TOP = 10, X0 = 14, X1 = 586;
+    const lines = [
+      { head: "HIGHWAY 140 · FROM MERCED (AMTRAK)", season: "Year-round, seven days a week", year: true,
+        stops: ["Merced", "Mariposa", "Midpines", "El Portal", "Yosemite Valley"] },
+      { head: "HIGHWAY 41 · FROM FRESNO", season: "Seasonal: roughly late May into late September",
+        stops: ["Fresno", "Oakhurst", "Fish Camp", "Mariposa Grove", "Wawona", "Yosemite Valley"] },
+      { head: "HIGHWAY 120 WEST · FROM SONORA", season: "Seasonal: roughly late May into September",
+        stops: ["Sonora", "Jamestown", "Groveland", "Big Oak Flat", "Yosemite Valley"] },
+      { head: "HIGHWAY 395 AND TIOGA · FROM MAMMOTH LAKES", season: "Seasonal: roughly July into September, with Tioga Pass",
+        stops: ["Mammoth Lakes", "Lee Vining", "Tuolumne Meadows", "Yosemite Valley"] },
+    ];
+    const H = TOP + lines.length * ROW + 96;
+    return (
+      <svg viewBox={`0 0 ${W} ${H}`} style={SVG_STYLE} role="img"
+        aria-label="The four YARTS corridors into Yosemite Valley. Highway 140 from the Amtrak station in Merced, calling at Mariposa, Midpines and El Portal, runs year-round, seven days a week. Highway 41 from Fresno, calling at Oakhurst, Fish Camp, the Mariposa Grove and Wawona, runs roughly late May into late September. Highway 120 west from Sonora, through Jamestown, Groveland and Big Oak Flat, runs roughly late May into September. Highway 395 and Tioga from Mammoth Lakes, calling at Lee Vining and Tuolumne Meadows, runs roughly July into September, when Tioga Pass is open. In the Valley, YARTS sets down at Yosemite Valley Lodge, Yosemite Village, Curry Village and the visitor center stop, all on the free Valley shuttle, which runs 7 a.m. to 10 p.m.: the Valleywide Shuttle about every 22 to 32 minutes and the East Valley Shuttle about every 18 to 22 minutes.">
+        {lines.map((ln, i) => {
+          const y0 = TOP + i * ROW;
+          const ly = y0 + 64;
+          const n = ln.stops.length;
+          const sx = (k) => X0 + (k * (X1 - X0)) / (n - 1);
+          return (
+            <g key={ln.head}>
+              <text x="0" y={y0 + 16} style={T_HEAD}>{ln.head}</text>
+              <text x="0" y={y0 + 35} style={{ ...T_SOFT, fontStyle: ln.year ? "normal" : "italic", fontWeight: ln.year ? 600 : 400, fill: ln.year ? "var(--moss)" : "var(--ink-2)" }}>{ln.season}</text>
+              <line x1={X0} y1={ly} x2={X1} y2={ly} stroke="var(--moss)" strokeWidth={ln.year ? 5 : 3} strokeDasharray={ln.year ? undefined : "8 6"} />
+              {ln.stops.map((s, k) => {
+                const end = k === n - 1;
+                const anchor = k === 0 ? "start" : end ? "end" : "middle";
+                const tx = k === 0 ? 0 : end ? W : sx(k);
+                const below = k % 2 === 0;
+                return (
+                  <g key={s}>
+                    <circle cx={sx(k)} cy={ly} r={end ? 8 : 5.5} fill={end ? "var(--rust)" : "var(--paper)"} stroke={end ? "var(--rust)" : "var(--moss)"} strokeWidth="2" />
+                    <text x={tx} y={below ? ly + 26 : ly - 13} textAnchor={anchor} style={{ ...T_SOFT, fontSize: 13, fontWeight: end ? 600 : 400, fill: end ? "var(--ink)" : "var(--ink-2)" }}>{s}</text>
+                  </g>
+                );
+              })}
+            </g>
+          );
+        })}
+        <rect x="0" y={H - 88} width={W} height="80" rx="3" fill="var(--paper-2)" stroke="var(--moss)" strokeWidth="1.5" />
+        <text x="16" y={H - 64} style={T_HEAD}>IN THE VALLEY: THE FREE SHUTTLE, 7 A.M. TO 10 P.M.</text>
+        <text x="16" y={H - 42} style={T_BODY}>Valleywide every 22 to 32 min · East Valley every 18 to 22 min</text>
+        <text x="16" y={H - 21} style={T_SOFT}>YARTS stops: Valley Lodge, Yosemite Village, Curry Village, visitor center</text>
+      </svg>
+    );
+  }
+
   return (
     <>
       <p className="dropcap">
@@ -84,6 +144,12 @@ window.ARTICLE_BODIES["yosemite-shuttle-and-yarts"] = function YosemiteShuttleAn
       <p>
         <strong>Highway 395 and Tioga, from Mammoth Lakes.</strong> The shortest season of the four, roughly July into September, because it depends on Tioga Pass being open. It calls at Lee Vining and Tuolumne Meadows on the way over, which makes it the only scheduled transit across the crest of the Sierra.
       </p>
+
+      <figure>
+        <YartsCorridors />
+        <figcaption>The four YARTS corridors and the Valley shuttle handoff, drawn from this article. Schematic, not to scale: stops are in order, not at distance. A dashed line is a seasonal route; seasons are approximate.</figcaption>
+      </figure>
+
 
       <p>
         In the Valley, YARTS sets down at Yosemite Valley Lodge, Yosemite Village, Curry Village, and the visitor center stop, all of which are on the free shuttle, so the handoff between the two systems is seamless. You can pay onboard with a card or exact cash, or reserve ahead at the YARTS ticketing site; walk-ons are accepted as space allows, but a reservation a day out is cheap insurance on a summer weekend. Buses are air-conditioned, have a restroom on board, are wheelchair accessible, and will take a bike in the underfloor compartment if there is room and it is bagged. Children under five ride free, one child aged six to twelve rides free with each full-fare adult, and there are reduced fares for seniors, riders with disabilities, and veterans.

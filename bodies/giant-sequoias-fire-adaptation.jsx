@@ -1,8 +1,67 @@
-/* global React */
+/* global React, NatureNotesFilm */
 
 window.ARTICLE_BODIES = window.ARTICLE_BODIES || {};
 
 window.ARTICLE_BODIES["giant-sequoias-fire-adaptation"] = function GiantSequoiasFireBody() {
+  // ── Two forests ───────────────────────────────────────────────────────────
+  // Every step is this article's own ("How fire kills what sequoias escape"
+  // and "What changed, and why it matters"). A diagram of the argument, not
+  // of any one grove.
+  const HEAD = { fontFamily: "var(--sans)", fontSize: 12, fontWeight: 600, letterSpacing: 1.4 };
+  const TITLE = { fontFamily: "var(--serif)", fontSize: 17, fill: "var(--ink)" };
+  const LINE = { fontFamily: "var(--sans)", fontSize: 13, fill: "var(--ink-2)" };
+  const svgStyle = { width: "100%", height: "auto", display: "block" };
+  const COLS = [
+    {
+      head: "WITH FIRE", sub: "a ground fire every 10 to 30 years", tone: "var(--moss)",
+      steps: [
+        ["A low fire creeps through", "brush, fallen logs, lower branches"],
+        ["Competitors die or weaken", "white fir, incense cedar"],
+        ["Bare mineral soil and light", "what a sequoia seed needs"],
+        ["The sequoia takes a scar", "and seedlings fill the opening"],
+      ],
+    },
+    {
+      head: "WITHOUT FIRE", sub: "a century of suppression", tone: "var(--rust)",
+      steps: [
+        ["White fir fills the understory", "shade-tolerant, growing taller"],
+        ["Fuel piles up", "dead wood, needles, small branches"],
+        ["The canopy closes", "seedlings starve for light"],
+        ["The next fire burns hotter", "a grove in slow decline"],
+      ],
+    },
+  ];
+
+  function TwoForests() {
+    const W = 680, H = 440, colW = 316, gap = W - colW * 2, T = 64, boxH = 62, step = 82;
+    return (
+      <svg viewBox={`0 0 ${W} ${H}`} style={svgStyle} role="img"
+        aria-label="Two forests side by side. With fire, a ground fire every ten to thirty years: a low fire creeps through brush and fallen logs; competitors such as white fir and incense cedar die or weaken; the fire leaves bare mineral soil and light, which a sequoia seed needs; the sequoia takes a scar and seedlings fill the opening. Without fire, after a century of suppression: shade-tolerant white fir fills the understory; fuel piles up; the canopy closes and seedlings starve for light; the next fire burns hotter, and the grove is in slow decline. Restoration burns, planned for weather that keeps them low-intensity, turn the second forest back toward the first.">
+        {COLS.map((c, ci) => {
+          const x = ci * (colW + gap);
+          return (
+            <g key={c.head}>
+              <text x={x} y={20} style={{ ...HEAD, fill: c.tone }}>{c.head}</text>
+              <text x={x} y={42} style={LINE}>{c.sub}</text>
+              {c.steps.map(([t, n], i) => {
+                const y = T + i * step;
+                return (
+                  <g key={t}>
+                    <rect x={x} y={y} width={colW} height={boxH} rx="3" fill="none" stroke={c.tone} strokeWidth={i === 3 ? 2.2 : 1.2} />
+                    <text x={x + 14} y={y + 26} style={TITLE}>{t}</text>
+                    <text x={x + 14} y={y + 46} style={LINE}>{n}</text>
+                    {i < 3 && <path d={`M${x + colW / 2} ${y + boxH + 3} v${step - boxH - 6} m-5 -6 l5 6 l5 -6`} fill="none" stroke="var(--ink-3)" strokeWidth="1.4" />}
+                  </g>
+                );
+              })}
+            </g>
+          );
+        })}
+        <path d={`M${W - colW / 2} ${T + 3 * step + boxH + 4} v28 H${colW / 2} v-26 m-6 8 l6 -8 l6 8`} fill="none" stroke="var(--moss)" strokeWidth="1.6" strokeDasharray="5 4" />
+        <text x={W / 2} y={T + 3 * step + boxH + 52} textAnchor="middle" style={{ ...LINE, fill: "var(--ink)" }}>Restoration burns: planned for weather that keeps them low-intensity</text>
+      </svg>
+    );
+  }
   return (
     <>
       <p className="dropcap">
@@ -51,6 +110,13 @@ window.ARTICLE_BODIES["giant-sequoias-fire-adaptation"] = function GiantSequoias
         In a fire-suppressed forest, the opposite occurs. Without periodic burning, shade-tolerant conifers like white fir gradually colonize the understory. They grow taller. They accumulate more fuel. The canopy closes, and sequoia seedlings are starved of the light they need. They never establish. A sequoia grove without fire is a sequoia grove in slow decline.
       </p>
 
+      <figure style={{ margin: "30px 0 34px" }}>
+        <TwoForests />
+        <figcaption style={{ fontFamily: "var(--sans)", fontSize: 13, color: "var(--ink-3)", marginTop: 10 }}>
+          The same grove under two fire regimes, drawn from this article's account. A diagram of the argument, not of any one grove.
+        </figcaption>
+      </figure>
+
       <p>
         The dynamic shows up wherever a grove has burned and then been left alone: seedlings and saplings come up thickest in the openings a fire has cleared, on the bare mineral soil it exposed. Those young trees are the forest regenerating as it had for thousands of years before the suppression era.
       </p>
@@ -86,6 +152,9 @@ window.ARTICLE_BODIES["giant-sequoias-fire-adaptation"] = function GiantSequoias
       </p>
 
       <p>The burns return the conditions the sequoias evolved under.</p>
+
+      <NatureNotesFilm id="giant-sequoias" title="Giant Sequoias" youtubeId="dVx4XdT7qrk" episode={34}
+        note="The Park Service on a tree built to survive almost anything, and on the changing climate now testing the design." location="article" />
 
       <h2>The practical reading</h2>
 

@@ -1,8 +1,64 @@
-/* global React, AffiliateNote, LodgingCta */
+/* global React, AffiliateNote, LodgingCta, NatureNotesFilm */
 
 window.ARTICLE_BODIES = window.ARTICLE_BODIES || {};
 
 window.ARTICLE_BODIES["yosemite-in-winter"] = function YosemiteInWinterBody() {
+  // ── Explainer graphic (September 2026 visual pass). Every fact in it is
+  // stated in the body below; the figcaption says so.
+  const SVG_STYLE = { width: "100%", height: "auto", display: "block" };
+  const T_HEAD = { fontFamily: "var(--sans)", fontSize: 12.5, fontWeight: 600, letterSpacing: 1.1, fill: "var(--rust)" };
+  const T_BODY = { fontFamily: "var(--sans)", fontSize: 14, fill: "var(--ink)" };
+  const T_SOFT = { fontFamily: "var(--sans)", fontSize: 13, fill: "var(--ink-2)" };
+  const T_BIG = { fontFamily: "var(--serif)", fontSize: 19, fill: "var(--ink)" };
+
+  // The chain-control grid: the three levels against three kinds of car.
+  // "Carry" is the rule that catches people: an exempt vehicle still needs
+  // chains on board whenever control is in effect inside the park.
+  function ChainGrid() {
+    const W = 600, LX = 96, CW = (W - LX) / 3, TOP = 78, RH = 92;
+    const cols = [["No snow tires", "any drive"], ["Snow tires", "no 4WD or AWD"], ["Snow tires", "4WD or AWD"]];
+    const rows = [
+      { lvl: "R1", sub: "chains unless snow tires", cells: ["on", "carry", "carry"] },
+      { lvl: "R2", sub: "unless 4WD/AWD + snow tires", cells: ["on", "on", "carry"] },
+      { lvl: "R3", sub: "chains on everything", cells: ["on", "on", "on"] },
+    ];
+    const LABEL = { on: ["Chains on", "mounted"], carry: ["Carry chains", "in the car"] };
+    return (
+      <svg viewBox={`0 0 ${W} ${TOP + rows.length * RH + 62}`} style={SVG_STYLE} role="img"
+        aria-label="Chain control in Yosemite, by level and vehicle. R1: chains are required unless the vehicle has snow tires, so a car without snow tires mounts chains, and any car with snow tires carries them. R2: chains are required unless the vehicle has four-wheel or all-wheel drive with snow tires, so only a 4WD or AWD vehicle with snow tires may carry rather than mount them. R3: chains on everything, no exceptions; in practice roads usually close before R3 is posted. Whenever chain control is in effect inside the park, every vehicle must carry chains, even one exempt from putting them on.">
+        {cols.map(([a, b], i) => (
+          <g key={a + b}>
+            <text x={LX + i * CW + CW / 2} y="30" textAnchor="middle" style={{ ...T_BODY, fontWeight: 600 }}>{a}</text>
+            <text x={LX + i * CW + CW / 2} y="50" textAnchor="middle" style={T_SOFT}>{b}</text>
+          </g>
+        ))}
+        {rows.map((r, j) => {
+          const y = TOP + j * RH;
+          return (
+            <g key={r.lvl}>
+              <text x="0" y={y + 44} style={{ fontFamily: "var(--serif)", fontSize: 32, fill: "var(--ink)" }}>{r.lvl}</text>
+              {r.cells.map((c, i) => {
+                const x = LX + i * CW;
+                const on = c === "on";
+                return (
+                  <g key={i}>
+                    <rect x={x + 5} y={y + 5} width={CW - 10} height={RH - 30} rx="3"
+                      fill={on ? "var(--rust)" : "var(--paper-2)"} stroke={on ? "var(--rust)" : "var(--moss)"} strokeWidth="1.5" />
+                    <text x={x + CW / 2} y={y + 32} textAnchor="middle" style={{ ...T_BODY, fontWeight: 600, fill: on ? "var(--paper)" : "var(--moss)" }}>{LABEL[c][0]}</text>
+                    <text x={x + CW / 2} y={y + 51} textAnchor="middle" style={{ ...T_SOFT, fill: on ? "var(--paper)" : "var(--ink-2)" }}>{LABEL[c][1]}</text>
+                  </g>
+                );
+              })}
+              <text x={LX + 5} y={y + RH - 8} style={{ ...T_SOFT, fontSize: 12.5, fontStyle: "italic" }}>{r.lvl}: {r.sub}{r.lvl === "R3" ? "; roads usually close first" : ""}</text>
+            </g>
+          );
+        })}
+        <text x="0" y={TOP + rows.length * RH + 24} style={T_HEAD}>THE RULE THAT CATCHES PEOPLE</text>
+        <text x="0" y={TOP + rows.length * RH + 46} style={T_BODY}>Inside the park, every vehicle carries chains whenever control is on.</text>
+      </svg>
+    );
+  }
+
   return (
     <>
       <p className="dropcap">
@@ -40,6 +96,12 @@ window.ARTICLE_BODIES["yosemite-in-winter"] = function YosemiteInWinterBody() {
       <p>
         The detail that catches people: whenever chain control is in effect inside the park, <strong>you must carry chains even if your vehicle is exempt from putting them on</strong>. A 4WD truck with snow tires can drive through R2 without chains mounted, but the driver still needs a set in the vehicle, and rangers do check at the checkpoints. Rental-car agreements almost universally prohibit chains, which is a problem between you and the rental company, not one the checkpoint will solve for you. Chains can be bought or rented in the gateway towns, Mariposa, Oakhurst, Groveland, and shops along 140 will often rent a set and take it back on your way out. Practice putting them on once in a dry parking lot, not for the first time in a snowbank at night. The <a href="/articles/pack-your-car-for-yosemite">winter car kit</a> covers the rest of what should be in the trunk.
       </p>
+
+      <figure>
+        <ChainGrid />
+        <figcaption>Chain control by level and vehicle, drawn from the rules in this article. Rental agreements almost universally prohibit chains, which is between you and the rental company.</figcaption>
+      </figure>
+
 
       <blockquote>The checkpoint does not care what your all-wheel-drive badge says. Carry the chains.</blockquote>
 
@@ -96,6 +158,16 @@ window.ARTICLE_BODIES["yosemite-in-winter"] = function YosemiteInWinterBody() {
       <p>
         The waterfalls, mostly asleep since August, begin to come back in late winter as early melt and rain reach the Merced. By <a href="/articles/yosemite-in-march">March</a>, Yosemite Falls is a waterfall again rather than a stain, and the whole hydrological year described in <a href="/articles/yosemite-waterfalls-guide">the waterfalls guide</a> starts over. Late winter also brings one of the park's oddest small phenomena: on the coldest early-spring mornings, Yosemite Creek can run with <strong>frazil ice</strong>, a slush of ice crystals that moves down the channel like slow lava and piles into banks of white. It is a niche thing to chase, and it marks the end of the quiet season.
       </p>
+
+      <NatureNotesFilm
+        id="frazil-ice"
+        title="Frazil Ice"
+        youtubeId="9V9p4mFEYXc"
+        episode={9}
+        note="The park filmed the slush on Yosemite Creek, which is the easiest way to see it without standing beside the creek on a freezing spring morning."
+        location="article"
+      />
+
 
       <h2>The takeaway</h2>
 

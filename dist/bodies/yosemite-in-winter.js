@@ -1,12 +1,146 @@
 window.ARTICLE_BODIES = window.ARTICLE_BODIES || {};
 window.ARTICLE_BODIES["yosemite-in-winter"] = function YosemiteInWinterBody() {
+  var SVG_STYLE = {
+    width: "100%",
+    height: "auto",
+    display: "block"
+  };
+  var T_HEAD = {
+    fontFamily: "var(--sans)",
+    fontSize: 12.5,
+    fontWeight: 600,
+    letterSpacing: 1.1,
+    fill: "var(--rust)"
+  };
+  var T_BODY = {
+    fontFamily: "var(--sans)",
+    fontSize: 14,
+    fill: "var(--ink)"
+  };
+  var T_SOFT = {
+    fontFamily: "var(--sans)",
+    fontSize: 13,
+    fill: "var(--ink-2)"
+  };
+  var T_BIG = {
+    fontFamily: "var(--serif)",
+    fontSize: 19,
+    fill: "var(--ink)"
+  };
+  function ChainGrid() {
+    var W = 600,
+      LX = 96,
+      CW = (W - LX) / 3,
+      TOP = 78,
+      RH = 92;
+    var cols = [["No snow tires", "any drive"], ["Snow tires", "no 4WD or AWD"], ["Snow tires", "4WD or AWD"]];
+    var rows = [{
+      lvl: "R1",
+      sub: "chains unless snow tires",
+      cells: ["on", "carry", "carry"]
+    }, {
+      lvl: "R2",
+      sub: "unless 4WD/AWD + snow tires",
+      cells: ["on", "on", "carry"]
+    }, {
+      lvl: "R3",
+      sub: "chains on everything",
+      cells: ["on", "on", "on"]
+    }];
+    var LABEL = {
+      on: ["Chains on", "mounted"],
+      carry: ["Carry chains", "in the car"]
+    };
+    return React.createElement("svg", {
+      viewBox: `0 0 ${W} ${TOP + rows.length * RH + 62}`,
+      style: SVG_STYLE,
+      role: "img",
+      "aria-label": "Chain control in Yosemite, by level and vehicle. R1: chains are required unless the vehicle has snow tires, so a car without snow tires mounts chains, and any car with snow tires carries them. R2: chains are required unless the vehicle has four-wheel or all-wheel drive with snow tires, so only a 4WD or AWD vehicle with snow tires may carry rather than mount them. R3: chains on everything, no exceptions; in practice roads usually close before R3 is posted. Whenever chain control is in effect inside the park, every vehicle must carry chains, even one exempt from putting them on."
+    }, cols.map(([a, b], i) => React.createElement("g", {
+      key: a + b
+    }, React.createElement("text", {
+      x: LX + i * CW + CW / 2,
+      y: "30",
+      textAnchor: "middle",
+      style: {
+        ...T_BODY,
+        fontWeight: 600
+      }
+    }, a), React.createElement("text", {
+      x: LX + i * CW + CW / 2,
+      y: "50",
+      textAnchor: "middle",
+      style: T_SOFT
+    }, b))), rows.map((r, j) => {
+      var y = TOP + j * RH;
+      return React.createElement("g", {
+        key: r.lvl
+      }, React.createElement("text", {
+        x: "0",
+        y: y + 44,
+        style: {
+          fontFamily: "var(--serif)",
+          fontSize: 32,
+          fill: "var(--ink)"
+        }
+      }, r.lvl), r.cells.map((c, i) => {
+        var x = LX + i * CW;
+        var on = c === "on";
+        return React.createElement("g", {
+          key: i
+        }, React.createElement("rect", {
+          x: x + 5,
+          y: y + 5,
+          width: CW - 10,
+          height: RH - 30,
+          rx: "3",
+          fill: on ? "var(--rust)" : "var(--paper-2)",
+          stroke: on ? "var(--rust)" : "var(--moss)",
+          strokeWidth: "1.5"
+        }), React.createElement("text", {
+          x: x + CW / 2,
+          y: y + 32,
+          textAnchor: "middle",
+          style: {
+            ...T_BODY,
+            fontWeight: 600,
+            fill: on ? "var(--paper)" : "var(--moss)"
+          }
+        }, LABEL[c][0]), React.createElement("text", {
+          x: x + CW / 2,
+          y: y + 51,
+          textAnchor: "middle",
+          style: {
+            ...T_SOFT,
+            fill: on ? "var(--paper)" : "var(--ink-2)"
+          }
+        }, LABEL[c][1]));
+      }), React.createElement("text", {
+        x: LX + 5,
+        y: y + RH - 8,
+        style: {
+          ...T_SOFT,
+          fontSize: 12.5,
+          fontStyle: "italic"
+        }
+      }, r.lvl, ": ", r.sub, r.lvl === "R3" ? "; roads usually close first" : ""));
+    }), React.createElement("text", {
+      x: "0",
+      y: TOP + rows.length * RH + 24,
+      style: T_HEAD
+    }, "THE RULE THAT CATCHES PEOPLE"), React.createElement("text", {
+      x: "0",
+      y: TOP + rows.length * RH + 46,
+      style: T_BODY
+    }, "Inside the park, every vehicle carries chains whenever control is on."));
+  }
   return React.createElement(React.Fragment, null, React.createElement("p", {
     className: "dropcap"
   }, "I live in El Portal, two thousand feet below the Valley floor in the Merced River canyon, and for twenty seasons I have watched the same thing happen every November. The park empties. The tour buses stop coming. The trailhead lots that required a 6 a.m. arrival in July sit half full at noon. And then, some night in late November or December, a storm comes through, the clouds pull apart the next morning, and Yosemite Valley is standing there under fresh snow with almost nobody looking at it. Most visitors plan around summer and skip these months, which is why they are empty."), React.createElement("p", null, "This is a practical guide to Yosemite in winter: what is actually open, how to drive in without drama, what there is to do, and the costs of the season."), React.createElement("h2", null, "What's open, what's closed"), React.createElement("p", null, "The most important fact of winter planning is a simple one: ", React.createElement("strong", null, "Yosemite Valley is open year-round"), ". The Valley floor sits at about 4,000 feet, low enough that snow falls, sticks for a while, and usually melts back off the roads within days. Plowed roads reach Yosemite Valley, Wawona, Hetch Hetchy, and Badger Pass all winter. Lodging, food service, the visitor center, and the shuttle keep running. Winter closes the high country, not the park."), React.createElement("p", null, React.createElement("strong", null, "Tioga Road"), ", the high crossing through Tuolumne Meadows, closes with the first serious snow, typically in November, and does not reopen until late May or later, depending on the snowpack. ", React.createElement("strong", null, "Glacier Point Road"), " closes on roughly the same schedule beyond the Badger Pass turnoff. If your mental map of Yosemite includes Olmsted Point, Tenaya Lake, or the drive-up view from Glacier Point, subtract them from a winter trip. They are under snow, and the only way to reach them is on skis or snowshoes."), React.createElement("p", null, "The ", React.createElement("strong", null, "Mariposa Grove"), " splits the difference. The road up to the grove closes for the season, but the grove itself stays open. You walk, snowshoe, or ski the closed road, roughly two miles each way from the Welcome Plaza, and the reward is giant sequoias holding snow on their branches with a fraction of the summer crowd. Few visitors see sequoias in snow."), React.createElement("h2", null, "Driving in: the canyon road and the chain rules"), React.createElement("p", null, "It is the road past my house, but ", React.createElement("strong", null, "Highway 140"), " through the Merced River canyon is the lowest and most reliable winter approach to the park. It follows the river up from Mariposa at canyon-bottom elevations, which means it takes rain when the higher entrances are taking snow. Storms still close it occasionally, and chain control still reaches it, but on an average winter day it is the entrance with the least weather on it. The other approaches, Highway 41 from Oakhurst and Highway 120 from Groveland, both climb well over 5,000 feet before dropping to the Valley and carry chain control more often. The full entrance-by-entrance comparison is in ", React.createElement("a", {
     href: "/articles/getting-to-yosemite"
   }, "the entrances guide"), "; the winter summary is: take 140 if you can."), React.createElement("p", null, React.createElement("strong", null, "Chain control"), " is the part of winter driving that surprises first-time visitors, so here it is. When conditions warrant, Caltrans and the park post chain requirements at checkpoints, in three levels. ", React.createElement("strong", null, "R1"), " means chains are required unless you have snow tires. ", React.createElement("strong", null, "R2"), " means chains are required unless you have four-wheel or all-wheel drive with snow tires. ", React.createElement("strong", null, "R3"), " means chains on everything, no exceptions, and in practice roads usually just close before R3 is posted."), React.createElement("p", null, "The detail that catches people: whenever chain control is in effect inside the park, ", React.createElement("strong", null, "you must carry chains even if your vehicle is exempt from putting them on"), ". A 4WD truck with snow tires can drive through R2 without chains mounted, but the driver still needs a set in the vehicle, and rangers do check at the checkpoints. Rental-car agreements almost universally prohibit chains, which is a problem between you and the rental company, not one the checkpoint will solve for you. Chains can be bought or rented in the gateway towns, Mariposa, Oakhurst, Groveland, and shops along 140 will often rent a set and take it back on your way out. Practice putting them on once in a dry parking lot, not for the first time in a snowbank at night. The ", React.createElement("a", {
     href: "/articles/pack-your-car-for-yosemite"
-  }, "winter car kit"), " covers the rest of what should be in the trunk."), React.createElement("blockquote", null, "The checkpoint does not care what your all-wheel-drive badge says. Carry the chains."), React.createElement("h2", null, "Badger Pass, the small ski area that stayed small"), React.createElement("p", null, React.createElement("strong", null, "Badger Pass Ski Area"), ", on the open lower stretch of Glacier Point Road, is one of the oldest ski areas in California, operating since the 1930s, and it has stayed deliberately small: a handful of lifts, a modest vertical, gentle terrain, a day lodge. Nobody flies in for it. It is a family-scaled hill where lessons are cheap by ski-industry standards, kids learn without being run over, and the lift line conversation is about the park rather than the snow report. If your measure of a ski area is terrain steepness, go to Tahoe. If your measure is teaching a seven-year-old to snowplow inside a national park, Badger is close to ideal."), React.createElement("p", null, "Badger matters even if you never ride a lift, because it is the ", React.createElement("strong", null, "trailhead for the winter high country"), ". The closed section of Glacier Point Road becomes a groomed ski track, and the marked winter routes into the Glacier Point backcountry all start from the Badger parking lot. Rentals for skis and snowshoes are available at the lodge. It is the only place in the park with real winter infrastructure."), React.createElement("h2", null, "Snowshoeing: Dewey Point and the ranger walks"), React.createElement("p", null, "The signature winter day trip in Yosemite is ", React.createElement("strong", null, "Dewey Point"), ". From Badger Pass you follow the groomed road, then a marked snow route through the forest to the Valley rim, and the trees open onto a straight-down view of the Valley with El Capitan across it. It runs about seven miles round trip depending on the route variant, an honest half-day on snowshoes for a reasonably fit party. In July, Dewey Point is a viewpoint. In February it is a snowbound one few people reach."), React.createElement("p", null, "For a gentler entry, the park offers ", React.createElement("strong", null, "ranger-led snowshoe walks"), " from Badger Pass through the winter season, typically two hours through the woods near the ski area, with snowshoes provided for a small fee. They are good value, with the ranger stopping to point out marten tracks and explain how a fir survives under ten feet of snow. Check the current Yosemite Guide or the ", React.createElement("a", {
+  }, "winter car kit"), " covers the rest of what should be in the trunk."), React.createElement("figure", null, React.createElement(ChainGrid, null), React.createElement("figcaption", null, "Chain control by level and vehicle, drawn from the rules in this article. Rental agreements almost universally prohibit chains, which is between you and the rental company.")), React.createElement("blockquote", null, "The checkpoint does not care what your all-wheel-drive badge says. Carry the chains."), React.createElement("h2", null, "Badger Pass, the small ski area that stayed small"), React.createElement("p", null, React.createElement("strong", null, "Badger Pass Ski Area"), ", on the open lower stretch of Glacier Point Road, is one of the oldest ski areas in California, operating since the 1930s, and it has stayed deliberately small: a handful of lifts, a modest vertical, gentle terrain, a day lodge. Nobody flies in for it. It is a family-scaled hill where lessons are cheap by ski-industry standards, kids learn without being run over, and the lift line conversation is about the park rather than the snow report. If your measure of a ski area is terrain steepness, go to Tahoe. If your measure is teaching a seven-year-old to snowplow inside a national park, Badger is close to ideal."), React.createElement("p", null, "Badger matters even if you never ride a lift, because it is the ", React.createElement("strong", null, "trailhead for the winter high country"), ". The closed section of Glacier Point Road becomes a groomed ski track, and the marked winter routes into the Glacier Point backcountry all start from the Badger parking lot. Rentals for skis and snowshoes are available at the lodge. It is the only place in the park with real winter infrastructure."), React.createElement("h2", null, "Snowshoeing: Dewey Point and the ranger walks"), React.createElement("p", null, "The signature winter day trip in Yosemite is ", React.createElement("strong", null, "Dewey Point"), ". From Badger Pass you follow the groomed road, then a marked snow route through the forest to the Valley rim, and the trees open onto a straight-down view of the Valley with El Capitan across it. It runs about seven miles round trip depending on the route variant, an honest half-day on snowshoes for a reasonably fit party. In July, Dewey Point is a viewpoint. In February it is a snowbound one few people reach."), React.createElement("p", null, "For a gentler entry, the park offers ", React.createElement("strong", null, "ranger-led snowshoe walks"), " from Badger Pass through the winter season, typically two hours through the woods near the ski area, with snowshoes provided for a small fee. They are good value, with the ranger stopping to point out marten tracks and explain how a fir survives under ten feet of snow. Check the current Yosemite Guide or the ", React.createElement("a", {
     href: "/conditions"
   }, "conditions page"), " for schedules before you drive up."), React.createElement("h2", null, "The rink under Half Dome"), React.createElement("p", null, "The ", React.createElement("strong", null, "Curry Village ice rink"), " is an outdoor rink on the Valley floor where you skate loops while Half Dome stands overhead in winter light, with a fire pit at the edge for the between-sessions thaw. Skating has been happening at Curry Village for roughly a century, and it remains cheap, low-key, and better at dusk than at any other hour, when the granite goes pink and the rink lights come on. It is the rare Yosemite activity that works with small children, bad knees, and no planning."), React.createElement("h2", null, "The photography season"), React.createElement("p", null, "The strongest case for winter needs no infrastructure: ", React.createElement("strong", null, "clearing storms are the best photographic conditions Yosemite offers"), ", and winter is when they happen. A storm breaks up over the Valley, fog tears off the walls, snow outlines every ledge on El Capitan, and for an hour or two the place looks the way it did in the photographs that made it famous. Residents watch the radar and drive up for the clearing, and you can do a modest version of the same thing: if the forecast shows a storm ending mid-morning, be at Tunnel View when it does. Where to stand and when is covered in ", React.createElement("a", {
     href: "/articles/yosemite-photography-spots"
@@ -24,7 +158,14 @@ window.ARTICLE_BODIES["yosemite-in-winter"] = function YosemiteInWinterBody() {
     href: "/articles/yosemite-in-march"
   }, "March"), ", Yosemite Falls is a waterfall again rather than a stain, and the whole hydrological year described in ", React.createElement("a", {
     href: "/articles/yosemite-waterfalls-guide"
-  }, "the waterfalls guide"), " starts over. Late winter also brings one of the park's oddest small phenomena: on the coldest early-spring mornings, Yosemite Creek can run with ", React.createElement("strong", null, "frazil ice"), ", a slush of ice crystals that moves down the channel like slow lava and piles into banks of white. It is a niche thing to chase, and it marks the end of the quiet season."), React.createElement("h2", null, "The takeaway"), React.createElement("p", null, "Come up 140 with chains in the trunk. Stay two nights in or near the Valley. Skate at dusk, snowshoe to Dewey Point or walk into the Mariposa Grove, and watch the weather for a clearing storm. If it is February, look at Horsetail Fall like everyone else, then notice that the other twenty-seven days of the month you have the place nearly to yourself."), React.createElement("p", null, "Twenty seasons in, winter is still the season I recommend first."), React.createElement(LodgingCta, {
+  }, "the waterfalls guide"), " starts over. Late winter also brings one of the park's oddest small phenomena: on the coldest early-spring mornings, Yosemite Creek can run with ", React.createElement("strong", null, "frazil ice"), ", a slush of ice crystals that moves down the channel like slow lava and piles into banks of white. It is a niche thing to chase, and it marks the end of the quiet season."), React.createElement(NatureNotesFilm, {
+    id: "frazil-ice",
+    title: "Frazil Ice",
+    youtubeId: "9V9p4mFEYXc",
+    episode: 9,
+    note: "The park filmed the slush on Yosemite Creek, which is the easiest way to see it without standing beside the creek on a freezing spring morning.",
+    location: "article"
+  }), React.createElement("h2", null, "The takeaway"), React.createElement("p", null, "Come up 140 with chains in the trunk. Stay two nights in or near the Valley. Skate at dusk, snowshoe to Dewey Point or walk into the Mariposa Grove, and watch the weather for a clearing storm. If it is February, look at Horsetail Fall like everyone else, then notice that the other twenty-seven days of the month you have the place nearly to yourself."), React.createElement("p", null, "Twenty seasons in, winter is still the season I recommend first."), React.createElement(LodgingCta, {
     destination: "Yosemite National Park",
     heading: "Winter is when the rooms exist",
     note: "This is the one season where the advice is not 'book a year out'. The seasonal operations close, rates drop, and midweek availability in January is a different universe from July. A search on your dates is the fastest way to see that for yourself.",

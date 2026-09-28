@@ -1,8 +1,56 @@
-/* global React, Placeholder, MotifMountains */
+/* global React, Placeholder, MotifMountains, NatureNotesFilm */
 
 window.ARTICLE_BODIES = window.ARTICLE_BODIES || {};
 
 window.ARTICLE_BODIES["yosemite-falls-trail"] = function YosemiteFallsTrailBody() {
+  // ── The climb, drawn from the Park Service figures in this article ─────────
+  // Columbia Rock: 1 mile, 1,000 ft. Top: 3.6 miles one way, 2,700 ft. The
+  // upper fall view is a half mile past Columbia Rock, some of it downhill; no
+  // elevation is published for it, so it is marked on the distance axis only.
+  // Straight lines between published points: a shape, not a surveyed profile.
+  const AXIS = { fontFamily: "var(--sans)", fontSize: 12.5, fill: "var(--ink-3)" };
+  const LABEL = { fontFamily: "var(--sans)", fontSize: 13, fill: "var(--ink-2)" };
+  const PLACE = { fontFamily: "var(--serif)", fontSize: 16, fill: "var(--ink)" };
+  const svgStyle = { width: "100%", height: "auto", display: "block" };
+
+  function ClimbProfile() {
+    const W = 680, H = 330, L = 56, R = 24, T = 30, B = 44;
+    const pw = W - L - R, ph = H - T - B;
+    const x = (mi) => L + (mi / 3.6) * pw;
+    const y = (ft) => T + ph - (ft / 2700) * ph;
+    const pts = [[0, 0], [1, 1000], [3.6, 2700]];
+    const line = pts.map(([m, f]) => `${x(m)},${y(f)}`).join(" ");
+    const area = `${x(0)},${y(0)} ${line} ${x(3.6)},${y(0)}`;
+    return (
+      <svg viewBox={`0 0 ${W} ${H}`} style={svgStyle} role="img"
+        aria-label="Elevation gain on the Yosemite Falls Trail, from the Park Service figures. From the trailhead near Camp 4 the trail climbs 1,000 feet in its first mile to Columbia Rock. The view of Upper Yosemite Fall is a half mile farther, some of it downhill, about three miles round trip. Above that the trail is steep and rocky with no shade until late afternoon, and it reaches the top at 3.6 miles and 2,700 feet of gain, an average of 750 feet per mile. There is no water on the trail.">
+        {[0, 1000, 2000, 2700].map((f) => (
+          <g key={f}>
+            <line x1={L} x2={W - R} y1={y(f)} y2={y(f)} stroke="var(--rule-soft)" strokeWidth="1" />
+            <text x={L - 8} y={y(f) + 4} textAnchor="end" style={AXIS}>{f === 0 ? "0" : f.toLocaleString("en-US")}</text>
+          </g>
+        ))}
+        {[0, 1, 1.5, 2, 3, 3.6].map((m) => (
+          <text key={m} x={x(m)} y={H - 20} textAnchor="middle" style={AXIS}>{m}</text>
+        ))}
+        <text x={L + pw / 2} y={H - 4} textAnchor="middle" style={AXIS}>miles from the trailhead · feet gained</text>
+        <polygon points={area} fill="var(--moss)" opacity="0.12" />
+        <rect x={x(1)} y={T} width={x(3.6) - x(1)} height={ph} fill="var(--rust)" opacity="0.06" />
+        <polyline points={line} fill="none" stroke="var(--moss)" strokeWidth="2.6" strokeLinejoin="round" />
+        <circle cx={x(1)} cy={y(1000)} r="5" fill="var(--paper)" stroke="var(--ink)" strokeWidth="2" />
+        <circle cx={x(3.6)} cy={y(2700)} r="5" fill="var(--ink)" />
+        <line x1={x(1.5)} x2={x(1.5)} y1={y(0)} y2={y(0) - 10} stroke="var(--ink)" strokeWidth="2" />
+        <text x={x(1)} y={y(1000) - 40} textAnchor="middle" style={PLACE}>Columbia Rock</text>
+        <text x={x(1)} y={y(1000) - 22} textAnchor="middle" style={LABEL}>1 mi · 1,000 ft</text>
+        <text x={x(1.5) + 6} y={y(0) - 16} style={LABEL}>Upper fall view, 0.5 mi on</text>
+        <text x={x(3.6) - 8} y={y(2700) + 80} textAnchor="end" style={PLACE}>Top of the fall</text>
+        <text x={x(3.6) - 8} y={y(2700) + 98} textAnchor="end" style={LABEL}>3.6 mi · 2,700 ft</text>
+        <text x={x(2.3)} y={y(1000) - 22} textAnchor="middle" style={LABEL}>The upper half: steep, rocky,</text>
+        <text x={x(2.3)} y={y(1000) - 4} textAnchor="middle" style={LABEL}>no shade until late afternoon</text>
+        <text x={x(0.08)} y={T + 8} style={LABEL}>Average: 750 ft per mile. No water on the trail.</text>
+      </svg>
+    );
+  }
   return (
     <>
       <p className="dropcap">
@@ -14,6 +62,15 @@ window.ARTICLE_BODIES["yosemite-falls-trail"] = function YosemiteFallsTrailBody(
       <p>
         Yosemite Falls drops <strong>2,425 feet</strong> from the rim to the Valley floor, one of the tallest waterfalls in the world, but it does not do it in one leap. The Park Service breaks it into three: <strong>Upper Yosemite Fall at 1,430 feet</strong>, the <strong>middle cascades at 675 feet</strong>, and <strong>Lower Yosemite Fall at 320 feet</strong>. From Yosemite Village and the lodge you see the whole stack at once, which is why it reads as a single fall in every photograph. On foot it separates again. The paved loop takes you to the bottom of the last 320 feet. The trail climbs beside the first 1,430 and puts you on the rim above it.
       </p>
+
+      <NatureNotesFilm
+        id="yosemite-falls"
+        title="Yosemite Falls"
+        youtubeId="2mSNY3TdDZ4"
+        episode={2}
+        note="The Park Service's own short film on the fall: three tiers, one creek, and a flow that runs on snowmelt and runs out."
+        location="article"
+      />
 
       <p>
         The other thing to know before choosing is that the water is seasonal, and more seasonal than most visitors expect. The Park Service gives the fall's flow as <strong>approximately November through July, with the peak in May</strong>, and it says plainly that Yosemite Falls is often a trickle or completely dry by August. The lower fall is often dry from late July or August through October. The storms of late fall bring it back. <a href="/articles/yosemite-waterfalls-guide">The waterfall guide</a> covers the calendar for every fall in the Valley; for this one, the short version is that a spring hike and an August hike are two different trips, and only one of them ends at a waterfall.
@@ -71,6 +128,13 @@ window.ARTICLE_BODIES["yosemite-falls-trail"] = function YosemiteFallsTrailBody(
       <p>
         Read the second line carefully. Seven miles sounds like an easy day to anyone who hikes at home, and it is the gain that decides it: 2,700 feet in 3.6 miles averages 750 feet of climbing per mile, and it comes with no shade on the upper half and nothing to drink. The time estimate is for a fit hiker moving steadily. A family that turns a 2,000-foot day into an afternoon at home should plan on the long end of the range, or on Columbia Rock.
       </p>
+
+      <figure style={{ margin: "32px 0" }}>
+        <ClimbProfile />
+        <figcaption>
+          The climb, from the Park Service figures quoted in this article: straight lines between the published points, not a surveyed profile. Most of the effort that decides the day comes after Columbia Rock.
+        </figcaption>
+      </figure>
 
       <p>
         The trail is not the only hard climb out of the Valley. The Mist Trail to Vernal and Nevada Falls carries its own crowd and its own wet granite staircase; <a href="/articles/mist-trail-the-real-guide">the Mist Trail guide</a> covers that one. The Yosemite Falls Trail has fewer people above Columbia Rock, a much bigger climb, and more sun. Which of the two to pick on a given day usually comes down to the heat.

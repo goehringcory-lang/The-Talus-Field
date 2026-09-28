@@ -1,8 +1,51 @@
-/* global React */
+/* global React, NatureNotesFilm */
 
 window.ARTICLE_BODIES = window.ARTICLE_BODIES || {};
 
 window.ARTICLE_BODIES["horsetail-fall-firefall"] = function HorsetailFallFirefallBody() {
+  // ── Three conditions, all at once ─────────────────────────────────────────
+  // Restates the "Three conditions" section: water, a clear western horizon,
+  // and the sun angle, the only one of the three you can schedule. The
+  // fourteen to eighteen candidate evenings are the article's own arithmetic.
+  const LABEL = { fontFamily: "var(--sans)", fontSize: 13, fill: "var(--ink-2)" };
+  const HEAD = { fontFamily: "var(--serif)", fontSize: 19, fill: "var(--ink)" };
+  const KICK = { fontFamily: "var(--sans)", fontSize: 11.5, fontWeight: 600, letterSpacing: "1.4px", fill: "var(--rust)" };
+  const svgStyle = { width: "100%", height: "auto", display: "block" };
+
+  function ThreeConditions() {
+    const cards = [
+      { k: "ONE", t: "Water in the fall", a: "Recent rain, or snowmelt", b: "on El Capitan's summit", c: ["Fails most often", "in drought years"] },
+      { k: "TWO", t: "A clear west", a: "No cloud bank where", b: "the sun goes down", c: ["Can fail in the", "last five minutes"] },
+      { k: "THREE", t: "The sun angle", a: "Mid to late February,", b: "about two weeks", c: ["The only one you", "can schedule"] },
+    ];
+    const cw = 210, gap = 25, x0 = 0;
+    return (
+      <svg viewBox="0 0 680 310" style={svgStyle} role="img"
+        aria-label="The firefall needs three conditions at once, and if any one fails there is no show. One: water in the fall, from recent rain or snow melting on El Capitan's summit; it fails most in drought years. Two: a clear western horizon, with no cloud bank where the sun goes down; it can die in the last five minutes. Three: the sun angle, mid to late February for about two weeks, the only condition you can schedule. The sun angle alone gives about fourteen to eighteen candidate evenings a year. When all three hold, the fall glows for about ten minutes.">
+        {cards.map((c, i) => {
+          const x = x0 + i * (cw + gap);
+          return (
+            <g key={c.k}>
+              <rect x={x + 1} y={10} width={cw - 2} height={180} rx="3" fill="var(--paper)" stroke={i === 2 ? "var(--moss)" : "var(--rule-soft)"} strokeWidth={i === 2 ? 2 : 1.2} />
+              <text x={x + 16} y={36} style={KICK}>{c.k}</text>
+              <text x={x + 16} y={64} style={HEAD}>{c.t}</text>
+              <text x={x + 16} y={96} style={LABEL}>{c.a}</text>
+              <text x={x + 16} y={114} style={LABEL}>{c.b}</text>
+              <line x1={x + 16} x2={x + cw - 16} y1={134} y2={134} stroke="var(--rule-soft)" />
+              {c.c.map((line, j) => (
+                <text key={j} x={x + 16} y={156 + j * 18} style={{ ...LABEL, fill: i === 2 ? "var(--moss)" : "var(--ink-3)" }}>{line}</text>
+              ))}
+              {i < 2 && <text x={x + cw + gap / 2} y={102} textAnchor="middle" style={{ ...HEAD, fill: "var(--rust)" }}>+</text>}
+            </g>
+          );
+        })}
+        <path d="M105 196 L105 220 L575 220 L575 196 M340 220 L340 244" fill="none" stroke="var(--ink-3)" strokeWidth="1.4" />
+        <rect x={80} y={246} width={520} height={56} rx="3" fill="var(--ink)" />
+        <text x={340} y={269} textAnchor="middle" style={{ ...HEAD, fontSize: 17, fill: "var(--paper)" }}>All three: about ten minutes of orange</text>
+        <text x={340} y={290} textAnchor="middle" style={{ ...LABEL, fontSize: 12.5, fill: "var(--paper)" }}>Any one missing: no show. About 14 to 18 candidate evenings a year.</text>
+      </svg>
+    );
+  }
   return (
     <>
       <p className="dropcap">
@@ -27,6 +70,15 @@ window.ARTICLE_BODIES["horsetail-fall-firefall"] = function HorsetailFallFirefal
         The same solar geometry occurs in late October, on the other side of the winter solstice. Almost nobody has heard of an October firefall, because in October there is almost never water in the fall.
       </p>
 
+      <NatureNotesFilm
+        id="horsetail-fall"
+        title="Horsetail Fall"
+        youtubeId="oyoa-QfeGho"
+        episode={14}
+        note="The Park Service's short film on the fall and the light, worth the few minutes before you commit a February evening to it."
+        location="article"
+      />
+
       <h2>Three conditions, and all of them must hold</h2>
 
       <p>The firefall requires three independent conditions at once. If any one fails, there is no show.</p>
@@ -46,6 +98,13 @@ window.ARTICLE_BODIES["horsetail-fall-firefall"] = function HorsetailFallFirefal
       <p>
         The arithmetic. Condition three gives you about fourteen to eighteen candidate evenings a year. February weather being what it is, a good number of those evenings are cloudy, and in a lean snow year some or all of them are dry. The years when everything converges for several evenings running produce the famous photographs. There are also years when the firefall effectively does not happen at all. If you visit on one specific evening, your odds are uncertain, and anyone promising otherwise is wrong.
       </p>
+
+      <figure style={{ margin: "28px 0 32px" }}>
+        <ThreeConditions />
+        <figcaption>
+          The three conditions, as this section lays them out. Only the third goes in a calendar.
+        </figcaption>
+      </figure>
 
       <blockquote>The firefall is not an event the park schedules. It is a coincidence the park permits you to watch.</blockquote>
 

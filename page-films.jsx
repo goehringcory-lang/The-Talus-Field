@@ -1,5 +1,4 @@
-/* global React, HpPageHead, HpHeading, HpLetter */
-const { useState: useStateF, useEffect: useEffectF, useRef: useRefF } = React;
+/* global React, HpPageHead, HpHeading, HpLetter, FilmEmbed */
 
 // ============================================================
 // Moving Pictures. The Yosemite Nature Notes film archive.
@@ -9,58 +8,9 @@ const { useState: useStateF, useEffect: useEffectF, useRef: useRefF } = React;
 // iframe replaces it. No YouTube script runs before that click.
 // ============================================================
 
-function FilmEmbed({ ep }) {
-  const [playing, setPlaying] = useStateF(false);
-  const frameRef = useRefF(null);
-
-  // After the swap, move focus into the player so a keyboard user who
-  // activated the facade button is not left focused on a removed element.
-  useEffectF(() => {
-    if (playing && frameRef.current) frameRef.current.focus();
-  }, [playing]);
-
-  if (playing) {
-    return (
-      <div className="film__frame">
-        <iframe
-          ref={frameRef}
-          src={`https://www.youtube-nocookie.com/embed/${ep.youtubeId}?autoplay=1&rel=0`}
-          title={`Yosemite Nature Notes: ${ep.title}`}
-          allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture; web-share"
-          allowFullScreen
-        />
-      </div>
-    );
-  }
-
-  return (
-    <button
-      type="button"
-      className="film__facade"
-      aria-label={`Play film: ${ep.title}`}
-      onClick={() => {
-        if (window.track) window.track("film_play", { film_id: ep.id, film_title: ep.title });
-        setPlaying(true);
-      }}
-    >
-      {/* hqdefault is 4:3 with letterbox bars; the 16:9 facade crops them via object-fit. */}
-      <img
-        className="film__thumb"
-        src={`https://i.ytimg.com/vi/${ep.youtubeId}/hqdefault.jpg`}
-        alt=""
-        loading="lazy"
-        decoding="async"
-        referrerPolicy="no-referrer"
-      />
-      <span className="film__play" aria-hidden="true">
-        <svg viewBox="0 0 64 64" width="56" height="56">
-          <circle cx="32" cy="32" r="30" fill="none" stroke="currentColor" strokeWidth="1.5" />
-          <path d="M26 21 L46 32 L26 43 Z" fill="currentColor" />
-        </svg>
-      </span>
-    </button>
-  );
-}
+// FilmEmbed (the click-to-load facade) lives in components.jsx since the
+// September 2026 visual pass, so event pages and article bodies can embed
+// one film with the same no-script-before-play behaviour.
 
 function FilmCard({ ep }) {
   return (

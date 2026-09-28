@@ -1,10 +1,135 @@
 window.ARTICLE_BODIES = window.ARTICLE_BODIES || {};
 window.ARTICLE_BODIES["yosemite-wilderness-permits-guide"] = function YosemiteWildernessPermitsGuideBody() {
+  var SVG_STYLE = {
+    width: "100%",
+    height: "auto",
+    display: "block"
+  };
+  var T_HEAD = {
+    fontFamily: "var(--sans)",
+    fontSize: 12.5,
+    fontWeight: 600,
+    letterSpacing: 1.1,
+    fill: "var(--rust)"
+  };
+  var T_BODY = {
+    fontFamily: "var(--sans)",
+    fontSize: 14,
+    fill: "var(--ink)"
+  };
+  var T_SOFT = {
+    fontFamily: "var(--sans)",
+    fontSize: 13,
+    fill: "var(--ink-2)"
+  };
+  var T_BIG = {
+    fontFamily: "var(--serif)",
+    fontSize: 19,
+    fill: "var(--ink)"
+  };
+  function PermitCalendar() {
+    var W = 600,
+      H = 500;
+    var steps = [{
+      y: 150,
+      head: "24 WEEKS BEFORE THE START DATE",
+      lines: ["The weekly lottery on Recreation.gov: 60 percent", "Applications open Sunday, close Saturday, process the day after", "$10 to apply, plus $5 per person if you win"]
+    }, {
+      y: 270,
+      head: "7 DAYS BEFORE, AT 7 A.M. PACIFIC",
+      lines: ["The other 40 percent goes online", "First come, first served", "Famous trailheads go in minutes; others linger for days"]
+    }, {
+      y: 390,
+      head: "THE START DATE",
+      lines: ["Collect the permit at a wilderness center, 8 to 11 a.m.", "A late-arrival hold extends pickup to 5 p.m.", "Uncollected, it can go to the next person in line"]
+    }];
+    return React.createElement("svg", {
+      viewBox: `0 0 ${W} ${H}`,
+      style: SVG_STYLE,
+      role: "img",
+      "aria-label": "How a Yosemite wilderness permit is allocated. Each trailhead's daily quota is split: 60 percent by weekly lottery, 40 percent released seven days out. Twenty-four weeks before the start date, the lottery runs on Recreation.gov; applications for a weekly window open on a Sunday, close the following Saturday and process the day after; it costs $10 to apply plus $5 per person if you win. Seven days before the start date, at 7 a.m. Pacific, the remaining 40 percent goes online first come, first served. On the start date the permit is collected at a wilderness center between 8 and 11 a.m., or by 5 p.m. with a late-arrival hold, or it can be released to the next person in line."
+    }, React.createElement("text", {
+      x: "0",
+      y: "18",
+      style: T_HEAD
+    }, "ONE TRAILHEAD'S DAILY QUOTA"), React.createElement("rect", {
+      x: "0",
+      y: "32",
+      width: "360",
+      height: "48",
+      fill: "var(--moss)"
+    }), React.createElement("rect", {
+      x: "360",
+      y: "32",
+      width: "240",
+      height: "48",
+      fill: "var(--paper-2)",
+      stroke: "var(--moss)",
+      strokeWidth: "1.5"
+    }), React.createElement("text", {
+      x: "16",
+      y: "62",
+      style: {
+        ...T_BODY,
+        fill: "var(--paper)",
+        fontWeight: 600
+      }
+    }, "60% · weekly lottery"), React.createElement("text", {
+      x: "376",
+      y: "62",
+      style: {
+        ...T_BODY,
+        fontWeight: 600
+      }
+    }, "40% · seven-day release"), React.createElement("line", {
+      x1: "24",
+      y1: "126",
+      x2: "24",
+      y2: "444",
+      stroke: "var(--rule-soft)",
+      strokeWidth: "2"
+    }), steps.map((s, i) => React.createElement("g", {
+      key: s.head
+    }, React.createElement("circle", {
+      cx: "24",
+      cy: s.y - 5,
+      r: "9",
+      fill: i === 2 ? "var(--rust)" : i === 0 ? "var(--moss)" : "var(--paper)",
+      stroke: "var(--moss)",
+      strokeWidth: "2"
+    }), React.createElement("text", {
+      x: "50",
+      y: s.y,
+      style: T_HEAD
+    }, s.head), s.lines.map((l, j) => React.createElement("text", {
+      key: l,
+      x: "50",
+      y: s.y + 24 + j * 21,
+      style: j === 0 ? {
+        ...T_BODY,
+        fontWeight: 600
+      } : T_SOFT
+    }, l)))), React.createElement("text", {
+      x: "50",
+      y: "492",
+      style: {
+        ...T_SOFT,
+        fontStyle: "italic"
+      }
+    }, "Up to six future reservations at a time. Time axis not to scale."));
+  }
   return React.createElement(React.Fragment, null, React.createElement("p", {
     className: "dropcap"
   }, "Ninety-five percent of Yosemite is designated wilderness. Most visitors never touch it. The five percent they do visit (the Valley floor, the Glacier Point corridor, the roadside of Tioga) absorbs millions of people a year, while a ten-minute walk past any trailhead sign the crowd thins to nothing and the park becomes what it was before the crowds existed. The price of admission to that version of Yosemite, if you want to sleep in it, is a wilderness permit. The system that hands them out is fair, cheap, and thoroughly confusing the first time you meet it. This is the walkthrough I wish someone had given me."), React.createElement("h2", null, "First, what the permit is and is not"), React.createElement("p", null, "A wilderness permit is required year-round for any overnight stay in the Yosemite Wilderness. Day hikes do not need one, with the single famous exception of ", React.createElement("a", {
     href: "/half-dome-lottery"
-  }, "Half Dome, which runs its own permit lottery"), ". The permit is not a campsite reservation; there are no assigned sites out there. What you are reserving is a trailhead and a start date. The park caps how many overnight hikers can begin at each trailhead each day (the quota), and once you are through the gate you camp where regulations allow and walk where your legs take you. Everything in the system exists to meter that first day, because the first day is what concentrates people."), React.createElement("h2", null, "The two ways to get one"), React.createElement("p", null, React.createElement("strong", null, "The lottery, 24 weeks out."), " Sixty percent of each trailhead's daily quota is awarded by weekly lottery on Recreation.gov, run 24 weeks ahead of the start date. Applications for a given Sunday-through-Saturday window of start dates open on a Sunday, close the following Saturday, and process the day after. You get one application per weekly window, you can list alternate trailheads and dates on it (do this; it is where most of the winning happens), and the fee structure is $10 to apply plus $5 per person if you win. You can hold up to six future reservations at a time. Applying feels like buying a raffle ticket because that is what it is: popular trailheads (Happy Isles, Cathedral Lakes, anything that touches the John Muir Trail) go badly oversubscribed, while trailheads two drainages over often go unclaimed the same week."), React.createElement("p", null, React.createElement("strong", null, "The seven-day release."), " The remaining 40 percent of every quota goes online at 7 a.m. Pacific exactly seven days before the start date, first come, first served. This is the realistic second chance, and for flexible hikers it is often the better first chance: no lottery, no waiting weeks for results, just a calendar alarm and a fast click. Famous trailheads disappear in the first minutes. Everything else lingers, sometimes for days. If your plan is \"somewhere quiet in the high country next weekend\" rather than \"the exact classic route,\" the seven-day release will almost always feed you."), React.createElement("blockquote", null, "The trailhead is the reservation. Flexibility about the trailhead is the whole strategy."), React.createElement(Placeholder, {
+  }, "Half Dome, which runs its own permit lottery"), ". The permit is not a campsite reservation; there are no assigned sites out there. What you are reserving is a trailhead and a start date. The park caps how many overnight hikers can begin at each trailhead each day (the quota), and once you are through the gate you camp where regulations allow and walk where your legs take you. Everything in the system exists to meter that first day, because the first day is what concentrates people."), React.createElement(NatureNotesFilm, {
+    id: "wilderness",
+    title: "Wilderness",
+    youtubeId: "hKyfyYDgxeA",
+    episode: 3,
+    note: "The Park Service's own film on the ninety-five percent of Yosemite a wilderness permit opens.",
+    location: "article"
+  }), React.createElement("h2", null, "The two ways to get one"), React.createElement("p", null, React.createElement("strong", null, "The lottery, 24 weeks out."), " Sixty percent of each trailhead's daily quota is awarded by weekly lottery on Recreation.gov, run 24 weeks ahead of the start date. Applications for a given Sunday-through-Saturday window of start dates open on a Sunday, close the following Saturday, and process the day after. You get one application per weekly window, you can list alternate trailheads and dates on it (do this; it is where most of the winning happens), and the fee structure is $10 to apply plus $5 per person if you win. You can hold up to six future reservations at a time. Applying feels like buying a raffle ticket because that is what it is: popular trailheads (Happy Isles, Cathedral Lakes, anything that touches the John Muir Trail) go badly oversubscribed, while trailheads two drainages over often go unclaimed the same week."), React.createElement("p", null, React.createElement("strong", null, "The seven-day release."), " The remaining 40 percent of every quota goes online at 7 a.m. Pacific exactly seven days before the start date, first come, first served. This is the realistic second chance, and for flexible hikers it is often the better first chance: no lottery, no waiting weeks for results, just a calendar alarm and a fast click. Famous trailheads disappear in the first minutes. Everything else lingers, sometimes for days. If your plan is \"somewhere quiet in the high country next weekend\" rather than \"the exact classic route,\" the seven-day release will almost always feed you."), React.createElement("figure", null, React.createElement(PermitCalendar, null), React.createElement("figcaption", null, "The permit calendar, drawn from the figures in this article. Schematic, not to scale.")), React.createElement("blockquote", null, "The trailhead is the reservation. Flexibility about the trailhead is the whole strategy."), React.createElement(Placeholder, {
     caption: "The Tuolumne high country, where a permit trades a parking lot for a watershed",
     image: "img/tuolumne-high-country-cory-goehring.jpg",
     credit: "Photo: Cory Goehring",

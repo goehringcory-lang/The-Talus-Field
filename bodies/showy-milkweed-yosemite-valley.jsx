@@ -1,8 +1,70 @@
-/* global React */
+/* global React, NatureNotesFilm */
 
 window.ARTICLE_BODIES = window.ARTICLE_BODIES || {};
 
 window.ARTICLE_BODIES["showy-milkweed-yosemite-valley"] = function ShowyMilkweedYosemiteValleyBody() {
+  // ── The season and the borrowed poison ────────────────────────────────────
+  // Every month and step is this article's own ("Where and when" and "Why
+  // monarchs depend on milkweed"). Valley floor timing; a shape, not a date.
+  const SMALL = { fontFamily: "var(--sans)", fontSize: 12.5, fill: "var(--ink-3)" };
+  const LABEL = { fontFamily: "var(--sans)", fontSize: 13, fill: "var(--ink-2)" };
+  const STEP = { fontFamily: "var(--serif)", fontSize: 16, fill: "var(--ink)" };
+  const HEAD = { fontFamily: "var(--sans)", fontSize: 12, fontWeight: 600, letterSpacing: 1.4, fill: "var(--rust)" };
+  const INBAR = { fontFamily: "var(--sans)", fontSize: 12.5, fontWeight: 600, fill: "var(--paper)" };
+  const svgStyle = { width: "100%", height: "auto", display: "block" };
+  const MONTHS = ["June", "July", "August", "September"];
+  const CHAIN = [
+    ["Milkweed", ["latex carries", "cardiac glycosides"]],
+    ["Egg", ["laid only", "on milkweed"]],
+    ["Caterpillar", ["eats only milkweed,", "stores the toxin"]],
+    ["Chrysalis", ["the toxin", "carried through"]],
+    ["Butterfly", ["orange and black:", "a warning"]],
+  ];
+
+  function MilkweedSeason() {
+    const W = 680, H = 330, L = 10, R = 10, T = 44;
+    const col = (W - L - R) / 4, mx = (m) => L + m * col;
+    const cw = (W - L - R) / 5;
+    return (
+      <svg viewBox={`0 0 ${W} ${H}`} style={svgStyle} role="img"
+        aria-label="Two panels. The season on the Yosemite Valley floor: showy milkweed blooms from roughly late June through July, peaking in mid-July; in August the flowers give way to seed pods, which split to release seeds on silky floss that fills the air in September. The borrowed poison: milkweed latex carries cardiac glycosides; the monarch lays its eggs only on milkweed; the caterpillars eat only milkweed and store the toxin; it carries through the chrysalis into the adult, whose orange and black coloring is a warning to birds.">
+        <text x={L} y={18} style={HEAD}>THE SEASON ON THE VALLEY FLOOR</text>
+        {MONTHS.map((m, i) => (
+          <g key={m}>
+            <line x1={mx(i)} x2={mx(i)} y1={T - 4} y2={T + 50} stroke="var(--rule-soft)" />
+            <text x={mx(i) + 8} y={T + 10} style={SMALL}>{m}</text>
+          </g>
+        ))}
+        <rect x={mx(0.7)} y={T + 20} width={mx(2) - mx(0.7) - 2} height={28} rx="3" fill="var(--moss)" />
+        <text x={mx(0.7) + 10} y={T + 39} style={INBAR}>In bloom</text>
+        <path d={`M${mx(1.5)} ${T + 52} l-7 9 h14 z`} fill="var(--rust)" />
+        <text x={mx(1.5) + 12} y={T + 64} style={{ ...LABEL, fill: "var(--rust)" }}>peak, mid-July</text>
+        <rect x={mx(2) + 2} y={T + 20} width={col - 4} height={28} rx="3" fill="none" stroke="var(--moss)" strokeWidth="1.5" />
+        <text x={mx(2) + 12} y={T + 39} style={{ ...INBAR, fill: "var(--moss)" }}>Seed pods</text>
+        <rect x={mx(3) + 2} y={T + 20} width={col - 4} height={28} rx="3" fill="none" stroke="var(--moss)" strokeWidth="1.5" strokeDasharray="4 3" />
+        <text x={mx(3) + 12} y={T + 39} style={{ ...INBAR, fill: "var(--moss)" }}>Floss in the air</text>
+        <text x={L} y={T + 88} style={SMALL}>Bloom from roughly late June; pods split to release hundreds of seeds, each on a tuft of floss.</text>
+
+        <text x={L} y={T + 124} style={HEAD}>THE BORROWED POISON</text>
+        {CHAIN.map(([name, note], i) => {
+          const cx = L + i * cw + cw / 2, cy = T + 176;
+          return (
+            <g key={name}>
+              <circle cx={cx} cy={cy} r="22" fill={i === 0 ? "var(--moss)" : i === 4 ? "var(--rust)" : "none"} stroke={i === 0 ? "var(--moss)" : "var(--rust)"} strokeWidth="1.8" />
+              <text x={cx} y={cy + 5} textAnchor="middle" style={{ ...LABEL, fontWeight: 700, fill: i === 0 || i === 4 ? "var(--paper)" : "var(--rust)" }}>{i === 0 ? "M" : i}</text>
+              {i < CHAIN.length - 1 && (
+                <path d={`M${cx + 28} ${cy} H${cx + cw - 30} m-7 -5 l7 5 l-7 5`} fill="none" stroke="var(--ink-3)" strokeWidth="1.4" />
+              )}
+              <text x={cx} y={cy + 46} textAnchor="middle" style={STEP}>{name}</text>
+              {note.map((line, j) => (
+                <text key={j} x={cx} y={cy + 64 + j * 16} textAnchor="middle" style={SMALL}>{line}</text>
+              ))}
+            </g>
+          );
+        })}
+      </svg>
+    );
+  }
   return (
     <>
       <p className="dropcap">
@@ -47,9 +109,19 @@ window.ARTICLE_BODIES["showy-milkweed-yosemite-valley"] = function ShowyMilkweed
         The caterpillars do more than eat the plant. Milkweed latex is loaded with cardiac glycosides, a class of toxins that stop the hearts of most animals that swallow enough of them. Monarch caterpillars have evolved to eat the leaves anyway and to store the toxins in their own bodies, carrying them through the chrysalis and into the adult butterfly. That is what the monarch's orange-and-black coloring advertises: a bird that eats one learns not to eat the next. The whole gaudy warning is borrowed, molecule by molecule, from the milkweed.
       </p>
 
+      <figure style={{ margin: "30px 0 34px" }}>
+        <MilkweedSeason />
+        <figcaption style={{ fontFamily: "var(--sans)", fontSize: 13, color: "var(--ink-3)", marginTop: 10 }}>
+          The plant's year and the monarch's use of it, drawn from this article. Valley floor timing, approximate; the steps are not to scale.
+        </figcaption>
+      </figure>
+
       <p>
         The western monarch, the population that breeds across the Sierra in summer and clusters on the California coast to overwinter, has fallen hard. Overwintering numbers, estimated in the low millions in the 1980s, have dropped to a small fraction of that, and in some recent winters the coastal count has come in below ten thousand butterflies. The reasons are tangled: climate, pesticides, and the disappearance of the coastal groves among them, but the vanishing of breeding milkweed across the West is high on every biologist's list. Which is the plain case for the plant on the Valley roadside: a stand of blooming milkweed in July is breeding habitat for an animal that is running out of it.
       </p>
+
+      <NatureNotesFilm id="monarchs-milkweed" title="Monarchs & Milkweed" youtubeId="V3jpu2th34o" episode={24}
+        note="The Park Service's short on a milkweed field and everything that feeds on it: bees, wasps, hummingbirds and the monarch." location="article" />
 
       <h2>Is milkweed poisonous? The milky sap</h2>
 

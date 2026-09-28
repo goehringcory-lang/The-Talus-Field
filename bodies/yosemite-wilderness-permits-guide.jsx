@@ -1,8 +1,48 @@
-/* global React, Placeholder, MotifMountains */
+/* global React, Placeholder, MotifMountains, NatureNotesFilm */
 
 window.ARTICLE_BODIES = window.ARTICLE_BODIES || {};
 
 window.ARTICLE_BODIES["yosemite-wilderness-permits-guide"] = function YosemiteWildernessPermitsGuideBody() {
+  // ── Explainer graphic (September 2026 visual pass). Every fact in it is
+  // stated in the body below; the figcaption says so.
+  const SVG_STYLE = { width: "100%", height: "auto", display: "block" };
+  const T_HEAD = { fontFamily: "var(--sans)", fontSize: 12.5, fontWeight: 600, letterSpacing: 1.1, fill: "var(--rust)" };
+  const T_BODY = { fontFamily: "var(--sans)", fontSize: 14, fill: "var(--ink)" };
+  const T_SOFT = { fontFamily: "var(--sans)", fontSize: 13, fill: "var(--ink-2)" };
+  const T_BIG = { fontFamily: "var(--serif)", fontSize: 19, fill: "var(--ink)" };
+
+  // The permit calendar: how one trailhead's daily quota is split, and the
+  // three dates that matter. Vertical so it stays legible on a phone.
+  function PermitCalendar() {
+    const W = 600, H = 500;
+    const steps = [
+      { y: 150, head: "24 WEEKS BEFORE THE START DATE", lines: ["The weekly lottery on Recreation.gov: 60 percent", "Applications open Sunday, close Saturday, process the day after", "$10 to apply, plus $5 per person if you win"] },
+      { y: 270, head: "7 DAYS BEFORE, AT 7 A.M. PACIFIC", lines: ["The other 40 percent goes online", "First come, first served", "Famous trailheads go in minutes; others linger for days"] },
+      { y: 390, head: "THE START DATE", lines: ["Collect the permit at a wilderness center, 8 to 11 a.m.", "A late-arrival hold extends pickup to 5 p.m.", "Uncollected, it can go to the next person in line"] },
+    ];
+    return (
+      <svg viewBox={`0 0 ${W} ${H}`} style={SVG_STYLE} role="img"
+        aria-label="How a Yosemite wilderness permit is allocated. Each trailhead's daily quota is split: 60 percent by weekly lottery, 40 percent released seven days out. Twenty-four weeks before the start date, the lottery runs on Recreation.gov; applications for a weekly window open on a Sunday, close the following Saturday and process the day after; it costs $10 to apply plus $5 per person if you win. Seven days before the start date, at 7 a.m. Pacific, the remaining 40 percent goes online first come, first served. On the start date the permit is collected at a wilderness center between 8 and 11 a.m., or by 5 p.m. with a late-arrival hold, or it can be released to the next person in line.">
+        <text x="0" y="18" style={T_HEAD}>ONE TRAILHEAD'S DAILY QUOTA</text>
+        <rect x="0" y="32" width="360" height="48" fill="var(--moss)" />
+        <rect x="360" y="32" width="240" height="48" fill="var(--paper-2)" stroke="var(--moss)" strokeWidth="1.5" />
+        <text x="16" y="62" style={{ ...T_BODY, fill: "var(--paper)", fontWeight: 600 }}>60% · weekly lottery</text>
+        <text x="376" y="62" style={{ ...T_BODY, fontWeight: 600 }}>40% · seven-day release</text>
+        <line x1="24" y1="126" x2="24" y2="444" stroke="var(--rule-soft)" strokeWidth="2" />
+        {steps.map((s, i) => (
+          <g key={s.head}>
+            <circle cx="24" cy={s.y - 5} r="9" fill={i === 2 ? "var(--rust)" : i === 0 ? "var(--moss)" : "var(--paper)"} stroke="var(--moss)" strokeWidth="2" />
+            <text x="50" y={s.y} style={T_HEAD}>{s.head}</text>
+            {s.lines.map((l, j) => (
+              <text key={l} x="50" y={s.y + 24 + j * 21} style={j === 0 ? { ...T_BODY, fontWeight: 600 } : T_SOFT}>{l}</text>
+            ))}
+          </g>
+        ))}
+        <text x="50" y="492" style={{ ...T_SOFT, fontStyle: "italic" }}>Up to six future reservations at a time. Time axis not to scale.</text>
+      </svg>
+    );
+  }
+
   return (
     <>
       <p className="dropcap">
@@ -15,6 +55,16 @@ window.ARTICLE_BODIES["yosemite-wilderness-permits-guide"] = function YosemiteWi
         A wilderness permit is required year-round for any overnight stay in the Yosemite Wilderness. Day hikes do not need one, with the single famous exception of <a href="/half-dome-lottery">Half Dome, which runs its own permit lottery</a>. The permit is not a campsite reservation; there are no assigned sites out there. What you are reserving is a trailhead and a start date. The park caps how many overnight hikers can begin at each trailhead each day (the quota), and once you are through the gate you camp where regulations allow and walk where your legs take you. Everything in the system exists to meter that first day, because the first day is what concentrates people.
       </p>
 
+      <NatureNotesFilm
+        id="wilderness"
+        title="Wilderness"
+        youtubeId="hKyfyYDgxeA"
+        episode={3}
+        note="The Park Service's own film on the ninety-five percent of Yosemite a wilderness permit opens."
+        location="article"
+      />
+
+
       <h2>The two ways to get one</h2>
 
       <p>
@@ -24,6 +74,12 @@ window.ARTICLE_BODIES["yosemite-wilderness-permits-guide"] = function YosemiteWi
       <p>
         <strong>The seven-day release.</strong> The remaining 40 percent of every quota goes online at 7 a.m. Pacific exactly seven days before the start date, first come, first served. This is the realistic second chance, and for flexible hikers it is often the better first chance: no lottery, no waiting weeks for results, just a calendar alarm and a fast click. Famous trailheads disappear in the first minutes. Everything else lingers, sometimes for days. If your plan is "somewhere quiet in the high country next weekend" rather than "the exact classic route," the seven-day release will almost always feed you.
       </p>
+
+      <figure>
+        <PermitCalendar />
+        <figcaption>The permit calendar, drawn from the figures in this article. Schematic, not to scale.</figcaption>
+      </figure>
+
 
       <blockquote>The trailhead is the reservation. Flexibility about the trailhead is the whole strategy.</blockquote>
 

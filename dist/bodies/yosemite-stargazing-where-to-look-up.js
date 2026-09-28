@@ -1,8 +1,185 @@
 window.ARTICLE_BODIES = window.ARTICLE_BODIES || {};
 window.ARTICLE_BODIES["yosemite-stargazing-where-to-look-up"] = function YosemiteStargazingBody() {
+  var AXIS = {
+    fontFamily: "var(--sans)",
+    fontSize: 12.5,
+    fill: "var(--ink-3)"
+  };
+  var NUM = {
+    fontFamily: "var(--sans)",
+    fontSize: 14,
+    fontWeight: 600
+  };
+  var PLACE = {
+    fontFamily: "var(--serif)",
+    fontSize: 16,
+    fill: "var(--ink)"
+  };
+  var NOTE = {
+    fontFamily: "var(--sans)",
+    fontSize: 12.5,
+    fill: "var(--ink-2)"
+  };
+  var svgStyle = {
+    width: "100%",
+    height: "auto",
+    display: "block"
+  };
+  var SHADE = ["#0d1512", "#18241f", "#26342d", "#3a4840", "#566158", "#767e73", "#9aa093", "#c2c4b4", "#e6e2d0"];
+  function BortleLadder() {
+    var W = 680,
+      L = 20,
+      R = 20,
+      top = 120,
+      h = 46,
+      H = 290;
+    var step = (W - L - R) / 9;
+    var cx = n => L + (n - 1) * step + step / 2;
+    var span = (a, b) => [L + (a - 1) * step + 4, (b - a + 1) * step - 8];
+    var marks = [{
+      a: 2,
+      b: 2,
+      y: 34,
+      tx: L,
+      anchor: "start",
+      place: "Yosemite high country",
+      note: "Tioga Road, Tuolumne, Glacier Point; 1 in the right spots"
+    }, {
+      a: 3,
+      b: 4,
+      y: 80,
+      tx: 170,
+      anchor: "start",
+      place: "Yosemite Valley",
+      note: "lodging and parking lights"
+    }, {
+      a: 6,
+      b: 7,
+      y: 34,
+      tx: null,
+      anchor: "middle",
+      place: "Most American suburbs",
+      note: ""
+    }];
+    return React.createElement("svg", {
+      viewBox: `0 0 ${W} ${H}`,
+      style: svgStyle,
+      role: "img",
+      "aria-label": "The Bortle scale of night-sky darkness, from 1, the darkest natural sky, to 9, an inner-city sky. The Yosemite high country reads 2, occasionally 1. Yosemite Valley reads 3 or 4. Most American suburbs read 6 or 7. At Bortle 4 you can see roughly 2,000 stars and the Milky Way is faint; at Bortle 2, closer to 6,000, and the Milky Way casts shadows."
+    }, marks.map(m => {
+      var [x, w] = span(m.a, m.b);
+      var tx = m.tx == null ? x + w / 2 : m.tx;
+      return React.createElement("g", {
+        key: m.place
+      }, React.createElement("line", {
+        x1: x,
+        x2: x + w,
+        y1: top - 12,
+        y2: top - 12,
+        stroke: "var(--rust)",
+        strokeWidth: "2"
+      }), React.createElement("line", {
+        x1: x + w / 2,
+        x2: x + w / 2,
+        y1: m.y + (m.note ? 22 : 8),
+        y2: top - 12,
+        stroke: "var(--rust)",
+        strokeWidth: "1"
+      }), React.createElement("text", {
+        x: tx,
+        y: m.y,
+        textAnchor: m.anchor,
+        style: PLACE
+      }, m.place), m.note && React.createElement("text", {
+        x: tx,
+        y: m.y + 16,
+        textAnchor: m.anchor,
+        style: NOTE
+      }, m.note));
+    }), SHADE.map((c, i) => React.createElement("g", {
+      key: i
+    }, React.createElement("rect", {
+      x: L + i * step,
+      y: top,
+      width: step,
+      height: h,
+      fill: c
+    }), React.createElement("text", {
+      x: cx(i + 1),
+      y: top + 29,
+      textAnchor: "middle",
+      style: {
+        ...NUM,
+        fill: i < 5 ? "#f0e8d8" : "#1c2621"
+      }
+    }, i + 1))), React.createElement("text", {
+      x: L,
+      y: top + h + 20,
+      style: AXIS
+    }, "Darkest natural sky"), React.createElement("text", {
+      x: W - R,
+      y: top + h + 20,
+      textAnchor: "end",
+      style: AXIS
+    }, "Inner city"), React.createElement("line", {
+      x1: cx(2),
+      x2: cx(2),
+      y1: top + h + 28,
+      y2: top + h + 50,
+      stroke: "var(--ink-3)",
+      strokeWidth: "1",
+      strokeDasharray: "3 3"
+    }), React.createElement("line", {
+      x1: cx(4),
+      x2: cx(4),
+      y1: top + h + 28,
+      y2: top + h + 50,
+      stroke: "var(--ink-3)",
+      strokeWidth: "1",
+      strokeDasharray: "3 3"
+    }), React.createElement("text", {
+      x: cx(2) - 6,
+      y: top + h + 68,
+      textAnchor: "middle",
+      style: PLACE
+    }, "About 6,000 stars"), React.createElement("text", {
+      x: cx(2) - 6,
+      y: top + h + 85,
+      textAnchor: "middle",
+      style: NOTE
+    }, "Milky Way casts shadows"), React.createElement("text", {
+      x: cx(4) + 70,
+      y: top + h + 68,
+      textAnchor: "middle",
+      style: PLACE
+    }, "About 2,000 stars"), React.createElement("text", {
+      x: cx(4) + 70,
+      y: top + h + 85,
+      textAnchor: "middle",
+      style: NOTE
+    }, "Milky Way faintly visible"));
+  }
   return React.createElement(React.Fragment, null, React.createElement("p", {
     className: "dropcap"
-  }, "The first time I sat at the top of ", React.createElement("strong", null, "Olmsted Point"), " at one in the morning in late July with no headlamp and let my eyes adjust for ten minutes, I realized I'd been doing the night sky wrong for most of my adult life. I had assumed, as most people raised in cities or suburbs assume, that stars were small bright points scattered against a black background. They are not. The actual sky over the Yosemite high country in late July, with no moon, on a moonless night with no smoke, is so densely packed with stars that the famous constellations are buried inside thousands of others, and the Milky Way is not a thin line of light. It is a textured, layered river running across the sky from horizon to horizon, with dark lanes of dust visible in the brighter sections and individual star clouds resolvable to the naked eye."), React.createElement("p", null, "This is what most of human history saw every night. We have, in the past hundred years or so, mostly stopped seeing it."), React.createElement("p", null, "Yosemite is one of the few places on the West Coast where the version of the sky our ancestors saw is still available. Not every night. Not in every season. Not from every spot. But often enough, in the right places, and with enough magnitude that the experience is in a different category from a dark-sky park designation or a \"let's go look at the stars\" parking-lot stop."), React.createElement("p", null, "This is where to go, when to go, and how to think about the night sky in this park."), React.createElement("h2", null, "What \"dark sky\" actually means"), React.createElement("p", null, "A short framework, because the term gets thrown around loosely."), React.createElement("p", null, "The ", React.createElement("strong", null, "Bortle scale"), " is the standard reference for night-sky darkness. It runs from 1 (the darkest possible natural sky) to 9 (an inner-city sky with significant light pollution). Most American suburbs read 6 or 7. Most of Yosemite Valley reads 3 or 4 (the Valley has light pollution from in-park lodging and parking lights, plus glow from outside the park). The Yosemite high country (Tioga Road area, Tuolumne Meadows, Glacier Point) reads 2, occasionally 1 in the right spots."), React.createElement("p", null, "The difference between Bortle 4 and Bortle 2 is enormous. At Bortle 4, the Milky Way is faintly visible. At Bortle 2, it casts shadows. At Bortle 4, you can see roughly 2,000 stars. At Bortle 2, you can see closer to 6,000."), React.createElement("blockquote", null, "This is not a small upgrade. This is the difference between a sky and the sky."), React.createElement("p", null, "The other variable is ", React.createElement("strong", null, "moon phase"), ". A full moon at Bortle 1 is brighter than a new moon at Bortle 4. For Milky Way viewing or photography, the rule is to plan around the moon. New moon nights or nights when the moon hasn't risen yet (or has already set) are when the dark sky shows up. Half moon and brighter moons wash out the fainter sky."), React.createElement("p", null, "Plan trips around the moon. Most stargazers use a phone app (Stellarium, SkySafari, PhotoPills) to know when each phase peaks and when the moon rises and sets on a given date."), React.createElement("h2", null, "When to go for the Milky Way"), React.createElement("p", null, "The galactic core of the Milky Way (the brightest, most photogenic section, including the Sagittarius region) is visible from the Northern Hemisphere from approximately ", React.createElement("strong", null, "April through October"), ", with peak visibility in ", React.createElement("strong", null, "June through August"), "."), React.createElement("p", null, "The core rises in the southeast in late spring (rises in the early morning hours), is highest in the sky in midsummer (rises mid-evening), and is sinking in the west in early fall (visible early evening, sets mid-evening). For the densest, most dramatic Milky Way views, late June through early August on a moonless night gets you the core arching nearly overhead between roughly 11 p.m. and 3 a.m."), React.createElement("p", null, "Outside core season (November through March), the visible Milky Way is the less-dense northern arm, plus prominent winter constellations like Orion. Winter skies can still be dramatic, especially with snow-covered foregrounds and clear high-pressure weather, but the famous \"river of light\" galactic core is below the horizon."), React.createElement("p", null, "If your goal is the core, plan for ", React.createElement("strong", null, "mid-July through mid-August on a new moon week"), ". Plan for any other dark sky, and almost any clear, moonless Yosemite night will show far more than a city sky."), React.createElement("h2", null, "Where to go: by accessibility"), React.createElement("p", null, "Three tiers of stargazing locations, depending on how much effort you're willing to put in."), React.createElement("h3", null, "Tier one: drive to it"), React.createElement("p", null, "These are the spots accessible by paved road with no real walking required. They're the right answer for most casual visitors and for anyone with mobility constraints."), React.createElement("p", null, React.createElement("strong", null, React.createElement("a", {
+  }, "The first time I sat at the top of ", React.createElement("strong", null, "Olmsted Point"), " at one in the morning in late July with no headlamp and let my eyes adjust for ten minutes, I realized I'd been doing the night sky wrong for most of my adult life. I had assumed, as most people raised in cities or suburbs assume, that stars were small bright points scattered against a black background. They are not. The actual sky over the Yosemite high country in late July, with no moon, on a moonless night with no smoke, is so densely packed with stars that the famous constellations are buried inside thousands of others, and the Milky Way is not a thin line of light. It is a textured, layered river running across the sky from horizon to horizon, with dark lanes of dust visible in the brighter sections and individual star clouds resolvable to the naked eye."), React.createElement("p", null, "This is what most of human history saw every night. We have, in the past hundred years or so, mostly stopped seeing it."), React.createElement("p", null, "Yosemite is one of the few places on the West Coast where the version of the sky our ancestors saw is still available. Not every night. Not in every season. Not from every spot. But often enough, in the right places, and with enough magnitude that the experience is in a different category from a dark-sky park designation or a \"let's go look at the stars\" parking-lot stop."), React.createElement(NatureNotesFilm, {
+    id: "night-skies",
+    title: "Night Skies",
+    youtubeId: "ZhgR3zVfo-0",
+    episode: 19,
+    note: "The Park Service on what it is protecting after dark, and why a remote, high park keeps some of the darkest sky left in California.",
+    location: "article"
+  }), React.createElement("p", null, "This is where to go, when to go, and how to think about the night sky in this park."), React.createElement("h2", null, "What \"dark sky\" actually means"), React.createElement("p", null, "A short framework, because the term gets thrown around loosely."), React.createElement("p", null, "The ", React.createElement("strong", null, "Bortle scale"), " is the standard reference for night-sky darkness. It runs from 1 (the darkest possible natural sky) to 9 (an inner-city sky with significant light pollution). Most American suburbs read 6 or 7. Most of Yosemite Valley reads 3 or 4 (the Valley has light pollution from in-park lodging and parking lights, plus glow from outside the park). The Yosemite high country (Tioga Road area, Tuolumne Meadows, Glacier Point) reads 2, occasionally 1 in the right spots."), React.createElement("p", null, "The difference between Bortle 4 and Bortle 2 is enormous. At Bortle 4, the Milky Way is faintly visible. At Bortle 2, it casts shadows. At Bortle 4, you can see roughly 2,000 stars. At Bortle 2, you can see closer to 6,000."), React.createElement("blockquote", null, "This is not a small upgrade. This is the difference between a sky and the sky."), React.createElement("figure", {
+    style: {
+      margin: "30px 0 34px"
+    }
+  }, React.createElement(BortleLadder, null), React.createElement("figcaption", {
+    style: {
+      fontFamily: "var(--sans)",
+      fontSize: 13,
+      color: "var(--ink-3)",
+      marginTop: 10
+    }
+  }, "The Bortle scale, with the readings and star counts given above. Typical readings on a clear, moonless night; the moon, smoke and haze move every one of them.")), React.createElement("p", null, "The other variable is ", React.createElement("strong", null, "moon phase"), ". A full moon at Bortle 1 is brighter than a new moon at Bortle 4. For Milky Way viewing or photography, the rule is to plan around the moon. New moon nights or nights when the moon hasn't risen yet (or has already set) are when the dark sky shows up. Half moon and brighter moons wash out the fainter sky."), React.createElement("p", null, "Plan trips around the moon. Most stargazers use a phone app (Stellarium, SkySafari, PhotoPills) to know when each phase peaks and when the moon rises and sets on a given date."), React.createElement("h2", null, "When to go for the Milky Way"), React.createElement("p", null, "The galactic core of the Milky Way (the brightest, most photogenic section, including the Sagittarius region) is visible from the Northern Hemisphere from approximately ", React.createElement("strong", null, "April through October"), ", with peak visibility in ", React.createElement("strong", null, "June through August"), "."), React.createElement("p", null, "The core rises in the southeast in late spring (rises in the early morning hours), is highest in the sky in midsummer (rises mid-evening), and is sinking in the west in early fall (visible early evening, sets mid-evening). For the densest, most dramatic Milky Way views, late June through early August on a moonless night gets you the core arching nearly overhead between roughly 11 p.m. and 3 a.m."), React.createElement("p", null, "Outside core season (November through March), the visible Milky Way is the less-dense northern arm, plus prominent winter constellations like Orion. Winter skies can still be dramatic, especially with snow-covered foregrounds and clear high-pressure weather, but the famous \"river of light\" galactic core is below the horizon."), React.createElement("p", null, "If your goal is the core, plan for ", React.createElement("strong", null, "mid-July through mid-August on a new moon week"), ". Plan for any other dark sky, and almost any clear, moonless Yosemite night will show far more than a city sky."), React.createElement("h2", null, "Where to go: by accessibility"), React.createElement("p", null, "Three tiers of stargazing locations, depending on how much effort you're willing to put in."), React.createElement("h3", null, "Tier one: drive to it"), React.createElement("p", null, "These are the spots accessible by paved road with no real walking required. They're the right answer for most casual visitors and for anyone with mobility constraints."), React.createElement("p", null, React.createElement("strong", null, React.createElement("a", {
     href: "/articles/glacier-point-road-open-2026"
   }, "Glacier Point"), "."), " The classic. At 7,200 feet, with an open western and southern horizon, almost no nearby light, and a paved walk of a few hundred feet from the parking lot, this is one of the best drive-to dark-sky spots in any National Park. The Park Service runs public ", React.createElement("strong", null, "Star Parties"), " at Glacier Point most Saturdays in summer, when local astronomy clubs set up telescopes and rangers give talks. These are some of the best free educational events in the park. Roughly June through August, depending on the road being open and the schedule for any given year."), React.createElement("p", null, "The trade-off: Glacier Point Road closes with the first big winter storm, usually in November, and reopens in late May or early June, so this is a summer-only option."), React.createElement("p", null, React.createElement("strong", null, "Tunnel View."), " Lower in elevation (4,400 feet) and more affected by Valley light, but a real dark-sky spot in winter when the in-park lights are dimmer and atmospheric haze is at its lowest. The view of the Milky Way arching over Half Dome, with El Capitan on the left and Bridalveil Fall on the right, is one of the most-photographed night-sky compositions in any park. Best in summer for the core, but also worth visiting on cold winter nights for Orion and the winter Milky Way."), React.createElement("p", null, React.createElement("strong", null, "Olmsted Point."), " On ", React.createElement("a", {
     href: "/articles/tioga-road-opening-weekend-2026"
