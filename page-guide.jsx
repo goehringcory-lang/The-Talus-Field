@@ -734,7 +734,7 @@ const MAP3D_SHOTS = [
   {
     src: "img/guide/screens/map-3d-trail.v6.webp",
     width: 1600,
-    height: 1000,
+    height: 1222,
     wide: true,
     alt: "The 3D map on a laptop with the Upper Yosemite Fall trail card open beside it: the fall's photograph, Day hike, Strenuous, 7.6 miles, 2,600 feet, about seven hours, the Camp 4 trailhead, a line of advice and the start of the elevation profile, with the Valley's pins and the red strenuous trails drawn on the terrain",
     caption: "Tap a trail and its card opens beside the map: the photograph, the verified numbers, where it starts, a line of advice, and the elevation profile, which you can touch for the numbers mile by mile.",
@@ -822,11 +822,12 @@ function GuideMapFilm() {
       playsInline
       controls
       preload="none"
-      width="1920"
-      height="1080"
+      width="1280"
+      height="720"
       poster="/img/guide/map-3d-flythrough-poster.jpg"
       aria-label="Ten seconds on the Field Guide's 3D map: from Tunnel View east up Yosemite Valley, past El Capitan and Bridalveil Fall to the Valley floor, with the guide's pins and trails on the terrain"
     >
+      <source src="/img/guide/map-3d-flythrough.webm" type="video/webm" />
       <source src="/img/guide/map-3d-flythrough.mp4" type="video/mp4" />
     </video>
   );
