@@ -368,22 +368,6 @@ function FirefallPage({
   return React.createElement("div", {
     className: "page hp-tool hp-firefall"
   }, React.createElement("div", {
-    className: "hp-wrap"
-  }, React.createElement("figure", {
-    className: "ff-video"
-  }, React.createElement("video", {
-    controls: true,
-    muted: true,
-    playsInline: true,
-    preload: "none",
-    width: "1920",
-    height: "1080",
-    poster: "/img/firefall-in-30-seconds-poster.jpg",
-    "aria-label": "The Yosemite Firefall in thirty seconds: about two weeks each February, strongest around the 17th to the 24th; water, a clear western sky and the sun angle have to line up, and most evenings it does not happen; the glow lasts about ten minutes, a little before 6 p.m.; park at Yosemite Falls and walk about 1.5 miles each way, with no stopping or drop-offs near the viewing area; book a refundable room months ahead and plan two or three evenings."
-  }, React.createElement("source", {
-    src: "/img/firefall-in-30-seconds.mp4",
-    type: "video/mp4"
-  })), React.createElement("figcaption", null, "The firefall in thirty seconds. No sound. Photos: Barney Moss and Anita Ritenour / Wikimedia Commons (CC BY 2.0)."))), React.createElement("div", {
     className: "ff-cover"
   }, React.createElement(ResponsiveImage, {
     image: "img/horsetail-fall-firefall-glow.jpg",
@@ -595,7 +579,21 @@ function FirefallPage({
     className: "ff-lede"
   }, "The sun angle is the only one of the three conditions you can put in a calendar, and it is the same every year. The park posts the year's projected window in January; recent windows have run from about the 10th to the 26th."), React.createElement("p", {
     className: "ff-lede"
-  }, "The middle week gives the strongest color and the biggest crowd. The edges give a softer glow and more room. Two weekday evenings in the middle of the window beat one Saturday at the peak.")), React.createElement("div", null, React.createElement("figure", {
+  }, "The middle week gives the strongest color and the biggest crowd. The edges give a softer glow and more room. Two weekday evenings in the middle of the window beat one Saturday at the peak."), React.createElement("figure", {
+    className: "ff-video"
+  }, React.createElement("video", {
+    controls: true,
+    muted: true,
+    playsInline: true,
+    preload: "none",
+    width: "1920",
+    height: "1080",
+    poster: "/img/firefall-in-30-seconds-poster.jpg",
+    "aria-label": "The Yosemite Firefall in thirty seconds: about two weeks each February, strongest around the 17th to the 24th; water, a clear western sky and the sun angle have to line up, and most evenings it does not happen; the glow lasts about ten minutes, a little before 6 p.m.; park at Yosemite Falls and walk about 1.5 miles each way, with no stopping or drop-offs near the viewing area; book a refundable room months ahead and plan two or three evenings."
+  }, React.createElement("source", {
+    src: "/img/firefall-in-30-seconds.mp4",
+    type: "video/mp4"
+  })), React.createElement("figcaption", null, "The firefall in thirty seconds. No sound. Photos: Barney Moss and Anita Ritenour / Wikimedia Commons (CC BY 2.0)."))), React.createElement("div", null, React.createElement("figure", {
     className: "ff-sun"
   }, React.createElement("figcaption", null, "Sun-angle strength through February (relative)"), React.createElement(FfSunChart, null), React.createElement("p", {
     className: "ff-note"
