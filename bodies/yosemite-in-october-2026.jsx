@@ -20,7 +20,7 @@ window.ARTICLE_BODIES["yosemite-in-october-2026"] = function YosemiteInOctober20
       </p>
 
       <p>
-        The park closed <strong>Glacier Point Road</strong> at 6 p.m. on September 23, for smoke that cut visibility along the road and to keep it clear for firefighting. It will reopen when conditions allow, and nobody has put a date on that. Until it does, Glacier Point, Sentinel Dome and Taft Point cannot be reached by car. The rest of the park is open and operating normally, Wawona Road and the Mariposa Grove included.
+        The park closed <strong>Glacier Point Road</strong> at 6 p.m. on September 23, for smoke that cut visibility along the road and to keep it clear for firefighting. It will reopen when conditions allow, and nobody has put a date on that. Until it does, Glacier Point, Sentinel Dome and Taft Point cannot be reached by car. The rest of the park is <a href="/articles/wildfire-in-yosemite-during-your-trip">open and operating normally</a>, Wawona Road and the Mariposa Grove included.
       </p>
 
       <p>
