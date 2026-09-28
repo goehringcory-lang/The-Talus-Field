@@ -431,7 +431,7 @@ function TripPlan({ plan, go, onApplyIntent, matchCount }) {
   );
 }
 
-function TripSelector({ go, onApplyIntent, onPlan }) {
+function TripSelector({ go, onApplyIntent, onPlan, onComplete }) {
   const [answers, setAnswers] = useStateIn(() => {
     const fromUrl = readAnswersFromUrl();
     if (fromUrl) return fromUrl;
@@ -504,6 +504,9 @@ function TripSelector({ go, onApplyIntent, onPlan }) {
   // /planning can drop Part One's while the plan's is on screen (one ask once).
   const planHasLodging = !!(plan && plan.lodging);
   useEffectIn(() => { if (onPlan) onPlan({ lodging: planHasLodging }); }, [planHasLodging]);
+  // /planning shows a sample plan beside the questions until the reader's own
+  // plan exists, then steps it aside.
+  useEffectIn(() => { if (onComplete) onComplete(complete); }, [complete]);
 
   return (
     <section className="tripsel" aria-label="Trip selector">

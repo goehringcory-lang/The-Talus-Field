@@ -375,7 +375,8 @@ function TripPlan({
 function TripSelector({
   go,
   onApplyIntent,
-  onPlan
+  onPlan,
+  onComplete
 }) {
   var [answers, setAnswers] = useStateIn(() => {
     var fromUrl = readAnswersFromUrl();
@@ -439,6 +440,9 @@ function TripSelector({
       lodging: planHasLodging
     });
   }, [planHasLodging]);
+  useEffectIn(() => {
+    if (onComplete) onComplete(complete);
+  }, [complete]);
   return React.createElement("section", {
     className: "tripsel",
     "aria-label": "Trip selector"
