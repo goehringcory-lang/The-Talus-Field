@@ -41,6 +41,7 @@ const PAGE_EXEMPT = {
   "page-kit.jsx": "own disclosure paragraph in the intro, above every list",
   "page-map.jsx": "one link, in the sidebar, with its disclosure in the same line",
   "page-article.jsx": "per-article AffiliateDisclosure driven by the aff flag",
+  "page-planning-guide.jsx": "own disclosure line in the hero, above the first link, plus a second under the lodging step",
 };
 
 const errors = [];
