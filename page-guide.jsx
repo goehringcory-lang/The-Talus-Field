@@ -315,7 +315,7 @@ function GuideBuyBox() {
         <ul style={{ listStyle: "none", padding: 0, margin: 0, fontFamily: "var(--sans)", fontSize: 13, color: "var(--ink-2)", lineHeight: 1.7 }}>
           <li>· Four regional guides: the Valley, Glacier Point & Mariposa, Tuolumne, Hetch Hetchy</li>
           <li>· Tappable GPS for every stop</li>
-          <li>· An offline topo map of the park, all stops pinned</li>
+          <li>· A 3D map of the park: every stop and all 57 trails on the terrain, your trip drawn day by day, downloadable by area</li>
           <li>· Download the whole guide for offline, about 70 MB</li>
           <li>· Time budgets and a swap for when the lot is full</li>
           <li>· Programs by your dates: ranger walks, Junior Ranger, tours, star parties. Synced online, readable offline</li>
@@ -445,7 +445,7 @@ function GuideWaitlistBox() {
         <ul style={{ listStyle: "none", padding: 0, margin: 0, fontFamily: "var(--sans)", fontSize: 13, color: "var(--ink-2)", lineHeight: 1.7 }}>
           <li>· Four regional guides: the Valley, Glacier Point & Mariposa, Tuolumne, Hetch Hetchy</li>
           <li>· Tappable GPS for every stop</li>
-          <li>· An offline topo map of the park, all stops pinned</li>
+          <li>· A 3D map of the park: every stop and all 57 trails on the terrain, your trip drawn day by day, downloadable by area</li>
           <li>· Download the whole guide for offline, about 70 MB</li>
           <li>· Time budgets and a swap for when the lot is full</li>
           <li>· Programs by your dates: ranger walks, Junior Ranger, tours, star parties. Synced online, readable offline</li>
@@ -722,6 +722,179 @@ function GuideWalkthrough() {
   );
 }
 
+// The 3D map, the pane under the hero (September 2026, after PRs #466 to
+// #479 shipped it). Every picture is a real capture of the shipping app:
+// the flythrough is 300 frames rendered from the map itself on the camera
+// path Tunnel View to the Valley floor, and the stills are the same build.
+// Every sentence restates what the map's own Information pane says
+// (apps/guide/src/routes/Map.tsx) or what the offline manifest measures
+// (apps/guide/src/map/tiles.generated.ts); re-read both before editing a
+// claim. New captures take a new filename (see APP_SHOTS above).
+const MAP3D_SHOTS = [
+  {
+    src: "img/guide/screens/map-3d-trail.v6.webp",
+    width: 1600,
+    height: 1222,
+    wide: true,
+    alt: "The 3D map on a laptop with the Upper Yosemite Fall trail card open beside it: the fall's photograph, Day hike, Strenuous, 7.6 miles, 2,600 feet, about seven hours, the Camp 4 trailhead, a line of advice and the start of the elevation profile, with the Valley's pins and the red strenuous trails drawn on the terrain",
+    caption: "Tap a trail and its card opens beside the map: the photograph, the verified numbers, where it starts, a line of advice, and the elevation profile, which you can touch for the numbers mile by mile.",
+  },
+  {
+    src: "img/guide/screens/map-3d-phone.v5.webp",
+    width: 640,
+    height: 1387,
+    alt: "The 3D map on a phone looking east up Yosemite Valley: filter chips for viewpoints and trailheads, trail chips for easy, moderate and strenuous, and pins over the terrain with Northside and Southside Drives along the Merced",
+    caption: "On a phone the chips narrow the pins by kind and the trails by difficulty. Two fingers tilt and turn the Valley.",
+  },
+  {
+    src: "img/guide/screens/map-3d-trip.v6.webp",
+    width: 640,
+    height: 1387,
+    alt: "The My trip tab on a phone: the one-day Valley plan drawn on the terrain, ten numbered pins in the order the day runs, joined by the drives along the Valley's roads",
+    caption: "My trip draws your plan: numbered pins in the order the day runs, one colour a day, drives along the real roads. The itinerary in words sits one tap below.",
+  },
+];
+
+const MAP3D_POINTS = [
+  {
+    title: "Tilt it, turn it, fly it",
+    body: "The map opens on the Valley in 3D, looking east, the way you first see it from Tunnel View. Two fingers tilt and turn it. The 3D button flattens it to a north-up map, Go to flies it to one area of the park, and Reset brings you back.",
+  },
+  {
+    title: "Every trail on the ground it climbs",
+    body: "All 57 verified day hikes are drawn on the terrain: green for easy, amber for moderate, red for strenuous, and the chips narrow them by difficulty and length. Tap one for its card, with the elevation profile, Fly to, and Add to trip.",
+  },
+  {
+    title: "Pins that stay readable",
+    body: "Stops, Secret Guide entries in gold, trailheads, landmarks, parking with its live lot status, the Valley shuttle stops by the numbers the park paints on the signs, entrances, visitor centers, meals and campgrounds. Where they crowd, the most useful pin draws and the rest step down to small dots. Nothing is removed. The search box finds any of them by name, offline.",
+  },
+  {
+    title: "Your trip, day by day",
+    body: "The My trip tab draws your plan in order: drives along the roads, walks dotted, Valley shuttle legs, hikes along their trails, routed on the phone with no signal. Beside it, every time in words, with the warnings: a hike that ends past sunset, a stop you would reach late, a day that does not fit. Play day flies the day stop to stop.",
+  },
+  {
+    title: "A ready-made day, in one tap",
+    body: "The Itineraries tab shows each of the nine day plans on the map. Add to my trip puts the one you pick on your dates, and the My trip chip narrows the whole map to it. The park's programs for your dates meet at small squares on the map, and each can join the trip from there.",
+  },
+  {
+    title: "Downloaded by area",
+    body: "The whole park at driving scale is about a 7 MB download. Then four areas at trailhead scale, 2 to 9 MB each: the Valley, Glacier Point and Wawona, Tioga Road and Tuolumne, Hetch Hetchy. Take the ones your trip needs. With no signal the map outlines what you downloaded, and it all draws from the phone.",
+  },
+];
+
+// The flythrough plays only while it is on screen, never under
+// prefers-reduced-motion (the reader presses play instead), and always shows
+// its controls, so a looping picture can be stopped.
+function GuideMapFilm() {
+  const ref = React.useRef(null);
+  const reduced = React.useMemo(() => {
+    try {
+      return window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    } catch (_e) {
+      return false;
+    }
+  }, []);
+
+  React.useEffect(() => {
+    const video = ref.current;
+    if (!video || reduced || !("IntersectionObserver" in window)) return undefined;
+    const io = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          const p = video.play();
+          if (p && p.catch) p.catch(() => {});
+        } else {
+          video.pause();
+        }
+      },
+      { threshold: 0.4 }
+    );
+    io.observe(video);
+    return () => io.disconnect();
+  }, [reduced]);
+
+  return (
+    <video
+      ref={ref}
+      className="guide-map3d__video"
+      muted
+      loop
+      playsInline
+      controls
+      preload="none"
+      width="1280"
+      height="720"
+      poster="/img/guide/map-3d-flythrough-poster.jpg"
+      aria-label="Ten seconds on the Field Guide's 3D map: from Tunnel View east up Yosemite Valley, past El Capitan and Bridalveil Fall to the Valley floor, with the guide's pins and trails on the terrain"
+    >
+      <source src="/img/guide/map-3d-flythrough.webm" type="video/webm" />
+      <source src="/img/guide/map-3d-flythrough.mp4" type="video/mp4" />
+    </video>
+  );
+}
+
+function GuideMap3D() {
+  return (
+    <section className="hp-wrap guide-map3d" id="map-3d" aria-labelledby="guide-map3d-title">
+      <header className="guide-map3d__head">
+        <p className="hp-eyebrow">NEW IN THE FIELD GUIDE: THE 3D MAP</p>
+        <h2 id="guide-map3d-title">
+          The whole park in 3D, <em>with or without a signal.</em>
+        </h2>
+        <p className="guide-map3d__dek">
+          The Field Guide's map is now a model of the park, drawn on your phone from USGS elevation data. Tilt it to see the Valley the way you will drive into it, follow any of the 57 day hikes over the ground it climbs, and watch your own trip laid out day by day along the real roads. Download the areas you need and it keeps working past the tunnel.
+        </p>
+      </header>
+
+      <figure className="guide-map3d__film">
+        <GuideMapFilm />
+        <figcaption>
+          <span><b>TEN SECONDS, UNEDITED</b> Tunnel View to the Valley floor, rendered frame by frame from the map itself.</span>
+          <span>Map data: OpenStreetMap, Protomaps, USGS 3DEP</span>
+        </figcaption>
+      </figure>
+
+      <div className="guide-map3d__shots">
+        {MAP3D_SHOTS.map((shot) => (
+          <figure className={"guide-map3d__shot" + (shot.wide ? " is-wide" : "")} key={shot.src}>
+            <div className="guide-map3d__frame">
+              <img src={shot.src} alt={shot.alt} width={shot.width} height={shot.height} loading="lazy" decoding="async" />
+            </div>
+            <figcaption>{shot.caption}</figcaption>
+          </figure>
+        ))}
+      </div>
+
+      <div className="guide-map3d__how">
+        <h3 className="guide-map3d__howtitle">How the map works</h3>
+        <ol className="guide-map3d__points">
+          {MAP3D_POINTS.map((p) => (
+            <li key={p.title}>
+              <h4>{p.title}</h4>
+              <p>{p.body}</p>
+            </li>
+          ))}
+        </ol>
+      </div>
+
+      <div className="guide-map3d__close">
+        <p>No Google, no third-party key: the map, its tiles and its routing are the guide's own, so every byte of it can live on your phone.</p>
+        <div className="guide-map3d__cta">
+          <BuyNowButton location="guide_map3d" />
+          <a
+            href={`${GUIDE_APP_BASE}/preview`}
+            onClick={() => {
+              if (window.track) window.track("guide_sample_click", { location: "guide_map3d" });
+            }}
+          >
+            Read the free sample ↗
+          </a>
+        </div>
+      </div>
+    </section>
+  );
+}
+
 // The outcome blocks: what the guide changes about the day, each claim backed
 // by a number that is true in the shipped content. Counts come from
 // apps/guide/src/content (stops.ts, hikes.ts, itineraries.ts, deadlines.ts);
@@ -748,8 +921,8 @@ const OUTCOMES = [
   {
     kicker: "Navigate when service disappears",
     body:
-      "One tap downloads the whole guide: every entry, the photos on file, all 57 hike tracks, and a topographic map of the park with every stop pinned. A few entries still show a stand-in photo rather than the place itself. Service dies past the tunnel and on most of Tioga Road. The guide is built for exactly that.",
-    proof: "About 50 MB all-in. The map is about 20 MB of it",
+      "One tap downloads the whole guide: every entry, the photos on file, and all 57 hike tracks. The 3D park map downloads by area, so you carry the corridors your trip uses, with every stop, trail and route drawn from the phone. A few entries still show a stand-in photo rather than the place itself. Service dies past the tunnel and on most of Tioga Road. The guide is built for exactly that.",
+    proof: "The 3D map: a 7 MB whole-park overview, then four areas of 2 to 9 MB",
   },
   {
     kicker: "Build each day in driving order",
@@ -1043,7 +1216,7 @@ function GuideOfflineDemo() {
           <ul>
             <li>· All 94 entries, each with a photo (some are stand-ins)</li>
             <li>· All 57 hikes with tracks, elevation profiles and the daylight reading</li>
-            <li>· The topographic park map, every stop pinned</li>
+            <li>· The 3D park map in the areas you downloaded: pins, trails, and your trip's routes</li>
             <li>· The trip board, the day view, the dates that matter, and calendar export</li>
             <li>· The Help card's position readout, the compass, and companion mode (GPS needs no data)</li>
             <li>· Checklists, essentials, search, Quick ID, the Secret Guide</li>
@@ -1060,7 +1233,7 @@ function GuideOfflineDemo() {
         </div>
       </div>
       <p className="guide-offline__fineprint">
-        The full download is about 70 MB: the park map is roughly 20 MB of it, about 700 topographic tiles covering the whole park and the road corridors.
+        The full download is about 70 MB. The 3D park map is about 25 MB of it, in pieces: a 7 MB overview of the whole park, then the Valley, Glacier Point and Wawona, Tioga Road and Tuolumne, and Hetch Hetchy at trailhead scale, each downloaded on its own.
       </p>
     </div>
   );
@@ -1106,7 +1279,7 @@ function GuideCompare({ go }) {
           </tr>
           <tr>
             <td>The {freeLink("/map", "map", "basic trip map")}</td>
-            <td>The full trip builder: drag-and-drop days, drive buffers, the dates that matter, calendar export</td>
+            <td>The full trip builder: drag-and-drop days, drive buffers, the dates that matter, calendar export, and the 3D map that draws each day on the terrain</td>
           </tr>
           <tr>
             <td>The {freeLink("/newsletter", "newsletter", "Sunday newsletter")}</td>
@@ -1168,7 +1341,7 @@ function GuideAfterPurchase({ go }) {
           <strong>An email follows: "Your Field Guide is ready."</strong> It carries a sign-in link and a 6-digit code for your other devices. Phone at the trailhead, tablet in the car, laptop the night before. Both keep working for the full 18 months, so keep the email.
         </li>
         <li>
-          <strong>Add it to your home screen and tap the offline download.</strong> About 50 MB later the whole guide, map included, lives on the device.
+          <strong>Add it to your home screen and tap the offline download.</strong> When it finishes, the whole guide, 3D map included, lives on the device.
         </li>
       </ol>
       <p className="guide-after__policy">
@@ -1195,7 +1368,7 @@ function GuideAfterPurchase({ go }) {
 const GUIDE_FAQ = [
   {
     q: "Does it really work with no cell service?",
-    a: "Yes. One tap downloads the whole guide, about 70 MB: every entry, the photos on file, all 57 hike tracks, and a topographic map of the park. A few entries still show a stand-in photo rather than the place itself. The Help card's position readout, the bearing compass and companion mode run on GPS, which needs no data. Only the live extras need signal: webcams, entrance waits, parking-lot status, and fresh weather and program updates.",
+    a: "Yes. One tap downloads the whole guide, about 70 MB: every entry, the photos on file, all 57 hike tracks, and the 3D park map, which you can also take one area at a time. A few entries still show a stand-in photo rather than the place itself. The Help card's position readout, the bearing compass and companion mode run on GPS, which needs no data. Only the live extras need signal: webcams, entrance waits, parking-lot status, and fresh weather and program updates.",
   },
   {
     q: "Is it an App Store app?",
@@ -1223,7 +1396,7 @@ const GUIDE_FAQ = [
   },
   {
     q: "What do I get that the free site doesn't already give me?",
-    a: "The complete library: 94 entries including the 50-entry Secret Guide, all 57 day hikes with GPS tracks, elevation profiles and a daylight reading, the drag-and-drop trip builder with the dates that matter for your trip, the Help card, the bearing compass, companion mode, and the offline download. The free site keeps the articles, the trip map, the itineraries, and the conditions board.",
+    a: "The complete library: 94 entries including the 50-entry Secret Guide, all 57 day hikes with GPS tracks, elevation profiles and a daylight reading, the drag-and-drop trip builder with the dates that matter for your trip, the 3D park map with every trail and your trip drawn on the terrain, the Help card, the bearing compass, companion mode, and the offline download. The free site keeps the articles, the trip map, the itineraries, and the conditions board.",
   },
   {
     q: "Does the guide change after I buy it?",
@@ -1393,7 +1566,7 @@ function GuideMobileBuyBar() {
 // with the checkout button where the homepage puts its link, the long pitch
 // runs as numbered design sections beside the sticky buy box, and the letter
 // closes the page. The product copy is unchanged.
-const GUIDE_STATS = ["4 regions", "94 entries", "57 day hikes", "50 secret entries", "Works offline"];
+const GUIDE_STATS = ["4 regions", "94 entries", "57 day hikes", "50 secret entries", "3D map, offline"];
 
 function GuidePage({ go }) {
   return (
@@ -1405,7 +1578,7 @@ function GuidePage({ go }) {
         heading="h1"
         eyebrow="THE FIELD GUIDE / OFFLINE APP / 2026 EDITION"
         title="Three days in Yosemite. This is how you keep all three."
-        intro="Written by a naturalist who lives in the park: which stops are worth your morning, where to park, how long each one honestly takes, and where to go the moment the lot fills. It builds each day in driving order, then downloads whole to your phone, topo map included, and keeps working where cell service doesn't, which is most of the park."
+        intro="Written by a naturalist who lives in the park: which stops are worth your morning, where to park, how long each one honestly takes, and where to go the moment the lot fills. It builds each day in driving order, then downloads whole to your phone, 3D park map included, and keeps working where cell service doesn't, which is most of the park."
         points={null}
       >
         <ul className="hp-stats">
@@ -1430,6 +1603,8 @@ function GuidePage({ go }) {
           </p>
         </div>
       </HpGuideBand>
+
+      <GuideMap3D />
 
       <GuideDayOne />
 
@@ -1482,13 +1657,13 @@ function GuidePage({ go }) {
             <h2>New in the September 2026 build</h2>
 
             <p>
-              The guide keeps changing after you buy it, and this is what the last month added. Eight more screens, captured the same way, from the same build.
+              The guide keeps changing after you buy it, and this is what the last month added. Nine more screens, captured the same way, from the same build.
             </p>
 
             <AppShots shots={NEW_SHOTS} />
 
             <p>
-              Not pictured, because a phone screen does not hold them well: the offline map now carries the park's infrastructure, the five entrances, the visitor and wilderness centers with their hours, the eighteen Valley shuttle stops numbered as the park numbers them, picnic areas, gas, EV charging, showers, laundry, stores and the clinic, every kind of pin drawn with its own mark, and a "Go to" row that flies the map to a region. The front page's conditions panel gained live parking-lot status, and the same status prints on the map's parking pins. The Secret Guide grew by thirteen entries, and every one of them, along with the ten new photographs, arrived as a silent update. Nothing here cost an existing buyer anything, and that is the arrangement for the rest of the 18 months.
+              Also new, and not pictured here: the 3D map now carries the park's infrastructure, the five entrances, the visitor and wilderness centers with their hours, the eighteen Valley shuttle stops numbered as the park numbers them, picnic areas, gas, EV charging, showers, laundry, stores and the clinic, every kind of pin drawn with its own mark, and a "Go to" menu that flies the map to a region. The map itself has its own section at the top of this page. The front page's conditions panel gained live parking-lot status, and the same status prints on the map's parking pins. The Secret Guide grew by thirteen entries, and every one of them, along with the ten new photographs, arrived as a silent update. Nothing here cost an existing buyer anything, and that is the arrangement for the rest of the 18 months.
             </p>
 
             <h2>What it does for the day</h2>
@@ -1526,7 +1701,7 @@ function GuidePage({ go }) {
             <h2>The Secret Guide</h2>
 
             <p>
-              There is a section of the guide that never makes it into articles: the parking turnouts locals use when the big lots fill, the trailheads with no signs from the road, and the spots that belong to no region at all. It's in the app now, 50 entries in five numbered sections, quiet vistas, hidden trails, parking, camping and the park after dark, opening on a folio with its contents and every entry numbered across the whole set, every one marked in gold on the offline map. Thirteen of the fifty arrived in September: the Swinging Bridge reflection, Siesta Lake, Wawona Point, Union Point, Bennettville, the Yosemite Falls moonbow, the Glacier Point star parties, the great gray owl watch at Crane Flat, and the parking and camping moves around them. It keeps growing through the season, and every addition arrives as a silent update, no re-download, no second charge.
+              There is a section of the guide that never makes it into articles: the parking turnouts locals use when the big lots fill, the trailheads with no signs from the road, and the spots that belong to no region at all. It's in the app now, 50 entries in five numbered sections, quiet vistas, hidden trails, parking, camping and the park after dark, opening on a folio with its contents and every entry numbered across the whole set, every one marked in gold on the 3D map. Thirteen of the fifty arrived in September: the Swinging Bridge reflection, Siesta Lake, Wawona Point, Union Point, Bennettville, the Yosemite Falls moonbow, the Glacier Point star parties, the great gray owl watch at Crane Flat, and the parking and camping moves around them. It keeps growing through the season, and every addition arrives as a silent update, no re-download, no second charge.
             </p>
 
             <h2>Who wrote it, and how</h2>
@@ -1571,7 +1746,7 @@ function GuidePage({ go }) {
             <div className="guide-closer">
               <div className="eyebrow eyebrow--moss" style={{ marginBottom: 12 }}>The offer, in one place</div>
               <p style={{ fontFamily: "var(--serif)", fontSize: 17, lineHeight: 1.6, margin: "0 0 20px" }}>
-                Four regional guides. 44 stops in driving order, each with GPS and a time budget, the flagship ones with a swap. All 57 in-park day hikes with GPS tracks, elevation profiles and a daylight reading. The 50-entry Secret Guide. The park's program schedule on your dates. A planning calendar you drag into shape, then save to the calendar you already use, with the dates that matter for your trip under it. A Help card, a bearing compass and a companion mode that run on GPS alone. And an offline topo map that holds it all together. <LivePrice />, once, for 18 months on every device you own.
+                Four regional guides. 44 stops in driving order, each with GPS and a time budget, the flagship ones with a swap. All 57 in-park day hikes with GPS tracks, elevation profiles and a daylight reading. The 50-entry Secret Guide. The park's program schedule on your dates. A planning calendar you drag into shape, then save to the calendar you already use, with the dates that matter for your trip under it. A Help card, a bearing compass and a companion mode that run on GPS alone. And a 3D map of the park that holds it all together: every stop and trail on the terrain, your days drawn along the real roads, working offline. <LivePrice />, once, for 18 months on every device you own.
               </p>
               <BuyNowButton location="guide_closer" />
               <p style={{ fontFamily: "var(--sans)", fontSize: 12, color: "var(--ink-3)", lineHeight: 1.55, margin: "14px 0 0" }}>
