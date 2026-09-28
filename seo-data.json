@@ -1983,7 +1983,7 @@
     ]
   },
   "where-to-eat-yosemite": {
-    "wordCount": 3401,
+    "wordCount": 2829,
     "keywords": [
       "where to eat Yosemite",
       "Yosemite restaurants",
@@ -1997,48 +1997,28 @@
     ],
     "faq": [
       {
-        "q": "Is there food in Yosemite National Park?",
-        "a": "Yes, but almost all of it is in Yosemite Valley, which has eleven counters, decks and dining rooms clustered in Yosemite Village, at Yosemite Valley Lodge, and around Half Dome Village. Outside the Valley the park thins out fast. Wawona has a general store, Tuolumne Meadows has a seasonal store and grill plus the dining tent at Tuolumne Meadows Lodge, Crane Flat and El Portal have small markets, and Yosemite West has nothing at all."
+        "q": "Where can I get a quick meal in Yosemite Valley?",
+        "a": "Curry Village Pizza Deck, Base Camp Eatery at Yosemite Valley Lodge, and Degnan's Kitchen in Yosemite Village are convenient options. Check current hours before relying on an early breakfast or late dinner."
       },
       {
-        "q": "Where is the best place to eat in Yosemite Valley?",
-        "a": "The Half Dome Village Pizza Deck. The Half Dome pie, eaten on the deck under the Glacier Point Apron, is the one in-park meal worth going out of your way for. Base Camp Eatery at Yosemite Valley Lodge is the food court most visitors actually eat in and often the last kitchen taking orders at night, Degnan's Kitchen is the best lunch under twenty dollars, the Mountain Room is the sit-down dinner with a view of Yosemite Falls, and the Ahwahnee Dining Room is the special-occasion meal."
+        "q": "Where can I book a sit-down dinner in Yosemite Valley?",
+        "a": "The Mountain Room at Yosemite Valley Lodge and The Ahwahnee Dining Room are options. Book ahead and check the concessioner's current menus, prices, and reservation details."
       },
       {
         "q": "Are there restaurants in Yosemite West?",
-        "a": "No. Yosemite West is a residential subdivision of vacation rentals inside the park boundary off Wawona Road, with no restaurant, no store, no gas station and no shuttle. The nearest food is Yosemite Valley, about forty minutes away, or Wawona, about half an hour south. Shop before you arrive."
+        "a": "No. Yosemite West has no restaurant, store, gas station, or shuttle. Shop before arriving. Yosemite Valley is roughly forty minutes each way, or Wawona is about half an hour south."
       },
       {
-        "q": "Can you bring your own food into Yosemite?",
-        "a": "Yes. There is no restriction on bringing food in, no inspection at the gate, and no rule against a cooler. The rule that does exist is about storage and it is federal law: food stays within arm's reach by day and goes into a bear locker at night, never left in a car overnight or in a truck bed. To a bear, food means anything with a scent, including trash and toiletries."
+        "q": "Is there food at Tuolumne Meadows in fall?",
+        "a": "Service is seasonal. The concessioner's 2026 schedule lists September 13 as the lodge dining room's last day and September 20 for the grill. Pack lunch for a Tioga Road day; an open road does not mean an open kitchen."
       },
       {
-        "q": "Is there food at Tuolumne Meadows?",
-        "a": "A seasonal store and grill and the dining tent at Tuolumne Meadows Lodge, which serves breakfast and a fixed dinner with reservations. That is the entire food supply along the thirty-nine miles of Tioga Road. All of it opens with the summer and closes in September, weeks before the road itself closes for winter: in the 2026 season it closed on September 20. There is no gas at Tuolumne either."
+        "q": "Is the Wawona Hotel dining room open?",
+        "a": "The Wawona Hotel and its dining room are closed for a condition assessment. Check the NPS hotel notice for reopening updates. The Wawona General Store is a grocery and picnic-supply option."
       },
       {
-        "q": "Where should I eat in Mariposa near Yosemite?",
-        "a": "1850 Restaurant and Brewing Co. for a sit-down dinner, Smokin Oak BBQ for brisket at lunch, and Tacos Sonora, a taco truck on Coakley Circle, for fast and cheap. 1850 and Smokin Oak are both closed Monday and Tuesday. Beyond those three, the August 2026 Mariposa eating-out list counts thirty-one places in town, among them Happy Burger, Charles Street, Miners Roadhouse 140, the Little Shop of Ramen, Sticks Coffee House and the Pioneer Market Deli."
-      },
-      {
-        "q": "Where can I eat near the Mariposa Grove and Wawona?",
-        "a": "The Wawona General Store covers groceries and sandwiches, and the Wawona Hotel dining room has kept an intermittent schedule in recent seasons, so do not build an evening around it without checking. Two miles south of the gate in Fish Camp, Embers at Tenaya Lodge is the nearest real restaurant to the Mariposa Grove, with Jackalopes bar in the same building for walk-ins, plus the Pine Tree Market and the Fish Camp General Store. Past that it is another fifteen minutes to Oakhurst."
-      },
-      {
-        "q": "What is Base Camp Eatery at Yosemite Valley Lodge?",
-        "a": "A food court: order at touchscreen kiosks, collect at a counter, sit at a long communal table. Grill, pizza, a hot line and breakfast from early. It is the busiest room in the park and the one most visitors actually eat in. The value is throughput and hours rather than cooking, and the useful fact is that it is often the last Valley kitchen still taking orders in the evening."
-      },
-      {
-        "q": "Are there food trucks near Yosemite?",
-        "a": "Ten work Mariposa County as of August 2026: All About the Wurst, Birrieria El Campeon, Dixon's Fixin's, Fishworks, L & J Mexican Food, the Lemon Drop Trailer, Mariposa Sips & Sweets, Sal's Taco Truck, the Tacos Sonora truck and Yosemite Pizza. Only Tacos Sonora has a fixed address. For the rest, check the county fairgrounds, the Saturday farmers market and the brewery patios."
-      },
-      {
-        "q": "Where should I eat in Oakhurst near Yosemite?",
-        "a": "South Gate Brewing Company is the everyday dinner default, with wood-fired pizza and house beer. The Elderberry House at Chateau du Sureau is the fine-dining destination, a daily-changing prix fixe well over $100 a person with reservations required."
-      },
-      {
-        "q": "Where can I get coffee on the east side of Yosemite?",
-        "a": "Latte Da Cafe in Lee Vining. Coming over Tioga Pass from Mammoth, Bishop, or Lake Tahoe, it is the first real coffee on the route, with in-house pastries and honest drip."
+        "q": "Where should I eat near Yosemite?",
+        "a": "Choose restaurants near your route or lodging. The guide recommends 1850, Smokin Oak BBQ, and Tacos Sonora in Mariposa; South Gate Brewing Company and The Elderberry House in Oakhurst; and Latte Da Cafe in Lee Vining. Check current hours before making a special trip."
       }
     ]
   },
@@ -2060,7 +2040,7 @@
     ]
   },
   "four-mile-up-panorama-down": {
-    "wordCount": 2580,
+    "wordCount": 2338,
     "keywords": [
       "Four Mile Trail Yosemite",
       "Panorama Trail",
@@ -2069,27 +2049,31 @@
       "Yosemite day hike loop"
     ],
     "trail": {
-      "name": "Four Mile Trail to Panorama Trail loop",
-      "distance": "13 miles round trip (loop)",
-      "elevationGain": "3,200 ft",
+      "name": "Four Mile and Panorama Trails via Glacier Point",
+      "distance": "Roughly 13 to 14 miles between trailheads; return to start is additional",
+      "elevationGain": "About 4,000 ft total",
       "difficulty": "Strenuous"
     },
     "faq": [
       {
-        "q": "How hard is the Four Mile Trail and Panorama Trail loop?",
-        "a": "Strenuous. The full loop is roughly 13 to 14 miles and gains 3,200 feet, almost all of it in the 4.8 miles up the Four Mile Trail. The Panorama Trail descent is more gradual. Fit hikers take 7-10 hours. It is manageable for experienced day hikers; it is not a casual walk."
+        "q": "How hard is the Four Mile and Panorama Trail hike?",
+        "a": "Strenuous: roughly 13 to 14 miles between trailheads and about 4,000 feet of climbing, including the 800-foot climb after Illilouette Creek. Plan a full day; NPS segment estimates total 9 to 12 hours before the return to your car."
       },
       {
-        "q": "How do I set up the Four Mile / Panorama Trail loop?",
-        "a": "Two practical options: (1) Park in Yosemite Valley, hike up the Four Mile Trail, down the Panorama Trail, and take the free Valley Shuttle back to your car. (2) Take the summer Glacier Point bus tour to Glacier Point and hike the Panorama Trail mostly downhill to the Valley. Option 2 is significantly less demanding."
+        "q": "Is the Four Mile and Panorama route a loop?",
+        "a": "The hiking route starts at Four Mile Trailhead and ends at Happy Isles. The trailheads are different. Arrange a shuttle ride back or add the walk to your car."
       },
       {
-        "q": "Is there parking at the Four Mile Trailhead?",
-        "a": "There is a small lot at the trailhead, along Southside Drive near Sentinel Rock, and it fills by 7 a.m. If it is full, park at Yosemite Village or the day-use lot and take the Valley shuttle."
+        "q": "Which shuttle serves the Four Mile Trailhead?",
+        "a": "The Valleywide shuttle serves Four Mile Trail at stop 11 and Happy Isles at stop 16. The East Valley shuttle does not serve Four Mile. Check operating hours and allow for waits."
       },
       {
-        "q": "Can I take the Glacier Point bus to do this hike one-way?",
-        "a": "Yes. The Glacier Point bus tour runs daily in summer from Yosemite Valley, and it fills quickly, so book in advance. Ride up, hike the Panorama Trail down to the Valley, and take the free shuttle back to your car. This gives you a point-to-point mostly-downhill hike."
+        "q": "Does Glacier Point Road have to be open for this hike?",
+        "a": "No. A road closure does not by itself close the Four Mile or Panorama trails. Snow, ice, fire, and repairs may close trails separately. Check NPS trail and road reports and confirm water availability."
+      },
+      {
+        "q": "Can I take a bus up and hike the Panorama Trail down?",
+        "a": "When the seasonal Glacier Point Tour operates, book a ride up and hike down. This skips the Four Mile ascent but still includes the Illilouette climb. Confirm the tour in advance; there is no free Valley-to-Glacier Point shuttle or guaranteed pickup at Glacier Point."
       }
     ]
   },
@@ -2240,7 +2224,7 @@
     ]
   },
   "mist-trail-the-real-guide": {
-    "wordCount": 1874,
+    "wordCount": 1651,
     "keywords": [
       "Mist Trail",
       "Vernal Fall",
@@ -2256,28 +2240,28 @@
     },
     "faq": [
       {
+        "q": "How long is the Mist Trail in Yosemite?",
+        "a": "From Happy Isles, the round trip is 1.6 miles to Vernal Fall footbridge, 2.4 miles to the top of Vernal Fall, or 5.4 miles to the top of Nevada Fall. Parking adds walking distance."
+      },
+      {
         "q": "How hard is the Mist Trail?",
-        "a": "It depends on how far you go. The 1.6-mile round trip to the Vernal Fall footbridge is moderate. The 2.6-mile round trip to the top of Vernal Fall gains 600 feet in its final half mile on wet granite stairs and is strenuous. The full 5.4-mile round trip to the top of Nevada Fall gains 2,000 feet and takes most people 4-6 hours."
+        "a": "The footbridge hike is moderate, with about 400 feet of climbing. The routes to the tops of Vernal Fall and Nevada Fall are strenuous, gaining about 1,000 and 2,000 feet respectively. Expect steep, uneven steps beyond the footbridge."
       },
       {
-        "q": "What shoes should I wear on the Mist Trail?",
-        "a": "Hiking boots or trail shoes with real tread. The granite staircase below Vernal Fall is wet for most of May and June, and slippery footwear is the cause of most Mist Trail injuries. Worn sneakers, flip-flops, and sandals are genuinely dangerous here."
+        "q": "How long does the Mist Trail take?",
+        "a": "Allow 1 to 1.5 hours for the footbridge, about 3 hours for Vernal Fall, or 5 to 6 hours for Nevada Fall, plus time to get to and from Happy Isles. A John Muir Trail return is longer."
       },
       {
-        "q": "When is the Mist Trail wettest?",
-        "a": "Peak waterfall flow runs mid-April through late June, with the heaviest spray between the base and top of Vernal Fall in May. You'll get soaked, not sprinkled. By August the falls are reduced and the trail is mostly dry."
+        "q": "Where can I get drinking water on the Mist Trail?",
+        "a": "Drinking water is at Happy Isles and seasonally at Vernal Fall footbridge, usually May through October. There is no drinking-water tap at Nevada Fall. Carry enough if the footbridge tap is off."
+      },
+      {
+        "q": "Is the Mist Trail closed for repairs in 2026?",
+        "a": "From July 27 through October, subject to change, the section from the JMT junction above Vernal Fall footbridge to the top of Vernal Fall closes Monday through Thursday, 7 a.m. to 3:30 p.m. Follow the signed JMT detour and check the NPS notice before hiking."
       },
       {
         "q": "Can kids hike the Mist Trail?",
-        "a": "Older, reasonably fit kids can do the 1.6-mile round trip to the Vernal Fall footbridge. Past the bridge, the staircase to the top of Vernal Fall is steep, wet, and exposed, not appropriate for young children. The full route to Nevada Fall is a serious workout."
-      },
-      {
-        "q": "Can I die on the Mist Trail?",
-        "a": "People have. In 2025 roughly 30% of Yosemite's search-and-rescue operations originated on the Mist Trail corridor, and the park averages close to one fatality per month on this trail and the falls above it. Stay behind the railings and don't wade above either waterfall."
-      },
-      {
-        "q": "Should I go up the Mist Trail and down the John Muir Trail?",
-        "a": "Yes if you're doing the full route to Nevada Fall. Up the Mist Trail for the waterfall experience, down the JMT for gentler grades that are easier on knees. Total loop is about 6.5 miles. Most experienced hikers do it this way."
+        "a": "Choose a turnaround that matches their fitness and the conditions. The paved footbridge route still climbs about 400 feet. Beyond it, steep, uneven and often wet steps require balance and steady footing. Stay behind railings and do not swim or wade above the falls."
       }
     ]
   },
@@ -2564,7 +2548,7 @@
     ]
   },
   "yosemite-gateway-towns-compared": {
-    "wordCount": 5164,
+    "wordCount": 4989,
     "keywords": [
       "where to stay near Yosemite",
       "best town to stay near Yosemite",
@@ -2624,7 +2608,7 @@
       },
       {
         "q": "Do Yosemite gateway towns have reliable cell service?",
-        "a": "Patchy in all five gateways and essentially nonexistent inside the park past the entrance stations. Download offline maps before you leave the gateway town and do not rely on real-time navigation past the gate."
+        "a": "Service is patchy in the gateways and unreliable to nonexistent through much of the park and approach roads. Download offline maps and reservation details before leaving town, and agree on a meeting point with your group."
       }
     ]
   },
