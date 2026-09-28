@@ -19,6 +19,14 @@ export type ChangelogEntryT = z.infer<typeof ChangelogEntry>
 
 const seed: ChangelogEntryT[] = [
   {
+    date: '2026-09-27',
+    lines: [
+      'The map draws every verified day hike on the terrain, coloured by difficulty; tap one for its elevation profile. The search box over the map finds any stop, trail, lot, place to eat or program by name, offline.',
+      'Crowded pins no longer pile up. Where they would overlap, the most useful one draws and the rest become small dots; tap a dot or zoom in to open them. In 3D the far pins draw smaller.',
+      'Opening a trail, an itinerary or a day keeps the way you have the map turned, and frames it beside the panel instead of under it.',
+    ],
+  },
+  {
     date: '2026-09-25',
     lines: [
       'Plan a day in any region: pick which of your days it is, then add the park’s programs for that date, the hikes that start there with their elevation profiles, and the stops. Everything lands on your trip board.',

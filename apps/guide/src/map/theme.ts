@@ -39,6 +39,16 @@ export const HOME_CAMERA = {
   bearing: 78,
 }
 
+/**
+ * The camera for "show me this one place" (a search pick, a program's
+ * meeting point, a stop from the trip panel). The elevation tiles stop at
+ * z13, so past about z14.5 the terrain under a tilted camera is overzoomed
+ * mush and every line near the lens balloons; 14 at 50 degrees is close
+ * enough to read the turnout and still shows the ground around it.
+ */
+export const FOCUS_ZOOM = 14
+export const FOCUS_PITCH = 50
+
 /** How far past the archive extent the reader may pan, in degrees. */
 export const PAN_BUFFER_DEG = 0.12
 
@@ -225,6 +235,11 @@ export const TRIP_STRAIGHT_OPACITY = 0.5
 /** Other days, while one day is selected. */
 export const TRIP_DIMMED_OPACITY = 0.18
 
+/** The accent (tokens.css --rust), for the program meeting points. */
+export function accentColor(): string {
+  return token('--rust', '#7a2a10')
+}
+
 /** The paper-coloured casing under every trip line, so it reads on any fill. */
 export function tripCasing(): string {
   return token('--paper', '#f1ead6')
@@ -237,3 +252,22 @@ export function tripCasing(): string {
  * very pins the frame was for.
  */
 export const DAY_FIT_PITCH = 35
+
+// --- the trails layer -------------------------------------------------------------
+
+/**
+ * Trail colour by the guide's difficulty scale (hikes.ts). A trail with no
+ * rating (none today; the field is required, but the layer reads it
+ * defensively) draws in the neutral ink.
+ */
+export function trailColors(scheme: Scheme = resolvedScheme()): Record<'easy' | 'moderate' | 'strenuous' | 'unrated', string> {
+  return scheme === 'granite'
+    ? { easy: '#7fc47a', moderate: '#e0b44e', strenuous: '#f07a55', unrated: token('--ink-3', '#b8a88a') }
+    : { easy: '#2e7d32', moderate: '#a86b00', strenuous: '#b3261e', unrated: token('--ink-3', '#50402e') }
+}
+
+export const TRAIL_LABEL: Record<'easy' | 'moderate' | 'strenuous', string> = {
+  easy: 'Easy',
+  moderate: 'Moderate',
+  strenuous: 'Strenuous',
+}

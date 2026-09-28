@@ -19,6 +19,10 @@ export type KindStyle = {
   // a shuttle stop or a picnic table is a street-scale fact, and eighteen of
   // them on the whole-park frame bury the viewpoints the frame is for.
   minor?: boolean
+  // Declutter rank (map/declutter.ts): where pins collide, the higher rank
+  // draws full-size and the lower steps down to a dot. Destinations outrank
+  // orientation, which outranks the street-scale infrastructure.
+  rank: number
 }
 
 // Hues tuned to the print palette (slate, forest, grey-brown, aubergine,
@@ -26,20 +30,20 @@ export type KindStyle = {
 // against the greens and tans of the topo tiles. Declaration order is chip
 // and legend order: destinations first, then the infrastructure layer.
 export const KIND_STYLES: Record<MapPinKind, KindStyle> = {
-  viewpoint: { color: '#2c4a63', label: 'Viewpoint' },
-  trailhead: { color: '#3d5a3f', label: 'Trailhead' },
-  hike: { color: '#7d3245', label: 'Day hike' },
-  landmark: { color: '#4d4a6b', label: 'Landmark' },
-  drive: { color: '#7a2a10', label: 'Drive' },
-  lodging: { color: '#5a3a5e', label: 'Lodging' },
-  meal: { color: '#8a661a', label: 'Meal' },
-  camping: { color: '#1c6e63', label: 'Camping' },
-  entrance: { color: '#1f1f1f', label: 'Entrance' },
-  'visitor-center': { color: '#1d5f8a', label: 'Visitor center' },
-  parking: { color: '#6b6355', label: 'Parking', minor: true },
-  shuttle: { color: '#2f7d32', label: 'Shuttle stop', minor: true },
-  picnic: { color: '#6a7d1e', label: 'Picnic area', minor: true },
-  services: { color: '#4a4f57', label: 'Services', minor: true },
+  viewpoint: { color: '#2c4a63', label: 'Viewpoint', rank: 10 },
+  trailhead: { color: '#3d5a3f', label: 'Trailhead', rank: 8 },
+  hike: { color: '#7d3245', label: 'Day hike', rank: 9 },
+  landmark: { color: '#4d4a6b', label: 'Landmark', rank: 6 },
+  drive: { color: '#7a2a10', label: 'Drive', rank: 8 },
+  lodging: { color: '#5a3a5e', label: 'Lodging', rank: 7 },
+  meal: { color: '#8a661a', label: 'Meal', rank: 5 },
+  camping: { color: '#1c6e63', label: 'Camping', rank: 7 },
+  entrance: { color: '#1f1f1f', label: 'Entrance', rank: 7 },
+  'visitor-center': { color: '#1d5f8a', label: 'Visitor center', rank: 7 },
+  parking: { color: '#6b6355', label: 'Parking', minor: true, rank: 3 },
+  shuttle: { color: '#2f7d32', label: 'Shuttle stop', minor: true, rank: 3 },
+  picnic: { color: '#6a7d1e', label: 'Picnic area', minor: true, rank: 2 },
+  services: { color: '#4a4f57', label: 'Services', minor: true, rank: 2 },
 }
 
 export const MINOR_KINDS: MapPinKind[] = (Object.keys(KIND_STYLES) as MapPinKind[]).filter(
@@ -153,6 +157,9 @@ export function buildPinElement(
     .join(' ')
   el.setAttribute('role', 'button')
   el.tabIndex = 0
+  // Read by the declutter pass and by the dot a pin steps down to (Map.css).
+  el.dataset.rank = String(KIND_STYLES[kind].rank - (hidden ? 0.5 : 0))
+  el.style.setProperty('--pin-color', color)
   el.setAttribute(
     'aria-label',
     hidden ? `${name}, ${label}, Secret Guide` : `${name}, ${label}`,
