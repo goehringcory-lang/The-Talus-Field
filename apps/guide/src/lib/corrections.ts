@@ -90,17 +90,28 @@ export async function flushCorrections(): Promise<void> {
   const pending = readOutbox()
   if (pending.length === 0) return
   flushing = true
-  const left: Correction[] = []
-  for (const c of pending) {
-    try {
-      await post(c)
-    } catch (err) {
-      // A rejected report will never send; keeping it would retry forever.
-      if (!(err instanceof ApiError && err.status >= 400 && err.status < 500)) left.push(c)
+  const done = new Set<Correction>()
+  try {
+    for (const c of pending) {
+      try {
+        await post(c)
+        done.add(c)
+      } catch (err) {
+        // A rejected report will never send; keeping it would retry forever.
+        if (err instanceof ApiError && err.status >= 400 && err.status < 500) done.add(c)
+      }
     }
+  } finally {
+    // Re-read rather than overwrite with a snapshot: a report queued while the
+    // sends were in flight would otherwise be dropped. Entries are matched by
+    // content because readOutbox returns fresh objects.
+    const finished = pending.filter((c) => done.has(c))
+    const left = readOutbox().filter(
+      (o) => !finished.some((c) => c.queuedAt === o.queuedAt && c.message === o.message && c.email === o.email),
+    )
+    writeOutbox(left)
+    flushing = false
   }
-  writeOutbox(left)
-  flushing = false
 }
 
 export function startCorrectionsOutbox(): void {

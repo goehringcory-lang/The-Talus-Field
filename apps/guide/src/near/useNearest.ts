@@ -62,6 +62,7 @@ export function useNearest(fix: GeoFix | null): Nearest {
   useEffect(
     () => () => {
       if (timerRef.current !== null) window.clearTimeout(timerRef.current)
+      timerRef.current = null
     },
     [],
   )
