@@ -6,33 +6,35 @@ window.ARTICLE_BODIES["four-mile-up-panorama-down"] = function FourMileUpPanoram
   return (
     <>
       <p className="dropcap">
-        If I could send you on one day hike in Yosemite, one hike that shows you what this park actually is, it would be this one. You go up the Four Mile Trail to Glacier Point, across the top, and down the Panorama Trail past Illilouette Fall and Nevada Fall to the Valley floor.
+        Hike up the Four Mile Trail to Glacier Point, then descend the Panorama Trail to Happy Isles for a strenuous day linking Valley views and waterfalls. Plan on roughly 13 to 14 miles between trailheads, about 4,000 feet of total climbing, and a full day on foot. The trailheads are different: arrange a shuttle ride or add the walk back to your car.
       </p>
 
       <p>
-        It isn't the most famous hike. That's the <a href="/articles/mist-trail-the-real-guide">Mist Trail</a>. It isn't the most dramatic, either. That's <a href="/articles/so-you-want-to-hike-half-dome">Half Dome</a>, which is also the hardest. But in my experience it's the most complete. In one day you climb 3,200 feet out of the Valley, stand at one of the great viewpoints in the American West, then drop through three different ecosystems and past two major waterfalls, and you finish at Happy Isles. Most people <a href="/articles/glacier-point-how-to-visit">drive to Glacier Point</a> and look at the view. On this hike you earn it, and the views continue for the eight miles down.
+        This is my favorite long Yosemite day hike for the variety: Glacier Point, Illilouette Creek, Nevada Fall, and the descent toward Vernal Fall. For a shorter waterfall hike, use the <a href="/articles/mist-trail-the-real-guide">Mist Trail guide</a>. For the viewpoint without the climb, see <a href="/articles/glacier-point-how-to-visit">how to visit Glacier Point</a>.
       </p>
 
-      <p>I've done this loop more times than I can count. Here's how to do it well.</p>
+      <p>
+        Check <a href="https://www.nps.gov/yose/planyourvisit/conditions.htm">NPS trail conditions</a> before starting. Road access, trail closures, drinking water, and shuttle service each need a separate check.
+      </p>
 
       <h2>The numbers</h2>
 
       <p>
-        The full loop runs roughly 13 to 14 miles, depending on whether you take the Mist Trail or the John Muir Trail for the last stretch. The Four Mile Trail gains about 3,200 feet. The Panorama Trail isn't all downhill, though: there's an 800-foot climb out of the Illilouette Creek drainage that catches people off guard. Count on closer to 4,000 feet of elevation change for the day.
+        The hike runs roughly 13 to 14 miles between trailheads, depending on whether you take the Mist Trail or the John Muir Trail for the last stretch. The Four Mile Trail gains about 3,200 feet. The Panorama Trail isn't all downhill, though: there's an 800-foot climb out of the Illilouette Creek drainage that catches people off guard. Count on closer to 4,000 feet of total climbing for the day.
       </p>
 
       <p>
-        Give yourself 8 to 10 hours, trailhead to trailhead. Fast hikers finish in 7. Most people take 9 or 10.
+        Allow a full day and start early. The NPS lists 3 to 4 hours for the Four Mile ascent and 6 to 8 for the Panorama descent. Strong hikers may finish faster, but plan for breaks, the longer JMT return if needed, and transport back to your car.
       </p>
 
       <h2>Why up the Four Mile and down the Panorama</h2>
 
-      <p>You can hike this loop in either direction, and most guides don't care which way you go. I do. Go up the Four Mile, every time.</p>
+      <p>I recommend climbing Four Mile first, while your legs are fresh and the morning is cool.</p>
 
       <p>There are three reasons.</p>
 
       <p>
-        First, the Four Mile Trail is a steady uphill grind: 3,200 feet of gain in 4.8 miles, over roughly 58 switchbacks. It's the hardest part of the day, so do it while your legs are fresh and the morning is cool. Flip the loop and you're climbing out of the Illilouette drainage on tired legs in the afternoon heat.
+        First, the Four Mile Trail is a steady uphill grind: 3,200 feet of gain in 4.8 miles, over roughly 58 switchbacks. It's the hardest part of the day, so do it while your legs are fresh and the morning is cool.
       </p>
 
       <p>
@@ -40,17 +42,17 @@ window.ARTICLE_BODIES["four-mile-up-panorama-down"] = function FourMileUpPanoram
       </p>
 
       <p>
-        Third, the Panorama descent is a pleasure. You're walking downhill through waterfall country with Half Dome in front of you for miles. The hard part is behind you.
+        Third, the Panorama route gives you waterfall views on the way down. Save energy for its uphill section out of Illilouette Creek and for the final descent to Happy Isles.
       </p>
 
       <h2>Getting to the Four Mile Trailhead</h2>
 
       <p>
-        The Four Mile Trailhead is on Southside Drive, roughly a mile west of Sentinel Beach, near the Swinging Bridge area. The small lot at the trailhead fills by 7 a.m. on busy days. If it's full, park at Yosemite Village or the day-use lot and ride the Valley shuttle to the El Capitan Shuttle Stop (E6 on the shuttle map), the closest stop.
+        The Four Mile Trailhead is on Southside Drive near Sentinel Rock, with limited roadside parking. If it is full, park in a designated Valley lot and take the Valleywide shuttle to stop 11. The <a href="/articles/yosemite-valley-parking-guide">Valley parking guide</a> covers the main lots.
       </p>
 
       <p>
-        Get there early. This matters more than anything else on the list. Start at 5:30 or 6 a.m. and you're on the trail before the heat, at Glacier Point by mid-morning, with plenty of daylight left for the Panorama. Start at 9 a.m. and you'll climb in full sun and finish in the dark.
+        Start around dawn and carry a headlamp. An early start gives you cooler climbing conditions and more daylight for the descent. If you start late, choose a shorter route rather than assuming you can make up time.
       </p>
 
       <h2>The Four Mile Trail, what to expect</h2>
@@ -92,11 +94,11 @@ window.ARTICLE_BODIES["four-mile-up-panorama-down"] = function FourMileUpPanoram
       <p>If there is water, fill everything you've got. You'll need it on the way down.</p>
 
       <p>
-        <a href="/articles/glacier-point-road-open-2026">Glacier Point Road</a> usually opens in mid-to-late May, depending on snow. In 2026 it opened on May 9. When the road is closed you can still hike the Four Mile Trail to Glacier Point and back, but it becomes an out-and-back instead of a loop, because Panorama Trail access from the top depends on the road and facilities being open. Check the NPS conditions page before you go.
+        <strong>Road access and trail access are different.</strong> A closed Glacier Point Road does not by itself close the Four Mile or Panorama trails. Snow, ice, fire, or repair work may close trails separately. Check the <a href="https://www.nps.gov/yose/planyourvisit/conditions.htm">NPS trail and road reports</a>; do not assume facilities are operating just because a trail is open.
       </p>
 
       <p>
-        Spend at least thirty minutes at Glacier Point. Eat something real. Refill if the fountain is running. Use the restroom. The next eight miles are almost all downhill, but they are still eight miles.
+        Spend at least thirty minutes at Glacier Point. Eat something real. Refill if the fountain is running. Use the restroom. The Panorama Trail includes another 800-foot climb before the descent to the Valley.
       </p>
 
       <h2>The Panorama Trail, the best descent in the park</h2>
@@ -112,7 +114,7 @@ window.ARTICLE_BODIES["four-mile-up-panorama-down"] = function FourMileUpPanoram
       </p>
 
       <p>
-        <strong>This is your water refill point.</strong> Illilouette Creek is the first reliable water since the Four Mile Trailhead, roughly 7 miles back. If you have a filter or purification tablets (and on this hike you should), fill up here. The creek runs reliably through July most years. By late August it can be low.
+        <strong>Illilouette Creek is a possible refill point.</strong> Check its flow before your hike; it is the first natural water since the Four Mile Trailhead, roughly 7 miles back. If you have a filter or purification tablets (and on this hike you should), fill up here. The creek runs reliably through July most years. By late August it can be low.
       </p>
 
       <p>
@@ -138,11 +140,11 @@ window.ARTICLE_BODIES["four-mile-up-panorama-down"] = function FourMileUpPanoram
       </p>
 
       <p>
-        <strong>Important note for 2026:</strong> Starting June 30, the Mist Trail between Nevada Fall and Vernal Fall has weekday access restrictions: it's open only after 3:30 p.m. Monday through Thursday, as a crowd management measure. If you're hiking on a weekday after June 30, you'll likely need the JMT for the last stretch, or you'll have to reach the junction after 3:30.
+        <strong>2026 Mist Trail repairs:</strong> From July 27 through October, subject to change, the staircase between the JMT junction above Vernal Fall footbridge and the top of Vernal Fall closes Monday through Thursday, 7 a.m. to 3:30 p.m. Use the signed JMT detour during work hours. Check the <a href="/articles/mist-trail-the-real-guide">Mist Trail access details</a> before choosing your descent.
       </p>
 
       <p>
-        <strong>The John Muir Trail</strong> is longer (about 4 miles to Happy Isles), gentler and easier on the knees. It switchbacks down through forest with the occasional distant look at Nevada Fall. It's less dramatic, but a lot more comfortable at the end of a long day. After 13 miles and 4,000 feet of elevation change, your knees may decide for you.
+        <strong>The John Muir Trail</strong> is longer (about 4 miles to Happy Isles), gentler and easier on the knees. It switchbacks down through forest with the occasional distant look at Nevada Fall. It's less dramatic, but a lot more comfortable at the end of a long day. After 13 miles and 4,000 feet of total climbing, your knees may decide for you.
       </p>
 
       <p>
@@ -153,14 +155,14 @@ window.ARTICLE_BODIES["four-mile-up-panorama-down"] = function FourMileUpPanoram
 
       <p><strong>Start time:</strong> 5:30 to 6:30 a.m. at the Four Mile Trailhead. Earlier is better.</p>
 
-      <p><strong>Total distance:</strong> 13 to 14 miles, depending on your final descent.</p>
+      <p><strong>Total distance:</strong> Roughly 13 to 14 miles between trailheads; the JMT option is longer, and walking back to your car adds distance.</p>
 
-      <p><strong>Total elevation change:</strong> roughly 4,000 feet (3,200 up, 800 up out of Illilouette, the rest down).</p>
+      <p><strong>Total elevation gain:</strong> About 4,000 feet: 3,200 on Four Mile plus about 800 after Illilouette Creek. There is also a long descent.</p>
 
-      <p><strong>Time:</strong> 8 to 10 hours.</p>
+      <p><strong>Time:</strong> Plan a full day. NPS segment estimates total 9 to 12 hours, before a shuttle wait or a walk back to the start.</p>
 
       <p>
-        <strong>Water plan:</strong> This is the logistic that matters most on this hike. Carry at least three liters from the trailhead. The Four Mile Trail is completely dry. Glacier Point <em>may</em> have water (check conditions). Illilouette Creek is your sure refill, so bring a filter or treatment. There's water again at Happy Isles at the bottom.
+        <strong>Water plan:</strong> This is the logistic that matters most on this hike. Carry at least three liters from the trailhead. The Four Mile Trail is completely dry. Glacier Point <em>may</em> have water (check conditions). Check creek flow before relying on Illilouette Creek for a refill, and bring a filter or treatment. There's water again at Happy Isles at the bottom.
       </p>
 
       <p><strong>Water sources in order:</strong></p>
@@ -182,20 +184,20 @@ window.ARTICLE_BODIES["four-mile-up-panorama-down"] = function FourMileUpPanoram
       </p>
 
       <p>
-        <strong>Getting back to your car:</strong> The hike ends at Happy Isles, and your car is at the Four Mile Trailhead, roughly 4 miles away by road. Take the Valley shuttle from Happy Isles (stop 16) toward the El Capitan shuttle stop (E6), the closest one to the trailhead. It runs often in peak season. Early in the season, check the schedule: reduced service can mean a longer wait or a walk.
+        <strong>Getting back to your car:</strong> From Happy Isles, take the Valleywide shuttle at stop 16 to Four Mile Trail at stop 11. The East Valley shuttle does not serve Four Mile. Confirm operating hours with the <a href="https://www.nps.gov/yose/planyourvisit/publictransportation.htm">NPS shuttle information</a> and allow for waits. If you finish after service ends, you will need another way back or additional walking.
       </p>
 
       <p>
-        <strong>When to do this hike:</strong> Late May through October, depending on trail conditions and whether Glacier Point Road is open. Peak waterfall season (late May through June) is the best time, when Illilouette Fall and Nevada Fall are at full power. By August the falls have shrunk, but the trails are dry and conditions are more predictable. Skip this hike when thunderstorms are active. The Four Mile Trail is heavily exposed, and you'll be at 7,200 feet at Glacier Point.
+        <strong>When to do this hike:</strong> Late May through October, depending on snow, trail closures, and weather. Peak waterfall season (late May through June) is the best time, when Illilouette Fall and Nevada Fall are at full power. By August the falls have shrunk, but the trails are dry and conditions are more predictable. Skip this hike when thunderstorms are active. The Four Mile Trail is heavily exposed, and you'll be at 7,200 feet at Glacier Point.
       </p>
 
       <p>
-        <strong>Glacier Point Road:</strong> It has to be open for the full loop to work. The road usually opens mid-to-late May. In 2026 it opened May 9. When it's closed, the Glacier Point facilities (restrooms, water, snack bar) are unavailable, and you can reach the Panorama Trail only from below. Check <a href="https://www.nps.gov/yose/planyourvisit/conditions.htm" target="_blank" rel="noopener noreferrer">NPS conditions</a> before your trip.
+        <strong>A shorter alternative:</strong> When the seasonal Glacier Point Tour operates, book a ride up and hike the Panorama Trail down. This skips the Four Mile ascent but still includes the Illilouette climb. Confirm the tour before booking your day; there is no free Valley-to-Glacier Point shuttle and no guaranteed pickup at Glacier Point.
       </p>
 
       <h2>Why this is my favorite</h2>
 
-      <p>I've hiked most of the trails in this park, and I've led programs on dozens of them. This loop is the one I keep coming back to.</p>
+      <p>I've hiked most of the trails in this park, and I've led programs on dozens of them. This route is the one I keep coming back to.</p>
 
       <p>
         The Four Mile Trail climbs the glacier-carved wall of the Valley, and by the time you reach the rim you have a sense of the park's scale that no roadside pullout gives.
@@ -215,7 +217,9 @@ window.ARTICLE_BODIES["four-mile-up-panorama-down"] = function FourMileUpPanoram
         Start early. Carry enough water. Bring a filter. And slow down at Union Point, at Glacier Point, at the Illilouette bridge and at the top of Nevada Fall.
       </p>
 
-      <p>It's 13 miles and 4,000 feet of elevation change.</p>
+      <p>Plan the return to your car as carefully as the hike.</p>
+
+      <p>Route references: <a href="https://www.nps.gov/yose/planyourvisit/fourmiletrail.htm">NPS Four Mile Trail</a> and <a href="https://www.nps.gov/yose/planyourvisit/glacierhikes.htm">NPS Panorama Trail distances and conditions</a>.</p>
 
       <AffiliateNote />
     </>

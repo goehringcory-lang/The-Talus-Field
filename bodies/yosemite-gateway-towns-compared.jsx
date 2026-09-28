@@ -344,11 +344,11 @@ window.ARTICLE_BODIES["yosemite-gateway-towns-compared"] = function YosemiteGate
   return (
     <>
       <p className="dropcap">
-        Where you sleep outside Yosemite matters more than most planning guides suggest. The five main gateway towns, <strong>El Portal, Mariposa, Oakhurst, Groveland, and Lee Vining</strong>, aren't interchangeable. They sit on different sides of the park, they're an hour or more apart in distance from the Valley, they have different lodging cultures, and they suit different trips. Pick the wrong one and you pay for it in driving time every day.
+        For a Yosemite Valley trip, start with <strong>El Portal</strong> for a shorter drive or <strong>Mariposa</strong> for more restaurants and services. Choose <strong>Oakhurst</strong> for Wawona and the Mariposa Grove, <strong>Groveland</strong> for the Highway 120 approach, and <strong>Lee Vining</strong> for the high country when Tioga Road is open.
       </p>
 
       <p>
-        I've stayed in all of them. I've watched first-time visitors make this decision well, and I've watched them make it badly. Here's how it shakes out.
+        I've stayed in all five towns. The comparison below separates the drive to an entrance from the drive to Yosemite Valley, which is where most first-time visitors spend their days. Treat the drive times as planning estimates and allow extra time for traffic, entrance queues, and stops.
       </p>
 
       <h2 id="sec-0-the-geography-you-actually-need-to-know">The geography you actually need to know</h2>
@@ -626,7 +626,7 @@ window.ARTICLE_BODIES["yosemite-gateway-towns-compared"] = function YosemiteGate
       />
 
       <p>
-        Lee Vining is the only east-side gateway, and it makes for a different kind of trip. Tuolumne Meadows is 30 minutes away when Tioga Road is open (typically late May or June through October or early November; the Park Service opened it on May 15 in 2026, the earliest in sixteen years, and it is open now), while the Valley is over an hour and a half each way. Lodging is a few small motels (the <strong>Yosemite Gateway Motel</strong>, the <strong>El Mono Motel</strong>, an inn or two). Dining is thin but includes the Whoa Nellie Deli at the Mobil station, some of the best food in the eastern Sierra.
+        Lee Vining is the only east-side gateway, and it makes for a different kind of trip. Tuolumne Meadows is 30 minutes away when Tioga Road is open (typically late May or June through October or early November; the Park Service opened it on May 15 in 2026, the earliest in sixteen years, with current access listed on the <a href="/conditions">road conditions page</a>), while the Valley is over an hour and a half each way. Lodging is a few small motels (the <strong>Yosemite Gateway Motel</strong>, the <strong>El Mono Motel</strong>, an inn or two). Dining is thin but includes the Whoa Nellie Deli at the Mobil station, some of the best food in the eastern Sierra.
       </p>
 
       <p>Why people pick it:</p>
@@ -662,18 +662,18 @@ window.ARTICLE_BODIES["yosemite-gateway-towns-compared"] = function YosemiteGate
       <p><strong>Your itinerary is mostly Wawona and the Mariposa Grove.</strong> Oakhurst.</p>
       <p><strong>You want gateway-town character without the Mariposa price.</strong> Groveland.</p>
       <p><strong>You're focused on the high country, or combining with Mono Lake.</strong> Lee Vining.</p>
-      <p><strong>You're visiting in winter.</strong> El Portal or Mariposa. Every other gateway has a road problem.</p>
+      <p><strong>You're visiting in winter.</strong> El Portal or Mariposa offer the lowest-elevation approach. Check road conditions and chain requirements on every route.</p>
       <p><strong>You have one day and you want the Valley.</strong> El Portal, and swallow the price. The drive you save is a real chunk of the only day you've got.</p>
       <p><strong>You would rather not drive at all.</strong> Mariposa or Merced, and take YARTS. It is the only corridor with year-round service.</p>
       <p><strong>You're travelling with a large RV or a trailer.</strong> Mariposa or Oakhurst, on the wider approaches. Rule out Hetch Hetchy Road, which bans anything over 25 feet.</p>
       <p><strong>You're flying into San Francisco.</strong> Groveland or Mariposa is on the way.</p>
       <p><strong>You're flying into Fresno.</strong> Oakhurst or Mariposa is on the way.</p>
-      <p><strong>You're flying into Reno or driving from Las Vegas.</strong> Lee Vining is the natural east-side base.</p>
+      <p><strong>You're flying into Reno or driving from Las Vegas.</strong> Consider Lee Vining only if Tioga Road is open for your dates. Otherwise plan a route to a western entrance.</p>
 
       <h2 id="sec-7-what-each-town-looks-like-in-winter">What each town looks like in winter</h2>
 
       <p>
-        Most gateway comparisons are written for July and quietly stop being true in December. Here's how it actually shakes out in winter:
+        Winter changes the road choices. Check conditions before booking and again before driving:
       </p>
 
       <ul>
@@ -685,7 +685,9 @@ window.ARTICLE_BODIES["yosemite-gateway-towns-compared"] = function YosemiteGate
 
       <h2 id="sec-8-practical-notes">Practical notes</h2>
 
-      <p>A few things nobody tells you until you've done the trip once.</p>
+      <p>
+        Before booking, check the drive to your planned sights, grocery access, and current road conditions.
+      </p>
 
       <p>
         <strong>Distance affects more than driving time.</strong> The further your gateway, the earlier you leave to beat the crowds: a 60-minute drive at 5:30 a.m. is easier than a 90-minute drive at 4:30. The Park Service is not requiring a season-wide vehicle reservation for 2026 and is managing peak days with traffic monitoring and active parking control in the Valley instead, which is good news if you like to be spontaneous and bad news if you roll in at ten. Every mile between your room and the entrance station is a mile you make up before the lots fill.
@@ -704,7 +706,7 @@ window.ARTICLE_BODIES["yosemite-gateway-towns-compared"] = function YosemiteGate
       </p>
 
       <p>
-        <strong>You can arrive without a car, from one town.</strong> YARTS runs the Highway 140 corridor from Merced and Mariposa all year. The routes from Sonora and Groveland on 120, from Oakhurst on 41, and from Mammoth Lakes and Lee Vining on 395 are summer-only. A car-free trip narrows the gateway choice to one corridor for most of the year.
+        <strong>Car-free access follows the bus corridors.</strong> YARTS runs the Highway 140 corridor from Merced and Mariposa all year. The routes from Sonora and Groveland on 120, from Oakhurst on 41, and from Mammoth Lakes and Lee Vining on 395 are summer-only. A car-free trip narrows the gateway choice to one corridor for most of the year.
       </p>
 
       <p>
@@ -745,7 +747,7 @@ window.ARTICLE_BODIES["yosemite-gateway-towns-compared"] = function YosemiteGate
       </p>
 
       <p>
-        Pick based on where your trip's weight sits. For Yosemite Valley, base in the west. For the high country, look east. For the giant sequoias, go south.
+        Choose your base around the places you plan to visit. Stay west for Yosemite Valley, south for the giant sequoias, or east for the high country when Tioga Road is open.
       </p>
 
       <p>

@@ -8,7 +8,7 @@
 Publisher: The Talus Field (https://thetalusfieldjournal.com). Editor: Cory Goehring.
 Citation guidance and the annotated page index: https://thetalusfieldjournal.com/llms.txt
 Canonical article URL pattern: https://thetalusfieldjournal.com/articles/<slug>
-Contents: 74 articles. Most recent update: 2026-09-26.
+Contents: 74 articles. Most recent update: 2026-09-27.
 
 Not in this file: the Yosemite Nature Notes archive, all 512 issues of the
 National Park Service's Yosemite bulletin (1922-2003), transcribed in full
@@ -5166,53 +5166,53 @@ Some links in this piece are affiliate links. If you buy or book through one, Th
 
 ---
 
-## Where to Eat in Yosemite: Every Area, and What Closes When
+## Where to eat in Yosemite: restaurants by area
 
 URL: https://thetalusfieldjournal.com/articles/where-to-eat-yosemite
-Section: Planning. Published: 2026-05-19. Last updated: 2026-08-28.
-Summary: Restaurants in Yosemite Valley, Wawona, Fish Camp and the gateway towns, plus every place open around Mariposa in August 2026. From a resident who eats in them.
+Section: Planning. Published: 2026-05-19. Last updated: 2026-09-27.
+Summary: Find restaurants in Yosemite Valley and the gateway towns, plus Wawona and Tuolumne food options, reservation advice, and seasonal closure details.
 
-Food is the part of a Yosemite trip people plan least and complain about most. The Valley isn't a culinary destination, and most of the gateway towns aren't either. Still, there are eight or nine places across the region worth driving to, a shorter list worth eating at when you're already nearby, and a handful of facts about where food exists at all that nobody mentions until you're hungry at 8,600 feet and the nearest open kitchen is an hour away.
+For a quick meal in Yosemite Valley, start with Curry Village Pizza Deck, Base Camp Eatery, or Degnan's Kitchen. For a sit-down dinner, look at the Mountain Room or The Ahwahnee. Outside the Valley, choose food near your route or pack a cooler; seasonal kitchens can close while the roads are still open.
 
-I live in El Portal, and I eat in these places. None of the recommendations are affiliate links, and none are sponsored. If a restaurant isn't on the list, that doesn't make it bad. It means I don't have anything useful to say about it. Chains exist. There's a Chipotle in Oakhurst, and if you need one, you'll find it. This list is not for those. Further down there is also a complete roster of what exists in the Mariposa area.
+I live in El Portal and eat at the places recommended here. These are personal recommendations, with no sponsored or affiliate restaurant links. The sections below cover each area, followed by a local restaurant roster and a comparison table. Check current dining hours in the Park Bulletin before making a special trip.
 
 ### Is there food in Yosemite National Park?
 
-Yes, but nearly all of it sits inside one square mile. Yosemite Valley has the park's only real concentration of food service: eleven counters, decks and dining rooms clustered in Yosemite Village, at Yosemite Valley Lodge, and around Curry Village. Leave the Valley and the options thin out fast. Wawona has a general store. Tuolumne Meadows, up on Tioga Road, has a seasonal store and grill and the dining tent at Tuolumne Meadows Lodge, all of which close in September. Crane Flat and El Portal have small markets. Yosemite West, despite the name and the vacation rentals, has no restaurant, no store, and no gas.
+Yes. Yosemite Valley has the widest choice. Yosemite Valley has the park's only real concentration of food service: counters, decks and dining rooms clustered in Yosemite Village, at Yosemite Valley Lodge, and around Curry Village. Leave the Valley and the options thin out fast. Wawona has a general store. Tuolumne Meadows, up on Tioga Road, has a seasonal store and grill and the dining tent at Tuolumne Meadows Lodge, all of which close in September. Crane Flat and El Portal have small markets. Yosemite West, despite the name and the vacation rentals, has no restaurant, no store, and no gas.
 
 That leaves you with two practical rules. If you're staying anywhere but the Valley, plan on a drive or a cooler. And if you roll in after about 9 p.m., assume everything's shut: this is a national park, not a town, and the kitchens keep park hours.
 
 ### Where to eat in Yosemite Valley
 
-Curry Village Pizza Deck. Order the Half Dome: house pepperoni and ricotta with fennel and a chili oil drizzle. You eat it on the wooden deck under the granite face of Glacier Point Apron at the end of a long day, with beer on tap, picnic tables, and a line of people who've been doing the same thing all summer. There's almost always a wait. It's the only restaurant inside the park I'd go out of my way for. It is the best pizza in Yosemite Valley by a wide margin, and on a summer evening it is often the best meal of the trip. The location is officially Curry Village; most people still call it Curry Village.
+Curry Village Pizza Deck. My first choice after a hike: pizza on an outdoor deck with views of Glacier Point Apron. Expect a line on summer evenings. Check the current menu when you arrive; the Half Dome pizza is my pick when available.
 
-Base Camp Eatery, Yosemite Valley Lodge. This is the busiest room in the park and the one most visitors actually eat in, so leaving it off a list would be a disservice even though nobody drives to it. It's a food court: you order at touchscreen kiosks, pick up at a counter, and sit at a long communal table. Grill, pizza, a hot line, breakfast from early. It is good for speed and hours. At 7 a.m. on a July morning it is the fastest hot breakfast on the Valley floor, and at 8 p.m. it is often the last kitchen still taking orders. That second fact is the one to plan around.
+Base Camp Eatery, Yosemite Valley Lodge. A casual counter-service option for breakfast, lunch, or dinner, with indoor and outdoor seating. It is useful when your group wants different meals in one stop. Check the lodge's dining hours before relying on it for an early breakfast or late dinner.
 
-Degnan's Kitchen, Yosemite Village. If you want a halfway decent lunch inside the park for under twenty dollars, this is the only place. Order a sandwich at the counter, take it outside, and eat it on a bench. The bread is good and the line moves. If you forgot to pack a cooler, Degnan's is a decent fallback. If you slept inside the park, a coffee and a breakfast sandwich here at 7 a.m. is one of the better moves in the Valley. Upstairs in the same building, the Loft at Degnan's ran for years as a seasonal sit-down room with a bar and a wood-fired oven. It's closed now, which takes away the one answer the Valley had to the question people ask on the third rainy afternoon: where can we sit indoors, inside the park, that is not a hotel dining room.
+Degnan's Kitchen, Yosemite Village. A convenient stop for sandwiches, coffee, and food to take with you. If you forgot lunch, Degnan's is a useful fallback. Check current service hours rather than assuming the upstairs Loft is open.
 
 The Curry Village cluster. Four separate operations share one compound, and people lump them together, which is why most visitors think Curry Village has a pizza deck and nothing else. Meadow Grill Taqueria, at the Village Store, is counter-service tacos and burritos beside the deck, outdoor seating, and the shortest path from a trailhead to a hot meal on the Valley floor. Coffee Corner opens early and is why you don't have to drive to Yosemite Village for a coffee before a Mist Trail start. Bar 1899 is the small indoor bar. Seven Tents Pavilion is the big buffet hall, mostly serving the tent-cabin guests. All four are seasonal to some degree, and the taqueria is usually the first Valley kitchen to close when the summer ends.
 
 The Mountain Room, Yosemite Valley Lodge. The Valley's sit-down dinner option short of The Ahwahnee: a proper dining room with a wall of glass pointed at Yosemite Falls. Get a reservation in summer, and time it for the falls, because the view is the reason to book.
 
-The Ahwahnee Dining Room. The special-occasion meal that does not require driving to Oakhurst. As of April 2026 the Ahwahnee moved to prix fixe only, five courses at $95 a person or seven at $125, dinner service, reservations required. It's not a spontaneous stop, so if the night calls for it, book ahead. The room itself, thirty-four-foot ceilings and granite piers, is most of what you're paying for, and it's worth it once.
+The Ahwahnee Dining Room. My choice for a special-occasion meal in the Valley. Book ahead and check the concessioner's current menu, prices, and reservation details. The tall windows and granite piers are part of the reason to come; allow time for the meal.
 
 There is also a Starbucks at Yosemite Valley Lodge, inside Base Camp Eatery, which arrived in 2018 and generated more correspondence than any other food decision the park has made. It's a Starbucks. It has the shortest line in the Valley when the Degnan's counter is twenty deep, and that's the whole case for it.
 
 ### Wawona, Fish Camp and the south end of the park
 
-The south end is thin and getting thinner. The Wawona General Store is the reliable one: groceries, sandwiches, the sort of resupply that turns a day trip into a picnic, twenty minutes from the Mariposa Grove. The Wawona Hotel dining room has kept an intermittent schedule in recent seasons, so don't build an evening around it without checking that week.
+The Wawona General Store is a grocery and picnic-supply stop near the Mariposa Grove. The Wawona Hotel and its dining room are closed for a condition assessment, not operating intermittently. Check the NPS hotel notice for reopening updates.
 
 Two miles south of the gate, Fish Camp covers what Wawona does not, and it's closer than most people staying at the south end realise. Embers at Tenaya Lodge is the sit-down dinner, the nearest real restaurant to the Mariposa Grove, and Jackalopes, the bar in the same building, takes the walk-ins when Embers is booked. The Pine Tree Market and the Fish Camp General Store handle groceries and a sandwich. Past that, you're driving to Oakhurst, another fifteen minutes down Highway 41.
 
 ### Tuolumne Meadows and the high country
 
-This is where people get stranded. Tuolumne Meadows has a seasonal store and grill and the dining tent at Tuolumne Meadows Lodge, a canvas room serving breakfast and a fixed dinner with reservations, and that's the entire food supply along thirty-nine miles of Tioga Road. All of it opens with the summer and closes in September, in the 2026 season on September 20, several weeks before the road itself closes for the winter. There is no gas at Tuolumne either: the Tuolumne day covers that trap in full.
+Pack lunch for a Tioga Road day. Tuolumne Meadows food service is seasonal, and its outlets do not all close on the same date. The concessioner's 2026 schedule lists September 13 as the lodge dining room's last day and September 20 for the grill. A road opening does not guarantee an open kitchen. See the Tuolumne Meadows day guide for the rest of the trip.
 
 Treat the high country as a cooler day. Buy food at Crane Flat on the way up or in Lee Vining on the way over, eat it on a granite slab, and treat anything you find open at 8,600 feet as a bonus rather than a plan.
 
 ### Yosemite West restaurants: there are none
 
-Yosemite West is a residential subdivision inside the park boundary off Wawona Road, and it is almost entirely vacation rentals. It has no restaurant, no store, no gas station and no shuttle. Guests are often caught off guard, because the listings sell the location and skip the logistics. From Yosemite West the nearest food is the Valley, roughly forty minutes down and back, or Wawona, roughly half an hour south. If you're staying there, shop before you arrive. A full kitchen and an empty valley work out fine, as long as you brought groceries.
+Yosemite West is a residential subdivision inside the park boundary off Wawona Road, and it is almost entirely vacation rentals. It has no restaurant, no store, no gas station and no shuttle. Guests are often caught off guard, because the listings sell the location and skip the logistics. From Yosemite West the nearest food is the Valley, roughly forty minutes each way, or Wawona, roughly half an hour south. If you're staying there, shop before you arrive. A rental kitchen is useful only if you bring groceries.
 
 ### Restaurants near Yosemite: the gateway towns
 
@@ -5267,7 +5267,7 @@ Base Camp Eatery | Yosemite Valley | All three | $$ | Year-round | No
 Degnan's Kitchen | Yosemite Valley | Breakfast, lunch | $ | Year-round | No
 Meadow Grill Taqueria | Yosemite Valley | Lunch, dinner | $ | Summer | No
 The Mountain Room | Yosemite Valley | Dinner | $$$ | Most of the year | Advised
-The Ahwahnee Dining Room | Yosemite Valley | Dinner, prix fixe | $$$$ | Year-round | Required
+The Ahwahnee Dining Room | Yosemite Valley | Check current menu | $$$$ | Year-round | Required
 Wawona General Store | Wawona | Groceries, sandwiches | $ | Year-round | No
 Embers at Tenaya Lodge | Fish Camp | Dinner | $$$ | Year-round | Advised
 Tuolumne store and grill | Tioga Road | Counter | $ | Summer, closes September | No
@@ -5278,7 +5278,7 @@ Tacos Sonora | Mariposa | Lunch | $ | Year-round, closed Sun | No
 Cedar House Restaurant | El Portal | Dinner | $$ | Year-round | No
 June Bug Cafe | Midpines | Breakfast, dinner | $$ | Year-round | No
 South Gate Brewing Co. | Oakhurst | Dinner | $$ | Year-round, closed Tue | No
-The Elderberry House | Oakhurst | Dinner, prix fixe | $$$$ | Year-round | Required
+The Elderberry House | Oakhurst | Check current menu | $$$$ | Year-round | Required
 Latte Da Cafe | Lee Vining | Breakfast, coffee | $ | Seasonal | No
 
 Hours and closing days move with the season and with staffing, and the park's own concessioner hours change more than the towns' do. The Park Bulletin carries what is open in the current Yosemite Guide edition; think of the table as the general shape, not today's schedule.
@@ -5291,7 +5291,7 @@ The best lunch in Yosemite is a sandwich you made in a parking lot, eaten on a g
 
 ### What closes, and when
 
-Few lists cover this, and it ruins evenings. The park's food service contracts and shuts down through September, weeks before the roads do. In the 2026 season the Tuolumne store and grill closed on September 20 and Jennie's Ice Cream at Curry Village on September 6. Valley service holds up longest and thins out anyway: the taqueria and the Loft go first, then the deck, then the hours shorten on everything left.
+Check each outlet separately. In 2026, the published Tuolumne lodge dining season ended September 13 and the grill season ended September 20. Valley restaurants also change their hours as the season winds down. Check Yosemite Hospitality's dining pages and the Park Bulletin shortly before your visit.
 
 In winter the Valley keeps a genuine core open, Degnan's, Base Camp and the hotel dining rooms among them, but the high country has nothing at all, and Tioga Road is closed regardless. If you're visiting between October and May, check what's actually open before you plan a meal around it. The winter guide has the rest of that picture.
 
@@ -5487,41 +5487,41 @@ Some links in this piece are affiliate links. If you buy or book through one, Th
 
 ---
 
-## Four Mile Trail up, Panorama down: my favorite Yosemite hike
+## Four Mile and Panorama Trails: Yosemite hike guide
 
 URL: https://thetalusfieldjournal.com/articles/four-mile-up-panorama-down
-Section: Trails and Hikes. Published: 2026-05-17. Last updated: 2026-05-17.
-Summary: Four Mile Trail up to Glacier Point, Panorama Trail down past Nevada Fall. A 13-mile loop, 3,200 feet of climb, and the logistics that make it work.
+Section: Trails and Hikes. Published: 2026-05-17. Last updated: 2026-09-27.
+Summary: Hike Yosemite's Four Mile and Panorama Trails via Glacier Point: distance, total climbing, water sources, trail closures, and the shuttle return.
 
-If I could send you on one day hike in Yosemite, one hike that shows you what this park actually is, it would be this one. You go up the Four Mile Trail to Glacier Point, across the top, and down the Panorama Trail past Illilouette Fall and Nevada Fall to the Valley floor.
+Hike up the Four Mile Trail to Glacier Point, then descend the Panorama Trail to Happy Isles for a strenuous day linking Valley views and waterfalls. Plan on roughly 13 to 14 miles between trailheads, about 4,000 feet of total climbing, and a full day on foot. The trailheads are different: arrange a shuttle ride or add the walk back to your car.
 
-It isn't the most famous hike. That's the Mist Trail. It isn't the most dramatic, either. That's Half Dome, which is also the hardest. But in my experience it's the most complete. In one day you climb 3,200 feet out of the Valley, stand at one of the great viewpoints in the American West, then drop through three different ecosystems and past two major waterfalls, and you finish at Happy Isles. Most people drive to Glacier Point and look at the view. On this hike you earn it, and the views continue for the eight miles down.
+This is my favorite long Yosemite day hike for the variety: Glacier Point, Illilouette Creek, Nevada Fall, and the descent toward Vernal Fall. For a shorter waterfall hike, use the Mist Trail guide. For the viewpoint without the climb, see how to visit Glacier Point.
 
-I've done this loop more times than I can count. Here's how to do it well.
+Check NPS trail conditions before starting. Road access, trail closures, drinking water, and shuttle service each need a separate check.
 
 ### The numbers
 
-The full loop runs roughly 13 to 14 miles, depending on whether you take the Mist Trail or the John Muir Trail for the last stretch. The Four Mile Trail gains about 3,200 feet. The Panorama Trail isn't all downhill, though: there's an 800-foot climb out of the Illilouette Creek drainage that catches people off guard. Count on closer to 4,000 feet of elevation change for the day.
+The hike runs roughly 13 to 14 miles between trailheads, depending on whether you take the Mist Trail or the John Muir Trail for the last stretch. The Four Mile Trail gains about 3,200 feet. The Panorama Trail isn't all downhill, though: there's an 800-foot climb out of the Illilouette Creek drainage that catches people off guard. Count on closer to 4,000 feet of total climbing for the day.
 
-Give yourself 8 to 10 hours, trailhead to trailhead. Fast hikers finish in 7. Most people take 9 or 10.
+Allow a full day and start early. The NPS lists 3 to 4 hours for the Four Mile ascent and 6 to 8 for the Panorama descent. Strong hikers may finish faster, but plan for breaks, the longer JMT return if needed, and transport back to your car.
 
 ### Why up the Four Mile and down the Panorama
 
-You can hike this loop in either direction, and most guides don't care which way you go. I do. Go up the Four Mile, every time.
+I recommend climbing Four Mile first, while your legs are fresh and the morning is cool.
 
 There are three reasons.
 
-First, the Four Mile Trail is a steady uphill grind: 3,200 feet of gain in 4.8 miles, over roughly 58 switchbacks. It's the hardest part of the day, so do it while your legs are fresh and the morning is cool. Flip the loop and you're climbing out of the Illilouette drainage on tired legs in the afternoon heat.
+First, the Four Mile Trail is a steady uphill grind: 3,200 feet of gain in 4.8 miles, over roughly 58 switchbacks. It's the hardest part of the day, so do it while your legs are fresh and the morning is cool.
 
 Second, Glacier Point hits harder when you've climbed to it. You spend three hours in forest and granite while the views open up bit by bit: the Valley floor far below, then Half Dome rising over the rim at Union Point, then the whole panorama at the top. Drive up and you start with the best view of the day.
 
-Third, the Panorama descent is a pleasure. You're walking downhill through waterfall country with Half Dome in front of you for miles. The hard part is behind you.
+Third, the Panorama route gives you waterfall views on the way down. Save energy for its uphill section out of Illilouette Creek and for the final descent to Happy Isles.
 
 ### Getting to the Four Mile Trailhead
 
-The Four Mile Trailhead is on Southside Drive, roughly a mile west of Sentinel Beach, near the Swinging Bridge area. The small lot at the trailhead fills by 7 a.m. on busy days. If it's full, park at Yosemite Village or the day-use lot and ride the Valley shuttle to the El Capitan Shuttle Stop (E6 on the shuttle map), the closest stop.
+The Four Mile Trailhead is on Southside Drive near Sentinel Rock, with limited roadside parking. If it is full, park in a designated Valley lot and take the Valleywide shuttle to stop 11. The Valley parking guide covers the main lots.
 
-Get there early. This matters more than anything else on the list. Start at 5:30 or 6 a.m. and you're on the trail before the heat, at Glacier Point by mid-morning, with plenty of daylight left for the Panorama. Start at 9 a.m. and you'll climb in full sun and finish in the dark.
+Start around dawn and carry a headlamp. An early start gives you cooler climbing conditions and more daylight for the descent. If you start late, choose a shorter route rather than assuming you can make up time.
 
 ### The Four Mile Trail, what to expect
 
@@ -5545,9 +5545,9 @@ There are restrooms. There's a snack bar and gift shop too, but whether they're 
 
 If there is water, fill everything you've got. You'll need it on the way down.
 
-Glacier Point Road usually opens in mid-to-late May, depending on snow. In 2026 it opened on May 9. When the road is closed you can still hike the Four Mile Trail to Glacier Point and back, but it becomes an out-and-back instead of a loop, because Panorama Trail access from the top depends on the road and facilities being open. Check the NPS conditions page before you go.
+Road access and trail access are different. A closed Glacier Point Road does not by itself close the Four Mile or Panorama trails. Snow, ice, fire, or repair work may close trails separately. Check the NPS trail and road reports; do not assume facilities are operating just because a trail is open.
 
-Spend at least thirty minutes at Glacier Point. Eat something real. Refill if the fountain is running. Use the restroom. The next eight miles are almost all downhill, but they are still eight miles.
+Spend at least thirty minutes at Glacier Point. Eat something real. Refill if the fountain is running. Use the restroom. The Panorama Trail includes another 800-foot climb before the descent to the Valley.
 
 ### The Panorama Trail, the best descent in the park
 
@@ -5557,7 +5557,7 @@ From Glacier Point the Panorama Trail heads east along the rim, then drops towar
 
 About two and a half miles from Glacier Point you drop into the Illilouette Creek drainage and reach a bridge above Illilouette Fall. The fall drops 370 feet, and it's at its best in spring and early summer, when the creek is running full.
 
-This is your water refill point. Illilouette Creek is the first reliable water since the Four Mile Trailhead, roughly 7 miles back. If you have a filter or purification tablets (and on this hike you should), fill up here. The creek runs reliably through July most years. By late August it can be low.
+Illilouette Creek is a possible refill point. Check its flow before your hike; it is the first natural water since the Four Mile Trailhead, roughly 7 miles back. If you have a filter or purification tablets (and on this hike you should), fill up here. The creek runs reliably through July most years. By late August it can be low.
 
 After the bridge, the trail climbs out of the drainage. This is the hike's surprise: 800 feet of gain over about a mile and a half, on legs that are already tired. It isn't as steep as the Four Mile Trail, but it comes late in the day. Save some energy for it.
 
@@ -5573,9 +5573,9 @@ From the JMT junction above Nevada Fall, there are two ways back to the Valley f
 
 The Mist Trail is shorter (about 2.5 miles to Happy Isles), steeper and more dramatic. It runs down beside Nevada Fall and then Vernal Fall, and in places the spray soaks you through. The granite steps along Vernal Fall are the most photographed stretch of trail in Yosemite. It is also steep, the uneven stone steps are brutal on tired knees, and wet rock can be slippery. If your legs feel solid and you want the waterfalls up close, take the Mist Trail.
 
-Important note for 2026: Starting June 30, the Mist Trail between Nevada Fall and Vernal Fall has weekday access restrictions: it's open only after 3:30 p.m. Monday through Thursday, as a crowd management measure. If you're hiking on a weekday after June 30, you'll likely need the JMT for the last stretch, or you'll have to reach the junction after 3:30.
+2026 Mist Trail repairs: From July 27 through October, subject to change, the staircase between the JMT junction above Vernal Fall footbridge and the top of Vernal Fall closes Monday through Thursday, 7 a.m. to 3:30 p.m. Use the signed JMT detour during work hours. Check the Mist Trail access details before choosing your descent.
 
-The John Muir Trail is longer (about 4 miles to Happy Isles), gentler and easier on the knees. It switchbacks down through forest with the occasional distant look at Nevada Fall. It's less dramatic, but a lot more comfortable at the end of a long day. After 13 miles and 4,000 feet of elevation change, your knees may decide for you.
+The John Muir Trail is longer (about 4 miles to Happy Isles), gentler and easier on the knees. It switchbacks down through forest with the occasional distant look at Nevada Fall. It's less dramatic, but a lot more comfortable at the end of a long day. After 13 miles and 4,000 feet of total climbing, your knees may decide for you.
 
 Either way you end at Happy Isles, the Nature Center at the east end of Yosemite Valley. There's water and there are restrooms. The Valley shuttle stops at Happy Isles (shuttle stop 16), and you can ride it back to wherever you parked.
 
@@ -5583,13 +5583,13 @@ Either way you end at Happy Isles, the Nature Center at the east end of Yosemite
 
 Start time: 5:30 to 6:30 a.m. at the Four Mile Trailhead. Earlier is better.
 
-Total distance: 13 to 14 miles, depending on your final descent.
+Total distance: Roughly 13 to 14 miles between trailheads; the JMT option is longer, and walking back to your car adds distance.
 
-Total elevation change: roughly 4,000 feet (3,200 up, 800 up out of Illilouette, the rest down).
+Total elevation gain: About 4,000 feet: 3,200 on Four Mile plus about 800 after Illilouette Creek. There is also a long descent.
 
-Time: 8 to 10 hours.
+Time: Plan a full day. NPS segment estimates total 9 to 12 hours, before a shuttle wait or a walk back to the start.
 
-Water plan: This is the logistic that matters most on this hike. Carry at least three liters from the trailhead. The Four Mile Trail is completely dry. Glacier Point may have water (check conditions). Illilouette Creek is your sure refill, so bring a filter or treatment. There's water again at Happy Isles at the bottom.
+Water plan: This is the logistic that matters most on this hike. Carry at least three liters from the trailhead. The Four Mile Trail is completely dry. Glacier Point may have water (check conditions). Check creek flow before relying on Illilouette Creek for a refill, and bring a filter or treatment. There's water again at Happy Isles at the bottom.
 
 Water sources in order:
 
@@ -5603,15 +5603,15 @@ Food: Pack a real lunch and plenty of snacks, 1,500 to 2,000 calories for the da
 
 Gear: Read the day pack packing list. For this hike in particular, don't leave without: 3+ liters of water, a water filter or purification tablets, a hat, sunscreen, a headlamp (in case you're slower than you planned), layers (Glacier Point at 7,200 feet can be 20 degrees cooler than the Valley floor), and trekking poles if you use them (your knees will thank you on the way down).
 
-Getting back to your car: The hike ends at Happy Isles, and your car is at the Four Mile Trailhead, roughly 4 miles away by road. Take the Valley shuttle from Happy Isles (stop 16) toward the El Capitan shuttle stop (E6), the closest one to the trailhead. It runs often in peak season. Early in the season, check the schedule: reduced service can mean a longer wait or a walk.
+Getting back to your car: From Happy Isles, take the Valleywide shuttle at stop 16 to Four Mile Trail at stop 11. The East Valley shuttle does not serve Four Mile. Confirm operating hours with the NPS shuttle information and allow for waits. If you finish after service ends, you will need another way back or additional walking.
 
-When to do this hike: Late May through October, depending on trail conditions and whether Glacier Point Road is open. Peak waterfall season (late May through June) is the best time, when Illilouette Fall and Nevada Fall are at full power. By August the falls have shrunk, but the trails are dry and conditions are more predictable. Skip this hike when thunderstorms are active. The Four Mile Trail is heavily exposed, and you'll be at 7,200 feet at Glacier Point.
+When to do this hike: Late May through October, depending on snow, trail closures, and weather. Peak waterfall season (late May through June) is the best time, when Illilouette Fall and Nevada Fall are at full power. By August the falls have shrunk, but the trails are dry and conditions are more predictable. Skip this hike when thunderstorms are active. The Four Mile Trail is heavily exposed, and you'll be at 7,200 feet at Glacier Point.
 
-Glacier Point Road: It has to be open for the full loop to work. The road usually opens mid-to-late May. In 2026 it opened May 9. When it's closed, the Glacier Point facilities (restrooms, water, snack bar) are unavailable, and you can reach the Panorama Trail only from below. Check NPS conditions before your trip.
+A shorter alternative: When the seasonal Glacier Point Tour operates, book a ride up and hike the Panorama Trail down. This skips the Four Mile ascent but still includes the Illilouette climb. Confirm the tour before booking your day; there is no free Valley-to-Glacier Point shuttle and no guaranteed pickup at Glacier Point.
 
 ### Why this is my favorite
 
-I've hiked most of the trails in this park, and I've led programs on dozens of them. This loop is the one I keep coming back to.
+I've hiked most of the trails in this park, and I've led programs on dozens of them. This route is the one I keep coming back to.
 
 The Four Mile Trail climbs the glacier-carved wall of the Valley, and by the time you reach the rim you have a sense of the park's scale that no roadside pullout gives.
 
@@ -5623,7 +5623,9 @@ No other hike in the park does all three.
 
 Start early. Carry enough water. Bring a filter. And slow down at Union Point, at Glacier Point, at the Illilouette bridge and at the top of Nevada Fall.
 
-It's 13 miles and 4,000 feet of elevation change.
+Plan the return to your car as carefully as the hike.
+
+Route references: NPS Four Mile Trail and NPS Panorama Trail distances and conditions.
 
 Some links in this piece are affiliate links. If you buy or book through one, The Talus Field may earn a small commission at no extra cost to you. The recommendations do not change for it. Full disclosure.
 
@@ -6179,17 +6181,17 @@ Some links in this piece are affiliate links. If you buy or book through one, Th
 
 ---
 
-## Mist Trail, Yosemite: what the internet isn't telling you
+## Mist Trail, Yosemite: distance, difficulty and route guide
 
 URL: https://thetalusfieldjournal.com/articles/mist-trail-the-real-guide
-Section: Trails and Hikes. Published: 2026-05-11. Last updated: 2026-09-26.
-Summary: The most hiked trail in any national park. The honest answers about shoes, water, when to go, and whether you can actually die out there.
+Section: Trails and Hikes. Published: 2026-05-11. Last updated: 2026-09-27.
+Summary: Plan the Mist Trail in Yosemite: distances to Vernal and Nevada Falls, hiking times, difficulty, water, parking, and current closure links.
 
-The Mist Trail is the most hiked trail in Yosemite, and it might be the most hiked trail in any national park. On a Saturday in June, a thousand people walk some version of it. On Reddit it gets more questions than every other Yosemite trail put together: Is it hard? How wet will I get? Can my kids do it? What shoes do I need? Is it worth it? Can I die?
+The Mist Trail starts at Happy Isles in Yosemite Valley. Choose the Vernal Fall footbridge for a shorter hike, or continue up steep granite steps to Vernal Fall and Nevada Fall. Above the footbridge, expect a strenuous climb, wet footing during snowmelt, and exposed sections beside the waterfalls.
 
-The short answers, in order: yes, soaked, probably, not sneakers, absolutely, and statistically unlikely but not impossible.
+Distances from Happy Isles: 1.6 miles round trip to the footbridge, 2.4 miles to the top of Vernal Fall, or 5.4 miles to the top of Nevada Fall. Allow 1 to 1.5 hours, about 3 hours, or 5 to 6 hours respectively. Parking adds walking distance. These are the NPS route estimates.
 
-The rest comes from someone who has hiked it many times, in sunshine and in sideways rain.
+Check current trail closures before choosing your route. The weekday repair detour described below affects the staircase to Vernal Fall through October 2026, subject to change.
 
 ### What the Mist Trail actually is
 
@@ -6199,11 +6201,11 @@ You can stop at any of four natural turnarounds, and each one works as a full hi
 
 The Vernal Fall footbridge (0.8 miles from Happy Isles, 400 ft gain). Paved trail, a moderate grade, and a clear look at Vernal Fall from the bridge. Most families with young kids turn around here, and it's worth the walk even if you go no farther.
 
-The top of Vernal Fall (1.3 miles from Happy Isles, 1,000 ft gain). This is where the trail earns the "mist" in its name. You climb a granite staircase right next to the fall, and when it's running at peak volume (May and June), you get drenched. The granite steps are wet, steep, and uneven. A metal railing is bolted into the rock on the exposed side. At the top there's an emerald pool above the fall and a view down the canyon.
+The top of Vernal Fall (about 1.2 miles from Happy Isles, 1,000 ft gain). This is where the trail earns the "mist" in its name. You climb a granite staircase right next to the fall, and when it's running at peak volume (May and June), you get drenched. The granite steps are wet, steep, and uneven. A metal railing is bolted into the rock on the exposed side. At the top there's an emerald pool above the fall and a view down the canyon.
 
 The top of Nevada Fall (2.7 miles from Happy Isles, 2,000 ft gain). Past Vernal, the trail heads through forest and up the Merced River canyon to the base of Nevada Fall, then to its top. Up there you're looking down 594 feet of whitewater with Liberty Cap and Half Dome standing behind you, one of the most dramatic views in the park.
 
-The loop return via the John Muir Trail (total ~6.5 miles). From the top of Nevada Fall you can come back down the JMT, which switchbacks more gently through the forest. You get a loop, and your knees get a break on the way down. Most experienced hikers go up the Mist Trail and down the JMT.
+The return via the John Muir Trail. From Nevada Fall, the JMT provides a longer descent with gentler grades than the Mist Trail stairs. Allow roughly 7 miles for the combined hike from Happy Isles, plus the walk to your parking space. Check closures before relying on either route.
 
 Keep going past Nevada Fall and you're on the standard approach to Half Dome. If that's the plan, read the permit lottery guide first, and the honest case for the cables before you commit.
 
@@ -6211,11 +6213,11 @@ Keep going past Nevada Fall and you're on the standard approach to Half Dome. If
 
 From mid-April to late June, the granite staircase below Vernal Fall is basically a waterfall of its own. Spray hits the trail the whole time. The steps, hundreds of them, carved and placed by the Civilian Conservation Corps in the 1930s, are wet, mossy in places, and uneven. Some are a foot tall. Some are two feet tall. Some are angled in ways that make your feet slide.
 
-This is where most Mist Trail injuries happen, and most are people slipping on wet granite stairs in the wrong shoes.
+Wet steps and loose rock make slipping a concern. Slow down, leave room for other hikers, and use the railings where provided.
 
-Shoes matter on this trail more than any other trail in Yosemite. Hiking boots or trail shoes with real tread are the minimum. Running shoes with worn-out soles are a slip waiting to happen. Flip-flops, sandals, and fashion sneakers are dangerous on wet granite. I've watched people go down hard on these stairs in shoes that had no business being on a wet rock face.
+Wear hiking boots or trail shoes with good tread. Running shoes with worn-out soles are a slip waiting to happen. Flip-flops, sandals, and fashion sneakers are dangerous on wet granite. I've watched people go down hard on these stairs in shoes that had no business being on a wet rock face.
 
-If you don't own hiking shoes and you're coming in peak waterfall season, buy a cheap pair with rubber lugs. Thirty dollars is a lot less than spending your Yosemite trip in the medical clinic.
+Wear footwear with good traction that you have already walked in comfortably. Price alone does not tell you how a shoe will grip wet rock.
 
 ### You will get wet
 
@@ -6225,9 +6227,9 @@ Here's how to deal with it.
 
 Put your phone in a ziplock bag. You can still shoot photos through it. A waterproof phone case is even better.
 
-Wear synthetic or wool, not cotton. Wet cotton gets heavy and cold and takes hours to dry. Synthetic dries in about thirty minutes in the sun at the top of the fall.
+Wear synthetic or wool, not cotton. Wet cotton gets heavy and cold and takes hours to dry. Pack a dry layer; drying time depends on the weather.
 
-A rain jacket helps, but you can skip it on a warm day. In July and August, when the falls are lower, you might get misted rather than soaked. In May and June it keeps you warm on the way up, though you'll sweat under it.
+A rain jacket helps protect against spray and wind. In July and August, when the falls are lower, you might get misted rather than soaked. In May and June it keeps you warm on the way up, though you'll sweat under it.
 
 Pack a dry shirt in a ziplock and change at the top. Otherwise you shiver the rest of the way.
 
@@ -6237,29 +6239,27 @@ Peak waterfall (May through mid-June). Vernal Fall is thundering, the mist zone 
 
 Mid-season (late June through July). The flow drops, the mist zone shrinks, and the stairs get drier and safer. Still beautiful, and the weekday crowds thin a little.
 
-Late season (August through October). The falls slow to a trickle, the trail is bone dry and the stairs are easy. It feels more like a canyon hike than a waterfall hike, but the granite alone makes it worth doing.
+Late season (August through October). Waterfall flow usually decreases and there is often less spray. The stairs remain steep and uneven; rain can make them slippery in any month.
 
-Time of day. Go early. Happy Isles fills by 8 a.m. on summer weekends. The closest parking is the trailhead lot at Curry Village, pinned on the site's map. Early on, the trail is in shade, so you hike cooler and get better light on the falls. By afternoon it's in full sun, and the heat coming off the granite stairs is brutal.
+Getting to the trailhead. Happy Isles has no trailhead parking. Use Curry Village parking and walk, or take the Valley shuttle to stop 16. Start early for cooler conditions and fewer people, while observing any repair closures.
 
-2026 weekday restrictions. Starting July 27, 2026, the Mist Trail between Vernal Fall and Nevada Fall is closed Monday through Thursday, 7 a.m. to 3:30 p.m., for trail repairs, through the end of October. On those days, either time it so you reach that section after 3:30 or take the JMT bypass between the two falls. Weekends aren't affected. And the bypass got better this summer: the JMT's "Ice Cut" segment, between Clark Point and the Panorama Trail junction, reopened in late July 2026 after nearly three years closed for storm and ice damage, so the full Mist Trail-JMT loop is open again.
+2026 weekday restrictions. From July 27 through October, subject to change, repair work closes the section from the JMT junction above the footbridge to the top of Vernal Fall Monday through Thursday, 7 a.m. to 3:30 p.m. Follow the signed JMT detour. The section normally opens outside those hours when safe, and on Fridays, weekends and holidays. The JMT Ice Cut reopened July 27. Check the NPS detour notice before setting out.
 
 ### The safety talk
 
 The internet makes this trail look like an easy walk. It isn't one.
 
-In 2025, roughly 30% of Yosemite's search-and-rescue operations originated on the Mist Trail corridor. The park averages close to one fatality a month on this trail and the falls above it.
+Choose a turnaround that matches your fitness and the conditions. Heat, a sustained climb, and a long descent can make this hike harder than its mileage suggests.
 
-Most of the deaths here are cardiac arrests, people who weren't ready for how strenuous this hike is. The effort is real, the climb doesn't let up, and summer heat makes both worse. If you have a heart condition, or you don't hike much, take that seriously before you start.
-
-The pools above Vernal Fall and Nevada Fall look calm and inviting. They aren't. The current is powerful, the granite is frictionless when wet, and the lip of the fall is just downstream. Past the railing, a slip is not survivable. The NPS signs are accurate.
+The pools above Vernal Fall and Nevada Fall look calm and inviting. They aren't. The current is powerful, the granite is frictionless when wet, and the lip of the fall is just downstream. A slip beyond the railing can be fatal. The NPS signs are accurate.
 
 Stay behind the railings. Don't wade. Don't swim in the pools above the falls. Don't walk on the wet granite near the edge "for a photo." This is the single most important safety rule on this trail, and it's the rule that, when broken, has killed people. Swimming in the Emerald Pool and the Silver Apron is prohibited; the swimming guide lays out where in this park you may and may not get in the water, and what the Park Service has documented happening here.
 
-The trail itself hurts a lot of people too. Not fatally, but with twisted ankles, broken wrists, heat exhaustion, and falls on wet granite that require a ranger assist or a helicopter. That 30% SAR number isn't only about the falls. It's people underestimating the trail, running out of water, wearing the wrong shoes, and getting in over their heads on steep, wet rock.
+Carry a headlamp, food, and enough water for the whole hike. Turn around before fatigue or daylight makes the descent difficult.
 
-Setting the falls aside, the trail is steep and physical. People with heart conditions, serious knee issues, or no hiking experience should consider turning around at the footbridge. The staircase to the top of Vernal Fall gains 600 feet in half a mile on uneven wet stairs. You'll feel it.
+For a shorter option, turn around at the footbridge. Even that route climbs about 400 feet; the paved surface does not make it a flat walk. Beyond it, the stairs require balance and steady footing, especially for children.
 
-Bring more water than you think you need. The trail starts at 4,000 feet and gains 2,000 feet in full sun on the upper sections. Two liters minimum. Three liters if you're going to the top of Nevada Fall. There's no water on the trail itself. Water and restrooms are at Happy Isles at the start and at the top of Nevada Fall (seasonal).
+Water: Carry 1 liter per person for the footbridge, 2 for Vernal Fall, and 3 to 4 for Nevada Fall, with more as conditions require. Drinking water is at Happy Isles and seasonally at the Vernal Fall footbridge, usually May through October. There is no drinking-water tap at Nevada Fall. Toilets are separate from water sources; bring enough if the footbridge tap is off.
 
 ### The crowd question
 
@@ -6267,13 +6267,13 @@ Yes, it's crowded, especially on weekends from May through July. The Mist Trail 
 
 The good news: the crowd thins fast as you climb. The footbridge is packed. The staircase is busy. The top of Vernal Fall has people. The section between Vernal and Nevada Falls is noticeably quieter. The top of Nevada Fall, on a weekday, can feel almost empty.
 
-Want the Mist Trail without the crowd? Go on a weekday, start before 7 a.m., and hike past Vernal Fall to Nevada Fall. Most people turn around at Vernal, so the ones who keep going get a bigger waterfall and a fraction of the people.
+For fewer people, aim for an early weekday start, but check the repair schedule first. Continuing to Nevada Fall adds distance and climbing; do it because you have the time and energy, not just to escape the crowd.
 
 ### Is it worth it
 
 Yes. In peak waterfall season the Mist Trail is one of the best day hikes in the United States.
 
-Just don't show up in flip-flops with one bottle of water and no idea what you're walking into. It is a real mountain hike, and the people who prepare for it have a good day. The people who don't are the ones writing the Reddit posts about how they slipped on the stairs, ran out of water, and wished they'd stayed at the hotel.
+Prepare for a mountain hike: check closures, choose your turnaround, wear grippy shoes, and carry enough water. The waterfall views are worth taking time for, especially when the stairs are wet.
 
 So come ready. Read the day pack packing list, and pack the car the night before so the early start actually happens. Start early. Wear real shoes. Bring a ziplock for your phone and a dry shirt for the top.
 
@@ -7399,12 +7399,12 @@ Some links in this piece are affiliate links. If you buy or book through one, Th
 ## Where to stay near Yosemite: the best town for your trip
 
 URL: https://thetalusfieldjournal.com/articles/yosemite-gateway-towns-compared
-Section: Planning. Published: 2026-04-26. Last updated: 2026-09-21.
+Section: Planning. Published: 2026-04-26. Last updated: 2026-09-27.
 Summary: Mariposa, Oakhurst, Groveland, El Portal and Lee Vining compared: the closest town to each entrance, drive times, winter access, kids, and which to book.
 
-Where you sleep outside Yosemite matters more than most planning guides suggest. The five main gateway towns, El Portal, Mariposa, Oakhurst, Groveland, and Lee Vining, aren't interchangeable. They sit on different sides of the park, they're an hour or more apart in distance from the Valley, they have different lodging cultures, and they suit different trips. Pick the wrong one and you pay for it in driving time every day.
+For a Yosemite Valley trip, start with El Portal for a shorter drive or Mariposa for more restaurants and services. Choose Oakhurst for Wawona and the Mariposa Grove, Groveland for the Highway 120 approach, and Lee Vining for the high country when Tioga Road is open.
 
-I've stayed in all of them. I've watched first-time visitors make this decision well, and I've watched them make it badly. Here's how it shakes out.
+I've stayed in all five towns. The comparison below separates the drive to an entrance from the drive to Yosemite Valley, which is where most first-time visitors spend their days. Treat the drive times as planning estimates and allow extra time for traffic, entrance queues, and stops.
 
 ### The geography you actually need to know
 
@@ -7570,7 +7570,7 @@ Valley driveabout 75 miles over Tioga Pass, 90 minutes minimum, summer onlyTuolu
 
 Photo: Michael Hogarth / Wikimedia Commons (public domain)
 
-Lee Vining is the only east-side gateway, and it makes for a different kind of trip. Tuolumne Meadows is 30 minutes away when Tioga Road is open (typically late May or June through October or early November; the Park Service opened it on May 15 in 2026, the earliest in sixteen years, and it is open now), while the Valley is over an hour and a half each way. Lodging is a few small motels (the Yosemite Gateway Motel, the El Mono Motel, an inn or two). Dining is thin but includes the Whoa Nellie Deli at the Mobil station, some of the best food in the eastern Sierra.
+Lee Vining is the only east-side gateway, and it makes for a different kind of trip. Tuolumne Meadows is 30 minutes away when Tioga Road is open (typically late May or June through October or early November; the Park Service opened it on May 15 in 2026, the earliest in sixteen years, with current access listed on the road conditions page), while the Valley is over an hour and a half each way. Lodging is a few small motels (the Yosemite Gateway Motel, the El Mono Motel, an inn or two). Dining is thin but includes the Whoa Nellie Deli at the Mobil station, some of the best food in the eastern Sierra.
 
 Why people pick it:
 
@@ -7604,7 +7604,7 @@ You want gateway-town character without the Mariposa price. Groveland.
 
 You're focused on the high country, or combining with Mono Lake. Lee Vining.
 
-You're visiting in winter. El Portal or Mariposa. Every other gateway has a road problem.
+You're visiting in winter. El Portal or Mariposa offer the lowest-elevation approach. Check road conditions and chain requirements on every route.
 
 You have one day and you want the Valley. El Portal, and swallow the price. The drive you save is a real chunk of the only day you've got.
 
@@ -7616,11 +7616,11 @@ You're flying into San Francisco. Groveland or Mariposa is on the way.
 
 You're flying into Fresno. Oakhurst or Mariposa is on the way.
 
-You're flying into Reno or driving from Las Vegas. Lee Vining is the natural east-side base.
+You're flying into Reno or driving from Las Vegas. Consider Lee Vining only if Tioga Road is open for your dates. Otherwise plan a route to a western entrance.
 
 ### What each town looks like in winter
 
-Most gateway comparisons are written for July and quietly stop being true in December. Here's how it actually shakes out in winter:
+Winter changes the road choices. Check conditions before booking and again before driving:
 
 - El Portal and Mariposa. Highway 140 stays open, it is the lowest-elevation approach, and storms there more often fall as rain than snow. Year-round YARTS service runs this corridor, so it is the one base where not driving is a real option.
 - Groveland. Highway 120 stays open to the park, but you are starting a thousand feet higher and chain controls are routine. Hetch Hetchy Road may be closed or chain-controlled from November through March. Workable, with chains and a plan.
@@ -7629,7 +7629,7 @@ Most gateway comparisons are written for July and quietly stop being true in Dec
 
 ### Practical notes
 
-A few things nobody tells you until you've done the trip once.
+Before booking, check the drive to your planned sights, grocery access, and current road conditions.
 
 Distance affects more than driving time. The further your gateway, the earlier you leave to beat the crowds: a 60-minute drive at 5:30 a.m. is easier than a 90-minute drive at 4:30. The Park Service is not requiring a season-wide vehicle reservation for 2026 and is managing peak days with traffic monitoring and active parking control in the Valley instead, which is good news if you like to be spontaneous and bad news if you roll in at ten. Every mile between your room and the entrance station is a mile you make up before the lots fill.
 
@@ -7639,7 +7639,7 @@ Groceries. Mariposa and Oakhurst have full-size supermarkets. Groveland has a ma
 
 Cell service. Patchy in all five gateways and unreliable to nonexistent through most of the park, including long stretches of the approach roads. Download the offline map for the whole region before you leave the gateway town, screenshot your reservation details, and agree on a meeting point with anyone you might get separated from. Don't count on live navigation past the entrance station. Cell service in Yosemite has what each carrier actually gets, town by town and inside the park.
 
-You can arrive without a car, from one town. YARTS runs the Highway 140 corridor from Merced and Mariposa all year. The routes from Sonora and Groveland on 120, from Oakhurst on 41, and from Mammoth Lakes and Lee Vining on 395 are summer-only. A car-free trip narrows the gateway choice to one corridor for most of the year.
+Car-free access follows the bus corridors. YARTS runs the Highway 140 corridor from Merced and Mariposa all year. The routes from Sonora and Groveland on 120, from Oakhurst on 41, and from Mammoth Lakes and Lee Vining on 395 are summer-only. A car-free trip narrows the gateway choice to one corridor for most of the year.
 
 Reservations book out fast. In summer and on holiday weekends, gateway lodging fills six to twelve months in advance. Plan early, or be ready to flex on the town.
 
@@ -7675,7 +7675,7 @@ Which town works in winter? El Portal or Mariposa, on Highway 140, the lowest an
 
 The right gateway town depends on your trip. Mariposa is the safest first-timer's choice. El Portal is the strongest if you can get a room. Groveland is the underrated pick for character without the crowd. Oakhurst is for the southern-entrance trip. Lee Vining is the east-side experience that most western visitors never see.
 
-Pick based on where your trip's weight sits. For Yosemite Valley, base in the west. For the high country, look east. For the giant sequoias, go south.
+Choose your base around the places you plan to visit. Stay west for Yosemite Valley, south for the giant sequoias, or east for the high country when Tioga Road is open.
 
 If you're still working out how to approach the park, start with the first-timer's guide, read what changed for 2026 before you book, and see how to spend one or two days once your base is set.
 
