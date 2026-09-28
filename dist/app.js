@@ -104,7 +104,7 @@ var PAGE_MODULES = {
     globals: ["FilmsPage"]
   },
   itineraries: {
-    scripts: ["/itineraries-data.js", "/dist/page-itineraries.js"],
+    scripts: ["/itineraries-data.js", "/intent-data.js", "/dist/page-itineraries.js"],
     globals: ["ItinerariesPage"]
   },
   map: {

@@ -321,6 +321,27 @@ function RecommendedCard(props) {
   return React.createElement("aside", { className: "rec-card", "aria-label": heading }, kids);
 }
 
+// Yosemite Nature Notes film. Keep the caption in sync with NatureNotesFilm in
+// components.jsx. The live component is a click-to-load facade; the fragment
+// carries no thumbnail and no iframe (it is painted before React boots, and a
+// thumbnail here would be one more image fetched and thrown away), only a
+// plain link to the film's watch page, which is what a crawler can use.
+function NatureNotesFilm(props) {
+  const href = "https://www.youtube.com/watch?v=" + encodeURIComponent(props.youtubeId || "");
+  const cap = [
+    React.createElement("span", { key: "k", className: "nn-film__kicker" },
+      "Yosemite Nature Notes" + (props.episode != null ? " · Episode " + props.episode : "")),
+    React.createElement("strong", { key: "t", className: "nn-film__title" }, props.title),
+  ];
+  if (props.note) cap.push(React.createElement("span", { key: "n", className: "nn-film__note" }, props.note));
+  cap.push(React.createElement("span", { key: "c", className: "nn-film__credit" },
+    "Film: National Park Service. Nothing loads from YouTube until you press play."));
+  return React.createElement("figure", { className: ["nn-film", props.className].filter(Boolean).join(" ") },
+    React.createElement("a", { key: "a", className: "nn-film__watch", href, target: "_blank", rel: "noopener" },
+      "Watch the film: " + props.title),
+    React.createElement("figcaption", { key: "f", className: "nn-film__cap" }, cap));
+}
+
 function renderBody(slug, src) {
   // Classic runtime so JSX compiles to React.createElement / React.Fragment that
   // resolve against the `React` global we put in the vm sandbox (mirrors the
@@ -346,6 +367,7 @@ function renderBody(slug, src) {
     LodgingCta,
     AffLink,
     RecommendedCard,
+    NatureNotesFilm,
   };
   vm.createContext(sandbox);
   vm.runInContext(code, sandbox, { filename: `${slug}.jsx` });

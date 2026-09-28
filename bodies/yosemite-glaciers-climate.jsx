@@ -1,8 +1,63 @@
-/* global React */
+/* global React, NatureNotesFilm */
 
 window.ARTICLE_BODIES = window.ARTICLE_BODIES || {};
 
 window.ARTICLE_BODIES["yosemite-glaciers-climate"] = function YosemiteGlaciersBody() {
+  // ── Explainer graphic (September 2026 visual pass). Every fact in it is
+  // stated in the body below; the figcaption says so.
+  const SVG_STYLE = { width: "100%", height: "auto", display: "block" };
+  const T_HEAD = { fontFamily: "var(--sans)", fontSize: 12.5, fontWeight: 600, letterSpacing: 1.1, fill: "var(--rust)" };
+  const T_BODY = { fontFamily: "var(--sans)", fontSize: 14, fill: "var(--ink)" };
+  const T_SOFT = { fontFamily: "var(--sans)", fontSize: 13, fill: "var(--ink-2)" };
+  const T_BIG = { fontFamily: "var(--serif)", fontSize: 19, fill: "var(--ink)" };
+
+  // Two measurements that define the loss: Lyell's area since 1900, and
+  // whether the ice still flows, from the stake surveys of 1872, 2012 and
+  // 2022. Rows, so the labels stay legible on a phone.
+  function GlacierLedger() {
+    const W = 600, LX = 150, BW = 400;
+    const flow = [
+      { who: "Maclure, 1872", v: 1, lab: "about 1 inch a day (Muir)" },
+      { who: "Maclure, 2012", v: 1, lab: "about 1 inch a day" },
+      { who: "Maclure, 2022", v: 0.75, lab: "three quarters of an inch" },
+      { who: "Lyell, 1872", v: null, lab: "flowing: Muir's stakes moved" },
+      { who: "Lyell, 2012", v: 0, lab: "the stakes did not move at all" },
+    ];
+    return (
+      <svg viewBox={`0 0 ${W} 470`} style={SVG_STYLE} role="img"
+        aria-label="Two measurements of Yosemite's glaciers. Lyell Glacier's area: about 60 percent lost since 1900, leaving about 40 percent, and roughly 120 vertical feet of thinning. Flow, measured with stakes: the Maclure Glacier moved about an inch a day when John Muir measured it in 1872 and at the same rate in 2012, then about three quarters of an inch a day by 2022. The Lyell Glacier was flowing when Muir staked it in 1872; in 2012 its stakes did not move at all.">
+        <text x="0" y="18" style={T_HEAD}>LYELL GLACIER · AREA SINCE 1900</text>
+        <text x="0" y="62" style={{ ...T_BODY, fontWeight: 600 }}>1900</text>
+        <rect x={LX} y="44" width={BW} height="26" fill="var(--paper-2)" stroke="var(--moss)" strokeWidth="1.5" />
+        <text x={LX + BW - 10} y="62" textAnchor="end" style={T_SOFT}>100%</text>
+        <text x="0" y="104" style={{ ...T_BODY, fontWeight: 600 }}>Today</text>
+        <rect x={LX} y="86" width={BW * 0.4} height="26" fill="var(--moss)" />
+        <rect x={LX + BW * 0.4} y="86" width={BW * 0.6} height="26" fill="none" stroke="var(--ink-3)" strokeWidth="1" strokeDasharray="4 4" />
+        <text x={LX + BW * 0.4 + 12} y="104" style={{ ...T_SOFT, fontStyle: "italic" }}>about 60 percent gone</text>
+        <text x="0" y="140" style={T_SOFT}>And about 120 vertical feet thinner: thin enough to stop flowing.</text>
+
+        <line x1="0" y1="164" x2={W} y2="164" stroke="var(--rule-soft)" strokeWidth="1.5" />
+        <text x="0" y="192" style={T_HEAD}>DOES THE ICE STILL MOVE? STAKE SURVEYS</text>
+        <text x={LX} y="214" style={T_SOFT}>0</text>
+        <text x={LX + BW} y="214" textAnchor="end" style={T_SOFT}>1 inch a day</text>
+        {flow.map((f, i) => {
+          const y = 232 + i * 44;
+          return (
+            <g key={f.who}>
+              <text x="0" y={y + 17} style={{ ...T_BODY, fontWeight: 600 }}>{f.who}</text>
+              {f.v == null
+                ? <rect x={LX} y={y} width={BW} height="24" fill="none" stroke="var(--moss)" strokeWidth="1.2" strokeDasharray="5 4" />
+                : <rect x={LX} y={y} width={Math.max(3, BW * f.v)} height="24" fill={f.v === 0 ? "var(--rust)" : "var(--moss)"} />}
+              <text x={f.v && f.v > 0.5 ? LX + 10 : LX + 12} y={y + 17}
+                style={{ ...T_SOFT, fill: f.v && f.v > 0.5 ? "var(--paper)" : f.v === 0 ? "var(--rust)" : "var(--ink-2)", fontWeight: f.v === 0 ? 600 : 400 }}>{f.lab}</text>
+            </g>
+          );
+        })}
+        <line x1={LX} y1="222" x2={LX} y2="452" stroke="var(--ink-3)" strokeWidth="1" />
+      </svg>
+    );
+  }
+
   return (
     <>
       <p className="dropcap">
@@ -37,11 +92,27 @@ window.ARTICLE_BODIES["yosemite-glaciers-climate"] = function YosemiteGlaciersBo
 
       <p>Both glaciers have retreated and thinned, and one of them has stopped moving.</p>
 
+      <NatureNotesFilm
+        id="glaciers"
+        title="Glaciers"
+        youtubeId="mgnzSTY5zRg"
+        episode={12}
+        note="The park's film on the two remnants this piece measures, at the head of the Tuolumne under the highest peaks."
+        location="article"
+      />
+
+
       <h2>The recession timeline</h2>
 
       <p>
         Lyell's decline is the one that has been measured most closely, and the numbers are specific: about 60 percent of its area gone since 1900, and about 120 vertical feet of thinning. Thinning determines what it is. A glacier moves because it is thick enough that its own weight deforms the ice at the bottom. Below that threshold it is a snowfield that happens to be old, which is what the stationary stakes of 2012 were recording. Park scientists have said Lyell could disappear within a decade or so, depending on the droughts ahead.
       </p>
+
+      <figure>
+        <GlacierLedger />
+        <figcaption>Lyell's shrinking area and the stake surveys of both glaciers, drawn from the figures in this article. Lyell's 1872 rate is not given here, only that the stakes moved.</figcaption>
+      </figure>
+
 
       <p>
         The position of a glacier's terminus is determined by a balance between snow accumulation on the upper glacier and melt on the lower glacier. If the terminus moves upslope, less snow is accumulating on the upper glacier, more melt is happening on the lower glacier, or both.

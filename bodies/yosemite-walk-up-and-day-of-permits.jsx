@@ -3,6 +3,59 @@
 window.ARTICLE_BODIES = window.ARTICLE_BODIES || {};
 
 window.ARTICLE_BODIES["yosemite-walk-up-and-day-of-permits"] = function YosemiteWalkUpAndDayOfPermitsBody() {
+  // ── Explainer graphic (September 2026 visual pass). Every fact in it is
+  // stated in the body below; the figcaption says so.
+  const SVG_STYLE = { width: "100%", height: "auto", display: "block" };
+  const T_HEAD = { fontFamily: "var(--sans)", fontSize: 12.5, fontWeight: 600, letterSpacing: 1.1, fill: "var(--rust)" };
+  const T_BODY = { fontFamily: "var(--sans)", fontSize: 14, fill: "var(--ink)" };
+  const T_SOFT = { fontFamily: "var(--sans)", fontSize: 13, fill: "var(--ink-2)" };
+  const T_BIG = { fontFamily: "var(--serif)", fontSize: 19, fill: "var(--ink)" };
+
+  // The last week before a start date, as two lanes: the wilderness permit
+  // and the Half Dome daily lottery. Rows are days, so it reads top to bottom
+  // on a phone.
+  function PermitCountdown() {
+    const W = 600, ROW = 92, TOP = 58, LX = 132, RX = 380;
+    const rows = [
+      { day: "7 days out", wild: ["7 a.m. Pacific: 40 percent", "released online, first", "come, first served"], dome: null },
+      { day: "A few days out", wild: ["Online booking closes", "(three days, by the park's", "own reckoning)"], dome: null, cut: true },
+      { day: "2 days out", wild: null, dome: ["Daily lottery: apply", "midnight to 4 p.m. Pacific;", "results by email that evening"] },
+      { day: "The day before", wild: ["Collect a reserved permit,", "8 a.m. to 5 p.m."], dome: null },
+      { day: "Start date", wild: ["Collect by 11 a.m. or it is", "cancelled. Unclaimed quota,", "in person: few, if any"], dome: ["Hike. Permits are checked", "below the subdome; no", "walk-up, no standby line"] },
+    ];
+    const H = TOP + rows.length * ROW + 34;
+    const cell = (x, y, lines, tone) => (
+      <g>
+        <rect x={x - 10} y={y + 8} width="224" height={ROW - 16} rx="3"
+          fill={tone === "cut" ? "var(--paper)" : "var(--paper-2)"} stroke={tone === "cut" ? "var(--rust)" : "var(--moss)"} strokeWidth="1.3"
+          strokeDasharray={tone === "cut" ? "5 4" : undefined} />
+        {lines.map((l, j) => (
+          <text key={l} x={x} y={y + 31 + j * 19} style={j === 0 ? { ...T_BODY, fontSize: 13.5, fontWeight: 600 } : { ...T_SOFT, fontSize: 13 }}>{l}</text>
+        ))}
+      </g>
+    );
+    return (
+      <svg viewBox={`0 0 ${W} ${H}`} style={SVG_STYLE} role="img"
+        aria-label="The last week before a trip start, in two lanes. Wilderness permit: seven days out at 7 a.m. Pacific the held-back 40 percent of quota goes online, first come, first served. A few days out, three by the park's own reckoning, online booking closes. The day before, a reserved permit can be collected from 8 a.m. to 5 p.m. On the start date it must be collected by 11 a.m. or it is cancelled, and unclaimed quota is issued in person, few if any. Half Dome daily lottery: apply two days out, midnight to 4 p.m. Pacific, with results by email that evening. On the start date, hike; permits are checked below the subdome, with no walk-up and no standby line.">
+        <text x={LX - 10} y="22" style={T_HEAD}>WILDERNESS PERMIT</text>
+        <text x={RX - 10} y="22" style={T_HEAD}>HALF DOME DAILY LOTTERY</text>
+        <line x1="0" y1="40" x2={W} y2="40" stroke="var(--rule-soft)" strokeWidth="1.5" />
+        {rows.map((r, i) => {
+          const y = TOP + i * ROW - 10;
+          return (
+            <g key={r.day}>
+              <text x="0" y={y + 50} style={{ ...T_BODY, fontWeight: 600, fill: i === rows.length - 1 ? "var(--rust)" : "var(--ink)" }}>{r.day}</text>
+              {r.wild && cell(LX, y, r.wild, r.cut ? "cut" : null)}
+              {r.dome && cell(RX, y, r.dome, null)}
+              {i < rows.length - 1 && <line x1="0" y1={y + ROW + 2} x2={W} y2={y + ROW + 2} stroke="var(--rule-soft)" strokeWidth="1" />}
+            </g>
+          );
+        })}
+        <text x="0" y={H - 8} style={{ ...T_SOFT, fontStyle: "italic" }}>November through April: wilderness permits are free and self-issued at the trailhead.</text>
+      </svg>
+    );
+  }
+
   return (
     <>
       <p className="dropcap">
@@ -66,6 +119,12 @@ window.ARTICLE_BODIES["yosemite-walk-up-and-day-of-permits"] = function Yosemite
       <p>
         Come with a bear canister or plan to rent one there, and come with an alternate trailhead in mind. Flexibility about where you start is the only currency that works at that desk.
       </p>
+
+      <figure>
+        <PermitCountdown />
+        <figcaption>The last week before a start date, drawn from the rules in this article. The dashed box is the door that closes: past it, only the counter.</figcaption>
+      </figure>
+
 
       <Placeholder
         caption="Half Dome above the Valley floor, the one Yosemite hike with no walk-up option at all"

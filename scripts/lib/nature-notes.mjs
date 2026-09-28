@@ -5,10 +5,10 @@
 // stray 2003 issue), extracted from the scanned PDFs hosted at yosemite.ca.us
 // into markdown. Every file carries YAML front matter (volume, number,
 // source_url) and a body of page-tagged plain text. All 512 extracted as real
-// text rather than OCR, so the words are the words — what needs repairing is
-// layout, not characters.
+// text rather than OCR of the prose, so the words are the words. What needs
+// repairing in the body is layout. The scan URL is the exception (item 5).
 //
-// FOUR THINGS ARE WRONG WITH THE SOURCE TEXT, AND THIS FILE FIXES ALL FOUR
+// FIVE THINGS ARE WRONG WITH THE SOURCE, AND THIS FILE FIXES ALL FIVE
 //
 // 1. "Yosemite" is shouted. Whoever produced the markdown ran a global,
 //    case-insensitive replace of "yosemite" -> "YOSEMITE": 19,378 hits,
@@ -29,6 +29,15 @@
 // 4. Page furniture is inline: bare page numbers, and running heads that the
 //    scanner letter-spaced ("Y O S E M I T E  A S S O C I A T I O N"). Both are
 //    dropped, the latter after being de-spaced so it can be recognised.
+//
+// 5. Thirty-six source_url paths misread the digit 11 as ll (two ells), XI,
+//    or II: every 1932 volume 11 issue, and each number 11 whose path was
+//    touched. yosemite.ca.us serves the arabic path and answers the misread
+//    with /missing.html. repairEleven rewrites those three tokens, which
+//    occur only as that digit (volume 2 is already "2", so II is not a roman
+//    volume). Volume 65 number 3 has no PDF at its canonical path, checked
+//    2026-09-27; the page says so. /library/yosemite/65-3.pdf is one article
+//    inside that issue, not the issue scan, and is not substituted.
 //
 // DATES ARE READ FROM THE PAGE, NOT COMPUTED FROM THE VOLUME
 // Volume N == 1921+N holds until about volume 40 and then falls apart: volume
@@ -98,10 +107,20 @@ function restoreYosemiteCase(line) {
     .replace(/YOSEMITE/g, "Yosemite");
 }
 
+// 11 was stored as ll (two ells), XI, or II. The host path is
+// {volume}/{volume}-{number}.pdf, so the token is a whole path segment.
+function repairEleven(value) {
+  return String(value || "").replace(/(?<![A-Za-z0-9])(?:ll|XI|II)(?![A-Za-z0-9])/g, "11");
+}
+
 function fixUrlCase(url) {
   // The same replace corrupted the archive URL's host and path.
-  return String(url || "").replace(/YOSEMITE/g, "yosemite");
+  return repairEleven(String(url || "").replace(/YOSEMITE/g, "yosemite"));
 }
+
+// The Nature Notes path for this issue redirects to /missing.html.
+// Checked 2026-09-27. The page records that, and does not guess another URL.
+const SCAN_NOT_POSTED = new Set(["65-3.pdf.md"]);
 
 function isRunningHead(line) {
   const probe = collapseLetterSpacing(line).replace(/\s+/g, " ").trim().toUpperCase();
@@ -261,15 +280,19 @@ function isoDate(d) {
 // ---------------------------------------------------------------------------
 
 function parseFrontMatter(raw) {
-  const m = raw.match(/^---\r?\n([\s\S]*?)\r?\n---\r?\n?/);
-  if (!m) return { meta: {}, body: raw };
+  // Two issues were saved with a leading byte-order mark, so the front
+  // matter never matched and the page published the YAML, then an empty
+  // scan link. Strip it before the match.
+  const text = String(raw).replace(/^\uFEFF/, "");
+  const m = text.match(/^---\r?\n([\s\S]*?)\r?\n---\r?\n?/);
+  if (!m) return { meta: {}, body: text };
   const meta = {};
   for (const line of m[1].split(/\r?\n/)) {
     const kv = line.match(/^([a-z_]+):\s*(.*)$/i);
     if (!kv) continue;
     meta[kv[1]] = kv[2].replace(/^"(.*)"$/, "$1").trim();
   }
-  return { meta, body: raw.slice(m[0].length) };
+  return { meta, body: text.slice(m[0].length) };
 }
 
 // A scrape that missed produces a transcription of the SOURCE SITE'S error
@@ -320,13 +343,30 @@ export function loadIssues({ dir = SOURCE_DIR } = {}) {
     const [volume, number] = file.replace(".pdf.md", "").split("-").map(Number);
     const blocks = parseBlocks(withoutTitle);
     const stated = readMastheadDate(withoutTitle);
+    const sourceUrl = fixUrlCase(meta.source_url);
+    const pdfFilename = repairEleven(meta.pdf_filename || file.replace(/\.md$/, ""));
+    // The filename is the issue's identity. A scan link that is not this path
+    // is a misread, and publishing it sends the reader to /missing.html.
+    const canonical = `https://www.yosemite.ca.us/library/yosemite_nature_notes/${volume}/${volume}-${number}.pdf`;
+    if (sourceUrl !== canonical) {
+      throw new Error(
+        `nature-notes/${file} scan URL is ${sourceUrl || "(empty)"}, expected ${canonical}`
+      );
+    }
+    const expectedName = `${volume}-${number}.pdf`;
+    if (pdfFilename !== expectedName) {
+      throw new Error(
+        `nature-notes/${file} pdf filename is ${pdfFilename}, expected ${expectedName}`
+      );
+    }
 
     return {
       file,
       volume,
       number,
-      sourceUrl: fixUrlCase(meta.source_url),
-      pdfFilename: meta.pdf_filename || file.replace(/\.md$/, ""),
+      sourceUrl,
+      pdfFilename,
+      scanPosted: !SCAN_NOT_POSTED.has(file),
       blocks,
       headings: blocks.filter((b) => b.type === "heading").map((b) => b.text),
       wordCount: blocks.reduce((n, b) => n + b.text.split(/\s+/).length, 0),

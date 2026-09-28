@@ -1,8 +1,223 @@
 window.ARTICLE_BODIES = window.ARTICLE_BODIES || {};
 window.ARTICLE_BODIES["mariposa-grove-how-to-visit"] = function MariposaGroveHowToVisitBody() {
+  var SMALL = {
+    fontFamily: "var(--sans)",
+    fontSize: 12.5,
+    fill: "var(--ink-3)"
+  };
+  var LABEL = {
+    fontFamily: "var(--sans)",
+    fontSize: 13,
+    fill: "var(--ink-2)"
+  };
+  var PLACE = {
+    fontFamily: "var(--serif)",
+    fontSize: 16,
+    fill: "var(--ink)"
+  };
+  var MARK = {
+    fontFamily: "var(--sans)",
+    fontSize: 14,
+    fontWeight: 700,
+    fill: "var(--paper)"
+  };
+  var HEAD = {
+    fontFamily: "var(--sans)",
+    fontSize: 12,
+    fontWeight: 600,
+    letterSpacing: 1.4,
+    fill: "var(--rust)"
+  };
+  var svgStyle = {
+    width: "100%",
+    height: "auto",
+    display: "block"
+  };
+  var WALKS = [{
+    name: "Big Trees Loop",
+    mi: 0.3,
+    note: "0.3 mi, paved, flat, wheelchair accessible"
+  }, {
+    name: "Grizzly Giant Loop",
+    mi: 2,
+    note: "about 2 mi, the one to do if you do one"
+  }, {
+    name: "Guardians Loop",
+    mi: 6.5,
+    note: "about 6.5 mi, 1,000+ ft of gain"
+  }, {
+    name: "Wawona Point",
+    mi: 7,
+    note: "about 7 mi round trip, ends at a view"
+  }];
+  function GroveApproach() {
+    var W = 680,
+      H = 560,
+      y = 110;
+    var x0 = 40,
+      xPlaza = 150,
+      xTop = 600;
+    var scaleL = 170,
+      scaleW = 470,
+      mx = mi => scaleL + mi / 7 * scaleW;
+    return React.createElement("svg", {
+      viewBox: `0 0 ${W} ${H}`,
+      style: svgStyle,
+      role: "img",
+      "aria-label": "Schematic of a Mariposa Grove visit. From the South Entrance on Highway 41, the Welcome Plaza parking is the first right at the roundabout, less than a quarter mile in. Mariposa Grove Road climbs two miles to the Arrival Area and is closed to private vehicles in season; a free shuttle runs about every fifteen minutes and takes about ten minutes. Vehicles with a disability placard may drive the road. The Washburn Trail walks the same two miles. From the Arrival Area, four walks: the Big Trees Loop, 0.3 miles; the Grizzly Giant Loop, about 2 miles; the Guardians Loop, about 6.5 miles; and the trail to Wawona Point, about 7 miles round trip."
+    }, React.createElement("text", {
+      x: x0,
+      y: 24,
+      style: HEAD
+    }, "GETTING UP THE HILL"), React.createElement("line", {
+      x1: x0,
+      x2: xPlaza,
+      y1: y,
+      y2: y,
+      stroke: "var(--ink-3)",
+      strokeWidth: "3"
+    }), React.createElement("path", {
+      d: `M${xPlaza} ${y} L${xTop} ${y - 50}`,
+      stroke: "var(--moss)",
+      strokeWidth: "5",
+      fill: "none"
+    }), React.createElement("path", {
+      d: `M${xPlaza} ${y + 22} C ${xPlaza + 200} ${y + 30}, ${xTop - 200} ${y - 10}, ${xTop} ${y - 34}`,
+      stroke: "var(--ink-3)",
+      strokeWidth: "1.6",
+      strokeDasharray: "4 4",
+      fill: "none"
+    }), React.createElement("circle", {
+      cx: x0,
+      cy: y,
+      r: "6",
+      fill: "var(--ink)"
+    }), React.createElement("text", {
+      x: x0 - 6,
+      y: y + 26,
+      style: LABEL
+    }, "South Entrance"), React.createElement("text", {
+      x: x0 - 6,
+      y: y + 42,
+      style: SMALL
+    }, "Highway 41"), React.createElement("rect", {
+      x: xPlaza - 15,
+      y: y - 15,
+      width: "30",
+      height: "30",
+      rx: "3",
+      fill: "var(--moss)"
+    }), React.createElement("text", {
+      x: xPlaza,
+      y: y + 5,
+      textAnchor: "middle",
+      style: MARK
+    }, "P"), React.createElement("text", {
+      x: xPlaza - 30,
+      y: y - 58,
+      style: PLACE
+    }, "Welcome Plaza"), React.createElement("text", {
+      x: xPlaza - 30,
+      y: y - 40,
+      style: SMALL
+    }, "park here, under a quarter mile in"), React.createElement("circle", {
+      cx: xTop,
+      cy: y - 50,
+      r: "9",
+      fill: "var(--rust)"
+    }), React.createElement("text", {
+      x: xTop + 16,
+      y: y - 78,
+      textAnchor: "end",
+      style: PLACE
+    }, "Arrival Area"), React.createElement("text", {
+      x: xTop + 16,
+      y: y - 62,
+      textAnchor: "end",
+      style: SMALL
+    }, "the grove"), React.createElement("text", {
+      x: 440,
+      y: y - 48,
+      textAnchor: "middle",
+      style: LABEL,
+      transform: `rotate(-6 440 ${y - 48})`
+    }, "Mariposa Grove Road, 2 miles"), React.createElement("text", {
+      x: 390,
+      y: y + 36,
+      textAnchor: "middle",
+      style: SMALL
+    }, "Washburn Trail on foot, about 2 miles"), React.createElement("g", null, React.createElement("rect", {
+      x: x0,
+      y: y + 62,
+      width: W - x0 * 2,
+      height: 52,
+      rx: "3",
+      fill: "none",
+      stroke: "var(--rule-soft)"
+    }), React.createElement("text", {
+      x: x0 + 14,
+      y: y + 84,
+      style: LABEL
+    }, "Free shuttle: about every 15 min, about 10 min up, no reservation."), React.createElement("text", {
+      x: x0 + 14,
+      y: y + 102,
+      style: SMALL
+    }, "The road is closed to private cars in season. A disability placard may drive it.")), React.createElement("text", {
+      x: x0,
+      y: y + 160,
+      style: HEAD
+    }, "THE FOUR WALKS FROM THE ARRIVAL AREA"), [0, 1, 2, 3, 4, 5, 6, 7].map(m => React.createElement("g", {
+      key: m
+    }, React.createElement("line", {
+      x1: mx(m),
+      x2: mx(m),
+      y1: y + 176,
+      y2: H - 30,
+      stroke: "var(--rule-soft)"
+    }), React.createElement("text", {
+      x: mx(m),
+      y: H - 12,
+      textAnchor: "middle",
+      style: SMALL
+    }, m === 7 ? "7 mi" : m))), WALKS.map((w, i) => {
+      var wy = y + 186 + i * 58;
+      return React.createElement("g", {
+        key: w.name
+      }, React.createElement("text", {
+        x: x0,
+        y: wy + 15,
+        style: {
+          ...LABEL,
+          fill: "var(--ink)"
+        }
+      }, w.name), React.createElement("rect", {
+        x: scaleL,
+        y: wy,
+        width: Math.max(4, mx(w.mi) - scaleL),
+        height: 20,
+        rx: "2",
+        fill: i === 1 ? "var(--rust)" : "var(--moss)"
+      }), React.createElement("text", {
+        x: scaleL,
+        y: wy + 38,
+        style: SMALL
+      }, w.note));
+    }));
+  }
   return React.createElement(React.Fragment, null, React.createElement("p", {
     className: "dropcap"
-  }, "Most visitors arrive at the Mariposa Grove with the same wrong plan: they intend to drive to the trees. You cannot, not in summer, and not since 2018. The parking is two miles down the hill by the South Entrance and a free shuttle covers the gap. Nearly everything else that goes wrong on a grove day follows from not knowing that one fact, so this piece starts there and works outward."), React.createElement("h2", null, "The geography, which is the whole problem"), React.createElement("p", null, "The grove sits in the park's southern corner, immediately inside the South Entrance on Highway 41. It is not near Yosemite Valley. From the Valley floor it is about an hour of driving each way, which is the single most underestimated number in this article."), React.createElement("p", null, "Once you are through the entrance station you reach a roundabout almost at once, and the ", React.createElement("strong", null, "Mariposa Grove Welcome Plaza"), " is the first right, less than a quarter mile in. That is where you park. The grove itself, what the Park Service calls the Arrival Area, is another two miles up Mariposa Grove Road, and in season that road is closed to private vehicles. A free shuttle covers the two miles. It is not relaxed on quiet days. It is the permanent arrangement the 2018 restoration created, for reasons covered below."), React.createElement("h2", null, "The shuttle"), React.createElement("p", null, "It is free, there is no ticket, and individual riders need no reservation. Buses run roughly every fifteen minutes and take about ten minutes to cover the two miles. They are wheelchair accessible, with lifts and tie-downs, and chair users board first."), React.createElement("p", null, "The Park Service does not publish a hard date for the season. Its standing language is that the shuttle begins no earlier than April 15 and ends on or before November 30. That is a commitment to a window, not a promise about a day, and it exists because the opening depends on when the road is clear of snow."), React.createElement("p", null, "There is one firm 2026 date, though it applies to other vehicles. Buses and vehicles over about twenty-one feet must reserve grove parking through recreation.gov, and that reservation window this year runs May 3 through November 30. It is a reasonable proxy for the operating season, because the reservations exist to manage a road the shuttle is running on. Treat it as an inference, not a timetable. Secondary sites publish hour-by-hour tables that disagree with each other, and none of them is a Park Service figure. Check the posted hours at the plaza when you arrive, and note the last downhill departure before you walk away from the stop. People miss it, and the walk down is two miles."), React.createElement(Placeholder, {
+  }, "Most visitors arrive at the Mariposa Grove with the same wrong plan: they intend to drive to the trees. You cannot, not in summer, and not since 2018. The parking is two miles down the hill by the South Entrance and a free shuttle covers the gap. Nearly everything else that goes wrong on a grove day follows from not knowing that one fact, so this piece starts there and works outward."), React.createElement("h2", null, "The geography, which is the whole problem"), React.createElement("p", null, "The grove sits in the park's southern corner, immediately inside the South Entrance on Highway 41. It is not near Yosemite Valley. From the Valley floor it is about an hour of driving each way, which is the single most underestimated number in this article."), React.createElement("p", null, "Once you are through the entrance station you reach a roundabout almost at once, and the ", React.createElement("strong", null, "Mariposa Grove Welcome Plaza"), " is the first right, less than a quarter mile in. That is where you park. The grove itself, what the Park Service calls the Arrival Area, is another two miles up Mariposa Grove Road, and in season that road is closed to private vehicles. A free shuttle covers the two miles. It is not relaxed on quiet days. It is the permanent arrangement the 2018 restoration created, for reasons covered below."), React.createElement("figure", {
+    style: {
+      margin: "30px 0 34px"
+    }
+  }, React.createElement(GroveApproach, null), React.createElement("figcaption", {
+    style: {
+      fontFamily: "var(--sans)",
+      fontSize: 13,
+      color: "var(--ink-3)",
+      marginTop: 10
+    }
+  }, "A grove day, drawn from the distances and rules in this article. Schematic, not to scale. Upper-grove distances vary between sources; read the map at the Arrival Area before the long walks.")), React.createElement("h2", null, "The shuttle"), React.createElement("p", null, "It is free, there is no ticket, and individual riders need no reservation. Buses run roughly every fifteen minutes and take about ten minutes to cover the two miles. They are wheelchair accessible, with lifts and tie-downs, and chair users board first."), React.createElement("p", null, "The Park Service does not publish a hard date for the season. Its standing language is that the shuttle begins no earlier than April 15 and ends on or before November 30. That is a commitment to a window, not a promise about a day, and it exists because the opening depends on when the road is clear of snow."), React.createElement("p", null, "There is one firm 2026 date, though it applies to other vehicles. Buses and vehicles over about twenty-one feet must reserve grove parking through recreation.gov, and that reservation window this year runs May 3 through November 30. It is a reasonable proxy for the operating season, because the reservations exist to manage a road the shuttle is running on. Treat it as an inference, not a timetable. Secondary sites publish hour-by-hour tables that disagree with each other, and none of them is a Park Service figure. Check the posted hours at the plaza when you arrive, and note the last downhill departure before you walk away from the stop. People miss it, and the walk down is two miles."), React.createElement(Placeholder, {
     caption: "The Grizzly Giant standing above the fenced loop trail in the Mariposa Grove, with second-growth conifers filling the gaps around it",
     image: "img/mariposa-grove-grizzly-giant-nieves.jpg",
     credit: "Photo: Nieves / Pexels",
@@ -18,7 +233,14 @@ window.ARTICLE_BODIES["mariposa-grove-how-to-visit"] = function MariposaGroveHow
     href: "/articles/yosemite-accessibility-guide"
   }, "The accessibility guide"), " covers what the placard does and does not get you elsewhere in Yosemite."), React.createElement("h2", null, "Walking up instead"), React.createElement("p", null, "You can also walk from the plaza to the grove on the Washburn Trail, which climbs roughly two miles and a few hundred feet through mixed conifer forest before the first sequoias appear. There are two reasons to do it. First, the shuttle queue on an August afternoon can be long enough that walking is competitive. Second, on foot you watch the forest change as the sequoias appear."), React.createElement("h2", null, "The four walks, in order of ambition"), React.createElement("p", null, React.createElement("strong", null, "The Big Trees Loop."), " Three tenths of a mile, paved and boardwalked, flat, wheelchair accessible, starting from the Arrival Area. It passes the Fallen Monarch, the toppled sequoia whose upturned root mass appears in one of the most reproduced photographs in the park's history, a US Cavalry troop and their horses drawn up along the trunk. If someone in your group cannot walk far, this is the loop that still gives them the grove."), React.createElement("p", null, React.createElement("strong", null, "The Grizzly Giant Loop."), " About two miles with a few hundred feet of climbing, and the one to do if you are only doing one. It takes in the Bachelor and Three Graces, the Grizzly Giant itself, and the California Tunnel Tree. Two hours is a comfortable allowance, including time spent stopping at the trees."), React.createElement("p", null, React.createElement("strong", null, "The Guardians Loop."), " Six and a half miles or so into the upper grove, with something over a thousand feet of gain. This is where the crowds thin to almost nothing, and where the Faithful Couple, the Clothespin Tree, and the Telescope Tree are. Give it however long you would normally give a six-mile hike, then add an hour."), React.createElement("p", null, React.createElement("strong", null, "The Mariposa Grove Trail to Wawona Point."), " Roughly seven miles round trip from the Arrival Area with a similar amount of climbing, ending at an overlook above the Wawona basin. It is the full day, and the only one of the four that ends with a view instead of a tree."), React.createElement("p", null, "Distances and gains published for the upper-grove trails vary between sources by enough to matter on a hot afternoon, and some trail-aggregator sites use loop names that do not appear on Park Service signage. Read the map at the Arrival Area before you commit to the long options."), React.createElement("h2", null, "The trees worth knowing by name"), React.createElement("p", null, React.createElement("strong", null, "The Grizzly Giant"), " is the one people come for. The Park Service calls it the largest sequoia in Yosemite and puts its age at roughly 2,900 years. Other published estimates run a little higher, which is the normal state of affairs for a tree nobody is going to cut down and count. Look at the first big limb rather than the trunk: it is thicker than the whole of most mature trees you have ever stood under, and it shows the scale better than the trunk does."), React.createElement("p", null, React.createElement("strong", null, "The California Tunnel Tree"), " stands a short way past it, cut through in 1895 so that stagecoaches could be photographed driving through it. It is the only living tree in Yosemite you can still walk through. The more famous one, the Wawona Tunnel Tree, was cut in 1881 and fell in 1969 under a heavy snow load, and its stump is up in this same grove. ", React.createElement("a", {
     href: "/articles/yosemite-tunnel-trees"
-  }, "The tunnel trees piece"), " is the longer version of that story, which is less about vandalism than about what nineteenth-century Americans thought a national park was for."), React.createElement("p", null, React.createElement("strong", null, "The Bachelor and Three Graces"), " are four trees growing so close that their root systems are effectively one, which is the practical argument for staying on the trail. Sequoia roots are shallow and wide, running out in a plate rather than down in a taproot, and the thing that kills a mature sequoia is almost never fire or disease. It is losing its footing."), React.createElement("h2", null, "Winter, when the road closes"), React.createElement("p", null, "Mariposa Grove Road closes to vehicles for the winter at the end of November and reopens when the snow allows, which has meant anywhere from early April onward in recent years. The reopening date moves with the snowpack and is not worth planning around more than a week out."), React.createElement("p", null, "The grove itself does not close. The road and the trails stay open to foot travel, and walking, snowshoeing, or skiing the two miles up from the South Entrance makes a quiet February day. You will likely have the Grizzly Giant to yourself. Note that this is not a sanctioned snow-play area; the park's designated sledding hill is at Crane Flat, on the other side of the park. ", React.createElement("a", {
+  }, "The tunnel trees piece"), " is the longer version of that story, which is less about vandalism than about what nineteenth-century Americans thought a national park was for."), React.createElement("p", null, React.createElement("strong", null, "The Bachelor and Three Graces"), " are four trees growing so close that their root systems are effectively one, which is the practical argument for staying on the trail. Sequoia roots are shallow and wide, running out in a plate rather than down in a taproot, and the thing that kills a mature sequoia is almost never fire or disease. It is losing its footing."), React.createElement(NatureNotesFilm, {
+    id: "big-trees",
+    title: "Big Trees",
+    youtubeId: "GBiHAGYJXVQ",
+    episode: 11,
+    note: "The Park Service on how deep snow and a long growing season build a tree the size of the Grizzly Giant.",
+    location: "article"
+  }), React.createElement("h2", null, "Winter, when the road closes"), React.createElement("p", null, "Mariposa Grove Road closes to vehicles for the winter at the end of November and reopens when the snow allows, which has meant anywhere from early April onward in recent years. The reopening date moves with the snowpack and is not worth planning around more than a week out."), React.createElement("p", null, "The grove itself does not close. The road and the trails stay open to foot travel, and walking, snowshoeing, or skiing the two miles up from the South Entrance makes a quiet February day. You will likely have the Grizzly Giant to yourself. Note that this is not a sanctioned snow-play area; the park's designated sledding hill is at Crane Flat, on the other side of the park. ", React.createElement("a", {
     href: "/articles/yosemite-in-winter"
   }, "The winter guide"), " has the rest of the cold-season picture."), React.createElement("h2", null, "What the 2018 restoration changed, and why"), React.createElement("p", null, "For three years the grove was closed entirely. It reopened on June 15, 2018. What came out: the lower-grove parking lot, the gift shop, the pit toilets, and the commercial tram tours that had run through the trees for decades. Roughly four acres of habitat were restored, boardwalks went in over the wet ground, and the wetland hydrology the roads had interrupted was reconnected. The bill came to about forty million dollars, split evenly between the Park Service and the Yosemite Conservancy."), React.createElement("p", null, "The reason is a single finding from the park's own survey work. The overwhelming majority of young sequoias in this grove, juveniles and saplings both, were growing within about a hundred feet of wetlands. The seeds need bare, wet mineral soil to take. Paving the wet ground and routing traffic across it did not kill the big trees, which is why the damage went unnoticed for a century. It quietly removed the next generation. ", React.createElement("a", {
     href: "/articles/giant-sequoias-fire-adaptation"

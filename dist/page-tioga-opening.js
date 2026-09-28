@@ -83,16 +83,175 @@ function TiogaStrip() {
     className: "tg-strip__months"
   }, React.createElement("span", null, "May 1"), React.createElement("span", null, "June 1"), React.createElement("span", null, "June 30")));
 }
+var TIOGA_PROFILE = [{
+  name: "Crane Flat",
+  mi: 0,
+  ft: 6200,
+  note: "Last gas, pay at pump",
+  placed: "mile",
+  label: [10, 26, "start"]
+}, {
+  name: "White Wolf",
+  mi: 14,
+  ft: 8000,
+  placed: "order",
+  label: [0, 28, "middle"]
+}, {
+  name: "Olmsted Point",
+  mi: 30,
+  ft: 8400,
+  placed: "order",
+  label: [-8, -34, "end"]
+}, {
+  name: "Tenaya Lake",
+  mi: 32,
+  ft: 8150,
+  placed: "order",
+  label: [6, 28, "start"]
+}, {
+  name: "Tuolumne Meadows",
+  mi: 39,
+  ft: 8600,
+  placed: "mile",
+  label: [10, 30, "start"]
+}, {
+  name: "Tioga Pass",
+  mi: 47,
+  ft: 9945,
+  note: "The park's east gate",
+  placed: "mile",
+  label: [14, -4, "start"]
+}, {
+  name: "Lee Vining",
+  mi: 59,
+  ft: 6800,
+  note: "Next gas",
+  placed: "mile",
+  label: [-6, 28, "end"]
+}];
+function TiogaProfile() {
+  var W = 1000,
+    H = 450,
+    L = 64,
+    R = 24,
+    T = 44,
+    B = 86;
+  var x = mi => L + mi / 60 * (W - L - R);
+  var y = ft => T + (1 - (ft - 5800) / (10400 - 5800)) * (H - T - B);
+  var pts = TIOGA_PROFILE.map(p => `${x(p.mi)},${y(p.ft)}`);
+  var line = "M" + pts.join(" L");
+  var area = `${line} L${x(59)},${H - B} L${x(0)},${H - B} Z`;
+  return React.createElement("svg", {
+    className: "tg-profile__svg",
+    viewBox: `0 0 ${W} ${H}`,
+    role: "img",
+    "aria-label": "Elevation profile of Tioga Road, west to east. Crane Flat at 6,200 feet, the last gas. White Wolf at about 8,000 feet. Olmsted Point at about 8,400 feet. Tenaya Lake at 8,150 feet. Tuolumne Meadows at 8,600 feet, 39 miles from Crane Flat. Tioga Pass at 9,945 feet, about 47 miles from Crane Flat. Then a drop of more than 3,000 feet in twelve miles to Lee Vining, about 6,800 feet, the next gas. Trails above about 8,500 feet hold snow for weeks after the road opens. No gas, water or cell signal between Crane Flat and Lee Vining."
+  }, [6000, 7000, 8000, 9000, 10000].map(ft => React.createElement("g", {
+    key: ft
+  }, React.createElement("line", {
+    x1: L,
+    x2: W - R,
+    y1: y(ft),
+    y2: y(ft),
+    className: "tg-profile__grid"
+  }), React.createElement("text", {
+    x: L - 10,
+    y: y(ft) + 4,
+    textAnchor: "end",
+    className: "tg-profile__axis"
+  }, ft.toLocaleString("en-US")))), React.createElement("rect", {
+    x: L,
+    y: y(10400),
+    width: W - L - R,
+    height: y(8500) - y(10400),
+    className: "tg-profile__snowband"
+  }), React.createElement("text", {
+    x: L + 12,
+    y: y(10400) + 20,
+    className: "tg-profile__snowlabel"
+  }, "ABOVE ~8,500 FT: TRAILS HOLD SNOW FOR WEEKS AFTER THE ROAD OPENS"), React.createElement("path", {
+    d: area,
+    className: "tg-profile__area"
+  }), React.createElement("path", {
+    d: line,
+    className: "tg-profile__line"
+  }), React.createElement("line", {
+    x1: x(0),
+    x2: x(59),
+    y1: H - B + 28,
+    y2: H - B + 28,
+    className: "tg-profile__dry"
+  }), React.createElement("text", {
+    x: x(29.5),
+    y: H - B + 52,
+    textAnchor: "middle",
+    className: "tg-profile__drylabel"
+  }, "NO GAS · NO POTABLE WATER · NO SIGNAL · CRANE FLAT TO LEE VINING"), TIOGA_PROFILE.map(p => {
+    var cx = x(p.mi),
+      cy = y(p.ft);
+    var [dx, dy, anchor] = p.label;
+    var below = dy > 0;
+    return React.createElement("g", {
+      key: p.name
+    }, React.createElement("circle", {
+      cx: cx,
+      cy: cy,
+      r: p.placed === "mile" ? 6 : 4.5,
+      className: p.placed === "mile" ? "tg-profile__pt" : "tg-profile__pt tg-profile__pt--order"
+    }), React.createElement("text", {
+      x: cx + dx,
+      y: cy + dy,
+      textAnchor: anchor,
+      className: "tg-profile__name"
+    }, p.name), React.createElement("text", {
+      x: cx + dx,
+      y: cy + dy + (below ? 17 : 17),
+      textAnchor: anchor,
+      className: "tg-profile__ft"
+    }, p.ft.toLocaleString("en-US"), " ft", p.note ? ` · ${p.note}` : ""));
+  }), React.createElement("text", {
+    x: x(52.4),
+    y: y(7300),
+    textAnchor: "end",
+    className: "tg-profile__drop"
+  }, "−3,000 ft"), React.createElement("text", {
+    x: x(52.4),
+    y: y(7300) + 17,
+    textAnchor: "end",
+    className: "tg-profile__dropsub"
+  }, "in twelve miles"));
+}
+var TIOGA_FAQ = [["When does Tioga Road open?", "There is no fixed date: the road opens when plow crews finish, and the park announces it only days ahead. The long-term average opening is the end of May; light snow years have opened in mid-May, and heavy years push the opening into June or later. It closes with the first lasting snow, typically in November."], ["Is there gas, food, or water on Tioga Road?", "Crane Flat, at the road's west end, has pay-at-pump gas; the next fuel is Lee Vining on the east side of the pass. In the early season there is no potable water and nothing to buy along the road, and services at Tuolumne Meadows come online weeks after the road opens. Bring everything."], ["How long does it take to drive Tioga Road?", "About 39 miles from Crane Flat to Tuolumne Meadows and about 47 to the Tioga Pass entrance station, roughly 90 minutes one way without stops. With Olmsted Point, Tenaya Lake, and Tuolumne Meadows it is a full day, and adding Lee Vining and Mono Lake makes it a long one."], ["Do I need a reservation to drive Tioga Road?", "A standard park entrance pass is required. Whether a day-use reservation system also applies changes year to year; check the NPS Yosemite site for the current season's rules before you commit."]];
+var TIOGA_TOWNS = [{
+  id: "lee-vining",
+  name: "Lee Vining",
+  dest: "Lee Vining, California",
+  where: "East side, below the pass",
+  note: "The bed that exists in week one. Thirty minutes from Tuolumne Meadows, with gas, food and Mono Lake on the doorstep.",
+  tier: "Week one"
+}, {
+  id: "groveland",
+  name: "Groveland",
+  dest: "Groveland, California",
+  where: "Highway 120 west",
+  note: "The western equivalent, on the same highway before the Big Oak Flat entrance. The start of the day if you drive the road west to east.",
+  tier: "West side"
+}];
 function TiogaOpeningPage({
   go
 }) {
-  var goArticle = (e, slug) => {
-    e.preventDefault();
-    go(`a:${slug}`);
-  };
+  var toc = [["#tioga-how", "How it opens"], ["#tioga-week-one", "Week one"], ["#tioga-road", "The road"], ["#tioga-history", "When it opened"], ["#tioga-rules", "Bring everything"], ["#tioga-day", "The day"], ["#tioga-stay", "Where to sleep"], ["#tioga-faq", "Questions"]];
   return React.createElement("div", {
-    className: "page hp-tool hp-tioga-opening"
-  }, React.createElement(HpPageHead, {
+    className: "page hp-tool hp-event hp-tioga-opening"
+  }, React.createElement("div", {
+    className: "ff-cover tg-cover"
+  }, React.createElement(ResponsiveImage, {
+    image: "img/tenaya-lake.jpg",
+    eager: true,
+    className: "ff-cover__img",
+    alt: "Tenaya Lake below the granite domes along Tioga Road",
+    sizes: "100vw"
+  }), React.createElement(HpPageHead, {
     go: go,
     crumbs: [{
       label: "Home",
@@ -100,74 +259,291 @@ function TiogaOpeningPage({
     }, {
       label: "Tioga opening"
     }],
-    className: "fj-head",
-    eyebrow: "SEASONAL EVENT · LATE SPRING",
+    eyebrow: "HIGHWAY 120 · TIOGA PASS · LATE SPRING",
     title: "The Tioga Road opening",
     intro: "Every spring, plow crews cut Highway 120 out of the snowpack and the highest road in the park comes back. The opening date is not a date: it is announced only days ahead, it varies by weeks from year to year, and the first weekends are unlike any other time on the road. Below: how the opening works, what is actually open in week one, and how to drive it well.",
-    aside: React.createElement(FjPlate, {
-      image: "img/tenaya-lake.jpg",
-      alt: "Tenaya Lake below the granite domes along Tioga Road",
-      label: "Tenaya Lake, Tioga Road",
-      credit: "Photo: Michael Hogarth / Wikimedia Commons (public domain)",
-      card: React.createElement(FjCard, {
-        eyebrow: "HIGHWAY 120, IN FOUR LINES",
-        rows: [{
-          label: "Closes",
-          value: "First lasting snow"
-        }, {
-          label: "Opens, on average",
-          value: LONG_TERM_AVERAGE
-        }, {
-          label: "Notice",
-          value: "Less than a week"
-        }, {
-          label: "Tioga Pass",
-          value: "9,945 feet"
-        }]
-      })
-    })
-  }, React.createElement(AffiliateDisclosure, null)), React.createElement(FjLayout, null, React.createElement("section", {
-    className: "prose"
-  }, React.createElement("h2", null, "How the opening works"), React.createElement(FjPull, {
-    side: true,
-    cite: "How the opening works"
-  }, "That is a spectacular thing to drive through, and a spectacular thing to be unprepared for."), React.createElement("p", null, "Tioga Road closes with the first lasting snow, typically in November, and reopens when the plowing is done, full stop. The long-term average opening is the end of May. Light snow years have opened the gate in mid-May; heavy years push the opening into June and beyond. The park announces the date only once the crews are nearly through, usually with less than a week's notice, so a trip planned around \"Tioga will be open\" needs a backup plan below 8,000 feet."), React.createElement("p", null, "The second thing to know is the difference between \"the road is open\" and \"Tuolumne Meadows is open for the season.\" Opening weekend lives entirely in the first one. The store, the grill, the lodge, the campground, the wilderness center staffing: all of that comes online over the following weeks, on its own schedule. What you get in week one is the road itself, a ribbon of asphalt through snow walls, half-frozen lakes, and a high country still pulling itself out of winter. That is a spectacular thing to drive through, and a spectacular thing to be unprepared for."), React.createElement("h2", null, "When it has actually opened"), React.createElement("p", null, "The long-term average is ", LONG_TERM_AVERAGE, ", and the average is the least useful number here: the spread between a light year and a heavy one is measured in weeks, not days. These are the openings this journal has recorded."), React.createElement("table", null, React.createElement("thead", null, React.createElement("tr", null, React.createElement("th", null, "Year"), React.createElement("th", null, "Tioga Road opened"), React.createElement("th", null, "Note"))), React.createElement("tbody", null, OPENING_HISTORY.map(r => React.createElement("tr", {
-    key: r.year
-  }, React.createElement("td", null, React.createElement("strong", null, r.year)), React.createElement("td", null, r.date), React.createElement("td", null, r.note))), React.createElement("tr", null, React.createElement("td", null, React.createElement("strong", null, "Average")), React.createElement("td", null, LONG_TERM_AVERAGE), React.createElement("td", null, "The long-term mean, which almost no individual year matches.")))), React.createElement(TiogaStrip, null), React.createElement("p", null, "The National Park Service publishes the full year-by-year list on its own Tioga Road page, which is the source to check if you want the whole run rather than the recent years."), React.createElement("h2", null, "The self-sufficiency rules"), React.createElement("ol", {
-    className: "fj-pair"
-  }, React.createElement("li", null, React.createElement("strong", null, "Gas."), " Crane Flat is the last fuel on the west side, pay-at-pump. The next gas is Lee Vining, on the far side of the pass. Start full."), React.createElement("li", null, React.createElement("strong", null, "Water and food."), " In the early season there is no potable water and nothing to buy anywhere along the road. Bring all of both: two liters per person minimum if you are walking anywhere."), React.createElement("li", null, React.createElement("strong", null, "Weather."), " Tioga Pass tops out at 9,945 feet. Early-season mornings run to the 20s and 30s even when the Valley is mild, black ice forms at dawn and dusk, and afternoon storms build fast. Layers, sunglasses against snow glare, and chains in the trunk are the price of admission."), React.createElement("li", null, React.createElement("strong", null, "Signal."), " Cell service is essentially zero from Crane Flat to Lee Vining. Download offline maps before you leave the Valley.")), React.createElement("h2", null, "What the first weeks are for"), React.createElement("p", null, "The reliable early stops are the roadside ones: Olmsted Point for the back side of Half Dome (the half-mile slickrock trail usually dries fast), Tenaya Lake's east beach, the Tuolumne Meadows pullouts, and two short walks, Pothole Dome and the flat road out to Soda Springs. The famous trails above 8,500 feet, Cathedral Lakes, May Lake, Lembert Dome's summit, hold snow weeks longer than the road; walking them in June boots-deep is how meadows get scarred and ankles get broken. The early season rewards drivers, photographers, and modest walkers, not peak-baggers.")), React.createElement(TiogaStatus, null), React.createElement("div", {
-    className: "fj-aside"
-  }, React.createElement("p", {
+    actions: React.createElement(React.Fragment, null, React.createElement(HomeLink, {
+      go: go,
+      location: "tioga_head",
+      className: "hp-button",
+      href: "#tioga-week-one"
+    }, "What is open in week one ", React.createElement("span", null, "↓")), React.createElement(HomeLink, {
+      go: go,
+      location: "tioga_head",
+      className: "hp-link",
+      href: "#tioga-road"
+    }, "The road, mile by mile ↓"))
+  }, React.createElement(AffiliateDisclosure, null)), React.createElement("p", {
+    className: "ff-cover__credit"
+  }, "Photo: Michael Hogarth / Wikimedia Commons (public domain)")), React.createElement("div", {
+    className: "hp-wrap"
+  }, React.createElement("dl", {
+    className: "ff-facts"
+  }, React.createElement("div", null, React.createElement(EventIcon, {
+    name: "calendar"
+  }), React.createElement("dt", null, "Opens, on average"), React.createElement("dd", null, LONG_TERM_AVERAGE)), React.createElement("div", null, React.createElement(EventIcon, {
+    name: "alert"
+  }), React.createElement("dt", null, "Notice"), React.createElement("dd", null, "Less than a week")), React.createElement("div", null, React.createElement(EventIcon, {
+    name: "mountain"
+  }), React.createElement("dt", null, "Tioga Pass"), React.createElement("dd", null, "9,945 feet")), React.createElement("div", null, React.createElement(EventIcon, {
+    name: "fuel"
+  }), React.createElement("dt", null, "No gas"), React.createElement("dd", null, "Crane Flat to Lee Vining"))), React.createElement("nav", {
+    className: "ff-toc",
+    "aria-label": "On this page"
+  }, React.createElement("span", null, "On this page"), toc.map(([href, label]) => React.createElement(HomeLink, {
+    key: href,
+    go: go,
+    location: "tioga_toc",
+    href: href
+  }, label)))), React.createElement("section", {
+    className: "hp-wrap hp-section",
+    id: "tioga-how",
+    tabIndex: -1
+  }, React.createElement("div", {
+    className: "ff-split"
+  }, React.createElement("div", null, React.createElement("p", {
     className: "hp-eyebrow"
-  }, "Check the current status"), React.createElement("p", null, "The current plowing and opening status lives on", " ", React.createElement("a", {
+  }, "HOW THE OPENING WORKS"), React.createElement("h2", null, "The road opens when the plowing is done. Full stop."), React.createElement("p", {
+    className: "ff-lede"
+  }, "Tioga Road closes with the first lasting snow, typically in November, and reopens when the plowing is done. The long-term average opening is the end of May. Light snow years have opened the gate in mid-May; heavy years push the opening into June and beyond."), React.createElement("p", {
+    className: "ff-lede"
+  }, "The park announces the date only once the crews are nearly through, usually with less than a week's notice, so a trip planned around \"Tioga will be open\" needs a backup plan below 8,000 feet."), React.createElement(NatureNotesFilm, {
+    id: "winter-in-tuolumne-meadows",
+    title: "Winter in Tuolumne Meadows",
+    youtubeId: "tXAL7fPDaJE",
+    episode: 37,
+    location: "tioga_film",
+    note: "What the plows are digging out of: two rangers who ski the high country all winter, at 8,600 feet, while the road is under snow."
+  })), React.createElement("div", {
+    className: "tg-side"
+  }, React.createElement(TiogaStatus, null), React.createElement("aside", {
+    className: "ff-short",
+    "aria-label": "The short version"
+  }, React.createElement("p", {
+    className: "ff-short__head"
+  }, React.createElement(EventIcon, {
+    name: "alert"
+  }), " The short version"), React.createElement("ul", null, React.createElement("li", null, "The date is announced days ahead, not months."), React.createElement("li", null, "Opening day is the road, not the services."), React.createElement("li", null, "Start full at Crane Flat. Carry all the water and food."), React.createElement("li", null, "Expect snow walls, ice at dawn and no signal.")), React.createElement("p", {
+    className: "ff-disclosure"
+  }, "Current status: ", React.createElement("a", {
     href: "https://www.nps.gov/yose/planyourvisit/seasonal.htm",
     target: "_blank",
     rel: "noopener noreferrer"
-  }, "the NPS Tioga Road page"), ", and road conditions by phone or text: text \"ynptraffic\" to 333111. The week's park-wide picture, roads, closures, and hours, is condensed on", " ", React.createElement("a", {
-    href: "/now",
-    onClick: e => {
-      e.preventDefault();
-      go("now");
-    }
-  }, "the Park Bulletin"), ", and live webcams and forecasts are on", " ", React.createElement("a", {
-    href: "/conditions",
-    onClick: e => {
-      e.preventDefault();
-      go("conditions");
-    }
-  }, "the conditions page"), ".")), React.createElement("section", {
-    className: "prose"
-  }, React.createElement(FjRidge, null), React.createElement("h2", null, "The bigger day"), React.createElement("p", null, "The move that turns the opening into a full trip is crossing the pass: down 3,000 feet into the Mono Basin, where granite gives way to sagebrush and Mono Lake spreads out below with its tufa towers. Lee Vining, Tioga Lake, Ellery Lake, and the South Tufa boardwalk make the east side a destination, not a turnaround. The hour-by-hour version of that day, every stop, where to eat in Lee Vining, and what the meadows look like under snowmelt, is in", " ", React.createElement("a", {
-    href: "/articles/tioga-road-opening-weekend-2026",
-    onClick: e => goArticle(e, "tioga-road-opening-weekend-2026")
-  }, React.createElement("strong", null, "the opening-weekend field guide →")))), React.createElement(LodgingCta, {
-    destination: "Lee Vining, California",
-    heading: "Where you sleep in week one",
-    note: "Tuolumne Meadows Lodge and White Wolf open on the snowpack's schedule, often well after the road does, so the high country's own beds may not exist yet when the pass opens. Lee Vining is 30 minutes from Tuolumne Meadows on the east side; Groveland is the western equivalent.",
+  }, "the NPS Tioga Road page ↗"), ", or text \"ynptraffic\" to 333111."))))), React.createElement("section", {
+    className: "ff-band",
+    id: "tioga-week-one",
+    tabIndex: -1
+  }, React.createElement("div", {
+    className: "hp-wrap hp-section"
+  }, React.createElement(HpHeading, {
+    eyebrow: "WHAT IS OPEN IN WEEK ONE",
+    title: "The road opens first. The meadows follow, weeks later."
+  }), React.createElement("p", {
+    className: "ff-lede ff-lede--intro"
+  }, "Opening weekend lives entirely in \"the road is open\", not in \"Tuolumne Meadows is open for the season\". What you get in week one is the road itself: a ribbon of asphalt through snow walls, half-frozen lakes, and a high country still pulling itself out of winter. The store, the grill, the lodge, the campground and the wilderness center staffing come online over the following weeks, on their own schedule."), React.createElement("ol", {
+    className: "ff-timeline tg-ladder"
+  }, React.createElement("li", {
+    className: "is-open"
+  }, React.createElement("span", null, "Opening day"), React.createElement("strong", null, "The road"), React.createElement("p", null, "Tioga Road and the Tioga Pass entrance station, Olmsted Point and the major pullouts, Tenaya Lake parking, the Tuolumne Meadows pullouts, vault toilets, and Crane Flat gas, 24 hours, pay at the pump.")), React.createElement("li", {
+    className: "is-tight"
+  }, React.createElement("span", null, "Late May"), React.createElement("strong", null, "Visitor centers staffed"), React.createElement("p", null, "The Tuolumne Meadows Visitor Center and Wilderness Center have limited or no staffing until late May.")), React.createElement("li", {
+    className: "is-tight"
+  }, React.createElement("span", null, "June and July"), React.createElement("strong", null, "Lodge, grill, campground"), React.createElement("p", null, "In a recent season the lodge opened in early June, the grill in mid-June, and the campground on July 1, reservable on Recreation.gov.")), React.createElement("li", {
+    className: "is-gone"
+  }, React.createElement("span", null, "Later in summer"), React.createElement("strong", null, "Store and post office"), React.createElement("p", null, "The last of Tuolumne to come online. Until then there is nothing to buy anywhere along the road."))), React.createElement("ul", {
+    className: "tg-never"
+  }, React.createElement("li", null, React.createElement(EventIcon, {
+    name: "drop"
+  }), React.createElement("span", null, React.createElement("strong", null, "No potable water"), " anywhere along the road in week one.")), React.createElement("li", null, React.createElement(EventIcon, {
+    name: "fuel"
+  }), React.createElement("span", null, React.createElement("strong", null, "No gas at Tuolumne Meadows."), " The station has been out of operation for several years.")), React.createElement("li", null, React.createElement(EventIcon, {
+    name: "signal"
+  }), React.createElement("span", null, React.createElement("strong", null, "No cell service"), " from Crane Flat to Lee Vining. Download offline maps in the Valley."))), React.createElement("div", {
+    className: "tg-stops"
+  }, React.createElement("div", {
+    className: "tg-stops__go"
+  }, React.createElement("h3", null, "What the first weeks are for"), React.createElement("p", {
+    className: "ff-note tg-stops__lede"
+  }, "The reliable early stops are the roadside ones. The early season rewards drivers, photographers and modest walkers, not peak-baggers."), React.createElement("ul", null, React.createElement("li", null, React.createElement(EventIcon, {
+    name: "eye",
+    size: 24
+  }), React.createElement("div", null, React.createElement("strong", null, "Olmsted Point"), React.createElement("p", null, "The back side of Half Dome. The half-mile slickrock trail usually dries fast, even with snow in the shaded hollows."))), React.createElement("li", null, React.createElement(EventIcon, {
+    name: "lake",
+    size: 24
+  }), React.createElement("div", null, React.createElement("strong", null, "Tenaya Lake, the east beach"), React.createElement("p", null, "Ice-rimmed, with open water in the middle. A short, easy walk to the sand; an hour is enough."))), React.createElement("li", null, React.createElement(EventIcon, {
+    name: "tree",
+    size: 24
+  }), React.createElement("div", null, React.createElement("strong", null, "Tuolumne Meadows pullouts"), React.createElement("p", null, "Look from the edge. Do not walk across the meadow: a boot print in May is still a scar in August."))), React.createElement("li", null, React.createElement(EventIcon, {
+    name: "dome",
+    size: 24
+  }), React.createElement("div", null, React.createElement("strong", null, "Pothole Dome"), React.createElement("p", null, "A one-mile round trip up polished granite at the meadow's west end. Wet approach, dry rock."))), React.createElement("li", null, React.createElement(EventIcon, {
+    name: "walk",
+    size: 24
+  }), React.createElement("div", null, React.createElement("strong", null, "Soda Springs"), React.createElement("p", null, "1.4 miles round trip on a flat dirt road from the Lembert Dome parking area, with the river running hard."))))), React.createElement("div", {
+    className: "tg-stops__wait"
+  }, React.createElement("h3", null, "Wait for later"), React.createElement("p", {
+    className: "ff-note tg-stops__lede"
+  }, "The famous trails above 8,500 feet hold snow weeks longer than the road. Walking them boots-deep is how meadows get scarred and ankles get broken."), React.createElement("ul", null, ["Cathedral Lakes", "May Lake", "Lukens Lake", "Lembert Dome's summit"].map(t => React.createElement("li", {
+    key: t
+  }, React.createElement(EventIcon, {
+    name: "snow",
+    size: 20
+  }), t))))))), React.createElement("section", {
+    className: "hp-wrap hp-section",
+    id: "tioga-road",
+    tabIndex: -1
+  }, React.createElement(HpHeading, {
+    eyebrow: "THE ROAD, WEST TO EAST",
+    title: "From 6,200 feet to 9,945, then down to the desert"
+  }), React.createElement("p", {
+    className: "ff-lede ff-lede--intro"
+  }, "Tioga Road climbs from Crane Flat to the pass over roughly 47 miles, then drops more than 3,000 feet in twelve miles into the Mono Basin, where granite gives way to sagebrush. Allow about 90 minutes one way without stops. With the stops, it is a full day."), React.createElement("figure", {
+    className: "tg-profile"
+  }, React.createElement(TiogaProfile, null), React.createElement("figcaption", {
+    className: "ff-note"
+  }, "Drawn from the figures on this page and in the opening-weekend article. Crane Flat, Tuolumne Meadows, Tioga Pass and Lee Vining are placed by their published distances; White Wolf, Olmsted Point and Tenaya Lake are placed in order between them. The line between points is drawn, not surveyed."))), React.createElement("section", {
+    className: "ff-band",
+    id: "tioga-history",
+    tabIndex: -1
+  }, React.createElement("div", {
+    className: "hp-wrap hp-section ff-split"
+  }, React.createElement("div", null, React.createElement("p", {
+    className: "hp-eyebrow"
+  }, "WHEN IT HAS ACTUALLY OPENED"), React.createElement("h2", null, "The average is the least useful number here"), React.createElement("p", {
+    className: "ff-lede"
+  }, "The long-term average is ", LONG_TERM_AVERAGE, ", and almost no individual year matches it: the spread between a light year and a heavy one is measured in weeks, not days. These are the openings this journal has recorded."), React.createElement("p", {
+    className: "ff-note"
+  }, "The National Park Service publishes the full year-by-year list on ", React.createElement("a", {
+    href: "https://www.nps.gov/yose/planyourvisit/seasonal.htm",
+    target: "_blank",
+    rel: "noopener noreferrer"
+  }, "its Tioga Road page"), ", which is the source to check for the whole run.")), React.createElement("div", null, React.createElement(TiogaStrip, null), React.createElement("div", {
+    className: "prose tg-table",
+    role: "region",
+    "aria-label": "Recorded Tioga Road openings",
+    tabIndex: 0
+  }, React.createElement("table", null, React.createElement("thead", null, React.createElement("tr", null, React.createElement("th", null, "Year"), React.createElement("th", null, "Tioga Road opened"), React.createElement("th", null, "Note"))), React.createElement("tbody", null, OPENING_HISTORY.map(r => React.createElement("tr", {
+    key: r.year
+  }, React.createElement("td", null, React.createElement("strong", null, r.year)), React.createElement("td", null, r.date), React.createElement("td", null, r.note))), React.createElement("tr", null, React.createElement("td", null, React.createElement("strong", null, "Average")), React.createElement("td", null, LONG_TERM_AVERAGE), React.createElement("td", null, "The long-term mean, which almost no individual year matches.")))))))), React.createElement("section", {
+    className: "hp-wrap hp-section",
+    id: "tioga-rules",
+    tabIndex: -1
+  }, React.createElement("div", {
+    className: "ff-split ff-split--end"
+  }, React.createElement("div", null, React.createElement("p", {
+    className: "hp-eyebrow"
+  }, "THE SELF-SUFFICIENCY RULES"), React.createElement("h2", null, "Pack like you are heading into the backcountry")), React.createElement("p", {
+    className: "ff-lede"
+  }, "Even if you are only driving up for the day. There is nothing to buy along Tioga Road in the first weeks, no potable water, and no signal to call for help with.")), React.createElement("ul", {
+    className: "ff-rules tg-rules"
+  }, React.createElement("li", null, React.createElement(EventIcon, {
+    name: "fuel",
+    size: 26
+  }), React.createElement("strong", null, "Gas"), React.createElement("p", null, "Crane Flat is the last fuel on the west side, pay at the pump. The next gas is Lee Vining, on the far side of the pass. Start full.")), React.createElement("li", null, React.createElement(EventIcon, {
+    name: "drop",
+    size: 26
+  }), React.createElement("strong", null, "Water and food"), React.createElement("p", null, "In the early season there is no potable water and nothing to buy anywhere along the road. Bring all of both: two liters per person minimum if you are walking anywhere.")), React.createElement("li", null, React.createElement(EventIcon, {
+    name: "therm",
+    size: 26
+  }), React.createElement("strong", null, "Weather"), React.createElement("p", null, "Early-season mornings run to the 20s and 30s even when the Valley is mild. Black ice forms at dawn and dusk, and afternoon storms build fast.")), React.createElement("li", null, React.createElement(EventIcon, {
+    name: "signal",
+    size: 26
+  }), React.createElement("strong", null, "Signal"), React.createElement("p", null, "Cell service is essentially zero from Crane Flat to Lee Vining. Download offline maps before you leave the Valley."))), React.createElement("div", {
+    className: "ff-else tg-pack"
+  }, React.createElement("h3", null, "In the car and the pack"), React.createElement("ul", null, ["Chains in the trunk and a full tank", "Waterproof hiking boots; every trail has wet or snowy sections", "Microspikes for any shaded snow patch", "Trekking poles for slush, mud and slick granite", "A puffy jacket and a shell; the day swings 30 to 40 degrees", "Sunglasses and sunscreen for snow glare at altitude", "All the water and food for the day", "Offline maps, downloaded in the Valley"].map(k => React.createElement("li", {
+    key: k
+  }, React.createElement(EventIcon, {
+    name: "check",
+    size: 18
+  }), k))), React.createElement("p", {
+    className: "ff-note"
+  }, "Bears are out of their dens and active in the meadows at first and last light. Use the trailhead lockers, even for snacks left in the car. The full lists: ", React.createElement(HomeLink, {
+    go: go,
+    location: "tioga_kit",
+    href: "/kit"
+  }, "the day pack and car kit"), "."))), React.createElement("section", {
+    className: "ff-band",
+    id: "tioga-day",
+    tabIndex: -1
+  }, React.createElement("div", {
+    className: "hp-wrap hp-section ff-split"
+  }, React.createElement("div", null, React.createElement("p", {
+    className: "hp-eyebrow"
+  }, "THE BIGGER DAY"), React.createElement("h2", null, "Cross the pass"), React.createElement("p", {
+    className: "ff-lede"
+  }, "The move that turns the opening into a full trip is crossing the pass: down into the Mono Basin, where Mono Lake spreads out below with its tufa towers. Lee Vining, Tioga Lake, Ellery Lake and the South Tufa boardwalk make the east side a destination, not a turnaround."), React.createElement("figure", {
+    className: "ff-photo"
+  }, React.createElement(ResponsiveImage, {
+    image: "img/tuolumne-meadows-lembert-dome.jpg",
+    alt: "Lembert Dome above the edge of Tuolumne Meadows",
+    sizes: "(max-width: 880px) calc(100vw - 40px), 520px"
+  }), React.createElement("figcaption", null, "Lembert Dome from Tuolumne Meadows. Photo: Pacific Southwest Region USFWS / Wikimedia Commons (public domain)")), React.createElement("p", {
+    className: "ff-note"
+  }, "Every stop, where to eat in Lee Vining, and what the meadows look like under snowmelt: ", React.createElement(HomeLink, {
+    go: go,
+    location: "tioga_article",
+    href: "/articles/tioga-road-opening-weekend-2026"
+  }, "the opening-weekend field guide"), ".")), React.createElement("ol", {
+    className: "ff-hours"
+  }, React.createElement("li", null, React.createElement("span", null, "Before 8 a.m."), React.createElement("p", null, "Through the gate and climbing. Early beats the congestion and the full lots, and sunrise at Olmsted Point is shared with almost no one.")), React.createElement("li", null, React.createElement("span", null, "Olmsted Point"), React.createElement("p", null, "Half Dome's broad back side, Clouds Rest to its left, and glacial erratics scattered on the slickrock. Shoes with grip, and sunglasses.")), React.createElement("li", null, React.createElement("span", null, "Ten minutes east"), React.createElement("p", null, "Tenaya Lake's east beach, ice along the shaded shore and Tenaya Peak in the open water.")), React.createElement("li", null, React.createElement("span", null, "Late morning"), React.createElement("p", null, "Tuolumne Meadows from the pullouts, then Pothole Dome or the flat walk to Soda Springs.")), React.createElement("li", {
+    className: "is-glow"
+  }, React.createElement("span", null, "Tioga Pass, 9,945 feet"), React.createElement("p", null, "Tioga Lake just below the pass with Mount Dana in it, Ellery Lake a mile farther, then the Mono Lake Vista Point as the basin opens.")), React.createElement("li", null, React.createElement("span", null, "Afternoon"), React.createElement("p", null, "Lunch in Lee Vining, then south on 395 to the South Tufa boardwalk, about ten miles all told. Nesting California gulls in May.")), React.createElement("li", null, React.createElement("span", null, "The drive home"), React.createElement("p", null, "Back over the pass before dark, or a bed on the east side. Black ice returns at dusk."))))), React.createElement("section", {
+    className: "hp-wrap hp-section",
+    id: "tioga-stay",
+    tabIndex: -1
+  }, React.createElement(HpHeading, {
+    eyebrow: "WHERE YOU SLEEP IN WEEK ONE",
+    title: "The high country's own beds may not exist yet"
+  }), React.createElement("p", {
+    className: "ff-lede ff-lede--intro"
+  }, "Tuolumne Meadows Lodge and White Wolf open on the snowpack's schedule, often well after the road does, so the high country's own beds may not be open when the pass is. Sleep at one end of the road and drive it toward the other."), React.createElement("div", {
+    className: "ff-towns tg-towns"
+  }, TIOGA_TOWNS.map(t => React.createElement("div", {
+    className: "ff-town",
+    key: t.id
+  }, React.createElement("div", {
+    className: "ff-town__name"
+  }, React.createElement("h3", null, t.name), React.createElement("p", null, React.createElement("strong", null, t.where))), React.createElement("div", {
+    className: "ff-town__note"
+  }, React.createElement("span", {
+    className: "ff-tier"
+  }, t.tier), React.createElement("p", null, t.note)), React.createElement(AvailabilityLink, {
+    destination: t.dest,
     list: "page_tioga",
-    slug: "tioga-opening",
-    cta: "Search Lee Vining lodging →"
-  })), React.createElement(HpGuideBand, {
+    slug: t.id,
+    className: "ff-book"
+  }, "Search ", t.name, " lodging ↗"))), React.createElement("p", {
+    className: "ff-note"
+  }, "The filled buttons search availability on Expedia; we may earn a commission. The recommendation is the same either way, and no link is to a specific property. ", React.createElement("a", {
+    href: "/affiliate"
+  }, "How we handle affiliate links."), " Every option compared: ", React.createElement(HomeLink, {
+    go: go,
+    location: "tioga_stay",
+    href: "/stay"
+  }, "where to stay"), "."))), React.createElement("section", {
+    className: "ff-band",
+    id: "tioga-faq",
+    tabIndex: -1
+  }, React.createElement("div", {
+    className: "hp-wrap hp-section ff-split"
+  }, React.createElement("div", null, React.createElement("p", {
+    className: "hp-eyebrow"
+  }, "QUESTIONS"), React.createElement("h2", null, "Tioga Road questions, answered"), React.createElement("p", {
+    className: "ff-lede"
+  }, "The week's park-wide picture, roads, closures and hours, is on ", React.createElement(HomeLink, {
+    go: go,
+    location: "tioga_faq",
+    href: "/now"
+  }, "the Park Bulletin"), ", and live webcams and forecasts are on ", React.createElement(HomeLink, {
+    go: go,
+    location: "tioga_faq",
+    href: "/conditions"
+  }, "the conditions page"), ". Road conditions by phone or text: text \"ynptraffic\" to 333111.")), React.createElement("div", {
+    className: "ff-faq"
+  }, TIOGA_FAQ.map(([q, a], i) => React.createElement("details", {
+    key: q,
+    open: i < 2
+  }, React.createElement("summary", null, q), React.createElement("p", null, a)))))), React.createElement(HpGuideBand, {
     go: go,
     location: "tioga-opening",
     title: "Planning the high-country trip around it?",

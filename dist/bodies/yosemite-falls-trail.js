@@ -1,8 +1,155 @@
 window.ARTICLE_BODIES = window.ARTICLE_BODIES || {};
 window.ARTICLE_BODIES["yosemite-falls-trail"] = function YosemiteFallsTrailBody() {
+  var AXIS = {
+    fontFamily: "var(--sans)",
+    fontSize: 12.5,
+    fill: "var(--ink-3)"
+  };
+  var LABEL = {
+    fontFamily: "var(--sans)",
+    fontSize: 13,
+    fill: "var(--ink-2)"
+  };
+  var PLACE = {
+    fontFamily: "var(--serif)",
+    fontSize: 16,
+    fill: "var(--ink)"
+  };
+  var svgStyle = {
+    width: "100%",
+    height: "auto",
+    display: "block"
+  };
+  function ClimbProfile() {
+    var W = 680,
+      H = 330,
+      L = 56,
+      R = 24,
+      T = 30,
+      B = 44;
+    var pw = W - L - R,
+      ph = H - T - B;
+    var x = mi => L + mi / 3.6 * pw;
+    var y = ft => T + ph - ft / 2700 * ph;
+    var pts = [[0, 0], [1, 1000], [3.6, 2700]];
+    var line = pts.map(([m, f]) => `${x(m)},${y(f)}`).join(" ");
+    var area = `${x(0)},${y(0)} ${line} ${x(3.6)},${y(0)}`;
+    return React.createElement("svg", {
+      viewBox: `0 0 ${W} ${H}`,
+      style: svgStyle,
+      role: "img",
+      "aria-label": "Elevation gain on the Yosemite Falls Trail, from the Park Service figures. From the trailhead near Camp 4 the trail climbs 1,000 feet in its first mile to Columbia Rock. The view of Upper Yosemite Fall is a half mile farther, some of it downhill, about three miles round trip. Above that the trail is steep and rocky with no shade until late afternoon, and it reaches the top at 3.6 miles and 2,700 feet of gain, an average of 750 feet per mile. There is no water on the trail."
+    }, [0, 1000, 2000, 2700].map(f => React.createElement("g", {
+      key: f
+    }, React.createElement("line", {
+      x1: L,
+      x2: W - R,
+      y1: y(f),
+      y2: y(f),
+      stroke: "var(--rule-soft)",
+      strokeWidth: "1"
+    }), React.createElement("text", {
+      x: L - 8,
+      y: y(f) + 4,
+      textAnchor: "end",
+      style: AXIS
+    }, f === 0 ? "0" : f.toLocaleString("en-US")))), [0, 1, 1.5, 2, 3, 3.6].map(m => React.createElement("text", {
+      key: m,
+      x: x(m),
+      y: H - 20,
+      textAnchor: "middle",
+      style: AXIS
+    }, m)), React.createElement("text", {
+      x: L + pw / 2,
+      y: H - 4,
+      textAnchor: "middle",
+      style: AXIS
+    }, "miles from the trailhead · feet gained"), React.createElement("polygon", {
+      points: area,
+      fill: "var(--moss)",
+      opacity: "0.12"
+    }), React.createElement("rect", {
+      x: x(1),
+      y: T,
+      width: x(3.6) - x(1),
+      height: ph,
+      fill: "var(--rust)",
+      opacity: "0.06"
+    }), React.createElement("polyline", {
+      points: line,
+      fill: "none",
+      stroke: "var(--moss)",
+      strokeWidth: "2.6",
+      strokeLinejoin: "round"
+    }), React.createElement("circle", {
+      cx: x(1),
+      cy: y(1000),
+      r: "5",
+      fill: "var(--paper)",
+      stroke: "var(--ink)",
+      strokeWidth: "2"
+    }), React.createElement("circle", {
+      cx: x(3.6),
+      cy: y(2700),
+      r: "5",
+      fill: "var(--ink)"
+    }), React.createElement("line", {
+      x1: x(1.5),
+      x2: x(1.5),
+      y1: y(0),
+      y2: y(0) - 10,
+      stroke: "var(--ink)",
+      strokeWidth: "2"
+    }), React.createElement("text", {
+      x: x(1),
+      y: y(1000) - 40,
+      textAnchor: "middle",
+      style: PLACE
+    }, "Columbia Rock"), React.createElement("text", {
+      x: x(1),
+      y: y(1000) - 22,
+      textAnchor: "middle",
+      style: LABEL
+    }, "1 mi · 1,000 ft"), React.createElement("text", {
+      x: x(1.5) + 6,
+      y: y(0) - 16,
+      style: LABEL
+    }, "Upper fall view, 0.5 mi on"), React.createElement("text", {
+      x: x(3.6) - 8,
+      y: y(2700) + 80,
+      textAnchor: "end",
+      style: PLACE
+    }, "Top of the fall"), React.createElement("text", {
+      x: x(3.6) - 8,
+      y: y(2700) + 98,
+      textAnchor: "end",
+      style: LABEL
+    }, "3.6 mi · 2,700 ft"), React.createElement("text", {
+      x: x(2.3),
+      y: y(1000) - 22,
+      textAnchor: "middle",
+      style: LABEL
+    }, "The upper half: steep, rocky,"), React.createElement("text", {
+      x: x(2.3),
+      y: y(1000) - 4,
+      textAnchor: "middle",
+      style: LABEL
+    }, "no shade until late afternoon"), React.createElement("text", {
+      x: x(0.08),
+      y: T + 8,
+      style: LABEL
+    }, "Average: 750 ft per mile. No water on the trail."));
+  }
   return React.createElement(React.Fragment, null, React.createElement("p", {
     className: "dropcap"
-  }, "Two different walks go by the name Yosemite Falls, and people pick the wrong one in both directions. One is a paved mile at the bottom of the waterfall that takes half an hour and asks nothing of you. The other is a trail built in the 1870s that climbs 2,700 feet up the north wall of the Valley, in the sun, on loose granite, with no water anywhere on it. It is easy to start up the second in sandals because the sign said Yosemite Falls, and easy for a strong hiker to skip the first because it looks like a sidewalk. This is both of them, in the order most people meet them, with the numbers the Park Service publishes and the sensible turnaround point on the big one."), React.createElement("h2", null, "One waterfall in three pieces"), React.createElement("p", null, "Yosemite Falls drops ", React.createElement("strong", null, "2,425 feet"), " from the rim to the Valley floor, one of the tallest waterfalls in the world, but it does not do it in one leap. The Park Service breaks it into three: ", React.createElement("strong", null, "Upper Yosemite Fall at 1,430 feet"), ", the ", React.createElement("strong", null, "middle cascades at 675 feet"), ", and ", React.createElement("strong", null, "Lower Yosemite Fall at 320 feet"), ". From Yosemite Village and the lodge you see the whole stack at once, which is why it reads as a single fall in every photograph. On foot it separates again. The paved loop takes you to the bottom of the last 320 feet. The trail climbs beside the first 1,430 and puts you on the rim above it."), React.createElement("p", null, "The other thing to know before choosing is that the water is seasonal, and more seasonal than most visitors expect. The Park Service gives the fall's flow as ", React.createElement("strong", null, "approximately November through July, with the peak in May"), ", and it says plainly that Yosemite Falls is often a trickle or completely dry by August. The lower fall is often dry from late July or August through October. The storms of late fall bring it back. ", React.createElement("a", {
+  }, "Two different walks go by the name Yosemite Falls, and people pick the wrong one in both directions. One is a paved mile at the bottom of the waterfall that takes half an hour and asks nothing of you. The other is a trail built in the 1870s that climbs 2,700 feet up the north wall of the Valley, in the sun, on loose granite, with no water anywhere on it. It is easy to start up the second in sandals because the sign said Yosemite Falls, and easy for a strong hiker to skip the first because it looks like a sidewalk. This is both of them, in the order most people meet them, with the numbers the Park Service publishes and the sensible turnaround point on the big one."), React.createElement("h2", null, "One waterfall in three pieces"), React.createElement("p", null, "Yosemite Falls drops ", React.createElement("strong", null, "2,425 feet"), " from the rim to the Valley floor, one of the tallest waterfalls in the world, but it does not do it in one leap. The Park Service breaks it into three: ", React.createElement("strong", null, "Upper Yosemite Fall at 1,430 feet"), ", the ", React.createElement("strong", null, "middle cascades at 675 feet"), ", and ", React.createElement("strong", null, "Lower Yosemite Fall at 320 feet"), ". From Yosemite Village and the lodge you see the whole stack at once, which is why it reads as a single fall in every photograph. On foot it separates again. The paved loop takes you to the bottom of the last 320 feet. The trail climbs beside the first 1,430 and puts you on the rim above it."), React.createElement(NatureNotesFilm, {
+    id: "yosemite-falls",
+    title: "Yosemite Falls",
+    youtubeId: "2mSNY3TdDZ4",
+    episode: 2,
+    note: "The Park Service's own short film on the fall: three tiers, one creek, and a flow that runs on snowmelt and runs out.",
+    location: "article"
+  }), React.createElement("p", null, "The other thing to know before choosing is that the water is seasonal, and more seasonal than most visitors expect. The Park Service gives the fall's flow as ", React.createElement("strong", null, "approximately November through July, with the peak in May"), ", and it says plainly that Yosemite Falls is often a trickle or completely dry by August. The lower fall is often dry from late July or August through October. The storms of late fall bring it back. ", React.createElement("a", {
     href: "/articles/yosemite-waterfalls-guide"
   }, "The waterfall guide"), " covers the calendar for every fall in the Valley; for this one, the short version is that a spring hike and an August hike are two different trips, and only one of them ends at a waterfall."), React.createElement(Placeholder, {
     caption: "Upper Yosemite Fall at spring flow, the 1,430-foot upper tier the trail climbs beside",
@@ -28,7 +175,11 @@ window.ARTICLE_BODIES["yosemite-falls-trail"] = function YosemiteFallsTrailBody(
       margin: "32px 0"
     },
     motif: React.createElement(MotifMountains, null)
-  }), React.createElement("h2", null, "The Yosemite Falls Trail: what the numbers mean"), React.createElement("p", null, "The big trail is one of Yosemite's oldest, ", React.createElement("strong", null, "built between 1873 and 1877"), ", and it starts somewhere most people would not guess: near ", React.createElement("strong", null, "Camp 4"), ", on the Valley Loop Trail. It climbs immediately, switchback after switchback, first through oak woodland and then onto open, exposed benches with the Valley falling away below. The Park Service publishes two sets of numbers for it, because it is really two hikes:"), React.createElement("ul", null, React.createElement("li", null, React.createElement("strong", null, "Columbia Rock:"), " 2 miles round trip, 1,000 feet of elevation gain, moderate, 2 to 3 hours."), React.createElement("li", null, React.createElement("strong", null, "Top of Yosemite Falls:"), " 7.2 miles round trip, 2,700 feet of elevation gain, strenuous, 6 to 8 hours.")), React.createElement("p", null, "Read the second line carefully. Seven miles sounds like an easy day to anyone who hikes at home, and it is the gain that decides it: 2,700 feet in 3.6 miles averages 750 feet of climbing per mile, and it comes with no shade on the upper half and nothing to drink. The time estimate is for a fit hiker moving steadily. A family that turns a 2,000-foot day into an afternoon at home should plan on the long end of the range, or on Columbia Rock."), React.createElement("p", null, "The trail is not the only hard climb out of the Valley. The Mist Trail to Vernal and Nevada Falls carries its own crowd and its own wet granite staircase; ", React.createElement("a", {
+  }), React.createElement("h2", null, "The Yosemite Falls Trail: what the numbers mean"), React.createElement("p", null, "The big trail is one of Yosemite's oldest, ", React.createElement("strong", null, "built between 1873 and 1877"), ", and it starts somewhere most people would not guess: near ", React.createElement("strong", null, "Camp 4"), ", on the Valley Loop Trail. It climbs immediately, switchback after switchback, first through oak woodland and then onto open, exposed benches with the Valley falling away below. The Park Service publishes two sets of numbers for it, because it is really two hikes:"), React.createElement("ul", null, React.createElement("li", null, React.createElement("strong", null, "Columbia Rock:"), " 2 miles round trip, 1,000 feet of elevation gain, moderate, 2 to 3 hours."), React.createElement("li", null, React.createElement("strong", null, "Top of Yosemite Falls:"), " 7.2 miles round trip, 2,700 feet of elevation gain, strenuous, 6 to 8 hours.")), React.createElement("p", null, "Read the second line carefully. Seven miles sounds like an easy day to anyone who hikes at home, and it is the gain that decides it: 2,700 feet in 3.6 miles averages 750 feet of climbing per mile, and it comes with no shade on the upper half and nothing to drink. The time estimate is for a fit hiker moving steadily. A family that turns a 2,000-foot day into an afternoon at home should plan on the long end of the range, or on Columbia Rock."), React.createElement("figure", {
+    style: {
+      margin: "32px 0"
+    }
+  }, React.createElement(ClimbProfile, null), React.createElement("figcaption", null, "The climb, from the Park Service figures quoted in this article: straight lines between the published points, not a surveyed profile. Most of the effort that decides the day comes after Columbia Rock.")), React.createElement("p", null, "The trail is not the only hard climb out of the Valley. The Mist Trail to Vernal and Nevada Falls carries its own crowd and its own wet granite staircase; ", React.createElement("a", {
     href: "/articles/mist-trail-the-real-guide"
   }, "the Mist Trail guide"), " covers that one. The Yosemite Falls Trail has fewer people above Columbia Rock, a much bigger climb, and more sun. Which of the two to pick on a given day usually comes down to the heat."), React.createElement("h2", null, "Columbia Rock: the honest turnaround"), React.createElement("p", null, "The first mile is the one to plan around. The Park Service describes it as a ", React.createElement("strong", null, "one-mile, 1,000-foot climb via dozens of switchbacks"), " to Columbia Rock, an overlook with the Valley floor below and ", React.createElement("strong", null, "Half Dome and Sentinel Rock"), " across it. It is a real climb, short enough for most healthy visitors who take it slowly, and the Park Service calls it a worthwhile trip at any time of year."), React.createElement("p", null, "Past Columbia Rock, the Park Service suggests going on another ", React.createElement("strong", null, "half mile"), ", some of it downhill, to a view of Upper Yosemite Fall itself. This is the best value on the trail: the Park Service calls it a stunning view of the upper fall, and in spring, depending on the flow, you may feel its mist. For most visitors, that viewpoint is the right place to turn around: about three miles round trip, the Valley view and the upper fall both, and none of the upper half. Remember that the downhill stretch out is uphill on the way back."), React.createElement("p", null, "Above that point the trail changes. The Park Service calls the upper half ", React.createElement("strong", null, "steep and rocky"), ", and it is the harder half. If the first mile was hard work, the next two are harder, and there is no shame in taking the viewpoint as the destination."), React.createElement("h2", null, "Above Columbia Rock: the upper half"), React.createElement("p", null, "Three things make the upper switchbacks hard. The first is ", React.createElement("strong", null, "exposure to the sun"), ": the Park Service notes that the upper portion receives ", React.createElement("strong", null, "no shade until late afternoon or early evening"), ", which on a summer morning or midday means the whole climb is in direct sun. The second is the footing. There are long stretches of loose sand over rock, and the Park Service lists ", React.createElement("strong", null, "sprained ankles and knee injuries"), " as common here. The third is the length of the climb, which keeps going well after it feels like it should have stopped."), React.createElement("p", null, "The heat is the part to respect most. The Park Service's own advice is to start as early as possible, to drink plenty and often, to rest in the shade where there is any, and to eat salty snacks, and it tells hikers going to the top to carry ", React.createElement("strong", null, "4 quarts or liters of water per person"), ", because there is none on the trail. ", React.createElement("a", {
     href: "/articles/yosemite-heat-safety-guide"

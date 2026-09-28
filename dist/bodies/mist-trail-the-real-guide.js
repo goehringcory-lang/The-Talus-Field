@@ -1,12 +1,175 @@
 window.ARTICLE_BODIES = window.ARTICLE_BODIES || {};
 window.ARTICLE_BODIES["mist-trail-the-real-guide"] = function MistTrailBody() {
+  var AXIS = {
+    fontFamily: "var(--sans)",
+    fontSize: 12.5,
+    fill: "var(--ink-3)"
+  };
+  var LABEL = {
+    fontFamily: "var(--sans)",
+    fontSize: 13,
+    fill: "var(--ink-2)"
+  };
+  var PLACE = {
+    fontFamily: "var(--serif)",
+    fontSize: 16,
+    fill: "var(--ink)"
+  };
+  var CROWD = {
+    fontFamily: "var(--sans)",
+    fontSize: 12,
+    fontStyle: "italic",
+    fill: "var(--rust)"
+  };
+  var svgStyle = {
+    width: "100%",
+    height: "auto",
+    display: "block"
+  };
+  function Turnarounds() {
+    var W = 680,
+      H = 350,
+      L = 56,
+      R = 30,
+      T = 34,
+      B = 46;
+    var pw = W - L - R,
+      ph = H - T - B;
+    var x = mi => L + mi / 2.7 * pw;
+    var y = ft => T + ph - ft / 2000 * ph;
+    var pts = [[0, 0], [0.8, 400], [1.2, 1000], [2.7, 2000]];
+    var line = pts.map(([m, f]) => `${x(m)},${y(f)}`).join(" ");
+    var stops = [{
+      m: 0,
+      f: 0,
+      name: "Happy Isles",
+      sub: "start, 4,000 ft",
+      crowd: "",
+      dx: 12,
+      dy: -64,
+      anchor: "start"
+    }, {
+      m: 0.8,
+      f: 400,
+      name: "Vernal Fall footbridge",
+      sub: "0.8 mi · 400 ft",
+      crowd: "packed",
+      dx: 10,
+      dy: 30,
+      anchor: "start"
+    }, {
+      m: 1.2,
+      f: 1000,
+      name: "Top of Vernal Fall",
+      sub: "1.2 mi · 1,000 ft",
+      crowd: "has people",
+      dx: -12,
+      dy: -40,
+      anchor: "end"
+    }, {
+      m: 2.7,
+      f: 2000,
+      name: "Top of Nevada Fall",
+      sub: "2.7 mi · 2,000 ft",
+      crowd: "can feel almost empty on a weekday",
+      dx: -8,
+      dy: 95,
+      anchor: "end"
+    }];
+    return React.createElement("svg", {
+      viewBox: `0 0 ${W} ${H}`,
+      style: svgStyle,
+      role: "img",
+      "aria-label": "The Mist Trail's four turnarounds, from the figures in this article. From Happy Isles at 4,000 feet: the Vernal Fall footbridge at 0.8 miles and 400 feet of gain, where the crowd is packed; the top of Vernal Fall at 1.2 miles and 1,000 feet, up a granite staircase that gains 600 feet in 0.4 miles in the mist zone; the top of Nevada Fall at 2.7 miles and 2,000 feet, which on a weekday can feel almost empty. The crowd thins as the trail climbs."
+    }, [0, 500, 1000, 1500, 2000].map(f => React.createElement("g", {
+      key: f
+    }, React.createElement("line", {
+      x1: L,
+      x2: W - R,
+      y1: y(f),
+      y2: y(f),
+      stroke: "var(--rule-soft)",
+      strokeWidth: "1"
+    }), React.createElement("text", {
+      x: L - 8,
+      y: y(f) + 4,
+      textAnchor: "end",
+      style: AXIS
+    }, f === 0 ? "0" : f.toLocaleString("en-US")))), [0, 0.5, 1, 1.5, 2, 2.5].map(m => React.createElement("text", {
+      key: m,
+      x: x(m),
+      y: H - 24,
+      textAnchor: "middle",
+      style: AXIS
+    }, m)), React.createElement("text", {
+      x: L + pw / 2,
+      y: H - 6,
+      textAnchor: "middle",
+      style: AXIS
+    }, "miles from Happy Isles · feet gained"), React.createElement("rect", {
+      x: x(0.8),
+      y: T,
+      width: x(1.2) - x(0.8),
+      height: ph,
+      fill: "var(--moss)",
+      opacity: "0.10"
+    }), React.createElement("text", {
+      x: (x(0.8) + x(1.2)) / 2,
+      y: T + 14,
+      textAnchor: "middle",
+      style: LABEL
+    }, "the mist zone"), React.createElement("text", {
+      x: (x(0.8) + x(1.2)) / 2,
+      y: T + 30,
+      textAnchor: "middle",
+      style: LABEL
+    }, "600 ft in 0.4 mi"), React.createElement("polygon", {
+      points: `${x(0)},${y(0)} ${line} ${x(2.7)},${y(0)}`,
+      fill: "var(--moss)",
+      opacity: "0.12"
+    }), React.createElement("polyline", {
+      points: line,
+      fill: "none",
+      stroke: "var(--moss)",
+      strokeWidth: "2.6",
+      strokeLinejoin: "round"
+    }), stops.map(st => React.createElement("g", {
+      key: st.name
+    }, React.createElement("circle", {
+      cx: x(st.m),
+      cy: y(st.f),
+      r: "5",
+      fill: "var(--paper)",
+      stroke: "var(--ink)",
+      strokeWidth: "2"
+    }), React.createElement("text", {
+      x: x(st.m) + st.dx,
+      y: y(st.f) + st.dy,
+      textAnchor: st.anchor,
+      style: PLACE
+    }, st.name), React.createElement("text", {
+      x: x(st.m) + st.dx,
+      y: y(st.f) + st.dy + 17,
+      textAnchor: st.anchor,
+      style: LABEL
+    }, st.sub), st.crowd && React.createElement("text", {
+      x: x(st.m) + st.dx,
+      y: y(st.f) + st.dy + 33,
+      textAnchor: st.anchor,
+      style: CROWD
+    }, st.crowd))));
+  }
   return React.createElement(React.Fragment, null, React.createElement("p", {
     className: "dropcap"
   }, "The Mist Trail starts at Happy Isles in Yosemite Valley. Choose the Vernal Fall footbridge for a shorter hike, or continue up steep granite steps to Vernal Fall and Nevada Fall. Above the footbridge, expect a strenuous climb, wet footing during snowmelt, and exposed sections beside the waterfalls."), React.createElement("p", null, React.createElement("strong", null, "Distances from Happy Isles:"), " 1.6 miles round trip to the footbridge, 2.4 miles to the top of Vernal Fall, or 5.4 miles to the top of Nevada Fall. Allow 1 to 1.5 hours, about 3 hours, or 5 to 6 hours respectively. Parking adds walking distance. These are the ", React.createElement("a", {
     href: "https://www.nps.gov/yose/planyourvisit/vernalnevadatrail.htm"
   }, "NPS route estimates"), "."), React.createElement("p", null, "Check ", React.createElement("a", {
     href: "https://www.nps.gov/yose/planyourvisit/conditions.htm"
-  }, "current trail closures"), " before choosing your route. The weekday repair detour described below affects the staircase to Vernal Fall through October 2026, subject to change."), React.createElement("h2", null, "What the Mist Trail actually is"), React.createElement("p", null, "The Mist Trail starts at Happy Isles, at the east end of Yosemite Valley, and climbs beside two waterfalls: Vernal Fall (317 feet) and Nevada Fall (594 feet). The full trail to the top of Nevada Fall is about 5.4 miles round trip with roughly 2,000 feet of elevation gain. If you only go to the Vernal Fall footbridge, where most families turn around, it's 1.6 miles round trip with about 400 feet of gain."), React.createElement("p", null, "You can stop at any of four natural turnarounds, and each one works as a full hike on its own."), React.createElement("p", null, React.createElement("strong", null, "The Vernal Fall footbridge"), " (0.8 miles from Happy Isles, 400 ft gain). Paved trail, a moderate grade, and a clear look at Vernal Fall from the bridge. Most families with young kids turn around here, and it's worth the walk even if you go no farther."), React.createElement("p", null, React.createElement("strong", null, "The top of Vernal Fall"), " (about 1.2 miles from Happy Isles, 1,000 ft gain). This is where the trail earns the \"mist\" in its name. You climb a granite staircase right next to the fall, and when it's running at peak volume (May and June), you get drenched. The granite steps are wet, steep, and uneven. A metal railing is bolted into the rock on the exposed side. At the top there's an emerald pool above the fall and a view down the canyon."), React.createElement("p", null, React.createElement("strong", null, "The top of Nevada Fall"), " (2.7 miles from Happy Isles, 2,000 ft gain). Past Vernal, the trail heads through forest and up the Merced River canyon to the base of Nevada Fall, then to its top. Up there you're looking down 594 feet of whitewater with Liberty Cap and Half Dome standing behind you, one of the most dramatic views in the park."), React.createElement("p", null, React.createElement("strong", null, "The return via the John Muir Trail."), " From Nevada Fall, the JMT provides a longer descent with gentler grades than the Mist Trail stairs. Allow roughly 7 miles for the combined hike from Happy Isles, plus the walk to your parking space. Check closures before relying on either route."), React.createElement("p", null, "Keep going past Nevada Fall and you're on the standard approach to Half Dome. If that's the plan, read the ", React.createElement("a", {
+  }, "current trail closures"), " before choosing your route. The weekday repair detour described below affects the staircase to Vernal Fall through October 2026, subject to change."), React.createElement("h2", null, "What the Mist Trail actually is"), React.createElement("p", null, "The Mist Trail starts at Happy Isles, at the east end of Yosemite Valley, and climbs beside two waterfalls: Vernal Fall (317 feet) and Nevada Fall (594 feet). The full trail to the top of Nevada Fall is about 5.4 miles round trip with roughly 2,000 feet of elevation gain. If you only go to the Vernal Fall footbridge, where most families turn around, it's 1.6 miles round trip with about 400 feet of gain."), React.createElement("p", null, "You can stop at any of four natural turnarounds, and each one works as a full hike on its own."), React.createElement("p", null, React.createElement("strong", null, "The Vernal Fall footbridge"), " (0.8 miles from Happy Isles, 400 ft gain). Paved trail, a moderate grade, and a clear look at Vernal Fall from the bridge. Most families with young kids turn around here, and it's worth the walk even if you go no farther."), React.createElement("p", null, React.createElement("strong", null, "The top of Vernal Fall"), " (about 1.2 miles from Happy Isles, 1,000 ft gain). This is where the trail earns the \"mist\" in its name. You climb a granite staircase right next to the fall, and when it's running at peak volume (May and June), you get drenched. The granite steps are wet, steep, and uneven. A metal railing is bolted into the rock on the exposed side. At the top there's an emerald pool above the fall and a view down the canyon."), React.createElement("p", null, React.createElement("strong", null, "The top of Nevada Fall"), " (2.7 miles from Happy Isles, 2,000 ft gain). Past Vernal, the trail heads through forest and up the Merced River canyon to the base of Nevada Fall, then to its top. Up there you're looking down 594 feet of whitewater with Liberty Cap and Half Dome standing behind you, one of the most dramatic views in the park."), React.createElement("p", null, React.createElement("strong", null, "The return via the John Muir Trail."), " From Nevada Fall, the JMT provides a longer descent with gentler grades than the Mist Trail stairs. Allow roughly 7 miles for the combined hike from Happy Isles, plus the walk to your parking space. Check closures before relying on either route."), React.createElement("figure", {
+    style: {
+      margin: "28px 0 32px"
+    }
+  }, React.createElement(Turnarounds, null), React.createElement("figcaption", null, "The four turnarounds, from the figures above: straight lines between the published points, not a surveyed profile. The crowd notes are from the crowd section below. Coming down the John Muir Trail from the top of Nevada Fall makes a hike of roughly 7 miles from Happy Isles, plus the walk to your parking space.")), React.createElement("p", null, "Keep going past Nevada Fall and you're on the standard approach to Half Dome. If that's the plan, read the ", React.createElement("a", {
     href: "/half-dome-lottery"
   }, "permit lottery guide"), " first, and ", React.createElement("a", {
     href: "/articles/so-you-want-to-hike-half-dome"
