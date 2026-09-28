@@ -859,6 +859,14 @@ const seed: AmenityInput[] = [
     note: 'The pillar east of Royal Arches, facing Half Dome across Tenaya Canyon, above Mirror Lake.',
   },
   {
+    id: 'vernal-fall',
+    name: 'Vernal Fall',
+    kind: 'landmark',
+    region: 'valley',
+    coord: [-119.543773, 37.727426], // Wikipedia: Vernal Fall
+    note: 'The 317-foot fall on the Merced below Nevada Fall, the first payoff on the Mist Trail. The footbridge view is 0.8 miles from Happy Isles; the top is about 600 granite steps and 1.2 miles in.',
+  },
+  {
     id: 'nevada-fall',
     name: 'Nevada Fall',
     kind: 'landmark',
