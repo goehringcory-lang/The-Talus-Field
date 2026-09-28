@@ -58,6 +58,14 @@ export function loadTrails(): Promise<GeoJSON.FeatureCollection<GeoJSON.LineStri
   return trailsPromise
 }
 
+// Widths are pixels at the centre of the view, and a tilted camera draws the
+// ground near the lens at up to twice that; at the old 3.5 px a trail in the
+// foreground of the opening view read heavier than the highway. Thinner, and
+// faded at park scale, where fifty-seven trails would otherwise out-draw the
+// pins they lead from.
+const LINE_WIDTH: ExpressionSpecification = ['interpolate', ['linear'], ['zoom'], 10, 1, 12, 1.6, 15, 3]
+const CASING_WIDTH: ExpressionSpecification = ['interpolate', ['linear'], ['zoom'], 10, 2, 12, 2.8, 15, 5.5]
+
 function colorExpression(): ExpressionSpecification {
   const c = trailColors()
   return ['match', ['get', 'difficulty'], 'easy', c.easy, 'moderate', c.moderate, 'strenuous', c.strenuous, c.unrated]
@@ -78,7 +86,7 @@ export function ensureTrailLayers(map: MapLibreMap, data: GeoJSON.FeatureCollect
       type: 'line',
       source: 'trails',
       layout: { 'line-join': 'round', 'line-cap': 'round' },
-      paint: { 'line-color': tripCasing(), 'line-width': ['interpolate', ['linear'], ['zoom'], 10, 2.5, 15, 6], 'line-opacity': 0.8 },
+      paint: { 'line-color': tripCasing(), 'line-width': CASING_WIDTH, 'line-opacity': ['interpolate', ['linear'], ['zoom'], 9, 0.4, 12, 0.8] },
     },
     before,
   )
@@ -90,8 +98,8 @@ export function ensureTrailLayers(map: MapLibreMap, data: GeoJSON.FeatureCollect
       layout: { 'line-join': 'round', 'line-cap': 'round' },
       paint: {
         'line-color': colorExpression(),
-        'line-width': ['interpolate', ['linear'], ['zoom'], 10, 1.5, 15, 3.5],
-        'line-opacity': 0.9,
+        'line-width': LINE_WIDTH,
+        'line-opacity': ['interpolate', ['linear'], ['zoom'], 9, 0.55, 12, 0.9],
       },
     },
     before,
@@ -103,7 +111,7 @@ export function ensureTrailLayers(map: MapLibreMap, data: GeoJSON.FeatureCollect
       source: 'trails',
       filter: ['==', ['get', 'id'], ''],
       layout: { 'line-join': 'round', 'line-cap': 'round' },
-      paint: { 'line-color': colorExpression(), 'line-width': ['interpolate', ['linear'], ['zoom'], 10, 4, 15, 8] },
+      paint: { 'line-color': colorExpression(), 'line-width': ['interpolate', ['linear'], ['zoom'], 10, 3, 15, 6] },
     },
     before,
   )

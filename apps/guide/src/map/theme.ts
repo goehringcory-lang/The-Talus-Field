@@ -39,6 +39,16 @@ export const HOME_CAMERA = {
   bearing: 78,
 }
 
+/**
+ * The camera for "show me this one place" (a search pick, a program's
+ * meeting point, a stop from the trip panel). The elevation tiles stop at
+ * z13, so past about z14.5 the terrain under a tilted camera is overzoomed
+ * mush and every line near the lens balloons; 14 at 50 degrees is close
+ * enough to read the turnout and still shows the ground around it.
+ */
+export const FOCUS_ZOOM = 14
+export const FOCUS_PITCH = 50
+
 /** How far past the archive extent the reader may pan, in degrees. */
 export const PAN_BUFFER_DEG = 0.12
 

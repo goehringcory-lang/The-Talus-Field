@@ -71,6 +71,12 @@ function withOverlays(base: LayerSpecification[], theme: MapTheme): LayerSpecifi
     source: 'hillshade',
     paint: {
       'hillshade-exaggeration': HILLSHADE_EXAGGERATION,
+      // Lit from the north-west of the ground, not of the screen: with the
+      // default viewport anchor the sun swung round the park every time the
+      // reader rotated the 3D view, and a ridge's shaded side changed with
+      // it. Anchored to the map, the relief stays the relief.
+      'hillshade-illumination-anchor': 'map',
+      'hillshade-illumination-direction': 315,
       'hillshade-shadow-color': theme.hillshade.shadow,
       'hillshade-highlight-color': theme.hillshade.highlight,
       'hillshade-accent-color': theme.hillshade.accent,

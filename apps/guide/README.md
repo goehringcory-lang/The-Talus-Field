@@ -65,14 +65,15 @@ on it needs a third-party key, and every byte it draws can be cached offline.
 
 | File | What it is |
 |---|---|
-| `src/routes/Map.tsx` | The route: the MapLibre instance, pins, popups, filters, the 2D/3D toggle, Reset view, Offline areas |
+| `src/routes/Map.tsx` | The route: the MapLibre instance, pins and their declutter pass, popups, filters, the camera framing, the 2D/3D toggle, Reset, Go to, Offline |
 | `src/map/theme.ts` | Every colour and tunable number: fills per scheme, terrain exaggeration (1.4), hillshade, sky, the opening camera |
 | `src/map/style.ts` | Builds the MapLibre style: Protomaps layers, the terrain and hillshade sources (two sources on purpose), sky, the park boundary and the outside-the-park dimming |
 | `src/map/regions.ts` | The tile extent and the offline areas, pure, shared with the tile generator |
 | `src/map/tiles.generated.ts` | Generated: the tile archive version and each offline pack's measured size |
 | `src/map/data/park-boundary.json` | Generated: the NPS boundary, simplified |
 | `src/map/attribution.ts` | The data credits |
-| `src/map/kinds.ts` | Pin kinds, colours and glyphs |
+| `src/map/kinds.ts` | Pin kinds, colours, glyphs and declutter ranks |
+| `src/map/declutter.ts` | Which pins draw full-size and which step down to a dot; the depth scale for tilted views |
 | `src/map/tripLayer.ts`, `TripPanel.tsx`, `tripMapLayers.ts`, `tripIcons.ts` | The trip layer: the plan as days of pins, legs and warnings; its panel; its MapLibre layers; its pin shapes |
 | `src/map/roadGraph.ts`, `src/map/mapData.generated.ts`, `public/map/roads-<hash>.json` | The road and path graph and the on-device router |
 | `src/trip/shuttle.ts`, `src/trip/places.ts` | Valley shuttle legs; map places a trip can hold |
@@ -137,6 +138,10 @@ plan.
   `/programs` rather than guessed onto the map.
 - Search (`src/map/mapSearch.ts`): stops, trails, the places layer, places to
   eat and program meeting points by name, with `/search`'s tokenizer.
+- Declutter: where pins crowd, the higher-ranked one draws and the rest
+  become dots in their kind's colour; a tap on a dot zooms in, Enter on a
+  focused one opens its popup. In 3D the far pins shrink with depth. Ranks are
+  `rank` in `src/map/kinds.ts`.
 
 **Deep links**, all mirrored with `replaceState`: `tab`
 (`points` / `itineraries` / `trip` / `info`), `stop`, `trail`, `day` (on the
