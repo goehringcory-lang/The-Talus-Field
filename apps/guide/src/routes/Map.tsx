@@ -20,6 +20,7 @@ import maplibregl from 'maplibre-gl'
 import 'maplibre-gl/dist/maplibre-gl.css'
 import GatedChrome from '../components/GatedChrome'
 import ResponsivePhoto from '../components/ResponsivePhoto'
+import Button from '../components/ui/Button'
 import { ChipButton } from '../components/ui/Chip'
 import { AMENITIES, DINING, DINING_KIND_LABEL, HIKES, REGIONS, SECRET_SPOTS, stops as allStops, getItineraryDayPhotos, getStopById, isSecretGuideEntry, type AmenityT, type DiningVenueT, type GuideStopT, type HikeT, type Region } from '../content'
 import { DIFFICULTY_LABEL, formatTime } from '../content/labels'
@@ -62,7 +63,10 @@ import { programPoints, type ProgramPoint } from '../map/programPoints'
 import { PIN_H, PIN_W, declutter, depthScale, type DeclutterItem } from '../map/declutter'
 import { LENGTH_CHOICES, TRAIL_LINE_LAYER, ensureTrailLayers, loadTrails, recolorTrails, setTrailFilter, type TrailFilter } from '../map/trailsLayer'
 import { TRAIL_LABEL, trailColors } from '../map/theme'
-import { usePrograms } from '../programs/usePrograms'
+import { readTripDates, usePrograms } from '../programs/usePrograms'
+import { useRoadReader } from '../alerts/roadState'
+import { daysInWindow, seedItinerary, shortDay } from '../trip/seedItinerary'
+import { useArmToConfirm } from '../utils/useArmToConfirm'
 import { todayIso } from '../utils/date'
 import { RoadGraph, type Pt, type RoadGraphFile } from '../map/roadGraph'
 import { ROADS_URL } from '../map/mapData.generated'
@@ -1109,6 +1113,9 @@ export default function Map() {
   )
   const [showSecret, setShowSecret] = useState<boolean>(initial.secret)
   const [plannedOnly, setPlannedOnly] = useState<boolean>(initial.planned)
+  // Bumped by each seed from the Itineraries pane so the camera frames the
+  // new trip even when the trip filter was already on.
+  const [tripFitNonce, setTripFitNonce] = useState(0)
 
   // Hike track overlay (?hike=<id>). The track loads from the runtime cache
   // offline; the overlay draws above the topo with the trailhead marked.
@@ -1117,7 +1124,7 @@ export default function Map() {
   const trackHike = trackHikeId ? getHikeById(trackHikeId) : undefined
 
   // Stops already in the trip plan get a checkmark badge on their pin.
-  const { plan, removeItem } = useTripPlan()
+  const { plan, removeItem, addStop, addHike, addProgram, clear: clearPlan, setDates } = useTripPlan()
   const plannedStopIds = useMemo(
     () => new Set(plan.items.filter((it) => it.type === 'stop').map((it) => it.stopId)),
     [plan],
@@ -1215,10 +1222,12 @@ export default function Map() {
   }, [])
 
   // The itinerary's region set, or null when no itinerary narrows the map.
+  // The trip filter outranks it: "My trip" means the plan, all of it, and a
+  // stop added by hand outside the preset's regions is still on the trip.
   const itineraryRegions = useMemo<Set<Region> | null>(() => {
-    if (tab !== 'itineraries' || !selectedItinerary) return null
+    if (tab !== 'itineraries' || !selectedItinerary || plannedOnly) return null
     return new Set(ITINERARIES[selectedItinerary].days.flatMap((d) => d.regions))
-  }, [selectedItinerary, tab])
+  }, [selectedItinerary, tab, plannedOnly])
 
   // Filter by itinerary when one is selected and the itineraries tab is
   // active, AND-composed with the kind and Secret Guide filters. Secret Guide
@@ -1266,6 +1275,13 @@ export default function Map() {
       }),
     [itineraryRegions, kindFilter, plannedOnly, plannedHikeIds],
   )
+  // Read by the stop-marker effect when it frames the trip: a hike-only plan
+  // has no stop pins to fit around. A ref, not a dependency, so adding a hike
+  // from a trailhead popup never rebuilds (and closes) the stop markers.
+  const visibleTrailheadsRef = useRef<TrailheadGroup[]>(visibleTrailheads)
+  useEffect(() => {
+    visibleTrailheadsRef.current = visibleTrailheads
+  }, [visibleTrailheads])
 
   // Places to eat narrow like amenities. A gateway venue has no region, so
   // it never joins an itinerary view.
@@ -1876,9 +1892,16 @@ export default function Map() {
     if (!map || !trailsReady) return
     recolorTrails(map)
     // The trip view draws its own hikes along their trails; fifty-seven more
-    // under the plan would bury the legs the view exists to show.
-    setTrailFilter(map, { ...trailFilter, visible: trailFilter.visible && tab !== 'trip' }, selectedTrailId)
-  }, [trailsReady, trailFilter, selectedTrailId, schemeTick, tab])
+    // under the plan would bury the legs the view exists to show. The trip
+    // filter keeps the trails of the plan's hikes and nothing else, the lines
+    // doing what the pins do.
+    setTrailFilter(
+      map,
+      { ...trailFilter, visible: trailFilter.visible && tab !== 'trip' },
+      selectedTrailId,
+      plannedOnly ? plannedHikeIds : null,
+    )
+  }, [trailsReady, trailFilter, selectedTrailId, schemeTick, tab, plannedOnly, plannedHikeIds])
 
   // Program meeting points: a layer of their own, the programs feed for the
   // trip's dates grouped by where they meet.
@@ -2039,8 +2062,6 @@ export default function Map() {
     // (with a live "Add to trip") would otherwise hang over the filtered map.
     popupRef.current?.remove()
 
-    if (visibleStops.length === 0) return
-
     // A few stops intentionally share a viewing location (for example,
     // Tunnel View and the hidden waterfall entry seen from it). Keep those
     // pins individually tappable instead of letting the last marker added
@@ -2077,14 +2098,25 @@ export default function Map() {
       markersRef.current[stop.id] = marker
     }
 
-    // Not advanced on the empty early-return above, so the first non-empty
-    // render after a reset still fits when the itinerary changed meanwhile.
-    const fitKey = itineraryRegions && selectedItinerary ? selectedItinerary : 'all'
+    // The trip filter frames the trip: its trailheads count, since a plan of
+    // hikes alone has no stop pins, and each seed from the Itineraries pane
+    // (tripFitNonce) is a new trip to frame.
+    if (plannedOnly) {
+      for (const g of visibleTrailheadsRef.current) bounds.extend(g.coord)
+    }
+    // Not advanced on an empty frame, so the first non-empty render after a
+    // reset still fits when the itinerary changed meanwhile.
+    if (bounds.isEmpty()) return
+    const fitKey = plannedOnly ? `trip:${tripFitNonce}` : itineraryRegions && selectedItinerary ? selectedItinerary : 'all'
     if (lastFitKeyRef.current !== fitKey) {
-      frameBounds(map, bounds, is3dRef.current, { maxZoom: 12 })
+      // Turning the trip filter off is a chip toggle like the others: the
+      // camera stays where the reader has it rather than pulling out to the
+      // whole park.
+      const leavingTrip = !plannedOnly && lastFitKeyRef.current?.startsWith('trip:')
+      if (!leavingTrip) frameBounds(map, bounds, is3dRef.current, { maxZoom: 12 })
       lastFitKeyRef.current = fitKey
     }
-  }, [visibleStops, mapReady, selectStop, itineraryRegions, selectedItinerary])
+  }, [visibleStops, mapReady, selectStop, itineraryRegions, selectedItinerary, plannedOnly, tripFitNonce])
 
   // Badge planned stops without rebuilding markers: a rebuild would close
   // the popup in the same tap that pressed its "Add to trip" button.
@@ -2489,6 +2521,38 @@ export default function Map() {
     [selectStop],
   )
 
+  // Putting a preset on the plan from here: the trip board's own seeding
+  // (trip/seedItinerary.ts), onto the plan's dates, so the entries, the days
+  // and the note about what stayed off are the ones the board would give.
+  // Seeding over a planned trip replaces it, and that tap arms before it
+  // fires, as on the board. Once seeded the trip filter goes on, so the map
+  // shows the plan it just made: its pins and the trails of its hikes.
+  const roads = useRoadReader()
+  const seedConfirm = useArmToConfirm<ItineraryKey>('.map-seed')
+  const [seeded, setSeeded] = useState<{ key: ItineraryKey; note: string | null } | null>(null)
+  const planItemCount = plan.items.length
+  const seedFromMap = (key: ItineraryKey) => {
+    if (planItemCount > 0 && !seedConfirm.press(key)) return
+    // The board's window: dates picked on /programs win over the stored plan's.
+    const picked = readTripDates()
+    const dates = picked ?? plan.dates
+    if (picked && (picked.start !== plan.dates.start || picked.end !== plan.dates.end)) {
+      setDates(picked.start, picked.end)
+    }
+    if (planItemCount > 0) clearPlan()
+    const note = seedItinerary(key, {
+      windowDays: daysInWindow(dates.start, dates.end),
+      programEvents: programsState.events,
+      readRoad: roads.forRoad,
+      addStop,
+      addHike,
+      addProgram,
+    })
+    setSeeded({ key, note })
+    setPlannedOnly(true)
+    setTripFitNonce((n) => n + 1)
+  }
+
   const handleSelectStop = useCallback(
     (id: string) => {
       selectStop(id)
@@ -2648,11 +2712,13 @@ export default function Map() {
                 Secret Guide <span className="map-filterbar__count">{secretCount}</span>
               </ChipButton>
             )}
-            {plannedCount > 0 && (
+            {/* Stays while it is on, even once the plan empties, so the
+                filter that is hiding every pin can always be turned off. */}
+            {(plannedCount > 0 || plannedOnly) && (
               <ChipButton
                 variant="filter"
                 pressed={plannedOnly}
-                aria-label={`My trip, ${plannedCount} pins`}
+                aria-label={`My trip only: its ${plannedCount} pins and the trails of its hikes`}
                 onClick={() => setPlannedOnly((v) => !v)}
               >
                 My trip <span className="map-filterbar__count">{plannedCount}</span>
@@ -2897,6 +2963,19 @@ export default function Map() {
                       selected={selectedItinerary === key}
                       onClick={() => handleSelectItinerary(key)}
                     />
+                    {/* Under the card it acts on, not below the whole list. */}
+                    {selectedItinerary === key && (
+                      <SeedItinerarySection
+                        itinerary={key}
+                        itemCount={planItemCount}
+                        armed={seedConfirm.armed === key}
+                        seeded={seeded?.key === key ? seeded : null}
+                        tripOnly={plannedOnly}
+                        dates={readTripDates() ?? plan.dates}
+                        onSeed={() => seedFromMap(key)}
+                        onShowTrip={() => handleTab('trip')}
+                      />
+                    )}
                   </li>
                 ))}
               </ul>
@@ -3009,6 +3088,65 @@ function ItineraryButton({ photos, label, subtitle, count, selected, onClick }: 
         ))}
       </span>
     </button>
+  )
+}
+
+// The Itineraries pane's "Add to my trip": one button that puts the selected
+// preset on the plan's dates (or, over a planned trip, arms to replace it),
+// then says what landed and where to read it day by day.
+function SeedItinerarySection({
+  itinerary,
+  itemCount,
+  armed,
+  seeded,
+  tripOnly,
+  dates,
+  onSeed,
+  onShowTrip,
+}: {
+  itinerary: ItineraryKey
+  itemCount: number
+  armed: boolean
+  seeded: { note: string | null } | null
+  tripOnly: boolean
+  dates: { start: string; end: string }
+  onSeed: () => void
+  onShowTrip: () => void
+}) {
+  const { label } = ITINERARIES[itinerary]
+  const noun = itemCount === 1 ? 'item' : 'items'
+  const range = dates.start === dates.end ? shortDay(dates.start) : `${shortDay(dates.start)} to ${shortDay(dates.end)}`
+  return (
+    <div className="map-seed">
+      <Button size="sm" variant={armed ? 'danger' : 'solid'} className="map-seed__btn" onClick={onSeed}>
+        {armed
+          ? `Replace your ${itemCount} planned ${noun}?`
+          : itemCount === 0
+            ? 'Add to my trip'
+            : 'Replace my trip with this plan'}
+      </Button>
+      <p className="map-seed__sub">
+        {armed ? (
+          `Tap again to start over from ${label}. Anything else cancels.`
+        ) : (
+          <>
+            Onto your dates, {range}. <Link to="/trip">Change them on the trip board</Link>.
+          </>
+        )}
+      </p>
+      {seeded && (
+        <div className="map-seed__done" role="status">
+          <p>
+            {label} is on your trip.
+            {tripOnly && ' The map now shows only your trip: its stops and the trails of its hikes. Turn off My trip above to see everything.'}
+          </p>
+          {seeded.note && <p className="map-seed__note">{seeded.note}</p>}
+          <button type="button" className="map-seed__link" onClick={onShowTrip}>
+            See it day by day →
+          </button>
+        </div>
+      )}
+    </div>
   )
 }
 

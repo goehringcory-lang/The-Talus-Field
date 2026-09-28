@@ -26,8 +26,7 @@ import { addDaysIso, formatDayHeader, todayIso } from '../utils/date'
 import { prefersReducedMotion } from '../utils/motion'
 import BackupPlans from '../trip/BackupPlans'
 import DeadlinesPanel from '../trip/DeadlinesPanel'
-import { pickProgramsForDay } from '../trip/seedPrograms'
-import { seedDayNote, seedPresetDay } from '../trip/seedPreset'
+import { daysInWindow, seedItinerary } from '../trip/seedItinerary'
 import { useRoadReader } from '../alerts/roadState'
 import { slotPlan } from '../trip/slotting'
 import {
@@ -44,26 +43,7 @@ import { forecastLineForDay } from '../weather/todayLine'
 import './Trip.css'
 import { useDocumentTitle } from '../lib/documentTitle'
 import { useLandOnHash } from '../utils/useLandOnHash'
-
-// "Jan 13" for a note naming a board day.
-function shortDay(date: string): string {
-  return new Date(`${date}T12:00:00Z`).toLocaleDateString('en-US', {
-    month: 'short',
-    day: 'numeric',
-    timeZone: 'UTC',
-  })
-}
-
-function daysInWindow(start: string, end: string): string[] {
-  const out: string[] = []
-  const d = new Date(`${start}T00:00:00Z`)
-  const stop = Date.parse(`${end}T00:00:00Z`)
-  while (d.getTime() <= stop && out.length < 32) {
-    out.push(d.toISOString().slice(0, 10))
-    d.setUTCDate(d.getUTCDate() + 1)
-  }
-  return out
-}
+import { useArmToConfirm } from '../utils/useArmToConfirm'
 
 // Free-form entry form: the parts of a trip the guide doesn't model (lodging
 // check-in, a dinner reservation, a permit pickup) so the board, and the
@@ -118,56 +98,6 @@ function AddCustomRow({
       </div>
     </form>
   )
-}
-
-// Throwing away a hand-arranged board is the one destructive tap on this page,
-// and both buttons that can do it (clear, and reseeding from a preset) arm
-// before they fire: the first tap turns the button into an explicit question,
-// the second answers it. The same element carries both states, so a keyboard
-// user keeps focus through the change; a short guard after arming swallows the
-// second half of a double-tap, which is the accident this is here to prevent.
-// It disarms on Escape, on a tap outside `scope`, and on its own after a few
-// seconds of nothing. Deliberately not window.confirm: in-app browsers
-// (Instagram, Facebook) suppress it, and a suppressed confirm reads as true.
-const ARM_GUARD_MS = 400
-const DISARM_AFTER_MS = 6000
-
-function useArmToConfirm<T>(scope: string) {
-  const [armed, setArmed] = useState<T | null>(null)
-  const armedAt = useRef(0)
-
-  useEffect(() => {
-    if (armed === null) return
-    const timer = window.setTimeout(() => setArmed(null), DISARM_AFTER_MS)
-    const onKey = (e: KeyboardEvent) => {
-      if (e.key === 'Escape') setArmed(null)
-    }
-    const onPointerDown = (e: PointerEvent) => {
-      const target = e.target as HTMLElement | null
-      if (!target?.closest(scope)) setArmed(null)
-    }
-    window.addEventListener('keydown', onKey)
-    window.addEventListener('pointerdown', onPointerDown)
-    return () => {
-      window.clearTimeout(timer)
-      window.removeEventListener('keydown', onKey)
-      window.removeEventListener('pointerdown', onPointerDown)
-    }
-  }, [armed, scope])
-
-  /** True when this press is the confirming one; arming otherwise. */
-  function press(key: T): boolean {
-    if (armed !== key) {
-      armedAt.current = Date.now()
-      setArmed(key)
-      return false
-    }
-    if (Date.now() - armedAt.current < ARM_GUARD_MS) return false
-    setArmed(null)
-    return true
-  }
-
-  return { armed, press, disarm: () => setArmed(null) }
 }
 
 function ClearPlanButton({ itemCount, onClear }: { itemCount: number; onClear: () => void }) {
@@ -298,50 +228,23 @@ export default function Trip() {
 
   // Seed a preset day only up to what a day can actually hold (08:00-21:00
   // with travel buffers); dumping a whole region onto one date used to bury
-  // the plan in overflow warnings. The filtering (closed roads, closed-for-the-
-  // season stops, capacity) is trip/seedPreset.ts, the same code the preset
-  // check runs.
+  // the plan in overflow warnings. The loop is trip/seedItinerary.ts, which
+  // the map's Itineraries pane runs too; the filtering (closed roads, closed-
+  // for-the-season stops, capacity) is trip/seedPreset.ts, the same code the
+  // preset check runs.
   const roads = useRoadReader()
   const [seedNote, setSeedNote] = useState<string | null>(null)
-  function seedItinerary(key: ItineraryKey) {
-    // Preset days beyond the picked window are not seeded. Collapsing them
-    // onto the last date used to grant each its own capacity budget and
-    // produce a single impossible day. Say so when it happens — a silent
-    // truncation reads as the plan being smaller than advertised.
-    const totalDays = ITINERARIES[key].days.length
-    const notes: string[] = []
-    if (totalDays > windowDays.length) {
-      notes.push(
-        `Your dates hold ${windowDays.length} ${windowDays.length === 1 ? 'day' : 'days'}, so the first ${
-          windowDays.length === 1 ? 'day' : `${windowDays.length} days`
-        } of this ${totalDays}-day plan went on the board. Extend the dates above for the rest.`,
-      )
-    }
-    const days = ITINERARIES[key].days.slice(0, windowDays.length)
-    days.forEach((day, i) => {
-      const date = windowDays[i]
-      const result = seedPresetDay(day, date, roads.forRoad)
-      for (const entry of result.seeded) {
-        if (entry.kind === 'hike') addHike(entry.id, date)
-        else addStop(entry.id, date)
-      }
-      // A day the season emptied says so in words, and a closed road is
-      // never reported as a capacity problem.
-      const note = seedDayNote(result, `day ${i + 1} (${shortDay(date)})`)
-      if (note) notes.push(note)
-      // Program picks keep their published times and slot around the stops,
-      // so they sit outside the capacity budget. addProgram snapshots the
-      // event into the plan, same as adding it from /programs by hand.
-      for (const ev of pickProgramsForDay(
-        programs.events,
-        date,
-        day.programCategories ?? [],
-        day.regions,
-      )) {
-        addProgram(ev)
-      }
-    })
-    setSeedNote(notes.length > 0 ? notes.join(' ') : null)
+  function seedPreset(key: ItineraryKey) {
+    setSeedNote(
+      seedItinerary(key, {
+        windowDays,
+        programEvents: programs.events,
+        readRoad: roads.forRoad,
+        addStop,
+        addHike,
+        addProgram,
+      }),
+    )
   }
 
   const itemCount = plan.items.length
@@ -351,12 +254,12 @@ export default function Trip() {
   const replaceConfirm = useArmToConfirm<ItineraryKey>('.trip-presets')
   function reseedItinerary(key: ItineraryKey) {
     if (itemCount === 0) {
-      seedItinerary(key)
+      seedPreset(key)
       return
     }
     if (!replaceConfirm.press(key)) return
     clear()
-    seedItinerary(key)
+    seedPreset(key)
   }
 
   // Same clamp as /programs: end never before start, window capped at what

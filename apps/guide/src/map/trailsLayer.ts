@@ -125,9 +125,16 @@ export function recolorTrails(map: MapLibreMap) {
   map.setPaintProperty('trails-casing', 'line-color', tripCasing())
 }
 
-export function setTrailFilter(map: MapLibreMap, f: TrailFilter, hoveredOrSelected: string | null) {
+/** `onlyIds` narrows the lines to those hikes (the map's trip filter); null draws every trail. */
+export function setTrailFilter(
+  map: MapLibreMap,
+  f: TrailFilter,
+  hoveredOrSelected: string | null,
+  onlyIds: ReadonlySet<string> | null = null,
+) {
   if (!map.getLayer(TRAIL_LINE_LAYER)) return
   const clauses: ExpressionSpecification[] = []
+  if (onlyIds) clauses.push(['in', ['get', 'id'], ['literal', [...onlyIds]]])
   if (f.difficulties) clauses.push(['in', ['get', 'difficulty'], ['literal', [...f.difficulties]]])
   if (f.maxMiles !== null) clauses.push(['<=', ['get', 'miles'], f.maxMiles])
   const filter: ExpressionSpecification = clauses.length ? ['all', ...clauses] : ['boolean', true]

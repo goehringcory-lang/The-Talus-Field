@@ -703,6 +703,56 @@
   letter-spacing: 0.06em;
 }
 
+.map-seed {
+  padding: 10px 2px 6px;
+}
+
+.map-seed__btn {
+  width: 100%;
+}
+
+.map-seed__sub {
+  margin: 8px 0 0;
+  font-size: 12px;
+  color: var(--ink-2);
+}
+
+.map-seed__sub a {
+  color: inherit;
+}
+
+.map-seed__done {
+  margin-top: 12px;
+  padding: 10px 12px;
+  border: 1px solid var(--rule-soft);
+  border-radius: var(--radius);
+  background: var(--paper-2);
+  font-size: 13px;
+  color: var(--ink);
+}
+
+.map-seed__done p {
+  margin: 0 0 6px;
+}
+
+.map-seed__note {
+  color: var(--ink-2);
+  font-size: 12px;
+}
+
+.map-seed__link {
+  padding: 0;
+  min-height: 32px;
+  border: 0;
+  background: none;
+  font: inherit;
+  font-weight: 600;
+  color: var(--ink);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+  cursor: pointer;
+}
+
 .map-sidebar__days {
   display: flex;
   flex-direction: column;
