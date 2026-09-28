@@ -3460,6 +3460,297 @@ function FjSteps({
   }, fjPad(i + 1)), React.createElement("div", null, s.title && React.createElement("strong", null, s.title), s.text && React.createElement("p", null, s.text)))));
 }
 var GUIDE_PROMO_APP_BASE = typeof window !== "undefined" && window.GUIDE_APP_BASE || "https://guide.thetalusfieldjournal.com";
+function FilmEmbed({
+  ep,
+  location
+}) {
+  var [playing, setPlaying] = useState(false);
+  var frameRef = useRef(null);
+  useEffect(() => {
+    if (playing && frameRef.current) frameRef.current.focus();
+  }, [playing]);
+  if (playing) {
+    return React.createElement("div", {
+      className: "film__frame"
+    }, React.createElement("iframe", {
+      ref: frameRef,
+      src: `https://www.youtube-nocookie.com/embed/${ep.youtubeId}?autoplay=1&rel=0`,
+      title: `Yosemite Nature Notes: ${ep.title}`,
+      allow: "accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture; web-share",
+      allowFullScreen: true
+    }));
+  }
+  return React.createElement("button", {
+    type: "button",
+    className: "film__facade",
+    "aria-label": `Play film: ${ep.title}`,
+    onClick: () => {
+      if (window.track) window.track("film_play", {
+        film_id: ep.id,
+        film_title: ep.title,
+        location: location || "films"
+      });
+      setPlaying(true);
+    }
+  }, React.createElement("img", {
+    className: "film__thumb",
+    src: `https://i.ytimg.com/vi/${ep.youtubeId}/hqdefault.jpg`,
+    alt: "",
+    loading: "lazy",
+    decoding: "async",
+    referrerPolicy: "no-referrer"
+  }), React.createElement("span", {
+    className: "film__play",
+    "aria-hidden": "true"
+  }, React.createElement("svg", {
+    viewBox: "0 0 64 64",
+    width: "56",
+    height: "56"
+  }, React.createElement("circle", {
+    cx: "32",
+    cy: "32",
+    r: "30",
+    fill: "none",
+    stroke: "currentColor",
+    strokeWidth: "1.5"
+  }), React.createElement("path", {
+    d: "M26 21 L46 32 L26 43 Z",
+    fill: "currentColor"
+  }))));
+}
+function NatureNotesFilm({
+  id,
+  title,
+  youtubeId,
+  episode,
+  note,
+  location,
+  className
+}) {
+  var ep = {
+    id,
+    title,
+    youtubeId
+  };
+  return React.createElement("figure", {
+    className: ["nn-film", className].filter(Boolean).join(" ")
+  }, React.createElement(FilmEmbed, {
+    ep: ep,
+    location: location || "article"
+  }), React.createElement("figcaption", {
+    className: "nn-film__cap"
+  }, React.createElement("span", {
+    className: "nn-film__kicker"
+  }, "Yosemite Nature Notes", episode != null ? ` · Episode ${episode}` : ""), React.createElement("strong", {
+    className: "nn-film__title"
+  }, title), note && React.createElement("span", {
+    className: "nn-film__note"
+  }, note), React.createElement("span", {
+    className: "nn-film__credit"
+  }, "Film: National Park Service. Nothing loads from YouTube until you press play.")));
+}
+var EVENT_ICON_PATHS = {
+  drop: React.createElement("path", {
+    d: "M12 3c3 4.5 6 7.6 6 11a6 6 0 0 1-12 0c0-3.4 3-6.5 6-11z"
+  }),
+  cloud: React.createElement("path", {
+    d: "M7 18h10a4 4 0 0 0 .6-7.95A6 6 0 0 0 6.2 11 3.5 3.5 0 0 0 7 18z"
+  }),
+  sun: React.createElement(React.Fragment, null, React.createElement("circle", {
+    cx: "12",
+    cy: "12",
+    r: "4"
+  }), React.createElement("path", {
+    d: "M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"
+  })),
+  walk: React.createElement(React.Fragment, null, React.createElement("circle", {
+    cx: "13",
+    cy: "4",
+    r: "2"
+  }), React.createElement("path", {
+    d: "M9 21l2-6 3 3v3M8 11l3-4 3 2 3 1M11 7l-1 5"
+  })),
+  car: React.createElement(React.Fragment, null, React.createElement("path", {
+    d: "M4 16V11l2-5h12l2 5v5M4 16h16M4 16v2M20 16v2"
+  }), React.createElement("circle", {
+    cx: "7.5",
+    cy: "13.5",
+    r: "1"
+  }), React.createElement("circle", {
+    cx: "16.5",
+    cy: "13.5",
+    r: "1"
+  })),
+  bed: React.createElement(React.Fragment, null, React.createElement("path", {
+    d: "M3 18V7M3 13h18v5M21 13a3 3 0 0 0-3-3h-7v3"
+  }), React.createElement("circle", {
+    cx: "7",
+    cy: "10.5",
+    r: "1.5"
+  })),
+  clock: React.createElement(React.Fragment, null, React.createElement("circle", {
+    cx: "12",
+    cy: "12",
+    r: "9"
+  }), React.createElement("path", {
+    d: "M12 7v5l3 2"
+  })),
+  therm: React.createElement("path", {
+    d: "M14 14V5a2 2 0 0 0-4 0v9a4 4 0 1 0 4 0z"
+  }),
+  alert: React.createElement(React.Fragment, null, React.createElement("path", {
+    d: "M12 3l10 18H2z"
+  }), React.createElement("path", {
+    d: "M12 10v5M12 18v.5"
+  })),
+  no: React.createElement(React.Fragment, null, React.createElement("circle", {
+    cx: "12",
+    cy: "12",
+    r: "9"
+  }), React.createElement("path", {
+    d: "M6 6l12 12"
+  })),
+  pin: React.createElement(React.Fragment, null, React.createElement("path", {
+    d: "M12 21s-7-6.2-7-11a7 7 0 0 1 14 0c0 4.8-7 11-7 11z"
+  }), React.createElement("circle", {
+    cx: "12",
+    cy: "10",
+    r: "2.5"
+  })),
+  check: React.createElement("path", {
+    d: "M4 12l5 5L20 6"
+  }),
+  fuel: React.createElement(React.Fragment, null, React.createElement("path", {
+    d: "M5 21V5a2 2 0 0 1 2-2h6a2 2 0 0 1 2 2v16M3 21h14M5 10h10"
+  }), React.createElement("path", {
+    d: "M15 8l3 3v6a1.5 1.5 0 0 0 3 0V9l-3-3"
+  })),
+  snow: React.createElement(React.Fragment, null, React.createElement("path", {
+    d: "M12 2v20M3.3 7l17.4 10M20.7 7L3.3 17"
+  }), React.createElement("path", {
+    d: "M9.5 3.5L12 5l2.5-1.5M9.5 20.5L12 19l2.5 1.5"
+  })),
+  signal: React.createElement(React.Fragment, null, React.createElement("path", {
+    d: "M4 20h.01M9 20v-4M14 20v-8M19 20V8"
+  }), React.createElement("path", {
+    d: "M3 3l18 18"
+  })),
+  food: React.createElement(React.Fragment, null, React.createElement("path", {
+    d: "M7 3v8a2 2 0 0 0 2 2v8M5 3v5a2 2 0 0 0 4 0V3"
+  }), React.createElement("path", {
+    d: "M17 21V3c-2 1.5-3 4-3 7v4h3"
+  })),
+  ticket: React.createElement(React.Fragment, null, React.createElement("path", {
+    d: "M3 8a2 2 0 0 0 0 4v0a2 2 0 0 0 0 4v2h18v-2a2 2 0 0 1 0-4 2 2 0 0 1 0-4V6H3z"
+  }), React.createElement("path", {
+    d: "M14 6v12",
+    strokeDasharray: "2 2"
+  })),
+  calendar: React.createElement(React.Fragment, null, React.createElement("rect", {
+    x: "3",
+    y: "5",
+    width: "18",
+    height: "16",
+    rx: "2"
+  }), React.createElement("path", {
+    d: "M3 10h18M8 3v4M16 3v4"
+  })),
+  mountain: React.createElement("path", {
+    d: "M2 20l7-12 4 6 3-4 6 10z"
+  }),
+  dome: React.createElement(React.Fragment, null, React.createElement("path", {
+    d: "M3 20h18"
+  }), React.createElement("path", {
+    d: "M5 20c0-8 3-13 8-13 3 0 5 3 5 6v7"
+  })),
+  id: React.createElement(React.Fragment, null, React.createElement("rect", {
+    x: "3",
+    y: "5",
+    width: "18",
+    height: "14",
+    rx: "2"
+  }), React.createElement("circle", {
+    cx: "9",
+    cy: "11",
+    r: "2"
+  }), React.createElement("path", {
+    d: "M6 16c.6-1.5 1.8-2 3-2s2.4.5 3 2M14 10h4M14 13h3"
+  })),
+  route: React.createElement(React.Fragment, null, React.createElement("circle", {
+    cx: "6",
+    cy: "19",
+    r: "2"
+  }), React.createElement("circle", {
+    cx: "18",
+    cy: "5",
+    r: "2"
+  }), React.createElement("path", {
+    d: "M8 19h7a3.5 3.5 0 0 0 0-7H9a3.5 3.5 0 0 1 0-7h7"
+  })),
+  camera: React.createElement(React.Fragment, null, React.createElement("path", {
+    d: "M4 8h3l2-3h6l2 3h3v11H4z"
+  }), React.createElement("circle", {
+    cx: "12",
+    cy: "13",
+    r: "3.5"
+  })),
+  users: React.createElement(React.Fragment, null, React.createElement("circle", {
+    cx: "9",
+    cy: "8",
+    r: "3"
+  }), React.createElement("path", {
+    d: "M3 20c0-3.3 2.7-6 6-6s6 2.7 6 6"
+  }), React.createElement("circle", {
+    cx: "17",
+    cy: "9",
+    r: "2.3"
+  }), React.createElement("path", {
+    d: "M16 14.2c2.7.4 5 2.6 5 5.8"
+  })),
+  bolt: React.createElement("path", {
+    d: "M13 2L4 14h7l-1 8 9-12h-7z"
+  }),
+  lake: React.createElement(React.Fragment, null, React.createElement("path", {
+    d: "M3 15c2-1.5 4-1.5 6 0s4 1.5 6 0 4-1.5 6 0M3 19c2-1.5 4-1.5 6 0s4 1.5 6 0 4-1.5 6 0"
+  }), React.createElement("path", {
+    d: "M5 12l4-6 3 4 2-2 4 4"
+  })),
+  eye: React.createElement(React.Fragment, null, React.createElement("path", {
+    d: "M2 12s3.5-6 10-6 10 6 10 6-3.5 6-10 6S2 12 2 12z"
+  }), React.createElement("circle", {
+    cx: "12",
+    cy: "12",
+    r: "2.5"
+  })),
+  tree: React.createElement(React.Fragment, null, React.createElement("path", {
+    d: "M12 3l6 9h-3l4 6H5l4-6H6z"
+  }), React.createElement("path", {
+    d: "M12 18v3"
+  }))
+};
+function EventIcon({
+  name,
+  size = 22,
+  className
+}) {
+  return React.createElement("svg", {
+    className: ["ff-icon", className].filter(Boolean).join(" "),
+    width: size,
+    height: size,
+    viewBox: "0 0 24 24",
+    fill: "none",
+    stroke: "currentColor",
+    strokeWidth: "1.7",
+    strokeLinecap: "round",
+    strokeLinejoin: "round",
+    "aria-hidden": "true",
+    focusable: "false"
+  }, EVENT_ICON_PATHS[name] || React.createElement("circle", {
+    cx: "12",
+    cy: "12",
+    r: "3"
+  }));
+}
 Object.assign(window, {
   Placeholder,
   ResponsiveImage,
@@ -3477,6 +3768,9 @@ Object.assign(window, {
   MapLightbox,
   EntranceWaits,
   WebcamStrip,
+  FilmEmbed,
+  NatureNotesFilm,
+  EventIcon,
   HomeLink,
   HomeMasthead,
   HpHeading,

@@ -1,4 +1,4 @@
-/* global React, HpPageHead, LodgingCta, HpGuideBand, HpLetter, FjLayout, FjPull, FjRidge, FjCard, FjPlate, AffiliateDisclosure */
+/* global React, HpPageHead, HpHeading, HomeLink, ResponsiveImage, AvailabilityLink, HpGuideBand, HpLetter, AffiliateDisclosure, EventIcon, NatureNotesFilm */
 
 // =============================================================================
 // TIOGA OPENING — `/tioga-opening` route. The second evergreen event page
@@ -10,7 +10,19 @@
 // Facts come from the published article body; anything that changes annually
 // (the date, service openings, reservation rules) points at the NPS sources
 // instead of being quoted. Standing commitment: nothing on this page names a
-// specific year.
+// specific year, except the recorded openings in OPENING_HISTORY, which are
+// past fact and cannot go stale.
+//
+// The September 2026 visual pass rebuilt it on /firefall's system (the
+// `.hp-event` class, the `.ff-*` layout rules, EventIcon): a full-width cover,
+// a fact row and a jump list, then the page in the order a reader plans the
+// day. Three pictures carry what the prose used to: the services ladder (the
+// road opens first, the meadows weeks later), the road profile (TiogaProfile,
+// Crane Flat to Lee Vining), and the recorded openings strip. Every figure on
+// them is already published in the opening-weekend article or on this page;
+// the profile's caption says which points are placed by published distance
+// and which only in order. The FAQ is mirrored in edge/seo.js's
+// "/tioga-opening" faq; change both.
 // =============================================================================
 
 // Same versioned bulletin URL as page-now.jsx's BULLETIN_URL and page-home.jsx's
@@ -135,196 +147,349 @@ function TiogaStrip() {
   );
 }
 
+// Along the road, west to east. Elevations and the three published distances
+// (Crane Flat to Tuolumne Meadows 39 miles, to the pass about 47, and a drop
+// of more than 3,000 feet in twelve miles to the Mono Basin) come from the
+// opening-weekend article and the site's published elevations (Olmsted Point
+// is given as 8,300 to 8,500 feet across the site; the profile uses the
+// middle). `placed: "order"` marks a stop drawn in sequence only.
+// `label` places each stop's two lines by hand (offset from the point and a
+// text anchor), because the stops crowd: Olmsted Point and Tenaya Lake sit
+// two miles apart, and the pass and Lee Vining sit on the steep east drop.
+const TIOGA_PROFILE = [
+  { name: "Crane Flat", mi: 0, ft: 6200, note: "Last gas, pay at pump", placed: "mile", label: [10, 26, "start"] },
+  { name: "White Wolf", mi: 14, ft: 8000, placed: "order", label: [0, 28, "middle"] },
+  { name: "Olmsted Point", mi: 30, ft: 8400, placed: "order", label: [-8, -34, "end"] },
+  { name: "Tenaya Lake", mi: 32, ft: 8150, placed: "order", label: [6, 28, "start"] },
+  { name: "Tuolumne Meadows", mi: 39, ft: 8600, placed: "mile", label: [10, 30, "start"] },
+  { name: "Tioga Pass", mi: 47, ft: 9945, note: "The park's east gate", placed: "mile", label: [14, -4, "start"] },
+  { name: "Lee Vining", mi: 59, ft: 6800, note: "Next gas", placed: "mile", label: [-6, 28, "end"] },
+];
+
+function TiogaProfile() {
+  const W = 1000, H = 450, L = 64, R = 24, T = 44, B = 86;
+  const x = (mi) => L + (mi / 60) * (W - L - R);
+  const y = (ft) => T + (1 - (ft - 5800) / (10400 - 5800)) * (H - T - B);
+  const pts = TIOGA_PROFILE.map((p) => `${x(p.mi)},${y(p.ft)}`);
+  const line = "M" + pts.join(" L");
+  const area = `${line} L${x(59)},${H - B} L${x(0)},${H - B} Z`;
+  return (
+    <svg className="tg-profile__svg" viewBox={`0 0 ${W} ${H}`} role="img"
+      aria-label="Elevation profile of Tioga Road, west to east. Crane Flat at 6,200 feet, the last gas. White Wolf at about 8,000 feet. Olmsted Point at about 8,400 feet. Tenaya Lake at 8,150 feet. Tuolumne Meadows at 8,600 feet, 39 miles from Crane Flat. Tioga Pass at 9,945 feet, about 47 miles from Crane Flat. Then a drop of more than 3,000 feet in twelve miles to Lee Vining, about 6,800 feet, the next gas. Trails above about 8,500 feet hold snow for weeks after the road opens. No gas, water or cell signal between Crane Flat and Lee Vining.">
+      {[6000, 7000, 8000, 9000, 10000].map((ft) => (
+        <g key={ft}>
+          <line x1={L} x2={W - R} y1={y(ft)} y2={y(ft)} className="tg-profile__grid" />
+          <text x={L - 10} y={y(ft) + 4} textAnchor="end" className="tg-profile__axis">{ft.toLocaleString("en-US")}</text>
+        </g>
+      ))}
+      <rect x={L} y={y(10400)} width={W - L - R} height={y(8500) - y(10400)} className="tg-profile__snowband" />
+      <text x={L + 12} y={y(10400) + 20} className="tg-profile__snowlabel">ABOVE ~8,500 FT: TRAILS HOLD SNOW FOR WEEKS AFTER THE ROAD OPENS</text>
+      <path d={area} className="tg-profile__area" />
+      <path d={line} className="tg-profile__line" />
+      <line x1={x(0)} x2={x(59)} y1={H - B + 28} y2={H - B + 28} className="tg-profile__dry" />
+      <text x={x(29.5)} y={H - B + 52} textAnchor="middle" className="tg-profile__drylabel">NO GAS · NO POTABLE WATER · NO SIGNAL · CRANE FLAT TO LEE VINING</text>
+      {TIOGA_PROFILE.map((p) => {
+        const cx = x(p.mi), cy = y(p.ft);
+        const [dx, dy, anchor] = p.label;
+        const below = dy > 0;
+        return (
+          <g key={p.name}>
+            <circle cx={cx} cy={cy} r={p.placed === "mile" ? 6 : 4.5} className={p.placed === "mile" ? "tg-profile__pt" : "tg-profile__pt tg-profile__pt--order"} />
+            <text x={cx + dx} y={cy + dy} textAnchor={anchor} className="tg-profile__name">{p.name}</text>
+            <text x={cx + dx} y={cy + dy + (below ? 17 : 17)} textAnchor={anchor} className="tg-profile__ft">{p.ft.toLocaleString("en-US")} ft{p.note ? ` · ${p.note}` : ""}</text>
+          </g>
+        );
+      })}
+      <text x={x(52.4)} y={y(7300)} textAnchor="end" className="tg-profile__drop">−3,000 ft</text>
+      <text x={x(52.4)} y={y(7300) + 17} textAnchor="end" className="tg-profile__dropsub">in twelve miles</text>
+    </svg>
+  );
+}
+
+// Mirrored in edge/seo.js's "/tioga-opening" faq (the JSON-LD). Change both.
+const TIOGA_FAQ = [
+  ["When does Tioga Road open?", "There is no fixed date: the road opens when plow crews finish, and the park announces it only days ahead. The long-term average opening is the end of May; light snow years have opened in mid-May, and heavy years push the opening into June or later. It closes with the first lasting snow, typically in November."],
+  ["Is there gas, food, or water on Tioga Road?", "Crane Flat, at the road's west end, has pay-at-pump gas; the next fuel is Lee Vining on the east side of the pass. In the early season there is no potable water and nothing to buy along the road, and services at Tuolumne Meadows come online weeks after the road opens. Bring everything."],
+  ["How long does it take to drive Tioga Road?", "About 39 miles from Crane Flat to Tuolumne Meadows and about 47 to the Tioga Pass entrance station, roughly 90 minutes one way without stops. With Olmsted Point, Tenaya Lake, and Tuolumne Meadows it is a full day, and adding Lee Vining and Mono Lake makes it a long one."],
+  ["Do I need a reservation to drive Tioga Road?", "A standard park entrance pass is required. Whether a day-use reservation system also applies changes year to year; check the NPS Yosemite site for the current season's rules before you commit."],
+];
+
+const TIOGA_TOWNS = [
+  { id: "lee-vining", name: "Lee Vining", dest: "Lee Vining, California", where: "East side, below the pass", note: "The bed that exists in week one. Thirty minutes from Tuolumne Meadows, with gas, food and Mono Lake on the doorstep.", tier: "Week one" },
+  { id: "groveland", name: "Groveland", dest: "Groveland, California", where: "Highway 120 west", note: "The western equivalent, on the same highway before the Big Oak Flat entrance. The start of the day if you drive the road west to east.", tier: "West side" },
+];
+
 function TiogaOpeningPage({ go }) {
-  const goArticle = (e, slug) => {
-    e.preventDefault();
-    go(`a:${slug}`);
-  };
+  const toc = [
+    ["#tioga-how", "How it opens"],
+    ["#tioga-week-one", "Week one"],
+    ["#tioga-road", "The road"],
+    ["#tioga-history", "When it opened"],
+    ["#tioga-rules", "Bring everything"],
+    ["#tioga-day", "The day"],
+    ["#tioga-stay", "Where to sleep"],
+    ["#tioga-faq", "Questions"],
+  ];
 
   return (
-    <div className="page hp-tool hp-tioga-opening">
-      <HpPageHead
-        go={go}
-        crumbs={[{ label: "Home", route: "home" }, { label: "Tioga opening" }]}
-        className="fj-head"
-        eyebrow="SEASONAL EVENT · LATE SPRING"
-        title="The Tioga Road opening"
-        intro="Every spring, plow crews cut Highway 120 out of the snowpack and the highest road in the park comes back. The opening date is not a date: it is announced only days ahead, it varies by weeks from year to year, and the first weekends are unlike any other time on the road. Below: how the opening works, what is actually open in week one, and how to drive it well."
-        aside={
-          <FjPlate
-            image="img/tenaya-lake.jpg"
-            alt="Tenaya Lake below the granite domes along Tioga Road"
-            label="Tenaya Lake, Tioga Road"
-            credit="Photo: Michael Hogarth / Wikimedia Commons (public domain)"
-            card={
-              <FjCard
-                eyebrow="HIGHWAY 120, IN FOUR LINES"
-                rows={[
-                  { label: "Closes", value: "First lasting snow" },
-                  { label: "Opens, on average", value: LONG_TERM_AVERAGE },
-                  { label: "Notice", value: "Less than a week" },
-                  { label: "Tioga Pass", value: "9,945 feet" },
-                ]}
-              />
-            }
-          />
-        }
-      >
-        <AffiliateDisclosure />
-      </HpPageHead>
+    <div className="page hp-tool hp-event hp-tioga-opening">
+      <div className="ff-cover tg-cover">
+        <ResponsiveImage image="img/tenaya-lake.jpg" eager className="ff-cover__img"
+          alt="Tenaya Lake below the granite domes along Tioga Road" sizes="100vw" />
+        <HpPageHead
+          go={go}
+          crumbs={[{ label: "Home", route: "home" }, { label: "Tioga opening" }]}
+          eyebrow="HIGHWAY 120 · TIOGA PASS · LATE SPRING"
+          title="The Tioga Road opening"
+          intro="Every spring, plow crews cut Highway 120 out of the snowpack and the highest road in the park comes back. The opening date is not a date: it is announced only days ahead, it varies by weeks from year to year, and the first weekends are unlike any other time on the road. Below: how the opening works, what is actually open in week one, and how to drive it well."
+          actions={<React.Fragment>
+            <HomeLink go={go} location="tioga_head" className="hp-button" href="#tioga-week-one">What is open in week one <span>↓</span></HomeLink>
+            <HomeLink go={go} location="tioga_head" className="hp-link" href="#tioga-road">The road, mile by mile ↓</HomeLink>
+          </React.Fragment>}
+        >
+          <AffiliateDisclosure />
+        </HpPageHead>
+        <p className="ff-cover__credit">Photo: Michael Hogarth / Wikimedia Commons (public domain)</p>
+      </div>
 
+      <div className="hp-wrap">
+        <dl className="ff-facts">
+          <div><EventIcon name="calendar" /><dt>Opens, on average</dt><dd>{LONG_TERM_AVERAGE}</dd></div>
+          <div><EventIcon name="alert" /><dt>Notice</dt><dd>Less than a week</dd></div>
+          <div><EventIcon name="mountain" /><dt>Tioga Pass</dt><dd>9,945 feet</dd></div>
+          <div><EventIcon name="fuel" /><dt>No gas</dt><dd>Crane Flat to Lee Vining</dd></div>
+        </dl>
+        <nav className="ff-toc" aria-label="On this page">
+          <span>On this page</span>
+          {toc.map(([href, label]) => (
+            <HomeLink key={href} go={go} location="tioga_toc" href={href}>{label}</HomeLink>
+          ))}
+        </nav>
+      </div>
 
-      <FjLayout>
-        <section className="prose">
-          <h2>How the opening works</h2>
-          <FjPull side cite="How the opening works">That is a spectacular thing to drive through, and a spectacular thing to be unprepared for.</FjPull>
-          <p>
-            Tioga Road closes with the first lasting snow, typically in
-            November, and reopens when the plowing is done, full stop. The
-            long-term average opening is the end of May. Light snow years have
-            opened the gate in mid-May; heavy years push the opening into June
-            and beyond. The park announces the date only once the crews are
-            nearly through, usually with less than a week's notice, so a trip
-            planned around "Tioga will be open" needs a backup plan below
-            8,000 feet.
-          </p>
-          <p>
-            The second thing to know is the difference between "the road is
-            open" and "Tuolumne Meadows is open for the season." Opening
-            weekend lives entirely in the first one. The store, the grill, the
-            lodge, the campground, the wilderness center staffing: all of that
-            comes online over the following weeks, on its own schedule. What
-            you get in week one is the road itself, a ribbon of asphalt through
-            snow walls, half-frozen lakes, and a high country still pulling
-            itself out of winter. That is a spectacular thing to drive through,
-            and a spectacular thing to be unprepared for.
-          </p>
-
-          <h2>When it has actually opened</h2>
-          <p>
-            The long-term average is {LONG_TERM_AVERAGE}, and the average is the
-            least useful number here: the spread between a light year and a heavy
-            one is measured in weeks, not days. These are the openings this
-            journal has recorded.
-          </p>
-          <table>
-            <thead>
-              <tr><th>Year</th><th>Tioga Road opened</th><th>Note</th></tr>
-            </thead>
-            <tbody>
-              {OPENING_HISTORY.map((r) => (
-                <tr key={r.year}>
-                  <td><strong>{r.year}</strong></td>
-                  <td>{r.date}</td>
-                  <td>{r.note}</td>
-                </tr>
-              ))}
-              <tr>
-                <td><strong>Average</strong></td>
-                <td>{LONG_TERM_AVERAGE}</td>
-                <td>The long-term mean, which almost no individual year matches.</td>
-              </tr>
-            </tbody>
-          </table>
-          <TiogaStrip />
-          <p>
-            The National Park Service publishes the full year-by-year list on its
-            own Tioga Road page, which is the source to check if you want the
-            whole run rather than the recent years.
-          </p>
-
-          <h2>The self-sufficiency rules</h2>
-          <ol className="fj-pair">
-            <li>
-              <strong>Gas.</strong> Crane Flat is the last fuel on the west
-              side, pay-at-pump. The next gas is Lee Vining, on the far side of
-              the pass. Start full.
-            </li>
-            <li>
-              <strong>Water and food.</strong> In the early season there is no
-              potable water and nothing to buy anywhere along the road. Bring
-              all of both: two liters per person minimum if you are walking
-              anywhere.
-            </li>
-            <li>
-              <strong>Weather.</strong> Tioga Pass tops out at 9,945 feet.
-              Early-season mornings run to the 20s and 30s even when the Valley
-              is mild, black ice forms at dawn and dusk, and afternoon storms
-              build fast. Layers, sunglasses against snow glare, and chains in
-              the trunk are the price of admission.
-            </li>
-            <li>
-              <strong>Signal.</strong> Cell service is essentially zero from
-              Crane Flat to Lee Vining. Download offline maps before you leave
-              the Valley.
-            </li>
-          </ol>
-
-          <h2>What the first weeks are for</h2>
-          <p>
-            The reliable early stops are the roadside ones: Olmsted Point for
-            the back side of Half Dome (the half-mile slickrock trail usually
-            dries fast), Tenaya Lake's east beach, the Tuolumne Meadows
-            pullouts, and two short walks, Pothole Dome and the flat road out
-            to Soda Springs. The famous trails above 8,500 feet, Cathedral
-            Lakes, May Lake, Lembert Dome's summit, hold snow weeks longer than
-            the road; walking them in June boots-deep is how meadows get
-            scarred and ankles get broken. The early season rewards drivers,
-            photographers, and modest walkers, not peak-baggers.
-          </p>
-        </section>
-
-        {/* The live layer. The status chip is read from bulletin.json's own
-            Tioga row rather than written here, so it moves with each Guide
-            edition instead of going stale between them, and it fails soft to
-            the outbound links below if the fetch does not land. */}
-        <TiogaStatus />
-
-        <div className="fj-aside">
-          <p className="hp-eyebrow">Check the current status</p>
-          <p>
-            The current plowing and opening status lives on{" "}
-            <a href="https://www.nps.gov/yose/planyourvisit/seasonal.htm" target="_blank" rel="noopener noreferrer">the NPS Tioga Road page</a>,
-            and road conditions by phone or text: text "ynptraffic" to 333111.
-            The week's park-wide picture, roads, closures, and hours, is
-            condensed on{" "}
-            <a href="/now" onClick={(e) => { e.preventDefault(); go("now"); }}>the Park Bulletin</a>,
-            and live webcams and forecasts are on{" "}
-            <a href="/conditions" onClick={(e) => { e.preventDefault(); go("conditions"); }}>the conditions page</a>.
-          </p>
+      {/* How the opening works. The live chip is read from bulletin.json's own
+          Tioga row rather than written here, so it moves with each Guide
+          edition instead of going stale between them; it renders nothing if
+          the fetch does not land, and the short version stands without it. */}
+      <section className="hp-wrap hp-section" id="tioga-how" tabIndex={-1}>
+        <div className="ff-split">
+          <div>
+            <p className="hp-eyebrow">HOW THE OPENING WORKS</p>
+            <h2>The road opens when the plowing is done. Full stop.</h2>
+            <p className="ff-lede">Tioga Road closes with the first lasting snow, typically in November, and reopens when the plowing is done. The long-term average opening is the end of May. Light snow years have opened the gate in mid-May; heavy years push the opening into June and beyond.</p>
+            <p className="ff-lede">The park announces the date only once the crews are nearly through, usually with less than a week's notice, so a trip planned around "Tioga will be open" needs a backup plan below 8,000 feet.</p>
+            <NatureNotesFilm
+              id="winter-in-tuolumne-meadows"
+              title="Winter in Tuolumne Meadows"
+              youtubeId="tXAL7fPDaJE"
+              episode={37}
+              location="tioga_film"
+              note="What the plows are digging out of: two rangers who ski the high country all winter, at 8,600 feet, while the road is under snow."
+            />
+          </div>
+          <div className="tg-side">
+            <TiogaStatus />
+            <aside className="ff-short" aria-label="The short version">
+              <p className="ff-short__head"><EventIcon name="alert" /> The short version</p>
+              <ul>
+                <li>The date is announced days ahead, not months.</li>
+                <li>Opening day is the road, not the services.</li>
+                <li>Start full at Crane Flat. Carry all the water and food.</li>
+                <li>Expect snow walls, ice at dawn and no signal.</li>
+              </ul>
+              <p className="ff-disclosure">Current status: <a href="https://www.nps.gov/yose/planyourvisit/seasonal.htm" target="_blank" rel="noopener noreferrer">the NPS Tioga Road page ↗</a>, or text "ynptraffic" to 333111.</p>
+            </aside>
+          </div>
         </div>
+      </section>
 
-        <section className="prose">
-          <FjRidge />
-          <h2>The bigger day</h2>
-          <p>
-            The move that turns the opening into a full trip is crossing the
-            pass: down 3,000 feet into the Mono Basin, where granite gives way
-            to sagebrush and Mono Lake spreads out below with its tufa towers.
-            Lee Vining, Tioga Lake, Ellery Lake, and the South Tufa boardwalk
-            make the east side a destination, not a turnaround. The
-            hour-by-hour version of that day, every stop, where to eat in Lee
-            Vining, and what the meadows look like under snowmelt, is in{" "}
-            <a href="/articles/tioga-road-opening-weekend-2026" onClick={(e) => goArticle(e, "tioga-road-opening-weekend-2026")}>
-              <strong>the opening-weekend field guide →</strong>
-            </a>
-          </p>
-        </section>
+      {/* Week one. The difference between "the road is open" and "Tuolumne
+          Meadows is open for the season" is the page's most useful fact, so
+          it gets the ladder. Relative timings only: the actual dates move
+          every season, and the article carries the dated version. */}
+      <section className="ff-band" id="tioga-week-one" tabIndex={-1}>
+        <div className="hp-wrap hp-section">
+          <HpHeading eyebrow="WHAT IS OPEN IN WEEK ONE" title="The road opens first. The meadows follow, weeks later." />
+          <p className="ff-lede ff-lede--intro">Opening weekend lives entirely in "the road is open", not in "Tuolumne Meadows is open for the season". What you get in week one is the road itself: a ribbon of asphalt through snow walls, half-frozen lakes, and a high country still pulling itself out of winter. The store, the grill, the lodge, the campground and the wilderness center staffing come online over the following weeks, on their own schedule.</p>
+          <ol className="ff-timeline tg-ladder">
+            <li className="is-open"><span>Opening day</span><strong>The road</strong><p>Tioga Road and the Tioga Pass entrance station, Olmsted Point and the major pullouts, Tenaya Lake parking, the Tuolumne Meadows pullouts, vault toilets, and Crane Flat gas, 24 hours, pay at the pump.</p></li>
+            <li className="is-tight"><span>Late May</span><strong>Visitor centers staffed</strong><p>The Tuolumne Meadows Visitor Center and Wilderness Center have limited or no staffing until late May.</p></li>
+            <li className="is-tight"><span>June and July</span><strong>Lodge, grill, campground</strong><p>In a recent season the lodge opened in early June, the grill in mid-June, and the campground on July 1, reservable on Recreation.gov.</p></li>
+            <li className="is-gone"><span>Later in summer</span><strong>Store and post office</strong><p>The last of Tuolumne to come online. Until then there is nothing to buy anywhere along the road.</p></li>
+          </ol>
+          <ul className="tg-never">
+            <li><EventIcon name="drop" /><span><strong>No potable water</strong> anywhere along the road in week one.</span></li>
+            <li><EventIcon name="fuel" /><span><strong>No gas at Tuolumne Meadows.</strong> The station has been out of operation for several years.</span></li>
+            <li><EventIcon name="signal" /><span><strong>No cell service</strong> from Crane Flat to Lee Vining. Download offline maps in the Valley.</span></li>
+          </ul>
 
-        {/* The purchase ask: a Tioga reader is planning a high-country day in
-            a park with no signal past Crane Flat. */}
-        {/* Early-season Tioga is an east-side trip as often as a Valley one,
-            and the in-park high-country camps open late and unpredictably.
-            Lee Vining is the bed that exists in week one. */}
-        <LodgingCta
-          destination="Lee Vining, California"
-          heading="Where you sleep in week one"
-          note="Tuolumne Meadows Lodge and White Wolf open on the snowpack's schedule, often well after the road does, so the high country's own beds may not exist yet when the pass opens. Lee Vining is 30 minutes from Tuolumne Meadows on the east side; Groveland is the western equivalent."
-          list="page_tioga"
-          slug="tioga-opening"
-          cta="Search Lee Vining lodging →"
-        />
-      </FjLayout>
+          <div className="tg-stops">
+            <div className="tg-stops__go">
+              <h3>What the first weeks are for</h3>
+              <p className="ff-note tg-stops__lede">The reliable early stops are the roadside ones. The early season rewards drivers, photographers and modest walkers, not peak-baggers.</p>
+              <ul>
+                <li><EventIcon name="eye" size={24} /><div><strong>Olmsted Point</strong><p>The back side of Half Dome. The half-mile slickrock trail usually dries fast, even with snow in the shaded hollows.</p></div></li>
+                <li><EventIcon name="lake" size={24} /><div><strong>Tenaya Lake, the east beach</strong><p>Ice-rimmed, with open water in the middle. A short, easy walk to the sand; an hour is enough.</p></div></li>
+                <li><EventIcon name="tree" size={24} /><div><strong>Tuolumne Meadows pullouts</strong><p>Look from the edge. Do not walk across the meadow: a boot print in May is still a scar in August.</p></div></li>
+                <li><EventIcon name="dome" size={24} /><div><strong>Pothole Dome</strong><p>A one-mile round trip up polished granite at the meadow's west end. Wet approach, dry rock.</p></div></li>
+                <li><EventIcon name="walk" size={24} /><div><strong>Soda Springs</strong><p>1.4 miles round trip on a flat dirt road from the Lembert Dome parking area, with the river running hard.</p></div></li>
+              </ul>
+            </div>
+            <div className="tg-stops__wait">
+              <h3>Wait for later</h3>
+              <p className="ff-note tg-stops__lede">The famous trails above 8,500 feet hold snow weeks longer than the road. Walking them boots-deep is how meadows get scarred and ankles get broken.</p>
+              <ul>
+                {["Cathedral Lakes", "May Lake", "Lukens Lake", "Lembert Dome's summit"].map((t) => (
+                  <li key={t}><EventIcon name="snow" size={20} />{t}</li>
+                ))}
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="hp-wrap hp-section" id="tioga-road" tabIndex={-1}>
+        <HpHeading eyebrow="THE ROAD, WEST TO EAST" title="From 6,200 feet to 9,945, then down to the desert" />
+        <p className="ff-lede ff-lede--intro">Tioga Road climbs from Crane Flat to the pass over roughly 47 miles, then drops more than 3,000 feet in twelve miles into the Mono Basin, where granite gives way to sagebrush. Allow about 90 minutes one way without stops. With the stops, it is a full day.</p>
+        <figure className="tg-profile">
+          <TiogaProfile />
+          <figcaption className="ff-note">Drawn from the figures on this page and in the opening-weekend article. Crane Flat, Tuolumne Meadows, Tioga Pass and Lee Vining are placed by their published distances; White Wolf, Olmsted Point and Tenaya Lake are placed in order between them. The line between points is drawn, not surveyed.</figcaption>
+        </figure>
+      </section>
+
+      <section className="ff-band" id="tioga-history" tabIndex={-1}>
+        <div className="hp-wrap hp-section ff-split">
+          <div>
+            <p className="hp-eyebrow">WHEN IT HAS ACTUALLY OPENED</p>
+            <h2>The average is the least useful number here</h2>
+            <p className="ff-lede">The long-term average is {LONG_TERM_AVERAGE}, and almost no individual year matches it: the spread between a light year and a heavy one is measured in weeks, not days. These are the openings this journal has recorded.</p>
+            <p className="ff-note">The National Park Service publishes the full year-by-year list on <a href="https://www.nps.gov/yose/planyourvisit/seasonal.htm" target="_blank" rel="noopener noreferrer">its Tioga Road page</a>, which is the source to check for the whole run.</p>
+          </div>
+          <div>
+            <TiogaStrip />
+            <div className="prose tg-table" role="region" aria-label="Recorded Tioga Road openings" tabIndex={0}>
+              <table>
+                <thead>
+                  <tr><th>Year</th><th>Tioga Road opened</th><th>Note</th></tr>
+                </thead>
+                <tbody>
+                  {OPENING_HISTORY.map((r) => (
+                    <tr key={r.year}>
+                      <td><strong>{r.year}</strong></td>
+                      <td>{r.date}</td>
+                      <td>{r.note}</td>
+                    </tr>
+                  ))}
+                  <tr>
+                    <td><strong>Average</strong></td>
+                    <td>{LONG_TERM_AVERAGE}</td>
+                    <td>The long-term mean, which almost no individual year matches.</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="hp-wrap hp-section" id="tioga-rules" tabIndex={-1}>
+        <div className="ff-split ff-split--end">
+          <div>
+            <p className="hp-eyebrow">THE SELF-SUFFICIENCY RULES</p>
+            <h2>Pack like you are heading into the backcountry</h2>
+          </div>
+          <p className="ff-lede">Even if you are only driving up for the day. There is nothing to buy along Tioga Road in the first weeks, no potable water, and no signal to call for help with.</p>
+        </div>
+        <ul className="ff-rules tg-rules">
+          <li><EventIcon name="fuel" size={26} /><strong>Gas</strong><p>Crane Flat is the last fuel on the west side, pay at the pump. The next gas is Lee Vining, on the far side of the pass. Start full.</p></li>
+          <li><EventIcon name="drop" size={26} /><strong>Water and food</strong><p>In the early season there is no potable water and nothing to buy anywhere along the road. Bring all of both: two liters per person minimum if you are walking anywhere.</p></li>
+          <li><EventIcon name="therm" size={26} /><strong>Weather</strong><p>Early-season mornings run to the 20s and 30s even when the Valley is mild. Black ice forms at dawn and dusk, and afternoon storms build fast.</p></li>
+          <li><EventIcon name="signal" size={26} /><strong>Signal</strong><p>Cell service is essentially zero from Crane Flat to Lee Vining. Download offline maps before you leave the Valley.</p></li>
+        </ul>
+        <div className="ff-else tg-pack">
+          <h3>In the car and the pack</h3>
+          <ul>
+            {[
+              "Chains in the trunk and a full tank",
+              "Waterproof hiking boots; every trail has wet or snowy sections",
+              "Microspikes for any shaded snow patch",
+              "Trekking poles for slush, mud and slick granite",
+              "A puffy jacket and a shell; the day swings 30 to 40 degrees",
+              "Sunglasses and sunscreen for snow glare at altitude",
+              "All the water and food for the day",
+              "Offline maps, downloaded in the Valley",
+            ].map((k) => <li key={k}><EventIcon name="check" size={18} />{k}</li>)}
+          </ul>
+          <p className="ff-note">Bears are out of their dens and active in the meadows at first and last light. Use the trailhead lockers, even for snacks left in the car. The full lists: <HomeLink go={go} location="tioga_kit" href="/kit">the day pack and car kit</HomeLink>.</p>
+        </div>
+      </section>
+
+      <section className="ff-band" id="tioga-day" tabIndex={-1}>
+        <div className="hp-wrap hp-section ff-split">
+          <div>
+            <p className="hp-eyebrow">THE BIGGER DAY</p>
+            <h2>Cross the pass</h2>
+            <p className="ff-lede">The move that turns the opening into a full trip is crossing the pass: down into the Mono Basin, where Mono Lake spreads out below with its tufa towers. Lee Vining, Tioga Lake, Ellery Lake and the South Tufa boardwalk make the east side a destination, not a turnaround.</p>
+            <figure className="ff-photo">
+              <ResponsiveImage image="img/tuolumne-meadows-lembert-dome.jpg" alt="Lembert Dome above the edge of Tuolumne Meadows" sizes="(max-width: 880px) calc(100vw - 40px), 520px" />
+              <figcaption>Lembert Dome from Tuolumne Meadows. Photo: Pacific Southwest Region USFWS / Wikimedia Commons (public domain)</figcaption>
+            </figure>
+            <p className="ff-note">Every stop, where to eat in Lee Vining, and what the meadows look like under snowmelt: <HomeLink go={go} location="tioga_article" href="/articles/tioga-road-opening-weekend-2026">the opening-weekend field guide</HomeLink>.</p>
+          </div>
+          <ol className="ff-hours">
+            <li><span>Before 8 a.m.</span><p>Through the gate and climbing. Early beats the congestion and the full lots, and sunrise at Olmsted Point is shared with almost no one.</p></li>
+            <li><span>Olmsted Point</span><p>Half Dome's broad back side, Clouds Rest to its left, and glacial erratics scattered on the slickrock. Shoes with grip, and sunglasses.</p></li>
+            <li><span>Ten minutes east</span><p>Tenaya Lake's east beach, ice along the shaded shore and Tenaya Peak in the open water.</p></li>
+            <li><span>Late morning</span><p>Tuolumne Meadows from the pullouts, then Pothole Dome or the flat walk to Soda Springs.</p></li>
+            <li className="is-glow"><span>Tioga Pass, 9,945 feet</span><p>Tioga Lake just below the pass with Mount Dana in it, Ellery Lake a mile farther, then the Mono Lake Vista Point as the basin opens.</p></li>
+            <li><span>Afternoon</span><p>Lunch in Lee Vining, then south on 395 to the South Tufa boardwalk, about ten miles all told. Nesting California gulls in May.</p></li>
+            <li><span>The drive home</span><p>Back over the pass before dark, or a bed on the east side. Black ice returns at dusk.</p></li>
+          </ol>
+        </div>
+      </section>
+
+      {/* Where to sleep. Early-season Tioga is an east-side trip as often as a
+          Valley one, and the in-park high-country beds open late and
+          unpredictably. The filled button is only ever an Expedia town search,
+          as on /firefall; both rows carry page_tioga with a per-town slug. */}
+      <section className="hp-wrap hp-section" id="tioga-stay" tabIndex={-1}>
+        <HpHeading eyebrow="WHERE YOU SLEEP IN WEEK ONE" title="The high country's own beds may not exist yet" />
+        <p className="ff-lede ff-lede--intro">Tuolumne Meadows Lodge and White Wolf open on the snowpack's schedule, often well after the road does, so the high country's own beds may not be open when the pass is. Sleep at one end of the road and drive it toward the other.</p>
+        <div className="ff-towns tg-towns">
+          {TIOGA_TOWNS.map((t) => (
+            <div className="ff-town" key={t.id}>
+              <div className="ff-town__name">
+                <h3>{t.name}</h3>
+                <p><strong>{t.where}</strong></p>
+              </div>
+              <div className="ff-town__note">
+                <span className="ff-tier">{t.tier}</span>
+                <p>{t.note}</p>
+              </div>
+              <AvailabilityLink destination={t.dest} list="page_tioga" slug={t.id} className="ff-book">Search {t.name} lodging ↗</AvailabilityLink>
+            </div>
+          ))}
+          <p className="ff-note">The filled buttons search availability on Expedia; we may earn a commission. The recommendation is the same either way, and no link is to a specific property. <a href="/affiliate">How we handle affiliate links.</a> Every option compared: <HomeLink go={go} location="tioga_stay" href="/stay">where to stay</HomeLink>.</p>
+        </div>
+      </section>
+
+      <section className="ff-band" id="tioga-faq" tabIndex={-1}>
+        <div className="hp-wrap hp-section ff-split">
+          <div>
+            <p className="hp-eyebrow">QUESTIONS</p>
+            <h2>Tioga Road questions, answered</h2>
+            <p className="ff-lede">The week's park-wide picture, roads, closures and hours, is on <HomeLink go={go} location="tioga_faq" href="/now">the Park Bulletin</HomeLink>, and live webcams and forecasts are on <HomeLink go={go} location="tioga_faq" href="/conditions">the conditions page</HomeLink>. Road conditions by phone or text: text "ynptraffic" to 333111.</p>
+          </div>
+          <div className="ff-faq">
+            {TIOGA_FAQ.map(([q, a], i) => (
+              <details key={q} open={i < 2}>
+                <summary>{q}</summary>
+                <p>{a}</p>
+              </details>
+            ))}
+          </div>
+        </div>
+      </section>
 
       <HpGuideBand
         go={go}

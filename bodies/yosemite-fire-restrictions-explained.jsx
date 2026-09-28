@@ -3,6 +3,52 @@
 window.ARTICLE_BODIES = window.ARTICLE_BODIES || {};
 
 window.ARTICLE_BODIES["yosemite-fire-restrictions-explained"] = function YosemiteFireRestrictionsExplainedBody() {
+  // ── Explainer graphic (September 2026 visual pass). Every fact in it is
+  // stated in the body below; the figcaption says so.
+  const SVG_STYLE = { width: "100%", height: "auto", display: "block" };
+  const T_HEAD = { fontFamily: "var(--sans)", fontSize: 12.5, fontWeight: 600, letterSpacing: 1.1, fill: "var(--rust)" };
+  const T_BODY = { fontFamily: "var(--sans)", fontSize: 14, fill: "var(--ink)" };
+  const T_SOFT = { fontFamily: "var(--sans)", fontSize: 13, fill: "var(--ink-2)" };
+  const T_BIG = { fontFamily: "var(--serif)", fontSize: 19, fill: "var(--ink)" };
+
+  // The elevation ladder: what each band of the park allows under the
+  // current Stage 1 order, with the stove rule that holds at every height.
+  function FireLadder() {
+    const W = 600, X = 120, BW = W - X;
+    const bands = [
+      { y: 30, h: 104, fill: "var(--paper-2)", stroke: "var(--ink-3)", tag: "NO FIRES, EVER", lines: ["Above 9,600 feet: a standing, year-round", "wilderness rule, not a fire-danger rule.", "Wood is scarce and slow to regenerate."] },
+      { y: 134, h: 118, fill: "var(--moss)", stroke: "var(--moss)", tag: "WOOD FIRES IN EXISTING RINGS", dark: true, lines: ["8,000 to 9,600 feet, in the wilderness.", "The one band where a wood campfire is", "legal now: most of the high country."] },
+      { y: 252, h: 190, fill: "var(--paper)", stroke: "var(--rust)", tag: "NO WOOD OR CHARCOAL FIRES", lines: ["Below 8,000 feet, parkwide. Twig stoves", "included. The Valley, Wawona and the", "areas most visitors camp in.", "Exempt: designated frontcountry", "campgrounds and picnic areas, and", "residential areas (El Portal and Foresta:", "charcoal only)."] },
+    ];
+    return (
+      <svg viewBox={`0 0 ${W} 520`} style={SVG_STYLE} role="img"
+        aria-label="Yosemite's Stage 1 fire restrictions by elevation. Above 9,600 feet, no fires at any time, under a standing year-round wilderness regulation, because wood is scarce and slow to regenerate. From 8,000 to 9,600 feet, in the wilderness, wood campfires are allowed in existing fire rings; this is most of the high country. Below 8,000 feet, parkwide, no wood or charcoal fires, twig stoves included; this covers the Valley, Wawona and the areas most visitors camp in. Exempt below 8,000 feet: designated frontcountry campgrounds and picnic areas, and residential areas, where El Portal and Foresta allow charcoal only. At every elevation, stoves burning pressurized gas, liquid fuel, propane or alcohol are permitted.">
+        {bands.map((b) => (
+          <g key={b.tag}>
+            <rect x={X} y={b.y} width={BW} height={b.h} fill={b.fill} stroke={b.stroke} strokeWidth="1.5" />
+            <text x={X + 16} y={b.y + 26} style={{ ...T_HEAD, fill: b.dark ? "var(--paper)" : T_HEAD.fill }}>{b.tag}</text>
+            {b.lines.map((l, j) => (
+              <text key={l} x={X + 16} y={b.y + 52 + j * 20}
+                style={{ ...(j === 0 ? { ...T_BODY, fontWeight: 600 } : T_SOFT), fill: b.dark ? "var(--paper)" : (j === 0 ? "var(--ink)" : "var(--ink-2)") }}>{l}</text>
+            ))}
+          </g>
+        ))}
+        <line x1="96" y1="30" x2="96" y2="442" stroke="var(--ink-3)" strokeWidth="1.5" />
+        {[[134, "9,600 ft"], [252, "8,000 ft"]].map(([y, t]) => (
+          <g key={t}>
+            <line x1="88" y1={y} x2={X} y2={y} stroke="var(--ink)" strokeWidth="1.5" />
+            <text x="82" y={y + 5} textAnchor="end" style={{ ...T_BODY, fontWeight: 600 }}>{t}</text>
+          </g>
+        ))}
+        <text x="82" y="46" textAnchor="end" style={T_SOFT}>higher</text>
+        <text x="82" y="438" textAnchor="end" style={T_SOFT}>lower</text>
+        <rect x="0" y="458" width={W} height="54" rx="3" fill="var(--paper-2)" stroke="var(--moss)" strokeWidth="1.5" />
+        <text x="16" y="480" style={T_HEAD}>AT EVERY ELEVATION</text>
+        <text x="16" y="501" style={T_BODY}>Gas, liquid-fuel, propane and alcohol stoves are permitted.</text>
+      </svg>
+    );
+  }
+
   return (
     <>
       <p className="dropcap">
@@ -46,6 +92,12 @@ window.ARTICLE_BODIES["yosemite-fire-restrictions-explained"] = function Yosemit
       <p>
         <strong>Above 8,000 feet, in the wilderness, campfires are allowed in existing fire rings, up to 9,600 feet.</strong> That upper bound is a standing, year-round wilderness regulation rather than a fire-danger rule: above 9,600 feet, wood is scarce and slow to regenerate at that elevation, so fires are prohibited there regardless of fire restrictions. The 8,000-to-9,600-foot band is the one place in the park right now where a wood campfire, built in a ring that already exists, is legal. That is most of the high country above Tuolumne Meadows and along the Sierra crest, and almost none of the Valley, Wawona, or the areas most visitors camp in.
       </p>
+
+      <figure>
+        <FireLadder />
+        <figcaption>The Stage 1 restrictions in effect since August 7, 2026, by elevation, drawn from this article. The 8,000-foot line is set each season and can move; the park's fire restrictions page has the current text.</figcaption>
+      </figure>
+
 
       <Placeholder
         caption="The high country above Tuolumne Meadows. The band between 8,000 and 9,600 feet is the only ground in the park where a wood fire, built in a ring that already exists, is still legal"

@@ -1,8 +1,57 @@
-/* global React */
+/* global React, NatureNotesFilm */
 
 window.ARTICLE_BODIES = window.ARTICLE_BODIES || {};
 
 window.ARTICLE_BODIES["yosemite-wildflowers-guide"] = function YosemiteWildflowersBody() {
+  // ── The bloom wave ────────────────────────────────────────────────────────
+  // Every band, elevation and month range below is this article's own: the
+  // four section heads and the flowers named under each. A shape, not a
+  // forecast; a wet or dry year moves every bar.
+  const AXIS = { fontFamily: "var(--sans)", fontSize: 12.5, fill: "var(--ink-3)" };
+  const ROW = { fontFamily: "var(--serif)", fontSize: 16, fill: "var(--ink)" };
+  const ELEV = { fontFamily: "var(--sans)", fontSize: 12, fill: "var(--ink-3)" };
+  const INBAR = { fontFamily: "var(--sans)", fontSize: 12.5, fill: "var(--paper)", fontWeight: 600 };
+  const svgStyle = { width: "100%", height: "auto", display: "block" };
+  const MONTHS = ["Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug"];
+  const BANDS = [
+    { name: "High country", elev: "8,000 to 10,000 ft", from: 5, to: 6, what: "Tuolumne Meadows" },
+    { name: "Middle elevations", elev: "6,000 to 8,000 ft", from: 3, to: 5, what: "McGurk, Crane Flat, lupine" },
+    { name: "Valley floor", elev: "about 4,000 ft", from: 2, to: 4, what: "Dogwood, meadows, azalea" },
+    { name: "Foothills", elev: "1,500 to 3,000 ft", from: 0, to: 2, what: "Redbud, then poppies" },
+  ];
+
+  function BloomWave() {
+    const W = 680, L = 168, R = 8, T = 34, rowH = 58, H = T + rowH * BANDS.length + 8;
+    const col = (W - L - R) / MONTHS.length;
+    const barY = (i) => T + i * rowH + 12;
+    const start = BANDS.map((b, i) => [L + b.from * col + 6, barY(i) + 17]).reverse();
+    return (
+      <svg viewBox={`0 0 ${W} ${H}`} style={svgStyle} role="img"
+        aria-label="Chart of the Yosemite wildflower bloom climbing the mountain. Foothills, 1,500 to 3,000 feet: February to April, redbud then poppies. Valley floor, about 4,000 feet: April to June, dogwood, meadow flowers and azalea. Middle elevations, 6,000 to 8,000 feet: May to July, McGurk Meadow, Crane Flat and lupine. High country, 8,000 to 10,000 feet: July and August, Tuolumne Meadows.">
+        <defs>
+          <marker id="tfWaveHead" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+            <path d="M0 0 L10 5 L0 10 z" fill="var(--rust)" />
+          </marker>
+        </defs>
+        {MONTHS.map((m, i) => (
+          <g key={m}>
+            <line x1={L + i * col} x2={L + i * col} y1={T - 6} y2={H - 8} stroke="var(--rule-soft)" strokeWidth="1" />
+            <text x={L + i * col + col / 2} y={T - 12} textAnchor="middle" style={AXIS}>{m}</text>
+          </g>
+        ))}
+        {BANDS.map((b, i) => (
+          <g key={b.name}>
+            <text x={0} y={barY(i) + 15} style={ROW}>{b.name}</text>
+            <text x={0} y={barY(i) + 32} style={ELEV}>{b.elev}</text>
+            <rect x={L + b.from * col + 3} y={barY(i)} width={(b.to - b.from + 1) * col - 6} height={34} rx="3" fill="var(--moss)" />
+            <text x={L + b.from * col + 14} y={barY(i) + 22} style={INBAR}>{b.what}</text>
+          </g>
+        ))}
+        <polyline points={start.map((p) => p.join(",")).join(" ")} fill="none" stroke="var(--rust)" strokeWidth="1.6"
+          strokeDasharray="5 4" markerEnd="url(#tfWaveHead)" transform="translate(-10 0)" />
+      </svg>
+    );
+  }
   return (
     <>
       <p className="dropcap">
@@ -16,6 +65,13 @@ window.ARTICLE_BODIES["yosemite-wildflowers-guide"] = function YosemiteWildflowe
       <blockquote>In Yosemite, the bloom is not a date. It is an elevation.</blockquote>
 
       <p>Here is the wave, bottom to top, with where to stand when it passes.</p>
+
+      <figure style={{ margin: "30px 0 34px" }}>
+        <BloomWave />
+        <figcaption style={{ fontFamily: "var(--sans)", fontSize: 13, color: "var(--ink-3)", marginTop: 10 }}>
+          The bloom climbs about a thousand feet a month. Drawn from the bands and months in this article; bars are approximate and a wet or dry year moves every one of them.
+        </figcaption>
+      </figure>
 
       <h2>February to April: the foothills, 1,500 to 3,000 feet</h2>
 
@@ -54,6 +110,9 @@ window.ARTICLE_BODIES["yosemite-wildflowers-guide"] = function YosemiteWildflowe
       <p>
         As the Valley dries out, the wave climbs into the forest belt, and here the geography matters: at these elevations the bloom concentrates almost entirely in meadows, because the forest itself blooms sparsely. A mature conifer stand is a dark place. Very little sunlight reaches the ground, and the trees take most of the water. A meadow is the opposite: full sun all day and soil that stays wet into midsummer, often because a creek runs through it or the water table sits just under the sod. Light plus water is the whole formula. Yosemite's meadows cover roughly three percent of the park and hold a wildly disproportionate share of its flowering plants, which number more than 1,400 species parkwide.
       </p>
+
+      <NatureNotesFilm id="wildflowers" title="Wildflowers" youtubeId="HFpvV7ZjvYA" episode={1}
+        note="The Park Service's own short on the same idea: hundreds of species, one schedule, set by elevation." location="article" />
 
       <p>
         <strong>McGurk Meadow</strong> is my standard recommendation in this band. The trailhead is a small pullout on <a href="/articles/glacier-point-road-open-2026">Glacier Point Road</a>, and an easy mile of forest walking drops you at a long meadow around 7,000 feet with an old cabin at its edge. Shooting stars early in the season, then lupine, corn lilies, and paintbrush as summer settles in. Peak is usually late June into July, a few weeks after the road opens. Most Glacier Point traffic drives right past the pullout, which is part of the appeal.

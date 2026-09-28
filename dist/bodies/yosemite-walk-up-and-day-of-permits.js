@@ -1,5 +1,133 @@
 window.ARTICLE_BODIES = window.ARTICLE_BODIES || {};
 window.ARTICLE_BODIES["yosemite-walk-up-and-day-of-permits"] = function YosemiteWalkUpAndDayOfPermitsBody() {
+  var SVG_STYLE = {
+    width: "100%",
+    height: "auto",
+    display: "block"
+  };
+  var T_HEAD = {
+    fontFamily: "var(--sans)",
+    fontSize: 12.5,
+    fontWeight: 600,
+    letterSpacing: 1.1,
+    fill: "var(--rust)"
+  };
+  var T_BODY = {
+    fontFamily: "var(--sans)",
+    fontSize: 14,
+    fill: "var(--ink)"
+  };
+  var T_SOFT = {
+    fontFamily: "var(--sans)",
+    fontSize: 13,
+    fill: "var(--ink-2)"
+  };
+  var T_BIG = {
+    fontFamily: "var(--serif)",
+    fontSize: 19,
+    fill: "var(--ink)"
+  };
+  function PermitCountdown() {
+    var W = 600,
+      ROW = 92,
+      TOP = 58,
+      LX = 132,
+      RX = 380;
+    var rows = [{
+      day: "7 days out",
+      wild: ["7 a.m. Pacific: 40 percent", "released online, first", "come, first served"],
+      dome: null
+    }, {
+      day: "A few days out",
+      wild: ["Online booking closes", "(three days, by the park's", "own reckoning)"],
+      dome: null,
+      cut: true
+    }, {
+      day: "2 days out",
+      wild: null,
+      dome: ["Daily lottery: apply", "midnight to 4 p.m. Pacific;", "results by email that evening"]
+    }, {
+      day: "The day before",
+      wild: ["Collect a reserved permit,", "8 a.m. to 5 p.m."],
+      dome: null
+    }, {
+      day: "Start date",
+      wild: ["Collect by 11 a.m. or it is", "cancelled. Unclaimed quota,", "in person: few, if any"],
+      dome: ["Hike. Permits are checked", "below the subdome; no", "walk-up, no standby line"]
+    }];
+    var H = TOP + rows.length * ROW + 34;
+    var cell = (x, y, lines, tone) => React.createElement("g", null, React.createElement("rect", {
+      x: x - 10,
+      y: y + 8,
+      width: "224",
+      height: ROW - 16,
+      rx: "3",
+      fill: tone === "cut" ? "var(--paper)" : "var(--paper-2)",
+      stroke: tone === "cut" ? "var(--rust)" : "var(--moss)",
+      strokeWidth: "1.3",
+      strokeDasharray: tone === "cut" ? "5 4" : undefined
+    }), lines.map((l, j) => React.createElement("text", {
+      key: l,
+      x: x,
+      y: y + 31 + j * 19,
+      style: j === 0 ? {
+        ...T_BODY,
+        fontSize: 13.5,
+        fontWeight: 600
+      } : {
+        ...T_SOFT,
+        fontSize: 13
+      }
+    }, l)));
+    return React.createElement("svg", {
+      viewBox: `0 0 ${W} ${H}`,
+      style: SVG_STYLE,
+      role: "img",
+      "aria-label": "The last week before a trip start, in two lanes. Wilderness permit: seven days out at 7 a.m. Pacific the held-back 40 percent of quota goes online, first come, first served. A few days out, three by the park's own reckoning, online booking closes. The day before, a reserved permit can be collected from 8 a.m. to 5 p.m. On the start date it must be collected by 11 a.m. or it is cancelled, and unclaimed quota is issued in person, few if any. Half Dome daily lottery: apply two days out, midnight to 4 p.m. Pacific, with results by email that evening. On the start date, hike; permits are checked below the subdome, with no walk-up and no standby line."
+    }, React.createElement("text", {
+      x: LX - 10,
+      y: "22",
+      style: T_HEAD
+    }, "WILDERNESS PERMIT"), React.createElement("text", {
+      x: RX - 10,
+      y: "22",
+      style: T_HEAD
+    }, "HALF DOME DAILY LOTTERY"), React.createElement("line", {
+      x1: "0",
+      y1: "40",
+      x2: W,
+      y2: "40",
+      stroke: "var(--rule-soft)",
+      strokeWidth: "1.5"
+    }), rows.map((r, i) => {
+      var y = TOP + i * ROW - 10;
+      return React.createElement("g", {
+        key: r.day
+      }, React.createElement("text", {
+        x: "0",
+        y: y + 50,
+        style: {
+          ...T_BODY,
+          fontWeight: 600,
+          fill: i === rows.length - 1 ? "var(--rust)" : "var(--ink)"
+        }
+      }, r.day), r.wild && cell(LX, y, r.wild, r.cut ? "cut" : null), r.dome && cell(RX, y, r.dome, null), i < rows.length - 1 && React.createElement("line", {
+        x1: "0",
+        y1: y + ROW + 2,
+        x2: W,
+        y2: y + ROW + 2,
+        stroke: "var(--rule-soft)",
+        strokeWidth: "1"
+      }));
+    }), React.createElement("text", {
+      x: "0",
+      y: H - 8,
+      style: {
+        ...T_SOFT,
+        fontStyle: "italic"
+      }
+    }, "November through April: wilderness permits are free and self-issued at the trailhead."));
+  }
   return React.createElement(React.Fragment, null, React.createElement("p", {
     className: "dropcap"
   }, "Almost everything written about Yosemite permits is written for someone sitting at home in March with a calendar open. This is written for the other person: the one already inside the park, or checking into a motel in Mariposa tonight, holding nothing. Every guide they find tells them what they should have done twenty-four weeks ago. The useful question is what they can still get today, and few guides answer it."), React.createElement("p", null, "The answer has three parts. A great deal of Yosemite requires no permit and never did. One important thing has a real day-of path that most visitors never use. And one famous thing is closed to you, and no amount of showing up early changes that. Knowing which is which saves a day."), React.createElement("h2", null, "First: most of this park needs no permit at all"), React.createElement("p", null, "Start here, because the anxiety about Yosemite permits is out of proportion to the requirements."), React.createElement("p", null, React.createElement("strong", null, "Getting in."), " There is no day-use or peak-hours entry reservation for 2026. The systems that ran from 2020 through 2025 are gone, including the February weekend requirement for ", React.createElement("a", {
@@ -12,7 +140,7 @@ window.ARTICLE_BODIES["yosemite-walk-up-and-day-of-permits"] = function Yosemite
     href: "/articles/yosemite-ranger-programs"
   }, "the programs guide"), " explains which ones are worth rearranging a day for."), React.createElement("p", null, React.createElement("strong", null, "The big set pieces."), " Mariposa Grove, Glacier Point when the road is open, Tunnel View, the waterfalls, the museum, the Ansel Adams gallery. None of it is ticketed."), React.createElement("p", null, React.createElement("strong", null, "Day climbing."), " A climb you start and finish the same day needs no permit. Overnight big-wall climbs need a wilderness climbing permit, but that one is free, unlimited, and self-issued at a kiosk near the food lockers by El Capitan Bridge, twenty-four hours a day, either the day before or the day you start. It is the least bureaucratic permit in the National Park System."), React.createElement("p", null, React.createElement("strong", null, "Fishing."), " No park permit, but a California fishing license is required for anyone sixteen and older, and non-resident short-term licenses exist. Buy it in the park stores or in a gateway town."), React.createElement("h2", null, "The wilderness permit, and where the internet stops helping"), React.createElement("p", null, "If you want to sleep out in the backcountry, you need a wilderness permit, and this is where the day-of picture gets specific. Yosemite splits every trailhead's daily quota in two. Sixty percent is awarded in advance through the lottery that opens twenty-four weeks out. The other forty percent is held back and released on Recreation.gov at 7 a.m. Pacific, seven days before the entry date, first come first served. ", React.createElement("a", {
     href: "/articles/yosemite-wilderness-permits-guide"
-  }, "The full permit guide"), " covers how to play that release properly."), React.createElement("p", null, "If you are already here, this is the detail that catches people. Those last-minute permits stay bookable until they sell out, but not right up to the start date. The park's published reservation window stops taking online bookings a few days out, three by its own reckoning, and whatever the exact cutoff is on the day you look, the practical rule does not move: there is no booking tonight for a walk that starts tomorrow morning. Once you are inside that window, the counter at a wilderness center is the only door left."), React.createElement("p", null, "Whatever quota went unclaimed can be issued in person at a wilderness center on the start date of the trip. The Park Service's own language about this is worth quoting almost exactly, because it is unusually blunt for a government website: while unreserved permits will be available in person on the start date, few, if any, unused permits will be available. In July, at Happy Isles or Cathedral Lakes, the number is zero. Two drainages over, on a Tuesday, at a trailhead nobody has heard of, it is sometimes not zero, and the rangers behind the desk know exactly which ones those are. Ask the question that way. Do not ask whether they have anything for the John Muir Trail; ask what they have at all, and then decide whether you want it."), React.createElement("h2", null, "Where to stand, and by when"), React.createElement("p", null, "Permits are issued at the wilderness centers: Yosemite Valley, Tuolumne Meadows, Wawona, Big Oak Flat, and the Hetch Hetchy entrance station. Most run roughly 8 a.m. to 5 p.m. in season, and the outlying ones close for the winter entirely, so the Valley center is the reliable year-round door. Two rules ride along with them. A reservation is not a permit; someone in your party has to collect the paper, either the day before, 8 a.m. to 5 p.m., or between 8 and 11 a.m. on the start date, and an uncollected permit is cancelled and given away. And if you are hoping to catch released quota, be at the counter when it opens, not at lunchtime."), React.createElement("p", null, "Come with a bear canister or plan to rent one there, and come with an alternate trailhead in mind. Flexibility about where you start is the only currency that works at that desk."), React.createElement(Placeholder, {
+  }, "The full permit guide"), " covers how to play that release properly."), React.createElement("p", null, "If you are already here, this is the detail that catches people. Those last-minute permits stay bookable until they sell out, but not right up to the start date. The park's published reservation window stops taking online bookings a few days out, three by its own reckoning, and whatever the exact cutoff is on the day you look, the practical rule does not move: there is no booking tonight for a walk that starts tomorrow morning. Once you are inside that window, the counter at a wilderness center is the only door left."), React.createElement("p", null, "Whatever quota went unclaimed can be issued in person at a wilderness center on the start date of the trip. The Park Service's own language about this is worth quoting almost exactly, because it is unusually blunt for a government website: while unreserved permits will be available in person on the start date, few, if any, unused permits will be available. In July, at Happy Isles or Cathedral Lakes, the number is zero. Two drainages over, on a Tuesday, at a trailhead nobody has heard of, it is sometimes not zero, and the rangers behind the desk know exactly which ones those are. Ask the question that way. Do not ask whether they have anything for the John Muir Trail; ask what they have at all, and then decide whether you want it."), React.createElement("h2", null, "Where to stand, and by when"), React.createElement("p", null, "Permits are issued at the wilderness centers: Yosemite Valley, Tuolumne Meadows, Wawona, Big Oak Flat, and the Hetch Hetchy entrance station. Most run roughly 8 a.m. to 5 p.m. in season, and the outlying ones close for the winter entirely, so the Valley center is the reliable year-round door. Two rules ride along with them. A reservation is not a permit; someone in your party has to collect the paper, either the day before, 8 a.m. to 5 p.m., or between 8 and 11 a.m. on the start date, and an uncollected permit is cancelled and given away. And if you are hoping to catch released quota, be at the counter when it opens, not at lunchtime."), React.createElement("p", null, "Come with a bear canister or plan to rent one there, and come with an alternate trailhead in mind. Flexibility about where you start is the only currency that works at that desk."), React.createElement("figure", null, React.createElement(PermitCountdown, null), React.createElement("figcaption", null, "The last week before a start date, drawn from the rules in this article. The dashed box is the door that closes: past it, only the counter.")), React.createElement(Placeholder, {
     caption: "Half Dome above the Valley floor, the one Yosemite hike with no walk-up option at all",
     image: "img/half-dome-valley-vista.jpg",
     credit: "Photo: Cam DiCecca / Wikimedia Commons (CC0)",

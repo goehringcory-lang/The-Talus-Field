@@ -1,8 +1,58 @@
-/* global React */
+/* global React, NatureNotesFilm */
 
 window.ARTICLE_BODIES = window.ARTICLE_BODIES || {};
 
 window.ARTICLE_BODIES["so-you-want-to-hike-half-dome"] = function SoYouWantToHikeHalfDomeBody() {
+  // ── Where each hike starts and ends ───────────────────────────────────────
+  // Elevations from this article: Half Dome from the Valley (~4,000 ft) to
+  // 8,839 ft, about 4,800 ft of total gain, the last 400 vertical feet on the
+  // cables; Clouds Rest from the Sunrise trailhead (8,151 ft) to 9,926 ft, in
+  // two climbs of about 1,000 ft each. Bars run start to summit; the total
+  // gain includes ups and downs a bar cannot show, so it is labelled, not drawn.
+  const AXIS = { fontFamily: "var(--sans)", fontSize: 12.5, fill: "var(--ink-3)" };
+  const LABEL = { fontFamily: "var(--sans)", fontSize: 13, fill: "var(--ink-2)" };
+  const PLACE = { fontFamily: "var(--serif)", fontSize: 18, fill: "var(--ink)" };
+  const svgStyle = { width: "100%", height: "auto", display: "block" };
+
+  function StartHigh() {
+    const W = 680, H = 360, L = 58, T = 24, B = 34;
+    const lo = 3000, hi = 10500, ph = H - T - B;
+    const y = (ft) => T + ph - ((ft - lo) / (hi - lo)) * ph;
+    const bw = 92;
+    const hd = 170, cr = 440;
+    return (
+      <svg viewBox={`0 0 ${W} ${H}`} style={svgStyle} role="img"
+        aria-label="Where each hike starts and ends. Half Dome starts on the Valley floor at about 4,000 feet and tops out at 8,839 feet, about 4,800 feet of total climbing, the last 400 vertical feet on the cables. Clouds Rest starts at the Sunrise trailhead on Tioga Road at 8,151 feet, most of the way to Half Dome's summit before a step is taken, and tops out at 9,926 feet, more than a thousand feet higher than Half Dome, in two climbs of about 1,000 feet each.">
+        {[4000, 6000, 8000, 10000].map((f) => (
+          <g key={f}>
+            <line x1={L} x2={W - 10} y1={y(f)} y2={y(f)} stroke="var(--rule-soft)" strokeWidth="1" />
+            <text x={L - 8} y={y(f) + 4} textAnchor="end" style={AXIS}>{f.toLocaleString("en-US")}</text>
+          </g>
+        ))}
+        <text x={L - 8} y={T - 8} textAnchor="end" style={AXIS}>feet</text>
+
+        <rect x={hd} y={y(8839)} width={bw} height={y(4000) - y(8839)} fill="var(--moss)" opacity="0.22" />
+        <rect x={hd} y={y(8839)} width={bw} height={y(8439) - y(8839)} fill="var(--rust)" />
+        <line x1={hd} x2={hd + bw} y1={y(8839)} y2={y(8839)} stroke="var(--ink)" strokeWidth="2" />
+        <text x={hd + bw / 2} y={y(8839) - 26} textAnchor="middle" style={PLACE}>Half Dome</text>
+        <text x={hd + bw / 2} y={y(8839) - 8} textAnchor="middle" style={LABEL}>8,839 ft</text>
+        <text x={hd + bw / 2} y={y(4000) + 18} textAnchor="middle" style={LABEL}>Valley, ~4,000 ft</text>
+        <text x={hd + bw + 12} y={y(8639) + 5} style={{ ...LABEL, fill: "var(--rust)" }}>the cables, 400 ft</text>
+        <text x={hd + bw + 12} y={y(6400)} style={LABEL}>about 4,800 ft</text>
+        <text x={hd + bw + 12} y={y(6400) + 18} style={LABEL}>of climbing</text>
+
+        <rect x={cr} y={y(9926)} width={bw} height={y(8151) - y(9926)} fill="var(--moss)" opacity="0.55" />
+        <line x1={cr} x2={cr + bw} y1={y(9926)} y2={y(9926)} stroke="var(--ink)" strokeWidth="2" />
+        <text x={cr + bw / 2} y={y(9926) - 26} textAnchor="middle" style={PLACE}>Clouds Rest</text>
+        <text x={cr + bw / 2} y={y(9926) - 8} textAnchor="middle" style={LABEL}>9,926 ft</text>
+        <text x={cr + bw / 2} y={y(8151) + 18} textAnchor="middle" style={LABEL}>Sunrise trailhead, 8,151 ft</text>
+        <text x={cr + bw + 12} y={y(9100)} style={LABEL}>two climbs,</text>
+        <text x={cr + bw + 12} y={y(9100) + 18} style={LABEL}>~1,000 ft each</text>
+        <text x={cr + bw / 2} y={y(6000)} textAnchor="middle" style={{ ...LABEL, fill: "var(--ink-3)" }}>You drive this part.</text>
+        <line x1={cr + bw / 2} x2={cr + bw / 2} y1={y(6000) + 10} y2={y(8151) + 30} stroke="var(--ink-3)" strokeDasharray="3 4" />
+      </svg>
+    );
+  }
   return (
     <>
       <p className="dropcap">
@@ -40,6 +90,15 @@ window.ARTICLE_BODIES["so-you-want-to-hike-half-dome"] = function SoYouWantToHik
       <p>
         The NPS doesn't sugarcoat it: rangers assist hundreds of people on the Half Dome trail every summer. Most of those emergencies could have been prevented with better preparation.
       </p>
+
+      <NatureNotesFilm
+        id="half-dome"
+        title="Half Dome"
+        youtubeId="ihNpkUp5JdM"
+        episode={4}
+        note="The Park Service's film on the rock and what it takes to stand on top. Watch it before the lottery, not after."
+        location="article"
+      />
 
       <h2>The permit problem</h2>
 
@@ -104,6 +163,13 @@ window.ARTICLE_BODIES["so-you-want-to-hike-half-dome"] = function SoYouWantToHik
       </p>
 
       <p>The heat matters more than most people expect.</p>
+
+      <figure style={{ margin: "28px 0 32px" }}>
+        <StartHigh />
+        <figcaption>
+          Start and summit elevations from this article. Clouds Rest starts nearly as high as Half Dome's summit, which is most of the argument for it in July.
+        </figcaption>
+      </figure>
 
       <h2>Why this is better than Half Dome in July and August</h2>
 

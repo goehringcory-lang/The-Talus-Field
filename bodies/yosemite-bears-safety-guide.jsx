@@ -1,8 +1,61 @@
-/* global React */
+/* global React, NatureNotesFilm */
 
 window.ARTICLE_BODIES = window.ARTICLE_BODIES || {};
 
 window.ARTICLE_BODIES["yosemite-bears-safety-guide"] = function YosemiteBearsSafetyGuideBody() {
+  // ── What counts as food ───────────────────────────────────────────────────
+  // Every item and rule is this article's own ("Yosemite food storage rules
+  // nobody reads carefully enough" and Myth 3), which quotes the regulation.
+  const HEAD = { fontFamily: "var(--sans)", fontSize: 12, fontWeight: 600, letterSpacing: 1.4 };
+  const ITEM = { fontFamily: "var(--sans)", fontSize: 13.5, fill: "var(--ink)" };
+  const NOTE = { fontFamily: "var(--sans)", fontSize: 12.5, fill: "var(--ink-3)" };
+  const BIG = { fontFamily: "var(--serif)", fontSize: 16.5, fill: "var(--ink)" };
+  const svgStyle = { width: "100%", height: "auto", display: "block" };
+  const GOES_IN = [
+    "All food", "Coolers, even empty", "All trash", "All toiletries", "Sunscreen",
+    "Lip balm", "Insect repellent", "Deodorant", "Medications", "Feminine hygiene products",
+  ];
+  const NOT_SAFE = [
+    ["Your car overnight", "everything with a scent comes out"],
+    ["Your car by day, in view", "nothing visible, even in daylight"],
+    ["A soft-sided vehicle", "pop-up, tent trailer: bears tear canvas"],
+    ["A bag hung from a tree", "bear bagging is prohibited"],
+  ];
+
+  function WhatCountsAsFood() {
+    const W = 680, H = 360, boxW = 372, colW = (boxW - 36) / 2;
+    return (
+      <svg viewBox={`0 0 ${W} ${H}`} style={svgStyle} role="img"
+        aria-label="What counts as food under Yosemite's storage rules. Into the bear box: all food, coolers even when empty, all trash, all toiletries, sunscreen, lip balm, insect repellent, deodorant, medications and feminine hygiene products. Not a safe place: your car overnight; your car by day with anything in view; a soft-sided vehicle such as a pop-up or tent trailer; a bag hung from a tree, since bear bagging is prohibited. Overnight wilderness trips require a bear canister. Violations carry a fine of up to $5,000.">
+        <rect x="1" y="1" width={boxW} height={H - 60} rx="4" fill="none" stroke="var(--moss)" strokeWidth="2.4" />
+        <rect x="1" y="1" width={boxW} height="40" rx="4" fill="var(--moss)" />
+        <text x="18" y="26" style={{ ...HEAD, fill: "var(--paper)" }}>INTO THE BEAR BOX</text>
+        {GOES_IN.map((t, i) => {
+          const cx = 18 + (i % 2) * (colW + 10), cy = 62 + Math.floor(i / 2) * 46;
+          return (
+            <g key={t}>
+              <rect x={cx} y={cy} width={colW} height={34} rx="3" fill="none" stroke="var(--rule-soft)" />
+              <text x={cx + 12} y={cy + 22} style={ITEM}>{t === "Feminine hygiene products" ? "Feminine hygiene" : t}</text>
+            </g>
+          );
+        })}
+        <text x={boxW + 28} y={26} style={{ ...HEAD, fill: "var(--rust)" }}>NOT A SAFE PLACE</text>
+        {NOT_SAFE.map(([t, n], i) => {
+          const y = 62 + i * 60, x = boxW + 28;
+          return (
+            <g key={t}>
+              <circle cx={x + 10} cy={y + 10} r="9" fill="none" stroke="var(--rust)" strokeWidth="1.6" />
+              <path d={`M${x + 4} ${y + 4} l12 12`} stroke="var(--rust)" strokeWidth="1.6" />
+              <text x={x + 28} y={y + 15} style={ITEM}>{t}</text>
+              <text x={x + 28} y={y + 33} style={NOTE}>{n}</text>
+            </g>
+          );
+        })}
+        <text x="0" y={H - 26} style={BIG}>If it goes in your mouth or on your skin, or has a scent, it goes in the box.</text>
+        <text x="0" y={H - 6} style={NOTE}>Wilderness overnights: a bear canister, rented for $5 a week. Violations: a fine of up to $5,000.</text>
+      </svg>
+    );
+  }
   return (
     <>
       <p className="dropcap">
@@ -95,6 +148,9 @@ window.ARTICLE_BODIES["yosemite-bears-safety-guide"] = function YosemiteBearsSaf
         What I tell visitors, and I tell them this constantly, is that the river is more dangerous than the bears. The granite is more dangerous than the bears. Your own car, driving tired on <a href="/articles/yosemite-gateway-towns-compared">Highway 140</a> at 10 PM after a long day of hiking, is more dangerous than the bears. Yosemite's bears are not trying to hurt you. They are trying to eat acorns and berries and occasionally whatever you left in your cooler. The fear is disproportionate to the risk by orders of magnitude. If you want to worry about something in this park, worry about the heat.
       </p>
 
+      <NatureNotesFilm id="black-bears" title="Black Bears" youtubeId="ijIePq9gGfo" episode={26}
+        note="The Park Service on the animal behind the myths: several hundred black bears, and what visitors get wrong about them." location="article" />
+
       <h2>Myth 5: That brown bear is a grizzly</h2>
 
       <p>
@@ -166,6 +222,13 @@ window.ARTICLE_BODIES["yosemite-bears-safety-guide"] = function YosemiteBearsSaf
       <p>
         "Food" means: all food, all coolers (including empty ones), all trash, all toiletries, sunscreen, lip balm, insect repellent, deodorant, medications, and feminine hygiene products. If you put it in your mouth or on your skin, it goes in the bear box. If it has a scent, it goes in the bear box. That is not an exaggeration. It is the regulation, verbatim.
       </p>
+
+      <figure style={{ margin: "30px 0 34px" }}>
+        <WhatCountsAsFood />
+        <figcaption style={{ fontFamily: "var(--sans)", fontSize: 13, color: "var(--ink-3)", marginTop: 10 }}>
+          The storage rules on one page, drawn from the regulation as this article quotes it. The rules apply year-round, not only in summer.
+        </figcaption>
+      </figure>
 
       <p>
         The empty cooler provision is the one that trips everyone up. Bears recognize the shape. A cooler under a blanket in your trunk is still a cooler to a bear that has learned, through years of operant conditioning, that cooler shapes contain food. It does not matter that this particular cooler is empty. The bear doesn't know that, and the regulation doesn't care.

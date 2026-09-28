@@ -101,7 +101,8 @@ const PAGE_MODULES = {
   affiliate: { scripts: ["/dist/page-legal.js"], globals: ["PrivacyPage", "TermsPage", "AffiliatePage"] },
   guide: { scripts: ["/dist/page-guide.js"], globals: ["GuidePage"] },
   films: { scripts: ["/videos-data.js", "/dist/page-films.js"], globals: ["FilmsPage"] },
-  itineraries: { scripts: ["/itineraries-data.js", "/dist/page-itineraries.js"], globals: ["ItinerariesPage"] },
+  // intent-data.js carries TRIP_MONTHS, which the plans' month grid reads.
+  itineraries: { scripts: ["/itineraries-data.js", "/intent-data.js", "/dist/page-itineraries.js"], globals: ["ItinerariesPage"] },
   // intent-data.js carries TRIP_MONTHS, which the map's first-visit setup reads
   // for road status and the arrival line (one month table for the whole site).
   map: { scripts: ["/itineraries-data.js", "/intent-data.js", "/dist/page-map.js"], globals: ["MapPage"] },

@@ -1,4 +1,4 @@
-/* global React, HpPageHead, LodgingCta, HpGuideBand, HpLetter, FjLayout, FjPull, FjRidge, FjCard, FjPlate, AffiliateDisclosure */
+/* global React, HpPageHead, HpHeading, HomeLink, ResponsiveImage, AvailabilityLink, HpGuideBand, HpLetter, FjPull, AffiliateDisclosure, EventIcon, NatureNotesFilm */
 
 // =============================================================================
 // HALF DOME LOTTERY — `/half-dome-lottery` route. The third evergreen event
@@ -25,6 +25,16 @@
 //
 // Anything that changes annually (dates, fees, rule changes) stays pointed at
 // NPS and Recreation.gov rather than stated here.
+//
+// The September 2026 visual pass rebuilt it on /firefall's system (the
+// `.hp-event` class, the `.ff-*` layout rules, EventIcon) without dropping a
+// sentence: every paragraph above the pass is still on the page, regrouped
+// into sections a reader can scan. Four pictures carry what the prose argues:
+// the daily cap split (HdCap), the season calendar (HdSeason), the published
+// odds (LotteryOdds, unchanged), and the arithmetic of repeated daily
+// entries (HdTries). Each reads numbers the page already states; HdTries
+// computes 1 - (1 - p)^n from the published weekday rate, which is the page's
+// own "about a two in three chance" worked out one entry at a time.
 // =============================================================================
 
 // Published NPS lottery statistics, most recent season first. Every figure is
@@ -75,358 +85,325 @@ function LotteryOdds({ season }) {
   );
 }
 
+// The daily cap as the page states it: 300 through the checkpoint, roughly 225
+// day hikers from the two lotteries and 75 backpackers from the wilderness
+// permit system.
+function HdCap() {
+  return (
+    <figure className="hd-cap">
+      <p className="hp-eyebrow fj-chart-title">Through the subdome checkpoint, each day the cables are up</p>
+      <div className="hd-cap__bar" role="img" aria-label="A maximum of 300 hikers a day: roughly 225 day hikers through the two lotteries and 75 backpackers through the wilderness permit system.">
+        <span className="hd-cap__day" style={{ flexBasis: "75%" }}><b>~225</b> day hikers<small>The two lotteries on this page</small></span>
+        <span className="hd-cap__wild" style={{ flexBasis: "25%" }}><b>75</b> backpackers<small>Wilderness permits</small></span>
+      </div>
+      <p className="ff-note">300 a day in all. An overnight that includes Half Dome wants a wilderness permit with the Half Dome add-on, not a lottery permit.</p>
+    </figure>
+  );
+}
+
+// The season on one axis, March to October. Positions are by month, and the
+// two cable dates are drawn as the rule the page states (the Friday before
+// Memorial Day, the day after the second Monday in October), not as a year's
+// dates.
+const HD_MONTHS = ["Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct"];
+function HdSeason() {
+  const W = 1000, L = 20, R = 20, col = (W - L - R) / 8;
+  const x = (m) => L + m * col; // m in months from March 1
+  const rows = [
+    { y: 70, from: 0, to: 1, cls: "hd-season__bar--apply", label: "Preseason applications: all of March, Eastern time" },
+    { y: 118, from: 1.4, to: 1.62, cls: "hd-season__bar--result", label: "Results by email, mid-April" },
+    { y: 166, from: 2.78, to: 7.45, cls: "hd-season__bar--cables", label: "Cables up: Friday before Memorial Day to the day after the second Monday in October" },
+    { y: 214, from: 2.78, to: 7.45, cls: "hd-season__bar--daily", label: "Daily lottery: every day the cables are up" },
+    { y: 262, from: 5.7, to: 7.45, cls: "hd-season__bar--best", label: "Best odds of the year: late-season weekdays" },
+  ];
+  return (
+    <svg className="hd-season__svg" viewBox={`0 0 ${W} 300`} role="img"
+      aria-label="The Half Dome permit season, March to October. Preseason lottery applications run through all of March, Eastern time. Results arrive by email in mid-April. The cables typically go up the Friday before Memorial Day and come down the day after the second Monday in October. The daily lottery runs every day the cables are up. The best odds of the year are weekdays from late August through the October takedown.">
+      {HD_MONTHS.map((m, i) => (
+        <g key={m}>
+          <line x1={x(i)} x2={x(i)} y1={30} y2={286} className="hd-season__grid" />
+          <text x={x(i) + col / 2} y={20} textAnchor="middle" className="hd-season__month">{m}</text>
+        </g>
+      ))}
+      <line x1={x(8)} x2={x(8)} y1={30} y2={286} className="hd-season__grid" />
+      {rows.map((r) => (
+        <g key={r.label}>
+          <rect x={x(r.from)} y={r.y - 22} width={x(r.to) - x(r.from)} height={16} rx="3" className={"hd-season__bar " + r.cls} />
+          <text x={r.from > 4 ? x(r.to) : x(r.from)} y={r.y + 12} textAnchor={r.from > 4 ? "end" : "start"} className="hd-season__label">{r.label}</text>
+        </g>
+      ))}
+    </svg>
+  );
+}
+
+// Five daily-lottery entries at the published weekday rate. Each draw is
+// independent, so the chance of at least one win after n entries is
+// 1 - (1 - p)^n. The page's own sentence is the n = 5 bar.
+function HdTries({ rate }) {
+  const p = (parseInt(rate, 10) || 0) / 100;
+  const tries = [1, 2, 3, 4, 5].map((n) => ({ n, v: 1 - Math.pow(1 - p, n) }));
+  return (
+    <figure className="hd-tries">
+      <p className="hp-eyebrow fj-chart-title">Chance of at least one win, daily lottery, weekday entries at {rate}</p>
+      <ol className="hd-tries__bars" aria-label={tries.map((t) => `${t.n} ${t.n === 1 ? "entry" : "entries"}: about ${Math.round(t.v * 100)}%`).join("; ")}>
+        {tries.map((t) => (
+          <li key={t.n}>
+            <span className="hd-tries__track"><span className="hd-tries__fill" style={{ height: `${Math.round(t.v * 100)}%` }} /></span>
+            <b>{Math.round(t.v * 100)}%</b>
+            <small>{t.n} {t.n === 1 ? "entry" : "entries"}</small>
+          </li>
+        ))}
+      </ol>
+      <figcaption className="ff-note">Each draw is independent, so the chances compound: at the published {rate}, five weekday entries come to about {Math.round(tries[4].v * 100)}%, a little better than the two in three that the one-in-five rule of thumb gives. Worked from the National Park Service's published weekday rate; an individual season can run better or worse.</figcaption>
+    </figure>
+  );
+}
+
 function HalfDomeLotteryPage({ go }) {
-  const goArticle = (e, slug) => {
-    e.preventDefault();
-    go(`a:${slug}`);
-  };
+  const season = LOTTERY_SEASONS[0];
+  const toc = [
+    ["#hd-season", "The season"],
+    ["#hd-lotteries", "Two lotteries"],
+    ["#hd-application", "The application"],
+    ["#hd-odds", "The odds"],
+    ["#hd-strategy", "What works"],
+    ["#hd-win", "If you win"],
+    ["#hd-lose", "If you do not"],
+    ["#hd-fine-print", "Fine print"],
+  ];
 
   return (
-    <div className="page hp-tool hp-half-dome-lottery">
-      <HpPageHead
-        go={go}
-        crumbs={[{ label: "Home", route: "home" }, { label: "Half Dome lottery" }]}
-        className="fj-head"
-        eyebrow="PERMIT SEASON · APPLICATIONS OPEN IN MARCH"
-        title="The Half Dome lottery"
-        intro="Most people think there is one Half Dome lottery, that it happens in March, and that losing it ends the year. All three are wrong. There are two lotteries, the second one runs every day the cables are up, and the strategy for each is different. This page is the honest version: the calendar, the published odds, the strategy, and what to do when the answer is no."
-        aside={
-          <FjPlate
-            image="img/half-dome-sunset-glacier-point-joshua-earle.jpg"
-            alt="Half Dome at sunset, seen from Glacier Point"
-            label="Half Dome from Glacier Point"
-            credit="Photo: Joshua Earle / Unsplash"
-            card={
-              <FjCard
-                eyebrow="THE CABLES, IN FOUR LINES"
-                rows={[
-                  { label: "Cables", value: "Last 400 vertical feet" },
-                  { label: "Daily cap", value: "300 hikers" },
-                  { label: "Lotteries", value: "Two: March, and daily" },
-                  { label: "Round trip", value: "14 to 16 miles" },
-                ]}
-              />
-            }
-          />
-        }
-      >
-        <AffiliateDisclosure />
-      </HpPageHead>
+    <div className="page hp-tool hp-event hp-half-dome-lottery">
+      <div className="ff-cover hd-cover">
+        <ResponsiveImage image="img/half-dome-alpenglow-madhu-shesharam.jpg" eager className="ff-cover__img"
+          alt="Half Dome glowing in alpenglow above Tenaya Canyon" sizes="100vw" />
+        <HpPageHead
+          go={go}
+          crumbs={[{ label: "Home", route: "home" }, { label: "Half Dome lottery" }]}
+          eyebrow="PERMIT SEASON · APPLICATIONS OPEN IN MARCH"
+          title="The Half Dome lottery"
+          intro="Most people think there is one Half Dome lottery, that it happens in March, and that losing it ends the year. All three are wrong. There are two lotteries, the second one runs every day the cables are up, and the strategy for each is different. This page is the honest version: the calendar, the published odds, the strategy, and what to do when the answer is no."
+          actions={<React.Fragment>
+            <HomeLink go={go} location="half_dome_head" className="hp-button" href="#hd-lotteries">The two lotteries <span>↓</span></HomeLink>
+            <HomeLink go={go} location="half_dome_head" className="hp-link" href="#hd-odds">The published odds ↓</HomeLink>
+          </React.Fragment>}
+        >
+          <AffiliateDisclosure />
+        </HpPageHead>
+        <p className="ff-cover__credit">Photo: Madhu Shesharam / Unsplash</p>
+      </div>
 
+      <div className="hp-wrap">
+        <dl className="ff-facts">
+          <div><EventIcon name="dome" /><dt>Cables</dt><dd>Last 400 vertical feet</dd></div>
+          <div><EventIcon name="users" /><dt>Daily cap</dt><dd>300 hikers</dd></div>
+          <div><EventIcon name="ticket" /><dt>Lotteries</dt><dd>Two: March, and daily</dd></div>
+          <div><EventIcon name="route" /><dt>Round trip</dt><dd>14 to 16 miles</dd></div>
+        </dl>
+        <nav className="ff-toc" aria-label="On this page">
+          <span>On this page</span>
+          {toc.map(([href, label]) => (
+            <HomeLink key={href} go={go} location="half_dome_toc" href={href}>{label}</HomeLink>
+          ))}
+        </nav>
+      </div>
 
-      <FjLayout>
-        <section className="prose">
-          <h2>The season</h2>
-          <p>
-            Half Dome has steel cables bolted into the granite for the last 400
-            vertical feet of the climb. They typically go up the Friday before
-            Memorial Day and come down the day after the second Monday in
-            October, shifting with snow on the route, crew availability and
-            weather. While they are up, a permit is required past the base of
-            the subdome, not just on the cables themselves.
-          </p>
-          <p>
-            The checkpoint sits at the base of the subdome steps, staffed by
-            rangers who check the permit, a government-issued photo ID and the
-            confirmation email. Everyone in the group has to be there together.
-            A maximum of 300 hikers a day go through: roughly 225 day hikers via
-            the two lotteries below, and 75 backpackers via the separate
-            wilderness permit system. If your trip is an overnight that includes
-            Half Dome, you want a wilderness permit with the Half Dome add-on,
-            not a day-hiker lottery permit.
-          </p>
-          <p>
-            No permit means you turn around, and this is federal law rather than
-            a suggestion: ascending the subdome or the cables without one
-            violates 36 CFR 1.6 and carries a fine of up to $5,000 and up to six
-            months in jail. Rangers check every group. The lotteries stay
-            lotteries.
-          </p>
-
-          <h2>Two lotteries, not one</h2>
-          <ol className="fj-pair">
-            <li>
-              <strong>The preseason lottery.</strong> Applications on
-              Recreation.gov through the month of March (Eastern time), results
-              emailed in mid-April. Up to six people and seven ranked date
-              choices per application, one application per person, and an
-              alternate trip leader you can only name during the window.
-            </li>
-            <li>
-              <strong>The daily lottery.</strong> The one almost nobody talks
-              about, running every day the cables are up. Apply on
-              Recreation.gov two days before your hike date, between midnight
-              and 4 p.m. Pacific; results arrive late that evening. It
-              distributes the permits preseason winners cancel or fail to use,
-              and in the most recent season the park has published it drew more
-              applications than the preseason lottery itself.
-            </li>
-          </ol>
-          <p>
-            Both charge a non-refundable application fee per application, not
-            per person, plus a per-person recreation fee if you win. Current
-            amounts are on the NPS permit page linked below; in the 2024 season
-            both were $10, so a group of four that applied and won paid $50 in
-            total.
-          </p>
-
-          <h2>What the preseason application asks for</h2>
-          <p>
-            <strong>Group size.</strong> Up to six people on one application.
-            Everyone hikes together, and the permit holder or the alternate has
-            to be at the checkpoint with the whole group.
-          </p>
-          <p>
-            <strong>Date choices.</strong> Up to seven dates or date ranges,
-            ranked. The system tries your highest-preference date first and
-            works down the list, so the order genuinely matters.
-          </p>
-          <p>
-            <strong>Permit holder and alternate.</strong> Name both. One of the
-            two must be physically present with a photo ID matching the permit.
-            An alternate can only be added during the application window, and
-            they have to hold a Recreation.gov account and accept the role
-            within 72 hours of being added. Miss that and they are not on the
-            permit. Once the window closes, neither name can be changed.
-          </p>
-          <p>
-            <strong>One application per person.</strong> Each person can appear
-            as holder or alternate on exactly one preseason application. Show up
-            on two and all of them are cancelled without a refund.
-          </p>
-
-          <h2>The published odds</h2>
-          <FjPull side cite="The published odds">Read the application rate, not the date-choice rate, as your odds of hiking.</FjPull>
-          <p>
-            These are the National Park Service's own figures for the seasons it
-            has published. Read the application rate, not the date-choice rate,
-            as your odds of hiking: most applications list several dates and
-            only one of them can be filled.
-          </p>
-          <div className="fj-tablewrap" role="region" aria-label="Published lottery statistics" tabIndex={0}>
-          <table>
-            <thead>
-              <tr>
-                <th>Season</th>
-                <th>Preseason applications</th>
-                <th>Preseason success</th>
-                <th>Daily applications</th>
-                <th>Daily success</th>
-                <th>Daily, weekday</th>
-                <th>Daily, weekend</th>
-              </tr>
-            </thead>
-            <tbody>
-              {LOTTERY_SEASONS.map((s) => (
-                <tr key={s.season}>
-                  <td><strong>{s.season}</strong></td>
-                  <td>{s.preseasonApps}</td>
-                  <td>{s.preseasonRate}</td>
-                  <td>{s.dailyApps}</td>
-                  <td>{s.dailyRate}</td>
-                  <td>{s.dailyWeekday}</td>
-                  <td>{s.dailyWeekend}</td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
+      <section className="hp-wrap hp-section" id="hd-season" tabIndex={-1}>
+        <div className="ff-split">
+          <div>
+            <p className="hp-eyebrow">THE SEASON</p>
+            <h2>A permit for the last 400 feet</h2>
+            <p className="ff-lede">Half Dome has steel cables bolted into the granite for the last 400 vertical feet of the climb. They typically go up the Friday before Memorial Day and come down the day after the second Monday in October, shifting with snow on the route, crew availability and weather. While they are up, a permit is required past the base of the subdome, not just on the cables themselves.</p>
+            <p className="ff-lede">The checkpoint sits at the base of the subdome steps, staffed by rangers who check the permit, a government-issued photo ID and the confirmation email. Everyone in the group has to be there together.</p>
+            <NatureNotesFilm
+              id="half-dome"
+              title="Half Dome"
+              youtubeId="ihNpkUp5JdM"
+              episode={4}
+              location="half_dome_film"
+              note="The rock, the cables and the climb, from the Park Service's own film series: what the permit is for, before you spend March trying to get one."
+            />
           </div>
-          <LotteryOdds season={LOTTERY_SEASONS[0]} />
-          <p>
-            The spread inside those averages is where the strategy lives.
-            Saturday is the most requested day of the week, drawing about 21% of
-            all preseason applications in 2024. Weekday odds in the daily
-            lottery ran roughly half again better than weekend odds that season,
-            22% against 14%, and late-season weekdays, late August through the
-            October takedown, are the best draw of the year. Counted by
-            individual date choice rather than by application, the preseason
-            numbers look far worse, about 1.0% for a weekday choice and 0.8% for
-            a weekend one, which is the same fact stated a different way.
-          </p>
-
-          <FjRidge />
-          <h2>What actually works</h2>
-          <ol className="fj-numlist">
-            <li>
-              <strong>Use all seven date choices</strong> in the preseason
-              application, and front-load the unpopular ones: a Tuesday in
-              September as your first choice beats a Saturday in July. One fixed
-              date means you get the published odds and nothing better; seven
-              spread across the season is seven rolls inside one application.
-            </li>
-            <li>
-              <strong>Enter both lotteries.</strong> Plan the trip so the hike
-              falls mid-visit rather than on day one, then run the daily lottery
-              every eligible day. Each draw is independent, so five weekday
-              attempts at roughly one-in-five odds work out to about a two in
-              three chance of winning at least once.
-            </li>
-            <li>
-              <strong>Avoid Saturday.</strong> Sunday is second worst. Monday
-              through Thursday draw the fewest preseason applications, 12 to 13%
-              each in 2024, and weekdays draw better odds in the daily lottery.
-            </li>
-            <li>
-              <strong>Split groups larger than six</strong> across two
-              applications with two different permit holders; they are entered
-              independently. Name an alternate on every preseason application,
-              and have them accept the role before the window closes, or a sick
-              permit holder on hike day ends the trip for everyone.
-            </li>
-            <li>
-              <strong>Have the no-permit plan ready.</strong> A wilderness
-              permit through Little Yosemite Valley can carry a Half Dome add-on
-              from a separate allocation, and Clouds Rest, higher than Half Dome
-              with a bigger view and no permit at all, is the better hike for
-              most people anyway.
-            </li>
-          </ol>
-
-          <h2>If you win</h2>
-          <FjPull side cite="If you win">Sunk cost is a bad reason to be on wet granite at 45 degrees.</FjPull>
-          <p>
-            Download or print the confirmation email before you leave the
-            Valley. Cell service is unreliable at the subdome checkpoint, and the
-            permit is valid for a single day,
-            midnight to 11:59 p.m., with no multi-day option for day hikers.
-            Bring the photo ID that matches the name on it.
-          </p>
-          <p>
-            Start at Happy Isles before dawn. The hike is 14 to 16 miles round
-            trip with 4,800 feet of gain and takes most people 10 to 12 hours,
-            so a 5 a.m. start, earlier if you can, is what gets you up and down
-            before afternoon thunderstorms. Set a turnaround time and keep it:
-            not on the summit by 3:30 p.m. means turn around, whatever the day
-            has cost you. You do not want to be on the cables in a lightning
-            storm, or coming down{" "}
-            <a href="/articles/mist-trail-the-real-guide" onClick={(e) => goArticle(e, "mist-trail-the-real-guide")}>
-              the Mist Trail
-            </a>{" "}
-            in the dark without a headlamp.
-          </p>
-          <p>
-            Watch the forecast obsessively in the days before. Nearly every
-            fatal fall from the cables has happened on wet rock. If rain is
-            coming, cancel: the per-person recreation fee is fully refundable
-            until 11:59 p.m. Pacific the day before your date, and refundable
-            outright if the cables are not up. Sunk cost is a bad reason to be
-            on wet granite at 45 degrees.
-          </p>
-
-          <h2>If you do not win</h2>
-          <p>
-            <strong>Run the daily lottery every day of the trip.</strong> Each
-            application is an independent chance, and five eligible weekday
-            mornings is a genuinely good position to be in.
-          </p>
-          <p>
-            <strong>Do not go anyway.</strong> Rangers are at the checkpoint,
-            they check every group, and the citation follows you home.
-          </p>
-          <p>
-            <strong>Consider the backpacker route.</strong> A wilderness permit
-            for a trip through Little Yosemite Valley can carry a Half Dome
-            add-on from an allocation the day-hiker lottery does not touch. It
-            means an overnight, a bear canister and wilderness gear, but it is a
-            legitimate path to the cables. Apply through{" "}
-            <a href="/articles/yosemite-wilderness-permits-guide" onClick={(e) => goArticle(e, "yosemite-wilderness-permits-guide")}>
-              the wilderness permit system
-            </a>
-            , not this lottery.
-          </p>
-          <p>
-            <strong>Hike Clouds Rest instead.</strong> The summit is 9,926 feet,
-            more than a thousand feet higher than Half Dome, with no permit
-            required and bigger views in every direction. On a Tuesday in June
-            you might have it to yourself.
-          </p>
-          <p>
-            <strong>Come back late season, midweek.</strong> The best daily
-            lottery odds of the year are weekdays in September and early
-            October: the cables are still up, the crowds have thinned and the
-            fall light is extraordinary.
-          </p>
-
-          <FjRidge />
-          <h2>Fees, cancellation and the fine print</h2>
-          <p>
-            The application fee is non-refundable in every case; it is the cost
-            of entering. The per-person recreation fee is refundable if you
-            cancel by 11:59 p.m. Pacific the day before your hike date, or if
-            the cables are not up on your date, which happens with early-season
-            snow and late-season weather. Cancel or reduce group size through
-            the Recreation.gov account or by phone.
-          </p>
-          <p>
-            In the daily lottery there is no alternate, only a permit holder,
-            and a win charges the card on file automatically. A declined card
-            forfeits the permit. Permits cannot be resold or auctioned, and any
-            attempt to resell one voids it. A day-hiker permit includes no
-            camping anywhere along the route.
-          </p>
-        </section>
-
-        {/* The live layer: rules and fees change annually; the sources don't. */}
-        <div className="fj-aside">
-          <p className="hp-eyebrow">The current year's rules</p>
-          <p>
-            Dates, fees, and any rule changes for the current season:{" "}
-            <a href="https://www.nps.gov/yose/planyourvisit/hdpermits.htm" target="_blank" rel="noopener noreferrer">the NPS Half Dome permits page</a>{" "}
-            and{" "}
-            <a href="https://www.recreation.gov/permits/234652" target="_blank" rel="noopener noreferrer">the Recreation.gov lottery page</a>.
-            The wilderness office answers permit questions at 209-372-0826, weekday mornings and afternoons in season.
-            The week's park-wide picture is on{" "}
-            <a href="/now" onClick={(e) => { e.preventDefault(); go("now"); }}>the Park Bulletin</a>.
-          </p>
+          <div className="hd-side">
+            <HdCap />
+            <aside className="ff-short hd-law" aria-label="No permit, no summit">
+              <p className="ff-short__head"><EventIcon name="no" /> No permit means you turn around</p>
+              <p>This is federal law rather than a suggestion: ascending the subdome or the cables without one violates 36 CFR 1.6 and carries a fine of up to $5,000 and up to six months in jail. Rangers check every group. The lotteries stay lotteries.</p>
+            </aside>
+          </div>
         </div>
+      </section>
 
-        <section className="prose" style={{ marginTop: 48 }}>
-          <h2>Related reading</h2>
-          <p>
-            Before you decide the cables are the goal at all, read{" "}
-            <a href="/articles/so-you-want-to-hike-half-dome" onClick={(e) => goArticle(e, "so-you-want-to-hike-half-dome")}>
-              So You Want to Hike Half Dome
-            </a>
-            , which includes the case for Clouds Rest. The approach is{" "}
-            <a href="/articles/mist-trail-the-real-guide" onClick={(e) => goArticle(e, "mist-trail-the-real-guide")}>
-              the Mist Trail
-            </a>
-            , and every other permit the park runs is in{" "}
-            <a href="/articles/yosemite-wilderness-permits-guide" onClick={(e) => goArticle(e, "yosemite-wilderness-permits-guide")}>
-              the wilderness permits guide
-            </a>
-            . If you arrived without any permit at all, there is{" "}
-            <a href="/articles/yosemite-walk-up-and-day-of-permits" onClick={(e) => goArticle(e, "yosemite-walk-up-and-day-of-permits")}>
-              a guide to walk-up and day-of permits
-            </a>
-            . Gear lives in{" "}
-            <a href="/kit" onClick={(e) => { e.preventDefault(); go("kit"); }}>the day pack list</a>:
-            the short version is a gallon of water, grippy gloves you pack back
-            out, a headlamp, and a hard turnaround time.
-          </p>
-          <h3>Sources</h3>
-          <ul style={{ fontSize: 14 }}>
-            <li><a href="https://www.nps.gov/yose/planyourvisit/hdpermits.htm" target="_blank" rel="noopener noreferrer">Half Dome Permits, NPS</a></li>
-            <li><a href="https://www.recreation.gov/permits/234652" target="_blank" rel="noopener noreferrer">Half Dome Permits, Recreation.gov</a></li>
-            <li><a href="https://www.nps.gov/yose/planyourvisit/hdpermitsapps.htm" target="_blank" rel="noopener noreferrer">Half Dome Permit Lottery Statistics, NPS</a></li>
-          </ul>
-        </section>
+      <section className="ff-band" id="hd-lotteries" tabIndex={-1}>
+        <div className="hp-wrap hp-section">
+          <HpHeading eyebrow="TWO LOTTERIES, NOT ONE" title="March is the first chance, not the only one" />
+          <div className="hd-pair">
+            <article className="hd-lottery">
+              <p className="hp-eyebrow"><EventIcon name="calendar" size={18} /> THE PRESEASON LOTTERY</p>
+              <h3>Apply in March</h3>
+              <p>Applications on Recreation.gov through the month of March (Eastern time), results emailed in mid-April. Up to six people and seven ranked date choices per application, one application per person, and an alternate trip leader you can only name during the window.</p>
+              <dl>
+                <div><dt>Window</dt><dd>All of March, Eastern time</dd></div>
+                <div><dt>Results</dt><dd>By email, mid-April</dd></div>
+                <div><dt>Group</dt><dd>Up to six</dd></div>
+                <div><dt>Dates</dt><dd>Up to seven, ranked</dd></div>
+                <div><dt>Alternate</dt><dd>Named only during the window</dd></div>
+              </dl>
+            </article>
+            <article className="hd-lottery hd-lottery--daily">
+              <p className="hp-eyebrow"><EventIcon name="clock" size={18} /> THE DAILY LOTTERY</p>
+              <h3>Apply two days out, all season</h3>
+              <p>The one almost nobody talks about, running every day the cables are up. Apply on Recreation.gov two days before your hike date, between midnight and 4 p.m. Pacific; results arrive late that evening. It distributes the permits preseason winners cancel or fail to use, and in the most recent season the park has published it drew more applications than the preseason lottery itself.</p>
+              <ol className="hd-clock">
+                <li><span>Two days before</span><strong>Apply, midnight to 4 p.m. Pacific</strong></li>
+                <li><span>That evening</span><strong>Results arrive, late</strong></li>
+                <li><span>Hike day</span><strong>The permit is good midnight to 11:59 p.m.</strong></li>
+              </ol>
+            </article>
+          </div>
+          <figure className="hd-season">
+            <HdSeason />
+            <figcaption className="ff-note">The season as the rules describe it, not a given year's dates. The park posts each season's dates on its permit page.</figcaption>
+          </figure>
+          <p className="ff-lede hd-fees">Both charge a non-refundable application fee per application, not per person, plus a per-person recreation fee if you win. Current amounts are on the NPS permit page linked below; in the 2024 season both were $10, so a group of four that applied and won paid $50 in total.</p>
+        </div>
+      </section>
 
-        {/* A permit day is a pre-dawn start after a 14-to-16-hour day, which
-            makes the night before and the night after a real planning
-            problem, not an afterthought. */}
-        <LodgingCta
-          destination="Yosemite National Park"
-          heading="The night before, and the night after"
-          note="The hike wants a pre-dawn start and gives back a fourteen-to-sixteen-hour day. Driving in from Oakhurst at 3 a.m. and back out at 10 p.m. is how a permit gets wasted. A bed in the Valley or in El Portal is the difference, and the permit date is known far enough ahead to book one."
-          list="page_half_dome"
-          slug="half-dome-lottery"
-          cta="Search lodging near the trailhead →"
-        />
+      <section className="hp-wrap hp-section" id="hd-application" tabIndex={-1}>
+        <HpHeading eyebrow="WHAT THE PRESEASON APPLICATION ASKS FOR" title="Four fields, and each one can sink you" />
+        <ul className="ff-rules hd-fields">
+          <li><EventIcon name="users" size={26} /><strong>Group size</strong><p>Up to six people on one application. Everyone hikes together, and the permit holder or the alternate has to be at the checkpoint with the whole group.</p></li>
+          <li><EventIcon name="calendar" size={26} /><strong>Date choices</strong><p>Up to seven dates or date ranges, ranked. The system tries your highest-preference date first and works down the list, so the order genuinely matters.</p></li>
+          <li><EventIcon name="id" size={26} /><strong>Permit holder and alternate</strong><p>Name both. One of the two must be physically present with a photo ID matching the permit. An alternate can only be added during the application window, and they have to hold a Recreation.gov account and accept the role within 72 hours of being added. Miss that and they are not on the permit. Once the window closes, neither name can be changed.</p></li>
+          <li className="is-warn"><EventIcon name="alert" size={26} /><strong>One application per person</strong><p>Each person can appear as holder or alternate on exactly one preseason application. Show up on two and all of them are cancelled without a refund.</p></li>
+        </ul>
+      </section>
 
-        {/* The purchase ask: a lottery reader is planning the whole trip
-            around one permit day, usually months out. */}
-      </FjLayout>
+      <section className="ff-band" id="hd-odds" tabIndex={-1}>
+        <div className="hp-wrap hp-section">
+          <HpHeading eyebrow="THE PUBLISHED ODDS" title="Read the application rate, not the date-choice rate" />
+          <p className="ff-lede ff-lede--intro">These are the National Park Service's own figures for the seasons it has published. Read the application rate, not the date-choice rate, as your odds of hiking: most applications list several dates and only one of them can be filled.</p>
+          <LotteryOdds season={season} />
+          <div className="prose hd-table fj-tablewrap" role="region" aria-label="Published lottery statistics" tabIndex={0}>
+            <table>
+              <thead>
+                <tr>
+                  <th>Season</th>
+                  <th>Preseason applications</th>
+                  <th>Preseason success</th>
+                  <th>Daily applications</th>
+                  <th>Daily success</th>
+                  <th>Daily, weekday</th>
+                  <th>Daily, weekend</th>
+                </tr>
+              </thead>
+              <tbody>
+                {LOTTERY_SEASONS.map((s) => (
+                  <tr key={s.season}>
+                    <td><strong>{s.season}</strong></td>
+                    <td>{s.preseasonApps}</td>
+                    <td>{s.preseasonRate}</td>
+                    <td>{s.dailyApps}</td>
+                    <td>{s.dailyRate}</td>
+                    <td>{s.dailyWeekday}</td>
+                    <td>{s.dailyWeekend}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+          <div className="ff-split hd-spread">
+            <p className="ff-lede">The spread inside those averages is where the strategy lives. Saturday is the most requested day of the week, drawing about 21% of all preseason applications in 2024. Weekday odds in the daily lottery ran roughly half again better than weekend odds that season, 22% against 14%, and late-season weekdays, late August through the October takedown, are the best draw of the year.</p>
+            <p className="ff-lede">Counted by individual date choice rather than by application, the preseason numbers look far worse, about 1.0% for a weekday choice and 0.8% for a weekend one, which is the same fact stated a different way.</p>
+          </div>
+        </div>
+      </section>
+
+      <section className="hp-wrap hp-section" id="hd-strategy" tabIndex={-1}>
+        <div className="ff-split">
+          <div>
+            <p className="hp-eyebrow">WHAT ACTUALLY WORKS</p>
+            <h2>Seven dates, two lotteries, no Saturdays</h2>
+            <HdTries rate={season.dailyWeekday} />
+          </div>
+          <ol className="hd-steps">
+            <li><strong>Use all seven date choices</strong><p>In the preseason application, front-load the unpopular ones: a Tuesday in September as your first choice beats a Saturday in July. One fixed date means you get the published odds and nothing better; seven spread across the season is seven rolls inside one application.</p></li>
+            <li><strong>Enter both lotteries</strong><p>Plan the trip so the hike falls mid-visit rather than on day one, then run the daily lottery every eligible day. Each draw is independent, so five weekday attempts at roughly one-in-five odds work out to about a two in three chance of winning at least once.</p></li>
+            <li><strong>Avoid Saturday</strong><p>Sunday is second worst. Monday through Thursday draw the fewest preseason applications, 12 to 13% each in 2024, and weekdays draw better odds in the daily lottery.</p></li>
+            <li><strong>Split groups larger than six</strong><p>Across two applications with two different permit holders; they are entered independently. Name an alternate on every preseason application, and have them accept the role before the window closes, or a sick permit holder on hike day ends the trip for everyone.</p></li>
+            <li><strong>Have the no-permit plan ready</strong><p>A wilderness permit through Little Yosemite Valley can carry a Half Dome add-on from a separate allocation, and Clouds Rest, higher than Half Dome with a bigger view and no permit at all, is the better hike for most people anyway.</p></li>
+          </ol>
+        </div>
+      </section>
+
+      <section className="ff-band" id="hd-win" tabIndex={-1}>
+        <div className="hp-wrap hp-section ff-split">
+          <div>
+            <p className="hp-eyebrow">IF YOU WIN</p>
+            <h2>The day is 10 to 12 hours. Start before dawn.</h2>
+            <p className="ff-lede">The hike is 14 to 16 miles round trip with 4,800 feet of gain and takes most people 10 to 12 hours, so a 5 a.m. start, earlier if you can, is what gets you up and down before afternoon thunderstorms.</p>
+            <p className="ff-lede">Watch the forecast obsessively in the days before. Nearly every fatal fall from the cables has happened on wet rock. If rain is coming, cancel: the per-person recreation fee is fully refundable until 11:59 p.m. Pacific the day before your date, and refundable outright if the cables are not up.</p>
+            <FjPull cite="If you win">Sunk cost is a bad reason to be on wet granite at 45 degrees.</FjPull>
+          </div>
+          <ol className="ff-hours">
+            <li><span>Before you leave the Valley</span><p>Download or print the confirmation email. Cell service is unreliable at the subdome checkpoint, and the permit is valid for a single day, midnight to 11:59 p.m., with no multi-day option for day hikers. Bring the photo ID that matches the name on it.</p></li>
+            <li><span>5 a.m., or earlier</span><p>Start at Happy Isles.</p></li>
+            <li><span>The subdome steps</span><p>Rangers check the permit, the photo ID and the confirmation, with the whole group there together.</p></li>
+            <li className="is-glow"><span>3:30 p.m.</span><p>Set a turnaround time and keep it: not on the summit by 3:30 p.m. means turn around, whatever the day has cost you.</p></li>
+            <li><span>The way down</span><p>You do not want to be on the cables in a lightning storm, or coming down <HomeLink go={go} location="half_dome_win" href="/articles/mist-trail-the-real-guide">the Mist Trail</HomeLink> in the dark without a headlamp.</p></li>
+          </ol>
+        </div>
+      </section>
+
+      <section className="hp-wrap hp-section" id="hd-lose" tabIndex={-1}>
+        <HpHeading eyebrow="IF YOU DO NOT WIN" title="The year is not over" />
+        <ul className="ff-rules hd-lose">
+          <li><EventIcon name="ticket" size={26} /><strong>Run the daily lottery every day of the trip</strong><p>Each application is an independent chance, and five eligible weekday mornings is a genuinely good position to be in.</p></li>
+          <li className="is-no"><EventIcon name="no" size={26} /><strong>Do not go anyway</strong><p>Rangers are at the checkpoint, they check every group, and the citation follows you home.</p></li>
+          <li><EventIcon name="bed" size={26} /><strong>Consider the backpacker route</strong><p>A wilderness permit for a trip through Little Yosemite Valley can carry a Half Dome add-on from an allocation the day-hiker lottery does not touch. It means an overnight, a bear canister and wilderness gear, but it is a legitimate path to the cables. Apply through <HomeLink go={go} location="half_dome_lose" href="/articles/yosemite-wilderness-permits-guide">the wilderness permit system</HomeLink>, not this lottery.</p></li>
+          <li><EventIcon name="mountain" size={26} /><strong>Hike Clouds Rest instead</strong><p>The summit is 9,926 feet, more than a thousand feet higher than Half Dome, with no permit required and bigger views in every direction. On a Tuesday in June you might have it to yourself.</p></li>
+          <li><EventIcon name="calendar" size={26} /><strong>Come back late season, midweek</strong><p>The best daily lottery odds of the year are weekdays in September and early October: the cables are still up, the crowds have thinned and the fall light is extraordinary.</p></li>
+        </ul>
+      </section>
+
+      <section className="ff-band" id="hd-fine-print" tabIndex={-1}>
+        <div className="hp-wrap hp-section ff-split">
+          <div>
+            <p className="hp-eyebrow">FEES, CANCELLATION AND THE FINE PRINT</p>
+            <h2>What is refundable, and what is not</h2>
+            <p className="ff-lede">The application fee is non-refundable in every case; it is the cost of entering. The per-person recreation fee is refundable if you cancel by 11:59 p.m. Pacific the day before your hike date, or if the cables are not up on your date, which happens with early-season snow and late-season weather. Cancel or reduce group size through the Recreation.gov account or by phone.</p>
+            <p className="ff-lede">In the daily lottery there is no alternate, only a permit holder, and a win charges the card on file automatically. A declined card forfeits the permit. Permits cannot be resold or auctioned, and any attempt to resell one voids it. A day-hiker permit includes no camping anywhere along the route.</p>
+          </div>
+          <div className="hd-side">
+            {/* The live layer: rules and fees change annually; the sources don't. */}
+            <aside className="ff-closing hd-rules">
+              <p className="hp-eyebrow">THE CURRENT YEAR'S RULES</p>
+              <p>Dates, fees, and any rule changes for the current season: <a href="https://www.nps.gov/yose/planyourvisit/hdpermits.htm" target="_blank" rel="noopener noreferrer">the NPS Half Dome permits page</a> and <a href="https://www.recreation.gov/permits/234652" target="_blank" rel="noopener noreferrer">the Recreation.gov lottery page</a>. The wilderness office answers permit questions at 209-372-0826, weekday mornings and afternoons in season. The week's park-wide picture is on <HomeLink go={go} location="half_dome_rules" href="/now">the Park Bulletin</HomeLink>.</p>
+              <h3>Sources</h3>
+              <ul>
+                <li><a href="https://www.nps.gov/yose/planyourvisit/hdpermits.htm" target="_blank" rel="noopener noreferrer">Half Dome Permits, NPS ↗</a></li>
+                <li><a href="https://www.recreation.gov/permits/234652" target="_blank" rel="noopener noreferrer">Half Dome Permits, Recreation.gov ↗</a></li>
+                <li><a href="https://www.nps.gov/yose/planyourvisit/hdpermitsapps.htm" target="_blank" rel="noopener noreferrer">Half Dome Permit Lottery Statistics, NPS ↗</a></li>
+              </ul>
+            </aside>
+            {/* A permit day is a pre-dawn start after a 14-to-16-hour day, which
+                makes the night before and the night after a real planning
+                problem, not an afterthought. The filled button is only ever an
+                Expedia search, as on /firefall. */}
+            <aside className="ff-closing hd-stay" aria-label="Lodging availability">
+              <p className="hp-eyebrow">THE NIGHT BEFORE, AND THE NIGHT AFTER</p>
+              <p>The hike wants a pre-dawn start and gives back a fourteen-to-sixteen-hour day. Driving in from Oakhurst at 3 a.m. and back out at 10 p.m. is how a permit gets wasted. A bed in the Valley or in El Portal is the difference, and the permit date is known far enough ahead to book one.</p>
+              <AvailabilityLink destination="Yosemite National Park" list="page_half_dome" slug="half-dome-lottery" className="ff-book">Search lodging near the trailhead ↗</AvailabilityLink>
+              <p className="ff-note">Availability search on Expedia; we may earn a commission, and the advice is the same either way. <a href="/affiliate">Disclosure.</a> Every option compared: <HomeLink go={go} location="half_dome_stay" href="/stay">where to stay</HomeLink>.</p>
+            </aside>
+          </div>
+        </div>
+      </section>
+
+      <section className="hp-wrap hp-section hd-related">
+        <p className="hp-eyebrow">RELATED READING</p>
+        <p className="ff-lede">Before you decide the cables are the goal at all, read <HomeLink go={go} location="half_dome_related" href="/articles/so-you-want-to-hike-half-dome">So You Want to Hike Half Dome</HomeLink>, which includes the case for Clouds Rest. The approach is <HomeLink go={go} location="half_dome_related" href="/articles/mist-trail-the-real-guide">the Mist Trail</HomeLink>, and every other permit the park runs is in <HomeLink go={go} location="half_dome_related" href="/articles/yosemite-wilderness-permits-guide">the wilderness permits guide</HomeLink>. If you arrived without any permit at all, there is <HomeLink go={go} location="half_dome_related" href="/articles/yosemite-walk-up-and-day-of-permits">a guide to walk-up and day-of permits</HomeLink>. Gear lives in <HomeLink go={go} location="half_dome_related" href="/kit">the day pack list</HomeLink>: the short version is a gallon of water, grippy gloves you pack back out, a headlamp, and a hard turnaround time.</p>
+      </section>
 
       <HpGuideBand
         go={go}

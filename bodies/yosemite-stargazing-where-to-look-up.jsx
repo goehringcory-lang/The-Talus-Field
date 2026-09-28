@@ -1,8 +1,62 @@
-/* global React, AffiliateNote */
+/* global React, AffiliateNote, NatureNotesFilm */
 
 window.ARTICLE_BODIES = window.ARTICLE_BODIES || {};
 
 window.ARTICLE_BODIES["yosemite-stargazing-where-to-look-up"] = function YosemiteStargazingBody() {
+  // ── The Bortle ladder ─────────────────────────────────────────────────────
+  // Every reading and star count below is this article's own ("What dark sky
+  // actually means"). Readings are typical, not measured on any one night.
+  const AXIS = { fontFamily: "var(--sans)", fontSize: 12.5, fill: "var(--ink-3)" };
+  const NUM = { fontFamily: "var(--sans)", fontSize: 14, fontWeight: 600 };
+  const PLACE = { fontFamily: "var(--serif)", fontSize: 16, fill: "var(--ink)" };
+  const NOTE = { fontFamily: "var(--sans)", fontSize: 12.5, fill: "var(--ink-2)" };
+  const svgStyle = { width: "100%", height: "auto", display: "block" };
+  // Nine steps from the darkest natural sky to an inner city: ink to paper.
+  const SHADE = ["#0d1512", "#18241f", "#26342d", "#3a4840", "#566158", "#767e73", "#9aa093", "#c2c4b4", "#e6e2d0"];
+
+  function BortleLadder() {
+    const W = 680, L = 20, R = 20, top = 120, h = 46, H = 290;
+    const step = (W - L - R) / 9;
+    const cx = (n) => L + (n - 1) * step + step / 2;
+    const span = (a, b) => [L + (a - 1) * step + 4, (b - a + 1) * step - 8];
+    // tx / anchor place each label clear of the other connectors.
+    const marks = [
+      { a: 2, b: 2, y: 34, tx: L, anchor: "start", place: "Yosemite high country", note: "Tioga Road, Tuolumne, Glacier Point; 1 in the right spots" },
+      { a: 3, b: 4, y: 80, tx: 170, anchor: "start", place: "Yosemite Valley", note: "lodging and parking lights" },
+      { a: 6, b: 7, y: 34, tx: null, anchor: "middle", place: "Most American suburbs", note: "" },
+    ];
+    return (
+      <svg viewBox={`0 0 ${W} ${H}`} style={svgStyle} role="img"
+        aria-label="The Bortle scale of night-sky darkness, from 1, the darkest natural sky, to 9, an inner-city sky. The Yosemite high country reads 2, occasionally 1. Yosemite Valley reads 3 or 4. Most American suburbs read 6 or 7. At Bortle 4 you can see roughly 2,000 stars and the Milky Way is faint; at Bortle 2, closer to 6,000, and the Milky Way casts shadows.">
+        {marks.map((m) => {
+          const [x, w] = span(m.a, m.b);
+          const tx = m.tx == null ? x + w / 2 : m.tx;
+          return (
+            <g key={m.place}>
+              <line x1={x} x2={x + w} y1={top - 12} y2={top - 12} stroke="var(--rust)" strokeWidth="2" />
+              <line x1={x + w / 2} x2={x + w / 2} y1={m.y + (m.note ? 22 : 8)} y2={top - 12} stroke="var(--rust)" strokeWidth="1" />
+              <text x={tx} y={m.y} textAnchor={m.anchor} style={PLACE}>{m.place}</text>
+              {m.note && <text x={tx} y={m.y + 16} textAnchor={m.anchor} style={NOTE}>{m.note}</text>}
+            </g>
+          );
+        })}
+        {SHADE.map((c, i) => (
+          <g key={i}>
+            <rect x={L + i * step} y={top} width={step} height={h} fill={c} />
+            <text x={cx(i + 1)} y={top + 29} textAnchor="middle" style={{ ...NUM, fill: i < 5 ? "#f0e8d8" : "#1c2621" }}>{i + 1}</text>
+          </g>
+        ))}
+        <text x={L} y={top + h + 20} style={AXIS}>Darkest natural sky</text>
+        <text x={W - R} y={top + h + 20} textAnchor="end" style={AXIS}>Inner city</text>
+        <line x1={cx(2)} x2={cx(2)} y1={top + h + 28} y2={top + h + 50} stroke="var(--ink-3)" strokeWidth="1" strokeDasharray="3 3" />
+        <line x1={cx(4)} x2={cx(4)} y1={top + h + 28} y2={top + h + 50} stroke="var(--ink-3)" strokeWidth="1" strokeDasharray="3 3" />
+        <text x={cx(2) - 6} y={top + h + 68} textAnchor="middle" style={PLACE}>About 6,000 stars</text>
+        <text x={cx(2) - 6} y={top + h + 85} textAnchor="middle" style={NOTE}>Milky Way casts shadows</text>
+        <text x={cx(4) + 70} y={top + h + 68} textAnchor="middle" style={PLACE}>About 2,000 stars</text>
+        <text x={cx(4) + 70} y={top + h + 85} textAnchor="middle" style={NOTE}>Milky Way faintly visible</text>
+      </svg>
+    );
+  }
   return (
     <>
       <p className="dropcap">
@@ -14,6 +68,9 @@ window.ARTICLE_BODIES["yosemite-stargazing-where-to-look-up"] = function Yosemit
       <p>
         Yosemite is one of the few places on the West Coast where the version of the sky our ancestors saw is still available. Not every night. Not in every season. Not from every spot. But often enough, in the right places, and with enough magnitude that the experience is in a different category from a dark-sky park designation or a "let's go look at the stars" parking-lot stop.
       </p>
+
+      <NatureNotesFilm id="night-skies" title="Night Skies" youtubeId="ZhgR3zVfo-0" episode={19}
+        note="The Park Service on what it is protecting after dark, and why a remote, high park keeps some of the darkest sky left in California." location="article" />
 
       <p>This is where to go, when to go, and how to think about the night sky in this park.</p>
 
@@ -30,6 +87,13 @@ window.ARTICLE_BODIES["yosemite-stargazing-where-to-look-up"] = function Yosemit
       </p>
 
       <blockquote>This is not a small upgrade. This is the difference between a sky and the sky.</blockquote>
+
+      <figure style={{ margin: "30px 0 34px" }}>
+        <BortleLadder />
+        <figcaption style={{ fontFamily: "var(--sans)", fontSize: 13, color: "var(--ink-3)", marginTop: 10 }}>
+          The Bortle scale, with the readings and star counts given above. Typical readings on a clear, moonless night; the moon, smoke and haze move every one of them.
+        </figcaption>
+      </figure>
 
       <p>
         The other variable is <strong>moon phase</strong>. A full moon at Bortle 1 is brighter than a new moon at Bortle 4. For Milky Way viewing or photography, the rule is to plan around the moon. New moon nights or nights when the moon hasn't risen yet (or has already set) are when the dark sky shows up. Half moon and brighter moons wash out the fainter sky.
