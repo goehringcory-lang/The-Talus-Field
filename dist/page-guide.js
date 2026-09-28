@@ -784,8 +784,8 @@ var MAP3D_SHOTS = [{
   src: "img/guide/screens/map-3d-trip.v6.webp",
   width: 640,
   height: 1387,
-  alt: "The My trip tab on a phone: a two-day plan drawn on the terrain, day one's numbered pins in blue on the Valley floor and day two's in orange, with its drive along the road east of the Valley",
-  caption: "My trip draws your plan: numbered pins, one colour a day, drives along the real roads. The itinerary in words sits one tap below."
+  alt: "The My trip tab on a phone: the one-day Valley plan drawn on the terrain, ten numbered pins in the order the day runs, joined by the drives along the Valley's roads",
+  caption: "My trip draws your plan: numbered pins in the order the day runs, one colour a day, drives along the real roads. The itinerary in words sits one tap below."
 }];
 var MAP3D_POINTS = [{
   title: "Tilt it, turn it, fly it",
