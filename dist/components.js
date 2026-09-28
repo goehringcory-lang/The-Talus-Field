@@ -2703,6 +2703,8 @@ var readHistory = {
   }
 };
 window.readHistory = readHistory;
+var NL_CONFIRM_LINE = "One step left: open the confirmation email and click the link, or the letter never starts.";
+window.NL_CONFIRM_LINE = NL_CONFIRM_LINE;
 function trackNewsletterSubmit(location, tag, variant) {
   if (window.track) window.track("newsletter_signup", {
     location: location || "unknown",
@@ -2785,7 +2787,7 @@ function NewsletterInline({
       ref: ref
     }, React.createElement("p", {
       className: "nlbox__already"
-    }, "You're on the list. ", React.createElement("a", {
+    }, "You signed up on this device. No letter yet? Look for the confirmation email and click its link. ", React.createElement("a", {
       href: "/map"
     }, "The interactive map is open to you →")));
   }
@@ -2796,9 +2798,9 @@ function NewsletterInline({
     htmlFor: `${location}-email`
   }, inputLabel), done ? React.createElement("p", {
     className: "nlbox__done"
-  }, "You're in. ", React.createElement("a", {
+  }, NL_CONFIRM_LINE, " ", React.createElement("a", {
     href: "/map"
-  }, "The map is open to you →")) : React.createElement("form", {
+  }, "The map is already open to you →")) : React.createElement("form", {
     className: "nlbox__form",
     action: "https://buttondown.com/api/emails/embed-subscribe/goehring",
     method: "post",
@@ -2863,6 +2865,7 @@ function ExitIntentNewsletter({
   disabled
 }) {
   var [open, setOpen] = useState(false);
+  var [done, setDone] = useState(false);
   var firedRef = useRef(false);
   useEffect(() => {
     if (disabled) return;
@@ -2942,14 +2945,17 @@ function ExitIntentNewsletter({
     style: {
       marginBottom: 12
     }
-  }, "Before you go"), React.createElement("h3", null, "One letter a week. Sometimes none."), React.createElement("p", null, "Sunday Field Notes: what is open, what is blooming, and the occasional longer piece. Free, and you can leave anytime."), React.createElement("form", {
+  }, "Before you go"), React.createElement("h3", null, "One letter a week. Sometimes none."), React.createElement("p", null, "Sunday Field Notes: what is open, what is blooming, and the occasional longer piece. Free, and you can leave anytime."), done ? React.createElement("p", {
+    className: "nlbox__done",
+    role: "status"
+  }, NL_CONFIRM_LINE) : React.createElement("form", {
     className: "nlbox__form",
     action: "https://buttondown.com/api/emails/embed-subscribe/goehring",
     method: "post",
     target: "buttondown-target",
     onSubmit: () => {
       trackNewsletterSubmit("article_exit_intent", "exit-intent");
-      setTimeout(() => setOpen(false), 0);
+      setTimeout(() => setDone(true), 0);
     }
   }, React.createElement("input", {
     type: "email",

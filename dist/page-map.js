@@ -1407,6 +1407,7 @@ function TripEmailBox({
   onSubscribed
 }) {
   var [state, setState] = useState("idle");
+  var [joined, setJoined] = useState(false);
   var emailRef = useRef(null);
   var hpRef = useRef(null);
   useEffect(() => {
@@ -1428,8 +1429,9 @@ function TripEmailBox({
     var wasSubscribed = window.isSubscribed && window.isSubscribed();
     if (wasSubscribed) {
       e.preventDefault();
-    } else if (window.trackNewsletterSubmit) {
-      window.trackNewsletterSubmit("map_trip_email", "map-trip");
+    } else {
+      if (window.trackNewsletterSubmit) window.trackNewsletterSubmit("map_trip_email", "map-trip");
+      setTimeout(() => setJoined(true), 0);
     }
     if (window.track) window.track("trip_email_send", {
       trip_size: ids.length
@@ -1454,7 +1456,9 @@ function TripEmailBox({
     }, React.createElement("p", {
       className: "map-sidebar__email-fine map-sidebar__email-fine--sent",
       role: "status"
-    }, "Sent. The trip is in your inbox."));
+    }, "Sent. The trip is in your inbox."), joined && window.NL_CONFIRM_LINE && React.createElement("p", {
+      className: "map-sidebar__email-fine"
+    }, window.NL_CONFIRM_LINE));
   }
   return React.createElement("div", {
     className: "map-sidebar__email"
@@ -2256,7 +2260,7 @@ function MapAccessGate({
       type: "submit"
     }, "Unlock the map →")), React.createElement("p", {
       className: "map-gate__fine"
-    }, "Signing up also gets you Sunday Field Notes, one short letter a week. No spam, leave anytime.")))
+    }, "The map opens the moment you submit. Signing up also gets you Sunday Field Notes, one short letter a week, which starts once you click the link in the confirmation email. No spam, leave anytime.")))
   );
 }
 function useMastheadHeight() {
