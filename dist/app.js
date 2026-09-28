@@ -1001,14 +1001,18 @@ function App() {
     });
   }, [route]);
   var navTokenRef = useRef(0);
+  var shownPathRef = useRef(window.location.pathname);
   useEffect(() => {
     var onPop = () => {
       var r = pathToRoute(window.location.pathname);
+      var hashOnly = !!window.location.hash && window.location.pathname === shownPathRef.current;
       var token = ++navTokenRef.current;
       markNavPending(true);
       ensureRoute(r).then(() => {
         if (token !== navTokenRef.current) return;
         markNavPending(false);
+        if (hashOnly) return;
+        shownPathRef.current = window.location.pathname;
         navigatedRef.current = true;
         document.documentElement.removeAttribute("data-boot");
         setRoute(r);
@@ -1044,6 +1048,7 @@ function App() {
     ensureRoute(r).then(() => {
       if (token !== navTokenRef.current) return;
       markNavPending(false);
+      shownPathRef.current = path;
       navigatedRef.current = true;
       leaveBoot();
       setRoute(r);

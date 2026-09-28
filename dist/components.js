@@ -2988,6 +2988,7 @@ function MapLightbox({
   var [ty, setTy] = useState(0);
   var [grabbing, setGrabbing] = useState(false);
   var dragRef = useRef(null);
+  var draggedRef = useRef(false);
   var pinchRef = useRef(null);
   var viewportRef = useRef(null);
   var clamp = (v, lo, hi) => Math.min(hi, Math.max(lo, v));
@@ -3046,12 +3047,16 @@ function MapLightbox({
     if (e.button !== 0 || scale === 1) return;
     dragRef.current = {
       x: e.clientX - tx,
-      y: e.clientY - ty
+      y: e.clientY - ty,
+      sx: e.clientX,
+      sy: e.clientY
     };
+    draggedRef.current = false;
     setGrabbing(true);
   };
   var onMouseMove = e => {
     if (!dragRef.current) return;
+    if (Math.abs(e.clientX - dragRef.current.sx) + Math.abs(e.clientY - dragRef.current.sy) > 3) draggedRef.current = true;
     setTx(e.clientX - dragRef.current.x);
     setTy(e.clientY - dragRef.current.y);
   };
@@ -3098,6 +3103,10 @@ function MapLightbox({
     }
   };
   var onImageClick = e => {
+    if (draggedRef.current) {
+      draggedRef.current = false;
+      return;
+    }
     if (dragRef.current) return;
     if (scale === 1) zoomAt(e.clientX, e.clientY, 2);else reset();
   };

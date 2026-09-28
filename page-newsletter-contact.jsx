@@ -98,7 +98,7 @@ function ContactPage({ go }) {
         const data = await res.json().catch(() => ({}));
         throw new Error(data.error || `Send failed (${res.status})`);
       }
-      window.track("contact_submit", { subject: form.subject || "" });
+      if (window.track) window.track("contact_submit", { subject: form.subject || "" });
       setDone(true);
     } catch (err) {
       setError(err.message || "Could not send. Please email directly.");

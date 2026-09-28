@@ -34,7 +34,11 @@ let inventoryPromise = null;
 function fetchInventory() {
   if (!inventoryPromise) {
     inventoryPromise = fetch(`${GUIDE_API_BASE}/api/inventory`)
-      .then((res) => (res.ok ? res.json() : null))
+      .then((res) => {
+        if (res.ok) return res.json();
+        inventoryPromise = null;
+        return null;
+      })
       .catch(() => {
         // Do not memoize a failure: one flaky fetch would pin the fallback
         // price and hide the counter for the whole session (same policy as

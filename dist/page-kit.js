@@ -40,7 +40,7 @@ function KitPage({
         ...prev
       };
       if (next[id]) delete next[id];else next[id] = true;
-      window.track("kit_item_toggle", {
+      if (window.track) window.track("kit_item_toggle", {
         item_id: id,
         checked: !!next[id]
       });
@@ -91,6 +91,8 @@ function KitPage({
     className: "kit__tabs"
   }, kit.lists.map(l => React.createElement("button", {
     key: l.slug,
+    type: "button",
+    "aria-pressed": open === l.slug,
     className: `kit__tab ${open === l.slug ? "is-active" : ""}`,
     onClick: () => selectTab(l.slug)
   }, React.createElement("span", {

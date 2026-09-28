@@ -130,7 +130,7 @@ function ContactPage({
         var data = await res.json().catch(() => ({}));
         throw new Error(data.error || `Send failed (${res.status})`);
       }
-      window.track("contact_submit", {
+      if (window.track) window.track("contact_submit", {
         subject: form.subject || ""
       });
       setDone(true);
