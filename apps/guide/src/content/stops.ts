@@ -295,6 +295,18 @@ const seed: StopInput[] = [
     photos: [{ src: '/photos/old-road-trailhead-pullout.jpg' }],
     swap:
       'If the pullout is full, park at the El Capitan Meadow roadside pullouts, about half a mile back east, and walk west along Northside Drive. Adds ten to fifteen minutes each way.',
+    history: {
+      note:
+        'The roadbed behind this pullout was the last piece of the original Big ' +
+        'Oak Flat Road: the difficult three miles from Gentry to the valley floor, ' +
+        'completed on July 17, 1874, after the State Legislature overruled park ' +
+        'commissioners who held that one road from the north was enough. A 1943 ' +
+        'Nature Notes history put the road at about 13 feet wide, with grades up ' +
+        'to 16 per cent. From 1895 to 1899 it carried 8,500 people to the valley.',
+      volume: 22,
+      number: 7,
+      issueDate: 'July 1943',
+    },
   },
   {
     id: 'rainbow-view-old-road',
@@ -1712,6 +1724,18 @@ const seed: StopInput[] = [
     body:
       'About 3.8 miles round trip, nearly flat, from the Carlon day-use area, a mile up Evergreen Road from Highway 120 where the road crosses the South Fork of the Tuolumne. The trail leaves the north side of the bridge and follows the river upstream into the park under ponderosa and incense cedar, past green pools and low cascades. The trailhead is outside the park entrance station, so it costs no gate time. The site was once the Carl Inn, a resort for Yosemite travelers from 1916 into the 1930s.\n\nCarlon Falls is a broad curtain of whitewater over a granite ledge that typically runs all year. The deep pool at its base is a good swimming hole by midsummer. In spring the fall is loud and the pool off limits. The polished granite near the water is slippery; read the caution note.\n\nDo it as the opener to the [Hetch Hetchy day](/stop/evergreen-road-drive) on a hot forecast, or on the way out for an afternoon swim.',
     photos: [{ src: '/photos/carlon-falls.jpg', caption: 'The South Fork Tuolumne in spring flow near the Carlon day-use area, not the fall itself. Carlon Falls is a mile up this river.' }], // stand-in: not this entry, see guide-photo-manifest.json
+    history: {
+      note:
+        'In 1880 and 1881 John M. Phelan carried the winter mail in from ' +
+        'Groveland over the Big Oak Flat Road. Park Forester Emil Ernst\'s 1947 ' +
+        'history of the Yosemite mails recorded that Phelan put on skis when he ' +
+        'met snow in the vicinity of Carl Inn, and holed up at the cabin at Gin ' +
+        'Flat when the going was too tough. He reported snow 26 feet deep near ' +
+        'Gin Flat at one time.',
+      volume: 26,
+      number: 11,
+      issueDate: 'November 1947',
+    },
   },
   {
     id: 'lookout-point',
@@ -1769,6 +1793,18 @@ const seed: StopInput[] = [
       'About 5 miles round trip with roughly 500 feet of up and down on rolling terrain; plan four to five hours including lunch at the falls. Cross the dam, go through the tunnel, and follow the north shore east. In May and June you pass under Tueeulala Falls, a spring-only fall that\'s gone by July most years, then reach the footbridges at the base of Wapama, where the fall drops over 1,000 feet and high-water spray soaks the bridges.\n\nIn peak snowmelt the terminal bridges are sometimes closed for safety, and debris has swept them out in flood years. Check the NPS conditions page before a May or June visit. This is rattlesnake country, so watch your feet in the rocks, and poison oak grows close to the trail; wear long pants if unsure.\n\nThe low elevation keeps the trail open year-round: it is hikeable in February and an exposed, 90-degree grind on an August afternoon. Spring is the best season. Carry more water than feels necessary and bring sun protection; long sections have no shade.',
     swap:
       'If the Wapama bridges are closed in high water, don\'t force it. Walk the dam and tunnel for the up-close granite, then drive back to the entrance station and hike [Lookout Point](/stop/lookout-point) instead: about 2 miles round trip to a knob that looks over the valley and Wapama Falls from a safe distance.',
+    history: {
+      note:
+        'Ranger-naturalist Howard Cofer walked this shore from the dam and wrote ' +
+        'it up for Nature Notes. Not one visitor in a hundred, he reckoned, had ' +
+        'heard of Tueeulala and Wapama. Tueeulala usually faded by late July, but ' +
+        'the heavy snow of late winter 1958 still had it pouring over the rim on ' +
+        'July 11. At the base of Wapama he found three bridges over the torrent, ' +
+        'and after a hot trail the mist was welcome.',
+      volume: 38,
+      number: 4,
+      issueDate: 'April 1959',
+    },
   },
 
   {
