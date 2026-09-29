@@ -11,6 +11,7 @@ export const KIND_LABEL: Record<StopT['kind'], string> = {
   meal: 'Meal',
   drive: 'Drive',
   camping: 'Camping', // map amenities and secret spots; no core Stop uses it
+  program: 'Program', // Secret Guide program picks only
 }
 
 export const DIFFICULTY_LABEL: Record<NonNullable<StopT['difficulty']>, string> = {

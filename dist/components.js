@@ -1575,7 +1575,7 @@ var HP_GUIDE_POINTS = [{
 }, {
   mark: "◎",
   title: "Bring a little local knowledge.",
-  text: "50 Secret Guide entries to look beyond the obvious."
+  text: "72 Secret Guide entries to look beyond the obvious."
 }];
 function HpGuideBand({
   go,

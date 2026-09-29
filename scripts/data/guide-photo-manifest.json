@@ -1986,5 +1986,134 @@
       "Merced Grove"
     ],
     "portraitOk": true
+  },
+  {
+    "file": "conservation-heritage-center.jpg",
+    "slot": "secret:conservation-heritage-center",
+    "tier": 3,
+    "subject": "The granite LeConte Memorial Lodge (Yosemite Conservation Heritage Center) in Yosemite Valley",
+    "queries": [
+      "LeConte Memorial Lodge Yosemite",
+      "Yosemite Conservation Heritage Center"
+    ],
+    "categories": [
+      "LeConte Memorial Lodge"
+    ]
+  },
+  {
+    "file": "yosemite-cemetery.jpg",
+    "slot": "secret:yosemite-cemetery",
+    "tier": 3,
+    "subject": "Gravestones in the Yosemite Cemetery, Yosemite Village",
+    "queries": [
+      "Yosemite Cemetery",
+      "Yosemite pioneer cemetery Galen Clark grave"
+    ],
+    "categories": [
+      "Yosemite Cemetery"
+    ]
+  },
+  {
+    "file": "stoneman-meadow-dusk.jpg",
+    "slot": "secret:stoneman-meadow-dusk",
+    "tier": 3,
+    "subject": "Stoneman Meadow in Yosemite Valley, ideally with Half Dome or at dusk",
+    "queries": [
+      "Stoneman Meadow Yosemite",
+      "Stoneman Meadow Half Dome"
+    ],
+    "categories": [
+      "Stoneman Meadow"
+    ]
+  },
+  {
+    "file": "half-dome-view-big-oak-flat.jpg",
+    "slot": "secret:half-dome-view-big-oak-flat",
+    "tier": 3,
+    "subject": "The Merced gorge and Half Dome seen from the Big Oak Flat Road pullout near its tunnels",
+    "queries": [
+      "Big Oak Flat Road Half Dome view",
+      "Big Oak Flat Road tunnel Yosemite Valley view",
+      "Half Dome from Big Oak Flat Road"
+    ]
+  },
+  {
+    "file": "wildcat-falls.jpg",
+    "slot": "secret:wildcat-falls",
+    "tier": 3,
+    "subject": "Wildcat Falls beside Highway 140 (El Portal Road) below Yosemite Valley",
+    "queries": [
+      "Wildcat Falls Yosemite",
+      "Wildcat Creek Yosemite"
+    ],
+    "categories": [
+      "Wildcat Falls (Yosemite)"
+    ]
+  },
+  {
+    "file": "nunatak-tioga-tarns.jpg",
+    "slot": "secret:nunatak-tioga-tarns",
+    "tier": 3,
+    "subject": "The small tarns along the Nunatak nature trail east of Tioga Pass, Inyo National Forest",
+    "queries": [
+      "Nunatak nature trail Tioga",
+      "Tioga Pass tarn",
+      "Tioga Tarns"
+    ]
+  },
+  {
+    "file": "ansel-adams-camera-walk.jpg",
+    "slot": "secret:ansel-adams-camera-walk",
+    "tier": 3,
+    "subject": "The Ansel Adams Gallery building in Yosemite Village",
+    "queries": [
+      "Ansel Adams Gallery Yosemite"
+    ],
+    "categories": [
+      "Ansel Adams Gallery"
+    ]
+  },
+  {
+    "file": "ranger-programs-to-pick.jpg",
+    "slot": "secret:ranger-programs-to-pick",
+    "tier": 3,
+    "subject": "A park ranger leading a program in Yosemite, or the Yosemite Valley Visitor Center",
+    "queries": [
+      "Yosemite ranger program",
+      "Yosemite Valley Visitor Center",
+      "Yosemite park ranger talk"
+    ]
+  },
+  {
+    "file": "lukens-lake-trailhead.jpg",
+    "slot": "secret:lukens-lake-trailhead",
+    "tier": 3,
+    "subject": "Lukens Lake off Tioga Road",
+    "queries": [
+      "Lukens Lake Yosemite"
+    ],
+    "categories": [
+      "Lukens Lake"
+    ]
+  },
+  {
+    "file": "mono-meadow-lot.jpg",
+    "slot": "secret:mono-meadow-lot",
+    "tier": 3,
+    "subject": "Mono Meadow off Glacier Point Road",
+    "queries": [
+      "Mono Meadow Yosemite",
+      "Mono Meadow Glacier Point Road"
+    ]
+  },
+  {
+    "file": "conservancy-night-sky.jpg",
+    "slot": "secret:conservancy-night-sky",
+    "tier": 3,
+    "subject": "A night sky program or stargazers under the stars in Yosemite Valley",
+    "queries": [
+      "Yosemite Valley night sky stargazing",
+      "Yosemite Valley stars night"
+    ]
   }
 ]

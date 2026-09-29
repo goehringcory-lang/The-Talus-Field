@@ -12,6 +12,7 @@ export const StopKindEnum = z.enum([
   'meal',
   'drive',
   'camping', // used by map amenities and secret spots, never by a core Stop
+  'program', // a Secret Guide program pick: meets at a fixed place, never a core Stop
 ])
 export type StopKind = z.infer<typeof StopKindEnum>
 
@@ -24,7 +25,7 @@ export type StopCollectionT = z.infer<typeof StopCollection>
 
 // Categories for The Secret Guide (/secret-guide). Shared by hidden-collection
 // Stops and SecretSpots; the filter tabs and category headers key on these.
-export const SecretCategory = z.enum(['vistas', 'trails', 'parking', 'camping', 'after-dark'])
+export const SecretCategory = z.enum(['vistas', 'trails', 'parking', 'camping', 'after-dark', 'programs'])
 export type SecretCategoryT = z.infer<typeof SecretCategory>
 
 // A note from the Yosemite Nature Notes archive: the National Park Service's
@@ -116,6 +117,14 @@ export const Stop = z.object({
   swap: z.string().optional(),            // "If full, drive to Valley View"
   history: ArchiveNote.optional(),        // one sourced note from the Nature Notes archive
   photoTiming: PhotoTiming.optional(),    // light advice; see PhotoTiming above
+  // The one outside page a Secret Guide program is booked or checked on (the
+  // Conservancy's program page, the concessioner's). Label names the source,
+  // not the action ("Yosemite Conservancy"), so the button reads "Book with
+  // Yosemite Conservancy" or "Schedule at Travel Yosemite" by `verb`.
+  booking: z
+    .object({ verb: z.enum(['Book', 'Schedule']), source: z.string(), url: z.string().url() })
+    .optional(),
+  cost: z.string().optional(),            // chip-length price word for a program: "Free", "Ticketed"
 })
 
 export type StopT = z.infer<typeof Stop>

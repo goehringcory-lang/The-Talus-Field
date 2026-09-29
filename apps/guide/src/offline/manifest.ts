@@ -8,7 +8,7 @@
 // figure depending on format negotiation (AVIF vs JPG) and tile content.
 // =============================================================================
 
-import { REGIONS, getStopsByRegion, SECRET_SPOTS, HIKES, type Region } from '../content'
+import { REGIONS, getStopsByRegion, SECRET_GUIDE_META, SECRET_SPOTS, HIKES, type Region } from '../content'
 import { WILDLIFE } from '../content/wildlife'
 import { TRACKS, trackUrl } from '../trails/track'
 import { precachePhotoUrls, type PhotoFormat } from '../utils/photo'
@@ -89,9 +89,12 @@ function regionPhotoUrls(region: (typeof REGIONS)[number], format: PhotoFormat):
 // The Secret Guide's region-less spots (secret-spots.ts) belong to no region,
 // so their paid photos are in no region pack. They get their own pack — the
 // hidden-collection stops already ride along in their region's pack via
-// includeHidden above, so this covers only SECRET_SPOTS to avoid double-listing.
+// includeHidden above, so this covers only SECRET_SPOTS (and the page's cover)
+// to avoid double-listing.
 function secretGuidePhotoUrls(format: PhotoFormat): string[] {
   const urls = new Set<string>()
+  // The cover photograph of /secret-guide, so the page opens whole offline.
+  for (const url of precachePhotoUrls(SECRET_GUIDE_META.heroPhoto, format)) urls.add(url)
   for (const spot of SECRET_SPOTS) {
     for (const photo of spot.photos) {
       for (const url of precachePhotoUrls(photo.src, format)) urls.add(url)
