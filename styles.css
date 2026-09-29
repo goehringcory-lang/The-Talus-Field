@@ -7914,7 +7914,7 @@ html[data-nav-mode="pinned"] { scroll-padding-top: 62px; }
 .stay-pick__fine { font-size: 10px; color: var(--hp-muted); }
 .stay-pick__tip { margin: 0; font-size: 12px; line-height: 1.6; color: var(--ink-2); }
 
-/* --- find your base: chips, schematic, answer, table -------------------- */
+/* --- find your base: chips, map, answer, table -------------------- */
 
 .stay-picker__chips { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 24px; }
 .stay-chip {
@@ -7932,13 +7932,41 @@ html[data-nav-mode="pinned"] { scroll-padding-top: 62px; }
 
 .stay-decide {
   display: grid;
-  grid-template-columns: minmax(0, 560px) minmax(0, 1fr);
+  grid-template-columns: minmax(0, 620px) minmax(0, 1fr);
   gap: 32px;
   align-items: stretch;
 }
-.stay-map { margin: 0; }
-.stay-map__pick { fill: none; stroke: var(--stay-book); stroke-width: 12; }
-.stay-map figcaption span.is-lit { color: var(--stay-book); }
+.stay-map {
+  margin: 0;
+  padding: 12px 12px 12px;
+  background: var(--hp-card);
+  border: 1px solid var(--hp-rule);
+}
+.stay-map__frame { position: relative; aspect-ratio: 1760 / 1410; overflow: hidden; background: #e9ebe6; }
+.stay-map__frame picture, .stay-map__img { display: block; width: 100%; height: 100%; }
+.stay-map__img { object-fit: cover; }
+.stay-map figcaption { margin-top: 8px; font-size: 11px; line-height: 1.5; color: var(--hp-muted); }
+.stay-map__layer { position: absolute; inset: 0; pointer-events: none; }
+.stay-map__town, .stay-map__valley { position: absolute; display: block; width: 0; height: 0; font-family: var(--sans); color: var(--hp-ink); }
+.stay-map__town i, .stay-map__valley i { position: absolute; left: -6px; top: -6px; width: 12px; height: 12px; border-radius: 50%; box-sizing: border-box; background: var(--stay-book); border: 2px solid var(--hp-paper); box-shadow: 0 0 0 1px var(--hp-ink); }
+.stay-map__valley i { background: var(--hp-ink); }
+.stay-map__town.is-lit i { box-shadow: 0 0 0 1px var(--hp-ink), 0 0 0 5px var(--hp-paper), 0 0 0 7px var(--stay-book); }
+.stay-map__town b, .stay-map__town small, .stay-map__valley b, .stay-map__valley small { position: absolute; display: block; white-space: nowrap; padding: 0 5px; background: rgba(251, 249, 243, 0.92); }
+.stay-map__town b, .stay-map__valley b { font-size: 12px; line-height: 16px; font-weight: 700; }
+.stay-map__town small, .stay-map__valley small { font-size: 10px; line-height: 13px; color: var(--hp-muted); }
+.stay-map__town--r b, .stay-map__valley b { left: 10px; top: -15px; }
+.stay-map__town--r small, .stay-map__valley small { left: 10px; top: 1px; }
+.stay-map__town--l b { right: 10px; top: -15px; text-align: right; }
+.stay-map__town--l small { right: 10px; top: 1px; text-align: right; }
+.stay-map__town--u b { left: 10px; top: -34px; }
+.stay-map__town--u small { left: 10px; top: -18px; }
+.stay-map__town--t b { left: -30px; top: -34px; }
+.stay-map__town--t small { left: -30px; top: -18px; }
+@media (max-width: 520px) {
+  .stay-map__town small { display: none; }
+  .stay-map__town--mariposa b { top: 2px; }
+  .stay-map__town--t b { top: -22px; }
+}
 
 /* The ink plate: the picker's answer and the sold-out band. */
 .stay-plate { background: var(--hp-ink); color: var(--hp-paper); border-radius: 3px; }
@@ -10035,18 +10063,13 @@ html[data-nav-mode="pinned"] { scroll-padding-top: 62px; }
 
 .itin-overview { margin: 0; background: var(--hp-card); border: 1px solid var(--hp-rule); border-radius: 4px; padding: 14px; }
 .itin-overview__svg, .itin-map__svg { display: block; width: 100%; height: auto; }
-.itin-overview__wait { aspect-ratio: 1000 / 540; }
-.itin-map__ground { fill: #eef0e6; }
-.itin-overview__route { fill: none; stroke-width: 5; stroke-linejoin: round; stroke-linecap: round; }
-.itin-overview__pt { stroke: var(--hp-card); stroke-width: 3; }
-.itin-overview__region--valley .itin-overview__route { stroke: var(--hp-ink); }
+.itin-overview__wait { aspect-ratio: 1400 / 780; }
+.itin-overview__pt { stroke: #fff; stroke-width: 4; }
 .itin-overview__region--valley .itin-overview__pt { fill: var(--hp-ink); }
-.itin-overview__region--glacier-point .itin-overview__route { stroke: var(--hp-accent); }
 .itin-overview__region--glacier-point .itin-overview__pt { fill: var(--hp-accent); }
-.itin-overview__region--tuolumne .itin-overview__route { stroke: #4d6a83; }
 .itin-overview__region--tuolumne .itin-overview__pt { fill: #4d6a83; }
-.itin-overview__label { font: 38px var(--serif); fill: var(--hp-ink); paint-order: stroke; stroke: #eef0e6; stroke-width: 8px; }
-.itin-overview__sub { font: 700 20px var(--sans); letter-spacing: 0.08em; text-transform: uppercase; fill: var(--hp-muted); paint-order: stroke; stroke: #eef0e6; stroke-width: 4px; }
+.itin-overview__label { font: 38px var(--serif); fill: var(--hp-ink); paint-order: stroke; stroke: #fff; stroke-opacity: 0.9; stroke-width: 11px; stroke-linejoin: round; }
+.itin-overview__sub { font: 700 20px var(--sans); letter-spacing: 0.08em; text-transform: uppercase; fill: var(--hp-muted); paint-order: stroke; stroke: #fff; stroke-opacity: 0.9; stroke-width: 6px; stroke-linejoin: round; }
 .itin-map__north path { fill: var(--hp-muted); }
 .itin-map__north text { font: 700 11px var(--sans); fill: var(--hp-muted); }
 .itin-overview__svg .itin-map__north text { font-size: 20px; }
@@ -10062,8 +10085,9 @@ html[data-nav-mode="pinned"] { scroll-padding-top: 62px; }
 .itin-day__note .ff-icon { color: var(--hp-accent); margin-top: 2px; }
 .itin-day__map figure { margin: 0; background: var(--hp-card); border: 1px solid var(--hp-rule); border-radius: 4px; padding: 8px; position: sticky; top: 90px; }
 .itin-day__wait { aspect-ratio: 420 / 260; background: #eef0e6; border-radius: 4px; }
-.itin-map__route { fill: none; stroke: var(--hp-ink); stroke-width: 2; stroke-dasharray: 5 5; stroke-linejoin: round; }
-.itin-map__leader { stroke: var(--hp-muted); stroke-width: 1; }
+.itin-map__leader { stroke: var(--hp-ink); stroke-dasharray: 3 2; }
+.itin-map__off { font-family: var(--sans); font-weight: 700; fill: var(--hp-ink); paint-order: stroke; stroke: #fff; stroke-width: 3px; stroke-linejoin: round; }
+.itin-map__credit { margin: 4px 0 0; }
 .itin-map__true { fill: var(--hp-ink); }
 .itin-map__pin { fill: var(--hp-ink); stroke: var(--hp-card); stroke-width: 2; }
 .itin-map__pin.is-first { fill: var(--hp-accent); }
@@ -10081,7 +10105,6 @@ html[data-nav-mode="pinned"] { scroll-padding-top: 62px; }
 .itin-day--same { display: block; }
 .itin-day--same h3 { margin: 0 0 8px; }
 .itin-day--same .ff-lede { margin: 0; }
-.itin-overview__end { font: 22px var(--sans); fill: var(--hp-muted); paint-order: stroke; stroke: #eef0e6; stroke-width: 4px; }
 
 .itin-after .ff-closing .ff-book { justify-self: stretch; }
 

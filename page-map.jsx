@@ -1624,8 +1624,8 @@ function MapView({ go }) {
   }, [features, monthRow, tripStopIds]);
 
   // Roads the overlay is currently drawing, grouped by status for the
-  // on-map key (in every TRIP_MONTHS row so far both roads share a status,
-  // which reads as one line rather than two identical ones).
+  // on-map key (where both roads share a status, as in most months, that
+  // reads as one line rather than two identical ones).
   const roadKeyRows = useMemo(() => {
     if (!monthRow) return [];
     const rows = [];

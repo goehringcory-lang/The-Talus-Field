@@ -698,25 +698,21 @@ const SEASON_ANSWERS = {
   "season-fall": "The season worth booking.",
 };
 
-// The four entrance stations on the National Park Service's park map, in the
-// pixel space of img/nps-yosemite-park-map.jpg (1920 x 1970), and the entrance
-// each GATEWAYS town's road reaches. The map draws only El Portal, Fish Camp
-// and Lee Vining; Mariposa, Groveland and Oakhurst lie further down the same
-// highways, off its edge, so the map marks the road's entrance and the table
-// carries the town.
-const STAY_MAP_ENTRANCES = [
-  { id: "bigoak", n: "1", x: 72, y: 1062, label: "Big Oak Flat Entrance", road: "Highway 120 west", towns: "Groveland" },
-  { id: "arch", n: "2", x: 362, y: 1382, label: "Arch Rock Entrance", road: "Highway 140", towns: "El Portal, Mariposa" },
-  { id: "south", n: "3", x: 581, y: 1870, label: "South Entrance", road: "Highway 41", towns: "Fish Camp, Oakhurst" },
-  { id: "tioga", n: "4", x: 1395, y: 752, label: "Tioga Pass Entrance", road: "US 395 and Highway 120 east, seasonal", towns: "Lee Vining" },
-];
-const STAY_MAP_ENTRANCE_OF = {
-  "el-portal": "arch",
-  "mariposa": "arch",
-  "groveland": "bigoak",
-  "fish-camp": "south",
-  "oakhurst": "south",
-  "lee-vining": "tioga",
+// Where each GATEWAYS town sits on img/nps-yosemite-stay-map.jpg, in that
+// crop's own pixels (1760 x 1410, cut from img/nps-yosemite-park-map.jpg at
+// +0+560). Mariposa, Groveland and Oakhurst are off the NPS map, so their pins
+// sit where their highway leaves it and `off` says so on the label. `side` is
+// which way the label runs from the pin.
+const STAY_MAP_W = 1760;
+const STAY_MAP_H = 1410;
+const STAY_MAP_VALLEY = [690, 647];
+const STAY_MAP_TOWNS = {
+  "el-portal": { at: [283, 858], side: "t", name: "El Portal", note: "25 to 35 min" },
+  "mariposa": { at: [16, 905], side: "r", name: "Mariposa", note: "45 to 60 min", off: "Highway 140, off the map" },
+  "groveland": { at: [16, 470], side: "r", name: "Groveland", note: "65 to 80 min", off: "Highway 120, off the map" },
+  "fish-camp": { at: [563, 1335], side: "l", name: "Fish Camp", note: "2 miles to the South Entrance" },
+  "oakhurst": { at: [575, 1392], side: "u", name: "Oakhurst", note: "75 to 90 min", off: "Highway 41, off the map" },
+  "lee-vining": { at: [1648, 95], side: "l", name: "Lee Vining", note: "90 min minimum" },
 };
 
 // The comparison table's scale, in minutes to the Valley.
@@ -996,35 +992,44 @@ function StayTopPicks() {
 }
 
 // ---------------------------------------------------------------------------
-// Find your base: the picker, the road map and the comparison table
+// Find your base: the picker, the map and the comparison table
 // ---------------------------------------------------------------------------
 
-// The four roads into the park, on the National Park Service's own map (the
-// whole map, img/nps-yosemite-park-map.jpg, so the overlay shares its pixel
-// space). One numbered pin per entrance station, and a ring on the entrances
-// the picker's answer lights. Drive times live in the table below, not here:
-// the map's job is which road goes where. `match` is a list of GATEWAYS ids.
+// The official National Park Service map, cropped, with the six gateway towns
+// laid on top (see the Maps note in CLAUDE.md: never a hand-drawn map). The
+// overlay is HTML positioned in percent of the crop, so the labels keep their
+// pixel size when the map scales. Drive times are the GATEWAYS values,
+// shortened. `match` rings the towns the picker's answer lights.
 function RoadMap({ match }) {
-  const lit = new Set((match || []).map((id) => STAY_MAP_ENTRANCE_OF[id]).filter(Boolean));
+  const pos = ([x, y]) => ({ left: (x / STAY_MAP_W) * 100 + "%", top: (y / STAY_MAP_H) * 100 + "%" });
+  const lit = match || [];
   return (
-    <figure className="stay-map npsmap">
-      <div className="npsmap__frame">
-        <ResponsiveImage image="img/nps-yosemite-park-map.jpg" alt="The National Park Service's official map of Yosemite National Park, with the four entrance stations marked: Big Oak Flat and Arch Rock on the west side, South Entrance at the bottom, and Tioga Pass Entrance on the east." sizes="(max-width: 760px) 100vw, 520px" />
-        <svg viewBox="0 0 1920 1970" role="img" aria-label="Numbered pins on the four entrance stations: 1 Big Oak Flat, Highway 120 west; 2 Arch Rock, Highway 140; 3 South Entrance, Highway 41; 4 Tioga Pass Entrance, from US 395, seasonal.">
-          {STAY_MAP_ENTRANCES.map((e) => (
-            <g key={e.id}>
-              {lit.has(e.id) && <circle className="stay-map__pick" cx={e.x} cy={e.y} r="62" />}
-              <circle className="npsmap__pin npsmap__pin--ink" cx={e.x} cy={e.y} r="38" strokeWidth="8" />
-              <text className="npsmap__num" x={e.x} y={e.y + 16} textAnchor="middle" style={{ fontSize: 44 }}>{e.n}</text>
-            </g>
-          ))}
-        </svg>
+    <figure className="stay-map">
+      <div className="stay-map__frame">
+        <ResponsiveImage
+          image="img/nps-yosemite-stay-map.jpg"
+          alt="The official National Park Service map of Yosemite, cropped from Hetch Hetchy south to the Mariposa Grove, marking the six gateway towns and Yosemite Valley"
+          sizes="(max-width: 900px) 100vw, 620px"
+          className="stay-map__img"
+        />
+        <div className="stay-map__layer" aria-hidden="true">
+          <span className="stay-map__valley" style={pos(STAY_MAP_VALLEY)}>
+            <i /><b>Yosemite Valley</b><small>every drive time is to here</small>
+          </span>
+          {Object.keys(STAY_MAP_TOWNS).map((id) => {
+            const t = STAY_MAP_TOWNS[id];
+            return (
+              <span key={id} className={"stay-map__town stay-map__town--" + t.side + " stay-map__town--" + id + (lit.indexOf(id) >= 0 ? " is-lit" : "")} style={pos(t.at)}>
+                <i /><b>{t.name}</b><small>{t.off ? t.off : t.note}</small>
+              </span>
+            );
+          })}
+        </div>
       </div>
       <figcaption>
-        {STAY_MAP_ENTRANCES.map((e) => (
-          <span key={e.id} className={lit.has(e.id) ? "is-lit" : undefined}><b>{e.n}</b> {e.label}: {e.road} ({e.towns})</span>
-        ))}
-        <span>The ring follows your answer. Mariposa, Groveland and Oakhurst lie farther down their highways, off the edge of the map. Map: National Park Service (public domain).</span>
+        Map: National Park Service (public domain), cropped. Dots are the
+        gateway towns and the ring follows your answer. Three towns lie beyond
+        the map's edge, on the highway that leaves it.
       </figcaption>
     </figure>
   );

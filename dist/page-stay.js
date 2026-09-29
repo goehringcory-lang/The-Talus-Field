@@ -635,46 +635,49 @@ var SEASON_ANSWERS = {
   "season-summer": "Highway 120 is the strongest base.",
   "season-fall": "The season worth booking."
 };
-var STAY_MAP_ENTRANCES = [{
-  id: "bigoak",
-  n: "1",
-  x: 72,
-  y: 1062,
-  label: "Big Oak Flat Entrance",
-  road: "Highway 120 west",
-  towns: "Groveland"
-}, {
-  id: "arch",
-  n: "2",
-  x: 362,
-  y: 1382,
-  label: "Arch Rock Entrance",
-  road: "Highway 140",
-  towns: "El Portal, Mariposa"
-}, {
-  id: "south",
-  n: "3",
-  x: 581,
-  y: 1870,
-  label: "South Entrance",
-  road: "Highway 41",
-  towns: "Fish Camp, Oakhurst"
-}, {
-  id: "tioga",
-  n: "4",
-  x: 1395,
-  y: 752,
-  label: "Tioga Pass Entrance",
-  road: "US 395 and Highway 120 east, seasonal",
-  towns: "Lee Vining"
-}];
-var STAY_MAP_ENTRANCE_OF = {
-  "el-portal": "arch",
-  "mariposa": "arch",
-  "groveland": "bigoak",
-  "fish-camp": "south",
-  "oakhurst": "south",
-  "lee-vining": "tioga"
+var STAY_MAP_W = 1760;
+var STAY_MAP_H = 1410;
+var STAY_MAP_VALLEY = [690, 647];
+var STAY_MAP_TOWNS = {
+  "el-portal": {
+    at: [283, 858],
+    side: "t",
+    name: "El Portal",
+    note: "25 to 35 min"
+  },
+  "mariposa": {
+    at: [16, 905],
+    side: "r",
+    name: "Mariposa",
+    note: "45 to 60 min",
+    off: "Highway 140, off the map"
+  },
+  "groveland": {
+    at: [16, 470],
+    side: "r",
+    name: "Groveland",
+    note: "65 to 80 min",
+    off: "Highway 120, off the map"
+  },
+  "fish-camp": {
+    at: [563, 1335],
+    side: "l",
+    name: "Fish Camp",
+    note: "2 miles to the South Entrance"
+  },
+  "oakhurst": {
+    at: [575, 1392],
+    side: "u",
+    name: "Oakhurst",
+    note: "75 to 90 min",
+    off: "Highway 41, off the map"
+  },
+  "lee-vining": {
+    at: [1648, 95],
+    side: "l",
+    name: "Lee Vining",
+    note: "90 min minimum"
+  }
 };
 var STAY_SCALE_MAX = 120;
 var Arrow = () => React.createElement("span", {
@@ -990,44 +993,34 @@ function StayTopPicks() {
 function RoadMap({
   match
 }) {
-  var lit = new Set((match || []).map(id => STAY_MAP_ENTRANCE_OF[id]).filter(Boolean));
+  var pos = ([x, y]) => ({
+    left: x / STAY_MAP_W * 100 + "%",
+    top: y / STAY_MAP_H * 100 + "%"
+  });
+  var lit = match || [];
   return React.createElement("figure", {
-    className: "stay-map npsmap"
+    className: "stay-map"
   }, React.createElement("div", {
-    className: "npsmap__frame"
+    className: "stay-map__frame"
   }, React.createElement(ResponsiveImage, {
-    image: "img/nps-yosemite-park-map.jpg",
-    alt: "The National Park Service's official map of Yosemite National Park, with the four entrance stations marked: Big Oak Flat and Arch Rock on the west side, South Entrance at the bottom, and Tioga Pass Entrance on the east.",
-    sizes: "(max-width: 760px) 100vw, 520px"
-  }), React.createElement("svg", {
-    viewBox: "0 0 1920 1970",
-    role: "img",
-    "aria-label": "Numbered pins on the four entrance stations: 1 Big Oak Flat, Highway 120 west; 2 Arch Rock, Highway 140; 3 South Entrance, Highway 41; 4 Tioga Pass Entrance, from US 395, seasonal."
-  }, STAY_MAP_ENTRANCES.map(e => React.createElement("g", {
-    key: e.id
-  }, lit.has(e.id) && React.createElement("circle", {
-    className: "stay-map__pick",
-    cx: e.x,
-    cy: e.y,
-    r: "62"
-  }), React.createElement("circle", {
-    className: "npsmap__pin npsmap__pin--ink",
-    cx: e.x,
-    cy: e.y,
-    r: "38",
-    strokeWidth: "8"
-  }), React.createElement("text", {
-    className: "npsmap__num",
-    x: e.x,
-    y: e.y + 16,
-    textAnchor: "middle",
-    style: {
-      fontSize: 44
-    }
-  }, e.n))))), React.createElement("figcaption", null, STAY_MAP_ENTRANCES.map(e => React.createElement("span", {
-    key: e.id,
-    className: lit.has(e.id) ? "is-lit" : undefined
-  }, React.createElement("b", null, e.n), " ", e.label, ": ", e.road, " (", e.towns, ")")), React.createElement("span", null, "The ring follows your answer. Mariposa, Groveland and Oakhurst lie farther down their highways, off the edge of the map. Map: National Park Service (public domain).")));
+    image: "img/nps-yosemite-stay-map.jpg",
+    alt: "The official National Park Service map of Yosemite, cropped from Hetch Hetchy south to the Mariposa Grove, marking the six gateway towns and Yosemite Valley",
+    sizes: "(max-width: 900px) 100vw, 620px",
+    className: "stay-map__img"
+  }), React.createElement("div", {
+    className: "stay-map__layer",
+    "aria-hidden": "true"
+  }, React.createElement("span", {
+    className: "stay-map__valley",
+    style: pos(STAY_MAP_VALLEY)
+  }, React.createElement("i", null), React.createElement("b", null, "Yosemite Valley"), React.createElement("small", null, "every drive time is to here")), Object.keys(STAY_MAP_TOWNS).map(id => {
+    var t = STAY_MAP_TOWNS[id];
+    return React.createElement("span", {
+      key: id,
+      className: "stay-map__town stay-map__town--" + t.side + " stay-map__town--" + id + (lit.indexOf(id) >= 0 ? " is-lit" : ""),
+      style: pos(t.at)
+    }, React.createElement("i", null), React.createElement("b", null, t.name), React.createElement("small", null, t.off ? t.off : t.note));
+  }))), React.createElement("figcaption", null, "Map: National Park Service (public domain), cropped. Dots are the gateway towns and the ring follows your answer. Three towns lie beyond the map's edge, on the highway that leaves it."));
 }
 function StayCompareTable({
   match
