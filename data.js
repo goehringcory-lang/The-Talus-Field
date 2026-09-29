@@ -183,7 +183,7 @@ window.BODY_VERSIONS = {
   "water-ouzels-waterfalls": 78,
   "working-in-yosemite": 78,
   "yosemite-in-one-or-two-days": 88,
-  "where-to-eat-yosemite": 87,
+  "where-to-eat-yosemite": 88,
   "yosemite-in-march": 4,
 };
 
@@ -1528,15 +1528,23 @@ window.ARTICLES = [
     slug: "where-to-eat-yosemite",
     cat: "planning",
     title: "Where to eat in Yosemite: restaurants by area",
-    dek: "Quick meals and sit-down dinners in Yosemite Valley, food near each entrance, and what to check before counting on a seasonal kitchen.",
+    dek: "Quick meals and sit-down dinners in Yosemite Valley, food near each entrance, and the seasonal kitchens that close while the roads are still open.",
     seoDek: "Find restaurants in Yosemite Valley and the gateway towns, plus Wawona and Tuolumne food options, reservation advice, and seasonal closure details.",
     date: "May 19, 2026",
     isoDate: "2026-05-19",
-    isoModified: "2026-09-27",
+    isoModified: "2026-09-29",
     read: "14 min",
     placeholder: "The Merced River at Cathedral Beach, one of the Valley's picnic areas",
     image: "img/cathedral-beach-quiet-picnic.jpg",
     credit: "Photo: Todd Petrie / Wikimedia Commons (CC BY 2.0)",
+    // The /firefall layout for an article (page-article.jsx), as on the El
+    // Capitan piece: a full-width photo cover, and a body that lays out its
+    // own sections. The two buttons jump to the Valley and the table.
+    feature: {
+      eyebrow: "YOSEMITE VALLEY · WAWONA · TUOLUMNE · THE GATEWAY TOWNS",
+      focus: "50% 55%",
+      actions: [["#sec-1-where-to-eat-in-yosemite-valley", "The Valley's kitchens"], ["#sec-7-the-short-version-by-area", "Every pick in one table"]],
+    },
   },
   {
     slug: "yosemite-in-one-or-two-days",
