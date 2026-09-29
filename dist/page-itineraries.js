@@ -8,7 +8,7 @@ var ITIN_NEEDS = {
   "2day": ["glacier"],
   "3day": ["glacier", "tioga"]
 };
-var ITIN_DAY_NOTES = [[/Glacier Point Road/i, "Glacier Point is about 30 miles and an hour from Yosemite Valley."], [/Tioga Road/i, "Tuolumne Meadows is roughly 55 to 60 miles from the Valley, about an hour and a half each way."]];
+var ITIN_DAY_NOTES = [[/Glacier Point Road/i, "Glacier Point is about 30 miles and an hour from Yosemite Valley."], [/Tioga Road/i, "Tuolumne Meadows is roughly 55 to 60 miles from the Valley, about an hour and a half each way. This day only exists once Tioga Road is open, which in some years is not until late June or early July."]];
 var ITIN_CAT_ICON = {
   vista: "eye",
   hike: "walk",
@@ -22,69 +22,139 @@ var ITIN_REGION_LABEL = {
   "glacier-point": "Glacier Point Road",
   tuolumne: "Tioga Road"
 };
-function itinProject(points, W, H, pad) {
-  var lons = points.map(p => p.coord[0]);
-  var lats = points.map(p => p.coord[1]);
-  var midLat = (Math.min(...lats) + Math.max(...lats)) / 2 * (Math.PI / 180);
-  var k = Math.cos(midLat);
-  var minX = Math.min(...lons) * k,
-    maxX = Math.max(...lons) * k;
-  var minY = Math.min(...lats),
-    maxY = Math.max(...lats);
-  var spanX = Math.max(maxX - minX, 0.004),
-    spanY = Math.max(maxY - minY, 0.004);
-  var s = Math.min((W - pad * 2) / spanX, (H - pad * 2) / spanY);
-  var offX = (W - spanX * s) / 2,
-    offY = (H - spanY * s) / 2;
-  return c => [offX + (c[0] * k - minX) * s, offY + (maxY - c[1]) * s];
+var ITIN_PARK = {
+  image: "img/nps-itineraries-map.jpg",
+  w: 1400,
+  h: 780,
+  ox: 100,
+  oy: 700,
+  X: [2094.704440463671, 96.25567209789192, 247530.04319206357],
+  Y: [-49.91832268440772, -2750.1330479076214, 99047.14030276223]
+};
+var ITIN_VALLEY = {
+  image: "img/nps-yosemite-valley-map.jpg",
+  w: 2560,
+  h: 1000,
+  ox: 0,
+  oy: 0,
+  X: [14276.700726584826, 710.8186467358179, 1682159.7744080413],
+  Y: [396.87060490014903, -20040.32805507032, 804187.4599845853]
+};
+var ITIN_ROAD_TIOGA = "117,494 128,495 149,492 170,485 187,468 204,452 224,439 239,420 249,399 263,379 277,361 295,342 311,327 327,310 341,290 358,274 377,259 395,246 417,239 440,231 450,215 459,217 478,231 502,240 528,242 550,246 568,257 589,273 597,294 601,314 620,328 642,333 665,330 688,327 714,330 739,334 761,334 783,322 809,311 829,298 843,280 857,258 878,241 896,224 908,205 924,185 949,171 973,164 995,168 1020,176 1046,178 1070,174 1092,166 1114,161 1138,158 1165,157 1188,158 1211,159 1236,149 1260,138 1275,118 1281,94 1284,71 1287,49 1291,31 1292,27";
+var ITIN_ROAD_GLACIER = "426,715 449,717 470,720 495,722 522,724 544,718 567,702 577,683 580,659 579,634 583,616 592,595 595,579";
+var ITIN_SEASONAL = "#b8590f";
+function itinXY(base, coord) {
+  return [base.X[0] * coord[0] + base.X[1] * coord[1] + base.X[2] - base.ox, base.Y[0] * coord[0] + base.Y[1] * coord[1] + base.Y[2] - base.oy];
+}
+function ItinRoads({
+  k,
+  sw
+}) {
+  return React.createElement("g", {
+    className: "itin-map__roads",
+    fill: "none",
+    strokeLinecap: "round",
+    strokeLinejoin: "round"
+  }, [ITIN_ROAD_TIOGA, ITIN_ROAD_GLACIER].map((pts, i) => React.createElement("g", {
+    key: i
+  }, React.createElement("polyline", {
+    points: pts,
+    stroke: "#fff",
+    strokeOpacity: "0.85",
+    strokeWidth: sw + 2 * k
+  }), React.createElement("polyline", {
+    points: pts,
+    stroke: ITIN_SEASONAL,
+    strokeWidth: sw,
+    strokeDasharray: `${sw * 2.2} ${sw * 1.4}`
+  }))));
 }
 function ItinDayMap({
   stops,
-  label
+  label,
+  valley
 }) {
-  var W = 420,
-    H = 260,
-    R = 11;
-  var project = itinProject(stops, W, H, 36);
-  var clamp = (v, max) => Math.max(R + 3, Math.min(max - R - 3, v));
+  var base = valley ? ITIN_VALLEY : ITIN_PARK;
+  var pts = stops.map(st => itinXY(base, st.coord));
+  var inMap = pts.filter(([x, y]) => x >= 0 && y >= 0 && x <= base.w && y <= base.h);
+  var fitPts = inMap.length ? inMap : pts;
+  var xs = fitPts.map(p => p[0]),
+    ys = fitPts.map(p => p[1]);
+  var ASPECT = 420 / 260;
+  var minX = Math.min(...xs),
+    maxX = Math.max(...xs),
+    minY = Math.min(...ys),
+    maxY = Math.max(...ys);
+  var pad = Math.max(maxX - minX, (maxY - minY) * ASPECT) * 0.14 + 30;
+  minX -= pad;
+  maxX += pad;
+  minY -= pad;
+  maxY += pad;
+  var vw = maxX - minX,
+    vh = maxY - minY;
+  if (vw / vh < ASPECT) {
+    var nw = vh * ASPECT;
+    minX -= (nw - vw) / 2;
+    vw = nw;
+  } else {
+    var nh = vw / ASPECT;
+    minY -= (nh - vh) / 2;
+    vh = nh;
+  }
+  if (vw > base.w) {
+    vw = base.w;
+    vh = vw / ASPECT;
+  }
+  if (vh > base.h) {
+    vh = base.h;
+    vw = vh * ASPECT;
+  }
+  minX = Math.max(0, Math.min(base.w - vw, minX));
+  minY = Math.max(0, Math.min(base.h - vh, minY));
+  var k = vw / 420,
+    R = 11 * k;
   var placed = [];
-  var marks = stops.map((st, i) => {
-    var [x, y] = project(st.coord);
+  var marks = pts.map(([x, y], i) => {
     var mx = x,
       my = y,
       tries = 0;
-    while (placed.some(([px, py]) => Math.hypot(px - mx, py - my) < R * 2 + 2) && tries < 12) {
+    while (placed.some(([px, py]) => Math.hypot(px - mx, py - my) < R * 2 + 2 * k) && tries < 12) {
       var a = tries * 137.5 * Math.PI / 180;
-      mx = x + Math.cos(a) * (R * 2.4 + tries * 2);
-      my = y + Math.sin(a) * (R * 2.4 + tries * 2);
+      mx = x + Math.cos(a) * (R * 2.4 + tries * 2 * k);
+      my = y + Math.sin(a) * (R * 2.4 + tries * 2 * k);
       tries++;
     }
-    mx = clamp(mx, W);
-    my = clamp(my, H);
+    if (x < 0 || y < 0 || x > base.w || y > base.h) {
+      mx = minX + R + 3 * k;
+      my = Math.max(0, Math.min(base.h, y));
+    }
+    mx = Math.max(minX + R + 3 * k, Math.min(minX + vw - R - 3 * k, mx));
+    my = Math.max(minY + R + 3 * k, Math.min(minY + vh - R - 3 * k, my));
     placed.push([mx, my]);
     return {
       i,
       x,
       y,
       mx,
-      my
+      my,
+      off: x < 0 || y < 0 || x > base.w || y > base.h
     };
   });
-  var line = marks.map(m => `${m.x.toFixed(1)},${m.y.toFixed(1)}`).join(" ");
   return React.createElement("svg", {
     className: "itin-map__svg",
-    viewBox: `0 0 ${W} ${H}`,
+    viewBox: `${minX.toFixed(1)} ${minY.toFixed(1)} ${vw.toFixed(1)} ${vh.toFixed(1)}`,
     role: "img",
-    "aria-label": `${label}: ${stops.length} stops in drive order, ${stops.map((s, i) => `${i + 1}, ${s.name}`).join("; ")}.`
-  }, React.createElement("rect", {
+    "aria-label": `${label}, on the National Park Service map: ${stops.length} stops in drive order, ${stops.map((s, i) => `${i + 1}, ${s.name}`).join("; ")}.`
+  }, React.createElement("image", {
+    href: `/${base.image}`,
     x: "0",
     y: "0",
-    width: W,
-    height: H,
-    className: "itin-map__ground"
-  }), React.createElement("polyline", {
-    points: line,
-    className: "itin-map__route"
+    width: base.w,
+    height: base.h,
+    preserveAspectRatio: "none"
+  }), !valley && React.createElement(ItinRoads, {
+    k: k,
+    sw: 3 * k
   }), marks.map(m => React.createElement("g", {
     key: m.i
   }, (m.mx !== m.x || m.my !== m.y) && React.createElement("line", {
@@ -92,31 +162,40 @@ function ItinDayMap({
     y1: m.y,
     x2: m.mx,
     y2: m.my,
-    className: "itin-map__leader"
-  }), React.createElement("circle", {
+    className: "itin-map__leader",
+    style: {
+      strokeWidth: k
+    }
+  }), !m.off && React.createElement("circle", {
     cx: m.x,
     cy: m.y,
-    r: "2.5",
+    r: 2.5 * k,
     className: "itin-map__true"
   }), React.createElement("circle", {
     cx: m.mx,
     cy: m.my,
     r: R,
-    className: "itin-map__pin" + (m.i === 0 ? " is-first" : "")
+    className: "itin-map__pin" + (m.i === 0 ? " is-first" : ""),
+    style: {
+      strokeWidth: 2 * k
+    }
   }), React.createElement("text", {
     x: m.mx,
-    y: m.my + 4,
+    y: m.my + 4 * k,
     textAnchor: "middle",
-    className: "itin-map__num"
-  }, m.i + 1))), React.createElement("g", {
-    className: "itin-map__north",
-    transform: `translate(${W - 22},24)`
-  }, React.createElement("path", {
-    d: "M0 -12 L5 4 L0 1 L-5 4 Z"
-  }), React.createElement("text", {
-    y: "18",
-    textAnchor: "middle"
-  }, "N")));
+    className: "itin-map__num",
+    style: {
+      fontSize: 11 * k
+    }
+  }, m.i + 1), m.off && React.createElement("text", {
+    x: m.mx - R,
+    y: m.my - R - 5 * k,
+    className: "itin-map__off",
+    style: {
+      fontSize: 10 * k,
+      strokeWidth: 3 * k
+    }
+  }, "west, off this map"))));
 }
 function ItinOverview({
   stopsById
@@ -138,72 +217,60 @@ function ItinOverview({
     ...r,
     stops: r.ids.map(id => stopsById[id]).filter(s => s && s.coord)
   }));
-  var all = regions.flatMap(r => r.stops);
-  if (all.length < 3) return null;
-  var W = 1000,
-    H = 540;
-  var project = itinProject(all, W, H, 140);
+  if (regions.flatMap(r => r.stops).length < 3) return null;
+  var k = 1400 / 1000;
+  var at = {
+    valley: [790, 585, "start"],
+    "glacier-point": [548, 700, "start"],
+    tuolumne: [900, 150, "middle"]
+  };
   return React.createElement("svg", {
     className: "itin-overview__svg",
-    viewBox: `0 0 ${W} ${H}`,
+    viewBox: "0 0 1400 780",
     role: "img",
-    "aria-label": "Overview map of the stops the plans use: the Yosemite Valley floor in the middle, Glacier Point Road's stops to the south, and Tioga Road's stops running north-east from the Tuolumne Grove to Gaylor Lake near Tioga Pass. Lines join the stops in drive order and are not the roads."
-  }, React.createElement("rect", {
+    "aria-label": "The stops the plans use, on the National Park Service map of Yosemite: the Yosemite Valley floor in the middle, Glacier Point Road's stops to the south, and Tioga Road's stops running north-east from the Tuolumne Grove to Gaylor Lake near Tioga Pass. Both seasonal roads are highlighted."
+  }, React.createElement("image", {
+    href: `/${ITIN_PARK.image}`,
     x: "0",
     y: "0",
-    width: W,
-    height: H,
-    className: "itin-map__ground"
+    width: "1400",
+    height: "780"
+  }), React.createElement(ItinRoads, {
+    k: k,
+    sw: 5 * k
   }), regions.map(r => {
     if (!r.stops.length) return null;
-    var pts = r.stops.map(s => project(s.coord));
-    var xs = pts.map(p => p[0]),
-      ys = pts.map(p => p[1]);
-    var mid = pts[Math.floor(pts.length / 2)];
-    var at = {
-      valley: [Math.max(...xs) + 26, (Math.min(...ys) + Math.max(...ys)) / 2 + 4, "start"],
-      "glacier-point": [(Math.min(...xs) + Math.max(...xs)) / 2, Math.max(...ys) + 48, "middle"],
-      tuolumne: [mid[0], mid[1] - 52, "middle"]
-    }[r.key];
-    var ends = r.key === "tuolumne" ? [[0, "end", -12], [r.stops.length - 1, "start", 12]] : [];
+    var a = at[r.key];
     return React.createElement("g", {
       key: r.key,
       className: "itin-overview__region itin-overview__region--" + r.key
-    }, React.createElement("polyline", {
-      points: pts.map(p => p.map(v => v.toFixed(1)).join(",")).join(" "),
-      className: "itin-overview__route"
-    }), pts.map((p, i) => React.createElement("circle", {
-      key: i,
-      cx: p[0],
-      cy: p[1],
-      r: "9",
-      className: "itin-overview__pt"
-    })), React.createElement("text", {
-      x: at[0],
-      y: at[1],
-      textAnchor: at[2],
-      className: "itin-overview__label"
+    }, r.stops.map((s, i) => {
+      var [x, y] = itinXY(ITIN_PARK, s.coord);
+      return React.createElement("circle", {
+        key: i,
+        cx: x,
+        cy: y,
+        r: 7 * k,
+        className: "itin-overview__pt"
+      });
+    }), React.createElement("text", {
+      x: a[0],
+      y: a[1],
+      textAnchor: a[2],
+      className: "itin-overview__label",
+      style: {
+        fontSize: 38 * k
+      }
     }, ITIN_REGION_LABEL[r.key]), React.createElement("text", {
-      x: at[0],
-      y: at[1] + 28,
-      textAnchor: at[2],
-      className: "itin-overview__sub"
-    }, r.stops.length, " stops"), ends.map(([i, anchor, dx]) => React.createElement("text", {
-      key: i,
-      x: pts[i][0] + dx * 1.6,
-      y: pts[i][1] + 8,
-      textAnchor: anchor,
-      className: "itin-overview__end"
-    }, r.stops[i].name.replace(/ Trailhead$/, ""))));
-  }), React.createElement("g", {
-    className: "itin-map__north",
-    transform: "translate(40,44)"
-  }, React.createElement("path", {
-    d: "M0 -16 L7 6 L0 2 L-7 6 Z"
-  }), React.createElement("text", {
-    y: "24",
-    textAnchor: "middle"
-  }, "N")));
+      x: a[0],
+      y: a[1] + 28 * k,
+      textAnchor: a[2],
+      className: "itin-overview__sub",
+      style: {
+        fontSize: 20 * k
+      }
+    }, r.stops.length, " stops"));
+  }));
 }
 function ItinMonths({
   itineraries
@@ -373,13 +440,13 @@ function ItinerariesPage({
     className: "hp-eyebrow"
   }, "WHICH MONTH WORKS"), React.createElement("h2", null, "The roads decide how many days you get"), React.createElement("p", {
     className: "ff-lede"
-  }, "The Valley is open all year, so the half-day and one-day plans work in any month. Day two needs Glacier Point Road and day three needs Tioga Road, and both close for winter. The grid reads the same month table the trip selector uses, so the two cannot disagree."), React.createElement("ul", {
+  }, "The Valley is open all year, so the half-day and one-day plans work in any month. Day two needs Glacier Point Road and day three needs Tioga Road, and both close for winter. Tioga Road, Highway 120 across the middle of the park, is the one to doubt: it has opened anywhere from late April to early July, and in a heavy snow year it is still closed for much of June. Treat day three as a plan you confirm the week you go. The grid reads the same month table the trip selector uses, so the two cannot disagree."), React.createElement("ul", {
     className: "itin-legend"
   }, React.createElement("li", {
     className: "is-open"
   }, React.createElement("span", null), "Works"), React.createElement("li", {
     className: "is-unsettled"
-  }, React.createElement("span", null), "The road usually opens this month; check first"), React.createElement("li", {
+  }, React.createElement("span", null), "A road may not be open yet; check first"), React.createElement("li", {
     className: "is-closed"
   }, React.createElement("span", null), "A road the plan needs is closed")), React.createElement("p", {
     className: "ff-note"
@@ -419,7 +486,7 @@ function ItinerariesPage({
     className: "itin-overview__wait"
   }), React.createElement("figcaption", {
     className: "ff-note"
-  }, "Drawn from the stops' own coordinates on the map. Lines join the stops in drive order; they are not the roads.")))), ordered.map((it, n) => React.createElement("section", {
+  }, "Map: National Park Service (public domain), with the stops plotted from their coordinates. The dashed lines are Tioga Road and Glacier Point Road, the two roads that close for winter and can open late.")))), ordered.map((it, n) => React.createElement("section", {
     key: it.id,
     id: it.id,
     tabIndex: -1,
@@ -468,8 +535,11 @@ function ItinerariesPage({
       size: 16
     }), note), mapped.length === stops.length && mapped.length > 1 ? React.createElement("figure", null, React.createElement(ItinDayMap, {
       stops: mapped,
-      label: day.name
-    })) : React.createElement("div", {
+      label: day.name,
+      valley: mapped.every(s => s.region === "valley")
+    }), React.createElement("figcaption", {
+      className: "ff-note itin-map__credit"
+    }, "Map: National Park Service (public domain)")) : React.createElement("div", {
       className: "itin-day__wait"
     })), React.createElement("ol", {
       className: "itin-day__stops"
