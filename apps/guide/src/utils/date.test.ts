@@ -3,7 +3,15 @@
 // and hide this evening's programs. Vitest runs in whatever zone CI has (UTC),
 // so every case pins an instant and expects the Pacific answer.
 import { afterEach, describe, expect, it, vi } from 'vitest'
-import { addDaysIso, formatClock, formatDayHeader, parkNowMinutes, todayIso, tripDatesLabel } from './date'
+import {
+  addDaysIso,
+  formatClock,
+  formatDayHeader,
+  parkNowMinutes,
+  todayIso,
+  tripDatesLabel,
+  tripHeadline,
+} from './date'
 
 afterEach(() => vi.useRealTimers())
 
@@ -47,5 +55,16 @@ describe('the labels', () => {
     expect(formatClock(12 * 60 + 30)).toBe('12:30 p.m.')
     expect(formatClock(24 * 60 + 30)).toBe('12:30 a.m.')
     expect(formatClock(9 * 60)).toBe('9 a.m.')
+  })
+})
+
+describe('tripHeadline', () => {
+  it('spells the day count and reads the range with "to"', () => {
+    expect(tripHeadline({ start: '2026-10-03', end: '2026-10-05' })).toBe('Oct 3 to 5, three days')
+    expect(tripHeadline({ start: '2026-10-03', end: '2026-10-03' })).toBe('Oct 3, one day')
+  })
+  it('crosses a month and falls back to digits past ten days', () => {
+    expect(tripHeadline({ start: '2026-10-30', end: '2026-11-02' })).toBe('Oct 30 to Nov 2, four days')
+    expect(tripHeadline({ start: '2026-10-01', end: '2026-10-12' })).toBe('Oct 1 to 12, 12 days')
   })
 })

@@ -35,8 +35,8 @@ export const THEME_NOTE: Record<ThemeT, string> = {
 // explicit choice has to override both, because the media attribute on those
 // tags answers the device, not the reader.
 const CHROME: Record<'daylight' | 'granite', string> = {
-  daylight: '#f1ead6',
-  granite: '#1c1812',
+  daylight: '#f8f5ed',
+  granite: '#141d19',
 }
 
 function isTheme(value: string | null): value is ThemeT {

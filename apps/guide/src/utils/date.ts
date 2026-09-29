@@ -63,6 +63,27 @@ export function tripDatesLabel(dates: { start: string; end: string }): string {
   return `${fmt(dates.start)} – ${fmt(dates.end)}`
 }
 
+const COUNT_WORDS = ['zero', 'one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine', 'ten']
+
+/** "Oct 3 to 5, three days": the heading over a trip's day rows. The range
+ * reads "to" rather than the en dash of tripDatesLabel, and the count is
+ * spelled out through ten. */
+export function tripHeadline(dates: { start: string; end: string }): string {
+  const days =
+    Math.round((Date.parse(`${dates.end}T00:00:00Z`) - Date.parse(`${dates.start}T00:00:00Z`)) / 86_400_000) + 1
+  const count = days >= 1 && days < COUNT_WORDS.length ? COUNT_WORDS[days] : String(days)
+  // A one-day trip is a single date, not "Oct 3 to 3".
+  const range =
+    dates.start === dates.end
+      ? new Date(`${dates.start}T12:00:00Z`).toLocaleDateString('en-US', {
+          month: 'short',
+          day: 'numeric',
+          timeZone: 'UTC',
+        })
+      : tripDatesLabel(dates).replace(/\s?–\s?/, ' to ')
+  return `${range}, ${count} ${days === 1 ? 'day' : 'days'}`
+}
+
 /** "9:30 a.m." for minutes from midnight, house style. */
 export function formatClock(minutes: number): string {
   // Callers add a duration to a start (a 23:30 program plus an hour), so the

@@ -1,29 +1,29 @@
 // =============================================================================
-// / — the front page as an index of the whole guide. One narrow column, four
-// ruled sections in workflow order: read (regions + today's weather), plan
-// (the planner tools), reference (essentials, Secret Guide, search), offline.
-// Every route in the app is reachable and explained from here; nothing lives
-// only behind the tab bar.
+// / — the front page (the September 2026 home redesign, an artifact-first
+// design pass; see the PR). One narrow column, top to bottom:
+//   1. "Yosemite, right now": the park's date and hour, then one card holding
+//      the weather, the light (a sun over a horizon) and the entrance waits,
+//      and the Park Bulletin band (components/ParkNowPanel.tsx). The three
+//      readings are the first thing on the page and the reason to open it.
+//   2. Any one-time notes (a trip handed over from the map, the newest
+//      edition note, the night-before downloads) and, while the trip window
+//      includes today, the door to /today.
+//   3. Your trip: the dates, then one row per day (components/TripDaysCard.tsx).
+//   4. Where to go: the four regions and the Secret Guide plate.
+//   5. Instruments, the reference shelf, the offline packs.
+// Every route in the app is reachable from here or from the tab bar; nothing
+// lives only behind one. Air quality and river flow moved to /this-week with
+// the rest of the "right now" lines that are footnotes to a trip, not a
+// reason to open the app.
 // =============================================================================
 
 import { useEffect, useMemo, useState } from 'react'
-import { EDITION_LABEL } from '../lib/buildInfo'
 import type { ReactNode } from 'react'
 import { Link, Navigate } from 'react-router-dom'
 import { useAuth } from '../auth/useAuth'
 import { isOnboarded } from '../lib/onboarding'
-import {
-  DINING,
-  ESSENTIALS,
-  GATEWAY_TOWNS,
-  HIKES,
-  REGIONS,
-  SEASONAL_EVENTS,
-  getStopById,
-  getStopsByRegion,
-  seasonalRangeLabel,
-} from '../content'
-import { formatClock, parkNowMinutes, todayIso, tripDatesLabel } from '../utils/date'
+import { getStopById } from '../content'
+import { formatClock, parkNowMinutes, todayIso } from '../utils/date'
 import { useFavorites } from '../lib/favorites'
 import { useWhatsNew } from '../lib/whatsNew'
 import { logHasEntries, readLogSummary } from '../lib/logSummary'
@@ -35,7 +35,6 @@ import { slotPlan } from '../trip/slotting'
 import { itemInfo } from '../trip/agendaItem'
 import type { TripItemT } from '../trip/schema'
 import { readTripDates, type TripDates } from '../programs/usePrograms'
-import { relativeStamp } from '../utils/relativeStamp'
 import GatedChrome from '../components/GatedChrome'
 import ParkNowPanel from '../components/ParkNowPanel'
 import RegionCards from '../components/RegionCards'
@@ -43,11 +42,7 @@ import TripDaysCard from '../components/TripDaysCard'
 import UpdatedStamp from '../components/UpdatedStamp'
 import Button from '../components/ui/Button'
 import Callout from '../components/ui/Callout'
-import AirLine from '../air/AirLine'
-import FlowLine from '../flow/FlowLine'
-import { useWeather } from '../weather/useWeather'
-import { HIDE_AFTER_MS, WARN_AFTER_MS } from '../weather/staleness'
-import { regionTodayLine } from '../weather/todayLine'
+import './Home.css'
 
 const BEFORE_YOU_GO_DISMISS_KEY = 'tfg.beforeYouGo.dismissed'
 
@@ -191,98 +186,105 @@ function TodayCard({
   )
 }
 
-// Up to three active or upcoming almanac entries, so the seasonal layer is
-// discoverable from the front page. The full agenda lives on /programs.
-function InSeasonStrip() {
-  const today = todayIso()
-  const upcoming = SEASONAL_EVENTS.filter((ev) => ev.dateEnd >= today).slice(0, 3)
-  if (upcoming.length === 0) return null
+function Chevron() {
   return (
-    <section aria-label="In season" className="page-section">
-      <span className="eyebrow">In season</span>
-      <ul className="season-strip">
-        {upcoming.map((ev) => (
-          <li key={ev.id}>
-            <span className="season-strip__muted">{seasonalRangeLabel(ev)} · </span>
-            {ev.title}
-            {ev.confidence === 'typical' ? <span className="season-strip__muted"> (typical)</span> : null}
-          </li>
-        ))}
-      </ul>
-      {/* The night sky page graduated to an instrument tile; one crosslink. */}
-      <div className="home-crosslinks">
-        <Link to="/this-week" className="more-link">
-          This week in the park: alerts, seasons, tonight's sky →
-        </Link>
-      </div>
-    </section>
+    <svg className="home-row__go" width="18" height="18" viewBox="0 0 24 24" aria-hidden="true">
+      <path d="M9 5l7 7-7 7" />
+    </svg>
   )
 }
 
-// Small stroke glyphs for the planner tool cards, drawn in the same style as
-// the BottomNav icons (24 viewBox, currentColor stroke, 1.75 weight).
-function ToolGlyph({ children }: { children: ReactNode }) {
-  return (
-    <span className="tool-card__icon" aria-hidden="true">
-      <svg
-        viewBox="0 0 24 24"
-        fill="none"
-        stroke="currentColor"
-        strokeWidth="1.75"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      >
-        {children}
-      </svg>
-    </span>
-  )
-}
+// The eight instrument tiles, in the order the redesign fixed. Icons are the
+// app's stroke glyphs (24 viewBox, currentColor, 1.5 weight); Help is the one
+// tile in the accent, because it is the page a buyer opens once, in trouble,
+// and has to find without knowing its name.
+const TILES: { to: string; label: string; help?: boolean; glyph: ReactNode }[] = [
+  {
+    to: '/map',
+    label: 'Map',
+    glyph: (
+      <>
+        <path d="M9 3L3 6v15l6-3 6 3 6-3V3l-6 3-6-3z" />
+        <path d="M9 3v15M15 6v15" />
+      </>
+    ),
+  },
+  {
+    to: '/hikes',
+    label: 'Hikes',
+    glyph: (
+      <>
+        <path d="M2 20L9 7l4 7 2.5-4L21 20H2z" />
+        <path d="M11 11l-1.5 2.5" />
+      </>
+    ),
+  },
+  {
+    to: '/programs',
+    label: 'Programs',
+    glyph: (
+      <>
+        <path d="M12 3c2.2 2.6 4 4.6 4 7.2a4 4 0 0 1-8 0C8 7.6 9.8 5.6 12 3z" />
+        <path d="M5 21l14-4M19 21L5 17" />
+      </>
+    ),
+  },
+  {
+    to: '/night',
+    label: 'Night sky',
+    glyph: <path d="M20.5 14.1A8.5 8.5 0 1 1 9.9 3.5a7 7 0 0 0 10.6 10.6z" />,
+  },
+  {
+    to: '/compass',
+    label: 'Compass',
+    glyph: (
+      <>
+        <circle cx="12" cy="12" r="9" />
+        <path d="M15.5 8.5l-2 5-5 2 2-5 5-2z" />
+      </>
+    ),
+  },
+  {
+    to: '/near',
+    label: 'You are near',
+    glyph: (
+      <>
+        <path d="M12 21s-6-5.3-6-11a6 6 0 0 1 12 0c0 5.7-6 11-6 11z" />
+        <circle cx="12" cy="10" r="2.2" />
+      </>
+    ),
+  },
+  {
+    to: '/dining',
+    label: 'Eating',
+    glyph: (
+      <>
+        <path d="M7 3v18M4 3v5a3 3 0 0 0 6 0V3" />
+        <path d="M17 3c-2 3-2 6 0 8v10M17 11h2V3" />
+      </>
+    ),
+  },
+  {
+    to: '/help',
+    label: 'Help · 911',
+    help: true,
+    glyph: (
+      <>
+        <path d="M12 3v18M3 12h18" />
+        <rect x="5" y="5" width="14" height="14" rx="1" />
+      </>
+    ),
+  },
+]
 
-const PLAN_ICONS = {
-  dining: (
-    <ToolGlyph>
-      <path d="M7 3v18M4 3v5a3 3 0 0 0 6 0V3" />
-      <path d="M17 3c-2 3-2 6 0 8v10M17 11h2V3" />
-    </ToolGlyph>
-  ),
-  gateway: (
-    <ToolGlyph>
-      <path d="M3 21h18M5 21V9l7-6 7 6v12" />
-      <path d="M10 21v-6h4v6M9 12h2M13 12h2" />
-    </ToolGlyph>
-  ),
-}
-
-// Directory entry for a tool or reference surface: linked title, one-line
-// teaser, live meta. A div rather than a whole-card Link so entries can carry
-// their own sub-links (the essentials quick links).
-function ToolCard({
-  to,
-  title,
-  teaser,
-  meta,
-  icon,
-  children,
-}: {
-  to: string
-  title: string
-  teaser: string
-  meta: string
-  icon?: ReactNode
-  children?: ReactNode
-}) {
+function SectionHead({ eyebrow, title, id }: { eyebrow: string; title: string; id: string }) {
   return (
-    <div className="tool-card">
-      <h3 className="tool-card__title">
-        <Link to={to}>
-          {icon}
-          {title} →
-        </Link>
-      </h3>
-      <p className="tool-card__teaser">{teaser}</p>
-      <div className="dateline">{meta}</div>
-      {children}
-    </div>
+    <>
+      <span className="home-section__eyebrow">{eyebrow}</span>
+      <h2 className="home-section__title" id={id}>
+        {title}
+      </h2>
+    </>
   )
 }
 
@@ -290,7 +292,6 @@ export default function Home() {
   const { session } = useAuth()
   const { ids: favoriteIds } = useFavorites()
   const { plan } = useTripPlan()
-  const weather = useWeather()
   // Read once per mount (render must stay pure). Existing signed-in users who
   // predate onboarding get routed through /welcome exactly once; deep links
   // (/stop/x, /map?...) are never intercepted, only the front page.
@@ -305,300 +306,150 @@ export default function Home() {
   const savedHikeCount = favoriteIds.filter((id) => id.startsWith('hike:')).length
   const savedDiningCount = favoriteIds.filter((id) => id.startsWith('dining:')).length
   const downloadedCount = PACK_IDS.filter((id) => isPackCompleted(id)).length
+  const packsDone = downloadedCount === PACK_IDS.length
 
-  const stopCount = REGIONS.reduce((n, r) => n + getStopsByRegion(r.id).length, 0)
-  const datesLabel = tripDates ? tripDatesLabel(tripDates) : null
-
-  // One useWeather() for the whole page; past HIDE_AFTER every per-region
-  // line and the attribution disappear together. The five-day forecast lives
-  // on each region page now.
-  const showForecast = weather.spots.length > 0 && weather.ageMs <= HIDE_AFTER_MS
-  const weatherByRegion = new Map(weather.spots.map((s) => [s.id as string, s]))
+  const savedLine =
+    [
+      savedStops.length > 0 && `${savedStops.length} ${savedStops.length === 1 ? 'stop' : 'stops'}`,
+      savedHikeCount > 0 && `${savedHikeCount} ${savedHikeCount === 1 ? 'hike' : 'hikes'}`,
+      savedDiningCount > 0 && `${savedDiningCount} ${savedDiningCount === 1 ? 'place to eat' : 'places to eat'}`,
+    ]
+      .filter(Boolean)
+      .join(' · ') || 'Your bookmarks'
 
   if (!onboarded) return <Navigate to="/welcome" replace />
 
   return (
     <GatedChrome>
-      <main className="wrap wrap--narrow page">
-        {/* The Surveyor front page: identity in three lines, then readings.
-            The orientation copy lives in "How this guide works" further down;
-            a returning buyer gets the park's state before any prose. */}
-        <header className="home-hero">
-          <span className="eyebrow">Yosemite National Park · {EDITION_LABEL}</span>
-          <h1 className="home-hero__title">Field Guide</h1>
-          <p className="home-hero__sig">Every section of the guide, below.</p>
-        </header>
-
+      <main className="wrap wrap--narrow page home">
         <ParkNowPanel />
 
-        {/* The second question after "what is the park doing": when are you
-            here. Dates first, because the region planners are built on them;
-            once set, one row per day with the regions on it. Replaced the
-            one-line trip strip (see components/TripDaysCard.tsx). */}
+        {/* One-time notes and the door to /today. Each renders nothing unless
+            it has something to say, and the wrapper collapses with them. */}
+        <div className="home-notes">
+          <PendingImportCard />
+          <WhatsNewNote />
+          <BeforeYouGoNudge />
+          {tripDates && tripDates.start <= todayIso() && todayIso() <= tripDates.end && (
+            <TodayCard today={todayIso()} dates={tripDates} items={plan.items} />
+          )}
+        </div>
+
         <TripDaysCard />
 
-        <PendingImportCard />
+        <RegionCards />
 
-        <WhatsNewNote />
-
-        <BeforeYouGoNudge />
-
-        {tripDates && tripDates.start <= todayIso() && todayIso() <= tripDates.end && (
-          <TodayCard today={todayIso()} dates={tripDates} items={plan.items} />
-        )}
-
-        {/* The regions as invitations into their day planners; the Secret
-            Guide closes the set as a card of the same family. */}
-        <RegionCards weatherLine={(id) => (showForecast ? regionTodayLine(weatherByRegion.get(id)) : null)} />
-        <section aria-label="Conditions footnotes" className="page-section">
-          {/* One attribution for all four lines; repeating it per row is noise. */}
-          {showForecast && weather.fetchedAt && (
-            <p className="weather-attribution weather-attribution--rows">
-              Forecast as of {relativeStamp(weather.fetchedAt)}
-              {weather.offline ? ', saved on this device' : ''}
-              {weather.ageMs > WARN_AFTER_MS
-                ? '. This forecast is old; conditions have likely moved on.'
-                : ''}
-              {' '}· Five-day forecasts on each region page · National Weather Service
-            </p>
-          )}
-          {/* Roads and entrance waits moved up into ParkNowPanel; air and river
-              flow stay here, where they are a footnote to the regions rather
-              than something a trip pivots on. */}
-          <AirLine />
-          <FlowLine />
-        </section>
-
-        <section aria-label="Instruments" className="page-section">
-          <span className="eyebrow">Instruments</span>
-          <div className="instrument-grid">
-            <Link to="/map" className="instrument-tile">
-              <svg className="instrument-tile__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-                <path d="M9 3L3 6v15l6-3 6 3 6-3V3l-6 3-6-3z" />
-                <path d="M9 3v15M15 6v15" />
-              </svg>
-              <span className="instrument-tile__label">Topo map</span>
-              <span className="instrument-tile__note">Every stop pinned · works offline</span>
-            </Link>
-            <Link to="/hikes" className="instrument-tile">
-              <svg className="instrument-tile__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-                <path d="M2 20L9 7l4 7 2.5-4L21 20H2z" />
-                <path d="M11 11l-1.5 2.5" />
-              </svg>
-              <span className="instrument-tile__label">Day hikes</span>
-              <span className="instrument-tile__note">{HIKES.length} trails · profiles · GPX</span>
-            </Link>
-            <Link to="/programs" className="instrument-tile">
-              <svg className="instrument-tile__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-                <path d="M12 3c2.2 2.6 4 4.6 4 7.2a4 4 0 0 1-8 0C8 7.6 9.8 5.6 12 3z" />
-                <path d="M5 21l14-4M19 21L5 17" />
-              </svg>
-              <span className="instrument-tile__label">Programs</span>
-              <span className="instrument-tile__note">
-                {datesLabel ? `Showing ${datesLabel}` : 'Day by day for your dates'}
-              </span>
-            </Link>
-            <Link to="/night" className="instrument-tile">
-              <svg className="instrument-tile__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-                <path d="M20.5 14.1A8.5 8.5 0 1 1 9.9 3.5a7 7 0 0 0 10.6 10.6z" />
-              </svg>
-              <span className="instrument-tile__label">Night sky</span>
-              <span className="instrument-tile__note">Moon · stars · computed on-device</span>
-            </Link>
-            <Link to="/compass" className="instrument-tile">
-              <svg className="instrument-tile__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-                <circle cx="12" cy="12" r="9" />
-                <path d="M15.5 8.5l-2 5-5 2 2-5 5-2z" />
-              </svg>
-              <span className="instrument-tile__label">Bearing compass</span>
-              <span className="instrument-tile__note">Points at any stop · sun on the rose · works offline</span>
-            </Link>
-            {/* The Help card earns its tile: it is the page a buyer opens
-                once, in trouble, and it has to be findable without knowing
-                its name. */}
-            <Link to="/help" className="instrument-tile">
-              <svg className="instrument-tile__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-                <path d="M12 3v18M3 12h18" />
-                <rect x="5" y="5" width="14" height="14" rx="1" />
-              </svg>
-              <span className="instrument-tile__label">Help</span>
-              <span className="instrument-tile__note">911 · your GPS position to read out · park numbers</span>
-            </Link>
-            {/* Seventh tile, so it spans the row (.instrument-tile--wide, the
-                .readout--wide rule: a hanging half-empty cell reads as a tile
-                that failed to load). Companion mode: the nearest entry as the
-                car moves, for the passenger. */}
-            <Link to="/near" className="instrument-tile instrument-tile--wide">
-              <svg className="instrument-tile__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-                <path d="M12 21s-6-5.3-6-11a6 6 0 0 1 12 0c0 5.7-6 11-6 11z" />
-                <circle cx="12" cy="10" r="2.2" />
-              </svg>
-              <span className="instrument-tile__label">You are near</span>
-              <span className="instrument-tile__note">Nearest entry as you move, read aloud. For passengers.</span>
-            </Link>
+        <section aria-labelledby="home-tools-title" className="home-section">
+          <SectionHead eyebrow="Instruments" title="In the field" id="home-tools-title" />
+          <div className="home-tiles">
+            {TILES.map((t) => (
+              <Link key={t.to} to={t.to} className={t.help ? 'home-tile home-tile--help' : 'home-tile'}>
+                <svg
+                  width="26"
+                  height="26"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="1.5"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  aria-hidden="true"
+                >
+                  {t.glyph}
+                </svg>
+                <span className="home-tile__label">{t.label}</span>
+              </Link>
+            ))}
           </div>
-        </section>
-
-        <section aria-label="Where to eat" className="page-section">
-          <span className="eyebrow">Where to eat</span>
-          <div className="tool-grid">
-            <ToolCard
-              to="/dining"
-              title="Eating in the park"
-              icon={PLAN_ICONS.dining}
-              teaser="Every place to eat or buy food in the park, with published hours."
-              meta={`${DINING.filter((v) => v.area !== 'gateway').length} places · hours from the current Yosemite Guide`}
-            />
-            <ToolCard
-              to="/dining#gateway"
-              title="The gateway towns"
-              icon={PLAN_ICONS.gateway}
-              teaser="Restaurants in the gateway towns, by entrance: Mariposa, Groveland, Oakhurst, Fish Camp, El Portal, and Lee Vining."
-              meta={`${DINING.filter((v) => v.area === 'gateway').length} places · ${GATEWAY_TOWNS.length} corridors`}
-            >
-              <div className="tool-card__sub">
-                <Link to="/essentials/eating-in-the-park">Eating in the park, by budget →</Link>
-                <Link to="/essentials/bear-safety">The food rules →</Link>
-              </div>
-            </ToolCard>
-          </div>
-        </section>
-
-        <section aria-label="The reference shelf" className="page-section">
-          <span className="eyebrow">The reference shelf</span>
-          <div className="tool-grid">
-            <ToolCard
-              to="/essentials"
-              title="Know before you go"
-              teaser="Entrances, reservations, crowds, bears, heat, smoke, budgets, and the packing checklists."
-              meta={`${ESSENTIALS.length} topics`}
-            >
-              <div className="tool-card__sub">
-                <Link to="/essentials/before-you-go">Night-before checklist →</Link>
-                <Link to="/essentials/packing-checklist">Packing checklist →</Link>
-              </div>
-            </ToolCard>
-            <ToolCard
-              to="/wildlife"
-              title="What did I see?"
-              teaser="Quick identification for common animals, birds, and trees, with the field marks that confirm each one and safety notes."
-              meta="Mammals · birds · trees · reptiles"
-            >
-              <div className="tool-card__sub">
-                <Link to="/hunts">Find-it lists for kids →</Link>
-                <Link to="/log">Your field log →</Link>
-              </div>
-            </ToolCard>
-            <ToolCard
-              to="/search"
-              title="Search the guide"
-              teaser="One box across every stop, hike, secret spot, dining option, and essentials topic. Works offline like the rest of the guide."
-              meta="Stops · hikes · dining · secret spots · essentials"
-            />
-          </div>
-        </section>
-
-        <section aria-label="Offline status" className="page-section">
-          <span className="eyebrow">Before you drive in</span>
-          <Link to="/account" className="panel packs-panel">
-            <span className="packs-panel__row">
-              <span className="packs-panel__label">Offline packs</span>
-              <span className="packs-panel__value">
-                {downloadedCount} / {PACK_IDS.length}
-              </span>
-            </span>
-            <span className="meter" aria-hidden="true">
-              {PACK_IDS.map((id, i) => (
-                <span
-                  key={id}
-                  className={i < downloadedCount ? 'meter__seg meter__seg--on' : 'meter__seg'}
-                />
-              ))}
-            </span>
-            <span className="packs-panel__note">
-              {downloadedCount === PACK_IDS.length
-                ? 'The whole guide works offline · Manage →'
-                : 'Download the guide and map before you leave wifi →'}
-            </span>
+          <Link to="/this-week" className="home-link">
+            This week in the park: alerts, seasons, tonight&rsquo;s sky
           </Link>
         </section>
 
-        <section aria-label="How this guide works" className="page-section">
-          <span className="eyebrow">How this guide works</span>
-          <ol className="home-steps">
-            <li>
-              <span className="home-steps__num" aria-hidden="true">1</span>
-              <p>
-                <strong>Read.</strong> Four regions, {stopCount} stops in driving order, plus{' '}
-                <Link to="/secret-guide">the Secret Guide</Link> and the{' '}
-                <Link to="/essentials">know-before-you-go essentials</Link>.
-              </p>
-            </li>
-            <li>
-              <span className="home-steps__num" aria-hidden="true">2</span>
-              <p>
-                <strong>Plan.</strong> Set your trip dates once: <Link to="/programs">park programs</Link>{' '}
-                and the <Link to="/trip">trip planner</Link> share them. Add stops and{' '}
-                <Link to="/hikes">day hikes</Link>, then export the plan to your calendar.
-              </p>
-            </li>
-            <li>
-              <span className="home-steps__num" aria-hidden="true">3</span>
-              <p>
-                <strong>Go offline.</strong> <Link to="/account">Download the packs</Link> on wifi the
-                night before. After that, airplane mode changes nothing.
-              </p>
-            </li>
-          </ol>
+        <section aria-labelledby="home-ref-title" className="home-section">
+          <SectionHead eyebrow="Reference shelf" title="Know before you go" id="home-ref-title" />
+          <div className="home-rows">
+            <Link to="/essentials" className="home-row">
+              <span className="home-row__text">
+                <span className="home-row__title">Essentials</span>
+                <span className="home-row__sub">Entrances, reservations, bears, heat, smoke, packing</span>
+              </span>
+              <Chevron />
+            </Link>
+            <Link to="/wildlife" className="home-row">
+              <span className="home-row__text">
+                <span className="home-row__title">What did I see?</span>
+                <span className="home-row__sub">Mammals, birds, trees and reptiles, with field marks</span>
+              </span>
+              <Chevron />
+            </Link>
+            <Link to="/search" className="home-row">
+              <span className="home-row__text">
+                <span className="home-row__title">Search the guide</span>
+                <span className="home-row__sub">Every stop, hike, secret spot and topic. Works offline.</span>
+              </span>
+              <Chevron />
+            </Link>
+            {/* The record and the bookmarks appear once they hold anything:
+                before the trip an all-zero reading would only be noise. */}
+            {logHasEntries(logSummary) && (
+              <Link to="/log" className="home-row">
+                <span className="home-row__text">
+                  <span className="home-row__title">Your field log</span>
+                  <span className="home-row__sub">
+                    {[
+                      logSummary.visited > 0 &&
+                        `${logSummary.visited} ${logSummary.visited === 1 ? 'stop' : 'stops'}`,
+                      logSummary.species > 0 && `${logSummary.species} species`,
+                      logSummary.huntFinds > 0 && `${logSummary.huntFinds} found`,
+                      logSummary.notes > 0 &&
+                        `${logSummary.notes} ${logSummary.notes === 1 ? 'note' : 'notes'}`,
+                    ]
+                      .filter(Boolean)
+                      .join(' · ')}
+                  </span>
+                </span>
+                <Chevron />
+              </Link>
+            )}
+            {favoriteIds.length > 0 && (
+              <Link to="/saved" className="home-row">
+                <span className="home-row__text">
+                  <span className="home-row__title">Saved</span>
+                  <span className="home-row__sub">{savedLine}</span>
+                </span>
+                <Chevron />
+              </Link>
+            )}
+          </div>
         </section>
 
-        <InSeasonStrip />
-
-        {/* The record panel appears once the log holds anything: before the
-            trip an all-zero reading would only be noise, and the log stays
-            reachable through the reference shelf's field-log link above. */}
-        {logHasEntries(logSummary) && (
-          <section aria-label="Your record" className="page-section">
-            <span className="eyebrow">Your record</span>
-            <Link to="/log" className="panel packs-panel">
-              <span className="packs-panel__row">
-                <span className="packs-panel__label">Field log</span>
-                <span className="packs-panel__value">
-                  {[
-                    logSummary.visited > 0 &&
-                      `${logSummary.visited} ${logSummary.visited === 1 ? 'stop' : 'stops'}`,
-                    logSummary.species > 0 &&
-                      `${logSummary.species} species`,
-                    logSummary.huntFinds > 0 && `${logSummary.huntFinds} found`,
-                    logSummary.notes > 0 &&
-                      `${logSummary.notes} ${logSummary.notes === 1 ? 'note' : 'notes'}`,
-                  ]
-                    .filter(Boolean)
-                    .join(' · ')}
-                </span>
+        <section aria-labelledby="home-offline-title" className="home-section">
+          <SectionHead eyebrow="Before you drive in" title="Offline packs" id="home-offline-title" />
+          <Link to="/account" className="home-offline">
+            <span className="home-offline__count">
+              {downloadedCount}{' '}
+              <span className="home-offline__of">
+                of {PACK_IDS.length} downloaded
               </span>
-              <span className="packs-panel__note">
-                The trip as you recorded it, on one page →
-              </span>
-            </Link>
-          </section>
-        )}
-
-        {favoriteIds.length > 0 && (
-          <section aria-label="Saved" className="page-section">
-            <span className="eyebrow">Saved</span>
-            <Link to="/saved" className="more-link">
-              {[
-                savedStops.length > 0 && `${savedStops.length} ${savedStops.length === 1 ? 'stop' : 'stops'}`,
-                savedHikeCount > 0 && `${savedHikeCount} ${savedHikeCount === 1 ? 'hike' : 'hikes'}`,
-                savedDiningCount > 0 && `${savedDiningCount} ${savedDiningCount === 1 ? 'place to eat' : 'places to eat'}`,
-              ]
-                .filter(Boolean)
-                .join(' · ') || 'Your bookmarks'}{' '}
-              →
-            </Link>
-          </section>
-        )}
+            </span>
+            <span
+              className="home-offline__meter"
+              aria-hidden="true"
+              style={{ gridTemplateColumns: `repeat(${PACK_IDS.length}, minmax(0, 1fr))` }}
+            >
+              {PACK_IDS.map((id, i) => (
+                <span key={id} className={i < downloadedCount ? 'is-on' : undefined} />
+              ))}
+            </span>
+            <span className="home-offline__foot">
+              {packsDone
+                ? 'The whole guide works offline.'
+                : 'Download the rest on wifi before you leave.'}
+              <span className="home-offline__manage">Manage</span>
+            </span>
+          </Link>
+        </section>
 
         <UpdatedStamp />
 

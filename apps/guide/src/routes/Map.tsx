@@ -2437,7 +2437,7 @@ export default function Map() {
       type: 'line',
       source: 'hike-track',
       layout: { 'line-cap': 'round', 'line-join': 'round' },
-      paint: { 'line-color': '#7a2a10', 'line-width': 3 },
+      paint: { 'line-color': '#a4462c', 'line-width': 3 },
     })
 
     const start = trackState.track.line[0]
