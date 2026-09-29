@@ -544,7 +544,7 @@ function ConditionsPage({
     }],
     eyebrow: "CONDITIONS / LIVE FROM THE PARK",
     title: React.createElement(React.Fragment, null, "The park,", React.createElement("br", null), React.createElement("em", null, "right now.")),
-    intro: "Live webcams, entrance waits, and the forecasts that matter, on one page. Check it the morning you drive in, not the week before: Yosemite changes faster than a booking window.",
+    intro: "Live webcams, entrance waits, and the forecasts that matter, on one page. Check it the morning you drive in, not the week before. Roads and crowds change faster than your plans do.",
     actions: React.createElement(React.Fragment, null, React.createElement(HomeLink, {
       go: go,
       location: "conditions_hero",
