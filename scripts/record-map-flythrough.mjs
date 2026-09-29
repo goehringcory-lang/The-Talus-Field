@@ -1,5 +1,10 @@
 #!/usr/bin/env node
-// Renders the /guide page's 3D map flythrough (img/guide/map-3d-flythrough.*)
+// NOTE (September 2026): the /guide page no longer plays this film. It plays
+// the pin-free trail film from scripts/record-trail-flythrough.mjs
+// (img/guide/map-3d-trails.v1.*). This script, which renders the app with its
+// pins on, is kept for a pins-included capture.
+//
+// Renders a 3D map flythrough of the Field Guide with its pins on (it wrote img/guide/map-3d-flythrough.*)
 // frame by frame from the Field Guide's own map, pins included.
 //
 // Why frame by frame, and why the wait on every frame: the pins are DOM

@@ -845,13 +845,13 @@ function GuideMapFilm() {
     preload: "none",
     width: "1280",
     height: "720",
-    poster: "/img/guide/map-3d-flythrough-poster.jpg",
-    "aria-label": "Ten seconds on the Field Guide's 3D map: from Tunnel View east up Yosemite Valley, past El Capitan and Bridalveil Fall to the Valley floor, with the guide's pins and trails on the terrain"
+    poster: "/img/guide/map-3d-trails.v1-poster.jpg",
+    "aria-label": "A flight over the Field Guide's 3D map with no pins, in which the trails draw themselves onto the terrain: the Upper Yosemite Fall trail climbs the north wall in red, the Valley Loop rounds the floor in amber, the Four Mile Trail climbs to Glacier Point, the Panorama and Pohono Trails run out from it, the line reaches Half Dome, and the view lifts to every trail in the park"
   }, React.createElement("source", {
-    src: "/img/guide/map-3d-flythrough.webm",
+    src: "/img/guide/map-3d-trails.v1.webm",
     type: "video/webm"
   }), React.createElement("source", {
-    src: "/img/guide/map-3d-flythrough.mp4",
+    src: "/img/guide/map-3d-trails.v1.mp4",
     type: "video/mp4"
   }));
 }
@@ -870,7 +870,7 @@ function GuideMap3D() {
     className: "guide-map3d__dek"
   }, "The Field Guide's map is now a model of the park, drawn on your phone from USGS elevation data. Tilt it to see the Valley the way you will drive into it, follow any of the 57 day hikes over the ground it climbs, and watch your own trip laid out day by day along the real roads. Download the areas you need and it keeps working past the tunnel.")), React.createElement("figure", {
     className: "guide-map3d__film"
-  }, React.createElement(GuideMapFilm, null), React.createElement("figcaption", null, React.createElement("span", null, React.createElement("b", null, "TEN SECONDS, UNEDITED"), " Tunnel View to the Valley floor, rendered frame by frame from the map itself."), React.createElement("span", null, "Map data: OpenStreetMap, Protomaps, USGS 3DEP"))), React.createElement("div", {
+  }, React.createElement(GuideMapFilm, null), React.createElement("figcaption", null, React.createElement("span", null, React.createElement("b", null, "NO PINS, JUST THE TRAILS"), " Camp 4 to Half Dome, then the rest of the park. Each line is drawn from the guide's own track file onto the map's terrain, frame by frame."), React.createElement("span", null, "Map data: OpenStreetMap, Protomaps, USGS 3DEP"))), React.createElement("div", {
     className: "guide-map3d__shots"
   }, MAP3D_SHOTS.map(shot => React.createElement("figure", {
     className: "guide-map3d__shot" + (shot.wide ? " is-wide" : ""),
