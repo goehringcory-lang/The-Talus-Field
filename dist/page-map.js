@@ -13,24 +13,40 @@ function addNpsMapOverlay(maps, map) {
       img.alt = "";
       img.draggable = false;
       img.style.cssText = "position:absolute;max-width:none;user-select:none;pointer-events:none;";
+      var mat = document.createElement("div");
+      mat.style.cssText = "position:absolute;background:#ece9e1;pointer-events:none;";
+      this.mat = mat;
       this.img = img;
-      this.getPanes().overlayLayer.appendChild(img);
+      var pane = this.getPanes().overlayLayer;
+      pane.appendChild(mat);
+      pane.appendChild(img);
     }
     draw() {
       var proj = this.getProjection();
       if (!proj || !this.img) return;
       var sw = proj.fromLatLngToDivPixel(new maps.LatLng(NPS_MAP_BOUNDS.south, NPS_MAP_BOUNDS.west));
       var ne = proj.fromLatLngToDivPixel(new maps.LatLng(NPS_MAP_BOUNDS.north, NPS_MAP_BOUNDS.east));
+      var w = ne.x - sw.x;
+      var h = sw.y - ne.y;
       Object.assign(this.img.style, {
         left: sw.x + "px",
         top: ne.y + "px",
-        width: ne.x - sw.x + "px",
-        height: sw.y - ne.y + "px"
+        width: w + "px",
+        height: h + "px"
+      });
+      Object.assign(this.mat.style, {
+        left: sw.x - 4 * w + "px",
+        top: ne.y - 4 * h + "px",
+        width: 9 * w + "px",
+        height: 9 * h + "px"
       });
     }
     onRemove() {
-      if (this.img && this.img.parentNode) this.img.parentNode.removeChild(this.img);
+      [this.img, this.mat].forEach(el => {
+        if (el && el.parentNode) el.parentNode.removeChild(el);
+      });
       this.img = null;
+      this.mat = null;
     }
   }
   new NpsMapOverlay().setMap(map);
@@ -938,6 +954,7 @@ function MapView({
         mapTypeId: "roadmap",
         mapId: "DEMO_MAP_ID",
         mapTypeControl: false,
+        clickableIcons: false,
         streetViewControl: false,
         fullscreenControl: true,
         gestureHandling: "greedy",
