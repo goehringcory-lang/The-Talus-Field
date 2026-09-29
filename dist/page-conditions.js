@@ -25,103 +25,19 @@ var CONDITIONS_FORECASTS = [{
   lon: -119.3503
 }];
 var CONDITIONS_TIOGA_FT = 9945;
-var CONDITIONS_ELEV_LAYOUTS = {
-  wide: {
-    width: 1136,
-    top: -28,
-    base: 300,
-    pxPerFt: 0.035,
-    start: [64, 246],
-    path: [[[110, 242], [150, 232], [181, 230]], [[230, 227], [280, 162], [330, 160]], [[390, 158], [480, 228], [568, 230]], [[620, 231], [640, 170], [680, 154]], [[740, 130], [800, 86], [860, 80]], [[900, 76], [930, 71], [955, 69]], [[1010, 64], [1060, 30], [1090, 22]], [[1110, 18], [1125, 24], [1136, 30]]],
-    highFrom: 5,
-    stationX: [181, 568, 955],
-    passX: 1090,
-    grid: [{
-      ft: 10000,
-      label: "10,000 ft"
-    }, {
-      ft: 8000,
-      label: "8,000 ft"
-    }, {
-      ft: 6000,
-      label: "6,000 ft"
-    }, {
-      ft: 4000,
-      label: "4,000 ft"
-    }, {
-      ft: 2000,
-      label: "2,000 ft"
-    }],
-    tag: {
-      w: 88,
-      h: 22,
-      top: [150, 150, 26],
-      text: (i, f) => `0${i + 1} · ${f.elevationFt.toLocaleString("en-US")}`
-    },
-    pinR: 6,
-    tri: 6,
-    passLabel: `Tioga Pass ${CONDITIONS_TIOGA_FT.toLocaleString("en-US")} ft`,
-    passLabelDx: -14,
-    passLabelY: -8,
-    bracketX: 905,
-    note: {
-      side: "left",
-      w: 174,
-      h: 54,
-      y: 168,
-      big: 196,
-      small: [214],
-      smallText: ["15 to 25 degrees colder"]
-    }
-  },
-  compact: {
-    width: 358,
-    top: -14,
-    base: 170,
-    pxPerFt: 0.02,
-    start: [22, 136],
-    path: [[[36, 134], [46, 131], [56, 130]], [[74, 128], [90, 92], [104, 91]], [[124, 90], [142, 129], [158, 130]], [[172, 131], [180, 100], [192, 92]], [[214, 78], [240, 50], [258, 46]], [[268, 43], [275, 40], [282, 38]], [[300, 34], [320, 16], [334, 11]], [[342, 9], [350, 12], [358, 15]]],
-    highFrom: 5,
-    stationX: [56, 158, 282],
-    passX: 334,
-    grid: [{
-      ft: 10000,
-      label: ""
-    }, {
-      ft: 8000,
-      label: "8k"
-    }, {
-      ft: 6000,
-      label: "6k"
-    }, {
-      ft: 4000,
-      label: "4k"
-    }, {
-      ft: 2000,
-      label: "2k ft"
-    }],
-    tag: {
-      w: 24,
-      h: 16,
-      top: [70, 70, 7],
-      text: i => `0${i + 1}`
-    },
-    pinR: 4.5,
-    tri: 5,
-    passLabel: `Tioga Pass ${CONDITIONS_TIOGA_FT.toLocaleString("en-US")}`,
-    passLabelDx: -10,
-    passLabelY: 0,
-    bracketX: 246,
-    note: {
-      side: "right",
-      w: 80,
-      h: 50,
-      y: 72,
-      big: 91,
-      small: [104, 115],
-      smallText: ["15 to 25°", "colder"]
-    }
-  }
+var CONDITIONS_MAP_PINS = [{
+  x: 594,
+  y: 1762
+}, {
+  x: 541,
+  y: 1263
+}, {
+  x: 1193,
+  y: 846
+}];
+var CONDITIONS_MAP_PASS = {
+  x: 1395,
+  y: 752
 };
 var CONDITIONS_ELEV_WIDE_MIN = 900;
 function conditionsForecastUrl(f) {
@@ -150,169 +66,47 @@ function ConditionsElevation() {
     return () => window.removeEventListener("resize", read);
   }, []);
   var mode = width >= CONDITIONS_ELEV_WIDE_MIN ? "wide" : "compact";
-  var L = CONDITIONS_ELEV_LAYOUTS[mode];
-  var s = width / L.width;
-  var X = x => +(x * s).toFixed(1);
-  var Y = ft => +(L.base - (ft - 2000) * L.pxPerFt).toFixed(1);
-  var pt = ([x, y]) => `${X(x)} ${y}`;
-  var segs = from => L.path.slice(from).map(seg => `C ${seg.map(pt).join(", ")}`).join(" ");
-  var line = `M ${pt(L.start)} ${segs(0)}`;
-  var high = `M ${pt(L.path[L.highFrom - 1][2])} ${segs(L.highFrom)}`;
-  var [lowF,, highF] = CONDITIONS_FORECASTS;
-  var floorY = Y(lowF.elevationFt);
-  var highY = Y(highF.elevationFt);
-  var riseFt = highF.elevationFt - lowF.elevationFt;
-  var bx = X(L.bracketX);
-  var n = L.note;
-  var noteX = n.side === "left" ? bx - 13 - n.w : bx + 7;
-  var noteTextX = n.side === "left" ? bx - 15 : bx + 12;
-  var noteAnchor = n.side === "left" ? "end" : "start";
-  var passX = X(L.passX);
-  var passY = Y(CONDITIONS_TIOGA_FT);
-  var height = L.base - L.top;
-  var summary = `Elevation profile along the park roads: ${CONDITIONS_FORECASTS.map(f => `${f.label} at ${f.elevationFt.toLocaleString("en-US")} feet`).join(", ")}. ` + `Tuolumne Meadows sits ${riseFt.toLocaleString("en-US")} feet above the Valley, and Tioga Pass tops the road at ${CONDITIONS_TIOGA_FT.toLocaleString("en-US")} feet.`;
+  var riseFt = CONDITIONS_FORECASTS[2].elevationFt - CONDITIONS_FORECASTS[0].elevationFt;
+  var summary = `The park map with the three forecast points marked: ${CONDITIONS_FORECASTS.map((f, i) => `${i + 1}, ${f.label} at ${f.elevationFt.toLocaleString("en-US")} feet`).join("; ")}. ` + `Tioga Pass tops the road at ${CONDITIONS_TIOGA_FT.toLocaleString("en-US")} feet.`;
   return React.createElement("div", {
     className: `elev elev--${mode}`,
     ref: ref
+  }, React.createElement("figure", {
+    className: "npsmap"
   }, React.createElement("div", {
-    className: "elev__caption"
-  }, React.createElement("span", {
-    className: "elev__title"
-  }, mode === "wide" ? "Elevation along the park roads, Wawona to Tioga Pass" : "Elevation, Wawona to Tioga Pass"), React.createElement("span", {
-    className: "elev__scale"
-  }, "Station heights to scale. Terrain between them is schematic.")), React.createElement("svg", {
-    className: "elev__svg",
-    viewBox: `0 ${L.top} ${width} ${height}`,
-    width: width,
-    height: height,
+    className: "npsmap__frame"
+  }, React.createElement(ResponsiveImage, {
+    image: "img/nps-yosemite-park-map.jpg",
+    alt: "The National Park Service's official map of Yosemite National Park.",
+    sizes: "(max-width: 760px) 100vw, 720px"
+  }), React.createElement("svg", {
+    viewBox: "0 0 1920 1970",
     role: "img",
     "aria-label": summary
-  }, React.createElement("defs", null, React.createElement("pattern", {
-    id: "cond-elev-hatch",
-    width: "6",
-    height: "6",
-    patternUnits: "userSpaceOnUse",
-    patternTransform: "rotate(45)"
-  }, React.createElement("line", {
-    className: "elev__hatch",
-    x1: "0",
-    y1: "0",
-    x2: "0",
-    y2: "6"
-  }))), L.grid.map(g => React.createElement("g", {
-    key: g.ft
-  }, g.ft !== 2000 && React.createElement("line", {
-    className: "elev__gridline",
-    x1: "0",
-    y1: Y(g.ft),
-    x2: width,
-    y2: Y(g.ft)
-  }), g.label && React.createElement("text", {
-    className: "elev__gridlabel",
-    x: "0",
-    y: Y(g.ft) - 6
-  }, g.label))), React.createElement("path", {
-    className: "elev__fill",
-    d: `${line} L ${width} ${L.base} L ${X(L.start[0])} ${L.base} Z`
-  }), React.createElement("line", {
-    className: "elev__datum",
-    x1: X(L.start[0]),
-    y1: floorY,
-    x2: width,
-    y2: floorY
-  }), React.createElement("path", {
-    className: "elev__line",
-    d: line
-  }), React.createElement("path", {
-    className: "elev__line elev__line--high",
-    d: high
-  }), React.createElement("line", {
-    className: "elev__baseline",
-    x1: "0",
-    y1: L.base,
-    x2: width,
-    y2: L.base
-  }), CONDITIONS_FORECASTS.map((f, i) => React.createElement("line", {
-    key: f.label,
-    className: "elev__drop",
-    x1: X(L.stationX[i]),
-    y1: Y(f.elevationFt),
-    x2: X(L.stationX[i]),
-    y2: L.base
-  })), React.createElement("g", {
-    className: "elev__dim"
-  }, React.createElement("line", {
-    x1: bx,
-    y1: highY,
-    x2: bx,
-    y2: floorY
-  }), React.createElement("line", {
-    x1: bx - 8,
-    y1: highY,
-    x2: bx + 8,
-    y2: highY
-  }), React.createElement("line", {
-    x1: bx - 8,
-    y1: floorY,
-    x2: bx + 8,
-    y2: floorY
-  })), React.createElement("rect", {
-    className: "elev__plate",
-    x: noteX,
-    y: n.y,
-    width: n.w,
-    height: n.h
+  }, CONDITIONS_MAP_PINS.map((pt, i) => React.createElement("g", {
+    key: CONDITIONS_FORECASTS[i].label
+  }, React.createElement("circle", {
+    className: `npsmap__pin ${CONDITIONS_FORECASTS[i].elevationFt >= 6000 ? "npsmap__pin--rust" : "npsmap__pin--ink"}`,
+    cx: pt.x,
+    cy: pt.y,
+    r: "38",
+    strokeWidth: "8"
   }), React.createElement("text", {
-    className: "elev__rise",
-    x: noteTextX,
-    y: n.big,
-    textAnchor: noteAnchor
-  }, "+", riseFt.toLocaleString("en-US"), " ft"), n.smallText.map((t, i) => React.createElement("text", {
-    key: t,
-    className: "elev__risenote",
-    x: noteTextX,
-    y: n.small[i],
-    textAnchor: noteAnchor
-  }, t)), React.createElement("path", {
-    className: "elev__pass",
-    d: `M ${passX} ${passY - L.tri} L ${passX + L.tri} ${passY + L.tri * 0.7} L ${passX - L.tri} ${passY + L.tri * 0.7} Z`
-  }), React.createElement("text", {
-    className: "elev__passlabel",
-    x: passX + L.passLabelDx,
-    y: L.passLabelY,
-    textAnchor: "end"
-  }, L.passLabel), CONDITIONS_FORECASTS.map((f, i) => {
-    var x = X(L.stationX[i]);
-    var y = Y(f.elevationFt);
-    var hi = f.elevationFt >= 6000;
-    return React.createElement("g", {
-      key: f.label,
-      className: `elev__station${hi ? " elev__station--high" : ""}`
-    }, React.createElement("line", {
-      className: "elev__stem",
-      x1: x,
-      y1: L.tag.top[i] + L.tag.h,
-      x2: x,
-      y2: y - L.pinR
-    }), React.createElement("rect", {
-      className: "elev__tag",
-      x: x - L.tag.w / 2,
-      y: L.tag.top[i],
-      width: L.tag.w,
-      height: L.tag.h,
-      rx: L.tag.h / 2
-    }), React.createElement("text", {
-      className: "elev__tagtext",
-      x: x,
-      y: L.tag.top[i] + L.tag.h / 2 + 3.5,
-      textAnchor: "middle"
-    }, L.tag.text(i, f)), React.createElement("circle", {
-      className: "elev__pin",
-      cx: x,
-      cy: y,
-      r: L.pinR
-    }));
-  })), React.createElement("div", {
+    className: "npsmap__num",
+    x: pt.x,
+    y: pt.y + 16,
+    textAnchor: "middle",
+    style: {
+      fontSize: 44
+    }
+  }, i + 1))), React.createElement("path", {
+    className: "npsmap__pin npsmap__pin--ink",
+    d: `M ${CONDITIONS_MAP_PASS.x} ${CONDITIONS_MAP_PASS.y - 40} L ${CONDITIONS_MAP_PASS.x + 40} ${CONDITIONS_MAP_PASS.y + 30} L ${CONDITIONS_MAP_PASS.x - 40} ${CONDITIONS_MAP_PASS.y + 30} Z`,
+    strokeWidth: "8",
+    strokeLinejoin: "round"
+  }))), React.createElement("figcaption", null, CONDITIONS_FORECASTS.map((f, i) => React.createElement("span", {
+    key: f.label
+  }, React.createElement("b", null, i + 1), " ", f.label, ", ", f.elevationFt.toLocaleString("en-US"), " ft")), React.createElement("span", null, "▲ Tioga Pass, ", CONDITIONS_TIOGA_FT.toLocaleString("en-US"), " ft, the top of the road. Tuolumne Meadows sits ", riseFt.toLocaleString("en-US"), " ft above the Wawona and Valley stations. Map: National Park Service (public domain)."))), React.createElement("div", {
     className: "elev__cards"
   }, CONDITIONS_FORECASTS.map((f, i) => {
     var hi = f.elevationFt >= 6000;

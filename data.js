@@ -131,7 +131,7 @@ window.BODY_VERSIONS = {
   "tuolumne-meadows-in-a-day": 4,
   "swimming-in-the-merced": 3,
   "yosemite-valley-parking-guide": 2,
-  "yosemite-shuttle-and-yarts": 5,
+  "yosemite-shuttle-and-yarts": 6,
   "yosemite-walk-up-and-day-of-permits": 6,
   "yosemite-in-fall": 5,
   "yosemite-tunnel-trees": 3,

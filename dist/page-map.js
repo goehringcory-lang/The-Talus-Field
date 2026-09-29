@@ -5,6 +5,42 @@ var {
   useState,
   useCallback
 } = React;
+function addNpsMapOverlay(maps, map) {
+  class NpsMapOverlay extends maps.OverlayView {
+    onAdd() {
+      var img = document.createElement("img");
+      img.src = "/img/nps-yosemite-park-map.jpg";
+      img.alt = "";
+      img.draggable = false;
+      img.style.cssText = "position:absolute;max-width:none;user-select:none;pointer-events:none;";
+      this.img = img;
+      this.getPanes().overlayLayer.appendChild(img);
+    }
+    draw() {
+      var proj = this.getProjection();
+      if (!proj || !this.img) return;
+      var sw = proj.fromLatLngToDivPixel(new maps.LatLng(NPS_MAP_BOUNDS.south, NPS_MAP_BOUNDS.west));
+      var ne = proj.fromLatLngToDivPixel(new maps.LatLng(NPS_MAP_BOUNDS.north, NPS_MAP_BOUNDS.east));
+      Object.assign(this.img.style, {
+        left: sw.x + "px",
+        top: ne.y + "px",
+        width: ne.x - sw.x + "px",
+        height: sw.y - ne.y + "px"
+      });
+    }
+    onRemove() {
+      if (this.img && this.img.parentNode) this.img.parentNode.removeChild(this.img);
+      this.img = null;
+    }
+  }
+  new NpsMapOverlay().setMap(map);
+}
+var NPS_MAP_BOUNDS = {
+  west: -119.9067,
+  east: -119.0066,
+  north: 38.2004,
+  south: 37.4693
+};
 var POINTS_URL = window.POINTS_URL;
 var MAP_API_BASE = typeof window !== "undefined" && window.GUIDE_API_BASE || "https://api.thetalusfieldjournal.com";
 var GUIDE_APP_BASE = typeof window !== "undefined" && window.GUIDE_APP_BASE || "https://guide.thetalusfieldjournal.com";
@@ -897,13 +933,20 @@ function MapView({
           lng: -119.55
         },
         zoom: 10,
-        mapTypeId: "terrain",
+        minZoom: 9,
+        maxZoom: 13,
+        mapTypeId: "roadmap",
         mapId: "DEMO_MAP_ID",
-        mapTypeControl: true,
+        mapTypeControl: false,
         streetViewControl: false,
         fullscreenControl: true,
-        gestureHandling: "greedy"
+        gestureHandling: "greedy",
+        restriction: {
+          latLngBounds: NPS_MAP_BOUNDS,
+          strictBounds: false
+        }
       });
+      addNpsMapOverlay(maps, map);
       mapRef.current = map;
       markerLibRef.current = markerLib;
       infoRef.current = new maps.InfoWindow({
@@ -1397,7 +1440,9 @@ function MapView({
     onClick: locateMe,
     disabled: locating,
     title: "Show where you are on the map"
-  }, locating ? "Locating…" : "Find me"))), !unlocked && React.createElement(MapAccessGate, {
+  }, locating ? "Locating…" : "Find me"), React.createElement("span", {
+    className: "map-page__credit"
+  }, "Map: National Park Service (public domain)"))), !unlocked && React.createElement(MapAccessGate, {
     onSubscribed: handleGateSubscribed
   }));
 }

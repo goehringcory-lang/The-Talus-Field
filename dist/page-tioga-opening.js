@@ -83,143 +83,80 @@ function TiogaStrip() {
     className: "tg-strip__months"
   }, React.createElement("span", null, "May 1"), React.createElement("span", null, "June 1"), React.createElement("span", null, "June 30")));
 }
-var TIOGA_PROFILE = [{
+var TIOGA_STOPS = [{
   name: "Crane Flat",
-  mi: 0,
   ft: 6200,
+  mi: 0,
   note: "Last gas, pay at pump",
-  placed: "mile",
-  label: [10, 26, "start"]
+  x: 145,
+  y: 630
 }, {
   name: "White Wolf",
-  mi: 14,
   ft: 8000,
-  placed: "order",
-  label: [0, 28, "middle"]
+  x: 400,
+  y: 325
 }, {
   name: "Olmsted Point",
-  mi: 30,
   ft: 8400,
-  placed: "order",
-  label: [-8, -34, "end"]
+  x: 786,
+  y: 488
 }, {
   name: "Tenaya Lake",
-  mi: 32,
   ft: 8150,
-  placed: "order",
-  label: [6, 28, "start"]
+  x: 835,
+  y: 425
 }, {
   name: "Tuolumne Meadows",
-  mi: 39,
   ft: 8600,
-  placed: "mile",
-  label: [10, 30, "start"]
+  mi: 39,
+  x: 1090,
+  y: 320
 }, {
   name: "Tioga Pass",
-  mi: 47,
   ft: 9945,
+  mi: 47,
   note: "The park's east gate",
-  placed: "mile",
-  label: [14, -4, "start"]
+  x: 1295,
+  y: 192
 }, {
   name: "Lee Vining",
-  mi: 59,
   ft: 6800,
+  mi: 59,
   note: "Next gas",
-  placed: "mile",
-  label: [-6, 28, "end"]
+  x: 1540,
+  y: 95
 }];
-function TiogaProfile() {
-  var W = 1000,
-    H = 450,
-    L = 64,
-    R = 24,
-    T = 44,
-    B = 86;
-  var x = mi => L + mi / 60 * (W - L - R);
-  var y = ft => T + (1 - (ft - 5800) / (10400 - 5800)) * (H - T - B);
-  var pts = TIOGA_PROFILE.map(p => `${x(p.mi)},${y(p.ft)}`);
-  var line = "M" + pts.join(" L");
-  var area = `${line} L${x(59)},${H - B} L${x(0)},${H - B} Z`;
-  return React.createElement("svg", {
-    className: "tg-profile__svg",
-    viewBox: `0 0 ${W} ${H}`,
+function TiogaRoadMap() {
+  return React.createElement("div", {
+    className: "npsmap__frame"
+  }, React.createElement("img", {
+    src: "/img/nps-tioga-road-map.jpg",
+    width: "1600",
+    height: "760",
+    loading: "lazy",
+    decoding: "async",
+    alt: "National Park Service map of Tioga Road from Crane Flat in the west, past White Wolf, Olmsted Point, Tenaya Lake and Tuolumne Meadows, to Tioga Pass and Lee Vining in the east."
+  }), React.createElement("svg", {
+    viewBox: "0 0 1600 760",
     role: "img",
-    "aria-label": "Elevation profile of Tioga Road, west to east. Crane Flat at 6,200 feet, the last gas. White Wolf at about 8,000 feet. Olmsted Point at about 8,400 feet. Tenaya Lake at 8,150 feet. Tuolumne Meadows at 8,600 feet, 39 miles from Crane Flat. Tioga Pass at 9,945 feet, about 47 miles from Crane Flat. Then a drop of more than 3,000 feet in twelve miles to Lee Vining, about 6,800 feet, the next gas. Trails above about 8,500 feet hold snow for weeks after the road opens. No gas, water or cell signal between Crane Flat and Lee Vining."
-  }, [6000, 7000, 8000, 9000, 10000].map(ft => React.createElement("g", {
-    key: ft
-  }, React.createElement("line", {
-    x1: L,
-    x2: W - R,
-    y1: y(ft),
-    y2: y(ft),
-    className: "tg-profile__grid"
+    "aria-label": "Numbered pins on the map, west to east: Crane Flat at 6,200 feet, the last gas; White Wolf at about 8,000 feet; Olmsted Point at about 8,400 feet; Tenaya Lake at 8,150 feet; Tuolumne Meadows at 8,600 feet, 39 miles from Crane Flat; Tioga Pass at 9,945 feet, about 47 miles from Crane Flat; then a drop of more than 3,000 feet in twelve miles to Lee Vining, about 6,800 feet, the next gas."
+  }, TIOGA_STOPS.map((t, i) => React.createElement("g", {
+    key: t.name
+  }, React.createElement("circle", {
+    className: "npsmap__pin npsmap__pin--ink",
+    cx: t.x,
+    cy: t.y,
+    r: "26",
+    strokeWidth: "6"
   }), React.createElement("text", {
-    x: L - 10,
-    y: y(ft) + 4,
-    textAnchor: "end",
-    className: "tg-profile__axis"
-  }, ft.toLocaleString("en-US")))), React.createElement("rect", {
-    x: L,
-    y: y(10400),
-    width: W - L - R,
-    height: y(8500) - y(10400),
-    className: "tg-profile__snowband"
-  }), React.createElement("text", {
-    x: L + 12,
-    y: y(10400) + 20,
-    className: "tg-profile__snowlabel"
-  }, "ABOVE ~8,500 FT: TRAILS HOLD SNOW FOR WEEKS AFTER THE ROAD OPENS"), React.createElement("path", {
-    d: area,
-    className: "tg-profile__area"
-  }), React.createElement("path", {
-    d: line,
-    className: "tg-profile__line"
-  }), React.createElement("line", {
-    x1: x(0),
-    x2: x(59),
-    y1: H - B + 28,
-    y2: H - B + 28,
-    className: "tg-profile__dry"
-  }), React.createElement("text", {
-    x: x(29.5),
-    y: H - B + 52,
+    className: "npsmap__num",
+    x: t.x,
+    y: t.y + 9,
     textAnchor: "middle",
-    className: "tg-profile__drylabel"
-  }, "NO GAS · NO POTABLE WATER · NO SIGNAL · CRANE FLAT TO LEE VINING"), TIOGA_PROFILE.map(p => {
-    var cx = x(p.mi),
-      cy = y(p.ft);
-    var [dx, dy, anchor] = p.label;
-    var below = dy > 0;
-    return React.createElement("g", {
-      key: p.name
-    }, React.createElement("circle", {
-      cx: cx,
-      cy: cy,
-      r: p.placed === "mile" ? 6 : 4.5,
-      className: p.placed === "mile" ? "tg-profile__pt" : "tg-profile__pt tg-profile__pt--order"
-    }), React.createElement("text", {
-      x: cx + dx,
-      y: cy + dy,
-      textAnchor: anchor,
-      className: "tg-profile__name"
-    }, p.name), React.createElement("text", {
-      x: cx + dx,
-      y: cy + dy + (below ? 17 : 17),
-      textAnchor: anchor,
-      className: "tg-profile__ft"
-    }, p.ft.toLocaleString("en-US"), " ft", p.note ? ` · ${p.note}` : ""));
-  }), React.createElement("text", {
-    x: x(52.4),
-    y: y(7300),
-    textAnchor: "end",
-    className: "tg-profile__drop"
-  }, "−3,000 ft"), React.createElement("text", {
-    x: x(52.4),
-    y: y(7300) + 17,
-    textAnchor: "end",
-    className: "tg-profile__dropsub"
-  }, "in twelve miles"));
+    style: {
+      fontSize: 28
+    }
+  }, i + 1)))));
 }
 var TIOGA_FAQ = [["When does Tioga Road open?", "There is no fixed date: the road opens when plow crews finish, and the park announces it only days ahead. The long-term average opening is the end of May; light snow years have opened in mid-May, and heavy years push the opening into June or later. It closes with the first lasting snow, typically in November."], ["Is there gas, food, or water on Tioga Road?", "Crane Flat, at the road's west end, has pay-at-pump gas; the next fuel is Lee Vining on the east side of the pass. In the early season there is no potable water and nothing to buy along the road, and services at Tuolumne Meadows come online weeks after the road opens. Bring everything."], ["How long does it take to drive Tioga Road?", "About 39 miles from Crane Flat to Tuolumne Meadows and about 47 to the Tioga Pass entrance station, roughly 90 minutes one way without stops. With Olmsted Point, Tenaya Lake, and Tuolumne Meadows it is a full day, and adding Lee Vining and Mono Lake makes it a long one."], ["Do I need a reservation to drive Tioga Road?", "A standard park entrance pass is required. Whether a day-use reservation system also applies changes year to year; check the NPS Yosemite site for the current season's rules before you commit."]];
 var TIOGA_TOWNS = [{
@@ -398,10 +335,10 @@ function TiogaOpeningPage({
   }), React.createElement("p", {
     className: "ff-lede ff-lede--intro"
   }, "Tioga Road climbs from Crane Flat to the pass over roughly 47 miles, then drops more than 3,000 feet in twelve miles into the Mono Basin, where granite gives way to sagebrush. Allow about 90 minutes one way without stops. With the stops, it is a full day."), React.createElement("figure", {
-    className: "tg-profile"
-  }, React.createElement(TiogaProfile, null), React.createElement("figcaption", {
-    className: "ff-note"
-  }, "Drawn from the figures on this page and in the opening-weekend article. Crane Flat, Tuolumne Meadows, Tioga Pass and Lee Vining are placed by their published distances; White Wolf, Olmsted Point and Tenaya Lake are placed in order between them. The line between points is drawn, not surveyed."))), React.createElement("section", {
+    className: "npsmap tg-map"
+  }, React.createElement(TiogaRoadMap, null), React.createElement("figcaption", null, TIOGA_STOPS.map((t, i) => React.createElement("span", {
+    key: t.name
+  }, React.createElement("b", null, i + 1), " ", t.name, ", ", t.ft.toLocaleString("en-US"), " ft", t.mi != null ? t.mi === 0 ? "" : `, mile ${t.mi} from Crane Flat` : "", t.note ? `. ${t.note}` : "")), React.createElement("span", null, "Above about 8,500 feet, trails hold snow for weeks after the road opens. There is no gas, water or cell signal between Crane Flat and Lee Vining. Elevations and distances are the figures on this page and in the opening-weekend article; White Wolf, Olmsted Point and Tenaya Lake are listed in order between the placed stops. Map: National Park Service (public domain), cropped.")))), React.createElement("section", {
     className: "ff-band",
     id: "tioga-history",
     tabIndex: -1

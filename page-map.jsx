@@ -19,6 +19,47 @@
 
 const { useEffect, useMemo, useRef, useState, useCallback } = React;
 
+// Draws the NPS map as an image in the map's pane, stretched between the
+// south-west and north-east corners of NPS_MAP_BOUNDS. An OverlayView rather
+// than a GroundOverlay because the page's map is a vector map (the marker
+// library needs a mapId), and this draws the same on vector and raster.
+function addNpsMapOverlay(maps, map) {
+  class NpsMapOverlay extends maps.OverlayView {
+    onAdd() {
+      const img = document.createElement("img");
+      img.src = "/img/nps-yosemite-park-map.jpg";
+      img.alt = "";
+      img.draggable = false;
+      img.style.cssText = "position:absolute;max-width:none;user-select:none;pointer-events:none;";
+      this.img = img;
+      this.getPanes().overlayLayer.appendChild(img);
+    }
+    draw() {
+      const proj = this.getProjection();
+      if (!proj || !this.img) return;
+      const sw = proj.fromLatLngToDivPixel(new maps.LatLng(NPS_MAP_BOUNDS.south, NPS_MAP_BOUNDS.west));
+      const ne = proj.fromLatLngToDivPixel(new maps.LatLng(NPS_MAP_BOUNDS.north, NPS_MAP_BOUNDS.east));
+      Object.assign(this.img.style, {
+        left: sw.x + "px",
+        top: ne.y + "px",
+        width: ne.x - sw.x + "px",
+        height: sw.y - ne.y + "px",
+      });
+    }
+    onRemove() {
+      if (this.img && this.img.parentNode) this.img.parentNode.removeChild(this.img);
+      this.img = null;
+    }
+  }
+  new NpsMapOverlay().setMap(map);
+}
+
+// Where img/nps-yosemite-park-map.jpg (1920 x 1970, the National Park
+// Service's official Yosemite map, public domain) sits on the earth. North-up,
+// so the four edges come from a linear fit: longitude -119.90668 +
+// 0.00046877 per pixel, latitude 38.20044 - 0.00037108 per pixel.
+const NPS_MAP_BOUNDS = { west: -119.9067, east: -119.0066, north: 38.2004, south: 37.4693 };
+
 // The pin data's own cache-buster lives in itineraries-data.js
 // (window.POINTS_URL), which both /map and /itineraries load eagerly, so a
 // direct load of /itineraries sees the same versioned URL this page does.
@@ -1146,16 +1187,28 @@ function MapView({ go }) {
         if (cancelled) return;
         const markerLib = await maps.importLibrary("marker");
         if (cancelled) return;
+        // The visible map is the National Park Service's own park map, laid
+        // over Google's tiles as an opaque ground overlay and pinned to its
+        // bounds, so nothing on the page shows a basemap the site drew or
+        // Google styled: the pins, trip line and road overlay sit on the NPS
+        // map. The bounds are a fit of four labelled places on the map (the
+        // O'Shaughnessy Dam, the Valley Visitor Center, Tioga Pass Entrance
+        // and the Pioneer Yosemite History Center) to their coordinates,
+        // good to about 200 m; see NPS_MAP_BOUNDS.
         const map = new maps.Map(containerRef.current, {
           center: { lat: 37.85, lng: -119.55 },
           zoom: 10,
-          mapTypeId: "terrain",
+          minZoom: 9,
+          maxZoom: 13,
+          mapTypeId: "roadmap",
           mapId: "DEMO_MAP_ID", // required for AdvancedMarkerElement
-          mapTypeControl: true,
+          mapTypeControl: false,
           streetViewControl: false,
           fullscreenControl: true,
           gestureHandling: "greedy",
+          restriction: { latLngBounds: NPS_MAP_BOUNDS, strictBounds: false },
         });
+        addNpsMapOverlay(maps, map);
         mapRef.current = map;
         markerLibRef.current = markerLib;
         infoRef.current = new maps.InfoWindow({ maxWidth: 300 });
@@ -1694,6 +1747,7 @@ function MapView({ go }) {
               disabled={locating}
               title="Show where you are on the map"
             >{locating ? "Locating…" : "Find me"}</button>
+            <span className="map-page__credit">Map: National Park Service (public domain)</span>
           </div>
         )}
       </div>
