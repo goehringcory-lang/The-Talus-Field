@@ -77,7 +77,7 @@ window.ITINERARIES = [
     label: "3 days",
     title: "Valley, rim, and high country",
     dek: "The two-day plan, then a third day on Tioga Road, west to east toward the pass. The high country is a different park: granite domes, subalpine lakes, and half the crowd.",
-    season: "Tioga Road opens late spring at the earliest and closes with the first serious snow. The third day only exists while it is open.",
+    season: "Tioga Road has opened as early as late April and as late as early July, and closes with the first lasting snow. In June it may still be closed. The third day only exists while it is open.",
     days: [
       {
         name: "Day 1: Yosemite Valley, west to east",
