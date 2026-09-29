@@ -64,6 +64,11 @@
     "license": "Public domain",
     "source": "https://commons.wikimedia.org/wiki/File:Summit_of_South_Dome._View_from_Clouds%27_Rest_Mt._Little_Yosemite_Valley,_by_E._%26_H.T._Anthony_(Firm).png"
   },
+  "/photos/conservation-heritage-center.jpg": {
+    "author": "Eric Polk",
+    "license": "CC BY-SA 3.0",
+    "source": "https://commons.wikimedia.org/wiki/File:LeConte_Memorial_Lodge_exterior.JPG"
+  },
   "/photos/cooks-meadow-loop.jpg": {
     "author": "Pi.1415926535",
     "license": "CC BY-SA 4.0",
@@ -178,6 +183,11 @@
     "author": "Dexter Perkins",
     "license": "CC0",
     "source": "https://commons.wikimedia.org/wiki/File:Half_Dome_(GeoDIL_number_-_2435).jpg"
+  },
+  "/photos/half-dome-view-big-oak-flat.jpg": {
+    "author": "Jarek Tuszynski",
+    "license": "CC BY 4.0",
+    "source": "https://commons.wikimedia.org/wiki/File:Yosemite_Valley_-_Half_Dome_from_Big_Oak_Flat_Road_Overlook_-_1.JPG"
   },
   "/photos/happy-isles-ouzel-watch.jpg": {
     "author": "George Fiske",
@@ -529,6 +539,11 @@
     "license": "Public domain",
     "source": "https://commons.wikimedia.org/wiki/File:Rainbow_at_Piwyack,_by_Muybridge,_Eadweard,_1830-1904.jpg"
   },
+  "/photos/ranger-programs-to-pick.jpg": {
+    "author": "NPS",
+    "license": "Public domain",
+    "source": "https://commons.wikimedia.org/wiki/File:Fire_prevention_education_at_Yosemite_(010e7b8e-1dd8-b71b-0bda-1f9aa18def50).JPG"
+  },
   "/photos/region-glacier-mariposa-half-dome.jpg": {
     "author": "Diliff",
     "license": "CC BY-SA 3.0",
@@ -568,6 +583,11 @@
     "author": "A.C. Pillsbury",
     "license": "Public domain",
     "source": "https://commons.wikimedia.org/wiki/File:TenayaCanyon.jpg"
+  },
+  "/photos/stoneman-meadow-dusk.jpg": {
+    "author": "G. Edward Johnson",
+    "license": "CC BY 4.0",
+    "source": "https://commons.wikimedia.org/wiki/File:Pika_Fire_smoke_from_Stoneman_Meadow_Yosemite_CA_2023-07-13_08-01-49.jpg"
   },
   "/photos/swinging-bridge-reflection.jpg": {
     "author": "Dawn Endico from Menlo Park, California",
@@ -863,6 +883,11 @@
     "author": "Nick Comer",
     "license": "Public domain",
     "source": "https://commons.wikimedia.org/wiki/File:Marmot0_Half_Dome_YosemiteNP_Calif.jpg"
+  },
+  "/photos/yosemite-cemetery.jpg": {
+    "author": "Mx. Granger",
+    "license": "CC0",
+    "source": "https://commons.wikimedia.org/wiki/File:Yosemite_Cemetery_2.jpg"
   },
   "/photos/yosemite-creek-campground.jpg": {
     "author": "Richard Wood",

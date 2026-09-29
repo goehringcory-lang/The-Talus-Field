@@ -670,7 +670,7 @@ function buildSeo(route) {
     guide: {
       title: `The Field Guide — ${SITE_NAME}`,
       description:
-        "The offline Yosemite guide: 94 entries with tappable GPS, time budgets, and crowd swaps, all 57 day hikes, a drive-order trip planner, a Help card, and a 3D park map that works when service dies.",
+        "The offline Yosemite guide: 116 entries with tappable GPS, time budgets, and crowd swaps, all 57 day hikes, a drive-order trip planner, a Help card, and a 3D park map that works when service dies.",
       ogType: "website",
       breadcrumb: [["Home", `${SITE_ORIGIN}/`], ["The Field Guide", null]],
       // On sale since the July 2026 flip (GUIDE_ON_SALE in page-guide.jsx):
@@ -710,7 +710,7 @@ function buildSeo(route) {
         },
         {
           q: "What do I get that the free site doesn't already give me?",
-          a: "The complete library: 94 entries including the 50-entry Secret Guide, all 57 day hikes with GPS tracks, elevation profiles and a daylight reading, the drag-and-drop trip builder with the dates that matter for your trip, the 3D park map with every trail and your trip drawn on the terrain, the Help card, the bearing compass, companion mode, and the offline download. The free site keeps the articles, the trip map, the itineraries, and the conditions board.",
+          a: "The complete library: 116 entries including the 72-entry Secret Guide, all 57 day hikes with GPS tracks, elevation profiles and a daylight reading, the drag-and-drop trip builder with the dates that matter for your trip, the 3D park map with every trail and your trip drawn on the terrain, the Help card, the bearing compass, companion mode, and the offline download. The free site keeps the articles, the trip map, the itineraries, and the conditions board.",
         },
         {
           q: "Does the guide change after I buy it?",

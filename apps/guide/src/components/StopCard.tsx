@@ -12,47 +12,17 @@ import StopActions from './StopActions'
 import RoadNote from './RoadNote'
 import { roadForStopId } from '../content/roads'
 import { Chip } from './ui/Chip'
-import { sunTimes, type SunTimes } from '../sun/solar'
-import { formatClock, todayIso } from '../utils/date'
+import { sunTimes } from '../sun/solar'
+import { PHOTO_TIMING_LABEL, lightClock } from '../lib/photoLight'
+import { todayIso } from '../utils/date'
 
 // Swap and hazard text through markdown, unwrapped: the named alternative in
 // a swap ("continue to [Valley View](/stop/valley-view)") should be one tap,
 // not a re-search — the whole point of the callout is what to do NEXT. The
 // paragraph unwrap keeps the callout's inline flow (label then text) exactly
 // as it was when these rendered as plain strings.
-function CalloutMarkdown({ text }: { text: string }) {
+export function CalloutMarkdown({ text }: { text: string }) {
   return <ReactMarkdown components={{ p: ({ children }) => <>{children}</> }}>{text}</ReactMarkdown>
-}
-
-// Display labels for PhotoTiming.best. Kept local rather than in
-// content/labels.ts: this is presentation only, not a fact about the stop.
-const PHOTO_TIMING_LABEL: Record<string, string> = {
-  sunrise: 'sunrise',
-  'golden-am': 'morning',
-  sunset: 'sunset',
-  'golden-pm': 'evening',
-  night: 'after dark',
-}
-
-// Today's clock time for the window the advice names, from the on-device sun
-// calculation. The schema forbids a hardcoded time in the advice itself for
-// exactly this reason: "sunset" is a fact about the stop, "7:20 p.m." is a
-// fact about today, and only the second one can be computed here.
-function lightClock(best: string, t: SunTimes): string | null {
-  switch (best) {
-    case 'sunrise':
-      return formatClock(t.sunriseMin)
-    case 'golden-am':
-      return `until ${formatClock(t.goldenAmEndMin)}`
-    case 'sunset':
-      return formatClock(t.sunsetMin)
-    case 'golden-pm':
-      return `from ${formatClock(t.goldenPmStartMin)}`
-    case 'night':
-      return `after ${formatClock(t.sunsetMin)}`
-    default:
-      return null
-  }
 }
 
 // Secret spots are stops minus `region`, which this card never reads —

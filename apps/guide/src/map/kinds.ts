@@ -38,6 +38,7 @@ export const KIND_STYLES: Record<MapPinKind, KindStyle> = {
   lodging: { color: '#5a3a5e', label: 'Lodging', rank: 7 },
   meal: { color: '#8a661a', label: 'Meal', rank: 5 },
   camping: { color: '#1c6e63', label: 'Camping', rank: 7 },
+  program: { color: '#6a4c93', label: 'Program', rank: 7 },
   entrance: { color: '#1f1f1f', label: 'Entrance', rank: 7 },
   'visitor-center': { color: '#1d5f8a', label: 'Visitor center', rank: 7 },
   parking: { color: '#6b6355', label: 'Parking', minor: true, rank: 3 },
@@ -99,6 +100,9 @@ function kindGlyph(kind: MapPinKind, stroke: string): string {
     case 'camping':
       // A tent.
       return `<path d="M13 7.5 L19.5 18.5 H6.5 Z" fill="none" stroke="${stroke}" stroke-width="1.8" stroke-linejoin="round"/><path d="M13 12 L15.5 18.5 H10.5 Z" fill="${stroke}"/>`
+    case 'program':
+      // A five-point star: a program worth the evening.
+      return `<path d="M13 6.8 L14.9 10.9 L19.3 11.3 L16 14.2 L17 18.6 L13 16.3 L9 18.6 L10 14.2 L6.7 11.3 L11.1 10.9 Z" fill="${stroke}"/>`
     case 'entrance':
       // A gate: two posts and the crossbar.
       return `<path d="M7.5 19 V9 M18.5 19 V9 M7.5 9 Q13 5.5 18.5 9" fill="none" stroke="${stroke}" stroke-width="1.8" stroke-linecap="round"/><path d="M8.5 14 H17.5" stroke="${stroke}" stroke-width="1.8"/>`

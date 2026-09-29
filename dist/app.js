@@ -596,7 +596,7 @@ function buildSeo(route) {
     },
     guide: {
       title: `The Field Guide — ${SITE_NAME}`,
-      description: "The offline Yosemite guide: 94 entries with tappable GPS, time budgets, and crowd swaps, all 57 day hikes, a drive-order trip planner, a Help card, and a 3D park map that works when service dies.",
+      description: "The offline Yosemite guide: 116 entries with tappable GPS, time budgets, and crowd swaps, all 57 day hikes, a drive-order trip planner, a Help card, and a 3D park map that works when service dies.",
       ogType: "website",
       breadcrumb: [["Home", `${SITE_ORIGIN}/`], ["The Field Guide", null]],
       faq: [{
@@ -622,7 +622,7 @@ function buildSeo(route) {
         a: "If the guide does not work as described, email within 30 days of purchase and it is refunded in full. After a refund the access code is deactivated. The full policy is on the terms page."
       }, {
         q: "What do I get that the free site doesn't already give me?",
-        a: "The complete library: 94 entries including the 50-entry Secret Guide, all 57 day hikes with GPS tracks, elevation profiles and a daylight reading, the drag-and-drop trip builder with the dates that matter for your trip, the 3D park map with every trail and your trip drawn on the terrain, the Help card, the bearing compass, companion mode, and the offline download. The free site keeps the articles, the trip map, the itineraries, and the conditions board."
+        a: "The complete library: 116 entries including the 72-entry Secret Guide, all 57 day hikes with GPS tracks, elevation profiles and a daylight reading, the drag-and-drop trip builder with the dates that matter for your trip, the 3D park map with every trail and your trip drawn on the terrain, the Help card, the bearing compass, companion mode, and the offline download. The free site keeps the articles, the trip map, the itineraries, and the conditions board."
       }, {
         q: "Does the guide change after I buy it?",
         a: "Yes. Updates, seasonal addenda, and Secret Guide additions push silently through your access window. Nothing to re-download, nothing extra to pay."

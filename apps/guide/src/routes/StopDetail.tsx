@@ -16,6 +16,7 @@ import GatedChrome from '../components/GatedChrome'
 import PrevNextNav from '../components/PrevNextNav'
 import SeasonalNotices from '../components/SeasonalNotices'
 import ShareStopButton from '../components/ShareStopButton'
+import SecretEntry from '../components/SecretEntry'
 import StopCard from '../components/StopCard'
 import Button from '../components/ui/Button'
 import BackLink from '../components/ui/BackLink'
@@ -161,6 +162,100 @@ export default function StopDetail() {
         .slice(0, NEARBY_AMENITY_MAX)
     : []
 
+  // The pin notice, the forecast line and the seasonal notices qualify the
+  // facts at the top; both layouts show them right under the actions.
+  const notices = (
+    <>
+      {/* A pin nobody has stood at yet. The companion mode skips these;
+          the page names it and asks the reader who is there. */}
+      {UNVERIFIED_STOP_IDS.has(stop.id) && (
+        <p className="pin-unverified">
+          <span className="pin-unverified__label">Pin not yet checked on the ground</span>
+          Trust the turnout this entry describes over the exact pin.{' '}
+          <Link to={`/report?type=stop&id=${stop.id}&kind=pin`}>Standing at it? Send its position →</Link>
+        </p>
+      )}
+
+      {region && <StopForecastLine region={region} />}
+
+      <SeasonalNotices stopIds={[stop.id]} />
+    </>
+  )
+
+  // On-device joins, shared by both layouts.
+  const joins = (
+    <>
+      {hikesHere.length > 0 && (
+        <section aria-label="Hikes from this trailhead" className="page-section">
+          <span className="eyebrow">Hikes from this trailhead</span>
+          <ul className="link-list">
+            {hikesHere.map((h) => (
+              <li key={h.id}>
+                <Link to={`/hike/${h.id}`}>{h.title} →</Link>{' '}
+                <span className="dateline">
+                  {h.distanceMi} mi · {h.elevationGainFt.toLocaleString()} ft gain ·{' '}
+                  {DIFFICULTY_LABEL[h.difficulty]}
+                </span>
+              </li>
+            ))}
+          </ul>
+        </section>
+      )}
+
+      {nearbyAmenities.length > 0 && (
+        <section aria-label="Parking and camping nearby" className="page-section">
+          <span className="eyebrow">Parking and camping nearby</span>
+          <ul className="link-list">
+            {nearbyAmenities.map(({ amenity, miles }) => {
+              // The live lot word, under the waits posture: only while the
+              // feed is fresh, and never a word for a pin with no NPS lot.
+              const fresh =
+                parking.fetchedAt !== null &&
+                nowMs - Date.parse(parking.fetchedAt) <= PARKING_HIDE_MS
+              const lot = fresh ? lotForAmenity(amenity, parking.lots) : null
+              const lotWord = lot && lot.status !== 'unknown' ? LOT_STATUS_LABEL[lot.status] : null
+              return (
+                <li key={amenity.id}>
+                  <a href={directionsUrl(amenity.coord)} target="_blank" rel="noreferrer">
+                    {amenity.name} →
+                  </a>{' '}
+                  <span className="dateline">
+                    {amenity.kind === 'camping' ? 'campground' : 'parking'} ·{' '}
+                    {formatMiles(miles)} away
+                    {lotWord && parking.fetchedAt
+                      ? ` · ${lotWord} (NPS, ${compactStamp(parking.fetchedAt, nowMs) ?? 'just now'})`
+                      : ''}
+                  </span>
+                </li>
+              )
+            })}
+          </ul>
+        </section>
+      )}
+
+      {/* Keyed: paging prev/next keeps this route mounted, and the saved
+          line belongs to the note it confirmed. */}
+      <StopNotes key={stop.id} stopId={stop.id} />
+
+      <p className="report-link">
+        Something here wrong or out of date?{' '}
+        <Link to={`/report?type=stop&id=${stop.id}`}>Tell us →</Link>
+      </p>
+    </>
+  )
+
+  // Secret Guide members get the Secret Guide's own page (SecretEntry): the
+  // numbered head, the fact strip, the ruled callouts, the nearby tiles.
+  if (inSecretGuide) {
+    return (
+      <GatedChrome>
+        <SecretEntry key={stop.id} stop={stop} prev={prev} next={next} notices={notices}>
+          {joins}
+        </SecretEntry>
+      </GatedChrome>
+    )
+  }
+
   return (
     <GatedChrome>
       <main className="wrap wrap--narrow page">
@@ -202,76 +297,9 @@ export default function StopDetail() {
           <ShareStopButton stopId={stop.id} title={stop.title} />
         </div>
 
-        {/* A pin nobody has stood at yet. The companion mode skips these;
-            the page names it and asks the reader who is there. */}
-        {UNVERIFIED_STOP_IDS.has(stop.id) && (
-          <p className="pin-unverified">
-            <span className="pin-unverified__label">Pin not yet checked on the ground</span>
-            Trust the turnout this entry describes over the exact pin.{' '}
-            <Link to={`/report?type=stop&id=${stop.id}&kind=pin`}>Standing at it? Send its position →</Link>
-          </p>
-        )}
+        {notices}
 
-        {region && <StopForecastLine region={region} />}
-
-        <SeasonalNotices stopIds={[stop.id]} />
-
-        {hikesHere.length > 0 && (
-          <section aria-label="Hikes from this trailhead" className="page-section">
-            <span className="eyebrow">Hikes from this trailhead</span>
-            <ul className="link-list">
-              {hikesHere.map((h) => (
-                <li key={h.id}>
-                  <Link to={`/hike/${h.id}`}>{h.title} →</Link>{' '}
-                  <span className="dateline">
-                    {h.distanceMi} mi · {h.elevationGainFt.toLocaleString()} ft gain ·{' '}
-                    {DIFFICULTY_LABEL[h.difficulty]}
-                  </span>
-                </li>
-              ))}
-            </ul>
-          </section>
-        )}
-
-        {nearbyAmenities.length > 0 && (
-          <section aria-label="Parking and camping nearby" className="page-section">
-            <span className="eyebrow">Parking and camping nearby</span>
-            <ul className="link-list">
-              {nearbyAmenities.map(({ amenity, miles }) => {
-                // The live lot word, under the waits posture: only while the
-                // feed is fresh, and never a word for a pin with no NPS lot.
-                const fresh =
-                  parking.fetchedAt !== null &&
-                  nowMs - Date.parse(parking.fetchedAt) <= PARKING_HIDE_MS
-                const lot = fresh ? lotForAmenity(amenity, parking.lots) : null
-                const lotWord = lot && lot.status !== 'unknown' ? LOT_STATUS_LABEL[lot.status] : null
-                return (
-                <li key={amenity.id}>
-                  <a href={directionsUrl(amenity.coord)} target="_blank" rel="noreferrer">
-                    {amenity.name} →
-                  </a>{' '}
-                  <span className="dateline">
-                    {amenity.kind === 'camping' ? 'campground' : 'parking'} ·{' '}
-                    {formatMiles(miles)} away
-                    {lotWord && parking.fetchedAt
-                      ? ` · ${lotWord} (NPS, ${compactStamp(parking.fetchedAt, nowMs) ?? 'just now'})`
-                      : ''}
-                  </span>
-                </li>
-                )
-              })}
-            </ul>
-          </section>
-        )}
-
-        {/* Keyed: paging prev/next keeps this route mounted, and the saved
-            line belongs to the note it confirmed. */}
-        <StopNotes key={stop.id} stopId={stop.id} />
-
-        <p className="report-link">
-          Something here wrong or out of date?{' '}
-          <Link to={`/report?type=stop&id=${stop.id}`}>Tell us →</Link>
-        </p>
+        {joins}
 
         <PrevNextNav
           sticky

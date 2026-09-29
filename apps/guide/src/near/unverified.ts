@@ -63,6 +63,7 @@ export const UNVERIFIED_STOP_IDS: ReadonlySet<string> = new Set([
   'hidden-lake',
   'yosemite-falls-moonbow',
   'great-gray-owl-dusk',
+  'wildcat-falls',
 ])
 
 /** Day hikes (hikes.ts). Ids can coincide with stop ids, hence two sets. */
