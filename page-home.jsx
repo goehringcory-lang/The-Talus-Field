@@ -68,7 +68,7 @@ function HomePage({ go }) {
     </HomeLink>
   </section>
   <HpGuideBand go={go} location="home_content" id="field-guide" title={<>You’ve done the reading.<br />Now take the guide.</>} intro="The practical side of a great Yosemite trip, all in your pocket. Download before you go. Keep exploring when the signal disappears." />
-  <HpLetter id="home-newsletter" eyebrow="A LITTLE YOSEMITE IN YOUR INBOX" title={<>The trip starts long<br />before the trailhead.</>} heading="The Sunday Letter" blurb="Know what’s open, what’s booking out, and what’s worth your time. The Sunday Letter brings the view from inside the park to your inbox, once a week." location="home_newsletter" tag="home" />
+  <HpLetter id="home-newsletter" eyebrow="A LITTLE YOSEMITE IN YOUR INBOX" title={<>The trip starts long<br />before the trailhead.</>} heading="The Sunday Letter" blurb="Know what’s open, what’s booking up, and what’s worth your time. One letter a week, from inside the park." location="home_newsletter" tag="home" />
   <section className="hp-journal hp-wrap hp-section">
     <HpHeading go={go} location="home_content" eyebrow="GO A LITTLE DEEPER" title="Good trips begin with curiosity." link={{ href: "/articles", label: "Explore the journal ↗" }} />
     <div className="hp-journal-grid">

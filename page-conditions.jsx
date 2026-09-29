@@ -473,7 +473,7 @@ function ConditionsPage({ go }) {
         crumbs={[{ label: "Home", route: "home" }, { label: "Conditions" }]}
         eyebrow="CONDITIONS / LIVE FROM THE PARK"
         title={<>The park,<br /><em>right now.</em></>}
-        intro="Live webcams, entrance waits, and the forecasts that matter, on one page. Check it the morning you drive in, not the week before: Yosemite changes faster than a booking window."
+        intro="Live webcams, entrance waits, and the forecasts that matter, on one page. Check it the morning you drive in, not the week before. Roads and crowds change faster than your plans do."
         actions={<>
           <HomeLink go={go} location="conditions_hero" className="hp-button" href="#cond-waits">Entrance waits &nbsp; ↓</HomeLink>
           <HomeLink go={go} location="conditions_hero" className="hp-link" href="#cond-roads">Roads and closures ↓</HomeLink>

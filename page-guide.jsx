@@ -1582,7 +1582,7 @@ function GuidePage({ go }) {
         heading="h1"
         eyebrow="THE FIELD GUIDE / OFFLINE APP / 2026 EDITION"
         title="Three days in Yosemite. This is how you keep all three."
-        intro="Written by a naturalist who lives in the park: which stops are worth your morning, where to park, how long each one honestly takes, and where to go the moment the lot fills. It builds each day in driving order, then downloads whole to your phone, 3D park map included, and keeps working where cell service doesn't, which is most of the park."
+        intro="Written by a naturalist who lives in the park: which stops are worth your morning, where to park, how long each one honestly takes, and where to go the moment the lot fills. It builds each day in driving order and downloads whole to your phone, 3D park map included. Then it keeps working where cell service doesn't, which is most of the park."
         points={null}
       >
         <ul className="hp-stats">

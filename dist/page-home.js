@@ -92,7 +92,7 @@ function HomePage({
     eyebrow: "A LITTLE YOSEMITE IN YOUR INBOX",
     title: React.createElement(React.Fragment, null, "The trip starts long", React.createElement("br", null), "before the trailhead."),
     heading: "The Sunday Letter",
-    blurb: "Know what’s open, what’s booking out, and what’s worth your time. The Sunday Letter brings the view from inside the park to your inbox, once a week.",
+    blurb: "Know what’s open, what’s booking up, and what’s worth your time. One letter a week, from inside the park.",
     location: "home_newsletter",
     tag: "home"
   }), React.createElement("section", {
