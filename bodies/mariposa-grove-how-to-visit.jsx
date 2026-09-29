@@ -4,9 +4,13 @@ window.ARTICLE_BODIES = window.ARTICLE_BODIES || {};
 
 window.ARTICLE_BODIES["mariposa-grove-how-to-visit"] = function MariposaGroveHowToVisitBody() {
   // ── The approach and the four walks ───────────────────────────────────────
-  // Schematic, not to scale. Every distance, time and rule is this article's
-  // own ("The geography", "The shuttle", "Walking up instead", "The four
-  // walks"); the upper-grove distances are the article's "about" figures.
+  // The approach is the National Park Service's own map: img/nps-mariposa-
+  // grove-map.jpg (840 x 540, the park map cut at +400+1700, 420 x 270, and
+  // doubled), with two markers drawn over the map's own South Entrance dot
+  // and the end of its Mariposa Grove Road. The four walks are a bar chart of
+  // lengths, not a map. Every distance, time and rule is this article's own
+  // ("The geography", "The shuttle", "Walking up instead", "The four walks");
+  // the upper-grove distances are the article's "about" figures.
   const SMALL = { fontFamily: "var(--sans)", fontSize: 12.5, fill: "var(--ink-3)" };
   const LABEL = { fontFamily: "var(--sans)", fontSize: 13, fill: "var(--ink-2)" };
   const PLACE = { fontFamily: "var(--serif)", fontSize: 16, fill: "var(--ink)" };
@@ -20,44 +24,36 @@ window.ARTICLE_BODIES["mariposa-grove-how-to-visit"] = function MariposaGroveHow
     { name: "Wawona Point", mi: 7, note: "about 7 mi round trip, ends at a view" },
   ];
 
-  function GroveApproach() {
-    const W = 680, H = 560, y = 110;
-    const x0 = 40, xPlaza = 150, xTop = 600;
+  function GroveMap() {
+    return (
+      <div className="npsmap__frame">
+        <img src="/img/nps-mariposa-grove-map.jpg" width="840" height="540" loading="lazy" decoding="async"
+          alt="National Park Service map of the south end of Yosemite: Highway 41 entering at the South Entrance, Mariposa Grove Road running east to the Mariposa Grove, and Wawona to the northwest." />
+        <svg viewBox="0 0 840 540" role="img"
+          aria-label="Markers on the map. One, the South Entrance on Highway 41; the Welcome Plaza parking is the first right at the roundabout, less than a quarter mile in. Two, the Mariposa Grove, two miles up Mariposa Grove Road, which is closed to private vehicles in season; a free shuttle runs about every fifteen minutes and takes about ten minutes. Vehicles with a disability placard may drive the road. The Washburn Trail walks the same two miles.">
+          <circle cx="363" cy="341" r="15" className="npsmap__pin npsmap__pin--ink" />
+          <text x="363" y="347" textAnchor="middle" className="npsmap__num">1</text>
+          <circle cx="458" cy="358" r="15" className="npsmap__pin npsmap__pin--rust" />
+          <text x="458" y="364" textAnchor="middle" className="npsmap__num">2</text>
+        </svg>
+      </div>
+    );
+  }
+  function GroveWalks() {
+    const W = 680, H = 300, x0 = 40;
     const scaleL = 170, scaleW = 470, mx = (mi) => scaleL + (mi / 7) * scaleW;
     return (
       <svg viewBox={`0 0 ${W} ${H}`} style={svgStyle} role="img"
-        aria-label="Schematic of a Mariposa Grove visit. From the South Entrance on Highway 41, the Welcome Plaza parking is the first right at the roundabout, less than a quarter mile in. Mariposa Grove Road climbs two miles to the Arrival Area and is closed to private vehicles in season; a free shuttle runs about every fifteen minutes and takes about ten minutes. Vehicles with a disability placard may drive the road. The Washburn Trail walks the same two miles. From the Arrival Area, four walks: the Big Trees Loop, 0.3 miles; the Grizzly Giant Loop, about 2 miles; the Guardians Loop, about 6.5 miles; and the trail to Wawona Point, about 7 miles round trip.">
-        <text x={x0} y={24} style={HEAD}>GETTING UP THE HILL</text>
-        <line x1={x0} x2={xPlaza} y1={y} y2={y} stroke="var(--ink-3)" strokeWidth="3" />
-        <path d={`M${xPlaza} ${y} L${xTop} ${y - 50}`} stroke="var(--moss)" strokeWidth="5" fill="none" />
-        <path d={`M${xPlaza} ${y + 22} C ${xPlaza + 200} ${y + 30}, ${xTop - 200} ${y - 10}, ${xTop} ${y - 34}`}
-          stroke="var(--ink-3)" strokeWidth="1.6" strokeDasharray="4 4" fill="none" />
-        <circle cx={x0} cy={y} r="6" fill="var(--ink)" />
-        <text x={x0 - 6} y={y + 26} style={LABEL}>South Entrance</text>
-        <text x={x0 - 6} y={y + 42} style={SMALL}>Highway 41</text>
-        <rect x={xPlaza - 15} y={y - 15} width="30" height="30" rx="3" fill="var(--moss)" />
-        <text x={xPlaza} y={y + 5} textAnchor="middle" style={MARK}>P</text>
-        <text x={xPlaza - 30} y={y - 58} style={PLACE}>Welcome Plaza</text>
-        <text x={xPlaza - 30} y={y - 40} style={SMALL}>park here, under a quarter mile in</text>
-        <circle cx={xTop} cy={y - 50} r="9" fill="var(--rust)" />
-        <text x={xTop + 16} y={y - 78} textAnchor="end" style={PLACE}>Arrival Area</text>
-        <text x={xTop + 16} y={y - 62} textAnchor="end" style={SMALL}>the grove</text>
-        <text x={440} y={y - 48} textAnchor="middle" style={LABEL} transform={`rotate(-6 440 ${y - 48})`}>Mariposa Grove Road, 2 miles</text>
-        <text x={390} y={y + 36} textAnchor="middle" style={SMALL}>Washburn Trail on foot, about 2 miles</text>
-        <g>
-          <rect x={x0} y={y + 62} width={W - x0 * 2} height={52} rx="3" fill="none" stroke="var(--rule-soft)" />
-          <text x={x0 + 14} y={y + 84} style={LABEL}>Free shuttle: about every 15 min, about 10 min up, no reservation.</text>
-          <text x={x0 + 14} y={y + 102} style={SMALL}>The road is closed to private cars in season. A disability placard may drive it.</text>
-        </g>
-        <text x={x0} y={y + 160} style={HEAD}>THE FOUR WALKS FROM THE ARRIVAL AREA</text>
+        aria-label="The four walks from the Arrival Area, by length: the Big Trees Loop, 0.3 miles; the Grizzly Giant Loop, about 2 miles; the Guardians Loop, about 6.5 miles; and the trail to Wawona Point, about 7 miles round trip.">
+        <text x={x0} y={20} style={HEAD}>THE FOUR WALKS FROM THE ARRIVAL AREA, BY LENGTH</text>
         {[0, 1, 2, 3, 4, 5, 6, 7].map((m) => (
           <g key={m}>
-            <line x1={mx(m)} x2={mx(m)} y1={y + 176} y2={H - 30} stroke="var(--rule-soft)" />
+            <line x1={mx(m)} x2={mx(m)} y1={34} y2={H - 30} stroke="var(--rule-soft)" />
             <text x={mx(m)} y={H - 12} textAnchor="middle" style={SMALL}>{m === 7 ? "7 mi" : m}</text>
           </g>
         ))}
         {WALKS.map((w, i) => {
-          const wy = y + 186 + i * 58;
+          const wy = 44 + i * 58;
           return (
             <g key={w.name}>
               <text x={x0} y={wy + 15} style={{ ...LABEL, fill: "var(--ink)" }}>{w.name}</text>
@@ -85,10 +81,19 @@ window.ARTICLE_BODIES["mariposa-grove-how-to-visit"] = function MariposaGroveHow
         Once you are through the entrance station you reach a roundabout almost at once, and the <strong>Mariposa Grove Welcome Plaza</strong> is the first right, less than a quarter mile in. That is where you park. The grove itself, what the Park Service calls the Arrival Area, is another two miles up Mariposa Grove Road, and in season that road is closed to private vehicles. A free shuttle covers the two miles. It is not relaxed on quiet days. It is the permanent arrangement the 2018 restoration created, for reasons covered below.
       </p>
 
-      <figure style={{ margin: "30px 0 34px" }}>
-        <GroveApproach />
+      <figure className="npsmap" style={{ margin: "30px 0 34px" }}>
+        <GroveMap />
+        <figcaption>
+          <span><b>1</b> South Entrance, Highway 41. The Welcome Plaza parking is the first right at the roundabout, under a quarter mile in, too small to show at this scale.</span>
+          <span><b>2</b> The grove, two miles up Mariposa Grove Road. Free shuttle about every 15 min, about 10 min up, no reservation; closed to private cars in season, and a disability placard may drive it. The Washburn Trail walks the same two miles.</span>
+          <span>Map: National Park Service (public domain), cropped.</span>
+        </figcaption>
+      </figure>
+
+      <figure style={{ margin: "0 0 34px" }}>
+        <GroveWalks />
         <figcaption style={{ fontFamily: "var(--sans)", fontSize: 13, color: "var(--ink-3)", marginTop: 10 }}>
-          A grove day, drawn from the distances and rules in this article. Schematic, not to scale. Upper-grove distances vary between sources; read the map at the Arrival Area before the long walks.
+          The four walks, drawn from the distances in this article. Upper-grove distances vary between sources; read the map at the Arrival Area before the long walks.
         </figcaption>
       </figure>
 

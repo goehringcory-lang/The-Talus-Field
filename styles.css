@@ -1368,66 +1368,6 @@ main:focus { outline: none; }
 }
 .town-facts dd { margin: 0; color: var(--ink); }
 
-/* The gateway map. Geometry lives in the SVG; everything visual is here. */
-.gwmap {
-  border: 1px solid var(--rule);
-  background: var(--paper);
-  padding: 10px 10px 0;
-}
-.gwmap__scroll { overflow-x: auto; }
-.gwmap__svg { display: block; width: 100%; min-width: 540px; height: auto; }
-.gwmap figcaption { padding: 0 6px 12px; }
-.gwmap__park {
-  fill: color-mix(in oklab, var(--moss) 7%, var(--paper-2));
-  stroke: var(--rule);
-  stroke-width: 1.5;
-  stroke-linejoin: round;
-}
-.gwmap__parkname {
-  font-family: var(--sans);
-  font-size: 11px;
-  font-weight: 700;
-  letter-spacing: 0.3em;
-  fill: var(--ink-3);
-  opacity: 0.75;
-}
-.gwmap__road {
-  fill: none;
-  stroke: var(--ink-2);
-  stroke-width: 2.25;
-  stroke-linecap: round;
-}
-.gwmap__road--seasonal { stroke-dasharray: 6 5; }
-.gwmap__road--minor { stroke-width: 1.25; stroke-dasharray: 2 3; }
-.gwmap__lake { fill: color-mix(in oklab, var(--moss) 14%, var(--paper-3)); stroke: none; }
-/* Every label carries a paper halo so text stays legible where it crosses a
-   road or the boundary. */
-.gwmap__svg text {
-  paint-order: stroke;
-  stroke: var(--paper);
-  stroke-width: 3px;
-  stroke-linejoin: round;
-}
-.gwmap__roadnum { font-family: var(--sans); font-size: 10px; font-weight: 700; fill: var(--ink-2); }
-.gwmap__roadname { font-family: var(--serif); font-style: italic; font-size: 11px; fill: var(--ink-2); }
-.gwmap__hint { font-family: var(--serif); font-style: italic; font-size: 10px; fill: var(--ink-3); }
-.gwmap__poi { fill: none; stroke: var(--ink-2); stroke-width: 1.5; }
-.gwmap__poi--big { stroke-width: 2; }
-.gwmap__poilbl { font-family: var(--serif); font-style: italic; font-size: 10.5px; fill: var(--ink-2); }
-.gwmap__poilbl--big { font-size: 12px; font-weight: 600; }
-.gwmap__entr { fill: var(--paper); stroke: var(--ink-2); stroke-width: 1.5; }
-.gwmap__entrlbl { font-family: var(--sans); font-size: 9px; letter-spacing: 0.04em; fill: var(--ink-3); }
-.gwmap__town { text-decoration: none; cursor: pointer; }
-.gwmap__townhit { fill: transparent; stroke: none; }
-.gwmap__towndot { fill: var(--moss); stroke: var(--paper); stroke-width: 1.5; }
-.gwmap__townlbl { font-family: var(--sans); font-size: 12.5px; font-weight: 700; fill: var(--ink); }
-.gwmap__town:hover .gwmap__towndot,
-.gwmap__town:focus-visible .gwmap__towndot { fill: var(--moss-2); }
-.gwmap__town:hover .gwmap__townlbl,
-.gwmap__town:focus-visible .gwmap__townlbl { fill: var(--moss); text-decoration: underline; }
-.gwmap__compass line { stroke: var(--ink-3); stroke-width: 1.5; }
-.gwmap__compass path { fill: var(--ink-3); }
-.gwmap__legend text { font-family: var(--sans); font-size: 10px; fill: var(--ink-3); }
 
 /* The decision aid. Same box language as the lodging CTA, chip language as
    the site's filter chips. */
@@ -1994,73 +1934,12 @@ main:focus { outline: none; }
 }
 .cam-tile:hover .cam-tile__label { color: var(--moss); }
 
-/* ── The elevation profile ──────────────────────────────────────────────── */
-/* Two stations share the valley floor and one sits nearly a mile above them.
-   The profile exists to make that difference a shape before it is a sentence.
-   Geometry lives in page-conditions.jsx (CONDITIONS_ELEV_LAYOUTS); the SVG is
-   drawn at its container's real pixel width, so nothing here scales text or
-   strokes. Colours are the design system's own tokens: there is no dark
-   scheme to follow. */
+/* ── The forecast stations ─────────────────────────────────────────────── */
+/* The map is the shared .npsmap overlay; the cards below carry the heights. */
 .elev { margin-top: 8px; }
-.elev__caption {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  align-items: baseline;
-  gap: 4px 24px;
-  font-family: var(--sans);
-}
-.elev__title {
-  font-size: 9px;
-  font-weight: 600;
-  letter-spacing: 1.7px;
-  text-transform: uppercase;
-  color: var(--hp-ink);
-}
-.elev__scale { font-size: 11px; color: var(--hp-muted); }
-.elev__svg { display: block; margin-top: 18px; overflow: visible; }
-.elev--compact .elev__svg { margin-top: 26px; }
-.elev__hatch { stroke: color-mix(in oklab, var(--hp-ink) 17%, transparent); stroke-width: 1.2; }
-.elev__fill { fill: url(#cond-elev-hatch); }
-.elev__gridline { stroke: color-mix(in oklab, var(--hp-muted) 45%, transparent); stroke-width: 1; stroke-dasharray: 2 4; }
-.elev__baseline { stroke: var(--hp-ink); stroke-width: 1.5; }
-.elev__gridlabel,
-.elev__passlabel,
-.elev__risenote,
-.elev__tagtext {
-  font-family: var(--sans);
-  font-weight: 600;
-  text-transform: uppercase;
-}
-.elev__gridlabel { font-size: 10px; letter-spacing: 0.14em; fill: var(--hp-muted); }
-.elev__line { fill: none; stroke: var(--hp-ink); stroke-width: 2; stroke-linejoin: round; stroke-linecap: round; }
-.elev__line--high { stroke: var(--hp-accent); stroke-width: 2.5; }
-.elev__datum { stroke: color-mix(in oklab, var(--hp-ink) 70%, transparent); stroke-width: 1; stroke-dasharray: 6 4; }
-.elev__drop { stroke: var(--hp-muted); stroke-width: 1; }
-.elev__stem { stroke: var(--hp-ink); stroke-width: 1.25; }
-.elev__station--high .elev__stem { stroke: var(--hp-accent); }
-.elev__pin { fill: var(--hp-paper); stroke: var(--hp-ink); stroke-width: 2; }
-.elev__station--high .elev__pin { fill: var(--hp-accent); stroke: var(--hp-accent); }
-.elev__tag { fill: var(--hp-ink); }
-.elev__station--high .elev__tag { fill: var(--hp-accent); }
-.elev__tagtext { font-size: 10.5px; font-weight: 700; letter-spacing: 0.12em; fill: var(--hp-paper); }
-.elev__dim line { stroke: var(--hp-accent); stroke-width: 1.25; }
-.elev__plate { fill: var(--hp-paper); }
-.elev__rise { font-family: var(--serif); font-size: 30px; font-weight: 500; fill: var(--hp-accent); }
-.elev__risenote { font-size: 10px; letter-spacing: 0.14em; fill: var(--hp-ink); }
-.elev__pass { fill: var(--hp-muted); }
-.elev__passlabel { font-size: 10px; letter-spacing: 0.14em; fill: var(--hp-muted); }
-.elev--compact .elev__gridlabel { font-size: 9px; letter-spacing: 0.12em; }
-.elev--compact .elev__line { stroke-width: 1.75; }
-.elev--compact .elev__line--high { stroke-width: 2.25; }
-.elev--compact .elev__pin { stroke-width: 1.75; }
-.elev--compact .elev__tagtext { font-size: 9.5px; letter-spacing: 0.08em; }
-.elev--compact .elev__rise { font-size: 19px; }
-.elev--compact .elev__risenote { font-size: 8px; letter-spacing: 0.12em; }
-.elev--compact .elev__passlabel { font-size: 8.5px; letter-spacing: 0.12em; }
+.elev .npsmap { margin-bottom: 28px; max-width: 760px; }
 
-/* The station cards. In the wide layout each sits under its own pin, so the
-   drop lines land on the card rules; in the compact one they stack. */
+/* The station cards. Three across; the compact layout stacks them. */
 .elev__cards {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -2774,6 +2653,7 @@ main:focus { outline: none; }
   flex-direction: column;
   gap: 6px;
 }
+.map-page__credit { font: 11px var(--sans); color: var(--ink); background: rgba(255, 255, 255, 0.85); padding: 2px 6px; border-radius: 2px; }
 .map-page__ctrl {
   font: 600 12px var(--sans);
   padding: 7px 10px;
@@ -7246,10 +7126,7 @@ kbd {
 .hp-design .hp-navfeat { display: flex; flex-direction: column; gap: 10px; align-items: flex-start; }
 .hp-design .hp-navfeat > .hp-menu__heading { align-self: stretch; margin-bottom: 0; }
 .hp-design .hp-navfeat__text { font-size: 11px; line-height: 1.6; color: #647067; margin: 0; }
-.hp-design .hp-navfeat__art { display: block; width: 100%; height: auto; background: #efeadc; border-radius: 3px; }
-.hp-design .hp-navfeat__contour { fill: none; stroke: #d6dacf; stroke-width: 1.2; }
-.hp-design .hp-navfeat__route { fill: none; stroke: #a4462c; stroke-width: 2; stroke-dasharray: 5 4; stroke-linecap: round; }
-.hp-design .hp-navfeat__pin { fill: #233e35; stroke: #fffdf7; stroke-width: 2; }
+.hp-design .hp-navfeat__art { display: block; width: 100%; height: auto; aspect-ratio: 236 / 104; object-fit: cover; object-position: 45% 40%; background: #efeadc; border-radius: 3px; }
 /* The waits on an ink plate, the /conditions readout's treatment; the alarm
    colours are that readout's lifted pair, since the accent fails on ink. */
 .hp-design .hp-navfeat--waits { background: #233e35; color: #f8f5ed; border-radius: 3px; padding: 20px 22px 22px; }
@@ -9240,23 +9117,41 @@ html[data-nav-mode="pinned"] { scroll-padding-top: 62px; }
 .ff-when p { margin: 0; font: 14px/1.5 var(--sans); color: var(--ink-2); }
 
 /* Parking and the walk. */
-.ff-map { margin: 0 0 28px; background: var(--hp-card); border: 1px solid var(--hp-rule); border-radius: 4px; padding: 16px; }
-.ff-map__svg { display: block; width: 100%; height: auto; }
-.ff-map__road { fill: none; stroke: var(--rule); stroke-width: 14; stroke-linecap: round; }
-.ff-map__road--cross { stroke-width: 10; }
-.ff-map__walk { fill: none; stroke: var(--hp-accent); stroke-width: 5; stroke-dasharray: 2 9; stroke-linecap: round; }
-.ff-map__nostop { fill: none; stroke: var(--bt-closed); stroke-width: 3; stroke-dasharray: 10 6; }
-.ff-map__roadname { font: 600 13px var(--sans); letter-spacing: 0.08em; fill: var(--hp-muted); }
-.ff-map__small { font: 12px var(--sans); fill: var(--hp-muted); }
-.ff-map__place { font: 20px var(--serif); fill: var(--hp-ink); }
-.ff-map__view { fill: var(--ff-glow); }
-.ff-map__viewmark { font: 700 14px var(--sans); fill: #1b0f06; }
-.ff-map__p { fill: var(--hp-ink); }
-.ff-map__pmark { font: 700 16px var(--sans); fill: var(--hp-paper); }
-.ff-map__walklabel { font: 700 14px var(--sans); fill: var(--hp-accent); }
-.ff-map__ban { fill: var(--bt-closed); }
-.ff-map__banlabel { font: 700 12px var(--sans); letter-spacing: 0.04em; fill: #fff8ec; }
-.ff-map__nostoplabel { font: 700 12px var(--sans); fill: var(--bt-closed); }
+/* An overlay on a crop of the National Park Service's map (firefall, the
+   Mariposa Grove, /stay, the gateway towns, the masthead). The frame holds the
+   crop and an SVG in the crop's own pixel space; markers are numbered and the
+   caption is the key. Never draw the geography itself here. */
+.npsmap { margin: 0 0 28px; }
+.npsmap__frame { position: relative; border: 1px solid var(--hp-rule); border-radius: 4px; overflow: hidden; background: #eef0e6; }
+.npsmap__frame img { display: block; width: 100%; height: auto; }
+.npsmap__frame svg { position: absolute; inset: 0; width: 100%; height: 100%; }
+.npsmap__lead { stroke: var(--hp-ink); stroke-width: 2.5; fill: none; }
+.npsmap__pin { stroke: #fff; stroke-width: 3; }
+.npsmap__pin--ink { fill: var(--hp-ink); }
+.npsmap__pin--glow { fill: var(--ff-glow, #e8892b); }
+.npsmap__pin--rust { fill: var(--hp-accent); }
+.npsmap__num { font: 700 16px var(--sans); fill: #fff; }
+.npsmap__num--dark { fill: #1b0f06; }
+.npsmap__walk { fill: none; stroke: var(--hp-accent); stroke-width: 6; stroke-dasharray: 2 11; stroke-linecap: round; stroke-linejoin: round; }
+.npsmap__ban { fill: none; stroke: var(--bt-closed); stroke-width: 12; stroke-opacity: 0.4; stroke-linecap: round; stroke-linejoin: round; }
+.npsmap__road { fill: none; stroke: var(--hp-accent); stroke-width: 7; stroke-linecap: round; stroke-linejoin: round; }
+.npsmap__town { cursor: pointer; }
+.npsmap__town circle { fill: var(--hp-ink); stroke: #fff; stroke-width: 3; }
+.npsmap__town text { font: 700 15px var(--sans); fill: #fff; text-anchor: middle; }
+.npsmap__town:hover circle, .npsmap__town:focus-visible circle { fill: var(--hp-accent); }
+.npsmap figcaption { display: flex; flex-wrap: wrap; gap: 6px 18px; align-items: center; padding: 10px 2px 0; font: 14px/1.45 var(--sans); color: var(--ink-2); }
+.npsmap figcaption span { display: inline-flex; align-items: center; gap: 7px; }
+.npsmap figcaption span:not(:last-child) { font-weight: 600; color: var(--hp-ink); }
+.npsmap figcaption b { flex: none; display: inline-grid; place-items: center; width: 20px; height: 20px; border-radius: 50%; background: var(--hp-ink); color: #fff; font: 700 11px var(--sans); }
+.npsmap__key { flex: none; display: inline-block; width: 26px; height: 0; border-top: 4px dotted var(--hp-accent); }
+.npsmap__key--ban { border-top: 8px solid var(--bt-closed); opacity: 0.45; }
+@media (max-width: 760px) {
+  .npsmap { margin-inline: -20px; }
+  .npsmap__frame { border-radius: 0; border-inline: 0; overflow-x: auto; }
+  .npsmap__frame img, .npsmap__frame svg { min-width: 620px; }
+  .npsmap__frame svg { width: 620px; }
+  .npsmap figcaption { padding-inline: 20px; }
+}
 
 .ff-rules { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 20px; }
 .ff-rules li { background: var(--hp-card); border: 1px solid var(--hp-rule); border-radius: 4px; padding: 22px; display: grid; gap: 10px; align-content: start; }
@@ -9364,8 +9259,6 @@ html[data-nav-mode="pinned"] { scroll-padding-top: 62px; }
   .ff-town .ff-book { justify-self: stretch; }
   .ff-gear li { flex-direction: column; align-items: stretch; }
   .ff-when > div { grid-template-columns: 1fr; gap: 4px; }
-  .ff-map { margin-inline: -20px; border-radius: 0; border-inline: 0; padding: 8px; overflow-x: auto; }
-  .ff-map__svg { min-width: 640px; }
   .ff-short, .ff-inpark { padding: 22px; }
   .ff-conditions dt { font-size: 17px; }
   .ff-book, .ff-ghost { white-space: normal; }
@@ -10006,23 +9899,6 @@ html[data-nav-mode="pinned"] { scroll-padding-top: 62px; }
 .tg-stops__wait li { display: flex; gap: 10px; align-items: center; padding-block: 13px; border-bottom: 1px solid var(--hp-rule); font: 19px/1.3 var(--serif); color: var(--hp-muted); }
 .tg-stops__wait .ff-icon { color: #6d8aa3; }
 
-.tg-profile { margin: 0; background: var(--hp-card); border: 1px solid var(--hp-rule); border-radius: 4px; padding: 20px 20px 16px; }
-.tg-profile__svg { display: block; width: 100%; height: auto; }
-.tg-profile__grid { stroke: var(--rule-soft); stroke-width: 1; }
-.tg-profile__axis { font: 12px var(--sans); fill: var(--hp-muted); }
-.tg-profile__snowband { fill: #6d8aa3; opacity: 0.1; }
-.tg-profile__snowlabel { font: 700 11px var(--sans); letter-spacing: 0.08em; fill: #4d6a83; }
-.tg-profile__area { fill: var(--hp-ink); opacity: 0.08; }
-.tg-profile__line { fill: none; stroke: var(--hp-ink); stroke-width: 2.5; stroke-linejoin: round; }
-.tg-profile__pt { fill: var(--hp-accent); stroke: var(--hp-card); stroke-width: 2; }
-.tg-profile__pt--order { fill: var(--hp-card); stroke: var(--hp-accent); }
-.tg-profile__name { font: 17px var(--serif); fill: var(--hp-ink); }
-.tg-profile__ft { font: 12px var(--sans); fill: var(--hp-muted); }
-.tg-profile__dry { stroke: var(--bt-closed); stroke-width: 3; stroke-dasharray: 10 6; }
-.tg-profile__drylabel { font: 700 12px var(--sans); letter-spacing: 0.06em; fill: var(--bt-closed); }
-.tg-profile__drop { font: 22px var(--serif); fill: var(--hp-accent); }
-.tg-profile__dropsub { font: 12px var(--sans); fill: var(--hp-muted); }
-.tg-profile .ff-note { margin-top: 10px; }
 
 .hp-event .tg-strip { margin: 0 0 20px; }
 .tg-table { margin: 0; }
@@ -10044,10 +9920,7 @@ html[data-nav-mode="pinned"] { scroll-padding-top: 62px; }
 }
 @media (max-width: 760px) {
   .tg-ladder { grid-template-columns: 1fr; }
-  .tg-profile { margin-inline: -20px; border-radius: 0; border-inline: 0; padding: 12px 8px; overflow-x: auto; }
-  .tg-profile__svg { min-width: 720px; }
-  .tg-profile .ff-note { padding-inline: 12px; }
-  .tg-pack ul { grid-template-columns: 1fr; }
+        .tg-pack ul { grid-template-columns: 1fr; }
 }
 
 /* ── /half-dome-lottery (page-half-dome-lottery.jsx): the visual pass ─────────

@@ -231,134 +231,68 @@ function FfSunChart() {
     }, o.d));
   }));
 }
+var FF_NORTHSIDE = "692,183 655,205 600,235 555,265 510,305 485,345 460,395 430,440 395,480 350,500 300,505 240,500 190,497 155,515";
+var FF_SOUTHSIDE = "190,632 300,600 400,555 490,520 560,470 610,405 650,365 690,335";
 function FfRoadDiagram() {
-  return React.createElement("svg", {
-    className: "ff-map__svg",
-    viewBox: "0 0 1000 420",
+  return React.createElement("div", {
+    className: "npsmap__frame"
+  }, React.createElement("img", {
+    src: "/img/nps-firefall-valley-map.jpg",
+    width: "1140",
+    height: "700",
+    loading: "lazy",
+    decoding: "async",
+    alt: "National Park Service map of the west end of Yosemite Valley, from Yosemite Lodge to El Capitan Bridge, with one-way Northside Drive above the Merced River and one-way Southside Drive below it."
+  }), React.createElement("svg", {
+    viewBox: "0 0 1140 700",
     role: "img",
-    "aria-label": "Schematic of the Yosemite Valley loop. Park at Yosemite Falls parking beside Yosemite Valley Lodge and walk west about 1.5 miles on the pedestrian lane on Northside Drive to the viewing area near El Capitan Picnic Area. No parking, stopping or drop-offs between Lower Yosemite Fall and El Capitan Crossover. No stopping on Southside Drive between El Capitan Crossover and Swinging Bridge. Overflow parking at Yosemite Village and Curry Village, with the free shuttle to Yosemite Falls."
-  }, React.createElement("path", {
-    d: "M60 150 C 260 120, 520 120, 900 150",
-    className: "ff-map__road"
+    "aria-label": "Markers on the map. Park at Yosemite Falls parking beside Yosemite Valley Lodge and walk west about 1.5 miles on the pedestrian lane on Northside Drive to the viewing area near El Capitan Picnic Area. No parking, stopping or drop-offs on Northside Drive between Lower Yosemite Fall and El Capitan Crossover. No stopping on Southside Drive between El Capitan Crossover and Swinging Bridge. Overflow parking at Yosemite Village and Curry Village, with the free shuttle to Yosemite Falls."
+  }, React.createElement("polyline", {
+    points: FF_NORTHSIDE,
+    className: "npsmap__ban"
+  }), React.createElement("polyline", {
+    points: FF_SOUTHSIDE,
+    className: "npsmap__ban"
+  }), React.createElement("polyline", {
+    points: FF_NORTHSIDE,
+    className: "npsmap__walk"
   }), React.createElement("path", {
-    d: "M60 290 C 260 320, 520 320, 900 290",
-    className: "ff-map__road"
-  }), React.createElement("path", {
-    d: "M170 140 L 170 300",
-    className: "ff-map__road ff-map__road--cross"
-  }), React.createElement("path", {
-    d: "M270 128 C 440 116, 600 118, 745 132",
-    className: "ff-map__walk"
-  }), React.createElement("path", {
-    d: "M170 300 C 300 316, 440 318, 560 312",
-    className: "ff-map__nostop"
+    d: "M712 190 L 700 165",
+    className: "npsmap__lead"
+  }), React.createElement("circle", {
+    cx: "692",
+    cy: "153",
+    r: "17",
+    className: "npsmap__pin npsmap__pin--ink"
   }), React.createElement("text", {
-    x: "70",
-    y: "112",
-    className: "ff-map__roadname"
-  }, "NORTHSIDE DRIVE · ONE WAY WEST"), React.createElement("text", {
-    x: "70",
-    y: "352",
-    className: "ff-map__roadname"
-  }, "SOUTHSIDE DRIVE · ONE WAY EAST"), React.createElement("text", {
-    x: "182",
-    y: "262",
-    className: "ff-map__small"
-  }, "El Capitan Crossover"), React.createElement("circle", {
-    cx: "250",
-    cy: "130",
-    r: "16",
-    className: "ff-map__view"
+    x: "692",
+    y: "159",
+    textAnchor: "middle",
+    className: "npsmap__num"
+  }, "1"), React.createElement("path", {
+    d: "M325 480 L 335 445",
+    className: "npsmap__lead"
+  }), React.createElement("circle", {
+    cx: "338",
+    cy: "432",
+    r: "17",
+    className: "npsmap__pin npsmap__pin--glow"
   }), React.createElement("text", {
-    x: "250",
-    y: "135",
+    x: "338",
+    y: "438",
     textAnchor: "middle",
-    className: "ff-map__viewmark"
-  }, "V"), React.createElement("text", {
-    x: "250",
-    y: "180",
-    textAnchor: "middle",
-    className: "ff-map__place"
-  }, "Viewing area"), React.createElement("text", {
-    x: "250",
-    y: "200",
-    textAnchor: "middle",
-    className: "ff-map__small"
-  }, "near El Capitan Picnic Area"), React.createElement("text", {
-    x: "250",
-    y: "216",
-    textAnchor: "middle",
-    className: "ff-map__small"
-  }, "vault toilets"), React.createElement("rect", {
-    x: "740",
-    y: "116",
-    width: "34",
-    height: "34",
-    rx: "3",
-    className: "ff-map__p"
+    className: "npsmap__num npsmap__num--dark"
+  }, "2"), React.createElement("circle", {
+    cx: "990",
+    cy: "152",
+    r: "17",
+    className: "npsmap__pin npsmap__pin--ink"
   }), React.createElement("text", {
-    x: "757",
-    y: "139",
+    x: "990",
+    y: "158",
     textAnchor: "middle",
-    className: "ff-map__pmark"
-  }, "P"), React.createElement("text", {
-    x: "757",
-    y: "180",
-    textAnchor: "middle",
-    className: "ff-map__place"
-  }, "Yosemite Falls parking"), React.createElement("text", {
-    x: "757",
-    y: "200",
-    textAnchor: "middle",
-    className: "ff-map__small"
-  }, "beside Yosemite Valley Lodge"), React.createElement("text", {
-    x: "510",
-    y: "78",
-    textAnchor: "middle",
-    className: "ff-map__walklabel"
-  }, "walk about 1.5 mi on the pedestrian lane · 40 to 50 min with gear"), React.createElement("rect", {
-    x: "330",
-    y: "146",
-    width: "340",
-    height: "30",
-    rx: "3",
-    className: "ff-map__ban"
-  }), React.createElement("text", {
-    x: "500",
-    y: "166",
-    textAnchor: "middle",
-    className: "ff-map__banlabel"
-  }, "NO PARKING · NO STOPPING · NO DROP-OFFS"), React.createElement("text", {
-    x: "300",
-    y: "296",
-    className: "ff-map__nostoplabel"
-  }, "no stopping, El Cap Crossover to Swinging Bridge"), React.createElement("rect", {
-    x: "870",
-    y: "250",
-    width: "34",
-    height: "34",
-    rx: "3",
-    className: "ff-map__p"
-  }), React.createElement("text", {
-    x: "887",
-    y: "273",
-    textAnchor: "middle",
-    className: "ff-map__pmark"
-  }, "P"), React.createElement("text", {
-    x: "860",
-    y: "362",
-    textAnchor: "end",
-    className: "ff-map__place"
-  }, "Overflow: Yosemite Village, Curry Village"), React.createElement("text", {
-    x: "860",
-    y: "382",
-    textAnchor: "end",
-    className: "ff-map__small"
-  }, "free shuttle to Yosemite Falls and Valley Lodge"), React.createElement("text", {
-    x: "40",
-    y: "412",
-    className: "ff-map__small"
-  }, "Schematic, not to scale. West is left. Stay on the pavement; the meadows are closed."));
+    className: "npsmap__num"
+  }, "3")));
 }
 function FirefallPage({
   go
@@ -609,8 +543,12 @@ function FirefallPage({
   }), React.createElement("p", {
     className: "ff-lede ff-lede--intro"
   }, "For several years the park has run the firefall the same basic way, reservation or not: the viewing area along Northside Drive has no parking at all, and one lane of the road becomes a footpath from Yosemite Falls parking. Plan the evening around that walk."), React.createElement("figure", {
-    className: "ff-map"
-  }, React.createElement(FfRoadDiagram, null)), React.createElement("ul", {
+    className: "npsmap"
+  }, React.createElement(FfRoadDiagram, null), React.createElement("figcaption", null, React.createElement("span", null, React.createElement("b", null, "1"), " Yosemite Falls parking, beside Yosemite Valley Lodge"), React.createElement("span", null, React.createElement("b", null, "2"), " Viewing area near El Capitan Picnic Area, vault toilets"), React.createElement("span", null, React.createElement("b", null, "3"), " Overflow: Yosemite Village and Curry Village, free shuttle to Yosemite Falls"), React.createElement("span", null, React.createElement("i", {
+    className: "npsmap__key npsmap__key--walk"
+  }), "Walk about 1.5 mi on the pedestrian lane, 40 to 50 min with gear"), React.createElement("span", null, React.createElement("i", {
+    className: "npsmap__key npsmap__key--ban"
+  }), "No parking, stopping or drop-offs: Northside Drive from Lower Yosemite Fall to El Capitan Crossover, Southside Drive from El Capitan Crossover to Swinging Bridge"), React.createElement("span", null, "Stay on the pavement; the meadows are closed. Map: National Park Service (public domain), cropped."))), React.createElement("ul", {
     className: "ff-rules"
   }, React.createElement("li", null, React.createElement(FfIcon, {
     name: "no",

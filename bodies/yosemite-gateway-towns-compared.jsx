@@ -50,147 +50,53 @@ function TownFacts({ rows }) {
 }
 
 // ---------------------------------------------------------------------------
-// The gateway map. A deliberately simple outline of the park with the five
-// towns, the entrances they serve, and the roads between, projected from real
-// coordinates (460 px per degree of longitude, 581 per degree of latitude, so
-// distances are roughly honest). Towns are plain <a href="#sec-..."> links to
-// their sections: native in-page anchors, so the map is fully clickable in the
-// prerendered fragment with no JavaScript at all. All colour comes from CSS
-// classes (styles.css, .gwmap*) reading the palette variables, same rule as
-// the bulletin icons.
+// The gateway map. The National Park Service's own park map (the whole of
+// img/nps-yosemite-park-map.jpg, so the overlay shares its 1920 x 1970 pixel
+// space), with one numbered pin on each entrance station the five towns
+// serve. The map draws El Portal and Lee Vining but not Mariposa, Groveland or
+// Oakhurst, which lie farther down their highways off its edge, so the pins
+// mark entrances and the caption names the towns. Every pin and every town is
+// a plain <a href="#sec-..."> to its section: native in-page anchors, so the
+// map is fully clickable in the prerendered fragment with no JavaScript.
 // ---------------------------------------------------------------------------
-const MAP_ROADS = [
-  // Highway 140: Merced stub, Mariposa, Midpines, El Portal, Arch Rock, Valley.
-  { d: "M138 478 C152 462 164 450 175 436 C200 398 232 356 258 329 C268 325 276 323 284 322 C306 317 330 305 346 288" },
-  // Highway 120 west + Big Oak Flat Road: Bay Area stub, Groveland, entrance, Crane Flat, down to the Valley.
-  { d: "M18 238 C30 236 40 234 52 233 C95 231 130 260 160 252 C185 246 200 250 217 256 C228 264 240 274 250 282 C275 295 305 297 335 292" },
-  // Highway 41: Fresno stub, Oakhurst, Fish Camp, South Entrance, Wawona, Valley.
-  { d: "M320 560 L320 530 C322 502 326 470 328 448 C328 440 328 432 328 426 C325 419 320 413 317 407 C312 385 320 365 325 350 C332 328 336 310 341 293" },
-  // Tioga Road (120 East): Crane Flat, Tuolumne Meadows, Tioga Pass, Lee Vining. Closed in winter.
-  { d: "M250 282 C300 258 360 240 400 228 C425 220 445 216 457 213 C475 207 490 200 500 192 C520 180 545 170 564 164", seasonal: true },
-  // US 395 through Lee Vining.
-  { d: "M585 60 C578 95 570 130 564 164 C558 205 552 250 548 295" },
-  // Hetch Hetchy Road, drawn thin: a dead-end spur, not a through route.
-  { d: "M217 256 C225 225 240 195 256 171", minor: true },
-];
-
-const MAP_TOWN_POINTS = [
-  { key: "el-portal", x: 258, y: 329, lx: 247, ly: 352, anchor: "end" },
-  { key: "mariposa", x: 175, y: 436, lx: 175, ly: 456, anchor: "middle" },
-  { key: "oakhurst", x: 320, y: 530, lx: 332, ly: 535, anchor: "start" },
-  { key: "groveland", x: 52, y: 233, lx: 52, ly: 214, anchor: "middle" },
-  { key: "lee-vining", x: 564, y: 164, lx: 564, ly: 146, anchor: "middle" },
-];
-
 const MAP_ENTRANCES = [
-  { name: "Arch Rock", x: 284, y: 322, lx: 294, ly: 337, anchor: "start" },
-  { name: "Big Oak Flat", x: 217, y: 256, lx: 209, ly: 250, anchor: "end" },
-  { name: "South", x: 328, y: 426, lx: 321, ly: 442, anchor: "end" },
-  { name: "Tioga Pass", x: 500, y: 192, lx: 507, ly: 184, anchor: "start" },
-];
-
-const MAP_POIS = [
-  { name: "Yosemite Valley", x: 346, y: 288, lx: 358, ly: 293, anchor: "start", big: true },
-  { name: "Tuolumne Meadows", x: 457, y: 213, lx: 457, ly: 200, anchor: "middle" },
-  { name: "Wawona", x: 317, y: 407, lx: 308, ly: 404, anchor: "end" },
-  { name: "Mariposa Grove", x: 345, y: 422, lx: 354, ly: 419, anchor: "start" },
-  { name: "Hetch Hetchy", x: 256, y: 171, lx: 264, ly: 167, anchor: "start" },
-];
-
-const MAP_ROAD_LABELS = [
-  { t: "140", x: 212, y: 391 },
-  { t: "120", x: 120, y: 250 },
-  { t: "41", x: 325, y: 489 },
-  { t: "395", x: 552, y: 262 },
-];
-
-const MAP_HINTS = [
-  { t: "to Merced", x: 126, y: 494, anchor: "middle" },
-  { t: "to the Bay Area", x: 22, y: 256, anchor: "start" },
-  { t: "to Fresno", x: 320, y: 574, anchor: "middle" },
-  { t: "to Reno", x: 585, y: 48, anchor: "middle" },
-  { t: "to Mammoth", x: 548, y: 310, anchor: "middle" },
+  { n: "1", x: 362, y: 1382, name: "Arch Rock Entrance", road: "Highway 140", towns: ["el-portal", "mariposa"] },
+  { n: "2", x: 581, y: 1870, name: "South Entrance", road: "Highway 41", towns: ["oakhurst"] },
+  { n: "3", x: 72, y: 1062, name: "Big Oak Flat Entrance", road: "Highway 120 west", towns: ["groveland"] },
+  { n: "4", x: 1395, y: 752, name: "Tioga Pass Entrance", road: "US 395 and Highway 120 east, closed in winter", towns: ["lee-vining"] },
 ];
 
 function GatewayMap() {
+  const W = 1920, H = 1970;
+  const srcs = (ext) => [800, 1200, 1600].map((w) => "/img/responsive/nps-yosemite-park-map-" + w + "." + ext + " " + w + "w").join(", ");
   return (
-    <figure className="gwmap">
-      <div className="gwmap__scroll">
-        <svg className="gwmap__svg" viewBox="0 0 640 584" xmlns="http://www.w3.org/2000/svg">
-          {/* Park outline, simplified from the real boundary. */}
-          <path
-            className="gwmap__park"
-            d="M212 303 L208 169 L274 82 L366 29 L458 70 L500 151 L500 192 L518 279 L490 372 L426 425 L329 436 L297 407 L288 355 L272 326 Z"
-          />
-          <text className="gwmap__parkname" x="366" y="106" textAnchor="middle">YOSEMITE</text>
-          <text className="gwmap__parkname" x="366" y="122" textAnchor="middle">NATIONAL PARK</text>
-
-          {MAP_ROADS.map((r, i) => (
-            <path
-              key={i}
-              className={
-                "gwmap__road" +
-                (r.seasonal ? " gwmap__road--seasonal" : "") +
-                (r.minor ? " gwmap__road--minor" : "")
-              }
-              d={r.d}
-            />
-          ))}
-          <text className="gwmap__roadname" x="385" y="218" textAnchor="middle">Tioga Road</text>
-
-          <ellipse className="gwmap__lake" cx="612" cy="132" rx="24" ry="19" />
-          <text className="gwmap__hint" x="612" y="164" textAnchor="middle">Mono Lake</text>
-
-          {MAP_ROAD_LABELS.map((l) => (
-            <text key={l.t + l.x} className="gwmap__roadnum" x={l.x} y={l.y} textAnchor="middle">{l.t}</text>
-          ))}
-          {MAP_HINTS.map((l) => (
-            <text key={l.t} className="gwmap__hint" x={l.x} y={l.y} textAnchor={l.anchor}>{l.t}</text>
-          ))}
-
-          {MAP_POIS.map((p) => (
-            <g key={p.name}>
-              <circle className={"gwmap__poi" + (p.big ? " gwmap__poi--big" : "")} cx={p.x} cy={p.y} r={p.big ? 4.5 : 3.5} />
-              <text className={"gwmap__poilbl" + (p.big ? " gwmap__poilbl--big" : "")} x={p.lx} y={p.ly} textAnchor={p.anchor}>{p.name}</text>
-            </g>
-          ))}
-
+    <figure className="npsmap gwmap">
+      <div className="npsmap__frame">
+        <picture>
+          <source type="image/avif" srcSet={srcs("avif")} sizes="(max-width: 760px) 100vw, 680px" />
+          <source type="image/webp" srcSet={srcs("webp")} sizes="(max-width: 760px) 100vw, 680px" />
+          <img src="/img/responsive/nps-yosemite-park-map-1200.jpg" srcSet={srcs("jpg")} sizes="(max-width: 760px) 100vw, 680px" width={W} height={H} loading="lazy" decoding="async"
+            alt="The National Park Service's official map of Yosemite National Park, with the four entrance stations the five gateway towns serve marked: Arch Rock, South, Big Oak Flat and Tioga Pass." />
+        </picture>
+        <svg viewBox={`0 0 ${W} ${H}`} aria-hidden="true" focusable="false">
           {MAP_ENTRANCES.map((e) => (
-            <g key={e.name}>
-              <rect className="gwmap__entr" x={e.x - 4} y={e.y - 4} width="8" height="8" />
-              <text className="gwmap__entrlbl" x={e.lx} y={e.ly} textAnchor={e.anchor}>{e.name}</text>
-            </g>
+            <a key={e.n} href={GATEWAY_TOWNS[e.towns[0]].href} className="npsmap__town" aria-label={e.name + ", jump to " + GATEWAY_TOWNS[e.towns[0]].name}>
+              <circle cx={e.x} cy={e.y} r="40" />
+              <text x={e.x} y={e.y + 16} style={{ fontSize: 46 }}>{e.n}</text>
+            </a>
           ))}
-
-          {MAP_TOWN_POINTS.map((t) => {
-            const town = GATEWAY_TOWNS[t.key];
-            return (
-              <a key={t.key} href={town.href} className="gwmap__town" aria-label={town.name + ", jump to its section"}>
-                <title>{"Jump to the " + town.name + " section"}</title>
-                <circle className="gwmap__townhit" cx={t.x} cy={t.y} r="15" />
-                <circle className="gwmap__towndot" cx={t.x} cy={t.y} r="5.5" />
-                <text className="gwmap__townlbl" x={t.lx} y={t.ly} textAnchor={t.anchor}>{town.name}</text>
-              </a>
-            );
-          })}
-
-          {/* North arrow and legend. */}
-          <g className="gwmap__compass">
-            <line x1="28" y1="66" x2="28" y2="46" />
-            <path d="M23 50 L28 38 L33 50 Z" />
-          </g>
-          <g className="gwmap__legend">
-            <circle className="gwmap__towndot" cx="22" cy="514" r="5" />
-            <text x="34" y="518">Gateway town, tap to jump</text>
-            <rect className="gwmap__entr" x="18" y="530" width="8" height="8" />
-            <text x="34" y="538">Park entrance</text>
-            <line className="gwmap__road gwmap__road--seasonal" x1="16" y1="554" x2="30" y2="554" />
-            <text x="34" y="558">Closed in winter</text>
-          </g>
         </svg>
       </div>
       <figcaption>
-        The five gateways, the entrances they serve, and the roads that decide everything. Distances are roughly to scale. Tap a town to jump to its section.
+        {MAP_ENTRANCES.map((e) => (
+          <span key={e.n}>
+            <b>{e.n}</b>
+            <span>{e.name}, {e.road}: {e.towns.map((k, i) => (
+              <React.Fragment key={k}>{i ? ", " : ""}<a href={GATEWAY_TOWNS[k].href}>{GATEWAY_TOWNS[k].name}</a></React.Fragment>
+            ))}</span>
+          </span>
+        ))}
+        <span>Mariposa, Groveland and Oakhurst lie farther down their highways, off the edge of the map. Tap a pin or a town to jump to its section. Map: National Park Service (public domain).</span>
       </figcaption>
     </figure>
   );

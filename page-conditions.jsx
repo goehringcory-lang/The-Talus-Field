@@ -1,4 +1,4 @@
-/* global React, WebcamStrip, EntranceWaits, ParkingNow, HomeLink, HpPageHead, HpHeading, HpGuideBand, HpLetter, RecommendedCard, AffiliateDisclosure */
+/* global React, ResponsiveImage, WebcamStrip, EntranceWaits, ParkingNow, HomeLink, HpPageHead, HpHeading, HpGuideBand, HpLetter, RecommendedCard, AffiliateDisclosure */
 
 // =============================================================================
 // CONDITIONS — `/conditions` route. The bookmarkable "is it worth driving in
@@ -73,103 +73,23 @@ const CONDITIONS_FORECASTS = [
 // scale. The figure is the one the site's articles publish.
 const CONDITIONS_TIOGA_FT = 9945;
 
-// ── The elevation profile ───────────────────────────────────────────────────
-// A transect along the park roads, Wawona to Tioga Pass. Only four heights on
-// it are data (the three stations and the pass), and those sit to scale; the
-// terrain between them is drawn, and the caption says so, because rule (1)
-// covers pictures too. The line between stations follows the real shape of
-// the drive (the climb over Chinquapin, the drop to the Valley floor, Crane
-// Flat at about 6,200 feet, then the long rise to Tuolumne) without claiming
-// any height the page does not print.
-//
-// Two layouts, each authored at a base width and stretched horizontally only,
-// so text, strokes and the hatch stay at their drawn pixel size at any width:
-// `wide` puts each station over its card's column, `compact` sits above a
-// stacked card list. Every station's x in a layout is a point on its path, so
-// changing a station means changing both.
-const CONDITIONS_ELEV_LAYOUTS = {
-  wide: {
-    width: 1136,
-    top: -28,
-    base: 300,
-    pxPerFt: 0.035,
-    start: [64, 246],
-    // Cubic segments, each [c1, c2, end]; segments from `highFrom` on are the
-    // high country and are drawn over in the accent.
-    path: [
-      [[110, 242], [150, 232], [181, 230]],
-      [[230, 227], [280, 162], [330, 160]],
-      [[390, 158], [480, 228], [568, 230]],
-      [[620, 231], [640, 170], [680, 154]],
-      [[740, 130], [800, 86], [860, 80]],
-      [[900, 76], [930, 71], [955, 69]],
-      [[1010, 64], [1060, 30], [1090, 22]],
-      [[1110, 18], [1125, 24], [1136, 30]],
-    ],
-    highFrom: 5,
-    stationX: [181, 568, 955],
-    passX: 1090,
-    grid: [
-      { ft: 10000, label: "10,000 ft" },
-      { ft: 8000, label: "8,000 ft" },
-      { ft: 6000, label: "6,000 ft" },
-      { ft: 4000, label: "4,000 ft" },
-      { ft: 2000, label: "2,000 ft" },
-    ],
-    tag: { w: 88, h: 22, top: [150, 150, 26], text: (i, f) => `0${i + 1} · ${f.elevationFt.toLocaleString("en-US")}` },
-    pinR: 6,
-    tri: 6,
-    passLabel: `Tioga Pass ${CONDITIONS_TIOGA_FT.toLocaleString("en-US")} ft`,
-    passLabelDx: -14,
-    passLabelY: -8,
-    bracketX: 905,
-    note: { side: "left", w: 174, h: 54, y: 168, big: 196, small: [214], smallText: ["15 to 25 degrees colder"] },
-  },
-  compact: {
-    width: 358,
-    top: -14,
-    base: 170,
-    pxPerFt: 0.02,
-    start: [22, 136],
-    path: [
-      [[36, 134], [46, 131], [56, 130]],
-      [[74, 128], [90, 92], [104, 91]],
-      [[124, 90], [142, 129], [158, 130]],
-      [[172, 131], [180, 100], [192, 92]],
-      [[214, 78], [240, 50], [258, 46]],
-      [[268, 43], [275, 40], [282, 38]],
-      [[300, 34], [320, 16], [334, 11]],
-      [[342, 9], [350, 12], [358, 15]],
-    ],
-    highFrom: 5,
-    stationX: [56, 158, 282],
-    passX: 334,
-    grid: [
-      { ft: 10000, label: "" },
-      { ft: 8000, label: "8k" },
-      { ft: 6000, label: "6k" },
-      { ft: 4000, label: "4k" },
-      { ft: 2000, label: "2k ft" },
-    ],
-    tag: { w: 24, h: 16, top: [70, 70, 7], text: (i) => `0${i + 1}` },
-    pinR: 4.5,
-    tri: 5,
-    passLabel: `Tioga Pass ${CONDITIONS_TIOGA_FT.toLocaleString("en-US")}`,
-    passLabelDx: -10,
-    passLabelY: 0,
-    bracketX: 246,
-    note: { side: "right", w: 80, h: 50, y: 72, big: 91, small: [104, 115], smallText: ["15 to 25°", "colder"] },
-  },
-};
+// ── The forecast stations on the park map ──────────────────────────────────
+// The National Park Service's own park map (the whole of img/nps-yosemite-
+// park-map.jpg, so the overlay shares its 1920 x 1970 pixel space) with the
+// three forecast points pinned where their coordinates fall on it. The pixel
+// positions come from a linear fit of the map's labelled places (Valley
+// Visitor Center, Wawona Visitor Center, Tuolumne Meadows, Tioga Pass
+// Entrance; about 0.00047 degrees of longitude and 0.00037 of latitude per
+// pixel) and were checked against each place's own label. Heights are on the
+// cards below, never drawn: an earlier version of this section drew terrain
+// between the stations, and no drawn terrain belongs on the page.
+const CONDITIONS_MAP_PINS = [
+  { x: 594, y: 1762 },
+  { x: 541, y: 1263 },
+  { x: 1193, y: 846 },
+];
+const CONDITIONS_MAP_PASS = { x: 1395, y: 752 };
 
-// Below this container width the wide layout's labels start to crowd the
-// line (the +4,600 plate reaches the Crane Flat climb), so it hands over to
-// the compact one, which is drawn for a phone and only ever gets wider. The
-// station flags sit at a fixed height (`tag.top`, one per station) above the
-// humps either side of each pin, with a stem down to it, so a narrower
-// container cannot push the line up into them. Both were swept from 280px to
-// 1280px against the sampled curve when this was drawn; re-sweep if the path,
-// a flag or the plate moves.
 const CONDITIONS_ELEV_WIDE_MIN = 900;
 
 function conditionsForecastUrl(f) {
@@ -207,97 +127,33 @@ function ConditionsElevation() {
   }, []);
 
   const mode = width >= CONDITIONS_ELEV_WIDE_MIN ? "wide" : "compact";
-  const L = CONDITIONS_ELEV_LAYOUTS[mode];
-  const s = width / L.width;
-  const X = (x) => +(x * s).toFixed(1);
-  const Y = (ft) => +(L.base - (ft - 2000) * L.pxPerFt).toFixed(1);
-  const pt = ([x, y]) => `${X(x)} ${y}`;
-  const segs = (from) => L.path.slice(from).map((seg) => `C ${seg.map(pt).join(", ")}`).join(" ");
-  const line = `M ${pt(L.start)} ${segs(0)}`;
-  const high = `M ${pt(L.path[L.highFrom - 1][2])} ${segs(L.highFrom)}`;
-  const [lowF, , highF] = CONDITIONS_FORECASTS;
-  const floorY = Y(lowF.elevationFt);
-  const highY = Y(highF.elevationFt);
-  const riseFt = highF.elevationFt - lowF.elevationFt;
-  const bx = X(L.bracketX);
-  const n = L.note;
-  const noteX = n.side === "left" ? bx - 13 - n.w : bx + 7;
-  const noteTextX = n.side === "left" ? bx - 15 : bx + 12;
-  const noteAnchor = n.side === "left" ? "end" : "start";
-  const passX = X(L.passX);
-  const passY = Y(CONDITIONS_TIOGA_FT);
-  const height = L.base - L.top;
-
+  const riseFt = CONDITIONS_FORECASTS[2].elevationFt - CONDITIONS_FORECASTS[0].elevationFt;
   const summary =
-    `Elevation profile along the park roads: ${CONDITIONS_FORECASTS.map((f) => `${f.label} at ${f.elevationFt.toLocaleString("en-US")} feet`).join(", ")}. ` +
-    `Tuolumne Meadows sits ${riseFt.toLocaleString("en-US")} feet above the Valley, and Tioga Pass tops the road at ${CONDITIONS_TIOGA_FT.toLocaleString("en-US")} feet.`;
+    `The park map with the three forecast points marked: ${CONDITIONS_FORECASTS.map((f, i) => `${i + 1}, ${f.label} at ${f.elevationFt.toLocaleString("en-US")} feet`).join("; ")}. ` +
+    `Tioga Pass tops the road at ${CONDITIONS_TIOGA_FT.toLocaleString("en-US")} feet.`;
 
   return (
     <div className={`elev elev--${mode}`} ref={ref}>
-      <div className="elev__caption">
-        <span className="elev__title">{mode === "wide" ? "Elevation along the park roads, Wawona to Tioga Pass" : "Elevation, Wawona to Tioga Pass"}</span>
-        <span className="elev__scale">Station heights to scale. Terrain between them is schematic.</span>
-      </div>
-
-      <svg
-        className="elev__svg"
-        viewBox={`0 ${L.top} ${width} ${height}`}
-        width={width}
-        height={height}
-        role="img"
-        aria-label={summary}
-      >
-        <defs>
-          <pattern id="cond-elev-hatch" width="6" height="6" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
-            <line className="elev__hatch" x1="0" y1="0" x2="0" y2="6" />
-          </pattern>
-        </defs>
-
-        {L.grid.map((g) => (
-          <g key={g.ft}>
-            {g.ft !== 2000 && <line className="elev__gridline" x1="0" y1={Y(g.ft)} x2={width} y2={Y(g.ft)} />}
-            {g.label && <text className="elev__gridlabel" x="0" y={Y(g.ft) - 6}>{g.label}</text>}
-          </g>
-        ))}
-
-        <path className="elev__fill" d={`${line} L ${width} ${L.base} L ${X(L.start[0])} ${L.base} Z`} />
-        <line className="elev__datum" x1={X(L.start[0])} y1={floorY} x2={width} y2={floorY} />
-        <path className="elev__line" d={line} />
-        <path className="elev__line elev__line--high" d={high} />
-        <line className="elev__baseline" x1="0" y1={L.base} x2={width} y2={L.base} />
-
-        {CONDITIONS_FORECASTS.map((f, i) => (
-          <line key={f.label} className="elev__drop" x1={X(L.stationX[i])} y1={Y(f.elevationFt)} x2={X(L.stationX[i])} y2={L.base} />
-        ))}
-
-        <g className="elev__dim">
-          <line x1={bx} y1={highY} x2={bx} y2={floorY} />
-          <line x1={bx - 8} y1={highY} x2={bx + 8} y2={highY} />
-          <line x1={bx - 8} y1={floorY} x2={bx + 8} y2={floorY} />
-        </g>
-        <rect className="elev__plate" x={noteX} y={n.y} width={n.w} height={n.h} />
-        <text className="elev__rise" x={noteTextX} y={n.big} textAnchor={noteAnchor}>+{riseFt.toLocaleString("en-US")} ft</text>
-        {n.smallText.map((t, i) => (
-          <text key={t} className="elev__risenote" x={noteTextX} y={n.small[i]} textAnchor={noteAnchor}>{t}</text>
-        ))}
-
-        <path className="elev__pass" d={`M ${passX} ${passY - L.tri} L ${passX + L.tri} ${passY + L.tri * 0.7} L ${passX - L.tri} ${passY + L.tri * 0.7} Z`} />
-        <text className="elev__passlabel" x={passX + L.passLabelDx} y={L.passLabelY} textAnchor="end">{L.passLabel}</text>
-
-        {CONDITIONS_FORECASTS.map((f, i) => {
-          const x = X(L.stationX[i]);
-          const y = Y(f.elevationFt);
-          const hi = f.elevationFt >= 6000;
-          return (
-            <g key={f.label} className={`elev__station${hi ? " elev__station--high" : ""}`}>
-              <line className="elev__stem" x1={x} y1={L.tag.top[i] + L.tag.h} x2={x} y2={y - L.pinR} />
-              <rect className="elev__tag" x={x - L.tag.w / 2} y={L.tag.top[i]} width={L.tag.w} height={L.tag.h} rx={L.tag.h / 2} />
-              <text className="elev__tagtext" x={x} y={L.tag.top[i] + L.tag.h / 2 + 3.5} textAnchor="middle">{L.tag.text(i, f)}</text>
-              <circle className="elev__pin" cx={x} cy={y} r={L.pinR} />
-            </g>
-          );
-        })}
-      </svg>
+      <figure className="npsmap">
+        <div className="npsmap__frame">
+          <ResponsiveImage image="img/nps-yosemite-park-map.jpg" alt="The National Park Service's official map of Yosemite National Park." sizes="(max-width: 760px) 100vw, 720px" />
+          <svg viewBox="0 0 1920 1970" role="img" aria-label={summary}>
+            {CONDITIONS_MAP_PINS.map((pt, i) => (
+              <g key={CONDITIONS_FORECASTS[i].label}>
+                <circle className={`npsmap__pin ${CONDITIONS_FORECASTS[i].elevationFt >= 6000 ? "npsmap__pin--rust" : "npsmap__pin--ink"}`} cx={pt.x} cy={pt.y} r="38" strokeWidth="8" />
+                <text className="npsmap__num" x={pt.x} y={pt.y + 16} textAnchor="middle" style={{ fontSize: 44 }}>{i + 1}</text>
+              </g>
+            ))}
+            <path className="npsmap__pin npsmap__pin--ink" d={`M ${CONDITIONS_MAP_PASS.x} ${CONDITIONS_MAP_PASS.y - 40} L ${CONDITIONS_MAP_PASS.x + 40} ${CONDITIONS_MAP_PASS.y + 30} L ${CONDITIONS_MAP_PASS.x - 40} ${CONDITIONS_MAP_PASS.y + 30} Z`} strokeWidth="8" strokeLinejoin="round" />
+          </svg>
+        </div>
+        <figcaption>
+          {CONDITIONS_FORECASTS.map((f, i) => (
+            <span key={f.label}><b>{i + 1}</b> {f.label}, {f.elevationFt.toLocaleString("en-US")} ft</span>
+          ))}
+          <span>▲ Tioga Pass, {CONDITIONS_TIOGA_FT.toLocaleString("en-US")} ft, the top of the road. Tuolumne Meadows sits {riseFt.toLocaleString("en-US")} ft above the Wawona and Valley stations. Map: National Park Service (public domain).</span>
+        </figcaption>
+      </figure>
 
       <div className="elev__cards">
         {CONDITIONS_FORECASTS.map((f, i) => {
