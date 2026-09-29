@@ -635,13 +635,49 @@ var SEASON_ANSWERS = {
   "season-summer": "Highway 120 is the strongest base.",
   "season-fall": "The season worth booking."
 };
+var STAY_MAP_W = 1760;
+var STAY_MAP_H = 1410;
+var STAY_MAP_VALLEY = [690, 647];
 var STAY_MAP_TOWNS = {
-  "el-portal": [235, 305],
-  "mariposa": [110, 360],
-  "groveland": [90, 150],
-  "fish-camp": [320, 445],
-  "oakhurst": [300, 495],
-  "lee-vining": [575, 112]
+  "el-portal": {
+    at: [283, 858],
+    side: "t",
+    name: "El Portal",
+    note: "25 to 35 min"
+  },
+  "mariposa": {
+    at: [16, 905],
+    side: "r",
+    name: "Mariposa",
+    note: "45 to 60 min",
+    off: "Highway 140, off the map"
+  },
+  "groveland": {
+    at: [16, 470],
+    side: "r",
+    name: "Groveland",
+    note: "65 to 80 min",
+    off: "Highway 120, off the map"
+  },
+  "fish-camp": {
+    at: [563, 1335],
+    side: "l",
+    name: "Fish Camp",
+    note: "2 miles to the South Entrance"
+  },
+  "oakhurst": {
+    at: [575, 1392],
+    side: "u",
+    name: "Oakhurst",
+    note: "75 to 90 min",
+    off: "Highway 41, off the map"
+  },
+  "lee-vining": {
+    at: [1648, 95],
+    side: "l",
+    name: "Lee Vining",
+    note: "90 min minimum"
+  }
 };
 var STAY_SCALE_MAX = 120;
 var Arrow = () => React.createElement("span", {
@@ -954,213 +990,37 @@ function StayTopPicks() {
     index: i
   }))));
 }
-function RoadSchematic({
+function RoadMap({
   match
 }) {
+  var pos = ([x, y]) => ({
+    left: x / STAY_MAP_W * 100 + "%",
+    top: y / STAY_MAP_H * 100 + "%"
+  });
+  var lit = match || [];
   return React.createElement("figure", {
     className: "stay-map"
-  }, React.createElement("svg", {
-    viewBox: "0 0 640 530",
-    role: "img",
-    "aria-label": "Schematic of the four roads into Yosemite and the towns on each, with drive times to Yosemite Valley"
-  }, React.createElement("path", {
-    className: "stay-map__park",
-    d: "M200,185 C210,100 300,50 400,70 C470,80 515,95 530,128 C565,200 520,300 450,360 C400,410 360,430 322,425 C290,420 270,350 262,296 C250,250 205,230 200,185 Z"
-  }), React.createElement("text", {
-    className: "stay-map__parkname",
-    x: "392",
-    y: "222"
-  }, "YOSEMITE NATIONAL PARK"), React.createElement("path", {
-    className: "stay-map__minor",
-    d: "M200,185 Q215,140 268,112"
-  }), React.createElement("path", {
-    className: "stay-map__road stay-map__road--seasonal",
-    d: "M250,212 Q340,150 470,150 L530,128 L575,112"
-  }), React.createElement("path", {
-    className: "stay-map__road",
-    d: "M330,270 Q290,250 250,212 L200,185 Q140,160 90,150"
-  }), React.createElement("path", {
-    className: "stay-map__road",
-    d: "M330,270 L262,296 L235,305 Q170,320 110,360"
-  }), React.createElement("path", {
-    className: "stay-map__road",
-    d: "M330,270 Q350,330 325,385 L322,425 L320,445 L300,495"
-  }), React.createElement("g", {
-    className: "stay-map__gate"
-  }, React.createElement("rect", {
-    x: "195",
-    y: "180",
-    width: "10",
-    height: "10"
-  }), React.createElement("rect", {
-    x: "257",
-    y: "291",
-    width: "10",
-    height: "10"
-  }), React.createElement("rect", {
-    x: "317",
-    y: "420",
-    width: "10",
-    height: "10"
-  }), React.createElement("rect", {
-    x: "525",
-    y: "123",
-    width: "10",
-    height: "10"
-  })), React.createElement("g", {
-    className: "stay-map__place"
-  }, React.createElement("circle", {
-    cx: "268",
-    cy: "112",
-    r: "4"
-  }), React.createElement("circle", {
-    cx: "470",
-    cy: "150",
-    r: "4"
-  }), React.createElement("circle", {
-    cx: "325",
-    cy: "385",
-    r: "4"
-  }), React.createElement("circle", {
-    cx: "330",
-    cy: "270",
-    r: "9"
-  })), React.createElement("circle", {
-    className: "stay-map__ring",
-    cx: "330",
-    cy: "270",
-    r: "14"
-  }), (match || []).map(id => STAY_MAP_TOWNS[id] && React.createElement("circle", {
-    key: id,
-    className: "stay-map__pick",
-    cx: STAY_MAP_TOWNS[id][0],
-    cy: STAY_MAP_TOWNS[id][1],
-    r: "16"
-  })), React.createElement("g", {
-    className: "stay-map__town"
-  }, Object.keys(STAY_MAP_TOWNS).map(id => React.createElement("circle", {
-    key: id,
-    cx: STAY_MAP_TOWNS[id][0],
-    cy: STAY_MAP_TOWNS[id][1],
-    r: "7"
-  }))), React.createElement("g", {
-    className: "stay-map__label"
-  }, React.createElement("text", {
+  }, React.createElement("div", {
+    className: "stay-map__frame"
+  }, React.createElement(ResponsiveImage, {
+    image: "img/nps-yosemite-stay-map.jpg",
+    alt: "The official National Park Service map of Yosemite, cropped from Hetch Hetchy south to the Mariposa Grove, marking the six gateway towns and Yosemite Valley",
+    sizes: "(max-width: 900px) 100vw, 620px",
+    className: "stay-map__img"
+  }), React.createElement("div", {
+    className: "stay-map__layer",
+    "aria-hidden": "true"
+  }, React.createElement("span", {
     className: "stay-map__valley",
-    x: "352",
-    y: "266"
-  }, "YOSEMITE VALLEY"), React.createElement("text", {
-    className: "stay-map__note",
-    x: "352",
-    y: "282"
-  }, "every drive time is to here"), React.createElement("text", {
-    className: "stay-map__note",
-    x: "280",
-    y: "100"
-  }, "Hetch Hetchy"), React.createElement("text", {
-    className: "stay-map__note",
-    x: "470",
-    y: "172",
-    textAnchor: "middle"
-  }, "Tuolumne Meadows"), React.createElement("text", {
-    className: "stay-map__note",
-    x: "340",
-    y: "389"
-  }, "Wawona · Mariposa Grove"), React.createElement("text", {
-    className: "stay-map__name",
-    x: "222",
-    y: "284",
-    textAnchor: "end"
-  }, "El Portal"), React.createElement("text", {
-    className: "stay-map__note",
-    x: "222",
-    y: "298",
-    textAnchor: "end"
-  }, "25 to 35 min"), React.createElement("text", {
-    className: "stay-map__name",
-    x: "110",
-    y: "388",
-    textAnchor: "middle"
-  }, "Mariposa"), React.createElement("text", {
-    className: "stay-map__note",
-    x: "110",
-    y: "404",
-    textAnchor: "middle"
-  }, "45 to 60 min"), React.createElement("text", {
-    className: "stay-map__name",
-    x: "90",
-    y: "122",
-    textAnchor: "middle"
-  }, "Groveland"), React.createElement("text", {
-    className: "stay-map__note",
-    x: "90",
-    y: "138",
-    textAnchor: "middle"
-  }, "65 to 80 min"), React.createElement("text", {
-    className: "stay-map__name",
-    x: "338",
-    y: "449"
-  }, "Fish Camp"), React.createElement("text", {
-    className: "stay-map__note",
-    x: "338",
-    y: "465"
-  }, "2 miles to the South Entrance"), React.createElement("text", {
-    className: "stay-map__name",
-    x: "318",
-    y: "499"
-  }, "Oakhurst"), React.createElement("text", {
-    className: "stay-map__note",
-    x: "318",
-    y: "515"
-  }, "75 to 90 min"), React.createElement("text", {
-    className: "stay-map__name",
-    x: "622",
-    y: "86",
-    textAnchor: "end"
-  }, "Lee Vining"), React.createElement("text", {
-    className: "stay-map__note",
-    x: "622",
-    y: "100",
-    textAnchor: "end"
-  }, "90 min minimum")), React.createElement("g", {
-    className: "stay-map__shield"
-  }, React.createElement("rect", {
-    x: "152",
-    y: "318",
-    width: "34",
-    height: "18"
-  }), React.createElement("text", {
-    x: "169",
-    y: "331",
-    textAnchor: "middle"
-  }, "140"), React.createElement("rect", {
-    x: "128",
-    y: "146",
-    width: "34",
-    height: "18"
-  }), React.createElement("text", {
-    x: "145",
-    y: "159",
-    textAnchor: "middle"
-  }, "120"), React.createElement("rect", {
-    x: "330",
-    y: "330",
-    width: "28",
-    height: "18"
-  }), React.createElement("text", {
-    x: "344",
-    y: "343",
-    textAnchor: "middle"
-  }, "41"), React.createElement("rect", {
-    x: "350",
-    y: "138",
-    width: "92",
-    height: "18"
-  }), React.createElement("text", {
-    x: "396",
-    y: "151",
-    textAnchor: "middle"
-  }, "TIOGA · SEASONAL"))), React.createElement("figcaption", null, "A schematic, not a map to scale. Filled dots are the gateway towns, squares are the four entrance stations, and the dashed road closes for winter. The ring follows your answer."));
+    style: pos(STAY_MAP_VALLEY)
+  }, React.createElement("i", null), React.createElement("b", null, "Yosemite Valley"), React.createElement("small", null, "every drive time is to here")), Object.keys(STAY_MAP_TOWNS).map(id => {
+    var t = STAY_MAP_TOWNS[id];
+    return React.createElement("span", {
+      key: id,
+      className: "stay-map__town stay-map__town--" + t.side + " stay-map__town--" + id + (lit.indexOf(id) >= 0 ? " is-lit" : ""),
+      style: pos(t.at)
+    }, React.createElement("i", null), React.createElement("b", null, t.name), React.createElement("small", null, t.off ? t.off : t.note));
+  }))), React.createElement("figcaption", null, "Map: National Park Service (public domain), cropped. Dots are the gateway towns and the ring follows your answer. Three towns lie beyond the map's edge, on the highway that leaves it."));
 }
 function StayCompareTable({
   match
@@ -1298,7 +1158,7 @@ function StayPicker() {
     onClick: () => setPicked(p.id)
   }, p.label))), React.createElement("div", {
     className: "stay-decide"
-  }, React.createElement(RoadSchematic, {
+  }, React.createElement(RoadMap, {
     match: sel.match
   }), React.createElement("div", {
     className: "stay-plate stay-picker__result",
