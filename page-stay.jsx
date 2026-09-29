@@ -698,14 +698,25 @@ const SEASON_ANSWERS = {
   "season-fall": "The season worth booking.",
 };
 
-// Where each GATEWAYS town sits on the road schematic, for the picker's ring.
-const STAY_MAP_TOWNS = {
-  "el-portal": [235, 305],
-  "mariposa": [110, 360],
-  "groveland": [90, 150],
-  "fish-camp": [320, 445],
-  "oakhurst": [300, 495],
-  "lee-vining": [575, 112],
+// The four entrance stations on the National Park Service's park map, in the
+// pixel space of img/nps-yosemite-park-map.jpg (1920 x 1970), and the entrance
+// each GATEWAYS town's road reaches. The map draws only El Portal, Fish Camp
+// and Lee Vining; Mariposa, Groveland and Oakhurst lie further down the same
+// highways, off its edge, so the map marks the road's entrance and the table
+// carries the town.
+const STAY_MAP_ENTRANCES = [
+  { id: "bigoak", n: "1", x: 72, y: 1062, label: "Big Oak Flat Entrance", road: "Highway 120 west", towns: "Groveland" },
+  { id: "arch", n: "2", x: 362, y: 1382, label: "Arch Rock Entrance", road: "Highway 140", towns: "El Portal, Mariposa" },
+  { id: "south", n: "3", x: 581, y: 1870, label: "South Entrance", road: "Highway 41", towns: "Fish Camp, Oakhurst" },
+  { id: "tioga", n: "4", x: 1395, y: 752, label: "Tioga Pass Entrance", road: "US 395 and Highway 120 east, seasonal", towns: "Lee Vining" },
+];
+const STAY_MAP_ENTRANCE_OF = {
+  "el-portal": "arch",
+  "mariposa": "arch",
+  "groveland": "bigoak",
+  "fish-camp": "south",
+  "oakhurst": "south",
+  "lee-vining": "tioga",
 };
 
 // The comparison table's scale, in minutes to the Valley.
@@ -985,68 +996,35 @@ function StayTopPicks() {
 }
 
 // ---------------------------------------------------------------------------
-// Find your base: the picker, the road schematic and the comparison table
+// Find your base: the picker, the road map and the comparison table
 // ---------------------------------------------------------------------------
 
-// A schematic of the four roads, not a map to scale. Geometry only: every
-// colour comes from styles.css (`.stay-map__*`). Drive times are the GATEWAYS
-// values, shortened. `match` rings the towns the picker's answer lights.
-function RoadSchematic({ match }) {
+// The four roads into the park, on the National Park Service's own map (the
+// whole map, img/nps-yosemite-park-map.jpg, so the overlay shares its pixel
+// space). One numbered pin per entrance station, and a ring on the entrances
+// the picker's answer lights. Drive times live in the table below, not here:
+// the map's job is which road goes where. `match` is a list of GATEWAYS ids.
+function RoadMap({ match }) {
+  const lit = new Set((match || []).map((id) => STAY_MAP_ENTRANCE_OF[id]).filter(Boolean));
   return (
-    <figure className="stay-map">
-      <svg viewBox="0 0 640 530" role="img" aria-label="Schematic of the four roads into Yosemite and the towns on each, with drive times to Yosemite Valley">
-        <path className="stay-map__park" d="M200,185 C210,100 300,50 400,70 C470,80 515,95 530,128 C565,200 520,300 450,360 C400,410 360,430 322,425 C290,420 270,350 262,296 C250,250 205,230 200,185 Z" />
-        <text className="stay-map__parkname" x="392" y="222">YOSEMITE NATIONAL PARK</text>
-        <path className="stay-map__minor" d="M200,185 Q215,140 268,112" />
-        <path className="stay-map__road stay-map__road--seasonal" d="M250,212 Q340,150 470,150 L530,128 L575,112" />
-        <path className="stay-map__road" d="M330,270 Q290,250 250,212 L200,185 Q140,160 90,150" />
-        <path className="stay-map__road" d="M330,270 L262,296 L235,305 Q170,320 110,360" />
-        <path className="stay-map__road" d="M330,270 Q350,330 325,385 L322,425 L320,445 L300,495" />
-        <g className="stay-map__gate">
-          <rect x="195" y="180" width="10" height="10" /><rect x="257" y="291" width="10" height="10" />
-          <rect x="317" y="420" width="10" height="10" /><rect x="525" y="123" width="10" height="10" />
-        </g>
-        <g className="stay-map__place">
-          <circle cx="268" cy="112" r="4" /><circle cx="470" cy="150" r="4" /><circle cx="325" cy="385" r="4" />
-          <circle cx="330" cy="270" r="9" />
-        </g>
-        <circle className="stay-map__ring" cx="330" cy="270" r="14" />
-        {(match || []).map((id) => STAY_MAP_TOWNS[id] && (
-          <circle key={id} className="stay-map__pick" cx={STAY_MAP_TOWNS[id][0]} cy={STAY_MAP_TOWNS[id][1]} r="16" />
-        ))}
-        <g className="stay-map__town">
-          {Object.keys(STAY_MAP_TOWNS).map((id) => <circle key={id} cx={STAY_MAP_TOWNS[id][0]} cy={STAY_MAP_TOWNS[id][1]} r="7" />)}
-        </g>
-        <g className="stay-map__label">
-          <text className="stay-map__valley" x="352" y="266">YOSEMITE VALLEY</text>
-          <text className="stay-map__note" x="352" y="282">every drive time is to here</text>
-          <text className="stay-map__note" x="280" y="100">Hetch Hetchy</text>
-          <text className="stay-map__note" x="470" y="172" textAnchor="middle">Tuolumne Meadows</text>
-          <text className="stay-map__note" x="340" y="389">Wawona · Mariposa Grove</text>
-          <text className="stay-map__name" x="222" y="284" textAnchor="end">El Portal</text>
-          <text className="stay-map__note" x="222" y="298" textAnchor="end">25 to 35 min</text>
-          <text className="stay-map__name" x="110" y="388" textAnchor="middle">Mariposa</text>
-          <text className="stay-map__note" x="110" y="404" textAnchor="middle">45 to 60 min</text>
-          <text className="stay-map__name" x="90" y="122" textAnchor="middle">Groveland</text>
-          <text className="stay-map__note" x="90" y="138" textAnchor="middle">65 to 80 min</text>
-          <text className="stay-map__name" x="338" y="449">Fish Camp</text>
-          <text className="stay-map__note" x="338" y="465">2 miles to the South Entrance</text>
-          <text className="stay-map__name" x="318" y="499">Oakhurst</text>
-          <text className="stay-map__note" x="318" y="515">75 to 90 min</text>
-          <text className="stay-map__name" x="622" y="86" textAnchor="end">Lee Vining</text>
-          <text className="stay-map__note" x="622" y="100" textAnchor="end">90 min minimum</text>
-        </g>
-        <g className="stay-map__shield">
-          <rect x="152" y="318" width="34" height="18" /><text x="169" y="331" textAnchor="middle">140</text>
-          <rect x="128" y="146" width="34" height="18" /><text x="145" y="159" textAnchor="middle">120</text>
-          <rect x="330" y="330" width="28" height="18" /><text x="344" y="343" textAnchor="middle">41</text>
-          <rect x="350" y="138" width="92" height="18" /><text x="396" y="151" textAnchor="middle">TIOGA · SEASONAL</text>
-        </g>
-      </svg>
+    <figure className="stay-map npsmap">
+      <div className="npsmap__frame">
+        <ResponsiveImage image="img/nps-yosemite-park-map.jpg" alt="The National Park Service's official map of Yosemite National Park, with the four entrance stations marked: Big Oak Flat and Arch Rock on the west side, South Entrance at the bottom, and Tioga Pass Entrance on the east." sizes="(max-width: 760px) 100vw, 520px" />
+        <svg viewBox="0 0 1920 1970" role="img" aria-label="Numbered pins on the four entrance stations: 1 Big Oak Flat, Highway 120 west; 2 Arch Rock, Highway 140; 3 South Entrance, Highway 41; 4 Tioga Pass Entrance, from US 395, seasonal.">
+          {STAY_MAP_ENTRANCES.map((e) => (
+            <g key={e.id}>
+              {lit.has(e.id) && <circle className="stay-map__pick" cx={e.x} cy={e.y} r="62" />}
+              <circle className="npsmap__pin npsmap__pin--ink" cx={e.x} cy={e.y} r="38" strokeWidth="8" />
+              <text className="npsmap__num" x={e.x} y={e.y + 16} textAnchor="middle" style={{ fontSize: 44 }}>{e.n}</text>
+            </g>
+          ))}
+        </svg>
+      </div>
       <figcaption>
-        A schematic, not a map to scale. Filled dots are the gateway towns,
-        squares are the four entrance stations, and the dashed road closes for
-        winter. The ring follows your answer.
+        {STAY_MAP_ENTRANCES.map((e) => (
+          <span key={e.id} className={lit.has(e.id) ? "is-lit" : undefined}><b>{e.n}</b> {e.label}: {e.road} ({e.towns})</span>
+        ))}
+        <span>The ring follows your answer. Mariposa, Groveland and Oakhurst lie farther down their highways, off the edge of the map. Map: National Park Service (public domain).</span>
       </figcaption>
     </figure>
   );
@@ -1155,7 +1133,7 @@ function StayPicker() {
           ))}
         </div>
         <div className="stay-decide">
-          <RoadSchematic match={sel.match} />
+          <RoadMap match={sel.match} />
           <div className="stay-plate stay-picker__result" aria-live="polite">
             <div className="stay-picker__top">
               <span className="stay-plate__eyebrow">Your base</span>

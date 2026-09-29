@@ -49,306 +49,86 @@ function TownFacts({
     key: k
   }, React.createElement("dt", null, k), React.createElement("dd", null, v))));
 }
-var MAP_ROADS = [{
-  d: "M138 478 C152 462 164 450 175 436 C200 398 232 356 258 329 C268 325 276 323 284 322 C306 317 330 305 346 288"
-}, {
-  d: "M18 238 C30 236 40 234 52 233 C95 231 130 260 160 252 C185 246 200 250 217 256 C228 264 240 274 250 282 C275 295 305 297 335 292"
-}, {
-  d: "M320 560 L320 530 C322 502 326 470 328 448 C328 440 328 432 328 426 C325 419 320 413 317 407 C312 385 320 365 325 350 C332 328 336 310 341 293"
-}, {
-  d: "M250 282 C300 258 360 240 400 228 C425 220 445 216 457 213 C475 207 490 200 500 192 C520 180 545 170 564 164",
-  seasonal: true
-}, {
-  d: "M585 60 C578 95 570 130 564 164 C558 205 552 250 548 295"
-}, {
-  d: "M217 256 C225 225 240 195 256 171",
-  minor: true
-}];
-var MAP_TOWN_POINTS = [{
-  key: "el-portal",
-  x: 258,
-  y: 329,
-  lx: 247,
-  ly: 352,
-  anchor: "end"
-}, {
-  key: "mariposa",
-  x: 175,
-  y: 436,
-  lx: 175,
-  ly: 456,
-  anchor: "middle"
-}, {
-  key: "oakhurst",
-  x: 320,
-  y: 530,
-  lx: 332,
-  ly: 535,
-  anchor: "start"
-}, {
-  key: "groveland",
-  x: 52,
-  y: 233,
-  lx: 52,
-  ly: 214,
-  anchor: "middle"
-}, {
-  key: "lee-vining",
-  x: 564,
-  y: 164,
-  lx: 564,
-  ly: 146,
-  anchor: "middle"
-}];
 var MAP_ENTRANCES = [{
-  name: "Arch Rock",
-  x: 284,
-  y: 322,
-  lx: 294,
-  ly: 337,
-  anchor: "start"
+  n: "1",
+  x: 362,
+  y: 1382,
+  name: "Arch Rock Entrance",
+  road: "Highway 140",
+  towns: ["el-portal", "mariposa"]
 }, {
-  name: "Big Oak Flat",
-  x: 217,
-  y: 256,
-  lx: 209,
-  ly: 250,
-  anchor: "end"
+  n: "2",
+  x: 581,
+  y: 1870,
+  name: "South Entrance",
+  road: "Highway 41",
+  towns: ["oakhurst"]
 }, {
-  name: "South",
-  x: 328,
-  y: 426,
-  lx: 321,
-  ly: 442,
-  anchor: "end"
+  n: "3",
+  x: 72,
+  y: 1062,
+  name: "Big Oak Flat Entrance",
+  road: "Highway 120 west",
+  towns: ["groveland"]
 }, {
-  name: "Tioga Pass",
-  x: 500,
-  y: 192,
-  lx: 507,
-  ly: 184,
-  anchor: "start"
-}];
-var MAP_POIS = [{
-  name: "Yosemite Valley",
-  x: 346,
-  y: 288,
-  lx: 358,
-  ly: 293,
-  anchor: "start",
-  big: true
-}, {
-  name: "Tuolumne Meadows",
-  x: 457,
-  y: 213,
-  lx: 457,
-  ly: 200,
-  anchor: "middle"
-}, {
-  name: "Wawona",
-  x: 317,
-  y: 407,
-  lx: 308,
-  ly: 404,
-  anchor: "end"
-}, {
-  name: "Mariposa Grove",
-  x: 345,
-  y: 422,
-  lx: 354,
-  ly: 419,
-  anchor: "start"
-}, {
-  name: "Hetch Hetchy",
-  x: 256,
-  y: 171,
-  lx: 264,
-  ly: 167,
-  anchor: "start"
-}];
-var MAP_ROAD_LABELS = [{
-  t: "140",
-  x: 212,
-  y: 391
-}, {
-  t: "120",
-  x: 120,
-  y: 250
-}, {
-  t: "41",
-  x: 325,
-  y: 489
-}, {
-  t: "395",
-  x: 552,
-  y: 262
-}];
-var MAP_HINTS = [{
-  t: "to Merced",
-  x: 126,
-  y: 494,
-  anchor: "middle"
-}, {
-  t: "to the Bay Area",
-  x: 22,
-  y: 256,
-  anchor: "start"
-}, {
-  t: "to Fresno",
-  x: 320,
-  y: 574,
-  anchor: "middle"
-}, {
-  t: "to Reno",
-  x: 585,
-  y: 48,
-  anchor: "middle"
-}, {
-  t: "to Mammoth",
-  x: 548,
-  y: 310,
-  anchor: "middle"
+  n: "4",
+  x: 1395,
+  y: 752,
+  name: "Tioga Pass Entrance",
+  road: "US 395 and Highway 120 east, closed in winter",
+  towns: ["lee-vining"]
 }];
 function GatewayMap() {
+  var W = 1920,
+    H = 1970;
+  var srcs = ext => [800, 1200, 1600].map(w => "/img/responsive/nps-yosemite-park-map-" + w + "." + ext + " " + w + "w").join(", ");
   return React.createElement("figure", {
-    className: "gwmap"
+    className: "npsmap gwmap"
   }, React.createElement("div", {
-    className: "gwmap__scroll"
-  }, React.createElement("svg", {
-    className: "gwmap__svg",
-    viewBox: "0 0 640 584",
-    xmlns: "http://www.w3.org/2000/svg"
-  }, React.createElement("path", {
-    className: "gwmap__park",
-    d: "M212 303 L208 169 L274 82 L366 29 L458 70 L500 151 L500 192 L518 279 L490 372 L426 425 L329 436 L297 407 L288 355 L272 326 Z"
-  }), React.createElement("text", {
-    className: "gwmap__parkname",
-    x: "366",
-    y: "106",
-    textAnchor: "middle"
-  }, "YOSEMITE"), React.createElement("text", {
-    className: "gwmap__parkname",
-    x: "366",
-    y: "122",
-    textAnchor: "middle"
-  }, "NATIONAL PARK"), MAP_ROADS.map((r, i) => React.createElement("path", {
-    key: i,
-    className: "gwmap__road" + (r.seasonal ? " gwmap__road--seasonal" : "") + (r.minor ? " gwmap__road--minor" : ""),
-    d: r.d
-  })), React.createElement("text", {
-    className: "gwmap__roadname",
-    x: "385",
-    y: "218",
-    textAnchor: "middle"
-  }, "Tioga Road"), React.createElement("ellipse", {
-    className: "gwmap__lake",
-    cx: "612",
-    cy: "132",
-    rx: "24",
-    ry: "19"
-  }), React.createElement("text", {
-    className: "gwmap__hint",
-    x: "612",
-    y: "164",
-    textAnchor: "middle"
-  }, "Mono Lake"), MAP_ROAD_LABELS.map(l => React.createElement("text", {
-    key: l.t + l.x,
-    className: "gwmap__roadnum",
-    x: l.x,
-    y: l.y,
-    textAnchor: "middle"
-  }, l.t)), MAP_HINTS.map(l => React.createElement("text", {
-    key: l.t,
-    className: "gwmap__hint",
-    x: l.x,
-    y: l.y,
-    textAnchor: l.anchor
-  }, l.t)), MAP_POIS.map(p => React.createElement("g", {
-    key: p.name
+    className: "npsmap__frame"
+  }, React.createElement("picture", null, React.createElement("source", {
+    type: "image/avif",
+    srcSet: srcs("avif"),
+    sizes: "(max-width: 760px) 100vw, 680px"
+  }), React.createElement("source", {
+    type: "image/webp",
+    srcSet: srcs("webp"),
+    sizes: "(max-width: 760px) 100vw, 680px"
+  }), React.createElement("img", {
+    src: "/img/responsive/nps-yosemite-park-map-1200.jpg",
+    srcSet: srcs("jpg"),
+    sizes: "(max-width: 760px) 100vw, 680px",
+    width: W,
+    height: H,
+    loading: "lazy",
+    decoding: "async",
+    alt: "The National Park Service's official map of Yosemite National Park, with the four entrance stations the five gateway towns serve marked: Arch Rock, South, Big Oak Flat and Tioga Pass."
+  })), React.createElement("svg", {
+    viewBox: `0 0 ${W} ${H}`,
+    "aria-hidden": "true",
+    focusable: "false"
+  }, MAP_ENTRANCES.map(e => React.createElement("a", {
+    key: e.n,
+    href: GATEWAY_TOWNS[e.towns[0]].href,
+    className: "npsmap__town",
+    "aria-label": e.name + ", jump to " + GATEWAY_TOWNS[e.towns[0]].name
   }, React.createElement("circle", {
-    className: "gwmap__poi" + (p.big ? " gwmap__poi--big" : ""),
-    cx: p.x,
-    cy: p.y,
-    r: p.big ? 4.5 : 3.5
+    cx: e.x,
+    cy: e.y,
+    r: "40"
   }), React.createElement("text", {
-    className: "gwmap__poilbl" + (p.big ? " gwmap__poilbl--big" : ""),
-    x: p.lx,
-    y: p.ly,
-    textAnchor: p.anchor
-  }, p.name))), MAP_ENTRANCES.map(e => React.createElement("g", {
-    key: e.name
-  }, React.createElement("rect", {
-    className: "gwmap__entr",
-    x: e.x - 4,
-    y: e.y - 4,
-    width: "8",
-    height: "8"
-  }), React.createElement("text", {
-    className: "gwmap__entrlbl",
-    x: e.lx,
-    y: e.ly,
-    textAnchor: e.anchor
-  }, e.name))), MAP_TOWN_POINTS.map(t => {
-    var town = GATEWAY_TOWNS[t.key];
-    return React.createElement("a", {
-      key: t.key,
-      href: town.href,
-      className: "gwmap__town",
-      "aria-label": town.name + ", jump to its section"
-    }, React.createElement("title", null, "Jump to the " + town.name + " section"), React.createElement("circle", {
-      className: "gwmap__townhit",
-      cx: t.x,
-      cy: t.y,
-      r: "15"
-    }), React.createElement("circle", {
-      className: "gwmap__towndot",
-      cx: t.x,
-      cy: t.y,
-      r: "5.5"
-    }), React.createElement("text", {
-      className: "gwmap__townlbl",
-      x: t.lx,
-      y: t.ly,
-      textAnchor: t.anchor
-    }, town.name));
-  }), React.createElement("g", {
-    className: "gwmap__compass"
-  }, React.createElement("line", {
-    x1: "28",
-    y1: "66",
-    x2: "28",
-    y2: "46"
-  }), React.createElement("path", {
-    d: "M23 50 L28 38 L33 50 Z"
-  })), React.createElement("g", {
-    className: "gwmap__legend"
-  }, React.createElement("circle", {
-    className: "gwmap__towndot",
-    cx: "22",
-    cy: "514",
-    r: "5"
-  }), React.createElement("text", {
-    x: "34",
-    y: "518"
-  }, "Gateway town, tap to jump"), React.createElement("rect", {
-    className: "gwmap__entr",
-    x: "18",
-    y: "530",
-    width: "8",
-    height: "8"
-  }), React.createElement("text", {
-    x: "34",
-    y: "538"
-  }, "Park entrance"), React.createElement("line", {
-    className: "gwmap__road gwmap__road--seasonal",
-    x1: "16",
-    y1: "554",
-    x2: "30",
-    y2: "554"
-  }), React.createElement("text", {
-    x: "34",
-    y: "558"
-  }, "Closed in winter")))), React.createElement("figcaption", null, "The five gateways, the entrances they serve, and the roads that decide everything. Distances are roughly to scale. Tap a town to jump to its section."));
+    x: e.x,
+    y: e.y + 16,
+    style: {
+      fontSize: 46
+    }
+  }, e.n))))), React.createElement("figcaption", null, MAP_ENTRANCES.map(e => React.createElement("span", {
+    key: e.n
+  }, React.createElement("b", null, e.n), React.createElement("span", null, e.name, ", ", e.road, ": ", e.towns.map((k, i) => React.createElement(React.Fragment, {
+    key: k
+  }, i ? ", " : "", React.createElement("a", {
+    href: GATEWAY_TOWNS[k].href
+  }, GATEWAY_TOWNS[k].name)))))), React.createElement("span", null, "Mariposa, Groveland and Oakhurst lie farther down their highways, off the edge of the map. Tap a pin or a town to jump to its section. Map: National Park Service (public domain).")));
 }
 var PICK_TRIP = [{
   key: "valley",

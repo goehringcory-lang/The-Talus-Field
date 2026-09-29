@@ -749,20 +749,14 @@ function navGroupOf(current) {
 }
 
 // The Plan a trip panel's third track: the trip map, the tool most planning
-// pages end in. The drawing is a schematic of a route between pins, not a
-// map of anywhere.
+// pages end in. The picture is a strip of the National Park Service's own
+// Valley map (img/nps-yosemite-valley-map.jpg), not a drawing of anywhere.
 function NavMapFeature({ link }) {
-  const pins = [[30, 78], [74, 58], [120, 68], [164, 36], [206, 48]];
   return (
     <div className="hp-navfeat hp-navfeat--map">
       <p className="hp-menu__heading">The trip map</p>
-      <svg className="hp-navfeat__art" viewBox="0 0 236 104" aria-hidden="true" focusable="false">
-        <path className="hp-navfeat__contour" d="M-6 80 C 30 64, 58 88, 96 70 S 170 30, 246 44" />
-        <path className="hp-navfeat__contour" d="M-6 54 C 26 40, 64 60, 104 44 S 176 12, 246 22" />
-        <path className="hp-navfeat__contour" d="M-6 100 C 40 88, 80 106, 128 92 S 196 66, 246 74" />
-        <path className="hp-navfeat__route" d="M30 78 L 74 58 L 120 68 L 164 36 L 206 48" />
-        {pins.map(([x, y]) => <circle key={x} className="hp-navfeat__pin" cx={x} cy={y} r="5" />)}
-      </svg>
+      <img className="hp-navfeat__art" src="/img/responsive/nps-yosemite-valley-map-800.jpg" width="236" height="104" loading="lazy" decoding="async"
+        alt="A strip of the National Park Service map of Yosemite Valley" />
       <p className="hp-navfeat__text">Every pin in the park, assembled into a route you can share or open in the Field Guide.</p>
       {link({ key: "map", label: "Open the map ↗" }, "hp-link")}
     </div>
