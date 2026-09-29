@@ -19,6 +19,14 @@ export type ChangelogEntryT = z.infer<typeof ChangelogEntry>
 
 const seed: ChangelogEntryT[] = [
   {
+    date: '2026-09-28',
+    lines: [
+      'The front page opens on Yosemite right now: the weather, the light (a sun over the horizon, with sunrise, sunset and when the alpenglow begins) and the wait at each entrance, all on one card.',
+      'Your trip is one row per day, the four regions are photo cards, and the Secret Guide has a plate of its own with its five sections a tap away.',
+      'New colours throughout: cream paper, deep green ink and one rust accent, with a green-black dark mode.',
+    ],
+  },
+  {
     date: '2026-09-27',
     lines: [
       'The map draws every verified day hike on the terrain, coloured by difficulty; tap one for its elevation profile. The search box over the map finds any stop, trail, lot, place to eat or program by name, offline.',

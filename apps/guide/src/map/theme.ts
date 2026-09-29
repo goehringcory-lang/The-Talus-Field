@@ -117,9 +117,9 @@ const FILLS: Record<Scheme, {
     glacier: '#3b3e3d',
     water: '#1f3a48',
     road: '#4a4133',
-    roadCasing: '#1c1812',
+    roadCasing: '#141d19',
     highway: '#6b5431',
-    highwayCasing: '#1c1812',
+    highwayCasing: '#141d19',
     minor: '#3a3328',
     path: '#7f7058',
     building: '#3a3226',
@@ -128,10 +128,10 @@ const FILLS: Record<Scheme, {
 
 export function buildTheme(scheme: Scheme = resolvedScheme()): MapTheme {
   const f = FILLS[scheme]
-  const paper = token('--paper', scheme === 'granite' ? '#1c1812' : '#f1ead6')
-  const ink = token('--ink', scheme === 'granite' ? '#f0e8d8' : '#14110c')
-  const ink3 = token('--ink-3', scheme === 'granite' ? '#b8a88a' : '#50402e')
-  const accent = token('--rust', scheme === 'granite' ? '#d87040' : '#7a2a10')
+  const paper = token('--paper', scheme === 'granite' ? '#141d19' : '#f8f5ed')
+  const ink = token('--ink', scheme === 'granite' ? '#f1ead6' : '#233e35')
+  const ink3 = token('--ink-3', scheme === 'granite' ? '#9fb0a4' : '#5d6a61')
+  const accent = token('--rust', scheme === 'granite' ? '#e2825c' : '#a4462c')
   const base = namedFlavor(scheme === 'granite' ? 'dark' : 'light')
 
   const flavor: Flavor = {
@@ -212,7 +212,7 @@ export function buildTheme(scheme: Scheme = resolvedScheme()): MapTheme {
 
 /** The day palette (tokens.css --day-1 to --day-7), in day order. */
 export function dayColors(): string[] {
-  const fallback = ['#0072b2', '#d55e00', '#009e73', '#cc79a7', '#e69f00', '#56b4e9', '#14110c']
+  const fallback = ['#0072b2', '#d55e00', '#009e73', '#cc79a7', '#e69f00', '#56b4e9', '#233e35']
   return fallback.map((f, i) => token(`--day-${i + 1}`, f))
 }
 
@@ -237,12 +237,12 @@ export const TRIP_DIMMED_OPACITY = 0.18
 
 /** The accent (tokens.css --rust), for the program meeting points. */
 export function accentColor(): string {
-  return token('--rust', '#7a2a10')
+  return token('--rust', '#a4462c')
 }
 
 /** The paper-coloured casing under every trip line, so it reads on any fill. */
 export function tripCasing(): string {
-  return token('--paper', '#f1ead6')
+  return token('--paper', '#f8f5ed')
 }
 
 /**
@@ -262,8 +262,8 @@ export const DAY_FIT_PITCH = 35
  */
 export function trailColors(scheme: Scheme = resolvedScheme()): Record<'easy' | 'moderate' | 'strenuous' | 'unrated', string> {
   return scheme === 'granite'
-    ? { easy: '#7fc47a', moderate: '#e0b44e', strenuous: '#f07a55', unrated: token('--ink-3', '#b8a88a') }
-    : { easy: '#2e7d32', moderate: '#a86b00', strenuous: '#b3261e', unrated: token('--ink-3', '#50402e') }
+    ? { easy: '#7fc47a', moderate: '#e0b44e', strenuous: '#f07a55', unrated: token('--ink-3', '#9fb0a4') }
+    : { easy: '#2e7d32', moderate: '#a86b00', strenuous: '#b3261e', unrated: token('--ink-3', '#5d6a61') }
 }
 
 export const TRAIL_LABEL: Record<'easy' | 'moderate' | 'strenuous', string> = {

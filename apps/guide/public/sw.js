@@ -396,15 +396,15 @@ const OFFLINE_PAGE = `<!doctype html>
   /* Palette mirrors src/styles/tokens.css (light --paper/--ink/--ink-3 and
      the dark overrides); this page has no stylesheet to read tokens from. */
   body { margin: 0; min-height: 100vh; display: grid; place-items: center;
-         background: #f1ead6; color: #14110c;
+         background: #f8f5ed; color: #233e35;
          font: 16px/1.6 Georgia, 'Times New Roman', serif; }
   main { max-width: 26rem; padding: 2rem; text-align: center; }
   h1 { font-size: 1.05rem; letter-spacing: 0.14em; text-transform: uppercase;
        font-weight: 400; margin: 0 0 1rem; }
-  p { margin: 0; color: #50402e; }
+  p { margin: 0; color: #5d6a61; }
   @media (prefers-color-scheme: dark) {
-    body { background: #1c1812; color: #f0e8d8; }
-    p { color: #a09070; }
+    body { background: #141d19; color: #f1ead6; }
+    p { color: #9fb0a4; }
   }
 </style>
 </head>

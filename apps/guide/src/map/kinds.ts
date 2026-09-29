@@ -34,7 +34,7 @@ export const KIND_STYLES: Record<MapPinKind, KindStyle> = {
   trailhead: { color: '#3d5a3f', label: 'Trailhead', rank: 8 },
   hike: { color: '#7d3245', label: 'Day hike', rank: 9 },
   landmark: { color: '#4d4a6b', label: 'Landmark', rank: 6 },
-  drive: { color: '#7a2a10', label: 'Drive', rank: 8 },
+  drive: { color: '#a4462c', label: 'Drive', rank: 8 },
   lodging: { color: '#5a3a5e', label: 'Lodging', rank: 7 },
   meal: { color: '#8a661a', label: 'Meal', rank: 5 },
   camping: { color: '#1c6e63', label: 'Camping', rank: 7 },
