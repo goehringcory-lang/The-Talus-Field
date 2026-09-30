@@ -32,12 +32,18 @@ import Button from '../components/ui/Button'
 import PageHeader from '../components/ui/PageHeader'
 import { Chip } from '../components/ui/Chip'
 import { isPreviewStopId } from '../lib/storefront'
+import { useDocumentTitle } from '../lib/documentTitle'
+import { stopTeaserIntro, stopTeaserTitle } from '../lib/publicPages'
 
 export default function StopTeaser() {
   const params = useParams<{ stopId: string }>()
   const location = useLocation()
   const stop = params.stopId ? getStopById(params.stopId) : undefined
   const from = location.pathname + location.search + location.hash
+  // The same title the prerendered page (scripts/prerender-public.ts) ships
+  // in its <head>, so the crawler's rendered title matches the static one.
+  const documentTitle = stop ? stopTeaserTitle(stop) : undefined
+  useDocumentTitle(documentTitle)
 
   const coreCount = REGIONS.reduce((n, r) => n + getStopsByRegion(r.id).length, 0)
   const secretCount = getSecretGuideEntries().length
@@ -94,18 +100,19 @@ export default function StopTeaser() {
   const eyebrow = secret
     ? `The Secret Guide · ${KIND_LABEL[stop.kind]}`
     : `${regionTitle ?? 'The Field Guide'} · ${KIND_LABEL[stop.kind]}`
-  const intro =
-    stop.teaser ??
-    (secret
-      ? `One of the ${secretCount} entries in the Secret Guide: the unsigned turnouts, quiet trails, and after-dark spots that never make it into articles.`
-      : `One of the ${coreCount} stops in the Field Guide's regional reading order.`)
+  const intro = stopTeaserIntro(stop)
   const photo = stop.photos[0]
   const credit = photo ? PHOTO_CREDITS[photo.src] : undefined
 
   return (
     <PreviewChrome>
       <main className="wrap wrap--narrow page">
-        <PageHeader eyebrow={eyebrow} title={stop.title} intro={intro} />
+        <PageHeader
+          eyebrow={eyebrow}
+          title={stop.title}
+          intro={intro}
+          documentTitle={documentTitle}
+        />
 
         {/* The caption below is not decoration on this surface, it is the
             disclosure. 18 entries carry a stand-in photo (marked

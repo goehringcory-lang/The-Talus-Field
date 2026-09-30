@@ -75,7 +75,7 @@ self.addEventListener('install', (event) => {
   event.waitUntil(
     (async () => {
       const shell = await caches.open(SHELL_CACHE)
-      // Not addAll: it accepts any 200, and the SPA _redirects rule answers a
+      // Not addAll: it accepts any 200, and the SPA fallback answers a
       // missing hashed asset with the HTML shell — which addAll would cache
       // under the script URL, permanently (the asset handler is cache-first
       // and activate never purges tfg-shell-*). Fetch each URL, demand the
@@ -137,7 +137,7 @@ self.addEventListener('activate', (event) => {
           .map((n) => caches.delete(n)),
       )
       // Self-heal poisoned runtime entries. Earlier builds referenced /photos/*
-      // files that did not exist yet; the SPA _redirects rule (/* /index.html
+      // files that did not exist yet; the SPA fallback (/* -> /index.html
       // 200) answered those requests with the HTML shell, and the cache-first
       // handler below stored that HTML under the image URL. Because the runtime
       // cache is unversioned and survives deploys, the region hero and stop
@@ -154,7 +154,7 @@ self.addEventListener('activate', (event) => {
 })
 
 // Delete cache entries whose stored response is the HTML shell (the SPA
-// _redirects fallback), which never belongs under an image/font/tile URL.
+// fallback), which never belongs under an image/font/tile URL.
 async function purgeHtmlFromCache(cacheName) {
   try {
     const cache = await caches.open(cacheName)
@@ -522,7 +522,13 @@ self.addEventListener('fetch', (event) => {
             event.waitUntil(
               (async () => {
                 try {
-                  if (await shellAssetsCached(await forCheck.text())) {
+                  // A prerendered storefront page (/preview, a stop teaser)
+                  // boots the same app, but it carries that page's head and
+                  // markup; kept as the shell, a buyer's offline launch would
+                  // open on a stranger's landing page. Only the plain shell
+                  // is kept (scripts/prerender-public.ts marks the others).
+                  const html = await forCheck.text()
+                  if (!html.includes('name="tfg-prerendered"') && (await shellAssetsCached(html))) {
                     const cache = await caches.open(SHELL_CACHE)
                     await cache.put('/index.html', forCache)
                   }
@@ -558,7 +564,7 @@ self.addEventListener('fetch', (event) => {
         // On the deadline this rejects: a broken image, a fallback font, or
         // useTrack's error state, each of which the page already handles.
         const fresh = await fetchWithDeadline(request, ASSET_TIMEOUT_MS)
-        // Guard against the SPA _redirects fallback: a missing asset returns
+        // Guard against the SPA fallback: a missing asset returns
         // index.html with a 200, and caching that HTML under an image/font URL
         // poisons the entry (renders as a broken image, and the runtime cache
         // survives deploys). Only store real asset responses. The put is

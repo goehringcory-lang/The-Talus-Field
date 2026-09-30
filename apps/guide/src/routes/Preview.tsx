@@ -29,6 +29,7 @@ import {
   PREVIEW_STOP_IDS,
   useGuidePrice,
 } from '../lib/storefront'
+import { PREVIEW_DOCUMENT_TITLE } from '../lib/publicPages'
 
 export default function Preview() {
   const { session } = useAuth()
@@ -55,6 +56,7 @@ export default function Preview() {
         <PageHeader
           eyebrow={`Free sample · The Field Guide · ${EDITION_LABEL}`}
           title={`Read ${sampleCount} entries from the guide.`}
+          documentTitle={PREVIEW_DOCUMENT_TITLE}
           intro={`These are real entries, reproduced in full: one stop from each of the four regions and one from the Secret Guide, exactly as they read in the app. The other ${coreCount + secretCount - sampleCount} entries, the offline park map, the program listings, and the trip planner are in the full guide.`}
         />
 
