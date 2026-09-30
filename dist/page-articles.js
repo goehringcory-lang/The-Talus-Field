@@ -803,6 +803,962 @@ function PlanningSectionPage({
     tag: "planning"
   }));
 }
+var SX_KEYS = ["jan", "feb", "mar", "apr", "may", "jun", "jul", "aug", "sep", "oct", "nov", "dec"];
+function sxParkMonth() {
+  try {
+    var m = new Intl.DateTimeFormat("en-US", {
+      timeZone: "America/Los_Angeles",
+      month: "numeric"
+    }).format(new Date());
+    return Number(m) - 1;
+  } catch (e) {
+    return new Date().getMonth();
+  }
+}
+var SX_ICON_PATHS = {
+  calendar: React.createElement(React.Fragment, null, React.createElement("rect", {
+    x: "3",
+    y: "5",
+    width: "18",
+    height: "16",
+    rx: "1"
+  }), React.createElement("path", {
+    d: "M3 10 H21 M8 3 V7 M16 3 V7"
+  })),
+  road: React.createElement("path", {
+    d: "M8 3 L5 21 M16 3 L19 21 M12 4 V8 M12 11 V15 M12 18 V21"
+  }),
+  book: React.createElement("path", {
+    d: "M4 4 H10 A2 2 0 0 1 12 6 V20 A2 2 0 0 0 10 18 H4 Z M20 4 H14 A2 2 0 0 0 12 6 V20 A2 2 0 0 1 14 18 H20 Z"
+  }),
+  mountain: React.createElement("path", {
+    d: "M2 20 L9 7 L13 14 L16 10 L22 20 Z"
+  }),
+  gain: React.createElement("path", {
+    d: "M3 20 H21 M3 20 L9 12 L13 15 L20 5 M15 5 H20 V10"
+  }),
+  clock: React.createElement(React.Fragment, null, React.createElement("circle", {
+    cx: "12",
+    cy: "12",
+    r: "9"
+  }), React.createElement("path", {
+    d: "M12 7 V12 L15 14"
+  })),
+  paw: React.createElement(React.Fragment, null, React.createElement("circle", {
+    cx: "6",
+    cy: "10",
+    r: "2"
+  }), React.createElement("circle", {
+    cx: "10",
+    cy: "6",
+    r: "2"
+  }), React.createElement("circle", {
+    cx: "14",
+    cy: "6",
+    r: "2"
+  }), React.createElement("circle", {
+    cx: "18",
+    cy: "10",
+    r: "2"
+  }), React.createElement("path", {
+    d: "M8 18 C8 14 10 13 12 13 C14 13 16 14 16 18 C16 20 14 20 12 19 C10 20 8 20 8 18 Z"
+  })),
+  flower: React.createElement(React.Fragment, null, React.createElement("circle", {
+    cx: "12",
+    cy: "12",
+    r: "2.5"
+  }), React.createElement("path", {
+    d: "M12 9.5 C10 6 11 3 12 3 C13 3 14 6 12 9.5 M14.5 12 C18 10 21 11 21 12 C21 13 18 14 14.5 12 M12 14.5 C14 18 13 21 12 21 C11 21 10 18 12 14.5 M9.5 12 C6 14 3 13 3 12 C3 11 6 10 9.5 12"
+  })),
+  eye: React.createElement(React.Fragment, null, React.createElement("path", {
+    d: "M2 12 C5 6 19 6 22 12 C19 18 5 18 2 12 Z"
+  }), React.createElement("circle", {
+    cx: "12",
+    cy: "12",
+    r: "3"
+  })),
+  permit: React.createElement(React.Fragment, null, React.createElement("rect", {
+    x: "5",
+    y: "3",
+    width: "14",
+    height: "18",
+    rx: "1"
+  }), React.createElement("path", {
+    d: "M9 8 H15 M9 12 H15 M9 16 H12"
+  }))
+};
+function SxIcon({
+  name,
+  size = 26,
+  className
+}) {
+  return React.createElement("svg", {
+    className: ["ps-icon", className].filter(Boolean).join(" "),
+    width: size,
+    height: size,
+    viewBox: "0 0 24 24",
+    fill: "none",
+    stroke: "currentColor",
+    strokeWidth: "1.6",
+    strokeLinecap: "round",
+    strokeLinejoin: "round",
+    "aria-hidden": "true"
+  }, SX_ICON_PATHS[name]);
+}
+var sxArticle = slug => (window.ARTICLES || []).find(a => a.slug === slug);
+var sxFirst = text => {
+  var s = String(text || "");
+  var m = s.match(/^.*?[.?!](?=\s|$)/);
+  if (!m) return s;
+  if (m[0].length >= 45) return m[0];
+  var m2 = s.match(/^.*?[.?!]\s+.*?[.?!](?=\s|$)/);
+  return m2 ? m2[0] : m[0];
+};
+var sxCredit = a => a && a.credit ? a.credit.replace(/^(Photo|Illustration): /, "") : "";
+function SxEveryEntry({
+  slugCat,
+  groups,
+  go,
+  location,
+  id,
+  lede
+}) {
+  var [pick, setPick] = useState("all");
+  var all = window.byCategory(slugCat);
+  var inGroup = (a, k) => k === "all" || (groups.find(g => g[0] === k) || [0, 0, []])[2].includes(a.slug);
+  var shown = all.filter(a => inGroup(a, pick));
+  var labels = a => groups.filter(g => g[2].includes(a.slug)).map(g => g[1]).join(" · ");
+  return React.createElement("section", {
+    className: "hp-wrap hp-section",
+    id: id,
+    tabIndex: -1
+  }, React.createElement("div", {
+    className: "ff-split ff-split--end"
+  }, React.createElement("div", null, React.createElement("p", {
+    className: "hp-eyebrow"
+  }, "EVERY ENTRY"), React.createElement("h2", null, "The whole section")), React.createElement("p", {
+    className: "ff-lede ps-flush"
+  }, lede.replace("{n}", all.length))), React.createElement("div", {
+    className: "ps-filters",
+    role: "group",
+    "aria-label": "Filter the section"
+  }, [["all", "All"], ...groups.map(g => [g[0], g[1]])].map(([k, label]) => React.createElement("button", {
+    key: k,
+    type: "button",
+    className: "ps-choice ps-chip" + (k === pick ? " is-on" : ""),
+    "aria-pressed": k === pick,
+    onClick: () => setPick(k)
+  }, label, " ", React.createElement("span", null, all.filter(a => inGroup(a, k)).length)))), React.createElement("p", {
+    className: "ps-count",
+    "aria-live": "polite"
+  }, pick === "all" ? `Showing all ${shown.length} entries.` : `Showing ${shown.length} of ${all.length} entries.`), React.createElement("div", {
+    className: "ps-list"
+  }, shown.map((a, i) => React.createElement(HomeLink, {
+    key: a.slug,
+    go: go,
+    location: "section_list",
+    href: `/articles/${a.slug}`,
+    className: "ps-row"
+  }, React.createElement("span", {
+    className: "ps-row__n"
+  }, String(i + 1).padStart(2, "0")), React.createElement("span", {
+    className: "ps-row__body"
+  }, React.createElement("span", {
+    className: "ps-row__t"
+  }, a.title), React.createElement("span", {
+    className: "ps-row__d"
+  }, sxFirst(a.dek))), React.createElement("span", {
+    className: "ps-row__k"
+  }, labels(a) || "Essay"), React.createElement("span", {
+    className: "ps-row__r"
+  }, a.read, " read")))));
+}
+var SX_SEASONS = [{
+  key: "winter",
+  label: "Winter",
+  months: "December to February",
+  lead: "yosemite-in-winter",
+  slugs: ["yosemite-in-winter", "horsetail-fall-firefall", "bracebridge-dinner-and-vintners-holidays", "yosemite-winter-hikes"]
+}, {
+  key: "spring",
+  label: "Spring",
+  months: "March to May",
+  lead: "yosemite-in-march",
+  slugs: ["yosemite-in-march", "yosemite-waterfalls-guide", "tioga-road-opening-weekend-2026", "glacier-point-road-open-2026", "memorial-day-skip-the-valley-go-high-2026"]
+}, {
+  key: "summer",
+  label: "Summer",
+  months: "June to August",
+  lead: "yosemite-in-june-2026",
+  slugs: ["yosemite-in-june-2026", "swimming-in-the-merced", "yosemite-heat-safety-guide", "yosemite-stargazing-where-to-look-up", "yosemite-during-smoke-season"]
+}, {
+  key: "fall",
+  label: "Fall",
+  months: "September to November",
+  lead: "yosemite-in-fall",
+  slugs: ["yosemite-in-fall", "yosemite-in-september-2026", "yosemite-in-october-2026", "yosemite-connecting-to-traditions"]
+}];
+var SX_ROAD_LABEL = {
+  open: "Open",
+  closed: "Closed",
+  unsettled: "Varies"
+};
+var SX_ROAD_LONG = {
+  open: "usually open",
+  closed: "closed",
+  unsettled: "the date moves with the snowpack"
+};
+function SeasonalSectionPage({
+  go
+}) {
+  var months = window.TRIP_MONTHS || [];
+  var [m, setM] = useState(sxParkMonth);
+  var L = (location, href, children, className) => React.createElement(HomeLink, {
+    go: go,
+    location: location,
+    href: href,
+    className: className
+  }, children);
+  var tm = months[m] || months[0];
+  var windows = window.ARTICLE_MONTHS || {};
+  var readFirst = tm && sxArticle(tm.read);
+  var alsoNow = (window.ARTICLES || []).filter(a => a.slug !== (tm && tm.read) && (windows[a.slug] || []).includes(tm && tm.key)).slice(0, 5);
+  var season = s => s.slugs.map(sxArticle).filter(Boolean);
+  var lead = sxArticle("yosemite-in-fall");
+  var groups = SX_SEASONS.map(s => [s.key, s.label, s.slugs]);
+  var toc = [["#sx-month", "Pick your month"], ["#sx-roads", "The two roads"], ["#sx-seasons", "Four seasons"], ["#sx-every-entry", "Every entry"]];
+  var n = window.byCategory("seasonal").length;
+  return React.createElement("div", {
+    className: "page hp-tool hp-event hp-section-seasonal"
+  }, React.createElement("div", {
+    className: "ff-cover sx-cover"
+  }, React.createElement(ResponsiveImage, {
+    image: lead.image,
+    eager: true,
+    className: "ff-cover__img",
+    alt: "Tunnel View in autumn, the Valley's granite walls under yellow leaves",
+    sizes: "100vw"
+  }), React.createElement(HpPageHead, {
+    go: go,
+    crumbs: [{
+      label: "Home",
+      route: "home"
+    }, {
+      label: "Read",
+      route: "articles"
+    }, {
+      label: "Seasonal Guides"
+    }],
+    eyebrow: "SECTION · SEASONAL GUIDES · MONTH BY MONTH",
+    title: "Yosemite, month by month",
+    intro: "The park in January is not the park in July. Pick the month you are coming and see what the roads are doing, what the month is like, and which guide to read first. Every month is drawn from a longer piece, linked where it applies.",
+    actions: React.createElement(React.Fragment, null, L("section_seasonal_head", "#sx-month", React.createElement(React.Fragment, null, "Pick your month ", React.createElement("span", null, "↓")), "hp-button"), L("section_seasonal_head", "#sx-seasons", "Browse the four seasons ↓", "hp-link"))
+  }), React.createElement("p", {
+    className: "ff-cover__credit"
+  }, "Photo: ", sxCredit(lead))), React.createElement("div", {
+    className: "hp-wrap"
+  }, React.createElement("dl", {
+    className: "ff-facts"
+  }, React.createElement("div", null, React.createElement(SxIcon, {
+    name: "calendar",
+    className: "ff-icon"
+  }), React.createElement("dt", null, "Months covered"), React.createElement("dd", null, "All twelve")), React.createElement("div", null, React.createElement(SxIcon, {
+    name: "road",
+    className: "ff-icon"
+  }), React.createElement("dt", null, "Roads that decide the month"), React.createElement("dd", null, "Tioga and Glacier Point")), React.createElement("div", null, React.createElement(SxIcon, {
+    name: "book",
+    className: "ff-icon"
+  }), React.createElement("dt", null, "Seasonal guides"), React.createElement("dd", null, n, " to read"))), React.createElement("nav", {
+    className: "ff-toc",
+    "aria-label": "On this page"
+  }, React.createElement("span", null, "On this page"), toc.map(([href, label]) => React.createElement(React.Fragment, {
+    key: href
+  }, L("section_seasonal_toc", href, label))))), React.createElement("section", {
+    className: "hp-wrap hp-section",
+    id: "sx-month",
+    tabIndex: -1
+  }, React.createElement("div", {
+    className: "ff-split ff-split--end"
+  }, React.createElement("div", null, React.createElement("p", {
+    className: "hp-eyebrow"
+  }, "WHEN ARE YOU COMING?"), React.createElement("h2", null, "What the month decides")), React.createElement("p", {
+    className: "ff-lede ps-flush"
+  }, "Two roads open and close with the season and they set the shape of a trip. The rest of the month's character follows from the snow, and each month below opens on the piece that covers it.")), React.createElement("div", {
+    className: "ps-calc"
+  }, React.createElement("div", {
+    className: "ps-calc__pick"
+  }, React.createElement("p", {
+    className: "ps-label"
+  }, "Which month?"), React.createElement("div", {
+    className: "ps-months",
+    role: "group",
+    "aria-label": "Month of your visit"
+  }, months.map((x, i) => React.createElement("button", {
+    key: x.key,
+    type: "button",
+    className: "ps-choice" + (i === m ? " is-on" : ""),
+    "aria-pressed": i === m,
+    onClick: () => setM(i)
+  }, x.label))), React.createElement("p", {
+    className: "ff-note"
+  }, "It opens on the park's current month. Road status is the month's usual pattern; the park sets the real dates each year, so check the ", L("section_seasonal", "/conditions", "conditions board"), " before you drive.")), React.createElement("div", {
+    className: "ps-calc__out",
+    "aria-live": "polite"
+  }, React.createElement("small", null, "Yosemite in"), React.createElement("span", {
+    className: "ps-calc__big"
+  }, tm.name), React.createElement("span", {
+    className: "ps-calc__time"
+  }, "Tioga Road: ", SX_ROAD_LABEL[tm.tioga], " · Glacier Point Road: ", SX_ROAD_LABEL[tm.glacier]), React.createElement("p", null, tm.note))), React.createElement("div", {
+    className: "ff-split sx-month-read"
+  }, React.createElement("div", null, React.createElement("p", {
+    className: "hp-eyebrow"
+  }, "READ FIRST FOR ", tm.name.toUpperCase()), readFirst && React.createElement(HomeLink, {
+    go: go,
+    location: "section_seasonal",
+    href: `/articles/${readFirst.slug}`,
+    className: "ps-drive"
+  }, React.createElement("span", {
+    className: "ps-drive__from"
+  }, readFirst.read, " read"), React.createElement("span", {
+    className: "ps-drive__num"
+  }, readFirst.title), React.createElement("small", null, sxFirst(readFirst.dek)), React.createElement("span", {
+    className: "ps-drive__go"
+  }, "Read the guide →"))), React.createElement("div", null, React.createElement("p", {
+    className: "hp-eyebrow"
+  }, "ARRIVING IN ", tm.name.toUpperCase()), React.createElement("p", {
+    className: "ff-lede ps-flush"
+  }, tm.arrive), alsoNow.length > 0 && React.createElement(React.Fragment, null, React.createElement("p", {
+    className: "hp-eyebrow sx-gap"
+  }, "ALSO IN SEASON"), React.createElement("ul", {
+    className: "sx-links"
+  }, alsoNow.map(a => React.createElement("li", {
+    key: a.slug
+  }, L("section_seasonal", `/articles/${a.slug}`, a.title)))))))), React.createElement("section", {
+    className: "ff-band",
+    id: "sx-roads",
+    tabIndex: -1
+  }, React.createElement("div", {
+    className: "hp-wrap hp-section"
+  }, React.createElement("div", {
+    className: "ff-split ff-split--end"
+  }, React.createElement("div", null, React.createElement("p", {
+    className: "hp-eyebrow"
+  }, "THE TWO ROADS"), React.createElement("h2", null, "Which of the park's roads are open, by month")), React.createElement("p", {
+    className: "ff-lede ps-flush"
+  }, "Tioga Road crosses the high country to the east side and Glacier Point Road climbs to the viewpoint. Everything else in the park is open all year. Amber means the date moves with the snowpack, so no claim is made for that month.")), React.createElement("div", {
+    className: "sx-roads",
+    role: "table",
+    "aria-label": "Road status by month"
+  }, React.createElement("div", {
+    className: "sx-roads__head",
+    role: "row"
+  }, React.createElement("span", {
+    role: "columnheader",
+    className: "sx-roads__road"
+  }), months.map(x => React.createElement("span", {
+    role: "columnheader",
+    key: x.key
+  }, x.label))), [["tioga", "Tioga Road", "/tioga-opening"], ["glacier", "Glacier Point Road", "/articles/glacier-point-road-open-2026"]].map(([k, label, href]) => React.createElement("div", {
+    className: "sx-roads__row",
+    role: "row",
+    key: k
+  }, React.createElement("span", {
+    role: "rowheader",
+    className: "sx-roads__road"
+  }, L("section_seasonal", href, label)), months.map(x => React.createElement("span", {
+    role: "cell",
+    key: x.key,
+    className: "sx-cell sx-cell--" + x[k] + (x.key === tm.key ? " is-now" : ""),
+    title: `${label}, ${x.name}: ${SX_ROAD_LONG[x[k]]}`
+  }, React.createElement("b", null, SX_ROAD_LABEL[x[k]])))))), React.createElement("p", {
+    className: "ff-note"
+  }, "The month you picked is outlined. When each road actually opens: ", L("section_seasonal", "/tioga-opening", "Tioga Road opening"), ". Every park deadline on one calendar: ", L("section_seasonal", "/dates", "the dates table"), "."))), React.createElement("section", {
+    className: "hp-wrap hp-section",
+    id: "sx-seasons",
+    tabIndex: -1
+  }, React.createElement("div", {
+    className: "ff-split ff-split--end"
+  }, React.createElement("div", null, React.createElement("p", {
+    className: "hp-eyebrow"
+  }, "FOUR SEASONS"), React.createElement("h2", null, "The guides, by season")), React.createElement("p", {
+    className: "ff-lede ps-flush"
+  }, "Some of these are written for one year's conditions and say so in the title. The evergreen piece for a season is the first link in its column.")), React.createElement("div", {
+    className: "sx-seasons"
+  }, SX_SEASONS.map(s => {
+    var a = sxArticle(s.lead);
+    return React.createElement("article", {
+      className: "sx-season",
+      key: s.key
+    }, React.createElement("figure", {
+      className: "ps-photo"
+    }, React.createElement(ResponsiveImage, {
+      image: a.image,
+      alt: a.title,
+      sizes: "(max-width: 880px) 100vw, 300px"
+    }), React.createElement("figcaption", null, sxCredit(a))), React.createElement("p", {
+      className: "hp-eyebrow"
+    }, s.months.toUpperCase()), React.createElement("h3", null, s.label), React.createElement("ul", {
+      className: "sx-links"
+    }, season(s).map(x => React.createElement("li", {
+      key: x.slug
+    }, L("section_seasonal", `/articles/${x.slug}`, x.title)))));
+  }))), React.createElement(SxEveryEntry, {
+    slugCat: "seasonal",
+    groups: groups,
+    go: go,
+    location: "section_list",
+    id: "sx-every-entry",
+    lede: "All {n} seasonal guides, read live from the catalog. Pick a season to narrow the list; a piece that spans two shows under both."
+  }), React.createElement("section", {
+    className: "ff-band"
+  }, React.createElement("div", {
+    className: "hp-wrap hp-section ff-split"
+  }, React.createElement("div", null, React.createElement("p", {
+    className: "hp-eyebrow"
+  }, "NOT SURE WHICH MONTH?"), React.createElement("h2", null, "Let the trip planner pick the reads"), React.createElement("p", {
+    className: "ff-lede"
+  }, "Five questions, one plan: month, days, where you are sleeping, who is coming and what matters most. It returns a read list and a day plan capped to what that month's roads allow.")), React.createElement("div", {
+    className: "ff-closing"
+  }, React.createElement("p", {
+    className: "hp-eyebrow"
+  }, "THE TRIP PLANNER"), React.createElement("h3", null, "Five questions, one plan"), React.createElement("p", null, "The planner reads the same month table as this page, so the plan never routes a January visitor over a closed road."), L("section_seasonal", "/planning", React.createElement(React.Fragment, null, "Open the trip planner ", React.createElement("span", null, "→")), "hp-button")))), React.createElement(HpGuideBand, {
+    go: go,
+    location: "section_seasonal",
+    title: "The season in your pocket, where there's no signal",
+    intro: "The Field Guide app carries the stops, the hikes and the deadlines for your dates, with offline maps for a park that has no signal past the gate.",
+    sample: true
+  }), React.createElement(HpLetter, {
+    eyebrow: "SUNDAY FIELD NOTES / FREE",
+    title: "What the park is doing this week",
+    heading: "What the park is doing this week",
+    blurb: "One letter a week from inside Yosemite: what the season is doing, which roads moved, and what to book next.",
+    location: "section_seasonal",
+    tag: "seasonal"
+  }));
+}
+var SX_HIKES = [{
+  slug: "hetch-hetchy-the-other-yosemite-valley",
+  name: "Wapama Falls, Hetch Hetchy",
+  dist: "About 5 miles round trip",
+  gainText: "500 ft",
+  gain: 500,
+  level: "Moderate"
+}, {
+  slug: "cathedral-lakes-day-hike",
+  name: "Cathedral Lakes",
+  dist: "9 to 10.5 miles round trip",
+  gainText: "1,000 to 1,400 ft",
+  gain: 1400,
+  level: "Moderate to strenuous"
+}, {
+  slug: "mist-trail-the-real-guide",
+  name: "Mist Trail to Nevada Fall",
+  dist: "5.4 miles round trip",
+  gainText: "2,000 ft",
+  gain: 2000,
+  level: "Strenuous"
+}, {
+  slug: "clouds-rest-hike",
+  name: "Clouds Rest",
+  dist: "14 miles round trip",
+  gainText: "2,300 ft",
+  gain: 2300,
+  level: "Strenuous",
+  note: "No permit required"
+}, {
+  slug: "yosemite-falls-trail",
+  name: "Yosemite Falls, from Camp 4",
+  dist: "7.2 miles round trip",
+  gainText: "2,700 ft",
+  gain: 2700,
+  level: "Strenuous"
+}, {
+  slug: "four-mile-up-panorama-down",
+  name: "Four Mile and Panorama",
+  dist: "13 to 14 miles between trailheads",
+  gainText: "About 4,000 ft",
+  gain: 4000,
+  level: "Strenuous"
+}, {
+  slug: "so-you-want-to-hike-half-dome",
+  name: "Half Dome, by the cables",
+  dist: "14 to 16 miles round trip",
+  gainText: "4,800 ft",
+  gain: 4800,
+  level: "Strenuous",
+  note: "Permit required"
+}];
+var SX_EFFORT = [["any", "Any effort"], ["moderate", "Moderate"], ["strenuous", "Strenuous"]];
+var SX_TRAIL_GROUPS = [["valley", "Valley", ["yosemite-falls-trail", "mist-trail-the-real-guide", "four-mile-up-panorama-down", "so-you-want-to-hike-half-dome", "yosemite-waterfalls-guide"]], ["high", "High country", ["clouds-rest-hike", "cathedral-lakes-day-hike"]], ["north", "Hetch Hetchy", ["hetch-hetchy-the-other-yosemite-valley"]], ["off", "Overnight and winter", ["first-yosemite-backpacking-trip", "yosemite-winter-hikes"]]];
+function TrailsSectionPage({
+  go
+}) {
+  var [effort, setEffort] = useState("any");
+  var [month, setMonth] = useState(-1);
+  var L = (location, href, children, className) => React.createElement(HomeLink, {
+    go: go,
+    location: location,
+    href: href,
+    className: className
+  }, children);
+  var months = window.TRIP_MONTHS || [];
+  var windows = window.ARTICLE_MONTHS || {};
+  var key = month >= 0 ? months[month].key : null;
+  var season = slug => !key || !windows[slug] ? null : windows[slug].includes(key) ? "in" : "out";
+  var fits = h => effort === "any" || (effort === "moderate" ? /^Moderate/.test(h.level) : h.level === "Strenuous");
+  var rows = SX_HIKES.filter(fits);
+  var lead = sxArticle("mist-trail-the-real-guide");
+  var hd = SX_HIKES.find(h => h.slug === "so-you-want-to-hike-half-dome");
+  var cr = SX_HIKES.find(h => h.slug === "clouds-rest-hike");
+  var toc = [["#sx-compare", "Compare the hikes"], ["#sx-versus", "Half Dome or Clouds Rest"], ["#sx-kinds", "Other kinds of day"], ["#sx-every-entry", "Every entry"]];
+  return React.createElement("div", {
+    className: "page hp-tool hp-event hp-section-trails"
+  }, React.createElement("div", {
+    className: "ff-cover sx-cover"
+  }, React.createElement(ResponsiveImage, {
+    image: lead.image,
+    eager: true,
+    className: "ff-cover__img",
+    alt: "Nevada Fall and Liberty Cap seen from the trail above the Merced River",
+    sizes: "100vw"
+  }), React.createElement(HpPageHead, {
+    go: go,
+    crumbs: [{
+      label: "Home",
+      route: "home"
+    }, {
+      label: "Read",
+      route: "articles"
+    }, {
+      label: "Trails and Hikes"
+    }],
+    eyebrow: "SECTION · TRAILS AND HIKES · PICK A HIKE",
+    title: "Pick a Yosemite hike",
+    intro: "Seven of the park's best-known hikes side by side: how far, how much climbing, how hard, and which ones need a permit. Choose by effort and by the month you are going, then open the full guide for the route.",
+    actions: React.createElement(React.Fragment, null, L("section_trails_head", "#sx-compare", React.createElement(React.Fragment, null, "Compare the hikes ", React.createElement("span", null, "↓")), "hp-button"), L("section_trails_head", "#sx-versus", "Half Dome or Clouds Rest ↓", "hp-link"))
+  }), React.createElement("p", {
+    className: "ff-cover__credit"
+  }, "Photo: ", sxCredit(lead))), React.createElement("div", {
+    className: "hp-wrap"
+  }, React.createElement("dl", {
+    className: "ff-facts"
+  }, React.createElement("div", null, React.createElement(SxIcon, {
+    name: "mountain",
+    className: "ff-icon"
+  }), React.createElement("dt", null, "Half Dome"), React.createElement("dd", null, "4,800 ft of climbing, permit required")), React.createElement("div", null, React.createElement(SxIcon, {
+    name: "gain",
+    className: "ff-icon"
+  }), React.createElement("dt", null, "Clouds Rest"), React.createElement("dd", null, "14 miles, no permit required")), React.createElement("div", null, React.createElement(SxIcon, {
+    name: "clock",
+    className: "ff-icon"
+  }), React.createElement("dt", null, "Mist Trail to Nevada Fall"), React.createElement("dd", null, "5.4 miles, 2,000 ft")), React.createElement("div", null, React.createElement(SxIcon, {
+    name: "permit",
+    className: "ff-icon"
+  }), React.createElement("dt", null, "Overnight trips"), React.createElement("dd", null, "A wilderness permit, year-round"))), React.createElement("nav", {
+    className: "ff-toc",
+    "aria-label": "On this page"
+  }, React.createElement("span", null, "On this page"), toc.map(([href, label]) => React.createElement(React.Fragment, {
+    key: href
+  }, L("section_trails_toc", href, label))))), React.createElement("section", {
+    className: "hp-wrap hp-section",
+    id: "sx-compare",
+    tabIndex: -1
+  }, React.createElement("div", {
+    className: "ff-split ff-split--end"
+  }, React.createElement("div", null, React.createElement("p", {
+    className: "hp-eyebrow"
+  }, "COMPARE THE HIKES"), React.createElement("h2", null, "How far, how much climbing, how hard")), React.createElement("p", {
+    className: "ff-lede ps-flush"
+  }, "Every bar is on one scale, from no climbing to Half Dome's 4,800 feet. Distance is the article's own figure, and some are one way and some round trip, so read the line, not just the number.")), React.createElement("div", {
+    className: "ps-filters",
+    role: "group",
+    "aria-label": "Effort"
+  }, SX_EFFORT.map(([k, label]) => React.createElement("button", {
+    key: k,
+    type: "button",
+    className: "ps-choice ps-chip" + (k === effort ? " is-on" : ""),
+    "aria-pressed": k === effort,
+    onClick: () => setEffort(k)
+  }, label))), React.createElement("div", {
+    className: "ps-filters",
+    role: "group",
+    "aria-label": "Month of your visit"
+  }, React.createElement("button", {
+    type: "button",
+    className: "ps-choice ps-chip" + (month === -1 ? " is-on" : ""),
+    "aria-pressed": month === -1,
+    onClick: () => setMonth(-1)
+  }, "Any month"), months.map((x, i) => React.createElement("button", {
+    key: x.key,
+    type: "button",
+    className: "ps-choice ps-chip" + (month === i ? " is-on" : ""),
+    "aria-pressed": month === i,
+    onClick: () => setMonth(i)
+  }, x.label))), React.createElement("p", {
+    className: "ps-count",
+    "aria-live": "polite"
+  }, rows.length === 0 ? "No hikes match." : `${rows.length} ${rows.length === 1 ? "hike" : "hikes"}${month >= 0 ? `, marked for ${months[month].name}` : ""}.`, " Hikes with a published season window are dimmed when they are out of season; a hike with no window is never dimmed, because that means the article names none, not that the trail is open."), React.createElement("div", {
+    className: "sx-hikes"
+  }, rows.map(h => {
+    var a = sxArticle(h.slug);
+    var st = season(h.slug);
+    return React.createElement(HomeLink, {
+      key: h.slug,
+      go: go,
+      location: "section_trails",
+      href: `/articles/${h.slug}`,
+      className: "sx-hike" + (st === "out" ? " is-out" : "")
+    }, React.createElement("span", {
+      className: "sx-hike__name"
+    }, h.name, React.createElement("small", null, h.dist)), React.createElement("span", {
+      className: "sx-hike__why"
+    }, a ? sxFirst(a.dek) : ""), React.createElement("span", {
+      className: "sx-hike__gain",
+      "aria-label": `${h.gainText} of climbing`
+    }, React.createElement("span", {
+      className: "sx-bar"
+    }, React.createElement("i", {
+      style: {
+        width: `${Math.round(h.gain / 4800 * 100)}%`
+      }
+    })), React.createElement("b", null, h.gainText)), React.createElement("span", {
+      className: "sx-hike__tag"
+    }, React.createElement("span", {
+      className: "sx-level sx-level--" + (h.level === "Strenuous" ? "hard" : "mod")
+    }, h.level), h.note && React.createElement("span", {
+      className: "sx-note"
+    }, h.note), st === "in" && React.createElement("span", {
+      className: "sx-season-tag sx-season-tag--in"
+    }, "In season"), st === "out" && React.createElement("span", {
+      className: "sx-season-tag"
+    }, "Out of season")));
+  })), React.createElement("p", {
+    className: "ff-note"
+  }, "Drive times to the trailhead: ", L("section_trails", "/distances", "the distance table"), ". Trail and road status today: ", L("section_trails", "/conditions", "the conditions board"), ". The Half Dome permit lottery: ", L("section_trails", "/half-dome-lottery", "how it works"), ".")), React.createElement("section", {
+    className: "ff-band",
+    id: "sx-versus",
+    tabIndex: -1
+  }, React.createElement("div", {
+    className: "hp-wrap hp-section"
+  }, React.createElement("div", {
+    className: "ff-split ff-split--end"
+  }, React.createElement("div", null, React.createElement("p", {
+    className: "hp-eyebrow"
+  }, "THE BIG DAY"), React.createElement("h2", null, "Half Dome or Clouds Rest")), React.createElement("p", {
+    className: "ff-lede ps-flush"
+  }, "Both are all-day, strenuous climbs. One needs a permit and a pair of gloves for the cables. The other is higher, and it needs neither.")), React.createElement("div", {
+    className: "sx-vs"
+  }, [[hd, "The one everyone has heard of", ["A permit from the lottery", "Cables for the last stretch", "14 to 16 miles and 4,800 ft"]], [cr, "The one most visitors skip", ["No permit required", "No cables, a granite spine to finish", "14 miles and 2,300 ft, from the Sunrise Lakes trailhead"]]].map(([h, k, items]) => {
+    var a = sxArticle(h.slug);
+    return React.createElement(HomeLink, {
+      key: h.slug,
+      go: go,
+      location: "section_trails",
+      href: `/articles/${h.slug}`,
+      className: "sx-vs__card"
+    }, React.createElement("span", {
+      className: "sx-vs__k"
+    }, k), React.createElement("span", {
+      className: "sx-vs__t"
+    }, h.name), React.createElement("ul", null, items.map(t => React.createElement("li", {
+      key: t
+    }, React.createElement(SxIcon, {
+      name: "mountain",
+      size: 16
+    }), t))), React.createElement("span", {
+      className: "sx-vs__d"
+    }, a ? sxFirst(a.dek) : ""), React.createElement("span", {
+      className: "sx-vs__go"
+    }, "Read the guide →"));
+  })))), React.createElement("section", {
+    className: "hp-wrap hp-section",
+    id: "sx-kinds",
+    tabIndex: -1
+  }, React.createElement("div", {
+    className: "ff-split ff-split--end"
+  }, React.createElement("div", null, React.createElement("p", {
+    className: "hp-eyebrow"
+  }, "NOT A SUMMIT DAY?"), React.createElement("h2", null, "Other kinds of day on the trail")), React.createElement("p", {
+    className: "ff-lede ps-flush"
+  }, "Waterfalls that are only running part of the year, a trail that stays open in winter, and the trip that begins with a permit.")), React.createElement("div", {
+    className: "ps-paths sx-paths"
+  }, [["yosemite-waterfalls-guide", "flower", "WATERFALLS", "What is actually running"], ["yosemite-winter-hikes", "mountain", "WINTER", "The trails that stay open"], ["first-yosemite-backpacking-trip", "permit", "OVERNIGHT", "A first backpacking trip"]].map(([slug, icon, k, t]) => {
+    var a = sxArticle(slug);
+    return React.createElement(HomeLink, {
+      key: slug,
+      go: go,
+      location: "section_trails",
+      href: `/articles/${slug}`,
+      className: "ps-path"
+    }, React.createElement(SxIcon, {
+      name: icon,
+      size: 34
+    }), React.createElement("span", {
+      className: "ps-path__k"
+    }, k), React.createElement("span", {
+      className: "ps-path__t"
+    }, t), React.createElement("span", {
+      className: "ps-path__d"
+    }, a ? sxFirst(a.dek) : ""), React.createElement("span", {
+      className: "ps-path__go"
+    }, "Read the guide →"));
+  }))), React.createElement(SxEveryEntry, {
+    slugCat: "trails",
+    groups: SX_TRAIL_GROUPS,
+    go: go,
+    location: "section_list",
+    id: "sx-every-entry",
+    lede: "All {n} trail guides, read live from the catalog. Pick an area to narrow the list."
+  }), React.createElement(HpGuideBand, {
+    go: go,
+    location: "section_trails",
+    title: "The trail, in your pocket where there's no signal",
+    intro: "The Field Guide app carries the hikes, the stops and the deadlines for your dates, with offline maps for a park that has no signal on any trail.",
+    sample: true
+  }), React.createElement(HpLetter, {
+    eyebrow: "SUNDAY FIELD NOTES / FREE",
+    title: "Which trails are open this week",
+    heading: "Which trails are open this week",
+    blurb: "One letter a week from inside Yosemite: what the season is doing, which trails and roads moved, and the permit window coming up next.",
+    location: "section_trails",
+    tag: "trails"
+  }));
+}
+var SX_BLOOM = [{
+  band: "High country",
+  feet: "8,000 to 10,000 ft",
+  from: 5,
+  to: 6,
+  what: "Tuolumne Meadows"
+}, {
+  band: "Middle elevations",
+  feet: "6,000 to 8,000 ft",
+  from: 3,
+  to: 5,
+  what: "McGurk Meadow, Crane Flat, lupine"
+}, {
+  band: "Valley floor",
+  feet: "About 4,000 ft",
+  from: 2,
+  to: 4,
+  what: "Dogwood, meadow flowers, azalea"
+}, {
+  band: "Foothills",
+  feet: "1,500 to 3,000 ft",
+  from: 0,
+  to: 2,
+  what: "Redbud, then poppies"
+}];
+var SX_BLOOM_MONTHS = ["Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug"];
+var SX_WILD_GROUPS = [["animals", "Animals", ["yosemite-wildlife-viewing-guide", "water-ouzels-waterfalls", "showy-milkweed-yosemite-valley"]], ["bears", "Bears", ["yosemite-bears-safety-guide", "is-bear-spray-allowed-in-yosemite", "bears-spring-emergence"]], ["plants", "Plants and trees", ["yosemite-wildflowers-guide", "giant-sequoias-fire-adaptation", "yosemite-tunnel-trees"]], ["land", "Rock and ice", ["what-is-a-talus-field", "yosemite-glaciers-climate"]]];
+function WildlifeSectionPage({
+  go
+}) {
+  var L = (location, href, children, className) => React.createElement(HomeLink, {
+    go: go,
+    location: location,
+    href: href,
+    className: className
+  }, children);
+  var lead = sxArticle("yosemite-wildlife-viewing-guide");
+  var card = (slug, icon, k, t, cta) => {
+    var a = sxArticle(slug);
+    return React.createElement(HomeLink, {
+      key: slug,
+      go: go,
+      location: "section_wildlife",
+      href: `/articles/${slug}`,
+      className: "ps-path"
+    }, React.createElement(SxIcon, {
+      name: icon,
+      size: 34
+    }), React.createElement("span", {
+      className: "ps-path__k"
+    }, k), React.createElement("span", {
+      className: "ps-path__t"
+    }, t), React.createElement("span", {
+      className: "ps-path__d"
+    }, a ? sxFirst(a.dek) : ""), React.createElement("span", {
+      className: "ps-path__go"
+    }, cta));
+  };
+  var toc = [["#sx-schedule", "The animals' schedule"], ["#sx-bears", "Bears"], ["#sx-bloom", "The bloom"], ["#sx-land", "The ground beneath"], ["#sx-every-entry", "Every entry"]];
+  return React.createElement("div", {
+    className: "page hp-tool hp-event hp-section-wildlife"
+  }, React.createElement("div", {
+    className: "ff-cover sx-cover"
+  }, React.createElement(ResponsiveImage, {
+    image: lead.image,
+    eager: true,
+    className: "ff-cover__img",
+    alt: "A mule deer grazing in a Valley meadow with Half Dome behind it",
+    sizes: "100vw"
+  }), React.createElement(HpPageHead, {
+    go: go,
+    crumbs: [{
+      label: "Home",
+      route: "home"
+    }, {
+      label: "Read",
+      route: "articles"
+    }, {
+      label: "Wildlife and Nature"
+    }],
+    eyebrow: "SECTION · WILDLIFE AND NATURE · WHO LIVES HERE",
+    title: "Wildlife and nature in Yosemite",
+    intro: "When to look for the animals, what to do about the bears, where the flowers are in any given month, and the rock, ice and trees that explain the place. Every answer is drawn from a longer piece, linked where it applies.",
+    actions: React.createElement(React.Fragment, null, L("section_wildlife_head", "#sx-schedule", React.createElement(React.Fragment, null, "When to look ", React.createElement("span", null, "↓")), "hp-button"), L("section_wildlife_head", "#sx-bears", "Bear safety ↓", "hp-link"))
+  }), React.createElement("p", {
+    className: "ff-cover__credit"
+  }, "Photo: ", sxCredit(lead))), React.createElement("div", {
+    className: "hp-wrap"
+  }, React.createElement("dl", {
+    className: "ff-facts"
+  }, React.createElement("div", null, React.createElement(SxIcon, {
+    name: "paw",
+    className: "ff-icon"
+  }), React.createElement("dt", null, "Vertebrate species"), React.createElement("dd", null, "About 400")), React.createElement("div", null, React.createElement(SxIcon, {
+    name: "eye",
+    className: "ff-icon"
+  }), React.createElement("dt", null, "Distance from a bear"), React.createElement("dd", null, "50 yards minimum")), React.createElement("div", null, React.createElement(SxIcon, {
+    name: "paw",
+    className: "ff-icon"
+  }), React.createElement("dt", null, "Black bears in the park"), React.createElement("dd", null, "300 to 500, no grizzlies")), React.createElement("div", null, React.createElement(SxIcon, {
+    name: "flower",
+    className: "ff-icon"
+  }), React.createElement("dt", null, "The bloom"), React.createElement("dd", null, "Climbs about 1,000 ft a month"))), React.createElement("nav", {
+    className: "ff-toc",
+    "aria-label": "On this page"
+  }, React.createElement("span", null, "On this page"), toc.map(([href, label]) => React.createElement(React.Fragment, {
+    key: href
+  }, L("section_wildlife_toc", href, label))))), React.createElement("section", {
+    className: "hp-wrap hp-section",
+    id: "sx-schedule",
+    tabIndex: -1
+  }, React.createElement("div", {
+    className: "ff-split"
+  }, React.createElement("div", null, React.createElement("p", {
+    className: "hp-eyebrow"
+  }, "WHEN AND WHERE TO LOOK"), React.createElement("h2", null, "The animals are on a schedule. Match it."), React.createElement("p", {
+    className: "ff-lede"
+  }, "Yosemite's wildlife is not hiding. About 400 vertebrate species live here, roughly 90 mammals and over 260 birds, and a good number spend their days within a few hundred yards of a road. What keeps most visitors from seeing them is that most visitors are moving, and at the wrong hours."), React.createElement("p", {
+    className: "ff-note"
+  }, "The whole protocol, animal by animal and meadow by meadow: ", L("section_wildlife", "/articles/yosemite-wildlife-viewing-guide", "Yosemite wildlife: what lives here, and where to see it"), ".")), React.createElement("ul", {
+    className: "ps-drules"
+  }, React.createElement("li", null, React.createElement(SxIcon, {
+    name: "clock",
+    size: 20
+  }), React.createElement("span", null, React.createElement("b", null, "Go at the edges of the day."), " Most of the park's mammals are active in the low light around sunrise and sunset. A meadow full of deer at 6:30 a.m. is empty by 10.")), React.createElement("li", null, React.createElement(SxIcon, {
+    name: "eye",
+    size: 20
+  }), React.createElement("span", null, React.createElement("b", null, "Walk the boundary, not the middle."), " Animals feed on one side of a meadow's edge and take cover on the other. Look along the seam.")), React.createElement("li", null, React.createElement(SxIcon, {
+    name: "paw",
+    size: 20
+  }), React.createElement("span", null, React.createElement("b", null, "Drive slowly at dawn and dusk."), " The red bear signs along the park roads each mark a spot where a car killed a bear.")))), React.createElement("div", {
+    className: "ps-tips"
+  }, React.createElement("div", {
+    className: "ps-tip"
+  }, React.createElement("p", {
+    className: "ps-tip__n"
+  }, "50", React.createElement("small", null, "yards")), React.createElement("h3", null, "From a bear, minimum"), React.createElement("p", null, "It is the park requirement, and it is measured from the bear, not from your comfort. If a bear changes its behavior because of you, you are too close, whatever the distance.")), React.createElement("div", {
+    className: "ps-tip"
+  }, React.createElement("p", {
+    className: "ps-tip__n"
+  }, "25", React.createElement("small", null, "yards")), React.createElement("h3", null, "From a deer"), React.createElement("p", null, "Deer injure more visitors in Yosemite than bears do, because people treat a wild animal with antlers like a petting-zoo resident. Photograph them from the trail.")), React.createElement("div", {
+    className: "ps-tip"
+  }, React.createElement("p", {
+    className: "ps-tip__n"
+  }, "8", React.createElement("small", null, "animals")), React.createElement("h3", null, "Who you will actually see"), React.createElement("p", null, "Mule deer, coyote, black bear, Steller's jay, acorn woodpecker, Douglas squirrel, and at altitude the yellow-bellied marmot and the pika. That is most of it.")))), React.createElement("section", {
+    className: "ff-band",
+    id: "sx-bears",
+    tabIndex: -1
+  }, React.createElement("div", {
+    className: "hp-wrap hp-section"
+  }, React.createElement("div", {
+    className: "ff-split ff-split--end"
+  }, React.createElement("div", null, React.createElement("p", {
+    className: "hp-eyebrow"
+  }, "BEARS"), React.createElement("h2", null, "Every bear here is a black bear")), React.createElement("p", {
+    className: "ff-lede ps-flush"
+  }, "Somewhere between 300 and 500 of them. There have been no grizzlies in California for over a century, which is why most of the bear advice on the internet is written for the wrong park.")), React.createElement("div", {
+    className: "ps-riders"
+  }, React.createElement("div", null, React.createElement("h3", null, "Bear spray is illegal"), React.createElement("p", null, "It is classified as a weapon in the Superintendent's Compendium. Possession and use are both prohibited, and it is not needed for black bears.")), React.createElement("div", null, React.createElement("h3", null, "Do not play dead"), React.createElement("p", null, "That is advice for grizzlies. With a black bear that will not leave, make yourself large, shout, and if it makes contact, fight back.")), React.createElement("div", null, React.createElement("h3", null, "Your voice is the tool"), React.createElement("p", null, "The park's Bear Team says it plainly: your voice is your most effective tool. The guide has the specifics."))), React.createElement("div", {
+    className: "ps-paths sx-paths"
+  }, card("yosemite-bears-safety-guide", "paw", "THE GUIDE", "What to do when you see a bear", "Read the bear guide →"), card("is-bear-spray-allowed-in-yosemite", "permit", "THE RULE", "Is bear spray allowed?", "Read the answer →"), card("bears-spring-emergence", "eye", "SPRING", "A bear in April is not a bear in August", "Read why →")), React.createElement("p", {
+    className: "ff-note"
+  }, "Storing food in a campground, and the locker that comes with it: ", L("section_wildlife", "/articles/camping-in-yosemite-first-time", "camping in Yosemite for the first time"), "."))), React.createElement("section", {
+    className: "hp-wrap hp-section",
+    id: "sx-bloom",
+    tabIndex: -1
+  }, React.createElement("div", {
+    className: "ff-split"
+  }, React.createElement("div", null, React.createElement("p", {
+    className: "hp-eyebrow"
+  }, "THE BLOOM"), React.createElement("h2", null, "In Yosemite, the bloom is not a date. It is an elevation."), React.createElement("p", {
+    className: "ff-lede"
+  }, "Spring starts in the Merced River canyon in February and takes five months to climb the mountain, at very roughly a thousand feet a month. Something is in flower somewhere in or near the park from February through August. You just have to drive to the right altitude."), React.createElement("p", {
+    className: "ff-note"
+  }, "Where to stand when it passes, band by band: ", L("section_wildlife", "/articles/yosemite-wildflowers-guide", "Yosemite wildflowers: the bloom calendar climbs the mountain"), ".")), React.createElement("div", {
+    className: "sx-bloom",
+    role: "img",
+    "aria-label": "The bloom by elevation. " + SX_BLOOM.map(b => `${b.band}, ${b.feet}: ${SX_BLOOM_MONTHS[b.from]} to ${SX_BLOOM_MONTHS[b.to]}, ${b.what}.`).join(" ")
+  }, React.createElement("div", {
+    className: "sx-bloom__head",
+    "aria-hidden": "true"
+  }, React.createElement("span", null), React.createElement("span", {
+    className: "sx-bloom__months"
+  }, SX_BLOOM_MONTHS.map(x => React.createElement("span", {
+    key: x
+  }, x)))), SX_BLOOM.map(b => React.createElement("div", {
+    className: "sx-bloom__row",
+    key: b.band,
+    "aria-hidden": "true"
+  }, React.createElement("span", {
+    className: "sx-bloom__band"
+  }, React.createElement("b", null, b.band), b.feet, React.createElement("em", null, b.what)), React.createElement("span", {
+    className: "sx-bloom__track"
+  }, React.createElement("i", {
+    style: {
+      gridColumn: `${b.from + 1} / ${b.to + 2}`
+    }
+  })))), React.createElement("p", {
+    className: "ff-note"
+  }, "The bands and months are the guide's own, and approximate. A wet or dry year moves every one of them.")))), React.createElement("section", {
+    className: "ff-band",
+    id: "sx-land",
+    tabIndex: -1
+  }, React.createElement("div", {
+    className: "hp-wrap hp-section"
+  }, React.createElement("div", {
+    className: "ff-split ff-split--end"
+  }, React.createElement("div", null, React.createElement("p", {
+    className: "hp-eyebrow"
+  }, "THE GROUND BENEATH"), React.createElement("h2", null, "Rock, ice and the oldest trees")), React.createElement("p", {
+    className: "ff-lede ps-flush"
+  }, "The natural-history essays: the landform the Valley is built on, the glaciers that carved it and are now leaving, and the trees that need fire.")), React.createElement("div", {
+    className: "ps-paths sx-paths"
+  }, card("what-is-a-talus-field", "mountain", "LANDFORM", "What is a talus field?", "Read the essay →"), card("yosemite-glaciers-climate", "gain", "ICE", "The disappearing glaciers", "Read the essay →"), card("giant-sequoias-fire-adaptation", "flower", "TREES", "Why sequoias thrive in fire", "Read the essay →")))), React.createElement(SxEveryEntry, {
+    slugCat: "wildlife",
+    groups: SX_WILD_GROUPS,
+    go: go,
+    location: "section_list",
+    id: "sx-every-entry",
+    lede: "All {n} wildlife and nature pieces, read live from the catalog. Pick a subject to narrow the list."
+  }), React.createElement(HpGuideBand, {
+    go: go,
+    location: "section_wildlife",
+    title: "The park's stops and hikes, offline",
+    intro: "The Field Guide app carries the meadows, the trails and the viewpoints, with offline maps for a park that has no signal past the gate.",
+    sample: true
+  }), React.createElement(HpLetter, {
+    eyebrow: "SUNDAY FIELD NOTES / FREE",
+    title: "What the park's naturalists are seeing",
+    heading: "What the park's naturalists are seeing",
+    blurb: "One letter a week from inside Yosemite: what is in bloom, what is moving, and what the park's own naturalists recorded in these same weeks.",
+    location: "section_wildlife",
+    tag: "wildlife"
+  }));
+}
 function CategoryPage({
   slug,
   go
@@ -812,6 +1768,15 @@ function CategoryPage({
     className: "hp-wrap hp-section"
   }, "Not found.");
   if (slug === "planning") return React.createElement(PlanningSectionPage, {
+    go: go
+  });
+  if (slug === "seasonal") return React.createElement(SeasonalSectionPage, {
+    go: go
+  });
+  if (slug === "trails") return React.createElement(TrailsSectionPage, {
+    go: go
+  });
+  if (slug === "wildlife") return React.createElement(WildlifeSectionPage, {
     go: go
   });
   var items = window.byCategory(slug);

@@ -635,10 +635,744 @@ function PlanningSectionPage({ go }) {
   );
 }
 
+// =============================================================================
+// /section/seasonal, /section/trails and /section/wildlife (October 2026).
+// The same move as /section/planning: a reader arriving in a section has a
+// question, so each page answers it before it lists anything, on /firefall's
+// event system (`hp-event` + the `.ff-*` rules, plus the `ps-` pieces shared
+// with the planning page) and ends with the whole section as a filterable list
+// read live from the catalog. Every figure restates a published article, named
+// at its block: the month table and the seasonal windows are TRIP_MONTHS and
+// ARTICLE_MONTHS (intent-data.js, read live, never copied); the trail figures
+// are the trail facts in seo-data.json, which mirror each article's own body;
+// the wildlife figures are the wildlife viewing guide, the bear safety guide
+// and the wildflowers guide. Change the article, change the line here. Every
+// top-level name carries an `Sx`/`SX_` prefix: page bundles share one scope.
+// =============================================================================
+
+const SX_KEYS = ["jan", "feb", "mar", "apr", "may", "jun", "jul", "aug", "sep", "oct", "nov", "dec"];
+
+// The park's month, not the reader's: a visitor planning from Berlin wants
+// Yosemite's calendar. Falls back to the local clock if Intl refuses the zone.
+function sxParkMonth() {
+  try {
+    const m = new Intl.DateTimeFormat("en-US", { timeZone: "America/Los_Angeles", month: "numeric" }).format(new Date());
+    return Number(m) - 1;
+  } catch (e) { return new Date().getMonth(); }
+}
+
+const SX_ICON_PATHS = {
+  calendar: <React.Fragment><rect x="3" y="5" width="18" height="16" rx="1" /><path d="M3 10 H21 M8 3 V7 M16 3 V7" /></React.Fragment>,
+  road: <path d="M8 3 L5 21 M16 3 L19 21 M12 4 V8 M12 11 V15 M12 18 V21" />,
+  book: <path d="M4 4 H10 A2 2 0 0 1 12 6 V20 A2 2 0 0 0 10 18 H4 Z M20 4 H14 A2 2 0 0 0 12 6 V20 A2 2 0 0 1 14 18 H20 Z" />,
+  mountain: <path d="M2 20 L9 7 L13 14 L16 10 L22 20 Z" />,
+  gain: <path d="M3 20 H21 M3 20 L9 12 L13 15 L20 5 M15 5 H20 V10" />,
+  clock: <React.Fragment><circle cx="12" cy="12" r="9" /><path d="M12 7 V12 L15 14" /></React.Fragment>,
+  paw: <React.Fragment><circle cx="6" cy="10" r="2" /><circle cx="10" cy="6" r="2" /><circle cx="14" cy="6" r="2" /><circle cx="18" cy="10" r="2" /><path d="M8 18 C8 14 10 13 12 13 C14 13 16 14 16 18 C16 20 14 20 12 19 C10 20 8 20 8 18 Z" /></React.Fragment>,
+  flower: <React.Fragment><circle cx="12" cy="12" r="2.5" /><path d="M12 9.5 C10 6 11 3 12 3 C13 3 14 6 12 9.5 M14.5 12 C18 10 21 11 21 12 C21 13 18 14 14.5 12 M12 14.5 C14 18 13 21 12 21 C11 21 10 18 12 14.5 M9.5 12 C6 14 3 13 3 12 C3 11 6 10 9.5 12" /></React.Fragment>,
+  eye: <React.Fragment><path d="M2 12 C5 6 19 6 22 12 C19 18 5 18 2 12 Z" /><circle cx="12" cy="12" r="3" /></React.Fragment>,
+  permit: <React.Fragment><rect x="5" y="3" width="14" height="18" rx="1" /><path d="M9 8 H15 M9 12 H15 M9 16 H12" /></React.Fragment>,
+};
+function SxIcon({ name, size = 26, className }) {
+  return (
+    <svg className={["ps-icon", className].filter(Boolean).join(" ")} width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+      {SX_ICON_PATHS[name]}
+    </svg>
+  );
+}
+
+const sxArticle = (slug) => (window.ARTICLES || []).find((a) => a.slug === slug);
+// First sentence of a dek; a very short opener ("Same elevation.") takes the next one too.
+const sxFirst = (text) => {
+  const s = String(text || "");
+  const m = s.match(/^.*?[.?!](?=\s|$)/);
+  if (!m) return s;
+  if (m[0].length >= 45) return m[0];
+  const m2 = s.match(/^.*?[.?!]\s+.*?[.?!](?=\s|$)/);
+  return m2 ? m2[0] : m[0];
+};
+
+// The photo credit line for a catalog entry, for the figures under a plate.
+const sxCredit = (a) => (a && a.credit ? a.credit.replace(/^(Photo|Illustration): /, "") : "");
+
+// The list at the foot of each section page: the whole section, live, with
+// chips that group it by the page's own headings. `groups` is
+// [[key, label, [slug, ...]], ...]; an article in no group shows under All.
+function SxEveryEntry({ slugCat, groups, go, location, id, lede }) {
+  const [pick, setPick] = useState("all");
+  const all = window.byCategory(slugCat);
+  const inGroup = (a, k) => k === "all" || (groups.find((g) => g[0] === k) || [0, 0, []])[2].includes(a.slug);
+  const shown = all.filter((a) => inGroup(a, pick));
+  const labels = (a) => groups.filter((g) => g[2].includes(a.slug)).map((g) => g[1]).join(" · ");
+  return (
+    <section className="hp-wrap hp-section" id={id} tabIndex={-1}>
+      <div className="ff-split ff-split--end">
+        <div>
+          <p className="hp-eyebrow">EVERY ENTRY</p>
+          <h2>The whole section</h2>
+        </div>
+        <p className="ff-lede ps-flush">{lede.replace("{n}", all.length)}</p>
+      </div>
+      <div className="ps-filters" role="group" aria-label="Filter the section">
+        {[["all", "All"], ...groups.map((g) => [g[0], g[1]])].map(([k, label]) => (
+          <button key={k} type="button" className={"ps-choice ps-chip" + (k === pick ? " is-on" : "")} aria-pressed={k === pick} onClick={() => setPick(k)}>
+            {label} <span>{all.filter((a) => inGroup(a, k)).length}</span>
+          </button>
+        ))}
+      </div>
+      <p className="ps-count" aria-live="polite">{pick === "all" ? `Showing all ${shown.length} entries.` : `Showing ${shown.length} of ${all.length} entries.`}</p>
+      <div className="ps-list">
+        {shown.map((a, i) => (
+          <HomeLink key={a.slug} go={go} location="section_list" href={`/articles/${a.slug}`} className="ps-row">
+            <span className="ps-row__n">{String(i + 1).padStart(2, "0")}</span>
+            <span className="ps-row__body"><span className="ps-row__t">{a.title}</span><span className="ps-row__d">{sxFirst(a.dek)}</span></span>
+            <span className="ps-row__k">{labels(a) || "Essay"}</span>
+            <span className="ps-row__r">{a.read} read</span>
+          </HomeLink>
+        ))}
+      </div>
+    </section>
+  );
+}
+
+// -----------------------------------------------------------------------------
+// /section/seasonal: the park, month by month.
+// -----------------------------------------------------------------------------
+
+// Four seasons and the pieces that belong under each. Membership is editorial;
+// titles, photographs and credits come from the catalog, so a rename follows.
+const SX_SEASONS = [
+  { key: "winter", label: "Winter", months: "December to February", lead: "yosemite-in-winter",
+    slugs: ["yosemite-in-winter", "horsetail-fall-firefall", "bracebridge-dinner-and-vintners-holidays", "yosemite-winter-hikes"] },
+  { key: "spring", label: "Spring", months: "March to May", lead: "yosemite-in-march",
+    slugs: ["yosemite-in-march", "yosemite-waterfalls-guide", "tioga-road-opening-weekend-2026", "glacier-point-road-open-2026", "memorial-day-skip-the-valley-go-high-2026"] },
+  { key: "summer", label: "Summer", months: "June to August", lead: "yosemite-in-june-2026",
+    slugs: ["yosemite-in-june-2026", "swimming-in-the-merced", "yosemite-heat-safety-guide", "yosemite-stargazing-where-to-look-up", "yosemite-during-smoke-season"] },
+  { key: "fall", label: "Fall", months: "September to November", lead: "yosemite-in-fall",
+    slugs: ["yosemite-in-fall", "yosemite-in-september-2026", "yosemite-in-october-2026", "yosemite-connecting-to-traditions"] },
+];
+
+const SX_ROAD_LABEL = { open: "Open", closed: "Closed", unsettled: "Varies" };
+const SX_ROAD_LONG = { open: "usually open", closed: "closed", unsettled: "the date moves with the snowpack" };
+
+function SeasonalSectionPage({ go }) {
+  const months = window.TRIP_MONTHS || [];
+  const [m, setM] = useState(sxParkMonth);
+  const L = (location, href, children, className) => (
+    <HomeLink go={go} location={location} href={href} className={className}>{children}</HomeLink>
+  );
+  const tm = months[m] || months[0];
+  const windows = window.ARTICLE_MONTHS || {};
+  const readFirst = tm && sxArticle(tm.read);
+  const alsoNow = (window.ARTICLES || [])
+    .filter((a) => a.slug !== (tm && tm.read) && (windows[a.slug] || []).includes(tm && tm.key))
+    .slice(0, 5);
+  const season = (s) => s.slugs.map(sxArticle).filter(Boolean);
+  const lead = sxArticle("yosemite-in-fall");
+  const groups = SX_SEASONS.map((s) => [s.key, s.label, s.slugs]);
+  const toc = [
+    ["#sx-month", "Pick your month"],
+    ["#sx-roads", "The two roads"],
+    ["#sx-seasons", "Four seasons"],
+    ["#sx-every-entry", "Every entry"],
+  ];
+  const n = window.byCategory("seasonal").length;
+
+  return (
+    <div className="page hp-tool hp-event hp-section-seasonal">
+      <div className="ff-cover sx-cover">
+        <ResponsiveImage image={lead.image} eager className="ff-cover__img"
+          alt="Tunnel View in autumn, the Valley's granite walls under yellow leaves" sizes="100vw" />
+        <HpPageHead
+          go={go}
+          crumbs={[{ label: "Home", route: "home" }, { label: "Read", route: "articles" }, { label: "Seasonal Guides" }]}
+          eyebrow="SECTION · SEASONAL GUIDES · MONTH BY MONTH"
+          title="Yosemite, month by month"
+          intro="The park in January is not the park in July. Pick the month you are coming and see what the roads are doing, what the month is like, and which guide to read first. Every month is drawn from a longer piece, linked where it applies."
+          actions={<React.Fragment>
+            {L("section_seasonal_head", "#sx-month", <React.Fragment>Pick your month <span>↓</span></React.Fragment>, "hp-button")}
+            {L("section_seasonal_head", "#sx-seasons", "Browse the four seasons ↓", "hp-link")}
+          </React.Fragment>}
+        />
+        <p className="ff-cover__credit">Photo: {sxCredit(lead)}</p>
+      </div>
+
+      <div className="hp-wrap">
+        <dl className="ff-facts">
+          <div><SxIcon name="calendar" className="ff-icon" /><dt>Months covered</dt><dd>All twelve</dd></div>
+          <div><SxIcon name="road" className="ff-icon" /><dt>Roads that decide the month</dt><dd>Tioga and Glacier Point</dd></div>
+          <div><SxIcon name="book" className="ff-icon" /><dt>Seasonal guides</dt><dd>{n} to read</dd></div>
+        </dl>
+        <nav className="ff-toc" aria-label="On this page">
+          <span>On this page</span>
+          {toc.map(([href, label]) => <React.Fragment key={href}>{L("section_seasonal_toc", href, label)}</React.Fragment>)}
+        </nav>
+      </div>
+
+      {/* Pick your month: TRIP_MONTHS and ARTICLE_MONTHS, read live. */}
+      <section className="hp-wrap hp-section" id="sx-month" tabIndex={-1}>
+        <div className="ff-split ff-split--end">
+          <div>
+            <p className="hp-eyebrow">WHEN ARE YOU COMING?</p>
+            <h2>What the month decides</h2>
+          </div>
+          <p className="ff-lede ps-flush">Two roads open and close with the season and they set the shape of a trip. The rest of the month's character follows from the snow, and each month below opens on the piece that covers it.</p>
+        </div>
+        <div className="ps-calc">
+          <div className="ps-calc__pick">
+            <p className="ps-label">Which month?</p>
+            <div className="ps-months" role="group" aria-label="Month of your visit">
+              {months.map((x, i) => (
+                <button key={x.key} type="button" className={"ps-choice" + (i === m ? " is-on" : "")} aria-pressed={i === m} onClick={() => setM(i)}>{x.label}</button>
+              ))}
+            </div>
+            <p className="ff-note">It opens on the park's current month. Road status is the month's usual pattern; the park sets the real dates each year, so check the {L("section_seasonal", "/conditions", "conditions board")} before you drive.</p>
+          </div>
+          <div className="ps-calc__out" aria-live="polite">
+            <small>Yosemite in</small>
+            <span className="ps-calc__big">{tm.name}</span>
+            <span className="ps-calc__time">Tioga Road: {SX_ROAD_LABEL[tm.tioga]} · Glacier Point Road: {SX_ROAD_LABEL[tm.glacier]}</span>
+            <p>{tm.note}</p>
+          </div>
+        </div>
+        <div className="ff-split sx-month-read">
+          <div>
+            <p className="hp-eyebrow">READ FIRST FOR {tm.name.toUpperCase()}</p>
+            {readFirst && (
+              <HomeLink go={go} location="section_seasonal" href={`/articles/${readFirst.slug}`} className="ps-drive">
+                <span className="ps-drive__from">{readFirst.read} read</span>
+                <span className="ps-drive__num">{readFirst.title}</span>
+                <small>{sxFirst(readFirst.dek)}</small>
+                <span className="ps-drive__go">Read the guide →</span>
+              </HomeLink>
+            )}
+          </div>
+          <div>
+            <p className="hp-eyebrow">ARRIVING IN {tm.name.toUpperCase()}</p>
+            <p className="ff-lede ps-flush">{tm.arrive}</p>
+            {alsoNow.length > 0 && <React.Fragment>
+              <p className="hp-eyebrow sx-gap">ALSO IN SEASON</p>
+              <ul className="sx-links">
+                {alsoNow.map((a) => <li key={a.slug}>{L("section_seasonal", `/articles/${a.slug}`, a.title)}</li>)}
+              </ul>
+            </React.Fragment>}
+          </div>
+        </div>
+      </section>
+
+      {/* The two roads, all twelve months: TRIP_MONTHS. */}
+      <section className="ff-band" id="sx-roads" tabIndex={-1}>
+        <div className="hp-wrap hp-section">
+          <div className="ff-split ff-split--end">
+            <div>
+              <p className="hp-eyebrow">THE TWO ROADS</p>
+              <h2>Which of the park's roads are open, by month</h2>
+            </div>
+            <p className="ff-lede ps-flush">Tioga Road crosses the high country to the east side and Glacier Point Road climbs to the viewpoint. Everything else in the park is open all year. Amber means the date moves with the snowpack, so no claim is made for that month.</p>
+          </div>
+          <div className="sx-roads" role="table" aria-label="Road status by month">
+            <div className="sx-roads__head" role="row">
+              <span role="columnheader" className="sx-roads__road" />
+              {months.map((x) => <span role="columnheader" key={x.key}>{x.label}</span>)}
+            </div>
+            {[["tioga", "Tioga Road", "/tioga-opening"], ["glacier", "Glacier Point Road", "/articles/glacier-point-road-open-2026"]].map(([k, label, href]) => (
+              <div className="sx-roads__row" role="row" key={k}>
+                <span role="rowheader" className="sx-roads__road">{L("section_seasonal", href, label)}</span>
+                {months.map((x) => (
+                  <span role="cell" key={x.key} className={"sx-cell sx-cell--" + x[k] + (x.key === tm.key ? " is-now" : "")} title={`${label}, ${x.name}: ${SX_ROAD_LONG[x[k]]}`}>
+                    <b>{SX_ROAD_LABEL[x[k]]}</b>
+                  </span>
+                ))}
+              </div>
+            ))}
+          </div>
+          <p className="ff-note">The month you picked is outlined. When each road actually opens: {L("section_seasonal", "/tioga-opening", "Tioga Road opening")}. Every park deadline on one calendar: {L("section_seasonal", "/dates", "the dates table")}.</p>
+        </div>
+      </section>
+
+      {/* Four seasons: the pieces, from the catalog. */}
+      <section className="hp-wrap hp-section" id="sx-seasons" tabIndex={-1}>
+        <div className="ff-split ff-split--end">
+          <div>
+            <p className="hp-eyebrow">FOUR SEASONS</p>
+            <h2>The guides, by season</h2>
+          </div>
+          <p className="ff-lede ps-flush">Some of these are written for one year's conditions and say so in the title. The evergreen piece for a season is the first link in its column.</p>
+        </div>
+        <div className="sx-seasons">
+          {SX_SEASONS.map((s) => {
+            const a = sxArticle(s.lead);
+            return (
+              <article className="sx-season" key={s.key}>
+                <figure className="ps-photo">
+                  <ResponsiveImage image={a.image} alt={a.title} sizes="(max-width: 880px) 100vw, 300px" />
+                  <figcaption>{sxCredit(a)}</figcaption>
+                </figure>
+                <p className="hp-eyebrow">{s.months.toUpperCase()}</p>
+                <h3>{s.label}</h3>
+                <ul className="sx-links">
+                  {season(s).map((x) => <li key={x.slug}>{L("section_seasonal", `/articles/${x.slug}`, x.title)}</li>)}
+                </ul>
+              </article>
+            );
+          })}
+        </div>
+      </section>
+
+      <SxEveryEntry slugCat="seasonal" groups={groups} go={go} location="section_list" id="sx-every-entry"
+        lede="All {n} seasonal guides, read live from the catalog. Pick a season to narrow the list; a piece that spans two shows under both." />
+
+      <section className="ff-band">
+        <div className="hp-wrap hp-section ff-split">
+          <div>
+            <p className="hp-eyebrow">NOT SURE WHICH MONTH?</p>
+            <h2>Let the trip planner pick the reads</h2>
+            <p className="ff-lede">Five questions, one plan: month, days, where you are sleeping, who is coming and what matters most. It returns a read list and a day plan capped to what that month's roads allow.</p>
+          </div>
+          <div className="ff-closing">
+            <p className="hp-eyebrow">THE TRIP PLANNER</p>
+            <h3>Five questions, one plan</h3>
+            <p>The planner reads the same month table as this page, so the plan never routes a January visitor over a closed road.</p>
+            {L("section_seasonal", "/planning", <React.Fragment>Open the trip planner <span>→</span></React.Fragment>, "hp-button")}
+          </div>
+        </div>
+      </section>
+
+      <HpGuideBand
+        go={go}
+        location="section_seasonal"
+        title="The season in your pocket, where there's no signal"
+        intro="The Field Guide app carries the stops, the hikes and the deadlines for your dates, with offline maps for a park that has no signal past the gate."
+        sample
+      />
+      <HpLetter
+        eyebrow="SUNDAY FIELD NOTES / FREE"
+        title="What the park is doing this week"
+        heading="What the park is doing this week"
+        blurb="One letter a week from inside Yosemite: what the season is doing, which roads moved, and what to book next."
+        location="section_seasonal"
+        tag="seasonal"
+      />
+    </div>
+  );
+}
+
+// -----------------------------------------------------------------------------
+// /section/trails: pick a hike.
+// -----------------------------------------------------------------------------
+
+// The trail facts are the ones in seo-data.json (each restates its article's
+// own body); `gain` is the upper figure in feet, for the bar only.
+const SX_HIKES = [
+  { slug: "hetch-hetchy-the-other-yosemite-valley", name: "Wapama Falls, Hetch Hetchy", dist: "About 5 miles round trip", gainText: "500 ft", gain: 500, level: "Moderate" },
+  { slug: "cathedral-lakes-day-hike", name: "Cathedral Lakes", dist: "9 to 10.5 miles round trip", gainText: "1,000 to 1,400 ft", gain: 1400, level: "Moderate to strenuous" },
+  { slug: "mist-trail-the-real-guide", name: "Mist Trail to Nevada Fall", dist: "5.4 miles round trip", gainText: "2,000 ft", gain: 2000, level: "Strenuous" },
+  { slug: "clouds-rest-hike", name: "Clouds Rest", dist: "14 miles round trip", gainText: "2,300 ft", gain: 2300, level: "Strenuous", note: "No permit required" },
+  { slug: "yosemite-falls-trail", name: "Yosemite Falls, from Camp 4", dist: "7.2 miles round trip", gainText: "2,700 ft", gain: 2700, level: "Strenuous" },
+  { slug: "four-mile-up-panorama-down", name: "Four Mile and Panorama", dist: "13 to 14 miles between trailheads", gainText: "About 4,000 ft", gain: 4000, level: "Strenuous" },
+  { slug: "so-you-want-to-hike-half-dome", name: "Half Dome, by the cables", dist: "14 to 16 miles round trip", gainText: "4,800 ft", gain: 4800, level: "Strenuous", note: "Permit required" },
+];
+
+const SX_EFFORT = [["any", "Any effort"], ["moderate", "Moderate"], ["strenuous", "Strenuous"]];
+
+const SX_TRAIL_GROUPS = [
+  ["valley", "Valley", ["yosemite-falls-trail", "mist-trail-the-real-guide", "four-mile-up-panorama-down", "so-you-want-to-hike-half-dome", "yosemite-waterfalls-guide"]],
+  ["high", "High country", ["clouds-rest-hike", "cathedral-lakes-day-hike"]],
+  ["north", "Hetch Hetchy", ["hetch-hetchy-the-other-yosemite-valley"]],
+  ["off", "Overnight and winter", ["first-yosemite-backpacking-trip", "yosemite-winter-hikes"]],
+];
+
+function TrailsSectionPage({ go }) {
+  const [effort, setEffort] = useState("any");
+  const [month, setMonth] = useState(-1);
+  const L = (location, href, children, className) => (
+    <HomeLink go={go} location={location} href={href} className={className}>{children}</HomeLink>
+  );
+  const months = window.TRIP_MONTHS || [];
+  const windows = window.ARTICLE_MONTHS || {};
+  const key = month >= 0 ? months[month].key : null;
+  // Only an article with a published window can be out of season: no window
+  // is not "year-round", it is unknown, so it is never dimmed or tagged.
+  const season = (slug) => (!key || !windows[slug]) ? null : (windows[slug].includes(key) ? "in" : "out");
+  const fits = (h) => effort === "any" || (effort === "moderate" ? /^Moderate/.test(h.level) : h.level === "Strenuous");
+  const rows = SX_HIKES.filter(fits);
+  const lead = sxArticle("mist-trail-the-real-guide");
+  const hd = SX_HIKES.find((h) => h.slug === "so-you-want-to-hike-half-dome");
+  const cr = SX_HIKES.find((h) => h.slug === "clouds-rest-hike");
+  const toc = [
+    ["#sx-compare", "Compare the hikes"],
+    ["#sx-versus", "Half Dome or Clouds Rest"],
+    ["#sx-kinds", "Other kinds of day"],
+    ["#sx-every-entry", "Every entry"],
+  ];
+
+  return (
+    <div className="page hp-tool hp-event hp-section-trails">
+      <div className="ff-cover sx-cover">
+        <ResponsiveImage image={lead.image} eager className="ff-cover__img"
+          alt="Nevada Fall and Liberty Cap seen from the trail above the Merced River" sizes="100vw" />
+        <HpPageHead
+          go={go}
+          crumbs={[{ label: "Home", route: "home" }, { label: "Read", route: "articles" }, { label: "Trails and Hikes" }]}
+          eyebrow="SECTION · TRAILS AND HIKES · PICK A HIKE"
+          title="Pick a Yosemite hike"
+          intro="Seven of the park's best-known hikes side by side: how far, how much climbing, how hard, and which ones need a permit. Choose by effort and by the month you are going, then open the full guide for the route."
+          actions={<React.Fragment>
+            {L("section_trails_head", "#sx-compare", <React.Fragment>Compare the hikes <span>↓</span></React.Fragment>, "hp-button")}
+            {L("section_trails_head", "#sx-versus", "Half Dome or Clouds Rest ↓", "hp-link")}
+          </React.Fragment>}
+        />
+        <p className="ff-cover__credit">Photo: {sxCredit(lead)}</p>
+      </div>
+
+      <div className="hp-wrap">
+        <dl className="ff-facts">
+          <div><SxIcon name="mountain" className="ff-icon" /><dt>Half Dome</dt><dd>4,800 ft of climbing, permit required</dd></div>
+          <div><SxIcon name="gain" className="ff-icon" /><dt>Clouds Rest</dt><dd>14 miles, no permit required</dd></div>
+          <div><SxIcon name="clock" className="ff-icon" /><dt>Mist Trail to Nevada Fall</dt><dd>5.4 miles, 2,000 ft</dd></div>
+          <div><SxIcon name="permit" className="ff-icon" /><dt>Overnight trips</dt><dd>A wilderness permit, year-round</dd></div>
+        </dl>
+        <nav className="ff-toc" aria-label="On this page">
+          <span>On this page</span>
+          {toc.map(([href, label]) => <React.Fragment key={href}>{L("section_trails_toc", href, label)}</React.Fragment>)}
+        </nav>
+      </div>
+
+      {/* Compare: the trail facts, one scale. */}
+      <section className="hp-wrap hp-section" id="sx-compare" tabIndex={-1}>
+        <div className="ff-split ff-split--end">
+          <div>
+            <p className="hp-eyebrow">COMPARE THE HIKES</p>
+            <h2>How far, how much climbing, how hard</h2>
+          </div>
+          <p className="ff-lede ps-flush">Every bar is on one scale, from no climbing to Half Dome's 4,800 feet. Distance is the article's own figure, and some are one way and some round trip, so read the line, not just the number.</p>
+        </div>
+        <div className="ps-filters" role="group" aria-label="Effort">
+          {SX_EFFORT.map(([k, label]) => (
+            <button key={k} type="button" className={"ps-choice ps-chip" + (k === effort ? " is-on" : "")} aria-pressed={k === effort} onClick={() => setEffort(k)}>{label}</button>
+          ))}
+        </div>
+        <div className="ps-filters" role="group" aria-label="Month of your visit">
+          <button type="button" className={"ps-choice ps-chip" + (month === -1 ? " is-on" : "")} aria-pressed={month === -1} onClick={() => setMonth(-1)}>Any month</button>
+          {months.map((x, i) => (
+            <button key={x.key} type="button" className={"ps-choice ps-chip" + (month === i ? " is-on" : "")} aria-pressed={month === i} onClick={() => setMonth(i)}>{x.label}</button>
+          ))}
+        </div>
+        <p className="ps-count" aria-live="polite">{rows.length === 0 ? "No hikes match." : `${rows.length} ${rows.length === 1 ? "hike" : "hikes"}${month >= 0 ? `, marked for ${months[month].name}` : ""}.`} Hikes with a published season window are dimmed when they are out of season; a hike with no window is never dimmed, because that means the article names none, not that the trail is open.</p>
+        <div className="sx-hikes">
+          {rows.map((h) => {
+            const a = sxArticle(h.slug);
+            const st = season(h.slug);
+            return (
+              <HomeLink key={h.slug} go={go} location="section_trails" href={`/articles/${h.slug}`} className={"sx-hike" + (st === "out" ? " is-out" : "")}>
+                <span className="sx-hike__name">{h.name}<small>{h.dist}</small></span>
+                <span className="sx-hike__why">{a ? sxFirst(a.dek) : ""}</span>
+                <span className="sx-hike__gain" aria-label={`${h.gainText} of climbing`}>
+                  <span className="sx-bar"><i style={{ width: `${Math.round((h.gain / 4800) * 100)}%` }} /></span>
+                  <b>{h.gainText}</b>
+                </span>
+                <span className="sx-hike__tag">
+                  <span className={"sx-level sx-level--" + (h.level === "Strenuous" ? "hard" : "mod")}>{h.level}</span>
+                  {h.note && <span className="sx-note">{h.note}</span>}
+                  {st === "in" && <span className="sx-season-tag sx-season-tag--in">In season</span>}
+                  {st === "out" && <span className="sx-season-tag">Out of season</span>}
+                </span>
+              </HomeLink>
+            );
+          })}
+        </div>
+        <p className="ff-note">Drive times to the trailhead: {L("section_trails", "/distances", "the distance table")}. Trail and road status today: {L("section_trails", "/conditions", "the conditions board")}. The Half Dome permit lottery: {L("section_trails", "/half-dome-lottery", "how it works")}.</p>
+      </section>
+
+      {/* Half Dome or Clouds Rest: so-you-want-to-hike-half-dome + clouds-rest-hike. */}
+      <section className="ff-band" id="sx-versus" tabIndex={-1}>
+        <div className="hp-wrap hp-section">
+          <div className="ff-split ff-split--end">
+            <div>
+              <p className="hp-eyebrow">THE BIG DAY</p>
+              <h2>Half Dome or Clouds Rest</h2>
+            </div>
+            <p className="ff-lede ps-flush">Both are all-day, strenuous climbs. One needs a permit and a pair of gloves for the cables. The other is higher, and it needs neither.</p>
+          </div>
+          <div className="sx-vs">
+            {[[hd, "The one everyone has heard of", ["A permit from the lottery", "Cables for the last stretch", "14 to 16 miles and 4,800 ft"]],
+              [cr, "The one most visitors skip", ["No permit required", "No cables, a granite spine to finish", "14 miles and 2,300 ft, from the Sunrise Lakes trailhead"]]].map(([h, k, items]) => {
+              const a = sxArticle(h.slug);
+              return (
+                <HomeLink key={h.slug} go={go} location="section_trails" href={`/articles/${h.slug}`} className="sx-vs__card">
+                  <span className="sx-vs__k">{k}</span>
+                  <span className="sx-vs__t">{h.name}</span>
+                  <ul>{items.map((t) => <li key={t}><SxIcon name="mountain" size={16} />{t}</li>)}</ul>
+                  <span className="sx-vs__d">{a ? sxFirst(a.dek) : ""}</span>
+                  <span className="sx-vs__go">Read the guide →</span>
+                </HomeLink>
+              );
+            })}
+          </div>
+        </div>
+      </section>
+
+      {/* Other kinds of day: live deks. */}
+      <section className="hp-wrap hp-section" id="sx-kinds" tabIndex={-1}>
+        <div className="ff-split ff-split--end">
+          <div>
+            <p className="hp-eyebrow">NOT A SUMMIT DAY?</p>
+            <h2>Other kinds of day on the trail</h2>
+          </div>
+          <p className="ff-lede ps-flush">Waterfalls that are only running part of the year, a trail that stays open in winter, and the trip that begins with a permit.</p>
+        </div>
+        <div className="ps-paths sx-paths">
+          {[
+            ["yosemite-waterfalls-guide", "flower", "WATERFALLS", "What is actually running"],
+            ["yosemite-winter-hikes", "mountain", "WINTER", "The trails that stay open"],
+            ["first-yosemite-backpacking-trip", "permit", "OVERNIGHT", "A first backpacking trip"],
+          ].map(([slug, icon, k, t]) => {
+            const a = sxArticle(slug);
+            return (
+              <HomeLink key={slug} go={go} location="section_trails" href={`/articles/${slug}`} className="ps-path">
+                <SxIcon name={icon} size={34} />
+                <span className="ps-path__k">{k}</span>
+                <span className="ps-path__t">{t}</span>
+                <span className="ps-path__d">{a ? sxFirst(a.dek) : ""}</span>
+                <span className="ps-path__go">Read the guide →</span>
+              </HomeLink>
+            );
+          })}
+        </div>
+      </section>
+
+      <SxEveryEntry slugCat="trails" groups={SX_TRAIL_GROUPS} go={go} location="section_list" id="sx-every-entry"
+        lede="All {n} trail guides, read live from the catalog. Pick an area to narrow the list." />
+
+      <HpGuideBand
+        go={go}
+        location="section_trails"
+        title="The trail, in your pocket where there's no signal"
+        intro="The Field Guide app carries the hikes, the stops and the deadlines for your dates, with offline maps for a park that has no signal on any trail."
+        sample
+      />
+      <HpLetter
+        eyebrow="SUNDAY FIELD NOTES / FREE"
+        title="Which trails are open this week"
+        heading="Which trails are open this week"
+        blurb="One letter a week from inside Yosemite: what the season is doing, which trails and roads moved, and the permit window coming up next."
+        location="section_trails"
+        tag="trails"
+      />
+    </div>
+  );
+}
+
+// -----------------------------------------------------------------------------
+// /section/wildlife: who lives here, and when to look.
+// -----------------------------------------------------------------------------
+
+// The bloom wave, bottom to top: the bands and months in the wildflowers
+// guide's own chart (Feb to Aug, approximate; a wet or dry year moves every bar).
+const SX_BLOOM = [
+  { band: "High country", feet: "8,000 to 10,000 ft", from: 5, to: 6, what: "Tuolumne Meadows" },
+  { band: "Middle elevations", feet: "6,000 to 8,000 ft", from: 3, to: 5, what: "McGurk Meadow, Crane Flat, lupine" },
+  { band: "Valley floor", feet: "About 4,000 ft", from: 2, to: 4, what: "Dogwood, meadow flowers, azalea" },
+  { band: "Foothills", feet: "1,500 to 3,000 ft", from: 0, to: 2, what: "Redbud, then poppies" },
+];
+const SX_BLOOM_MONTHS = ["Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug"];
+
+const SX_WILD_GROUPS = [
+  ["animals", "Animals", ["yosemite-wildlife-viewing-guide", "water-ouzels-waterfalls", "showy-milkweed-yosemite-valley"]],
+  ["bears", "Bears", ["yosemite-bears-safety-guide", "is-bear-spray-allowed-in-yosemite", "bears-spring-emergence"]],
+  ["plants", "Plants and trees", ["yosemite-wildflowers-guide", "giant-sequoias-fire-adaptation", "yosemite-tunnel-trees"]],
+  ["land", "Rock and ice", ["what-is-a-talus-field", "yosemite-glaciers-climate"]],
+];
+
+function WildlifeSectionPage({ go }) {
+  const L = (location, href, children, className) => (
+    <HomeLink go={go} location={location} href={href} className={className}>{children}</HomeLink>
+  );
+  const lead = sxArticle("yosemite-wildlife-viewing-guide");
+  const card = (slug, icon, k, t, cta) => {
+    const a = sxArticle(slug);
+    return (
+      <HomeLink key={slug} go={go} location="section_wildlife" href={`/articles/${slug}`} className="ps-path">
+        <SxIcon name={icon} size={34} />
+        <span className="ps-path__k">{k}</span>
+        <span className="ps-path__t">{t}</span>
+        <span className="ps-path__d">{a ? sxFirst(a.dek) : ""}</span>
+        <span className="ps-path__go">{cta}</span>
+      </HomeLink>
+    );
+  };
+  const toc = [
+    ["#sx-schedule", "The animals' schedule"],
+    ["#sx-bears", "Bears"],
+    ["#sx-bloom", "The bloom"],
+    ["#sx-land", "The ground beneath"],
+    ["#sx-every-entry", "Every entry"],
+  ];
+
+  return (
+    <div className="page hp-tool hp-event hp-section-wildlife">
+      <div className="ff-cover sx-cover">
+        <ResponsiveImage image={lead.image} eager className="ff-cover__img"
+          alt="A mule deer grazing in a Valley meadow with Half Dome behind it" sizes="100vw" />
+        <HpPageHead
+          go={go}
+          crumbs={[{ label: "Home", route: "home" }, { label: "Read", route: "articles" }, { label: "Wildlife and Nature" }]}
+          eyebrow="SECTION · WILDLIFE AND NATURE · WHO LIVES HERE"
+          title="Wildlife and nature in Yosemite"
+          intro="When to look for the animals, what to do about the bears, where the flowers are in any given month, and the rock, ice and trees that explain the place. Every answer is drawn from a longer piece, linked where it applies."
+          actions={<React.Fragment>
+            {L("section_wildlife_head", "#sx-schedule", <React.Fragment>When to look <span>↓</span></React.Fragment>, "hp-button")}
+            {L("section_wildlife_head", "#sx-bears", "Bear safety ↓", "hp-link")}
+          </React.Fragment>}
+        />
+        <p className="ff-cover__credit">Photo: {sxCredit(lead)}</p>
+      </div>
+
+      <div className="hp-wrap">
+        <dl className="ff-facts">
+          <div><SxIcon name="paw" className="ff-icon" /><dt>Vertebrate species</dt><dd>About 400</dd></div>
+          <div><SxIcon name="eye" className="ff-icon" /><dt>Distance from a bear</dt><dd>50 yards minimum</dd></div>
+          <div><SxIcon name="paw" className="ff-icon" /><dt>Black bears in the park</dt><dd>300 to 500, no grizzlies</dd></div>
+          <div><SxIcon name="flower" className="ff-icon" /><dt>The bloom</dt><dd>Climbs about 1,000 ft a month</dd></div>
+        </dl>
+        <nav className="ff-toc" aria-label="On this page">
+          <span>On this page</span>
+          {toc.map(([href, label]) => <React.Fragment key={href}>{L("section_wildlife_toc", href, label)}</React.Fragment>)}
+        </nav>
+      </div>
+
+      {/* The schedule: yosemite-wildlife-viewing-guide. */}
+      <section className="hp-wrap hp-section" id="sx-schedule" tabIndex={-1}>
+        <div className="ff-split">
+          <div>
+            <p className="hp-eyebrow">WHEN AND WHERE TO LOOK</p>
+            <h2>The animals are on a schedule. Match it.</h2>
+            <p className="ff-lede">Yosemite's wildlife is not hiding. About 400 vertebrate species live here, roughly 90 mammals and over 260 birds, and a good number spend their days within a few hundred yards of a road. What keeps most visitors from seeing them is that most visitors are moving, and at the wrong hours.</p>
+            <p className="ff-note">The whole protocol, animal by animal and meadow by meadow: {L("section_wildlife", "/articles/yosemite-wildlife-viewing-guide", "Yosemite wildlife: what lives here, and where to see it")}.</p>
+          </div>
+          <ul className="ps-drules">
+            <li><SxIcon name="clock" size={20} /><span><b>Go at the edges of the day.</b> Most of the park's mammals are active in the low light around sunrise and sunset. A meadow full of deer at 6:30 a.m. is empty by 10.</span></li>
+            <li><SxIcon name="eye" size={20} /><span><b>Walk the boundary, not the middle.</b> Animals feed on one side of a meadow's edge and take cover on the other. Look along the seam.</span></li>
+            <li><SxIcon name="paw" size={20} /><span><b>Drive slowly at dawn and dusk.</b> The red bear signs along the park roads each mark a spot where a car killed a bear.</span></li>
+          </ul>
+        </div>
+        <div className="ps-tips">
+          <div className="ps-tip">
+            <p className="ps-tip__n">50<small>yards</small></p>
+            <h3>From a bear, minimum</h3>
+            <p>It is the park requirement, and it is measured from the bear, not from your comfort. If a bear changes its behavior because of you, you are too close, whatever the distance.</p>
+          </div>
+          <div className="ps-tip">
+            <p className="ps-tip__n">25<small>yards</small></p>
+            <h3>From a deer</h3>
+            <p>Deer injure more visitors in Yosemite than bears do, because people treat a wild animal with antlers like a petting-zoo resident. Photograph them from the trail.</p>
+          </div>
+          <div className="ps-tip">
+            <p className="ps-tip__n">8<small>animals</small></p>
+            <h3>Who you will actually see</h3>
+            <p>Mule deer, coyote, black bear, Steller's jay, acorn woodpecker, Douglas squirrel, and at altitude the yellow-bellied marmot and the pika. That is most of it.</p>
+          </div>
+        </div>
+      </section>
+
+      {/* Bears: the bear safety guide, the spray piece, the spring piece. */}
+      <section className="ff-band" id="sx-bears" tabIndex={-1}>
+        <div className="hp-wrap hp-section">
+          <div className="ff-split ff-split--end">
+            <div>
+              <p className="hp-eyebrow">BEARS</p>
+              <h2>Every bear here is a black bear</h2>
+            </div>
+            <p className="ff-lede ps-flush">Somewhere between 300 and 500 of them. There have been no grizzlies in California for over a century, which is why most of the bear advice on the internet is written for the wrong park.</p>
+          </div>
+          <div className="ps-riders">
+            <div><h3>Bear spray is illegal</h3><p>It is classified as a weapon in the Superintendent's Compendium. Possession and use are both prohibited, and it is not needed for black bears.</p></div>
+            <div><h3>Do not play dead</h3><p>That is advice for grizzlies. With a black bear that will not leave, make yourself large, shout, and if it makes contact, fight back.</p></div>
+            <div><h3>Your voice is the tool</h3><p>The park's Bear Team says it plainly: your voice is your most effective tool. The guide has the specifics.</p></div>
+          </div>
+          <div className="ps-paths sx-paths">
+            {card("yosemite-bears-safety-guide", "paw", "THE GUIDE", "What to do when you see a bear", "Read the bear guide →")}
+            {card("is-bear-spray-allowed-in-yosemite", "permit", "THE RULE", "Is bear spray allowed?", "Read the answer →")}
+            {card("bears-spring-emergence", "eye", "SPRING", "A bear in April is not a bear in August", "Read why →")}
+          </div>
+          <p className="ff-note">Storing food in a campground, and the locker that comes with it: {L("section_wildlife", "/articles/camping-in-yosemite-first-time", "camping in Yosemite for the first time")}.</p>
+        </div>
+      </section>
+
+      {/* The bloom: yosemite-wildflowers-guide's own bands. */}
+      <section className="hp-wrap hp-section" id="sx-bloom" tabIndex={-1}>
+        <div className="ff-split">
+          <div>
+            <p className="hp-eyebrow">THE BLOOM</p>
+            <h2>In Yosemite, the bloom is not a date. It is an elevation.</h2>
+            <p className="ff-lede">Spring starts in the Merced River canyon in February and takes five months to climb the mountain, at very roughly a thousand feet a month. Something is in flower somewhere in or near the park from February through August. You just have to drive to the right altitude.</p>
+            <p className="ff-note">Where to stand when it passes, band by band: {L("section_wildlife", "/articles/yosemite-wildflowers-guide", "Yosemite wildflowers: the bloom calendar climbs the mountain")}.</p>
+          </div>
+          <div className="sx-bloom" role="img" aria-label={"The bloom by elevation. " + SX_BLOOM.map((b) => `${b.band}, ${b.feet}: ${SX_BLOOM_MONTHS[b.from]} to ${SX_BLOOM_MONTHS[b.to]}, ${b.what}.`).join(" ")}>
+            <div className="sx-bloom__head" aria-hidden="true">
+              <span />
+              <span className="sx-bloom__months">{SX_BLOOM_MONTHS.map((x) => <span key={x}>{x}</span>)}</span>
+            </div>
+            {SX_BLOOM.map((b) => (
+              <div className="sx-bloom__row" key={b.band} aria-hidden="true">
+                <span className="sx-bloom__band"><b>{b.band}</b>{b.feet}<em>{b.what}</em></span>
+                <span className="sx-bloom__track">
+                  <i style={{ gridColumn: `${b.from + 1} / ${b.to + 2}` }} />
+                </span>
+              </div>
+            ))}
+            <p className="ff-note">The bands and months are the guide's own, and approximate. A wet or dry year moves every one of them.</p>
+          </div>
+        </div>
+      </section>
+
+      {/* The ground beneath: the catalog's natural-history essays, live. */}
+      <section className="ff-band" id="sx-land" tabIndex={-1}>
+        <div className="hp-wrap hp-section">
+          <div className="ff-split ff-split--end">
+            <div>
+              <p className="hp-eyebrow">THE GROUND BENEATH</p>
+              <h2>Rock, ice and the oldest trees</h2>
+            </div>
+            <p className="ff-lede ps-flush">The natural-history essays: the landform the Valley is built on, the glaciers that carved it and are now leaving, and the trees that need fire.</p>
+          </div>
+          <div className="ps-paths sx-paths">
+            {card("what-is-a-talus-field", "mountain", "LANDFORM", "What is a talus field?", "Read the essay →")}
+            {card("yosemite-glaciers-climate", "gain", "ICE", "The disappearing glaciers", "Read the essay →")}
+            {card("giant-sequoias-fire-adaptation", "flower", "TREES", "Why sequoias thrive in fire", "Read the essay →")}
+          </div>
+        </div>
+      </section>
+
+      <SxEveryEntry slugCat="wildlife" groups={SX_WILD_GROUPS} go={go} location="section_list" id="sx-every-entry"
+        lede="All {n} wildlife and nature pieces, read live from the catalog. Pick a subject to narrow the list." />
+
+      <HpGuideBand
+        go={go}
+        location="section_wildlife"
+        title="The park's stops and hikes, offline"
+        intro="The Field Guide app carries the meadows, the trails and the viewpoints, with offline maps for a park that has no signal past the gate."
+        sample
+      />
+      <HpLetter
+        eyebrow="SUNDAY FIELD NOTES / FREE"
+        title="What the park's naturalists are seeing"
+        heading="What the park's naturalists are seeing"
+        blurb="One letter a week from inside Yosemite: what is in bloom, what is moving, and what the park's own naturalists recorded in these same weeks."
+        location="section_wildlife"
+        tag="wildlife"
+      />
+    </div>
+  );
+}
+
 function CategoryPage({ slug, go }) {
   const cat = window.findCategory(slug);
   if (!cat) return <div className="hp-wrap hp-section">Not found.</div>;
   if (slug === "planning") return <PlanningSectionPage go={go} />;
+  if (slug === "seasonal") return <SeasonalSectionPage go={go} />;
+  if (slug === "trails") return <TrailsSectionPage go={go} />;
+  if (slug === "wildlife") return <WildlifeSectionPage go={go} />;
   const items = window.byCategory(slug);
   return (
     <div className="page hp-index">
