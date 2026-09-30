@@ -2653,7 +2653,6 @@ main:focus { outline: none; }
   flex-direction: column;
   gap: 6px;
 }
-.map-page__credit { font: 11px var(--sans); color: var(--ink); background: rgba(255, 255, 255, 0.85); padding: 2px 6px; border-radius: 2px; }
 .map-page__ctrl {
   font: 600 12px var(--sans);
   padding: 7px 10px;
