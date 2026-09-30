@@ -40,7 +40,7 @@ Status: `[x]` converted, `[ ]` not yet.
 
 ### 2. Listing and index templates
 - [x] `/articles` (ArticlesIndex)
-- [x] `/section/<slug>` x4: planning, trails, wildlife, seasonal (CategoryPage)
+- [x] `/section/<slug>` x4: planning, trails, wildlife, seasonal (CategoryPage); since October 2026 `/section/planning` is its own how-to page on the Firefall system (`PlanningSectionPage`, `.hp-section-planning`)
 - [x] `/search`
 - [x] `/explore`
 - [x] `/start-here`
