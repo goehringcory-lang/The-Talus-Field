@@ -50,11 +50,11 @@ window.ARTICLE_BODIES["yosemite-trip-cost-budget-2026"] = function YosemiteTripC
       </p>
 
       <p>
-        <strong>In-park cabins and tent cabins:</strong> Half Dome Village tent cabins run $170–$200 per night. You're getting a canvas roof and a cot, but you're sleeping in Yosemite Valley. Hard-walled cabins with bathrooms are $220–$300.
+        <strong>In-park cabins and tent cabins:</strong> Curry Village tent cabins typically run $170–$200 per night. You're getting a canvas roof and a cot, but you're sleeping in Yosemite Valley. Hard-walled cabins with bathrooms are typically $220–$300.
       </p>
 
       <p>
-        <strong>In-park lodges:</strong> Yosemite Valley Lodge rooms run $300–$500 per night depending on room type and season (summer rates are highest). The Ahwahnee starts around $580 for a standard room and climbs past $1,400 for suites. (The Wawona Hotel, normally $200–$300, is closed indefinitely for repairs as of 2026.)
+        <strong>In-park lodges:</strong> Yosemite Valley Lodge rooms typically run $300–$500 per night depending on room type and season (summer rates are highest). The Ahwahnee starts around $580 for a standard room and climbs past $1,400 for suites. (The Wawona Hotel has been closed since December 2024 for a condition assessment, and no reopening date has been announced.)
       </p>
 
       <p>
@@ -72,11 +72,11 @@ window.ARTICLE_BODIES["yosemite-trip-cost-budget-2026"] = function YosemiteTripC
       </p>
 
       <p>
-        <strong>Casual dining in the park:</strong> A deli sandwich and a drink at Degnan's, or a hot plate at Base Camp Eatery in the Valley Lodge, runs $18–$25 per person. Pizza from the Pizza Deck at Half Dome Village is $27–$35 for a pie (medium to large). A decent sit-down dinner at the Mountain Room at Yosemite Valley Lodge is $35–$55 per person.
+        <strong>Casual dining in the park:</strong> A deli sandwich and a drink at Degnan's, or a hot plate at Base Camp Eatery in the Valley Lodge, typically runs $18–$25 per person. Pizza from the Pizza Deck at Curry Village is $15–$38 for a pie (medium to large), depending on the toppings. A decent sit-down dinner at the Mountain Room at Yosemite Valley Lodge is typically $35–$55 per person.
       </p>
 
       <p>
-        <strong>The Ahwahnee Dining Room:</strong> Breakfast is $25–$35 (the buffet runs about $32). As of April 2026, dinner is prix fixe only: $95 for five courses or $125 for seven courses ($135/$165 with wine pairings). Reservations are required; walk-ins are no longer accepted. It is worth doing once if the budget allows.
+        <strong>The Ahwahnee Dining Room:</strong> Breakfast is a self-serve buffet or an à la carte menu. As of April 2026, dinner is prix fixe only: $95 for five courses or $125 for seven, and the wine pairing on the five-course menu adds $40. Book dinner ahead: the concessioner takes reservations on OpenTable, and a room at the hotel does not guarantee a table. It is worth doing once if the budget allows.
       </p>
 
       <p>
@@ -84,7 +84,7 @@ window.ARTICLE_BODIES["yosemite-trip-cost-budget-2026"] = function YosemiteTripC
       </p>
 
       <p>
-        <strong>The Village Store:</strong> There's a general store in Yosemite Village that sells groceries, but prices are 30–50% higher than a regular supermarket. Use it for things you forgot, not as your primary shopping.
+        <strong>The Village Store:</strong> There's a general store in Yosemite Village that sells groceries, but prices run well above a regular supermarket's. Use it for things you forgot, not as your primary shopping.
       </p>
 
       <p>
@@ -98,19 +98,19 @@ window.ARTICLE_BODIES["yosemite-trip-cost-budget-2026"] = function YosemiteTripC
       </p>
 
       <p>
-        <strong>From San Francisco / Bay Area:</strong> About 170 miles each way. At current gas prices (about $6.10 a gallon in California) and average fuel economy (28 mpg), that's roughly $35–$40 each way, or $70–$80 round trip. If you're making a <a href="/articles/yosemite-in-one-or-two-days">day trip from the city</a>, that's your floor just for fuel.
+        <strong>From San Francisco / Bay Area:</strong> About 195 miles each way. At late-September 2026 gas prices (about $6.19 a gallon for regular in California, by the U.S. Energy Information Administration's weekly count) and average fuel economy (28 mpg), that's roughly $40–$45 each way, or $80–$90 round trip. If you're making a <a href="/articles/yosemite-in-one-or-two-days">day trip from the city</a>, that's your floor just for fuel.
       </p>
 
       <p>
-        <strong>From Los Angeles:</strong> About 280 miles each way. Figure $58–$65 each way, $115–$130 round trip.
+        <strong>From Los Angeles:</strong> About 313 miles each way, most of it <a href="/articles/yosemite-from-los-angeles">the drive up Highway 99 and Highway 41</a>. Figure $65–$75 each way, $130–$150 round trip.
       </p>
 
       <p>
-        <strong>From Sacramento / Central Valley:</strong> About 170 miles, $25–$30 each way.
+        <strong>From Sacramento / Central Valley:</strong> About 176 miles, $35–$40 each way.
       </p>
 
       <p>
-        <strong>Once you're in the park:</strong> Gas is available at Wawona and at Crane Flat (both have 24-hour pay-at-the-pump with credit card). There's also a station in El Portal, just outside the Arch Rock entrance. All are expensive, typically $0.50 to $1.00 more per gallon than in gateway towns like Mariposa or Oakhurst. Fill up before you enter. The <a href="/articles/yosemite-in-one-or-two-days">driving and parking logistics</a> inside the park take planning, but you won't burn much gas on the Valley shuttle loop.
+        <strong>Once you're in the park:</strong> Gas is available at Wawona and at Crane Flat (both have 24-hour pay-at-the-pump with credit card). There's also a station in El Portal, just outside the Arch Rock entrance. All typically charge more per gallon than stations in gateway towns like Mariposa or Oakhurst. Fill up before you enter. The <a href="/articles/yosemite-in-one-or-two-days">driving and parking logistics</a> inside the park take planning, but you won't burn much gas on the Valley shuttle loop.
       </p>
 
       <p>
@@ -150,7 +150,7 @@ window.ARTICLE_BODIES["yosemite-trip-cost-budget-2026"] = function YosemiteTripC
       </p>
 
       <p>
-        <strong>What you don't need:</strong> Trekking poles (unless you're doing Half Dome or have knee issues), a GPS device (your phone works fine), bear spray (prohibited in Yosemite; the bears here are black bears, not grizzlies), specialized hiking pants, or a $200 headlamp.
+        <strong>What you don't need:</strong> Trekking poles (unless you're doing Half Dome or have knee issues), a GPS device (your phone works fine), bear spray (<a href="/articles/is-bear-spray-allowed-in-yosemite">prohibited in Yosemite</a>; the bears here are black bears, not grizzlies), specialized hiking pants, or a $200 headlamp.
       </p>
 
       <p>
@@ -186,11 +186,11 @@ window.ARTICLE_BODIES["yosemite-trip-cost-budget-2026"] = function YosemiteTripC
       <ul>
         <li><strong>Lodging:</strong> Campground, $36/night x 3 = $108</li>
         <li><strong>Food:</strong> Cooler of groceries from home or a gateway-town grocery stop, ~$25/person/day x 3 days = $150</li>
-        <li><strong>Gas:</strong> Round trip from Bay Area, ~$75</li>
+        <li><strong>Gas:</strong> Round trip from Bay Area, ~$85</li>
         <li><strong>Entrance fee:</strong> $35</li>
         <li><strong>Gear:</strong> $0 (using what you own)</li>
         <li><strong>Dining out:</strong> One meal at a park restaurant, ~$50</li>
-        <li><strong>Total:</strong> ~$418</li>
+        <li><strong>Total:</strong> ~$428</li>
       </ul>
 
       <p>
@@ -202,11 +202,11 @@ window.ARTICLE_BODIES["yosemite-trip-cost-budget-2026"] = function YosemiteTripC
       <ul>
         <li><strong>Lodging:</strong> Yosemite Valley Lodge or gateway-town hotel, $350/night x 3 = $1,050</li>
         <li><strong>Food:</strong> Mix of camp-style lunches and park dining, ~$50/person/day x 3 = $300</li>
-        <li><strong>Gas:</strong> Round trip from Bay Area, ~$75</li>
+        <li><strong>Gas:</strong> Round trip from Bay Area, ~$85</li>
         <li><strong>Entrance fee:</strong> $35</li>
         <li><strong>Gear:</strong> Trail shoes if needed, $80</li>
         <li><strong>Guided program:</strong> One stargazing program, ~$50 for two</li>
-        <li><strong>Total:</strong> ~$1,590</li>
+        <li><strong>Total:</strong> ~$1,600</li>
       </ul>
 
       <p>
@@ -218,11 +218,11 @@ window.ARTICLE_BODIES["yosemite-trip-cost-budget-2026"] = function YosemiteTripC
       <ul>
         <li><strong>Lodging:</strong> The Ahwahnee, $650/night x 3 = $1,950</li>
         <li><strong>Food:</strong> Ahwahnee dining room dinners (prix fixe from $95/person) plus nice park lunches, ~$150/person/day x 3 = $900</li>
-        <li><strong>Gas:</strong> Round trip from Bay Area, ~$75</li>
+        <li><strong>Gas:</strong> Round trip from Bay Area, ~$85</li>
         <li><strong>Entrance fee:</strong> $35</li>
         <li><strong>Guided program:</strong> Full-day custom adventure, ~$850 for two</li>
         <li><strong>Extras:</strong> Souvenirs, specialty gear, etc. ~$200</li>
-        <li><strong>Total:</strong> ~$4,010</li>
+        <li><strong>Total:</strong> ~$4,020</li>
       </ul>
 
       <p>
@@ -232,7 +232,7 @@ window.ARTICLE_BODIES["yosemite-trip-cost-budget-2026"] = function YosemiteTripC
       <h2>Hidden costs people forget</h2>
 
       <p>
-        <strong>Bear canisters:</strong> If you're backpacking, you need a bear canister. Rent one in the park for $5/week from any staffed wilderness permit station (plus a $95 refundable deposit). Car campers use the bear lockers at every campsite (free).
+        <strong>Bear canisters:</strong> If you're backpacking, you need a bear canister. Rent one in the park for $5/week from <a href="/articles/yosemite-walk-up-and-day-of-permits">any staffed wilderness permit station</a> (plus a $95 refundable deposit). Car campers use the bear lockers at every campsite (free).
       </p>
 
       <p>

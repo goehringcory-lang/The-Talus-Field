@@ -8,7 +8,7 @@
 Publisher: The Talus Field (https://thetalusfieldjournal.com). Editor: Cory Goehring.
 Citation guidance and the annotated page index: https://thetalusfieldjournal.com/llms.txt
 Canonical article URL pattern: https://thetalusfieldjournal.com/articles/<slug>
-Contents: 75 articles. Most recent update: 2026-09-29.
+Contents: 75 articles. Most recent update: 2026-09-30.
 
 Not in this file: the Yosemite Nature Notes archive, all 512 issues of the
 National Park Service's Yosemite bulletin (1922-2003), transcribed in full
@@ -4922,7 +4922,7 @@ None of that changes the planning logic. Demand for this park rises every year t
 ## Yosemite Trip Cost in 2026: Three Budgets, Real Numbers
 
 URL: https://thetalusfieldjournal.com/articles/yosemite-trip-cost-budget-2026
-Section: Planning. Published: 2026-06-07. Last updated: 2026-08-01.
+Section: Planning. Published: 2026-06-07. Last updated: 2026-09-30.
 Summary: What a Yosemite trip costs in 2026: entrance fees, lodging, food, gas, and gear, with real budget, mid-range, and splurge totals.
 
 People ask me what a Yosemite trip costs and I always give the same answer: it depends on how you do it. Here are the numbers.
@@ -4949,9 +4949,9 @@ This is where trips diverge. The range:
 
 Camping (cheapest): $24–$36 per night for a campsite. Valley campgrounds (Upper Pines, Lower Pines, North Pines) are $36. The more remote Tioga Road campgrounds (Tamarack Flat, Yosemite Creek, Porcupine Flat) are $24. Camp 4, the walk-in Valley campground, is $10 per person per night. For a couple, that's $20.
 
-In-park cabins and tent cabins: Half Dome Village tent cabins run $170–$200 per night. You're getting a canvas roof and a cot, but you're sleeping in Yosemite Valley. Hard-walled cabins with bathrooms are $220–$300.
+In-park cabins and tent cabins: Curry Village tent cabins typically run $170–$200 per night. You're getting a canvas roof and a cot, but you're sleeping in Yosemite Valley. Hard-walled cabins with bathrooms are typically $220–$300.
 
-In-park lodges: Yosemite Valley Lodge rooms run $300–$500 per night depending on room type and season (summer rates are highest). The Ahwahnee starts around $580 for a standard room and climbs past $1,400 for suites. (The Wawona Hotel, normally $200–$300, is closed indefinitely for repairs as of 2026.)
+In-park lodges: Yosemite Valley Lodge rooms typically run $300–$500 per night depending on room type and season (summer rates are highest). The Ahwahnee starts around $580 for a standard room and climbs past $1,400 for suites. (The Wawona Hotel has been closed since December 2024 for a condition assessment, and no reopening date has been announced.)
 
 Gateway towns: Motels and hotels in Mariposa, Oakhurst, Groveland, and El Portal range from $120 to $300 per night depending on the town and the season. Vacation rentals (Airbnb, VRBO) can be a deal for groups. A cabin that sleeps six for $250 per night is under $42 per person. Rates move with the season and the day of the week, so for real numbers on your dates, a live availability search around the park beats any table of averages, including this one.
 
@@ -4961,13 +4961,13 @@ The lodging decision is covered in detail in my guide to the gateway towns, but 
 
 Park food is fine but expensive.
 
-Casual dining in the park: A deli sandwich and a drink at Degnan's, or a hot plate at Base Camp Eatery in the Valley Lodge, runs $18–$25 per person. Pizza from the Pizza Deck at Half Dome Village is $27–$35 for a pie (medium to large). A decent sit-down dinner at the Mountain Room at Yosemite Valley Lodge is $35–$55 per person.
+Casual dining in the park: A deli sandwich and a drink at Degnan's, or a hot plate at Base Camp Eatery in the Valley Lodge, typically runs $18–$25 per person. Pizza from the Pizza Deck at Curry Village is $15–$38 for a pie (medium to large), depending on the toppings. A decent sit-down dinner at the Mountain Room at Yosemite Valley Lodge is typically $35–$55 per person.
 
-The Ahwahnee Dining Room: Breakfast is $25–$35 (the buffet runs about $32). As of April 2026, dinner is prix fixe only: $95 for five courses or $125 for seven courses ($135/$165 with wine pairings). Reservations are required; walk-ins are no longer accepted. It is worth doing once if the budget allows.
+The Ahwahnee Dining Room: Breakfast is a self-serve buffet or an à la carte menu. As of April 2026, dinner is prix fixe only: $95 for five courses or $125 for seven, and the wine pairing on the five-course menu adds $40. Book dinner ahead: the concessioner takes reservations on OpenTable, and a room at the hotel does not guarantee a table. It is worth doing once if the budget allows.
 
 Camp cooking: If you're camping or staying somewhere with a kitchen, bringing your own food is the single biggest money-saver on a Yosemite trip. A cooler stocked at a Mariposa or Oakhurst grocery store before you enter the park will cost $15–$25 per person per day for three meals plus snacks. I've seen families of four eat well for a full week on $400 of groceries.
 
-The Village Store: There's a general store in Yosemite Village that sells groceries, but prices are 30–50% higher than a regular supermarket. Use it for things you forgot, not as your primary shopping.
+The Village Store: There's a general store in Yosemite Village that sells groceries, but prices run well above a regular supermarket's. Use it for things you forgot, not as your primary shopping.
 
 My advice: bring a cooler, stock it before you arrive, and plan to eat one meal per day at a park restaurant if you want the experience. Trail lunches of sandwiches, fruit, and trail mix are better than most of what the park sells.
 
@@ -4975,13 +4975,13 @@ My advice: bring a cooler, stock it before you arrive, and plan to eat one meal 
 
 Gas costs add up.
 
-From San Francisco / Bay Area: About 170 miles each way. At current gas prices (about $6.10 a gallon in California) and average fuel economy (28 mpg), that's roughly $35–$40 each way, or $70–$80 round trip. If you're making a day trip from the city, that's your floor just for fuel.
+From San Francisco / Bay Area: About 195 miles each way. At late-September 2026 gas prices (about $6.19 a gallon for regular in California, by the U.S. Energy Information Administration's weekly count) and average fuel economy (28 mpg), that's roughly $40–$45 each way, or $80–$90 round trip. If you're making a day trip from the city, that's your floor just for fuel.
 
-From Los Angeles: About 280 miles each way. Figure $58–$65 each way, $115–$130 round trip.
+From Los Angeles: About 313 miles each way, most of it the drive up Highway 99 and Highway 41. Figure $65–$75 each way, $130–$150 round trip.
 
-From Sacramento / Central Valley: About 170 miles, $25–$30 each way.
+From Sacramento / Central Valley: About 176 miles, $35–$40 each way.
 
-Once you're in the park: Gas is available at Wawona and at Crane Flat (both have 24-hour pay-at-the-pump with credit card). There's also a station in El Portal, just outside the Arch Rock entrance. All are expensive, typically $0.50 to $1.00 more per gallon than in gateway towns like Mariposa or Oakhurst. Fill up before you enter. The driving and parking logistics inside the park take planning, but you won't burn much gas on the Valley shuttle loop.
+Once you're in the park: Gas is available at Wawona and at Crane Flat (both have 24-hour pay-at-the-pump with credit card). There's also a station in El Portal, just outside the Arch Rock entrance. All typically charge more per gallon than stations in gateway towns like Mariposa or Oakhurst. Fill up before you enter. The driving and parking logistics inside the park take planning, but you won't burn much gas on the Valley shuttle loop.
 
 Don't forget parking: Parking in Yosemite is free but competitive. There's no paid parking anywhere in the park. The cost is time.
 
@@ -5021,11 +5021,11 @@ Here's what three different four-day, three-night trips look like for two people
 
 - Lodging: Campground, $36/night x 3 = $108
 - Food: Cooler of groceries from home or a gateway-town grocery stop, ~$25/person/day x 3 days = $150
-- Gas: Round trip from Bay Area, ~$75
+- Gas: Round trip from Bay Area, ~$85
 - Entrance fee: $35
 - Gear: $0 (using what you own)
 - Dining out: One meal at a park restaurant, ~$50
-- Total: ~$418
+- Total: ~$428
 
 You eat well, see the main sights, and wake up in the park. Camping is a good way to do Yosemite.
 
@@ -5033,11 +5033,11 @@ You eat well, see the main sights, and wake up in the park. Camping is a good wa
 
 - Lodging: Yosemite Valley Lodge or gateway-town hotel, $350/night x 3 = $1,050
 - Food: Mix of camp-style lunches and park dining, ~$50/person/day x 3 = $300
-- Gas: Round trip from Bay Area, ~$75
+- Gas: Round trip from Bay Area, ~$85
 - Entrance fee: $35
 - Gear: Trail shoes if needed, $80
 - Guided program: One stargazing program, ~$50 for two
-- Total: ~$1,590
+- Total: ~$1,600
 
 This is the trip most people end up doing. Private room, some good meals, a mix of self-guided and guided activities. It is comfortable without being extravagant.
 
@@ -5045,11 +5045,11 @@ This is the trip most people end up doing. Private room, some good meals, a mix 
 
 - Lodging: The Ahwahnee, $650/night x 3 = $1,950
 - Food: Ahwahnee dining room dinners (prix fixe from $95/person) plus nice park lunches, ~$150/person/day x 3 = $900
-- Gas: Round trip from Bay Area, ~$75
+- Gas: Round trip from Bay Area, ~$85
 - Entrance fee: $35
 - Guided program: Full-day custom adventure, ~$850 for two
 - Extras: Souvenirs, specialty gear, etc. ~$200
-- Total: ~$4,010
+- Total: ~$4,020
 
 You sleep in a historic lodge and eat well. It is a special-occasion trip.
 
