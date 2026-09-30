@@ -11378,3 +11378,99 @@ html[data-nav-mode="pinned"] { scroll-padding-top: 62px; }
   .ps-row { grid-template-columns: 1fr auto; gap: 6px 14px; }
   .ps-row__n, .ps-row__k { display: none; }
 }
+
+/* ==========================================================================
+   /section/seasonal, /section/trails, /section/wildlife (October 2026). The
+   same system as /section/planning: `.hp-event` + `.ff-*` + the shared `ps-`
+   pieces (paths, calc, tips, riders, drules, list). This layer adds only what
+   those pages draw for themselves, every class `sx-`.
+   ========================================================================== */
+.hp-section-seasonal .ff-cover__img { object-position: 50% 60%; }
+.hp-section-trails .ff-cover__img { object-position: 50% 45%; }
+.hp-section-wildlife .ff-cover__img { object-position: 50% 55%; }
+.hp-section-seasonal .ff-closing .hp-button, .hp-section-seasonal .ff-closing .hp-button:hover { color: var(--hp-on-accent); text-decoration: none; }
+.sx-paths { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+.sx-gap { margin-top: 28px; }
+.sx-links { list-style: none; margin: 10px 0 0; padding: 0; display: grid; gap: 10px; }
+.sx-links a { font: 15px/1.4 var(--sans); color: var(--hp-ink); text-decoration: underline; text-decoration-color: var(--hp-rule); text-underline-offset: 3px; }
+.sx-links a:hover { color: var(--hp-accent); text-decoration-color: var(--hp-accent); }
+.sx-month-read { margin-top: 40px; }
+
+/* The two roads, twelve months */
+.sx-roads { margin-top: 32px; display: grid; gap: 6px; overflow-x: auto; }
+.sx-roads__head, .sx-roads__row { display: grid; grid-template-columns: 150px repeat(12, minmax(46px, 1fr)); gap: 6px; align-items: stretch; min-width: 760px; }
+.sx-roads__head span { font: 600 11px var(--sans); letter-spacing: 1.2px; text-transform: uppercase; color: var(--hp-muted); text-align: center; }
+.sx-roads__road { font: 400 18px/1.2 var(--serif); display: flex; align-items: center; }
+.sx-roads__road a { color: var(--hp-ink); }
+.sx-roads__road a:hover { color: var(--hp-accent); }
+.sx-cell { display: flex; align-items: center; justify-content: center; min-height: 52px; font: 600 11px var(--sans); letter-spacing: .4px; text-transform: uppercase; }
+.sx-cell--open { background: var(--bt-open); color: #fff; }
+.sx-cell--closed { background: var(--hp-ink); color: var(--hp-paper); }
+.sx-cell--unsettled { background: var(--hp-gold); color: var(--hp-ink); }
+.sx-cell.is-now { outline: 3px solid var(--hp-accent); outline-offset: 2px; }
+
+/* Four seasons */
+.sx-seasons { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 28px; margin-top: 36px; }
+.sx-season h3 { margin: 4px 0 0; font: 400 30px/1.1 var(--serif); letter-spacing: -.5px; }
+.sx-season .ps-photo { margin-bottom: 16px; }
+.sx-season .ps-photo img { aspect-ratio: 4 / 3; }
+.sx-season .hp-eyebrow { margin: 0; }
+
+/* Hike comparison */
+.sx-hikes { margin-top: 18px; border-top: 2px solid var(--hp-ink); }
+.sx-hike { display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, 1.5fr) minmax(0, 1fr) 190px; gap: 24px; align-items: center; padding: 20px 0; border-bottom: 1px solid var(--hp-rule); color: var(--hp-ink); text-decoration: none; transition: opacity .15s; }
+.sx-hike:hover { color: var(--hp-ink); }
+.sx-hike:hover .sx-hike__name { color: var(--hp-accent); }
+.sx-hike.is-out { opacity: .48; }
+.sx-hike__name { font: 400 23px/1.15 var(--serif); letter-spacing: -.3px; }
+.sx-hike__name small { display: block; margin-top: 6px; font: 13px var(--sans); letter-spacing: 0; color: var(--hp-muted); }
+.sx-hike__why { font: 14px/1.55 var(--sans); color: var(--ink-2); }
+.sx-hike__gain b { display: block; margin-top: 8px; font: 500 13px var(--sans); color: var(--ink-2); }
+.sx-bar { display: block; height: 10px; background: var(--hp-rule); }
+.sx-bar i { display: block; height: 100%; background: var(--hp-accent); }
+.sx-hike__tag { display: flex; flex-wrap: wrap; gap: 6px; }
+.sx-level, .sx-note, .sx-season-tag { display: inline-block; padding: 4px 9px; font: 600 10px var(--sans); letter-spacing: 1px; text-transform: uppercase; border: 1px solid var(--hp-rule); color: var(--ink-2); }
+.sx-level--hard { background: var(--hp-ink); border-color: var(--hp-ink); color: var(--hp-paper); }
+.sx-note { border-color: var(--hp-accent); color: var(--hp-accent); }
+.sx-season-tag--in { background: var(--bt-open); border-color: var(--bt-open); color: #fff; }
+
+/* Half Dome or Clouds Rest */
+.sx-vs { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 24px; margin-top: 36px; }
+.sx-vs__card { display: grid; gap: 14px; align-content: start; padding: 30px 30px 26px; background: var(--hp-card); border: 1px solid var(--hp-rule); color: var(--hp-ink); text-decoration: none; transition: border-color .15s; }
+.sx-vs__card:hover { border-color: var(--hp-ink); color: var(--hp-ink); }
+.sx-vs__k { font: 600 10px var(--sans); letter-spacing: 1.6px; text-transform: uppercase; color: var(--hp-muted); }
+.sx-vs__t { font: 400 34px/1.05 var(--serif); letter-spacing: -.7px; }
+.sx-vs__card:hover .sx-vs__t { color: var(--hp-accent); }
+.sx-vs__card ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 8px; }
+.sx-vs__card li { display: flex; align-items: center; gap: 10px; font: 500 15px var(--sans); }
+.sx-vs__card li .ps-icon { color: var(--hp-accent); }
+.sx-vs__d { font: 14px/1.6 var(--sans); color: var(--ink-2); }
+.sx-vs__go { font: 600 13px var(--sans); color: var(--hp-accent); }
+
+/* The bloom, by elevation */
+.sx-bloom__head, .sx-bloom__row { display: grid; grid-template-columns: 170px minmax(0, 1fr); gap: 16px; align-items: center; }
+.sx-bloom__head { margin-bottom: 6px; }
+.sx-bloom__months { display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); }
+.sx-bloom__months span { font: 600 11px var(--sans); letter-spacing: 1.2px; text-transform: uppercase; color: var(--hp-muted); text-align: center; }
+.sx-bloom__row { padding: 10px 0; border-top: 1px solid var(--hp-rule); }
+.sx-bloom__band { display: grid; gap: 2px; font: 12px var(--sans); color: var(--hp-muted); }
+.sx-bloom__band em { font-style: normal; color: var(--ink-2); }
+.sx-bloom__band b { font: 400 17px/1.15 var(--serif); color: var(--hp-ink); }
+.sx-bloom__track { display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); height: 34px; background: var(--hp-card); }
+.sx-bloom__track i { display: block; background: var(--hp-accent); }
+.sx-bloom .ff-note { margin-top: 12px; }
+
+@media (max-width: 1100px) {
+  .sx-seasons { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .sx-hike { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 12px 24px; }
+  .sx-hike__why { grid-column: 1 / -1; order: 3; }
+}
+@media (max-width: 760px) {
+  .sx-paths, .sx-seasons, .sx-vs { grid-template-columns: 1fr; }
+  .sx-hike { grid-template-columns: 1fr; }
+  .sx-hike__why { order: 0; grid-column: auto; }
+  .sx-bloom__head, .sx-bloom__row { grid-template-columns: 110px minmax(0, 1fr); gap: 10px; }
+  .sx-bloom__months span { font-size: 9px; letter-spacing: .4px; }
+  .sx-bloom__track i { display: block; background: var(--hp-accent); }
+  .sx-vs__t { font-size: 28px; }
+}
