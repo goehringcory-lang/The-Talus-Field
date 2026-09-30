@@ -1,4 +1,4 @@
-import { lazy, Suspense, useState } from 'react'
+import { lazy, Suspense, useLayoutEffect, useState } from 'react'
 import { Routes, Route, Navigate, useLocation } from 'react-router-dom'
 import { AuthProvider, RequireAuth } from './auth/AuthGate'
 import { useAuth } from './auth/useAuth'
@@ -89,6 +89,18 @@ function RouteLoading() {
       </div>
     </div>
   )
+}
+
+// A storefront page served prerendered (scripts/prerender-public.ts) arrives
+// with its markup in #prerender, ahead of #root, so it paints before the app
+// boots. This sits in the same Suspense boundary as the routes, so its layout
+// effect runs in the commit that puts the real page on screen, never while
+// the loading fallback shows, and the static copy leaves in the same frame.
+function DropPrerender() {
+  useLayoutEffect(() => {
+    document.getElementById('prerender')?.remove()
+  }, [])
+  return null
 }
 
 export default function App() {
@@ -343,6 +355,7 @@ export default function App() {
             }
           />
         </Routes>
+        <DropPrerender />
       </Suspense>
       <InstallPrompt />
     </AuthProvider>

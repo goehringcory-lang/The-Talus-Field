@@ -10,6 +10,7 @@ import { startPlanSync } from './sync/planSync'
 import { startPushSync } from './push/push'
 import { startCorrectionsOutbox } from './lib/corrections'
 import { applyTheme, readTheme } from './lib/theme'
+import { readSessionFromStorage } from './auth/storage'
 
 // First, before anything paints: a pinned colour scheme has to be on <html>
 // ahead of the first frame, or the app flashes the device's scheme and then
@@ -52,6 +53,12 @@ window.addEventListener('vite:preloadError', (event) => {
   event.preventDefault()
   window.location.reload()
 })
+
+// A prerendered storefront page (the free sample, a stop teaser) is the
+// signed-out view. A buyer opening the same URL gets the gated page instead,
+// so the static copy goes now rather than showing a sales pitch until the
+// route commits. Signed out, App's DropPrerender removes it on commit.
+if (readSessionFromStorage()) document.getElementById('prerender')?.remove()
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>

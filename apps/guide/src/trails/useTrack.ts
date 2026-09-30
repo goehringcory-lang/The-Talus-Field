@@ -30,7 +30,7 @@ export async function loadTrack(hikeId: string): Promise<TrackT> {
     // would sit there forever instead of reaching the error state.
     const res = await fetch(url, { signal: AbortSignal.timeout(15_000) })
     const type = res.headers.get('content-type')
-    // The SPA _redirects fallback answers a missing file with HTML and a 200;
+    // The SPA fallback answers a missing file with HTML and a 200;
     // treat it as missing, never parse it.
     if (!res.ok || (type && type.includes('text/html'))) throw new Error(`bad response for ${url}`)
     raw = await res.json()

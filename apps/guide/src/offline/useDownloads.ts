@@ -269,7 +269,7 @@ export function useDownloads() {
           const cached = await cache.match(url)
           if (cached) return true
           const res = await fetch(url, { signal: controller.signal })
-          // The SPA _redirects fallback answers a missing file with the HTML
+          // The SPA fallback answers a missing file with the HTML
           // shell and a 200. Caching that under a photo/tile URL poisons a
           // deploy-surviving cache (the SW's activate handler exists to clean
           // exactly this up), so count it as a failed URL instead.

@@ -21,14 +21,19 @@
 import { execFileSync } from 'node:child_process'
 import { createHash } from 'node:crypto'
 import { existsSync, readFileSync, readdirSync, statSync } from 'node:fs'
-import { join, relative, resolve } from 'node:path'
+import { join, relative, resolve, sep } from 'node:path'
 
 const root = resolve(import.meta.dirname, '..')
 const dist = join(root, 'dist')
 const viteBin = join(root, 'node_modules', 'vite', 'bin', 'vite.js')
+const jitiBin = join(root, 'node_modules', 'jiti', 'lib', 'jiti-cli.mjs')
 
+// The same pipeline `npm run build` runs after tsc: the client build, then the
+// storefront prerender, whose pages and sitemap ship too and must be as
+// stable as the chunks.
 function build() {
   execFileSync(process.execPath, [viteBin, 'build'], { cwd: root, stdio: 'pipe' })
+  execFileSync(process.execPath, [jitiBin, 'scripts/prerender-public.ts'], { cwd: root, stdio: 'pipe' })
 }
 
 /** Every emitted file, keyed by dist-relative path, valued by content hash.
@@ -49,6 +54,13 @@ function snapshot() {
   }
   walk(dist)
   out.delete('index.html')
+  // The prerendered storefront pages are copies of index.html and carry the
+  // same stamp; compare them with it blanked rather than not at all.
+  for (const file of out.keys()) {
+    if (file !== 'preview.html' && !file.startsWith('stop' + sep)) continue
+    const html = readFileSync(join(dist, file), 'utf8').replace(/<meta name="tfg-build-date" content="[^"]*"/, '')
+    out.set(file, createHash('sha256').update(html).digest('hex'))
+  }
   return out
 }
 

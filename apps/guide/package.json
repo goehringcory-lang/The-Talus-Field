@@ -8,7 +8,7 @@
   },
   "scripts": {
     "dev": "vite",
-    "build": "tsc -b && vite build",
+    "build": "tsc -b && vite build && jiti scripts/prerender-public.ts",
     "lint": "eslint .",
     "preview": "vite preview",
     "check:itineraries": "jiti scripts/check-itineraries.ts",

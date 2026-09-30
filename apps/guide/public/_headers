@@ -1,6 +1,14 @@
-# The app is auth-gated and should never appear in search results,
-# on the unlisted pages.dev host or the production domain.
-/*
+# Indexing. The gated app stays out of search through index.html's
+# `noindex, nofollow`, which every app route is served. The storefront pages
+# (/preview and the stop teasers) are separate prerendered files that say
+# `index, follow` (scripts/prerender-public.ts), and only on the production
+# host: the pages.dev hosts, the project's and every preview deployment's,
+# are noindex for everything, so the old magic-link host never competes with
+# guide.thetalusfieldjournal.com.
+https://:project.pages.dev/*
+  X-Robots-Tag: noindex
+
+https://:version.:project.pages.dev/*
   X-Robots-Tag: noindex
 
 # The shell must revalidate on every load so a deploy reaches clients on
