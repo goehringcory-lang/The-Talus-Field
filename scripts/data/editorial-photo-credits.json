@@ -4,6 +4,11 @@
     "license": "CC BY-SA 3.0",
     "source": "https://commons.wikimedia.org/wiki/File:Ahwahnee_Dining_Room.jpg"
   },
+  "img/ahwahnee-great-lounge-evening.jpg": {
+    "author": "JERRYE AND ROY KLOTZ MD",
+    "license": "CC BY-SA 3.0",
+    "source": "https://commons.wikimedia.org/wiki/File:AHWAHNEE_HOTEL_IN_YOSEMITE_NATIONAL_PARK.jpg"
+  },
   "img/ahwahnee-great-lounge.jpg": {
     "author": "David Berry",
     "license": "CC BY 2.0",
@@ -13,6 +18,11 @@
     "author": "Cecil W. Stoughton",
     "license": "Public domain",
     "source": "https://commons.wikimedia.org/wiki/File:Fee_Collection._Group_of_visitors_at_the_entrance_station_for_Yosemite_National_Park_._(99ed92205f8e4eeda0e59081a75f930e).jpg"
+  },
+  "img/big-oak-flat-road-tunnel.jpg": {
+    "author": "Famartin",
+    "license": "CC BY-SA 3.0",
+    "source": "https://commons.wikimedia.org/wiki/File:2013-09-19_18_11_47_Tunnel_along_Big_Oak_Flat_Road_in_Yosemite_National_Park.JPG"
   },
   "img/black-bear-yosemite-forest.jpg": {
     "author": "Pavel Špindler",
@@ -34,10 +44,20 @@
     "license": "Public domain",
     "source": "https://commons.wikimedia.org/wiki/File:Camp_Ahwahnee,_Sentinel_Rock,_Yosemite,_Calif_(NYPL_b12647398-73959).tiff"
   },
+  "img/cathedral-peak-upper-cathedral-lake.jpg": {
+    "author": "Frank Kovalchek from Anchorage, Alaska, USA",
+    "license": "CC BY 2.0",
+    "source": "https://commons.wikimedia.org/wiki/File:Cathedral_Peak_and_Lake_in_Yosemite.jpg"
+  },
   "img/cathedral-rocks-middle-cathedral.jpg": {
     "author": "OMCV",
     "license": "Public domain",
     "source": "https://commons.wikimedia.org/wiki/File:Middle_Cathedral_from_The_Nose.jpg"
+  },
+  "img/clark-range-view-glacier-point-road.jpg": {
+    "author": "Justin Johnsen",
+    "license": "CC BY-SA 4.0",
+    "source": "https://commons.wikimedia.org/wiki/File:Mount_Clark_west_face_winter.jpg"
   },
   "img/el-capitan-climbers-on-the-nose.jpg": {
     "author": "Tom Frost",
@@ -59,6 +79,11 @@
     "license": "Public domain",
     "source": "https://commons.wikimedia.org/wiki/File:Yosemite-Valley-Railroad-Grand-Central-of-the-West.jpg"
   },
+  "img/ferguson-slide-bridges-highway-140.jpg": {
+    "author": "LaurentianShield",
+    "license": "CC BY-SA 3.0",
+    "source": "https://commons.wikimedia.org/wiki/File:FergusonSlideBridge-2014-01-10.jpg"
+  },
   "img/glen-aulin-tent-cabin.jpg": {
     "author": "Lela Getzler",
     "license": "CC BY 2.0",
@@ -69,10 +94,25 @@
     "license": "CC BY-SA 3.0",
     "source": "https://commons.wikimedia.org/wiki/File:Groveland_Historic_District.jpg"
   },
+  "img/half-dome-from-clouds-rest-trail.jpg": {
+    "author": "Inklein",
+    "license": "CC BY-SA 3.0",
+    "source": "https://commons.wikimedia.org/wiki/File:Yosemite_Valley_From_Clouds_Rest.jpeg"
+  },
   "img/half-dome-merced-river-spring.jpg": {
     "author": "Dexter Perkins",
     "license": "CC0",
     "source": "https://commons.wikimedia.org/wiki/File:Half_Dome_(GeoDIL_number_-_2435).jpg"
+  },
+  "img/half-dome-permit-trail-sign.jpg": {
+    "author": "Peter Maiwald",
+    "license": "CC0",
+    "source": "https://commons.wikimedia.org/wiki/File:Yosemite-John-Muir-Trail-P1060512.jpg"
+  },
+  "img/half-dome-subdome-hikers-heat.jpg": {
+    "author": "Murray Foubister",
+    "license": "CC BY-SA 2.0",
+    "source": "https://commons.wikimedia.org/wiki/File:An_18_hour_climb_of_Half_Dome_-_by_a_trail_around_the_backside.very_hot,_not_enough_water_(3_H2O_bottles),_left_in_the_dark,_got_back_to_the_car_at_10_pm,_in_the_dark_-_a_long_day_-_(26km-1600m_climb)_(28474574260).jpg"
   },
   "img/half-dome-winter-snow.jpg": {
     "author": "George Fiske",
@@ -104,30 +144,80 @@
     "license": "CC BY 2.0",
     "source": "https://commons.wikimedia.org/wiki/File:Lower_Yosemite_Falls_(Yosemite_Valley,_Sierra_Nevada_Mountains,_California,_USA)_(20042463411).jpg"
   },
+  "img/lyell-glacier-moraine.jpg": {
+    "author": "NPS Natural Resources",
+    "license": "Public domain",
+    "source": "https://commons.wikimedia.org/wiki/File:Glacier_Landforms_Paternoster_Lakes,_Lyell_Glacier_(32618156875).jpg"
+  },
   "img/mariposa-county-courthouse.jpg": {
     "author": "Guywelch2000",
     "license": "CC0",
     "source": "https://commons.wikimedia.org/wiki/File:Mariposa_County_Courthouse_January_2025.jpg"
+  },
+  "img/mariposa-grove-giants-trail.jpg": {
+    "author": "Justin Vidamo from Fremont, United States",
+    "license": "CC BY 2.0",
+    "source": "https://commons.wikimedia.org/wiki/File:In_the_Land_of_the_Giants_(7975508659).jpg"
+  },
+  "img/mariposa-mural.jpg": {
+    "author": "Guywelch2000",
+    "license": "CC0",
+    "source": "https://commons.wikimedia.org/wiki/File:Mariposa_Mural.jpg"
+  },
+  "img/merced-river-swinging-bridge-beach.jpg": {
+    "author": "LBM1948",
+    "license": "CC BY-SA 4.0",
+    "source": "https://commons.wikimedia.org/wiki/File:Yosemite_National_Park_1989_50.jpg"
+  },
+  "img/nps-ranger-horseback-visitors.jpg": {
+    "author": "Cecil W. Stoughton",
+    "license": "Public domain",
+    "source": "https://commons.wikimedia.org/wiki/File:HFCA_1607_People_Volume_1_183.jpg_(ee9aab3cdc6b4541aef18e37c13af2a1).jpg"
   },
   "img/oakhurst-highway-41-ken-lund.jpg": {
     "author": "Ken Lund",
     "license": "CC BY-SA 2.0",
     "source": "https://commons.wikimedia.org/wiki/File:Oakhurst,_California_skyline.jpg"
   },
+  "img/tioga-pass-entrance-station.jpg": {
+    "author": "daveynin from United States",
+    "license": "CC BY 2.0",
+    "source": "https://commons.wikimedia.org/wiki/File:Tioga_Pass_entrance_station_-_Flickr_-_daveynin.jpg"
+  },
+  "img/tunnel-view-ferguson-fire-smoke.jpg": {
+    "author": "Region 5 Photography",
+    "license": "CC BY 2.0",
+    "source": "https://commons.wikimedia.org/wiki/File:20180724_FS_Sierra_KG_0058.jpg"
+  },
   "img/tunnel-view-valley-spring.jpg": {
     "author": "Kyle D",
     "license": "Public domain",
     "source": "https://commons.wikimedia.org/wiki/File:100_1325.JPG"
+  },
+  "img/tuolumne-meadows-late-summer.jpg": {
+    "author": "Dsdugan",
+    "license": "CC0",
+    "source": "https://commons.wikimedia.org/wiki/File:17_25_119_tuolumne_meadows.jpg"
   },
   "img/tuolumne-meadows-lembert-dome.jpg": {
     "author": "Pacific Southwest Region USFWS",
     "license": "Public domain",
     "source": "https://commons.wikimedia.org/wiki/File:Lembert_Dome_at_sunset_(14444515109).jpg"
   },
+  "img/upper-pines-campground.jpg": {
+    "author": "Andrew Burnham",
+    "license": "CC BY-SA 3.0",
+    "source": "https://commons.wikimedia.org/wiki/File:Yosemite_-_Upper_Pines_Campground_-_panoramio.jpg"
+  },
   "img/upper-yosemite-fall-spring-flow.jpg": {
     "author": "Micah Bochart",
     "license": "Public domain",
     "source": "https://commons.wikimedia.org/wiki/File:Upper_Yosemite_Falls.JPG"
+  },
+  "img/vogelsang-pass-tarn.jpg": {
+    "author": "Paxson Woelber",
+    "license": "CC BY 3.0",
+    "source": "https://commons.wikimedia.org/wiki/File:A_small_pond_near_the_top_of_Vogelsang_Pass._Yosemite_National_Park,_California,_USA_-_panoramio.jpg"
   },
   "img/wawona-hotel.jpg": {
     "author": "Rennett Stowe from USA",
@@ -144,15 +234,40 @@
     "license": "CC BY-SA 2.0",
     "source": "https://commons.wikimedia.org/wiki/File:Ceanothus_integerrimus_04.jpg"
   },
+  "img/yosemite-falls-trail-sign.jpg": {
+    "author": "Rachelle Haun",
+    "license": "CC BY 2.0",
+    "source": "https://commons.wikimedia.org/wiki/File:Yosemite-07_(49260763823).jpg"
+  },
   "img/yosemite-ranger-program-visitors.jpg": {
     "author": "Richard Frear",
     "license": "Public domain",
     "source": "https://commons.wikimedia.org/wiki/File:HFCA_1607_NPS_Employees,_Women_511.jpg_(234e5688ba6a483ba801d7e1004347b7).jpg"
   },
+  "img/yosemite-shuttle-half-dome.jpg": {
+    "author": "Pi.1415926535",
+    "license": "CC BY-SA 4.0",
+    "source": "https://commons.wikimedia.org/wiki/File:Yosemite_Shuttle_bus_with_Half_Dome_behind,_May_2022.JPG"
+  },
+  "img/yosemite-valley-black-oaks-autumn.jpg": {
+    "author": "Bernard Spragg. NZ from Christchurch, New Zealand",
+    "license": "CC0",
+    "source": "https://commons.wikimedia.org/wiki/File:Yosemite_National_Park;_2007_(1).jpg"
+  },
   "img/yosemite-valley-lodge-entrance.jpg": {
     "author": "Rennett Stowe",
     "license": "CC BY 2.0",
     "source": "https://commons.wikimedia.org/wiki/File:Yosemite_Lodge_(3020262929).jpg"
+  },
+  "img/yosemite-valley-snow-fiske.jpg": {
+    "author": "George Fiske",
+    "license": "Public domain",
+    "source": "https://commons.wikimedia.org/wiki/File:Snow_coats_Yosemite_Valley_in_Yosemite_National_Park,_California,_during_a_winter_storm,_1850-1930_(CHS-1202).jpg"
+  },
+  "img/yosemite-village-shuttle-stop.jpg": {
+    "author": "Pi.1415926535",
+    "license": "CC BY-SA 4.0",
+    "source": "https://commons.wikimedia.org/wiki/File:Yosemite_Shuttle_bus_in_Yosemite_Village,_May_2022.JPG"
   },
   "img/yosemite-village-store.jpg": {
     "author": "Rennett Stowe from USA",

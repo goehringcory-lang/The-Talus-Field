@@ -418,5 +418,212 @@
       "Yosemite Village Store",
       "Village Store Yosemite grocery"
     ]
+  },
+  {
+    "file": "yosemite-valley-snow-fiske.jpg",
+    "slot": "article:yosemite-winter-hikes",
+    "tier": 1,
+    "subject": "Snow on the Yosemite Valley floor in a George Fiske photograph",
+    "files": [
+      "File:Snow coats Yosemite Valley in Yosemite National Park, California, during a winter storm, 1850-1930 (CHS-1202).jpg"
+    ]
+  },
+  {
+    "file": "tunnel-view-ferguson-fire-smoke.jpg",
+    "slot": "article:wildfire-in-yosemite-during-your-trip",
+    "tier": 1,
+    "subject": "Tunnel View in Ferguson Fire smoke, July 2018, with the fire information board",
+    "files": [
+      "File:20180724 FS Sierra KG 0058.jpg"
+    ]
+  },
+  {
+    "file": "yosemite-valley-black-oaks-autumn.jpg",
+    "slot": "article:yosemite-in-october-2026",
+    "tier": 1,
+    "subject": "Black oaks in autumn color on the Valley floor",
+    "files": [
+      "File:Yosemite National Park; 2007 (1).jpg"
+    ]
+  },
+  {
+    "file": "yosemite-falls-trail-sign.jpg",
+    "slot": "article:yosemite-falls-trail",
+    "tier": 1,
+    "subject": "The Yosemite Falls Trail sign at the trailhead",
+    "files": [
+      "File:Yosemite-07 (49260763823).jpg"
+    ]
+  },
+  {
+    "file": "clark-range-view-glacier-point-road.jpg",
+    "slot": "article:glacier-point-road-open-2026",
+    "tier": 1,
+    "subject": "Mount Clark from the Clark Range View on Glacier Point Road",
+    "files": [
+      "File:Mount Clark west face winter.jpg"
+    ]
+  },
+  {
+    "file": "ferguson-slide-bridges-highway-140.jpg",
+    "slot": "article:highway-140-closed-yosemite",
+    "tier": 1,
+    "subject": "The temporary bridges around the Ferguson rockslide on Highway 140",
+    "files": [
+      "File:FergusonSlideBridge-2014-01-10.jpg"
+    ]
+  },
+  {
+    "file": "half-dome-from-clouds-rest-trail.jpg",
+    "slot": "article:clouds-rest-hike",
+    "tier": 1,
+    "subject": "Half Dome from the trail up Clouds Rest",
+    "files": [
+      "File:Yosemite Valley From Clouds Rest.jpeg"
+    ]
+  },
+  {
+    "file": "half-dome-subdome-hikers-heat.jpg",
+    "slot": "article:yosemite-heat-safety-guide",
+    "tier": 1,
+    "subject": "Hikers on the exposed Half Dome subdome on a hot day",
+    "files": [
+      "File:An 18 hour climb of Half Dome - by a trail around the backside.very hot, not enough water (3 H2O bottles), left in the dark, got back to the car at 10 pm, in the dark - a long day - (26km-1600m climb) (28474574260).jpg"
+    ]
+  },
+  {
+    "file": "big-oak-flat-road-tunnel.jpg",
+    "slot": "article:yosemite-day-trip-from-bay-area",
+    "tier": 1,
+    "subject": "A tunnel on Big Oak Flat Road above the Merced canyon",
+    "files": [
+      "File:2013-09-19 18 11 47 Tunnel along Big Oak Flat Road in Yosemite National Park.JPG"
+    ]
+  },
+  {
+    "file": "ahwahnee-great-lounge-evening.jpg",
+    "slot": "article:bracebridge-dinner-and-vintners-holidays",
+    "tier": 1,
+    "subject": "The Ahwahnee Great Lounge, where the Bracebridge Dinner is staged",
+    "files": [
+      "File:AHWAHNEE HOTEL IN YOSEMITE NATIONAL PARK.jpg"
+    ]
+  },
+  {
+    "file": "upper-pines-campground.jpg",
+    "slot": "article:camping-in-yosemite-first-time",
+    "tier": 1,
+    "subject": "Upper Pines Campground",
+    "files": [
+      "File:Yosemite - Upper Pines Campground - panoramio.jpg"
+    ]
+  },
+  {
+    "file": "cathedral-peak-upper-cathedral-lake.jpg",
+    "slot": "article:cathedral-lakes-day-hike",
+    "tier": 1,
+    "subject": "Cathedral Peak above Cathedral Lake",
+    "files": [
+      "File:Cathedral Peak and Lake in Yosemite.jpg"
+    ]
+  },
+  {
+    "file": "vogelsang-pass-tarn.jpg",
+    "slot": "article:first-yosemite-backpacking-trip",
+    "tier": 1,
+    "subject": "A tarn near the top of Vogelsang Pass",
+    "files": [
+      "File:A small pond near the top of Vogelsang Pass. Yosemite National Park, California, USA - panoramio.jpg"
+    ]
+  },
+  {
+    "file": "tioga-pass-entrance-station.jpg",
+    "slot": "article:getting-to-yosemite",
+    "tier": 1,
+    "subject": "A car at the Tioga Pass entrance station",
+    "files": [
+      "File:Tioga Pass entrance station - Flickr - daveynin.jpg"
+    ]
+  },
+  {
+    "file": "mariposa-grove-giants-trail.jpg",
+    "slot": "article:mariposa-grove-how-to-visit",
+    "tier": 1,
+    "subject": "A walker among giant sequoias in the Mariposa Grove",
+    "files": [
+      "File:In the Land of the Giants (7975508659).jpg"
+    ]
+  },
+  {
+    "file": "merced-river-swinging-bridge-beach.jpg",
+    "slot": "article:swimming-in-the-merced",
+    "tier": 1,
+    "subject": "The Merced River beach at Swinging Bridge",
+    "files": [
+      "File:Yosemite National Park 1989 50.jpg"
+    ]
+  },
+  {
+    "file": "tuolumne-meadows-late-summer.jpg",
+    "slot": "article:tuolumne-meadows-in-a-day",
+    "tier": 1,
+    "subject": "Tuolumne Meadows in late summer",
+    "files": [
+      "File:17 25 119 tuolumne meadows.jpg"
+    ]
+  },
+  {
+    "file": "yosemite-shuttle-half-dome.jpg",
+    "slot": "article:yosemite-accessibility-guide",
+    "tier": 1,
+    "subject": "A Valley shuttle bus on Northside Drive below Half Dome",
+    "files": [
+      "File:Yosemite Shuttle bus with Half Dome behind, May 2022.JPG"
+    ]
+  },
+  {
+    "file": "nps-ranger-horseback-visitors.jpg",
+    "slot": "article:yosemite-ranger-programs",
+    "tier": 1,
+    "subject": "An NPS ranger on horseback talking with young visitors",
+    "files": [
+      "File:HFCA 1607 People Volume 1 183.jpg (ee9aab3cdc6b4541aef18e37c13af2a1).jpg"
+    ]
+  },
+  {
+    "file": "yosemite-village-shuttle-stop.jpg",
+    "slot": "article:yosemite-valley-parking-guide",
+    "tier": 1,
+    "subject": "A Valley shuttle bus in Yosemite Village",
+    "files": [
+      "File:Yosemite Shuttle bus in Yosemite Village, May 2022.JPG"
+    ]
+  },
+  {
+    "file": "half-dome-permit-trail-sign.jpg",
+    "slot": "article:yosemite-walk-up-and-day-of-permits",
+    "tier": 1,
+    "subject": "A John Muir Trail sign with the Half Dome permit notice",
+    "files": [
+      "File:Yosemite-John-Muir-Trail-P1060512.jpg"
+    ]
+  },
+  {
+    "file": "lyell-glacier-moraine.jpg",
+    "slot": "article:yosemite-glaciers-climate",
+    "tier": 1,
+    "subject": "Lyell Glacier and the paternoster lakes below it",
+    "files": [
+      "File:Glacier Landforms Paternoster Lakes, Lyell Glacier (32618156875).jpg"
+    ]
+  },
+  {
+    "file": "mariposa-mural.jpg",
+    "slot": "article:yosemite-gateway-towns-compared",
+    "tier": 1,
+    "subject": "The Mariposa mural on a Highway 140 storefront",
+    "files": [
+      "File:Mariposa Mural.jpg"
+    ]
   }
 ]
