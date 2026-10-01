@@ -110,6 +110,7 @@ window.planningSeriesFor = function (slug) {
 // verifies this map stays in sync with the files in bodies/.
 // ============================================================
 window.BODY_VERSIONS = {
+  "yosemite-in-december": 1,
   "wildfire-in-yosemite-during-your-trip": 1,
   "yosemite-in-october-2026": 4,
   "yosemite-falls-trail": 3,
@@ -141,7 +142,7 @@ window.BODY_VERSIONS = {
   "yosemite-waterfalls-guide": 5,
   "yosemite-photography-spots": 5,
   "horsetail-fall-firefall": 6,
-  "yosemite-in-winter": 10,
+  "yosemite-in-winter": 11,
   "where-to-stay-in-yosemite": 13,
   "yosemite-wildflowers-guide": 6,
   "watching-climbers-el-capitan": 4,
@@ -751,6 +752,21 @@ window.KIT.lists.forEach((l) => {
 // AffiliateDisclosure line under the byline, before the first link;
 // scripts/check-affiliate-links.mjs fails when the flag and the body disagree.
 window.ARTICLES = [
+  {
+    slug: "yosemite-in-december",
+    aff: true,
+    cat: "seasonal",
+    title: "Yosemite in December: Snow, the Holidays, and the Quiet Weeks Between",
+    dek: "December is three trips on one calendar page: two empty weeks with a gap in the rooms, a middle when Badger Pass and the Bracebridge Dinner come on, and a holiday week the hotels black out. The weather in numbers, what the road record says, the chain rules, where to sleep, and how to pick your week.",
+    seoDek: "Yosemite in December: weather, closed roads, chain rules, Badger Pass and the rink, the holiday-week crowd, Curry Village's closure, and camping.",
+    date: "October 1, 2026",
+    isoDate: "2026-10-01",
+    isoModified: "2026-10-01",
+    read: "10 min",
+    placeholder: "A snow-patched Yosemite Valley meadow in winter",
+    image: "img/yosemite-valley-winter-wall.jpg",
+    credit: "Photo: Ahmed Radwan / Wikimedia Commons (CC0)",
+  },
   {
     slug: "wildfire-in-yosemite-during-your-trip",
     aff: true,
@@ -1934,6 +1950,10 @@ window.START_HERE = [
 // Curate a piece when it earns real search impressions, when it anchors a
 // cluster, or when it is the destination that needs the equity.
 window.RELATED = {
+  // Yosemite in December: the evergreen month guide. Onward to the season
+  // piece, the winter trails, the holiday dinner, the lodging and entrance
+  // guides, and the next month guide in the series.
+  "yosemite-in-december": ["yosemite-in-winter", "yosemite-winter-hikes", "bracebridge-dinner-and-vintners-holidays", "where-to-stay-in-yosemite", "getting-to-yosemite", "yosemite-in-march"],
   // A wildfire in Yosemite during your trip: the evergreen decision guide the
   // Dome Fire week asked for. Onward to smoke, the restrictions, the road it
   // closed and its hike-in alternative, the other closure guide, and the towns.
@@ -1960,7 +1980,7 @@ window.RELATED = {
   "yosemite-facelift-volunteer-guide": ["yosemite-in-september-2026", "yosemite-camping-complete-guide", "yosemite-ranger-programs", "yosemite-fire-restrictions-explained", "yosemite-shuttle-and-yarts"],
 
   // Lodging and gateway towns
-  "bracebridge-dinner-and-vintners-holidays": ["where-to-stay-in-yosemite", "yosemite-in-winter", "yosemite-trip-cost-budget-2026", "yosemite-gateway-towns-compared", "where-to-eat-yosemite"],
+  "bracebridge-dinner-and-vintners-holidays": ["where-to-stay-in-yosemite", "yosemite-in-winter", "yosemite-in-december", "yosemite-trip-cost-budget-2026", "yosemite-gateway-towns-compared", "where-to-eat-yosemite"],
   "yosemite-gateway-towns-compared": ["where-to-stay-in-yosemite", "yosemite-from-los-angeles", "yosemite-with-kids-no-reservations-2026", "highway-140-closed-yosemite", "yosemite-trip-cost-budget-2026", "getting-to-yosemite"],
   "where-to-stay-in-yosemite": ["yosemite-gateway-towns-compared", "yosemite-camping-complete-guide", "yosemite-trip-cost-budget-2026", "bracebridge-dinner-and-vintners-holidays", "where-to-eat-yosemite"],
   "yosemite-camping-complete-guide": ["camping-in-yosemite-first-time", "where-to-stay-in-yosemite", "first-yosemite-backpacking-trip", "yosemite-trip-cost-budget-2026", "yosemite-facelift-volunteer-guide"],
@@ -2014,8 +2034,8 @@ window.RELATED = {
   "yosemite-in-june-2026": ["when-to-visit-yosemite-2026-crowd-forecast", "yosemite-waterfalls-guide", "tioga-road-opening-weekend-2026", "yosemite-heat-safety-guide", "bears-spring-emergence"],
   "yosemite-in-september-2026": ["when-to-visit-yosemite-2026-crowd-forecast", "yosemite-in-fall", "tuolumne-meadows-in-a-day", "yosemite-during-smoke-season", "cathedral-lakes-day-hike", "mist-trail-the-real-guide"],
   "yosemite-in-fall": ["yosemite-in-october-2026", "yosemite-in-september-2026", "clouds-rest-hike", "when-to-visit-yosemite-2026-crowd-forecast", "yosemite-in-winter", "yosemite-during-smoke-season"],
-  "yosemite-in-winter": ["yosemite-winter-hikes", "horsetail-fall-firefall", "when-to-visit-yosemite-2026-crowd-forecast", "yosemite-in-march", "bracebridge-dinner-and-vintners-holidays"],
-  "yosemite-in-march": ["yosemite-in-winter", "yosemite-waterfalls-guide", "bears-spring-emergence", "horsetail-fall-firefall", "when-to-visit-yosemite-2026-crowd-forecast"],
+  "yosemite-in-winter": ["yosemite-winter-hikes", "yosemite-in-december", "horsetail-fall-firefall", "when-to-visit-yosemite-2026-crowd-forecast", "yosemite-in-march", "bracebridge-dinner-and-vintners-holidays"],
+  "yosemite-in-march": ["yosemite-in-winter", "yosemite-waterfalls-guide", "bears-spring-emergence", "horsetail-fall-firefall", "when-to-visit-yosemite-2026-crowd-forecast", "yosemite-in-december"],
   "tioga-road-opening-weekend-2026": ["cathedral-lakes-day-hike", "tuolumne-meadows-in-a-day", "yosemite-from-las-vegas", "memorial-day-skip-the-valley-go-high-2026", "yosemite-stargazing-where-to-look-up", "when-to-visit-yosemite-2026-crowd-forecast"],
   "glacier-point-road-open-2026": ["four-mile-up-panorama-down", "glacier-point-how-to-visit", "yosemite-photography-spots", "yosemite-stargazing-where-to-look-up", "yosemite-for-non-hikers"],
   "yosemite-heat-safety-guide": ["swimming-in-the-merced", "mist-trail-the-real-guide", "when-to-visit-yosemite-2026-crowd-forecast", "yosemite-during-smoke-season", "yosemite-waterfalls-guide", "yosemite-falls-trail"],

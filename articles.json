@@ -1,5 +1,31 @@
 [
   {
+    "slug": "yosemite-in-december",
+    "cat": "seasonal",
+    "title": "Yosemite in December: Snow, the Holidays, and the Quiet Weeks Between",
+    "dek": "December is three trips on one calendar page: two empty weeks with a gap in the rooms, a middle when Badger Pass and the Bracebridge Dinner come on, and a holiday week the hotels black out. The weather in numbers, what the road record says, the chain rules, where to sleep, and how to pick your week.",
+    "seoDek": "Yosemite in December: weather, closed roads, chain rules, Badger Pass and the rink, the holiday-week crowd, Curry Village's closure, and camping.",
+    "date": "October 1, 2026",
+    "isoDate": "2026-10-01",
+    "isoModified": "2026-10-01",
+    "read": "10 min",
+    "image": "img/yosemite-valley-winter-wall.jpg",
+    "ogImage": { "url": "img/responsive/yosemite-valley-winter-wall-1600.jpg", "width": 1600, "height": 1060 },
+    "placeholder": "A snow-patched Yosemite Valley meadow in winter",
+    "wordCount": 2666,
+    "keywords": ["yosemite in december", "visiting yosemite in december", "yosemite december weather", "is yosemite open in december", "yosemite christmas", "yosemite chains december", "does it snow in yosemite in december", "badger pass opening", "curry village ice rink", "camping in yosemite in december"],
+    "faq": [
+      { "q": "Is Yosemite open in December?", "a": "Yes. Yosemite Valley and Wawona are reachable by car all year. Tioga Road is closed, Glacier Point Road is closed past Badger Pass and plowed only as far as the ski area from mid-December through early April, and the Mariposa Grove is open on foot by the Washburn Trail, a two-mile route with 500 feet of gain." },
+      { "q": "What is the weather like in Yosemite in December?", "a": "The Park Service's normals for Yosemite Valley give December an average high of 46°F and an average low of 28°F, with about 5.6 inches of precipitation. That makes it the coldest month of the year by its average high and the third wettest. A Valley storm can arrive as rain or snow; Tuolumne Meadows averages a December high of 40°F and a low of 12°F." },
+      { "q": "Do you need chains to drive to Yosemite in December?", "a": "Plan on carrying them. The park says to expect chain requirements from November through March, and when a chain control is in effect inside the park every vehicle must have chains in it, four-wheel drives and rentals included, even when the control level does not require mounting them. The park lists a citation of up to $5,000 for failing to put chains on when required. The road-conditions line is 209/372-0200, then 1, then 1." },
+      { "q": "Is Yosemite crowded at Christmas?", "a": "The holiday week is the busy part of the month. The Park Service says the park may be very busy during winter holidays, especially in late December and early January, with traffic congestion and limited parking possible, and the concessioner blacks out its winter rates from December 23 through January 2. The first two weeks of December are among the quietest of the year." },
+      { "q": "Is Badger Pass open in December?", "a": "Only from mid-month on, and only in a year with snow. The park plows the road to the Badger Pass Ski Area from mid-December through early April, and the free shuttle from the Valley runs whenever the ski area's facilities are open, typically mid-December through March. The concessioner's Snow Phone is 209/372-1000." },
+      { "q": "Can you camp in Yosemite in December?", "a": "Yes, at a short list of campgrounds. Upper Pines is the only campground on reservations all year: arrivals from November 15 through December 14 go on sale July 15, and arrivals from December 15 through January 14 go on sale August 15, at 7 a.m. Pacific. Camp 4, Wawona, and Hodgdon Meadow are first come, first served in winter." },
+      { "q": "Is Curry Village open in December?", "a": "Not for the whole month. The concessioner currently lists Curry Village as not open from November 29 through December 10, 2026, with its winter rate starting December 13. The Ahwahnee and Yosemite Valley Lodge run through the month." }
+    ],
+    "related": ["yosemite-in-winter", "yosemite-winter-hikes", "bracebridge-dinner-and-vintners-holidays", "where-to-stay-in-yosemite", "getting-to-yosemite", "yosemite-in-march"]
+  },
+  {
     "slug": "wildfire-in-yosemite-during-your-trip",
     "cat": "planning",
     "title": "A Wildfire in Yosemite During Your Trip: What Closes, What Stays Open, and What to Do With the Bookings",
@@ -284,7 +310,7 @@
       { "q": "When do Bracebridge Dinner tickets go on sale, and do they sell out?", "a": "Typically eight to nine months before the December performances, which lands around March or April. They have sold out every year since the dinner's 2024 return, so tickets bought in late summer for that same December are usually working the cancellation list rather than the original sale." },
       { "q": "When should I book Vintners' Holidays?", "a": "The lodging that Vintners' Holidays packages are built around books on the same 366-day advance window as any other Ahwahnee, Lodge, or Curry Village reservation. If you miss that window, check back regularly: cancellations happen continuously, with a real wave in the final weeks before any date." }
     ],
-    "related": ["where-to-stay-in-yosemite", "yosemite-in-winter", "yosemite-trip-cost-budget-2026", "yosemite-gateway-towns-compared", "where-to-eat-yosemite"]
+    "related": ["where-to-stay-in-yosemite", "yosemite-in-winter", "yosemite-in-december", "yosemite-trip-cost-budget-2026", "yosemite-gateway-towns-compared", "where-to-eat-yosemite"]
   },
   {
     "slug": "yosemite-fire-restrictions-explained",
@@ -386,7 +412,7 @@
       { "q": "Can you see the firefall in March?", "a": "Mostly no. The alignment that lights Horsetail Fall runs roughly mid-to-late February. A faint version can still fire in the first evenings of March if the fall has water and the western sky is clean, but that is a consolation prize for people already in the park, not a reason to plan a March trip. If the firefall is the trip, come in February." },
       { "q": "How crowded is Yosemite in March?", "a": "Quiet, with one exception. Averaged across 2010 to 2024, March brings roughly 160,000 visits against about 625,000 in July, about a quarter of the summer load. The exception is spring break: mid and late March weekends and Easter week concentrate most of the month's traffic into a handful of days. Midweek March is one of the emptiest good-weather windows of the year, and as of the 2026 season no entry reservation is required." }
     ],
-    "related": ["yosemite-in-winter", "yosemite-waterfalls-guide", "bears-spring-emergence", "horsetail-fall-firefall", "when-to-visit-yosemite-2026-crowd-forecast"]
+    "related": ["yosemite-in-winter", "yosemite-waterfalls-guide", "bears-spring-emergence", "horsetail-fall-firefall", "when-to-visit-yosemite-2026-crowd-forecast", "yosemite-in-december"]
   },
   {
     "slug": "camping-in-yosemite-first-time",
@@ -847,7 +873,7 @@
       { "q": "What is there to do in Yosemite in winter?", "a": "Ski or take lessons at Badger Pass, one of California's oldest ski areas; snowshoe the roughly seven-mile round trip to Dewey Point on the Valley rim; join a ranger-led snowshoe walk from Badger Pass; skate the outdoor Curry Village ice rink under Half Dome; and photograph clearing storms, the best photographic conditions the park offers all year." },
       { "q": "When does Horsetail Fall glow in Yosemite?", "a": "For about two weeks in mid-February, when the sunset angle is right, the fall is running, and the sky cooperates, Horsetail Fall on the east shoulder of El Capitan lights up orange in the last minutes of the day. The firefall now draws large crowds and has a reservation system of its own." }
     ],
-    "related": ["yosemite-winter-hikes", "horsetail-fall-firefall", "when-to-visit-yosemite-2026-crowd-forecast", "yosemite-in-march", "bracebridge-dinner-and-vintners-holidays"]
+    "related": ["yosemite-winter-hikes", "yosemite-in-december", "horsetail-fall-firefall", "when-to-visit-yosemite-2026-crowd-forecast", "yosemite-in-march", "bracebridge-dinner-and-vintners-holidays"]
   },
   {
     "slug": "where-to-stay-in-yosemite",
