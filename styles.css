@@ -11176,6 +11176,136 @@ html[data-nav-mode="pinned"] { scroll-padding-top: 62px; }
   .eat-winter__grid { grid-template-columns: 1fr; }
 }
 
+/* The October 2026 deepening: the Ahwahnee's meals and dress code, the
+   stores, the four places with little or no food, dietary notes and the
+   picnic list. Two more reservation chips ("Strongly recommended" and
+   "Recommended") sit between advised and required. */
+.eat-chip--res.is-strongly, .eat-chip--res.is-recommended { color: var(--bt-warn); border-color: rgba(110, 80, 16, 0.45); }
+.eat-timeline li:nth-child(4n + 1) { padding-left: 0; border-left: 0; }
+.eat-timeline li:nth-child(n + 5) { border-top: 1px solid var(--hp-rule); margin-top: 18px; }
+.eat-meals { margin: 24px 0; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); border-top: 2px solid var(--hp-ink); }
+.eat-meals > div { padding: 14px 18px 14px 0; border-bottom: 1px solid var(--hp-rule); display: grid; gap: 4px; }
+.eat-meals > div:nth-child(even) { padding-left: 18px; border-left: 1px solid var(--hp-rule); }
+.eat-meals dt { font: 400 21px/1.2 var(--serif); color: var(--hp-ink); }
+.eat-meals dd { margin: 0; font: 14px/1.5 var(--sans); color: var(--ink-2); }
+.eat-dress { margin: 0 0 24px; padding: 20px 24px; background: var(--hp-ink); color: var(--hp-paper); border-radius: 4px; }
+.eat-dress p { margin: 0 0 10px; font: italic 19px/1.45 var(--serif); }
+.eat-dress cite { font: 600 11px var(--sans); letter-spacing: 1.2px; text-transform: uppercase; font-style: normal; color: rgba(247, 241, 225, 0.7); }
+.eat-stores { list-style: none; margin: 40px 0 0; padding: 0; display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 14px; }
+.eat-stores li { background: var(--hp-card); border: 1px solid var(--hp-rule); border-top: 3px solid var(--eat-full); border-radius: 4px; padding: 16px; display: grid; gap: 6px; align-content: start; }
+.eat-stores li.is-summer { border-top-color: var(--eat-seasonal); }
+.eat-stores li.is-out { border-top-color: var(--eat-town); }
+.hp-event .eat-stores h3 { font-size: 20px; line-height: 1.2; margin: 0; }
+.eat-stores p { margin: 0; font: 13px/1.5 var(--sans); color: var(--ink-2); }
+.eat-stores .eat-stores__where, .eat-stores .eat-stores__season { font: 700 10px var(--sans); letter-spacing: 1.1px; text-transform: uppercase; color: var(--hp-muted); }
+.eat-stores .eat-stores__season { margin-top: 4px; color: var(--bt-open); }
+.eat-stores li.is-summer .eat-stores__season { color: var(--bt-warn); }
+.hp-event .eat-subhead--rule { grid-column: 1 / -1; margin: 44px 0 18px; padding-top: 24px; border-top: 1px solid var(--hp-rule); }
+.eat-nofood { grid-column: 1 / -1; list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 16px; }
+.eat-nofood li { background: var(--hp-card); border: 1px solid var(--hp-rule); border-radius: 4px; padding: 20px; display: grid; gap: 8px; align-content: start; }
+.eat-nofood .ff-icon { color: var(--hp-accent); }
+.eat-nofood strong { font: 400 21px/1.2 var(--serif); color: var(--hp-ink); }
+.eat-nofood p { margin: 0; font: 14px/1.55 var(--sans); color: var(--ink-2); }
+.eat-diet { margin-top: 28px; }
+.eat-picnic + .eat-picnic { margin-top: 24px; }
+.eat-picnic ul { list-style: none; margin: 0; padding: 0; border-top: 2px solid var(--hp-ink); }
+.eat-picnic li { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 4px 16px; padding: 10px 0; border-bottom: 1px solid var(--hp-rule); font: 15px/1.4 var(--sans); }
+.eat-picnic li strong { font-weight: 600; color: var(--hp-ink); }
+.eat-picnic li span { color: var(--hp-muted); font-size: 13px; }
+
+/* ── /articles/where-to-stay-in-yosemite: the `.wts-*` pieces ──────────────
+   The third feature article (October 2026 rebuild). The body also carries
+   `eat-feature` so it inherits the dining article's map, prose, filter
+   chips and table (the map's tones are relabelled in its key, not
+   restyled); this layer adds only its own pieces: the status board, the
+   fact strips, the paired photos, the Curry Village room table, the closed
+   panels, the hut cards, the private-cabin pair and the booking steps.
+   Status colours are the bulletin's three, plus ink for a lottery and rust
+   for private land. */
+.wts-board { list-style: none; margin: 40px 0 0; padding: 0; border-top: 2px solid var(--hp-ink); display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); column-gap: 40px; }
+.wts-board li { display: grid; grid-template-columns: 84px minmax(0, 1fr) auto; gap: 2px 14px; align-items: baseline; padding: 12px 0; border-bottom: 1px solid var(--hp-rule); }
+.wts-board a { color: var(--hp-ink); text-decoration: none; }
+.wts-board a:hover strong { color: var(--hp-accent); }
+.wts-board strong { font: 400 20px/1.2 var(--serif); }
+.wts-board li.is-closed strong { text-decoration: line-through; text-decoration-color: var(--bt-closed); color: var(--hp-muted); }
+.wts-board__where { font: 12px/1.4 var(--sans); color: var(--hp-muted); text-align: right; }
+.wts-board__season { grid-column: 2 / -1; font: 13px/1.45 var(--sans); color: var(--ink-2); }
+.wts-status { grid-row: 1 / span 2; align-self: start; justify-self: start; margin-top: 3px; padding: 2px 8px; border-radius: 999px; font: 700 10px/1.6 var(--sans); letter-spacing: 1px; text-transform: uppercase; color: #fff; background: var(--bt-open); }
+.wts-status--seasonal { background: var(--bt-warn); }
+.wts-status--lottery { background: var(--hp-ink); }
+.wts-status--closed { background: var(--bt-closed); }
+.wts-status--private { background: var(--eat-town); }
+.wts-facts { margin: 24px 0 0; max-width: 640px; border-top: 2px solid var(--hp-ink); }
+.wts-facts > div { display: grid; grid-template-columns: 140px minmax(0, 1fr); gap: 14px; padding: 9px 0; border-bottom: 1px solid var(--hp-rule); }
+.wts-facts dt { font: 700 11px/1.6 var(--sans); letter-spacing: 1.1px; text-transform: uppercase; color: var(--hp-muted); }
+.wts-facts dd { margin: 0; font: 14px/1.5 var(--sans); color: var(--ink-2); }
+.wts-photos { display: grid; gap: 24px; align-content: start; }
+.wts-photo { margin: 0; }
+.wts-photo img { display: block; width: 100%; height: 400px; object-fit: cover; border-radius: 3px; }
+.wts-photo figcaption { font: 12px/1.5 var(--sans); color: var(--hp-muted); margin-top: 10px; }
+.wts-quote { margin: 1.4em 0; padding-left: 20px; border-left: 3px solid var(--hp-accent); font: italic 22px/1.4 var(--serif); color: var(--hp-ink); }
+.wts-units { width: 100%; margin: 24px 0 0; border-collapse: collapse; font: 14px/1.45 var(--sans); }
+.wts-units caption { text-align: left; padding-bottom: 10px; font: 700 11px var(--sans); letter-spacing: 1.2px; text-transform: uppercase; color: var(--hp-muted); }
+.wts-units th, .wts-units td { text-align: left; padding: 9px 12px 9px 0; border-bottom: 1px solid var(--hp-rule); vertical-align: top; }
+.wts-units thead th { border-bottom: 2px solid var(--hp-ink); font: 700 11px var(--sans); letter-spacing: 1px; text-transform: uppercase; color: var(--hp-ink); }
+.wts-units tbody th { font: 400 17px/1.3 var(--serif); color: var(--hp-ink); }
+.wts-units td { color: var(--ink-2); }
+.wts-closed { margin-top: 24px; padding: 18px 20px; border: 1.5px solid var(--bt-closed); border-left-width: 5px; border-radius: 3px; background: var(--hp-card); }
+.wts-closed p { margin: 0; font: 14px/1.55 var(--sans); color: var(--ink-2); }
+.wts-closed a { color: inherit; text-decoration: underline; text-decoration-color: var(--hp-accent); text-underline-offset: 3px; }
+.wts-closed .wts-closed__head { display: flex; align-items: center; gap: 8px; margin-bottom: 6px; font: 400 21px/1.2 var(--serif); color: var(--bt-closed); }
+.hp-design a.wts-ghost { margin-top: 24px; }
+.wts-huts { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px; margin: 28px 0 18px; }
+.wts-huts dd { overflow-wrap: anywhere; }
+.wts-compare { list-style: none; margin: 0; padding: 0; display: grid; gap: 16px; align-content: start; }
+.wts-compare li { background: var(--hp-card); border: 1px solid var(--hp-rule); border-top: 4px solid var(--eat-town); border-radius: 4px; padding: 20px 22px; display: grid; gap: 6px; }
+.wts-compare li.is-out { border-top-color: var(--bt-closed); }
+.wts-compare strong { font: 400 24px/1.2 var(--serif); color: var(--hp-ink); }
+.wts-compare span { font: 14px/1.5 var(--sans); color: var(--ink-2); }
+.wts-compare span:first-of-type { font-weight: 600; color: var(--hp-ink); }
+.wts-compare li.is-out span:first-of-type { color: var(--bt-closed); }
+.wts-steps { list-style: none; margin: 0; padding: 0 0 0 4px; border-left: 3px solid var(--hp-ink); counter-reset: wts; }
+.wts-steps li { position: relative; padding: 0 0 22px 30px; display: grid; gap: 3px; counter-increment: wts; }
+.wts-steps li:last-child { padding-bottom: 0; }
+.wts-steps li::before { content: counter(wts); position: absolute; left: -15px; top: -1px; width: 26px; height: 26px; display: grid; place-items: center; border-radius: 50%; background: var(--hp-ink); color: var(--hp-paper); font: 700 12px var(--sans); }
+.wts-steps span { font: 700 11px var(--sans); letter-spacing: 1.1px; text-transform: uppercase; color: var(--hp-muted); }
+.wts-steps strong { font: 400 21px/1.25 var(--serif); color: var(--hp-ink); }
+.wts-steps p { margin: 0; font: 14px/1.5 var(--sans); color: var(--ink-2); }
+.wts-rules { margin-top: 40px; }
+.wts-rules a { color: inherit; text-decoration: underline; text-decoration-color: var(--hp-accent); text-underline-offset: 3px; }
+.wts-cta { align-self: start; }
+.wts-cta .lodging-cta { margin: 0; }
+.wts-table td { font-size: 14px; }
+#prerender-prose .wts-feature :is(.wts-board, .wts-huts, .wts-photos) { display: block; }
+
+@media (max-width: 1100px) {
+  .eat-stores { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .eat-nofood { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .wts-board { grid-template-columns: 1fr; }
+}
+@media (max-width: 880px) {
+  .eat-timeline li:nth-child(n) { padding-left: 24px; border-left: 1px solid var(--hp-rule); border-top: 0; margin-top: 0; }
+  .eat-timeline li:nth-child(odd) { padding-left: 0; border-left: 0; }
+  .eat-timeline li:nth-child(n + 3) { border-top: 1px solid var(--hp-rule); }
+  .wts-photo img { height: 300px; }
+  .wts-huts { grid-template-columns: 1fr; }
+}
+@media (max-width: 760px) {
+  .eat-timeline li:nth-child(n) { padding-left: 0; border-left: 0; }
+  .eat-timeline li:nth-child(n + 2) { border-top: 1px solid var(--hp-rule); }
+  .eat-meals { grid-template-columns: 1fr; }
+  .eat-meals > div:nth-child(even) { padding-left: 0; border-left: 0; }
+  .eat-stores { grid-template-columns: 1fr 1fr; }
+  .eat-nofood { grid-template-columns: 1fr; }
+  .wts-board li { grid-template-columns: 76px minmax(0, 1fr); }
+  .wts-board__where { grid-column: 2; text-align: left; }
+  .wts-facts > div { grid-template-columns: 1fr; gap: 2px; }
+  .wts-photo img { height: 240px; }
+}
+@media (max-width: 480px) {
+  .eat-stores { grid-template-columns: 1fr; }
+}
+
 /* ==========================================================================
    /section/planning: the how-to page (October 2026). On /firefall's system
    (`.hp-event` + the `.ff-*` rules: cover, fact row, jump list, bands,

@@ -1391,19 +1391,23 @@
     ]
   },
   "where-to-stay-in-yosemite": {
-    "wordCount": 1811,
+    "wordCount": 4740,
     "keywords": [
       "where to stay in Yosemite",
       "Yosemite lodging inside the park",
       "The Ahwahnee hotel",
       "Yosemite Valley Lodge",
       "Curry Village tent cabins",
-      "Housekeeping Camp Yosemite"
+      "Housekeeping Camp Yosemite",
+      "Tuolumne Meadows Lodge",
+      "High Sierra Camps lottery",
+      "Wawona Hotel closed",
+      "Ostrander Ski Hut"
     ],
     "faq": [
       {
         "q": "How do you book lodging inside Yosemite?",
-        "a": "Every hotel, lodge, and tent cabin inside the park is run by a single concessioner and books through one website, travelyosemite.com. Reservations open 366 days in advance on a rolling basis, and peak summer dates at the Valley properties can sell out within minutes of release."
+        "a": "Every hotel, lodge and tent cabin inside the park is run by one concessioner, Yosemite Hospitality, and books through travelyosemite.com. Reservations open 366 days in advance on a rolling basis. The first night is charged at booking and refunded if you cancel at least seven days before arrival. The Park Service says cancelled rooms reappear in the morning, so check then."
       },
       {
         "q": "Is the Ahwahnee worth the price?",
@@ -1411,19 +1415,35 @@
       },
       {
         "q": "What is the cheapest roofed place to sleep in Yosemite Valley?",
-        "a": "The canvas tent cabins at Curry Village. They have real beds but no plumbing, bathrooms and showers are in communal bathhouses, canvas walls carry every sound, and everything with a scent must go in the steel bear box outside, every time."
+        "a": "The canvas tent cabins at Curry Village. They have real beds but no plumbing, the showers and bathrooms are shared, canvas walls carry every sound, and everything with a scent goes in the steel bear locker outside. The unheated tents have a light and no outlet; the heated ones have one outlet and heat from the Tuesday after Labor Day to the Friday before Memorial Day."
       },
       {
         "q": "What is Housekeeping Camp?",
-        "a": "Three-walled concrete units with canvas roofs on the bank of the Merced River, each with a covered patio, table, fire ring, and bear box. It is the only Valley lodging where you can cook your own meals over a fire, which makes it the sleeper pick for families who want to half-camp."
+        "a": "266 three-walled units with canvas roofs on the Merced River in Yosemite Valley. Each sleeps up to six on a bunk bed and a double bed, and has a covered patio, a table, a fire ring and a bear locker. Bring bedding or rent a bed pack. It runs spring to fall: April 3 to October 12 in 2026. It is the only Valley lodging where you can cook over a fire, between 5 and 10 p.m."
+      },
+      {
+        "q": "Is the Wawona Hotel open?",
+        "a": "No. It has been closed since December 2, 2024, for a condition assessment the Park Service ordered after a roof replacement turned up problems, and every building in the complex is closed. There is no reopening date."
+      },
+      {
+        "q": "Is White Wolf Lodge open?",
+        "a": "No. The Park Service ordered it closed for the 2026 season because of severely damaged sewer lines, and no reopening date has been announced. Tuolumne Meadows Lodge is the high country's tent-cabin option; its 2026 season ran June 5 to September 13."
+      },
+      {
+        "q": "Can I bring my dog to lodging in Yosemite?",
+        "a": "Not to the concessioner's lodging: the Ahwahnee, Yosemite Valley Lodge, Curry Village, Housekeeping Camp and Tuolumne Meadows Lodge allow service animals only. The Redwoods in Yosemite, private cabins in Wawona inside the park, offers pet-friendly cabins."
       },
       {
         "q": "What if Yosemite lodging is sold out for my dates?",
-        "a": "Rooms come back. Cancellations happen continuously, with a wave in the final weeks before any date, so check travelyosemite.com daily in the four to six weeks before your trip. Multi-night stays can often be assembled out of single-night cancellations."
+        "a": "Rooms come back. Cancellations reappear every morning, and there is a wave of them in the final weeks before any date. Check daily in the four to six weeks before the trip. If nothing turns up, El Portal on Highway 140 is the nearest gateway with rooms, 25 to 35 minutes from the Valley."
       },
       {
         "q": "When is it easiest to get a room inside Yosemite?",
-        "a": "Winter. The seasonal operations close, but the Ahwahnee, Yosemite Valley Lodge, and a reduced Curry Village run all year, rates drop, and midweek availability in January is a different universe from July."
+        "a": "Winter. The Ahwahnee, Yosemite Valley Lodge and a reduced Curry Village run all year, rates drop, and midweek availability in January is far better than in July. The concessioner's winter offers put the floor at the Ahwahnee from $389, the Lodge from $172 and Curry Village from $95 a night on select dates."
+      },
+      {
+        "q": "Is Yosemite West inside the park?",
+        "a": "No. Yosemite West is a private enclave of vacation homes just outside the park's southern boundary, reached through the park on Wawona Road. It has no restaurant, store, gas station or shuttle."
       }
     ]
   },
@@ -2074,7 +2094,7 @@
     ]
   },
   "where-to-eat-yosemite": {
-    "wordCount": 3798,
+    "wordCount": 5620,
     "keywords": [
       "where to eat Yosemite",
       "Yosemite restaurants",
@@ -2084,7 +2104,10 @@
       "Mariposa restaurants",
       "Yosemite West restaurants",
       "food in Yosemite",
-      "Yosemite dining"
+      "Yosemite dining",
+      "Ahwahnee dining room dress code",
+      "groceries in Yosemite",
+      "Yosemite picnic areas"
     ],
     "faq": [
       {
@@ -2093,11 +2116,19 @@
       },
       {
         "q": "Where can I book a sit-down dinner in Yosemite Valley?",
-        "a": "The Mountain Room at Yosemite Valley Lodge and The Ahwahnee Dining Room are options. Book ahead and check the concessioner's current menus, prices, and reservation details."
+        "a": "The Mountain Room at Yosemite Valley Lodge and The Ahwahnee Dining Room are options. Both take reservations on OpenTable, and the Ahwahnee also by phone at 209/372-1489. A room at the hotel does not hold you a table, so book dinner separately."
+      },
+      {
+        "q": "Is there a dress code at the Ahwahnee Dining Room?",
+        "a": "At dinner, yes. The hotel asks for long pants and a collared shirt, or a dress, skirt, or long pants with a blouse, and no hiking clothes, shorts, T-shirts, tank tops, flip-flops or baseball caps. Breakfast, lunch and Sunday brunch are casual."
+      },
+      {
+        "q": "Where can I buy groceries in Yosemite?",
+        "a": "The Village Store in Yosemite Village has the park's largest selection, including meat, produce, ice and firewood. Curry Village has a grocery that stays open in winter, and there are smaller stores at Housekeeping Camp, Wawona, Crane Flat and, in summer, Tuolumne Meadows."
       },
       {
         "q": "Are there restaurants in Yosemite West?",
-        "a": "No. Yosemite West has no restaurant, store, gas station, or shuttle. Shop before arriving. Yosemite Valley is roughly forty minutes each way, or Wawona is about half an hour south."
+        "a": "No. Yosemite West, a private enclave just outside the park's southern boundary, has no restaurant, store, gas station, or shuttle. Shop before arriving. Yosemite Valley is roughly forty minutes each way, or Wawona is about half an hour south."
       },
       {
         "q": "Is there food at Tuolumne Meadows in fall?",
@@ -2109,7 +2140,11 @@
       },
       {
         "q": "Where should I eat near Yosemite?",
-        "a": "Choose restaurants near your route or lodging. The guide recommends 1850, Smokin Oak BBQ, and Tacos Sonora in Mariposa; South Gate Brewing Company and The Elderberry House in Oakhurst; and Latte Da Cafe in Lee Vining. Check current hours before making a special trip."
+        "a": "Choose restaurants near your route or lodging. The guide recommends 1850, Smokin Oak BBQ, and Tacos Sonora in Mariposa; South Gate Brewing Company and The Elderberry House in Oakhurst; and Latte Da Cafe in Lee Vining. On Highway 120, Rush Creek Lodge and Evergreen Lodge have full restaurants a few miles from the Big Oak Flat entrance. Check current hours before making a special trip."
+      },
+      {
+        "q": "Do Yosemite picnic areas have water?",
+        "a": "Mostly not. The Park Service says only Lower Yosemite Fall and Church Bowl have drinking water and flush toilets; the other picnic areas have tables, vault toilets and, at most, grills. Bring water, and keep food within arm's reach."
       }
     ]
   },
