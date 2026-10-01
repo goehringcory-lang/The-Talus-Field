@@ -4573,7 +4573,7 @@ Bear spray is prohibited in Yosemite, classified as a weapon in the Superintende
 ## Yosemite Bear Safety: What to Do When You See a Bear
 
 URL: https://thetalusfieldjournal.com/articles/yosemite-bears-safety-guide
-Section: Wildlife and Nature. Published: 2026-06-16. Last updated: 2026-06-16.
+Section: Wildlife and Nature. Published: 2026-06-16. Last updated: 2026-10-01.
 Summary: Bear spray is banned in Yosemite. So is most of what you think you know about bears. A naturalist's guide to six myths and what actually keeps you safe.
 
 You packed bear spray. You saw it on every packing list for every national park trip you've ever planned. It's sitting in the side pocket of your pack right now, and when you get to the Yosemite entrance station, a ranger is going to confiscate it. Bear spray is illegal in Yosemite, not merely discouraged. Possession and use are both prohibited. It is classified as a weapon under National Park Service regulations, alongside pellet guns and crossbows. This surprises roughly half the visitors I talk to on any given day.
@@ -4650,9 +4650,9 @@ This matters practically because it means food storage rules apply year-round, n
 
 #### Why a bear in April is more dangerous than a bear in August
 
-A bear leaves its den in the weeks after the middle of March, and it has spent four to five months at roughly a quarter of its normal metabolic rate. Its heart rate fell from 70 to 100 beats a minute to 8 to 10, it did not eat or drink, and it came out having lost somewhere between 15 and 30 percent of its body weight. The trigger for waking is not hunger. Lengthening days and warming air reset the bear's circadian rhythm, and it wakes very hungry with a digestive system that is still restarting.
+Most of the park's bears are out of their dens between the middle of March and April, after four to five months at roughly a quarter of their normal metabolic rate. A denning bear's heart rate falls from 70 to 100 beats a minute to 8 to 10, it eats and drinks little or nothing, and it comes out having lost somewhere between 15 and 30 percent of its body weight. The trigger for waking is not hunger. Lengthening days and warming air reset the bear's circadian rhythm, and it wakes very hungry with a digestive system that is still restarting.
 
-The landscape offers little to meet that demand. The first food at Yosemite's elevations is sedge shoots, new grass and ephemeral herbs, which are low in calories, so a spring bear forages for hours a day and is drawn toward cabins, campsites and parked cars. A spring bear is also less likely to be deterred by noise than a fall bear that is already fat. C. A. Harwell, then the park naturalist, wrote in the March 1931 Nature Notes that bears come out of their dens "usually by the middle of March" and "are careful how they break their long hibernation fast"; his account of that season is in the archive. The practical rule is the one in the storage section below: from March through June, every scented item goes in the bear box, and the trunk of a car is not a bear box.
+The landscape offers little to meet that demand. The first food at Yosemite's elevations is sedge shoots, new grass and ephemeral herbs, which are low in calories, so a spring bear forages for hours a day and is drawn toward cabins, campsites and parked cars. A spring bear is also less likely to be deterred by noise than a fall bear that is already fat. C. A. Harwell, then the park naturalist, wrote in the March 1931 Nature Notes that bears come out of their dens "usually by the middle of March" and "are careful how they break their long hibernation fast"; his account of that season is in the archive. The storage rules below apply all year. Spring is when a bear tests them hardest.
 
 ### What to do if you see a bear in Yosemite
 
@@ -4727,7 +4727,7 @@ The best bear encounter is the one where you see a cinnamon-colored bear in a me
 
 ---
 
-## Yosemite Heat Safety: How Hot It Gets and a Quart of Water per Hour
+## Yosemite Heat Safety: 90°F Valley Days, Trails to Avoid, Water to Carry
 
 URL: https://thetalusfieldjournal.com/articles/yosemite-heat-safety-guide
 Section: Seasonal Guides. Published: 2026-06-16. Last updated: 2026-06-16.
@@ -7744,7 +7744,7 @@ That is the whole trip.
 
 ---
 
-## Yosemite Stargazing: Olmsted Point, Glacier Point and When the Milky Way Shows
+## Yosemite Stargazing: Olmsted Point, Glacier Point and the Milky Way
 
 URL: https://thetalusfieldjournal.com/articles/yosemite-stargazing-where-to-look-up
 Section: Seasonal Guides. Published: 2026-04-27. Last updated: 2026-04-27.
@@ -8283,22 +8283,22 @@ Some links in this piece are affiliate links. If you buy or book through one, Th
 ## Mariposa vs Oakhurst vs Groveland: Best Town to Stay Near Yosemite
 
 URL: https://thetalusfieldjournal.com/articles/yosemite-gateway-towns-compared
-Section: Planning. Published: 2026-04-26. Last updated: 2026-09-27.
+Section: Planning. Published: 2026-04-26. Last updated: 2026-10-01.
 Summary: Mariposa, Oakhurst, Groveland, El Portal and Lee Vining compared: the closest town to each entrance, drive times, winter access, kids, and which to book.
 
 For a Yosemite Valley trip, start with El Portal for a shorter drive or Mariposa for more restaurants and services. Choose Oakhurst for Wawona and the Mariposa Grove, Groveland for the Highway 120 approach, and Lee Vining for the high country when Tioga Road is open.
 
 I've stayed in all five towns. The comparison below separates the drive to an entrance from the drive to Yosemite Valley, which is where most first-time visitors spend their days. Treat the drive times as planning estimates and allow extra time for traffic, entrance queues, and stops.
 
-The short comparison, for the searches that ask Mariposa or Oakhurst, or which town is closer: Mariposa is closer to Yosemite Valley by 30 minutes or more, and Oakhurst is closer to the South Entrance and the Mariposa Grove.
+Mariposa or Oakhurst? For Yosemite Valley, Mariposa, closer by 30 minutes or more. For the South Entrance and the Mariposa Grove, Oakhurst. The five towns side by side:
 
-Town | Drive to the Valley | Highway | Elevation | Best for
+Town | Drive to the Valley | Nearest entrance | Highway | Elevation | Best for
 
-El Portal | 25 to 35 min | 140, year-round | about 1,900 ft | Sunrise starts, the shortest drive
-Mariposa | 45 to 60 min | 140, year-round | about 2,000 ft | Most first-timers, families, winter
-Groveland | 65 to 80 min | 120, chains common in winter | about 3,100 ft | Character, Hetch Hetchy, Bay Area route
-Oakhurst | 75 to 90 min | 41, year-round | about 2,300 ft | Wawona and the Mariposa Grove
-Lee Vining | 90+ min, summer only | 120 East over Tioga Pass | about 6,800 ft | The high country and Mono Lake
+El Portal | 25 to 35 min | Arch Rock, a few miles | 140, year-round | about 1,900 ft | Sunrise starts, the shortest drive
+Mariposa | 45 to 60 min | Arch Rock, via El Portal | 140, year-round | about 2,000 ft | Most first-timers, families, winter
+Groveland | 65 to 80 min | Big Oak Flat, 30 to 40 min | 120, chains common in winter | about 3,100 ft | Character, Hetch Hetchy, Bay Area route
+Oakhurst | 75 to 90 min | South, 20 to 25 min | 41, year-round | about 2,300 ft | Wawona and the Mariposa Grove
+Lee Vining | 90+ min, summer only | Tioga Pass, about 12 miles | 120 East over Tioga Pass | about 6,800 ft | The high country and Mono Lake
 
 ### The geography you actually need to know
 

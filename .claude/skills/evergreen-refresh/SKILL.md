@@ -56,7 +56,10 @@ Build the candidate table from the repo every run:
   across the *other* bodies. Zero inbound contextual links is the Search
   Console finding; it outranks age for an article under three months old.
 - **Exclusions**: touched (by `isoModified`) in the last 45 days; a dated
-  month edition (`yosemite-in-<month>-<year>`); any slug with an open PR;
+  month edition (`yosemite-in-<month>-<year>`); the four year-less annual
+  pieces the season pre-flight and the monthly edition refresh in place
+  (`when-to-visit-yosemite`, `yosemite-trip-cost-budget`,
+  `tioga-road-opening-weekend`, `yosemite-in-june`); any slug with an open PR;
   the article the last two refresh runs took.
 
 Pick the highest combined score; ties go to the oldest `isoModified`. Say

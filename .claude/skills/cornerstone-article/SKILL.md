@@ -78,7 +78,9 @@ recent colon style, one of the four categories.
 
 - The evergreen month guides not yet written: January, February, April,
   May, July, August, October, November (the catalog has March, December,
-  fall, winter, and the dated June, September and October editions).
+  fall, winter, the dated September and October editions, and June,
+  whose `yosemite-in-june` the monthly edition refreshes in place each
+  May: never write a second June guide).
 - Sentinel Dome and Taft Point: the loop most first-timers should do
   instead of the Mist Trail on a crowded day.
 - Tioga Road stop by stop: Olmsted Point, Tenaya Lake, Tuolumne Meadows,

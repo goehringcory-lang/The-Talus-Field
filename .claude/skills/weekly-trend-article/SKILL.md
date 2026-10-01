@@ -67,8 +67,8 @@ use, and the evidence lines behind it.
      routine; if the week's news makes one stale, flag it in the summary
      instead.
    - **Evergreen phrasing by default.** A year belongs in the slug and copy only
-     when the content is genuinely dated (the way
-     `when-to-visit-yosemite` is); the event decision-aid
+     when the content is genuinely dated (the way the
+     `yosemite-in-<month>-<year>` editions are); the event decision-aid
      pages (`/firefall` etc.) are deliberately yearless and are not this
      routine's format.
    - **Fallback ladder**: strongest trend topic → best seasonal gap (a coming

@@ -708,7 +708,7 @@ function buildSeo(route) {
     },
     webcams: {
       title: `Yosemite Webcams Live: Half Dome, Yosemite Falls, El Capitan — ${SITE_NAME}`,
-      description: "Live Yosemite webcams: Half Dome, Yosemite Falls, El Capitan and Wawona. There is no Tuolumne Meadows webcam; here is what to check instead, how often each camera refreshes, and how to read them.",
+      description: "Live Yosemite webcams: Half Dome, Yosemite Falls, El Capitan and Wawona, how to read them, and what to check for Tuolumne Meadows, which has no Conservancy camera.",
       ogType: "website",
       breadcrumb: [["Home", `${SITE_ORIGIN}/`], ["Webcams", null]]
     },

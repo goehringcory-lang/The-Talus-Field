@@ -1738,7 +1738,9 @@
       "are black bears dangerous",
       "Yosemite bear myths",
       "Yosemite black bears",
-      "Yosemite bear safety"
+      "Yosemite bear safety",
+      "Yosemite bears spring",
+      "When are bears most dangerous in Yosemite"
     ],
     "faq": [
       {
@@ -1756,6 +1758,10 @@
       {
         "q": "How dangerous are Yosemite's black bears?",
         "a": "Yosemite has recorded zero fatal bear attacks in its history, going back to 1890. Across North America, black bears kill fewer than one person per year. The Merced River, the granite, and driving tired on park roads are all more dangerous than the bears."
+      },
+      {
+        "q": "When are Yosemite's bears most dangerous?",
+        "a": "In spring. Most of the park's bears are out of their dens between the middle of March and April, having lost 15 to 30 percent of their body weight, and the first food of the season is low-calorie grass, sedge shoots and herbs. A hungry spring bear forages for hours a day, is drawn toward campsites and parked cars, and is less easily deterred by noise than a fall bear that is already fat."
       },
       {
         "q": "What should I do if I see a bear in Yosemite?",
