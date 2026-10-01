@@ -142,7 +142,7 @@ window.ARTICLE_BODIES["yosemite-stargazing-where-to-look-up"] = function Yosemit
       </p>
 
       <p>
-        <strong>Olmsted Point.</strong> On <a href="/articles/tioga-road-opening-weekend-2026">Tioga Road</a>, at 8,000 feet, with broad views in all directions and very little nearby light. The granite slabs in the parking area give you a flat, comfortable surface to lay on or set up a tripod on. One of the better drive-to spots in the park during the Tioga Road season (late May through October).
+        <strong>Olmsted Point.</strong> On <a href="/articles/tioga-road-opening-weekend">Tioga Road</a>, at 8,000 feet, with broad views in all directions and very little nearby light. The granite slabs in the parking area give you a flat, comfortable surface to lay on or set up a tripod on. One of the better drive-to spots in the park during the Tioga Road season (late May through October).
       </p>
 
       <p>

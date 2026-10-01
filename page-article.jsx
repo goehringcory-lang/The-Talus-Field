@@ -164,6 +164,25 @@ function ArticlePage({ slug, go }) {
     return () => cancelAnimationFrame(raf);
   }, [bodyState, slug, Body]);
 
+  // Land on the fragment once the body exists. The browser tries the hash at
+  // load, when the lazy-loaded body is not yet in the DOM, so a deep link
+  // (a Google #sec- result, or a cross-link to a subsection such as the bears
+  // guide's #spring-bears-hungriest) opened at the top of the article. Two
+  // frames: the effect above assigns the sec- ids in the first.
+  React.useEffect(() => {
+    if (bodyState !== "ready") return;
+    const id = decodeURIComponent((window.location.hash || "").slice(1));
+    if (!id) return;
+    let raf2 = 0;
+    const raf1 = requestAnimationFrame(() => {
+      raf2 = requestAnimationFrame(() => {
+        const target = document.getElementById(id);
+        if (target && proseRef.current && proseRef.current.contains(target)) target.scrollIntoView({ block: "start" });
+      });
+    });
+    return () => { cancelAnimationFrame(raf1); cancelAnimationFrame(raf2); };
+  }, [bodyState, slug]);
+
   React.useEffect(() => {
     let cancelled = false;
     const existing = (window.ARTICLE_BODIES || {})[slug];

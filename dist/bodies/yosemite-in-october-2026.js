@@ -49,7 +49,7 @@ window.ARTICLE_BODIES["yosemite-in-october-2026"] = function YosemiteInOctober20
   }, "Yosemite without reservations"), ". Visitors from outside the United States pay the non-resident fee introduced this year, $100 per person 16 and older on top of the entrance pass, and ", React.createElement("a", {
     href: "/international"
   }, "the international visitor page"), " works out the cheapest way through the gate."), React.createElement("p", null, "October is the quietest good month of the year. ", React.createElement("a", {
-    href: "/articles/when-to-visit-yosemite-2026-crowd-forecast"
+    href: "/articles/when-to-visit-yosemite"
   }, "The crowd forecast"), " puts October weekday pressure at 46 on a scale where a July weekend is 100, and October weekends at 68. Midweek needs no entrance strategy at all. On a weekend, be in before mid-morning, when the Valley lots can still fill."), React.createElement("p", null, "Two things in the Valley are different this year. The ", React.createElement("strong", null, "El Capitan Bridge"), " is under repair through December, with 15-minute delays Monday through Friday from 7 a.m. to 7 p.m.; shuttle stop 9 at El Capitan Meadow is closed, and the footpath over the bridge is shut on weekdays, which splits the Valley Loop Trail into two out-and-backs on a weekday. And the waterfalls are what they always are in October: Yosemite Fall is dry, Mirror Lake is a meadow, and Bridalveil runs low. Come for the walls and the oaks, not the water."), React.createElement(Placeholder, {
     caption: "Nevada Fall and the Merced canyon under haze, the light a fire season leaves",
     image: "img/nevada-fall-canyon-haze.jpg",

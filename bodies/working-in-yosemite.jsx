@@ -56,7 +56,7 @@ window.ARTICLE_BODIES["working-in-yosemite"] = function WorkingInYosemiteBody() 
       <p>That stock starts with tent cabins.</p>
 
       <p>
-        If you are picturing a small wood platform, white canvas walls, a propane heater, a metal-frame bed, and a roommate you did not pick: yes. That's it. A new hire at Curry Village can expect a 10-by-10 tent shared with one to three other people, communal kitchens, communal bathrooms, communal laundry, and a bear box on the porch, and in <a href="/articles/bears-spring-emergence">spring</a>, you learn quickly that the bear box is not a suggestion. The rent is somewhere south of twenty dollars a week, deducted from your paycheck. Less than a thousand dollars a year for a place to sleep in the middle of Yosemite Valley.
+        If you are picturing a small wood platform, white canvas walls, a propane heater, a metal-frame bed, and a roommate you did not pick: yes. That's it. A new hire at Curry Village can expect a 10-by-10 tent shared with one to three other people, communal kitchens, communal bathrooms, communal laundry, and a bear box on the porch, and in <a href="/articles/yosemite-bears-safety-guide#spring-bears-hungriest">spring</a>, you learn quickly that the bear box is not a suggestion. The rent is somewhere south of twenty dollars a week, deducted from your paycheck. Less than a thousand dollars a year for a place to sleep in the middle of Yosemite Valley.
       </p>
 
       <p>That number is correct. It comes at a cost.</p>

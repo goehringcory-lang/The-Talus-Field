@@ -880,7 +880,7 @@ window.ARTICLE_BODIES["where-to-eat-yosemite"] = function WhereToEatYosemiteBody
   }, "the lodging guide"), ". For one-day and two-day plans, see ", React.createElement("a", {
     href: "/articles/yosemite-in-one-or-two-days"
   }, "One day or two in Yosemite"), ". For what a trip really costs, see ", React.createElement("a", {
-    href: "/articles/yosemite-trip-cost-budget-2026"
+    href: "/articles/yosemite-trip-cost-budget"
   }, "the budget breakdown"), "."))), React.createElement("section", {
     className: "hp-wrap hp-section",
     id: "where-to-eat-questions",

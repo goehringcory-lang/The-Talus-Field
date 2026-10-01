@@ -22,6 +22,16 @@ writes September). Load `window.ARTICLES` from `data.js`; if a
 stop with a one-line summary. One article per run, never two months at
 once.
 
+**June is the exception (October 2026).** The June 2026 edition moved to
+the year-less slug `yosemite-in-june` (the old URL 301s there), so June
+has one URL that is refreshed every year rather than a new dated piece.
+When the target is June, do not write `yosemite-in-june-<year>`: refresh
+`yosemite-in-june` in place for the new year (title, dek, every dated
+fact, `isoModified`, `BODY_VERSIONS`, the `seo-data.json` FAQ), with the
+same Phase 2 research and the fact-check table in the PR body. The gate
+for June is the article's title: if it already names the target year,
+stop.
+
 ## Phase 2 — What the month decides
 
 Before writing, establish from primary sources (nps.gov/yose,
@@ -47,8 +57,9 @@ BODY_VERSIONS + RELATED, `intent-data.js`, `seo-data.json`, then compile /
 seo / prerender, verify with `run check` + `run checks`, ship), with these
 overrides:
 
-- Slug `yosemite-in-<month>-<year>`, `cat: "seasonal"`, matching the June
-  and September 2026 entries' field shape.
+- Slug `yosemite-in-<month>-<year>`, `cat: "seasonal"`, matching the
+  September and October 2026 entries' field shape (June is refreshed in
+  place, above).
 - Branch `claude/monthly-edition-<month>-<year>`.
 - `ARTICLE_MONTHS` gets exactly the target month — this is the one article
   type whose window is definitionally a single visit month.
@@ -61,7 +72,8 @@ Open the PR, subscribe to its activity, drive CI green, never merge.
 
 ## Guardrails
 
-- Never edit a previous month's dated piece in this run; if one is now
+- Never edit a previous month's dated piece in this run (the June
+  refresh above is the one in-place edit this routine makes); if one is now
   materially wrong, say so in the completion summary for the intel cycle
   to brief.
 - A month with genuinely nothing year-specific to say does not exist in

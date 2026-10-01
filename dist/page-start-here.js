@@ -124,7 +124,7 @@ var START_ANSWERS = [{
   q: "When should I go?",
   lines: ["Late May through June, for the waterfalls and every road open.", "September and October: thinner crowds, low gold light, dry falls."],
   link: {
-    href: "/articles/when-to-visit-yosemite-2026-crowd-forecast",
+    href: "/articles/when-to-visit-yosemite",
     label: "The crowd forecast"
   }
 }, {
@@ -176,7 +176,7 @@ var START_THEN = [{
   href: "/articles/yosemite-in-three-to-five-days",
   label: "Three to five days"
 }, {
-  href: "/articles/when-to-visit-yosemite-2026-crowd-forecast",
+  href: "/articles/when-to-visit-yosemite",
   label: "The crowd forecast"
 }, {
   href: "/articles/yosemite-valley-parking-guide",

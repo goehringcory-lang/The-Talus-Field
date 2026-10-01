@@ -6,7 +6,7 @@ window.ARTICLE_BODIES["yosemite-during-smoke-season"] = function YosemiteDuringS
   return (
     <>
       <p className="dropcap">
-        The first time I watched Yosemite Valley fill with wildfire smoke from a fire I couldn't see, the smoke arrived as a smell before it arrived as a sight. By midday, El Capitan was barely visible behind a layer of smoke that started about 200 feet up. By late afternoon, the entire upper Valley had vanished. The visitors who'd planned to drive to Glacier Point that day were standing at Tunnel View looking at haze. The visitors who flexed and drove up <a href="/articles/tioga-road-opening-weekend-2026">Tioga Road to Tuolumne</a> were sitting at 8,600 feet in clean air, with the smoke below them.
+        The first time I watched Yosemite Valley fill with wildfire smoke from a fire I couldn't see, the smoke arrived as a smell before it arrived as a sight. By midday, El Capitan was barely visible behind a layer of smoke that started about 200 feet up. By late afternoon, the entire upper Valley had vanished. The visitors who'd planned to drive to Glacier Point that day were standing at Tunnel View looking at haze. The visitors who flexed and drove up <a href="/articles/tioga-road-opening-weekend">Tioga Road to Tuolumne</a> were sitting at 8,600 feet in clean air, with the smoke below them.
       </p>
 
       <p>

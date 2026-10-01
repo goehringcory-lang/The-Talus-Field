@@ -25,7 +25,7 @@ window.ARTICLE_BODIES["first-time-yosemite-overwhelm"] = function FirstTimeYosem
   }, "the daylight arithmetic"), " is worth reading before you commit to it."), React.createElement("h2", {
     id: "sec-5-the-best-time-to-visit-yosemite-for-a-first-trip"
   }, "The best time to visit Yosemite for a first trip"), React.createElement("p", null, "Late May through June, if you can choose freely. The waterfalls are at or near their peak, the Valley is green, and in most years Glacier Point Road and Tioga Road have opened by then, so the whole park is on the menu. In 2026 they opened early, on May 9 and May 15. September and October are the second-best answer: crowds thin, the light goes low and gold, every road is still open, and the only thing missing is water in the falls. July and August are hot and the most crowded, and the relief is elevation. April has the falls and fewer people, but the high roads are usually still closed, so a first trip in April is a Valley trip. Winter is its own park, quiet and beautiful, but with the Valley, Wawona, and Hetch Hetchy as the whole range. ", React.createElement("a", {
-    href: "/articles/when-to-visit-yosemite-2026-crowd-forecast"
+    href: "/articles/when-to-visit-yosemite"
   }, "The crowd forecast"), " ranks every month, and the ", React.createElement("a", {
     href: "/planning"
   }, "trip selector"), " will cap an itinerary to the roads your month allows."), React.createElement("h2", {

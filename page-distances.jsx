@@ -219,7 +219,7 @@ function DistancesPage({ go }) {
             , which is where these numbers come from. The lodging itself is on{" "}
             <a href="/stay" onClick={(e) => { e.preventDefault(); go("stay"); }}>the where-to-stay page</a>, and
             what a trip costs is in{" "}
-            <a href="/articles/yosemite-trip-cost-budget-2026" onClick={(e) => goArticle(e, "yosemite-trip-cost-budget-2026")}>
+            <a href="/articles/yosemite-trip-cost-budget" onClick={(e) => goArticle(e, "yosemite-trip-cost-budget")}>
               the budget breakdown
             </a>
             . If you are coming from further out, <a href="/articles/getting-to-yosemite" onClick={(e) => goArticle(e, "getting-to-yosemite")}>getting to Yosemite</a>{" "}

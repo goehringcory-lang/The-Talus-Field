@@ -1714,7 +1714,7 @@ function StayPage({
   }, "The complete camping guide"), React.createElement("span", {
     className: "relrail__dek"
   }, "Every campground, the release calendar, and the strategy.")), React.createElement("li", null, React.createElement("a", {
-    href: "/articles/yosemite-trip-cost-budget-2026"
+    href: "/articles/yosemite-trip-cost-budget"
   }, "What a Yosemite trip costs"), React.createElement("span", {
     className: "relrail__dek"
   }, "The arithmetic of each lodging approach across a whole trip.")), React.createElement("li", null, React.createElement("a", {

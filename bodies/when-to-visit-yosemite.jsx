@@ -2,7 +2,7 @@
 
 window.ARTICLE_BODIES = window.ARTICLE_BODIES || {};
 
-window.ARTICLE_BODIES["when-to-visit-yosemite-2026-crowd-forecast"] = function WhenToVisitYosemite2026CrowdForecastBody() {
+window.ARTICLE_BODIES["when-to-visit-yosemite"] = function WhenToVisitYosemite2026CrowdForecastBody() {
   // ── Data ──────────────────────────────────────────────────────────────────
   // Monthly recreation visits, thousands. Sources: NPS Visitor Use Statistics
   // via park press releases. Exact corroborated figures: Mar 2026 (225,817),
@@ -332,7 +332,7 @@ window.ARTICLE_BODIES["when-to-visit-yosemite-2026-crowd-forecast"] = function W
       </p>
 
       <ul>
-        <li><strong>June:</strong> Peak season arrived early this year. <a href="/articles/yosemite-in-june-2026">Low snowpack pushed the waterfall peak into May</a>, so the falls are already past their best while the crowds are at theirs. A June weekday scores 68; a weekend, 100. Come midweek or not at all.</li>
+        <li><strong>June:</strong> Peak season arrived early this year. <a href="/articles/yosemite-in-june">Low snowpack pushed the waterfall peak into May</a>, so the falls are already past their best while the crowds are at theirs. A June weekday scores 68; a weekend, 100. Come midweek or not at all.</li>
         <li><strong>July:</strong> The projected biggest month in a decade, and July 4 lands on a Saturday, the single worst arrival day of 2026. The week after the holiday, midweek, is merely very busy rather than impossible.</li>
         <li><strong>August:</strong> Slightly softer than July, with two asterisks: smoke season is real here in late August, and the falls will be near dry.</li>
         <li><strong>September:</strong> The split month. Labor Day weekend (September 5 to 7) behaves like July. The Tuesday after it is a different park, with <a href="/articles/yosemite-in-september-2026">the concessions closing around you</a>: summer weather, open high country, and weekday pressure that drops by a third.</li>

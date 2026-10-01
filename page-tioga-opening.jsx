@@ -5,7 +5,7 @@
 // (MONETIZATION-IDEAS.md 4.3), following the /firefall pattern: a permanent
 // URL that accrues rank every spring for "when does Tioga Road open," instead
 // of a year-stamped slug that resets. The deep dive stays in the article
-// (/articles/tioga-road-opening-weekend-2026); this page is the decision aid:
+// (/articles/tioga-road-opening-weekend); this page is the decision aid:
 // how the opening works, what week one actually offers, and how to prepare.
 // Facts come from the published article body; anything that changes annually
 // (the date, service openings, reservation rules) points at the NPS sources
@@ -417,7 +417,7 @@ function TiogaOpeningPage({ go }) {
               <ResponsiveImage image="img/tuolumne-meadows-lembert-dome.jpg" alt="Lembert Dome above the edge of Tuolumne Meadows" sizes="(max-width: 880px) calc(100vw - 40px), 520px" />
               <figcaption>Lembert Dome from Tuolumne Meadows. Photo: Pacific Southwest Region USFWS / Wikimedia Commons (public domain)</figcaption>
             </figure>
-            <p className="ff-note">Every stop, where to eat in Lee Vining, and what the meadows look like under snowmelt: <HomeLink go={go} location="tioga_article" href="/articles/tioga-road-opening-weekend-2026">the opening-weekend field guide</HomeLink>.</p>
+            <p className="ff-note">Every stop, where to eat in Lee Vining, and what the meadows look like under snowmelt: <HomeLink go={go} location="tioga_article" href="/articles/tioga-road-opening-weekend">the opening-weekend field guide</HomeLink>.</p>
           </div>
           <ol className="ff-hours">
             <li><span>Before 8 a.m.</span><p>Through the gate and climbing. Early beats the congestion and the full lots, and sunrise at Olmsted Point is shared with almost no one.</p></li>

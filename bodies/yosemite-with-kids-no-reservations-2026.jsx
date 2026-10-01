@@ -175,7 +175,7 @@ window.ARTICLE_BODIES["yosemite-with-kids-no-reservations-2026"] = function Yose
       </p>
 
       <p>
-        <strong>Tioga Road and Tuolumne Meadows.</strong> If <a href="/articles/tioga-road-opening-weekend-2026">Tioga Road is open</a> (it typically opens late May to early June, and is open this year as of May 15), the drive from the Valley up to Tuolumne Meadows is one of the great road trips in the American West. The meadow at 8,600 feet is cool, wide, and crisscrossed with easy walking paths. Soda Springs, a natural carbonated spring bubbling out of the ground, is a short walk from the road and kids like tasting the fizzy water. No reservation needed to drive Tioga Road.
+        <strong>Tioga Road and Tuolumne Meadows.</strong> If <a href="/articles/tioga-road-opening-weekend">Tioga Road is open</a> (it typically opens late May to early June, and is open this year as of May 15), the drive from the Valley up to Tuolumne Meadows is one of the great road trips in the American West. The meadow at 8,600 feet is cool, wide, and crisscrossed with easy walking paths. Soda Springs, a natural carbonated spring bubbling out of the ground, is a short walk from the road and kids like tasting the fizzy water. No reservation needed to drive Tioga Road.
       </p>
 
       <h2>The naturalist's cheat sheet</h2>

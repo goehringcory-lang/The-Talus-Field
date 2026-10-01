@@ -745,9 +745,9 @@ const SX_SEASONS = [
   { key: "winter", label: "Winter", months: "December to February", lead: "yosemite-in-winter",
     slugs: ["yosemite-in-winter", "horsetail-fall-firefall", "bracebridge-dinner-and-vintners-holidays", "yosemite-winter-hikes"] },
   { key: "spring", label: "Spring", months: "March to May", lead: "yosemite-in-march",
-    slugs: ["yosemite-in-march", "yosemite-waterfalls-guide", "tioga-road-opening-weekend-2026", "glacier-point-road-open-2026", "memorial-day-skip-the-valley-go-high-2026"] },
-  { key: "summer", label: "Summer", months: "June to August", lead: "yosemite-in-june-2026",
-    slugs: ["yosemite-in-june-2026", "swimming-in-the-merced", "yosemite-heat-safety-guide", "yosemite-stargazing-where-to-look-up", "yosemite-during-smoke-season"] },
+    slugs: ["yosemite-in-march", "yosemite-waterfalls-guide", "tioga-road-opening-weekend", "glacier-point-road-open-2026", "memorial-day-skip-the-valley-go-high-2026"] },
+  { key: "summer", label: "Summer", months: "June to August", lead: "yosemite-in-june",
+    slugs: ["yosemite-in-june", "swimming-in-the-merced", "yosemite-heat-safety-guide", "yosemite-stargazing-where-to-look-up", "yosemite-during-smoke-season"] },
   { key: "fall", label: "Fall", months: "September to November", lead: "yosemite-in-fall",
     slugs: ["yosemite-in-fall", "yosemite-in-september-2026", "yosemite-in-october-2026", "yosemite-connecting-to-traditions"] },
 ];
@@ -1179,7 +1179,7 @@ const SX_BLOOM_MONTHS = ["Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug"];
 
 const SX_WILD_GROUPS = [
   ["animals", "Animals", ["yosemite-wildlife-viewing-guide", "water-ouzels-waterfalls", "showy-milkweed-yosemite-valley"]],
-  ["bears", "Bears", ["yosemite-bears-safety-guide", "is-bear-spray-allowed-in-yosemite", "bears-spring-emergence"]],
+  ["bears", "Bears", ["yosemite-bears-safety-guide", "is-bear-spray-allowed-in-yosemite"]],
   ["plants", "Plants and trees", ["yosemite-wildflowers-guide", "giant-sequoias-fire-adaptation", "yosemite-tunnel-trees"]],
   ["land", "Rock and ice", ["what-is-a-talus-field", "yosemite-glaciers-climate"]],
 ];
@@ -1293,7 +1293,7 @@ function WildlifeSectionPage({ go }) {
           <div className="ps-paths sx-paths">
             {card("yosemite-bears-safety-guide", "paw", "THE GUIDE", "What to do when you see a bear", "Read the bear guide →")}
             {card("is-bear-spray-allowed-in-yosemite", "permit", "THE RULE", "Is bear spray allowed?", "Read the answer →")}
-            {card("bears-spring-emergence", "eye", "SPRING", "A bear in April is not a bear in August", "Read why →")}
+            {card("yosemite-wildlife-viewing-guide", "eye", "VIEWING", "How far to stay from any animal", "Read the protocol →")}
           </div>
           <p className="ff-note">Storing food in a campground, and the locker that comes with it: {L("section_wildlife", "/articles/camping-in-yosemite-first-time", "camping in Yosemite for the first time")}.</p>
         </div>

@@ -84,7 +84,7 @@ window.ARTICLE_BODIES["yosemite-in-september-2026"] = function YosemiteInSeptemb
       </p>
 
       <p>
-        If the dates are flexible at all, take the second half. The roads and cables are the same and the traffic is a fraction. That is the argument of <a href="/articles/when-to-visit-yosemite-2026-crowd-forecast">the crowd forecast</a>, and September is where it pays best.
+        If the dates are flexible at all, take the second half. The roads and cables are the same and the traffic is a fraction. That is the argument of <a href="/articles/when-to-visit-yosemite">the crowd forecast</a>, and September is where it pays best.
       </p>
 
       <h2>What is on in the evenings</h2>

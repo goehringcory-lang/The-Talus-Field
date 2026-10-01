@@ -1738,7 +1738,9 @@
       "are black bears dangerous",
       "Yosemite bear myths",
       "Yosemite black bears",
-      "Yosemite bear safety"
+      "Yosemite bear safety",
+      "Yosemite bears spring",
+      "When are bears most dangerous in Yosemite"
     ],
     "faq": [
       {
@@ -1756,6 +1758,10 @@
       {
         "q": "How dangerous are Yosemite's black bears?",
         "a": "Yosemite has recorded zero fatal bear attacks in its history, going back to 1890. Across North America, black bears kill fewer than one person per year. The Merced River, the granite, and driving tired on park roads are all more dangerous than the bears."
+      },
+      {
+        "q": "When are Yosemite's bears most dangerous?",
+        "a": "In spring. Most of the park's bears are out of their dens between the middle of March and April, having lost 15 to 30 percent of their body weight, and the first food of the season is low-calorie grass, sedge shoots and herbs. A hungry spring bear forages for hours a day, is drawn toward campsites and parked cars, and is less easily deterred by noise than a fall bear that is already fat."
       },
       {
         "q": "What should I do if I see a bear in Yosemite?",
@@ -1818,7 +1824,7 @@
       }
     ]
   },
-  "when-to-visit-yosemite-2026-crowd-forecast": {
+  "when-to-visit-yosemite": {
     "wordCount": 2360,
     "keywords": [
       "when to visit Yosemite",
@@ -1857,7 +1863,7 @@
       }
     ]
   },
-  "yosemite-trip-cost-budget-2026": {
+  "yosemite-trip-cost-budget": {
     "wordCount": 1961,
     "keywords": [
       "Yosemite trip cost",
@@ -1892,7 +1898,7 @@
       }
     ]
   },
-  "yosemite-in-june-2026": {
+  "yosemite-in-june": {
     "wordCount": 1869,
     "keywords": [
       "Yosemite in June",
@@ -2194,7 +2200,7 @@
       }
     ]
   },
-  "tioga-road-opening-weekend-2026": {
+  "tioga-road-opening-weekend": {
     "wordCount": 2600,
     "keywords": [
       "Tioga Road open 2026",
@@ -2414,34 +2420,6 @@
       }
     ]
   },
-  "bears-spring-emergence": {
-    "wordCount": 1731,
-    "keywords": [
-      "Yosemite bears spring",
-      "black bear emergence",
-      "bear torpor",
-      "bear safety Yosemite",
-      "April bear behavior"
-    ],
-    "faq": [
-      {
-        "q": "When do black bears emerge from their dens in Yosemite?",
-        "a": "Bears begin emerging in April, after five to seven months in torpor. The trigger is not hunger but lengthening days and rising temperatures, which reset the bear's circadian rhythm and restart its metabolism. A bear that emerges in mid-April has spent the winter burning stored fat at roughly 25 percent of its normal metabolic rate."
-      },
-      {
-        "q": "Why are Yosemite bears most dangerous in spring?",
-        "a": "Spring is when bears are most motivated, not most aggressive. A newly emerged bear has lost somewhere between 15 and 30 percent of its body weight and faces acute caloric demand while only low-calorie spring vegetation is available. That metabolic urgency makes spring bears bolder: they hold their ground around humans, persist at food sources, and are more likely to attempt entry into cabins or food storage areas."
-      },
-      {
-        "q": "What is torpor and how is it different from hibernation?",
-        "a": "Torpor is the near-hibernation state Yosemite bears enter in November or December. Heart rate drops from 70 to 100 beats per minute to 8 to 10, body temperature falls from about 38 degrees Celsius into the low 30s, the kidneys nearly shut down, and the bear neither eats, drinks, nor defecates. Unlike true hibernation, the bear can wake if disturbed."
-      },
-      {
-        "q": "How should visitors behave around bears in spring?",
-        "a": "Spring requires the most rigorous food storage practices and bear-box discipline, since this is when bears most aggressively seek human food. Make noise on the trail to avoid surprise encounters, especially on lower Valley hikes like the Mist Trail where May and June foraging overlaps with peak hiking season."
-      }
-    ]
-  },
   "yosemite-glaciers-climate": {
     "wordCount": 1835,
     "keywords": [
@@ -2635,6 +2613,8 @@
   "yosemite-gateway-towns-compared": {
     "wordCount": 4989,
     "keywords": [
+      "Oakhurst vs Mariposa for Yosemite",
+      "Mariposa vs Oakhurst",
       "where to stay near Yosemite",
       "best town to stay near Yosemite",
       "closest town to Yosemite",

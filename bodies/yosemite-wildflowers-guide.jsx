@@ -102,7 +102,7 @@ window.ARTICLE_BODIES["yosemite-wildflowers-guide"] = function YosemiteWildflowe
       </p>
 
       <p>
-        Early summer brings the Valley's most fragrant flower, the <strong>western azalea</strong>, which blooms white and pale pink in wet meadow edges in June, often when the crowds have already turned their attention uphill. You usually smell it before you see it. If your trip lands in <a href="/articles/yosemite-in-june-2026">June</a>, the azaleas along the meadow margins are worth a detour on their own.
+        Early summer brings the Valley's most fragrant flower, the <strong>western azalea</strong>, which blooms white and pale pink in wet meadow edges in June, often when the crowds have already turned their attention uphill. You usually smell it before you see it. If your trip lands in <a href="/articles/yosemite-in-june">June</a>, the azaleas along the meadow margins are worth a detour on their own.
       </p>
 
       <h2>May to July: the middle elevations, 6,000 to 8,000 feet</h2>
@@ -133,7 +133,7 @@ window.ARTICLE_BODIES["yosemite-wildflowers-guide"] = function YosemiteWildflowe
       </p>
 
       <p>
-        <strong>Tuolumne Meadows</strong>, at 8,600 feet along <a href="/articles/tioga-road-opening-weekend-2026">Tioga Road</a>, is the headline: one of the largest subalpine meadows in the Sierra, purple with Lemmon's paintbrush and little elephant's head in July, gentians closing out the season in August. <strong>Lukens Lake</strong>, reached by an easy mile of trail from Tioga Road, is the single most reliable set piece I know: in mid-July the wet meadow at the lake's west end turns into a field of <strong>shooting stars</strong>, thousands of small magenta flowers with swept-back petals, all nodding the same direction. It lasts about two weeks. I have hiked in a week late and found green where the pink had been.
+        <strong>Tuolumne Meadows</strong>, at 8,600 feet along <a href="/articles/tioga-road-opening-weekend">Tioga Road</a>, is the headline: one of the largest subalpine meadows in the Sierra, purple with Lemmon's paintbrush and little elephant's head in July, gentians closing out the season in August. <strong>Lukens Lake</strong>, reached by an easy mile of trail from Tioga Road, is the single most reliable set piece I know: in mid-July the wet meadow at the lake's west end turns into a field of <strong>shooting stars</strong>, thousands of small magenta flowers with swept-back petals, all nodding the same direction. It lasts about two weeks. I have hiked in a week late and found green where the pink had been.
       </p>
 
       <p>

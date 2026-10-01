@@ -984,13 +984,13 @@ var SX_SEASONS = [{
   label: "Spring",
   months: "March to May",
   lead: "yosemite-in-march",
-  slugs: ["yosemite-in-march", "yosemite-waterfalls-guide", "tioga-road-opening-weekend-2026", "glacier-point-road-open-2026", "memorial-day-skip-the-valley-go-high-2026"]
+  slugs: ["yosemite-in-march", "yosemite-waterfalls-guide", "tioga-road-opening-weekend", "glacier-point-road-open-2026", "memorial-day-skip-the-valley-go-high-2026"]
 }, {
   key: "summer",
   label: "Summer",
   months: "June to August",
-  lead: "yosemite-in-june-2026",
-  slugs: ["yosemite-in-june-2026", "swimming-in-the-merced", "yosemite-heat-safety-guide", "yosemite-stargazing-where-to-look-up", "yosemite-during-smoke-season"]
+  lead: "yosemite-in-june",
+  slugs: ["yosemite-in-june", "swimming-in-the-merced", "yosemite-heat-safety-guide", "yosemite-stargazing-where-to-look-up", "yosemite-during-smoke-season"]
 }, {
   key: "fall",
   label: "Fall",
@@ -1550,7 +1550,7 @@ var SX_BLOOM = [{
   what: "Redbud, then poppies"
 }];
 var SX_BLOOM_MONTHS = ["Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug"];
-var SX_WILD_GROUPS = [["animals", "Animals", ["yosemite-wildlife-viewing-guide", "water-ouzels-waterfalls", "showy-milkweed-yosemite-valley"]], ["bears", "Bears", ["yosemite-bears-safety-guide", "is-bear-spray-allowed-in-yosemite", "bears-spring-emergence"]], ["plants", "Plants and trees", ["yosemite-wildflowers-guide", "giant-sequoias-fire-adaptation", "yosemite-tunnel-trees"]], ["land", "Rock and ice", ["what-is-a-talus-field", "yosemite-glaciers-climate"]]];
+var SX_WILD_GROUPS = [["animals", "Animals", ["yosemite-wildlife-viewing-guide", "water-ouzels-waterfalls", "showy-milkweed-yosemite-valley"]], ["bears", "Bears", ["yosemite-bears-safety-guide", "is-bear-spray-allowed-in-yosemite"]], ["plants", "Plants and trees", ["yosemite-wildflowers-guide", "giant-sequoias-fire-adaptation", "yosemite-tunnel-trees"]], ["land", "Rock and ice", ["what-is-a-talus-field", "yosemite-glaciers-climate"]]];
 function WildlifeSectionPage({
   go
 }) {
@@ -1684,7 +1684,7 @@ function WildlifeSectionPage({
     className: "ps-riders"
   }, React.createElement("div", null, React.createElement("h3", null, "Bear spray is illegal"), React.createElement("p", null, "It is classified as a weapon in the Superintendent's Compendium. Possession and use are both prohibited, and it is not needed for black bears.")), React.createElement("div", null, React.createElement("h3", null, "Do not play dead"), React.createElement("p", null, "That is advice for grizzlies. With a black bear that will not leave, make yourself large, shout, and if it makes contact, fight back.")), React.createElement("div", null, React.createElement("h3", null, "Your voice is the tool"), React.createElement("p", null, "The park's Bear Team says it plainly: your voice is your most effective tool. The guide has the specifics."))), React.createElement("div", {
     className: "ps-paths sx-paths"
-  }, card("yosemite-bears-safety-guide", "paw", "THE GUIDE", "What to do when you see a bear", "Read the bear guide →"), card("is-bear-spray-allowed-in-yosemite", "permit", "THE RULE", "Is bear spray allowed?", "Read the answer →"), card("bears-spring-emergence", "eye", "SPRING", "A bear in April is not a bear in August", "Read why →")), React.createElement("p", {
+  }, card("yosemite-bears-safety-guide", "paw", "THE GUIDE", "What to do when you see a bear", "Read the bear guide →"), card("is-bear-spray-allowed-in-yosemite", "permit", "THE RULE", "Is bear spray allowed?", "Read the answer →"), card("yosemite-wildlife-viewing-guide", "eye", "VIEWING", "How far to stay from any animal", "Read the protocol →")), React.createElement("p", {
     className: "ff-note"
   }, "Storing food in a campground, and the locker that comes with it: ", L("section_wildlife", "/articles/camping-in-yosemite-first-time", "camping in Yosemite for the first time"), "."))), React.createElement("section", {
     className: "hp-wrap hp-section",

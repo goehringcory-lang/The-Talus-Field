@@ -136,6 +136,24 @@ function ArticlePage({
     return () => cancelAnimationFrame(raf);
   }, [bodyState, slug, Body]);
   React.useEffect(() => {
+    if (bodyState !== "ready") return;
+    var id = decodeURIComponent((window.location.hash || "").slice(1));
+    if (!id) return;
+    var raf2 = 0;
+    var raf1 = requestAnimationFrame(() => {
+      raf2 = requestAnimationFrame(() => {
+        var target = document.getElementById(id);
+        if (target && proseRef.current && proseRef.current.contains(target)) target.scrollIntoView({
+          block: "start"
+        });
+      });
+    });
+    return () => {
+      cancelAnimationFrame(raf1);
+      cancelAnimationFrame(raf2);
+    };
+  }, [bodyState, slug]);
+  React.useEffect(() => {
     var cancelled = false;
     var existing = (window.ARTICLE_BODIES || {})[slug];
     if (existing) {

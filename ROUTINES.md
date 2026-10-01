@@ -52,7 +52,7 @@ road-alert signups, and nothing goes out until the owner sends it.
 | Saturday | 7am | **Intel executor** | as Wednesday | |
 | Saturday | 9am | **Sunday letter draft** | Sunday Field Notes scheduled in Buttondown for Sunday 9am Pacific (`scripts/buttondown-letter.mjs`): a naturalist's letter on what is happening in the park now (the lead observation with its science, the Nature Notes archive on the same weeks, two or three "also in season" notes), three to five contextual article links woven in, no site changelog; plus the letter, the dashboard link and a distribution pack as an issue (label `sunday-letter`) | `.claude/skills/sunday-letter/SKILL.md` |
 | 1st | 7am | **Dependency and security check** | Advisories triaged, safe updates applied, one `[deps]` PR (`[api]` too when `workers/` changed) | `.claude/skills/dependency-check/SKILL.md` |
-| 10th | 7am | **Season pre-flight** | The deadline and fee tables re-verified and their dates advanced, as a PR; next year's dated edition of an annual article when its season is two months out, as a second PR | `.claude/skills/season-preflight/SKILL.md` |
+| 10th | 7am | **Season pre-flight** | The deadline and fee tables re-verified and their dates advanced, as a PR; next year's dated edition of an annual article when its season is two months out, or an in-place refresh of a year-less annual piece, as a second PR | `.claude/skills/season-preflight/SKILL.md` |
 | 25th | 6am | **Monthly edition article** | "Yosemite in <next month> <year>", as a PR | `.claude/skills/monthly-edition-article/SKILL.md` |
 
 The 9am slots are deliberately two hours after the 7am ones on the same
@@ -90,6 +90,8 @@ could do the same thing, the table says which one does.
 | Facts on the standing reference pages (the routes in `scripts/data/reference-ledger.json`) and their crawler copies (`HUB_PROSE` and FAQ answers in `edge/seo.js`, the /planning mirror in `app.jsx`), plus `TRIP_MONTHS` rows | Reference page refresh | the sweep keeps titles and descriptions; the pulse keeps booking links and placements; the intel executor for a news-forced change |
 | Existing article bodies, when news forces it | Intel executor (approved) | refresh skips a slug with an open executor PR, and vice versa |
 | `yosemite-in-<month>-<year>` (dated) | Monthly edition | flag, never edit |
+| Three of the four year-less annual pieces, refreshed in place each season (October 2026; the `-2026` slugs 301 to them): `when-to-visit-yosemite`, `yosemite-trip-cost-budget`, `tioga-road-opening-weekend` | Season pre-flight | evergreen refresh skips them; nobody mints a `-<year>` successor |
+| `yosemite-in-june`, the fourth, refreshed in place each May 25 | Monthly edition | evergreen refresh skips it; cornerstone never writes a second June guide |
 | `bulletin.json`, `workers/src/data/manual-programs.ts` | Bulletin edition turn (the edition rollover), intel executor (mid-edition items, approved) | never; the sweep flags a lapsed edition |
 | `apps/guide/` content depth (`history`, body-derived fields) | Field Guide depth pass | intel executor for news-forced guide changes; the pulse for storefront surfaces |
 | `apps/guide/` facts already in the content (hours, fees, windows, parking, access, the help numbers, the Guide-edition dining hours), on a rotation kept in `scripts/data/guide-fact-ledger.json` | Field Guide fact audit | intel executor for news-forced changes; hike distances and gains stay with the owner (the trail tracks validate against them) |

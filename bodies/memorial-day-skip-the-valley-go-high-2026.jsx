@@ -102,7 +102,7 @@ window.ARTICLE_BODIES["memorial-day-skip-the-valley-go-high-2026"] = function Me
       </p>
 
       <p style={{ fontStyle: "italic", color: "var(--ink-3)" }}>
-        More: <a href="/articles/tioga-road-opening-weekend-2026">what to expect on Tioga's opening weekend</a>
+        More: <a href="/articles/tioga-road-opening-weekend">what to expect on Tioga's opening weekend</a>
       </p>
 
       <h2>A few practical things</h2>

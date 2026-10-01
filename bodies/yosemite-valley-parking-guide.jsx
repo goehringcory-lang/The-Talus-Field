@@ -58,7 +58,7 @@ window.ARTICLE_BODIES["yosemite-valley-parking-guide"] = function YosemiteValley
       </p>
 
       <p>
-        Treat that as the outer bound rather than the target. The advice on this site is an hour stricter in both directions, because on a busy day the lots fill before the congestion window opens, so nine o'clock is already a gamble. Be through the gate by eight, and before seven on a summer weekend. Coming in the other way, four in the afternoon works as well as five. <a href="/articles/when-to-visit-yosemite-2026-crowd-forecast">The crowd forecast</a> makes the same case from a decade of visitation data.
+        Treat that as the outer bound rather than the target. The advice on this site is an hour stricter in both directions, because on a busy day the lots fill before the congestion window opens, so nine o'clock is already a gamble. Be through the gate by eight, and before seven on a summer weekend. Coming in the other way, four in the afternoon works as well as five. <a href="/articles/when-to-visit-yosemite">The crowd forecast</a> makes the same case from a decade of visitation data.
       </p>
 
       <p>

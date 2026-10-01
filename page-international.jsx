@@ -237,7 +237,7 @@ function InternationalPage({ go }) {
           <p>
             The entrance fee is the smallest line. Lodging, fuel, food and the
             drive from the airport are the budget, and{" "}
-            <a href="/articles/yosemite-trip-cost-budget-2026" onClick={(e) => goA(e, "yosemite-trip-cost-budget-2026")}>the trip-cost breakdown</a>{" "}
+            <a href="/articles/yosemite-trip-cost-budget" onClick={(e) => goA(e, "yosemite-trip-cost-budget")}>the trip-cost breakdown</a>{" "}
             prices a week three ways. A first visit with a few days to spend
             follows{" "}
             <a href="/articles/yosemite-in-three-to-five-days" onClick={(e) => goA(e, "yosemite-in-three-to-five-days")}>the three-to-five-day plan</a>,

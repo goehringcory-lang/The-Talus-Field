@@ -89,7 +89,7 @@ function ChecklistPage({ go }) {
           <label className="fj-check"><input type="checkbox" />In-park lodging: 6 to 12 months ahead (Ahwahnee, Valley Lodge, Curry Village). <A r="stay">Every option compared</A>.</label>
           <label className="fj-check"><input type="checkbox" /><A r="a:yosemite-gateway-towns-compared">Gateway-town lodging</A>: 1 to 3 months ahead for summer dates.</label>
           <label className="fj-check"><input type="checkbox" /><A r="half-dome-lottery">Half Dome preseason lottery</A>: apply March 1 to 31 on Recreation.gov.</label>
-          <label className="fj-check"><input type="checkbox" /><A r="a:tioga-road-opening-weekend-2026">Tuolumne Meadows</A> campground: opens on Recreation.gov in advance; books fast.</label>
+          <label className="fj-check"><input type="checkbox" /><A r="a:tioga-road-opening-weekend">Tuolumne Meadows</A> campground: opens on Recreation.gov in advance; books fast.</label>
           <label className="fj-check"><input type="checkbox" /><A r="a:yosemite-wilderness-permits-guide">Wilderness permits</A> for overnight trips: apply 24 weeks ahead via Recreation.gov.</label>
         </CheckSheet>
 
@@ -105,7 +105,7 @@ function ChecklistPage({ go }) {
           <label className="fj-check"><input type="checkbox" /><strong><A r="a:yosemite-gateway-towns-compared">Mariposa</A></strong>: 45 min from the Valley. Full service, best first-timer pick.</label>
           <label className="fj-check"><input type="checkbox" /><strong><A r="a:yosemite-gateway-towns-compared">Oakhurst</A></strong>: closest to Mariposa Grove. Long drive to the Valley.</label>
           <label className="fj-check"><input type="checkbox" /><strong><A r="a:yosemite-gateway-towns-compared">Groveland</A></strong>: Bay Area approach, near <A r="a:hetch-hetchy-the-other-yosemite-valley">Hetch Hetchy</A>.</label>
-          <label className="fj-check"><input type="checkbox" /><strong><A r="a:yosemite-gateway-towns-compared">Lee Vining</A></strong>: east side; <A r="a:tioga-road-opening-weekend-2026">Tuolumne and Mono Lake</A>. Summer only.</label>
+          <label className="fj-check"><input type="checkbox" /><strong><A r="a:yosemite-gateway-towns-compared">Lee Vining</A></strong>: east side; <A r="a:tioga-road-opening-weekend">Tuolumne and Mono Lake</A>. Summer only.</label>
           <label className="fj-check"><input type="checkbox" />Checked availability on your actual dates: <A r="stay">the lodging board</A> has a live search per town.</label>
         </CheckSheet>
 
@@ -124,7 +124,7 @@ function ChecklistPage({ go }) {
         </CheckSheet>
 
         <CheckSheet label="VI · What to skip" title="Don't try to do too much">
-          <label className="fj-check"><input type="checkbox" />Don't try to "do" Tunnel View, <A r="a:glacier-point-road-open-2026">Glacier Point</A>, <A r="a:giant-sequoias-fire-adaptation">Mariposa Grove</A>, and <A r="a:tioga-road-opening-weekend-2026">Tuolumne</A> in one day. Pick two.</label>
+          <label className="fj-check"><input type="checkbox" />Don't try to "do" Tunnel View, <A r="a:glacier-point-road-open-2026">Glacier Point</A>, <A r="a:giant-sequoias-fire-adaptation">Mariposa Grove</A>, and <A r="a:tioga-road-opening-weekend">Tuolumne</A> in one day. Pick two.</label>
           <label className="fj-check"><input type="checkbox" />Don't drive Mariposa Grove to Tuolumne <A r="a:yosemite-in-one-or-two-days">in a single day</A> if anyone in your group fatigues.</label>
           <label className="fj-check"><input type="checkbox" />Don't hit <A r="a:yosemite-for-non-hikers">Lower Yosemite Fall</A> between 11 AM and 3 PM. Come early or after 5 PM.</label>
           <label className="fj-check"><input type="checkbox" />Don't expect to swim in the Merced before mid-July. <A r="a:mist-trail-the-real-guide">The current is dangerous</A>.</label>
@@ -132,7 +132,7 @@ function ChecklistPage({ go }) {
 
         <CheckSheet label="VII · The non-negotiables" title="If you remember nothing else">
           <label className="fj-check"><input type="checkbox" /><A r="a:yosemite-without-reservations-2026">Be in the park by 6:30 AM</A> on any peak day. The day's quality is decided before 9.</label>
-          <label className="fj-check"><input type="checkbox" />Every scented item in the <A r="a:bears-spring-emergence">bear box</A> when you leave the car. Trunk is not bear-proof.</label>
+          <label className="fj-check"><input type="checkbox" />Every scented item in the <A r="a:yosemite-bears-safety-guide">bear box</A> when you leave the car. Trunk is not bear-proof.</label>
           <label className="fj-check"><input type="checkbox" />Print the <A r="half-dome-lottery">Half Dome permit</A> if you have one. No cell service at the subdome.</label>
           <label className="fj-check"><input type="checkbox" />Have a Plan B for every major stop. Parking, weather, and <A r="a:yosemite-during-smoke-season">smoke</A> will kill at least one Plan A.</label>
           <label className="fj-check"><input type="checkbox" />Pack out everything you bring in. <A r="a:yosemite-needs-a-reservation-system">Yosemite is loved enough already</A>.</label>

@@ -100,6 +100,22 @@ for (const [from, to] of entries) {
   if (entries.some(([f]) => f === to)) fail(`REDIRECTS ${from} points at ${to}, which is itself redirected`);
 }
 
+// An /articles/ redirect must not shadow a live article (the 301 runs before
+// any SEO work, so the article would become unreachable), and an /articles/
+// target must still be in the catalog, or a rename leaves a 301 into a 404.
+{
+  const liveSlugs = new Set(
+    JSON.parse(readFileSync(path.join(ROOT, "articles.json"), "utf8")).map((a) => a.slug)
+  );
+  const articleSlug = (p) => (p.match(/^\/articles\/([^/?#]+)$/) || [])[1];
+  for (const [from, to] of entries) {
+    const f = articleSlug(from);
+    if (f && liveSlugs.has(f)) fail(`REDIRECTS ${from} shadows a live article in articles.json`);
+    const t = articleSlug(to);
+    if (t && !liveSlugs.has(t)) fail(`REDIRECTS ${from} points at ${to}, which is not in articles.json`);
+  }
+}
+
 // --- the build-info route ---------------------------------------------------
 // /.well-known/talus-build.json is what the nightly deploy-parity check reads
 // to learn which catalog the live Worker bundle holds. It has to answer from

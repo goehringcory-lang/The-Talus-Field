@@ -257,6 +257,25 @@ window.ARTICLE_BODIES["yosemite-gateway-towns-compared"] = function YosemiteGate
         I've stayed in all five towns. The comparison below separates the drive to an entrance from the drive to Yosemite Valley, which is where most first-time visitors spend their days. Treat the drive times as planning estimates and allow extra time for traffic, entrance queues, and stops.
       </p>
 
+      <p>
+        <strong>Mariposa or Oakhurst?</strong> For Yosemite Valley, Mariposa, closer by 30 minutes or more. For the South Entrance and the Mariposa Grove, Oakhurst. The five towns side by side:
+      </p>
+
+      <div className="table-scroll">
+        <table className="compare-table">
+          <thead>
+            <tr><th>Town</th><th>Drive to the Valley</th><th>Nearest entrance</th><th>Highway</th><th>Elevation</th><th>Best for</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>El Portal</td><td>25 to 35 min</td><td>Arch Rock, a few miles</td><td>140, year-round</td><td>about 1,900 ft</td><td>Sunrise starts, the shortest drive</td></tr>
+            <tr><td>Mariposa</td><td>45 to 60 min</td><td>Arch Rock, via El Portal</td><td>140, year-round</td><td>about 2,000 ft</td><td>Most first-timers, families, winter</td></tr>
+            <tr><td>Groveland</td><td>65 to 80 min</td><td>Big Oak Flat, 30 to 40 min</td><td>120, chains common in winter</td><td>about 3,100 ft</td><td>Character, Hetch Hetchy, Bay Area route</td></tr>
+            <tr><td>Oakhurst</td><td>75 to 90 min</td><td>South, 20 to 25 min</td><td>41, year-round</td><td>about 2,300 ft</td><td>Wawona and the Mariposa Grove</td></tr>
+            <tr><td>Lee Vining</td><td>90+ min, summer only</td><td>Tioga Pass, about 12 miles</td><td>120 East over Tioga Pass</td><td>about 6,800 ft</td><td>The high country and Mono Lake</td></tr>
+          </tbody>
+        </table>
+      </div>
+
       <h2 id="sec-0-the-geography-you-actually-need-to-know">The geography you actually need to know</h2>
 
       <p>
@@ -273,26 +292,11 @@ window.ARTICLE_BODIES["yosemite-gateway-towns-compared"] = function YosemiteGate
       <GatewayMap />
 
       <p>
-        The four routes aren't equal. Highway 140 is the lowest, most reliable, year-round road into the Valley. Highway 41 climbs and drops more and comes in by way of Wawona. Highway 120 from Groveland runs higher still, and Tioga Pass is shut for roughly half the year. The comparison:
+        The four routes aren't equal. Highway 140 is the lowest, most reliable, year-round road into the Valley. Highway 41 climbs and drops more and comes in by way of Wawona. Highway 120 from Groveland runs higher still, and Tioga Pass is shut for roughly half the year. The table above puts numbers on each.
       </p>
 
-      <div className="table-scroll">
-        <table className="compare-table">
-          <thead>
-            <tr><th>Town</th><th>Drive to the Valley</th><th>Highway</th><th>Elevation</th><th>Best for</th></tr>
-          </thead>
-          <tbody>
-            <tr><td>El Portal</td><td>25 to 35 min</td><td>140, year-round</td><td>about 1,900 ft</td><td>Sunrise starts, the shortest drive</td></tr>
-            <tr><td>Mariposa</td><td>45 to 60 min</td><td>140, year-round</td><td>about 2,000 ft</td><td>Most first-timers, families, winter</td></tr>
-            <tr><td>Groveland</td><td>65 to 80 min</td><td>120, chains common in winter</td><td>about 3,100 ft</td><td>Character, Hetch Hetchy, Bay Area route</td></tr>
-            <tr><td>Oakhurst</td><td>75 to 90 min</td><td>41, year-round</td><td>about 2,300 ft</td><td>Wawona and the Mariposa Grove</td></tr>
-            <tr><td>Lee Vining</td><td>90+ min, summer only</td><td>120 East over Tioga Pass</td><td>about 6,800 ft</td><td>The high country and Mono Lake</td></tr>
-          </tbody>
-        </table>
-      </div>
-
       <p>
-        The elevation column is the best single predictor of whether you'll be putting chains on in February: El Portal and Mariposa sit low enough that winter storms usually arrive as rain, Groveland is a thousand feet higher and gets chain controls the Highway 140 towns do not, and Lee Vining's road into the park is shut half the year.
+        The elevation column in the table is the best single predictor of whether you'll be putting chains on in February: El Portal and Mariposa sit low enough that winter storms usually arrive as rain, Groveland is a thousand feet higher and gets chain controls the Highway 140 towns do not, and Lee Vining's road into the park is shut half the year.
       </p>
 
       <p>

@@ -13,7 +13,7 @@ indexing. The levers that work:
 1. **Request indexing manually.** GSC, URL Inspection, paste the URL, "Request
    Indexing." Prioritize the articles tied to live impressions:
    - `/articles/where-to-eat-yosemite` (dining/restaurants queries)
-   - `/articles/tioga-road-opening-weekend-2026` (Tioga Pass opening queries)
+   - `/articles/tioga-road-opening-weekend` (Tioga Pass opening queries)
    - `/articles/mist-trail-the-real-guide`
    - `/half-dome-lottery` (the dated article was retired into this page in
      August 2026 and 301s here; do not request indexing on the old slug)

@@ -87,7 +87,7 @@ window.ARTICLE_BODIES["yosemite-glaciers-climate"] = function YosemiteGlaciersBo
       </p>
 
       <p>
-        Two glaciers remain in Yosemite: the <strong>Lyell</strong> and the <strong>Maclure</strong>. Both sit at the headwaters of the Tuolumne River beneath the park's highest peaks, and neither is a roadside stop. The usual approach is a multi-day walk from Tuolumne Meadows, which puts them behind <a href="/articles/tioga-road-opening-weekend-2026">Tioga Road</a>'s season: late June through October in most years. The Dana Glacier, which is often named alongside them, lies east of the Mount Dana ridgeline and outside the park, in the Ansel Adams Wilderness.
+        Two glaciers remain in Yosemite: the <strong>Lyell</strong> and the <strong>Maclure</strong>. Both sit at the headwaters of the Tuolumne River beneath the park's highest peaks, and neither is a roadside stop. The usual approach is a multi-day walk from Tuolumne Meadows, which puts them behind <a href="/articles/tioga-road-opening-weekend">Tioga Road</a>'s season: late June through October in most years. The Dana Glacier, which is often named alongside them, lies east of the Mount Dana ridgeline and outside the park, in the Ansel Adams Wilderness.
       </p>
 
       <p>Both glaciers have retreated and thinned, and one of them has stopped moving.</p>

@@ -152,7 +152,7 @@ window.ARTICLE_BODIES["yosemite-shuttle-and-yarts"] = function YosemiteShuttleAn
       </p>
 
       <p>
-        Those are two official sources contradicting each other, and I am not going to pretend to resolve it from a keyboard. The useful advice is the conservative one: budget as though you will pay the entrance fee, and treat it as a bonus if you are waved through. If you hold an America the Beautiful pass the question is moot. This also matters for the $100 per-person non-resident surcharge introduced at the start of 2026, which technically applies to bus riders as well; <a href="/articles/yosemite-trip-cost-budget-2026">the trip-cost guide</a> works through that math.
+        Those are two official sources contradicting each other, and I am not going to pretend to resolve it from a keyboard. The useful advice is the conservative one: budget as though you will pay the entrance fee, and treat it as a bonus if you are waved through. If you hold an America the Beautiful pass the question is moot. This also matters for the $100 per-person non-resident surcharge introduced at the start of 2026, which technically applies to bus riders as well; <a href="/articles/yosemite-trip-cost-budget">the trip-cost guide</a> works through that math.
       </p>
 
       <blockquote>The shuttle solves the day. YARTS solves the trip. Neither one solves the other, and buying the wrong one is how people end up disappointed in a bus.</blockquote>

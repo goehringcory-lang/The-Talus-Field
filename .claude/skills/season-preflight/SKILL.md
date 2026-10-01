@@ -1,6 +1,6 @@
 ---
 name: season-preflight
-description: The season pre-flight — on the 10th of each month, keep the park calendar true ahead of the reader: re-verify every row of the deadline table (scripts/data/deadlines.json, which feeds /dates, its calendar files, and the Field Guide's trip board) and the fee table (fees-data.js) against their nps.gov sources, roll year-specific rows and RULE_YEARS forward, and advance the verified dates both pages print; then, when a dated annual article's season opens before the end of the second month ahead, write next year's edition (tioga-road-opening-weekend-<year> and its siblings) and repoint the page that links last year's. At most two PRs a run: the dates, and one article. Run by the "Season pre-flight" Routine (10th of each month, early morning Pacific) in a fresh session; also runnable by hand when asked to "run the season pre-flight".
+description: The season pre-flight — on the 10th of each month, keep the park calendar true ahead of the reader: re-verify every row of the deadline table (scripts/data/deadlines.json, which feeds /dates, its calendar files, and the Field Guide's trip board) and the fee table (fees-data.js) against their nps.gov sources, roll year-specific rows and RULE_YEARS forward, and advance the verified dates both pages print; then, when a dated annual article's season opens before the end of the second month ahead, write next year's edition (glacier-point-road-open-<year> and its siblings) and repoint the page that links last year's, or refresh one of the year-less annual pieces (tioga-road-opening-weekend, when-to-visit-yosemite, yosemite-trip-cost-budget) in place. At most two PRs a run: the dates, and one article. Run by the "Season pre-flight" Routine (10th of each month, early morning Pacific) in a fresh session; also runnable by hand when asked to "run the season pre-flight".
 ---
 
 # The season pre-flight
@@ -66,6 +66,19 @@ Build it from the repo, never from memory:
   calendar year, and its season opens on January 1. A successor is due when
   the slug with its year advanced does not exist and the first month of
   next year's season falls inside the window.
+- **In-place refreshes due**: three annual pieces dropped the year from
+  their slugs in October 2026 (301s from the `-2026` URLs live in
+  `REDIRECTS` in `edge/seo.js`): `when-to-visit-yosemite`,
+  `yosemite-trip-cost-budget` and `tioga-road-opening-weekend`. They never
+  get a successor slug; this routine refreshes each in place for its next
+  season instead (the year in the title and dek, every dated fact and
+  figure, `isoModified`, its `BODY_VERSIONS` entry, its `seo-data.json`
+  FAQ). One is due when its title names a year whose season has ended and
+  next year's season opens inside the window (the two without
+  `ARTICLE_MONTHS` cover a calendar year, so they are due on the November
+  run). The fourth year-less piece, `yosemite-in-june`, belongs to the
+  monthly edition. Never mint a `-<year>` slug for any of the four: the
+  301 would point at a URL that is no longer the canonical one.
 
 ## Phase 2 — The dates PR (every run)
 
@@ -127,8 +140,12 @@ first and name the rest in the summary for the next run.
    and put the finding in the summary for the intel cycle.
 2. **Write it** through `.claude/skills/weekly-trend-article/SKILL.md`
    Phases 4 to 8, with these overrides:
-   - slug: last year's slug with the year advanced
-     (`tioga-road-opening-weekend-2027`), the same `cat`;
+   - slug: last year's slug with the year advanced (for example
+     `glacier-point-road-open-2027`), the same `cat`. An in-place refresh
+     (the three year-less pieces above) keeps its slug, edits the existing
+     body rather than writing a new one, rewrites what changed and nothing
+     else, and lists the changed claims in the PR's fact-check table; the
+     repoint step below does not apply to it;
    - the piece answers what is different this year and links last year's
      edition rather than restating it; a date the park has not announced is
      written as when the park announces it, never as last year's date;

@@ -2,7 +2,7 @@
 
 window.ARTICLE_BODIES = window.ARTICLE_BODIES || {};
 
-window.ARTICLE_BODIES["tioga-road-opening-weekend-2026"] = function TiogaRoadOpeningWeekend2026Body() {
+window.ARTICLE_BODIES["tioga-road-opening-weekend"] = function TiogaRoadOpeningWeekend2026Body() {
   return (
     <>
       <p className="dropcap">
@@ -154,7 +154,7 @@ window.ARTICLE_BODIES["tioga-road-opening-weekend-2026"] = function TiogaRoadOpe
         <li>Waterproof hiking boots. Not optional. Every trail will have wet, muddy, or partially snow-covered sections.</li>
         <li>Microspikes (Kahtoola or equivalent) in the pack for any shaded snow patch.</li>
         <li>Trekking poles for slush, mud, and slick granite.</li>
-        <li>Layers: a <AffLink q="insulated jacket" list="article_inline" slug="tioga-road-opening-weekend-2026" name="Insulated jacket">puffy jacket</AffLink> and a <AffLink q="rain jacket" list="article_inline" slug="tioga-road-opening-weekend-2026" name="Rain shell">shell</AffLink>, even if the forecast looks mild. Temperatures swing 30 to 40 degrees between dawn and afternoon.</li>
+        <li>Layers: a <AffLink q="insulated jacket" list="article_inline" slug="tioga-road-opening-weekend" name="Insulated jacket">puffy jacket</AffLink> and a <AffLink q="rain jacket" list="article_inline" slug="tioga-road-opening-weekend" name="Rain shell">shell</AffLink>, even if the forecast looks mild. Temperatures swing 30 to 40 degrees between dawn and afternoon.</li>
         <li>Sunglasses and sunscreen. Snow glare and 9,000-foot UV are a combination.</li>
         <li>Plenty of water and food. There is no source for either on Tioga Road yet.</li>
         <li>A bear-aware approach to food even on a day hike. Black bears are out of dens, hungry, and <a href="/articles/yosemite-wildlife-viewing-guide">active in the meadows at first and last light</a>. Use the lockers at trailheads.</li>

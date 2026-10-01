@@ -56,7 +56,7 @@ window.ARTICLE_BODIES["yosemite-photography-spots"] = function YosemitePhotograp
       </p>
 
       <p>
-        <strong>Olmsted Point.</strong> On <a href="/articles/tioga-road-opening-weekend-2026">Tioga Road</a>, and only reachable while the road is open, roughly late May through October or the first big snow. This is Half Dome from behind, seen up the length of Tenaya Canyon, with glacial erratics scattered across bare granite slabs in the foreground. Late afternoon light rakes the slabs and picks out every boulder; sunset can be excellent when clouds cooperate. Walk a few minutes off the parking lot onto the granite for more compositions.
+        <strong>Olmsted Point.</strong> On <a href="/articles/tioga-road-opening-weekend">Tioga Road</a>, and only reachable while the road is open, roughly late May through October or the first big snow. This is Half Dome from behind, seen up the length of Tenaya Canyon, with glacial erratics scattered across bare granite slabs in the foreground. Late afternoon light rakes the slabs and picks out every boulder; sunset can be excellent when clouds cooperate. Walk a few minutes off the parking lot onto the granite for more compositions.
       </p>
 
       <p>
