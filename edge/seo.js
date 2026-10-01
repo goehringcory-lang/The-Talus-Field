@@ -463,7 +463,7 @@ const HUB_PROSE = {
     `<p>February is not the slow season during the window: the dates are fixed by the sun, so rooms inside Yosemite Valley go within days of release and the gateway towns fill closest first, El Portal, then Mariposa and Midpines on Highway 140, then Groveland and Oakhurst. Yosemite Valley Lodge sits beside Yosemite Falls parking, where the walk starts.</p>` +
     `<p>Park at Yosemite Falls parking and walk about 1.5 miles each way on the pedestrian lane on Northside Drive to the viewing area near El Capitan Picnic Area. Parking, stopping and unloading passengers are prohibited between Lower Yosemite Fall and El Capitan Crossover, so there is no drop-off, and on busy weekends Northside Drive can close for about half an hour after sunset. Reservation rules change every winter; the park posts them on its Horsetail Fall page.</p>` +
     `<p>Check the weather constantly: the El Capitan webcam in the morning for water on the east shoulder, the hourly sky cover and satellite for cloud on the western horizon, and the Half Dome webcam in the afternoon. Thin high cloud can help; a cloud bank in the west cancels the show.</p>` +
-    `<p>The full guide: <a href="/articles/horsetail-fall-firefall">the complete firefall article</a>. Live water and weather: <a href="/conditions">the conditions page</a>. Every lodging option: <a href="/stay">where to stay</a>.</p>`,
+    `<p>The rest of a February trip: <a href="/articles/yosemite-in-winter">the winter guide</a>. Live water and weather: <a href="/conditions">the conditions page</a>. Every lodging option: <a href="/stay">where to stay</a>.</p>`,
   "/tioga-opening": () =>
     hubProse(
       "The Tioga Road Opening",
@@ -1038,6 +1038,14 @@ function seoForPath(pathname, searchParams) {
           a: "Mid to late February, for about two weeks. The sun angle that lights Horsetail Fall runs from roughly the second week of February to the last, with the strongest color usually in the middle of the span. The glow itself lasts about ten minutes at sunset.",
         },
         {
+          q: "What causes the firefall on Horsetail Fall?",
+          a: "An alignment of sunset light and geography. In mid to late February the setting sun lights the strip of El Capitan that Horsetail Fall runs down while the rock around it is already in shadow, so the backlit water and mist glow orange against a dark wall. The same geometry recurs in late October, but the fall is almost never flowing then.",
+        },
+        {
+          q: "Does the firefall happen every year?",
+          a: "No. Three conditions must hold at once: water in the fall from recent rain or snowmelt, a clear western horizon at sunset, and the February sun angle. The sun angle alone allows about 14 to 18 evenings a year; storms and dry winters cancel many of them, and in some years the firefall effectively does not happen.",
+        },
+        {
           q: "Do I need a reservation to see the firefall?",
           a: "It depends on the year. In 2024 and 2025 the park required an entry reservation on the three peak weekends; in 2026 it required none and managed traffic on the road instead. The park posts each year's rules on its Horsetail Fall page, usually in January.",
         },
@@ -1484,6 +1492,10 @@ const REDIRECTS = {
   "/articles/yosemite-trip-cost-budget-2026": "/articles/yosemite-trip-cost-budget",
   "/articles/tioga-road-opening-weekend-2026": "/articles/tioga-road-opening-weekend",
   "/articles/bears-spring-emergence": "/articles/yosemite-bears-safety-guide",
+  // The firefall explainer split the "firefall" searches with /firefall
+  // (115 impressions to the page, none to the article); its physics, odds and
+  // history moved into the page's "Why it happens" band.
+  "/articles/horsetail-fall-firefall": "/firefall",
 };
 
 // The apex is the canonical host, and www is bound as a second custom domain

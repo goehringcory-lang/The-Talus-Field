@@ -185,12 +185,12 @@
   {
     "slug": "yosemite-from-las-vegas",
     "cat": "planning",
-    "title": "Las Vegas to Yosemite: The Drive, and the Pass That Decides",
+    "title": "Las Vegas to Yosemite: 400 Miles, Eight Hours, and the Pass That Decides",
     "dek": "The Park Service quotes 400 miles and eight hours from Las Vegas to Yosemite Valley over Tioga Pass, and 495 miles and up to ten around the bottom of the mountains when the pass is shut. Which drive you get is decided by the calendar. The Tonopah road and the Death Valley road to US 395 and when each is the right one, why the two parks' seasons are nearly opposite, the pass itself and the fees at the top of it, the Lee Vining night that makes the trip work, the winter road through Bakersfield and the better winter shape hidden in the park's own detour table, the loop and which way round to drive it, and the summer bus from Mammoth Lakes.",
     "seoDek": "Las Vegas to Yosemite: drive time both seasons, the Tioga Pass question, the Tonopah and Death Valley roads, where to sleep, the winter route via Bakersfield.",
     "date": "September 10, 2026",
     "isoDate": "2026-09-10",
-    "isoModified": "2026-09-10",
+    "isoModified": "2026-10-01",
     "read": "12 min",
     "image": "img/tenaya-lake.jpg",
     "ogImage": { "url": "img/responsive/tenaya-lake-1600.jpg", "width": 1600, "height": 1200 },
@@ -387,7 +387,7 @@
       { "q": "What is the best winter hike in Yosemite?", "a": "For effort against reward, Columbia Rock: about two miles round trip and 1,000 feet up the sunny south-facing wall. For solitude, the Wapama Falls trail at Hetch Hetchy, about five miles round trip. For the sight nobody expects, the two-mile walk up the closed road to the snowbound sequoias of the Mariposa Grove." },
       { "q": "Is Hetch Hetchy open for hiking in winter?", "a": "Usually. It sits below four thousand feet and is the corner of the park most likely to be snow-free all winter. The access road runs on posted gate hours, roughly sunrise to sunset, and snow can close it for days after a storm, so check conditions before the drive." }
     ],
-    "related": ["yosemite-in-winter", "horsetail-fall-firefall", "yosemite-waterfalls-guide", "yosemite-for-non-hikers", "yosemite-photography-spots", "yosemite-falls-trail"]
+    "related": ["yosemite-in-winter", "yosemite-waterfalls-guide", "yosemite-for-non-hikers", "yosemite-photography-spots", "yosemite-falls-trail"]
   },
   {
     "slug": "yosemite-in-march",
@@ -412,7 +412,7 @@
       { "q": "Can you see the firefall in March?", "a": "Mostly no. The alignment that lights Horsetail Fall runs roughly mid-to-late February. A faint version can still fire in the first evenings of March if the fall has water and the western sky is clean, but that is a consolation prize for people already in the park, not a reason to plan a March trip. If the firefall is the trip, come in February." },
       { "q": "How crowded is Yosemite in March?", "a": "Quiet, with one exception. Averaged across 2010 to 2024, March brings roughly 160,000 visits against about 625,000 in July, about a quarter of the summer load. The exception is spring break: mid and late March weekends and Easter week concentrate most of the month's traffic into a handful of days. Midweek March is one of the emptiest good-weather windows of the year, and as of the 2026 season no entry reservation is required." }
     ],
-    "related": ["yosemite-in-winter", "yosemite-waterfalls-guide", "horsetail-fall-firefall", "when-to-visit-yosemite", "yosemite-in-december"]
+    "related": ["yosemite-in-winter", "yosemite-waterfalls-guide", "when-to-visit-yosemite", "yosemite-in-december"]
   },
   {
     "slug": "camping-in-yosemite-first-time",
@@ -823,32 +823,7 @@
       { "q": "Do you need a permit or tripod permission to photograph in Yosemite?", "a": "No permit is required for personal photography in the park. Tripods are fine as long as you avoid blocking rails and boardwalks and stay out of restored meadows." },
       { "q": "Is a phone camera good enough for Yosemite photography?", "a": "For almost everything, yes: Tunnel View, reflections, dogwoods, even alpenglow. Dedicated cameras still clearly win at long-lens detail on the big walls and at night, where moonbows and the Milky Way need a fast lens, a tripod, and long exposures." }
     ],
-    "related": ["yosemite-stargazing-where-to-look-up", "horsetail-fall-firefall", "four-mile-up-panorama-down", "yosemite-waterfalls-guide", "yosemite-in-fall", "watching-climbers-el-capitan"]
-  },
-  {
-    "slug": "horsetail-fall-firefall",
-    "cat": "seasonal",
-    "title": "Yosemite Firefall: How Horsetail Fall Works in February",
-    "dek": "For two weeks in February, a thin seasonal waterfall on El Capitan glows like lava at sunset, when three conditions all cooperate. The physics, the odds, the Galen Rowell history, the crowd rules, and why a failed evening still isn't a wasted one.",
-    "seoDek": "How the Yosemite firefall works: when Horsetail Fall glows in February, the three conditions required, viewing at El Capitan Picnic Area, and honest odds.",
-    "date": "July 12, 2026",
-    "isoDate": "2026-07-12",
-    "isoModified": "2026-09-26",
-    "read": "7 min",
-    "image": "img/horsetail-fall-firefall-glow.jpg",
-    "ogImage": { "url": "img/responsive/horsetail-fall-firefall-glow-og.jpg", "width": 1200, "height": 630 },
-    "placeholder": "Horsetail Fall glowing orange at sunset on the east shoulder of El Capitan",
-    "wordCount": 1731,
-    "keywords": ["Yosemite firefall", "Horsetail Fall", "Horsetail Fall February", "El Capitan firefall", "Yosemite firefall viewing", "Yosemite in February", "Galen Rowell firefall"],
-    "faq": [
-      { "q": "When does the Yosemite firefall happen?", "a": "For roughly two weeks in mid-to-late February, when the setting sun's angle puts direct low light on Horsetail Fall. The window runs about the second week of February through the last week, and the glow itself lasts about ten minutes around sunset." },
-      { "q": "What causes the firefall on Horsetail Fall?", "a": "It is an alignment of sunset light and geography. In mid-to-late February the setting sun lights the strip of El Capitan that Horsetail Fall runs down while the surrounding rock is already in shadow, so the backlit water and mist glow orange against a dark wall. The same geometry recurs in late October, but the fall is almost never flowing then." },
-      { "q": "Does the firefall happen every year?", "a": "No. Three independent conditions must all hold: water in the fall from recent rain or snowmelt, a clear western horizon at sunset, and the mid-February sun angle. February storms and dry winters cancel many evenings, and in some years the firefall effectively does not happen at all." },
-      { "q": "Where do you watch the firefall?", "a": "The classic viewing zone is the stretch of Northside Drive near the El Capitan Picnic Area. Expect to park in a designated area, walk a mile or more each way, and arrive at least an hour before sunset. Dress for standing still through a February evening." },
-      { "q": "Do you need a reservation to see the firefall?", "a": "It depends on the year. The park has managed the event with parking restrictions, road closures, designated walking routes, and in some years a weekend reservation requirement, and the specifics change annually. Check the NPS Horsetail Fall and current-conditions pages in the week before your trip." },
-      { "q": "Can you photograph the firefall with a phone?", "a": "Phones underwhelm. A phone's wide lens renders the fall as a faint orange thread on a large grey cliff, and night modes brighten the shadows that make the scene. The classic frames are shot at 100mm and beyond on a tripod, exposed for the highlights." }
-    ],
-    "related": ["yosemite-in-winter", "yosemite-photography-spots", "yosemite-winter-hikes", "when-to-visit-yosemite", "yosemite-in-march"]
+    "related": ["yosemite-stargazing-where-to-look-up", "four-mile-up-panorama-down", "yosemite-waterfalls-guide", "yosemite-in-fall", "watching-climbers-el-capitan"]
   },
   {
     "slug": "yosemite-in-winter",
@@ -873,7 +848,7 @@
       { "q": "What is there to do in Yosemite in winter?", "a": "Ski or take lessons at Badger Pass, one of California's oldest ski areas; snowshoe the roughly seven-mile round trip to Dewey Point on the Valley rim; join a ranger-led snowshoe walk from Badger Pass; skate the outdoor Curry Village ice rink under Half Dome; and photograph clearing storms, the best photographic conditions the park offers all year." },
       { "q": "When does Horsetail Fall glow in Yosemite?", "a": "For about two weeks in mid-February, when the sunset angle is right, the fall is running, and the sky cooperates, Horsetail Fall on the east shoulder of El Capitan lights up orange in the last minutes of the day. The firefall now draws large crowds and has a reservation system of its own." }
     ],
-    "related": ["yosemite-winter-hikes", "yosemite-in-december", "horsetail-fall-firefall", "when-to-visit-yosemite", "yosemite-in-march", "bracebridge-dinner-and-vintners-holidays"]
+    "related": ["yosemite-winter-hikes", "yosemite-in-december", "when-to-visit-yosemite", "yosemite-in-march", "bracebridge-dinner-and-vintners-holidays"]
   },
   {
     "slug": "where-to-stay-in-yosemite",
@@ -1134,7 +1109,7 @@
     "seoDek": "Bear spray is prohibited in Yosemite: the regulation, why a tool that works on grizzlies is banned in black bear country, and what to carry instead.",
     "date": "August 25, 2026",
     "isoDate": "2026-08-25",
-    "isoModified": "2026-08-25",
+    "isoModified": "2026-10-01",
     "read": "5 min",
     "image": "img/black-bear-yosemite-forest.jpg",
     "ogImage": { "url": "img/responsive/black-bear-yosemite-forest-1600.jpg", "width": 1600, "height": 1071 },
@@ -1211,7 +1186,7 @@
     "seoDek": "Yosemite has no reservation system in 2026 and is pacing toward its second-busiest year ever. NPS data, a month-by-month forecast, and the best days to visit.",
     "date": "June 11, 2026",
     "isoDate": "2026-06-11",
-    "isoModified": "2026-09-02",
+    "isoModified": "2026-10-01",
     "read": "11 min",
     "image": "img/vernal-fall-high-water.jpg",
     "ogImage": { "url": "img/responsive/vernal-fall-high-water-og.jpg", "width": 1200, "height": 630 },
@@ -1374,12 +1349,12 @@
   {
     "slug": "where-to-eat-yosemite",
     "cat": "planning",
-    "title": "Where to eat in Yosemite: restaurants by area",
+    "title": "Yosemite Restaurants: Where to Eat in the Park and Near Each Entrance",
     "dek": "Quick meals and sit-down dinners in Yosemite Valley, food near each entrance, and the seasonal kitchens that close while the roads are still open.",
-    "seoDek": "Find restaurants in Yosemite Valley and the gateway towns, plus Wawona and Tuolumne food options, reservation advice, and seasonal closure details.",
+    "seoDek": "Yosemite restaurants by area: quick meals and sit-down dinners in Yosemite Valley, the one place to eat in each gateway town, Wawona and Tuolumne, and what closes in fall.",
     "date": "May 19, 2026",
     "isoDate": "2026-05-19",
-    "isoModified": "2026-09-29",
+    "isoModified": "2026-10-01",
     "read": "14 min",
     "image": "img/cathedral-beach-quiet-picnic.jpg",
     "ogImage": { "url": "img/responsive/cathedral-beach-quiet-picnic-1600.jpg", "width": 1600, "height": 1143 },
@@ -1760,7 +1735,7 @@
     "seoDek": "Yosemite is built for non-hikers more thoroughly than almost any national park. A complete visit without ever putting on hiking boots. Plan one.",
     "date": "April 26, 2026",
     "isoDate": "2026-04-26",
-    "isoModified": "2026-08-06",
+    "isoModified": "2026-10-01",
     "read": "8 min",
     "image": "img/tunnel-view-valley-spring.jpg",
     "ogImage": { "url": "img/responsive/tunnel-view-valley-spring-1600.jpg", "width": 1600, "height": 1200 },
@@ -1826,6 +1801,9 @@
       { "q": "Where should I stay near Yosemite with kids?", "a": "Mariposa for a Valley trip, Oakhurst for a sequoia trip. Both have full supermarkets, pharmacies, several restaurants, and rooms that can be booked later than El Portal or the in-park lodges." },
       { "q": "Which Yosemite gateway town is cheapest?", "a": "Groveland and Mariposa typically have the widest range and the most budget rooms. El Portal is priced like in-park lodging. Oakhurst has predictable chain prices. Lee Vining has little inventory and prices accordingly." },
       { "q": "Which Yosemite gateway towns have full grocery stores?", "a": "Mariposa and Oakhurst. Groveland has a market. El Portal and Lee Vining have convenience-scale markets only." },
+      { "q": "How far is Mariposa from Yosemite?", "a": "About 45 miles and 45 to 60 minutes to Yosemite Valley on Highway 140, through the Arch Rock Entrance." },
+      { "q": "How far is Oakhurst from Yosemite?", "a": "About 14 miles and 20 to 25 minutes to the South Entrance, and 75 to 90 minutes to Yosemite Valley on Highway 41." },
+      { "q": "How far is Groveland from Yosemite?", "a": "About 24 miles and 30 to 40 minutes to the Big Oak Flat Entrance, and 65 to 80 minutes to Yosemite Valley on Highway 120." },
       { "q": "Which gateway town works in winter?", "a": "El Portal or Mariposa, on Highway 140, the lowest and most reliable road. Groveland works with chains. Lee Vining has no road into the park at all when Tioga Pass is closed." },
       { "q": "Is Oakhurst a good place to stay for Yosemite?", "a": "It is the right base if your itinerary is mostly Wawona and the Mariposa Grove, 20 to 25 minutes away, and if you want the most lodging and services of any gateway. It is the wrong base if Yosemite Valley is the trip: at 75 to 90 minutes each way on Highway 41, it is the longest daily commute of the four year-round towns." },
       { "q": "Where should I stay to see Yosemite and Sequoia on one trip?", "a": "Oakhurst. The South Entrance is 20 to 25 minutes north, and the Kings Canyon entrance to Sequoia and Kings Canyon is roughly two to two and a half hours south by way of Fresno. Do not attempt Sequoia as a day trip from any Yosemite gateway." },

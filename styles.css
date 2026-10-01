@@ -9039,6 +9039,14 @@ html[data-nav-mode="pinned"] { scroll-padding-top: 62px; }
 .ff-band { background: var(--ff-tint); border-block: 1px solid var(--hp-rule); }
 .ff-split { display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr); gap: 56px; align-items: start; }
 .ff-split--end { align-items: end; }
+/* "Why it happens" (October 2026, merged from the retired firefall article)
+   follows the dates band as a second band; the seam between them goes, so
+   the two read as one tinted run. Scoped to .ff-how so the other event pages'
+   adjacent bands keep their rule. */
+.ff-band + .ff-how { border-top: 0; }
+.ff-how__more { padding-top: 0; }
+.ff-how__more h3 { margin: 0 0 12px; }
+.ff-how__more h3 + .ff-lede + h3 { margin-top: 28px; }
 
 /* Head: the photograph as a full-width cover behind the title, then the fact
    row and the jump list. The photo is portrait, so the cover crops a band

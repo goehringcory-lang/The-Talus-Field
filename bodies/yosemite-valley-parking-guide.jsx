@@ -126,7 +126,7 @@ window.ARTICLE_BODIES["yosemite-valley-parking-guide"] = function YosemiteValley
       <h2>2026: no reservation, and what replaced it</h2>
 
       <p>
-        There is no day-use or peak-hours vehicle reservation for Yosemite in 2026. The systems that ran in most years between 2020 and 2025 are gone, including the February weekend reservations for <a href="/articles/horsetail-fall-firefall">Horsetail Fall</a>. The park's stated reasoning is that its own 2025 analysis found most weekdays held available parking, stable traffic flow, and visitation inside operational capacity, so a season-wide requirement was not the most effective tool.
+        There is no day-use or peak-hours vehicle reservation for Yosemite in 2026. The systems that ran in most years between 2020 and 2025 are gone, including the February weekend reservations for <a href="/firefall">Horsetail Fall</a>. The park's stated reasoning is that its own 2025 analysis found most weekdays held available parking, stable traffic flow, and visitation inside operational capacity, so a season-wide requirement was not the most effective tool.
       </p>
 
       <p>

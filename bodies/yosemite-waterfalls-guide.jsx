@@ -68,7 +68,7 @@ window.ARTICLE_BODIES["yosemite-waterfalls-guide"] = function YosemiteWaterfalls
       </p>
 
       <p>
-        <strong>Horsetail Fall</strong>, on El Capitan's east face, is a modest seasonal ribbon that would be a footnote except for two weeks in <strong>February</strong>, when the setting sun can light the falling water orange and produce the natural firefall. That event now has reservations, road closures, and a culture of its own, and it gets <a href="/articles/horsetail-fall-firefall">its own article</a>. The short version: it needs water in the fall and a clear western horizon at sunset, and neither is guaranteed.
+        <strong>Horsetail Fall</strong>, on El Capitan's east face, is a modest seasonal ribbon that would be a footnote except for two weeks in <strong>February</strong>, when the setting sun can light the falling water orange and produce the natural firefall. That event now has reservations, road closures, and a culture of its own, and it gets <a href="/firefall">its own article</a>. The short version: it needs water in the fall and a clear western horizon at sunset, and neither is guaranteed.
       </p>
 
       <p>

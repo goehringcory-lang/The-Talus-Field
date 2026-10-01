@@ -70,7 +70,7 @@ window.ARTICLE_BODIES["yosemite-in-march"] = function YosemiteInMarchBody() {
       </p>
 
       <p>
-        One expectation to manage: the <a href="/articles/horsetail-fall-firefall">firefall</a> is a February event. The alignment that lights Horsetail Fall runs roughly mid-to-late February, and while a faint version can still fire in the first evenings of March when the fall has water and the western sky is clean, that is a consolation prize for people already here, not a reason to book the first week of March. If the firefall is the trip, come in February.
+        One expectation to manage: the <a href="/firefall">firefall</a> is a February event. The alignment that lights Horsetail Fall runs roughly mid-to-late February, and while a faint version can still fire in the first evenings of March when the fall has water and the western sky is clean, that is a consolation prize for people already here, not a reason to book the first week of March. If the firefall is the trip, come in February.
       </p>
 
       <h2>The bloom is in the canyon, not the Valley</h2>

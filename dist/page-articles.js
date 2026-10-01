@@ -978,7 +978,7 @@ var SX_SEASONS = [{
   label: "Winter",
   months: "December to February",
   lead: "yosemite-in-winter",
-  slugs: ["yosemite-in-winter", "horsetail-fall-firefall", "bracebridge-dinner-and-vintners-holidays", "yosemite-winter-hikes"]
+  slugs: ["yosemite-in-winter", "bracebridge-dinner-and-vintners-holidays", "yosemite-winter-hikes"]
 }, {
   key: "spring",
   label: "Spring",

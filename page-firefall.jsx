@@ -1,4 +1,4 @@
-/* global React, HpPageHead, HpHeading, HomeLink, ResponsiveImage, WebcamStrip, AvailabilityLink, HpGuideBand, HpLetter, AffiliateDisclosure */
+/* global React, HpPageHead, HpHeading, HomeLink, ResponsiveImage, WebcamStrip, AvailabilityLink, HpGuideBand, HpLetter, AffiliateDisclosure, NatureNotesFilm */
 
 // =============================================================================
 // THE FIREFALL — `/firefall` route. The first evergreen event page
@@ -12,8 +12,9 @@
 // where to stay, whether it is on tonight (the two webcams and the weather
 // sources, read for water and cloud), the dates, parking and the walk, the
 // day hour by hour, what to bring, how the park has run it, photography, and
-// the questions. The deep explainer stays in the article
-// (/articles/horsetail-fall-firefall), which links back here.
+// the questions. The October 2026 SEO pass merged the explainer article
+// (/articles/horsetail-fall-firefall, now a 301 to this page) into the
+// "Why it happens" band, so the firefall searches have one URL to rank.
 //
 // Three rules hold it up.
 //   1. Years appear in exactly two places: the history ledger (FF_HISTORY),
@@ -107,9 +108,10 @@ const FF_KIT = [
 // closure, no reservation in 2026); the 2025 weekend dates from the park's
 // reservation announcement (Feb 8–9, 15–17, 22–23); the 2022 crowd figure as
 // reported by SFGate; the February 2026 snow closure as reported by the
-// Deseret News. The 1968 and 1973 entries follow the article body.
+// Deseret News. The 1968 and 1973 entries follow the retired firefall article
+// (merged into the "Why it happens" band in October 2026).
 const FF_HISTORY = [
-  ["1968", "The other firefall ends", "The Park Service stops the man-made ember fall from Glacier Point, a summer tradition since the 1870s. The name stays with the park."],
+  ["1968", "The other firefall ends", "The Park Service stops the man-made ember fall from Glacier Point, a summer tradition since the 1870s, over the crowds and the trampled meadows. The name stays with the park."],
   ["1973", "Galen Rowell's photograph", "Rowell scrambles into position and shoots the lit fall on film. It becomes the reference image, and for decades February stays an appointment for photographers only."],
   ["Mid-2010s", "The crowd arrives", "Social media carries the photographs. The dates are predictable and the viewing area is a flat walk from a road."],
   ["2022", "About 2,500 in one spot", "Nearly 2,500 people pack a single viewing area. Trampled vegetation, overwhelmed restrooms, and a road that cannot move."],
@@ -129,6 +131,8 @@ const FF_WEATHER = [
 // Mirrored in edge/seo.js's "/firefall" faq (the JSON-LD). Change both.
 const FF_FAQ = [
   ["When is the Yosemite firefall?", "Mid to late February, for about two weeks. The sun angle that lights Horsetail Fall runs from roughly the second week of February to the last, with the strongest color usually in the middle of the span. The glow itself lasts about ten minutes at sunset."],
+  ["What causes the firefall on Horsetail Fall?", "An alignment of sunset light and geography. In mid to late February the setting sun lights the strip of El Capitan that Horsetail Fall runs down while the rock around it is already in shadow, so the backlit water and mist glow orange against a dark wall. The same geometry recurs in late October, but the fall is almost never flowing then."],
+  ["Does the firefall happen every year?", "No. Three conditions must hold at once: water in the fall from recent rain or snowmelt, a clear western horizon at sunset, and the February sun angle. The sun angle alone allows about 14 to 18 evenings a year; storms and dry winters cancel many of them, and in some years the firefall effectively does not happen."],
   ["Do I need a reservation to see the firefall?", "It depends on the year. In 2024 and 2025 the park required an entry reservation on the three peak weekends; in 2026 it required none and managed traffic on the road instead. The park posts each year's rules on its Horsetail Fall page, usually in January."],
   ["Where do you park for the firefall?", "At Yosemite Falls parking, just west of Yosemite Valley Lodge. From there it is about 1.5 miles each way on a pedestrian lane on Northside Drive to the viewing area near El Capitan Picnic Area. If that lot is full, park at Yosemite Village or Curry Village and take the free Valley shuttle to Yosemite Falls."],
   ["Can someone drop me off near the viewing area?", "No. Parking, stopping and unloading passengers are prohibited between Lower Yosemite Fall and El Capitan Crossover, and on busy weekends Northside Drive can close completely for about half an hour after sunset. There is no loop to circle while you watch. Vehicles with a disability placard are the exception."],
@@ -238,6 +242,7 @@ function FirefallPage({ go }) {
     ["#firefall-stay", "Where to stay"],
     ["#firefall-tonight", "Is it on tonight?"],
     ["#firefall-dates", "Dates and times"],
+    ["#firefall-how", "Why it happens"],
     ["#firefall-parking", "Parking and the walk"],
     ["#firefall-day", "Hour by hour"],
     ["#firefall-bring", "What to bring"],
@@ -443,6 +448,47 @@ function FirefallPage({ go }) {
         </div>
       </section>
 
+      {/* Why it happens. Merged from the retired article
+          /articles/horsetail-fall-firefall (October 2026; it 301s here), which
+          split the "firefall" searches with this page and won none of them.
+          Every figure is the article's own: the 1,500-foot plunge, the
+          fourteen to eighteen candidate evenings, the October geometry. It
+          follows the dates band as a second band, so the two read as one
+          tinted run (.ff-band + .ff-band drops the seam). */}
+      <section className="ff-band ff-how" id="firefall-how" tabIndex={-1}>
+        <div className="hp-wrap hp-section ff-split">
+          <div>
+            <p className="hp-eyebrow">WHY IT HAPPENS</p>
+            <h2>An alignment, a small waterfall, and a lot of luck</h2>
+            <p className="ff-lede">Horsetail Fall drops off the eastern edge of El Capitan. Its main plunge is roughly 1,500 feet, and for most of the year it is not there: it has a tiny drainage on El Capitan's summit slopes, no lake or glacier behind it, and it flows only when recent rain or melting snow is running off the top of the cliff.</p>
+            <p className="ff-lede">For about two weeks in February the setting sun lines up with the Valley's east-west axis so that low, direct light reaches the strip of cliff the fall runs down while the rock around it is already in shadow. Sunset light is red-orange because it crosses the most atmosphere, and the water and its mist pick up that color against a dark wall. The physics is ordinary alpenglow. The contrast is what makes it.</p>
+            <p className="ff-lede">The same geometry returns in late October, on the other side of the winter solstice. Almost nobody has heard of an October firefall, because in October there is almost never water in the fall.</p>
+          </div>
+          <dl className="ff-when">
+            <div><dt>Water in the fall</dt><dd>Recent rain or snowmelt</dd><p>Fails most often, and most in drought years. A storm followed by mild afternoons is the setup.</p></div>
+            <div><dt>A clear west</dt><dd>No cloud bank at sunset</dd><p>Can fail in the last five minutes, to a cloud shelf over the Coast Ranges that nobody in the Valley can see.</p></div>
+            <div><dt>The sun angle</dt><dd>Mid to late February</dd><p>The only one of the three you can schedule.</p></div>
+            <div><dt>The arithmetic</dt><dd>About 14 to 18 evenings a year</dd><p>The sun angle alone allows that many. Cloud takes a good number of them, a lean snow year can take the rest, and some years the firefall effectively does not happen.</p></div>
+          </dl>
+        </div>
+        <div className="hp-wrap hp-section ff-split ff-how__more">
+          <div>
+            <h3>Two firefalls, one natural</h3>
+            <p className="ff-lede">The name is borrowed. From the 1870s until January 1968 a bonfire was built on the rim at Glacier Point and its embers were pushed over the edge on summer evenings, a glowing cascade called for each night from the Valley floor. The Park Service ended it over the crowds it drew, the trampled meadows, and the idea that a national park is not a nightly show. Horsetail's natural firefall was known to a few photographers earlier, and Galen Rowell's 1973 photograph made it the reference image.</p>
+            <h3>The naturalist's case for February</h3>
+            <p className="ff-lede">Attempt it once, with the odds understood, and plan a trip that needs no bonus. Mid-February means snow on the oaks, winter flow starting in the creeks, coyotes hunting the meadows in daylight, and weekdays as quiet as the Valley gets. If the evening clouds over, you have lost ten minutes of orange. The rest of the season is in <HomeLink go={go} location="firefall_how" href="/articles/yosemite-in-winter">the winter guide</HomeLink>.</p>
+          </div>
+          <NatureNotesFilm
+            id="horsetail-fall"
+            title="Horsetail Fall"
+            youtubeId="oyoa-QfeGho"
+            episode={14}
+            note="The Park Service's short film on the fall and the light, worth the few minutes before you commit a February evening to it."
+            location="firefall"
+          />
+        </div>
+      </section>
+
       <section className="hp-wrap hp-section ff-parking" id="firefall-parking" tabIndex={-1}>
         <HpHeading eyebrow="PARKING AND THE WALK" title="You park at Yosemite Falls, and you walk" />
         <p className="ff-lede ff-lede--intro">For several years the park has run the firefall the same basic way, reservation or not: the viewing area along Northside Drive has no parking at all, and one lane of the road becomes a footpath from Yosemite Falls parking. Plan the evening around that walk.</p>
@@ -557,7 +603,7 @@ function FirefallPage({ go }) {
           <div>
             <p className="hp-eyebrow">QUESTIONS</p>
             <h2>Firefall questions, answered</h2>
-            <p className="ff-lede">The long version, with the history and the naturalist's case for February with or without the show: <HomeLink go={go} location="firefall_faq" href="/articles/horsetail-fall-firefall">the complete firefall guide</HomeLink>.</p>
+            <p className="ff-lede">Why the fall glows, and the odds on any one evening: <HomeLink go={go} location="firefall_faq" href="#firefall-how">why it happens</HomeLink>. The rest of a February trip: <HomeLink go={go} location="firefall_faq" href="/articles/yosemite-in-winter">the winter guide</HomeLink>.</p>
             <div className="ff-closing">
               <p className="hp-eyebrow">STILL NO ROOM?</p>
               <h3>Search the whole Highway 140 corridor</h3>

@@ -608,7 +608,7 @@ window.ARTICLE_BODIES["yosemite-gateway-towns-compared"] = function YosemiteGate
       </p>
 
       <p>
-        <strong>Groceries.</strong> Mariposa and Oakhurst have full-size supermarkets. Groveland has a market. El Portal and Lee Vining have convenience-scale markets and nothing more. Whichever town you pick, do the real shop in Mariposa or Oakhurst on the way in, because in-park food is limited, expensive, and keeps shorter hours than you expect. See <a href="/articles/pack-your-car-for-yosemite">how to pack your car for a Yosemite trip</a>.
+        <strong>Groceries.</strong> Mariposa and Oakhurst have full-size supermarkets. Groveland has a market. El Portal and Lee Vining have convenience-scale markets and nothing more. Whichever town you pick, do the real shop in Mariposa or Oakhurst on the way in, because in-park food is limited, expensive, and keeps shorter hours than you expect; <a href="/articles/where-to-eat-yosemite">where to eat in Yosemite</a> has what is open and the one place to eat in each gateway town. See <a href="/articles/pack-your-car-for-yosemite">how to pack your car for a Yosemite trip</a>.
       </p>
 
       <p>
@@ -624,7 +624,7 @@ window.ARTICLE_BODIES["yosemite-gateway-towns-compared"] = function YosemiteGate
       </p>
 
       <p>
-        <strong>Check current status the week you travel.</strong> Roads, chain controls, and closures change faster than any lodging comparison can keep up with. The <a href="/now">Park Bulletin</a> condenses the current edition of park status, roads, hours, and trail conditions onto one page.
+        <strong>Check current status the week you travel.</strong> Roads, chain controls, and closures change faster than any lodging comparison can keep up with. The <a href="/now">Park Bulletin</a> condenses the current edition of park status, roads, hours, and trail conditions onto one page, and <a href="/webcams">the Yosemite webcams</a> show the Valley and Wawona as they are that morning.
       </p>
 
       <h2 id="sec-where-to-stay-near-yosemite-with-kids">Where to stay near Yosemite with kids</h2>
@@ -648,6 +648,9 @@ window.ARTICLE_BODIES["yosemite-gateway-towns-compared"] = function YosemiteGate
       <p><strong>Where should I stay near Yosemite with kids?</strong> Mariposa for a Valley trip, Oakhurst for a sequoia trip. Both have full supermarkets, pharmacies, several restaurants, and rooms that can be booked later than El Portal or the in-park lodges.</p>
       <p><strong>Which gateway town is cheapest?</strong> Groveland and Mariposa typically have the widest range and the most budget rooms. El Portal is priced like in-park lodging. Oakhurst has predictable chain prices. Lee Vining has little inventory and prices accordingly.</p>
       <p><strong>Which towns have full grocery stores?</strong> Mariposa and Oakhurst. Groveland has a market. El Portal and Lee Vining have convenience-scale markets only.</p>
+      <p><strong>How far is Mariposa from Yosemite?</strong> About 45 miles and 45 to 60 minutes to Yosemite Valley on Highway 140, through the Arch Rock Entrance.</p>
+      <p><strong>How far is Oakhurst from Yosemite?</strong> About 14 miles and 20 to 25 minutes to the South Entrance, and 75 to 90 minutes to Yosemite Valley on Highway 41.</p>
+      <p><strong>How far is Groveland from Yosemite?</strong> About 24 miles and 30 to 40 minutes to the Big Oak Flat Entrance, and 65 to 80 minutes to Yosemite Valley on Highway 120. Every leg between the towns, the entrances and the trailheads is on <a href="/distances">the drive-times table</a>.</p>
       <p><strong>Which town works in winter?</strong> El Portal or Mariposa, on Highway 140, the lowest and most reliable road. Groveland works with chains. Lee Vining has no road into the park at all when Tioga Pass is closed.</p>
 
       <h2 id="sec-9-the-takeaway">The takeaway</h2>

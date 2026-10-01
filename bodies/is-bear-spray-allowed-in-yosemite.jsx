@@ -6,11 +6,11 @@ window.ARTICLE_BODIES["is-bear-spray-allowed-in-yosemite"] = function IsBearSpra
   return (
     <>
       <p className="dropcap">
-        No. Bear spray is not allowed in Yosemite National Park, in any form, under any circumstances. Possession is prohibited and use is prohibited, and this is a park regulation rather than a guideline. If you have it in the car, it should not come through <a href="/articles/getting-to-yosemite">the entrance station</a>.
+        No. Bear spray is banned in Yosemite because the park classifies it as a weapon, and because it was built for a bear that is not here: the last grizzly in Yosemite was shot around 1895, and on the park's black bears capsaicin residue attracts more than it repels. It is not allowed in any form, under any circumstances. Possession is prohibited and use is prohibited, and this is a park regulation rather than a guideline. If you have it in the car, it should not come through <a href="/articles/getting-to-yosemite">the entrance station</a>.
       </p>
 
       <p>
-        The next question is usually why a tool that works well everywhere else is banned here, and what you are supposed to do instead.
+        The longer answer, and what to carry instead, follows.
       </p>
 
       <h2>The rule</h2>
