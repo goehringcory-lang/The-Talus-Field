@@ -61,6 +61,10 @@ import MapSearch from '../map/MapSearch'
 import type { MapHit } from '../map/mapSearch'
 import { programPoints, type ProgramPoint } from '../map/programPoints'
 import { PIN_H, PIN_W, declutter, depthScale, type DeclutterItem } from '../map/declutter'
+import { PinMarker } from '../map/pinMarker'
+import { SettledScaleControl } from '../map/scaleControl'
+import { shareTerrainElevation } from '../map/terrainElevation'
+import { easeInto3d, easeOutOf3d } from '../map/terrainToggle'
 import { LENGTH_CHOICES, TRAIL_LINE_LAYER, ensureTrailLayers, loadTrails, recolorTrails, setTrailFilter, type TrailFilter } from '../map/trailsLayer'
 import { TRAIL_LABEL, trailColors } from '../map/theme'
 import { readTripDates, usePrograms } from '../programs/usePrograms'
@@ -1444,7 +1448,9 @@ export default function Map() {
 
     const map = new maplibregl.Map({
       container: containerRef.current,
-      style: buildMapStyle(),
+      // Terrain is in the opening style rather than set on 'load': set late,
+      // the first view drew flat and then heaved up under its own pins.
+      style: buildMapStyle(buildTheme(), is3dRef.current),
       // Over the Valley's west end looking east: El Capitan on the left,
       // Half Dome closing the view (map/theme.ts).
       center: initialCameraRef.current?.center ?? HOME_CAMERA.center,
@@ -1463,9 +1469,17 @@ export default function Map() {
       // Mid-range phones: the terrain mesh is the expensive part, and a 2x
       // canvas on a 3x screen is indistinguishable from native at arm's length.
       pixelRatio: Math.min(window.devicePixelRatio || 1, 2),
+      // Tiles are versioned by path and immutable (map/style.ts), so an
+      // expired Cache-Control header is never a reason to fetch one again.
+      refreshExpiredTiles: false,
+      // The style is built by code, not loaded from a file; validating its
+      // hundred-odd layers at every open is start-up time spent on a check
+      // that only a code change can fail, so it runs in development only.
+      validateStyle: import.meta.env.DEV,
     })
+    shareTerrainElevation(map)
     map.addControl(new maplibregl.NavigationControl({ visualizePitch: true }), 'top-left')
-    map.addControl(new maplibregl.ScaleControl({ unit: 'imperial' }), 'bottom-left')
+    map.addControl(new SettledScaleControl({ unit: 'imperial' }), 'bottom-left')
 
     // Locate-me. GPS itself needs no signal, so this works in airplane mode.
     // Only offered where it can work (https; localhost counts as secure), and
@@ -1527,7 +1541,6 @@ export default function Map() {
       popupRef.current?.remove()
     })
     map.on('load', () => {
-      if (is3dRef.current) map.setTerrain(TERRAIN_SPEC)
       setMapReady(true)
       setMapFailed(false)
     })
@@ -1587,13 +1600,10 @@ export default function Map() {
     is3dRef.current = next
     setIs3d(next)
     if (!map) return
-    if (next) {
-      map.setTerrain(TERRAIN_SPEC)
-      map.easeTo({ pitch: DEFAULT_PITCH, duration: 600 })
-    } else {
-      map.setTerrain(null)
-      map.easeTo({ pitch: 0, bearing: 0, duration: 600 })
-    }
+    // The relief rises with the tilt and flattens as the camera levels
+    // (map/terrainToggle.ts), rather than dropping out in one frame.
+    if (next) easeInto3d(map, { pitch: DEFAULT_PITCH })
+    else easeOutOf3d(map, { pitch: 0, bearing: 0 })
   }, [])
 
   const resetView = useCallback(() => {
@@ -2088,7 +2098,7 @@ export default function Map() {
       stopCoordIndexes[coordKey] = coordIndex + 1
       const coordCount = stopCoordCounts[coordKey] ?? 1
       const horizontalOffset = Math.round((coordIndex - (coordCount - 1) / 2) * 16)
-      const marker = new maplibregl.Marker({
+      const marker = new PinMarker({
         element: el,
         anchor: 'bottom',
         offset: [horizontalOffset, 0],
@@ -2160,7 +2170,7 @@ export default function Map() {
           .addTo(map)
       }
       wirePin(el, map, amenity.coord, activate)
-      amenityMarkersRef.current[amenity.id] = new maplibregl.Marker({
+      amenityMarkersRef.current[amenity.id] = new PinMarker({
         element: el,
         anchor: 'bottom',
       })
@@ -2229,7 +2239,7 @@ export default function Map() {
           .addTo(map)
       }
       wirePin(el, map, group.coord, activate)
-      const marker = new maplibregl.Marker({
+      const marker = new PinMarker({
         element: el,
         anchor: 'bottom',
         // Most trailhead coords reuse a stop's verified pin; nudge those a
@@ -2265,7 +2275,7 @@ export default function Map() {
           .addTo(map)
       }
       wirePin(el, map, group.coord, activate)
-      mealMarkersRef.current[group.id] = new maplibregl.Marker({
+      mealMarkersRef.current[group.id] = new PinMarker({
         element: el,
         anchor: 'bottom',
         offset: OCCUPIED_COORD_KEYS.has(group.coord.join(',')) ? [-14, -4] : [0, 0],
@@ -2300,42 +2310,74 @@ export default function Map() {
     if (!map || !popup || !mapReady) return
     let frame = 0
     let shownBefore = new Set<string>()
+    // What the pass knows about each pin element: the static facts read once
+    // and the styles it last wrote. The pass runs every frame of a camera
+    // move over ~280 pins, and reading dataset and inline styles back out of
+    // the DOM for each of them was most of its cost.
+    type PinState = { key: string; rank: number; minor: boolean; scale: number; z: string; dot: boolean }
+    const pinState = new WeakMap<HTMLElement, PinState>()
+    const stateOf = (el: HTMLElement, key: string): PinState => {
+      let st = pinState.get(el)
+      if (!st) {
+        st = {
+          key,
+          rank: Number(el.dataset.rank ?? 0),
+          minor: el.classList.contains('map-pin--minor'),
+          scale: Number(el.style.getPropertyValue('--pin-scale') || 1),
+          z: el.style.zIndex,
+          dot: el.classList.contains('map-pin--dot'),
+        }
+        pinState.set(el, st)
+      }
+      return st
+    }
     const run = () => {
       frame = 0
       const container = map.getContainer()
       // Trip view hides these pins (Map.css); nothing to place.
       if (container.dataset.tripView !== undefined) return
       const hideMinor = container.dataset.zoomBand === 'far' && container.dataset.kinds === 'all'
-      const canvas = map.getCanvas()
-      const w = canvas.clientWidth
-      const h = canvas.clientHeight
+      // The canvas size in CSS pixels, from MapLibre's own record of it. Not
+      // canvas.clientWidth: MapLibre has just moved every marker, and asking
+      // the DOM for a size forces a style and layout pass over all of them
+      // here, which the frame then repeats after this pass writes its styles.
+      const w = map.transform.width
+      const h = map.transform.height
       const pitch = map.getPitch()
       const active = popup.isOpen() ? activePinRef.current : null
       const focused = document.activeElement
       const items: DeclutterItem[] = []
       const els: Record<string, HTMLElement> = {}
-      const groups = {
-        s: markersRef.current,
-        a: amenityMarkersRef.current,
-        h: hikeMarkersRef.current,
-        m: mealMarkersRef.current,
-      }
-      for (const [group, markers] of Object.entries(groups)) {
-        for (const [id, marker] of Object.entries(markers)) {
-          const el = marker.getElement()
-          if (hideMinor && el.classList.contains('map-pin--minor')) continue
-          const p = map.project(marker.getLngLat())
-          const off = marker.getOffset()
-          const x = p.x + off.x
-          const y = p.y + off.y
+      const states: Record<string, PinState> = {}
+      const groups: [string, Record<string, maplibregl.Marker>][] = [
+        ['s', markersRef.current],
+        ['a', amenityMarkersRef.current],
+        ['h', hikeMarkersRef.current],
+        ['m', mealMarkersRef.current],
+      ]
+      for (const [group, markers] of groups) {
+        for (const id in markers) {
+          const marker = markers[id]
+          // MapLibre placed the marker on this 'move' already (its _pos is
+          // the projected tip plus the offset); projecting again would sample
+          // the terrain a second time for every pin, every frame.
+          const p = marker._pos ?? map.project(marker.getLngLat())._add(marker.getOffset())
+          const x = p.x
+          const y = p.y
           // Off screen: leave it as it was; it is re-placed when it returns.
           if (x < -40 || x > w + 40 || y < -10 || y > h + 60) continue
+          const el = marker.getElement()
+          const st = stateOf(el, `${group}:${id}`)
+          if (hideMinor && st.minor) continue
           const scale = depthScale(y, h, pitch)
-          if (el.style.getPropertyValue('--pin-scale') !== String(scale)) el.style.setProperty('--pin-scale', String(scale))
-          const key = `${group}:${id}`
-          els[key] = el
+          if (st.scale !== scale) {
+            el.style.setProperty('--pin-scale', String(scale))
+            st.scale = scale
+          }
+          els[st.key] = el
+          states[st.key] = st
           items.push({
-            id: key,
+            id: st.key,
             x,
             y,
             w: PIN_W * scale,
@@ -2344,22 +2386,34 @@ export default function Map() {
             // equal rank do not trade places every frame of a rotation; a pin
             // behind a ridge (MapLibre fades it) gives way to one in view.
             priority:
-              Number(el.dataset.rank ?? 0) +
-              (shownBefore.has(key) ? 0.3 : 0) -
+              st.rank +
+              (shownBefore.has(st.key) ? 0.3 : 0) -
               (el.classList.contains('maplibregl-marker-covered') ? 20 : 0),
             pinned: el === active || el === focused || el.classList.contains('map-pin--planned'),
           })
         }
       }
       const shown = declutter(items)
-      for (const it of items) {
+      // Nearer pins (lower on the screen) draw over farther ones, and every
+      // pin over every dot; the open popup's pin over all of them. The
+      // z-index is the pin's place in that order, not its pixel row, so a
+      // pan (which moves every pin by the same amount) writes no style at
+      // all and a rotation writes only the pins that swap places.
+      items.sort((a, b) => a.y - b.y)
+      for (let i = 0; i < items.length; i++) {
+        const it = items[i]
         const el = els[it.id]
+        const st = states[it.id]
         const dot = !shown.has(it.id)
-        if (el.classList.contains('map-pin--dot') !== dot) el.classList.toggle('map-pin--dot', dot)
-        // Nearer pins (lower on the screen) draw over farther ones, and every
-        // pin over every dot; the open popup's pin over all of them.
-        const z = String((el === active ? 20000 : dot ? 0 : 10000) + Math.round(it.y))
-        if (el.style.zIndex !== z) el.style.zIndex = z
+        if (st.dot !== dot) {
+          el.classList.toggle('map-pin--dot', dot)
+          st.dot = dot
+        }
+        const z = String((el === active ? 20000 : dot ? 0 : 10000) + i)
+        if (st.z !== z) {
+          el.style.zIndex = z
+          st.z = z
+        }
       }
       shownBefore = shown
       const anyDots = items.length > shown.size

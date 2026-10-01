@@ -88,8 +88,9 @@
   height: 4px;
   margin-left: -6px;
   border-radius: 50%;
-  background: rgba(0, 0, 0, 0.28);
-  filter: blur(1px);
+  /* A soft edge drawn as a gradient, not a blur filter: ~260 pins each
+   * carrying a filtered layer is compositor work on every repaint. */
+  background: radial-gradient(closest-side, rgba(0, 0, 0, 0.32), rgba(0, 0, 0, 0.22) 55%, transparent);
   pointer-events: none;
 }
 
@@ -484,9 +485,12 @@
   max-height: calc(100% - 78px);
   overflow-y: auto;
   padding: 12px 14px;
-  background: color-mix(in oklab, var(--paper) 94%, transparent);
-  backdrop-filter: blur(6px);
-  -webkit-backdrop-filter: blur(6px);
+  /* No backdrop-filter on anything that floats over the map: the canvas
+   * repaints every frame it moves, and a blurred pane makes the compositor
+   * re-blur its whole footprint each of those frames, which on a phone GPU
+   * is the difference between a smooth pan and a stuttering one. Near-opaque
+   * paper reads the same. */
+  background: color-mix(in oklab, var(--paper) 97%, transparent);
   border: 1px solid var(--rule-soft);
   border-radius: var(--radius);
   box-shadow: 3px 3px 0 0 color-mix(in oklab, var(--ink) 22%, transparent);
@@ -594,8 +598,6 @@
   width: min(360px, calc(100% - 70px));
   padding: 16px 18px;
   background: color-mix(in oklab, var(--paper) 96%, transparent);
-  backdrop-filter: blur(6px);
-  -webkit-backdrop-filter: blur(6px);
   border: 1px solid var(--rule-soft);
   border-radius: var(--radius);
   box-shadow: 3px 3px 0 0 color-mix(in oklab, var(--ink) 22%, transparent);
@@ -1030,9 +1032,7 @@
   margin: 0;
   max-width: calc(100% - 96px);
   padding: 5px 10px;
-  background: color-mix(in oklab, var(--paper) 90%, transparent);
-  backdrop-filter: blur(4px);
-  -webkit-backdrop-filter: blur(4px);
+  background: color-mix(in oklab, var(--paper) 95%, transparent);
   border: 1px solid var(--rule-soft);
   border-radius: var(--radius);
   font-family: var(--sans);
@@ -1077,9 +1077,7 @@
   letter-spacing: 0.06em;
   text-transform: uppercase;
   color: var(--ink);
-  background: color-mix(in oklab, var(--paper) 92%, transparent);
-  backdrop-filter: blur(4px);
-  -webkit-backdrop-filter: blur(4px);
+  background: color-mix(in oklab, var(--paper) 96%, transparent);
   border: 1px solid var(--rule-soft);
   border-radius: var(--radius);
   cursor: pointer;
@@ -1107,7 +1105,7 @@
   background-position: calc(100% - 14px) 50%, calc(100% - 9px) 50%;
   background-size: 5px 5px, 5px 5px;
   background-repeat: no-repeat;
-  background-color: color-mix(in oklab, var(--paper) 92%, transparent);
+  background-color: color-mix(in oklab, var(--paper) 96%, transparent);
 }
 /* Offline: what is on the device, as a reading beside the label. */
 .map-view-controls__meter {
@@ -1156,8 +1154,6 @@
   bottom: 12px;
   width: min(400px, calc(100% - 24px));
   background: color-mix(in oklab, var(--paper) 97%, transparent);
-  backdrop-filter: blur(6px);
-  -webkit-backdrop-filter: blur(6px);
   border: 1px solid var(--rule-soft);
   border-radius: var(--radius);
   box-shadow: 3px 3px 0 0 color-mix(in oklab, var(--ink) 22%, transparent);

@@ -109,7 +109,8 @@ function withOverlays(base: LayerSpecification[], theme: MapTheme): LayerSpecifi
   ]
 }
 
-export function buildMapStyle(theme: MapTheme = buildTheme()): StyleSpecification {
+/** `terrain` opens the style in 3D; a scheme rebuild sets it through `transformStyle` instead. */
+export function buildMapStyle(theme: MapTheme = buildTheme(), terrain = false): StyleSpecification {
   // MapLibre resolves glyph and sprite URLs against nothing, so they must be
   // absolute; the tile URLs already are (API_BASE).
   const origin = window.location.origin
@@ -142,6 +143,7 @@ export function buildMapStyle(theme: MapTheme = buildTheme()): StyleSpecificatio
       'park-boundary': { type: 'geojson', data: PARK_BOUNDARY },
     },
     layers: withOverlays(basemapLayers('protomaps', theme.flavor, { lang: 'en' }), theme),
+    ...(terrain ? { terrain: TERRAIN_SPEC } : {}),
     sky: {
       'sky-color': theme.sky.sky,
       'horizon-color': theme.sky.horizon,

@@ -19,6 +19,13 @@ export type ChangelogEntryT = z.infer<typeof ChangelogEntry>
 
 const seed: ChangelogEntryT[] = [
   {
+    date: '2026-09-30',
+    lines: [
+      'The 3D map pans, turns and tilts far more smoothly, and opens with the mountains already standing instead of rising a moment after the first view.',
+      'Switching between 2D and 3D now eases the relief down as the map levels, and back up as it tilts.',
+    ],
+  },
+  {
     date: '2026-09-28',
     lines: [
       'The front page opens on Yosemite right now: the weather, the light (a sun over the horizon, with sunrise, sunset and when the alpenglow begins) and the wait at each entrance, all on one card.',
