@@ -193,8 +193,8 @@ function DistancesPage({
       go("stay");
     }
   }, "the where-to-stay page"), ", and what a trip costs is in", " ", React.createElement("a", {
-    href: "/articles/yosemite-trip-cost-budget-2026",
-    onClick: e => goArticle(e, "yosemite-trip-cost-budget-2026")
+    href: "/articles/yosemite-trip-cost-budget",
+    onClick: e => goArticle(e, "yosemite-trip-cost-budget")
   }, "the budget breakdown"), ". If you are coming from further out, ", React.createElement("a", {
     href: "/articles/getting-to-yosemite",
     onClick: e => goArticle(e, "getting-to-yosemite")

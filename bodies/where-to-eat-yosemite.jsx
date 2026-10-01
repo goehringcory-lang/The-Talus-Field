@@ -769,7 +769,7 @@ window.ARTICLE_BODIES["where-to-eat-yosemite"] = function WhereToEatYosemiteBody
             <li><span>Every other lunch</span><strong>A granite slab next to the river</strong></li>
           </ol>
           <p className="eat-further">
-            For where to base yourself, see <a href="/articles/yosemite-gateway-towns-compared">Yosemite gateway towns compared</a> and <a href="/articles/where-to-stay-in-yosemite">the lodging guide</a>. For one-day and two-day plans, see <a href="/articles/yosemite-in-one-or-two-days">One day or two in Yosemite</a>. For what a trip really costs, see <a href="/articles/yosemite-trip-cost-budget-2026">the budget breakdown</a>.
+            For where to base yourself, see <a href="/articles/yosemite-gateway-towns-compared">Yosemite gateway towns compared</a> and <a href="/articles/where-to-stay-in-yosemite">the lodging guide</a>. For one-day and two-day plans, see <a href="/articles/yosemite-in-one-or-two-days">One day or two in Yosemite</a>. For what a trip really costs, see <a href="/articles/yosemite-trip-cost-budget">the budget breakdown</a>.
           </p>
         </div>
       </section>

@@ -454,7 +454,7 @@ const HUB_PROSE = {
     ) +
     `<p>Inside the park: <strong>Yosemite Valley Lodge</strong>, the correct answer for most first-time visitors, across the road from Lower Yosemite Fall. <strong>The Ahwahnee</strong>, a 1927 National Historic Landmark, for the occasion that justifies it. <strong>Curry Village</strong>, canvas tent cabins at the base of Glacier Point since 1899 and the cheapest roofed beds in the Valley. <strong>Housekeeping Camp</strong>, three-walled river units where you can cook over a fire. <strong>White Wolf Lodge</strong> at 8,000 feet and <strong>Tuolumne Meadows Lodge</strong> at 8,700, both summer-only tent cabins for high-country trips. The historic <strong>Wawona Hotel</strong> has been closed for renovation since December 2024.</p>` +
     `<p>Outside the park, by corridor. <strong>Highway 140</strong>, the Merced canyon to the Arch Rock entrance, open year-round and the winter base because it runs low and takes rain when the other roads take snow: <strong>El Portal</strong> (25 to 35 minutes to Yosemite Valley, where the Yosemite View Lodge and the Cedar Lodge are) and <strong>Mariposa</strong> (45 to 60 minutes, the most full-service and the safest first-timer's pick), with AutoCamp Yosemite and the Yosemite Bug at Midpines between them. <strong>Highway 120 west</strong> to the Big Oak Flat entrance, the summer base and the only corridor within reach of Yosemite Valley, Hetch Hetchy, and Tuolumne Meadows at once: <strong>Groveland</strong> (65 to 80 minutes, the character pick), plus Rush Creek Lodge near the gate, the Evergreen Lodge toward Hetch Hetchy, and Firefall Ranch. <strong>Highway 41</strong> to the South Entrance, the sequoia corridor: <strong>Oakhurst</strong> (75 to 90 minutes, the largest gateway) and <strong>Fish Camp</strong> (two miles from the gate, essentially Tenaya Lodge at Yosemite). <strong>Tioga Road east and US 395</strong>, seasonal and open only while Tioga Pass is: <strong>Lee Vining</strong> (90 minutes to the Valley, 30 to Tuolumne Meadows, the east-side base for the high country and Mono Lake).</p>` +
-    `<p>The longer versions: <a href="/articles/where-to-stay-in-yosemite">the in-park lodging guide</a>, <a href="/articles/yosemite-gateway-towns-compared">the gateway towns compared</a>, <a href="/articles/yosemite-camping-complete-guide">the complete camping guide</a>, <a href="/articles/yosemite-trip-cost-budget-2026">what a Yosemite trip costs</a>, <a href="/articles/getting-to-yosemite">getting to Yosemite</a>, and <a href="/articles/where-to-eat-yosemite">where to eat</a>.</p>`,
+    `<p>The longer versions: <a href="/articles/where-to-stay-in-yosemite">the in-park lodging guide</a>, <a href="/articles/yosemite-gateway-towns-compared">the gateway towns compared</a>, <a href="/articles/yosemite-camping-complete-guide">the complete camping guide</a>, <a href="/articles/yosemite-trip-cost-budget">what a Yosemite trip costs</a>, <a href="/articles/getting-to-yosemite">getting to Yosemite</a>, and <a href="/articles/where-to-eat-yosemite">where to eat</a>.</p>`,
   "/firefall": () =>
     hubProse(
       "The Yosemite Firefall",
@@ -469,7 +469,7 @@ const HUB_PROSE = {
       "The Tioga Road Opening",
       "Every spring, plow crews cut Highway 120 out of the snowpack and the highest road in Yosemite comes back. There is no fixed opening date: the long-term average is the end of May, light years have opened in mid-May, heavy years run into June or later, and the park announces the date only days ahead. In week one the road is open but the services are not: no potable water, nothing to buy, no gas between Crane Flat and Lee Vining, and the famous high trails still under snow. The early season rewards drivers, photographers, and modest walkers."
     ) +
-    `<p>The reliable early stops are Olmsted Point, Tenaya Lake's east beach, the Tuolumne Meadows pullouts, Pothole Dome, and Soda Springs. The full day-by-day version: <a href="/articles/tioga-road-opening-weekend-2026">the opening-weekend field guide</a>. Current status: <a href="/now">the Park Bulletin</a> and the NPS Tioga Road page.</p>`,
+    `<p>The reliable early stops are Olmsted Point, Tenaya Lake's east beach, the Tuolumne Meadows pullouts, Pothole Dome, and Soda Springs. The full day-by-day version: <a href="/articles/tioga-road-opening-weekend">the opening-weekend field guide</a>. Current status: <a href="/now">the Park Bulletin</a> and the NPS Tioga Road page.</p>`,
   "/webcams": () =>
     hubProse(
       "Yosemite Webcams",
@@ -494,7 +494,7 @@ const HUB_PROSE = {
     hubProse(
       "Yosemite for Visitors From Outside the United States",
       "Since January 1, 2026, a visitor who is not a US citizen or resident pays a non-resident fee of $100 per person aged 16 and older to enter Yosemite, on top of the standard entrance fee of $35 per car, $30 per motorcycle or $20 per person on foot or by bus, unless covered by an annual pass. The non-resident America the Beautiful pass costs $250, covers the holder's vehicle and its occupants for twelve months at every federal fee site, and waives the non-resident fee for them. One adult in one car pays $135 at the gate; three adults pay $335 at the gate or $250 with the pass. The fee-free days are for US residents only in 2026. The gate takes cards, not cash. The same surcharge applies at Acadia, Bryce Canyon, Everglades, Glacier, Grand Canyon, Grand Teton, Rocky Mountain, Sequoia and Kings Canyon, Yellowstone and Zion.",
-      `<p>What else is different here: no entry reservation is needed in 2026 (<a href="/articles/yosemite-without-reservations-2026">the no-reservations strategy</a>); most of the park has no mobile signal; Tioga Road and Glacier Point Road close from roughly November to late May (<a href="/tioga-opening">the Tioga Road page</a>); chains are required by law in winter, in rental cars too (<a href="/articles/getting-to-yosemite">getting to Yosemite</a>); the park can be reached without a car by Amtrak and YARTS (<a href="/articles/yosemite-shuttle-and-yarts">the shuttle and YARTS guide</a>); in-park beds sell out a year ahead (<a href="/stay">where to stay</a>); bear rules carry fines (<a href="/articles/yosemite-bears-safety-guide">the bears guide</a>). What a week costs all in: <a href="/articles/yosemite-trip-cost-budget-2026">the trip-cost breakdown</a>.</p>`
+      `<p>What else is different here: no entry reservation is needed in 2026 (<a href="/articles/yosemite-without-reservations-2026">the no-reservations strategy</a>); most of the park has no mobile signal; Tioga Road and Glacier Point Road close from roughly November to late May (<a href="/tioga-opening">the Tioga Road page</a>); chains are required by law in winter, in rental cars too (<a href="/articles/getting-to-yosemite">getting to Yosemite</a>); the park can be reached without a car by Amtrak and YARTS (<a href="/articles/yosemite-shuttle-and-yarts">the shuttle and YARTS guide</a>); in-park beds sell out a year ahead (<a href="/stay">where to stay</a>); bear rules carry fines (<a href="/articles/yosemite-bears-safety-guide">the bears guide</a>). What a week costs all in: <a href="/articles/yosemite-trip-cost-budget">the trip-cost breakdown</a>.</p>`
     ),
   "/start-here": () =>
     hubProse(
@@ -502,7 +502,7 @@ const HUB_PROSE = {
       "The questions every first-time visitor asks, answered plainly. There is no entry reservation in 2026: you pay at the gate and drive in, and what rations a visit now is parking and entrance lines, solved by arriving early. International visitors pay a $100 per-person surcharge as of January 1, 2026. The best remaining window this year is midweek September 8 to 30, with midweek October nearly as good; in summer, come midweek and be through the gate before 7:30 a.m. One deliberate day is enough, two adds room to breathe, and the third day is the first one that does not need defending.",
       `<p>The four places that earned their fame, each its own day: Yosemite Valley, the canyon floor, open all year (Tunnel View at first light, Bridalveil Fall, the Lower Yosemite Fall loop and Cook's Meadow before the lots fill at mid-morning; <a href="/articles/yosemite-in-one-or-two-days">one day in Yosemite</a>); Glacier Point, about 30 miles and an hour from the Valley at 7,200 feet, eye level with Half Dome, on a road that closes for winter (<a href="/articles/glacier-point-how-to-visit">how to visit Glacier Point</a>); the Mariposa Grove of giant sequoias, about an hour from the Valley, parked at the Welcome Plaza with a free shuttle for the last two miles in season (<a href="/articles/mariposa-grove-how-to-visit">how to visit the Mariposa Grove</a>); and Tuolumne Meadows, 8,600 feet on Tioga Road, 55 to 60 miles and about an hour and a half from the Valley while the road is open (<a href="/articles/tuolumne-meadows-in-a-day">Tuolumne Meadows in a day</a>). The one-, two- and three-day plans in drive order are on <a href="/itineraries">the itineraries page</a>.</p>` +
         `<p>Where to stay: inside the park if you can get a bed (one operator, one inventory, opening 366 days ahead), otherwise a gateway town. El Portal is closest at 25 to 35 minutes from the Valley; Mariposa, at 45 to 60 minutes, is the safest first-timer's pick. The full comparison: <a href="/articles/yosemite-gateway-towns-compared">the gateway towns guide</a>, <a href="/stay">the where-to-stay page</a>, and <a href="/distances">every drive time in one table</a>.</p>` +
-        `<p>Permits: day hiking needs none, with one exception covered by <a href="/half-dome-lottery">the Half Dome lottery</a>; what you can still get holding nothing is in <a href="/articles/yosemite-walk-up-and-day-of-permits">the walk-up permits guide</a>. The strategy for the trip itself: <a href="/articles/first-time-yosemite-overwhelm">the first-timer's guide</a>, <a href="/articles/yosemite-in-one-or-two-days">one or two days</a>, <a href="/articles/yosemite-in-three-to-five-days">three to five days</a>, <a href="/articles/when-to-visit-yosemite-2026-crowd-forecast">the 2026 crowd forecast</a>, and <a href="/articles/getting-to-yosemite">which of the five entrances to use</a>. When the dates are set, the trip selector on <a href="/planning">the Planning Guide</a> turns your answers into a plan.</p>`
+        `<p>Permits: day hiking needs none, with one exception covered by <a href="/half-dome-lottery">the Half Dome lottery</a>; what you can still get holding nothing is in <a href="/articles/yosemite-walk-up-and-day-of-permits">the walk-up permits guide</a>. The strategy for the trip itself: <a href="/articles/first-time-yosemite-overwhelm">the first-timer's guide</a>, <a href="/articles/yosemite-in-one-or-two-days">one or two days</a>, <a href="/articles/yosemite-in-three-to-five-days">three to five days</a>, <a href="/articles/when-to-visit-yosemite">the 2026 crowd forecast</a>, and <a href="/articles/getting-to-yosemite">which of the five entrances to use</a>. When the dates are set, the trip selector on <a href="/planning">the Planning Guide</a> turns your answers into a plan.</p>`
     ),
   "/half-dome-lottery": () =>
     hubProse(
@@ -1086,7 +1086,7 @@ function seoForPath(pathname, searchParams) {
     "/tioga-opening": {
       // Evergreen event page: no year in the URL or copy. FAQ answers come
       // from the published article body
-      // (bodies/tioga-road-opening-weekend-2026.jsx) per the
+      // (bodies/tioga-road-opening-weekend.jsx) per the
       // no-invented-facts rule; anything annual points at NPS.
       title: `The Tioga Road Opening — when it opens and how to plan — ${SITE_NAME}`,
       description:
@@ -1118,9 +1118,9 @@ function seoForPath(pathname, searchParams) {
       ],
     },
     "/webcams": {
-      title: `Yosemite Webcams — the live views worth checking — ${SITE_NAME}`,
+      title: `Yosemite Webcams Live: Half Dome, Yosemite Falls, El Capitan — ${SITE_NAME}`,
       description:
-        "Live Yosemite webcams: Half Dome, Yosemite Falls, El Capitan and Wawona, what each camera shows, how often it refreshes, and how to read them before you drive in.",
+        "Live Yosemite webcams: Half Dome, Yosemite Falls, El Capitan and Wawona. There is no Tuolumne Meadows webcam; here is what to check instead, how often each camera refreshes, and how to read them.",
       breadcrumb: [["Home", `${SITE_ORIGIN}/`], ["Webcams", null]],
       faq: [
         {
@@ -1189,7 +1189,7 @@ function seoForPath(pathname, searchParams) {
       ],
     },
     "/distances": {
-      title: `Yosemite Drive Times — every gateway town, in one table — ${SITE_NAME}`,
+      title: `Yosemite Drive Times and Distances: Every Gateway Town in One Table — ${SITE_NAME}`,
       description:
         "How far Yosemite Valley is from El Portal, Mariposa, Groveland, Oakhurst and Lee Vining: miles, drive times, entrances, elevations and what the season does to each route.",
       breadcrumb: [["Home", `${SITE_ORIGIN}/`], ["Distances", null]],
@@ -1255,7 +1255,7 @@ function seoForPath(pathname, searchParams) {
       // FAQ answers come from the page's own published body
       // (page-half-dome-lottery.jsx), which absorbed the retired article
       // /articles/half-dome-permit-lottery-2026 in August 2026.
-      title: `The Half Dome Lottery — calendar, odds, and strategy — ${SITE_NAME}`,
+      title: `Half Dome Lottery: Dates, Odds and Daily Lottery Strategy — ${SITE_NAME}`,
       // Keep byte-identical to the /half-dome-lottery entry in app.jsx's
       // buildSeo. These drifted (published NPS odds here, honest odds there),
       // so a direct load and an SPA click described one URL two ways, and at
@@ -1470,6 +1470,20 @@ const REDIRECTS = {
   // ranking neither. The article's content moved into the hub, which is the
   // URL that does not need re-slugging every March.
   "/articles/half-dome-permit-lottery-2026": "/half-dome-lottery",
+  // October 2026 SEO pass (Search Console, 90 days to Sept 28). Three articles
+  // had been retired and answered 404 while still holding links and
+  // impressions; they go to the closest live page. Four year-stamped slugs
+  // lose the year before January makes them look stale (the title keeps the
+  // year and is edited each season), and the spring-bears piece folded into
+  // the bears guide.
+  "/articles/glacier-point-road-end-to-end": "/articles/glacier-point-how-to-visit",
+  "/articles/eastern-sierra-loop-with-tioga": "/tioga-opening",
+  "/articles/what-low-snowpack-means-2026": "/articles/yosemite-waterfalls-guide",
+  "/articles/when-to-visit-yosemite-2026-crowd-forecast": "/articles/when-to-visit-yosemite",
+  "/articles/yosemite-in-june-2026": "/articles/yosemite-in-june",
+  "/articles/yosemite-trip-cost-budget-2026": "/articles/yosemite-trip-cost-budget",
+  "/articles/tioga-road-opening-weekend-2026": "/articles/tioga-road-opening-weekend",
+  "/articles/bears-spring-emergence": "/articles/yosemite-bears-safety-guide",
 };
 
 // The apex is the canonical host, and www is bound as a second custom domain

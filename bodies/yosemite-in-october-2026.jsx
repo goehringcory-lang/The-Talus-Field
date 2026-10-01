@@ -136,7 +136,7 @@ window.ARTICLE_BODIES["yosemite-in-october-2026"] = function YosemiteInOctober20
       </p>
 
       <p>
-        October is the quietest good month of the year. <a href="/articles/when-to-visit-yosemite-2026-crowd-forecast">The crowd forecast</a> puts October weekday pressure at 46 on a scale where a July weekend is 100, and October weekends at 68. Midweek needs no entrance strategy at all. On a weekend, be in before mid-morning, when the Valley lots can still fill.
+        October is the quietest good month of the year. <a href="/articles/when-to-visit-yosemite">The crowd forecast</a> puts October weekday pressure at 46 on a scale where a July weekend is 100, and October weekends at 68. Midweek needs no entrance strategy at all. On a weekend, be in before mid-morning, when the Valley lots can still fill.
       </p>
 
       <p>

@@ -164,7 +164,7 @@ window.ARTICLE_BODIES["yosemite-day-trip-from-bay-area"] = function YosemiteDayT
       </p>
 
       <p>
-        The entrance fee is not per day. A day-tripper pays $35 for one day; a family that stays two nights in a gateway town pays the same $35 for three. Set the marginal cost of the second day against a night in Mariposa, Groveland, or El Portal, and the overnight is often the cheaper way to buy time in the park. <a href="/articles/yosemite-trip-cost-budget-2026">The trip-cost guide</a> works the whole calculation.
+        The entrance fee is not per day. A day-tripper pays $35 for one day; a family that stays two nights in a gateway town pays the same $35 for three. Set the marginal cost of the second day against a night in Mariposa, Groveland, or El Portal, and the overnight is often the cheaper way to buy time in the park. <a href="/articles/yosemite-trip-cost-budget">The trip-cost guide</a> works the whole calculation.
       </p>
 
       <h2>When the day trip is genuinely the right call</h2>

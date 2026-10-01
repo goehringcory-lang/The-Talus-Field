@@ -56,7 +56,7 @@ window.ARTICLE_BODIES["yosemite-wildlife-viewing-guide"] = function YosemiteWild
       </p>
 
       <p>
-        I have written about bears at length elsewhere, including <a href="/articles/yosemite-bears-safety-guide">the myths that follow them around</a> and <a href="/articles/bears-spring-emergence">why a spring bear is a different animal than an August one</a>, so here is only the viewing protocol. Fifty yards, minimum; that is the park requirement, and it is measured from the bear, not from your comfort. If a bear changes its behavior because of you, you are too close, whatever the distance. And drive slowly at dawn and dusk. The red bear signs along the park roads each mark a spot where a car killed a bear. Speeding is the leading way visitors kill Yosemite wildlife, and it is the one that is entirely optional.
+        I have written about bears at length elsewhere, including <a href="/articles/yosemite-bears-safety-guide">the myths that follow them around</a> and <a href="/articles/yosemite-bears-safety-guide#spring-bears-hungriest">why a spring bear is a different animal than an August one</a>, so here is only the viewing protocol. Fifty yards, minimum; that is the park requirement, and it is measured from the bear, not from your comfort. If a bear changes its behavior because of you, you are too close, whatever the distance. And drive slowly at dawn and dusk. The red bear signs along the park roads each mark a spot where a car killed a bear. Speeding is the leading way visitors kill Yosemite wildlife, and it is the one that is entirely optional.
       </p>
 
       <h2 id="sec-3-the-birds-worth-learning-first">The birds worth learning first</h2>

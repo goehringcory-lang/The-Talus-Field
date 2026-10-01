@@ -701,14 +701,14 @@ function buildSeo(route) {
       breadcrumb: [["Home", `${SITE_ORIGIN}/`], ["Tioga opening", null]]
     },
     "half-dome-lottery": {
-      title: `The Half Dome Lottery — calendar, odds, and strategy — ${SITE_NAME}`,
+      title: `Half Dome Lottery: Dates, Odds and Daily Lottery Strategy — ${SITE_NAME}`,
       description: "Both Half Dome permit lotteries: the March preseason draw, the daily lottery almost nobody uses, the published NPS odds, and a strategy that works.",
       ogType: "website",
       breadcrumb: [["Home", `${SITE_ORIGIN}/`], ["Half Dome lottery", null]]
     },
     webcams: {
-      title: `Yosemite Webcams — the live views worth checking — ${SITE_NAME}`,
-      description: "Live Yosemite webcams: Half Dome, Yosemite Falls, El Capitan and Wawona, what each camera shows, how often it refreshes, and how to read them before you drive in.",
+      title: `Yosemite Webcams Live: Half Dome, Yosemite Falls, El Capitan — ${SITE_NAME}`,
+      description: "Live Yosemite webcams: Half Dome, Yosemite Falls, El Capitan and Wawona. There is no Tuolumne Meadows webcam; here is what to check instead, how often each camera refreshes, and how to read them.",
       ogType: "website",
       breadcrumb: [["Home", `${SITE_ORIGIN}/`], ["Webcams", null]]
     },
@@ -731,7 +731,7 @@ function buildSeo(route) {
       breadcrumb: [["Home", `${SITE_ORIGIN}/`], ["Visiting from abroad", null]]
     },
     distances: {
-      title: `Yosemite Drive Times — every gateway town, in one table — ${SITE_NAME}`,
+      title: `Yosemite Drive Times and Distances: Every Gateway Town in One Table — ${SITE_NAME}`,
       description: "How far Yosemite Valley is from El Portal, Mariposa, Groveland, Oakhurst and Lee Vining: miles, drive times, entrances, elevations and what the season does to each route.",
       ogType: "website",
       breadcrumb: [["Home", `${SITE_ORIGIN}/`], ["Distances", null]]

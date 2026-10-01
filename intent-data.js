@@ -200,11 +200,11 @@ window.ARTICLE_INTENT = {
   "is-bear-spray-allowed-in-yosemite":          { stage: ["dates-set", "in-park"], who: [], topic: ["conditions"] },
   "yosemite-bears-safety-guide":               { stage: ["week-before", "in-park"], who: ["families", "backpacking"], topic: ["camping", "food"] },
   "yosemite-heat-safety-guide":                { stage: ["week-before", "in-park"], who: ["families", "first-trip"], topic: ["conditions", "trails"] },
-  "when-to-visit-yosemite-2026-crowd-forecast":{ stage: ["before-booking"], who: ["first-trip"], topic: ["conditions"] },
-  "yosemite-trip-cost-budget-2026":            { stage: ["before-booking"], who: ["first-trip", "families"], topic: ["lodging", "camping", "food", "transportation"] },
+  "when-to-visit-yosemite":{ stage: ["before-booking"], who: ["first-trip"], topic: ["conditions"] },
+  "yosemite-trip-cost-budget":            { stage: ["before-booking"], who: ["first-trip", "families"], topic: ["lodging", "camping", "food", "transportation"] },
   "yosemite-in-october-2026":                   { stage: ["before-booking", "dates-set"], who: [], topic: ["conditions"] },
   "yosemite-in-september-2026":                 { stage: ["before-booking", "dates-set"], who: [], topic: ["conditions"] },
-  "yosemite-in-june-2026":                     { stage: ["before-booking", "dates-set"], who: [], topic: ["conditions"] },
+  "yosemite-in-june":                     { stage: ["before-booking", "dates-set"], who: [], topic: ["conditions"] },
   // Month guide like the June piece: an empty `who` on purpose, because "what is
   // March like" is a question every traveler type asks in the same words.
   // `transportation` is earned, not decorative: chains, the 140 approach, and
@@ -232,13 +232,12 @@ window.ARTICLE_INTENT = {
   "yosemite-in-one-or-two-days":               { stage: ["before-booking", "dates-set"], who: ["first-trip", "non-hikers"], topic: ["trails", "transportation"] },
   "four-mile-up-panorama-down":                { stage: ["dates-set", "in-park"], who: [], topic: ["trails"] },
   "yosemite-with-kids-no-reservations-2026":   { stage: ["before-booking", "dates-set"], who: ["families", "first-trip"], topic: ["lodging", "trails", "food"] },
-  "tioga-road-opening-weekend-2026":           { stage: ["dates-set", "week-before"], who: [], topic: ["conditions", "transportation", "trails"] },
+  "tioga-road-opening-weekend":           { stage: ["dates-set", "week-before"], who: [], topic: ["conditions", "transportation", "trails"] },
   "so-you-want-to-hike-half-dome":             { stage: ["before-booking", "dates-set"], who: ["backpacking"], topic: ["permits", "trails"] },
   "glacier-point-road-open-2026":              { stage: ["dates-set", "week-before"], who: ["non-hikers", "accessible"], topic: ["conditions", "transportation", "trails"] },
   "mist-trail-the-real-guide":                 { stage: ["dates-set", "in-park"], who: ["first-trip", "families"], topic: ["trails"] },
   "working-in-yosemite":                       { stage: [], who: [], topic: [] },
   "water-ouzels-waterfalls":                   { stage: ["in-park"], who: [], topic: [] },
-  "bears-spring-emergence":                    { stage: ["week-before", "in-park"], who: ["families"], topic: ["camping"] },
   "what-is-a-talus-field":                      { stage: ["in-park"], who: [], topic: [] },
   "yosemite-glaciers-climate":                 { stage: ["in-park"], who: [], topic: [] },
   "giant-sequoias-fire-adaptation":            { stage: ["in-park"], who: ["families", "non-hikers"], topic: [] },
@@ -310,12 +309,12 @@ window.ARTICLE_MONTHS = {
   "yosemite-in-october-2026": ["oct"],
   "yosemite-in-september-2026": ["sep"],
   "yosemite-facelift-volunteer-guide": ["sep"],
-  "yosemite-in-june-2026": ["jun"],
+  "yosemite-in-june": ["jun"],
   "yosemite-in-march": ["mar"],
   "yosemite-in-december": ["dec"],
   "horsetail-fall-firefall": ["feb"],
   "memorial-day-skip-the-valley-go-high-2026": ["may"],
-  "tioga-road-opening-weekend-2026": ["may", "jun"],
+  "tioga-road-opening-weekend": ["may", "jun"],
   "glacier-point-road-open-2026": ["may", "jun"],
   "yosemite-in-winter": ["nov", "dec", "jan", "feb", "mar"],
   "bracebridge-dinner-and-vintners-holidays": ["nov", "dec"],
@@ -324,7 +323,6 @@ window.ARTICLE_MONTHS = {
   "yosemite-fire-restrictions-explained": ["jul", "aug", "sep", "oct"],
   // The body's three fires run July to September and it is written "in the fall".
   "wildfire-in-yosemite-during-your-trip": ["jul", "aug", "sep", "oct"],
-  "bears-spring-emergence": ["mar", "apr", "may", "jun"],
 
   // "The swimming season runs from about mid-July into September, and in June
   // the answer is almost always not yet." June is inside the window on purpose:
@@ -558,7 +556,7 @@ window.TRIP_MONTHS = [
   { key: "may", label: "May", name: "May",       tioga: "unsettled", glacier: "unsettled", read: "yosemite-waterfalls-guide",
     arrive: "Memorial Day weekend behaves like July: the Curry Village lot was full a little after 8 a.m. in 2026. Be through the gate before 8 that weekend; the rest of the month, before mid-morning on weekends.",
     note: "Peak waterfall month, and the last calmer weeks before summer. The high roads usually begin to open." },
-  { key: "jun", label: "Jun", name: "June",      tioga: "unsettled", glacier: "open",      read: "yosemite-in-june-2026",
+  { key: "jun", label: "Jun", name: "June",      tioga: "unsettled", glacier: "open",      read: "yosemite-in-june",
     arrive: "Be through the gate before 8 a.m., before 7 on a weekend. Never plan to arrive between 9 a.m. and 2 p.m. on a summer weekend, when the lines form and the Valley lots close behind you. Or arrive after 4 p.m. Text ynptraffic to 333111 for the park's live parking updates.",
     note: "Early summer. Strong falls at the start of the month, school-break crowds building. Tioga Road usually opens by now, but in a heavy snow year it stays closed into late June or early July." },
   { key: "jul", label: "Jul", name: "July",      tioga: "open",      glacier: "open",      read: "yosemite-heat-safety-guide",
@@ -708,8 +706,8 @@ var TRIP_RULES = {
     // the original pair rides exactly as before; in winter it is the answer.
     hike:       { intent: { topic: ["trails"] }, anchors: ["four-mile-up-panorama-down", "so-you-want-to-hike-half-dome", "yosemite-winter-hikes"] },
     photos:     { intent: { who: ["photography"] }, anchors: ["yosemite-photography-spots"] },
-    crowds:     { intent: { topic: ["conditions"] }, anchors: ["when-to-visit-yosemite-2026-crowd-forecast"] },
-    budget:     { intent: { topic: ["lodging", "food"] }, anchors: ["yosemite-trip-cost-budget-2026"] },
+    crowds:     { intent: { topic: ["conditions"] }, anchors: ["when-to-visit-yosemite"] },
+    budget:     { intent: { topic: ["lodging", "food"] }, anchors: ["yosemite-trip-cost-budget"] },
     // The one focus answer whose articles carry no `topic` tag: the pieces that
     // answer "wildlife and natural history" are the natural-history essays, and
     // an empty topic facet is exactly what marks them (see the tagging rules at
@@ -832,7 +830,7 @@ window.buildTripPlan = function (answers) {
     intentPush(acc.anchors, month.read);
     intentPush(acc.intent.topic, "conditions");
   } else if (answers.when === "unsure") {
-    intentPush(acc.anchors, "when-to-visit-yosemite-2026-crowd-forecast");
+    intentPush(acc.anchors, "when-to-visit-yosemite");
     intentPush(acc.intent.stage, "before-booking");
     intentPush(acc.intent.topic, "conditions");
   }

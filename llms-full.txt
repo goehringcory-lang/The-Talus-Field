@@ -8,7 +8,7 @@
 Publisher: The Talus Field (https://thetalusfieldjournal.com). Editor: Cory Goehring.
 Citation guidance and the annotated page index: https://thetalusfieldjournal.com/llms.txt
 Canonical article URL pattern: https://thetalusfieldjournal.com/articles/<slug>
-Contents: 76 articles. Most recent update: 2026-10-01.
+Contents: 75 articles. Most recent update: 2026-10-01.
 
 Not in this file: the Yosemite Nature Notes archive, all 512 issues of the
 National Park Service's Yosemite bulletin (1922-2003), transcribed in full
@@ -4584,7 +4584,7 @@ I've worked in this park for close to two decades. I see bears regularly. What I
 
 Bear spray is remarkably effective against grizzly bears. A landmark 2008 study by Tom Smith and Stephen Herrero, published in the Journal of Wildlife Management, analyzed 83 bear spray incidents in Alaska involving 175 people and found it stopped aggressive behavior 92% of the time. That's a better track record than firearms. It's also completely irrelevant here, because there are no grizzly bears in Yosemite. There have not been since around 1895, when the last one was shot near Crescent Lake. The California grizzly has been extinct for over a century.
 
-Is bear spray legal in Yosemite? No. Not in any form, not under any circumstances. The full answer, including the California-wide question, is its own piece.
+Is bear spray legal in Yosemite? No. Not in any form, not under any circumstances. Why bear spray is illegal in Yosemite, including the California-wide question, is its own piece.
 
 Yosemite has only American black bears, Ursus americanus, somewhere between 300 and 500 of them. They are a fundamentally different animal in temperament, size, and behavior. An adult male black bear in Yosemite weighs between 250 and 350 pounds. An adult male grizzly can top 700. More importantly, the behavioral profile is different. Grizzlies are territorial and defensive. Black bears are opportunistic and, overwhelmingly, avoidant. The tools you need for each species are not the same.
 
@@ -4647,6 +4647,12 @@ At Yosemite's elevation, this is not quite right. Black bears enter torpor, whic
 At Yosemite's mid-elevations, where the Valley floor sits at about 4,000 feet and most campgrounds cluster between 4,000 and 8,000 feet, bears are sometimes active during warm winter periods. Food availability is the primary driver, not temperature alone. A stretch of warm days in January can bring bears out of their dens to forage. They have been documented digging under snow for cached acorns.
 
 This matters practically because it means food storage rules apply year-round, not just during the summer season. If you're camping in Yosemite in November or March, the bear boxes are not decorative. Use them. I have spoken with visitors in late October who assumed the bears were "asleep" and left food on their picnic table overnight. The bears were not asleep. A bear that finds food in winter learns a lesson it carries into the next season and the one after that. Food conditioning is cumulative. Every easy meal makes the next car window look more worth breaking.
+
+#### Why a bear in April is more dangerous than a bear in August
+
+A bear leaves its den in the weeks after the middle of March, and it has spent four to five months at roughly a quarter of its normal metabolic rate. Its heart rate fell from 70 to 100 beats a minute to 8 to 10, it did not eat or drink, and it came out having lost somewhere between 15 and 30 percent of its body weight. The trigger for waking is not hunger. Lengthening days and warming air reset the bear's circadian rhythm, and it wakes very hungry with a digestive system that is still restarting.
+
+The landscape offers little to meet that demand. The first food at Yosemite's elevations is sedge shoots, new grass and ephemeral herbs, which are low in calories, so a spring bear forages for hours a day and is drawn toward cabins, campsites and parked cars. A spring bear is also less likely to be deterred by noise than a fall bear that is already fat. C. A. Harwell, then the park naturalist, wrote in the March 1931 Nature Notes that bears come out of their dens "usually by the middle of March" and "are careful how they break their long hibernation fast"; his account of that season is in the archive. The practical rule is the one in the storage section below: from March through June, every scented item goes in the bear box, and the trunk of a car is not a bear box.
 
 ### What to do if you see a bear in Yosemite
 
@@ -4721,7 +4727,7 @@ The best bear encounter is the one where you see a cinnamon-colored bear in a me
 
 ---
 
-## Yosemite Heat Safety: A Naturalist's Survival Guide
+## Yosemite Heat Safety: How Hot It Gets and a Quart of Water per Hour
 
 URL: https://thetalusfieldjournal.com/articles/yosemite-heat-safety-guide
 Section: Seasonal Guides. Published: 2026-06-16. Last updated: 2026-06-16.
@@ -4853,7 +4859,7 @@ Some links in this piece are affiliate links. If you buy or book through one, Th
 
 ## Best Time to Visit Yosemite in 2026, by the Traffic Data
 
-URL: https://thetalusfieldjournal.com/articles/when-to-visit-yosemite-2026-crowd-forecast
+URL: https://thetalusfieldjournal.com/articles/when-to-visit-yosemite
 Section: Planning. Published: 2026-06-11. Last updated: 2026-09-02.
 Summary: Yosemite has no reservation system in 2026 and is pacing toward its second-busiest year ever. NPS data, a month-by-month forecast, and the best days to visit.
 
@@ -5034,7 +5040,7 @@ None of that changes the planning logic. Demand for this park rises every year t
 
 ## Yosemite Trip Cost in 2026: Three Budgets, Real Numbers
 
-URL: https://thetalusfieldjournal.com/articles/yosemite-trip-cost-budget-2026
+URL: https://thetalusfieldjournal.com/articles/yosemite-trip-cost-budget
 Section: Planning. Published: 2026-06-07. Last updated: 2026-09-30.
 Summary: What a Yosemite trip costs in 2026: entrance fees, lodging, food, gas, and gear, with real budget, mid-range, and splurge totals.
 
@@ -5263,7 +5269,7 @@ They are the same month. Start with the basics if this is your first visit, and 
 
 ## Yosemite in June 2026: Two Junes, One Month
 
-URL: https://thetalusfieldjournal.com/articles/yosemite-in-june-2026
+URL: https://thetalusfieldjournal.com/articles/yosemite-in-june
 Section: Seasonal Guides. Published: 2026-06-02. Last updated: 2026-08-06.
 Summary: A Yosemite naturalist breaks down June 2026 conditions: low snowpack, no reservations, early waterfall peak, Tioga Road open, and how to plan around all of it.
 
@@ -6735,7 +6741,7 @@ Some links in this piece are affiliate links. If you buy or book through one, Th
 
 ## Tioga Road opening 2026: a plan for opening weekend
 
-URL: https://thetalusfieldjournal.com/articles/tioga-road-opening-weekend-2026
+URL: https://thetalusfieldjournal.com/articles/tioga-road-opening-weekend
 Section: Seasonal Guides. Published: 2026-05-13. Last updated: 2026-09-09.
 Summary: Tioga Road opens May 15, 2026. What's open in Tuolumne Meadows, road conditions, short hikes for mid-May, and a day east to Lee Vining and Mono Lake.
 
@@ -7394,82 +7400,6 @@ For another category of subtle Yosemite observation that rewards patience, see t
 
 ---
 
-## Why a Yosemite bear in April is more dangerous than in August
-
-URL: https://thetalusfieldjournal.com/articles/bears-spring-emergence
-Section: Wildlife and Nature. Published: 2026-05-08. Last updated: 2026-05-08.
-Summary: A Yosemite bear emerging from its winter den has lost a third of its weight and is metabolically desperate. Spring, not summer, is the dangerous season.
-
-In April, if the weather permits and you're in the right place in Yosemite backcountry, you might see bears of the season out of their winter dens. The earliest are out well before that: the park's own naturalists put the usual start in the middle of March. They move slowly at first, stiff-legged, often still on patches of snow. A bear that emerges in April has just spent something like four to five months in a state that is almost, but not quite, hibernation. Scientists call it torpor. The distinction matters: the bear's body has not been dormant. It has been reprogrammed.
-
-That reprogramming, and the desperate metabolic consequences of it, explains why spring in Yosemite is the season when bears are most dangerous to humans and most vulnerable to starvation.
-
-A bear enters its den in November or December, at the end of the fall feeding season when mast crops (acorns, pine seeds) have been picked clean and stored in the bear's body as fat. The den is usually in a hollow tree or a rock crevice, something protected and small enough that the bear can warm it with its own body heat. The bear neither eats nor drinks, and its metabolism drops.
-
-An active bear's heart rate might be 70 to 100 beats per minute. In torpor, a bear's heart rate drops to 8 to 10 beats per minute. Its body temperature, normally around 38 degrees Celsius, can drop into the low 30s. Its kidneys essentially shut down. It recycles its own urea. It produces virtually no urine. It does not defecate. For five months, the bear's body operates at roughly 25 percent of its normal metabolic rate.
-
-This is not sleep. The bear can wake if disturbed. But under normal circumstances, it remains in a state of profound torpor, its body a closed system burning stored fat at minimal rate.
-
-In spring the bear emerges, and hunger is not the main trigger: it has stored enough fat that starvation is not an immediate concern when it wakes. What changes is that the days lengthen and the temperature outside the den begins to rise. The bear's circadian rhythm, responding to these light and temperature signals, begins to reset. Hormone levels change. Metabolism increases and the bear wakes.
-
-It wakes very hungry.
-
-### The metabolic emergency of spring
-
-The physiology of torpor emergence creates an immediate problem. The bear has been burning fat for five months. It has lost somewhere between 15 and 30 percent of its body weight. A healthy female black bear might weigh 150 pounds in fall and 100 pounds in spring. A large male might start at 300 pounds and finish at 180. Much of that loss is lean muscle, not only fat.
-
-More immediately, the bear's digestive system has been dormant. The intestinal tract, the stomach, the liver: all have been operating at minimal capacity. When the bear emerges and begins to eat, these organs have to restart from an idle state. A fresh bear (one emerging from torpor) cannot immediately process large meals. Its digestion is sluggish. Its metabolism is still adjusting from the torpid state.
-
-And yet the bear's body is now urgently demanding calories. The heart rate increases as the bear exits torpor. Metabolic rate climbs. The bear is no longer in energy conservation mode. It is in active mode, moving, exploring, searching for food. This shift from conservation to activity happens relatively quickly as the days lengthen and the bear's body temperature climbs.
-
-The result is a period of acute metabolic demand with limited food availability. The first plants to emerge in spring at Yosemite's elevations are ephemeral herbs and shoots. Sedges come up along meadow margins. Grasses begin to green. A bear can eat these, and does, but the caloric density is low. A bear might need to consume hundreds of pounds of green vegetation to get the calories it got from pounds of acorn or pine seed.
-
-C. A. Harwell, then the park naturalist, described this season in "Our Yosemite Bears" in the March 1931 Nature Notes, and his account complicates the picture. Bears come out of their dens "usually by the middle of March," he wrote, and "they are careful how they break their long hibernation fast." The park was still running artificial feeding platforms in those years, opening them on April 1, and even then, Harwell noted, "few of them come in to eat our food." What the bears worked through instead was what the season offered: tender plants, roots dug out of the ground, mice and frogs caught in the meadows, termites and ants from broken logs. The problem was relative: their bodies needed high-calorie food, and the landscape offered low-calorie food.
-
-### The behavioral signature of spring hunger
-
-When a bear emerges in spring, its behavior changes measurably. A torpid bear emerging from a den is not aggressive or particularly active. It's sluggish, moving slowly, often resting in protected locations near the den. But over days or weeks, as the metabolic transition completes and the body's temperature fully normalizes, the bear becomes increasingly active and increasingly focused on food.
-
-By May, a spring bear is actively foraging for hours each day, moving extensively through meadows and along stream margins, investigating potential food sources. The bear is more likely to approach human settlements, to attempt entry into cabins or food storage areas, to persist in areas where human food or garbage is available. (Anyone who has lived in employee housing in the Valley has stories about spring bears at the tent cabins; this is the season when bear-box discipline matters most.) The motivation is hunger.
-
-The difference in bear behavior between a spring bear (just emerged, metabolically desperate) and a fall bear (recently fed, with adequate fat stores and no immediate metabolic pressure) is measurable. Fall bears are more predictable, more likely to avoid humans, more likely to be deterred by noise or barriers. Spring bears are less predictable, more likely to persist in attempting to access human food, more likely to escalate an encounter if they perceive a threat to a food source.
-
-This is when bears are most likely to be killed by humans, because hunger makes them bold.
-
-### How to read a bear and understand its urgency
-
-If you see a bear in Yosemite in April or May, you are seeing a metabolically driven animal. It has not eaten a substantial meal in five months, its digestive system is still waking up, and its food options are limited.
-
-A bear that is actively foraging, moving systematically through a meadow, turning over rocks and logs, is demonstrating this hunger. The intensity of the foraging behavior is a direct reflection of metabolic need.
-
-Additionally, a bear's behavior toward humans is different in spring. A spring bear that hears humans approaching is more likely to hold its ground, to continue foraging, or to move slowly away. A fall bear in the same situation is more likely to flee. The spring bear's food needs are greater, so it is less likely to abandon a potential food source due to human presence.
-
-The practical implication: spring is the season to be most cautious around bears, because they are more motivated and more likely to take risks to obtain food.
-
-### The historical record and modern observations
-
-Harwell's account in Nature Notes Vol. 10, No. 3 is one of the fullest descriptions of Yosemite bear behavior from the park's early naturalist era, and it has to be read for what it is: a record of bears in a park that was feeding them on purpose. Harwell set down emergence timing, spring diet, the cubs that were not seen until late May or June, and the summer months when, as he put it, the bears "become a problem because they are hungry and they like our foods." The feeding platforms are long gone. The seasonal shape he described, a slow March start and a hungry summer, is still there underneath.
-
-The observations are plain records of what one naturalist watched: when bears emerged, what they ate, how they behaved. Modern work on black bears elsewhere in the Sierra Nevada describes the same underlying sequence, a period of acute metabolic need meeting a landscape that is not yet producing much food, and a rising probability of human conflict as the season goes on.
-
-### What spring teaches about bear ecology
-
-Understanding the biology of spring emergence changes how you read a bear encounter. A bear that tries to access a campsite garbage can in May is responding to the metabolic demand created by torpor and emergence.
-
-This doesn't mean bears are not dangerous. Bears are large, strong, and potentially lethal predators. But the danger is predictable. It follows from the season: the bear's metabolic state and the availability of food. A bear in April is more dangerous than a bear in August because it is hungrier.
-
-For humans in Yosemite, this means spring requires the most rigorous food storage practices. It means avoiding surprise encounters by making noise on the trail. May and June overlap exactly with peak season on the Mist Trail and the other Valley hikes, when bears are foraging the same lower meadows that visitors pass through. A bear's boldness in spring comes from hunger.
-
-For the bears themselves, spring in Yosemite is often a period of high stress. If natural food is not readily available, bears may starve despite successfully emerging from torpor. If food is available (as it is in years with abundant mast crops the previous fall, or in locations where humans provide easy access to food), bears thrive.
-
-#### Further reading
-
-- Nature Notes Vol. 10, No. 3 (March 1931). "Our Yosemite Bears" by C. A. Harwell, park naturalist: emergence timing, spring and summer diet, cubs, and the park's bear-feeding platforms as they were then run. Read it in the archive.
-- Black bear ecology and torpor physiology literature from wildlife biology sources, available through the park's research library and UC Berkeley's environmental science collection.
-- Modern Yosemite bear management documentation describing food storage requirements and seasonal behavior patterns.
-
----
-
 ## What Is a Talus Field? The Landform Yosemite Is Built On
 
 URL: https://thetalusfieldjournal.com/articles/what-is-a-talus-field
@@ -7814,7 +7744,7 @@ That is the whole trip.
 
 ---
 
-## Yosemite stargazing: where to look up, and when
+## Yosemite Stargazing: Olmsted Point, Glacier Point and When the Milky Way Shows
 
 URL: https://thetalusfieldjournal.com/articles/yosemite-stargazing-where-to-look-up
 Section: Seasonal Guides. Published: 2026-04-27. Last updated: 2026-04-27.
@@ -8350,7 +8280,7 @@ Some links in this piece are affiliate links. If you buy or book through one, Th
 
 ---
 
-## Where to stay near Yosemite: the best town for your trip
+## Mariposa vs Oakhurst vs Groveland: Best Town to Stay Near Yosemite
 
 URL: https://thetalusfieldjournal.com/articles/yosemite-gateway-towns-compared
 Section: Planning. Published: 2026-04-26. Last updated: 2026-09-27.
@@ -8359,6 +8289,16 @@ Summary: Mariposa, Oakhurst, Groveland, El Portal and Lee Vining compared: the c
 For a Yosemite Valley trip, start with El Portal for a shorter drive or Mariposa for more restaurants and services. Choose Oakhurst for Wawona and the Mariposa Grove, Groveland for the Highway 120 approach, and Lee Vining for the high country when Tioga Road is open.
 
 I've stayed in all five towns. The comparison below separates the drive to an entrance from the drive to Yosemite Valley, which is where most first-time visitors spend their days. Treat the drive times as planning estimates and allow extra time for traffic, entrance queues, and stops.
+
+The short comparison, for the searches that ask Mariposa or Oakhurst, or which town is closer: Mariposa is closer to Yosemite Valley by 30 minutes or more, and Oakhurst is closer to the South Entrance and the Mariposa Grove.
+
+Town | Drive to the Valley | Highway | Elevation | Best for
+
+El Portal | 25 to 35 min | 140, year-round | about 1,900 ft | Sunrise starts, the shortest drive
+Mariposa | 45 to 60 min | 140, year-round | about 2,000 ft | Most first-timers, families, winter
+Groveland | 65 to 80 min | 120, chains common in winter | about 3,100 ft | Character, Hetch Hetchy, Bay Area route
+Oakhurst | 75 to 90 min | 41, year-round | about 2,300 ft | Wawona and the Mariposa Grove
+Lee Vining | 90+ min, summer only | 120 East over Tioga Pass | about 6,800 ft | The high country and Mono Lake
 
 ### The geography you actually need to know
 
@@ -8371,17 +8311,9 @@ Think of the park as having four front doors. There are four entrance stations o
 
 1Arch Rock Entrance, Highway 140: El Portal, Mariposa2South Entrance, Highway 41: Oakhurst3Big Oak Flat Entrance, Highway 120 west: Groveland4Tioga Pass Entrance, US 395 and Highway 120 east, closed in winter: Lee ViningMariposa, Groveland and Oakhurst lie farther down their highways, off the edge of the map. Tap a pin or a town to jump to its section. Map: National Park Service (public domain).
 
-The four routes aren't equal. Highway 140 is the lowest, most reliable, year-round road into the Valley. Highway 41 climbs and drops more and comes in by way of Wawona. Highway 120 from Groveland runs higher still, and Tioga Pass is shut for roughly half the year. The comparison:
+The four routes aren't equal. Highway 140 is the lowest, most reliable, year-round road into the Valley. Highway 41 climbs and drops more and comes in by way of Wawona. Highway 120 from Groveland runs higher still, and Tioga Pass is shut for roughly half the year. The table above puts numbers on each.
 
-Town | Drive to the Valley | Highway | Elevation | Best for
-
-El Portal | 25 to 35 min | 140, year-round | about 1,900 ft | Sunrise starts, the shortest drive
-Mariposa | 45 to 60 min | 140, year-round | about 2,000 ft | Most first-timers, families, winter
-Groveland | 65 to 80 min | 120, chains common in winter | about 3,100 ft | Character, Hetch Hetchy, Bay Area route
-Oakhurst | 75 to 90 min | 41, year-round | about 2,300 ft | Wawona and the Mariposa Grove
-Lee Vining | 90+ min, summer only | 120 East over Tioga Pass | about 6,800 ft | The high country and Mono Lake
-
-The elevation column is the best single predictor of whether you'll be putting chains on in February: El Portal and Mariposa sit low enough that winter storms usually arrive as rain, Groveland is a thousand feet higher and gets chain controls the Highway 140 towns do not, and Lee Vining's road into the park is shut half the year.
+The elevation column in the table is the best single predictor of whether you'll be putting chains on in February: El Portal and Mariposa sit low enough that winter storms usually arrive as rain, Groveland is a thousand feet higher and gets chain controls the Highway 140 towns do not, and Lee Vining's road into the park is shut half the year.
 
 One catch applies to every drive time on this page. Yosemite Valley is about seven miles long, and a time quoted "to the Valley" means its west end, near Bridalveil Fall. Curry Village and the east-end trailheads are another fifteen or twenty minutes past that, plus parking. Plan for the end of the Valley you're actually headed to. The legs the table does not cover (Oakhurst to the South Entrance, Groveland to Big Oak Flat, Lee Vining to Tuolumne Meadows) are collected on the drive times page.
 

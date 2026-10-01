@@ -2,7 +2,7 @@
 
 window.ARTICLE_BODIES = window.ARTICLE_BODIES || {};
 
-window.ARTICLE_BODIES["yosemite-in-june-2026"] = function YosemiteInJune2026Body() {
+window.ARTICLE_BODIES["yosemite-in-june"] = function YosemiteInJune2026Body() {
   return (
     <>
       <p className="dropcap">
@@ -86,7 +86,7 @@ window.ARTICLE_BODIES["yosemite-in-june-2026"] = function YosemiteInJune2026Body
       </p>
 
       <p>
-        <strong>Visit midweek.</strong> Tuesday through Thursday, the park is far less crowded. If you have flexibility, this is the biggest improvement you can make. If you are still deciding <a href="/articles/yosemite-gateway-towns-compared">where to stay in or near Yosemite</a>, booking midweek dates also opens up <AvailabilityLink destination="Yosemite National Park" list="article_inline" slug="yosemite-in-june-2026" name="Yosemite lodging search">more lodging options</AvailabilityLink>.
+        <strong>Visit midweek.</strong> Tuesday through Thursday, the park is far less crowded. If you have flexibility, this is the biggest improvement you can make. If you are still deciding <a href="/articles/yosemite-gateway-towns-compared">where to stay in or near Yosemite</a>, booking midweek dates also opens up <AvailabilityLink destination="Yosemite National Park" list="article_inline" slug="yosemite-in-june" name="Yosemite lodging search">more lodging options</AvailabilityLink>.
       </p>
 
       <p>
@@ -104,7 +104,7 @@ window.ARTICLE_BODIES["yosemite-in-june-2026"] = function YosemiteInJune2026Body
       </p>
 
       <p>
-        <a href="/articles/bears-spring-emergence">Bear-proof food storage</a> is not optional. Every campsite in the park has a bear box. Use it. Every piece of food, every scented item (toothpaste, sunscreen, lip balm), and every cooler goes in the box when you are not actively holding it. If you are day-hiking, do not leave food visible in your car. Not in a bag. Not under a blanket. Not in the trunk of a sedan, which a bear can pry open in under a minute.
+        <a href="/articles/yosemite-bears-safety-guide">Bear-proof food storage</a> is not optional. Every campsite in the park has a bear box. Use it. Every piece of food, every scented item (toothpaste, sunscreen, lip balm), and every cooler goes in the box when you are not actively holding it. If you are day-hiking, do not leave food visible in your car. Not in a bag. Not under a blanket. Not in the trunk of a sedan, which a bear can pry open in under a minute.
       </p>
 
       <p>

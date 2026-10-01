@@ -44,7 +44,7 @@ window.ARTICLE_BODIES["cathedral-lakes-day-hike"] = function CathedralLakesDayHi
       <h2>Best time to hike Cathedral Lakes</h2>
 
       <p>
-        Tioga Road has to be open, which means you're working with a window that runs roughly <strong>late May or early June through October or early November</strong>, depending on snow. In 2026, <a href="/articles/tioga-road-opening-weekend-2026">Tioga Road opened May 15</a>, well ahead of the long-term average.
+        Tioga Road has to be open, which means you're working with a window that runs roughly <strong>late May or early June through October or early November</strong>, depending on snow. In 2026, <a href="/articles/tioga-road-opening-weekend">Tioga Road opened May 15</a>, well ahead of the long-term average.
       </p>
 
       <p>
@@ -66,7 +66,7 @@ window.ARTICLE_BODIES["cathedral-lakes-day-hike"] = function CathedralLakesDayHi
       </p>
 
       <p>
-        <strong>The first half-mile through the meadow.</strong> The approach crosses the edge of Tuolumne Meadows. In July, this stretch is one of the better wildflower walks you'll get all day. Look for shooting star, paintbrush, columbine, lupine, and the yellow Sierra wallflower in the open patches. Sandhill cranes have been documented on the meadow floor in spring. Mule deer and the occasional <a href="/articles/bears-spring-emergence">black bear</a> are regular.
+        <strong>The first half-mile through the meadow.</strong> The approach crosses the edge of Tuolumne Meadows. In July, this stretch is one of the better wildflower walks you'll get all day. Look for shooting star, paintbrush, columbine, lupine, and the yellow Sierra wallflower in the open patches. Sandhill cranes have been documented on the meadow floor in spring. Mule deer and the occasional <a href="/articles/yosemite-bears-safety-guide">black bear</a> are regular.
       </p>
 
       <p>
@@ -130,7 +130,7 @@ window.ARTICLE_BODIES["cathedral-lakes-day-hike"] = function CathedralLakesDayHi
       </p>
 
       <p>
-        Day hikers don't need a bear canister, but <a href="/articles/bears-spring-emergence">secure your food</a> when you stop. Black bears occasionally work the trails near the lakes, especially in the food-conditioning patterns that develop when too many hikers leave snacks unattended.
+        Day hikers don't need a bear canister, but <a href="/articles/yosemite-bears-safety-guide">secure your food</a> when you stop. Black bears occasionally work the trails near the lakes, especially in the food-conditioning patterns that develop when too many hikers leave snacks unattended.
       </p>
 
       <h2>Common mistakes</h2>

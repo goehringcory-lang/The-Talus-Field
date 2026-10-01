@@ -257,23 +257,8 @@ window.ARTICLE_BODIES["yosemite-gateway-towns-compared"] = function YosemiteGate
         I've stayed in all five towns. The comparison below separates the drive to an entrance from the drive to Yosemite Valley, which is where most first-time visitors spend their days. Treat the drive times as planning estimates and allow extra time for traffic, entrance queues, and stops.
       </p>
 
-      <h2 id="sec-0-the-geography-you-actually-need-to-know">The geography you actually need to know</h2>
-
       <p>
-        Think of the park as having four front doors. There are four entrance stations on the through roads, roughly one at each point of the compass, and each gateway town belongs to one of them. There's a fifth, the Hetch Hetchy entrance, but it's a dead end into a single valley and doesn't connect to anything.
-      </p>
-
-      <ul>
-        <li><strong>Arch Rock Entrance</strong>, Highway 140 from the west: the most direct route to Yosemite Valley. <strong>El Portal</strong> is at the gate, <strong>Mariposa</strong> further down the road.</li>
-        <li><strong>Big Oak Flat Entrance</strong>, Highway 120 from the northwest: <strong>Groveland</strong>.</li>
-        <li><strong>South Entrance</strong>, Highway 41 from the south: the route to Wawona and the Mariposa Grove. <strong>Oakhurst</strong>.</li>
-        <li><strong>Tioga Pass Entrance</strong>, Highway 120 East from the east, open only in summer: <strong>Lee Vining</strong>.</li>
-      </ul>
-
-      <GatewayMap />
-
-      <p>
-        The four routes aren't equal. Highway 140 is the lowest, most reliable, year-round road into the Valley. Highway 41 climbs and drops more and comes in by way of Wawona. Highway 120 from Groveland runs higher still, and Tioga Pass is shut for roughly half the year. The comparison:
+        The short comparison, for the searches that ask <strong>Mariposa or Oakhurst</strong>, or which town is closer: Mariposa is closer to Yosemite Valley by 30 minutes or more, and Oakhurst is closer to the South Entrance and the Mariposa Grove.
       </p>
 
       <div className="table-scroll">
@@ -291,8 +276,27 @@ window.ARTICLE_BODIES["yosemite-gateway-towns-compared"] = function YosemiteGate
         </table>
       </div>
 
+      <h2 id="sec-0-the-geography-you-actually-need-to-know">The geography you actually need to know</h2>
+
       <p>
-        The elevation column is the best single predictor of whether you'll be putting chains on in February: El Portal and Mariposa sit low enough that winter storms usually arrive as rain, Groveland is a thousand feet higher and gets chain controls the Highway 140 towns do not, and Lee Vining's road into the park is shut half the year.
+        Think of the park as having four front doors. There are four entrance stations on the through roads, roughly one at each point of the compass, and each gateway town belongs to one of them. There's a fifth, the Hetch Hetchy entrance, but it's a dead end into a single valley and doesn't connect to anything.
+      </p>
+
+      <ul>
+        <li><strong>Arch Rock Entrance</strong>, Highway 140 from the west: the most direct route to Yosemite Valley. <strong>El Portal</strong> is at the gate, <strong>Mariposa</strong> further down the road.</li>
+        <li><strong>Big Oak Flat Entrance</strong>, Highway 120 from the northwest: <strong>Groveland</strong>.</li>
+        <li><strong>South Entrance</strong>, Highway 41 from the south: the route to Wawona and the Mariposa Grove. <strong>Oakhurst</strong>.</li>
+        <li><strong>Tioga Pass Entrance</strong>, Highway 120 East from the east, open only in summer: <strong>Lee Vining</strong>.</li>
+      </ul>
+
+      <GatewayMap />
+
+      <p>
+        The four routes aren't equal. Highway 140 is the lowest, most reliable, year-round road into the Valley. Highway 41 climbs and drops more and comes in by way of Wawona. Highway 120 from Groveland runs higher still, and Tioga Pass is shut for roughly half the year. The table above puts numbers on each.
+      </p>
+
+      <p>
+        The elevation column in the table is the best single predictor of whether you'll be putting chains on in February: El Portal and Mariposa sit low enough that winter storms usually arrive as rain, Groveland is a thousand feet higher and gets chain controls the Highway 140 towns do not, and Lee Vining's road into the park is shut half the year.
       </p>
 
       <p>

@@ -202,7 +202,7 @@ const ORIENT_SERVICES = [
 // park-wide zoom. Positions sit in open ground beside each area rather than on
 // it, so a label never covers the area's own pins or cluster. glacier-point-how-to-visit (about an hour),
 // yosemite-camping-complete-guide (Wawona, about an hour south),
-// tioga-road-opening-weekend-2026 (roughly 90 minutes), getting-to-yosemite
+// tioga-road-opening-weekend (roughly 90 minutes), getting-to-yosemite
 // (Hetch Hetchy), tuolumne-meadows-in-a-day (no gas at Tuolumne).
 const ORIENT_AREAS = [
   { id: "valley", label: "Yosemite Valley", line: "Where most first days start. No gas.", pos: { lat: 37.785, lng: -119.6 } },

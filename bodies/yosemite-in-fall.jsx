@@ -20,7 +20,7 @@ window.ARTICLE_BODIES["yosemite-in-fall"] = function YosemiteInFallBody() {
       </p>
 
       <p>
-        The October figure matters most. It is not a marginal improvement: the same roads and the same granite, with nearly four in ten of the summer visitors absent. Trailhead lots that require a pre-dawn arrival in July have midmorning parking in October. The Mist Trail, which in June is a queue, is a trail again. And with the day-use reservation system retired for 2026, the summer months are absorbing that demand without a throttle, which sharpens the contrast further. The <a href="/articles/when-to-visit-yosemite-2026-crowd-forecast">crowd forecast</a> has the week-by-week detail.
+        The October figure matters most. It is not a marginal improvement: the same roads and the same granite, with nearly four in ten of the summer visitors absent. Trailhead lots that require a pre-dawn arrival in July have midmorning parking in October. The Mist Trail, which in June is a queue, is a trail again. And with the day-use reservation system retired for 2026, the summer months are absorbing that demand without a throttle, which sharpens the contrast further. The <a href="/articles/when-to-visit-yosemite">crowd forecast</a> has the week-by-week detail.
       </p>
 
       <p>

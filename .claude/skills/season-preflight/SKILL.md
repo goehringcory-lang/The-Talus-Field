@@ -66,6 +66,14 @@ Build it from the repo, never from memory:
   calendar year, and its season opens on January 1. A successor is due when
   the slug with its year advanced does not exist and the first month of
   next year's season falls inside the window.
+  **Four pieces are not on this list since October 2026**: `when-to-visit-yosemite`,
+  `yosemite-in-june`, `yosemite-trip-cost-budget` and
+  `tioga-road-opening-weekend` dropped the year from their slugs (301s from
+  the old ones), so they never get a successor. Each is refreshed in place
+  every season: the year in the title, dek, dates and figures, `isoModified`,
+  its `BODY_VERSIONS` entry. Treat one as due when its title still names a
+  past year or its season opens inside the window, and open the in-place
+  refresh as the article PR.
 
 ## Phase 2 — The dates PR (every run)
 
@@ -127,8 +135,9 @@ first and name the rest in the summary for the next run.
    and put the finding in the summary for the intel cycle.
 2. **Write it** through `.claude/skills/weekly-trend-article/SKILL.md`
    Phases 4 to 8, with these overrides:
-   - slug: last year's slug with the year advanced
-     (`tioga-road-opening-weekend-2027`), the same `cat`;
+   - slug: last year's slug with the year advanced (for example
+     `yosemite-in-october-2027`), the same `cat`; the four year-less pieces
+     named under Successors due are edited in place instead and keep their slug;
    - the piece answers what is different this year and links last year's
      edition rather than restating it; a date the park has not announced is
      written as when the park announces it, never as last year's date;

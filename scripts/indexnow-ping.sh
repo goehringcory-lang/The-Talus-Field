@@ -9,7 +9,7 @@
 # Example:
 #   INDEXNOW_ADMIN_TOKEN=hunter2 ./scripts/indexnow-ping.sh \
 #     https://thetalusfieldjournal.com/ \
-#     https://thetalusfieldjournal.com/articles/tioga-road-opening-weekend-2026
+#     https://thetalusfieldjournal.com/articles/tioga-road-opening-weekend
 
 set -euo pipefail
 

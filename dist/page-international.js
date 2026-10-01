@@ -162,8 +162,8 @@ function InternationalPage({
     side: true,
     cite: "What a week costs"
   }, "The entrance fee is the smallest line."), React.createElement("p", null, "The entrance fee is the smallest line. Lodging, fuel, food and the drive from the airport are the budget, and", " ", React.createElement("a", {
-    href: "/articles/yosemite-trip-cost-budget-2026",
-    onClick: e => goA(e, "yosemite-trip-cost-budget-2026")
+    href: "/articles/yosemite-trip-cost-budget",
+    onClick: e => goA(e, "yosemite-trip-cost-budget")
   }, "the trip-cost breakdown"), " ", "prices a week three ways. A first visit with a few days to spend follows", " ", React.createElement("a", {
     href: "/articles/yosemite-in-three-to-five-days",
     onClick: e => goA(e, "yosemite-in-three-to-five-days")

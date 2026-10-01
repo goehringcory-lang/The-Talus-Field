@@ -165,7 +165,7 @@ window.ARTICLE_BODIES["yosemite-from-los-angeles"] = function YosemiteFromLosAng
       <h2>What the trip costs at the gate</h2>
 
       <p>
-        The park entrance fee is <strong>$35 per private vehicle, good for seven consecutive days</strong>, and $20 per person for anyone arriving on foot, by bicycle, or on a non-commercial bus. An America the Beautiful annual pass covers the vehicle fee. There is no reservation fee in 2026 because there is no reservation. Fuel, food, and the night in Oakhurst are the real costs, and <a href="/articles/yosemite-trip-cost-budget-2026">the trip budget</a> works through them for a range of party sizes.
+        The park entrance fee is <strong>$35 per private vehicle, good for seven consecutive days</strong>, and $20 per person for anyone arriving on foot, by bicycle, or on a non-commercial bus. An America the Beautiful annual pass covers the vehicle fee. There is no reservation fee in 2026 because there is no reservation. Fuel, food, and the night in Oakhurst are the real costs, and <a href="/articles/yosemite-trip-cost-budget">the trip budget</a> works through them for a range of party sizes.
       </p>
 
       <h2>The shape of the trip that works</h2>

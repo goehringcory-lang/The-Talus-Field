@@ -68,7 +68,7 @@ use, and the evidence lines behind it.
      instead.
    - **Evergreen phrasing by default.** A year belongs in the slug and copy only
      when the content is genuinely dated (the way
-     `when-to-visit-yosemite-2026-crowd-forecast` is); the event decision-aid
+     `when-to-visit-yosemite` is); the event decision-aid
      pages (`/firefall` etc.) are deliberately yearless and are not this
      routine's format.
    - **Fallback ladder**: strongest trend topic → best seasonal gap (a coming

@@ -72,7 +72,7 @@ window.ARTICLE_BODIES["yosemite-bears-safety-guide"] = function YosemiteBearsSaf
         Bear spray is remarkably effective against grizzly bears. A landmark 2008 study by Tom Smith and Stephen Herrero, published in the <em>Journal of Wildlife Management</em>, analyzed 83 bear spray incidents in Alaska involving 175 people and found it stopped aggressive behavior 92% of the time. That's a better track record than firearms. It's also completely irrelevant here, because there are no grizzly bears in Yosemite. There have not been since around 1895, when the last one was shot near Crescent Lake. The California grizzly has been extinct for over a century.
       </p>
 
-      <p>Is bear spray legal in Yosemite? No. Not in any form, not under any circumstances. <a href="/articles/is-bear-spray-allowed-in-yosemite">The full answer, including the California-wide question</a>, is its own piece.</p>
+      <p>Is bear spray legal in Yosemite? No. Not in any form, not under any circumstances. <a href="/articles/is-bear-spray-allowed-in-yosemite">Why bear spray is illegal in Yosemite</a>, including the California-wide question, is its own piece.</p>
 
       <p>
         Yosemite has only American black bears, <em>Ursus americanus</em>, somewhere between 300 and 500 of them. They are a fundamentally different animal in temperament, size, and behavior. An adult male black bear in Yosemite weighs between 250 and 350 pounds. An adult male grizzly can top 700. More importantly, the behavioral profile is different. Grizzlies are territorial and defensive. Black bears are opportunistic and, overwhelmingly, avoidant. The tools you need for each species are not the same.
@@ -180,11 +180,21 @@ window.ARTICLE_BODIES["yosemite-bears-safety-guide"] = function YosemiteBearsSaf
       </p>
 
       <p>
-        At Yosemite's mid-elevations, where the Valley floor sits at about 4,000 feet and most campgrounds cluster between 4,000 and 8,000 feet, bears are sometimes active during warm winter periods. Food availability is the primary driver, not temperature alone. A stretch of warm days in January can bring bears <a href="/articles/bears-spring-emergence">out of their dens</a> to forage. They have been documented digging under snow for cached acorns.
+        At Yosemite's mid-elevations, where the Valley floor sits at about 4,000 feet and most campgrounds cluster between 4,000 and 8,000 feet, bears are sometimes active during warm winter periods. Food availability is the primary driver, not temperature alone. A stretch of warm days in January can bring bears out of their dens to forage. They have been documented digging under snow for cached acorns.
       </p>
 
       <p>
         This matters practically because it means food storage rules apply year-round, not just during the summer season. If you're camping in Yosemite in November or March, the bear boxes are not decorative. Use them. I have spoken with visitors in late October who assumed the bears were "asleep" and left food on their picnic table overnight. The bears were not asleep. A bear that finds food in winter learns a lesson it carries into the next season and the one after that. Food conditioning is cumulative. Every easy meal makes the next car window look more worth breaking.
+      </p>
+
+      <h3 id="spring-bears-hungriest">Why a bear in April is more dangerous than a bear in August</h3>
+
+      <p>
+        A bear leaves its den in the weeks after the middle of March, and it has spent four to five months at roughly a quarter of its normal metabolic rate. Its heart rate fell from 70 to 100 beats a minute to 8 to 10, it did not eat or drink, and it came out having lost somewhere between 15 and 30 percent of its body weight. The trigger for waking is not hunger. Lengthening days and warming air reset the bear's circadian rhythm, and it wakes very hungry with a digestive system that is still restarting.
+      </p>
+
+      <p>
+        The landscape offers little to meet that demand. The first food at Yosemite's elevations is sedge shoots, new grass and ephemeral herbs, which are low in calories, so a spring bear forages for hours a day and is drawn toward cabins, campsites and parked cars. A spring bear is also less likely to be deterred by noise than a fall bear that is already fat. C. A. Harwell, then the park naturalist, wrote in the March 1931 <em>Nature Notes</em> that bears come out of their dens "usually by the middle of March" and "are careful how they break their long hibernation fast"; his account of that season is <a href="/archive/1931/vol-10-no-3/">in the archive</a>. The practical rule is the one in the storage section below: from March through June, every scented item goes in the bear box, and the trunk of a car is not a bear box.
       </p>
 
       <h2>What to do if you see a bear in Yosemite</h2>

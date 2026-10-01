@@ -166,7 +166,7 @@ window.ARTICLE_BODIES["yosemite-waterfalls-guide"] = function YosemiteWaterfalls
       <h2>The takeaway</h2>
 
       <p>
-        Plan a waterfall trip for <strong>April through June</strong>, with May as the bullseye. Those months also carry real crowds, which is a solvable problem covered in the <a href="/articles/when-to-visit-yosemite-2026-crowd-forecast">2026 crowd forecast</a>. Before you drive, check current webcams and flow reality on the <a href="/conditions">conditions page</a> rather than trusting any photograph, including ours.
+        Plan a waterfall trip for <strong>April through June</strong>, with May as the bullseye. Those months also carry real crowds, which is a solvable problem covered in the <a href="/articles/when-to-visit-yosemite">2026 crowd forecast</a>. Before you drive, check current webcams and flow reality on the <a href="/conditions">conditions page</a> rather than trusting any photograph, including ours.
       </p>
 
       <p>

@@ -143,7 +143,7 @@ function ChecklistPage({
   }, React.createElement("input", {
     type: "checkbox"
   }), React.createElement(A, {
-    r: "a:tioga-road-opening-weekend-2026"
+    r: "a:tioga-road-opening-weekend"
   }, "Tuolumne Meadows"), " campground: opens on Recreation.gov in advance; books fast."), React.createElement("label", {
     className: "fj-check"
   }, React.createElement("input", {
@@ -213,7 +213,7 @@ function ChecklistPage({
   }), React.createElement("strong", null, React.createElement(A, {
     r: "a:yosemite-gateway-towns-compared"
   }, "Lee Vining")), ": east side; ", React.createElement(A, {
-    r: "a:tioga-road-opening-weekend-2026"
+    r: "a:tioga-road-opening-weekend"
   }, "Tuolumne and Mono Lake"), ". Summer only."), React.createElement("label", {
     className: "fj-check"
   }, React.createElement("input", {
@@ -287,7 +287,7 @@ function ChecklistPage({
   }, "Glacier Point"), ", ", React.createElement(A, {
     r: "a:giant-sequoias-fire-adaptation"
   }, "Mariposa Grove"), ", and ", React.createElement(A, {
-    r: "a:tioga-road-opening-weekend-2026"
+    r: "a:tioga-road-opening-weekend"
   }, "Tuolumne"), " in one day. Pick two."), React.createElement("label", {
     className: "fj-check"
   }, React.createElement("input", {
@@ -320,7 +320,7 @@ function ChecklistPage({
   }, React.createElement("input", {
     type: "checkbox"
   }), "Every scented item in the ", React.createElement(A, {
-    r: "a:bears-spring-emergence"
+    r: "a:yosemite-bears-safety-guide"
   }, "bear box"), " when you leave the car. Trunk is not bear-proof."), React.createElement("label", {
     className: "fj-check"
   }, React.createElement("input", {
