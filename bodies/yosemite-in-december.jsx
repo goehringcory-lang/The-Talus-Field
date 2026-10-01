@@ -1,0 +1,180 @@
+/* global React, Placeholder, MotifMountains, AffiliateNote, LodgingCta */
+
+window.ARTICLE_BODIES = window.ARTICLE_BODIES || {};
+
+window.ARTICLE_BODIES["yosemite-in-december"] = function YosemiteInDecemberBody() {
+  return (
+    <>
+      <p className="dropcap">
+        December in Yosemite is three different trips that happen to share a calendar page. The first two weeks are the emptiest stretch of the year that still has lodging open, with the high country shut and most of the ski-season machinery not yet running. The middle of the month is when the winter operations come on: the road to Badger Pass is plowed, the ski shuttle starts, and the Ahwahnee stages the Bracebridge Dinner. And the last week, from about December 23 into the New Year, is one of the busiest weeks of the winter, a holiday crowd arriving in a park that has short days, icy paths, and a fraction of its summer parking. Which December you book decides almost everything else about the trip, so start there.
+      </p>
+
+      <p>
+        What follows is the month as the park's own records describe it: the weather normals, the road-closing history, the campground windows, and the dates the concessioner publishes. The general case for the season, including the full chain-control explainer, Badger Pass, and Dewey Point, is in <a href="/articles/yosemite-in-winter">the winter guide</a>. This piece is about what is specific to December.
+      </p>
+
+      <h2>The weather, in numbers</h2>
+
+      <p>
+        The Park Service's normals for Yosemite Valley, at about 4,000 feet, give December an <strong>average high of 46°F and an average low of 28°F</strong>, with about 5.6 inches of precipitation. That makes December the coldest month of the year by its average high, two degrees below January, and the third wettest, behind January and February. The park says it receives 95 percent of its precipitation between October and May and more than 75 percent between November and March, so a December trip is a trip into the storm season, not the edge of it.
+      </p>
+
+      <p>
+        Whether that precipitation arrives as rain or snow on the Valley floor is a storm-by-storm question. The park's own phrasing is that the Valley "can be rainy or snowy in any given winter storm," and that is the honest forecast for any December date booked more than a week out. Up high there is no question: Tuolumne Meadows, at 8,600 feet, averages a December high of 40°F and a low of 12°F, and the park describes most of Yosemite as blanketed in snow from about November through May. Pack for both kinds of Valley day, freezing rain and dry cold, and assume the nights will be below freezing either way.
+      </p>
+
+
+      <h2>What is open, and what the road record says</h2>
+
+      <p>
+        <strong>Yosemite Valley and Wawona are reachable by car all year</strong>, the park says, and they are the core of a December trip. Most of the rest is decided before the month starts, and the park's historical dataset of opening and closing dates makes the point plainly.
+      </p>
+
+      <p>
+        <strong>Tioga Road is closed.</strong> In the ten seasons from 2016 through 2025 it closed for the winter between October 21 and November 20 every year. The record holds exactly two exceptions worth knowing about, both dry winters: the park reopened the road from December 23, 1999, to January 1, 2000, and again from December 16, 2011, to January 17, 2012. Neither is a plan. If your December itinerary includes Olmsted Point, Tenaya Lake, or Tuolumne Meadows, take them out.
+      </p>
+
+      <p>
+        <strong>Glacier Point Road is closed past Badger Pass.</strong> In the same ten seasons it closed by late November in every year it opened but one (2021, when it held until December 7). From mid-December through early April, the park plows the first stretch of the road as far as the Badger Pass Ski Area, and no farther; the drive-up view from Glacier Point is not part of any December trip. The rim is still reachable on snowshoes or skis from Badger Pass, which is the winter guide's territory.
+      </p>
+
+      <p>
+        <strong>The Mariposa Grove is open, but on foot.</strong> The grove road closed on November 30 in each of the three seasons from 2023 through 2025, and the free shuttle from the Welcome Plaza near the South Entrance runs no later than November 30 in any year. In December you walk in: the park describes the Washburn Trail as a two-mile route to the grove with 500 feet of gain, and warns that it may be snowy or icy enough for skis or snowshoes. The full walk-in plan is in <a href="/articles/mariposa-grove-how-to-visit">the Mariposa Grove guide</a>.
+      </p>
+
+      <h2>The first half of the month: quiet, with a gap in the rooms</h2>
+
+      <p>
+        The first two weeks of December are the quiet ones. Thanksgiving traffic has gone home, the holiday crowd has not arrived, and the concessioner's winter rates have started: its current offers at the Ahwahnee and Yosemite Valley Lodge run from November 29 on select dates. This is the stretch where a midweek Valley loop can feel close to empty.
+      </p>
+
+      <p>
+        Two things narrow it. The first is <strong>Curry Village</strong>, the cabin and tent-cabin village under Glacier Point. The concessioner's Curry Village page currently lists it as not open from November 29 through December 10, 2026, and its winter rate there starts December 13. If your plan depends on a Curry tent cabin, check that page for the closure window before you pick dates, because in the first ten days of December the in-park choice may be the Ahwahnee or Yosemite Valley Lodge and nothing in between. The second is that the winter recreation is not running yet. Badger Pass opens when it has snow to open on, and the plowed road and the ski shuttle start with it.
+      </p>
+
+      <p>
+        The trails, meanwhile, are often in better shape in early December than later. The park's record of seasonal trail closures shows the <strong>Four Mile Trail</strong>, the Valley's route up to Glacier Point, closing for the winter as early as November 11 (in 2022) and as late as January 7 (the 2023 season), and in seven of the eight seasons from 2018 through 2025 the closure came in December or later. The Mist Trail's winter closure has ranged across the same span in the seasons the record dates since 2018, from November 11 to January 7. In plain terms, an early-December visitor has a real chance of finding trails open that a late-December visitor will find gated, and no way of knowing in advance. Check the park's conditions page the week you go, and read <a href="/articles/yosemite-winter-hikes">the winter hiking guide</a> for what stays open once the gates close.
+      </p>
+
+      <h2>Mid-month: Badger Pass, the rink, and the Bracebridge Dinner</h2>
+
+      <p>
+        The park's transportation page says the free shuttle between the Valley and Badger Pass runs whenever the ski area's facilities are open, "typically mid-December through March," and the plowed road to Badger follows the same calendar. For a December visitor that means the ski area, the tubing hill, the snowshoe trails, and the ranger-led snowshoe walks described in the winter guide are mid-month-onward options at best, and only in a year with snow. The concessioner runs a Snow Phone at 209/372-1000 for conditions and ski area information; call it before you build a day around Badger.
+      </p>
+
+      <p>
+        The <strong>Curry Village ice rink</strong>, which the concessioner says has been operating since 1928, is the winter activity that needs no snow and no skill. Its published schedule runs three sessions a day, at noon, 3:30, and 7 p.m., with an extra 8:30 a.m. session on weekends and holidays, and tickets can be bought online in advance or at the Curry Village tour desk. The opening date for each season is set by the concessioner; as of this writing it lists the coming season's as to be determined, so confirm it before you promise a skate to anyone.
+      </p>
+
+      <p>
+        Mid-December also belongs to the <strong>Bracebridge Dinner</strong>, the Ahwahnee's four-hour Tudor dinner pageant, staged on a run of evenings before Christmas. The concessioner's current schedule lists performances on alternating nights from December 8 through December 22, and a ticket covers the dinner and the performance only; the room is a separate booking. What it is, what it costs, and whether it is worth building a trip around are all in <a href="/articles/bracebridge-dinner-and-vintners-holidays">the Bracebridge and Vintners' Holidays guide</a>. The practical December note is simpler: on performance nights the Ahwahnee is busy, and its rooms on those dates go first.
+      </p>
+
+      <Placeholder
+        caption="The Ahwahnee, which runs all winter and stages the Bracebridge Dinner through the weeks before Christmas"
+        image="img/ahwahnee-hotel.jpg"
+        credit="Photo: Chris Dunstan / Wikimedia Commons (public domain)"
+        tag="PLATE I"
+        size="lg"
+        style={{ aspectRatio: "16 / 10", margin: "32px 0" }}
+        motif={<MotifMountains />}
+      />
+
+      <h2>The holiday week</h2>
+
+      <p>
+        The Park Service says it directly on its winter page: Yosemite "may be very busy during winter holidays, especially in late December and early January, with traffic congestion and limited parking possible." The concessioner says the same thing in its own language. Every one of its current winter discounts, at the Ahwahnee, Yosemite Valley Lodge, and Curry Village, carries the same blackout window, <strong>December 23 through January 2</strong>. That is the hotel company telling you when it expects to sell out at full price.
+      </p>
+
+      <p>
+        Three things follow. First, holiday-week lodging in the Valley is a book-early problem in a season that otherwise rewards booking late; if the week between Christmas and New Year's is your only window, reserve the room before anything else. Second, the Valley's parking behaves more like a summer weekend than a winter weekday, so arrive early and use the free shuttle once you are parked; <a href="/articles/yosemite-valley-parking-guide">the parking guide</a> covers which lots fill first. Third, the evenings have one marquee event: the Ahwahnee's New Year's Eve Dinner Dance, which the concessioner lists for December 31 from 8:30 p.m. to 12:30 a.m. Everything else on the holiday week is the same park as the rest of the month, with more people standing at Tunnel View.
+      </p>
+
+      <p>
+        There is no entrance reservation to plan around. The park dropped its timed-entry system for 2026, and entry is first come, first served on the standard pass, which is $35 for a private vehicle. Visitors who are not US residents should read <a href="/international">the international visitors page</a> first, because the park's fee page adds a $100 per-person fee for non-residents.
+      </p>
+
+      <h2>Driving in: chains are the default</h2>
+
+      <p>
+        The park's guidance is to expect chain requirements from November through March, which makes December squarely chain season. The rule that catches visitors is not the mounting but the carrying: when a chain control is in effect inside the park, <strong>every vehicle must have chains in it</strong>, four-wheel drives and rentals included, whether or not the control level requires them on the tires. Under R1, a car under 6,000 pounds with snow tires on at least two drive wheels may go without mounting them; under R2, only a four-wheel or all-wheel drive vehicle with snow tires on all four wheels is exempt from mounting; under R3, everyone chains up. The park lists a citation of up to $5,000 for failing to put chains on when required. The drawn version of that grid is in <a href="/articles/yosemite-in-winter">the winter guide</a>.
+      </p>
+
+      <p>
+        The road-conditions line inside the park is 209/372-0200, then 1, then 1, and it is the call to make the morning you drive in. Route choice matters in December: Highway 140 through the Merced River canyon is the lowest approach and the one most likely to take rain while the others take snow, and it is the one route YARTS buses run year-round, from Merced through Mariposa and El Portal. The entrance-by-entrance comparison is in <a href="/articles/getting-to-yosemite">the entrances guide</a>.
+      </p>
+
+      <h2>Where to sleep in December</h2>
+
+      <p>
+        <strong>In the park</strong>, the Ahwahnee and Yosemite Valley Lodge carry the month. Curry Village rejoins them once its early-December closure ends, and its heated canvas tent cabins are a real option in winter: the concessioner turns the heat on from the Tuesday after Labor Day to the Friday before Memorial Day, though the tents have no plumbing, so the bathroom is a walk on what may be an icy path. Housekeeping Camp is out of season (its current operating season ended October 12), and the Wawona Hotel is closed while the Park Service conducts a condition assessment of the complex, with no reopening date posted. The trade-offs among the remaining options are laid out in <a href="/articles/where-to-stay-in-yosemite">the lodging guide</a>.
+      </p>
+
+      <p>
+        <strong>Camping</strong> in December is a small, specific list. Upper Pines is the only campground on reservations all year, and its December dates go on sale on the park's monthly calendar: arrivals from November 15 through December 14 open on July 15, and arrivals from December 15 through January 14 open on August 15, at 7 a.m. Pacific. By the time most people plan a December trip, Upper Pines has been on sale for months, and the honest route in is a cancellation. Camp 4, Wawona, and Hodgdon Meadow are first come, first served in winter. Sleeping in a vehicle anywhere outside a campsite you have registered for is not allowed. Plan on overnight lows below freezing and a tent that can take snow load.
+      </p>
+
+      <p>
+        <strong>Outside the park</strong>, the gateway towns on Highway 140 put you below the snow line most nights and on the year-round bus route, which is the strongest argument for Mariposa or El Portal in December. The town-by-town comparison is on <a href="/stay">the lodging board</a>.
+      </p>
+
+      <h2>A naturalist's December</h2>
+
+      <p>
+        The waterfalls are low going into the month. The park's description of the winter is that water levels tend to be low, but once some snow and rain have fallen, Yosemite Falls begins flowing again, though not at springtime levels. A wet December brings the falls back from the autumn stains; a dry one leaves them quiet until the new year. Either way the river is low and clear, and the Valley's sound is mostly the absence of crowds.
+      </p>
+
+      <p>
+        The trees are worth looking at differently in December. The park notes that California black oaks, the broad trees of the Valley meadows, are winter deciduous but tend to hold their dead leaves, which gives a heavy snowfall a large surface to load, and broadleaf trees do not shed snow the way conifers do. After a wet storm, listen for limbs giving way, and do not linger under an oak with snow on it. The bare crowns also show something the summer canopy hides. A century ago the naturalist Enid Michael wrote in the <a href="/archive/1923/vol-2-no-16/">December 1923 Yosemite Nature Notes</a> that it would be difficult to find any mature oak in Yosemite Valley without its crown of mistletoe, and that bluebirds, Townsend's solitaires, and waxwings eat the berries and plant the seed on the branches where they perch. The clumps are easiest to see now, against the winter sky.
+      </p>
+
+      <p>
+        The same bulletin, a year later, recorded a December visitor that confused residents: the <a href="/archive/1924/vol-3-no-22/">varied thrush</a>, a robin-shaped bird with an orange breast and a dark collar that the naturalists described moving singly or in small flocks through the snow-covered Valley, shy enough to vanish while you watch it. Old notes are not a census, and the winter birds of any one December depend on the year, but they are a good reminder of what a quiet month is for.
+      </p>
+
+      <h2>How to build a December trip</h2>
+
+      <p>
+        <strong>Pick your third of the month first.</strong> If you want the park nearly to yourself and can live without Badger Pass, come in the first two weeks, midweek, and check the Curry Village closure before you choose a room. If skiing, snowshoeing, or the rink is the point, come after mid-month and confirm Badger is open before you drive up. If the holidays are the only time you have, book the room first, accept the crowd, and plan to be parked early.
+      </p>
+
+      <p>
+        <strong>Then plan the days around light and ice.</strong> These are the shortest days of the year, and the Valley's high walls take the sun off the floor earlier still, so plan the long walk for the middle of the day and keep the late afternoon for the rink, a drive to Tunnel View, or a fire. Carry traction cleats for the paved paths, chains for the car, and one unscheduled day for the storm that changes the plan.
+      </p>
+
+      <p>
+        <strong>Read the conditions page the morning of.</strong> Roads, trail closures, chain controls, and the ski area all change by the day in this month. The <a href="/conditions">conditions page</a> collects the park's live feeds and the phone numbers in one place. Come up 140, stay in or near the Valley, and let the weather pick between the snow day and the dry one.
+      </p>
+
+      <LodgingCta
+        destination="Yosemite National Park"
+        heading="December rooms depend on which week"
+        note="Early December is one of the easiest times of the year to find a room in or near the Valley. The week from December 23 into the New Year is the opposite: the concessioner blacks out its winter rates for it, and the in-park rooms go first. A search on your dates shows quickly which December you are dealing with."
+        list="article_cta"
+        slug="yosemite-in-december"
+        cta="Search December lodging around Yosemite →"
+      />
+
+      <AffiliateNote />
+
+      <h3>Sources</h3>
+      <ul style={{ fontSize: 14 }}>
+        <li><a href="https://www.nps.gov/yose/planyourvisit/weather.htm" target="_blank" rel="noopener noreferrer">Weather and Climate, NPS Yosemite</a></li>
+        <li><a href="https://www.nps.gov/yose/planyourvisit/winter.htm" target="_blank" rel="noopener noreferrer">Visiting in Winter, NPS Yosemite</a></li>
+        <li><a href="https://www.nps.gov/yose/planyourvisit/seasonal.htm" target="_blank" rel="noopener noreferrer">Historical Seasonal Opening and Closing Dates, NPS Yosemite</a></li>
+        <li><a href="https://www.nps.gov/yose/planyourvisit/tirechains.htm" target="_blank" rel="noopener noreferrer">Tire Chain Requirements, NPS Yosemite</a></li>
+        <li><a href="https://www.nps.gov/yose/planyourvisit/publictransportation.htm" target="_blank" rel="noopener noreferrer">Public Transportation, NPS Yosemite</a></li>
+        <li><a href="https://www.nps.gov/yose/planyourvisit/camping.htm" target="_blank" rel="noopener noreferrer">Campground Reservations, NPS Yosemite</a></li>
+        <li><a href="https://www.nps.gov/yose/planyourvisit/fees.htm" target="_blank" rel="noopener noreferrer">Fees and Passes, NPS Yosemite</a></li>
+        <li><a href="https://www.nps.gov/yose/planyourvisit/reservations.htm" target="_blank" rel="noopener noreferrer">Entrance Reservations, NPS Yosemite</a></li>
+        <li><a href="https://www.nps.gov/yose/learn/nature/black-oaks.htm" target="_blank" rel="noopener noreferrer">Black Oaks, NPS Yosemite</a></li>
+        <li><a href="https://www.travelyosemite.com/lodging/curry-village/" target="_blank" rel="noopener noreferrer">Curry Village, Yosemite Hospitality</a></li>
+        <li><a href="https://www.travelyosemite.com/special-offers/specials-packages" target="_blank" rel="noopener noreferrer">Specials and Packages, Yosemite Hospitality</a></li>
+        <li><a href="https://www.travelyosemite.com/things-to-do/ice-skating/" target="_blank" rel="noopener noreferrer">Curry Village Ice Skating Rink, Yosemite Hospitality</a></li>
+        <li><a href="https://www.travelyosemite.com/winter/badger-pass-ski-area/" target="_blank" rel="noopener noreferrer">Badger Pass Ski Area, Yosemite Hospitality</a></li>
+        <li><a href="https://www.travelyosemite.com/things-to-do/specialty-events/food-and-wine-events/bracebridge-dinner" target="_blank" rel="noopener noreferrer">The Bracebridge Dinner, Yosemite Hospitality</a></li>
+        <li><a href="https://www.travelyosemite.com/things-to-do/specialty-events/holiday-events/new-years-eve" target="_blank" rel="noopener noreferrer">New Year's Eve at Yosemite, Yosemite Hospitality</a></li>
+      </ul>
+    </>
+  );
+};
