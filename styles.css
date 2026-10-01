@@ -11604,3 +11604,90 @@ html[data-nav-mode="pinned"] { scroll-padding-top: 62px; }
   .sx-bloom__track i { display: block; background: var(--hp-accent); }
   .sx-vs__t { font-size: 28px; }
 }
+
+/* ── /articles/sustainable-yosemite-car-free-zero-waste: the `.sv-*` pieces ─
+   The third feature article on the `.hp-event` tokens and `.ff-*` kit. Its
+   own pieces: the park's footprint figures, the YARTS fare card beside three
+   rider rules, the entrance-fee table, the four bins, and the EV charger
+   counts. The Valley map is the shared `.npsmap` pattern on the dining
+   article's crop. Every figure restates a sentence in the body. */
+.sv-feature .ff-split > * { min-width: 0; }
+.sv-prose { font: 17px/1.75 var(--sans); color: var(--hp-ink); max-width: 640px; }
+.sv-prose p { margin: 0 0 1.1em; }
+.sv-prose p:last-child { margin-bottom: 0; }
+.sv-prose strong { font-weight: 600; }
+.sv-prose a, .sv-feature .ff-note a { color: inherit; text-decoration: underline; text-decoration-color: var(--hp-accent); text-decoration-thickness: 1px; text-underline-offset: 3px; }
+.sv-prose a:hover, .sv-feature .ff-note a:hover { color: var(--hp-accent); }
+.sv-prose .dropcap::first-letter { font-family: var(--serif); font-weight: 400; font-size: 4.1em; float: left; line-height: 0.82; margin: 0.08em 0.1em 0 -0.03em; color: var(--hp-accent); }
+.sv-open .sv-prose { font: 19px/1.6 var(--serif); color: var(--ink-2); }
+.sv-open .sv-prose p:first-child { color: var(--hp-ink); }
+.sv-open .ff-short { position: sticky; top: 88px; }
+.hp-design a.sv-short__link { display: flex; align-items: center; justify-content: center; min-height: 48px; padding: 12px 18px; border: 1.5px solid rgba(247, 241, 225, 0.7); border-radius: 3px; font: 600 13px var(--sans); color: var(--hp-paper); text-align: center; }
+.hp-design a.sv-short__link:hover { background: var(--hp-paper); color: var(--hp-ink); }
+.sv-close .sv-prose { font: 19px/1.6 var(--serif); color: var(--ink-2); margin-inline: auto; }
+
+/* The park's own figures. */
+.sv-stats { background: var(--hp-card); border: 1px solid var(--hp-rule); border-radius: 4px; padding: 28px; }
+.sv-stats .hp-eyebrow { margin: 0 0 8px; }
+.sv-stats dl { margin: 0; display: grid; }
+.sv-stats dl > div { padding-block: 16px; border-bottom: 1px solid var(--hp-rule); }
+.sv-stats dt { font: 400 34px/1.1 var(--serif); color: var(--hp-accent); }
+.sv-stats dd { margin: 4px 0 0; font: 14px/1.5 var(--sans); color: var(--ink-2); }
+
+/* Photographs. */
+.sv-photo { margin: 0; }
+.sv-photo img { display: block; width: 100%; height: auto; border-radius: 4px; }
+.sv-photo figcaption { margin-top: 10px; font: 12px/1.5 var(--sans); color: var(--hp-muted); }
+.sv-photo--tall { max-width: 420px; }
+
+/* The fare card and the rider rules. */
+.sv-ride { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: 28px; align-items: start; margin-top: 48px; }
+.sv-ride .ff-inpark h3 { font-size: 28px; }
+.sv-rules { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+.sv-rules--four { grid-template-columns: repeat(4, minmax(0, 1fr)); margin-top: 40px; }
+.sv-rules--three { margin-top: 28px; }
+.sv-map__num { display: inline-grid; place-items: center; width: 20px; height: 20px; border-radius: 50%; background: var(--hp-accent); color: #fff; font: 700 11px var(--sans); }
+
+/* The entrance fee. */
+.sv-fee .ff-alert { margin-top: 0; }
+.sv-fee .ff-alert p { margin: 0; }
+.sv-fee__table { margin: 20px 0 0; border-top: 2px solid var(--hp-ink); }
+.sv-fee__table > div { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 16px; align-items: baseline; padding-block: 12px; border-bottom: 1px solid var(--hp-rule); }
+.sv-fee__table dt { font: 14px/1.4 var(--sans); color: var(--ink-2); }
+.sv-fee__table dd { margin: 0; font: 19px var(--serif); color: var(--hp-ink); text-align: right; }
+
+/* The four bins. */
+.sv-bins { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 16px; margin-top: 48px; }
+.sv-bin { background: var(--hp-card); border: 1px solid var(--hp-rule); border-top: 4px solid var(--bt-open); border-radius: 4px; padding: 18px; display: grid; gap: 8px; align-content: start; }
+.sv-bin--food { border-top-color: var(--hp-gold, #b8860b); }
+.sv-bin--no, .sv-bin--bear { border-top-color: var(--bt-closed); }
+.sv-bin__head { display: flex; align-items: center; gap: 8px; margin: 0; font: 400 20px/1.2 var(--serif); color: var(--hp-ink); }
+.sv-bin__head .ff-icon { color: var(--hp-accent); flex-shrink: 0; }
+.sv-bin p:not(.sv-bin__head) { margin: 0; font: 14px/1.55 var(--sans); color: var(--ink-2); }
+
+/* EV chargers. */
+.sv-chargers { margin: 0; border-top: 2px solid var(--hp-ink); }
+.sv-chargers > div { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 16px; align-items: baseline; padding-block: 12px; border-bottom: 1px solid var(--hp-rule); }
+.sv-chargers dt { font: 15px var(--sans); color: var(--ink-2); }
+.sv-chargers dd { margin: 0; font: 400 28px/1 var(--serif); color: var(--hp-accent); }
+
+.sv-sources { margin-top: 28px; }
+.hp-event .sv-sources h3 { font-size: 20px; margin-bottom: 8px; }
+.sv-sources ul { list-style: none; margin: 0; padding: 0; }
+.sv-sources li { padding-block: 8px; border-top: 1px solid var(--hp-rule); font: 13px var(--sans); }
+.sv-sources a { color: var(--hp-accent); }
+.sv-sources a:hover { text-decoration: underline; }
+
+#prerender-prose .sv-feature .hp-wrap { padding-inline: 0; }
+#prerender-prose .sv-feature :is(.ff-split, .ff-facts, .sv-ride, .ff-rules, .sv-bins) { display: block; }
+
+@media (max-width: 1100px) {
+  .sv-ride { grid-template-columns: 1fr; }
+  .sv-rules, .sv-rules--four, .sv-bins { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (max-width: 760px) {
+  .sv-rules, .sv-rules--four, .sv-bins { grid-template-columns: 1fr; }
+  .sv-open .ff-short { position: static; }
+  .sv-stats dt { font-size: 28px; }
+  .sv-photo--tall { max-width: none; }
+}

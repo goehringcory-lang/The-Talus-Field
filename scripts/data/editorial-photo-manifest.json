@@ -625,5 +625,45 @@
     "files": [
       "File:Mariposa Mural.jpg"
     ]
+  },
+  {
+    "file": "yarts-bus-merced-amtrak.jpg",
+    "slot": "article:sustainable-yosemite-car-free-zero-waste",
+    "tier": 1,
+    "subject": "Amtrak Thruway passengers boarding a YARTS bus at the Merced Amtrak station",
+    "directUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6b/YARTS_Bus_at_Merced.jpg/1920px-YARTS_Bus_at_Merced.jpg",
+    "author": "RickyCourtney",
+    "license": "CC BY-SA 3.0",
+    "source": "https://commons.wikimedia.org/wiki/File:YARTS_Bus_at_Merced.jpg"
+  },
+  {
+    "file": "yosemite-valley-bike-path.jpg",
+    "slot": "article:sustainable-yosemite-car-free-zero-waste",
+    "tier": 1,
+    "subject": "The paved bike path beside the road on the Yosemite Valley floor",
+    "directUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a3/Yosemite_National_Park_-_HCP_-_October_07%2C_2022_-_172.jpg/1920px-Yosemite_National_Park_-_HCP_-_October_07%2C_2022_-_172.jpg",
+    "author": "Vulturesong",
+    "license": "CC0",
+    "source": "https://commons.wikimedia.org/wiki/File:Yosemite_National_Park_-_HCP_-_October_07,_2022_-_172.jpg"
+  },
+  {
+    "file": "bear-resistant-recycling-upper-pines.jpg",
+    "slot": "article:sustainable-yosemite-car-free-zero-waste",
+    "tier": 1,
+    "subject": "A bear-resistant recycling container in Upper Pines Campground",
+    "directUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/de/Bear-resistant_container_1.jpg/1920px-Bear-resistant_container_1.jpg",
+    "author": "Mx. Granger",
+    "license": "CC0",
+    "source": "https://commons.wikimedia.org/wiki/File:Bear-resistant_container_1.jpg"
+  },
+  {
+    "file": "propane-canister-recycling-yosemite.jpg",
+    "slot": "article:sustainable-yosemite-car-free-zero-waste",
+    "tier": 1,
+    "subject": "A propane canister recycling container at a Yosemite Valley campground",
+    "directUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4e/Propane_canister_recycling.jpg/1920px-Propane_canister_recycling.jpg",
+    "author": "Mx. Granger",
+    "license": "CC0",
+    "source": "https://commons.wikimedia.org/wiki/File:Propane_canister_recycling.jpg"
   }
 ]

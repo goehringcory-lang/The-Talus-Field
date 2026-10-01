@@ -196,7 +196,7 @@ window.ARTICLE_BODIES["yosemite-shuttle-and-yarts"] = function YosemiteShuttleAn
       </ol>
 
       <p>
-        The park's transportation problem is not that there are too many visitors. It is that there are too many vehicles carrying too few people each, into a valley with a fixed amount of floor. Both of these buses are the response to that, and one of them is free. Using them well is the cheapest upgrade available to a Yosemite trip.
+        The park's transportation problem is not that there are too many visitors. It is that there are too many vehicles carrying too few people each, into a valley with a fixed amount of floor. Both of these buses are the response to that, and one of them is free. Using them well is the cheapest upgrade available to a Yosemite trip, and the core of <a href="/articles/sustainable-yosemite-car-free-zero-waste">a car-free, zero-waste visit</a>.
       </p>
     </>
   );
