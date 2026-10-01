@@ -1,4 +1,14 @@
 {
+  "img/ahwahnee-dining-room.jpg": {
+    "author": "Amadscientist",
+    "license": "CC BY-SA 3.0",
+    "source": "https://commons.wikimedia.org/wiki/File:Ahwahnee_Dining_Room.jpg"
+  },
+  "img/ahwahnee-great-lounge.jpg": {
+    "author": "David Berry",
+    "license": "CC BY 2.0",
+    "source": "https://commons.wikimedia.org/wiki/File:Ahwahnee_Hotel_-_Great_Lounge.jpg"
+  },
   "img/arch-rock-entrance-yosemite.jpg": {
     "author": "Cecil W. Stoughton",
     "license": "Public domain",
@@ -49,6 +59,11 @@
     "license": "Public domain",
     "source": "https://commons.wikimedia.org/wiki/File:Yosemite-Valley-Railroad-Grand-Central-of-the-West.jpg"
   },
+  "img/glen-aulin-tent-cabin.jpg": {
+    "author": "Lela Getzler",
+    "license": "CC BY 2.0",
+    "source": "https://commons.wikimedia.org/wiki/File:Glen_Aulin_tent_cabin.jpg"
+  },
   "img/groveland-main-street-highway-120.jpg": {
     "author": "Almonroth",
     "license": "CC BY-SA 3.0",
@@ -73,6 +88,11 @@
     "author": "Barney Moss",
     "license": "CC BY 2.0",
     "source": "https://commons.wikimedia.org/wiki/File:%22Firefall%22_-_Horsetail_Fall_(Yosemite).jpg"
+  },
+  "img/housekeeping-camp-yosemite.jpg": {
+    "author": "advencap",
+    "license": "CC BY-SA 2.0",
+    "source": "https://commons.wikimedia.org/wiki/File:Yosemite-Housekeeping-Camp-lodging-unit.jpg"
   },
   "img/john-muir-trail-backpacker-yosemite.jpg": {
     "author": "Kaitymh",
@@ -109,6 +129,11 @@
     "license": "Public domain",
     "source": "https://commons.wikimedia.org/wiki/File:Upper_Yosemite_Falls.JPG"
   },
+  "img/wawona-hotel.jpg": {
+    "author": "Rennett Stowe from USA",
+    "license": "CC BY 2.0",
+    "source": "https://commons.wikimedia.org/wiki/File:Lodging_in_Yosemite_National_Park_(5829796633).jpg"
+  },
   "img/wawona-tunnel-tree-stagecoach.jpg": {
     "author": "Brickey, E.M.",
     "license": "Public domain",
@@ -128,5 +153,10 @@
     "author": "Rennett Stowe",
     "license": "CC BY 2.0",
     "source": "https://commons.wikimedia.org/wiki/File:Yosemite_Lodge_(3020262929).jpg"
+  },
+  "img/yosemite-village-store.jpg": {
+    "author": "Rennett Stowe from USA",
+    "license": "CC BY 2.0",
+    "source": "https://commons.wikimedia.org/wiki/File:Yosemite_Village_Store_(3020745703).jpg"
   }
 }

@@ -334,5 +334,89 @@
       "El Capitan climbers night lights",
       "El Capitan dusk"
     ]
+  },
+  {
+    "file": "wawona-hotel.jpg",
+    "slot": "article:where-to-stay-in-yosemite",
+    "tier": 1,
+    "subject": "The Wawona Hotel: the white Victorian main building with its verandas, Wawona, Yosemite",
+    "categories": [
+      "Wawona Hotel"
+    ],
+    "queries": [
+      "Wawona Hotel Yosemite",
+      "Wawona Hotel veranda"
+    ]
+  },
+  {
+    "file": "ahwahnee-great-lounge.jpg",
+    "slot": "article:where-to-stay-in-yosemite",
+    "tier": 1,
+    "subject": "The Great Lounge inside the Ahwahnee hotel: tall windows, stenciled beams, fireplace",
+    "categories": [
+      "Interior of the Ahwahnee Hotel",
+      "Great Lounge (The Ahwahnee)"
+    ],
+    "queries": [
+      "Ahwahnee Great Lounge",
+      "Ahwahnee hotel lounge interior"
+    ]
+  },
+  {
+    "file": "ahwahnee-dining-room.jpg",
+    "slot": "article:where-to-eat-yosemite",
+    "tier": 1,
+    "subject": "The Ahwahnee dining room: the long hall with timber trusses, granite piers and tall windows",
+    "categories": [
+      "Ahwahnee Dining Room"
+    ],
+    "queries": [
+      "Ahwahnee dining room",
+      "Ahwahnee hotel dining room interior"
+    ]
+  },
+  {
+    "file": "housekeeping-camp-yosemite.jpg",
+    "slot": "article:where-to-stay-in-yosemite",
+    "tier": 1,
+    "subject": "Housekeeping Camp units in Yosemite Valley: concrete-walled shelters with canvas roofs by the Merced",
+    "categories": [
+      "Housekeeping Camp"
+    ],
+    "queries": [
+      "Housekeeping Camp Yosemite",
+      "Yosemite Housekeeping Camp units"
+    ]
+  },
+  {
+    "file": "glen-aulin-tent-cabin.jpg",
+    "slot": "article:where-to-stay-in-yosemite",
+    "tier": 1,
+    "subject": "A tent cabin at Glen Aulin High Sierra Camp",
+    "categories": [
+      "Vogelsang High Sierra Camp",
+      "May Lake High Sierra Camp",
+      "Glen Aulin High Sierra Camp",
+      "Sunrise High Sierra Camp",
+      "High Sierra Camps"
+    ],
+    "queries": [
+      "Vogelsang High Sierra Camp",
+      "May Lake High Sierra Camp",
+      "Glen Aulin High Sierra Camp"
+    ]
+  },
+  {
+    "file": "yosemite-village-store.jpg",
+    "slot": "article:where-to-eat-yosemite",
+    "tier": 2,
+    "subject": "The Village Store in Yosemite Village, the Valley grocery",
+    "categories": [
+      "Yosemite Village"
+    ],
+    "queries": [
+      "Yosemite Village Store",
+      "Village Store Yosemite grocery"
+    ]
   }
 ]

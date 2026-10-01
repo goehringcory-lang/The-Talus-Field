@@ -1,15 +1,27 @@
 window.ARTICLE_BODIES = window.ARTICLE_BODIES || {};
 window.ARTICLE_BODIES["where-to-eat-yosemite"] = function WhereToEatYosemiteBody() {
-  var TOC = [["#sec-0-is-there-food-in-yosemite-national-park", "Food in the park"], ["#sec-1-where-to-eat-in-yosemite-valley", "The Valley"], ["#sec-2-wawona-fish-camp-and-the-south-end-of-th", "Wawona and Fish Camp"], ["#sec-3-tuolumne-meadows-and-the-high-country", "Tuolumne"], ["#sec-4-yosemite-west-restaurants-there-are-none", "Yosemite West"], ["#sec-5-restaurants-near-yosemite-the-gateway-to", "Gateway towns"], ["#sec-6-everything-that-exists-by-area", "Every kitchen"], ["#sec-7-the-short-version-by-area", "The table"], ["#sec-8-can-you-bring-your-own-food-into-yosemit", "Your own food"], ["#sec-9-what-closes-and-when", "What closes"], ["#where-to-eat-questions", "Questions"]];
-  var FAQ = [["Where can I get a quick meal in Yosemite Valley?", "Curry Village Pizza Deck, Base Camp Eatery at Yosemite Valley Lodge, and Degnan's Kitchen in Yosemite Village are convenient options. Check current hours before relying on an early breakfast or late dinner."], ["Where can I book a sit-down dinner in Yosemite Valley?", "The Mountain Room at Yosemite Valley Lodge and The Ahwahnee Dining Room are options. Book ahead and check the concessioner's current menus, prices, and reservation details."], ["Are there restaurants in Yosemite West?", "No. Yosemite West has no restaurant, store, gas station, or shuttle. Shop before arriving. Yosemite Valley is roughly forty minutes each way, or Wawona is about half an hour south."], ["Is there food at Tuolumne Meadows in fall?", "Service is seasonal. The concessioner's 2026 schedule lists September 13 as the lodge dining room's last day and September 20 for the grill. Pack lunch for a Tioga Road day; an open road does not mean an open kitchen."], ["Is the Wawona Hotel dining room open?", "The Wawona Hotel and its dining room are closed for a condition assessment. Check the NPS hotel notice for reopening updates. The Wawona General Store is a grocery and picnic-supply option."], ["Where should I eat near Yosemite?", "Choose restaurants near your route or lodging. The guide recommends 1850, Smokin Oak BBQ, and Tacos Sonora in Mariposa; South Gate Brewing Company and The Elderberry House in Oakhurst; and Latte Da Cafe in Lee Vining. Check current hours before making a special trip."]];
+  var TOC = [["#sec-0-is-there-food-in-yosemite-national-park", "Food in the park"], ["#sec-1-where-to-eat-in-yosemite-valley", "The Valley"], ["#ahwahnee-dining-room", "The Ahwahnee"], ["#groceries-and-supplies", "Groceries"], ["#sec-2-wawona-fish-camp-and-the-south-end-of-th", "Wawona and Fish Camp"], ["#sec-3-tuolumne-meadows-and-the-high-country", "Tuolumne"], ["#sec-4-yosemite-west-restaurants-there-are-none", "No kitchen"], ["#sec-5-restaurants-near-yosemite-the-gateway-to", "Gateway towns"], ["#sec-6-everything-that-exists-by-area", "Every kitchen"], ["#sec-7-the-short-version-by-area", "The table"], ["#dietary-needs", "Dietary needs"], ["#picnic-areas", "Picnic areas"], ["#sec-8-can-you-bring-your-own-food-into-yosemit", "Your own food"], ["#sec-9-what-closes-and-when", "What closes"], ["#where-to-eat-questions", "Questions"]];
+  var FAQ = [["Where can I get a quick meal in Yosemite Valley?", "Curry Village Pizza Deck, Base Camp Eatery at Yosemite Valley Lodge, and Degnan's Kitchen in Yosemite Village are convenient options. Check current hours before relying on an early breakfast or late dinner."], ["Where can I book a sit-down dinner in Yosemite Valley?", "The Mountain Room at Yosemite Valley Lodge and The Ahwahnee Dining Room are options. Both take reservations on OpenTable, and the Ahwahnee also by phone at 209/372-1489. A room at the hotel does not hold you a table, so book dinner separately."], ["Is there a dress code at the Ahwahnee Dining Room?", "At dinner, yes. The hotel asks for long pants and a collared shirt, or a dress, skirt, or long pants with a blouse, and no hiking clothes, shorts, T-shirts, tank tops, flip-flops or baseball caps. Breakfast, lunch and Sunday brunch are casual."], ["Where can I buy groceries in Yosemite?", "The Village Store in Yosemite Village has the park's largest selection, including meat, produce, ice and firewood. Curry Village has a grocery that stays open in winter, and there are smaller stores at Housekeeping Camp, Wawona, Crane Flat and, in summer, Tuolumne Meadows."], ["Are there restaurants in Yosemite West?", "No. Yosemite West, a private enclave just outside the park's southern boundary, has no restaurant, store, gas station, or shuttle. Shop before arriving. Yosemite Valley is roughly forty minutes each way, or Wawona is about half an hour south."], ["Is there food at Tuolumne Meadows in fall?", "Service is seasonal. The concessioner's 2026 schedule lists September 13 as the lodge dining room's last day and September 20 for the grill. Pack lunch for a Tioga Road day; an open road does not mean an open kitchen."], ["Is the Wawona Hotel dining room open?", "The Wawona Hotel and its dining room are closed for a condition assessment. Check the NPS hotel notice for reopening updates. The Wawona General Store is a grocery and picnic-supply option."], ["Where should I eat near Yosemite?", "Choose restaurants near your route or lodging. The guide recommends 1850, Smokin Oak BBQ, and Tacos Sonora in Mariposa; South Gate Brewing Company and The Elderberry House in Oakhurst; and Latte Da Cafe in Lee Vining. On Highway 120, Rush Creek Lodge and Evergreen Lodge have full restaurants a few miles from the Big Oak Flat entrance. Check current hours before making a special trip."], ["Do Yosemite picnic areas have water?", "Mostly not. The Park Service says only Lower Yosemite Fall and Church Bowl have drinking water and flush toilets; the other picnic areas have tables, vault toilets and, at most, grills. Bring water, and keep food within arm's reach."]];
   var PARK_W = 1760,
     PARK_H = 1410;
   var PARK_SPOTS = [{
     at: [686, 659],
-    side: "r",
+    side: "t",
     tone: "full",
     name: "Yosemite Valley",
     note: "Counters, decks and dining rooms"
+  }, {
+    at: [710, 706],
+    side: "b",
+    tone: "store",
+    name: "Glacier Point",
+    note: "Snack stand, summer and fall"
+  }, {
+    at: [520, 889],
+    side: "r",
+    tone: "seasonal",
+    name: "Badger Pass",
+    note: "A grill, in ski season"
   }, {
     at: [1169, 321],
     side: "b",
@@ -30,10 +42,10 @@ window.ARTICLE_BODIES["where-to-eat-yosemite"] = function WhereToEatYosemiteBody
     note: "A market and four restaurants"
   }, {
     at: [426, 921],
-    side: "r",
+    side: "b",
     tone: "none",
     name: "Yosemite West",
-    note: "No restaurant, no store, no gas"
+    note: "Outside the park. No food at all"
   }, {
     at: [536, 1229],
     side: "t",
@@ -51,7 +63,7 @@ window.ARTICLE_BODIES["where-to-eat-yosemite"] = function WhereToEatYosemiteBody
     side: "l",
     tone: "town",
     name: "Lee Vining",
-    note: "Latte Da Cafe"
+    note: "Whoa Nellie Deli, Latte Da Cafe"
   }, {
     at: [16, 905],
     side: "d",
@@ -63,7 +75,7 @@ window.ARTICLE_BODIES["where-to-eat-yosemite"] = function WhereToEatYosemiteBody
     side: "r",
     tone: "town",
     name: "Groveland",
-    note: "Highway 120, off the map"
+    note: "Highway 120: Rush Creek, Evergreen"
   }, {
     at: [575, 1392],
     side: "ul",
@@ -71,7 +83,7 @@ window.ARTICLE_BODIES["where-to-eat-yosemite"] = function WhereToEatYosemiteBody
     name: "Oakhurst",
     note: "Highway 41, off the map"
   }];
-  var TONES = [["full", "Most choice"], ["seasonal", "Summer only"], ["store", "A store, not a kitchen"], ["none", "Nothing at all"], ["town", "Gateway town with restaurants"]];
+  var TONES = [["full", "Most choice"], ["seasonal", "Seasonal only"], ["store", "A store, not a kitchen"], ["none", "Nothing at all"], ["town", "Gateway town with restaurants"]];
   var pct = (x, y, w, h) => ({
     left: x / w * 100 + "%",
     top: y / h * 100 + "%"
@@ -88,7 +100,7 @@ window.ARTICLE_BODIES["where-to-eat-yosemite"] = function WhereToEatYosemiteBody
       style: {
         aspectRatio: "1760 / 1410"
       },
-      alt: "National Park Service map of Yosemite, cropped from Hetch Hetchy south to the Mariposa Grove, marking where food is: Yosemite Valley has the most, Tuolumne Meadows is open in summer only, Crane Flat and Wawona have stores, Yosemite West has nothing, and El Portal, Fish Camp, Lee Vining, Mariposa, Groveland and Oakhurst are gateway towns with restaurants."
+      alt: "National Park Service map of Yosemite, cropped from Hetch Hetchy south to the Mariposa Grove, marking where food is: Yosemite Valley has the most, Tuolumne Meadows is open in summer only and Badger Pass in ski season, Crane Flat and Wawona have stores and Glacier Point a snack stand, Yosemite West has nothing, and El Portal, Fish Camp, Lee Vining, Mariposa, Groveland and Oakhurst are gateway towns with restaurants."
     }), React.createElement("div", {
       className: "eat-map__layer",
       "aria-hidden": "true"
@@ -216,8 +228,8 @@ window.ARTICLE_BODIES["where-to-eat-yosemite"] = function WhereToEatYosemiteBody
       className: "eat-chip eat-chip--res is-" + res.toLowerCase().split(" ")[0]
     }, res === "No" ? "No reservations" : "Reservations: " + res.toLowerCase())));
   }
-  var TABLE = [["Curry Village Pizza Deck", "Yosemite Valley", "valley", "Lunch, dinner", 2, "Most of the year", "No"], ["Base Camp Eatery", "Yosemite Valley", "valley", "All three", 2, "Year-round", "No"], ["Degnan's Kitchen", "Yosemite Valley", "valley", "Breakfast, lunch", 1, "Year-round", "No"], ["Meadow Grill Taqueria", "Yosemite Valley", "valley", "Lunch, dinner", 1, "Summer", "No"], ["The Mountain Room", "Yosemite Valley", "valley", "Dinner", 3, "Most of the year", "Advised"], ["The Ahwahnee Dining Room", "Yosemite Valley", "valley", "Check current menu", 4, "Year-round", "Required"], ["Wawona General Store", "Wawona", "south", "Groceries, sandwiches", 1, "Year-round", "No"], ["Embers at Tenaya Lodge", "Fish Camp", "south", "Dinner", 3, "Year-round", "Advised"], ["Tuolumne store and grill", "Tioga Road", "tioga", "Counter", 1, "Summer, closes September", "No"], ["Tuolumne Meadows Lodge", "Tioga Road", "tioga", "Breakfast, dinner", 2, "Summer, closes September", "Required for dinner"], ["1850 Restaurant & Brewing", "Mariposa", "towns", "Dinner", 2, "Year-round, closed Mon and Tue", "No"], ["Smokin Oak BBQ", "Mariposa", "towns", "Lunch, dinner", 2, "Year-round, closed Mon and Tue", "No"], ["Tacos Sonora", "Mariposa", "towns", "Lunch", 1, "Year-round, closed Sun", "No"], ["Cedar House Restaurant", "El Portal", "towns", "Dinner", 2, "Year-round", "No"], ["June Bug Cafe", "Midpines", "towns", "Breakfast, dinner", 2, "Year-round", "No"], ["South Gate Brewing Co.", "Oakhurst", "towns", "Dinner", 2, "Year-round, open daily", "No"], ["The Elderberry House", "Oakhurst", "towns", "Check current menu", 4, "Year-round", "Required"], ["Latte Da Cafe", "Lee Vining", "towns", "Breakfast, coffee", 1, "Seasonal", "No"]];
-  var TABLE_FILTERS = [["all", "Everywhere"], ["valley", "The Valley"], ["south", "Wawona and Fish Camp"], ["tioga", "Tioga Road"], ["towns", "Gateway towns"]];
+  var TABLE = [["Curry Village Pizza Deck", "Yosemite Valley", "valley", "Lunch, dinner", 2, "January to November", "No"], ["Seven Tents Pavilion", "Yosemite Valley", "valley", "Breakfast, dinner", 2, "Year-round", "No"], ["Base Camp Eatery", "Yosemite Valley", "valley", "All three", 2, "Year-round", "No"], ["Degnan's Kitchen", "Yosemite Valley", "valley", "Breakfast, lunch", 1, "Year-round", "No"], ["Village Grill", "Yosemite Valley", "valley", "Lunch, dinner", 1, "Summer into fall", "No"], ["Meadow Grill Taqueria", "Yosemite Valley", "valley", "Lunch, dinner", 1, "Summer", "No"], ["The Mountain Room", "Yosemite Valley", "valley", "Dinner", 3, "Most of the year", "Advised"], ["The Ahwahnee Dining Room", "Yosemite Valley", "valley", "All three, Sunday brunch", 4, "Year-round", "Strongly recommended"], ["Wawona General Store", "Wawona", "south", "Groceries, sandwiches", 1, "Year-round", "No"], ["Glacier Point snack stand", "Glacier Point", "south", "Snacks", 1, "Summer and fall", "No"], ["Badger Pass Skiers Grill", "Glacier Point Road", "south", "Breakfast, lunch", 1, "Ski season, when it opens", "No"], ["Embers at Tenaya Lodge", "Fish Camp", "south", "Dinner", 3, "Year-round", "Advised"], ["Tuolumne store and grill", "Tioga Road", "tioga", "Counter", 1, "Summer, closes September", "No"], ["Tuolumne Meadows Lodge", "Tioga Road", "tioga", "Breakfast, dinner", 2, "Summer, closes September", "Required for dinner"], ["1850 Restaurant & Brewing", "Mariposa", "towns", "Dinner", 2, "Year-round, closed Mon and Tue", "No"], ["Smokin Oak BBQ", "Mariposa", "towns", "Lunch, dinner", 2, "Year-round, closed Mon and Tue", "No"], ["Tacos Sonora", "Mariposa", "towns", "Lunch", 1, "Year-round, closed Sun", "No"], ["Cedar House Restaurant", "El Portal", "towns", "Dinner", 2, "Year-round", "No"], ["June Bug Cafe", "Midpines", "towns", "Breakfast, dinner", 2, "Year-round", "No"], ["South Gate Brewing Co.", "Oakhurst", "towns", "Dinner", 2, "Year-round, open daily", "No"], ["The Elderberry House", "Oakhurst", "towns", "Check current menu", 4, "Year-round", "Required"], ["Latte Da Cafe", "Lee Vining", "towns", "Breakfast, coffee", 1, "Seasonal", "No"], ["Whoa Nellie Deli", "Lee Vining", "towns", "All three", 2, "Seasonal", "No"], ["Yosemite Restaurant, Rush Creek Lodge", "Highway 120", "towns", "All three", 3, "Year-round", "Recommended"], ["Evergreen Lodge Restaurant", "Highway 120", "towns", "All three", 3, "Year-round", "Recommended"], ["Iron Door Saloon", "Groveland", "towns", "Lunch, dinner", 2, "Year-round", "No"]];
+  var TABLE_FILTERS = [["all", "Everywhere"], ["valley", "The Valley"], ["south", "The south end and Glacier Point"], ["tioga", "Tioga Road"], ["towns", "Gateway towns"]];
   var [area, setArea] = React.useState("all");
   var rows = TABLE.filter(r => area === "all" || r[2] === area);
   var ROSTER = [{
@@ -246,6 +258,8 @@ window.ARTICLE_BODIES["where-to-eat-yosemite"] = function WhereToEatYosemiteBody
     note: "Tuolumne Lodge is on Tioga Road and the Wawona store at the south end. The last four are over the Madera County line in Fish Camp; Embers and Jackalopes are at Tenaya Lodge."
   }];
   var TRUCKS = ["All About the Wurst", "Birrieria El Campeon", "Dixon's Fixin's", "Fishworks", "L & J Mexican Food", "the Lemon Drop Trailer", "Mariposa Sips & Sweets", "Sal's Taco Truck", "the Tacos Sonora truck", "Yosemite Pizza"];
+  var PICNICS = [["Yosemite Valley", [["Lower Yosemite Fall", "Drinking water, flush toilets, no grills"], ["Church Bowl", "Drinking water, flush toilets"], ["Cathedral Beach", "Not wheelchair accessible"], ["Sentinel Beach"], ["Swinging Bridge"], ["El Capitan"], ["The Cascades", "At the west end"]]], ["Wawona", [["Yosemite History Center", "Across from the Wawona Store"], ["South of Wawona Campground"], ["Mariposa Grove Road", "Disability placard holders only"]]], ["Tioga Road", [["Tenaya Lake"], ["Yosemite Creek", "No grills"], ["Lembert Dome", "No grills"]]]];
+  var STORES = [["Village Store", "Yosemite Village", "The largest grocery in the park: meat, produce, camping supplies, ice, firewood, an ATM.", "Year-round"], ["Curry Village Gift & Grocery", "Curry Village", "Groceries, camp supplies and an ATM, beside the gift shop.", "Year-round"], ["Housekeeping Camp store", "Housekeeping Camp", "Groceries, snacks and camping supplies.", "Closes with the camp in October", "summer"], ["Yosemite Valley Lodge gift shop", "Yosemite Valley Lodge", "Snacks, drinks and convenience items. Not a grocery.", "Year-round"], ["The Ahwahnee Sweet Shop", "The Ahwahnee", "Snacks, sweets and wine.", "Year-round"], ["Mountain Shop", "Curry Village", "Climbing and hiking gear, and dehydrated food for the trail.", "Year-round"], ["Wawona Store", "Wawona", "Groceries, camping and fishing supplies, maps and wine.", "Year-round"], ["Crane Flat Gas & Grocery", "Big Oak Flat Road", "A small store at the gas station. The pumps take cards around the clock all year.", "Store closes in late October", "summer"], ["Tuolumne Meadows Store", "Tioga Road", "Groceries, snacks and camping supplies.", "Summer only", "summer"], ["El Portal Market", "El Portal, outside the park", "Limited groceries and gifts, and Wi-Fi.", "Year-round", "out"]];
   var DAYS = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
   function Week({
     closed,
@@ -367,18 +381,21 @@ window.ARTICLE_BODIES["where-to-eat-yosemite"] = function WhereToEatYosemiteBody
     price: 2,
     res: "No",
     pick: "My first pick"
-  }, "Pizza on an outdoor deck facing Glacier Point Apron, and my first stop after a hike. Expect a line on summer evenings. The menu changes, so check it when you arrive; the Half Dome pizza is my pick when they have it."), React.createElement(Kitchen, {
+  }, "Pizza on an outdoor deck facing Glacier Point Apron, and my first stop after a hike. Expect a line on summer evenings. The menu changes, so check it when you arrive; the Half Dome pizza is my pick when they have it. The deck runs January through November and over the holidays; in winter, order the same pizza inside at Seven Tents."), React.createElement(Kitchen, {
     name: "Meadow Grill Taqueria",
     meal: "Lunch, dinner",
     price: 1,
     res: "No"
   }, "Tacos and burritos at the counter by the Village Store, beside the deck, with outdoor seating. It is the shortest path from a trailhead to a hot meal on the Valley floor, and usually the first Valley kitchen to close when summer ends."), React.createElement(Kitchen, {
     name: "Coffee Corner"
-  }, "Opens early. It is why you don't have to drive to Yosemite Village for coffee before a Mist Trail start."), React.createElement(Kitchen, {
+  }, "Peet's coffee and a light breakfast, and it opens early. It is why you don't have to drive to Yosemite Village for coffee before a Mist Trail start."), React.createElement(Kitchen, {
     name: "Bar 1899"
-  }, "The small indoor bar."), React.createElement(Kitchen, {
-    name: "Seven Tents Pavilion"
-  }, "The big buffet hall, mostly for the tent-cabin guests."), React.createElement("li", {
+  }, "Craft beer, cocktails and light plates, with seats inside and out. Its hours shrink in winter."), React.createElement(Kitchen, {
+    name: "Seven Tents Pavilion",
+    meal: "Breakfast, dinner",
+    price: 2,
+    res: "No"
+  }, "The big indoor dining hall: hearty, homestyle plates, recently renovated, and the warm place to eat pizza once the deck closes for the winter."), React.createElement("li", {
     className: "eat-kitchens__note"
   }, "Four operations share one compound, and people lump them together. That is why most visitors think Curry Village has a pizza deck and nothing else. All four are seasonal to some degree.")), React.createElement(Cluster, {
     n: "2",
@@ -400,7 +417,7 @@ window.ARTICLE_BODIES["where-to-eat-yosemite"] = function WhereToEatYosemiteBody
     price: 3,
     res: "Advised",
     pick: "The view"
-  }, "The Valley's sit-down dinner short of The Ahwahnee: a real dining room with a wall of glass facing Yosemite Falls. Book in summer, and time it for the falls, because the view is the reason to go."), React.createElement(Kitchen, {
+  }, "The Valley's sit-down dinner short of The Ahwahnee: an upscale casual steakhouse with a wall of glass facing Yosemite Falls. Book on OpenTable in summer, and time it for the falls, because the view is the reason to go. The lounge next door, with a fireplace and a patio, pours beer and cocktails with light plates and needs no booking."), React.createElement(Kitchen, {
     name: "Starbucks"
   }, "Inside Base Camp Eatery since 2018, and no food decision the park has made drew more letters. It's a Starbucks. When the Degnan's counter is twenty deep, it has the shortest line in the Valley, and that's the whole case for it.")), React.createElement(Cluster, {
     n: "3",
@@ -410,11 +427,14 @@ window.ARTICLE_BODIES["where-to-eat-yosemite"] = function WhereToEatYosemiteBody
     meal: "Breakfast, lunch",
     price: 1,
     res: "No"
-  }, "Sandwiches, coffee and food to carry out. If you forgot lunch, ", React.createElement("a", {
+  }, "Peet's coffee, sandwiches and grab-and-go food, with indoor seating, Wi-Fi and, in winter, a fire. If you forgot lunch, ", React.createElement("a", {
     href: "/map?stop=degnans-deli"
-  }, "Degnan's"), " is the fallback. Check current hours, and don't assume the upstairs Loft is open."), React.createElement(Kitchen, {
-    name: "Village Grill"
-  }, "On the county list, in Yosemite Village.")), React.createElement(Cluster, {
+  }, "Degnan's"), " is the fallback. Check current hours; the upstairs Loft is not on the current listings."), React.createElement(Kitchen, {
+    name: "Village Grill",
+    meal: "Lunch, dinner",
+    price: 1,
+    res: "No"
+  }, "Burgers, grilled sandwiches, veggie options and soft serve, with a big outdoor seating area. Summer into fall only; it closes in late October.")), React.createElement(Cluster, {
     n: "4",
     name: "The Ahwahnee",
     photo: "img/ahwahnee-hotel.jpg",
@@ -423,15 +443,72 @@ window.ARTICLE_BODIES["where-to-eat-yosemite"] = function WhereToEatYosemiteBody
     credit: "The Ahwahnee. Photo: Chris Dunstan / Wikimedia Commons (public domain)"
   }, React.createElement(Kitchen, {
     name: "The Ahwahnee Dining Room",
-    meal: "Check current menu",
+    meal: "All three, and Sunday brunch",
     price: 4,
-    res: "Required",
+    res: "Strongly recommended",
     pick: "Special occasion"
-  }, "My pick for a special-occasion meal in the Valley. Book ahead, and check the ", React.createElement("a", {
-    href: "https://www.travelyosemite.com/dining/yosemite-dining-experience"
-  }, "concessioner's current menu, prices and reservation details"), ". The tall windows and granite piers are part of the reason to come, so give the meal time."), React.createElement(Kitchen, {
-    name: "The bar"
-  }, "On the county list, with the dining room.")))), React.createElement("section", {
+  }, "My pick for a special-occasion meal in the Valley. Dinner is a prix fixe of five or seven courses with a dress code; breakfast, lunch and brunch are casual. ", React.createElement("a", {
+    href: "#ahwahnee-dining-room"
+  }, "The whole picture is below."), " The tall windows and granite piers are part of the reason to come, so give the meal time."), React.createElement(Kitchen, {
+    name: "The Ahwahnee Bar"
+  }, "Craft cocktails, wine, appetizers and lighter plates, without the dinner's dress code or price.")))), React.createElement("section", {
+    className: "ff-band",
+    id: "ahwahnee-dining-room",
+    tabIndex: -1
+  }, React.createElement("div", {
+    className: "hp-wrap hp-section ff-split"
+  }, React.createElement("figure", {
+    className: "eat-photo"
+  }, React.createElement(ResponsiveImage, {
+    image: "img/ahwahnee-dining-room.jpg",
+    sizes: "(max-width: 880px) calc(100vw - 40px), 600px",
+    style: {
+      aspectRatio: "1600 / 1200"
+    },
+    alt: "The Ahwahnee dining room: a long hall of white-clothed tables under timber trusses and iron chandeliers, with tall windows along one wall"
+  }), React.createElement("figcaption", null, "The Ahwahnee Dining Room. Photo: Amadscientist / Wikimedia Commons (CC BY-SA 3.0)")), React.createElement("div", null, React.createElement("p", {
+    className: "hp-eyebrow"
+  }, "THE AHWAHNEE DINING ROOM"), React.createElement("h2", null, "One room, four meals, and a dress code at dinner"), React.createElement("div", {
+    className: "eat-prose"
+  }, React.createElement("p", null, "The room is 130 feet long with a 34-foot ceiling of timber trusses, granite piers between the windows and iron chandeliers, and it is open to anyone, not just hotel guests. A room at the hotel does not hold you a table, though, and dinner fills: book on OpenTable or at 209/372-1489, and do it when you book the trip.")), React.createElement("dl", {
+    className: "eat-meals"
+  }, React.createElement("div", null, React.createElement("dt", null, "Breakfast"), React.createElement("dd", null, "A buffet, or order from the menu. Casual.")), React.createElement("div", null, React.createElement("dt", null, "Lunch"), React.createElement("dd", null, "Midday into the afternoon. Casual.")), React.createElement("div", null, React.createElement("dt", null, "Dinner"), React.createElement("dd", null, "A prix fixe of five or seven courses, with wine pairings. Dress code.")), React.createElement("div", null, React.createElement("dt", null, "Sunday brunch"), React.createElement("dd", null, "Runs from breakfast into the afternoon. Casual."))), React.createElement("blockquote", {
+    className: "eat-dress"
+  }, React.createElement("p", null, "\"Long pants and a shirt with a collar, or a dress, skirt, or long pants with a blouse. Please refrain from wearing hiking attire, shorts, T-shirts, tank tops, flip-flops, and baseball caps.\""), React.createElement("cite", null, "The dinner dress code, as the hotel publishes it")), React.createElement("div", {
+    className: "eat-prose"
+  }, React.createElement("p", null, "That rules out the clothes most people pack for Yosemite, so bring one outfit for it. Dinner without the dress code or the price is the ", React.createElement("strong", null, "Ahwahnee Bar"), " next door: cocktails, wine, appetizers and lighter plates. Afternoon tea in the lounge is for hotel guests only. The kitchen publishes a vegan menu and a children's menu. On holidays the room books separately: Thanksgiving 2026 is November 26, noon to 8 p.m., $165 for an adult and $82.50 for a child with tax and tip included, booked at 888/413-8869. ", React.createElement("a", {
+    href: "/articles/bracebridge-dinner-and-vintners-holidays"
+  }, "The Bracebridge Dinner"), " in December is its own event."))))), React.createElement("section", {
+    className: "hp-wrap hp-section",
+    id: "groceries-and-supplies",
+    tabIndex: -1
+  }, React.createElement("div", {
+    className: "ff-split"
+  }, React.createElement("div", null, React.createElement("p", {
+    className: "hp-eyebrow"
+  }, "GROCERIES AND SUPPLIES"), React.createElement("h2", null, "Where to buy the sandwich makings"), React.createElement("div", {
+    className: "eat-prose"
+  }, React.createElement("p", null, "The cooler lunch this page keeps recommending needs a store, and the park has more of them than restaurants. The ", React.createElement("strong", null, "Village Store"), " in Yosemite Village is the one to plan around: the park's largest stock of groceries, including meat and produce, plus camping supplies, ice, firewood and an ATM. Everything else is smaller, and several close with their season. Prices are park prices, so the big shop happens in Mariposa, Oakhurst or Groveland on the way in. Hours change with the ", React.createElement("em", null, "Yosemite Guide"), " edition; the ", React.createElement("a", {
+    href: "/now"
+  }, "Park Bulletin"), " carries them."))), React.createElement("figure", {
+    className: "eat-photo"
+  }, React.createElement(ResponsiveImage, {
+    image: "img/yosemite-village-store.jpg",
+    sizes: "(max-width: 880px) calc(100vw - 40px), 600px",
+    style: {
+      aspectRatio: "1600 / 1200"
+    },
+    alt: "The Village Store in Yosemite Village: a timber building with a peaked roof and its name over the door, maples turning yellow in front"
+  }), React.createElement("figcaption", null, "The Village Store. Photo: Rennett Stowe / Wikimedia Commons (CC BY 2.0)"))), React.createElement("ul", {
+    className: "eat-stores"
+  }, STORES.map(([name, where, sells, season, tone]) => React.createElement("li", {
+    key: name,
+    className: tone ? "is-" + tone : undefined
+  }, React.createElement("p", {
+    className: "eat-stores__where"
+  }, where), React.createElement("h3", null, name), React.createElement("p", null, sells), React.createElement("p", {
+    className: "eat-stores__season"
+  }, season))))), React.createElement("section", {
     className: "ff-band",
     id: "sec-2-wawona-fish-camp-and-the-south-end-of-th",
     tabIndex: -1
@@ -497,7 +574,7 @@ window.ARTICLE_BODIES["where-to-eat-yosemite"] = function WhereToEatYosemiteBody
     className: "hp-eyebrow"
   }, "YOSEMITE WEST RESTAURANTS"), React.createElement("h2", null, "There are none"), React.createElement("div", {
     className: "eat-prose"
-  }, React.createElement("p", null, "Yosemite West is a housing tract inside the park boundary off Wawona Road, and it is almost all vacation rentals. The listings sell the location and skip the logistics, so guests are often caught short. A rental kitchen only helps if you bring the groceries. Shop before you arrive."))), React.createElement("ul", {
+  }, React.createElement("p", null, "Yosemite West is a private enclave just outside the park's southern boundary, reached through the park on Wawona Road, and it is almost all vacation rentals. The listings sell the location and skip the logistics, so guests are often caught short. A rental kitchen only helps if you bring the groceries. Shop before you arrive."))), React.createElement("ul", {
     className: "eat-none__list",
     "aria-label": "What Yosemite West does not have"
   }, React.createElement("li", null, React.createElement(EventIcon, {
@@ -514,13 +591,29 @@ window.ARTICLE_BODIES["where-to-eat-yosemite"] = function WhereToEatYosemiteBody
     size: 28
   }), "No shuttle")), React.createElement("dl", {
     className: "eat-none__drive"
-  }, React.createElement("div", null, React.createElement("dt", null, "Nearest food"), React.createElement("dd", null, "Yosemite Valley"), React.createElement("p", null, "Roughly 40 minutes each way")), React.createElement("div", null, React.createElement("dt", null, "Or"), React.createElement("dd", null, "Wawona"), React.createElement("p", null, "About half an hour south")))))), React.createElement("section", {
+  }, React.createElement("div", null, React.createElement("dt", null, "Nearest food"), React.createElement("dd", null, "Yosemite Valley"), React.createElement("p", null, "Roughly 40 minutes each way")), React.createElement("div", null, React.createElement("dt", null, "Or"), React.createElement("dd", null, "Wawona"), React.createElement("p", null, "About half an hour south")))), React.createElement("h3", {
+    className: "eat-subhead eat-subhead--rule"
+  }, "Four more places to bring lunch to"), React.createElement("ul", {
+    className: "eat-nofood"
+  }, React.createElement("li", null, React.createElement(EventIcon, {
+    name: "eye",
+    size: 26
+  }), React.createElement("strong", null, "Glacier Point"), React.createElement("p", null, "A gift shop and snack stand, and nothing more. It closes for the winter in late October, and the road it sits on closes with the snow. There is no designated picnic area at the point.")), React.createElement("li", null, React.createElement(EventIcon, {
+    name: "snow",
+    size: 26
+  }), React.createElement("strong", null, "Badger Pass"), React.createElement("p", null, "In ski season, the Skiers Grill and, Friday to Sunday and on holidays, the Snowflake Room. The season depends on snow and does not happen every year: the area did not open in the 2024 to 2025 winter.")), React.createElement("li", null, React.createElement(EventIcon, {
+    name: "tree",
+    size: 26
+  }), React.createElement("strong", null, "The Mariposa Grove"), React.createElement("p", null, "No food at the welcome plaza or in the grove. Drinking water is at the welcome plaza all year and at the arrival area in summer. The nearest food is the Wawona Store, or Fish Camp.")), React.createElement("li", null, React.createElement(EventIcon, {
+    name: "lake",
+    size: 26
+  }), React.createElement("strong", null, "Hetch Hetchy"), React.createElement("p", null, "No services of any kind. Evergreen Lodge, a mile outside the Hetch Hetchy entrance, is the nearest meal."))))), React.createElement("section", {
     className: "hp-wrap hp-section",
     id: "sec-5-restaurants-near-yosemite-the-gateway-to",
     tabIndex: -1
   }, React.createElement("p", {
     className: "hp-eyebrow"
-  }, "RESTAURANTS NEAR YOSEMITE"), React.createElement("h2", null, "The gateway towns, and the one place to eat in each"), React.createElement("p", {
+  }, "RESTAURANTS NEAR YOSEMITE"), React.createElement("h2", null, "The gateway towns, and where to eat in each"), React.createElement("p", {
     className: "ff-lede"
   }, "Where to base yourself is a bigger question than where to eat, and ", React.createElement("a", {
     href: "/articles/yosemite-gateway-towns-compared"
@@ -630,12 +723,15 @@ window.ARTICLE_BODIES["where-to-eat-yosemite"] = function WhereToEatYosemiteBody
     className: "eat-town__road"
   }, "US 395 · the eastern gateway"), React.createElement("h3", null, "Lee Vining"), React.createElement("p", {
     className: "eat-town__line"
-  }, "The first real coffee on the route, in either direction."), React.createElement("div", {
+  }, "The first real coffee on the route, in either direction. The chamber's list adds Nicely's, Bodie Mike's BBQ, the Mono Cone and the Mono Market."), React.createElement("div", {
     className: "eat-picks"
   }, React.createElement(TownPick, {
     name: "Latte Da Cafe",
     meta: "Breakfast, coffee · $ · seasonal"
-  }, "The east-side breakfast and coffee stop, whether you're crossing Tioga Pass from Mammoth or Bishop or coming down from Lake Tahoe. Pastries are baked in house and the drip coffee is good. Park behind the building, walk in, eat outside.")))), React.createElement("article", {
+  }, "The east-side breakfast and coffee stop, whether you're crossing Tioga Pass from Mammoth or Bishop or coming down from Lake Tahoe. Pastries are baked in house and the drip coffee is good. Park behind the building, walk in, eat outside."), React.createElement(TownPick, {
+    name: "Whoa Nellie Deli",
+    meta: "All day · $$ · seasonal · at the Mobil, Highway 120 and US 395"
+  }, "A full kitchen inside the Tioga Gas Mart, at the bottom of the pass, cooking since 1996 and known for its fish tacos. It is the first real meal off Tioga Road coming east and the last one going west. Like most of Lee Vining, it keeps the pass's season.")))), React.createElement("article", {
     className: "eat-town"
   }, React.createElement("figure", {
     className: "eat-town__photo"
@@ -650,11 +746,22 @@ window.ARTICLE_BODIES["where-to-eat-yosemite"] = function WhereToEatYosemiteBody
     className: "eat-town__body"
   }, React.createElement("p", {
     className: "eat-town__road"
-  }, "Highway 120 · the Big Oak Flat side"), React.createElement("h3", null, "Groveland"), React.createElement("p", {
+  }, "Highway 120 · the Big Oak Flat side"), React.createElement("h3", null, "Groveland, and the two lodges near the gate"), React.createElement("p", {
     className: "eat-town__line"
-  }, "A historic main street with the Iron Door Saloon on it, and enough places to eat for a two-night stay."), React.createElement("p", {
+  }, "A historic main street with enough places to eat for a two-night stay, and two lodge kitchens close enough to the park to eat at after a day in it."), React.createElement("div", {
+    className: "eat-picks"
+  }, React.createElement(TownPick, {
+    name: "Yosemite Restaurant, Rush Creek Lodge",
+    meta: "All three · $$$ · reservations on OpenTable"
+  }, "1.7 miles from the Big Oak Flat entrance, about five minutes. The restaurant and the tavern beside it serve the same menu, and the lodge's general store does lattes, breakfast and trail food."), React.createElement(TownPick, {
+    name: "Evergreen Lodge",
+    meta: "All three · $$$ · reservations on OpenTable"
+  }, "Off Evergreen Road, seven miles from the Big Oak Flat entrance and one from the Hetch Hetchy entrance, which makes it the meal for a Hetch Hetchy day. The tavern serves the restaurant's menu under a covered patio."), React.createElement(TownPick, {
+    name: "Iron Door Saloon",
+    meta: "Lunch, dinner · $$ · Main Street, Groveland"
+  }, "A building that went up before 1852 and became a saloon in 1896, with food, live music most weekends and karaoke on Thursdays. Groveland is a long half hour from the gate, so this is a dinner for people staying in town.")), React.createElement("p", {
     className: "eat-town__aside"
-  }, "It's missing from the county list below because it's in Tuolumne County, not because there's nothing there."))))), React.createElement("section", {
+  }, "Groveland is missing from the county list below because it's in Tuolumne County, not because there's nothing there."))))), React.createElement("section", {
     className: "ff-band",
     id: "sec-6-everything-that-exists-by-area",
     tabIndex: -1
@@ -766,6 +873,61 @@ window.ARTICLE_BODIES["where-to-eat-yosemite"] = function WhereToEatYosemiteBody
     href: "/now"
   }, "The Park Bulletin"), " carries what is open in the current ", React.createElement("em", null, "Yosemite Guide"), " edition. Read the table as the general shape, not today's schedule.")), React.createElement("section", {
     className: "ff-band",
+    id: "dietary-needs",
+    tabIndex: -1
+  }, React.createElement("div", {
+    className: "hp-wrap hp-section"
+  }, React.createElement("p", {
+    className: "hp-eyebrow"
+  }, "DIETARY NEEDS"), React.createElement("h2", null, "Vegan, gluten-free and allergies, kitchen by kitchen"), React.createElement("p", {
+    className: "ff-lede"
+  }, "The concessioner publishes no park-wide allergen guide, so the answer lives on each kitchen's own menu. Four of them say something useful."), React.createElement("ul", {
+    className: "ff-rules eat-diet"
+  }, React.createElement("li", {
+    className: "is-exception"
+  }, React.createElement(EventIcon, {
+    name: "food",
+    size: 26
+  }), React.createElement("strong", null, "The Ahwahnee"), React.createElement("p", null, "A separate vegan menu and a children's menu, and the dining room takes requests.")), React.createElement("li", {
+    className: "is-exception"
+  }, React.createElement(EventIcon, {
+    name: "food",
+    size: 26
+  }), React.createElement("strong", null, "Pizza Deck"), React.createElement("p", null, "Vegan cheese and a gluten-free crust, the crust in medium only, each for a few dollars more.")), React.createElement("li", {
+    className: "is-exception"
+  }, React.createElement(EventIcon, {
+    name: "food",
+    size: 26
+  }), React.createElement("strong", null, "The Mountain Room"), React.createElement("p", null, "Allergen marks on the printed menu for the major allergens, and a vegan stew. Tell the server.")), React.createElement("li", {
+    className: "is-exception"
+  }, React.createElement(EventIcon, {
+    name: "food",
+    size: 26
+  }), React.createElement("strong", null, "Seven Tents"), React.createElement("p", null, "Dishes made without gluten are marked, with a warning that the kitchen is open and cross-contact is possible."))), React.createElement("p", {
+    className: "ff-note"
+  }, "At the counters, Base Camp, Degnan's and the grills, ask before you order. For a serious allergy the Village Store is the fallback that lets you read every label."))), React.createElement("section", {
+    className: "hp-wrap hp-section",
+    id: "picnic-areas",
+    tabIndex: -1
+  }, React.createElement("div", {
+    className: "ff-split"
+  }, React.createElement("div", null, React.createElement("p", {
+    className: "hp-eyebrow"
+  }, "PICNIC AREAS"), React.createElement("h2", null, "Where the granite slab has a table"), React.createElement("div", {
+    className: "eat-prose"
+  }, React.createElement("p", null, "The park's picnic areas are first come, first served, open dawn to dusk, and come with tables, vault toilets and trash and recycling, and most have grills. Two things catch people out. Only ", React.createElement("strong", null, "Lower Yosemite Fall"), " and ", React.createElement("strong", null, "Church Bowl"), " have drinking water and flush toilets, so carry water to the rest. And in Yosemite Valley a grill fire is legal only between 5 and 10 p.m., inside the grill, and only when the park's fire restrictions allow it (", React.createElement("a", {
+    href: "/articles/yosemite-fire-restrictions-explained"
+  }, "what the restrictions mean"), "). Food stays within arm's reach the whole time; the rule is below."))), React.createElement("div", null, PICNICS.map(([area, list]) => React.createElement("div", {
+    key: area,
+    className: "eat-picnic"
+  }, React.createElement("h3", {
+    className: "eat-subhead"
+  }, area), React.createElement("ul", null, list.map(([name, note]) => React.createElement("li", {
+    key: name
+  }, React.createElement("strong", null, name), note ? React.createElement("span", null, note) : null))))), React.createElement("p", {
+    className: "ff-note"
+  }, "The Park Service lists no picnic area at Glacier Point or Hetch Hetchy.")))), React.createElement("section", {
+    className: "ff-band",
     id: "sec-8-can-you-bring-your-own-food-into-yosemit",
     tabIndex: -1
   }, React.createElement("div", {
@@ -847,7 +1009,7 @@ window.ARTICLE_BODIES["where-to-eat-yosemite"] = function WhereToEatYosemiteBody
     className: "eat-winter__grid"
   }, React.createElement("div", {
     className: "is-open"
-  }, React.createElement("strong", null, "The Valley"), React.createElement("p", null, "Keeps a real core open: Degnan's, Base Camp and the hotel dining rooms among them.")), React.createElement("div", {
+  }, React.createElement("strong", null, "The Valley"), React.createElement("p", null, "Keeps a real core open: Degnan's, Base Camp and the hotel dining rooms among them. The pizza moves inside to Seven Tents, and the Village Store and Curry Village grocery stay open.")), React.createElement("div", {
     className: "is-closed"
   }, React.createElement("strong", null, "The high country"), React.createElement("p", null, "Nothing at all. Tioga Road is closed anyway."))), React.createElement("p", {
     className: "ff-note"
@@ -860,6 +1022,10 @@ window.ARTICLE_BODIES["where-to-eat-yosemite"] = function WhereToEatYosemiteBody
   }, React.createElement("span", null, "Sep 20, 2026"), React.createElement("strong", null, "Tuolumne grill"), React.createElement("p", null, "The grill's last day on the published schedule.")), React.createElement("li", {
     className: "is-tight"
   }, React.createElement("span", null, "As summer ends"), React.createElement("strong", null, "Meadow Grill Taqueria"), React.createElement("p", null, "Usually the first Valley kitchen to close.")), React.createElement("li", {
+    className: "is-tight"
+  }, React.createElement("span", null, "Oct 12, 2026"), React.createElement("strong", null, "Housekeeping Camp store"), React.createElement("p", null, "Closes with the camp.")), React.createElement("li", {
+    className: "is-tight"
+  }, React.createElement("span", null, "Late October"), React.createElement("strong", null, "Village Grill, Glacier Point, Crane Flat"), React.createElement("p", null, "The grill, the snack stand and the Crane Flat store close for the winter.")), React.createElement("li", {
     className: "is-tight"
   }, React.createElement("span", null, "Through the fall"), React.createElement("strong", null, "Valley hours"), React.createElement("p", null, "Restaurants change their hours as the season winds down.")))), React.createElement("section", {
     className: "ff-band",
@@ -877,7 +1043,7 @@ window.ARTICLE_BODIES["where-to-eat-yosemite"] = function WhereToEatYosemiteBody
     href: "/articles/yosemite-gateway-towns-compared"
   }, "Yosemite gateway towns compared"), " and ", React.createElement("a", {
     href: "/articles/where-to-stay-in-yosemite"
-  }, "the lodging guide"), ". For one-day and two-day plans, see ", React.createElement("a", {
+  }, "every place to sleep inside the park"), ". For one-day and two-day plans, see ", React.createElement("a", {
     href: "/articles/yosemite-in-one-or-two-days"
   }, "One day or two in Yosemite"), ". For what a trip really costs, see ", React.createElement("a", {
     href: "/articles/yosemite-trip-cost-budget"
@@ -904,6 +1070,42 @@ window.ARTICLE_BODIES["where-to-eat-yosemite"] = function WhereToEatYosemiteBody
     target: "_blank",
     rel: "noopener noreferrer"
   }, "Wawona Hotel, NPS")), React.createElement("li", null, React.createElement("a", {
+    href: "https://www.travelyosemite.com/dining/the-ahwahnee-dining-room",
+    target: "_blank",
+    rel: "noopener noreferrer"
+  }, "The Ahwahnee Dining Room, Yosemite Hospitality")), React.createElement("li", null, React.createElement("a", {
+    href: "https://www.travelyosemite.com/things-to-do/shopping-supplies-groceries",
+    target: "_blank",
+    rel: "noopener noreferrer"
+  }, "Shopping, supplies and groceries, Yosemite Hospitality")), React.createElement("li", null, React.createElement("a", {
+    href: "https://www.nps.gov/yose/planyourvisit/guide.htm",
+    target: "_blank",
+    rel: "noopener noreferrer"
+  }, "Yosemite Guide, September 23 to November 24, 2026, NPS")), React.createElement("li", null, React.createElement("a", {
+    href: "https://www.nps.gov/yose/planyourvisit/picnic.htm",
+    target: "_blank",
+    rel: "noopener noreferrer"
+  }, "Picnic areas, NPS Yosemite")), React.createElement("li", null, React.createElement("a", {
+    href: "https://www.nps.gov/yose/planyourvisit/mg.htm",
+    target: "_blank",
+    rel: "noopener noreferrer"
+  }, "Mariposa Grove, NPS Yosemite")), React.createElement("li", null, React.createElement("a", {
+    href: "https://www.rushcreeklodge.com/dine/restaurant/",
+    target: "_blank",
+    rel: "noopener noreferrer"
+  }, "Rush Creek Lodge dining"), " and ", React.createElement("a", {
+    href: "https://www.evergreenlodge.com/dine/restaurant/",
+    target: "_blank",
+    rel: "noopener noreferrer"
+  }, "Evergreen Lodge dining")), React.createElement("li", null, React.createElement("a", {
+    href: "https://www.whoanelliedeli.com/info",
+    target: "_blank",
+    rel: "noopener noreferrer"
+  }, "Whoa Nellie Deli"), " and ", React.createElement("a", {
+    href: "https://www.leevining.com/dining",
+    target: "_blank",
+    rel: "noopener noreferrer"
+  }, "Lee Vining Chamber of Commerce dining list")), React.createElement("li", null, React.createElement("a", {
     href: "/now"
   }, "The Park Bulletin, this edition's hours"))))), React.createElement("div", {
     className: "ff-faq"
