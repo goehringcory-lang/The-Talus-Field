@@ -75,7 +75,10 @@ export function declutter(items: DeclutterItem[], cell = 64): Set<string> {
   const shown = new Set<string>()
   // A uniform grid over the screen: each placed box is filed under every
   // cell it touches, so a candidate is tested against its neighbours only.
-  const grid: Record<string, [number, number, number, number][]> = {}
+  // Cells are keyed by number, not by a "c,r" string: this runs every frame
+  // of a camera move, and a string per lookup was garbage per frame.
+  const grid = new Map<number, [number, number, number, number][]>()
+  const cellKey = (c: number, r: number) => (c + 1024) * 4096 + (r + 1024)
   for (const it of order) {
     const w = it.w * COLLISION_FACTOR
     const h = it.h * COLLISION_FACTOR
@@ -88,7 +91,9 @@ export function declutter(items: DeclutterItem[], cell = 64): Set<string> {
     if (!it.pinned) {
       outer: for (let c = c0; c <= c1; c++) {
         for (let r = r0; r <= r1; r++) {
-          for (const b of grid[`${c},${r}`] ?? []) {
+          const boxes = grid.get(cellKey(c, r))
+          if (!boxes) continue
+          for (const b of boxes) {
             if (box[0] < b[2] && box[2] > b[0] && box[1] < b[3] && box[3] > b[1]) {
               hit = true
               break outer
@@ -100,7 +105,12 @@ export function declutter(items: DeclutterItem[], cell = 64): Set<string> {
     if (hit) continue
     shown.add(it.id)
     for (let c = c0; c <= c1; c++) {
-      for (let r = r0; r <= r1; r++) (grid[`${c},${r}`] ??= []).push(box)
+      for (let r = r0; r <= r1; r++) {
+        const k = cellKey(c, r)
+        const boxes = grid.get(k)
+        if (boxes) boxes.push(box)
+        else grid.set(k, [box])
+      }
     }
   }
   return shown

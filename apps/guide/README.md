@@ -74,6 +74,7 @@ on it needs a third-party key, and every byte it draws can be cached offline.
 | `src/map/attribution.ts` | The data credits |
 | `src/map/kinds.ts` | Pin kinds, colours, glyphs and declutter ranks |
 | `src/map/declutter.ts` | Which pins draw full-size and which step down to a dot; the depth scale for tilted views |
+| `src/map/pinMarker.ts`, `scaleControl.ts`, `terrainElevation.ts`, `terrainToggle.ts` | Frame-rate work around MapLibre on terrain: pins test ridge occlusion only at rest, the scale bar updates on moveend in 3D, one covering-tile pass per frame for elevation lookups, and the 2D/3D switch that grows and flattens the relief with the tilt |
 | `src/map/tripLayer.ts`, `TripPanel.tsx`, `tripMapLayers.ts`, `tripIcons.ts` | The trip layer: the plan as days of pins, legs and warnings; its panel; its MapLibre layers; its pin shapes |
 | `src/map/roadGraph.ts`, `src/map/mapData.generated.ts`, `public/map/roads-<hash>.json` | The road and path graph and the on-device router |
 | `src/trip/shuttle.ts`, `src/trip/places.ts` | Valley shuttle legs; map places a trip can hold |
