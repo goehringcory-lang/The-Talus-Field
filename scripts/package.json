@@ -48,13 +48,13 @@
     "@babel/core": "^8.0.0",
     "@babel/preset-env": "^8.0.0",
     "@babel/preset-react": "^8.0.0",
-    "adm-zip": "^0.6.0",
+    "adm-zip": "^0.6.1",
     "pngjs": "^7.0.0",
     "react": "^19.2.7",
     "react-dom": "^19.2.7",
     "shapefile": "^0.6.6",
     "sharp": "^0.34.5",
-    "undici": "^8.7.0"
+    "undici": "^8.11.2"
   },
   "dependencies": {
     "hyparquet": "^1.26.2",

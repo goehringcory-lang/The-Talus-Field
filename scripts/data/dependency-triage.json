@@ -1,4 +1,805 @@
 {
   "__comment": "The dependency check's memory (.claude/skills/dependency-check/SKILL.md). One entry per security advisory the monthly run has triaged, keyed by its GHSA id: the package and package directory (apps/guide, workers, scripts), the installed version it was triaged at, the verdict (`applies`, `does-not-apply`, or `unclear`), the evidence (which function or path the advisory is about, and where the code does or does not reach it), and the date. A `does-not-apply` verdict is re-examined when the package, its installed version, or the code that calls it changes; an `applies` or `unclear` verdict is re-examined every run until a fix lands. Only the dependency check writes this file, in its own PR.",
-  "advisories": {}
+  "advisories": {
+    "GHSA-28wg-ghj8-5hjv": {
+      "package": "nanoid",
+      "directory": "apps/guide",
+      "installed": "3.3.12 -> 3.3.19",
+      "verdict": "does-not-apply",
+      "evidence": "Infinite loop on a negative or zero size passed to the non-secure/custom generators. nanoid is a transitive of postcss at build time; the app source does not import it.",
+      "fix": "Patched by the transitive update to 3.3.19.",
+      "date": "2026-10-01"
+    },
+    "GHSA-2gcr-mfcq-wcc3": {
+      "package": "hono",
+      "directory": "workers",
+      "installed": "4.12.16 -> 4.13.12",
+      "verdict": "does-not-apply",
+      "evidence": "app.mount() prefix stripping and parseBody() dot-notation nesting. workers/src imports only 'hono', 'hono/cors' and 'hono/factory' (grep of workers/src), and calls neither app.mount() nor parseBody(); JWTs go through @tsndr/cloudflare-worker-jwt, not hono/jwt. Routes are mounted with app.route() and bodies are read with c.req.json(), c.req.text() or the native c.req.formData() (workers/src/routes/photos.ts:83), never parseBody().",
+      "fix": "Patched by the update to 4.13.12.",
+      "date": "2026-10-01"
+    },
+    "GHSA-2gqq-gqf2-x968": {
+      "package": "undici",
+      "directories": [
+        "scripts",
+        "workers"
+      ],
+      "installed": "scripts 8.7.0 -> 8.11.2; workers 7.24.8 (miniflare pin)",
+      "verdict": "does-not-apply",
+      "evidence": "scripts: the only import is scripts/gen-hike-tracks.mjs:82-84, which sets an EnvHttpProxyAgent as the global dispatcher and uses undici.fetch for plain GETs; no cache, retry, dump or decompress interceptors, no WebSocket or WebSocketStream, no setCookie, no SOCKS5 or BalancedPool, no blob-like bodies. workers: Pinned inside miniflare 4.20260430.0, the local simulator behind `wrangler dev`. The deployed Worker bundles none of them (workers/src imports neither undici nor ws), and the miniflare client talks only to the local workerd it spawned.",
+      "fix": "scripts patched by undici ^8.11.2 (floor raised). workers held back with wrangler, see the ws entries.",
+      "date": "2026-10-01"
+    },
+    "GHSA-2jfj-6hjv-fm6j": {
+      "package": "undici",
+      "directories": [
+        "scripts",
+        "workers"
+      ],
+      "installed": "scripts 8.7.0 -> 8.11.2; workers 7.24.8 (miniflare pin)",
+      "verdict": "does-not-apply",
+      "evidence": "scripts: the only import is scripts/gen-hike-tracks.mjs:82-84, which sets an EnvHttpProxyAgent as the global dispatcher and uses undici.fetch for plain GETs; no cache, retry, dump or decompress interceptors, no WebSocket or WebSocketStream, no setCookie, no SOCKS5 or BalancedPool, no blob-like bodies. workers: Pinned inside miniflare 4.20260430.0, the local simulator behind `wrangler dev`. The deployed Worker bundles none of them (workers/src imports neither undici nor ws), and the miniflare client talks only to the local workerd it spawned.",
+      "fix": "scripts patched by undici ^8.11.2 (floor raised). workers held back with wrangler, see the ws entries.",
+      "date": "2026-10-01"
+    },
+    "GHSA-2v37-7h3g-55p8": {
+      "package": "nanoid",
+      "directory": "apps/guide",
+      "installed": "3.3.12 -> 3.3.19",
+      "verdict": "does-not-apply",
+      "evidence": "Infinite loop on a negative or zero size passed to the non-secure/custom generators. nanoid is a transitive of postcss at build time; the app source does not import it.",
+      "fix": "Patched by the transitive update to 3.3.19.",
+      "date": "2026-10-01"
+    },
+    "GHSA-337j-9hxr-rhxg": {
+      "package": "react-router (via react-router-dom)",
+      "directory": "apps/guide",
+      "installed": "7.14.2 -> 7.18.4",
+      "verdict": "does-not-apply",
+      "evidence": "Framework-mode, SSR-hydration and RSC paths only. The guide is a declarative-mode SPA: <BrowserRouter> at apps/guide/src/main.tsx:67, no server runtime, no RSC APIs.",
+      "fix": "Patched anyway by the in-range update to react-router-dom 7.18.4.",
+      "date": "2026-10-01"
+    },
+    "GHSA-35p6-xmwp-9g52": {
+      "package": "undici (via wrangler > miniflare)",
+      "installed": "7.24.8",
+      "directory": "workers",
+      "verdict": "does-not-apply",
+      "evidence": "Pinned inside miniflare 4.20260430.0, the local simulator behind `wrangler dev`. The deployed Worker bundles none of them (workers/src imports neither undici nor ws), and the miniflare client talks only to the local workerd it spawned.",
+      "fix": "Every wrangler release that ships a fixed miniflare (>= 4.114.0) declares a peerOptional @cloudflare/workers-types ^5, a major move for the types package; held back with wrangler at 4.87.0.",
+      "date": "2026-10-01"
+    },
+    "GHSA-3hrh-pfw6-9m5x": {
+      "package": "hono",
+      "directory": "workers",
+      "installed": "4.12.16 -> 4.13.12",
+      "verdict": "does-not-apply",
+      "evidence": "Cache, ip-restriction, cookie, proxy, language-detector middleware and toSSG(). workers/src imports only 'hono', 'hono/cors' and 'hono/factory' (grep of workers/src), and calls neither app.mount() nor parseBody(); JWTs go through @tsndr/cloudflare-worker-jwt, not hono/jwt.",
+      "fix": "Patched by the update to 4.13.12.",
+      "date": "2026-10-01"
+    },
+    "GHSA-3jxr-9vmj-r5cp": {
+      "package": "brace-expansion",
+      "directory": "apps/guide",
+      "installed": "5.0.5 -> 5.0.12 (1.1.21 unchanged)",
+      "verdict": "does-not-apply",
+      "evidence": "DoS on attacker-supplied brace patterns. Reached only through minimatch in eslint, vitest and the build, expanding the repo's own glob patterns (apps/guide/eslint.config.js, vitest.config.ts).",
+      "fix": "Patched by the transitive update to 5.0.12.",
+      "date": "2026-10-01"
+    },
+    "GHSA-3wwx-pv8p-q78v": {
+      "package": "undici",
+      "directories": [
+        "scripts",
+        "workers"
+      ],
+      "installed": "scripts 8.7.0 -> 8.11.2; workers 7.24.8 (miniflare pin)",
+      "verdict": "does-not-apply",
+      "evidence": "scripts: the only import is scripts/gen-hike-tracks.mjs:82-84, which sets an EnvHttpProxyAgent as the global dispatcher and uses undici.fetch for plain GETs; no cache, retry, dump or decompress interceptors, no WebSocket or WebSocketStream, no setCookie, no SOCKS5 or BalancedPool, no blob-like bodies. workers: Pinned inside miniflare 4.20260430.0, the local simulator behind `wrangler dev`. The deployed Worker bundles none of them (workers/src imports neither undici nor ws), and the miniflare client talks only to the local workerd it spawned.",
+      "fix": "scripts patched by undici ^8.11.2 (floor raised). workers held back with wrangler, see the ws entries.",
+      "date": "2026-10-01"
+    },
+    "GHSA-3xpg-4rpp-hhhm": {
+      "package": "undici",
+      "directories": [
+        "scripts",
+        "workers"
+      ],
+      "installed": "scripts 8.7.0 -> 8.11.2; workers 7.24.8 (miniflare pin)",
+      "verdict": "does-not-apply",
+      "evidence": "scripts: the only import is scripts/gen-hike-tracks.mjs:82-84, which sets an EnvHttpProxyAgent as the global dispatcher and uses undici.fetch for plain GETs; no cache, retry, dump or decompress interceptors, no WebSocket or WebSocketStream, no setCookie, no SOCKS5 or BalancedPool, no blob-like bodies. workers: Pinned inside miniflare 4.20260430.0, the local simulator behind `wrangler dev`. The deployed Worker bundles none of them (workers/src imports neither undici nor ws), and the miniflare client talks only to the local workerd it spawned.",
+      "fix": "scripts patched by undici ^8.11.2 (floor raised). workers held back with wrangler, see the ws entries.",
+      "date": "2026-10-01"
+    },
+    "GHSA-4cwx-7wf7-3272": {
+      "package": "undici",
+      "directories": [
+        "scripts",
+        "workers"
+      ],
+      "installed": "scripts 8.7.0 -> 8.11.2; workers 7.24.8 (miniflare pin)",
+      "verdict": "does-not-apply",
+      "evidence": "scripts: the only import is scripts/gen-hike-tracks.mjs:82-84, which sets an EnvHttpProxyAgent as the global dispatcher and uses undici.fetch for plain GETs; no cache, retry, dump or decompress interceptors, no WebSocket or WebSocketStream, no setCookie, no SOCKS5 or BalancedPool, no blob-like bodies. workers: Pinned inside miniflare 4.20260430.0, the local simulator behind `wrangler dev`. The deployed Worker bundles none of them (workers/src imports neither undici nor ws), and the miniflare client talks only to the local workerd it spawned.",
+      "fix": "scripts patched by undici ^8.11.2 (floor raised). workers held back with wrangler, see the ws entries.",
+      "date": "2026-10-01"
+    },
+    "GHSA-4x5r-pxfx-6jf8": {
+      "package": "@babel/core",
+      "directory": "apps/guide",
+      "installed": "7.29.0 -> 7.29.7",
+      "verdict": "does-not-apply",
+      "evidence": "Needs attacker-controlled source code compiled by Babel. Babel 7 here is a transitive of the build toolchain and compiles only the repo's own sources. (scripts/ is on Babel 8.0.x, outside the affected range.)",
+      "fix": "Patched by the transitive update to 7.29.7.",
+      "date": "2026-10-01"
+    },
+    "GHSA-54fx-42gc-7vw4": {
+      "package": "hono",
+      "directory": "workers",
+      "installed": "4.12.16 -> 4.13.12",
+      "verdict": "does-not-apply",
+      "evidence": "Cache, ip-restriction, cookie, proxy, language-detector middleware and toSSG(). workers/src imports only 'hono', 'hono/cors' and 'hono/factory' (grep of workers/src), and calls neither app.mount() nor parseBody(); JWTs go through @tsndr/cloudflare-worker-jwt, not hono/jwt.",
+      "fix": "Patched by the update to 4.13.12.",
+      "date": "2026-10-01"
+    },
+    "GHSA-58qx-3vcg-4xpx": {
+      "package": "ws (via wrangler > miniflare)",
+      "installed": "8.18.0",
+      "directory": "workers",
+      "verdict": "does-not-apply",
+      "evidence": "Pinned inside miniflare 4.20260430.0, the local simulator behind `wrangler dev`. The deployed Worker bundles none of them (workers/src imports neither undici nor ws), and the miniflare client talks only to the local workerd it spawned.",
+      "fix": "Every wrangler release that ships a fixed miniflare (>= 4.114.0) declares a peerOptional @cloudflare/workers-types ^5, a major move for the types package; held back with wrangler at 4.87.0.",
+      "date": "2026-10-01"
+    },
+    "GHSA-6j4f-fj2g-mc7p": {
+      "package": "brace-expansion",
+      "directory": "apps/guide",
+      "installed": "5.0.5 -> 5.0.12 (1.1.21 unchanged)",
+      "verdict": "does-not-apply",
+      "evidence": "DoS on attacker-supplied brace patterns. Reached only through minimatch in eslint, vitest and the build, expanding the repo's own glob patterns (apps/guide/eslint.config.js, vitest.config.ts).",
+      "fix": "Patched by the transitive update to 5.0.12.",
+      "date": "2026-10-01"
+    },
+    "GHSA-73wf-gq98-2v4g": {
+      "package": "browserslist",
+      "directories": [
+        "apps/guide",
+        "scripts"
+      ],
+      "installed": "4.28.2 -> 4.29.3",
+      "verdict": "does-not-apply",
+      "evidence": "Unbounded cache growth from many distinct queries, and a crash via an untrusted browserslist-stats.json. Called at build time with the toolchain's fixed queries; the repo has no browserslist-stats.json and no long-running process.",
+      "fix": "Patched by the transitive update to 4.29.3.",
+      "date": "2026-10-01"
+    },
+    "GHSA-79qm-7rj5-m7r9": {
+      "package": "hono",
+      "directory": "workers",
+      "installed": "4.12.16 -> 4.13.12",
+      "verdict": "does-not-apply",
+      "evidence": "Cache, ip-restriction, cookie, proxy, language-detector middleware and toSSG(). workers/src imports only 'hono', 'hono/cors' and 'hono/factory' (grep of workers/src), and calls neither app.mount() nor parseBody(); JWTs go through @tsndr/cloudflare-worker-jwt, not hono/jwt.",
+      "fix": "Patched by the update to 4.13.12.",
+      "date": "2026-10-01"
+    },
+    "GHSA-7q85-xj36-vmfc": {
+      "package": "adm-zip",
+      "directory": "scripts",
+      "installed": "0.6.0 -> 0.6.1",
+      "verdict": "applies",
+      "evidence": "scripts/gen-hike-tracks.mjs:188-194 opens a USGS TopoMapVector archive downloaded from prd-tnm.s3.amazonaws.com and reads two entries with zip.getEntry(...).getData() (synchronous). The synchronous getData() path is the one that allocates from, or skips the cap on, the archive's declared uncompressed size, and the archive comes from a third party. Exposure is a crash of a build-time script, not a shipped surface.",
+      "fix": "Fixed in 0.6.1; applied as adm-zip ^0.6.1 (floor raised in scripts/package.json).",
+      "date": "2026-10-01"
+    },
+    "GHSA-8238-w5pm-2374": {
+      "package": "adm-zip",
+      "directory": "scripts",
+      "installed": "0.6.0 -> 0.6.1",
+      "verdict": "does-not-apply",
+      "evidence": "Async decompression (inflateAsync, getDataAsync). scripts/gen-hike-tracks.mjs:188-194 opens a USGS TopoMapVector archive downloaded from prd-tnm.s3.amazonaws.com and reads two entries with zip.getEntry(...).getData() (synchronous). No async API is called.",
+      "fix": "Patched anyway by 0.6.1.",
+      "date": "2026-10-01"
+    },
+    "GHSA-8436-99hf-9mmv": {
+      "package": "undici",
+      "directories": [
+        "scripts",
+        "workers"
+      ],
+      "installed": "scripts 8.7.0 -> 8.11.2; workers 7.24.8 (miniflare pin)",
+      "verdict": "does-not-apply",
+      "evidence": "scripts: the only import is scripts/gen-hike-tracks.mjs:82-84, which sets an EnvHttpProxyAgent as the global dispatcher and uses undici.fetch for plain GETs; no cache, retry, dump or decompress interceptors, no WebSocket or WebSocketStream, no setCookie, no SOCKS5 or BalancedPool, no blob-like bodies. workers: Pinned inside miniflare 4.20260430.0, the local simulator behind `wrangler dev`. The deployed Worker bundles none of them (workers/src imports neither undici nor ws), and the miniflare client talks only to the local workerd it spawned.",
+      "fix": "scripts patched by undici ^8.11.2 (floor raised). workers held back with wrangler, see the ws entries.",
+      "date": "2026-10-01"
+    },
+    "GHSA-84g9-w2xq-vcv6": {
+      "package": "react-router (via react-router-dom)",
+      "directory": "apps/guide",
+      "installed": "7.14.2 -> 7.18.4",
+      "verdict": "does-not-apply",
+      "evidence": "Framework-mode, SSR-hydration and RSC paths only. The guide is a declarative-mode SPA: <BrowserRouter> at apps/guide/src/main.tsx:67, no server runtime, no RSC APIs.",
+      "fix": "Patched anyway by the in-range update to react-router-dom 7.18.4.",
+      "date": "2026-10-01"
+    },
+    "GHSA-88fw-hqm2-52qc": {
+      "package": "hono",
+      "directory": "workers",
+      "installed": "4.12.16 -> 4.13.12",
+      "verdict": "does-not-apply",
+      "evidence": "Needs credentials: true with the default wildcard origin. workers/src/index.ts passes an origin function over an allow-list and does not set credentials.",
+      "fix": "Patched by the update to 4.13.12.",
+      "date": "2026-10-01"
+    },
+    "GHSA-8j4g-w8fx-2239": {
+      "package": "hono",
+      "directory": "workers",
+      "installed": "4.12.16 -> 4.13.12",
+      "verdict": "does-not-apply",
+      "evidence": "The quadratic Access-Control-Request-Headers parse runs only when allowHeaders is not configured. workers/src/index.ts mounts cors() on /api/* with allowHeaders: ['Authorization', 'Content-Type', 'stripe-signature'].",
+      "fix": "Patched by the update to 4.13.12 (fixed in 4.12.34).",
+      "date": "2026-10-01"
+    },
+    "GHSA-8x6r-g9mw-2r78": {
+      "package": "react-router (via react-router-dom)",
+      "directory": "apps/guide",
+      "installed": "7.14.2 -> 7.18.4",
+      "verdict": "does-not-apply",
+      "evidence": "Framework-mode, SSR-hydration and RSC paths only. The guide is a declarative-mode SPA: <BrowserRouter> at apps/guide/src/main.tsx:67, no server runtime, no RSC APIs.",
+      "fix": "Patched anyway by the in-range update to react-router-dom 7.18.4.",
+      "date": "2026-10-01"
+    },
+    "GHSA-8xcm-r25x-g524": {
+      "package": "undici",
+      "directories": [
+        "scripts",
+        "workers"
+      ],
+      "installed": "scripts 8.7.0 -> 8.11.2; workers 7.24.8 (miniflare pin)",
+      "verdict": "does-not-apply",
+      "evidence": "scripts: the only import is scripts/gen-hike-tracks.mjs:82-84, which sets an EnvHttpProxyAgent as the global dispatcher and uses undici.fetch for plain GETs; no cache, retry, dump or decompress interceptors, no WebSocket or WebSocketStream, no setCookie, no SOCKS5 or BalancedPool, no blob-like bodies. workers: Pinned inside miniflare 4.20260430.0, the local simulator behind `wrangler dev`. The deployed Worker bundles none of them (workers/src imports neither undici nor ws), and the miniflare client talks only to the local workerd it spawned.",
+      "fix": "scripts patched by undici ^8.11.2 (floor raised). workers held back with wrangler, see the ws entries.",
+      "date": "2026-10-01"
+    },
+    "GHSA-96hv-2xvq-fx4p": {
+      "package": "ws (via wrangler > miniflare)",
+      "installed": "8.18.0",
+      "directory": "workers",
+      "verdict": "does-not-apply",
+      "evidence": "Pinned inside miniflare 4.20260430.0, the local simulator behind `wrangler dev`. The deployed Worker bundles none of them (workers/src imports neither undici nor ws), and the miniflare client talks only to the local workerd it spawned.",
+      "fix": "Every wrangler release that ships a fixed miniflare (>= 4.114.0) declares a peerOptional @cloudflare/workers-types ^5, a major move for the types package; held back with wrangler at 4.87.0.",
+      "date": "2026-10-01"
+    },
+    "GHSA-c6fg-446q-cg94": {
+      "package": "adm-zip",
+      "directory": "scripts",
+      "installed": "0.6.0 -> 0.6.1",
+      "verdict": "does-not-apply",
+      "evidence": "Async decompression (inflateAsync, getDataAsync). scripts/gen-hike-tracks.mjs:188-194 opens a USGS TopoMapVector archive downloaded from prd-tnm.s3.amazonaws.com and reads two entries with zip.getEntry(...).getData() (synchronous). No async API is called.",
+      "fix": "Patched anyway by 0.6.1.",
+      "date": "2026-10-01"
+    },
+    "GHSA-c83g-rgw3-j3cx": {
+      "package": "browserslist",
+      "directories": [
+        "apps/guide",
+        "scripts"
+      ],
+      "installed": "4.28.2 -> 4.29.3",
+      "verdict": "does-not-apply",
+      "evidence": "Unbounded cache growth from many distinct queries, and a crash via an untrusted browserslist-stats.json. Called at build time with the toolchain's fixed queries; the repo has no browserslist-stats.json and no long-running process.",
+      "fix": "Patched by the transitive update to 4.29.3.",
+      "date": "2026-10-01"
+    },
+    "GHSA-chx6-hx7r-mcp5": {
+      "package": "react-router (via react-router-dom)",
+      "directory": "apps/guide",
+      "installed": "7.14.2 -> 7.18.4",
+      "verdict": "does-not-apply",
+      "evidence": "Framework-mode, SSR-hydration and RSC paths only. The guide is a declarative-mode SPA: <BrowserRouter> at apps/guide/src/main.tsx:67, no server runtime, no RSC APIs.",
+      "fix": "Patched anyway by the in-range update to react-router-dom 7.18.4.",
+      "date": "2026-10-01"
+    },
+    "GHSA-crvj-82cr-hjcx": {
+      "package": "hono",
+      "directory": "workers",
+      "installed": "4.12.16 -> 4.13.12",
+      "verdict": "unclear",
+      "evidence": "c.req.query() is read in workers/src/routes/checkout.ts:275 (token) and workers/src/routes/programs.ts:58-59 (start, end). Browsers never send a fragment, and nothing in front of the Worker filters on the query string, but a hand-built request line can carry one; treated as applies.",
+      "fix": "Fixed in 4.13.5; applied as hono ^4.13.12 (floor raised in workers/package.json).",
+      "date": "2026-10-01"
+    },
+    "GHSA-f23p-vx2j-j53r": {
+      "package": "hono",
+      "directory": "workers",
+      "installed": "4.12.16 -> 4.13.12",
+      "verdict": "does-not-apply",
+      "evidence": "hono/jsx and hono/css server rendering. workers/src imports only 'hono', 'hono/cors' and 'hono/factory' (grep of workers/src), and calls neither app.mount() nor parseBody(); JWTs go through @tsndr/cloudflare-worker-jwt, not hono/jwt.",
+      "fix": "Patched by the update to 4.13.12.",
+      "date": "2026-10-01"
+    },
+    "GHSA-f577-qrjj-4474": {
+      "package": "hono",
+      "directory": "workers",
+      "installed": "4.12.16 -> 4.13.12",
+      "verdict": "does-not-apply",
+      "evidence": "hono/utils/jwt verify() and the jwt/jwk middleware. workers/src imports only 'hono', 'hono/cors' and 'hono/factory' (grep of workers/src), and calls neither app.mount() nor parseBody(); JWTs go through @tsndr/cloudflare-worker-jwt, not hono/jwt.",
+      "fix": "Patched by the update to 4.13.12.",
+      "date": "2026-10-01"
+    },
+    "GHSA-f88m-g3jw-g9cj": {
+      "package": "sharp",
+      "directories": [
+        "apps/guide",
+        "scripts",
+        "workers"
+      ],
+      "installed": "0.34.5",
+      "verdict": "unclear",
+      "evidence": "libvips and libheif decoder vulnerabilities, triggered by decoding untrusted images. Nothing ships sharp to a reader: it runs at build time on the owner's machine or in Actions. But some inputs come from outside the repo: scripts/fetch-guide-photos.mjs decodes Wikimedia Commons thumbnails, apps/guide/scripts/gen-map-tiles.ts decodes terrarium PNG tiles from s3.amazonaws.com/elevation-tiles-prod, and scripts/ingest-photos.mjs (also run by .github/workflows/photo-import.yml on files uploaded through the Worker's /photos page) calls metadata() on HEIC files, which reaches libheif. Those sources are trusted publishers or the owner's own uploads (bearer-gated by PHOTO_UPLOAD_TOKEN), so exploitation needs a compromised upstream; treated as applies. In workers/ sharp is an optional dependency of miniflare (wrangler dev), never called.",
+      "fix": "Fixed in sharp 0.35.4+, which is a semver-major for a 0.x package: held back, migration at the top of the PR body. Re-examine every run until the 0.35 move lands.",
+      "date": "2026-10-01"
+    },
+    "GHSA-fx2h-pf6j-xcff": {
+      "package": "vite (and launch-editor)",
+      "directory": "apps/guide",
+      "installed": "8.0.10 -> 8.3.2",
+      "verdict": "does-not-apply",
+      "evidence": "Both need the Vite dev server on Windows (fs.deny bypass on NTFS paths; UNC path NTLM leak via launch-editor). CI and the Cloudflare Pages build run `vite build` on Linux and never start the dev server.",
+      "fix": "Patched anyway by the in-range update to vite 8.3.2 (fixed in 8.0.16).",
+      "date": "2026-10-01"
+    },
+    "GHSA-fxqj-rqcc-2cmp": {
+      "package": "postcss",
+      "directory": "apps/guide",
+      "installed": "8.5.13 -> 8.5.28",
+      "verdict": "does-not-apply",
+      "evidence": "Needs attacker-controlled CSS carrying a sourceMappingURL comment. PostCSS runs only inside `vite build` over the repo's own stylesheets (apps/guide/src/**/*.css).",
+      "fix": "Patched by the transitive update to 8.5.28.",
+      "date": "2026-10-01"
+    },
+    "GHSA-g6gw-c38x-mqfc": {
+      "package": "hono",
+      "directory": "workers",
+      "installed": "4.12.16 -> 4.13.12",
+      "verdict": "does-not-apply",
+      "evidence": "app.mount() prefix stripping and parseBody() dot-notation nesting. workers/src imports only 'hono', 'hono/cors' and 'hono/factory' (grep of workers/src), and calls neither app.mount() nor parseBody(); JWTs go through @tsndr/cloudflare-worker-jwt, not hono/jwt. Routes are mounted with app.route() and bodies are read with c.req.json(), c.req.text() or the native c.req.formData() (workers/src/routes/photos.ts:83), never parseBody().",
+      "fix": "Patched by the update to 4.13.12.",
+      "date": "2026-10-01"
+    },
+    "GHSA-g7r4-m6w7-qqqr": {
+      "package": "esbuild (via wrangler, tsx)",
+      "directory": "workers",
+      "installed": "0.27.3 (wrangler), 0.28.1 (tsx)",
+      "verdict": "does-not-apply",
+      "evidence": "Path traversal in esbuild's serve mode on Windows. wrangler uses esbuild to bundle and tsx to transform; neither starts esbuild's servedir server, and the build runs on Linux.",
+      "fix": "Needs wrangler >= 4.114, held back (see the miniflare entry).",
+      "date": "2026-10-01"
+    },
+    "GHSA-g8m3-5g58-fq7m": {
+      "package": "undici (via wrangler > miniflare)",
+      "installed": "7.24.8",
+      "directory": "workers",
+      "verdict": "does-not-apply",
+      "evidence": "Pinned inside miniflare 4.20260430.0, the local simulator behind `wrangler dev`. The deployed Worker bundles none of them (workers/src imports neither undici nor ws), and the miniflare client talks only to the local workerd it spawned.",
+      "fix": "Every wrangler release that ships a fixed miniflare (>= 4.114.0) declares a peerOptional @cloudflare/workers-types ^5, a major move for the types package; held back with wrangler at 4.87.0.",
+      "date": "2026-10-01"
+    },
+    "GHSA-gqvv-2mrq-wpjv": {
+      "package": "hono",
+      "directory": "workers",
+      "installed": "4.12.16 -> 4.13.12",
+      "verdict": "does-not-apply",
+      "evidence": "Cache, ip-restriction, cookie, proxy, language-detector middleware and toSSG(). workers/src imports only 'hono', 'hono/cors' and 'hono/factory' (grep of workers/src), and calls neither app.mount() nor parseBody(); JWTs go through @tsndr/cloudflare-worker-jwt, not hono/jwt.",
+      "fix": "Patched by the update to 4.13.12.",
+      "date": "2026-10-01"
+    },
+    "GHSA-h8fp-f39c-q6mh": {
+      "package": "react-router (via react-router-dom)",
+      "directory": "apps/guide",
+      "installed": "7.14.2 -> 7.18.4",
+      "verdict": "does-not-apply",
+      "evidence": "Framework-mode, SSR-hydration and RSC paths only. The guide is a declarative-mode SPA: <BrowserRouter> at apps/guide/src/main.tsx:67, no server runtime, no RSC APIs.",
+      "fix": "Patched anyway by the in-range update to react-router-dom 7.18.4.",
+      "date": "2026-10-01"
+    },
+    "GHSA-hm8q-7f3q-5f36": {
+      "package": "hono",
+      "directory": "workers",
+      "installed": "4.12.16 -> 4.13.12",
+      "verdict": "does-not-apply",
+      "evidence": "hono/utils/jwt verify() and the jwt/jwk middleware. workers/src imports only 'hono', 'hono/cors' and 'hono/factory' (grep of workers/src), and calls neither app.mount() nor parseBody(); JWTs go through @tsndr/cloudflare-worker-jwt, not hono/jwt.",
+      "fix": "Patched by the update to 4.13.12.",
+      "date": "2026-10-01"
+    },
+    "GHSA-hm92-r4w5-c3mj": {
+      "package": "undici (via wrangler > miniflare)",
+      "installed": "7.24.8",
+      "directory": "workers",
+      "verdict": "does-not-apply",
+      "evidence": "Pinned inside miniflare 4.20260430.0, the local simulator behind `wrangler dev`. The deployed Worker bundles none of them (workers/src imports neither undici nor ws), and the miniflare client talks only to the local workerd it spawned.",
+      "fix": "Every wrangler release that ships a fixed miniflare (>= 4.114.0) declares a peerOptional @cloudflare/workers-types ^5, a major move for the types package; held back with wrangler at 4.87.0.",
+      "date": "2026-10-01"
+    },
+    "GHSA-hvrm-45r6-mjfj": {
+      "package": "hono",
+      "directory": "workers",
+      "installed": "4.12.16 -> 4.13.12",
+      "verdict": "does-not-apply",
+      "evidence": "hono/jsx and hono/css server rendering. workers/src imports only 'hono', 'hono/cors' and 'hono/factory' (grep of workers/src), and calls neither app.mount() nor parseBody(); JWTs go through @tsndr/cloudflare-worker-jwt, not hono/jwt.",
+      "fix": "Patched by the update to 4.13.12.",
+      "date": "2026-10-01"
+    },
+    "GHSA-hxh3-vqpv-xpqv": {
+      "package": "hono",
+      "directory": "workers",
+      "installed": "4.12.16 -> 4.13.12",
+      "verdict": "does-not-apply",
+      "evidence": "hono/jsx and hono/css server rendering. workers/src imports only 'hono', 'hono/cors' and 'hono/factory' (grep of workers/src), and calls neither app.mount() nor parseBody(); JWTs go through @tsndr/cloudflare-worker-jwt, not hono/jwt.",
+      "fix": "Patched by the update to 4.13.12.",
+      "date": "2026-10-01"
+    },
+    "GHSA-j5f4-cc29-5x44": {
+      "package": "adm-zip",
+      "directory": "scripts",
+      "installed": "0.6.0 -> 0.6.1",
+      "verdict": "does-not-apply",
+      "evidence": "Extraction to disk (extractAllTo / extractEntryTo: SUID bits, symlinked destinations, duplicate names resolving differently from getEntry). scripts/gen-hike-tracks.mjs:188-194 opens a USGS TopoMapVector archive downloaded from prd-tnm.s3.amazonaws.com and reads two entries with zip.getEntry(...).getData() (synchronous). Nothing is extracted to disk.",
+      "fix": "GHSA-j5f4 and GHSA-p634 patched by 0.6.1; GHSA-vwc7 lists no fixed release, irrelevant while nothing extracts.",
+      "date": "2026-10-01"
+    },
+    "GHSA-j6c9-x7qj-28xf": {
+      "package": "hono",
+      "directory": "workers",
+      "installed": "4.12.16 -> 4.13.12",
+      "verdict": "does-not-apply",
+      "evidence": "AWS Lambda / Lambda@Edge / API Gateway adapters and serve-static on Windows. The API runs on Cloudflare Workers (workers/wrangler.toml) and serves no static files through hono.",
+      "fix": "Patched by the update to 4.13.12.",
+      "date": "2026-10-01"
+    },
+    "GHSA-jr45-8vmc-qm54": {
+      "package": "undici",
+      "directories": [
+        "scripts",
+        "workers"
+      ],
+      "installed": "scripts 8.7.0 -> 8.11.2; workers 7.24.8 (miniflare pin)",
+      "verdict": "does-not-apply",
+      "evidence": "scripts: the only import is scripts/gen-hike-tracks.mjs:82-84, which sets an EnvHttpProxyAgent as the global dispatcher and uses undici.fetch for plain GETs; no cache, retry, dump or decompress interceptors, no WebSocket or WebSocketStream, no setCookie, no SOCKS5 or BalancedPool, no blob-like bodies. workers: Pinned inside miniflare 4.20260430.0, the local simulator behind `wrangler dev`. The deployed Worker bundles none of them (workers/src imports neither undici nor ws), and the miniflare client talks only to the local workerd it spawned.",
+      "fix": "scripts patched by undici ^8.11.2 (floor raised). workers held back with wrangler, see the ws entries.",
+      "date": "2026-10-01"
+    },
+    "GHSA-jrc7-96c5-q579": {
+      "package": "maplibre-gl",
+      "directory": "apps/guide",
+      "installed": "5.24.0",
+      "verdict": "does-not-apply",
+      "evidence": "DOM.sanitize() runs on attribution HTML handed to the attribution control. The guide's only attribution strings are first-party constants: MAP_ATTRIBUTION_HTML in apps/guide/src/map/attribution.ts (set at apps/guide/src/map/style.ts:138) and the literals in apps/guide/src/map/tiles.generated.ts. Sources are tile-URL arrays on the guide's own API (style.ts:120,134), not TileJSON from a third party, and nothing calls Popup.setHTML (popups are built as DOM in apps/guide/src/routes/Map.tsx). No untrusted string reaches the sanitizer.",
+      "fix": "Fixed in 6.4.1, a new major: held back (PR body, Held back). Re-open if a source or customAttribution starts taking text from outside the repo.",
+      "date": "2026-10-01"
+    },
+    "GHSA-jxxr-4gwj-5jf2": {
+      "package": "brace-expansion",
+      "directory": "apps/guide",
+      "installed": "5.0.5 -> 5.0.12 (1.1.21 unchanged)",
+      "verdict": "does-not-apply",
+      "evidence": "DoS on attacker-supplied brace patterns. Reached only through minimatch in eslint, vitest and the build, expanding the repo's own glob patterns (apps/guide/eslint.config.js, vitest.config.ts).",
+      "fix": "Patched by the transitive update to 5.0.12.",
+      "date": "2026-10-01"
+    },
+    "GHSA-m8rv-5g2x-5cg5": {
+      "package": "undici",
+      "directories": [
+        "scripts",
+        "workers"
+      ],
+      "installed": "scripts 8.7.0 -> 8.11.2; workers 7.24.8 (miniflare pin)",
+      "verdict": "does-not-apply",
+      "evidence": "scripts: the only import is scripts/gen-hike-tracks.mjs:82-84, which sets an EnvHttpProxyAgent as the global dispatcher and uses undici.fetch for plain GETs; no cache, retry, dump or decompress interceptors, no WebSocket or WebSocketStream, no setCookie, no SOCKS5 or BalancedPool, no blob-like bodies. workers: Pinned inside miniflare 4.20260430.0, the local simulator behind `wrangler dev`. The deployed Worker bundles none of them (workers/src imports neither undici nor ws), and the miniflare client talks only to the local workerd it spawned.",
+      "fix": "scripts patched by undici ^8.11.2 (floor raised). workers held back with wrangler, see the ws entries.",
+      "date": "2026-10-01"
+    },
+    "GHSA-mh99-v99m-4gvg": {
+      "package": "brace-expansion",
+      "directory": "apps/guide",
+      "installed": "5.0.5 -> 5.0.12 (1.1.21 unchanged)",
+      "verdict": "does-not-apply",
+      "evidence": "DoS on attacker-supplied brace patterns. Reached only through minimatch in eslint, vitest and the build, expanding the repo's own glob patterns (apps/guide/eslint.config.js, vitest.config.ts).",
+      "fix": "Patched by the transitive update to 5.0.12.",
+      "date": "2026-10-01"
+    },
+    "GHSA-p634-w6r4-rjp2": {
+      "package": "adm-zip",
+      "directory": "scripts",
+      "installed": "0.6.0 -> 0.6.1",
+      "verdict": "does-not-apply",
+      "evidence": "Extraction to disk (extractAllTo / extractEntryTo: SUID bits, symlinked destinations, duplicate names resolving differently from getEntry). scripts/gen-hike-tracks.mjs:188-194 opens a USGS TopoMapVector archive downloaded from prd-tnm.s3.amazonaws.com and reads two entries with zip.getEntry(...).getData() (synchronous). Nothing is extracted to disk.",
+      "fix": "GHSA-j5f4 and GHSA-p634 patched by 0.6.1; GHSA-vwc7 lists no fixed release, irrelevant while nothing extracts.",
+      "date": "2026-10-01"
+    },
+    "GHSA-p77w-8qqv-26rm": {
+      "package": "hono",
+      "directory": "workers",
+      "installed": "4.12.16 -> 4.13.12",
+      "verdict": "does-not-apply",
+      "evidence": "Cache, ip-restriction, cookie, proxy, language-detector middleware and toSSG(). workers/src imports only 'hono', 'hono/cors' and 'hono/factory' (grep of workers/src), and calls neither app.mount() nor parseBody(); JWTs go through @tsndr/cloudflare-worker-jwt, not hono/jwt.",
+      "fix": "Patched by the update to 4.13.12.",
+      "date": "2026-10-01"
+    },
+    "GHSA-p88m-4jfj-68fv": {
+      "package": "undici (via wrangler > miniflare)",
+      "installed": "7.24.8",
+      "directory": "workers",
+      "verdict": "does-not-apply",
+      "evidence": "Pinned inside miniflare 4.20260430.0, the local simulator behind `wrangler dev`. The deployed Worker bundles none of them (workers/src imports neither undici nor ws), and the miniflare client talks only to the local workerd it spawned.",
+      "fix": "Every wrangler release that ships a fixed miniflare (>= 4.114.0) declares a peerOptional @cloudflare/workers-types ^5, a major move for the types package; held back with wrangler at 4.87.0.",
+      "date": "2026-10-01"
+    },
+    "GHSA-pmjh-fq2x-6v4x": {
+      "package": "undici",
+      "directories": [
+        "scripts",
+        "workers"
+      ],
+      "installed": "scripts 8.7.0 -> 8.11.2; workers 7.24.8 (miniflare pin)",
+      "verdict": "does-not-apply",
+      "evidence": "scripts: the only import is scripts/gen-hike-tracks.mjs:82-84, which sets an EnvHttpProxyAgent as the global dispatcher and uses undici.fetch for plain GETs; no cache, retry, dump or decompress interceptors, no WebSocket or WebSocketStream, no setCookie, no SOCKS5 or BalancedPool, no blob-like bodies. workers: Pinned inside miniflare 4.20260430.0, the local simulator behind `wrangler dev`. The deployed Worker bundles none of them (workers/src imports neither undici nor ws), and the miniflare client talks only to the local workerd it spawned.",
+      "fix": "scripts patched by undici ^8.11.2 (floor raised). workers held back with wrangler, see the ws entries.",
+      "date": "2026-10-01"
+    },
+    "GHSA-pr7r-676h-xcf6": {
+      "package": "undici (via wrangler > miniflare)",
+      "installed": "7.24.8",
+      "directory": "workers",
+      "verdict": "does-not-apply",
+      "evidence": "Pinned inside miniflare 4.20260430.0, the local simulator behind `wrangler dev`. The deployed Worker bundles none of them (workers/src imports neither undici nor ws), and the miniflare client talks only to the local workerd it spawned.",
+      "fix": "Every wrangler release that ships a fixed miniflare (>= 4.114.0) declares a peerOptional @cloudflare/workers-types ^5, a major move for the types package; held back with wrangler at 4.87.0.",
+      "date": "2026-10-01"
+    },
+    "GHSA-q2hr-2g5m-vwhr": {
+      "package": "brace-expansion",
+      "directory": "apps/guide",
+      "installed": "5.0.5 -> 5.0.12 (1.1.21 unchanged)",
+      "verdict": "does-not-apply",
+      "evidence": "DoS on attacker-supplied brace patterns. Reached only through minimatch in eslint, vitest and the build, expanding the repo's own glob patterns (apps/guide/eslint.config.js, vitest.config.ts).",
+      "fix": "Patched by the transitive update to 5.0.12.",
+      "date": "2026-10-01"
+    },
+    "GHSA-qhr7-859c-m2p7": {
+      "package": "brace-expansion",
+      "directory": "apps/guide",
+      "installed": "5.0.5 -> 5.0.12 (1.1.21 unchanged)",
+      "verdict": "does-not-apply",
+      "evidence": "DoS on attacker-supplied brace patterns. Reached only through minimatch in eslint, vitest and the build, expanding the repo's own glob patterns (apps/guide/eslint.config.js, vitest.config.ts).",
+      "fix": "Patched by the transitive update to 5.0.12.",
+      "date": "2026-10-01"
+    },
+    "GHSA-qp7p-654g-cw7p": {
+      "package": "hono",
+      "directory": "workers",
+      "installed": "4.12.16 -> 4.13.12",
+      "verdict": "does-not-apply",
+      "evidence": "hono/jsx and hono/css server rendering. workers/src imports only 'hono', 'hono/cors' and 'hono/factory' (grep of workers/src), and calls neither app.mount() nor parseBody(); JWTs go through @tsndr/cloudflare-worker-jwt, not hono/jwt.",
+      "fix": "Patched by the update to 4.13.12.",
+      "date": "2026-10-01"
+    },
+    "GHSA-qwww-vcr4-c8h2": {
+      "package": "react-router (via react-router-dom)",
+      "directory": "apps/guide",
+      "installed": "7.14.2 -> 7.18.4",
+      "verdict": "does-not-apply",
+      "evidence": "Framework-mode, SSR-hydration and RSC paths only. The guide is a declarative-mode SPA: <BrowserRouter> at apps/guide/src/main.tsx:67, no server runtime, no RSC APIs.",
+      "fix": "Patched anyway by the in-range update to react-router-dom 7.18.4.",
+      "date": "2026-10-01"
+    },
+    "GHSA-r28c-9q8g-f849": {
+      "package": "postcss",
+      "directory": "apps/guide",
+      "installed": "8.5.13 -> 8.5.28",
+      "verdict": "does-not-apply",
+      "evidence": "Needs attacker-controlled CSS carrying a sourceMappingURL comment. PostCSS runs only inside `vite build` over the repo's own stylesheets (apps/guide/src/**/*.css).",
+      "fix": "Patched by the transitive update to 8.5.28.",
+      "date": "2026-10-01"
+    },
+    "GHSA-r53p-7pc4-xj5r": {
+      "package": "undici",
+      "directories": [
+        "scripts",
+        "workers"
+      ],
+      "installed": "scripts 8.7.0 -> 8.11.2; workers 7.24.8 (miniflare pin)",
+      "verdict": "does-not-apply",
+      "evidence": "scripts: the only import is scripts/gen-hike-tracks.mjs:82-84, which sets an EnvHttpProxyAgent as the global dispatcher and uses undici.fetch for plain GETs; no cache, retry, dump or decompress interceptors, no WebSocket or WebSocketStream, no setCookie, no SOCKS5 or BalancedPool, no blob-like bodies. workers: Pinned inside miniflare 4.20260430.0, the local simulator behind `wrangler dev`. The deployed Worker bundles none of them (workers/src imports neither undici nor ws), and the miniflare client talks only to the local workerd it spawned.",
+      "fix": "scripts patched by undici ^8.11.2 (floor raised). workers held back with wrangler, see the ws entries.",
+      "date": "2026-10-01"
+    },
+    "GHSA-rcw4-f5rp-g42v": {
+      "package": "adm-zip",
+      "directory": "scripts",
+      "installed": "0.6.0 -> 0.6.1",
+      "verdict": "applies",
+      "evidence": "scripts/gen-hike-tracks.mjs:188-194 opens a USGS TopoMapVector archive downloaded from prd-tnm.s3.amazonaws.com and reads two entries with zip.getEntry(...).getData() (synchronous). The synchronous getData() path is the one that allocates from, or skips the cap on, the archive's declared uncompressed size, and the archive comes from a third party. Exposure is a crash of a build-time script, not a shipped surface.",
+      "fix": "Fixed in 0.6.1; applied as adm-zip ^0.6.1 (floor raised in scripts/package.json).",
+      "date": "2026-10-01"
+    },
+    "GHSA-rfgv-xxqx-mfg5": {
+      "package": "undici",
+      "directories": [
+        "scripts",
+        "workers"
+      ],
+      "installed": "scripts 8.7.0 -> 8.11.2; workers 7.24.8 (miniflare pin)",
+      "verdict": "does-not-apply",
+      "evidence": "scripts: the only import is scripts/gen-hike-tracks.mjs:82-84, which sets an EnvHttpProxyAgent as the global dispatcher and uses undici.fetch for plain GETs; no cache, retry, dump or decompress interceptors, no WebSocket or WebSocketStream, no setCookie, no SOCKS5 or BalancedPool, no blob-like bodies. workers: Pinned inside miniflare 4.20260430.0, the local simulator behind `wrangler dev`. The deployed Worker bundles none of them (workers/src imports neither undici nor ws), and the miniflare client talks only to the local workerd it spawned.",
+      "fix": "scripts patched by undici ^8.11.2 (floor raised). workers held back with wrangler, see the ws entries.",
+      "date": "2026-10-01"
+    },
+    "GHSA-rgj7-g3m4-5g8c": {
+      "package": "sharp",
+      "directories": [
+        "apps/guide",
+        "scripts",
+        "workers"
+      ],
+      "installed": "0.34.5",
+      "verdict": "unclear",
+      "evidence": "libvips and libheif decoder vulnerabilities, triggered by decoding untrusted images. Nothing ships sharp to a reader: it runs at build time on the owner's machine or in Actions. But some inputs come from outside the repo: scripts/fetch-guide-photos.mjs decodes Wikimedia Commons thumbnails, apps/guide/scripts/gen-map-tiles.ts decodes terrarium PNG tiles from s3.amazonaws.com/elevation-tiles-prod, and scripts/ingest-photos.mjs (also run by .github/workflows/photo-import.yml on files uploaded through the Worker's /photos page) calls metadata() on HEIC files, which reaches libheif. Those sources are trusted publishers or the owner's own uploads (bearer-gated by PHOTO_UPLOAD_TOKEN), so exploitation needs a compromised upstream; treated as applies. In workers/ sharp is an optional dependency of miniflare (wrangler dev), never called.",
+      "fix": "Fixed in sharp 0.35.4+, which is a semver-major for a 0.x package: held back, migration at the top of the PR body. Re-examine every run until the 0.35 move lands.",
+      "date": "2026-10-01"
+    },
+    "GHSA-rgw5-rvv9-x895": {
+      "package": "brace-expansion",
+      "directory": "apps/guide",
+      "installed": "5.0.5 -> 5.0.12 (1.1.21 unchanged)",
+      "verdict": "does-not-apply",
+      "evidence": "DoS on attacker-supplied brace patterns. Reached only through minimatch in eslint, vitest and the build, expanding the repo's own glob patterns (apps/guide/eslint.config.js, vitest.config.ts).",
+      "fix": "Patched by the transitive update to 5.0.12.",
+      "date": "2026-10-01"
+    },
+    "GHSA-rv63-4mwf-qqc2": {
+      "package": "hono",
+      "directory": "workers",
+      "installed": "4.12.16 -> 4.13.12",
+      "verdict": "does-not-apply",
+      "evidence": "AWS Lambda / Lambda@Edge / API Gateway adapters and serve-static on Windows. The API runs on Cloudflare Workers (workers/wrangler.toml) and serves no static files through hono.",
+      "fix": "Patched by the update to 4.13.12.",
+      "date": "2026-10-01"
+    },
+    "GHSA-rx4f-c7p8-82vq": {
+      "package": "undici",
+      "directories": [
+        "scripts",
+        "workers"
+      ],
+      "installed": "scripts 8.7.0 -> 8.11.2; workers 7.24.8 (miniflare pin)",
+      "verdict": "does-not-apply",
+      "evidence": "scripts: the only import is scripts/gen-hike-tracks.mjs:82-84, which sets an EnvHttpProxyAgent as the global dispatcher and uses undici.fetch for plain GETs; no cache, retry, dump or decompress interceptors, no WebSocket or WebSocketStream, no setCookie, no SOCKS5 or BalancedPool, no blob-like bodies. workers: Pinned inside miniflare 4.20260430.0, the local simulator behind `wrangler dev`. The deployed Worker bundles none of them (workers/src imports neither undici nor ws), and the miniflare client talks only to the local workerd it spawned.",
+      "fix": "scripts patched by undici ^8.11.2 (floor raised). workers held back with wrangler, see the ws entries.",
+      "date": "2026-10-01"
+    },
+    "GHSA-v3r7-h72x-cjcm": {
+      "package": "undici",
+      "directories": [
+        "scripts",
+        "workers"
+      ],
+      "installed": "scripts 8.7.0 -> 8.11.2; workers 7.24.8 (miniflare pin)",
+      "verdict": "does-not-apply",
+      "evidence": "scripts: the only import is scripts/gen-hike-tracks.mjs:82-84, which sets an EnvHttpProxyAgent as the global dispatcher and uses undici.fetch for plain GETs; no cache, retry, dump or decompress interceptors, no WebSocket or WebSocketStream, no setCookie, no SOCKS5 or BalancedPool, no blob-like bodies. workers: Pinned inside miniflare 4.20260430.0, the local simulator behind `wrangler dev`. The deployed Worker bundles none of them (workers/src imports neither undici nor ws), and the miniflare client talks only to the local workerd it spawned.",
+      "fix": "scripts patched by undici ^8.11.2 (floor raised). workers held back with wrangler, see the ws entries.",
+      "date": "2026-10-01"
+    },
+    "GHSA-v6wh-96g9-6wx3": {
+      "package": "vite (and launch-editor)",
+      "directory": "apps/guide",
+      "installed": "8.0.10 -> 8.3.2",
+      "verdict": "does-not-apply",
+      "evidence": "Both need the Vite dev server on Windows (fs.deny bypass on NTFS paths; UNC path NTLM leak via launch-editor). CI and the Cloudflare Pages build run `vite build` on Linux and never start the dev server.",
+      "fix": "Patched anyway by the in-range update to vite 8.3.2 (fixed in 8.0.16).",
+      "date": "2026-10-01"
+    },
+    "GHSA-vmh5-mc38-953g": {
+      "package": "undici (via wrangler > miniflare)",
+      "installed": "7.24.8",
+      "directory": "workers",
+      "verdict": "does-not-apply",
+      "evidence": "Pinned inside miniflare 4.20260430.0, the local simulator behind `wrangler dev`. The deployed Worker bundles none of them (workers/src imports neither undici nor ws), and the miniflare client talks only to the local workerd it spawned.",
+      "fix": "Every wrangler release that ships a fixed miniflare (>= 4.114.0) declares a peerOptional @cloudflare/workers-types ^5, a major move for the types package; held back with wrangler at 4.87.0.",
+      "date": "2026-10-01"
+    },
+    "GHSA-vwc7-r8mq-g2x9": {
+      "package": "adm-zip",
+      "directory": "scripts",
+      "installed": "0.6.0 -> 0.6.1",
+      "verdict": "does-not-apply",
+      "evidence": "Extraction to disk (extractAllTo / extractEntryTo: SUID bits, symlinked destinations, duplicate names resolving differently from getEntry). scripts/gen-hike-tracks.mjs:188-194 opens a USGS TopoMapVector archive downloaded from prd-tnm.s3.amazonaws.com and reads two entries with zip.getEntry(...).getData() (synchronous). Nothing is extracted to disk.",
+      "fix": "GHSA-j5f4 and GHSA-p634 patched by 0.6.1; GHSA-vwc7 lists no fixed release, irrelevant while nothing extracts.",
+      "date": "2026-10-01"
+    },
+    "GHSA-vxpw-j846-p89q": {
+      "package": "undici (via wrangler > miniflare)",
+      "installed": "7.24.8",
+      "directory": "workers",
+      "verdict": "does-not-apply",
+      "evidence": "Pinned inside miniflare 4.20260430.0, the local simulator behind `wrangler dev`. The deployed Worker bundles none of them (workers/src imports neither undici nor ws), and the miniflare client talks only to the local workerd it spawned.",
+      "fix": "Every wrangler release that ships a fixed miniflare (>= 4.114.0) declares a peerOptional @cloudflare/workers-types ^5, a major move for the types package; held back with wrangler at 4.87.0.",
+      "date": "2026-10-01"
+    },
+    "GHSA-w293-vg96-wgc3": {
+      "package": "undici",
+      "directories": [
+        "scripts",
+        "workers"
+      ],
+      "installed": "scripts 8.7.0 -> 8.11.2; workers 7.24.8 (miniflare pin)",
+      "verdict": "does-not-apply",
+      "evidence": "scripts: the only import is scripts/gen-hike-tracks.mjs:82-84, which sets an EnvHttpProxyAgent as the global dispatcher and uses undici.fetch for plain GETs; no cache, retry, dump or decompress interceptors, no WebSocket or WebSocketStream, no setCookie, no SOCKS5 or BalancedPool, no blob-like bodies. workers: Pinned inside miniflare 4.20260430.0, the local simulator behind `wrangler dev`. The deployed Worker bundles none of them (workers/src imports neither undici nor ws), and the miniflare client talks only to the local workerd it spawned.",
+      "fix": "scripts patched by undici ^8.11.2 (floor raised). workers held back with wrangler, see the ws entries.",
+      "date": "2026-10-01"
+    },
+    "GHSA-w5vr-8v7q-w6rv": {
+      "package": "baseline-browser-mapping",
+      "directories": [
+        "apps/guide",
+        "scripts"
+      ],
+      "installed": "apps/guide 2.10.25 -> 2.11.26; scripts 2.10.37 -> 2.11.26",
+      "verdict": "does-not-apply",
+      "evidence": "process.exit() on invalid input; reached only through browserslist at build time with the repo's fixed targets, no runtime or user input.",
+      "fix": "Patched by the transitive update to 2.11.26.",
+      "date": "2026-10-01"
+    },
+    "GHSA-w62v-xxxg-mg59": {
+      "package": "hono",
+      "directory": "workers",
+      "installed": "4.12.16 -> 4.13.12",
+      "verdict": "does-not-apply",
+      "evidence": "hono/jsx and hono/css server rendering. workers/src imports only 'hono', 'hono/cors' and 'hono/factory' (grep of workers/src), and calls neither app.mount() nor parseBody(); JWTs go through @tsndr/cloudflare-worker-jwt, not hono/jwt.",
+      "fix": "Patched by the update to 4.13.12.",
+      "date": "2026-10-01"
+    },
+    "GHSA-wgpf-jwqj-8h8p": {
+      "package": "hono",
+      "directory": "workers",
+      "installed": "4.12.16 -> 4.13.12",
+      "verdict": "does-not-apply",
+      "evidence": "AWS Lambda / Lambda@Edge / API Gateway adapters and serve-static on Windows. The API runs on Cloudflare Workers (workers/wrangler.toml) and serves no static files through hono.",
+      "fix": "Patched by the update to 4.13.12.",
+      "date": "2026-10-01"
+    },
+    "GHSA-wrjc-x8rr-h8h6": {
+      "package": "react-router (via react-router-dom)",
+      "directory": "apps/guide",
+      "installed": "7.14.2 -> 7.18.4",
+      "verdict": "does-not-apply",
+      "evidence": "Open redirect needs an attacker-supplied path passed to <Link> or navigate(). Every navigate() target is a constant ('/' or '/welcome' in apps/guide/src/routes/Open.tsx:45 and Claim.tsx:46) and Links are built from content ids; no query parameter is used as a navigation target (useSearchParams reads in Open, Claim, Redeem, Report, SecretGuide, RegionPlan, Trip feed tokens, filters and ids only).",
+      "fix": "Patched by react-router-dom 7.18.4 (fixed in 7.18.0).",
+      "date": "2026-10-01"
+    },
+    "GHSA-wwfh-h76j-fc44": {
+      "package": "hono",
+      "directory": "workers",
+      "installed": "4.12.16 -> 4.13.12",
+      "verdict": "does-not-apply",
+      "evidence": "AWS Lambda / Lambda@Edge / API Gateway adapters and serve-static on Windows. The API runs on Cloudflare Workers (workers/wrangler.toml) and serves no static files through hono.",
+      "fix": "Patched by the update to 4.13.12.",
+      "date": "2026-10-01"
+    },
+    "GHSA-xgm2-5f3f-mvvc": {
+      "package": "hono",
+      "directory": "workers",
+      "installed": "4.12.16 -> 4.13.12",
+      "verdict": "does-not-apply",
+      "evidence": "AWS Lambda / Lambda@Edge / API Gateway adapters and serve-static on Windows. The API runs on Cloudflare Workers (workers/wrangler.toml) and serves no static files through hono.",
+      "fix": "Patched by the update to 4.13.12.",
+      "date": "2026-10-01"
+    },
+    "GHSA-xrhx-7g5j-rcj5": {
+      "package": "hono",
+      "directory": "workers",
+      "installed": "4.12.16 -> 4.13.12",
+      "verdict": "does-not-apply",
+      "evidence": "Cache, ip-restriction, cookie, proxy, language-detector middleware and toSSG(). workers/src imports only 'hono', 'hono/cors' and 'hono/factory' (grep of workers/src), and calls neither app.mount() nor parseBody(); JWTs go through @tsndr/cloudflare-worker-jwt, not hono/jwt.",
+      "fix": "Patched by the update to 4.13.12.",
+      "date": "2026-10-01"
+    }
+  }
 }
