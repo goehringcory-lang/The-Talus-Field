@@ -17,11 +17,11 @@
 
 import { useCallback, useEffect, useMemo, useState } from 'react'
 import { buildPacks, type Pack } from './manifest'
+import { canCompletePack, fetchPackFile, verifyCachedPack } from './cache'
 import { detectPhotoFormat, type PhotoFormat } from '../utils/photo'
 
 const STORAGE_KEY = 'tfg.downloads'
 const CONCURRENCY = 6
-const VERIFY_SAMPLE = 8
 
 export type PackStatus =
   | { state: 'idle' }
@@ -69,27 +69,23 @@ function cachesAvailable(): boolean {
   return typeof window !== 'undefined' && 'caches' in window
 }
 
-/** Spot-check a sample of a pack's URLs against the Cache API. URLs the
- * download already tolerated as missing (tile-pack bbox edges) are skipped —
- * demanding them would flag the pack "stale" on every mount, and
- * re-downloading can never satisfy the check. */
+/** Verify the current manifest, including new URLs after an app update. */
 async function verifyPack(pack: Pack, missing: Set<string>): Promise<boolean> {
   if (!cachesAvailable()) return false
-  const cache = await caches.open(pack.cacheName)
-  const step = Math.max(1, Math.floor(pack.urls.length / VERIFY_SAMPLE))
-  for (let i = 0; i < pack.urls.length; i += step) {
-    const url = pack.urls[i]
-    if (missing.has(url)) continue
-    const hit = await cache.match(url)
-    if (!hit) return false
+  try {
+    return await verifyCachedPack(await caches.open(pack.cacheName), pack, missing)
+  } catch {
+    // Storage can be present but refuse reads (private mode or pressure).
+    return false
   }
-  return true
 }
 
 // --- Module-level live state -------------------------------------------------
 
 let moduleStatuses: Record<string, PackStatus> | null = null
 const controllers: Record<string, AbortController> = {}
+type DownloadOutcome = 'done' | 'error' | 'cancelled'
+const activeDownloads: Record<string, Promise<DownloadOutcome> | undefined> = {}
 const statusSubscribers = new Set<() => void>()
 
 function initModuleStatuses(packs: Pack[]): Record<string, PackStatus> {
@@ -208,148 +204,151 @@ export function useDownloads() {
   // tell a cancel from a finish and stop instead of marching into the next
   // pack the user just tried to escape.
   const download = useCallback(
-    async function download(pack: Pack): Promise<'done' | 'error' | 'cancelled' | 'skipped'> {
-      if (!cachesAvailable()) {
-        setPackStatus(pack.id, { state: 'error', message: 'Offline storage is not available in this browser.' })
-        return 'error'
-      }
-
-      // Already running (possibly started by a since-unmounted instance).
-      // The controller must be registered synchronously with this guard: any
-      // await between them is a window where a double-tap starts a second
-      // download of the same pack, and the two then fight over the shared
-      // controllers slot (Cancel reaches only one of them).
-      if (controllers[pack.id]) return 'skipped'
-
-      // A corridor map without the overview under it draws trailhead-scale
-      // tiles into a blank park, so the overview comes first, once. Its own
-      // row shows the progress; a failure or a cancel there stops this one.
-      if (pack.requires && !readCompleted()[pack.requires]) {
-        const required = packs.find((p) => p.id === pack.requires)
-        if (required) {
-          const outcome = await download(required)
-          if (outcome === 'error' || outcome === 'cancelled') return outcome
-          if (controllers[pack.id]) return 'skipped'
-        }
-      }
-
-      const controller = new AbortController()
-      controllers[pack.id] = controller
-      const total = pack.urls.length
-      let done = 0
-      setPackStatus(pack.id, { state: 'downloading', done, total })
-
-      // Everything past the controller registration runs guarded: caches.open
-      // itself rejects on iOS Safari under storage pressure, and an escape
-      // from here used to leave a live controller in module state plus a
-      // frozen 0% status, so the "already running" guard above blocked every
-      // retry until a full reload.
-      try {
-        // Ask the browser not to evict our caches under storage pressure.
-        try {
-          await navigator.storage?.persist?.()
-        } catch {
-          /* persistence is a hint; downloads proceed without it */
-        }
-
-        const cache = await caches.open(pack.cacheName)
-        const queue = [...pack.urls]
-        let failedUrls: string[] = []
-        // Storage-full failures get named: "check your connection" on a full
-        // device sends the buyer retrying something that can never succeed.
-        let quotaHit = false
-
-        function noteFailure(err: unknown) {
-          if (err instanceof DOMException && err.name === 'QuotaExceededError') {
-            quotaHit = true
-          }
-        }
-
-        async function fetchIntoCache(url: string): Promise<boolean> {
-          const cached = await cache.match(url)
-          if (cached) return true
-          const res = await fetch(url, { signal: controller.signal })
-          // The SPA fallback answers a missing file with the HTML
-          // shell and a 200. Caching that under a photo/tile URL poisons a
-          // deploy-surviving cache (the SW's activate handler exists to clean
-          // exactly this up), so count it as a failed URL instead.
-          const type = res.headers.get('content-type')
-          if (!res.ok || (type && type.includes('text/html'))) return false
-          await cache.put(url, res)
-          return true
-        }
-
-        async function worker() {
-          while (queue.length > 0) {
-            if (controller.signal.aborted) return
-            const url = queue.shift()
-            if (!url) return
-            try {
-              if (!(await fetchIntoCache(url))) failedUrls.push(url)
-            } catch (err) {
-              if (controller.signal.aborted) return
-              noteFailure(err)
-              failedUrls.push(url)
-            }
-            done++
-            setPackStatus(pack.id, { state: 'downloading', done, total })
-          }
-        }
-
-        await Promise.all(Array.from({ length: CONCURRENCY }, () => worker()))
-
-        // One sequential retry pass: a transient hiccup shouldn't surface as a
-        // failed pack, and a paid offline product must not record "done" over
-        // silently missing files.
-        if (!controller.signal.aborted && failedUrls.length > 0) {
-          const retry = failedUrls
-          failedUrls = []
-          for (const url of retry) {
-            if (controller.signal.aborted) break
-            try {
-              if (!(await fetchIntoCache(url))) failedUrls.push(url)
-            } catch (err) {
-              if (controller.signal.aborted) break
-              noteFailure(err)
-              failedUrls.push(url)
-            }
-          }
-        }
-
-        if (controller.signal.aborted) {
-          setPackStatus(pack.id, { state: 'idle' })
-          return 'cancelled'
-        }
-
-        if (failedUrls.length > total * pack.tolerateMissing) {
-          setPackStatus(pack.id, {
-            state: 'error',
-            message: quotaHit
-              ? 'This device is out of storage space. Free some up, then try again.'
-              : `${failedUrls.length} of ${total} files didn't download. Check your connection and try again.`,
-          })
+    async function download(pack: Pack): Promise<DownloadOutcome> {
+      // Share the actual outcome, not a 'skipped' placeholder: a corridor
+      // must wait for an already-running overview before it can finish.
+      if (activeDownloads[pack.id]) return activeDownloads[pack.id]!
+      const run = Promise.resolve().then(async (): Promise<DownloadOutcome> => {
+        if (!cachesAvailable()) {
+          setPackStatus(pack.id, { state: 'error', message: 'Offline storage is not available in this browser.' })
           return 'error'
         }
 
-        const completed = readCompleted()
-        completed[pack.id] = failedUrls.length > 0 ? { failedUrls } : true
-        writeCompleted(completed)
-        setPackStatus(pack.id, { state: 'done' })
-        refreshEstimate()
-        return 'done'
-      } catch {
-        // A cancel is not a failure: it lands as idle exactly as it does above.
-        if (controller.signal.aborted) {
-          setPackStatus(pack.id, { state: 'idle' })
-          return 'cancelled'
+        // A corridor map without the overview under it draws trailhead-scale
+        // tiles into a blank park, so the overview comes first, once. Its own
+        // row shows the progress; a failure or a cancel there stops this one.
+        if (pack.requires) {
+          const required = packs.find((p) => p.id === pack.requires)
+          const entry = readCompleted()[pack.requires]
+          if (required && (!entry || !(await verifyPack(required, knownMissing(entry))))) {
+            const outcome = await download(required)
+            if (outcome !== 'done') return outcome
+          }
         }
-        setPackStatus(pack.id, {
-          state: 'error',
-          message: 'Offline storage is unavailable right now. Try again in a moment.',
-        })
-        return 'error'
+
+        const controller = new AbortController()
+        controllers[pack.id] = controller
+        const total = pack.urls.length
+        let done = 0
+        const previous = readCompleted()
+        delete previous[pack.id]
+        writeCompleted(previous)
+        setPackStatus(pack.id, { state: 'downloading', done, total })
+
+        // Everything past the controller registration runs guarded: caches.open
+        // itself rejects on iOS Safari under storage pressure, and an escape
+        // from here used to leave a live controller in module state plus a
+        // frozen 0% status, so the "already running" guard above blocked every
+        // retry until a full reload.
+        try {
+          // Ask the browser not to evict our caches under storage pressure.
+          try {
+            await navigator.storage?.persist?.()
+          } catch {
+            /* persistence is a hint; downloads proceed without it */
+          }
+
+          const cache = await caches.open(pack.cacheName)
+          const queue = [...pack.urls]
+          let failedUrls: string[] = []
+          // Storage-full failures get named: "check your connection" on a full
+          // device sends the buyer retrying something that can never succeed.
+          let quotaHit = false
+
+          function noteFailure(err: unknown) {
+            if (err instanceof DOMException && err.name === 'QuotaExceededError') {
+              quotaHit = true
+            }
+          }
+
+          const absentTiles = new Set<string>()
+          async function fetchIntoCache(url: string): Promise<boolean> {
+            // A retry's latest result wins: a 404 followed by a connection
+            // failure is not evidence that the missing tile is optional.
+            absentTiles.delete(url)
+            const result = await fetchPackFile(cache, url, controller.signal)
+            if (result === 'absent') absentTiles.add(url)
+            return result === 'cached'
+          }
+
+          async function worker() {
+            while (queue.length > 0) {
+              if (controller.signal.aborted) return
+              const url = queue.shift()
+              if (!url) return
+              try {
+                if (!(await fetchIntoCache(url))) failedUrls.push(url)
+              } catch (err) {
+                if (controller.signal.aborted) return
+                noteFailure(err)
+                failedUrls.push(url)
+              }
+              done++
+              setPackStatus(pack.id, { state: 'downloading', done, total })
+            }
+          }
+
+          await Promise.all(Array.from({ length: CONCURRENCY }, () => worker()))
+
+          // One sequential retry pass: a transient hiccup shouldn't surface as a
+          // failed pack, and a paid offline product must not record "done" over
+          // silently missing files.
+          if (!controller.signal.aborted && failedUrls.length > 0) {
+            const retry = failedUrls
+            failedUrls = []
+            for (const url of retry) {
+              if (controller.signal.aborted) break
+              try {
+                if (!(await fetchIntoCache(url))) failedUrls.push(url)
+              } catch (err) {
+                if (controller.signal.aborted) break
+                noteFailure(err)
+                failedUrls.push(url)
+              }
+            }
+          }
+
+          if (controller.signal.aborted) {
+            setPackStatus(pack.id, { state: 'idle' })
+            return 'cancelled'
+          }
+
+          if (!canCompletePack(pack, failedUrls, absentTiles)) {
+            setPackStatus(pack.id, {
+              state: 'error',
+              message: quotaHit
+                ? 'This device is out of storage space. Free some up, then try again.'
+                : `${failedUrls.length} of ${total} files didn't download. Check your connection and try again.`,
+            })
+            return 'error'
+          }
+
+          const completed = readCompleted()
+          completed[pack.id] = failedUrls.length > 0 ? { failedUrls } : true
+          writeCompleted(completed)
+          setPackStatus(pack.id, { state: 'done' })
+          refreshEstimate()
+          return 'done'
+        } catch {
+          // A cancel is not a failure: it lands as idle exactly as it does above.
+          if (controller.signal.aborted) {
+            setPackStatus(pack.id, { state: 'idle' })
+            return 'cancelled'
+          }
+          setPackStatus(pack.id, {
+            state: 'error',
+            message: 'Offline storage is unavailable right now. Try again in a moment.',
+          })
+          return 'error'
+        } finally {
+          delete controllers[pack.id]
+        }
+      })
+      activeDownloads[pack.id] = run
+      try {
+        return await run
       } finally {
-        delete controllers[pack.id]
+        delete activeDownloads[pack.id]
       }
     },
     [packs, refreshEstimate, setPackStatus],
@@ -363,7 +362,7 @@ export function useDownloads() {
   const dependentsOf = useCallback(
     (packId: string): Pack[] => {
       const completed = readCompleted()
-      return packs.filter((p) => p.requires === packId && completed[p.id])
+      return packs.filter((p) => p.requires === packId && (completed[p.id] || activeDownloads[p.id]))
     },
     [packs],
   )
@@ -371,7 +370,7 @@ export function useDownloads() {
   const remove = useCallback(
     async (pack: Pack) => {
       if (!cachesAvailable()) return
-      if (dependentsOf(pack.id).length > 0) return
+      if (activeDownloads[pack.id] || dependentsOf(pack.id).length > 0) return
       // Photos are reused across regions and packs share one cache bucket, so
       // deleting this pack's full URL list would silently hole out other
       // still-"Downloaded" packs. Keep anything another completed pack claims.
@@ -379,7 +378,7 @@ export function useDownloads() {
       const keep = new Set<string>()
       for (const other of packs) {
         if (other.id === pack.id || other.cacheName !== pack.cacheName) continue
-        if (!completed[other.id]) continue
+        if (!completed[other.id] && !activeDownloads[other.id]) continue
         for (const url of other.urls) keep.add(url)
       }
       const cache = await caches.open(pack.cacheName)
