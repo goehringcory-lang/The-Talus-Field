@@ -144,7 +144,7 @@ function pickTown(trip, when, priority) {
   if (trip === "sequoias") {
     return {
       key: "oakhurst",
-      why: "The South Entrance is 20 to 25 minutes up Highway 41, the Mariposa Grove is immediately inside the gate, and Oakhurst has the deepest bench of rooms and services of any gateway.",
+      why: "The South Entrance is 20 to 25 minutes up Highway 41, the Mariposa Grove is immediately inside the gate, and Oakhurst has more rooms and services than any other gateway.",
       note: when === "winter"
         ? "Highway 41 stays open in winter, and this side is the base for Badger Pass and sequoias in snow."
         : priority === "character"
@@ -172,7 +172,7 @@ function pickTown(trip, when, priority) {
     if (when === "winter") {
       return {
         key: "mariposa",
-        why: "In winter the answer narrows to Highway 140, and Mariposa's gold-rush downtown carries the character brief while keeping the low, reliable road.",
+        why: "In winter the answer narrows to Highway 140. Mariposa's gold-rush downtown supplies the character, and you keep the low, reliable road.",
       };
     }
     return {
@@ -239,7 +239,7 @@ function TownPicker() {
         </div>
       ) : (
         <p className="town-picker__hint">
-          Answer all three and the pick appears here. It follows the same reasoning as the article, it just gets there faster.
+          Answer all three and the pick appears here. It follows the article's reasoning and gets there faster.
         </p>
       )}
     </aside>
@@ -296,7 +296,7 @@ window.ARTICLE_BODIES["yosemite-gateway-towns-compared"] = function YosemiteGate
       </p>
 
       <p>
-        The elevation column in the table is the best single predictor of whether you'll be putting chains on in February: El Portal and Mariposa sit low enough that winter storms usually arrive as rain, Groveland is a thousand feet higher and gets chain controls the Highway 140 towns do not, and Lee Vining's road into the park is shut half the year.
+        The elevation column is the best single predictor of whether you'll be putting chains on in February. El Portal and Mariposa sit low enough that winter storms usually arrive as rain. Groveland is a thousand feet higher and gets chain controls the Highway 140 towns do not. Lee Vining's road into the park is shut half the year.
       </p>
 
       <p>
@@ -358,7 +358,7 @@ window.ARTICLE_BODIES["yosemite-gateway-towns-compared"] = function YosemiteGate
       <p>Why people pick it:</p>
       <ul>
         <li>The shortest possible drive to anywhere in the Valley. Roll out of bed at 5:30 a.m. and be at Tunnel View by 6:15.</li>
-        <li>The approach itself, up the Merced River canyon, is one of the most beautiful drives to any national park, and in spring the high water and wildflowers are their own attraction.</li>
+        <li>The approach up the Merced River canyon is a reason to come this way, and in spring the high water and wildflowers are their own attraction.</li>
         <li>Highway 140 is the lowest-elevation entry to the park and the most reliable in winter.</li>
       </ul>
 
@@ -374,7 +374,7 @@ window.ARTICLE_BODIES["yosemite-gateway-towns-compared"] = function YosemiteGate
       </p>
 
       <p>
-        <strong>Pick El Portal</strong> if being inside the park as much as possible is the top priority: sunrise photography, peak-period crowd avoidance, a short Valley-focused trip, or any winter trip where road reliability matters. <strong>Skip it</strong> if you want a choice of dinner, you're booking late in summer, or you're travelling with people who'll be back at the room by mid-afternoon. There's very little to do in El Portal that isn't the park.
+        <strong>Pick El Portal</strong> if being inside the park as much as possible is the top priority: sunrise photography, beating the peak-season crowds, a short Valley trip, or any winter trip where road reliability matters. <strong>Skip it</strong> if you want a choice of dinner, you're booking late in summer, or you're travelling with people who'll be back at the room by mid-afternoon. There's very little to do in El Portal that isn't the park.
       </p>
 
       {townAvailability("El Portal", "El Portal, California")}
@@ -390,14 +390,14 @@ window.ARTICLE_BODIES["yosemite-gateway-towns-compared"] = function YosemiteGate
       ]} />
 
       <p>
-        Mariposa is the most complete of the western gateways, with a real downtown with restaurants, bars, coffee, a couple of bookstores, the Mariposa Museum and History Center (worth a visit), the 1854 Mariposa County Courthouse (the oldest continuously operating courthouse west of the Rockies), and lodging from chain hotels on the highway to historic bed-and-breakfasts in town. It's also where a lot of <a href="/articles/working-in-yosemite">people who work in the park</a> end up when they age out of in-park staff housing.
+        Mariposa is the most complete of the western gateways. It has a real downtown with restaurants, bars, coffee, a couple of bookstores, and the Mariposa Museum and History Center (worth a visit). It has the 1854 Mariposa County Courthouse, the oldest continuously operating courthouse west of the Rockies. Its lodging runs from chain hotels on the highway to historic bed-and-breakfasts in town. It's also where a lot of <a href="/articles/working-in-yosemite">people who work in the park</a> end up when they age out of in-park staff housing.
       </p>
 
       <p>Why people pick it:</p>
       <ul>
         <li>Real food, real coffee, multiple grocery stores, a real town.</li>
         <li>The widest range of price points of any gateway, budget motel to upscale country inn.</li>
-        <li>Year-round access on the same beautiful Merced canyon route as El Portal, just longer.</li>
+        <li>Year-round access on the same Merced canyon route as El Portal, just longer.</li>
       </ul>
 
       <p>Why they regret it:</p>
@@ -407,7 +407,11 @@ window.ARTICLE_BODIES["yosemite-gateway-towns-compared"] = function YosemiteGate
       </ul>
 
       <p>
-        <strong>Services:</strong> the deepest of the five. Full-size supermarkets, a pharmacy, hardware, banks, and the last reliable place to fix a problem before you are an hour from anywhere. It is also the only gateway with year-round bus service into the park: YARTS runs the Highway 140 corridor from Merced and Mariposa all year, while the routes from the other towns run only in summer. If you'd rather not drive the canyon in the dark or in snow, no other town on this list offers that in January. Halfway to El Portal, the hamlet of Midpines splits the difference with a few camps and lodges and no town attached: the <strong>Yosemite Bug Rustic Mountain Resort</strong>, which spans dorm bunks to private cabins and runs the June Bug Cafe, and <strong>AutoCamp Yosemite</strong>, a property of Airstream trailers, canvas tents, and cabins on Highway 140. Both trade Mariposa's dinner options for a shorter morning drive.
+        <strong>Services:</strong> the deepest of the five. Full-size supermarkets, a pharmacy, hardware, banks, and the last reliable place to fix a problem before you are an hour from anywhere. It is also the only gateway with year-round bus service into the park. YARTS runs the Highway 140 corridor from Merced and Mariposa all year; the routes from the other towns run only in summer. If you'd rather not drive the canyon in the dark or in snow, this is the only town on the list where the bus is an answer in January.
+      </p>
+
+      <p>
+        Halfway to El Portal, the hamlet of Midpines splits the difference with a few camps and lodges and no town attached: the <strong>Yosemite Bug Rustic Mountain Resort</strong>, which spans dorm bunks to private cabins and runs the June Bug Cafe, and <strong>AutoCamp Yosemite</strong>, a property of Airstream trailers, canvas tents, and cabins on Highway 140. Both trade Mariposa's dinner options for a shorter morning drive.
       </p>
 
       <p>
@@ -444,7 +448,7 @@ window.ARTICLE_BODIES["yosemite-gateway-towns-compared"] = function YosemiteGate
       <ul>
         <li>Fast access to Wawona and the Mariposa Grove of giant sequoias.</li>
         <li>Predictable chain rooms at predictable prices, bookable late.</li>
-        <li>The widest range of standard amenities of any gateway: chain supermarkets, national pharmacies, urgent care. The easiest of the five towns to fill a prescription or replace forgotten gear in.</li>
+        <li>The widest range of standard amenities of any gateway: chain supermarkets, national pharmacies, urgent care. The easiest of the five for filling a prescription or replacing forgotten gear.</li>
       </ul>
 
       <p>Why they regret it:</p>
@@ -465,7 +469,7 @@ window.ARTICLE_BODIES["yosemite-gateway-towns-compared"] = function YosemiteGate
       {townAvailability("Oakhurst", "Oakhurst, California")}
 
       <p>
-        One current note for this side of the park: the Wawona Hotel, the historic in-park option just inside the South Entrance, has been closed since December 2024, and the Park Service has said it stays closed for this visitor season to complete a condition assessment of the hotel complex after a roof project turned up structural concerns. No reopening date has been announced. That removes the in-park alternative on the Highway 41 corridor and puts more pressure on Oakhurst and Fish Camp rooms in summer. Book earlier than you think you'll need to.
+        One current note for this side of the park: the Wawona Hotel, the historic in-park option just inside the South Entrance, has been closed since December 2024. The Park Service has said it stays closed for this visitor season while it completes a condition assessment of the hotel complex, after a roof project turned up structural concerns. No reopening date has been announced. That removes the in-park alternative on the Highway 41 corridor and puts more pressure on Oakhurst and Fish Camp rooms in summer. Book earlier than you think you'll need to.
       </p>
 
       <h2 id="sec-4-groveland">Groveland</h2>
@@ -479,7 +483,7 @@ window.ARTICLE_BODIES["yosemite-gateway-towns-compared"] = function YosemiteGate
       ]} />
 
       <p>
-        Groveland is the most overlooked gateway: a historic main street with the <strong>Groveland Hotel</strong>, the <strong>Iron Door Saloon</strong> (one of the oldest continuously operating saloons in California), and small-town character like Mariposa's, at a smaller scale.
+        Groveland is the most overlooked gateway: a historic main street with the <strong>Groveland Hotel</strong>, the <strong>Iron Door Saloon</strong> (one of the oldest continuously operating saloons in California), and the same kind of character as Mariposa, on a smaller scale.
       </p>
 
       <p>Why people pick it:</p>
@@ -492,7 +496,7 @@ window.ARTICLE_BODIES["yosemite-gateway-towns-compared"] = function YosemiteGate
       <p>Why they regret it:</p>
       <ul>
         <li>The drive to the Valley starts a thousand feet higher than the 140 towns, and chain controls are common in winter.</li>
-        <li>The route passes through the 2013 Rim Fire burn scar, recovering but still visually different from the Highway 140 approach.</li>
+        <li>The route crosses the burn scar of the 2013 Rim Fire. The forest is recovering, but it still looks different from the Highway 140 approach.</li>
         <li>Fewer total lodging options than Mariposa, and a town that closes early.</li>
       </ul>
 
@@ -501,7 +505,7 @@ window.ARTICLE_BODIES["yosemite-gateway-towns-compared"] = function YosemiteGate
       </p>
 
       <p>
-        <strong>The closer options on this corridor:</strong> the largest lodges on this side are not in Groveland itself but strung along Highway 120 east of it, which is a meaningful difference on a Valley morning. <strong>Rush Creek Lodge</strong> sits on twenty wooded acres roughly half a mile from the Big Oak Flat entrance. Its sister property, the historic <strong>Evergreen Lodge</strong>, is about seven miles on, down Evergreen Road toward Hetch Hetchy, which makes it the closest bed to that corner of the park. <strong>Firefall Ranch</strong>, cottages and villas on a former stagecoach stop between Groveland and the gate, is the newest of the three. All three are priced well above a Groveland motel and book like it.
+        <strong>The closer options on this corridor:</strong> the largest lodges on this side are not in Groveland itself but strung along Highway 120 east of it, and that matters on a Valley morning. <strong>Rush Creek Lodge</strong> sits on twenty wooded acres roughly half a mile from the Big Oak Flat entrance. Its sister property, the historic <strong>Evergreen Lodge</strong>, is about seven miles on, down Evergreen Road toward Hetch Hetchy, which makes it the closest bed to that corner of the park. <strong>Firefall Ranch</strong>, cottages and villas on a former stagecoach stop between Groveland and the gate, is the newest of the three. All three are priced well above a Groveland motel and book like it.
       </p>
 
       <p>
@@ -536,7 +540,7 @@ window.ARTICLE_BODIES["yosemite-gateway-towns-compared"] = function YosemiteGate
       />
 
       <p>
-        Lee Vining is the only east-side gateway, and it makes for a different kind of trip. Tuolumne Meadows is 30 minutes away when Tioga Road is open (typically late May or June through October or early November; the Park Service opened it on May 15 in 2026, the earliest in sixteen years, with current access listed on the <a href="/conditions">road conditions page</a>), while the Valley is over an hour and a half each way. Lodging is a few small motels (the <strong>Yosemite Gateway Motel</strong>, the <strong>El Mono Motel</strong>, an inn or two). Dining is thin but includes the Whoa Nellie Deli at the Mobil station, some of the best food in the eastern Sierra.
+        Lee Vining is the only east-side gateway, and it makes for a different kind of trip. Tuolumne Meadows is 30 minutes away when Tioga Road is open, while the Valley is over an hour and a half each way. The road is typically open from late May or June through October or early November. The Park Service opened it on May 15 in 2026, the earliest in sixteen years, and the <a href="/conditions">road conditions page</a> lists current access. Lodging is a few small motels (the <strong>Yosemite Gateway Motel</strong>, the <strong>El Mono Motel</strong>, an inn or two). Dining is thin but includes the Whoa Nellie Deli at the Mobil station, some of the best food in the eastern Sierra.
       </p>
 
       <p>Why people pick it:</p>
@@ -565,7 +569,7 @@ window.ARTICLE_BODIES["yosemite-gateway-towns-compared"] = function YosemiteGate
 
       <h2 id="sec-6-the-decision-matrix-in-plain-english">The decision matrix in plain English</h2>
 
-      <p>If you just want the short version, here it is:</p>
+      <p>The short version:</p>
 
       <p><strong>You want sunrise in the Valley every day.</strong> El Portal.</p>
       <p><strong>You want a balanced trip with comfort and value.</strong> Mariposa.</p>
@@ -587,7 +591,7 @@ window.ARTICLE_BODIES["yosemite-gateway-towns-compared"] = function YosemiteGate
       </p>
 
       <ul>
-        <li><strong>El Portal and Mariposa.</strong> Highway 140 stays open, it is the lowest-elevation approach, and storms there more often fall as rain than snow. Year-round YARTS service runs this corridor, so it is the one base where not driving is a real option. </li>
+        <li><strong>El Portal and Mariposa.</strong> Highway 140 stays open, it is the lowest-elevation approach, and storms there more often fall as rain than snow. Year-round YARTS service runs this corridor, so it is the one base where not driving is a real option.</li>
         <li><strong>Groveland.</strong> Highway 120 stays open to the park, but you are starting a thousand feet higher and chain controls are routine. Hetch Hetchy Road may be closed or chain-controlled from November through March. Workable, with chains and a plan.</li>
         <li><strong>Oakhurst.</strong> Highway 41 stays open. The town is fine in winter; the constraint is the two hours of driving on a Valley day. If your winter trip is Badger Pass or the sequoias in snow, this side works well.</li>
         <li><strong>Lee Vining.</strong> Tioga Road is closed and there is no way into the park from here. The town largely shuts down, the Whoa Nellie Deli with it. Come for a frozen Mono Lake if you like, but don't come for Yosemite.</li>
@@ -600,7 +604,7 @@ window.ARTICLE_BODIES["yosemite-gateway-towns-compared"] = function YosemiteGate
       </p>
 
       <p>
-        <strong>Distance affects more than driving time.</strong> The further your gateway, the earlier you leave to beat the crowds: a 60-minute drive at 5:30 a.m. is easier than a 90-minute drive at 4:30. The Park Service is not requiring a season-wide vehicle reservation for 2026 and is managing peak days with traffic monitoring and active parking control in the Valley instead, which is good news if you like to be spontaneous and bad news if you roll in at ten. Every mile between your room and the entrance station is a mile you make up before the lots fill.
+        <strong>Distance affects more than driving time.</strong> The farther your gateway, the earlier you leave to beat the crowds: a 60-minute drive at 5:30 a.m. is easier than a 90-minute drive at 4:30. The Park Service is not requiring a season-wide vehicle reservation for 2026. It manages peak days with traffic monitoring and active parking control in the Valley instead. That is good news if you like to be spontaneous and bad news if you roll in at ten. Every mile between your room and the entrance station is a mile you make up before the lots fill.
       </p>
 
       <p>
@@ -608,7 +612,7 @@ window.ARTICLE_BODIES["yosemite-gateway-towns-compared"] = function YosemiteGate
       </p>
 
       <p>
-        <strong>Groceries.</strong> Mariposa and Oakhurst have full-size supermarkets. Groveland has a market. El Portal and Lee Vining have convenience-scale markets and nothing more. Whichever town you pick, do the real shop in Mariposa or Oakhurst on the way in, because in-park food is limited, expensive, and keeps shorter hours than you expect. See <a href="/articles/pack-your-car-for-yosemite">how to pack your car for a Yosemite trip</a>.
+        <strong>Groceries.</strong> Mariposa and Oakhurst have full-size supermarkets. Groveland has a market. El Portal and Lee Vining have convenience-scale markets and nothing more. Whichever town you pick, do the real shop in Mariposa or Oakhurst on the way in, because in-park food is limited, expensive, and keeps shorter hours than you expect. <a href="/articles/pack-your-car-for-yosemite">How to pack your car for a Yosemite trip</a> covers the rest.
       </p>
 
       <p>
@@ -624,7 +628,7 @@ window.ARTICLE_BODIES["yosemite-gateway-towns-compared"] = function YosemiteGate
       </p>
 
       <p>
-        <strong>Check current status the week you travel.</strong> Roads, chain controls, and closures change faster than any lodging comparison can keep up with. The <a href="/now">Park Bulletin</a> condenses the current edition of park status, roads, hours, and trail conditions onto one page.
+        <strong>Check current status the week you travel.</strong> Roads, chain controls, and closures change faster than any lodging comparison can keep up with. The <a href="/now">Park Bulletin</a> puts the park's current roads, hours, closures, and trail conditions on one page.
       </p>
 
       <h2 id="sec-where-to-stay-near-yosemite-with-kids">Where to stay near Yosemite with kids</h2>
@@ -636,7 +640,7 @@ window.ARTICLE_BODIES["yosemite-gateway-towns-compared"] = function YosemiteGate
       <h2 id="sec-yosemite-and-sequoia-in-one-trip">Yosemite and Sequoia in one trip</h2>
 
       <p>
-        Base south. Oakhurst is the pivot between the two parks: the South Entrance is 20 to 25 minutes north on Highway 41, and Fresno, then Highway 180 to the Kings Canyon entrance and the Generals Highway into Sequoia, is roughly two to two and a half hours south. Doing both from Mariposa or Groveland adds an hour to every leg. The usual shape is two nights in Oakhurst for Yosemite (one Valley day, one Mariposa Grove and Wawona day), then a drive to Three Rivers or the Kings Canyon side for the second park. Don't try Sequoia as a day trip from any Yosemite gateway. The round trip is five hours of driving before you've seen a single tree.
+        Base south. Oakhurst is the pivot between the two parks. The South Entrance is 20 to 25 minutes north on Highway 41. Sequoia is roughly two to two and a half hours south: Fresno, then Highway 180 to the Kings Canyon entrance and the Generals Highway into the park. Doing both from Mariposa or Groveland adds an hour to every leg. The usual shape is two nights in Oakhurst for Yosemite (one Valley day, one Mariposa Grove and Wawona day), then a drive to Three Rivers or the Kings Canyon side for the second park. Don't try Sequoia as a day trip from any Yosemite gateway. The round trip is five hours of driving before you've seen a single tree.
       </p>
 
       <h2 id="sec-common-questions">Common questions</h2>
@@ -667,7 +671,7 @@ window.ARTICLE_BODIES["yosemite-gateway-towns-compared"] = function YosemiteGate
       <LodgingCta
         destination="Mariposa, California"
         heading="Made the call?"
-        note="Mariposa is the safest first-timer's pick, so it is the default here, but the town-by-town links above go straight to whichever one you picked. Whatever the town, the inventory is what it is on your dates and no comparison table can tell you that part."
+        note="Mariposa is the safest first-timer's pick, so this search starts there. The town-by-town links above go straight to any of the others. No comparison table can tell you what is left on your dates. A search can."
         list="article_cta"
         slug="yosemite-gateway-towns-compared"
         cta="Search Mariposa lodging →"
