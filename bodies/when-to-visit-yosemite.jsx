@@ -334,18 +334,18 @@ window.ARTICLE_BODIES["when-to-visit-yosemite"] = function WhenToVisitYosemite20
       <ul>
         <li><strong>June:</strong> Peak season arrived early this year. <a href="/articles/yosemite-in-june">Low snowpack pushed the waterfall peak into May</a>, so the falls are already past their best while the crowds are at theirs. A June weekday scores 68; a weekend, 100. Come midweek or not at all.</li>
         <li><strong>July:</strong> The projected biggest month in a decade, and July 4 lands on a Saturday, the single worst arrival day of 2026. The week after the holiday, midweek, is merely very busy rather than impossible.</li>
-        <li><strong>August:</strong> Slightly softer than July, with two asterisks: smoke season is real here in late August, and the falls will be near dry.</li>
+        <li><strong>August:</strong> Slightly softer than July, with two asterisks: smoke season is real here in late August (the <a href="/webcams">Valley webcams</a> show the haze before you drive), and the falls will be near dry.</li>
         <li><strong>September:</strong> The split month. Labor Day weekend (September 5 to 7) behaves like July. The Tuesday after it is a different park, with <a href="/articles/yosemite-in-september-2026">the concessions closing around you</a>: summer weather, open high country, and weekday pressure that drops by a third.</li>
         <li><strong>October:</strong> The sleeper, and my answer when people ask for the best remaining window of 2026. Weekday pressure falls to 46, Tioga Road usually stays open most of the month (the first closing storm came on October 13 last year), and the light gets good.</li>
         <li><strong>November:</strong> Quiet except for Thanksgiving week, which fills lodging months out. A weekday score of 28 means empty trails by summer standards.</li>
-        <li><strong>December through February:</strong> The quietest quarter, with two spikes: the holiday week (the same month <a href="/articles/bracebridge-dinner-and-vintners-holidays">the Bracebridge Dinner sells out the Ahwahnee</a>), and the firefall window in mid-to-late February, which now runs without reservations and concentrates thousands of photographers on Northside Drive at sunset.</li>
+        <li><strong>December through February:</strong> The quietest quarter, with two spikes: the holiday week (the same month <a href="/articles/bracebridge-dinner-and-vintners-holidays">the Bracebridge Dinner sells out the Ahwahnee</a>), and <a href="/firefall">the firefall window</a> in mid-to-late February, which now runs without reservations and concentrates thousands of photographers on Northside Drive at sunset.</li>
         <li><strong>March through May (for 2027 planners):</strong> Spring is the value play, waterfalls at full volume against half-of-summer crowds, but this year proved spring is where the new growth lands first. Expect next March to look like this year's April.</li>
       </ul>
 
       <h2>The clock beats the calendar</h2>
 
       <p>
-        Here is the part the monthly numbers hide: the difference between a miserable Yosemite day and a great one is mostly the hour you reach the gate. The park's traffic guidance is blunt about the shape of the day, and it matches what I see on Highway 140 every morning.
+        Here is the part the monthly numbers hide: the difference between a miserable Yosemite day and a great one is mostly the hour you reach the gate. The park's traffic guidance is blunt about the shape of the day, and it matches what I see on Highway 140 every morning. Work backward from the gate: <a href="/distances">the drive times from each gateway town</a> say when to leave.
       </p>
 
       <figure>
@@ -361,7 +361,7 @@ window.ARTICLE_BODIES["when-to-visit-yosemite"] = function WhenToVisitYosemite20
 
       <ul>
         <li><strong>Be through the gate before 8 a.m.</strong> Before 7 is better on summer weekends. Lots in the Valley fill by mid-morning; on Memorial Day weekend the Curry Village lot was full a little after 8 a.m.</li>
-        <li><strong>Or arrive after 4 p.m.</strong> Summer light lasts past 8. An evening Valley visit with dinner outside the park beats a noon arrival in every measurable way.</li>
+        <li><strong>Or arrive after 4 p.m.</strong> Summer light lasts past 8. An evening Valley visit with <a href="/articles/where-to-eat-yosemite">dinner outside the park</a> beats a noon arrival in every measurable way.</li>
         <li><strong>Never plan to arrive between 9 a.m. and 2 p.m. on a summer weekend.</strong> That is the window where the entrance lines form and the Valley lots close behind you; the park's August report put summer Saturday waits at about 30 minutes on average and up to about an hour.</li>
         <li><strong>Once parked, stay parked.</strong> Use the shuttles and bikes; a parking spot in the Valley on a July Saturday is not a thing to gamble twice.</li>
         <li><strong>Text <em>ynptraffic</em> to 333111</strong> for the park's live parking and traffic updates, and check road and lot status before you commit to the drive.</li>

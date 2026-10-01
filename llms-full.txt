@@ -8,7 +8,7 @@
 Publisher: The Talus Field (https://thetalusfieldjournal.com). Editor: Cory Goehring.
 Citation guidance and the annotated page index: https://thetalusfieldjournal.com/llms.txt
 Canonical article URL pattern: https://thetalusfieldjournal.com/articles/<slug>
-Contents: 75 articles. Most recent update: 2026-10-01.
+Contents: 74 articles. Most recent update: 2026-10-01.
 
 Not in this file: the Yosemite Nature Notes archive, all 512 issues of the
 National Park Service's Yosemite bulletin (1922-2003), transcribed in full
@@ -752,10 +752,10 @@ Some links in this piece are affiliate links. If you buy or book through one, Th
 
 ---
 
-## Las Vegas to Yosemite: The Drive, and the Pass That Decides
+## Las Vegas to Yosemite: 400 Miles, Eight Hours, and the Pass That Decides
 
 URL: https://thetalusfieldjournal.com/articles/yosemite-from-las-vegas
-Section: Planning. Published: 2026-09-10. Last updated: 2026-09-10.
+Section: Planning. Published: 2026-09-10. Last updated: 2026-10-01.
 Summary: Las Vegas to Yosemite: drive time both seasons, the Tioga Pass question, the Tonopah and Death Valley roads, where to sleep, the winter route via Bakersfield.
 
 A great many first trips to Yosemite begin at an airport in Nevada. Las Vegas is where the cheap flights land, where the Southwest road trip starts, and where a visitor who has already seen the Grand Canyon and Zion looks at the map and notices Yosemite. The map leaves out that there are two entirely different drives between the two places, that the calendar chooses which one you get, and that the shorter, more beautiful one does not exist for about half the year. Nobody planning from a routing app in February finds that out until the road sign at Lee Vining tells them.
@@ -3220,77 +3220,6 @@ Pick the spot by the hour: Tunnel View and Glacier Point in late afternoon, Vall
 
 ---
 
-## Yosemite Firefall: How Horsetail Fall Works in February
-
-URL: https://thetalusfieldjournal.com/articles/horsetail-fall-firefall
-Section: Seasonal Guides. Published: 2026-07-12. Last updated: 2026-09-26.
-Summary: How the Yosemite firefall works: when Horsetail Fall glows in February, the three conditions required, viewing at El Capitan Picnic Area, and honest odds.
-
-The first time I watched Horsetail Fall catch fire, I almost missed it. This was years ago, a February evening cold enough that the puddles at the El Capitan Picnic Area had skinned over with ice, and I had spent twenty minutes convinced the show was a bust. The fall was flowing, barely, a thin ribbon down the east shoulder of El Capitan, and the light was going flat and grey the way Valley light does in the last half hour of a winter day. Then the sun dropped into a gap under the cloud deck to the west, and the ribbon turned amber, then deep orange. For about ten minutes, a strip of water a few feet wide looked like lava pouring off a 3,000-foot wall. Then the sun set, the color drained out in under a minute, and a few hundred people standing around me in the snow exhaled at the same time.
-
-That is the firefall. It is real, the photographs do not exaggerate it, and it is one of the most oversold and misunderstood events in the park. After twenty seasons of watching people plan whole trips around it, I want to explain how it actually works, why most evenings fail, and how to think about it like a naturalist instead of a lottery player. If you just need the window, the conditions checklist, and the live water and weather, the firefall page is the short version, kept current each season.
-
-### What is actually happening
-
-Horsetail Fall is a small, seasonal waterfall that drops off the eastern edge of El Capitan. Its main plunge is roughly 1,500 feet, which would make it a headline attraction anywhere else. In Yosemite it barely rates a mention for most of the year, partly because it usually is not there. The fall has a tiny drainage on El Capitan's summit slopes, no lake or glacier feeding it, and it flows only when recent rain or melting snow is running off the top of the cliff. In a dry winter it can be a damp streak. By late spring it is usually gone. If waterfalls are what you came for, the big reliable ones are covered in the waterfalls guide; Horsetail is a different kind of event.
-
-The firefall effect is an alignment problem. For a stretch of roughly two weeks in mid-to-late February, the setting sun lines up with the Valley's east-west axis in a way that puts direct, low-angle light on the strip of cliff Horsetail runs down, while the surrounding rock has already fallen into shadow. Sunset light is red-orange to begin with, because it is passing through the maximum thickness of atmosphere. Backlit and sidelit at that angle, the falling water and its mist pick up that color and glow against a dark wall. The physics is the same as any alpenglow. What makes it striking is the contrast: one orange ribbon against a wall already in shadow.
-
-The same solar geometry occurs in late October, on the other side of the winter solstice. Almost nobody has heard of an October firefall, because in October there is almost never water in the fall.
-
-Watch the film: Horsetail FallYosemite Nature Notes · Episode 14Horsetail FallThe Park Service's short film on the fall and the light, worth the few minutes before you commit a February evening to it.Film: National Park Service. Nothing loads from YouTube until you press play.
-
-### Three conditions, and all of them must hold
-
-The firefall requires three independent conditions at once. If any one fails, there is no show.
-
-One: water in the fall. Horsetail needs recent rain or warm-enough days to melt snow on El Capitan's summit. A cold, dry February leaves the drainage frozen or empty. A big storm the week before, followed by mild afternoons, is the ideal setup. This is the condition that fails most often in drought years, and no amount of planning from another state can control it.
-
-Two: a clear western horizon at sunset. The light has to travel from the horizon, up the Merced canyon, and onto the cliff without hitting a cloud bank. February is the middle of storm season. A sky that is 90 percent clear does not help you if the remaining 10 percent is a low deck sitting exactly where the sun goes down. I have watched perfect afternoons die in the last five minutes because of a cloud shelf over the Coast Ranges that nobody in the Valley could even see.
-
-Three: the sun angle. This is the only condition you can schedule. The window runs roughly from the middle of February to the end of the month, with the strongest color usually in the middle of that span. Outside those dates, the sunset light either misses the fall or does not isolate it against shadowed rock.
-
-The arithmetic. Condition three gives you about fourteen to eighteen candidate evenings a year. February weather being what it is, a good number of those evenings are cloudy, and in a lean snow year some or all of them are dry. The years when everything converges for several evenings running produce the famous photographs. There are also years when the firefall effectively does not happen at all. If you visit on one specific evening, your odds are uncertain, and anyone promising otherwise is wrong.
-
-The three conditions, as this section lays them out. Only the third goes in a calendar.
-
-The firefall is not an event the park schedules. It is a coincidence the park permits you to watch.
-
-### Two firefalls, one natural
-
-The name causes confusion, because Yosemite had another firefall, and that one was man-made. From the 1870s until 1968, a bonfire was built on the rim at Glacier Point and, on summer evenings, its burning embers were pushed over the edge, creating a glowing cascade of fire down the cliff toward Curry Village. It was a beloved spectacle, called for each night from the Valley floor, and it was also exactly the kind of manufactured entertainment the Park Service spent the twentieth century deciding parks should not be. The NPS ended the Glacier Point firefall in January 1968, citing the crowds it drew and the trampling of meadows, and the incompatibility of a nightly ember show with the idea of a national park.
-
-Horsetail's natural firefall was known to photographers earlier, but it entered the broader imagination through Galen Rowell, whose 1973 photograph of the lit fall, shot on film after he spotted the glow and famously scrambled to get in position before the light died, became the reference image. For decades afterward it remained a specialist's event, a February appointment for landscape photographers and almost no one else. Social media ended that era around the mid-2010s. The photographs travel well, the dates are predictable, and the viewing area is a short flat walk from a road. The crowds followed.
-
-### The modern crowd reality
-
-On a promising February evening, the stretch of Northside Drive near the El Capitan Picnic Area, the classic viewing zone, draws crowds in the thousands. The park has spent recent years actively managing the event: parking restrictions, road closures, designated walking routes, and in some years a reservation requirement for February weekends. The specifics have changed from year to year, and I am deliberately not quoting this year's rules, because the reliable move is to check the park's current conditions before you commit to anything. Read the NPS Horsetail Fall page and the current-conditions page in the week before your trip, and treat our conditions page as the quick index to the live sources.
-
-Assume the following shape of an evening, whatever the current rules are. You will park somewhere designated, probably at Yosemite Falls parking, and walk a mile or more each way on pavement. You should arrive very early: photographers stake tripod positions by early afternoon on good days, and even a casual viewer should be in place at least an hour before sunset. And you will wait, standing still, through a February evening in a shaded valley at 4,000 feet. The temperature falls fast once the sun leaves the floor. Bring real layers, something insulated to stand on or sit on, a headlamp for the walk out, and a thermos. The people who suffer at the firefall are almost never underdressed for hiking. They are underdressed for standing still.
-
-February driving matters too. Chain control on the approach highways is routine after storms, which is exactly the weather that fills the fall. The entrance-by-entrance guide covers which roads hold up best in winter, and the broader case for the season is made in the winter guide.
-
-### Photography, briefly
-
-A telephoto lens helps more than anything else. The fall is a thin feature on an enormous wall, and the classic frames are shot at 100mm and beyond, compressed tight on the glowing ribbon and the surrounding rock. A tripod matters because the good light is dim light. Expose for the highlights and let the wall go dark. The glow typically builds for a few minutes, peaks near sunset, and is finished about ten minutes later, so decide your composition before it starts rather than during.
-
-Phones underwhelm here. A phone's wide lens renders the fall as a faint orange thread on a big grey cliff, and computational night modes tend to brighten the shadows that give the scene its drama. Take the phone picture, then put the phone away and watch. If photography is a main goal of the trip, the photography guide covers where else that same February light earns its keep.
-
-### The naturalist's framing
-
-After twenty Februaries, my view is that the firefall is worth attempting once, with the odds understood in advance. But the healthiest way to plan a February trip is to treat the firefall as a possible bonus on top of a season that needs no bonus. Mid-February in Yosemite Valley means snow on the oaks, full winter flow starting in the creeks, coyotes hunting the meadows in daylight, and weekday crowds thinner than almost any other time of year. If the evening clouds over, you have lost ten minutes of orange. You still spent a winter day in Yosemite Valley.
-
-Check the water, check the weather, check the current rules, and go stand in the snow with everyone else. If the wall lights up, you will understand the fuss in about thirty seconds. If it does not, the Valley at dusk in February is still worth the walk.
-
-#### Sources
-
-- Horsetail Fall, NPS Yosemite
-- Current Conditions, NPS Yosemite
-- The Firefall from Glacier Point, NPS Yosemite history
-- Horsetail Fall, Yosemite Conservancy
-
----
-
 ## Yosemite in Winter: The Season the Crowds Forget
 
 URL: https://thetalusfieldjournal.com/articles/yosemite-in-winter
@@ -4516,12 +4445,12 @@ Some links in this piece are affiliate links. If you buy or book through one, Th
 ## Is Bear Spray Allowed in Yosemite? No, and Here Is Why
 
 URL: https://thetalusfieldjournal.com/articles/is-bear-spray-allowed-in-yosemite
-Section: Wildlife and Nature. Published: 2026-08-25. Last updated: 2026-08-25.
+Section: Wildlife and Nature. Published: 2026-08-25. Last updated: 2026-10-01.
 Summary: Bear spray is prohibited in Yosemite: the regulation, why a tool that works on grizzlies is banned in black bear country, and what to carry instead.
 
-No. Bear spray is not allowed in Yosemite National Park, in any form, under any circumstances. Possession is prohibited and use is prohibited, and this is a park regulation rather than a guideline. If you have it in the car, it should not come through the entrance station.
+No. Bear spray is banned in Yosemite because the park classifies it as a weapon, and because it was built for a bear that is not here: the last grizzly in Yosemite was shot around 1895, and on the park's black bears capsaicin residue attracts more than it repels. It is not allowed in any form, under any circumstances. Possession is prohibited and use is prohibited, and this is a park regulation rather than a guideline. If you have it in the car, it should not come through the entrance station.
 
-The next question is usually why a tool that works well everywhere else is banned here, and what you are supposed to do instead.
+The longer answer, and what to carry instead, follows.
 
 ### The rule
 
@@ -4860,7 +4789,7 @@ Some links in this piece are affiliate links. If you buy or book through one, Th
 ## Best Time to Visit Yosemite in 2026, by the Traffic Data
 
 URL: https://thetalusfieldjournal.com/articles/when-to-visit-yosemite
-Section: Planning. Published: 2026-06-11. Last updated: 2026-09-02.
+Section: Planning. Published: 2026-06-11. Last updated: 2026-10-01.
 Summary: Yosemite has no reservation system in 2026 and is pacing toward its second-busiest year ever. NPS data, a month-by-month forecast, and the best days to visit.
 
 In March, 225,817 people visited Yosemite. That is 45 percent more than the March before it and the busiest March this park has seen since 2016. Nobody who lives here was surprised. The National Park Service announced on February 18 that the entrance reservation system would not return in 2026, and the visiting public heard it as an open gate. Through April the park had logged 836,458 visits against 739,313 over the same months the year before, and by the end of July the count stood at 2,657,602, 8 percent ahead. Memorial Day gave us the preview: entrance waits of more than an hour, the Curry Village lot full a little after 8 in the morning, cars parked on the meadow edges because there was nowhere else to put them.
@@ -4999,7 +4928,7 @@ Read it month by month, with the second half of the year in mind:
 
 - June: Peak season arrived early this year. Low snowpack pushed the waterfall peak into May, so the falls are already past their best while the crowds are at theirs. A June weekday scores 68; a weekend, 100. Come midweek or not at all.
 - July: The projected biggest month in a decade, and July 4 lands on a Saturday, the single worst arrival day of 2026. The week after the holiday, midweek, is merely very busy rather than impossible.
-- August: Slightly softer than July, with two asterisks: smoke season is real here in late August, and the falls will be near dry.
+- August: Slightly softer than July, with two asterisks: smoke season is real here in late August (the Valley webcams show the haze before you drive), and the falls will be near dry.
 - September: The split month. Labor Day weekend (September 5 to 7) behaves like July. The Tuesday after it is a different park, with the concessions closing around you: summer weather, open high country, and weekday pressure that drops by a third.
 - October: The sleeper, and my answer when people ask for the best remaining window of 2026. Weekday pressure falls to 46, Tioga Road usually stays open most of the month (the first closing storm came on October 13 last year), and the light gets good.
 - November: Quiet except for Thanksgiving week, which fills lodging months out. A weekday score of 28 means empty trails by summer standards.
@@ -5008,7 +4937,7 @@ Read it month by month, with the second half of the year in mind:
 
 ### The clock beats the calendar
 
-Here is the part the monthly numbers hide: the difference between a miserable Yosemite day and a great one is mostly the hour you reach the gate. The park's traffic guidance is blunt about the shape of the day, and it matches what I see on Highway 140 every morning.
+Here is the part the monthly numbers hide: the difference between a miserable Yosemite day and a great one is mostly the hour you reach the gate. The park's traffic guidance is blunt about the shape of the day, and it matches what I see on Highway 140 every morning. Work backward from the gate: the drive times from each gateway town say when to leave.
 
 Relative inbound vehicle volume by hour on a busy summer day, stylized from NPS traffic guidance. The busiest entry window runs roughly 9 a.m. to 2 p.m.; the park's August 2026 report put summer Saturday waits at about 30 minutes on average and about an hour at worst. Source: NPS Visitor Use Statistics; 2026 figures preliminary. Months without a published figure are estimated from NPS period totals and rounded. Projection: The Talus Field.
 
@@ -5612,11 +5541,11 @@ Some links in this piece are affiliate links. If you buy or book through one, Th
 
 ---
 
-## Where to eat in Yosemite: restaurants by area
+## Yosemite Restaurants: Where to Eat in the Park and Near Each Entrance
 
 URL: https://thetalusfieldjournal.com/articles/where-to-eat-yosemite
-Section: Planning. Published: 2026-05-19. Last updated: 2026-09-29.
-Summary: Find restaurants in Yosemite Valley and the gateway towns, plus Wawona and Tuolumne food options, reservation advice, and seasonal closure details.
+Section: Planning. Published: 2026-05-19. Last updated: 2026-10-01.
+Summary: Yosemite restaurants by area: quick meals and sit-down dinners in Yosemite Valley, the one place to eat in each gateway town, Wawona and Tuolumne, and what closes in fall.
 
 Most choiceYosemite Valley, by a long way
 
@@ -7917,7 +7846,7 @@ Some links in this piece are affiliate links. If you buy or book through one, Th
 ## Yosemite for non-hikers: see the park without a trail
 
 URL: https://thetalusfieldjournal.com/articles/yosemite-for-non-hikers
-Section: Planning. Published: 2026-04-26. Last updated: 2026-08-06.
+Section: Planning. Published: 2026-04-26. Last updated: 2026-10-01.
 Summary: Yosemite is built for non-hikers more thoroughly than almost any national park. A complete visit without ever putting on hiking boots. Plan one.
 
 A lot of people who would love Yosemite never go because they think you have to hike to "really" see it. They're not wrong about hiking being part of the experience for many visitors. They are wrong that hiking is the only way in. The truth is that Yosemite National Park is built for non-hikers more thoroughly than almost any other national park in the country, and a non-hiker can have a complete, satisfying, wonder-filled visit without ever putting on hiking boots. I've watched this happen hundreds of times. I've watched grandparents in their eighties have what they describe as the best trip of their lives without walking more than half a mile in a day. I've watched parents with toddlers see things in Yosemite that the toddlers will remember twenty years later.
@@ -7986,7 +7915,7 @@ Sentinel Bridge. Where Sentinel Drive crosses the Merced, connecting Southside D
 
 Cook's Meadow. The loop starts from the Sentinel Drive parking area, and the Park Service lists it as one mile, mostly level, and wheelchair accessible. What you actually walk: as much or as little as you like. The reflected Yosemite Falls view that people come for is available in the first few hundred feet, on boardwalk, and there are benches at intervals if you take the whole loop. This is the stop I send people to when they have one hour and one working knee.
 
-Yosemite Village. Food, restrooms, the Exploration Center, the museum, the gallery, the store. Everything is close together and level. Covered in more detail below.
+Yosemite Village. Food (where to eat in the Valley lists every counter and dining room), restrooms, the Exploration Center, the museum, the gallery, the store. Everything is close together and level. Covered in more detail below.
 
 Lower Yosemite Fall. The trailhead is near Yosemite Valley Lodge, on the Northside Drive side, and it is a shuttle stop. What you actually walk: the full loop is 1.1 miles with about 50 feet of elevation change, roughly half an hour at a normal pace. The eastern leg is paved and wheelchair accessible, and it is the leg that reaches the bridge at the base of the fall. Take the east leg out and back rather than the loop if the loop is too much. In spring the bridge gets wet from spray. By late summer and fall the fall often goes dry, and there is no point pretending otherwise: check before you go.
 
@@ -8042,7 +7971,7 @@ A seasonal Tuolumne Meadows tour runs up Tioga Road in summer, and there are nat
 
 ### Cultural and indoor sites
 
-For variety, or for weather days, or for slower-paced visitors, Yosemite has more indoor and cultural content than people realize. All of it is in Yosemite Village, within a few level minutes of each other.
+For variety, or for weather days (the Yosemite webcams show the Valley's sky before you leave the room), or for slower-paced visitors, Yosemite has more indoor and cultural content than people realize. All of it is in Yosemite Village, within a few level minutes of each other.
 
 The Yosemite Exploration Center is the Valley's main visitor center, in Yosemite Village, open year-round from 9 a.m. to 5 p.m. It carries the park's interactive exhibits and a Yosemite Conservancy bookstore. If you know it as the Valley Visitor Center, this is the same place under a newer name.
 
@@ -8092,7 +8021,7 @@ For photography, the classic views (Tunnel View, Valley View, Sentinel Bridge, C
 
 The most common version of the non-hiker trip is the family trip with a mix of abilities. Here's the framework that I've watched work over and over.
 
-Stay in or near the Valley. Don't try to base in Wawona or Oakhurst if any of your group has limited mobility. The drive in and out adds friction, and the friction compounds across a week. Yosemite Valley Lodge is the best of the in-park options for this trip, flat ground between the rooms, the shuttle stop, and the food, and it books through the concessioner at travelyosemite.com rather than through anybody's search. When the in-park inventory is gone, El Portal is the closest place outside the boundary, about a half hour of flat highway from the Valley floor.
+Stay in or near the Valley. Don't try to base in Wawona or Oakhurst if any of your group has limited mobility. The drive in and out (an hour or more each way) adds friction, and the friction compounds across a week. Yosemite Valley Lodge is the best of the in-park options for this trip, flat ground between the rooms, the shuttle stop, and the food, and it books through the concessioner at travelyosemite.com rather than through anybody's search. When the in-park inventory is gone, El Portal is the closest place outside the boundary, about a half hour of flat highway from the Valley floor.
 
 Build in low-energy mornings and big-vista afternoons. Late starts are fine. Sunset is the best part of the day for everyone.
 
@@ -8521,7 +8450,7 @@ Distance affects more than driving time. The further your gateway, the earlier y
 
 Gas. There is no gas station in Yosemite Valley. The in-park pumps are at Crane Flat, year-round with pay-at-the-pump around the clock, and at Wawona, where the store keeps daytime hours but the pumps also take a card overnight. Outside the park, the El Portal station is the last stop on Highway 140. Rolling into the Valley on a quarter tank is a bad plan in any season and a worse one in winter, when you'll sit idling in stopped traffic.
 
-Groceries. Mariposa and Oakhurst have full-size supermarkets. Groveland has a market. El Portal and Lee Vining have convenience-scale markets and nothing more. Whichever town you pick, do the real shop in Mariposa or Oakhurst on the way in, because in-park food is limited, expensive, and keeps shorter hours than you expect. See how to pack your car for a Yosemite trip.
+Groceries. Mariposa and Oakhurst have full-size supermarkets. Groveland has a market. El Portal and Lee Vining have convenience-scale markets and nothing more. Whichever town you pick, do the real shop in Mariposa or Oakhurst on the way in, because in-park food is limited, expensive, and keeps shorter hours than you expect; where to eat in Yosemite has what is open and the one place to eat in each gateway town. See how to pack your car for a Yosemite trip.
 
 Cell service. Patchy in all five gateways and unreliable to nonexistent through most of the park, including long stretches of the approach roads. Download the offline map for the whole region before you leave the gateway town, screenshot your reservation details, and agree on a meeting point with anyone you might get separated from. Don't count on live navigation past the entrance station. Cell service in Yosemite has what each carrier actually gets, town by town and inside the park.
 
@@ -8529,7 +8458,7 @@ Car-free access follows the bus corridors. YARTS runs the Highway 140 corridor f
 
 Reservations book out fast. In summer and on holiday weekends, gateway lodging fills six to twelve months in advance. Plan early, or be ready to flex on the town.
 
-Check current status the week you travel. Roads, chain controls, and closures change faster than any lodging comparison can keep up with. The Park Bulletin condenses the current edition of park status, roads, hours, and trail conditions onto one page.
+Check current status the week you travel. Roads, chain controls, and closures change faster than any lodging comparison can keep up with. The Park Bulletin condenses the current edition of park status, roads, hours, and trail conditions onto one page, and the Yosemite webcams show the Valley and Wawona as they are that morning.
 
 ### Where to stay near Yosemite with kids
 
@@ -8554,6 +8483,12 @@ Where should I stay near Yosemite with kids? Mariposa for a Valley trip, Oakhurs
 Which gateway town is cheapest? Groveland and Mariposa typically have the widest range and the most budget rooms. El Portal is priced like in-park lodging. Oakhurst has predictable chain prices. Lee Vining has little inventory and prices accordingly.
 
 Which towns have full grocery stores? Mariposa and Oakhurst. Groveland has a market. El Portal and Lee Vining have convenience-scale markets only.
+
+How far is Mariposa from Yosemite? About 45 miles and 45 to 60 minutes to Yosemite Valley on Highway 140, through the Arch Rock Entrance.
+
+How far is Oakhurst from Yosemite? About 14 miles and 20 to 25 minutes to the South Entrance, and 75 to 90 minutes to Yosemite Valley on Highway 41.
+
+How far is Groveland from Yosemite? About 24 miles and 30 to 40 minutes to the Big Oak Flat Entrance, and 65 to 80 minutes to Yosemite Valley on Highway 120. Every leg between the towns, the entrances and the trailheads is on the drive-times table.
 
 Which town works in winter? El Portal or Mariposa, on Highway 140, the lowest and most reliable road. Groveland works with chains. Lee Vining has no road into the park at all when Tioga Pass is closed.
 

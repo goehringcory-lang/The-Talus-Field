@@ -1314,44 +1314,6 @@
       }
     ]
   },
-  "horsetail-fall-firefall": {
-    "wordCount": 1731,
-    "keywords": [
-      "Yosemite firefall",
-      "Horsetail Fall",
-      "Horsetail Fall February",
-      "El Capitan firefall",
-      "Yosemite firefall viewing",
-      "Yosemite in February",
-      "Galen Rowell firefall"
-    ],
-    "faq": [
-      {
-        "q": "When does the Yosemite firefall happen?",
-        "a": "For roughly two weeks in mid-to-late February, when the setting sun's angle puts direct low light on Horsetail Fall. The window runs about the second week of February through the last week, and the glow itself lasts about ten minutes around sunset."
-      },
-      {
-        "q": "What causes the firefall on Horsetail Fall?",
-        "a": "It is an alignment of sunset light and geography. In mid-to-late February the setting sun lights the strip of El Capitan that Horsetail Fall runs down while the surrounding rock is already in shadow, so the backlit water and mist glow orange against a dark wall. The same geometry recurs in late October, but the fall is almost never flowing then."
-      },
-      {
-        "q": "Does the firefall happen every year?",
-        "a": "No. Three independent conditions must all hold: water in the fall from recent rain or snowmelt, a clear western horizon at sunset, and the mid-February sun angle. February storms and dry winters cancel many evenings, and in some years the firefall effectively does not happen at all."
-      },
-      {
-        "q": "Where do you watch the firefall?",
-        "a": "The classic viewing zone is the stretch of Northside Drive near the El Capitan Picnic Area. Expect to park in a designated area, walk a mile or more each way, and arrive at least an hour before sunset. Dress for standing still through a February evening."
-      },
-      {
-        "q": "Do you need a reservation to see the firefall?",
-        "a": "It depends on the year. The park has managed the event with parking restrictions, road closures, designated walking routes, and in some years a weekend reservation requirement, and the specifics change annually. Check the NPS Horsetail Fall and current-conditions pages in the week before your trip."
-      },
-      {
-        "q": "Can you photograph the firefall with a phone?",
-        "a": "Phones underwhelm. A phone's wide lens renders the fall as a faint orange thread on a large grey cliff, and night modes brighten the shadows that make the scene. The classic frames are shot at 100mm and beyond on a tripod, exposed for the highlights."
-      }
-    ]
-  },
   "yosemite-in-winter": {
     "wordCount": 2106,
     "keywords": [
@@ -2658,6 +2620,18 @@
       {
         "q": "Which Yosemite gateway towns have full grocery stores?",
         "a": "Mariposa and Oakhurst. Groveland has a market. El Portal and Lee Vining have convenience-scale markets only."
+      },
+      {
+        "q": "How far is Mariposa from Yosemite?",
+        "a": "About 45 miles and 45 to 60 minutes to Yosemite Valley on Highway 140, through the Arch Rock Entrance."
+      },
+      {
+        "q": "How far is Oakhurst from Yosemite?",
+        "a": "About 14 miles and 20 to 25 minutes to the South Entrance, and 75 to 90 minutes to Yosemite Valley on Highway 41."
+      },
+      {
+        "q": "How far is Groveland from Yosemite?",
+        "a": "About 24 miles and 30 to 40 minutes to the Big Oak Flat Entrance, and 65 to 80 minutes to Yosemite Valley on Highway 120."
       },
       {
         "q": "Which gateway town works in winter?",

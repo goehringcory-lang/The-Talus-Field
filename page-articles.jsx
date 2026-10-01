@@ -743,7 +743,7 @@ function SxEveryEntry({ slugCat, groups, go, location, id, lede }) {
 // titles, photographs and credits come from the catalog, so a rename follows.
 const SX_SEASONS = [
   { key: "winter", label: "Winter", months: "December to February", lead: "yosemite-in-winter",
-    slugs: ["yosemite-in-winter", "horsetail-fall-firefall", "bracebridge-dinner-and-vintners-holidays", "yosemite-winter-hikes"] },
+    slugs: ["yosemite-in-winter", "bracebridge-dinner-and-vintners-holidays", "yosemite-winter-hikes"] },
   { key: "spring", label: "Spring", months: "March to May", lead: "yosemite-in-march",
     slugs: ["yosemite-in-march", "yosemite-waterfalls-guide", "tioga-road-opening-weekend", "glacier-point-road-open-2026", "memorial-day-skip-the-valley-go-high-2026"] },
   { key: "summer", label: "Summer", months: "June to August", lead: "yosemite-in-june",

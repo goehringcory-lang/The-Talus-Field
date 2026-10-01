@@ -118,7 +118,7 @@ window.ARTICLE_BODIES["yosemite-for-non-hikers"] = function YosemiteForNonHikers
       </p>
 
       <p>
-        <strong>Yosemite Village.</strong> Food, restrooms, the Exploration Center, the museum, the gallery, the store. Everything is close together and level. Covered in more detail below.
+        <strong>Yosemite Village.</strong> Food (<a href="/articles/where-to-eat-yosemite">where to eat in the Valley</a> lists every counter and dining room), restrooms, the Exploration Center, the museum, the gallery, the store. Everything is close together and level. Covered in more detail below.
       </p>
 
       <p>
@@ -215,7 +215,7 @@ window.ARTICLE_BODIES["yosemite-for-non-hikers"] = function YosemiteForNonHikers
 
       <h2>Cultural and indoor sites</h2>
 
-      <p>For variety, or for weather days, or for slower-paced visitors, Yosemite has more indoor and cultural content than people realize. All of it is in Yosemite Village, within a few level minutes of each other.</p>
+      <p>For variety, or for weather days (<a href="/webcams">the Yosemite webcams</a> show the Valley's sky before you leave the room), or for slower-paced visitors, Yosemite has more indoor and cultural content than people realize. All of it is in Yosemite Village, within a few level minutes of each other.</p>
 
       <p>
         <strong>The Yosemite Exploration Center</strong> is the Valley's main visitor center, in Yosemite Village, open year-round from 9 a.m. to 5 p.m. It carries the park's interactive exhibits and a Yosemite Conservancy bookstore. If you know it as the Valley Visitor Center, this is the same place under a newer name.
@@ -302,7 +302,7 @@ window.ARTICLE_BODIES["yosemite-for-non-hikers"] = function YosemiteForNonHikers
       <p>The most common version of the non-hiker trip is the family trip with a mix of abilities. Here's the framework that I've watched work over and over.</p>
 
       <p>
-        <strong>Stay in or near the Valley.</strong> Don't try to base in Wawona or Oakhurst if any of your group has limited mobility. The drive in and out adds friction, and the friction compounds across a week. Yosemite Valley Lodge is the best of the in-park options for this trip, flat ground between the rooms, the shuttle stop, and the food, and it books through the concessioner at travelyosemite.com rather than through anybody's search. When the in-park inventory is gone, <AvailabilityLink destination="El Portal, California" list="article_inline" slug="yosemite-for-non-hikers" name="El Portal lodging search">El Portal is the closest place outside the boundary</AvailabilityLink>, about a half hour of flat highway from the Valley floor.
+        <strong>Stay in or near the Valley.</strong> Don't try to base in Wawona or Oakhurst if any of your group has limited mobility. The drive in and out (<a href="/distances">an hour or more each way</a>) adds friction, and the friction compounds across a week. Yosemite Valley Lodge is the best of the in-park options for this trip, flat ground between the rooms, the shuttle stop, and the food, and it books through the concessioner at travelyosemite.com rather than through anybody's search. When the in-park inventory is gone, <AvailabilityLink destination="El Portal, California" list="article_inline" slug="yosemite-for-non-hikers" name="El Portal lodging search">El Portal is the closest place outside the boundary</AvailabilityLink>, about a half hour of flat highway from the Valley floor.
       </p>
 
       <p>

@@ -178,7 +178,7 @@ window.ARTICLE_BODIES["yosemite-day-trip-from-bay-area"] = function YosemiteDayT
       </p>
 
       <p>
-        <strong>A specific errand.</strong> You want to see <a href="/articles/horsetail-fall-firefall">Horsetail Fall in the third week of February</a>, or the dogwood in May, or El Capitan on a clear October afternoon. A day trip with one objective and no itinerary is a completely different experience from a day trip trying to see Yosemite.
+        <strong>A specific errand.</strong> You want to see <a href="/firefall">Horsetail Fall in the third week of February</a>, or the dogwood in May, or El Capitan on a clear October afternoon. A day trip with one objective and no itinerary is a completely different experience from a day trip trying to see Yosemite.
       </p>
 
       <p>

@@ -73,7 +73,7 @@ window.ARTICLE_BODIES["yosemite-walk-up-and-day-of-permits"] = function Yosemite
       </p>
 
       <p>
-        <strong>Getting in.</strong> There is no day-use or peak-hours entry reservation for 2026. The systems that ran from 2020 through 2025 are gone, including the February weekend requirement for <a href="/articles/horsetail-fall-firefall">Horsetail Fall</a>. You pay at the gate and drive in. What rations your visit now is <a href="/articles/yosemite-valley-parking-guide">the number of parking spaces in Yosemite Valley</a>, which is a harder problem than a reservation and one you solve by arriving before nine or after five.
+        <strong>Getting in.</strong> There is no day-use or peak-hours entry reservation for 2026. The systems that ran from 2020 through 2025 are gone, including the February weekend requirement for <a href="/firefall">Horsetail Fall</a>. You pay at the gate and drive in. What rations your visit now is <a href="/articles/yosemite-valley-parking-guide">the number of parking spaces in Yosemite Valley</a>, which is a harder problem than a reservation and one you solve by arriving before nine or after five.
       </p>
 
       <p>
