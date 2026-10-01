@@ -110,6 +110,7 @@ window.planningSeriesFor = function (slug) {
 // verifies this map stays in sync with the files in bodies/.
 // ============================================================
 window.BODY_VERSIONS = {
+  "sustainable-yosemite-car-free-zero-waste": 2,
   "yosemite-in-december": 1,
   "wildfire-in-yosemite-during-your-trip": 1,
   "yosemite-in-october-2026": 5,
@@ -132,7 +133,7 @@ window.BODY_VERSIONS = {
   "tuolumne-meadows-in-a-day": 5,
   "swimming-in-the-merced": 3,
   "yosemite-valley-parking-guide": 3,
-  "yosemite-shuttle-and-yarts": 7,
+  "yosemite-shuttle-and-yarts": 8,
   "yosemite-walk-up-and-day-of-permits": 6,
   "yosemite-in-fall": 6,
   "yosemite-tunnel-trees": 3,
@@ -751,6 +752,28 @@ window.KIT.lists.forEach((l) => {
 // AffiliateDisclosure line under the byline, before the first link;
 // scripts/check-affiliate-links.mjs fails when the flag and the body disagree.
 window.ARTICLES = [
+  {
+    slug: "sustainable-yosemite-car-free-zero-waste",
+    cat: "planning",
+    title: "How to visit Yosemite sustainably: car-free and zero waste",
+    dek: "Amtrak to Merced and a public bus to the Valley floor, a free shuttle, twelve miles of bike path and a free bike share, what goes in which bin, refillable propane, and what to do if you have to drive anyway.",
+    seoDek: "Visit Yosemite without a car: Amtrak and YARTS fares, the free shuttle and Bike Share, recycling rules, refillable propane and EV chargers.",
+    date: "October 1, 2026",
+    isoDate: "2026-10-01",
+    isoModified: "2026-10-01",
+    read: "13 min",
+    placeholder: "A paved bike path beside the road on the Yosemite Valley floor, granite cliffs on the left and Half Dome in the distance",
+    image: "img/yosemite-valley-bike-path.jpg",
+    credit: "Photo: Vulturesong / Wikimedia Commons (CC0)",
+    // The /firefall layout for an article (page-article.jsx), as on the El
+    // Capitan piece: a full-width photo cover, and a body that lays out its
+    // own sections. The two buttons jump to the train and to the bins.
+    feature: {
+      eyebrow: "AMTRAK · YARTS · THE VALLEY SHUTTLE · BIKE SHARE · THE BINS",
+      focus: "50% 70%",
+      actions: [["#train-and-bus", "The train and bus"], ["#zero-waste", "What goes in which bin"]],
+    },
+  },
   {
     slug: "yosemite-in-december",
     aff: true,
@@ -1944,6 +1967,7 @@ window.START_HERE = [
 // Curate a piece when it earns real search impressions, when it anchors a
 // cluster, or when it is the destination that needs the equity.
 window.RELATED = {
+  "sustainable-yosemite-car-free-zero-waste": ["yosemite-shuttle-and-yarts", "getting-to-yosemite", "yosemite-valley-parking-guide", "yosemite-camping-complete-guide", "yosemite-bears-safety-guide", "yosemite-trip-cost-budget"],
   // Yosemite in December: the evergreen month guide. Onward to the season
   // piece, the winter trails, the holiday dinner, the lodging and entrance
   // guides, and the next month guide in the series.
@@ -1977,7 +2001,7 @@ window.RELATED = {
   "bracebridge-dinner-and-vintners-holidays": ["where-to-stay-in-yosemite", "yosemite-in-winter", "yosemite-in-december", "yosemite-trip-cost-budget", "yosemite-gateway-towns-compared", "where-to-eat-yosemite"],
   "yosemite-gateway-towns-compared": ["where-to-stay-in-yosemite", "yosemite-from-los-angeles", "yosemite-with-kids-no-reservations-2026", "highway-140-closed-yosemite", "yosemite-trip-cost-budget", "getting-to-yosemite"],
   "where-to-stay-in-yosemite": ["yosemite-gateway-towns-compared", "yosemite-camping-complete-guide", "yosemite-trip-cost-budget", "bracebridge-dinner-and-vintners-holidays", "where-to-eat-yosemite"],
-  "yosemite-camping-complete-guide": ["camping-in-yosemite-first-time", "where-to-stay-in-yosemite", "first-yosemite-backpacking-trip", "yosemite-trip-cost-budget", "yosemite-facelift-volunteer-guide"],
+  "yosemite-camping-complete-guide": ["camping-in-yosemite-first-time", "where-to-stay-in-yosemite", "first-yosemite-backpacking-trip", "yosemite-trip-cost-budget", "yosemite-facelift-volunteer-guide", "sustainable-yosemite-car-free-zero-waste"],
   "camping-in-yosemite-first-time": ["yosemite-camping-complete-guide", "yosemite-bears-safety-guide", "is-bear-spray-allowed-in-yosemite", "where-to-stay-in-yosemite", "pets-in-yosemite"],
   "yosemite-trip-cost-budget": ["where-to-stay-in-yosemite", "yosemite-gateway-towns-compared", "yosemite-camping-complete-guide", "where-to-eat-yosemite", "bracebridge-dinner-and-vintners-holidays"],
 
@@ -1992,7 +2016,7 @@ window.RELATED = {
   "yosemite-from-los-angeles": ["getting-to-yosemite", "yosemite-gateway-towns-compared", "yosemite-from-las-vegas", "yosemite-day-trip-from-bay-area", "mariposa-grove-how-to-visit", "yosemite-shuttle-and-yarts"],
   "getting-to-yosemite": ["yosemite-shuttle-and-yarts", "yosemite-gateway-towns-compared", "highway-140-closed-yosemite", "yosemite-from-los-angeles", "yosemite-from-las-vegas", "yosemite-day-trip-from-bay-area"],
   "yosemite-shuttle-and-yarts": ["getting-to-yosemite", "yosemite-valley-parking-guide", "highway-140-closed-yosemite", "yosemite-for-non-hikers", "yosemite-accessibility-guide", "yosemite-day-trip-from-bay-area"],
-  "yosemite-valley-parking-guide": ["getting-to-yosemite", "yosemite-shuttle-and-yarts", "yosemite-without-reservations-2026", "yosemite-in-one-or-two-days", "mist-trail-the-real-guide"],
+  "yosemite-valley-parking-guide": ["getting-to-yosemite", "yosemite-shuttle-and-yarts", "yosemite-without-reservations-2026", "yosemite-in-one-or-two-days", "mist-trail-the-real-guide", "sustainable-yosemite-car-free-zero-waste"],
   "yosemite-day-trip-from-bay-area": ["yosemite-in-one-or-two-days", "getting-to-yosemite", "yosemite-from-los-angeles", "yosemite-valley-parking-guide", "yosemite-for-non-hikers", "when-to-visit-yosemite"],
   "pack-your-car-for-yosemite": ["yosemite-bears-safety-guide", "camping-in-yosemite-first-time", "getting-to-yosemite", "yosemite-valley-parking-guide", "first-time-yosemite-overwhelm", "cell-service-in-yosemite"],
 

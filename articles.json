@@ -1,5 +1,32 @@
 [
   {
+    "slug": "sustainable-yosemite-car-free-zero-waste",
+    "cat": "planning",
+    "title": "How to visit Yosemite sustainably: car-free and zero waste",
+    "dek": "Amtrak to Merced and a public bus to the Valley floor, a free shuttle, twelve miles of bike path and a free bike share, what goes in which bin, refillable propane, and what to do if you have to drive anyway.",
+    "seoDek": "Visit Yosemite without a car: Amtrak and YARTS fares, the free shuttle and Bike Share, recycling rules, refillable propane and EV chargers.",
+    "date": "October 1, 2026",
+    "isoDate": "2026-10-01",
+    "isoModified": "2026-10-01",
+    "read": "13 min",
+    "image": "img/yosemite-valley-bike-path.jpg",
+    "ogImage": { "url": "img/responsive/yosemite-valley-bike-path-1600.jpg", "width": 1600, "height": 1200 },
+    "placeholder": "A paved bike path beside the road on the Yosemite Valley floor, granite cliffs on the left and Half Dome in the distance",
+    "cover": true,
+    "wordCount": 3492,
+    "keywords": ["sustainable travel Yosemite", "Yosemite without a car", "car-free Yosemite", "zero waste Yosemite", "Amtrak to Yosemite", "YARTS Merced to Yosemite Valley", "Yosemite Bike Share", "Yosemite recycling", "Yosemite EV charging", "eco-friendly Yosemite trip"],
+    "faq": [
+      { "q": "Can you get to Yosemite without a car?", "a": "Yes. Take Amtrak's Gold Runner to Merced and transfer to the YARTS bus on Highway 140, which runs year-round to Yosemite Valley and connects with the trains at the Merced Amtrak station. In summer YARTS also runs from Fresno, Sonora and Mammoth Lakes. Inside the Valley the shuttle is free, and there are about 12 miles of paved bike paths." },
+      { "q": "How much is the YARTS bus from Merced to Yosemite Valley?", "a": "YARTS lists $22 one way and $44 round trip for an adult between Merced and Yosemite Valley, with reduced fares of $11 and $22. Children 5 and under ride free, and one child aged 6 to 12 rides free with each paid adult. Booking online adds a small fee." },
+      { "q": "Does the YARTS fare include the Yosemite entrance fee?", "a": "The sources disagree. YARTS says gate and non-resident fees are not included in its ticket prices and can be paid to the Park Service on Recreation.gov, while Amtrak's Yosemite page says its tickets include admission. Plan to pay: the per-person pass is $20 for seven days, people 15 and under are free, and the park does not accept cash." },
+      { "q": "Is there a bike share in Yosemite?", "a": "Yes. The Yosemite Conservancy and the Park Service run a free Bike Share in Yosemite Valley with 50 bikes, usually available between June and October. You unlock a bike with the LINKA GO app, rides last up to two hours, and you must start and end at a Bike Share hub. For longer rides, the concessioner rents bikes at Yosemite Valley Lodge, Curry Village and Yosemite Village." },
+      { "q": "Does Yosemite recycle?", "a": "Yes. At Park Service sites recycling is mixed, so everything recyclable goes in one bin unless it is labeled otherwise. Styrofoam, bubble wrap, plastic bags and unlabeled plastic are not recyclable there. Treat trash and recycling like food: keep it in your food locker or use a bear-proof bin." },
+      { "q": "Can I recycle propane canisters in Yosemite?", "a": "Empty canisters go to the park's recycling areas, and around 24,000 are collected each year. A better answer is a refillable canister: the Village Store, Curry Village Gift Shop, Mountain Shop, Wawona Store and El Portal Market sell them, and you can exchange an empty for a full one at a lower price." },
+      { "q": "Are there EV chargers in Yosemite?", "a": "Yes. The park lists chargers in Yosemite Valley, Wawona, El Portal and Tuolumne Meadows, all with J1772 connectors. In the Valley they include Curry Village, Yosemite Falls parking, Yosemite Valley Lodge and The Ahwahnee." }
+    ],
+    "related": ["yosemite-shuttle-and-yarts", "getting-to-yosemite", "yosemite-valley-parking-guide", "yosemite-camping-complete-guide", "yosemite-bears-safety-guide", "yosemite-trip-cost-budget"]
+  },
+  {
     "slug": "yosemite-in-december",
     "cat": "seasonal",
     "title": "Yosemite in December: Snow, the Holidays, and the Quiet Weeks Between",
@@ -588,7 +615,7 @@
       { "q": "Do you need a reservation to drive into Yosemite in 2026?", "a": "No. There is no day-use or peak-hours vehicle reservation for 2026, including the February weekends for Horsetail Fall, which carried one for four straight years before this season. The park replaced it with operational measures: real-time traffic monitoring, active parking management in the Valley, more staff at key intersections at peak periods, road-condition alerts, and a push toward weekday visits and toward areas outside Yosemite Valley." },
       { "q": "Can you park an RV in Yosemite Valley?", "a": "Vehicles over 45 feet are not permitted on the roads into Yosemite Valley at all. Highway 140 through the Merced canyon is the forgiving approach, with no tunnels and roughly 60 feet of combined length allowed; the tunnels on Highways 41 and 120 drop to about 10 feet 2 inches of clearance at the curb. In the Valley, Curry Village has RV parking near its eastbound shuttle stop, but the better answer is to leave the rig at the campground and take the shuttle." }
     ],
-    "related": ["getting-to-yosemite", "yosemite-shuttle-and-yarts", "yosemite-without-reservations-2026", "yosemite-in-one-or-two-days", "mist-trail-the-real-guide"]
+    "related": ["getting-to-yosemite", "yosemite-shuttle-and-yarts", "yosemite-without-reservations-2026", "yosemite-in-one-or-two-days", "mist-trail-the-real-guide", "sustainable-yosemite-car-free-zero-waste"]
   },
   {
     "slug": "yosemite-shuttle-and-yarts",
@@ -1105,7 +1132,7 @@
       { "q": "Which Yosemite campground is best?", "a": "It depends on what you value. Crane Flat is the versatile pick, cooler and quieter than the Valley, about 45 minutes to the Valley floor and an hour to Tuolumne Meadows. For the classic Valley experience, book a riverside site in Upper Pines (Loops E and F) or North Pines (the 500 series). For solitude, primitive campgrounds like Tamarack Flat and Yosemite Creek trade amenities for privacy." },
       { "q": "When can you camp in the Yosemite high country?", "a": "When the Tioga Road opens. Plowing starts around the middle of April and takes a month or two, which usually puts the opening in late May or early June, though a heavy winter can push it well past that. The road opening is not the campground opening: Tuolumne Meadows, White Wolf, Yosemite Creek, Tamarack Flat, and Porcupine Flat come online in the weeks that follow, once water and sanitation are running, so July is the honest planning assumption for most of them. Nights are cold: Tuolumne at 8,600 feet can drop into the 30s in July, so bring a sleeping bag rated to at least 20 degrees." }
     ],
-    "related": ["camping-in-yosemite-first-time", "where-to-stay-in-yosemite", "first-yosemite-backpacking-trip", "yosemite-trip-cost-budget", "yosemite-facelift-volunteer-guide"]
+    "related": ["camping-in-yosemite-first-time", "where-to-stay-in-yosemite", "first-yosemite-backpacking-trip", "yosemite-trip-cost-budget", "yosemite-facelift-volunteer-guide", "sustainable-yosemite-car-free-zero-waste"]
   },
   {
     "slug": "where-to-propose-in-yosemite",
