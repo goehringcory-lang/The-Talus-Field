@@ -306,5 +306,35 @@
     "missingFromWorker": [],
     "missingFromAsset": [],
     "extraLive": []
+  },
+  {
+    "date": "2026-10-01",
+    "verdict": "stale-deploy",
+    "workerVersion": {
+      "id": "98182dca-885a-43bb-9b8a-6e52ffeb9679",
+      "tag": "",
+      "timestamp": "2026-10-01T14:36:54.001688Z"
+    },
+    "worker": {
+      "status": 200,
+      "count": 75,
+      "newest": "wildfire-in-yosemite-during-your-trip",
+      "bulletinUpdated": "2026-09-26"
+    },
+    "asset": {
+      "status": 200,
+      "count": 75,
+      "newest": "wildfire-in-yosemite-during-your-trip"
+    },
+    "repo": {
+      "count": 76,
+      "newest": "yosemite-in-december",
+      "bulletinUpdated": "2026-09-26"
+    },
+    "missingFromWorker": [],
+    "missingFromAsset": [
+      "yosemite-in-december"
+    ],
+    "extraLive": []
   }
 ]
