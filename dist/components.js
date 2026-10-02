@@ -2687,15 +2687,23 @@ var readHistory = {
   }
 };
 window.readHistory = readHistory;
-var NL_CONFIRM_LINE = "One step left: open the confirmation email and click the link, or the letter never starts.";
+var NL_FORM_TARGET = "_blank";
+window.NL_FORM_TARGET = NL_FORM_TARGET;
+var NL_CONFIRM_LINE = "One step left: finish in the Buttondown tab that just opened. If it asks, press Verify and Subscribe, or the letter never starts.";
 window.NL_CONFIRM_LINE = NL_CONFIRM_LINE;
+var NL_SUBSCRIBED_KEY = "tfg.nl.subscribed";
+var NL_SUBSCRIBED_VALUE = "2";
+if (window.safeStorage.get(NL_SUBSCRIBED_KEY) === "1") {
+  window.safeStorage.set("tfg.map.unlocked", "1");
+  window.safeStorage.remove(NL_SUBSCRIBED_KEY);
+}
 function trackNewsletterSubmit(location, tag, variant) {
   if (window.track) window.track("newsletter_signup", {
     location: location || "unknown",
     tag: tag || "",
     variant: variant || ""
   });
-  window.safeStorage.set("tfg.nl.subscribed", "1");
+  window.safeStorage.set(NL_SUBSCRIBED_KEY, NL_SUBSCRIBED_VALUE);
 }
 window.trackNewsletterSubmit = trackNewsletterSubmit;
 function trackNewsletterImpression(location, tag, variant) {
@@ -2716,7 +2724,7 @@ function abVariant(testKey) {
 }
 window.abVariant = abVariant;
 function isSubscribed() {
-  return window.safeStorage.get("tfg.nl.subscribed") === "1";
+  return window.safeStorage.get(NL_SUBSCRIBED_KEY) === NL_SUBSCRIBED_VALUE;
 }
 window.isSubscribed = isSubscribed;
 function useNewsletterImpression(location, tag, enabled, variant) {
@@ -2771,7 +2779,7 @@ function NewsletterInline({
       ref: ref
     }, React.createElement("p", {
       className: "nlbox__already"
-    }, "You signed up on this device. No letter yet? Look for the confirmation email and click its link. ", React.createElement("a", {
+    }, "You signed up on this device. ", React.createElement("a", {
       href: "/map"
     }, "The interactive map is open to you →")));
   }
@@ -2788,7 +2796,8 @@ function NewsletterInline({
     className: "nlbox__form",
     action: "https://buttondown.com/api/emails/embed-subscribe/goehring",
     method: "post",
-    target: "buttondown-target",
+    target: NL_FORM_TARGET,
+    rel: "noopener",
     onSubmit: () => {
       trackNewsletterSubmit(location, tag, variant);
       setTimeout(() => setDone(true), 0);
@@ -2853,7 +2862,7 @@ function ExitIntentNewsletter({
   var firedRef = useRef(false);
   useEffect(() => {
     if (disabled) return;
-    var suppressed = window.safeStorage.get("tfg.nl.subscribed") === "1";
+    var suppressed = isSubscribed();
     var seen = window.safeStorage.get("tfg.nl.exit.seen");
     if (seen) {
       var ageDays = (Date.now() - new Date(seen).getTime()) / 86400000;
@@ -2936,7 +2945,8 @@ function ExitIntentNewsletter({
     className: "nlbox__form",
     action: "https://buttondown.com/api/emails/embed-subscribe/goehring",
     method: "post",
-    target: "buttondown-target",
+    target: NL_FORM_TARGET,
+    rel: "noopener",
     onSubmit: () => {
       trackNewsletterSubmit("article_exit_intent", "exit-intent");
       setTimeout(() => setDone(true), 0);

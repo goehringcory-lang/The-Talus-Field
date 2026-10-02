@@ -43,7 +43,8 @@ function NewsletterPage({
     className: "nlbox__form",
     action: "https://buttondown.com/api/emails/embed-subscribe/goehring",
     method: "post",
-    target: "buttondown-target",
+    target: window.NL_FORM_TARGET || "_blank",
+    rel: "noopener",
     onSubmit: () => {
       if (window.trackNewsletterSubmit) window.trackNewsletterSubmit("newsletter_page", "newsletter-page");
       setTimeout(() => setDone(true), 0);

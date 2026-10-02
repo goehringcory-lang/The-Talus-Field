@@ -116,7 +116,7 @@
   <link rel="preload" href="/fonts/eb-garamond.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="/fonts/inter.woff2" as="font" type="font/woff2" crossorigin>
 
-  <link rel="stylesheet" href="/styles.css?v=394" />
+  <link rel="stylesheet" href="/styles.css?v=395" />
 
   <!--
     The home hero's AVIF used to be preloaded here. It no longer is: the static
@@ -239,13 +239,6 @@
     removes it on boot so JS clients see exactly one H1 per page.
   -->
 
-  <!--
-    Hidden sink-iframe for Buttondown newsletter submissions. The subscribe
-    forms POST into this frame (target="buttondown-target") so the page never
-    navigates and no popup opens. Kept outside #root so React never touches it.
-    CSP allows the POST via form-action + frame-src buttondown.com.
-  -->
-  <iframe name="buttondown-target" title="Newsletter subscription" hidden></iframe>
 
   <div id="root">
     <!--
@@ -434,12 +427,12 @@
     on every route: the page that is already on screen (shell or prerendered
     prose) gets its CSS, fonts and hero first; React boots after.
   -->
-  <script src="/vendor/react-18.3.1.production.min.js?v=394" defer></script>
-  <script src="/vendor/react-dom-18.3.1.production.min.js?v=394" defer></script>
-  <script src="/storage.js?v=394" defer></script>
-  <script src="/affiliate.js?v=394" defer></script>
-  <script src="/data.js?v=394" defer></script>
-  <script src="/dist/components.js?v=394" defer></script>
-  <script src="/dist/app.js?v=394" defer></script>
+  <script src="/vendor/react-18.3.1.production.min.js?v=395" defer></script>
+  <script src="/vendor/react-dom-18.3.1.production.min.js?v=395" defer></script>
+  <script src="/storage.js?v=395" defer></script>
+  <script src="/affiliate.js?v=395" defer></script>
+  <script src="/data.js?v=395" defer></script>
+  <script src="/dist/components.js?v=395" defer></script>
+  <script src="/dist/app.js?v=395" defer></script>
 </body>
 </html>

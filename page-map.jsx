@@ -1705,8 +1705,8 @@ function MapView({ go }) {
 // ---------------------------------------------------------------------------
 // "Email this trip to yourself." The natural capture moment: a built trip is
 // worth keeping, and the reader's inbox is where it survives a closed tab.
-// The form POSTs natively into the hidden Buttondown iframe (same optimistic
-// pattern as every other unit, tag map-trip) while the actual send rides
+// The form POSTs natively to Buttondown in a new tab (same optimistic
+// pattern as every other unit, tag map-trip; see NL_FORM_TARGET) while the actual send rides
 // alongside as a fetch to the Worker (/api/trip/email), which builds the
 // share URL server-side from the id list. The Worker deploy is manual, so a
 // failed send falls back to copying the share link instead of dead-ending.
@@ -1715,8 +1715,8 @@ function MapView({ go }) {
 // ---------------------------------------------------------------------------
 function TripEmailBox({ tripStopIds, onFallbackCopy, onSubscribed }) {
   const [state, setState] = useState("idle"); // idle | sending | sent | failed
-  // A first-time address also went to Buttondown, which holds it until the
-  // confirmation link is clicked; the sent state says so (NL_CONFIRM_LINE).
+  // A first-time address also went to Buttondown, which may ask for its
+  // Turnstile check in the new tab; the sent state says so (NL_CONFIRM_LINE).
   const [joined, setJoined] = useState(false);
   const emailRef = useRef(null);
   const hpRef = useRef(null);
@@ -1752,7 +1752,7 @@ function TripEmailBox({ tripStopIds, onFallbackCopy, onSubscribed }) {
     }
     if (window.track) window.track("trip_email_send", { trip_size: ids.length });
     // Unlock the trip builder like any other signup would; deferred a tick so
-    // the native POST into the iframe fires before any re-render.
+    // the native POST to Buttondown fires before any re-render.
     if (!wasSubscribed && onSubscribed) setTimeout(onSubscribed, 0);
     setTimeout(() => setState("sending"), 0);
     fetch(`${MAP_API_BASE}/api/trip/email`, {
@@ -1784,7 +1784,8 @@ function TripEmailBox({ tripStopIds, onFallbackCopy, onSubscribed }) {
         className="nlbox__form"
         action="https://buttondown.com/api/emails/embed-subscribe/goehring"
         method="post"
-        target="buttondown-target"
+        target={window.NL_FORM_TARGET || "_blank"}
+        rel="noopener"
         onSubmit={onSubmit}
       >
         <input
@@ -2772,11 +2773,12 @@ function MapAccessGate({ onSubscribed }) {
           className="nlbox__form"
           action="https://buttondown.com/api/emails/embed-subscribe/goehring"
           method="post"
-          target="buttondown-target"
+          target={window.NL_FORM_TARGET || "_blank"}
+        rel="noopener"
           onSubmit={() => {
             if (window.trackNewsletterSubmit) window.trackNewsletterSubmit("map_gate", "map-gate");
-            // Defer one tick so the form's native POST into the hidden iframe
-            // fires before onSubscribed unmounts this form.
+            // Defer one tick so the form's native POST to Buttondown (a new
+            // tab) fires before onSubscribed unmounts this form.
             setTimeout(onSubscribed, 0);
           }}
         >
@@ -2785,7 +2787,7 @@ function MapAccessGate({ onSubscribed }) {
           <input type="hidden" name="embed" value="1" />
           <button type="submit">Unlock the map →</button>
         </form>
-        <p className="map-gate__fine">The map opens the moment you submit. Signing up also gets you Sunday Field Notes, one short letter a week, which starts once you click the link in the confirmation email. No spam, leave anytime.</p>
+        <p className="map-gate__fine">The map opens the moment you submit. Signing up also gets you Sunday Field Notes, one short letter a week. Buttondown opens in a new tab to finish the signup; if it asks, press Verify and Subscribe. No spam, leave anytime.</p>
       </div>
     </div>
   );
