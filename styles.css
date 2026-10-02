@@ -829,6 +829,12 @@ main:focus { outline: none; }
 }
 .nlbox__already a, .nlbox__done a { border-bottom: 1px solid var(--hp-accent); }
 .nlbox__done { font: 400 19px/1.4 var(--serif); color: var(--hp-accent); margin: 0; padding: 8px 0; }
+/* NewsletterForm: the honeypot field stays out of sight and out of the tab
+   order, and the status line (bad address, rate limit, Buttondown fallback)
+   sits under the form in the unit's own small type. */
+.nlbox__hp { position: absolute; left: -10000px; width: 1px; height: 1px; overflow: hidden; }
+.nlbox__note { margin: 8px 0 0; font: 13px/1.5 var(--sans); color: var(--hp-ink); }
+.nlbox__form button:disabled { opacity: .7; cursor: progress; }
 
 /* ===== Homepage webcam tiles ===== */
 /* The webcam strip. It used to carry an inline repeat(4) grid, which a

@@ -5,7 +5,7 @@ var CONTACT_API_BASE = typeof window !== "undefined" && window.GUIDE_API_BASE ||
 function NewsletterPage({
   go
 }) {
-  var [done, setDone] = useState(false);
+  var [done, setDone] = useState(null);
   return React.createElement("div", {
     className: "page hp-nlpage"
   }, React.createElement(HpPageHead, {
@@ -32,43 +32,24 @@ function NewsletterPage({
       go("map");
     }
   }, "the interactive Yosemite map"), ": vistas, trailheads, parking turnouts, picnic spots, and places to eat, with a trip builder that saves your route on your device. It opens the moment you subscribe.")), done ? React.createElement("p", {
-    className: "hp-nlpage__done"
-  }, window.NL_CONFIRM_LINE, " ", React.createElement("a", {
+    className: "hp-nlpage__done",
+    role: "status"
+  }, window.nlDoneLine(done), " ", React.createElement("a", {
     href: "/map",
     onClick: e => {
       e.preventDefault();
       go("map");
     }
-  }, "The map is already open to you →")) : React.createElement("form", {
-    className: "nlbox__form",
-    action: "https://buttondown.com/api/emails/embed-subscribe/goehring",
-    method: "post",
-    target: window.NL_FORM_TARGET || "_blank",
-    rel: "noopener",
-    onSubmit: () => {
-      if (window.trackNewsletterSubmit) window.trackNewsletterSubmit("newsletter_page", "newsletter-page");
-      setTimeout(() => setDone(true), 0);
-    }
-  }, React.createElement("label", {
+  }, "The map is already open to you →")) : React.createElement(React.Fragment, null, React.createElement("label", {
     htmlFor: "nl-page-email",
     className: "fj-label"
-  }, "Your email address"), React.createElement("input", {
-    id: "nl-page-email",
-    type: "email",
-    name: "email",
-    placeholder: "you@email.com",
-    required: true
-  }), React.createElement("input", {
-    type: "hidden",
-    name: "tag",
-    value: "newsletter-page"
-  }), React.createElement("input", {
-    type: "hidden",
-    name: "embed",
-    value: "1"
-  }), React.createElement("button", {
-    type: "submit"
-  }, "Subscribe →"))), React.createElement("section", {
+  }, "Your email address"), React.createElement(NewsletterForm, {
+    location: "newsletter_page",
+    tag: "newsletter-page",
+    inputId: "nl-page-email",
+    inputLabel: "Your email address",
+    onDone: setDone
+  }))), React.createElement("section", {
     className: "hp-wrap hp-section hp-nlpage__terms fj-notes"
   }, React.createElement("div", {
     className: "fj-note"
