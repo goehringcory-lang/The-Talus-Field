@@ -2218,25 +2218,44 @@ window.readHistory = readHistory;
 
 // ============================================================
 // Newsletter submit side-effects (shared)
-// The subscribe forms POST into a hidden iframe (target="buttondown-target",
-// declared in index.html) so the page never navigates and no popup opens.
-// Buttondown never reports back to the page, so the conversion event and the
-// local "subscribed" flag fire optimistically on submit. The map and guide
-// gates layer their own unlock on top of this. Exposed on window so page-level
-// forms (map gate, guide, newsletter page) can reuse the exact same behavior.
+// The subscribe forms POST to Buttondown in a new tab (target="_blank",
+// NL_FORM_TARGET). They used to POST into a hidden iframe so the page never
+// navigated, and that silently lost every signup from early September 2026:
+// Buttondown began answering embed submissions with a Cloudflare Turnstile
+// "Verify Your Subscription" page (HTTP 400, X-Frame-Options: DENY), which a
+// hidden frame can neither show nor complete. In a tab the reader sees the
+// check and passes it. Buttondown never reports back to the page, so the
+// conversion event and the local "subscribed" flag still fire optimistically
+// on submit. The map and guide gates layer their own unlock on top of this.
+// Exposed on window so page-level forms (map gate, guide, newsletter page)
+// can reuse the exact same behavior.
 // ============================================================
-// What a new subscriber has to do next. Buttondown runs double opt-in: an
-// address is held as "unactivated" until its owner clicks the confirmation
-// link, and no letter goes to it before then. Almost half the addresses the
-// forms ever collected (23 of 48 by September 28, 2026) never confirmed, while
-// every form told the reader "You're in." Every post-submit state says this
-// line instead. Change it with the Buttondown setting, never on its own.
-const NL_CONFIRM_LINE = "One step left: open the confirmation email and click the link, or the letter never starts.";
+const NL_FORM_TARGET = "_blank";
+window.NL_FORM_TARGET = NL_FORM_TARGET;
+
+// What a new subscriber has to do next: finish in the Buttondown tab, which
+// may ask them to press "Verify and Subscribe". Every post-submit state says
+// this line. It assumes single opt-in (no confirmation email); if Buttondown
+// goes back to double opt-in, this line has to say so again.
+const NL_CONFIRM_LINE = "One step left: finish in the Buttondown tab that just opened. If it asks, press Verify and Subscribe, or the letter never starts.";
 window.NL_CONFIRM_LINE = NL_CONFIRM_LINE;
+
+// The subscribed flag's value. "1" was written by the hidden-iframe forms,
+// which from early September 2026 never reached Buttondown, so a device
+// carrying it may never have subscribed and would otherwise never be asked
+// again. Those devices are migrated once: the map unlock they were promised
+// is kept (tfg.map.unlocked), and the newsletter flag is cleared so the asks
+// return. Only a submit through the new-tab forms writes "2".
+const NL_SUBSCRIBED_KEY = "tfg.nl.subscribed";
+const NL_SUBSCRIBED_VALUE = "2";
+if (window.safeStorage.get(NL_SUBSCRIBED_KEY) === "1") {
+  window.safeStorage.set("tfg.map.unlocked", "1");
+  window.safeStorage.remove(NL_SUBSCRIBED_KEY);
+}
 
 function trackNewsletterSubmit(location, tag, variant) {
   if (window.track) window.track("newsletter_signup", { location: location || "unknown", tag: tag || "", variant: variant || "" });
-  window.safeStorage.set("tfg.nl.subscribed", "1");
+  window.safeStorage.set(NL_SUBSCRIBED_KEY, NL_SUBSCRIBED_VALUE);
 }
 window.trackNewsletterSubmit = trackNewsletterSubmit;
 
@@ -2273,7 +2292,7 @@ window.abVariant = abVariant;
 // which returns null when storage is unavailable, so this is false in private
 // mode just as before.
 function isSubscribed() {
-  return window.safeStorage.get("tfg.nl.subscribed") === "1";
+  return window.safeStorage.get(NL_SUBSCRIBED_KEY) === NL_SUBSCRIBED_VALUE;
 }
 window.isSubscribed = isSubscribed;
 
@@ -2325,7 +2344,7 @@ function NewsletterInline({ heading, blurb, location, tag, variant = "", cta, mo
   if (subscribed && !done) {
     return (
       <div className={["nlbox", "nlbox--subscribed", modifier].filter(Boolean).join(" ")} ref={ref}>
-        <p className="nlbox__already">You signed up on this device. No letter yet? Look for the confirmation email and click its link. <a href="/map">The interactive map is open to you →</a></p>
+        <p className="nlbox__already">You signed up on this device. <a href="/map">The interactive map is open to you →</a></p>
       </div>
     );
   }
@@ -2344,7 +2363,8 @@ function NewsletterInline({ heading, blurb, location, tag, variant = "", cta, mo
           className="nlbox__form"
           action="https://buttondown.com/api/emails/embed-subscribe/goehring"
           method="post"
-          target="buttondown-target"
+          target={NL_FORM_TARGET}
+          rel="noopener"
           onSubmit={() => { trackNewsletterSubmit(location, tag, variant); setTimeout(() => setDone(true), 0); }}
         >
           <input id={inputLabel ? `${location}-email` : undefined} type="email" name="email" aria-label={inputLabel || "Email address"} autoComplete="email" placeholder="you@email.com" required />
@@ -2410,7 +2430,7 @@ function ExitIntentNewsletter({ disabled }) {
 
   useEffect(() => {
     if (disabled) return;
-    let suppressed = window.safeStorage.get("tfg.nl.subscribed") === "1";
+    let suppressed = isSubscribed();
     const seen = window.safeStorage.get("tfg.nl.exit.seen");
     if (seen) {
       const ageDays = (Date.now() - new Date(seen).getTime()) / 86400000;
@@ -2481,7 +2501,8 @@ function ExitIntentNewsletter({ disabled }) {
             className="nlbox__form"
             action="https://buttondown.com/api/emails/embed-subscribe/goehring"
             method="post"
-            target="buttondown-target"
+            target={NL_FORM_TARGET}
+            rel="noopener"
             onSubmit={() => { trackNewsletterSubmit("article_exit_intent", "exit-intent"); setTimeout(() => setDone(true), 0); }}
           >
             <input type="email" name="email" aria-label="Email address" placeholder="you@email.com" required />

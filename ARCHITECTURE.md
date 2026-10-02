@@ -98,7 +98,7 @@ All access goes through `window.safeStorage`.
 | `tfg.trip` | page-map.jsx | Saved trip stop ids (versioned envelope). |
 | `tfg.trip.selector` | intent.jsx | The five trip-selector answers as JSON. A `?when=&days=&stay=&party=&focus=` query string wins over it on mount, so a shared plan link always shows the sender's plan and not the reader's own. |
 | `tfg.kit.checked` | page-kit.jsx | Ticked packing-list items (versioned envelope). |
-| `tfg.nl.subscribed` | components.jsx | Optimistic subscribed flag, set on any newsletter submit. |
+| `tfg.nl.subscribed` | components.jsx | Optimistic subscribed flag, set to `"2"` on any newsletter submit. A legacy `"1"` (written by the hidden-iframe forms that stopped reaching Buttondown in September 2026) is migrated once at boot: `tfg.map.unlocked` is set and the flag cleared, so that device is asked again. |
 | `tfg.nl.exit.seen` | components.jsx | Exit-intent cooldown timestamp (14 days). |
 | `tfg.ab.<test>` | components.jsx (`abVariant`) | Sticky 50/50 A/B bucket (`a` or `b`) per device, one key per test (`article_end_copy` is the only live test; a newsletter unit can start another through its `abTest` prop, which nothing passes today). Tagged onto the GA4 `variant` param. Fails open to `a` when storage is unavailable. |
 | `tfg.map.unlocked` | page-map.jsx | Map gate (the whole `/map` page sits behind the newsletter signup; a shared `/map?trip=` link bypasses it for the visit without writing this flag). Fails OPEN: when storage is unavailable the gate reads as unlocked. |

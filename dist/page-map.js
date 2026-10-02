@@ -1468,7 +1468,8 @@ function TripEmailBox({
     className: "nlbox__form",
     action: "https://buttondown.com/api/emails/embed-subscribe/goehring",
     method: "post",
-    target: "buttondown-target",
+    target: window.NL_FORM_TARGET || "_blank",
+    rel: "noopener",
     onSubmit: onSubmit
   }, React.createElement("input", {
     ref: emailRef,
@@ -2237,7 +2238,8 @@ function MapAccessGate({
       className: "nlbox__form",
       action: "https://buttondown.com/api/emails/embed-subscribe/goehring",
       method: "post",
-      target: "buttondown-target",
+      target: window.NL_FORM_TARGET || "_blank",
+      rel: "noopener",
       onSubmit: () => {
         if (window.trackNewsletterSubmit) window.trackNewsletterSubmit("map_gate", "map-gate");
         setTimeout(onSubscribed, 0);
@@ -2260,7 +2262,7 @@ function MapAccessGate({
       type: "submit"
     }, "Unlock the map →")), React.createElement("p", {
       className: "map-gate__fine"
-    }, "The map opens the moment you submit. Signing up also gets you Sunday Field Notes, one short letter a week, which starts once you click the link in the confirmation email. No spam, leave anytime.")))
+    }, "The map opens the moment you submit. Signing up also gets you Sunday Field Notes, one short letter a week. Buttondown opens in a new tab to finish the signup; if it asks, press Verify and Subscribe. No spam, leave anytime.")))
   );
 }
 function useMastheadHeight() {
