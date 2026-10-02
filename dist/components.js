@@ -1625,8 +1625,8 @@ function HpGuideBand({
   }), React.createElement("div", {
     className: "hp-phone hp-back"
   }, React.createElement("img", {
-    src: "/img/guide/screens/regions.v5.webp",
-    alt: "Field Guide regions screen: four photo cards, each opening a day planner",
+    src: "/img/guide/screens/regions.v7.webp",
+    alt: "Field Guide regions screen: four photo cards, one for each region of the park",
     width: "640",
     height: "1385",
     loading: "lazy",
@@ -1634,8 +1634,8 @@ function HpGuideBand({
   })), React.createElement("div", {
     className: "hp-phone hp-front"
   }, React.createElement("img", {
-    src: "/img/guide/screens/front-page.v5.webp",
-    alt: "Field Guide front page with live gate waits, the day's light and the forecast",
+    src: "/img/guide/screens/front-page.v7.webp",
+    alt: "Field Guide front page with the valley forecast, the day's light and live gate waits",
     width: "640",
     height: "1385",
     loading: "lazy",

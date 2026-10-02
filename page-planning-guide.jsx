@@ -745,9 +745,9 @@ function PlanningGuide({ go }) {
             <p className="pg-guide__terms">One payment · 18 months of access · 30-day guarantee · works offline</p>
           </div>
           <div className="pg-guide__screens">
-            <div className="pg-phone pg-phone--left"><img src="/img/guide/screens/programs.v5.webp" alt="Field Guide programs screen" width="640" height="1385" loading="lazy" decoding="async" /></div>
-            <div className="pg-phone pg-phone--mid"><img src="/img/guide/screens/region-plan.v5.webp" alt="Field Guide region planner screen" width="640" height="1385" loading="lazy" decoding="async" /></div>
-            <div className="pg-phone pg-phone--right"><img src="/img/guide/screens/stop.v5.webp" alt="Field Guide stop screen with parking notes" width="640" height="1385" loading="lazy" decoding="async" /></div>
+            <div className="pg-phone pg-phone--left"><img src="/img/guide/screens/programs.v7.webp" alt="Field Guide programs screen" width="640" height="1385" loading="lazy" decoding="async" /></div>
+            <div className="pg-phone pg-phone--mid"><img src="/img/guide/screens/region-plan.v7.webp" alt="Field Guide region planner screen" width="640" height="1385" loading="lazy" decoding="async" /></div>
+            <div className="pg-phone pg-phone--right"><img src="/img/guide/screens/stop.v7.webp" alt="Field Guide stop screen with parking notes" width="640" height="1385" loading="lazy" decoding="async" /></div>
             <div className="pg-guide__offline">✓ &nbsp;All set. Even off the grid.<small>Your guide works offline</small></div>
           </div>
         </div>
