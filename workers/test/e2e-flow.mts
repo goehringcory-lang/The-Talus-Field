@@ -932,6 +932,19 @@ console.log('\nN. newsletter signup (/api/subscribe)')
   const malformed = await sub({ email: 'not-an-email' })
   check('malformed email -> 400 without calling Buttondown', malformed.status === 400 && malformed.json?.error === 'invalid_email')
 
+  sentEmails = []
+  const printable = await sub({ email: 'packer@example.com', tag: 'checklist', send: 'checklist' }, '9.9.9.4')
+  check('send: checklist mails the fixed checklist link', printable.status === 200 && printable.json?.sent === true &&
+    sentEmails.length === 1 && sentEmails[0].to === 'packer@example.com' &&
+    sentEmails[0].text.includes('https://thetalusfieldjournal.com/checklist?print=1'), { printable, sentEmails })
+  sentEmails = []
+  const unknownSend = await sub({ email: 'packer2@example.com', send: 'https://evil.example' }, '9.9.9.4')
+  check('unknown send value mails nothing', unknownSend.status === 200 && unknownSend.json?.sent === undefined && sentEmails.length === 0, unknownSend)
+  resendMode = 'fail'
+  const sendFails = await sub({ email: 'packer3@example.com', send: 'checklist' }, '9.9.9.4')
+  check('failed printable mail still a 200 signup, sent: false', sendFails.status === 200 && sendFails.json?.ok === true && sendFails.json?.sent === false, sendFails)
+  resendMode = 'ok'
+
   buttondownCreates = []
   const bot = await sub({ email: 'bot@example.com', website: 'http://spam' })
   check('honeypot -> fake 200, no create', bot.status === 200 && buttondownCreates.length === 0)

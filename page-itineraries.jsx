@@ -1,4 +1,4 @@
-/* global React, HpPageHead, HpHeading, HomeLink, ResponsiveImage, AvailabilityLink, HpGuideBand, HpLetter, AffiliateDisclosure, EventIcon, NatureNotesFilm */
+/* global React, HpPageHead, HpHeading, HomeLink, ResponsiveImage, AvailabilityLink, HpGuideBand, HpLetter, NewsletterForm, AffiliateDisclosure, EventIcon, NatureNotesFilm */
 
 // =============================================================================
 // ITINERARIES — `/itineraries` route. The curated day plans from
@@ -226,6 +226,49 @@ function ItinMonths({ itineraries }) {
   );
 }
 
+// "Email me this plan": the emailed printable for an itinerary. The signup
+// goes through NewsletterForm (tag itineraries), then the plan's stops go to
+// the Worker's /api/trip/email, the same mailer as the map's "email this
+// trip", so the reader gets one link that opens the whole plan on the map.
+const ITIN_API_BASE =
+  (typeof window !== "undefined" && window.GUIDE_API_BASE) ||
+  "https://api.thetalusfieldjournal.com";
+
+function ItinEmailPlan({ it }) {
+  const [state, setState] = useStateIt("idle"); // idle | sending | sent | failed
+  const [mode, setMode] = useStateIt(null);
+  const ids = window.getItineraryStopIds ? window.getItineraryStopIds(it.id) : [];
+  if (ids.length === 0) return null;
+  const mail = (doneMode, email) => {
+    setMode(doneMode);
+    setState("sending");
+    fetch(`${ITIN_API_BASE}/api/trip/email`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ email, stops: ids.slice(0, 30), website: "" }),
+    })
+      .then((r) => setState(r.ok ? "sent" : "failed"))
+      .catch(() => setState("failed"));
+    if (window.track) window.track("itinerary_email", { itinerary: it.id });
+  };
+  return (
+    <div className="itin-email">
+      <p className="itin-email__label">Email me this plan</p>
+      {state === "idle" ? (
+        <>
+          <NewsletterForm location="itineraries_email" tag="itineraries" cta="Send it →" onDone={mail} />
+          <p className="ff-note">One link that opens these stops in order on the map, on any device. It comes with Sunday Field Notes, one short letter a week. Free, leave anytime.</p>
+        </>
+      ) : (
+        <p className="ff-note" role="status">
+          {state === "sending" ? "Sending…" : state === "sent" ? "Sent. The plan is in your inbox." : "The plan did not send just now. The map button above opens the same stops."}
+          {state !== "sending" && mode === "tab" ? ` ${window.nlDoneLine("tab")}` : ""}
+        </p>
+      )}
+    </div>
+  );
+}
+
 function ItinerariesPage({ go }) {
   // Stop names, blurbs and positions come from the same geojson the map uses.
   // The page renders without it (titles, deks, map links), so a failed fetch
@@ -414,6 +457,7 @@ function ItinerariesPage({ go }) {
             >
               Open this trip on the map →
             </a>
+            <ItinEmailPlan it={it} />
           </div>
         </section>
       ))}

@@ -188,6 +188,20 @@ function YearStrip({
     className: "dt-year__key is-typical"
   }), " Typical, not published"));
 }
+function DatesCalendarGate({
+  children
+}) {
+  return React.createElement(SoftGate, {
+    gateKey: "dates-calendar",
+    location: "dates_calendar_gate",
+    tag: "dates-calendar",
+    heading: "Every date, in one calendar file",
+    blurb: "The whole set in one download. It comes with Sunday Field Notes, which carries a dated line the week a window opens. Free, leave anytime.",
+    cta: "Get the calendar →",
+    skipLabel: "No thanks, just the file",
+    className: "dates__gate"
+  }, children);
+}
 function DatesPage({
   go
 }) {
@@ -257,11 +271,11 @@ function DatesPage({
     value: endStr,
     min: startStr || undefined,
     onChange: e => setEndStr(e.target.value)
-  })), tripOk && instances.length > 0 && React.createElement("button", {
+  }))), tripOk && instances.length > 0 && React.createElement(DatesCalendarGate, null, React.createElement("p", null, React.createElement("button", {
     type: "button",
     className: "dates__btn",
     onClick: () => downloadText(`yosemite-dates-${isoOf(start)}.ics`, icsFor(instances, table.verified))
-  }, "Add all ", instances.length, " to my calendar")), startStr && !tripOk && React.createElement("p", {
+  }, "Add all ", instances.length, " to my calendar"))), startStr && !tripOk && React.createElement("p", {
     className: "dates__hint"
   }, "Enter a first day, and a last day no more than a month after it."), tripOk && React.createElement("table", {
     className: "dates__table"
@@ -326,7 +340,7 @@ function DatesPage({
         file: `${it.id}.ics`
       });
     }
-  }, "+ Calendar")))))), React.createElement("p", null, React.createElement("a", {
+  }, "+ Calendar")))))), React.createElement(DatesCalendarGate, null, React.createElement("p", null, React.createElement("a", {
     className: "dates__btn",
     href: "/ics/yosemite-dates.ics",
     download: true,
@@ -335,7 +349,7 @@ function DatesPage({
         file: "yosemite-dates.ics"
       });
     }
-  }, "Add every fixed window to my calendar")), React.createElement("p", {
+  }, "Add every fixed window to my calendar"))), React.createElement("p", {
     className: "dates__hint"
   }, "Verified against the National Park Service pages linked above on ", table.verified, ". Each entry carries its source and that date. If a rule on this page disagrees with nps.gov, nps.gov is right and this page is behind; the", " ", React.createElement("a", {
     href: "/contact",

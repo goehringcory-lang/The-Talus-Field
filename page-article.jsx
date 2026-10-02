@@ -107,6 +107,104 @@ function newsletterTag(placement, cat) {
   return cat ? `${placement}-${cat}` : placement;
 }
 
+// ---------------------------------------------------------------------------
+// Subscriber bonus sheets. A few of the planning guides end with a short,
+// practical sheet (the booking-day steps, the permit application steps) that
+// opens with the Sunday letter or "No thanks, show me" (window.SoftGate, gate
+// key bonus-<slug>). Four rules:
+// (1) every line restates a fact the article's own body already publishes;
+//     a sheet is a reorganisation of the piece into steps, never new facts,
+//     so a change to the article's figures is a change here too;
+// (2) the sheet is not article text and never enters the prerendered
+//     fragment or the crawler prose (gen-prerender.mjs reads bodies/, not this
+//     table), and its locked lines are not in the DOM until the gate opens;
+// (3) the first line is always free, so the reader sees what the sheet is;
+// (4) an article with a sheet drops its end-of-article letter box, because
+//     the sheet's gate is that article's one letter ask.
+// ---------------------------------------------------------------------------
+const ARTICLE_BONUS = {
+  "yosemite-camping-complete-guide": {
+    title: "The booking-day sheet",
+    intro: "The steps for the morning a campground releases its sites on Recreation.gov, in the order they happen.",
+    heading: "The booking-day sheet for this guide",
+    blurb: "Unlock the release-morning checklist, from the account you set up a week ahead to the ten minutes after 7:00. It comes with Sunday Field Notes, a free weekly letter.",
+    items: [
+      "Know your morning. Upper, Lower and North Pines, Wawona and Hodgdon Meadow open one block of arrivals, the 15th through the 14th, on the 15th at 7 a.m. Pacific.",
+      "The week before, create the Recreation.gov account, confirm the email address and save a payment method. A last-minute account asks you to verify an email at 7:01.",
+      "The night before, write down the campground, the arrival date, the nights and two fallback date ranges. Confirm the on-sale time on the campground's own page.",
+      "Five minutes out, log in and load the campground page with your dates entered. Use one tab; a second one does not double your odds.",
+      "At 7:00, refresh once. Take the first available site that fits your party and go straight to checkout. Skip the site photos and loop comparisons.",
+      "If the page stalls on a spinner, wait it out. A reload throws away a request that may have been about to succeed.",
+      "If you miss, stay on the page ten more minutes. Sites left unpaid in a cart return to the pool, so sold out at 7:03 is not always sold out at 7:12.",
+    ],
+  },
+  "yosemite-wilderness-permits-guide": {
+    title: "The permit application sheet",
+    intro: "What to decide, have ready and do, in order, to apply for a Yosemite wilderness permit and collect it.",
+    heading: "The permit application sheet for this guide",
+    blurb: "Unlock the step-by-step application sheet, from choosing the lottery or the seven-day release to the pickup window on your start date. It comes with Sunday Field Notes, a free weekly letter.",
+    items: [
+      "Decide how attached you are to a specific route. Very: enter the 24-week lottery with every plausible alternate. Not very: skip to the seven-day release and aim off-peak.",
+      "For the lottery, applications for a Sunday-through-Saturday window of start dates open on a Sunday, close the following Saturday, and process the day after. One application per window.",
+      "List alternate trailheads and dates on the application; that is where most of the winning happens. It costs $10 to apply, plus $5 per person if you win.",
+      "For the seven-day release, set a 7 a.m. Pacific alarm for seven days before your ideal start, with second and third trailhead choices already written down.",
+      "Improve the odds: consider a Tuolumne or Hetch Hetchy start rather than the Valley, and book a midweek start.",
+      "Plan for an approved bear-resistant food canister, required for every overnight trip. Rentals are cheap at wilderness centers if you do not own one.",
+      "Collect the permit at a wilderness center on the start date between 8 and 11 a.m. Arriving later, ask Recreation.gov for a late-arrival hold, which extends pickup to 5 p.m.",
+    ],
+  },
+  "mist-trail-the-real-guide": {
+    title: "The night-before and trailhead sheet",
+    intro: "What to settle the night before a Mist Trail hike and what to do at Happy Isles, so the early start actually happens.",
+    heading: "The night-before sheet for the Mist Trail",
+    blurb: "Unlock the short checklist for the evening before and the morning at the trailhead: turnaround, closures, water, layers and parking. It comes with Sunday Field Notes, a free weekly letter.",
+    items: [
+      "Pick your turnaround: 1.6 miles round trip to the footbridge, 2.4 miles to the top of Vernal Fall, or 5.4 miles to the top of Nevada Fall.",
+      "Check for repair closures before you go. When one is posted, follow the signed JMT detour.",
+      "Fill water: 1 liter per person for the footbridge, 2 for Vernal Fall, 3 to 4 for Nevada Fall. There is no drinking-water tap at Nevada Fall.",
+      "Pack a headlamp, food, a ziplock bag for your phone and a dry shirt in a ziplock to change into at the top.",
+      "Lay out synthetic or wool, not cotton, and boots or trail shoes with good tread that you have already walked in. No flip-flops, sandals or fashion sneakers.",
+      "Happy Isles has no trailhead parking. Park at Curry Village and walk, or take the Valley shuttle to stop 16, and start early.",
+      "On the trail, stay behind the railings, and do not wade or swim in the pools above the falls.",
+    ],
+  },
+};
+
+function ArticleBonus({ slug }) {
+  const b = ARTICLE_BONUS[slug];
+  const SoftGate = window.SoftGate;
+  if (!b || !SoftGate || !b.items || b.items.length < 2) return null;
+  const list = (items, start) => (
+    <ol className="bonus__list" start={start}>
+      {items.map((t, i) => <li key={i}>{t}</li>)}
+    </ol>
+  );
+  const teaser = (
+    <ol className="bonus__list bonus__list--teaser" start={2}>
+      {b.items.slice(1).map((_t, i) => <li key={i}><span className="bonus__bar" style={{ width: `${62 + ((i * 17) % 30)}%` }} /></li>)}
+    </ol>
+  );
+  return (
+    <aside className="bonus" aria-label={b.title}>
+      <p className="bonus__eyebrow">Subscriber bonus</p>
+      <h2 className="bonus__title">{b.title}</h2>
+      <p className="bonus__intro">{b.intro}</p>
+      {list(b.items.slice(0, 1), 1)}
+      <SoftGate
+        gateKey={`bonus-${slug}`}
+        location="article_bonus_gate"
+        tag="article-bonus"
+        heading={b.heading}
+        blurb={b.blurb}
+        cta="Show the sheet →"
+        teaser={teaser}
+      >
+        {list(b.items.slice(1), 2)}
+      </SoftGate>
+    </aside>
+  );
+}
+
 function ArticlePage({ slug, go }) {
   const article = window.findArticle(slug);
 
@@ -578,6 +676,8 @@ function ArticlePage({ slug, go }) {
               {bodyEl}
             </div>}
 
+            {bodyState === "ready" && <ArticleBonus slug={slug} />}
+
             {/* Author box. Puts the naturalist credential at the point where
                 trust decisions actually happen: right after the reader has
                 finished the piece, before the conversion asks below. */}
@@ -648,7 +748,7 @@ function ArticlePage({ slug, go }) {
         />
       )}
 
-      {(() => {
+      {!ARTICLE_BONUS[slug] && (() => {
         // article_end copy test: arm a keeps the standing section offers,
         // arm b leads with concrete utility. Copy is chosen here (the
         // caller-controlled A/B path); NewsletterInline just tags the

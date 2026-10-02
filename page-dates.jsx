@@ -1,4 +1,4 @@
-/* global React, HpPageHead, HpGuideBand, HpLetter, LodgingCta, DEADLINES, FjLayout, FjCard, FjRidge, AffiliateDisclosure */
+/* global React, HpPageHead, HpGuideBand, HpLetter, SoftGate, LodgingCta, DEADLINES, FjLayout, FjCard, FjRidge, AffiliateDisclosure */
 
 // =============================================================================
 // DATES — `/dates` route. The dates that decide a Yosemite trip, in one table,
@@ -224,6 +224,27 @@ function YearStrip({ fixed, ruleYears }) {
   );
 }
 
+// The two whole-calendar downloads (every date measured from the reader's
+// trip, and every fixed window) open with the Sunday letter or "No thanks,
+// just the file". Each row's own calendar file stays free, and the table
+// itself is never gated. One gate key, so answering either opens both.
+function DatesCalendarGate({ children }) {
+  return (
+    <SoftGate
+      gateKey="dates-calendar"
+      location="dates_calendar_gate"
+      tag="dates-calendar"
+      heading="Every date, in one calendar file"
+      blurb="The whole set in one download. It comes with Sunday Field Notes, which carries a dated line the week a window opens. Free, leave anytime."
+      cta="Get the calendar →"
+      skipLabel="No thanks, just the file"
+      className="dates__gate"
+    >
+      {children}
+    </SoftGate>
+  );
+}
+
 function DatesPage({ go }) {
   const table = window.DEADLINES || { items: [], verified: "", ruleYears: [] };
   const items = table.items || [];
@@ -286,12 +307,16 @@ function DatesPage({ go }) {
               <span>Last day</span>
               <input type="date" value={endStr} min={startStr || undefined} onChange={(e) => setEndStr(e.target.value)} />
             </label>
-            {tripOk && instances.length > 0 && (
-              <button type="button" className="dates__btn" onClick={() => downloadText(`yosemite-dates-${isoOf(start)}.ics`, icsFor(instances, table.verified))}>
-                Add all {instances.length} to my calendar
-              </button>
-            )}
           </div>
+          {tripOk && instances.length > 0 && (
+            <DatesCalendarGate>
+              <p>
+                <button type="button" className="dates__btn" onClick={() => downloadText(`yosemite-dates-${isoOf(start)}.ics`, icsFor(instances, table.verified))}>
+                  Add all {instances.length} to my calendar
+                </button>
+              </p>
+            </DatesCalendarGate>
+          )}
           {startStr && !tripOk && (
             <p className="dates__hint">Enter a first day, and a last day no more than a month after it.</p>
           )}
@@ -370,11 +395,13 @@ function DatesPage({ go }) {
               ))}
             </tbody>
           </table>
-          <p>
-            <a className="dates__btn" href="/ics/yosemite-dates.ics" download onClick={() => { if (window.track) window.track("dates_ics_download", { file: "yosemite-dates.ics" }); }}>
-              Add every fixed window to my calendar
-            </a>
-          </p>
+          <DatesCalendarGate>
+            <p>
+              <a className="dates__btn" href="/ics/yosemite-dates.ics" download onClick={() => { if (window.track) window.track("dates_ics_download", { file: "yosemite-dates.ics" }); }}>
+                Add every fixed window to my calendar
+              </a>
+            </p>
+          </DatesCalendarGate>
           <p className="dates__hint">
             Verified against the National Park Service pages linked above on {table.verified}. Each entry carries its source and that date. If a rule on this page disagrees with nps.gov, nps.gov is right and this page is behind; the{" "}
             <a href="/contact" onClick={(e) => goRoute(e, "contact")}>contact page</a> reaches the editor.
