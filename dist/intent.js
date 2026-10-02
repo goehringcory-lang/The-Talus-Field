@@ -253,6 +253,105 @@ function PlanLink({
     }
   }, children);
 }
+var TRIP_DAYS_API_BASE = typeof window !== "undefined" && window.GUIDE_API_BASE || "https://api.thetalusfieldjournal.com";
+var TRIP_DAYS_FREE_STOPS = 3;
+function TripDayList({
+  days,
+  names
+}) {
+  return days.map((d, i) => React.createElement("div", {
+    className: "tripplan__day",
+    key: d.name + i
+  }, React.createElement("p", {
+    className: "tripplan__day-name"
+  }, d.name), d.stopIds.length > 0 && React.createElement("ol", {
+    className: "tripplan__stops",
+    start: d.start || 1
+  }, d.stopIds.map(id => React.createElement("li", {
+    key: id
+  }, names[id] || id)))));
+}
+function TripDays({
+  itinerary,
+  stopIds
+}) {
+  var [names, setNames] = useStateIn(null);
+  useEffectIn(() => {
+    var cancelled = false;
+    fetch(window.POINTS_URL).then(r => r.ok ? r.json() : null).then(data => {
+      if (cancelled || !data) return;
+      var byId = {};
+      (data.features || []).forEach(f => {
+        byId[f.properties.id] = f.properties.name;
+      });
+      setNames(byId);
+    }).catch(() => {});
+    return () => {
+      cancelled = true;
+    };
+  }, []);
+  if (!names || !itinerary || !itinerary.days || itinerary.days.length === 0) return null;
+  var days = itinerary.days;
+  var free;
+  var locked;
+  if (days.length > 1) {
+    free = [days[0]];
+    locked = days.slice(1);
+  } else {
+    var d = days[0];
+    free = [{
+      name: d.name,
+      stopIds: d.stopIds.slice(0, TRIP_DAYS_FREE_STOPS)
+    }];
+    locked = d.stopIds.length > TRIP_DAYS_FREE_STOPS ? [{
+      name: "The rest of the day",
+      stopIds: d.stopIds.slice(TRIP_DAYS_FREE_STOPS),
+      start: TRIP_DAYS_FREE_STOPS + 1
+    }] : [];
+  }
+  var teaser = React.createElement("ul", {
+    className: "tripplan__locked"
+  }, locked.map((d, i) => React.createElement("li", {
+    key: i
+  }, d.name, ": ", d.stopIds.length, " ", d.stopIds.length === 1 ? "stop" : "stops")));
+  var mailPlan = (mode, email) => {
+    if (!email || stopIds.length === 0) return;
+    fetch(`${TRIP_DAYS_API_BASE}/api/trip/email`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        email,
+        stops: stopIds.slice(0, 30),
+        website: ""
+      })
+    }).catch(() => {});
+  };
+  var SoftGate = window.SoftGate;
+  return React.createElement("div", {
+    className: "tripplan__days"
+  }, React.createElement(TripDayList, {
+    days: free,
+    names: names
+  }), locked.length > 0 && (SoftGate ? React.createElement(SoftGate, {
+    gateKey: "trip-plan",
+    location: "trip_plan_gate",
+    tag: "trip-plan",
+    heading: "The rest of your plan, and a copy in your inbox",
+    blurb: "Every stop in drive order, plus a link that opens the whole plan on the map. Sunday Field Notes comes with it: one short letter a week. Free, leave anytime.",
+    cta: "Show my plan →",
+    teaser: teaser,
+    onUnlock: mailPlan,
+    doneText: "You are on the list, and the whole plan is on its way to your inbox."
+  }, React.createElement(TripDayList, {
+    days: locked,
+    names: names
+  })) : React.createElement(TripDayList, {
+    days: locked,
+    names: names
+  })));
+}
 function TripPlan({
   plan,
   go,
@@ -323,7 +422,10 @@ function TripPlan({
     className: "tripplan__card-body"
   }, itinerary.dek), it.capped && React.createElement("p", {
     className: "tripplan__card-flag"
-  }, "Shortened for the season, not for your dates."), React.createElement("a", {
+  }, "Shortened for the season, not for your dates."), React.createElement(TripDays, {
+    itinerary: itinerary,
+    stopIds: stopIds
+  }), React.createElement("a", {
     className: "btn btn--ghost",
     href: `/map?trip=${stopIds.join(",")}`,
     onClick: () => {

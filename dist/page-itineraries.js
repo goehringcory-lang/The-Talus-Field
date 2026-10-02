@@ -319,6 +319,48 @@ function ItinMonths({
     }));
   }))))));
 }
+var ITIN_API_BASE = typeof window !== "undefined" && window.GUIDE_API_BASE || "https://api.thetalusfieldjournal.com";
+function ItinEmailPlan({
+  it
+}) {
+  var [state, setState] = useStateIt("idle");
+  var [mode, setMode] = useStateIt(null);
+  var ids = window.getItineraryStopIds ? window.getItineraryStopIds(it.id) : [];
+  if (ids.length === 0) return null;
+  var mail = (doneMode, email) => {
+    setMode(doneMode);
+    setState("sending");
+    fetch(`${ITIN_API_BASE}/api/trip/email`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        email,
+        stops: ids.slice(0, 30),
+        website: ""
+      })
+    }).then(r => setState(r.ok ? "sent" : "failed")).catch(() => setState("failed"));
+    if (window.track) window.track("itinerary_email", {
+      itinerary: it.id
+    });
+  };
+  return React.createElement("div", {
+    className: "itin-email"
+  }, React.createElement("p", {
+    className: "itin-email__label"
+  }, "Email me this plan"), state === "idle" ? React.createElement(React.Fragment, null, React.createElement(NewsletterForm, {
+    location: "itineraries_email",
+    tag: "itineraries",
+    cta: "Send it →",
+    onDone: mail
+  }), React.createElement("p", {
+    className: "ff-note"
+  }, "One link that opens these stops in order on the map, on any device. It comes with Sunday Field Notes, one short letter a week. Free, leave anytime.")) : React.createElement("p", {
+    className: "ff-note",
+    role: "status"
+  }, state === "sending" ? "Sending…" : state === "sent" ? "Sent. The plan is in your inbox." : "The plan did not send just now. The map button above opens the same stops.", state !== "sending" && mode === "tab" ? ` ${window.nlDoneLine("tab")}` : ""));
+}
 function ItinerariesPage({
   go
 }) {
@@ -560,7 +602,9 @@ function ItinerariesPage({
         itinerary: it.id
       });
     }
-  }, "Open this trip on the map →")))), React.createElement("section", {
+  }, "Open this trip on the map →"), React.createElement(ItinEmailPlan, {
+    it: it
+  })))), React.createElement("section", {
     className: "hp-wrap hp-section itin-after"
   }, React.createElement("div", {
     className: "ff-split"

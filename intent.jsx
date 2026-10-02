@@ -315,6 +315,99 @@ function PlanLink({ href, route, go, children, target }) {
   );
 }
 
+// --- The day-by-day list, and the letter gate on it ---------------------------
+// The plan's itinerary card names the plan; this lists its stops in drive
+// order, with names from the same points.geojson the map reads (a failed fetch
+// renders nothing rather than raw ids). The first day is free, and so are the
+// first three stops of a one-day plan; the rest opens with the Sunday letter
+// or "No thanks, show me" (window.SoftGate). The locked part is never in the
+// DOM before it opens: the teaser shows only the day names and stop counts,
+// which the reader can see. A signup through the gate also mails the reader
+// the whole plan as a map link (/api/trip/email, the map's "email this trip").
+const TRIP_DAYS_API_BASE =
+  (typeof window !== "undefined" && window.GUIDE_API_BASE) ||
+  "https://api.thetalusfieldjournal.com";
+const TRIP_DAYS_FREE_STOPS = 3;
+
+function TripDayList({ days, names }) {
+  return days.map((d, i) => (
+    <div className="tripplan__day" key={d.name + i}>
+      <p className="tripplan__day-name">{d.name}</p>
+      {d.stopIds.length > 0 && (
+        <ol className="tripplan__stops" start={d.start || 1}>
+          {d.stopIds.map((id) => <li key={id}>{names[id] || id}</li>)}
+        </ol>
+      )}
+    </div>
+  ));
+}
+
+function TripDays({ itinerary, stopIds }) {
+  const [names, setNames] = useStateIn(null);
+  useEffectIn(() => {
+    let cancelled = false;
+    fetch(window.POINTS_URL)
+      .then((r) => (r.ok ? r.json() : null))
+      .then((data) => {
+        if (cancelled || !data) return;
+        const byId = {};
+        (data.features || []).forEach((f) => { byId[f.properties.id] = f.properties.name; });
+        setNames(byId);
+      })
+      .catch(() => {});
+    return () => { cancelled = true; };
+  }, []);
+
+  if (!names || !itinerary || !itinerary.days || itinerary.days.length === 0) return null;
+  const days = itinerary.days;
+  let free;
+  let locked;
+  if (days.length > 1) {
+    free = [days[0]];
+    locked = days.slice(1);
+  } else {
+    const d = days[0];
+    free = [{ name: d.name, stopIds: d.stopIds.slice(0, TRIP_DAYS_FREE_STOPS) }];
+    locked = d.stopIds.length > TRIP_DAYS_FREE_STOPS
+      ? [{ name: "The rest of the day", stopIds: d.stopIds.slice(TRIP_DAYS_FREE_STOPS), start: TRIP_DAYS_FREE_STOPS + 1 }]
+      : [];
+  }
+  const teaser = (
+    <ul className="tripplan__locked">
+      {locked.map((d, i) => <li key={i}>{d.name}: {d.stopIds.length} {d.stopIds.length === 1 ? "stop" : "stops"}</li>)}
+    </ul>
+  );
+  const mailPlan = (mode, email) => {
+    if (!email || stopIds.length === 0) return;
+    fetch(`${TRIP_DAYS_API_BASE}/api/trip/email`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ email, stops: stopIds.slice(0, 30), website: "" }),
+    }).catch(() => {});
+  };
+  const SoftGate = window.SoftGate;
+  return (
+    <div className="tripplan__days">
+      <TripDayList days={free} names={names} />
+      {locked.length > 0 && (SoftGate ? (
+        <SoftGate
+          gateKey="trip-plan"
+          location="trip_plan_gate"
+          tag="trip-plan"
+          heading="The rest of your plan, and a copy in your inbox"
+          blurb="Every stop in drive order, plus a link that opens the whole plan on the map. Sunday Field Notes comes with it: one short letter a week. Free, leave anytime."
+          cta="Show my plan →"
+          teaser={teaser}
+          onUnlock={mailPlan}
+          doneText="You are on the list, and the whole plan is on its way to your inbox."
+        >
+          <TripDayList days={locked} names={names} />
+        </SoftGate>
+      ) : <TripDayList days={locked} names={names} />)}
+    </div>
+  );
+}
+
 function TripPlan({ plan, go, onApplyIntent, matchCount }) {
   const it = plan.itinerary;
   const itinerary = (window.ITINERARIES || []).find((x) => x.id === it.id) || null;
@@ -384,6 +477,7 @@ function TripPlan({ plan, go, onApplyIntent, matchCount }) {
               <p className="tripplan__card-title">{itinerary.title}</p>
               <p className="tripplan__card-body">{itinerary.dek}</p>
               {it.capped && <p className="tripplan__card-flag">Shortened for the season, not for your dates.</p>}
+              <TripDays itinerary={itinerary} stopIds={stopIds} />
               <a
                 className="btn btn--ghost"
                 href={`/map?trip=${stopIds.join(",")}`}

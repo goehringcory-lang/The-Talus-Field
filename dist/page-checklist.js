@@ -30,6 +30,23 @@ function CheckSheet({
 function ChecklistPage({
   go
 }) {
+  React.useEffect(() => {
+    var params;
+    try {
+      params = new URLSearchParams(window.location.search);
+    } catch (_e) {
+      return undefined;
+    }
+    if (params.get("print") !== "1") return undefined;
+    params.delete("print");
+    var qs = params.toString();
+    window.history.replaceState(window.history.state, "", window.location.pathname + (qs ? `?${qs}` : "") + window.location.hash);
+    var t = setTimeout(() => {
+      if (window.track) window.track("checklist_print_link", {});
+      window.print();
+    }, 800);
+    return () => clearTimeout(t);
+  }, []);
   var A = ({
     r,
     children
@@ -82,7 +99,9 @@ function ChecklistPage({
     })
   }, React.createElement("p", {
     className: "hp-byline hp-checklist__tip"
-  }, "Tip: ", React.createElement("strong", null, "Cmd+P"), " (or Ctrl+P) for a clean print version.")), React.createElement(FjLayout, {
+  }, "Tip: ", React.createElement("strong", null, "Cmd+P"), " (or Ctrl+P) for a clean print version, or", " ", React.createElement("a", {
+    href: "#checklist-letter"
+  }, "email the printable to yourself"), ".")), React.createElement(FjLayout, {
     numbered: false,
     marks: "roman",
     label: "The sheets"
@@ -396,12 +415,15 @@ function ChecklistPage({
     intro: "The Field Guide app packs a night-before checklist next to every stop with parking and timing notes, offline maps, and a trip planner. Everything this page prepares you for, on your phone, with no signal required.",
     sample: true
   }), React.createElement(HpLetter, {
-    eyebrow: "SUNDAY FIELD NOTES / FREE",
-    title: "Want updates through the season?",
-    heading: "Want updates through the season?",
-    blurb: "Subscribers hear about updates to this checklist first.",
+    id: "checklist-letter",
+    eyebrow: "EMAIL ME THE PRINTABLE / FREE",
+    title: "The checklist, in your inbox.",
+    heading: "The checklist, in your inbox.",
+    blurb: "One email with a link that opens this page ready to print or save as a PDF. It comes with Sunday Field Notes, and subscribers hear about updates to this checklist first.",
     location: "checklist",
-    tag: "checklist"
+    tag: "checklist",
+    send: "checklist",
+    cta: "Email me the checklist →"
   }));
 }
 window.ChecklistPage = ChecklistPage;

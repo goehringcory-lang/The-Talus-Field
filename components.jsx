@@ -1481,7 +1481,7 @@ function HpPostcard({ paper, stamp = "THE SUNDAY LETTER" }) {
 // `blurb` are NewsletterInline's (the heading is visually hidden, since the
 // section's h2 stands in for it); `paper` is the postcard's line; `children`
 // sit between the h2 and the form (/dates puts its reminder chips there).
-function HpLetter({ id, eyebrow, title, heading, blurb, location, tag, variant, cta = "Send me the letter ↗", terms = "Free to read. One letter a week. Unsubscribe whenever.", paper, stamp = "THE SUNDAY LETTER", children }) {
+function HpLetter({ id, eyebrow, title, heading, blurb, location, tag, variant, send, cta = "Send me the letter ↗", terms = "Free to read. One letter a week. Unsubscribe whenever.", paper, stamp = "THE SUNDAY LETTER", children }) {
   return (
     <section className="hp-letter hp-wrap hp-section" id={id} tabIndex={id ? -1 : undefined}>
       <HpPostcard paper={paper} stamp={stamp} />
@@ -1489,7 +1489,7 @@ function HpLetter({ id, eyebrow, title, heading, blurb, location, tag, variant, 
         <p className="hp-eyebrow">{eyebrow}</p>
         <h2>{title}</h2>
         {children}
-        <NewsletterInline heading={heading} blurb={blurb} location={location} tag={tag} variant={variant} cta={cta} modifier="hp-newsletter" inputLabel="Your email address" />
+        <NewsletterInline heading={heading} blurb={blurb} location={location} tag={tag} variant={variant} send={send} cta={cta} modifier="hp-newsletter" inputLabel="Your email address" />
         {terms && <p className="hp-terms">{terms}</p>}
       </div>
     </section>
@@ -2240,23 +2240,30 @@ window.NL_BUTTONDOWN_ACTION = NL_BUTTONDOWN_ACTION;
 // line is for the fallback, where Buttondown's own page finishes the job.
 const NL_CONFIRM_LINE = "You are on the list. The next Sunday letter comes to you.";
 const NL_TAB_LINE = "One step left: finish in the Buttondown tab that just opened. If it asks, press Verify and Subscribe, or the letter never starts.";
-function nlDoneLine(mode) { return mode === "tab" ? NL_TAB_LINE : NL_CONFIRM_LINE; }
+// A signup that also asked for a printable (NewsletterForm `send`) and the
+// Worker reports it mailed.
+const NL_SENT_LINE = "Sent. Look for it in your inbox. You are on the list for Sunday Field Notes too.";
+function nlDoneLine(mode) { return mode === "tab" ? NL_TAB_LINE : mode === "sent" ? NL_SENT_LINE : NL_CONFIRM_LINE; }
 window.NL_CONFIRM_LINE = NL_CONFIRM_LINE;
 window.nlDoneLine = nlDoneLine;
 
-// POST one signup to the Worker. Resolves to "ok", "invalid" (the reader can
-// fix the address), "rate" (too many tries), or "fallback" (anything else,
+// POST one signup to the Worker. Resolves to "ok", "sent" (on the list, and
+// the printable named by `send` was mailed), "invalid" (the reader can fix
+// the address), "rate" (too many tries), or "fallback" (anything else,
 // including a timeout or the Worker being unreachable). Never rejects.
-function subscribeNewsletter({ email, tag, website, location }) {
+function subscribeNewsletter({ email, tag, website, location, send }) {
   const ctrl = typeof AbortController !== "undefined" ? new AbortController() : null;
   const timer = ctrl ? setTimeout(() => ctrl.abort(), 10000) : null;
   return fetch(`${NL_API_BASE}/api/subscribe`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ email, tag: tag || "", website: website || "", referrer: window.location.href }),
+    body: JSON.stringify({ email, tag: tag || "", website: website || "", referrer: window.location.href, ...(send ? { send } : {}) }),
     signal: ctrl ? ctrl.signal : undefined,
   })
-    .then((r) => (r.ok ? "ok" : r.status === 400 ? "invalid" : r.status === 429 ? "rate" : "fallback"))
+    .then((r) => {
+      if (!r.ok) return r.status === 400 ? "invalid" : r.status === 429 ? "rate" : "fallback";
+      return r.json().then((j) => (send && j && j.sent ? "sent" : "ok"), () => "ok");
+    })
     .catch(() => "fallback")
     .then((result) => {
       if (timer) clearTimeout(timer);
@@ -2275,30 +2282,34 @@ const NL_STATUS_COPY = {
 // The one signup form. Renders the email field, the hidden tag, a honeypot
 // and the button, plus a status line under the form. `onDone(mode)` fires
 // once the reader is on the list ("api") or has been handed to Buttondown's
-// tab ("tab"); the caller swaps in its own done state, usually nlDoneLine.
+// tab ("tab"), with the address as its second argument (a gate that also
+// emails something needs it); the caller swaps in its own done state,
+// usually nlDoneLine.
 // `className` defaults to the shared nlbox__form; `inputId` pairs the field
 // with a visible <label> the caller renders.
-function NewsletterForm({ location, tag, variant = "", cta = "Subscribe →", onDone, className = "nlbox__form", inputId, inputLabel, placeholder = "you@email.com", inputRef, autoFocus }) {
+function NewsletterForm({ location, tag, variant = "", cta = "Subscribe →", send, onDone, className = "nlbox__form", inputId, inputLabel, placeholder = "you@email.com", inputRef, autoFocus }) {
   const [status, setStatus] = useState("idle"); // idle | sending | invalid | rate | fallback
-  const finish = (mode) => {
+  const finish = (mode, email) => {
     trackNewsletterSubmit(location, tag, variant);
-    if (onDone) setTimeout(() => onDone(mode), 0);
+    if (onDone) setTimeout(() => onDone(mode, email), 0);
   };
   const onSubmit = (e) => {
     if (status === "fallback") {
       // Let the native POST go to Buttondown in a new tab: this press is the
       // user gesture a new tab needs, which an async fetch result is not.
       if (window.track) window.track("newsletter_signup_result", { location: location || "unknown", tag: tag || "", result: "tab" });
-      finish("tab");
+      finish("tab", String(new FormData(e.currentTarget).get("email") || "").trim());
       return;
     }
     e.preventDefault();
     if (status === "sending") return;
     const data = new FormData(e.currentTarget);
+    const email = String(data.get("email") || "").trim();
     setStatus("sending");
-    subscribeNewsletter({ email: String(data.get("email") || "").trim(), tag, website: String(data.get("website") || ""), location })
+    subscribeNewsletter({ email, tag, website: String(data.get("website") || ""), location, send })
       .then((result) => {
-        if (result === "ok") finish("api");
+        if (result === "ok") finish("api", email);
+        else if (result === "sent") finish("sent", email);
         else setStatus(result);
       });
   };
@@ -2320,6 +2331,79 @@ function NewsletterForm({ location, tag, variant = "", cta = "Subscribe →", on
 }
 window.NewsletterForm = NewsletterForm;
 
+// ============================================================
+// SoftGate: a teaser gate for the extras the letter unlocks (the rest of a
+// trip plan, the deadline calendar, an article's bonus section). Three rules,
+// each the difference between a gate and a wall:
+// (1) it never hides published text: `teaser` is a separate, decorative
+//     preview (aria-hidden, faded), and `children` are not rendered at all
+//     until the gate opens, so nothing sits in the DOM that a reader cannot
+//     see (which search engines read as cloaking);
+// (2) "No thanks, show me" always opens it, and that answer is remembered
+//     per gate on this device (tfg.gate.<gateKey>), so a reader is asked once;
+// (3) it fails open: a subscribed device, or one whose storage is
+//     unavailable (private mode), never sees it, the same rule as the map.
+// `onUnlock(mode, email)` runs after a signup, before the children render;
+// `doneText` replaces the confirmation line after a confirmed signup.
+// ============================================================
+function nlStorageWorks() {
+  // safeStorage.get returns its fallback only when storage itself throws.
+  return window.safeStorage.get(NL_SUBSCRIBED_KEY, "__unavailable") !== "__unavailable";
+}
+function gateIsOpen(gateKey) {
+  return !nlStorageWorks() || isSubscribed() || window.safeStorage.get(`tfg.gate.${gateKey}`) === "skip";
+}
+window.gateIsOpen = gateIsOpen;
+
+function SoftGate({ gateKey, location, tag, heading, blurb, cta = "Unlock →", skipLabel = "No thanks, show me", teaser, onUnlock, doneText, children, className }) {
+  const [open, setOpen] = useState(() => gateIsOpen(gateKey));
+  const [done, setDone] = useState(null);
+  const ref = useNewsletterImpression(location, tag, !open);
+  // A signup in another unit, or a skip of a gate sharing this key, opens
+  // this one too: two gates on one page should not ask twice.
+  useEffect(() => {
+    if (open) return;
+    const recheck = () => { if (gateIsOpen(gateKey)) setOpen(true); };
+    window.addEventListener("tfg:gates", recheck);
+    return () => window.removeEventListener("tfg:gates", recheck);
+  }, [open, gateKey]);
+  if (open) {
+    return (
+      <>
+        {done && <p className="nlbox__done softgate__done" role="status">{done === "api" && doneText ? doneText : nlDoneLine(done)}</p>}
+        {children}
+      </>
+    );
+  }
+  const skip = () => {
+    window.safeStorage.set(`tfg.gate.${gateKey}`, "skip");
+    if (window.track) window.track("newsletter_gate_skip", { location, tag: tag || "" });
+    setOpen(true);
+    try { window.dispatchEvent(new Event("tfg:gates")); } catch (_e) { /* see trackNewsletterSubmit */ }
+  };
+  return (
+    <div className={["softgate", className].filter(Boolean).join(" ")} ref={ref}>
+      {teaser && <div className="softgate__teaser" aria-hidden="true">{teaser}</div>}
+      <div className="nlbox softgate__card">
+        <h3>{heading}</h3>
+        {blurb && <p>{blurb}</p>}
+        <NewsletterForm
+          location={location}
+          tag={tag}
+          cta={cta}
+          onDone={(mode, email) => {
+            if (onUnlock) onUnlock(mode, email);
+            setDone(mode);
+            setOpen(true);
+          }}
+        />
+        <button type="button" className="softgate__skip" onClick={skip}>{skipLabel}</button>
+      </div>
+    </div>
+  );
+}
+window.SoftGate = SoftGate;
+
 // The subscribed flag's value. "1" was written by the hidden-iframe forms,
 // which from early September 2026 never reached Buttondown, so a device
 // carrying it may never have subscribed and would otherwise never be asked
@@ -2336,6 +2420,8 @@ if (window.safeStorage.get(NL_SUBSCRIBED_KEY) === "1") {
 function trackNewsletterSubmit(location, tag, variant) {
   if (window.track) window.track("newsletter_signup", { location: location || "unknown", tag: tag || "", variant: variant || "" });
   window.safeStorage.set(NL_SUBSCRIBED_KEY, NL_SUBSCRIBED_VALUE);
+  // Lets every SoftGate already on the page open with this signup.
+  try { window.dispatchEvent(new Event("tfg:gates")); } catch (_e) { /* old browsers: gates open on next mount */ }
 }
 window.trackNewsletterSubmit = trackNewsletterSubmit;
 
@@ -2414,7 +2500,10 @@ window.useNewsletterImpression = useNewsletterImpression;
 // HpLetter is the one caller: it passes the copy, the button label, the
 // `hp-newsletter` modifier, the visible input label, and `variant` when the
 // caller runs a copy test (article_end_copy), so each arm's rate is sliceable.
-function NewsletterInline({ heading, blurb, location, tag, variant = "", cta, modifier, inputLabel }) {
+// `send` names a printable for the Worker to mail with the signup (see
+// PRINTABLES in workers/src/lib/email.ts); a subscribed device still sees the
+// soft state, so the caller keeps its own way to the printable on the page.
+function NewsletterInline({ heading, blurb, location, tag, variant = "", cta, modifier, inputLabel, send }) {
   const [done, setDone] = useState(null); // null | "api" | "tab"
   const subscribed = isSubscribed();
   // Only count an impression when an actual ask is on screen, not the
@@ -2444,6 +2533,7 @@ function NewsletterInline({ heading, blurb, location, tag, variant = "", cta, mo
           tag={tag}
           variant={variant}
           cta={cta}
+          send={send}
           inputId={inputLabel ? `${location}-email` : undefined}
           inputLabel={inputLabel}
           onDone={setDone}
@@ -3164,7 +3254,7 @@ Object.assign(window, {
   Placeholder, ResponsiveImage, preloadResponsive,
   SIZES_HERO, SIZES_CARD,
   MotifMountains, MotifSun, MotifTrees,
-  Header, Footer, BackToTop, NewsletterInline, NewsletterForm, ExitIntentNewsletter, MapLightbox,
+  Header, Footer, BackToTop, NewsletterInline, NewsletterForm, SoftGate, ExitIntentNewsletter, MapLightbox,
   EntranceWaits, WebcamStrip, FilmEmbed, NatureNotesFilm, EventIcon,
   HomeLink, HomeMasthead, HpHeading, HpRow, HpCard, HpArticleCard, HpPageHead, HpGuideBand, HpLetter, HpPostcard,
   FjLayout, FjFacts, FjPull, FjRidge, FjCard, FjSteps, FjPlate,

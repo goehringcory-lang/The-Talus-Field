@@ -1,6 +1,7 @@
 import { Hono } from 'hono'
 import type { Env } from '../env'
 import { recordSubscribeAttempt } from '../lib/kv'
+import { PRINTABLES, sendPrintableLink, type PrintableKey } from '../lib/email'
 
 // Sunday letter signup for every editorial form (components.jsx
 // submitNewsletter). Unauthenticated by design: the site has no accounts.
@@ -15,7 +16,8 @@ import { recordSubscribeAttempt } from '../lib/kv'
 // reached a single subscriber record).
 //
 // The response contract the page relies on:
-//   200 {ok: true}                  on the list (new, or already there)
+//   200 {ok: true}                  on the list (new, or already there);
+//                                   with `send`, also `sent: true|false`
 //   400 {error: 'invalid_email'}    the reader can fix it
 //   429                             too many tries from this address
 //   502/503 {fallback: true}        anything else; the page offers the
@@ -36,6 +38,9 @@ type SubscribeBody = {
   tag?: unknown
   // The page the form sat on, recorded as Buttondown's referrer_url.
   referrer?: unknown
+  // Optional: a printable to mail once the signup lands (a PRINTABLES key in
+  // lib/email.ts, e.g. "checklist"). Unknown values are ignored.
+  send?: unknown
   // Honeypot. Real browsers leave it empty; bots fill it.
   website?: unknown
 }
@@ -133,6 +138,18 @@ subscribe.post('/', async (c) => {
     }
     if (result.status >= 200 && result.status < 300) {
       console.log(`subscribe: ok tag=${payload.tags ? tag : '-'}`)
+      // The signup is what the reader came for; a failed mail of the
+      // printable is logged and reported, never turned into a failed signup.
+      const send = typeof body.send === 'string' && body.send in PRINTABLES ? (body.send as PrintableKey) : null
+      if (send) {
+        try {
+          await sendPrintableLink(c.env, { to: email, kind: send })
+          return c.json({ ok: true, sent: true }, 200)
+        } catch (err) {
+          console.error(`subscribe: printable "${send}" not sent`, err)
+          return c.json({ ok: true, sent: false }, 200)
+        }
+      }
       return c.json({ ok: true }, 200)
     }
     console.error(`subscribe: buttondown ${result.status} ${result.code || '-'} tag=${tag || '-'}`)

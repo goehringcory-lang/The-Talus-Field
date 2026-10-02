@@ -28,6 +28,20 @@ function CheckSheet({ label, title, children }) {
 
 
 function ChecklistPage({ go }) {
+  // ?print=1 is the link the "email me the printable" message carries
+  // (PRINTABLES in workers/src/lib/email.ts): open the print dialog once the
+  // sheets have drawn, then drop the flag so a reload does not print again.
+  React.useEffect(() => {
+    let params;
+    try { params = new URLSearchParams(window.location.search); } catch (_e) { return undefined; }
+    if (params.get("print") !== "1") return undefined;
+    params.delete("print");
+    const qs = params.toString();
+    window.history.replaceState(window.history.state, "", window.location.pathname + (qs ? `?${qs}` : "") + window.location.hash);
+    const t = setTimeout(() => { if (window.track) window.track("checklist_print_link", {}); window.print(); }, 800);
+    return () => clearTimeout(t);
+  }, []);
+
   const A = ({ r, children }) => (
     <a
       href={r.startsWith("a:") ? `/articles/${r.slice(2)}` : `/${r}`}
@@ -71,7 +85,8 @@ function ChecklistPage({ go }) {
         }
       >
         <p className="hp-byline hp-checklist__tip">
-          Tip: <strong>Cmd+P</strong> (or Ctrl+P) for a clean print version.
+          Tip: <strong>Cmd+P</strong> (or Ctrl+P) for a clean print version, or{" "}
+          <a href="#checklist-letter">email the printable to yourself</a>.
         </p>
       </HpPageHead>
 
@@ -166,13 +181,19 @@ function ChecklistPage({ go }) {
         sample
       />
       {/* Newsletter capture */}
+      {/* The emailed printable: the signup mails a link that opens this page
+          with its print dialog (send="checklist"), so the sheet is in the
+          reader's inbox the day they pack. Printing from the page stays free. */}
       <HpLetter
-        eyebrow="SUNDAY FIELD NOTES / FREE"
-        title="Want updates through the season?"
-        heading="Want updates through the season?"
-        blurb="Subscribers hear about updates to this checklist first."
+        id="checklist-letter"
+        eyebrow="EMAIL ME THE PRINTABLE / FREE"
+        title="The checklist, in your inbox."
+        heading="The checklist, in your inbox."
+        blurb="One email with a link that opens this page ready to print or save as a PDF. It comes with Sunday Field Notes, and subscribers hear about updates to this checklist first."
         location="checklist"
         tag="checklist"
+        send="checklist"
+        cta="Email me the checklist →"
       />
     </div>
   );

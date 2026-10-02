@@ -1665,6 +1665,7 @@ function HpLetter({
   location,
   tag,
   variant,
+  send,
   cta = "Send me the letter ↗",
   terms = "Free to read. One letter a week. Unsubscribe whenever.",
   paper,
@@ -1686,6 +1687,7 @@ function HpLetter({
     location: location,
     tag: tag,
     variant: variant,
+    send: send,
     cta: cta,
     modifier: "hp-newsletter",
     inputLabel: "Your email address"
@@ -2692,8 +2694,9 @@ var NL_BUTTONDOWN_ACTION = "https://buttondown.com/api/emails/embed-subscribe/go
 window.NL_BUTTONDOWN_ACTION = NL_BUTTONDOWN_ACTION;
 var NL_CONFIRM_LINE = "You are on the list. The next Sunday letter comes to you.";
 var NL_TAB_LINE = "One step left: finish in the Buttondown tab that just opened. If it asks, press Verify and Subscribe, or the letter never starts.";
+var NL_SENT_LINE = "Sent. Look for it in your inbox. You are on the list for Sunday Field Notes too.";
 function nlDoneLine(mode) {
-  return mode === "tab" ? NL_TAB_LINE : NL_CONFIRM_LINE;
+  return mode === "tab" ? NL_TAB_LINE : mode === "sent" ? NL_SENT_LINE : NL_CONFIRM_LINE;
 }
 window.NL_CONFIRM_LINE = NL_CONFIRM_LINE;
 window.nlDoneLine = nlDoneLine;
@@ -2701,7 +2704,8 @@ function subscribeNewsletter({
   email,
   tag,
   website,
-  location
+  location,
+  send
 }) {
   var ctrl = typeof AbortController !== "undefined" ? new AbortController() : null;
   var timer = ctrl ? setTimeout(() => ctrl.abort(), 10000) : null;
@@ -2714,10 +2718,16 @@ function subscribeNewsletter({
       email,
       tag: tag || "",
       website: website || "",
-      referrer: window.location.href
+      referrer: window.location.href,
+      ...(send ? {
+        send
+      } : {})
     }),
     signal: ctrl ? ctrl.signal : undefined
-  }).then(r => r.ok ? "ok" : r.status === 400 ? "invalid" : r.status === 429 ? "rate" : "fallback").catch(() => "fallback").then(result => {
+  }).then(r => {
+    if (!r.ok) return r.status === 400 ? "invalid" : r.status === 429 ? "rate" : "fallback";
+    return r.json().then(j => send && j && j.sent ? "sent" : "ok", () => "ok");
+  }).catch(() => "fallback").then(result => {
     if (timer) clearTimeout(timer);
     if (window.track) window.track("newsletter_signup_result", {
       location: location || "unknown",
@@ -2738,6 +2748,7 @@ function NewsletterForm({
   tag,
   variant = "",
   cta = "Subscribe →",
+  send,
   onDone,
   className = "nlbox__form",
   inputId,
@@ -2747,9 +2758,9 @@ function NewsletterForm({
   autoFocus
 }) {
   var [status, setStatus] = useState("idle");
-  var finish = mode => {
+  var finish = (mode, email) => {
     trackNewsletterSubmit(location, tag, variant);
-    if (onDone) setTimeout(() => onDone(mode), 0);
+    if (onDone) setTimeout(() => onDone(mode, email), 0);
   };
   var onSubmit = e => {
     if (status === "fallback") {
@@ -2758,20 +2769,22 @@ function NewsletterForm({
         tag: tag || "",
         result: "tab"
       });
-      finish("tab");
+      finish("tab", String(new FormData(e.currentTarget).get("email") || "").trim());
       return;
     }
     e.preventDefault();
     if (status === "sending") return;
     var data = new FormData(e.currentTarget);
+    var email = String(data.get("email") || "").trim();
     setStatus("sending");
     subscribeNewsletter({
-      email: String(data.get("email") || "").trim(),
+      email,
       tag,
       website: String(data.get("website") || ""),
-      location
+      location,
+      send
     }).then(result => {
-      if (result === "ok") finish("api");else setStatus(result);
+      if (result === "ok") finish("api", email);else if (result === "sent") finish("sent", email);else setStatus(result);
     });
   };
   var note = NL_STATUS_COPY[status];
@@ -2817,6 +2830,79 @@ function NewsletterForm({
   }, note));
 }
 window.NewsletterForm = NewsletterForm;
+function nlStorageWorks() {
+  return window.safeStorage.get(NL_SUBSCRIBED_KEY, "__unavailable") !== "__unavailable";
+}
+function gateIsOpen(gateKey) {
+  return !nlStorageWorks() || isSubscribed() || window.safeStorage.get(`tfg.gate.${gateKey}`) === "skip";
+}
+window.gateIsOpen = gateIsOpen;
+function SoftGate({
+  gateKey,
+  location,
+  tag,
+  heading,
+  blurb,
+  cta = "Unlock →",
+  skipLabel = "No thanks, show me",
+  teaser,
+  onUnlock,
+  doneText,
+  children,
+  className
+}) {
+  var [open, setOpen] = useState(() => gateIsOpen(gateKey));
+  var [done, setDone] = useState(null);
+  var ref = useNewsletterImpression(location, tag, !open);
+  useEffect(() => {
+    if (open) return;
+    var recheck = () => {
+      if (gateIsOpen(gateKey)) setOpen(true);
+    };
+    window.addEventListener("tfg:gates", recheck);
+    return () => window.removeEventListener("tfg:gates", recheck);
+  }, [open, gateKey]);
+  if (open) {
+    return React.createElement(React.Fragment, null, done && React.createElement("p", {
+      className: "nlbox__done softgate__done",
+      role: "status"
+    }, done === "api" && doneText ? doneText : nlDoneLine(done)), children);
+  }
+  var skip = () => {
+    window.safeStorage.set(`tfg.gate.${gateKey}`, "skip");
+    if (window.track) window.track("newsletter_gate_skip", {
+      location,
+      tag: tag || ""
+    });
+    setOpen(true);
+    try {
+      window.dispatchEvent(new Event("tfg:gates"));
+    } catch (_e) {}
+  };
+  return React.createElement("div", {
+    className: ["softgate", className].filter(Boolean).join(" "),
+    ref: ref
+  }, teaser && React.createElement("div", {
+    className: "softgate__teaser",
+    "aria-hidden": "true"
+  }, teaser), React.createElement("div", {
+    className: "nlbox softgate__card"
+  }, React.createElement("h3", null, heading), blurb && React.createElement("p", null, blurb), React.createElement(NewsletterForm, {
+    location: location,
+    tag: tag,
+    cta: cta,
+    onDone: (mode, email) => {
+      if (onUnlock) onUnlock(mode, email);
+      setDone(mode);
+      setOpen(true);
+    }
+  }), React.createElement("button", {
+    type: "button",
+    className: "softgate__skip",
+    onClick: skip
+  }, skipLabel)));
+}
+window.SoftGate = SoftGate;
 var NL_SUBSCRIBED_KEY = "tfg.nl.subscribed";
 var NL_SUBSCRIBED_VALUE = "2";
 if (window.safeStorage.get(NL_SUBSCRIBED_KEY) === "1") {
@@ -2830,6 +2916,9 @@ function trackNewsletterSubmit(location, tag, variant) {
     variant: variant || ""
   });
   window.safeStorage.set(NL_SUBSCRIBED_KEY, NL_SUBSCRIBED_VALUE);
+  try {
+    window.dispatchEvent(new Event("tfg:gates"));
+  } catch (_e) {}
 }
 window.trackNewsletterSubmit = trackNewsletterSubmit;
 function trackNewsletterImpression(location, tag, variant) {
@@ -2894,7 +2983,8 @@ function NewsletterInline({
   variant = "",
   cta,
   modifier,
-  inputLabel
+  inputLabel,
+  send
 }) {
   var [done, setDone] = useState(null);
   var subscribed = isSubscribed();
@@ -2924,6 +3014,7 @@ function NewsletterInline({
     tag: tag,
     variant: variant,
     cta: cta,
+    send: send,
     inputId: inputLabel ? `${location}-email` : undefined,
     inputLabel: inputLabel,
     onDone: setDone
@@ -3859,6 +3950,7 @@ Object.assign(window, {
   BackToTop,
   NewsletterInline,
   NewsletterForm,
+  SoftGate,
   ExitIntentNewsletter,
   MapLightbox,
   EntranceWaits,

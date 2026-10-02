@@ -836,6 +836,54 @@ main:focus { outline: none; }
 .nlbox__note { margin: 8px 0 0; font: 13px/1.5 var(--sans); color: var(--hp-ink); }
 .nlbox__form button:disabled { opacity: .7; cursor: progress; }
 
+/* SoftGate (components.jsx): a faded, decorative preview of what the letter
+   unlocks, then the ask, then "No thanks, show me". The preview is a
+   separate teaser, never the real content clipped, so it fades out and
+   takes no pointer or selection. */
+.softgate { margin: 24px 0; }
+.softgate__teaser {
+  max-height: 10em;
+  overflow: hidden;
+  pointer-events: none;
+  user-select: none;
+  -webkit-mask-image: linear-gradient(#000 25%, transparent);
+  mask-image: linear-gradient(#000 25%, transparent);
+}
+.softgate__card { margin: 0; }
+.softgate__card::before { content: "Free with Sunday Field Notes"; }
+.softgate__skip {
+  margin-top: 14px;
+  padding: 0;
+  background: none;
+  border: 0;
+  border-bottom: 1px solid var(--hp-rule);
+  color: var(--hp-muted);
+  font: 13px var(--sans);
+  cursor: pointer;
+}
+.softgate__skip:hover { color: var(--hp-ink); border-bottom-color: var(--hp-ink); }
+.softgate__done { margin-bottom: 16px; }
+
+/* Article subscriber bonus sheet (ArticleBonus in page-article.jsx): a
+   ruled box after the body, first line free, the rest behind the SoftGate.
+   The teaser is grey bars, never the hidden lines. */
+.bonus { margin: 40px 0; padding: 26px 28px; border: 1px solid var(--hp-rule); border-radius: 3px; background: var(--hp-card); }
+.bonus__eyebrow { font: 600 9px var(--sans); letter-spacing: 1.7px; text-transform: uppercase; color: var(--hp-accent); margin: 0 0 10px; }
+.bonus__title { font: 400 28px/1.1 var(--serif); margin: 0 0 8px; }
+.bonus__intro { font: 15px/1.5 var(--serif); color: var(--hp-muted); margin: 0 0 14px; }
+.bonus__list { margin: 0; padding-left: 22px; font: 17px/1.55 var(--serif); color: var(--hp-ink); }
+.bonus__list li { margin-bottom: 8px; }
+.bonus__bar { display: inline-block; height: .7em; border-radius: 2px; background: var(--hp-rule); vertical-align: middle; }
+.bonus .softgate { margin: 8px 0 0; }
+.bonus .softgate__card { padding: 22px; }
+.bonus .softgate__card h3 { font-size: 24px; }
+@media print { .bonus .softgate__card, .bonus .softgate__teaser { display: none; } }
+
+/* /itineraries: "Email me this plan" under each plan's map button. */
+.itin-email { margin-top: 22px; max-width: 520px; }
+.itin-email__label { font: 600 12px var(--sans); color: var(--hp-ink); margin: 0 0 8px; }
+.itin-email .ff-note { margin-top: 8px; }
+
 /* ===== Homepage webcam tiles ===== */
 /* The webcam strip. It used to carry an inline repeat(4) grid, which a
    phone-width rule written for the retired home "By Section" grid was
@@ -5488,6 +5536,16 @@ main:focus { outline: none; }
   color: var(--gold);
   margin: 0 0 12px;
 }
+/* The day-by-day stop list under the itinerary card (TripDays in intent.jsx),
+   and the gate on the days after the first. Inside the card the gate drops
+   its own card chrome and margins. */
+.tripplan__days { margin: 0 0 16px; }
+.tripplan__day-name { font: 600 12px var(--sans); color: var(--ink); margin: 12px 0 6px; }
+.tripplan__stops { margin: 0; padding-left: 22px; font: 15px/1.5 var(--serif); color: var(--ink-2); }
+.tripplan__locked { margin: 0; padding-left: 18px; font: 14px/1.6 var(--sans); color: var(--ink-2); }
+.tripplan__days .softgate { margin: 12px 0 0; }
+.tripplan__days .softgate__card { padding: 20px; }
+.tripplan__days .softgate__card h3 { font-size: 22px; }
 .tripplan__card-alt {
   margin: 12px 0 0;
   font-family: var(--serif);
