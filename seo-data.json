@@ -1763,31 +1763,35 @@
     "faq": [
       {
         "q": "How do I get a camping reservation in Yosemite?",
-        "a": "Everything books through recreation.gov in three windows. The Valley campgrounds (Upper Pines, Lower Pines, North Pines), Wawona, and Hodgdon Meadow release five months ahead on the 15th of each month at 7 AM Pacific, and the good dates sell out within three to five minutes. Six higher campgrounds release on a rolling 14-day window, and Camp 4 releases seven days ahead. Make an account in advance, decide your dates and campground, and check out the moment booking opens."
+        "a": "Everything books through Recreation.gov, in four windows. Upper, Lower and North Pines, Wawona and Hodgdon Meadow release five months ahead on the 15th at 7 a.m. Pacific, one block of arrival dates at a time, and they sell out within minutes. Crane Flat, Bridalveil Creek, Tamarack Flat, White Wolf, Yosemite Creek, Porcupine Flat and half of Tuolumne Meadows release two weeks ahead on a rolling daily window; the other half of Tuolumne releases two months ahead on the 15th. Camp 4 releases one week ahead. Make your account ahead of time, decide your campground and dates, and check out the moment booking opens. You can make only two reservations per website visit or phone call."
       },
       {
         "q": "How much does it cost to camp in Yosemite?",
-        "a": "The Valley campgrounds and most others (Wawona, Hodgdon Meadow, Crane Flat, Bridalveil Creek, White Wolf, Tuolumne Meadows) run $36 per night. The primitive campgrounds (Tamarack Flat, Yosemite Creek, Porcupine Flat) are $24 per night. Camp 4 is $10 per person per night. Add the $35 per-vehicle park entrance fee. There are no hookups anywhere in the park."
+        "a": "Upper, Lower and North Pines, Wawona, Hodgdon Meadow, Crane Flat, Bridalveil Creek and Tuolumne Meadows are $36 a night. White Wolf is $28. Tamarack Flat, Yosemite Creek and Porcupine Flat are $24. Camp 4 is $10 per person per night. Add the park entrance fee, $35 per vehicle and good for seven days. There are no hookups anywhere in the park."
       },
       {
         "q": "How do I get a Yosemite campsite when everything is sold out?",
-        "a": "Play the cancellation game. Cancellations spike about 14 days out, three to five days out, and the day before arrival. Set up free alert tools like Campflare or Outdoorithm, or the faster paid Campnab ($10 to $30 per month), to watch recreation.gov, be flexible on dates, and check manually during those windows. If you can take any three nights in a two-week range, your odds improve dramatically."
+        "a": "Check Recreation.gov each morning at 7 for the two-week campgrounds, set cancellation alerts (Campflare and Outdoorithm have free plans, Campnab is paid), and stay flexible on dates. In the author's experience cancellations cluster in the two weeks before arrival; that pattern is not a Park Service figure. If you can take any three nights in a two-week range, your odds improve a great deal. Other doors: Camp 4's one-week window, first-come camping from late October to early April, a wilderness permit, national forest land outside the park, and private campgrounds."
       },
       {
         "q": "What are the food storage rules at Yosemite campgrounds?",
-        "a": "Every campsite has a metal bear box, and everything with a scent goes in it, 24 hours a day: food, coolers, cooking utensils, toothpaste, sunscreen, lip balm, even the trail mix in your glove compartment. Nothing scented stays in your car. Rangers enforce this with fines up to $5,000, and a food-conditioned bear is eventually euthanized, so careless storage can kill a bear."
+        "a": "Every campground has food lockers, and all food goes in them: food, drinks, coolers, toiletries, trash and unwashed cooking gear. Keep the locker latched even while you are at your site. By day food may ride in a car with the windows closed; after dark it goes in the locker, and never in a pickup bed. Poor storage can mean impounded food or car, removal from the campsite and a fine of up to $5,000, and bears that get human food often end up being killed."
       },
       {
         "q": "Are there showers at Yosemite campgrounds?",
-        "a": "No. None of the campgrounds have showers. The nearest are the pay showers at Curry Village, which charge $5, with long lines in peak season. Most campers rely on baby wipes."
+        "a": "No. None of the campgrounds has showers. Curry Village has pay showers that are open 24 hours and do not require a room there; the Park Service lists the fee only as small and says to ask at the front desk. Housekeeping Camp, which is not a campground, has shower houses for its own guests."
       },
       {
         "q": "Which Yosemite campground is best?",
-        "a": "It depends on what you value. Crane Flat is the versatile pick, cooler and quieter than the Valley, about 45 minutes to the Valley floor and an hour to Tuolumne Meadows. For the classic Valley experience, book a riverside site in Upper Pines (Loops E and F) or North Pines (the 500 series). For solitude, primitive campgrounds like Tamarack Flat and Yosemite Creek trade amenities for privacy."
+        "a": "It depends on what you want. Crane Flat is the all-round pick: 17 miles and about 30 minutes from the Valley, cooler and quieter, with flush toilets and drinking water. For the classic Valley trip, book Upper Pines or North Pines and look for sites near the Merced River. For solitude, Tamarack Flat and Yosemite Creek trade amenities for room."
       },
       {
         "q": "When can you camp in the Yosemite high country?",
-        "a": "When the Tioga Road opens. Plowing starts around the middle of April and takes a month or two, which usually puts the opening in late May or early June, though a heavy winter can push it well past that. The road opening is not the campground opening: Tuolumne Meadows, White Wolf, Yosemite Creek, Tamarack Flat, and Porcupine Flat come online in the weeks that follow, once water and sanitation are running, so July is the honest planning assumption for most of them. Nights are cold: Tuolumne at 8,600 feet can drop into the 30s in July, so bring a sleeping bag rated to at least 20 degrees."
+        "a": "After the Tioga Road opens, and then on each campground's own schedule. In 2026 the road opened May 15, the earliest in 16 years, and the campgrounds opened between May 21 (Crane Flat) and July 2 (White Wolf), with Tuolumne Meadows on July 1. Dates move every year. Average lows at Tuolumne Meadows run 32 to 39 degrees from June through September, so bring a sleeping bag rated to 20 degrees."
+      },
+      {
+        "q": "Can I camp in Yosemite without a reservation?",
+        "a": "Only in the off-season. Camp 4, Hodgdon Meadow and Wawona run first-come, first-served from late October to early April (Camp 4 usually until sometime in April), and they can fill on holidays and weekends. In peak season the Park Service says not to arrive without a reservation. You may not sleep in a car or RV anywhere except a campsite you are registered for. Call 209/372-0266 for current status."
       }
     ]
   },
@@ -1904,27 +1908,27 @@
     "faq": [
       {
         "q": "Do I need a reservation to visit Yosemite in 2026?",
-        "a": "No. The National Park Service announced on February 18, 2026 that the entrance reservation system would not return in 2026. You still pay the standard entrance fee, but no timed-entry ticket is required, and the February firefall viewing also ran without reservations this year."
+        "a": "No. The Park Service stopped using a timed reservation system for 2026, and its entrance reservations page, updated February 18, says so. You still pay the entrance fee, but no timed-entry ticket is required, and the February firefall weekends ran without reservations too."
       },
       {
         "q": "How busy will Yosemite be in 2026?",
-        "a": "Very. Through July the park logged 2,657,602 visits, 8 percent ahead of 2025, and July alone came in at 654,356. Projecting the rest of the year puts 2026 at roughly 4.6 to 4.7 million visits, which would be the second-busiest year on record behind 2016."
+        "a": "Very. Through July the park logged 2,657,602 visits, 8 percent ahead of 2025, and June 2026 was the second-busiest June on record. If August through December match 2025, the year ends near 4.5 million visits; at this year's pace, near 4.6 million. Either would be the second-busiest year on record, behind 2016. That is the site's projection, not a Park Service number."
       },
       {
         "q": "What is the best time to visit Yosemite in 2026?",
-        "a": "Midweek from September 8 to 30 is the best remaining window: summer conditions, Tioga Road open, and crowd pressure down about a third from July, with the Mist Trail closed Monday through Thursday for repairs. Midweek October is nearly as good, and early-November weekdays are quieter still."
+        "a": "Midweek in October is the best window left: the Park Service's 15-year average for October is about 38 percent below July, and Tioga Road is usually open for most of the month. Early-November weekdays are quieter still, with short days. Check the conditions page first: the Mist Trail is partly closed on weekdays through October."
       },
       {
         "q": "What time of day should I enter Yosemite to avoid traffic?",
-        "a": "Be through the gate before 8 a.m., before 7 on summer weekends, or arrive after 4 p.m. The busiest entry window runs roughly 9 a.m. to 2 p.m., and the park's August 2026 report put summer Saturday waits at about 30 minutes on average and about an hour at worst. Text ynptraffic to 333111 for the park's live updates."
+        "a": "Be through the gate before 8 a.m., before 7 on summer weekends, or arrive after 4 p.m. Valley parking has filled as early as 8 a.m. on peak days. In the Park Service's August survey, 91 percent of visitors had no entrance delay or waited less than 15 minutes. Text YNPTRAFFIC to 333111 for the park's live parking and traffic updates."
       },
       {
         "q": "What are the worst days to visit Yosemite in 2026?",
-        "a": "July 3 to 5 (July 4 falls on a Saturday), any summer Saturday arriving after 8:30 a.m., Labor Day weekend, and the holiday week in late December. Memorial Day weekend 2026 produced entrance waits of more than an hour and a full Curry Village lot a little after 8 a.m."
+        "a": "The Park Service counts only two days of significant delays in 2026, both over Memorial Day weekend, and says Juneteenth and July 4 ran without significant delays. Summer Saturdays arriving after 8:30 a.m., Labor Day weekend and the holiday week in late December are still the days to plan around."
       },
       {
         "q": "What was Yosemite's busiest year ever?",
-        "a": "2016, with just over 5 million visits. 2025 was the fourth-busiest at about 4.28 million, and 2026 is pacing to land second at roughly 4.6 to 4.7 million."
+        "a": "2016, with 5,028,868 recreation visits. 2025 was the fourth-busiest at 4,278,413, behind 2016, 2019 and 2017, and 2026 is on pace to land second at roughly 4.5 to 4.6 million."
       }
     ]
   },
@@ -2638,23 +2642,31 @@
     "faq": [
       {
         "q": "Is Yosemite worth visiting if you don't hike?",
-        "a": "Absolutely. The most dramatic viewpoints, Tunnel View, El Capitan Meadow, Valley View, Glacier Point, and Olmsted Point, are all drive-up or involve short paved walks under half a mile. The Valley tram tour, Mariposa Grove tram, and in-park shuttle require no hiking."
+        "a": "Yes. Tunnel View, Valley View, El Capitan Meadow and Olmsted Point are roadside stops, and Glacier Point is a short paved path from a parking lot. Bridalveil Fall and Lower Yosemite Fall are short paved walks, the Mariposa Grove has a 0.3-mile level loop, and the free Valley shuttle and the Valley Floor Tour need no walking at all."
       },
       {
         "q": "What can you see in Yosemite without hiking?",
-        "a": "Tunnel View (drive-up), El Capitan and Yosemite Falls from roadside meadows, Bridalveil Fall (paved end to end), Lower Yosemite Fall loop (1-mile paved loop), Valley View (pull-out), Glacier Point overlook (drive-up), Olmsted Point (Tioga Road pull-out), and Mariposa Grove (tram tour available)."
+        "a": "El Capitan, Half Dome, Yosemite Falls and Cathedral Rocks from the Valley loop roads; Tunnel View and Valley View from the pavement; Bridalveil Fall on a 0.5-mile round-trip paved trail with about 80 feet of climb, whose western trail is wheelchair accessible; Lower Yosemite Fall on a 1-mile paved loop whose east side is wheelchair accessible (the fall is often dry from late July or August through October); Glacier Point by a short paved path from the parking lot; Olmsted Point from its parking area; and the Mariposa Grove on the 0.3-mile Big Trees Loop."
       },
       {
         "q": "Are there guided tours in Yosemite for non-hikers?",
-        "a": "Yes. The Yosemite Valley Floor Tour is a 2-hour open-air tram covering the main Valley viewpoints. Glacier Point bus tours run daily in summer. The Mariposa Grove tram offers a narrated circuit through the sequoia grove. All are operated by the park concessionaire, bookable at yosemite.com."
+        "a": "Yes. The Valley Floor Tour is a two-hour tour, led by a naturalist or ranger, on an open-air tram in the warm months and a heated bus in the cold ones, and it runs year-round, conditions permitting. The Glacier Point Tour is four hours and runs while Glacier Point Road is open. The Grand Tour is about eight hours, with lunch, and combines the Valley, Glacier Point and the Mariposa Grove. All leave from Yosemite Valley Lodge and book through the concessioner at travelyosemite.com or the Lodge front desk. The Mariposa Grove has no tram; a free shuttle runs from the Welcome Plaza while the road is open."
       },
       {
         "q": "Is Glacier Point accessible without hiking?",
-        "a": "Yes. Glacier Point is a drive-up viewpoint with a paved overlook and restrooms. No hiking is required to reach the main viewpoint. In summer, a bus tour from the Valley also serves it for those who do not want to drive the narrow mountain road."
+        "a": "Yes. Glacier Point Road is open to cars from about late May through October or November, and the drive from the Valley takes about an hour. A short paved path leads from the parking lot to the overlook, and the Park Service lists it as wheelchair accessible; its older accessibility guide notes that some sections are steeper than an accessible grade. The Glacier Point Tour bus also goes there while the road is open."
       },
       {
         "q": "Can you visit Yosemite by bus or train?",
-        "a": "Yes. Amtrak's San Joaquin line runs to Merced, where YARTS buses make the 2-hour trip to Yosemite Valley. YARTS runs year-round on the Highway 140/Merced route. In summer, YARTS also connects Lee Vining and Mammoth Lakes to the Valley via Tioga Road."
+        "a": "Yes. Amtrak runs to Merced, where the YARTS Highway 140 bus leaves for Yosemite Valley year-round, about two and a half hours end to end. YARTS's Highway 41, Highway 120 and Highway 395 routes run in summer only. Budget for the park entrance fee, because the Park Service and YARTS disagree about whether the fare covers it."
+      },
+      {
+        "q": "Does the Yosemite Valley shuttle run in winter, and can it carry a wheelchair?",
+        "a": "The free Valley shuttle runs daily, year-round, from 7 a.m. to 10 p.m. Every bus has a wheelchair lift and tie-downs. The Park Service gives the maximum wheelchair size as 24 inches wide by 46 inches long."
+      },
+      {
+        "q": "Do I need a reservation to enter Yosemite?",
+        "a": "Not in 2026. The Park Service says a reservation is not required to enter. You pay the entrance fee, $35 a vehicle for seven days, at the gate. Valley parking is the limit: the Park Service says lots are usually full after 9 a.m."
       }
     ]
   },

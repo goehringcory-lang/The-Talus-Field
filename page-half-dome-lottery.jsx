@@ -182,7 +182,7 @@ function HalfDomeLotteryPage({ go }) {
           crumbs={[{ label: "Home", route: "home" }, { label: "Half Dome lottery" }]}
           eyebrow="PERMIT SEASON · APPLICATIONS OPEN IN MARCH"
           title="The Half Dome lottery"
-          intro="Most people think there is one Half Dome lottery, that it happens in March, and that losing it ends the year. All three are wrong. There are two lotteries, the second one runs every day the cables are up, and the strategy for each is different. This page is the honest version: the calendar, the published odds, the strategy, and what to do when the answer is no."
+          intro="There are two Half Dome lotteries, not one. The first is in March. The second runs every day the cables are up, so losing in March does not end your year. This page has the calendar, the published odds, the strategy for each lottery, and what to do when the answer is no."
           actions={<React.Fragment>
             <HomeLink go={go} location="half_dome_head" className="hp-button" href="#hd-lotteries">The two lotteries <span>↓</span></HomeLink>
             <HomeLink go={go} location="half_dome_head" className="hp-link" href="#hd-odds">The published odds ↓</HomeLink>
@@ -207,6 +207,16 @@ function HalfDomeLotteryPage({ go }) {
           ))}
         </nav>
       </div>
+
+      <section className="hp-wrap hp-section hd-short" aria-labelledby="hd-short-h">
+        <HpHeading eyebrow="THE SHORT VERSION" title="Four things to know before you apply" id="hd-short-h" />
+        <ul className="ff-rules hd-short__list">
+          <li><EventIcon name="ticket" size={26} /><strong>Two lotteries</strong><p>One in March, and one every day the cables are up. Enter both.</p></li>
+          <li><EventIcon name="users" size={26} /><strong>300 hikers a day</strong><p>About 225 are day hikers drawn by lottery. The other 75 are backpackers.</p></li>
+          <li><EventIcon name="calendar" size={26} /><strong>Weekdays win</strong><p>Saturday is the hardest day. Late-season weekdays, from late August to October, have the best odds.</p></li>
+          <li className="is-warn"><EventIcon name="no" size={26} /><strong>No permit, no summit</strong><p>Rangers check permits at the base of the subdome. Without one you turn around.</p></li>
+        </ul>
+      </section>
 
       <section className="hp-wrap hp-section" id="hd-season" tabIndex={-1}>
         <div className="ff-split">
@@ -273,7 +283,7 @@ function HalfDomeLotteryPage({ go }) {
         <HpHeading eyebrow="WHAT THE PRESEASON APPLICATION ASKS FOR" title="Four fields, and each one can sink you" />
         <ul className="ff-rules hd-fields">
           <li><EventIcon name="users" size={26} /><strong>Group size</strong><p>Up to six people on one application. Everyone hikes together, and the permit holder or the alternate has to be at the checkpoint with the whole group.</p></li>
-          <li><EventIcon name="calendar" size={26} /><strong>Date choices</strong><p>Up to seven dates or date ranges, ranked. The system tries your highest-preference date first and works down the list, so the order genuinely matters.</p></li>
+          <li><EventIcon name="calendar" size={26} /><strong>Date choices</strong><p>Up to seven dates or date ranges, ranked. The system tries your highest-preference date first and works down the list, so the order matters.</p></li>
           <li><EventIcon name="id" size={26} /><strong>Permit holder and alternate</strong><p>Name both. One of the two must be physically present with a photo ID matching the permit. An alternate can only be added during the application window, and they have to hold a Recreation.gov account and accept the role within 72 hours of being added. Miss that and they are not on the permit. Once the window closes, neither name can be changed.</p></li>
           <li className="is-warn"><EventIcon name="alert" size={26} /><strong>One application per person</strong><p>Each person can appear as holder or alternate on exactly one preseason application. Show up on two and all of them are cancelled without a refund.</p></li>
         </ul>
@@ -358,11 +368,11 @@ function HalfDomeLotteryPage({ go }) {
       <section className="hp-wrap hp-section" id="hd-lose" tabIndex={-1}>
         <HpHeading eyebrow="IF YOU DO NOT WIN" title="The year is not over" />
         <ul className="ff-rules hd-lose">
-          <li><EventIcon name="ticket" size={26} /><strong>Run the daily lottery every day of the trip</strong><p>Each application is an independent chance, and five eligible weekday mornings is a genuinely good position to be in.</p></li>
+          <li><EventIcon name="ticket" size={26} /><strong>Run the daily lottery every day of the trip</strong><p>Each application is an independent chance, and five eligible weekday mornings is a good position to be in.</p></li>
           <li className="is-no"><EventIcon name="no" size={26} /><strong>Do not go anyway</strong><p>Rangers are at the checkpoint, they check every group, and the citation follows you home.</p></li>
           <li><EventIcon name="bed" size={26} /><strong>Consider the backpacker route</strong><p>A wilderness permit for a trip through Little Yosemite Valley can carry a Half Dome add-on from an allocation the day-hiker lottery does not touch. It means an overnight, a bear canister and wilderness gear, but it is a legitimate path to the cables. Apply through <HomeLink go={go} location="half_dome_lose" href="/articles/yosemite-wilderness-permits-guide">the wilderness permit system</HomeLink>, not this lottery.</p></li>
           <li><EventIcon name="mountain" size={26} /><strong>Hike Clouds Rest instead</strong><p>The summit is 9,926 feet, more than a thousand feet higher than Half Dome, with no permit required and bigger views in every direction. On a Tuesday in June you might have it to yourself.</p></li>
-          <li><EventIcon name="calendar" size={26} /><strong>Come back late season, midweek</strong><p>The best daily lottery odds of the year are weekdays in September and early October: the cables are still up, the crowds have thinned and the fall light is extraordinary.</p></li>
+          <li><EventIcon name="calendar" size={26} /><strong>Come back late season, midweek</strong><p>The best daily lottery odds of the year are weekdays in September and early October: the cables are still up and the crowds have thinned.</p></li>
         </ul>
       </section>
 

@@ -196,7 +196,7 @@ function HalfDomeLotteryPage({
     }],
     eyebrow: "PERMIT SEASON · APPLICATIONS OPEN IN MARCH",
     title: "The Half Dome lottery",
-    intro: "Most people think there is one Half Dome lottery, that it happens in March, and that losing it ends the year. All three are wrong. There are two lotteries, the second one runs every day the cables are up, and the strategy for each is different. This page is the honest version: the calendar, the published odds, the strategy, and what to do when the answer is no.",
+    intro: "There are two Half Dome lotteries, not one. The first is in March. The second runs every day the cables are up, so losing in March does not end your year. This page has the calendar, the published odds, the strategy for each lottery, and what to do when the answer is no.",
     actions: React.createElement(React.Fragment, null, React.createElement(HomeLink, {
       go: go,
       location: "half_dome_head",
@@ -231,6 +231,29 @@ function HalfDomeLotteryPage({
     location: "half_dome_toc",
     href: href
   }, label)))), React.createElement("section", {
+    className: "hp-wrap hp-section hd-short",
+    "aria-labelledby": "hd-short-h"
+  }, React.createElement(HpHeading, {
+    eyebrow: "THE SHORT VERSION",
+    title: "Four things to know before you apply",
+    id: "hd-short-h"
+  }), React.createElement("ul", {
+    className: "ff-rules hd-short__list"
+  }, React.createElement("li", null, React.createElement(EventIcon, {
+    name: "ticket",
+    size: 26
+  }), React.createElement("strong", null, "Two lotteries"), React.createElement("p", null, "One in March, and one every day the cables are up. Enter both.")), React.createElement("li", null, React.createElement(EventIcon, {
+    name: "users",
+    size: 26
+  }), React.createElement("strong", null, "300 hikers a day"), React.createElement("p", null, "About 225 are day hikers drawn by lottery. The other 75 are backpackers.")), React.createElement("li", null, React.createElement(EventIcon, {
+    name: "calendar",
+    size: 26
+  }), React.createElement("strong", null, "Weekdays win"), React.createElement("p", null, "Saturday is the hardest day. Late-season weekdays, from late August to October, have the best odds.")), React.createElement("li", {
+    className: "is-warn"
+  }, React.createElement(EventIcon, {
+    name: "no",
+    size: 26
+  }), React.createElement("strong", null, "No permit, no summit"), React.createElement("p", null, "Rangers check permits at the base of the subdome. Without one you turn around.")))), React.createElement("section", {
     className: "hp-wrap hp-section",
     id: "hd-season",
     tabIndex: -1
@@ -306,7 +329,7 @@ function HalfDomeLotteryPage({
   }), React.createElement("strong", null, "Group size"), React.createElement("p", null, "Up to six people on one application. Everyone hikes together, and the permit holder or the alternate has to be at the checkpoint with the whole group.")), React.createElement("li", null, React.createElement(EventIcon, {
     name: "calendar",
     size: 26
-  }), React.createElement("strong", null, "Date choices"), React.createElement("p", null, "Up to seven dates or date ranges, ranked. The system tries your highest-preference date first and works down the list, so the order genuinely matters.")), React.createElement("li", null, React.createElement(EventIcon, {
+  }), React.createElement("strong", null, "Date choices"), React.createElement("p", null, "Up to seven dates or date ranges, ranked. The system tries your highest-preference date first and works down the list, so the order matters.")), React.createElement("li", null, React.createElement(EventIcon, {
     name: "id",
     size: 26
   }), React.createElement("strong", null, "Permit holder and alternate"), React.createElement("p", null, "Name both. One of the two must be physically present with a photo ID matching the permit. An alternate can only be added during the application window, and they have to hold a Recreation.gov account and accept the role within 72 hours of being added. Miss that and they are not on the permit. Once the window closes, neither name can be changed.")), React.createElement("li", {
@@ -386,7 +409,7 @@ function HalfDomeLotteryPage({
   }, React.createElement("li", null, React.createElement(EventIcon, {
     name: "ticket",
     size: 26
-  }), React.createElement("strong", null, "Run the daily lottery every day of the trip"), React.createElement("p", null, "Each application is an independent chance, and five eligible weekday mornings is a genuinely good position to be in.")), React.createElement("li", {
+  }), React.createElement("strong", null, "Run the daily lottery every day of the trip"), React.createElement("p", null, "Each application is an independent chance, and five eligible weekday mornings is a good position to be in.")), React.createElement("li", {
     className: "is-no"
   }, React.createElement(EventIcon, {
     name: "no",
@@ -404,7 +427,7 @@ function HalfDomeLotteryPage({
   }), React.createElement("strong", null, "Hike Clouds Rest instead"), React.createElement("p", null, "The summit is 9,926 feet, more than a thousand feet higher than Half Dome, with no permit required and bigger views in every direction. On a Tuesday in June you might have it to yourself.")), React.createElement("li", null, React.createElement(EventIcon, {
     name: "calendar",
     size: 26
-  }), React.createElement("strong", null, "Come back late season, midweek"), React.createElement("p", null, "The best daily lottery odds of the year are weekdays in September and early October: the cables are still up, the crowds have thinned and the fall light is extraordinary.")))), React.createElement("section", {
+  }), React.createElement("strong", null, "Come back late season, midweek"), React.createElement("p", null, "The best daily lottery odds of the year are weekdays in September and early October: the cables are still up and the crowds have thinned.")))), React.createElement("section", {
     className: "ff-band",
     id: "hd-fine-print",
     tabIndex: -1

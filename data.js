@@ -152,12 +152,12 @@ window.BODY_VERSIONS = {
   "yosemite-accessibility-guide": 5,
   "pets-in-yosemite": 6,
   "yosemite-ranger-programs": 5,
-  "yosemite-camping-complete-guide": 12,
+  "yosemite-camping-complete-guide": 13,
   "where-to-propose-in-yosemite": 3,
   "is-bear-spray-allowed-in-yosemite": 3,
   "yosemite-bears-safety-guide": 123,
   "yosemite-heat-safety-guide": 8,
-  "when-to-visit-yosemite": 6,
+  "when-to-visit-yosemite": 7,
   "yosemite-trip-cost-budget": 12,
   "yosemite-in-september-2026": 3,
   "yosemite-in-june": 7,
@@ -175,7 +175,7 @@ window.BODY_VERSIONS = {
   "yosemite-during-smoke-season": 78,
   "yosemite-gateway-towns-compared": 102,
   "pack-your-car-for-yosemite": 86,
-  "yosemite-for-non-hikers": 82,
+  "yosemite-for-non-hikers": 83,
   "yosemite-stargazing-where-to-look-up": 83,
   "hetch-hetchy-the-other-yosemite-valley": 79,
   "what-is-a-talus-field": 4,
@@ -1402,15 +1402,23 @@ window.ARTICLES = [
     aff: true,
     cat: "planning",
     title: "Camping in Yosemite: The Dirt on All 13 Campgrounds",
-    dek: "Thirteen campgrounds, three booking windows, and a bear box you will come to respect. Twenty years of sleeping on this ground: how to get a site when they vanish in minutes, which campgrounds are worth it, and where to go when everything is full.",
+    dek: "Thirteen campgrounds, four booking windows, and a bear box you will come to respect. Twenty years of sleeping on this ground: how to get a site when they vanish in minutes, which campgrounds are worth it, and where to go when everything is full.",
     seoDek: "Camping in Yosemite in 2026? All 13 campgrounds, reservation tips, cancellation tricks, and bear safety from a park naturalist who lives here.",
     date: "July 10, 2026",
     isoDate: "2026-07-10",
-    isoModified: "2026-08-07",
-    read: "21 min",
+    isoModified: "2026-10-01",
+    read: "24 min",
     placeholder: "A hand-colored postcard of a tent camp on the meadow floor beneath Sentinel Rock in Yosemite Valley",
     image: "img/camp-ahwahnee-sentinel-rock.jpg",
     credit: "Detroit Publishing Co. postcard, early 1900s, via the New York Public Library. Public domain.",
+    // The /firefall layout for an article (page-article.jsx), as on the dining
+    // piece: a full-width photo cover, and a body that lays out its own
+    // sections.
+    feature: {
+      eyebrow: "13 CAMPGROUNDS · BOOKING WINDOWS · THE BEAR LOCKER · WHEN IT IS FULL",
+      focus: "50% 60%",
+      actions: [["#sec-0-yosemite-camping-reservations-the-realit","How to book a site"], ["#all-13-campgrounds","All 13, on one map"]],
+    },
   },
   {
     slug: "where-to-propose-in-yosemite",
@@ -1474,15 +1482,23 @@ window.ARTICLES = [
     slug: "when-to-visit-yosemite",
     cat: "planning",
     title: "Best Time to Visit Yosemite in 2026, by the Traffic Data",
-    dek: "The reservation system is gone and the park is pacing toward its second-busiest year ever. A decade of NPS visitation data, a month-by-month forecast for the rest of 2026, and the days that still work.",
-    seoDek: "Yosemite has no reservation system in 2026 and is pacing toward its second-busiest year ever. NPS data, a month-by-month forecast, and the best days to visit.",
+    dek: "The reservation system is gone and the park is pacing toward its second-busiest year ever. A decade of NPS visitation data, a crowd calendar built on the Park Service's own monthly averages, and the hours that still work.",
+    seoDek: "Yosemite has no reservation system in 2026 and is pacing toward its second-busiest year ever. NPS visitation data, a month-by-month crowd calendar, and the best days to visit.",
     date: "June 11, 2026",
     isoDate: "2026-06-11",
-    isoModified: "2026-09-02",
-    read: "11 min",
+    isoModified: "2026-10-01",
+    read: "12 min",
     placeholder: "Vernal Fall at high water in late spring, the start of the park's heaviest months",
     image: "img/vernal-fall-high-water.jpg",
     credit: "Photo: Brandon Raines / Pexels",
+    // The /firefall layout for an article (page-article.jsx), as on the dining
+    // piece: a full-width photo cover, and a body that lays out its own
+    // sections. The two buttons jump to the crowd calendar and the gate clock.
+    feature: {
+      eyebrow: "PLANNING · CROWDS · THE DATA",
+      focus: "50% 40%",
+      actions: [["#sec-4-the-crowd-calendar", "Pick your month"], ["#sec-5-the-clock-beats-the-calendar", "Beat the gate"]],
+    },
   },
   {
     slug: "yosemite-trip-cost-budget",
@@ -1855,11 +1871,19 @@ window.ARTICLES = [
     seoDek: "Yosemite is built for non-hikers more thoroughly than almost any national park. A complete visit without ever putting on hiking boots. Plan one.",
     date: "April 26, 2026",
     isoDate: "2026-04-26",
-    isoModified: "2026-08-06",
-    read: "8 min",
+    isoModified: "2026-10-01",
+    read: "12 min",
     placeholder: "Tunnel View: El Capitan, Bridalveil Fall and Half Dome from the overlook",
     image: "img/tunnel-view-valley-spring.jpg",
     credit: "Photo: Kyle D / Wikimedia Commons (public domain)",
+    // The /firefall layout for an article (page-article.jsx), as on the dining
+    // piece: a full-width photo cover, and a body that lays out its own
+    // sections.
+    feature: {
+      eyebrow: "YOSEMITE VALLEY · GLACIER POINT · MARIPOSA GROVE · NO TRAIL NEEDED",
+      focus: "50% 55%",
+      actions: [["#sec-3-the-valley-by-car-what-you-actually-stop","The Valley loop"], ["#nh-walks","How far each walk is"]],
+    },
   },
   {
     slug: "pack-your-car-for-yosemite",
