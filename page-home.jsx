@@ -69,12 +69,22 @@ function HomePage({ go }) {
   </section>
   <HpGuideBand go={go} location="home_content" id="field-guide" title={<>You’ve done the reading.<br />Now take the guide.</>} intro="The practical side of a great Yosemite trip, all in your pocket. Download before you go. Keep exploring when the signal disappears." />
   <HpLetter id="home-newsletter" eyebrow="A LITTLE YOSEMITE IN YOUR INBOX" title={<>The trip starts long<br />before the trailhead.</>} heading="The Sunday Letter" blurb="Know what’s open, what’s booking up, and what’s worth your time. One letter a week, from inside the park." location="home_newsletter" tag="home" />
+  {/* The six most-sought pages, picked from Search Console (the three months
+      to October 1, 2026) and the affiliate markup each page carries, not from
+      the catalog: gateway towns (6,291 impressions, 64 clicks), the Half Dome
+      lottery (5,069 with the retired dated slug), camping, non-hikers and the
+      crowd forecast (each about 1,500), and where to stay, the in-park lodging
+      page. Five of the six carry disclosed lodging links. Hand-written
+      on purpose, like the rest of the page; re-curate from a fresh export. */}
   <section className="hp-journal hp-wrap hp-section">
-    <HpHeading go={go} location="home_content" eyebrow="GO A LITTLE DEEPER" title="Good trips begin with curiosity." link={{ href: "/articles", label: "Explore the journal ↗" }} />
+    <HpHeading go={go} location="home_content" eyebrow="WHAT VISITORS ASK FIRST" title="The questions that bring people here." link={{ href: "/articles", label: "Explore the journal ↗" }} />
     <div className="hp-journal-grid">
-      <HpCard go={go} location="home_content" href="/articles/yosemite-in-fall" image="/img/tunnel-view-autumn-aniket-deole.jpg" alt="Autumn light over Yosemite" eyebrow="THE SEASONS" title="A quieter kind of Yosemite." text="A guide to visiting in fall. ↗" />
-      <HpCard go={go} location="home_content" href="/articles/where-to-eat-yosemite" image="/img/ahwahnee-hotel.jpg" alt="The Ahwahnee hotel" eyebrow="BETWEEN ADVENTURES" title="A good day deserves a good meal." text="Where to eat in and around the park. ↗" />
-      <HpCard go={go} location="home_content" href="/articles/tuolumne-meadows-in-a-day" image="/img/tuolumne-meadows-river-basiciggy.jpg" alt="River winding through Tuolumne Meadows" eyebrow="BEYOND THE VALLEY" title="Leave room for the high country." text="A day in Tuolumne Meadows. ↗" />
+      <HpCard go={go} location="home_content" href="/articles/yosemite-gateway-towns-compared" image="/img/mariposa-mural.jpg" alt="A mural in Mariposa, the gateway town on Highway 140" eyebrow="WHERE TO STAY" title="Mariposa, Oakhurst or Groveland?" text="The gateway towns compared, drive by drive. ↗" />
+      <HpCard go={go} location="home_content" href="/half-dome-lottery" image="/img/half-dome-alpenglow-madhu-shesharam.jpg" alt="Half Dome in alpenglow" eyebrow="PERMITS" title="The Half Dome lottery, decoded." text="Both lotteries, the odds, and when to apply. ↗" />
+      <HpCard go={go} location="home_content" href="/articles/yosemite-camping-complete-guide" image="/img/camp-ahwahnee-sentinel-rock.jpg" alt="A hand-colored postcard of a tent camp beneath Sentinel Rock" eyebrow="CAMPING" title="Thirteen campgrounds, one guide." text="How to get a site, and where to go when they are full. ↗" />
+      <HpCard go={go} location="home_content" href="/articles/when-to-visit-yosemite" image="/img/vernal-fall-high-water.jpg" alt="Vernal Fall at high water in late spring" eyebrow="WHEN TO GO" title="The best time to visit, by the data." text="A month-by-month crowd forecast. ↗" />
+      <HpCard go={go} location="home_content" href="/articles/yosemite-for-non-hikers" image="/img/tunnel-view-valley-spring.jpg" alt="Tunnel View: El Capitan, Bridalveil Fall and Half Dome" eyebrow="NO HIKING REQUIRED" title="The whole park, without a trail." text="A complete visit for non-hikers. ↗" />
+      <HpCard go={go} location="home_content" href="/articles/where-to-stay-in-yosemite" image="/img/ahwahnee-hotel.jpg" alt="The Ahwahnee hotel" eyebrow="INSIDE THE PARK" title="Every bed inside the boundary." text="In-park lodging, ranked, and how booking works. ↗" />
     </div>
   </section>
     </div>

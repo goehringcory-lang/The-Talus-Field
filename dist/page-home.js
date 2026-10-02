@@ -100,8 +100,8 @@ function HomePage({
   }, React.createElement(HpHeading, {
     go: go,
     location: "home_content",
-    eyebrow: "GO A LITTLE DEEPER",
-    title: "Good trips begin with curiosity.",
+    eyebrow: "WHAT VISITORS ASK FIRST",
+    title: "The questions that bring people here.",
     link: {
       href: "/articles",
       label: "Explore the journal ↗"
@@ -111,30 +111,57 @@ function HomePage({
   }, React.createElement(HpCard, {
     go: go,
     location: "home_content",
-    href: "/articles/yosemite-in-fall",
-    image: "/img/tunnel-view-autumn-aniket-deole.jpg",
-    alt: "Autumn light over Yosemite",
-    eyebrow: "THE SEASONS",
-    title: "A quieter kind of Yosemite.",
-    text: "A guide to visiting in fall. ↗"
+    href: "/articles/yosemite-gateway-towns-compared",
+    image: "/img/mariposa-mural.jpg",
+    alt: "A mural in Mariposa, the gateway town on Highway 140",
+    eyebrow: "WHERE TO STAY",
+    title: "Mariposa, Oakhurst or Groveland?",
+    text: "The gateway towns compared, drive by drive. ↗"
   }), React.createElement(HpCard, {
     go: go,
     location: "home_content",
-    href: "/articles/where-to-eat-yosemite",
+    href: "/half-dome-lottery",
+    image: "/img/half-dome-alpenglow-madhu-shesharam.jpg",
+    alt: "Half Dome in alpenglow",
+    eyebrow: "PERMITS",
+    title: "The Half Dome lottery, decoded.",
+    text: "Both lotteries, the odds, and when to apply. ↗"
+  }), React.createElement(HpCard, {
+    go: go,
+    location: "home_content",
+    href: "/articles/yosemite-camping-complete-guide",
+    image: "/img/camp-ahwahnee-sentinel-rock.jpg",
+    alt: "A hand-colored postcard of a tent camp beneath Sentinel Rock",
+    eyebrow: "CAMPING",
+    title: "Thirteen campgrounds, one guide.",
+    text: "How to get a site, and where to go when they are full. ↗"
+  }), React.createElement(HpCard, {
+    go: go,
+    location: "home_content",
+    href: "/articles/when-to-visit-yosemite",
+    image: "/img/vernal-fall-high-water.jpg",
+    alt: "Vernal Fall at high water in late spring",
+    eyebrow: "WHEN TO GO",
+    title: "The best time to visit, by the data.",
+    text: "A month-by-month crowd forecast. ↗"
+  }), React.createElement(HpCard, {
+    go: go,
+    location: "home_content",
+    href: "/articles/yosemite-for-non-hikers",
+    image: "/img/tunnel-view-valley-spring.jpg",
+    alt: "Tunnel View: El Capitan, Bridalveil Fall and Half Dome",
+    eyebrow: "NO HIKING REQUIRED",
+    title: "The whole park, without a trail.",
+    text: "A complete visit for non-hikers. ↗"
+  }), React.createElement(HpCard, {
+    go: go,
+    location: "home_content",
+    href: "/articles/where-to-stay-in-yosemite",
     image: "/img/ahwahnee-hotel.jpg",
     alt: "The Ahwahnee hotel",
-    eyebrow: "BETWEEN ADVENTURES",
-    title: "A good day deserves a good meal.",
-    text: "Where to eat in and around the park. ↗"
-  }), React.createElement(HpCard, {
-    go: go,
-    location: "home_content",
-    href: "/articles/tuolumne-meadows-in-a-day",
-    image: "/img/tuolumne-meadows-river-basiciggy.jpg",
-    alt: "River winding through Tuolumne Meadows",
-    eyebrow: "BEYOND THE VALLEY",
-    title: "Leave room for the high country.",
-    text: "A day in Tuolumne Meadows. ↗"
+    eyebrow: "INSIDE THE PARK",
+    title: "Every bed inside the boundary.",
+    text: "In-park lodging, ranked, and how booking works. ↗"
   }))));
 }
 window.HomePage = HomePage;
