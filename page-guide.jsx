@@ -728,9 +728,10 @@ function GuideWalkthrough() {
 
 // The 3D map, the pane under the hero (September 2026, after PRs #466 to
 // #479 shipped it). The stills are real captures of the shipping app. The
-// film is the app's own terrain with nothing on it but the trails: no pins,
-// each line drawn from the guide's own track file and grown from where it
-// meets the last (scripts/record-trail-flythrough.mjs, frame by frame).
+// film is the app's own terrain with nothing on it but the trails, each line
+// drawn from the guide's own track file and grown from where it meets the
+// last, and a pin with the hike's title from hikes.ts where each story line
+// ends (scripts/record-trail-flythrough.mjs, frame by frame).
 // Every sentence restates what the map's own Information pane says
 // (apps/guide/src/routes/Map.tsx) or what the offline manifest measures
 // (apps/guide/src/map/tiles.generated.ts); re-read both before editing a
@@ -829,11 +830,11 @@ function GuideMapFilm() {
       preload="none"
       width="1280"
       height="720"
-      poster="/img/guide/map-3d-trails.v1-poster.jpg"
-      aria-label="A flight over the Field Guide's 3D map with no pins, in which the trails draw themselves onto the terrain: the Upper Yosemite Fall trail climbs the north wall in red, the Valley Loop rounds the floor in amber, the Four Mile Trail climbs to Glacier Point, the Panorama and Pohono Trails run out from it, the line reaches Half Dome, and the view lifts to every trail in the park"
+      poster="/img/guide/map-3d-trails.v2-poster.jpg"
+      aria-label="A flight over the Field Guide's 3D map in which the trails draw themselves onto the terrain, each marked with a labelled pin where it ends: the Upper Yosemite Fall trail climbs the north wall in red, the Valley Loop rounds the floor in amber, the Four Mile Trail climbs to Glacier Point, the Panorama and Pohono Trails run out from it, the line reaches Half Dome, and the view lifts to every trail in the park"
     >
-      <source src="/img/guide/map-3d-trails.v1.webm" type="video/webm" />
-      <source src="/img/guide/map-3d-trails.v1.mp4" type="video/mp4" />
+      <source src="/img/guide/map-3d-trails.v2.webm" type="video/webm" />
+      <source src="/img/guide/map-3d-trails.v2.mp4" type="video/mp4" />
     </video>
   );
 }
@@ -854,7 +855,7 @@ function GuideMap3D() {
       <figure className="guide-map3d__film">
         <GuideMapFilm />
         <figcaption>
-          <span><b>NO PINS, JUST THE TRAILS</b> Camp 4 to Half Dome, then the rest of the park. Each line is drawn from the guide's own track file onto the map's terrain, frame by frame.</span>
+          <span><b>THE TRAILS, DRAWN ON</b> Camp 4 to Half Dome, then the rest of the park. Each line is drawn from the guide's own track file onto the map's terrain, frame by frame, and pinned with its name where it ends.</span>
           <span>Map data: OpenStreetMap, Protomaps, USGS 3DEP</span>
         </figcaption>
       </figure>
