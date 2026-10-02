@@ -92,6 +92,13 @@ self.addEventListener('install', (event) => {
             await shell.put(url, res)
           }),
         )
+        // The deployment can change between sw.js and index.html fetches.
+        // Demand the shell's referenced entry chunks in THIS cache: activate
+        // removes old shell caches, so a hit there cannot make this install safe.
+        const html = await (await shell.match('/index.html')).text()
+        if (!(await shellAssetsCached(html, shell))) {
+          throw new Error('shell precache: HTML and build assets do not match')
+        }
       } catch (err) {
         // A failed install must not leave a half-filled cache behind: the
         // browser retries the install later with the same VERSION, and pruning
@@ -222,11 +229,11 @@ async function purgeStaleMapTiles() {
 // chunks are nowhere yet (the first visits after a deploy, served by the OLD
 // worker while the new one is still installing) must not replace a coherent
 // HTML+chunks pairing.
-async function shellAssetsCached(html) {
+async function shellAssetsCached(html, cache = caches) {
   const refs = html.match(/\/assets\/[^"']+\.(?:js|css)/g)
   if (!refs) return true
   for (const url of new Set(refs)) {
-    if (!(await caches.match(url))) return false
+    if (!(await cache.match(url))) return false
   }
   return true
 }
@@ -504,6 +511,9 @@ self.addEventListener('fetch', (event) => {
       (async () => {
         try {
           const fresh = await fetchWithDeadline(request, NAVIGATE_TIMEOUT_MS)
+          // A reachable server can still be unavailable. Treat a 5xx like
+          // a network failure so the saved guide opens during an outage.
+          if (fresh.status >= 500) throw new Error('navigation unavailable')
           // Only cache successful HTML shells. A 5xx/maintenance page would
           // poison every later offline launch, and a same-origin navigation
           // can be a non-HTML document too ("open image in new tab" on a

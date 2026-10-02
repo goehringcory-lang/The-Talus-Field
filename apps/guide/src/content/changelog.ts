@@ -19,6 +19,13 @@ export type ChangelogEntryT = z.infer<typeof ChangelogEntry>
 
 const seed: ChangelogEntryT[] = [
   {
+    date: '2026-10-01',
+    lines: [
+      'Offline downloads check every saved file and ask for a re-download when something is missing. Interrupted map downloads no longer show as complete.',
+      'The saved guide opens even when the server is temporarily unavailable.',
+    ],
+  },
+  {
     date: '2026-09-30',
     lines: [
       'The 3D map pans, turns and tilts far more smoothly, and opens with the mountains already standing instead of rising a moment after the first view.',
