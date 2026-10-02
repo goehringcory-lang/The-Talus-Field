@@ -575,9 +575,9 @@ const seed: SecretSpotInput[] = [
     coord: [-119.64932, 37.71954], // verified 2026-09: OSM parking way 269906751 on Southside Dr east of the Bridalveil lot (way 220380918); its fixme notes the spaces are now on the south side
     timeBudgetMin: 10,
     teaser:
-      'The Bridalveil lot often fills. A few hundred yards farther into the Valley, the restoration finished in 2023 added formal roadside spaces on Southside Drive, and a trail runs beside the road back to the fall.',
+      'The Bridalveil lot often fills. A few hundred yards farther into the Valley, the rehabilitation completed in 2024 added formal roadside spaces on Southside Drive, and a trail runs beside the road back to the fall.',
     body:
-      'The Bridalveil Fall lot is large and it still fills. The restoration finished in 2023 rebuilt the trail and the lot and added roadside parking and turning lanes nearby. Continue a few hundred yards east into the Valley on Southside Drive and look for the formal spaces along the road; a trail runs parallel to the road back to the fall.\n\nUse the marked spaces only. The meadow edge along Southside Drive is vegetation, and a car parked on it is cited and can be towed.',
+      'The Bridalveil Fall lot is large and it still fills. The rehabilitation completed in 2024 rebuilt the trail and the lot and added roadside parking and turning lanes nearby. Continue a few hundred yards east into the Valley on Southside Drive and look for the formal spaces along the road; a trail runs parallel to the road back to the fall.\n\nUse the marked spaces only. The meadow edge along Southside Drive is vegetation, and a car parked on it is cited and can be towed.',
     photos: [{ src: '/photos/bridalveil-fall.jpg', caption: 'Bridalveil Fall, a short walk back from the roadside spaces.' }],
     swap:
       'If those are gone too, continue to the [El Capitan crossover](/stop/el-cap-crossover-parking), which holds out far longer, and see the fall on the way out. The fall itself is the [Bridalveil Fall](/stop/bridalveil-fall) stop.',
@@ -608,9 +608,9 @@ const seed: SecretSpotInput[] = [
     timeBudgetMin: 10,
     season: 'Glacier Point Road season',
     teaser:
-      'Older guides say McGurk Meadow has a few roadside spaces and send you down the road to park. The 2022 repaving built a lot at the trailhead for about forty cars, with pull-in spaces off the road.',
+      'Older guides say McGurk Meadow has a few roadside spaces and send you down the road to park. The road\'s rehabilitation formalized a lot at the trailhead, by hikers\' counts room for about forty cars.',
     body:
-      'For years the McGurk Meadow and Dewey Point trailhead had only a few roadside spaces, and guidebooks sent drivers to park farther down Glacier Point Road and walk back. The road\'s repaving in 2022 built a lot at the trailhead with room for about forty cars, laid out for pull-in parking so that no one backs into the travel lane.\n\nIgnore the old advice and park at the trailhead. It is the start of the easy walk to McGurk Meadow and the longer rim walk to Dewey Point, and McGurk is one of the two meadows the owl entry in this guide names for dusk.\n\nOvernight parking on Glacier Point Road beyond Badger Pass is prohibited from October 15 until the road reopens.',
+      'For years the McGurk Meadow and Dewey Point trailhead had only a few roadside spaces, and guidebooks sent drivers to park farther down Glacier Point Road and walk back. The road\'s rehabilitation, which closed it for the 2022 season, formalized the parking at the trailhead; hikers put the new lot at about forty cars, in pull-in spaces off the travel lane.\n\nIgnore the old advice and park at the trailhead. It is the start of the easy walk to McGurk Meadow and the longer rim walk to Dewey Point, and McGurk is one of the two meadows the owl entry in this guide names for dusk.\n\nOvernight parking on Glacier Point Road beyond Badger Pass is prohibited from October 15 until the road reopens.',
     photos: [{ src: '/photos/mcgurk-meadow.jpg', caption: 'McGurk Meadow, the short walk from the lot.' }],
     swap:
       'The walk is the [McGurk Meadow](/stop/mcgurk-meadow) entry. If the lot is full, [Mono Meadow](/stop/mono-meadow-lot) is a few miles on toward Glacier Point and rarely fills.',
@@ -659,9 +659,9 @@ const seed: SecretSpotInput[] = [
     timeBudgetMin: 10,
     season: 'Tioga Road season',
     teaser:
-      'The May Lake trailhead is not on Tioga Road. It is at the end of a 1.8-mile spur to Snow Flat, where the lot and the food lockers are; a map pin on the highway leaves you at the turnoff.',
+      'The May Lake trailhead is not on Tioga Road. It is at the end of a 1.75-mile spur to Snow Flat, where the lot and the food lockers are; a map pin on the highway leaves you at the turnoff.',
     body:
-      'Several maps and apps put "May Lake Trailhead" at the turnoff on Tioga Road. The trail starts 1.8 miles up the spur road to Snow Flat, which ends in the trailhead lot, where the food lockers are. Drive the spur; do not park at the turnoff.\n\nOvernight parking on Tioga Road and its lots is prohibited from October 15 until the road reopens.',
+      'Several maps and apps put "May Lake Trailhead" at the turnoff on Tioga Road. The trail starts 1.75 miles up the spur road to Snow Flat, which ends in the trailhead lot, where the food lockers are. Drive the spur; do not park at the turnoff.\n\nOvernight parking on Tioga Road and its lots is prohibited from October 15 until the road reopens.',
     photos: [{ src: '/photos/may-lake.jpg', caption: 'May Lake, the walk up from the lot.' }],
     swap:
       'The hike is the [May Lake](/stop/may-lake) entry. If the lot is full, [Olmsted Point](/stop/olmsted-point) is a few minutes east with a large lot.',
@@ -676,9 +676,9 @@ const seed: SecretSpotInput[] = [
     timeBudgetMin: 10,
     season: 'Tioga Road season',
     teaser:
-      'The old Cathedral Lakes advice was a shoulder pullout on Tioga Road. The Park Service now starts the hike from the Tuolumne Meadows Visitor Center lot, and roadside parking in Tuolumne ends October 15.',
+      'The old Cathedral Lakes advice was a shoulder pullout on Tioga Road. The Park Service now starts the hike at the Tuolumne Meadows Visitor Center, whose lot it lists as 30-minute parking, and roadside parking in Tuolumne is prohibited.',
     body:
-      'The Cathedral Lakes trail leaves Tioga Road west of Tuolumne Meadows, and for years hikers parked along the shoulder beside it. The Park Service now says to start from the Tuolumne Meadows Visitor Center parking. Its trailheads page also names the Wilderness Center and Dog Lake lots, both farther east, and either works if the visitor center lot is full.\n\nThe Tuolumne shuttle that once carried hikers from those lots to the trailhead runs in summer only. After October 15 there is no roadside parking in Tuolumne, and overnight parking on Tioga Road and its lots, trailheads included, ends the same day.',
+      'The Cathedral Lakes trail leaves Tioga Road west of Tuolumne Meadows, and for years hikers parked along the shoulder beside it. The Park Service now starts the hike from the Tuolumne Meadows Visitor Center parking, but its traffic page lists that lot as 30-minute parking and says roadside parking in Tuolumne is prohibited. For a six-hour hike, leave the car near Lembert Dome or in the large lot at the Dog Lake and Lyell Canyon trailhead, both farther east.\n\nThe Tuolumne shuttle that carries hikers between those lots and the trailhead runs in summer only. Overnight parking on Tioga Road and its lots, trailheads included, ends October 15.',
     photos: [{ src: '/photos/cathedral-lakes.jpg', caption: 'Cathedral Lakes, the reason for the lot.' }],
     swap:
       'The hike is the [Cathedral Lakes](/stop/cathedral-lakes) entry. For a sunset stop on the way back west, [Pothole Dome](/stop/pothole-dome-sunset) has its own pullout.',

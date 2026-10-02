@@ -6,6 +6,16 @@
     "seasonal": "2026-09-22"
   },
   "entries": {
+    "valley-view-pullout": "2026-10-02",
+    "tunnel-view-lots": "2026-10-02",
+    "bridalveil-roadside-parking": "2026-10-02",
+    "four-mile-trailhead-parking": "2026-10-02",
+    "mcgurk-meadow-lot": "2026-10-02",
+    "mono-meadow-lot": "2026-10-02",
+    "lukens-lake-trailhead": "2026-10-02",
+    "may-lake-snow-flat-lot": "2026-10-02",
+    "tuolumne-cathedral-parking": "2026-10-02",
+    "hetch-hetchy-day-lots": "2026-10-02",
     "tunnel-view": "2026-09-25",
     "valley-loop-drive": "2026-09-25",
     "cooks-meadow-loop": "2026-09-25",
@@ -137,10 +147,10 @@
   },
   "queue": [
     {
-      "id": "el-capitan-summit-tamarack",
+      "id": "may-lake",
       "file": "stops.ts",
-      "added": "2026-09-25",
-      "note": "Body says the old Big Oak Flat Road was 'severed in the middle by the 1945 rockslide'. Nature Notes vol. 29 no. 7 (July 1950) dates the slide that closed the road to cars to 1943; a later slide (1945, secondary sources only) took out the valley grade. The 2026-09-25 audit corrected old-big-oak-flat-road to 1943; confirm against a primary source whether the 1945 wording here should also read 1943 or stand."
+      "added": "2026-10-02",
+      "note": "Body says to follow the Old Tioga Road spur '1.7 miles to the trailhead parking'. The NPS May Lake Trailhead page (nps.gov/places/000/may-lake-trailhead.htm, accessed 2026-10-02) puts the parking area 1.75 miles north of Tioga Road, and the 2026-10-02 audit set the may-lake-snow-flat-lot secret spot to 1.75. Align the stop when it comes up in the rotation."
     }
   ]
 }
