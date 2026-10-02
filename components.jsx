@@ -1449,10 +1449,10 @@ function HpGuideBand({ go, location, id, eyebrow = "THE TALUS FIELD GUIDE / THE 
           <div className="hp-orbit">
           </div>
           <div className="hp-phone hp-back">
-            <img src="/img/guide/screens/regions.v5.webp" alt="Field Guide regions screen: four photo cards, each opening a day planner" width="640" height="1385" loading="lazy" decoding="async" />
+            <img src="/img/guide/screens/regions.v7.webp" alt="Field Guide regions screen: four photo cards, one for each region of the park" width="640" height="1385" loading="lazy" decoding="async" />
           </div>
           <div className="hp-phone hp-front">
-            <img src="/img/guide/screens/front-page.v5.webp" alt="Field Guide front page with live gate waits, the day's light and the forecast" width="640" height="1385" loading="lazy" decoding="async" />
+            <img src="/img/guide/screens/front-page.v7.webp" alt="Field Guide front page with the valley forecast, the day's light and live gate waits" width="640" height="1385" loading="lazy" decoding="async" />
           </div>
           <div className="hp-offline">✓ &nbsp; All set. Even off the grid.<small>YOUR GUIDE WORKS OFFLINE</small>
           </div>

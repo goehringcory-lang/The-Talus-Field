@@ -1040,7 +1040,7 @@ function PlanningGuide({
   }, React.createElement("div", {
     className: "pg-phone pg-phone--left"
   }, React.createElement("img", {
-    src: "/img/guide/screens/programs.v5.webp",
+    src: "/img/guide/screens/programs.v7.webp",
     alt: "Field Guide programs screen",
     width: "640",
     height: "1385",
@@ -1049,7 +1049,7 @@ function PlanningGuide({
   })), React.createElement("div", {
     className: "pg-phone pg-phone--mid"
   }, React.createElement("img", {
-    src: "/img/guide/screens/region-plan.v5.webp",
+    src: "/img/guide/screens/region-plan.v7.webp",
     alt: "Field Guide region planner screen",
     width: "640",
     height: "1385",
@@ -1058,7 +1058,7 @@ function PlanningGuide({
   })), React.createElement("div", {
     className: "pg-phone pg-phone--right"
   }, React.createElement("img", {
-    src: "/img/guide/screens/stop.v5.webp",
+    src: "/img/guide/screens/stop.v7.webp",
     alt: "Field Guide stop screen with parking notes",
     width: "640",
     height: "1385",
