@@ -2217,28 +2217,108 @@ const readHistory = {
 window.readHistory = readHistory;
 
 // ============================================================
-// Newsletter submit side-effects (shared)
-// The subscribe forms POST to Buttondown in a new tab (target="_blank",
-// NL_FORM_TARGET). They used to POST into a hidden iframe so the page never
-// navigated, and that silently lost every signup from early September 2026:
-// Buttondown began answering embed submissions with a Cloudflare Turnstile
-// "Verify Your Subscription" page (HTTP 400, X-Frame-Options: DENY), which a
-// hidden frame can neither show nor complete. In a tab the reader sees the
-// check and passes it. Buttondown never reports back to the page, so the
-// conversion event and the local "subscribed" flag still fire optimistically
-// on submit. The map and guide gates layer their own unlock on top of this.
-// Exposed on window so page-level forms (map gate, guide, newsletter page)
-// can reuse the exact same behavior.
+// Newsletter signup (shared)
+// Every form subscribes through the API Worker (/api/subscribe), which calls
+// Buttondown's API and answers with a real status. Until October 2026 the
+// forms POSTed to Buttondown's embed-subscribe endpoint in a hidden iframe;
+// from early September Buttondown answered those with a Cloudflare Turnstile
+// "Verify Your Subscription" page that a hidden frame can neither show nor
+// complete, so no signup reached the list for a month while every form said
+// it had (the embed's `tag` field never reached a subscriber record either).
+// The embed endpoint survives as the fallback: when the Worker cannot say
+// yes, the form turns into a plain POST to Buttondown in a new tab, where a
+// human passes the check, so no failure on our side loses a signup.
+// The GA4 `newsletter_signup` event and the local "subscribed" flag fire only
+// on a confirmed signup or a press of that fallback button.
 // ============================================================
-const NL_FORM_TARGET = "_blank";
-window.NL_FORM_TARGET = NL_FORM_TARGET;
+const NL_API_BASE = (typeof window !== "undefined" && window.GUIDE_API_BASE) || "https://api.thetalusfieldjournal.com";
+const NL_BUTTONDOWN_ACTION = "https://buttondown.com/api/emails/embed-subscribe/goehring";
+window.NL_BUTTONDOWN_ACTION = NL_BUTTONDOWN_ACTION;
 
-// What a new subscriber has to do next: finish in the Buttondown tab, which
-// may ask them to press "Verify and Subscribe". Every post-submit state says
-// this line. It assumes single opt-in (no confirmation email); if Buttondown
-// goes back to double opt-in, this line has to say so again.
-const NL_CONFIRM_LINE = "One step left: finish in the Buttondown tab that just opened. If it asks, press Verify and Subscribe, or the letter never starts.";
+// What the reader is told after a signup. The Worker subscribes single
+// opt-in (type "regular"), so a confirmed signup has no step left. The tab
+// line is for the fallback, where Buttondown's own page finishes the job.
+const NL_CONFIRM_LINE = "You are on the list. The next Sunday letter comes to you.";
+const NL_TAB_LINE = "One step left: finish in the Buttondown tab that just opened. If it asks, press Verify and Subscribe, or the letter never starts.";
+function nlDoneLine(mode) { return mode === "tab" ? NL_TAB_LINE : NL_CONFIRM_LINE; }
 window.NL_CONFIRM_LINE = NL_CONFIRM_LINE;
+window.nlDoneLine = nlDoneLine;
+
+// POST one signup to the Worker. Resolves to "ok", "invalid" (the reader can
+// fix the address), "rate" (too many tries), or "fallback" (anything else,
+// including a timeout or the Worker being unreachable). Never rejects.
+function subscribeNewsletter({ email, tag, website, location }) {
+  const ctrl = typeof AbortController !== "undefined" ? new AbortController() : null;
+  const timer = ctrl ? setTimeout(() => ctrl.abort(), 10000) : null;
+  return fetch(`${NL_API_BASE}/api/subscribe`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ email, tag: tag || "", website: website || "", referrer: window.location.href }),
+    signal: ctrl ? ctrl.signal : undefined,
+  })
+    .then((r) => (r.ok ? "ok" : r.status === 400 ? "invalid" : r.status === 429 ? "rate" : "fallback"))
+    .catch(() => "fallback")
+    .then((result) => {
+      if (timer) clearTimeout(timer);
+      if (window.track) window.track("newsletter_signup_result", { location: location || "unknown", tag: tag || "", result });
+      return result;
+    });
+}
+window.subscribeNewsletter = subscribeNewsletter;
+
+const NL_STATUS_COPY = {
+  invalid: "That address did not take. Check it and try again.",
+  rate: "Too many tries from this connection. Try again in an hour.",
+  fallback: "Our signup did not answer. Press the button again to finish on Buttondown; it opens in a new tab.",
+};
+
+// The one signup form. Renders the email field, the hidden tag, a honeypot
+// and the button, plus a status line under the form. `onDone(mode)` fires
+// once the reader is on the list ("api") or has been handed to Buttondown's
+// tab ("tab"); the caller swaps in its own done state, usually nlDoneLine.
+// `className` defaults to the shared nlbox__form; `inputId` pairs the field
+// with a visible <label> the caller renders.
+function NewsletterForm({ location, tag, variant = "", cta = "Subscribe →", onDone, className = "nlbox__form", inputId, inputLabel, placeholder = "you@email.com", inputRef, autoFocus }) {
+  const [status, setStatus] = useState("idle"); // idle | sending | invalid | rate | fallback
+  const finish = (mode) => {
+    trackNewsletterSubmit(location, tag, variant);
+    if (onDone) setTimeout(() => onDone(mode), 0);
+  };
+  const onSubmit = (e) => {
+    if (status === "fallback") {
+      // Let the native POST go to Buttondown in a new tab: this press is the
+      // user gesture a new tab needs, which an async fetch result is not.
+      if (window.track) window.track("newsletter_signup_result", { location: location || "unknown", tag: tag || "", result: "tab" });
+      finish("tab");
+      return;
+    }
+    e.preventDefault();
+    if (status === "sending") return;
+    const data = new FormData(e.currentTarget);
+    setStatus("sending");
+    subscribeNewsletter({ email: String(data.get("email") || "").trim(), tag, website: String(data.get("website") || ""), location })
+      .then((result) => {
+        if (result === "ok") finish("api");
+        else setStatus(result);
+      });
+  };
+  const note = NL_STATUS_COPY[status];
+  return (
+    <>
+      <form className={className} action={NL_BUTTONDOWN_ACTION} method="post" target="_blank" rel="noopener" onSubmit={onSubmit}>
+        <input ref={inputRef} id={inputId} type="email" name="email" aria-label={inputLabel || "Email address"} autoComplete="email" placeholder={placeholder} required autoFocus={autoFocus} aria-invalid={status === "invalid" || undefined} />
+        {tag && <input type="hidden" name="tag" value={tag} />}
+        <input type="hidden" name="embed" value="1" />
+        <input type="text" name="website" tabIndex={-1} autoComplete="off" aria-hidden="true" className="nlbox__hp" />
+        <button type="submit" disabled={status === "sending"}>
+          {status === "sending" ? "Joining…" : status === "fallback" ? "Finish on Buttondown →" : cta}
+        </button>
+      </form>
+      {note && <p className="nlbox__note" role="status">{note}</p>}
+    </>
+  );
+}
+window.NewsletterForm = NewsletterForm;
 
 // The subscribed flag's value. "1" was written by the hidden-iframe forms,
 // which from early September 2026 never reached Buttondown, so a device
@@ -2335,7 +2415,7 @@ window.useNewsletterImpression = useNewsletterImpression;
 // `hp-newsletter` modifier, the visible input label, and `variant` when the
 // caller runs a copy test (article_end_copy), so each arm's rate is sliceable.
 function NewsletterInline({ heading, blurb, location, tag, variant = "", cta, modifier, inputLabel }) {
-  const [done, setDone] = useState(false);
+  const [done, setDone] = useState(null); // null | "api" | "tab"
   const subscribed = isSubscribed();
   // Only count an impression when an actual ask is on screen, not the
   // subscribed soft state or the post-submit confirmation.
@@ -2355,23 +2435,19 @@ function NewsletterInline({ heading, blurb, location, tag, variant = "", cta, mo
       <p>{blurb || "A short note on Sundays, when there is something to say."}</p>
       {inputLabel && !done && <label htmlFor={`${location}-email`}>{inputLabel}</label>}
       {done ? (
-        <p className="nlbox__done">
-          {NL_CONFIRM_LINE} <a href="/map">The map is already open to you →</a>
+        <p className="nlbox__done" role="status">
+          {nlDoneLine(done)} <a href="/map">The map is already open to you →</a>
         </p>
       ) : (
-        <form
-          className="nlbox__form"
-          action="https://buttondown.com/api/emails/embed-subscribe/goehring"
-          method="post"
-          target={NL_FORM_TARGET}
-          rel="noopener"
-          onSubmit={() => { trackNewsletterSubmit(location, tag, variant); setTimeout(() => setDone(true), 0); }}
-        >
-          <input id={inputLabel ? `${location}-email` : undefined} type="email" name="email" aria-label={inputLabel || "Email address"} autoComplete="email" placeholder="you@email.com" required />
-          {tag && <input type="hidden" name="tag" value={tag} />}
-          <input type="hidden" name="embed" value="1" />
-          <button type="submit">{cta || "Subscribe →"}</button>
-        </form>
+        <NewsletterForm
+          location={location}
+          tag={tag}
+          variant={variant}
+          cta={cta}
+          inputId={inputLabel ? `${location}-email` : undefined}
+          inputLabel={inputLabel}
+          onDone={setDone}
+        />
       )}
     </div>
   );
@@ -2425,7 +2501,7 @@ function useModalFocus(active, initialSelector) {
 
 function ExitIntentNewsletter({ disabled }) {
   const [open, setOpen] = useState(false);
-  const [done, setDone] = useState(false);
+  const [done, setDone] = useState(null); // null | "api" | "tab"
   const firedRef = useRef(false);
 
   useEffect(() => {
@@ -2495,21 +2571,9 @@ function ExitIntentNewsletter({ disabled }) {
         <h3>One letter a week. Sometimes none.</h3>
         <p>Sunday Field Notes: what is open, what is blooming, and the occasional longer piece. Free, and you can leave anytime.</p>
         {done ? (
-          <p className="nlbox__done" role="status">{NL_CONFIRM_LINE}</p>
+          <p className="nlbox__done" role="status">{nlDoneLine(done)}</p>
         ) : (
-          <form
-            className="nlbox__form"
-            action="https://buttondown.com/api/emails/embed-subscribe/goehring"
-            method="post"
-            target={NL_FORM_TARGET}
-            rel="noopener"
-            onSubmit={() => { trackNewsletterSubmit("article_exit_intent", "exit-intent"); setTimeout(() => setDone(true), 0); }}
-          >
-            <input type="email" name="email" aria-label="Email address" placeholder="you@email.com" required />
-            <input type="hidden" name="tag" value="exit-intent" />
-            <input type="hidden" name="embed" value="1" />
-            <button type="submit">Subscribe →</button>
-          </form>
+          <NewsletterForm location="article_exit_intent" tag="exit-intent" onDone={setDone} />
         )}
       </div>
     </div>
@@ -3100,7 +3164,7 @@ Object.assign(window, {
   Placeholder, ResponsiveImage, preloadResponsive,
   SIZES_HERO, SIZES_CARD,
   MotifMountains, MotifSun, MotifTrees,
-  Header, Footer, BackToTop, NewsletterInline, ExitIntentNewsletter, MapLightbox,
+  Header, Footer, BackToTop, NewsletterInline, NewsletterForm, ExitIntentNewsletter, MapLightbox,
   EntranceWaits, WebcamStrip, FilmEmbed, NatureNotesFilm, EventIcon,
   HomeLink, HomeMasthead, HpHeading, HpRow, HpCard, HpArticleCard, HpPageHead, HpGuideBand, HpLetter, HpPostcard,
   FjLayout, FjFacts, FjPull, FjRidge, FjCard, FjSteps, FjPlate,

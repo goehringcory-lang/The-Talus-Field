@@ -1,4 +1,4 @@
-/* global React, HpPageHead, HpPostcard */
+/* global React, HpPageHead, HpPostcard, NewsletterForm */
 const { useState } = React;
 
 // API base for the Worker. Override at runtime via window.GUIDE_API_BASE
@@ -8,7 +8,7 @@ const CONTACT_API_BASE =
   "https://api.thetalusfieldjournal.com";
 
 function NewsletterPage({ go }) {
-  const [done, setDone] = useState(false);
+  const [done, setDone] = useState(null); // null | "api" | "tab"
   return (
     <div className="page hp-nlpage">
       <HpPageHead
@@ -27,33 +27,14 @@ function NewsletterPage({ go }) {
         </div>
 
         {done ? (
-          <p className="hp-nlpage__done">
-            {window.NL_CONFIRM_LINE} <a href="/map" onClick={(e) => { e.preventDefault(); go("map"); }}>The map is already open to you →</a>
+          <p className="hp-nlpage__done" role="status">
+            {window.nlDoneLine(done)} <a href="/map" onClick={(e) => { e.preventDefault(); go("map"); }}>The map is already open to you →</a>
           </p>
         ) : (
-          <form
-            className="nlbox__form"
-            action="https://buttondown.com/api/emails/embed-subscribe/goehring"
-            method="post"
-            target={window.NL_FORM_TARGET || "_blank"}
-            rel="noopener"
-            onSubmit={() => {
-              if (window.trackNewsletterSubmit) window.trackNewsletterSubmit("newsletter_page", "newsletter-page");
-              setTimeout(() => setDone(true), 0);
-            }}
-          >
+          <>
             <label htmlFor="nl-page-email" className="fj-label">Your email address</label>
-            <input
-              id="nl-page-email"
-              type="email"
-              name="email"
-              placeholder="you@email.com"
-              required
-            />
-            <input type="hidden" name="tag" value="newsletter-page" />
-            <input type="hidden" name="embed" value="1" />
-            <button type="submit">Subscribe →</button>
-          </form>
+            <NewsletterForm location="newsletter_page" tag="newsletter-page" inputId="nl-page-email" inputLabel="Your email address" onDone={setDone} />
+          </>
         )}
       </HpPageHead>
 

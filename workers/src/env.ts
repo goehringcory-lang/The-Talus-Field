@@ -36,6 +36,11 @@ export type Env = {
   MAGIC_LINK_SIGNING_SECRET: string
   RESEND_API_KEY: string
 
+  // Buttondown API key for /api/subscribe (the Sunday letter signup).
+  // Optional so a missing secret degrades to the page's Buttondown-tab
+  // fallback (503) instead of a deploy failure.
+  BUTTONDOWN_API_KEY?: string
+
   // NPS Events API key (free, developer.nps.gov/get-started). Server-side
   // only — the PWA never sees it. Optional: without it the programs cron
   // skips ingest and /api/programs serves manual curation only. The same key

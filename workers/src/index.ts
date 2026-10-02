@@ -16,6 +16,7 @@ import { push } from './routes/push'
 import { redeem } from './routes/redeem'
 import { stripe } from './routes/stripe'
 import { trip } from './routes/trip'
+import { subscribe } from './routes/subscribe'
 import { tripEmail } from './routes/trip-email'
 import { waitlist } from './routes/waitlist'
 import { waits } from './routes/waits'
@@ -193,6 +194,7 @@ app.route('/api/programs', programs)
 app.route('/api/push', push)
 app.route('/api/redeem', redeem)
 app.route('/api/stripe', stripe)
+app.route('/api/subscribe', subscribe)
 // Mounted before /api/trip's router would see it: separate route so the
 // editorial map's unauthenticated sender never shares code with the PWA's
 // JWT-gated plan sync.

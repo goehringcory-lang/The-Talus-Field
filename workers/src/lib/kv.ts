@@ -91,6 +91,7 @@ const TRIP_SYNC_WRITE_ATTEMPTS_KEY = (sub: string) =>
 const TRIP_EMAIL_ATTEMPTS_KEY = (ipHash: string) => `tripEmailAttempts:${ipHash}`
 const WAITLIST_ATTEMPTS_KEY = (ipHash: string) => `waitlistAttempts:${ipHash}`
 const CONTACT_ATTEMPTS_KEY = (ipHash: string) => `contactAttempts:${ipHash}`
+const SUBSCRIBE_ATTEMPTS_KEY = (ipHash: string) => `subscribeAttempts:${ipHash}`
 const RENEWAL_NOTICE_KEY = (email: string, stage: string) =>
   `renewalNotice:${email.toLowerCase()}:${stage}`
 const RENEW_LINK_ATTEMPTS_KEY = (ipHash: string) => `renewLinkAttempts:${ipHash}`
@@ -244,6 +245,13 @@ export async function recordWaitlistAttempt(env: Env, ipHash: string): Promise<n
 // as the waitlist button (the endpoint is unauthenticated).
 export async function recordContactAttempt(env: Env, ipHash: string): Promise<number> {
   return incrementFixedWindow(env, CONTACT_ATTEMPTS_KEY(ipHash))
+}
+
+// The newsletter signup creates a Buttondown subscriber per call; keyed by
+// hashed IP (the endpoint is unauthenticated). Ten an hour leaves room for a
+// household or a typo and stops a script from filling the list.
+export async function recordSubscribeAttempt(env: Env, ipHash: string): Promise<number> {
+  return incrementFixedWindow(env, SUBSCRIBE_ATTEMPTS_KEY(ipHash))
 }
 
 // --- Web push subscriptions (/api/push) -------------------------------------

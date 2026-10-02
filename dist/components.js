@@ -2687,10 +2687,136 @@ var readHistory = {
   }
 };
 window.readHistory = readHistory;
-var NL_FORM_TARGET = "_blank";
-window.NL_FORM_TARGET = NL_FORM_TARGET;
-var NL_CONFIRM_LINE = "One step left: finish in the Buttondown tab that just opened. If it asks, press Verify and Subscribe, or the letter never starts.";
+var NL_API_BASE = typeof window !== "undefined" && window.GUIDE_API_BASE || "https://api.thetalusfieldjournal.com";
+var NL_BUTTONDOWN_ACTION = "https://buttondown.com/api/emails/embed-subscribe/goehring";
+window.NL_BUTTONDOWN_ACTION = NL_BUTTONDOWN_ACTION;
+var NL_CONFIRM_LINE = "You are on the list. The next Sunday letter comes to you.";
+var NL_TAB_LINE = "One step left: finish in the Buttondown tab that just opened. If it asks, press Verify and Subscribe, or the letter never starts.";
+function nlDoneLine(mode) {
+  return mode === "tab" ? NL_TAB_LINE : NL_CONFIRM_LINE;
+}
 window.NL_CONFIRM_LINE = NL_CONFIRM_LINE;
+window.nlDoneLine = nlDoneLine;
+function subscribeNewsletter({
+  email,
+  tag,
+  website,
+  location
+}) {
+  var ctrl = typeof AbortController !== "undefined" ? new AbortController() : null;
+  var timer = ctrl ? setTimeout(() => ctrl.abort(), 10000) : null;
+  return fetch(`${NL_API_BASE}/api/subscribe`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify({
+      email,
+      tag: tag || "",
+      website: website || "",
+      referrer: window.location.href
+    }),
+    signal: ctrl ? ctrl.signal : undefined
+  }).then(r => r.ok ? "ok" : r.status === 400 ? "invalid" : r.status === 429 ? "rate" : "fallback").catch(() => "fallback").then(result => {
+    if (timer) clearTimeout(timer);
+    if (window.track) window.track("newsletter_signup_result", {
+      location: location || "unknown",
+      tag: tag || "",
+      result
+    });
+    return result;
+  });
+}
+window.subscribeNewsletter = subscribeNewsletter;
+var NL_STATUS_COPY = {
+  invalid: "That address did not take. Check it and try again.",
+  rate: "Too many tries from this connection. Try again in an hour.",
+  fallback: "Our signup did not answer. Press the button again to finish on Buttondown; it opens in a new tab."
+};
+function NewsletterForm({
+  location,
+  tag,
+  variant = "",
+  cta = "Subscribe →",
+  onDone,
+  className = "nlbox__form",
+  inputId,
+  inputLabel,
+  placeholder = "you@email.com",
+  inputRef,
+  autoFocus
+}) {
+  var [status, setStatus] = useState("idle");
+  var finish = mode => {
+    trackNewsletterSubmit(location, tag, variant);
+    if (onDone) setTimeout(() => onDone(mode), 0);
+  };
+  var onSubmit = e => {
+    if (status === "fallback") {
+      if (window.track) window.track("newsletter_signup_result", {
+        location: location || "unknown",
+        tag: tag || "",
+        result: "tab"
+      });
+      finish("tab");
+      return;
+    }
+    e.preventDefault();
+    if (status === "sending") return;
+    var data = new FormData(e.currentTarget);
+    setStatus("sending");
+    subscribeNewsletter({
+      email: String(data.get("email") || "").trim(),
+      tag,
+      website: String(data.get("website") || ""),
+      location
+    }).then(result => {
+      if (result === "ok") finish("api");else setStatus(result);
+    });
+  };
+  var note = NL_STATUS_COPY[status];
+  return React.createElement(React.Fragment, null, React.createElement("form", {
+    className: className,
+    action: NL_BUTTONDOWN_ACTION,
+    method: "post",
+    target: "_blank",
+    rel: "noopener",
+    onSubmit: onSubmit
+  }, React.createElement("input", {
+    ref: inputRef,
+    id: inputId,
+    type: "email",
+    name: "email",
+    "aria-label": inputLabel || "Email address",
+    autoComplete: "email",
+    placeholder: placeholder,
+    required: true,
+    autoFocus: autoFocus,
+    "aria-invalid": status === "invalid" || undefined
+  }), tag && React.createElement("input", {
+    type: "hidden",
+    name: "tag",
+    value: tag
+  }), React.createElement("input", {
+    type: "hidden",
+    name: "embed",
+    value: "1"
+  }), React.createElement("input", {
+    type: "text",
+    name: "website",
+    tabIndex: -1,
+    autoComplete: "off",
+    "aria-hidden": "true",
+    className: "nlbox__hp"
+  }), React.createElement("button", {
+    type: "submit",
+    disabled: status === "sending"
+  }, status === "sending" ? "Joining…" : status === "fallback" ? "Finish on Buttondown →" : cta)), note && React.createElement("p", {
+    className: "nlbox__note",
+    role: "status"
+  }, note));
+}
+window.NewsletterForm = NewsletterForm;
 var NL_SUBSCRIBED_KEY = "tfg.nl.subscribed";
 var NL_SUBSCRIBED_VALUE = "2";
 if (window.safeStorage.get(NL_SUBSCRIBED_KEY) === "1") {
@@ -2770,7 +2896,7 @@ function NewsletterInline({
   modifier,
   inputLabel
 }) {
-  var [done, setDone] = useState(false);
+  var [done, setDone] = useState(null);
   var subscribed = isSubscribed();
   var ref = useNewsletterImpression(location, tag, !subscribed && !done, variant);
   if (subscribed && !done) {
@@ -2789,38 +2915,19 @@ function NewsletterInline({
   }, React.createElement("h3", null, heading || "Sunday Field Notes"), React.createElement("p", null, blurb || "A short note on Sundays, when there is something to say."), inputLabel && !done && React.createElement("label", {
     htmlFor: `${location}-email`
   }, inputLabel), done ? React.createElement("p", {
-    className: "nlbox__done"
-  }, NL_CONFIRM_LINE, " ", React.createElement("a", {
+    className: "nlbox__done",
+    role: "status"
+  }, nlDoneLine(done), " ", React.createElement("a", {
     href: "/map"
-  }, "The map is already open to you →")) : React.createElement("form", {
-    className: "nlbox__form",
-    action: "https://buttondown.com/api/emails/embed-subscribe/goehring",
-    method: "post",
-    target: NL_FORM_TARGET,
-    rel: "noopener",
-    onSubmit: () => {
-      trackNewsletterSubmit(location, tag, variant);
-      setTimeout(() => setDone(true), 0);
-    }
-  }, React.createElement("input", {
-    id: inputLabel ? `${location}-email` : undefined,
-    type: "email",
-    name: "email",
-    "aria-label": inputLabel || "Email address",
-    autoComplete: "email",
-    placeholder: "you@email.com",
-    required: true
-  }), tag && React.createElement("input", {
-    type: "hidden",
-    name: "tag",
-    value: tag
-  }), React.createElement("input", {
-    type: "hidden",
-    name: "embed",
-    value: "1"
-  }), React.createElement("button", {
-    type: "submit"
-  }, cta || "Subscribe →")));
+  }, "The map is already open to you →")) : React.createElement(NewsletterForm, {
+    location: location,
+    tag: tag,
+    variant: variant,
+    cta: cta,
+    inputId: inputLabel ? `${location}-email` : undefined,
+    inputLabel: inputLabel,
+    onDone: setDone
+  }));
 }
 var EXIT_COOLDOWN_DAYS = 14;
 function useModalFocus(active, initialSelector) {
@@ -2858,7 +2965,7 @@ function ExitIntentNewsletter({
   disabled
 }) {
   var [open, setOpen] = useState(false);
-  var [done, setDone] = useState(false);
+  var [done, setDone] = useState(null);
   var firedRef = useRef(false);
   useEffect(() => {
     if (disabled) return;
@@ -2941,33 +3048,11 @@ function ExitIntentNewsletter({
   }, "Before you go"), React.createElement("h3", null, "One letter a week. Sometimes none."), React.createElement("p", null, "Sunday Field Notes: what is open, what is blooming, and the occasional longer piece. Free, and you can leave anytime."), done ? React.createElement("p", {
     className: "nlbox__done",
     role: "status"
-  }, NL_CONFIRM_LINE) : React.createElement("form", {
-    className: "nlbox__form",
-    action: "https://buttondown.com/api/emails/embed-subscribe/goehring",
-    method: "post",
-    target: NL_FORM_TARGET,
-    rel: "noopener",
-    onSubmit: () => {
-      trackNewsletterSubmit("article_exit_intent", "exit-intent");
-      setTimeout(() => setDone(true), 0);
-    }
-  }, React.createElement("input", {
-    type: "email",
-    name: "email",
-    "aria-label": "Email address",
-    placeholder: "you@email.com",
-    required: true
-  }), React.createElement("input", {
-    type: "hidden",
-    name: "tag",
-    value: "exit-intent"
-  }), React.createElement("input", {
-    type: "hidden",
-    name: "embed",
-    value: "1"
-  }), React.createElement("button", {
-    type: "submit"
-  }, "Subscribe →"))));
+  }, nlDoneLine(done)) : React.createElement(NewsletterForm, {
+    location: "article_exit_intent",
+    tag: "exit-intent",
+    onDone: setDone
+  })));
 }
 function MapLightbox({
   src,
@@ -3773,6 +3858,7 @@ Object.assign(window, {
   Footer,
   BackToTop,
   NewsletterInline,
+  NewsletterForm,
   ExitIntentNewsletter,
   MapLightbox,
   EntranceWaits,

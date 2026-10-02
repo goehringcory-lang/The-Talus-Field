@@ -1,4 +1,4 @@
-/* global React */
+/* global React, NewsletterForm */
 // =============================================================================
 // MAP PAGE — `/map` route. Google Maps JavaScript API + region-grouped trip
 // builder, gated as a whole behind the newsletter signup (see MapAccessGate).
@@ -1705,18 +1705,17 @@ function MapView({ go }) {
 // ---------------------------------------------------------------------------
 // "Email this trip to yourself." The natural capture moment: a built trip is
 // worth keeping, and the reader's inbox is where it survives a closed tab.
-// The form POSTs natively to Buttondown in a new tab (same optimistic
-// pattern as every other unit, tag map-trip; see NL_FORM_TARGET) while the actual send rides
+// A first-time address joins the letter through the Worker's /api/subscribe
+// (window.subscribeNewsletter, tag map-trip) while the actual send rides
 // alongside as a fetch to the Worker (/api/trip/email), which builds the
 // share URL server-side from the id list. The Worker deploy is manual, so a
 // failed send falls back to copying the share link instead of dead-ending.
-// A reader who already subscribed skips the Buttondown POST; the send still
-// goes out.
+// A reader who already subscribed skips the signup; the send still goes out.
 // ---------------------------------------------------------------------------
 function TripEmailBox({ tripStopIds, onFallbackCopy, onSubscribed }) {
   const [state, setState] = useState("idle"); // idle | sending | sent | failed
-  // A first-time address also went to Buttondown, which may ask for its
-  // Turnstile check in the new tab; the sent state says so (NL_CONFIRM_LINE).
+  // A first-time address also joined the letter; the sent state says so
+  // (NL_CONFIRM_LINE) only when the Worker confirmed it.
   const [joined, setJoined] = useState(false);
   const emailRef = useRef(null);
   const hpRef = useRef(null);
@@ -1738,23 +1737,20 @@ function TripEmailBox({ tripStopIds, onFallbackCopy, onSubscribed }) {
     const email = emailRef.current ? emailRef.current.value.trim() : "";
     const website = hpRef.current ? hpRef.current.value : "";
     const ids = tripStopIds.slice(0, TRIP_CAP);
-    if (!email || ids.length === 0) {
-      e.preventDefault();
-      return;
-    }
+    e.preventDefault();
+    if (!email || ids.length === 0) return;
     const wasSubscribed = window.isSubscribed && window.isSubscribed();
-    if (wasSubscribed) {
-      // Already on the list: skip the Buttondown POST, keep the send.
-      e.preventDefault();
-    } else {
-      if (window.trackNewsletterSubmit) window.trackNewsletterSubmit("map_trip_email", "map-trip");
-      setTimeout(() => setJoined(true), 0);
+    if (!wasSubscribed && window.subscribeNewsletter) {
+      window.subscribeNewsletter({ email, tag: "map-trip", website, location: "map_trip_email" }).then((result) => {
+        if (result !== "ok") return;
+        if (window.trackNewsletterSubmit) window.trackNewsletterSubmit("map_trip_email", "map-trip");
+        setJoined(true);
+        // Unlock the trip builder like any other signup would.
+        if (onSubscribed) onSubscribed();
+      });
     }
     if (window.track) window.track("trip_email_send", { trip_size: ids.length });
-    // Unlock the trip builder like any other signup would; deferred a tick so
-    // the native POST to Buttondown fires before any re-render.
-    if (!wasSubscribed && onSubscribed) setTimeout(onSubscribed, 0);
-    setTimeout(() => setState("sending"), 0);
+    setState("sending");
     fetch(`${MAP_API_BASE}/api/trip/email`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -1780,14 +1776,7 @@ function TripEmailBox({ tripStopIds, onFallbackCopy, onSubscribed }) {
   return (
     <div className="map-sidebar__email">
       <h4 className="map-sidebar__email-label">Email this trip to yourself</h4>
-      <form
-        className="nlbox__form"
-        action="https://buttondown.com/api/emails/embed-subscribe/goehring"
-        method="post"
-        target={window.NL_FORM_TARGET || "_blank"}
-        rel="noopener"
-        onSubmit={onSubmit}
-      >
+      <form className="nlbox__form" onSubmit={onSubmit}>
         <input
           ref={emailRef}
           type="email"
@@ -1796,9 +1785,7 @@ function TripEmailBox({ tripStopIds, onFallbackCopy, onSubscribed }) {
           required
           aria-label="Email address"
         />
-        <input type="hidden" name="tag" value="map-trip" />
-        <input type="hidden" name="embed" value="1" />
-        {/* Honeypot for the Worker payload; Buttondown ignores the field. */}
+        {/* Honeypot for both Worker calls. */}
         <div style={{ position: "absolute", left: "-10000px", width: 1, height: 1, overflow: "hidden" }} aria-hidden="true">
           <label>
             Website
@@ -2769,25 +2756,8 @@ function MapAccessGate({ onSubscribed }) {
         <div className="eyebrow eyebrow--moss" style={{ marginBottom: 12 }}>The Trip Planner Map</div>
         <h3>The map opens with an email.</h3>
         <p>Every pin here was placed and written by a resident of the park: quiet vistas, parking turnouts that actually have space, picnic tables worth the drive. Drop your email and the full map, filters, and trip builder open right here, and stay open on this device.</p>
-        <form
-          className="nlbox__form"
-          action="https://buttondown.com/api/emails/embed-subscribe/goehring"
-          method="post"
-          target={window.NL_FORM_TARGET || "_blank"}
-        rel="noopener"
-          onSubmit={() => {
-            if (window.trackNewsletterSubmit) window.trackNewsletterSubmit("map_gate", "map-gate");
-            // Defer one tick so the form's native POST to Buttondown (a new
-            // tab) fires before onSubscribed unmounts this form.
-            setTimeout(onSubscribed, 0);
-          }}
-        >
-          <input type="email" name="email" aria-label="Email address" placeholder="you@email.com" required />
-          <input type="hidden" name="tag" value="map-gate" />
-          <input type="hidden" name="embed" value="1" />
-          <button type="submit">Unlock the map →</button>
-        </form>
-        <p className="map-gate__fine">The map opens the moment you submit. Signing up also gets you Sunday Field Notes, one short letter a week. Buttondown opens in a new tab to finish the signup; if it asks, press Verify and Subscribe. No spam, leave anytime.</p>
+        <NewsletterForm location="map_gate" tag="map-gate" cta="Unlock the map →" onDone={() => onSubscribed()} />
+        <p className="map-gate__fine">The map opens the moment you submit. Signing up also gets you Sunday Field Notes, one short letter a week. No spam, leave anytime.</p>
       </div>
     </div>
   );

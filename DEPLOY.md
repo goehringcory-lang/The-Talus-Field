@@ -34,6 +34,7 @@ From `workers/`:
 wrangler secret put STRIPE_SECRET_KEY            # sk_test_... for now
 wrangler secret put MAGIC_LINK_SIGNING_SECRET    # any random 32+ char string (used to sign JWTs)
 wrangler secret put RESEND_API_KEY               # from resend.com/api-keys
+wrangler secret put BUTTONDOWN_API_KEY           # buttondown.com settings > API; /api/subscribe (the letter signup)
 wrangler secret put STRIPE_WEBHOOK_SECRET        # placeholder for now; real value in step 5
 ```
 

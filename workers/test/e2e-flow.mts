@@ -36,6 +36,7 @@ const env: Record<string, unknown> = {
   MAGIC_LINK_SIGNING_SECRET: 'test-signing-secret',
   RESEND_API_KEY: 're_test_dummy',
   PROMO_CODES: 'TALUS30:30',
+  BUTTONDOWN_API_KEY: 'bd_test_dummy',
 }
 
 const ctx = { waitUntil(_p: Promise<unknown>) {}, passThroughOnException() {} } as ExecutionContext
@@ -47,6 +48,9 @@ let resendMode: 'ok' | 'fail' = 'ok'
 // Retrieve responses for /api/checkout/claim's GET, keyed by session id.
 const stripeSessions = new Map<string, Record<string, unknown>>()
 let npsAlertCalls = 0
+// Buttondown subscriber creates, and how the mock answers the next one.
+let buttondownCreates: { auth: string; collision: string; body: Record<string, unknown> }[] = []
+let buttondownMode: 'ok' | 'tag403' | 'invalid' | 'fail' = 'ok'
 
 const realFetch = globalThis.fetch
 globalThis.fetch = (async (input: RequestInfo | URL, init?: RequestInit) => {
@@ -113,6 +117,17 @@ globalThis.fetch = (async (input: RequestInfo | URL, init?: RequestInit) => {
       }),
       { status: 200, headers: { 'content-type': 'application/json' } },
     )
+  }
+  if (url.startsWith('https://api.buttondown.com/v1/subscribers')) {
+    const headers = new Headers(init?.headers)
+    const body = JSON.parse(String(init?.body))
+    buttondownCreates.push({ auth: headers.get('Authorization') ?? '', collision: headers.get('X-Buttondown-Collision-Behavior') ?? '', body })
+    const json = (status: number, payload: unknown) =>
+      new Response(JSON.stringify(payload), { status, headers: { 'content-type': 'application/json' } })
+    if (buttondownMode === 'tag403' && body.tags) return json(403, { code: 'feature_disabled' })
+    if (buttondownMode === 'invalid') return json(400, { code: 'email_invalid' })
+    if (buttondownMode === 'fail') return new Response('boom', { status: 500 })
+    return json(201, { id: 'sub_1', email_address: body.email_address, type: body.type })
   }
   if (url.startsWith('https://api.resend.com/emails')) {
     if (resendMode === 'fail') return new Response('boom', { status: 500 })
@@ -872,6 +887,64 @@ console.log('\n22. instant-access claim (/api/checkout/claim)')
     last = await claimCall('8.8.8.9', 'cs_claim_1')
   }
   check('21st claim from one IP -> 429', last!.status === 429, last)
+}
+
+console.log('\nN. newsletter signup (/api/subscribe)')
+{
+  const sub = (payload: Record<string, unknown>, ip = '9.9.9.1') =>
+    call('/api/subscribe', {
+      method: 'POST',
+      body: JSON.stringify(payload),
+      headers: { 'content-type': 'application/json', 'CF-Connecting-IP': ip, Origin: 'https://thetalusfieldjournal.com' },
+    })
+
+  buttondownCreates = []; buttondownMode = 'ok'
+  const ok = await sub({ email: ' reader@example.com ', tag: 'home', referrer: 'https://www.thetalusfieldjournal.com/planning' })
+  check('subscribe -> 200 ok', ok.status === 200 && ok.json?.ok === true, ok)
+  const created = buttondownCreates[0]
+  check('one Buttondown create', buttondownCreates.length === 1, buttondownCreates)
+  check('create uses the API key', created?.auth === 'Token bd_test_dummy')
+  check('create merges an existing address', created?.collision === 'add')
+  check('create is single opt-in with the tag, trimmed email, IP and referrer',
+    created?.body.type === 'regular' && created?.body.email_address === 'reader@example.com' &&
+    JSON.stringify(created?.body.tags) === '["home"]' && created?.body.ip_address === '9.9.9.1' &&
+    created?.body.referrer_url === 'https://www.thetalusfieldjournal.com/planning', created?.body)
+
+  buttondownCreates = []
+  const offsite = await sub({ email: 'r2@example.com', tag: 'Not A Tag!', referrer: 'https://evil.example/x' })
+  check('bad tag and off-site referrer are dropped, signup still goes',
+    offsite.status === 200 && !('tags' in buttondownCreates[0].body) && !('referrer_url' in buttondownCreates[0].body), buttondownCreates)
+
+  buttondownCreates = []; buttondownMode = 'tag403'
+  const untagged = await sub({ email: 'r3@example.com', tag: 'date-roads' })
+  check('refused tag retries untagged and succeeds',
+    untagged.status === 200 && buttondownCreates.length === 2 && !('tags' in buttondownCreates[1].body), { untagged, buttondownCreates })
+
+  buttondownMode = 'invalid'
+  const invalid = await sub({ email: 'r4@example.com', tag: 'home' })
+  check('Buttondown invalid email -> 400 invalid_email', invalid.status === 400 && invalid.json?.error === 'invalid_email', invalid)
+
+  buttondownMode = 'fail'
+  const upstream = await sub({ email: 'r5@example.com', tag: 'home' })
+  check('Buttondown failure -> 502 with fallback', upstream.status === 502 && upstream.json?.fallback === true, upstream)
+  buttondownMode = 'ok'
+
+  const malformed = await sub({ email: 'not-an-email' })
+  check('malformed email -> 400 without calling Buttondown', malformed.status === 400 && malformed.json?.error === 'invalid_email')
+
+  buttondownCreates = []
+  const bot = await sub({ email: 'bot@example.com', website: 'http://spam' })
+  check('honeypot -> fake 200, no create', bot.status === 200 && buttondownCreates.length === 0)
+
+  const key = env.BUTTONDOWN_API_KEY
+  delete env.BUTTONDOWN_API_KEY
+  const nokey = await sub({ email: 'r6@example.com' }, '9.9.9.2')
+  check('missing secret -> 503 with fallback', nokey.status === 503 && nokey.json?.fallback === true, nokey)
+  env.BUTTONDOWN_API_KEY = key
+
+  let last: Awaited<ReturnType<typeof call>> | null = null
+  for (let i = 0; i < 11; i++) last = await sub({ email: `r${i}@example.com` }, '9.9.9.3')
+  check('11th signup from one IP in an hour -> 429', last!.status === 429, last)
 }
 
 globalThis.fetch = realFetch
