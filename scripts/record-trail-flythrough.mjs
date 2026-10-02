@@ -1,11 +1,13 @@
 #!/usr/bin/env node
-// Renders the /guide page's 3D map film (img/guide/map-3d-trails.v1.*): a
-// pin-free flight over the Field Guide's terrain in which the trails draw
-// themselves on, one after another, the way they are walked.
+// Renders the /guide page's 3D map film (img/guide/map-3d-trails.v2.*): a
+// flight over the Field Guide's terrain in which the trails draw themselves
+// on, one after another, the way they are walked, each story trail marked
+// with a pin and its name where it ends.
 //
 // What is on screen: the app's own basemap and 3D terrain (the real style,
-// tiles and elevation, so the ground is the shipping map) and nothing else.
-// Every DOM pin, the app's own trail, trip and program layers are hidden, and
+// tiles and elevation, so the ground is the shipping map), the film's lines
+// and their end pins. Every DOM pin, the app's own trail, trip and program
+// layers are hidden, and
 // the trail lines are drawn by this script from the same track files the app
 // packs (apps/guide/public/tracks/*.json), in the app's own trail colours
 // (theme.ts trailColors: red strenuous, amber moderate, green easy).
@@ -27,7 +29,7 @@
 //
 // Usage (the PWA dev server must be running against the live tile API):
 //   cd apps/guide && VITE_API_BASE=https://api.thetalusfieldjournal.com npx vite --port 5173
-//   node scripts/record-trail-flythrough.mjs [--name=map-3d-trails.v1] [--fps=30] [--out=<dir>]
+//   node scripts/record-trail-flythrough.mjs [--name=map-3d-trails.v2] [--fps=30] [--out=<dir>]
 //     --probe=2,9.5,20   render only those seconds to <frames dir>/probe-*.png, no encode
 //     --layers           print the style's layer ids and exit
 //     --plan             print the schedule and exit
@@ -71,7 +73,7 @@ const H = 720
 const OUT = resolve(args.out ?? join(ROOT, 'img/guide'))
 // /img/* is served immutable for 30 days, so a re-render ships under a new
 // name (bump the suffix) and page-guide.jsx is pointed at it.
-const NAME = args.name ?? 'map-3d-trails.v1'
+const NAME = args.name ?? 'map-3d-trails.v2'
 const CACHE_DIR = resolve(args.cache ?? join(tmpdir(), 'tfg-flythrough/tiles'))
 const FRAME_DIR = resolve(args.frames_dir ?? join(tmpdir(), 'tfg-flythrough/frames'))
 const TRACKS_DIR = join(ROOT, 'apps/guide/public/tracks')
@@ -135,13 +137,16 @@ function sliceOf(pts, cum, a, b) {
 // The trails: the packed tracks and the guide's own difficulty per hike.
 // ---------------------------------------------------------------------------
 const difficulty = {}
-for (const m of readFileSync(HIKES_TS, 'utf8').matchAll(/id:\s*'([^']+)'[\s\S]*?difficulty:\s*'(\w+)'/g)) difficulty[m[1]] = m[2]
+const titles = {}
+const hikesSrc = readFileSync(HIKES_TS, 'utf8')
+for (const m of hikesSrc.matchAll(/id:\s*'([^']+)'[\s\S]*?difficulty:\s*'(\w+)'/g)) difficulty[m[1]] = m[2]
+for (const m of hikesSrc.matchAll(/id:\s*'([^']+)',\s*title:\s*'([^']+)'/g)) titles[m[1]] = m[2]
 
 const TRAILS = {}
 for (const f of readdirSync(TRACKS_DIR)) {
   const j = JSON.parse(readFileSync(join(TRACKS_DIR, f), 'utf8'))
   const pts = j.line.map(toM)
-  TRAILS[j.id] = { id: j.id, diff: difficulty[j.id] ?? 'unrated', pts, cum: cumulative(pts) }
+  TRAILS[j.id] = { id: j.id, diff: difficulty[j.id] ?? 'unrated', title: titles[j.id] ?? j.id, pts, cum: cumulative(pts) }
 }
 
 // The app's daylight trail colours (theme.ts trailColors). The tip is the same
@@ -195,6 +200,12 @@ const LEADS = [
 const FOLLOWERS = [{ id: 'eagle-peak', dur: 2.8 }]
 
 const FINALE_DUR = 3.2
+// Every line of the story (not the finale's) gets a pin at its end, labelled
+// with the guide's own title for the hike, dropped in as the line arrives.
+// The camera holds on the last one (Half Dome) this long so its label can be
+// read, and the pins fade away as the view lifts over the whole park.
+const LABEL_HOLD = 1.6
+const PIN_DROP = 0.45
 
 const plan = [] // { id, diff, pts, cum, len, t0, t1, lead, join }
 const byId = {}
@@ -230,7 +241,7 @@ function lay(id, spec) {
       if (d <= JOIN_M * 2 && (!join || d < join.d)) join = { d, parent: p, s: p.cum[i] }
     }
   }
-  const entry = { id, diff: T.diff, pts: use, cum: ucum, len, t0: spec.t0, t1: spec.t0 + spec.dur, lead: !!spec.lead, join }
+  const entry = { id, diff: T.diff, title: T.title, pts: use, cum: ucum, len, t0: spec.t0, t1: spec.t0 + spec.dur, lead: !!spec.lead, join }
   plan.push(entry)
   byId[id] = entry
   for (const q of densify(use)) DRAWN.push(q)
@@ -290,7 +301,7 @@ for (const e of plan) {
   }
 }
 const storyEnd = Math.max(...plan.filter((e) => !e.orphan && e.lead).map((e) => e.t1))
-const FINALE_T0 = storyEnd + 0.3
+const FINALE_T0 = storyEnd + 0.3 + LABEL_HOLD
 {
   const orphans = plan.filter((e) => e.orphan)
   // Sprout from the west of the park to the east.
@@ -306,6 +317,28 @@ const END_T = FINALE_T0 + FINALE_DUR + 2.2
 for (const e of plan) e.t1 = Math.min(e.t1, END_T - 1.0)
 const tipAt = (e, t) => pointAt(e.pts, e.cum, drawnAt(e, t))
 
+// Where each story line's pin goes, and when it drops. A line's pin is its
+// end, dropped as the line arrives there; a loop ends where it began (Lower
+// Yosemite Fall and the Valley Loop share a trailhead), so its pin goes at the
+// point farthest from the start instead, dropped as the line passes it.
+// The finale's lines get none: their pins would only fade in as the view lifts.
+for (const e of plan) {
+  if (e.orphan || e.t0 >= FINALE_T0) continue
+  // A loop is judged on the whole track, not the part this film draws (the
+  // Valley Loop's first stretch is already on screen as Lower Yosemite Fall).
+  const T = TRAILS[e.id]
+  const head = T.pts[0]
+  if (dist(head, T.pts[T.pts.length - 1]) > 150) {
+    e.pin = e.pts[e.pts.length - 1]
+    e.pinT = e.t1
+    continue
+  }
+  let far = 0
+  for (let i = 1; i < e.pts.length; i++) if (dist(head, e.pts[i]) > dist(head, e.pts[far])) far = i
+  e.pin = e.pts[far]
+  e.pinT = timeAtDistance(e, e.cum[far])
+}
+
 if (args.plan) {
   for (const e of plan.sort((a, b) => a.t0 - b.t0)) {
     console.log(
@@ -314,6 +347,7 @@ if (args.plan) {
       `${e.t0.toFixed(1).padStart(5)}-${e.t1.toFixed(1).padStart(5)}s`,
       `${(e.len / 1000).toFixed(1).padStart(5)} km`,
       e.orphan ? 'finale' : e.join ? `from ${e.join.parent.id}` : 'root',
+      e.pin ? `pin ${e.pinT.toFixed(1)}s ${fromM(e.pin).map((v) => v.toFixed(4))}` : '',
     )
   }
   console.log(`${plan.length} lines, ${END_T.toFixed(1)}s`)
@@ -434,9 +468,26 @@ function frameData(t, zoom) {
       })
     }
   }
+  // The story's pins: dropped at each line's end as it arrives (a small
+  // overshoot, then settle), faded out together as the camera lifts away.
+  const pins = []
+  const lift = 1 - smooth((t - FINALE_T0) / 1.0)
+  for (const e of plan) {
+    if (!e.pin || t < e.pinT) continue
+    const k = clamp01((t - e.pinT) / PIN_DROP)
+    const back = 1 + 2.2 * (k - 1) ** 3 + 1.2 * (k - 1) ** 2 // ease-out-back
+    const op = clamp01(k * 2.5) * lift
+    if (op <= 0.01) continue
+    pins.push({
+      type: 'Feature',
+      properties: { diff: e.diff, title: e.title, size: Math.max(0.05, back), op },
+      geometry: { type: 'Point', coordinates: fromM(e.pin) },
+    })
+  }
   return {
     lines: { type: 'FeatureCollection', features: lines },
     tips: { type: 'FeatureCollection', features: tips },
+    pins: { type: 'FeatureCollection', features: pins },
   }
 }
 
@@ -571,6 +622,80 @@ async function setupPage() {
       map.addLayer({ id: 'film-line', type: 'line', source: 'film-lines', layout, paint: { 'line-color': colour('line'), 'line-width': w(3.2, 4.8, 7) } })
       map.addLayer({ id: 'film-tip-glow', type: 'line', source: 'film-tips', layout, paint: { 'line-color': colour('tip'), 'line-width': w(5, 7.5, 11), 'line-blur': 4, 'line-opacity': 0.4 } })
       map.addLayer({ id: 'film-tip', type: 'line', source: 'film-tips', layout, paint: { 'line-color': colour('tip'), 'line-width': w(3.2, 4.8, 7) } })
+
+      // The end-of-trail pins: a map pin per difficulty colour, drawn here at
+      // twice the pixel density, and the trail's name beside its head.
+      const R = 2
+      for (const diff of ['easy', 'moderate', 'strenuous', 'unrated']) {
+        const cw = 30 * R
+        const ch = 42 * R
+        const cv = document.createElement('canvas')
+        cv.width = cw
+        cv.height = ch
+        const g = cv.getContext('2d')
+        const cx = cw / 2
+        const cy = 14 * R
+        const r = 11 * R
+        const pin = () => {
+          g.beginPath()
+          g.arc(cx, cy, r, Math.PI * 0.78, Math.PI * 2.22)
+          g.lineTo(cx, ch - 2 * R)
+          g.closePath()
+        }
+        g.shadowColor = 'rgba(0,0,0,0.35)'
+        g.shadowBlur = 3 * R
+        g.shadowOffsetY = 1 * R
+        pin()
+        g.fillStyle = '#f8f5ed'
+        g.fill()
+        g.shadowColor = 'transparent'
+        g.save()
+        g.translate(cx, ch / 2)
+        g.scale(0.8, 0.8)
+        g.translate(-cx, -ch / 2)
+        pin()
+        g.fillStyle = colors[diff].line
+        g.fill()
+        g.restore()
+        g.beginPath()
+        g.arc(cx, cy + 1.6 * R, 3.6 * R, 0, Math.PI * 2)
+        g.fillStyle = '#f8f5ed'
+        g.fill()
+        map.addImage(`film-pin-${diff}`, g.getImageData(0, 0, cw, ch), { pixelRatio: R })
+      }
+      map.addSource('film-pins', { type: 'geojson', data: empty })
+      map.addLayer({
+        id: 'film-pins',
+        type: 'symbol',
+        source: 'film-pins',
+        layout: {
+          'icon-image': ['concat', 'film-pin-', ['get', 'diff']],
+          'icon-anchor': 'bottom',
+          'icon-size': ['get', 'size'],
+          // Every pin stays up, overlapping or not: a pin behind a ridge still
+          // takes collision space, so letting pins collide hid visible ones.
+          'icon-allow-overlap': true,
+          'icon-ignore-placement': true,
+          'text-field': ['get', 'title'],
+          'text-font': ['Noto Sans Medium'],
+          'text-size': 17,
+          'text-anchor': 'left',
+          'text-offset': [0.95, -1.55],
+          'text-allow-overlap': true,
+          'text-ignore-placement': true,
+        },
+        paint: {
+          'icon-opacity': ['get', 'op'],
+          'text-opacity': ['get', 'op'],
+          'text-color': '#1f2a24',
+          'text-halo-color': '#f8f5ed',
+          'text-halo-width': 2.2,
+          'text-halo-blur': 0.4,
+        },
+      })
+      // Symbols cross-fade over 300 ms by default, which a frame-by-frame
+      // render would catch halfway; every frame here is a still.
+      map._fadeDuration = 0
     },
     { colors: COLORS },
   )
@@ -586,6 +711,7 @@ const renderFrame = async (cam, data) => {
       const sleep = (ms) => new Promise((r) => setTimeout(r, ms))
       map.getSource('film-lines').setData(d.lines)
       map.getSource('film-tips').setData(d.tips)
+      map.getSource('film-pins').setData(d.pins)
       // Settled means MapLibre's own 'idle': style and every source loaded,
       // every tile in view (basemap and elevation) loaded, nothing queued.
       // Polling map.loaded() alone races on a GPU: it reads true in the
@@ -754,6 +880,17 @@ if (args.probe) {
     const { cam, data } = stateAt(f)
     await capture(cam, data, join(FRAME_DIR, `probe-${String(s).replace('.', '_')}.png`))
     console.log(`probe ${s}s`, JSON.stringify(cam))
+    // Where each pin lands on screen, and whether the map drew it (a pin
+    // behind a ridge, or off the frame, is projected but not rendered).
+    const pins = await page.evaluate((list) => {
+      const map = window.__tfgMap
+      const drawn = new Set(map.queryRenderedFeatures({ layers: ['film-pins'] }).map((f) => f.properties.title))
+      return list.map((p) => {
+        const xy = map.project(p.geometry.coordinates)
+        return `  ${p.properties.title}: ${Math.round(xy.x)},${Math.round(xy.y)} ${drawn.has(p.properties.title) ? 'drawn' : 'NOT drawn'}`
+      })
+    }, data.pins.features)
+    if (pins.length) console.log(pins.join('\n'))
   }
   await browser.close()
   console.log(`probe frames in ${FRAME_DIR}`)
