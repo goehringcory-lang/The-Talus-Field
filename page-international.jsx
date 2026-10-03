@@ -180,6 +180,13 @@ function InternationalPage({ go }) {
           <h2>What else is different here</h2>
           <ul className="fj-pair">
             <li>
+              <strong>The nearest big airports are hours away.</strong> San
+              Francisco is four to five hours from the Valley by car and Los
+              Angeles six to seven; Fresno, two and a quarter, takes
+              connections from both.{" "}
+              <a href="/articles/best-airport-for-yosemite" onClick={(e) => goA(e, "best-airport-for-yosemite")}>Which airport to fly into</a> compares them, with when a rental car beats the train and bus, and what a license from home needs.
+            </li>
+            <li>
               <strong>No reservation is needed to enter in 2026.</strong> You
               pay at the gate and drive in. What rations a summer day now is
               parking, which is solved by being through the entrance before

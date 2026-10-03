@@ -118,7 +118,7 @@ window.ARTICLE_BODIES["yosemite-shuttle-and-yarts"] = function YosemiteShuttleAn
       </p>
 
       <p>
-        <strong>Highway 41, from Fresno.</strong> Seasonal, roughly late May into late September, calling at Oakhurst, Fish Camp, the Mariposa Grove, and Wawona. This is the route for anyone flying into Fresno, which is the closest major airport.
+        <strong>Highway 41, from Fresno.</strong> Seasonal, roughly late May into late September, calling at Oakhurst, Fish Camp, the Mariposa Grove, and Wawona. This is the route for anyone flying into Fresno, which is the closest major airport; <a href="/articles/best-airport-for-yosemite">the airport guide</a> weighs it against landing at SFO or LAX and renting a car.
       </p>
 
       <p>

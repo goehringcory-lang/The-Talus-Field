@@ -1,4 +1,51 @@
 {
+  "best-airport-for-yosemite": {
+    "wordCount": 3150,
+    "keywords": [
+      "best airport for Yosemite",
+      "closest airport to Yosemite",
+      "fly into Yosemite",
+      "SFO to Yosemite",
+      "LAX to Yosemite",
+      "Fresno airport to Yosemite",
+      "Yosemite without a car",
+      "Amtrak to Yosemite",
+      "rental car Yosemite",
+      "driving in California foreign license",
+      "international driving permit California",
+      "Yosemite from San Francisco airport"
+    ],
+    "faq": [
+      {
+        "q": "What is the best airport to fly into for Yosemite?",
+        "a": "Fresno Yosemite International is the closest major airport, about 94 miles and two hours fifteen minutes from Yosemite Valley, with nonstops from SFO and LAX. For a visitor from abroad, San Francisco is usually the practical answer: the most long-haul flights, and 195 miles and four to five hours to the Valley by the park's own figures."
+      },
+      {
+        "q": "Is it better to fly into SFO or LAX for Yosemite?",
+        "a": "SFO, unless the trip also includes Southern California. The park puts San Francisco at 195 miles and four to five hours from Yosemite Valley and Los Angeles at 313 miles and six hours, which in practice is seven. From LAX, the better move is often a connecting flight to Fresno or Merced."
+      },
+      {
+        "q": "Can you get to Yosemite from SFO without a car?",
+        "a": "Yes, all year. Take BART to Richmond, the Amtrak San Joaquins train to Merced, and the YARTS bus up Highway 140 into Yosemite Valley. Amtrak sells the train and the bus as one ticket. Allow four to four and a half hours from the Bay Area, and plan the trip around the Valley, because the bus serves one corridor, not the whole park."
+      },
+      {
+        "q": "Do I need a rental car for Yosemite?",
+        "a": "Not for one or two people on a Valley trip: the YARTS bus and the free Valley shuttle cover it. Yes for a family, for any trip that includes Glacier Point, Tuolumne Meadows or Hetch Hetchy, and for anyone sleeping off the bus routes. Four round-trip bus fares from Merced cost several times what the gate charges one car."
+      },
+      {
+        "q": "Can I drive in California with a foreign driver's license?",
+        "a": "Yes. California lets a visitor aged 18 or older drive on a valid license from home. An International Driving Permit is not a license; it is a translation carried beside one. Get one before you leave if your license is not in English, because rental desks set their own rules and many ask for it."
+      },
+      {
+        "q": "Do rental cars need snow chains for Yosemite?",
+        "a": "From roughly October through April, chains can be required on any road into the park, and every car must carry them when they are, rentals and four-wheel drives included. Rental cars do not come with chains and many rental contracts forbid fitting them. Buy a set in the city before you drive up, or come in on Highway 140, which needs them least, or take the YARTS bus."
+      },
+      {
+        "q": "How far is Fresno airport from Yosemite?",
+        "a": "About 94 miles and two hours fifteen minutes to Yosemite Valley, and about an hour and a quarter to the South Entrance on Highway 41. In summer the YARTS Highway 41 bus leaves from the airport; the 2026 season ran May 22 to September 25."
+      }
+    ]
+  },
   "sustainable-yosemite-car-free-zero-waste": {
     "wordCount": 3492,
     "keywords": [

@@ -110,6 +110,7 @@ window.planningSeriesFor = function (slug) {
 // verifies this map stays in sync with the files in bodies/.
 // ============================================================
 window.BODY_VERSIONS = {
+  "best-airport-for-yosemite": 1,
   "sustainable-yosemite-car-free-zero-waste": 2,
   "yosemite-in-december": 1,
   "wildfire-in-yosemite-during-your-trip": 1,
@@ -133,7 +134,7 @@ window.BODY_VERSIONS = {
   "tuolumne-meadows-in-a-day": 5,
   "swimming-in-the-merced": 3,
   "yosemite-valley-parking-guide": 3,
-  "yosemite-shuttle-and-yarts": 8,
+  "yosemite-shuttle-and-yarts": 9,
   "yosemite-walk-up-and-day-of-permits": 6,
   "yosemite-in-fall": 6,
   "yosemite-tunnel-trees": 3,
@@ -147,7 +148,7 @@ window.BODY_VERSIONS = {
   "where-to-stay-in-yosemite": 15,
   "yosemite-wildflowers-guide": 7,
   "watching-climbers-el-capitan": 4,
-  "getting-to-yosemite": 9,
+  "getting-to-yosemite": 10,
   "yosemite-wilderness-permits-guide": 6,
   "yosemite-accessibility-guide": 5,
   "pets-in-yosemite": 6,
@@ -752,6 +753,29 @@ window.KIT.lists.forEach((l) => {
 // AffiliateDisclosure line under the byline, before the first link;
 // scripts/check-affiliate-links.mjs fails when the flag and the body disagree.
 window.ARTICLES = [
+  {
+    slug: "best-airport-for-yosemite",
+    aff: true,
+    cat: "planning",
+    title: "The best airport for Yosemite: SFO, LAX, Fresno, and the drive in",
+    dek: "Most visitors from abroad land at San Francisco or Los Angeles, four to seven hours from the Valley. Which airport to pick, how far each one really is, when a rental car is the right answer and when the train and bus beat it, and what a foreign driver needs to know before taking the keys.",
+    seoDek: "Best airport for Yosemite: SFO, LAX, Fresno, Merced, Sacramento and Reno compared, rental car vs train and bus, and driving tips for visitors from abroad.",
+    date: "October 3, 2026",
+    isoDate: "2026-10-03",
+    isoModified: "2026-10-03",
+    read: "12 min",
+    placeholder: "The Merced River canyon below Yosemite Valley, the Highway 140 approach into the park",
+    image: "img/merced-canyon-road-cory-goehring.jpg",
+    credit: "Photo: Cory Goehring",
+    // The /firefall layout for an article (page-article.jsx), as on the El
+    // Capitan and where-to-eat pieces. The two buttons jump to the airports
+    // and to the car-or-transit decision.
+    feature: {
+      eyebrow: "SFO · LAX · FRESNO · MERCED · SACRAMENTO · RENO",
+      focus: "50% 50%",
+      actions: [["#sec-0-pick-the-airport", "Compare the airports"], ["#sec-1-rent-a-car-usually", "Car, or train and bus?"]],
+    },
+  },
   {
     slug: "sustainable-yosemite-car-free-zero-waste",
     cat: "planning",
@@ -1991,6 +2015,10 @@ window.START_HERE = [
 // Curate a piece when it earns real search impressions, when it anchors a
 // cluster, or when it is the destination that needs the equity.
 window.RELATED = {
+  // The best airport for Yosemite: the arrival guide for visitors from abroad.
+  // Onward to the entrances, the transit guide, the LA drive, the Bay Area
+  // day-trip arithmetic, the gateway towns and the trip budget.
+  "best-airport-for-yosemite": ["getting-to-yosemite", "yosemite-shuttle-and-yarts", "yosemite-from-los-angeles", "yosemite-gateway-towns-compared", "yosemite-day-trip-from-bay-area", "yosemite-trip-cost-budget"],
   "sustainable-yosemite-car-free-zero-waste": ["yosemite-shuttle-and-yarts", "getting-to-yosemite", "yosemite-valley-parking-guide", "yosemite-camping-complete-guide", "yosemite-bears-safety-guide", "yosemite-trip-cost-budget"],
   // Yosemite in December: the evergreen month guide. Onward to the season
   // piece, the winter trails, the holiday dinner, the lodging and entrance
@@ -2037,9 +2065,9 @@ window.RELATED = {
   // are the entrances guide's natural onward reads: a reader who has just
   // picked a gate wants the drive to it.
   "yosemite-from-las-vegas": ["yosemite-from-los-angeles", "tuolumne-meadows-in-a-day", "getting-to-yosemite", "yosemite-gateway-towns-compared", "tioga-road-opening-weekend", "yosemite-in-winter"],
-  "yosemite-from-los-angeles": ["getting-to-yosemite", "yosemite-gateway-towns-compared", "yosemite-from-las-vegas", "yosemite-day-trip-from-bay-area", "mariposa-grove-how-to-visit", "yosemite-shuttle-and-yarts"],
-  "getting-to-yosemite": ["yosemite-shuttle-and-yarts", "yosemite-gateway-towns-compared", "highway-140-closed-yosemite", "yosemite-from-los-angeles", "yosemite-from-las-vegas", "yosemite-day-trip-from-bay-area"],
-  "yosemite-shuttle-and-yarts": ["getting-to-yosemite", "yosemite-valley-parking-guide", "highway-140-closed-yosemite", "yosemite-for-non-hikers", "yosemite-accessibility-guide", "yosemite-day-trip-from-bay-area"],
+  "yosemite-from-los-angeles": ["getting-to-yosemite", "best-airport-for-yosemite", "yosemite-gateway-towns-compared", "yosemite-from-las-vegas", "mariposa-grove-how-to-visit", "yosemite-shuttle-and-yarts"],
+  "getting-to-yosemite": ["yosemite-shuttle-and-yarts", "best-airport-for-yosemite", "yosemite-gateway-towns-compared", "highway-140-closed-yosemite", "yosemite-from-los-angeles", "yosemite-day-trip-from-bay-area"],
+  "yosemite-shuttle-and-yarts": ["getting-to-yosemite", "best-airport-for-yosemite", "yosemite-valley-parking-guide", "highway-140-closed-yosemite", "yosemite-accessibility-guide", "yosemite-day-trip-from-bay-area"],
   "yosemite-valley-parking-guide": ["getting-to-yosemite", "yosemite-shuttle-and-yarts", "yosemite-without-reservations-2026", "yosemite-in-one-or-two-days", "mist-trail-the-real-guide", "sustainable-yosemite-car-free-zero-waste"],
   "yosemite-day-trip-from-bay-area": ["yosemite-in-one-or-two-days", "getting-to-yosemite", "yosemite-from-los-angeles", "yosemite-valley-parking-guide", "yosemite-for-non-hikers", "when-to-visit-yosemite"],
   "pack-your-car-for-yosemite": ["yosemite-bears-safety-guide", "camping-in-yosemite-first-time", "getting-to-yosemite", "yosemite-valley-parking-guide", "first-time-yosemite-overwhelm", "cell-service-in-yosemite"],

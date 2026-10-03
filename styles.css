@@ -12467,3 +12467,85 @@ html[data-nav-mode="pinned"] { scroll-padding-top: 62px; }
 }
 /* The crawler fragment is not laid out as a grid. */
 #prerender-prose .nh-feature :is(.ff-split, .ff-facts, .nh-ladder, .nh-defs, .nh-stops, .nh-sides, .nh-pair, .nh-tioga, .nh-tours, .nh-needs, .nh-seasons, .nh-wild, .nh-plan5, .nh-walks > li, .ff-rules) { display: block; }
+
+/* ── /articles/best-airport-for-yosemite: the `.fly-*` pieces ─────────────
+   A feature article on the `.hp-event` tokens and the `.ff-*` kit (see the
+   feature-article layer above). Its own pieces: the drive-time chart (a data
+   chart of the airport table, one hue, every value printed), the six airport
+   cards, the two-column car-or-transit decision, the transit legs (the
+   shared `.ff-timeline`), the three side routes, the rule cards (the shared
+   `.ff-rules`, eight of them), the gateway towns and the two ways out. */
+.fly-feature .ff-split > * { min-width: 0; }
+.fly-prose { font: 17px/1.75 var(--sans); color: var(--hp-ink); max-width: 640px; }
+.fly-prose p { margin: 0 0 1.1em; }
+.fly-prose p:last-child { margin-bottom: 0; }
+.fly-prose strong { font-weight: 600; }
+.fly-prose a, .fly-routes a, .fly-loop a, .fly-choose a { color: inherit; text-decoration: underline; text-decoration-color: var(--hp-accent); text-decoration-thickness: 1px; text-underline-offset: 3px; }
+.fly-prose a:hover, .fly-routes a:hover, .fly-loop a:hover { color: var(--hp-accent); }
+.fly-prose .dropcap::first-letter { font-family: var(--serif); font-weight: 400; font-size: 4.1em; float: left; line-height: 0.82; margin: 0.08em 0.1em 0 -0.03em; color: var(--hp-accent); }
+.fly-open .fly-prose { font: 19px/1.6 var(--serif); color: var(--ink-2); }
+.fly-open .fly-prose p:first-child { color: var(--hp-ink); }
+
+.fly-chart { margin: 0; background: var(--hp-card); border: 1px solid var(--hp-rule); border-radius: 4px; padding: 20px; }
+.fly-chart figcaption { font: 600 10px var(--sans); letter-spacing: 1.6px; text-transform: uppercase; color: var(--hp-muted); margin-bottom: 10px; }
+.fly-chart__svg { display: block; width: 100%; height: auto; }
+.fly-chart__grid { stroke: var(--hp-rule); stroke-width: 1; }
+.fly-chart__tick { font: 11px var(--sans); fill: var(--hp-muted); }
+.fly-chart__name { font: 600 13px var(--sans); fill: var(--hp-ink); }
+.fly-chart__bar { fill: var(--hp-accent); }
+.fly-chart__bar--range { fill: #d9a58a; }
+.fly-chart__val { font: 600 13px var(--sans); fill: var(--hp-ink); }
+
+.fly-airports { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 20px; margin-top: 48px; }
+.fly-airport { background: var(--hp-card); border: 1px solid var(--hp-rule); border-radius: 4px; padding: 24px; display: grid; gap: 14px; align-content: start; }
+.fly-airport__code { margin: 0; font: 44px/1 var(--serif); letter-spacing: 1px; color: var(--hp-accent); }
+.fly-airport__head h3 { margin: 0; }
+.fly-airport__head p { margin: 4px 0 0; font: 13px/1.5 var(--sans); color: var(--hp-muted); }
+.fly-airport dl { margin: 0; border-top: 1px solid var(--hp-rule); }
+.fly-airport dl > div { padding-block: 9px; border-bottom: 1px solid var(--hp-rule); }
+.fly-airport dt { font: 700 10px var(--sans); letter-spacing: 1.4px; text-transform: uppercase; color: var(--hp-muted); }
+.fly-airport dd { margin: 3px 0 0; font: 14px/1.55 var(--sans); color: var(--ink-2); }
+.fly-airport dd strong { color: var(--hp-ink); }
+.fly-airport__verdict { margin: 0; font: 19px/1.35 var(--serif); color: var(--hp-ink); }
+
+.fly-choose { display: grid; gap: 14px; }
+.fly-choose__col { background: var(--hp-card); border: 1px solid var(--hp-rule); border-radius: 4px; padding: 22px 24px; }
+.fly-choose__col--car { background: var(--hp-ink); border-color: var(--hp-ink); color: var(--hp-paper); }
+.fly-choose__head { display: flex; align-items: center; gap: 10px; margin: 0 0 12px; font: 700 11px var(--sans); letter-spacing: 1.6px; text-transform: uppercase; color: var(--hp-accent); }
+.fly-choose__col--car .fly-choose__head { color: var(--hp-gold); }
+.fly-choose ul { margin: 0; padding-left: 20px; display: grid; gap: 8px; font: 18px/1.4 var(--serif); }
+
+.fly-photo { margin: 0; }
+.fly-photo img { display: block; width: 100%; height: auto; border-radius: 4px; }
+.fly-photo figcaption { margin-top: 10px; font: 12px/1.5 var(--sans); color: var(--hp-muted); }
+
+.fly-routes { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 28px; margin-top: 48px; }
+.fly-routes > div { border-top: 1px solid var(--hp-ink); padding-top: 16px; }
+.fly-routes h3 { font-size: 22px; margin: 0 0 8px; }
+.fly-routes p { margin: 0; font: 14px/1.6 var(--sans); color: var(--ink-2); }
+
+.fly-towns { margin-top: 48px; }
+.fly-towns .ff-tier { white-space: normal; }
+
+.fly-loop { display: grid; gap: 14px; }
+.fly-loop__way { background: var(--hp-card); border: 1px solid var(--hp-rule); border-left: 4px solid var(--hp-accent); border-radius: 4px; padding: 20px 22px; }
+.fly-loop__way + .fly-loop__way { border-left-color: var(--bt-warn); }
+.fly-loop__season { margin: 0 0 6px; font: 700 10px var(--sans); letter-spacing: 1.4px; text-transform: uppercase; color: var(--hp-muted); }
+.fly-loop h3 { font-size: 24px; margin: 0 0 8px; }
+.fly-loop p:not(.fly-loop__season) { margin: 0; font: 14px/1.6 var(--sans); color: var(--ink-2); }
+
+.fly-end { padding-block: 28px 0; }
+
+@media (max-width: 1100px) {
+  .fly-airports { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (max-width: 880px) {
+  .fly-routes { grid-template-columns: 1fr; gap: 20px; }
+}
+@media (max-width: 640px) {
+  .fly-airports { grid-template-columns: 1fr; }
+  .fly-airport { padding: 20px; }
+  .fly-choose ul { font-size: 17px; }
+}
+/* The crawler fragment is not laid out as a grid. */
+#prerender-prose .fly-feature :is(.ff-split, .ff-facts, .fly-airports, .fly-choose, .fly-routes, .fly-loop, .ff-timeline, .ff-rules) { display: block; }

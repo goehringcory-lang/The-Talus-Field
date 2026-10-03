@@ -176,6 +176,7 @@ window.ARTICLE_INTENT = {
   "yosemite-waterfalls-guide":                 { stage: ["before-booking", "dates-set"], who: ["first-trip", "non-hikers", "photography"], topic: ["trails", "conditions"] },
   "yosemite-photography-spots":                { stage: ["dates-set", "in-park"], who: ["photography", "non-hikers"], topic: ["trails"] },
   "horsetail-fall-firefall":                   { stage: ["before-booking", "dates-set"], who: ["photography"], topic: ["conditions"] },
+  "best-airport-for-yosemite":                 { stage: ["before-booking"], who: ["first-trip"], topic: ["transportation"] },
   "yosemite-in-december":                      { stage: ["before-booking", "dates-set"], who: [], topic: ["conditions", "transportation", "lodging", "camping"] },
   "yosemite-in-winter":                        { stage: ["before-booking", "dates-set"], who: ["first-trip"], topic: ["conditions", "transportation"] },
   "where-to-stay-in-yosemite":                 { stage: ["before-booking"], who: ["first-trip", "families", "accessible"], topic: ["lodging"] },
