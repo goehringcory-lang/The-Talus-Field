@@ -24,7 +24,7 @@ window.ARTICLE_BODIES["getting-to-yosemite"] = function GettingToYosemiteBody() 
       </p>
 
       <p>
-        <strong>South Entrance, Highway 41 from Fresno and Oakhurst.</strong> The southern approach, and the right one if you are flying into Fresno (the closest major airport, about an hour and a quarter to the gate) or basing in Oakhurst. It puts you at the Mariposa Grove of Giant Sequoias immediately inside the entrance, and at the Wawona district shortly after. The catch: the Valley is another hour of mountain road beyond the gate. If your whole trip is Valley-focused, entering from the south means a long daily commute, which is the single most common basing mistake I hear about. Our <a href="/articles/yosemite-gateway-towns-compared">gateway towns comparison</a> goes deeper on that trade.
+        <strong>South Entrance, Highway 41 from Fresno and Oakhurst.</strong> The southern approach, and the right one if you are flying into Fresno (the closest major airport, about an hour and a quarter to the gate; <a href="/articles/best-airport-for-yosemite">which airport to fly into</a> compares it with SFO and LAX) or basing in Oakhurst. It puts you at the Mariposa Grove of Giant Sequoias immediately inside the entrance, and at the Wawona district shortly after. The catch: the Valley is another hour of mountain road beyond the gate. If your whole trip is Valley-focused, entering from the south means a long daily commute, which is the single most common basing mistake I hear about. Our <a href="/articles/yosemite-gateway-towns-compared">gateway towns comparison</a> goes deeper on that trade.
       </p>
 
       <p>

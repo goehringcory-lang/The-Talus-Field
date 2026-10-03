@@ -8,11 +8,341 @@
 Publisher: The Talus Field (https://thetalusfieldjournal.com). Editor: Cory Goehring.
 Citation guidance and the annotated page index: https://thetalusfieldjournal.com/llms.txt
 Canonical article URL pattern: https://thetalusfieldjournal.com/articles/<slug>
-Contents: 76 articles. Most recent update: 2026-10-01.
+Contents: 77 articles. Most recent update: 2026-10-03.
 
 Not in this file: the Yosemite Nature Notes archive, all 512 issues of the
 National Park Service's Yosemite bulletin (1922-2003), transcribed in full
 as plain static HTML at https://thetalusfieldjournal.com/archive/.
+
+---
+
+## The best airport for Yosemite: SFO, LAX, Fresno, and the drive in
+
+URL: https://thetalusfieldjournal.com/articles/best-airport-for-yosemite
+Section: Planning. Published: 2026-10-03. Last updated: 2026-10-03.
+Summary: Best airport for Yosemite: SFO, LAX, Fresno, Merced, Sacramento and Reno compared, rental car vs train and bus, and driving tips for visitors from abroad.
+
+Closest big airportFresno, 94 miles
+
+From SFO195 miles, 4 to 5 hours
+
+From LAX313 miles, plan on 7 hours
+
+Without a carTrain and bus, every day
+On this pageThe airports
+Car or train and bus
+The car-free way in
+Driving here
+The first day
+One way in, another out
+Questions
+
+A good share of the people I meet at the Valley visitor center started the trip on another continent. They landed at San Francisco or Los Angeles the day before, picked up a car they had never driven, on the other side of the road from home in some cases, and drove four to seven hours to a park whose size nobody had quite explained. Most of them got here fine. A few were turned around at a chain-control checkpoint in a car with no chains, or found out on the first morning that the bus they had planned the week around does not go to Glacier Point.
+
+The airport you land at decides the first day of the trip, and the way you leave it decides most of the rest. This is the version I give at the desk: which airport, how far each one really is, when a rental car is the right answer (most of the time), when the train and bus beat it, and what a visitor from abroad needs to know before taking the keys.
+
+The short version
+
+- Land at SFO, or connect on to Fresno if you can.
+- Rent a car unless it is one or two of you on a Valley-only trip.
+- Do not drive to the park the evening you land.
+- October to April, carry chains or take Highway 140.
+Search Groveland, on the road from SFO ↗
+Availability search on Expedia. We may earn a commission if you book, at no cost to you. Disclosure.
+
+PICK THE AIRPORT
+
+### The closest runway is rarely the one you land on
+
+Yosemite has no airport of its own and none of the big international ones is close. Fresno is the nearest airport with real service, about 94 miles and two hours fifteen minutes from the Valley. San Francisco and Los Angeles are where most flights from abroad land, at four to five hours and six to seven hours respectively by the park's own figures, before you add a stop for food or a line at the gate.
+
+The trick most visitors miss: the long-haul flight decides the city, but it does not have to decide the airport. Fresno has nonstops from both SFO and LAX, and a connection that costs an hour in the air saves three or four on the road. It also puts you on the side of the park with the giant sequoias, which is a fine first morning.
+
+Hours to Yosemite Valley, by car
+
+National Park Service figures, to the Valley floor in clear conditions. The darker bar is the low end; the lighter, the high end of a range. From Reno, summer only, over Tioga Pass.
+
+MCE
+
+#### Merced
+
+Merced Yosemite Regional Airport
+
+To the Valley81 mi · About 2 hours
+
+The roadHighway 140 to the Arch Rock Entrance, the all-weather road
+
+FlightsA 30-seat regional jet from LAX and Las Vegas, Contour Airlines, since July 2026.
+
+Without a carYARTS runs up Highway 140 every day of the year from Merced's transit center and Amtrak station.
+
+The closest runway, if the one flight suits you.
+
+FAT
+
+#### Fresno
+
+Fresno Yosemite International Airport
+
+To the Valley94 mi · About 2 hours 15 min
+
+The roadHighway 41 to the South Entrance, about 1 hour 15 min, then an hour to the Valley
+
+FlightsNonstops from SFO and LAX, and from Denver, Dallas, Phoenix, Seattle and other US hubs.
+
+Without a carIn summer, the YARTS Highway 41 bus leaves from the airport itself. The rest of the year, a car.
+
+The closest real airport. Fly here on a connection if you can.
+
+SMF
+
+#### Sacramento
+
+Sacramento International Airport
+
+To the Valley176 mi · About 4 hours
+
+The roadSouth through the Central Valley to Highway 120 or 140
+
+FlightsMostly domestic. Worth pricing against SFO.
+
+Without a carThe San Joaquins train runs from Sacramento to Merced, where YARTS takes over.
+
+A quieter airport than SFO, the same drive.
+
+SFO
+
+#### San Francisco
+
+San Francisco International Airport, with Oakland (OAK) and San Jose (SJC)
+
+To the Valley195 mi · 4 to 5 hours
+
+The roadHighway 120 through Groveland, or 140 through Mariposa in winter
+
+FlightsThe most long-haul flights into Northern California. Oakland and San Jose are the same drive.
+
+Without a carBART to Richmond, the San Joaquins to Merced, YARTS into the Valley. Four to four and a half hours, all year.
+
+The usual answer for a visitor from abroad.
+
+RNO
+
+#### Reno
+
+Reno-Tahoe International Airport
+
+To the Valley218 mi · About 5 hours, June to October
+
+The roadUS 395 and Tioga Pass when the pass is open; 315 miles and 5½ hours around it when it is not
+
+FlightsMostly domestic connections.
+
+Without a carNo practical connection.
+
+Only for a summer trip that starts on the east side.
+
+LAX
+
+#### Los Angeles
+
+Los Angeles International Airport
+
+To the Valley313 mi · About 6 hours; plan on 7
+
+The roadI-5, Highway 99 and Highway 41 through Fresno to the South Entrance
+
+FlightsThe most long-haul flights into the state.
+
+Without a carA Thruway bus to Bakersfield, the train to Merced, YARTS. A long day of connections.
+
+Fly on to Fresno or Merced, or drive up and sleep in Oakhurst.
+
+Every entrance and its road, and why your phone's route is not to be trusted: getting to Yosemite. The drive from the gateway towns to the Valley, mile by mile: the drive-time table.
+
+CAR, OR TRAIN AND BUS
+
+### Rent a car, usually
+
+There is a real public-transport route into Yosemite, and I recommend it to the right people. But the park is the size of a small country, the bus serves one road through it, and the sights a first visit is built around are spread across four corners: the Valley, Glacier Point an hour above it, the Mariposa Grove more than an hour south, and Tuolumne Meadows an hour and a half east over Tioga Road in summer. A car is what joins them.
+
+It is also usually cheaper. The entrance fee is charged per car if you drive in, $35 for seven days, and per person if you arrive on foot or by bus. Bus fares are per person too: a round trip from Merced is $44 for an adult, so four adults pay $176 before the gate. The $100 non-resident fee is charged per person aged 16 and older either way, so it does not change the answer; the international visitors page works out the cheapest way to pay it.
+
+Rent a car if
+
+- There are three or more of you.
+- The trip includes Glacier Point, Tuolumne, Hetch Hetchy or the Mariposa Grove outside summer.
+- You are sleeping off the bus routes, or arriving after the last bus.
+- You want sunrise starts, or to move when the light is good.
+
+Take the train and bus if
+
+- It is one or two of you, on a Valley trip.
+- You are sleeping in the Valley or on Highway 140.
+- It is winter and you would rather not fit chains on a car you met yesterday.
+- Driving on the right after a long flight is the part you dread.
+
+Park once. A car does not mean driving all day. Valley parking fills early on summer weekends, so leave the car where you slept or at the first lot you find, and ride the free Valley shuttle. The parking guide has the hours that work.
+
+THE CAR-FREE WAY IN
+
+### Train, then bus, from the Bay
+
+From San Francisco the route is three legs, and it runs every day of the year. The San Joaquins train does not reach the city itself, so you start on BART. Amtrak sells the train and the YARTS bus as one ticket to Yosemite, and the bus is timed to meet the trains at Merced. Allow four to four and a half hours from the Bay, which is no faster than driving and a good deal more restful.
+
+The bus drops you at Yosemite Valley Lodge, Yosemite Village or Curry Village, all on the free Valley shuttle. Whether the bus fare also covers your entrance fee is something the park's pages and YARTS' own currently answer differently, so budget for it; the shuttle and YARTS guide sets out both positions and the timetable.
+
+The YARTS coach meeting the train at Merced. Photo: RickyCourtney / Wikimedia Commons (CC BY-SA 3.0)
+
+- Leg oneBART to Richmond
+From the station at SFO's international terminal, usually with a change of line in Oakland. From Oakland's airport, the BART connector joins the same network.
+
+- Leg twoSan Joaquins to Merced
+Amtrak's Central Valley train, south from Richmond. From Sacramento, board at the city's Amtrak station.
+
+- Leg threeYARTS up Highway 140
+From the Merced Amtrak station, through Mariposa and El Portal, into the Valley. $22 one way, $44 round trip for an adult.
+
+- In the ValleyThe free shuttle
+From the bus stop to wherever you are sleeping or walking. No ticket.
+
+#### From LAX
+
+The same idea and a longer day: an Amtrak Thruway bus from Union Station to Bakersfield, the San Joaquins north to Merced, then YARTS. Most visitors are better served by the short flight to Fresno or Merced.
+
+#### From Fresno, in summer
+
+The YARTS Highway 41 bus leaves from the airport itself and calls at Oakhurst, the Mariposa Grove and Wawona on the way to the Valley. $20 one way. The 2026 season ran May 22 to September 25; outside it, Fresno means a car.
+
+#### From Merced's airport
+
+YARTS leaves from Merced's transit center and its Amtrak station all year, and calls at the airport on some runs. Check the timetable against your flight before counting on it.
+
+DRIVING HERE ON A LICENSE FROM HOME
+
+### What the rental desk will not tell you
+
+None of this is difficult. All of it is easier to learn at home than at a counter after an eleven-hour flight.
+
+- Your license works
+California lets a visitor aged 18 or older drive on a valid license from home. No local license is needed for a holiday.
+
+- The permit is a translation
+An International Driving Permit is not a license; it is carried beside one. Get it at home if your license is not in English. Rental desks set their own rules, and many ask for it.
+
+- A credit card, in the driver's name
+Rental desks want one. So does the park: the entrance stations take cards only, no cash.
+
+- Under 25 costs more
+The large rental companies add a daily charge for younger drivers, and some vehicle classes are off limits. Check before you book, not at the counter.
+
+- Chains, October to April
+When chain controls are posted, every car must carry chains, four-wheel drives and rentals included. Rentals come without them and many contracts forbid fitting them. Buy a set in the city, or come in on Highway 140.
+
+- No gas in the Valley
+Fill up before the mountains. Inside the park there is fuel only at Wawona, Crane Flat and El Portal. Pumps often ask for a US ZIP code; with a foreign card, pay inside first.
+
+- Believe the road signs
+Phone signal dies before the park boundary, and the park itself warns that a GPS route can be wrong. Download offline maps the night before, and when the sign and the app disagree, follow the sign.
+
+- Small rules that differ
+Speeds are in miles per hour. A right turn on a red light is legal after a full stop unless a sign forbids it. At a four-way stop, whoever stopped first goes first.
+
+THE FIRST DAY
+
+### Do not drive to the park the evening you land
+
+The most dangerous part of a Yosemite trip for a visitor from abroad is not a trail. It is the last two hours of the drive in, on a mountain road in the dark, with a body that thinks it is three in the morning. Every approach to the Valley ends in a long climb with curves, rockfall and deer, and on Highways 41 and 120 the climb runs into snow for much of the year.
+
+If you land after midday, sleep near the airport and drive in the next morning. Then sleep the second night in a gateway town on your road, and reach the gate before 8 a.m. the morning after, when the entrance line and the Valley lots are still empty. In 2026 there is no entry reservation to hold, so the hour you arrive is the whole strategy.
+
+- Landing day
+Immigration, customs, the rental car. Sleep near the airport.
+
+- Next morning
+Leave after the rush hour. Buy chains in the city in the cold months, and food for a cooler; the Valley's is limited and busy at lunch.
+
+- Midday
+Fill the tank in the Central Valley, before the climb.
+
+- Afternoon
+Check in at a gateway town. If there is light left, drive in after 4 p.m., when the gate is quiet, for the evening.
+
+- Day two, before 8 a.m.
+Through the gate before the line forms, and parked before the lots fill.
+
+#### Mariposa and Midpines
+
+45 to 60 min to the Valley · Highway 140, the road that stays open
+
+From SFO in winter, or off the Merced flight
+Search Mariposa ↗
+
+#### Groveland
+
+65 to 80 min to the Valley · Highway 120, the shorter line from the Bay
+
+From SFO, Oakland, San Jose or Sacramento, spring to autumn
+Search Groveland ↗
+
+#### Oakhurst and Fish Camp
+
+75 to 90 min to the Valley · Highway 41, the South Entrance and the Mariposa Grove
+
+From LAX or Fresno
+Search Oakhurst ↗
+
+The filled buttons search availability on Expedia; we may earn a commission. The recommendation is the same either way, and no link is to a specific property. How we handle affiliate links. Every town compared, with its season and its road: the gateway towns compared. Beds inside the park open about a year ahead: where to stay.
+
+ONE WAY IN, ANOTHER WAY OUT
+
+### San Francisco in, Los Angeles out
+
+A lot of visitors from abroad are not making a Yosemite trip at all. They are making a California trip with Yosemite in the middle, and the natural shape is to fly into one city and out of the other. It works well, and it costs a one-way drop fee that varies by company and season, so price the car before you price the flights around it.
+
+Coming from the north, enter on Highway 120 or 140 and leave on Highway 41: through the Wawona Tunnel and past Tunnel View, the Mariposa Grove at the South Entrance, Oakhurst for the night, then Fresno and Highway 99 south. The Los Angeles drive covers that road in both directions, the Grapevine and the winter fog included.
+
+All year
+
+#### Out the south side
+
+Highway 41 to Fresno, then south. About six hours from the Valley to Los Angeles.
+
+Summer only
+
+#### Over Tioga Pass
+
+East over the pass, then south down US 395 past Mammoth Lakes and Lone Pine. Longer and slower, and superb. The road is typically open from late May or June into November; check the Tioga Road page before you book a route that needs it.
+
+QUESTIONS
+
+### Flying in, answered
+
+What a week costs once you have landed, flights aside: the trip-cost breakdown. The entrance fee for a visitor from abroad, and a calculator for the cheapest way to pay it: visiting from abroad.
+
+LANDING AT LAX?
+
+#### Sleep in Oakhurst
+
+An Oakhurst or Fish Camp bed turns the push from Los Angeles into an afternoon drive and a morning at the gate before the line forms.
+Search Oakhurst lodging ↗
+
+What is the best airport to fly into for Yosemite?
+Fresno Yosemite International is the closest major airport, about 94 miles and two hours fifteen minutes from Yosemite Valley, with nonstops from SFO and LAX. For a visitor from abroad, San Francisco is usually the practical answer: the most long-haul flights, and 195 miles and four to five hours to the Valley by the park's own figures.
+Is it better to fly into SFO or LAX for Yosemite?
+SFO, unless the trip also includes Southern California. The park puts San Francisco at 195 miles and four to five hours from Yosemite Valley and Los Angeles at 313 miles and six hours, which in practice is seven. From LAX, the better move is often a connecting flight to Fresno or Merced.
+Can you get to Yosemite from SFO without a car?
+Yes, all year. Take BART to Richmond, the Amtrak San Joaquins train to Merced, and the YARTS bus up Highway 140 into Yosemite Valley. Amtrak sells the train and the bus as one ticket. Allow four to four and a half hours from the Bay Area, and plan the trip around the Valley, because the bus serves one corridor, not the whole park.
+Do I need a rental car for Yosemite?
+Not for one or two people on a Valley trip: the YARTS bus and the free Valley shuttle cover it. Yes for a family, for any trip that includes Glacier Point, Tuolumne Meadows or Hetch Hetchy, and for anyone sleeping off the bus routes. Four round-trip bus fares from Merced cost several times what the gate charges one car.
+Can I drive in California with a foreign driver's license?
+Yes. California lets a visitor aged 18 or older drive on a valid license from home. An International Driving Permit is not a license; it is a translation carried beside one. Get one before you leave if your license is not in English, because rental desks set their own rules and many ask for it.
+Do rental cars need snow chains for Yosemite?
+From roughly October through April, chains can be required on any road into the park, and every car must carry them when they are, rentals and four-wheel drives included. Rental cars do not come with chains and many rental contracts forbid fitting them. Buy a set in the city before you drive up, or come in on Highway 140, which needs them least, or take the YARTS bus.
+How far is Fresno airport from Yosemite?
+About 94 miles and two hours fifteen minutes to Yosemite Valley, and about an hour and a quarter to the South Entrance on Highway 41. In summer the YARTS Highway 41 bus leaves from the airport; the 2026 season ran May 22 to September 25.
+
+Some links in this piece are affiliate links. If you buy or book through one, The Talus Field may earn a small commission at no extra cost to you. The recommendations do not change for it. Full disclosure.
 
 ---
 
@@ -2804,7 +3134,7 @@ YARTS is the Yosemite Area Regional Transportation System, a public transit agen
 
 Highway 140, from Merced. The backbone, and the only route that runs year-round, seven days a week. It leaves from the Amtrak station in Merced and calls at Mariposa, Midpines, and El Portal on its way up the Merced canyon. Figure about two and a half hours end to end. Because it connects to a train, this is the route that makes a car-free Yosemite trip possible from San Francisco, Sacramento, or Los Angeles.
 
-Highway 41, from Fresno. Seasonal, roughly late May into late September, calling at Oakhurst, Fish Camp, the Mariposa Grove, and Wawona. This is the route for anyone flying into Fresno, which is the closest major airport.
+Highway 41, from Fresno. Seasonal, roughly late May into late September, calling at Oakhurst, Fish Camp, the Mariposa Grove, and Wawona. This is the route for anyone flying into Fresno, which is the closest major airport; the airport guide weighs it against landing at SFO or LAX and renting a car.
 
 Highway 120 west, from Sonora. Seasonal, roughly late May into September, through Jamestown, Groveland, and Big Oak Flat.
 
@@ -4379,7 +4709,7 @@ Arch Rock Entrance, Highway 140. The road from Merced and Mariposa, following th
 
 Big Oak Flat Entrance, Highway 120 from the west. The northern approach, through Groveland. From the Bay Area it runs about four hours, and it is the natural route if your trip includes the Tioga Road high country, Hetch Hetchy, or the Tuolumne Grove. The climb up Priest Grade out of the Central Valley is the steep part, and it comes in two versions: the old road, which is short, steep and narrow and is closed to trailers and heavy vehicles, and the new one, which is longer, gentler and full of curves. Anything towing takes the new road, and so should everybody else. From this entrance the Valley is still about forty-five minutes further in.
 
-South Entrance, Highway 41 from Fresno and Oakhurst. The southern approach, and the right one if you are flying into Fresno (the closest major airport, about an hour and a quarter to the gate) or basing in Oakhurst. It puts you at the Mariposa Grove of Giant Sequoias immediately inside the entrance, and at the Wawona district shortly after. The catch: the Valley is another hour of mountain road beyond the gate. If your whole trip is Valley-focused, entering from the south means a long daily commute, which is the single most common basing mistake I hear about. Our gateway towns comparison goes deeper on that trade.
+South Entrance, Highway 41 from Fresno and Oakhurst. The southern approach, and the right one if you are flying into Fresno (the closest major airport, about an hour and a quarter to the gate; which airport to fly into compares it with SFO and LAX) or basing in Oakhurst. It puts you at the Mariposa Grove of Giant Sequoias immediately inside the entrance, and at the Wawona district shortly after. The catch: the Valley is another hour of mountain road beyond the gate. If your whole trip is Valley-focused, entering from the south means a long daily commute, which is the single most common basing mistake I hear about. Our gateway towns comparison goes deeper on that trade.
 
 Tioga Pass Entrance, Highway 120 from the east. The only entrance on the east side of the Sierra, at 9,945 feet the highest highway pass in California, and the one with the biggest caveat. Tioga Road closes with the first serious snow, usually in November, and does not reopen until the plows finish in late May or June. In 2026 it opened on May 15. When it is open, this is the door to Tuolumne Meadows and the entire high country, and the approach from Lee Vining and Mono Lake is a steep, scenic climb. Reno is about three hours away; Mammoth Lakes under an hour. When it is closed, there is no eastern entrance at all, and the detour around the range runs the better part of a day. Never plan a winter or spring trip that assumes Tioga. Check first, and read our Tioga opening guide for what the early season up there actually looks like.
 
