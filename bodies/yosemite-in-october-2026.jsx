@@ -16,7 +16,7 @@ window.ARTICLE_BODIES["yosemite-in-october-2026"] = function YosemiteInOctober20
       <h2>Glacier Point Road is closed, and the fire decides for how long</h2>
 
       <p>
-        The <strong>Dome Fire</strong> was reported on the morning of September 15, about a quarter mile north of Chilnualna Falls, and the incident page lists its cause as an abandoned campfire. By the evening of September 24 it had burned <strong>4,133 acres at 16 percent containment</strong>. Two helicopter pilots were killed fighting it on September 20.
+        The <strong>Dome Fire</strong> was reported on the morning of September 15, about a quarter mile north of Chilnualna Falls, and on September 30 the local press reported that the Forest Service has found it human-caused, sparked by an abandoned campfire. The federal incident page still lists the cause as undetermined. By the evening of September 24 it had burned <strong>4,133 acres at 16 percent containment</strong>. Two helicopter pilots were killed fighting it on September 20.
       </p>
 
       <p>
@@ -164,7 +164,7 @@ window.ARTICLE_BODIES["yosemite-in-october-2026"] = function YosemiteInOctober20
       </p>
 
       <p>
-        Fire restrictions are still in force: fires only in portable stoves, grills and established rings, never unattended, and out cold before you walk away. The Dome Fire began as an abandoned campfire. <a href="/articles/yosemite-fire-restrictions-explained">The fire restrictions piece</a> explains the rules and how to check the current stage.
+        Fire restrictions are still in force: fires only in portable stoves, grills and established rings, never unattended, and out cold before you walk away. The Forest Service, as reported on September 30, has traced the Dome Fire to an abandoned campfire. <a href="/articles/yosemite-fire-restrictions-explained">The fire restrictions piece</a> explains the rules and how to check the current stage.
       </p>
 
       <h2>What is on, with dates</h2>
