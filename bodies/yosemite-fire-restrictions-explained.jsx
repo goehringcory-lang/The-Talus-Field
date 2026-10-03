@@ -69,6 +69,10 @@ window.ARTICLE_BODIES["yosemite-fire-restrictions-explained"] = function Yosemit
         This is separate from, and layered on top of, the small lightning-caused fires that made news partway through August. An early-morning storm on August 12 started eight fires in the park, including ones near Aspen Valley, Dewey Point, and Wawona Road; the largest reported was a couple of acres. None triggered evacuations or site closures. They did not cause the ban. They came from the same dry conditions that triggered the restrictions a few days earlier, and they help explain why the park is in no hurry to lift it.
       </p>
 
+      <p>
+        The rule has a cost when it is ignored. The <strong>Dome Fire</strong> was reported on the morning of September 15, about a quarter mile north of Chilnualna Falls above Wawona, while the restrictions were in force. On September 30 the local press reported that the Forest Service has found it human-caused, sparked by an abandoned campfire; the federal incident page still lists the cause as undetermined. The fire has closed Glacier Point Road and the Ostrander Lake Trail and everything south of it, and two helicopter pilots were killed fighting it on September 20. <a href="/now">The Park Bulletin</a> carries the closures as they stand, and <a href="/articles/yosemite-in-october-2026">Yosemite in October 2026</a> covers what the fire means for a trip this month.
+      </p>
+
       <h2>What is actually banned</h2>
 
       <p>
