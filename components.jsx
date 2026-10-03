@@ -613,6 +613,7 @@ const NAV_GROUPS = [
         heading: "Book and get there",
         links: [
           { key: "stay", label: "Where to stay", note: "In-park lodging and the gateway towns" },
+          { key: "a:best-airport-for-yosemite", label: "Flying in", note: "Which airport, and the drive or bus from it" },
           { key: "distances", label: "Drive times", note: "How far the Valley is from every gateway town" },
           { key: "international", label: "Visiting from abroad", note: "The non-resident entrance fee, and the cheapest way in" },
           { key: "checklist", label: "First-week checklist", note: "What to do in the week before you go" },
