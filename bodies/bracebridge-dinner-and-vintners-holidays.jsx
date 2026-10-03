@@ -72,6 +72,10 @@ window.ARTICLE_BODIES["bracebridge-dinner-and-vintners-holidays"] = function Bra
       </p>
 
       <p>
+        <strong>The 2026 dinners run on eight nights: December 8, 10, 12, 14, 16, 18, 20 and 22</strong>, all at the Ahwahnee, according to the concessioner's ticket page. The Madera County visitors bureau bills this season's as the 99th Bracebridge Dinner. As of October 3, the page marked December 12 sold out and four more nights almost sold out or going fast. Tickets, and the Bracebridge lodging packages that pair a room with a performance night, are on travelyosemite.com or at 888-413-8869.
+      </p>
+
+      <p>
         <strong>Vintners' Holidays lodging books on the same 366-day window as any other Ahwahnee, Lodge, or Curry Village reservation</strong>, one year and a day ahead, rolling. That means the November session dates open to booking roughly a year before each one runs, and the same logic the Field Guide has laid out for <a href="/articles/where-to-stay-in-yosemite">in-park lodging generally</a> applies here without modification: set a reminder for the morning that window opens if your dates are fixed, and if you miss it, <strong>check back regularly</strong>. Cancellations happen continuously, with a real wave in the final weeks before any date, and a Vintners' Holidays package that shows sold out in July can have space again in September.
       </p>
 
