@@ -83,8 +83,6 @@ recent colon style, one of the four categories.
   May: never write a second June guide).
 - Sentinel Dome and Taft Point: the loop most first-timers should do
   instead of the Mist Trail on a crowded day.
-- Tioga Road stop by stop: Olmsted Point, Tenaya Lake, Tuolumne Meadows,
-  Tioga Pass (the guide's region, so the product angle is honest).
 - Winter driving and chain requirements, if `yosemite-in-winter` does not
   carry them in depth.
 - Badger Pass: skiing and snowshoeing for people who are not skiers.

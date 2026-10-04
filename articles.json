@@ -1,5 +1,81 @@
 [
   {
+    "slug": "yosemite-trees-identification-guide",
+    "cat": "wildlife",
+    "title": "Yosemite trees: how to tell them apart, from the foothills to Tioga Pass",
+    "dek": "The park's naturalists counted seventeen cone-bearing trees inside the boundary, and each elevation belt carries its own short list. A field guide to the conifers and the main broadleaved trees in the order a visitor drives past them: needle counts, which cones fall whole, the cone test that separates Jeffrey from ponderosa, red fir against white fir, and why the Valley's black oak groves were kept open by fire.",
+    "seoDek": "Identify Yosemite's trees by elevation belt: needle counts, cones, bark, and the tests that separate Jeffrey from ponderosa and red fir from white fir.",
+    "date": "October 4, 2026",
+    "isoDate": "2026-10-04",
+    "isoModified": "2026-10-04",
+    "read": "12 min",
+    "image": "img/yosemite-valley-black-oaks-autumn.jpg",
+    "ogImage": { "url": "img/responsive/yosemite-valley-black-oaks-autumn-1600.jpg", "width": 1600, "height": 1184 },
+    "placeholder": "California black oaks in autumn color on the Yosemite Valley floor",
+    "wordCount": 3184,
+    "keywords": ["Yosemite trees", "Yosemite tree identification", "Jeffrey pine vs ponderosa pine", "red fir vs white fir", "sugar pine cones", "California black oak Yosemite", "Douglas-fir cone bracts", "Yosemite vegetation zones", "Sierra Nevada conifers"],
+    "faq": [
+      { "q": "How many kinds of trees grow in Yosemite?", "a": "The park's naturalists counted seventeen cone-bearing trees inside the boundary in 1939, about forty percent of the forty-three then known in California, and in 1947 put the park's native tree species at thirty-five, eighteen of them broadleaved. The variety comes from altitude: the park runs from about 1,800 feet at El Portal to over 13,000 feet." },
+      { "q": "How do you tell a Jeffrey pine from a ponderosa pine?", "a": "Both carry three needles to a bundle and intergrade where they meet. The Jeffrey's foliage is darker blue-green and denser, and its bark smells of vanilla in the crevices, though ponderosas can smell similar. The cone decides it: ponderosa scale tips stick straight out and prick the hand, while the Jeffrey's larger cone has its prickles turned in and feels smooth when rolled between the hands." },
+      { "q": "How do you tell red fir from white fir?", "a": "Pull a needle. A white fir needle has a short stalk with a distinct half twist where it joins the twig; a red fir needle has no stalk and no twist, is shorter, and is four-sided in cross section. On a big tree, red fir bark is fissured into a zigzag of short diagonal ridges and is bright red where freshly broken, while white fir bark is gray outside and yellowish inside." },
+      { "q": "Which Yosemite pine has two needles per bundle?", "a": "Lodgepole pine is the only two-needle pine in the park. Three needles means gray pine, ponderosa or Jeffrey; five means sugar pine, western white pine or whitebark pine." },
+      { "q": "What tree in Yosemite Valley looks like a giant sequoia?", "a": "Incense cedar. Its cinnamon-red, deeply ridged, buttressed trunk led many visitors to believe they had seen sequoias in the Valley, as a 1939 park booklet noted. Incense cedar foliage hangs in flat, vertical sprays and its small cones open into three scales like a fleur-de-lis; a sequoia's foliage is scaly and awl-like, not flattened into sprays, and its cones are small and egg-shaped. The park's sequoias grow in the Mariposa, Merced and Tuolumne groves." },
+      { "q": "Why were Yosemite Valley's black oak groves open?", "a": "The Park Service says early settlers described an open oak woodland with few conifers, the result of centuries of burning by American Indians to favor the oaks, whose acorns were a major part of their diet. A 1939 park booklet described spring ground fires set to kill encroaching pine seedlings, and said the Valley went from about three-quarters open land to nearly three-quarters forest once the burning stopped." }
+    ],
+    "related": ["giant-sequoias-fire-adaptation", "yosemite-in-fall", "yosemite-wildflowers-guide", "mariposa-grove-how-to-visit", "tuolumne-meadows-in-a-day", "yosemite-wildlife-viewing-guide"]
+  },
+  {
+    "slug": "tioga-road-stop-by-stop",
+    "cat": "planning",
+    "title": "Tioga Road, stop by stop: the drive and the history under it",
+    "dek": "Forty-six miles from Crane Flat to Tioga Pass, taken turnout by turnout: Tuolumne Grove, Siesta Lake, White Wolf, Yosemite Creek, May Lake, Olmsted Point, Tenaya Lake, Pothole Dome, Soda Springs, Lembert Dome, Dana Meadows and the pass. Each stop with what to do there and what happened there, from the 1883 silver-mine wagon road and Stephen Mather's 1915 purchase to the 1961 realignment Ansel Adams fought, and the ghost town of Bennettville just outside the gate.",
+    "seoDek": "Tioga Road stop by stop, Crane Flat to Tioga Pass: every turnout, short walk and the history behind it, from the 1883 mine road to the 1961 realignment.",
+    "date": "October 4, 2026",
+    "isoDate": "2026-10-04",
+    "isoModified": "2026-10-04",
+    "read": "12 min",
+    "image": "img/tenaya-lake.jpg",
+    "ogImage": { "url": "img/responsive/tenaya-lake-1600.jpg", "width": 1600, "height": 1200 },
+    "placeholder": "Tenaya Lake beside the Tioga Road, ringed by glacier-polished granite domes",
+    "wordCount": 3170,
+    "keywords": ["Tioga Road stops", "Tioga Road drive guide", "Tioga Pass road history", "Olmsted Point", "Tenaya Lake", "Great Sierra Wagon Road", "Bennettville Great Sierra Mine", "Stephen Mather Tioga Road", "Tioga Road turnouts Crane Flat to Tioga Pass", "old Tioga Road"],
+    "faq": [
+      { "q": "How long is the Tioga Road?", "a": "The Park Service describes it as a 47-mile drive between Crane Flat and Tioga Pass, and its plow crews clear 45.5 miles of it each spring. Keith Trexler's 1961 history puts it at 46 miles, from 6,192 feet at Crane Flat to 9,945 feet at the pass." },
+      { "q": "When is Tioga Road open?", "a": "The Park Service says Tioga Road is typically open to vehicles from late May or June until sometime in November. Plowing usually begins around April 15, and the opening date moves with the snowpack." },
+      { "q": "Is there gas on Tioga Road?", "a": "Only at Crane Flat, at the west end, which sells gas around the clock with a credit card. There is no gas at Tuolumne Meadows. On the east side the next fuel is Lee Vining, below the pass." },
+      { "q": "How long does it take to drive Tioga Road?", "a": "The Park Service's driving times from Yosemite Valley are about 30 minutes to Crane Flat, an hour to White Wolf, an hour and a half to Tuolumne Meadows, and an hour and 45 minutes to Tioga Pass, without stops. With the main stops, it is a full day." },
+      { "q": "Why was the Tioga Road built?", "a": "To serve a silver mine. The Great Sierra Consolidated Silver Company built the Great Sierra Wagon Road, about 56 miles from near Crocker's Station to its headquarters at Bennettville, finishing it on September 4, 1883, in 130 days. The company suspended all operations on July 3, 1884, and as far as Trexler could find, no ore ever left the mine for milling." },
+      { "q": "Who bought the Tioga Road for the park?", "a": "Stephen Mather, then assistant to the Secretary of the Interior, raised the $15,500 purchase price partly from friends, the Modesto Chamber of Commerce and the Sierra Club, and paid the balance himself. William Colby bought the road from the Swift estate, and title passed to the United States on April 10, 1915." },
+      { "q": "Can you still drive the old Tioga Road?", "a": "Pieces of it. Trexler's 1961 history names a section that leaves the new road just east of the White Wolf intersection and winds about five miles down to the Yosemite Creek campground, and a two-mile section that climbs past Snow Flat to the May Lake trail junction. The Park Service lists RVs and trailers as not recommended at Yosemite Creek campground." }
+    ],
+    "related": ["tuolumne-meadows-in-a-day", "tioga-road-opening-weekend", "cathedral-lakes-day-hike", "clouds-rest-hike", "yosemite-from-las-vegas", "yosemite-glaciers-climate"]
+  },
+  {
+    "slug": "yosemite-place-names-meanings",
+    "cat": "wildlife",
+    "title": "What Yosemite's names mean: Ahwahnee, El Capitan, Half Dome and who named them",
+    "dek": "Most of the names on the Valley map date from 1851, chosen by the volunteer battalion that came to remove the people who lived there. 'Yosemite' was said for a century to mean grizzly bear; the linguists read it as 'they are killers,' a neighbors' name for Tenaya's band. Here is who named each landmark, what the older name was, and how far each translation can be trusted.",
+    "seoDek": "What Yosemite, Ahwahnee, El Capitan, Half Dome and the Valley's falls really mean, who named them in 1851, and which old translations were guesses.",
+    "date": "October 4, 2026",
+    "isoDate": "2026-10-04",
+    "isoModified": "2026-10-04",
+    "read": "12 min",
+    "image": "img/tunnel-view-valley-spring.jpg",
+    "ogImage": { "url": "img/responsive/tunnel-view-valley-spring-1600.jpg", "width": 1600, "height": 1200 },
+    "placeholder": "Tunnel View: El Capitan, Bridalveil Fall and Half Dome from the overlook",
+    "wordCount": 2990,
+    "keywords": ["what does yosemite mean", "yosemite name meaning", "ahwahnee meaning", "yosemite means those who kill", "who named yosemite valley", "el capitan name meaning", "half dome native american name", "yosemite place names", "bridalveil fall pohono meaning", "tenaya lake name origin"],
+    "faq": [
+      { "q": "What does the word Yosemite mean?", "a": "Linguists read it as a Southern Sierra Miwok word meaning 'they are killers,' built from a root meaning 'to kill,' a suffix meaning 'one who,' and a collective plural. It was the name neighboring Miwok used for the band living in the Valley. Madison Beeler set out the case in 1955, and Craig Bates summarized it in Yosemite Nature Notes in 1978." },
+      { "q": "Does Yosemite mean grizzly bear?", "a": "That was the meaning Major James Savage gave the Mariposa Battalion in 1851, and Lafayette Bunnell printed it. Savage admitted he could not readily understand Tenaya. Beeler pointed out that the Miwok word for bear lacks the initial 'y' sound, and the 'killers' word fits Miwok grammar exactly." },
+      { "q": "What does Ahwahnee mean?", "a": "The National Park Service gives it as 'gaping mouth-like place,' and says the people who lived in the Valley called themselves Ahwahneechee. Bunnell's 'deep grassy valley' was an inference from Tenaya's hand signs, and Bunnell himself added, 'Still, it may not mean that.'" },
+      { "q": "Who named Yosemite Valley?", "a": "Lafayette Bunnell proposed 'Yo-sem-i-ty' at a campfire on the Mariposa Battalion's first evening in the Valley in March 1851, and it was adopted by a voice vote. A U.S. Army lieutenant, Moore, changed the final 'y' to an 'e' in a report the next year." },
+      { "q": "What was El Capitan's original name?", "a": "Bunnell recorded it as Tote-ack-ah-noo-la, which the battalion's scouts translated as 'the Rock Chief' or 'the Captain.' The battalion adopted the Spanish 'El Capitan.' A different reading, 'measuring-worm stone,' comes from Stephen Powers and a story about a measuring worm; the two translations do not reconcile." },
+      { "q": "How did Tenaya Lake get its name?", "a": "In early June 1851 the battalion captured the last of Chief Tenaya's band at the lake, and Bunnell named it for him. Tenaya replied, 'It already has a name; we call it Py-we-ack,' which Bunnell understood as 'the river of glistening rocks.'" }
+    ],
+    "related": ["yosemite-connecting-to-traditions", "what-is-a-talus-field", "yosemite-waterfalls-guide", "so-you-want-to-hike-half-dome", "glacier-point-how-to-visit", "yosemite-glaciers-climate"]
+  },
+  {
     "slug": "best-airport-for-yosemite",
     "cat": "planning",
     "title": "The best airport for Yosemite: SFO, LAX, Fresno, and the drive in",
@@ -616,7 +692,7 @@
       { "q": "How long do you need at the Mariposa Grove?", "a": "Two hours is an absolute floor, and that only buys the shuttle both ways and the Big Trees Loop, which is three tenths of a mile, paved and wheelchair accessible. Half a day is right for the Grizzly Giant Loop, about two miles, with time to stand around. A full day is the upper grove. Add about an hour and a quarter each way if you are driving from Yosemite Valley." },
       { "q": "Can you visit the Mariposa Grove in winter?", "a": "Yes, on foot. Mariposa Grove Road closes to vehicles at the end of November and reopens when the snow allows, which has meant anywhere from early April onward in recent years. The grove itself does not close: the road and trails stay open to foot travel, and walking, snowshoeing or skiing the two miles up from the South Entrance is one of the quietest good days available in Yosemite in February. Note that this is not a designated snow-play area; the park's sledding hill is at Crane Flat." }
     ],
-    "related": ["giant-sequoias-fire-adaptation", "yosemite-accessibility-guide", "yosemite-gateway-towns-compared", "yosemite-for-non-hikers", "yosemite-tunnel-trees"]
+    "related": ["giant-sequoias-fire-adaptation", "yosemite-accessibility-guide", "yosemite-gateway-towns-compared", "yosemite-for-non-hikers", "yosemite-tunnel-trees", "yosemite-trees-identification-guide"]
   },
   {
     "slug": "yosemite-valley-parking-guide",
@@ -823,7 +899,7 @@
       { "q": "Where and when do the Yosemite cultural demonstrations take place?", "a": "At or just outside the Yosemite Museum in Yosemite Village, next to the visitor center at shuttle stop 5. Demonstrations run from July through October; times are posted at the Museum rather than fixed in advance, and the schedule is subject to change." },
       { "q": "Are the Connecting to Traditions demonstrations free?", "a": "Yes. The demonstrations are free and open to all. Standard Yosemite National Park entrance fees still apply to enter the park." }
     ],
-    "related": ["yosemite-tunnel-trees", "yosemite-ranger-programs", "working-in-yosemite", "mariposa-grove-how-to-visit", "yosemite-wildlife-viewing-guide"]
+    "related": ["yosemite-tunnel-trees", "yosemite-ranger-programs", "working-in-yosemite", "mariposa-grove-how-to-visit", "yosemite-wildlife-viewing-guide", "yosemite-place-names-meanings"]
   },
   {
     "slug": "yosemite-waterfalls-guide",
@@ -982,7 +1058,7 @@
       { "q": "Can you pick wildflowers in Yosemite?", "a": "No. Picking flowers is illegal in a national park, and in the six-week high-country growing season a picked flower is a plant that sets no seed. Stay on trails and boardwalks in meadows; trampled meadow sod can take a decade to heal." },
       { "q": "Why do Yosemite's meadows have more flowers than the forest?", "a": "Light and water. Meadows get full sun all day and their soil stays wet into midsummer, while a mature conifer forest is dark at ground level and the trees take most of the water. Meadows cover roughly three percent of the park but hold a disproportionate share of its more than 1,400 flowering plant species." }
     ],
-    "related": ["showy-milkweed-yosemite-valley", "yosemite-wildlife-viewing-guide", "tuolumne-meadows-in-a-day", "yosemite-in-june", "giant-sequoias-fire-adaptation"]
+    "related": ["showy-milkweed-yosemite-valley", "yosemite-wildlife-viewing-guide", "tuolumne-meadows-in-a-day", "yosemite-in-june", "giant-sequoias-fire-adaptation", "yosemite-trees-identification-guide"]
   },
   {
     "slug": "watching-climbers-el-capitan",
@@ -1569,7 +1645,7 @@
       { "q": "Can I camp at Tuolumne Meadows on opening weekend?", "a": "No, not on opening weekend. The campground's 2026 season runs July 1 through September 27, reservable on Recreation.gov; it reopened in August 2025 after a three-year rehabilitation." },
       { "q": "How long does it take to drive Tioga Road?", "a": "Tioga Road runs 39 miles from Crane Flat to Tuolumne Meadows and about 47 to the Tioga Pass entrance station. Allow about 90 minutes one-way without stops, or a full day with Olmsted Point, Tenaya Lake, and Tuolumne Meadows." }
     ],
-    "related": ["cathedral-lakes-day-hike", "tuolumne-meadows-in-a-day", "yosemite-from-las-vegas", "memorial-day-skip-the-valley-go-high-2026", "yosemite-stargazing-where-to-look-up", "when-to-visit-yosemite"]
+    "related": ["cathedral-lakes-day-hike", "tuolumne-meadows-in-a-day", "yosemite-from-las-vegas", "memorial-day-skip-the-valley-go-high-2026", "yosemite-stargazing-where-to-look-up", "tioga-road-stop-by-stop"]
   },
   {
     "slug": "so-you-want-to-hike-half-dome",
@@ -1719,7 +1795,7 @@
       { "q": "What causes talus fields in Yosemite?", "a": "Mostly water and cold. Rain and snowmelt work into the joints in the granite, freeze, and act as a slow wedge until a block that was part of the cliff is only resting against it. The granite also sheds in curved sheets, the exfoliation that shaped Half Dome and Royal Arches. Rockfall in Yosemite is current, not historical: the talus below El Capitan and the Glacier Point Apron is still being added to." },
       { "q": "Is it safe to walk on talus?", "a": "Talus is stable until it is not, and the failure mode is a block rolling under your weight with a tonne of rock above it. Step on the tops of blocks rather than the gaps, move one at a time or spread out sideways so nothing dislodged is heading for someone below, and treat fresh pale unlichened rock as the least trustworthy surface on the slope. Nothing in Yosemite Valley requires crossing untracked talus." }
     ],
-    "related": ["yosemite-glaciers-climate", "giant-sequoias-fire-adaptation", "yosemite-wildlife-viewing-guide", "mist-trail-the-real-guide", "tuolumne-meadows-in-a-day"]
+    "related": ["yosemite-glaciers-climate", "giant-sequoias-fire-adaptation", "yosemite-wildlife-viewing-guide", "mist-trail-the-real-guide", "tuolumne-meadows-in-a-day", "yosemite-place-names-meanings"]
   },
   {
     "slug": "yosemite-glaciers-climate",
@@ -1765,7 +1841,7 @@
       { "q": "How often did fire burn in the Mariposa Grove?", "a": "A 1929 fire-scar survey documented in Nature Notes counted at least two major burns per century over the past two thousand years. Trees that germinated in the 1600s grew in a forest that burned roughly every ten to thirty years; a single two-thousand-year-old sequoia may carry eight or ten distinct fire scars." },
       { "q": "Why did Yosemite change its fire policy?", "a": "For about 150 years the park tried to prevent all fire, which let fuel accumulate and shade-tolerant species crowd the understory, leaving groves unable to regenerate and primed for hotter, more destructive fires. Land managers now treat fire as a necessity and run carefully timed, low-intensity restoration burns in groves like Mariposa, Tuolumne, and Merced to mimic the natural fire regime." }
     ],
-    "related": ["mariposa-grove-how-to-visit", "yosemite-tunnel-trees", "yosemite-during-smoke-season", "yosemite-fire-restrictions-explained", "yosemite-glaciers-climate"]
+    "related": ["mariposa-grove-how-to-visit", "yosemite-tunnel-trees", "yosemite-during-smoke-season", "yosemite-fire-restrictions-explained", "yosemite-glaciers-climate", "yosemite-trees-identification-guide"]
   },
   {
     "slug": "hetch-hetchy-the-other-yosemite-valley",
@@ -1815,7 +1891,7 @@
       { "q": "Can you see the Milky Way from Yosemite Valley?", "a": "On a moonless night, yes, but the Valley's lodging and village lighting reduce contrast. The high-country sites, Olmsted Point, Glacier Point, and Sentinel Dome, offer dramatically better views with comparable drive time from most gateway towns." },
       { "q": "What should I bring for stargazing in Yosemite?", "a": "Warm layers (high-country nights drop to 40F even in August), a red-light flashlight to preserve night vision, a blanket or camp chair for lying back, and binoculars, which reveal far more than the naked eye without telescope setup. A free app like Stellarium helps identify constellations and planets." }
     ],
-    "related": ["tuolumne-meadows-in-a-day", "glacier-point-road-open-2026", "yosemite-photography-spots", "tioga-road-opening-weekend", "yosemite-in-fall"]
+    "related": ["tuolumne-meadows-in-a-day", "glacier-point-road-open-2026", "yosemite-photography-spots", "tioga-road-opening-weekend", "yosemite-in-fall", "tioga-road-stop-by-stop"]
   },
   {
     "slug": "yosemite-for-non-hikers",
