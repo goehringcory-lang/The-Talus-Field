@@ -420,7 +420,11 @@ function TiogaOpeningPage({
     go: go,
     location: "tioga_article",
     href: "/articles/tioga-road-opening-weekend"
-  }, "the opening-weekend field guide"), ".")), React.createElement("ol", {
+  }, "the opening-weekend field guide"), ". Every turnout from Crane Flat to the pass, and the history under the road: ", React.createElement(HomeLink, {
+    go: go,
+    location: "tioga_article",
+    href: "/articles/tioga-road-stop-by-stop"
+  }, "Tioga Road, stop by stop"), ".")), React.createElement("ol", {
     className: "ff-hours"
   }, React.createElement("li", null, React.createElement("span", null, "Before 8 a.m."), React.createElement("p", null, "Through the gate and climbing. Early beats the congestion and the full lots, and sunrise at Olmsted Point is shared with almost no one.")), React.createElement("li", null, React.createElement("span", null, "Olmsted Point"), React.createElement("p", null, "Half Dome's broad back side, Clouds Rest to its left, and glacial erratics scattered on the slickrock. Shoes with grip, and sunglasses.")), React.createElement("li", null, React.createElement("span", null, "Ten minutes east"), React.createElement("p", null, "Tenaya Lake's east beach, ice along the shaded shore and Tenaya Peak in the open water.")), React.createElement("li", null, React.createElement("span", null, "Late morning"), React.createElement("p", null, "Tuolumne Meadows from the pullouts, then Pothole Dome or the flat walk to Soda Springs.")), React.createElement("li", {
     className: "is-glow"

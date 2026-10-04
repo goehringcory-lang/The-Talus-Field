@@ -2033,6 +2033,10 @@ var KEEP_GOING = {
       key: "itineraries",
       label: "Itineraries",
       note: "Plans in drive order"
+    }, {
+      key: "a:wildfire-in-yosemite-during-your-trip",
+      label: "A fire near your trip",
+      note: "What closes, and what to do with the bookings"
     }]
   },
   stay: {
@@ -2208,9 +2212,9 @@ var KEEP_GOING = {
       label: "Firefall",
       note: "Whether the light is worth the trip"
     }, {
-      key: "itineraries",
-      label: "Itineraries",
-      note: "What the high country is worth"
+      key: "a:tioga-road-stop-by-stop",
+      label: "Tioga Road, stop by stop",
+      note: "Every turnout from Crane Flat to the pass"
     }, {
       key: "conditions",
       label: "Conditions",

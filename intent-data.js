@@ -581,7 +581,7 @@ window.TRIP_MONTHS = [
   { key: "nov", label: "Nov", name: "November",  tioga: "closed",    glacier: "closed",    read: "yosemite-in-winter",
     arrive: "Quiet except for Thanksgiving week, which fills lodging months out. No entrance strategy needed outside that week; the days are short, so the constraint is daylight, not the gate.",
     note: "The shoulder. Short days, empty trails, the first lasting snow most years, and the high roads closing." },
-  { key: "dec", label: "Dec", name: "December",  tioga: "closed",    glacier: "closed",    read: "yosemite-in-winter",
+  { key: "dec", label: "Dec", name: "December",  tioga: "closed",    glacier: "closed",    read: "yosemite-in-december",
     arrive: "No entrance strategy needed except the holiday week from midmonth, when the lodges fill and the Valley loop slows. Chains as a rule; the constraint is the road, not the gate.",
     note: "Early winter. Snow when storms land, holiday crowds around the lodges midmonth on, and chains as a rule." },
 ];

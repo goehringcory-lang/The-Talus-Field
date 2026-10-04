@@ -16,7 +16,7 @@ window.ARTICLE_BODIES["bracebridge-dinner-and-vintners-holidays"] = function Bra
       </p>
 
       <p>
-        <strong>The Bracebridge Dinner</strong> runs in December: a single, several-hours-long dinner theater pageant, staged repeatedly through the month in the Ahwahnee's Great Lounge and dining hall. It is Tudor-costumed, live-sung, built around a seven-course feast, and involves a cast and crew that runs past a hundred people. Unlike Vintners' Holidays, a Bracebridge ticket buys the performance and the meal only. A room at the Ahwahnee is a separate booking, and plenty of guests drive in for the evening and drive home after.
+        <strong>The Bracebridge Dinner</strong> runs in December: a single, several-hours-long dinner theater pageant, staged repeatedly through the month in the Ahwahnee's Great Lounge and dining hall. It is Tudor-costumed, live-sung, built around a seven-course feast, and involves a cast and crew that runs past a hundred people. Unlike Vintners' Holidays, a Bracebridge ticket buys the performance and the meal only. A room at the Ahwahnee is a separate booking, and plenty of guests drive in for the evening and drive home after. The rest of the month, the roads, the chain rules and the holiday-week crowd, is in <a href="/articles/yosemite-in-december">the December guide</a>.
       </p>
 
       <p>

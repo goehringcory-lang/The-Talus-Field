@@ -1757,6 +1757,7 @@ const KEEP_GOING = {
     { key: "now", label: "The Park Bulletin", note: "Closures, programs, hours, events" },
     { key: "map", label: "The Map", note: "Turn conditions into a route" },
     { key: "itineraries", label: "Itineraries", note: "Plans in drive order" },
+    { key: "a:wildfire-in-yosemite-during-your-trip", label: "A fire near your trip", note: "What closes, and what to do with the bookings" },
   ] },
   stay: { links: [
     { key: "distances", label: "Drive times", note: "How far each town is from the Valley" },
@@ -1815,7 +1816,7 @@ const KEEP_GOING = {
   "tioga-opening": { links: [
     { key: "half-dome-lottery", label: "Half Dome lottery", note: "The permit odds, plainly" },
     { key: "firefall", label: "Firefall", note: "Whether the light is worth the trip" },
-    { key: "itineraries", label: "Itineraries", note: "What the high country is worth" },
+    { key: "a:tioga-road-stop-by-stop", label: "Tioga Road, stop by stop", note: "Every turnout from Crane Flat to the pass" },
     { key: "conditions", label: "Conditions", note: "Webcams, entrance waits, forecasts" },
   ] },
   "half-dome-lottery": { links: [

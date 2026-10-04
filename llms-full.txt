@@ -2106,7 +2106,7 @@ Two names turn up every year in the same searches: the Bracebridge Dinner and Vi
 
 Vintners' Holidays runs in November: four multi-day sessions built around California winemakers, each ending in a five-course paired dinner. A session includes a "Meet the Vintners" opening reception, four tasting seminars led by the visiting winemakers, and the closing gala dinner, sold as a package with a room at the Ahwahnee, Yosemite Valley Lodge, or Curry Village. The session package and the room are booked separately, and the seminars are held in public space and open to the public.
 
-The Bracebridge Dinner runs in December: a single, several-hours-long dinner theater pageant, staged repeatedly through the month in the Ahwahnee's Great Lounge and dining hall. It is Tudor-costumed, live-sung, built around a seven-course feast, and involves a cast and crew that runs past a hundred people. Unlike Vintners' Holidays, a Bracebridge ticket buys the performance and the meal only. A room at the Ahwahnee is a separate booking, and plenty of guests drive in for the evening and drive home after.
+The Bracebridge Dinner runs in December: a single, several-hours-long dinner theater pageant, staged repeatedly through the month in the Ahwahnee's Great Lounge and dining hall. It is Tudor-costumed, live-sung, built around a seven-course feast, and involves a cast and crew that runs past a hundred people. Unlike Vintners' Holidays, a Bracebridge ticket buys the performance and the meal only. A room at the Ahwahnee is a separate booking, and plenty of guests drive in for the evening and drive home after. The rest of the month, the roads, the chain rules and the holiday-week crowd, is in the December guide.
 
 The overlap that confuses people: both are staged in the same building by the same concessioner, both are the kind of thing a magazine calls "a Yosemite Christmas tradition," and both get lumped into vague web copy that never says which one has a wine list and which one has a knight in it. They don't compete for the same night. They compete for the same kind of trip: one built around a single expensive evening instead of a week of trails.
 
@@ -2393,7 +2393,7 @@ URL: https://thetalusfieldjournal.com/articles/yosemite-winter-hikes
 Section: Trails and Hikes. Published: 2026-08-23. Last updated: 2026-08-23.
 Summary: What you can actually hike in Yosemite in winter: Valley floor trails, Columbia Rock, the Vernal Fall winter route, Hetch Hetchy, Wawona, and what is closed.
 
-The email arrives every year around the first week of December, from somebody with a booked room and a creeping suspicion: asking whether there is anything to hike in Yosemite in winter. The answer is yes, with limits. The park's trail inventory shrinks by something like two thirds when the snow settles in, the famous names on the closed list are exactly the ones people came for, and nothing at the entrance gate explains which is which. But what stays open is real hiking through an empty park, and most of it needs nothing more exotic than boots, traction cleats, and a respect for the clock. This is the inventory: what closes, what stays open, and the season's one real climb. The winter guide covers the rest of the season, chains, Badger Pass, the rink; this piece is only about the trails.
+The email arrives every year around the first week of December, from somebody with a booked room and a creeping suspicion: asking whether there is anything to hike in Yosemite in winter. The answer is yes, with limits. The park's trail inventory shrinks by something like two thirds when the snow settles in, the famous names on the closed list are exactly the ones people came for, and nothing at the entrance gate explains which is which. But what stays open is real hiking through an empty park, and most of it needs nothing more exotic than boots, traction cleats, and a respect for the clock. This is the inventory: what closes, what stays open, and the season's one real climb. The winter guide covers the rest of the season, chains, Badger Pass, the rink, and the December guide takes that month on its own; this piece is only about the trails.
 
 The season this article describes runs from the first lasting snow, usually late November, into April: the Valley floor melts out first after each storm, the shaded corners hold their ice longest, and the Four Mile Trail stays gated into May. Where you fall inside that window matters less than the day's conditions.
 
@@ -3132,7 +3132,7 @@ Tuolumne Meadows sits on Tioga Road, Highway 120 through the park, roughly 55 to
 
 Leave early. The drive is part of the day, climbing from 4,000 feet in the Valley to 8,600 at the meadows and to 9,945 at Tioga Pass, the highest highway pass in California. From the east side it is a much shorter approach: Lee Vining to Tioga Pass is about twelve miles, and the meadows are a few miles further in.
 
-Tioga Road opened on May 15 this year, unusually early, and it is open now. The opening-weekend piece covers the early-season version of this day, which is a different trip, and the Tioga Road opening page tracks when the road comes back each spring. One current caution: there is water distribution system construction near the visitor center, with one-way traffic control and short holds. Budget a few extra minutes and do not treat a queue as a closure. There is no vehicle reservation required to enter Yosemite in 2026.
+Tioga Road opened on May 15 this year, unusually early, and it is open now. The opening-weekend piece covers the early-season version of this day, which is a different trip, and the Tioga Road opening page tracks when the road comes back each spring. For the drive in, turnout by turnout, see Tioga Road, stop by stop. One current caution: there is water distribution system construction near the visitor center, with one-way traffic control and short holds. Budget a few extra minutes and do not treat a queue as a closure. There is no vehicle reservation required to enter Yosemite in 2026.
 
 ### What is actually open, which changes every year
 
@@ -3637,7 +3637,7 @@ November. Glacier Point Road closes on roughly the same schedule as Tioga, and o
 
 ### Fall color: the received wisdom is wrong
 
-You will read, in more than one place, that Yosemite has no fall color because the trees are conifers. That is half right. Most of the forest is evergreen, correct. But the Valley floor is not forest, it is meadow and oak woodland and riparian corridor, and those are exactly the places deciduous trees live.
+You will read, in more than one place, that Yosemite has no fall color because the trees are conifers. That is half right. Most of the forest is evergreen, correct, and the field guide to the park's trees sorts those conifers belt by belt. But the Valley floor is not forest, it is meadow and oak woodland and riparian corridor, and those are exactly the places deciduous trees live.
 
 Four species do the work. California black oak is the backbone, turning gold and then a deep bronze across the Valley meadows, and it is the tree that makes an October photograph of Cook's Meadow look nothing like a July one. Bigleaf maple goes clear yellow and stands out hard against the dark conifers behind it. Pacific dogwood, the same tree that produces the white flowers people drive up for in May, turns red and pink in October, and it is best where its branch structure frames something: El Capitan Meadow and the Cook's Meadow loop are the reliable spots. Black cottonwood lights up yellow along the Merced River, which is why the river corridor is the single best fall drive in the park.
 
@@ -4027,7 +4027,7 @@ Two practical notes. First, the Lower Yosemite Fall loop is a one-mile paved tra
 
 Bridalveil Fall, 620 feet, is the first waterfall nearly every visitor sees, hanging on the south wall as you come out of the Wawona Tunnel or up Highway 140 into the Valley. It is also the most dependable: the only major Valley fall that flows year-round, heavy in spring, a drifting ribbon by October, but always present.
 
-The Ahwahneechee called it Pohono, often translated as spirit of the puffing wind, and the name is a field observation. Bridalveil rarely falls straight. Afternoon breezes catch the column and swing it sideways across the cliff face, sometimes lifting the lower half into pure mist before it reaches the ground. The approach trail and viewing area were rebuilt in a multi-year restoration finished in 2023, and the short paved walk to the base is an easy add to any Valley day. Expect to get wet at the viewpoint in May.
+The Ahwahneechee called it Pohono, often translated as spirit of the puffing wind (how far the old translations can be trusted is the subject of what Yosemite's names mean), and the name is a field observation. Bridalveil rarely falls straight. Afternoon breezes catch the column and swing it sideways across the cliff face, sometimes lifting the lower half into pure mist before it reaches the ground. The approach trail and viewing area were rebuilt in a multi-year restoration finished in 2023, and the short paved walk to the base is an easy add to any Valley day. Expect to get wet at the viewpoint in May.
 
 ### The Mist Trail corridor: Vernal and Nevada
 
@@ -8929,7 +8929,7 @@ Gas up before you start climbing. Crane Flat is the only fuel inside the park on
 
 Carry chains, layers, and a full tank. Tioga Pass tops out at 9,945 feet. Morning temperatures will be in the 20s and 30s, even when the Valley is mild. Black ice at dawn and dusk is real, especially near Olmsted Point and the climb to the pass.
 
-Arrive early. Before 8 a.m. is the target if you want to beat the congestion and the full parking lots, especially on opening weekend. Sunrise at Olmsted is a strong photograph, and you will share it with almost no one.
+Arrive early. Before 8 a.m. is the target if you want to beat the congestion and the full parking lots, especially on opening weekend. Sunrise at Olmsted is a strong photograph, and you will share it with almost no one. The rest of the turnouts between Crane Flat and the pass, with the history under each, are in Tioga Road, stop by stop.
 
 ### The best Tioga Road stops and short hikes for opening weekend
 
@@ -11201,7 +11201,7 @@ Summary: Smoke season in California now runs July through October. The question 
 
 The first time I watched Yosemite Valley fill with wildfire smoke from a fire I couldn't see, the smoke arrived as a smell before it arrived as a sight. By midday, El Capitan was barely visible behind a layer of smoke that started about 200 feet up. By late afternoon, the entire upper Valley had vanished. The visitors who'd planned to drive to Glacier Point that day were standing at Tunnel View looking at haze. The visitors who flexed and drove up Tioga Road to Tuolumne were sitting at 8,600 feet in clean air, with the smoke below them.
 
-Smoke is now routine. Smoke season in California now runs from roughly July through October most years, and parts of June in dry years. Yosemite is in the middle of one of the most fire-prone regions in the West. Plan for your trip to overlap with it.
+Smoke is now routine. Smoke season in California now runs from roughly July through October most years, and parts of June in dry years. Yosemite is in the middle of one of the most fire-prone regions in the West. Plan for your trip to overlap with it. Smoke and closures are separate problems, and when the fire itself comes near your dates, what closes and what to do with the bookings is its own question.
 
 Planning around smoke is doable, though few guides explain how. The official sources (the NPS air quality page, AirNow, the fire situation reports) are accurate but generic. They tell you to check the AQI. They don't tell you what to do with the number.
 
