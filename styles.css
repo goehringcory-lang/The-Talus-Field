@@ -12652,3 +12652,229 @@ html[data-nav-mode="pinned"] { scroll-padding-top: 62px; }
 }
 .guide-more > summary:focus-visible { outline: 2px solid var(--ink); outline-offset: 3px; }
 .guide-more h3 { margin-top: 28px; }
+
+/* ── /articles/first-time-yosemite-overwhelm: the `.ft-*` pieces ──────────
+   A feature article on the `.hp-event` tokens and the `.ff-*` kit (see the
+   feature-article layer). Its own pieces: the same-place-two-ways cards, the
+   three numbered things (each keeps its own h2 and pinned id), the two
+   ledgers, the swaps, the three-question worksheet, the day cards, the month
+   strip, the booking windows, the NPS map crop with numbered pins (the /stay
+   crop and its coordinates) beside the drive-time bars, the order of a first
+   trip (the shared `.ff-hours`), the fee cards and the mistake cards (the
+   shared `.ff-rules`). Tones carry a label, never colour alone. */
+.ft-feature { --ft-best: var(--bt-open, #3d5a2b); --ft-warn: var(--bt-warn, #b8860b); --ft-bad: var(--bt-closed, #7a2a10); --ft-cold: #4a6378; --ft-grey: #8c948a; }
+.ft-feature .ff-split > * { min-width: 0; }
+.ft-prose { font: 17px/1.75 var(--sans); color: var(--hp-ink); max-width: 640px; }
+.ft-prose--wide { max-width: 760px; }
+.ft-prose p { margin: 0 0 1.1em; }
+.ft-prose p:last-child { margin-bottom: 0; }
+.ft-prose strong { font-weight: 600; }
+.ft-prose a, .ft-ledger a, .ft-windows a, .ft-cannot a, .ft-small a, .ft-start a, .ff-rules.ft-rules a, .ft-feature .ff-lede a, .ft-feature .ff-note a { color: inherit; text-decoration: underline; text-decoration-color: var(--hp-accent); text-decoration-thickness: 1px; text-underline-offset: 3px; }
+.ft-prose a:hover, .ft-ledger a:hover, .ft-windows a:hover, .ft-cannot a:hover, .ft-small a:hover, .ft-start a:hover, .ff-rules.ft-rules a:hover { color: var(--hp-accent); }
+.ft-prose .dropcap::first-letter { font-family: var(--serif); font-weight: 400; font-size: 4.1em; float: left; line-height: 0.82; margin: 0.08em 0.1em 0 -0.03em; color: var(--hp-accent); }
+.ft-open .ft-prose { font: 19px/1.6 var(--serif); color: var(--ink-2); }
+.ft-open .ft-prose p:first-child { color: var(--hp-ink); }
+.ft-open .ft-turn { font: italic 24px/1.35 var(--serif); color: var(--hp-ink); }
+.ft-open .ff-short { position: sticky; top: 88px; }
+.hp-design a.ft-short__link { display: flex; align-items: center; justify-content: center; min-height: 48px; padding: 12px 18px; border: 1.5px solid rgba(247, 241, 225, 0.7); border-radius: 3px; font: 600 13px var(--sans); color: var(--hp-paper); text-align: center; }
+.hp-design a.ft-short__link:hover { background: var(--hp-paper); color: var(--hp-ink); }
+.ft-subhead { margin: 52px 0 18px; font: 400 26px/1.15 var(--serif); color: var(--hp-ink); }
+.ft-subhead--tight { margin-top: 0; }
+.ft-small { margin: 0 0 16px; max-width: 760px; font: 15px/1.65 var(--sans); color: var(--ink-2); }
+.ft-after { margin-top: 32px; }
+.ft-signoff { margin: 22px 0 0; font: 400 24px/1.3 var(--serif); color: var(--hp-ink); }
+.ft-signoff--small { font-size: 20px; }
+.ft-photo { margin: 0; }
+.ft-photo img { display: block; width: 100%; height: auto; object-fit: cover; border-radius: 3px; }
+.ft-photo figcaption { margin-top: 10px; font: 12px/1.5 var(--sans); color: var(--hp-muted); }
+.ft-quote { margin: 28px 0 0; padding: 4px 0 4px 22px; border-left: 4px solid var(--hp-accent); font: 400 30px/1.25 var(--serif); color: var(--hp-ink); }
+
+/* Same place, two ways. */
+.ft-ways { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 14px; }
+.ft-ways > li { background: var(--hp-card); border: 1px solid var(--hp-rule); border-radius: 4px; padding: 22px; display: grid; gap: 14px; align-content: start; }
+.ft-ways .ft-ways__head { margin: 0; display: flex; align-items: center; gap: 10px; font: 400 23px/1.15 var(--serif); color: var(--hp-ink); }
+.ft-ways__head .ff-icon { color: var(--hp-accent); }
+.ft-ways__usual, .ft-ways__better { display: grid; gap: 4px; padding-top: 10px; border-top: 1px solid var(--hp-rule); }
+.ft-ways__better { border-top: 2px solid var(--ft-best); }
+.ft-ways span { font: 700 10px var(--sans); letter-spacing: 1.4px; text-transform: uppercase; color: var(--hp-muted); }
+.ft-ways__better span { color: var(--ft-best); }
+.ft-ways p { margin: 0; font: 14px/1.6 var(--sans); color: var(--ink-2); }
+.ft-ways__usual p { color: var(--hp-muted); }
+
+/* The three things. */
+.ft-three .ff-lede { margin-bottom: 8px; }
+.ft-thing { display: grid; grid-template-columns: 72px minmax(0, 1fr) minmax(0, 1fr); gap: 0 40px; padding-block: 40px; border-top: 2px solid var(--hp-ink); margin-top: 32px; }
+.ft-thing__num { margin: 0; font: 400 72px/0.9 var(--serif); color: var(--hp-accent); }
+.ft-thing h2 { margin-top: 0; }
+.ft-ledgers { display: grid; gap: 14px; }
+.ft-ledger { background: var(--hp-card); border: 1px solid var(--hp-rule); border-radius: 4px; padding: 20px 22px; }
+.ft-ledger--now { border-left: 4px solid var(--ft-warn); }
+.ft-ledger__head, .ft-still__head { display: flex; align-items: center; gap: 8px; margin: 0 0 10px; font: 700 11px var(--sans); letter-spacing: 1.4px; text-transform: uppercase; color: var(--hp-accent); }
+.ft-ledger--now .ft-ledger__head { color: var(--ft-warn); }
+.ft-ledger ul { list-style: none; margin: 0; padding: 0; }
+.ft-ledger li { padding-block: 8px; border-top: 1px solid var(--hp-rule); font: 14px/1.55 var(--sans); color: var(--ink-2); }
+.ft-ledger li strong { color: var(--hp-ink); font-weight: 600; }
+.ft-asks { background: var(--hp-ink); color: var(--hp-paper); border-radius: 4px; padding: 24px 26px; align-self: start; }
+.ft-asks__head { margin: 0 0 10px; font: 700 11px var(--sans); letter-spacing: 1.6px; text-transform: uppercase; color: var(--hp-gold); }
+.ft-asks ul { margin: 0; padding-left: 20px; display: grid; gap: 8px; font: 19px/1.35 var(--serif); }
+.ft-swaps { list-style: none; margin: 0; padding: 0; display: grid; gap: 14px; align-self: start; }
+.ft-swaps li { display: grid; grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr); align-items: center; gap: 10px 14px; background: var(--hp-card); border: 1px solid var(--hp-rule); border-radius: 4px; padding: 18px 22px; }
+.ft-swaps__if { grid-column: 1 / -1; font: 700 11px var(--sans); letter-spacing: 1.2px; text-transform: uppercase; color: var(--hp-muted); }
+.ft-swaps__from { font: 400 22px/1.2 var(--serif); color: var(--hp-muted); text-decoration: line-through; text-decoration-color: var(--ft-bad); text-decoration-thickness: 2px; }
+.ft-swaps__arrow { font: 22px var(--sans); color: var(--hp-accent); }
+.ft-swaps__to { font: 400 22px/1.2 var(--serif); color: var(--hp-ink); }
+
+/* The pitch. */
+.ft-cans { list-style: none; margin: 0; padding: 0; border-top: 2px solid var(--hp-ink); }
+.ft-cans li { position: relative; padding: 14px 0 14px 30px; border-bottom: 1px solid var(--hp-rule); font: 19px/1.45 var(--serif); color: var(--hp-ink); }
+.ft-cans li::before { content: ""; position: absolute; left: 4px; top: 1.15em; width: 10px; height: 10px; border-radius: 50%; background: var(--hp-accent); }
+
+/* Three questions. */
+.ft-questions { list-style: none; margin: 32px 0 0; padding: 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; }
+.ft-questions > li { background: var(--hp-card); border: 1px solid var(--hp-rule); border-top: 4px solid var(--hp-accent); border-radius: 4px; padding: 24px; display: grid; gap: 14px; align-content: start; }
+.ft-questions__num { font: 400 44px/1 var(--serif); color: var(--hp-accent); }
+.ft-questions strong { font: 400 22px/1.3 var(--serif); color: var(--hp-ink); }
+.ft-questions p { margin: 0; font: 14px/1.6 var(--sans); color: var(--ink-2); }
+.hp-design .ft-questions a { justify-self: start; font: 600 13px var(--sans); color: var(--hp-accent); border-bottom: 1px solid currentColor; padding-bottom: 2px; }
+.ft-wants { display: flex; flex-wrap: wrap; gap: 8px; }
+.ft-want { display: inline-flex; align-items: center; gap: 6px; padding: 6px 11px; border: 1px solid var(--hp-ink); border-radius: 999px; font: 600 12px var(--sans); color: var(--hp-ink); }
+.ft-want .ff-icon { color: var(--hp-accent); }
+
+/* How many days. */
+.ft-days { list-style: none; margin: 32px 0 0; padding: 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; }
+.ft-days > li { background: var(--hp-card); border: 1px solid var(--hp-rule); border-radius: 4px; padding: 24px; display: grid; gap: 10px; align-content: start; }
+.ft-days > li.is-pick { border: 2px solid var(--hp-ink); }
+.ft-days__n { font: 400 40px/1 var(--serif); color: var(--hp-accent); }
+.ft-days strong { font: 400 22px/1.2 var(--serif); color: var(--hp-ink); }
+.ft-days p { margin: 0; font: 14px/1.6 var(--sans); color: var(--ink-2); }
+.ft-days__chip, .ft-towns__verdict { justify-self: start; display: inline-flex; align-items: center; gap: 7px; padding: 4px 10px; border: 1px solid var(--hp-rule); border-radius: 2px; background: var(--hp-paper); font: 600 11px/1.3 var(--sans); color: var(--hp-ink); }
+.ft-days__chip::before, .ft-towns__verdict::before { content: ""; flex: none; width: 9px; height: 9px; border-radius: 50%; background: var(--ft-grey); }
+.ft-days__chip.is-best::before, .ft-towns .is-best .ft-towns__verdict::before { background: var(--ft-best); }
+.ft-days__chip.is-good::before, .ft-towns .is-good .ft-towns__verdict::before { background: var(--hp-accent); }
+.ft-days__chip.is-warn::before, .ft-towns .is-warn .ft-towns__verdict::before { background: var(--ft-warn); }
+.ft-towns .is-bad .ft-towns__verdict::before { background: var(--ft-bad); }
+
+/* The month strip. */
+.ft-months { margin: 32px 0 0; background: var(--hp-card); border: 1px solid var(--hp-rule); border-radius: 4px; padding: 22px; }
+.ft-months figcaption { margin: 0 0 14px; font: 600 10px var(--sans); letter-spacing: 1.6px; text-transform: uppercase; color: var(--hp-muted); }
+.ft-months ol { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); gap: 4px; }
+.ft-months li { display: grid; gap: 6px; align-content: start; }
+.ft-months__m { font: 700 12px var(--sans); letter-spacing: 0.8px; text-transform: uppercase; color: var(--hp-ink); }
+.ft-months__bar { height: 34px; border-radius: 2px; background: var(--ft-grey); }
+.ft-months .is-best .ft-months__bar { background: var(--ft-best); }
+.ft-months .is-good .ft-months__bar { background: var(--hp-accent); }
+.ft-months .is-hot .ft-months__bar { background: var(--ft-warn); }
+.ft-months .is-winter .ft-months__bar { background: var(--ft-cold); }
+.ft-months__label { font: 12px/1.3 var(--sans); color: var(--ink-2); }
+.ft-months__key { margin: 18px 0 0; padding-top: 14px; border-top: 1px solid var(--hp-rule); display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 12px; }
+.ft-months__key > div { display: flex; gap: 8px; align-items: flex-start; }
+.ft-months__key dt i { display: block; width: 12px; height: 12px; margin-top: 2px; border-radius: 2px; background: var(--ft-grey); }
+.ft-months__key .is-best i { background: var(--ft-best); }
+.ft-months__key .is-good i { background: var(--hp-accent); }
+.ft-months__key .is-hot i { background: var(--ft-warn); }
+.ft-months__key .is-winter i { background: var(--ft-cold); }
+.ft-months__key dd { margin: 0; font: 12px/1.45 var(--sans); color: var(--ink-2); }
+
+/* Where to stay: the booking windows, the map and the towns. */
+.ft-windows { list-style: none; margin: 32px 0 0; padding: 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; }
+.ft-windows li { background: var(--hp-card); border: 1px solid var(--hp-rule); border-radius: 4px; padding: 22px; display: grid; gap: 6px; align-content: start; }
+.ft-windows .ff-icon { color: var(--hp-accent); margin-bottom: 4px; }
+.ft-windows span { font: 700 10px var(--sans); letter-spacing: 1.4px; text-transform: uppercase; color: var(--hp-muted); }
+.ft-windows strong { font: 400 26px/1.15 var(--serif); color: var(--hp-ink); }
+.ft-windows p { margin: 4px 0 0; font: 14px/1.6 var(--sans); color: var(--ink-2); }
+.ft-stay { margin-top: 48px; align-items: start; }
+.ft-map { margin: 0; }
+.ft-map__frame { position: relative; aspect-ratio: 1760 / 1410; overflow: hidden; border: 1px solid var(--hp-rule); border-radius: 4px; background: #e9ebe6; }
+.ft-map__frame picture, .ft-map__img { display: block; width: 100%; height: 100%; object-fit: cover; }
+.ft-map__layer { position: absolute; inset: 0; pointer-events: none; }
+.ft-pin { position: absolute; width: 0; height: 0; }
+.ft-pin b { position: absolute; left: -13px; top: -13px; width: 26px; height: 26px; display: grid; place-items: center; border-radius: 50%; background: var(--ff-book, #8a3315); color: #fff; font: 700 13px var(--sans); border: 2.5px solid #fff; box-shadow: 0 1px 4px rgba(0, 0, 0, 0.4); }
+.ft-pin.is-valley b { background: var(--hp-ink); }
+.ft-map figcaption { display: grid; gap: 8px; margin-top: 12px; font: 12px/1.5 var(--sans); color: var(--hp-muted); }
+.ft-map__key { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 6px 16px; font-weight: 600; color: var(--hp-ink); }
+.ft-map__key li { display: inline-flex; align-items: center; gap: 7px; }
+.ft-map__key b { display: inline-grid; place-items: center; width: 20px; height: 20px; border-radius: 50%; background: var(--ff-book, #8a3315); color: #fff; font: 700 11px var(--sans); }
+.ft-map__key .is-valley b { background: var(--hp-ink); }
+.ft-towns { list-style: none; margin: 0; padding: 0; border-top: 2px solid var(--hp-ink); }
+.ft-towns > li { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 8px 16px; align-items: center; padding-block: 16px; border-bottom: 1px solid var(--hp-rule); }
+.ft-towns__name { display: flex; gap: 12px; align-items: center; }
+.ft-towns__name > b { flex: none; display: inline-grid; place-items: center; width: 26px; height: 26px; border-radius: 50%; background: var(--ff-book, #8a3315); color: #fff; font: 700 12px var(--sans); }
+.ft-towns__name strong { display: block; font: 400 22px/1.15 var(--serif); color: var(--hp-ink); }
+.ft-towns__name span { display: block; margin-top: 2px; font: 12px/1.4 var(--sans); color: var(--hp-muted); }
+.ft-towns__time { grid-column: 2; grid-row: 1; margin: 0; font: 600 14px var(--sans); color: var(--hp-ink); white-space: nowrap; }
+.ft-towns__bar { grid-column: 1 / -1; position: relative; height: 12px; border-radius: 2px; background: repeating-linear-gradient(90deg, transparent 0, transparent calc(25% - 1px), var(--hp-rule) calc(25% - 1px), var(--hp-rule) 25%), #e8e6da; }
+.ft-towns__bar i { position: absolute; top: 0; bottom: 0; border-radius: 2px; background: var(--hp-accent); }
+.ft-towns__bar i.is-open { background: linear-gradient(90deg, var(--ft-bad) 0%, rgba(122, 42, 16, 0.15) 100%); }
+.ft-towns .is-best .ft-towns__bar i { background: var(--ft-best); }
+.ft-towns .is-warn .ft-towns__bar i { background: var(--ft-warn); }
+.ft-towns__verdict { grid-column: 1 / -1; margin: 0; }
+.ft-stay-end { margin-top: 44px; }
+.ft-cta { position: sticky; top: 88px; }
+.ft-cta .lodging-cta { margin: 0; }
+
+/* The order of a first trip. */
+.ft-order { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 28px; margin-top: 32px; }
+.ft-order__day { margin: 0 0 16px; font: 700 11px var(--sans); letter-spacing: 1.4px; text-transform: uppercase; color: var(--hp-accent); }
+.ft-cannot { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; }
+.ft-cannot > div { background: var(--hp-card); border: 1px solid var(--hp-rule); border-left: 4px solid var(--ft-warn); border-radius: 4px; padding: 22px; display: grid; gap: 8px; align-content: start; }
+.ft-cannot .ff-icon { color: var(--ft-warn); }
+.ft-cannot strong { font: 400 24px/1.15 var(--serif); color: var(--hp-ink); }
+.ft-cannot p { margin: 0; font: 14px/1.6 var(--sans); color: var(--ink-2); }
+
+/* Fees. */
+.ft-fees { list-style: none; margin: 32px 0 0; padding: 0; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 14px; }
+.ft-fees li { background: var(--hp-card); border: 1px solid var(--hp-rule); border-radius: 4px; padding: 22px; display: grid; gap: 6px; align-content: start; }
+.ft-fees li.is-extra { border-style: dashed; border-color: var(--hp-ink); }
+.ft-fees span { font: 700 10px var(--sans); letter-spacing: 1.2px; text-transform: uppercase; color: var(--hp-muted); }
+.ft-fees strong { font: 400 46px/1 var(--serif); color: var(--hp-ink); }
+.ft-fees p { margin: 4px 0 0; font: 13px/1.55 var(--sans); color: var(--ink-2); }
+.ft-fees-after { margin-top: 32px; }
+.ft-still { background: var(--hp-card); border: 1px solid var(--hp-rule); border-radius: 4px; padding: 20px 22px; }
+.ft-still ul { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0 18px; }
+.ft-still li { padding-block: 9px; border-top: 1px solid var(--hp-rule); font: 400 18px/1.3 var(--serif); color: var(--hp-ink); }
+
+/* Mistakes: six cards, three across. */
+.ff-rules.ft-rules { margin-top: 32px; grid-template-columns: repeat(3, minmax(0, 1fr)); }
+
+/* Where to start, and sources. */
+.ft-start { margin-top: 8px; }
+.ft-start h3 { margin: 0 0 12px; }
+.ft-start ol { margin: 0; padding: 0; list-style: none; counter-reset: fts; border-top: 2px solid var(--hp-ink); }
+.ft-start li { counter-increment: fts; position: relative; padding: 12px 0 12px 40px; border-bottom: 1px solid var(--hp-rule); font: 15px/1.6 var(--sans); color: var(--ink-2); }
+.ft-start li::before { content: counter(fts); position: absolute; left: 0; top: 10px; font: 26px/1 var(--serif); color: var(--hp-accent); }
+.ft-sources { margin-top: 44px; max-width: 880px; }
+.ft-sources h3 { margin: 0 0 4px; }
+.ft-sources__note { margin: 0 0 10px; font: 12px var(--sans); color: var(--hp-muted); }
+.ft-sources ul { list-style: none; margin: 0; padding: 0; }
+.ft-sources li { padding-block: 8px; border-top: 1px solid var(--hp-rule); font: 13px/1.5 var(--sans); color: var(--hp-muted); }
+.ft-sources a { color: var(--hp-accent); }
+.ft-sources a:hover { text-decoration: underline; }
+
+@media (max-width: 1100px) {
+  .ft-ways, .ft-fees { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .ft-thing { grid-template-columns: 56px minmax(0, 1fr); }
+  .ft-thing > :last-child { grid-column: 2; margin-top: 24px; }
+  .ft-thing__num { font-size: 56px; }
+  .ft-months ol { grid-template-columns: repeat(6, minmax(0, 1fr)); row-gap: 14px; }
+  .ft-months__key { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .ff-rules.ft-rules { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (max-width: 880px) {
+  .ft-open .ff-short, .ft-cta { position: static; }
+  .ft-questions, .ft-days, .ft-windows, .ft-order, .ft-cannot { grid-template-columns: 1fr; }
+  .ft-order { gap: 8px; }
+}
+@media (max-width: 760px) {
+  .ft-open .ft-prose { font-size: 18px; }
+  .ft-ways, .ft-fees, .ff-rules.ft-rules { grid-template-columns: 1fr; }
+  .ft-thing { grid-template-columns: 1fr; padding-block: 28px; }
+  .ft-thing > :last-child { grid-column: 1; }
+  .ft-thing__num { font-size: 44px; margin-bottom: 8px; }
+  .ft-months ol { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+  .ft-months__key { grid-template-columns: 1fr; }
+  .ft-quote { font-size: 25px; }
+  .ft-subhead { font-size: 23px; }
+  .ft-pin b { left: -11px; top: -11px; width: 22px; height: 22px; font-size: 11px; border-width: 2px; }
+}
+/* The crawler fragment is not laid out as a grid. */
+#prerender-prose .ft-feature :is(.ff-split, .ff-facts, .ft-ways, .ft-thing, .ft-questions, .ft-days, .ft-months ol, .ft-windows, .ft-order, .ft-cannot, .ft-fees, .ff-rules) { display: block; }
