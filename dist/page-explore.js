@@ -137,6 +137,18 @@ function ExplorePage({
     route: "half-dome-lottery",
     name: "The Half Dome lottery",
     note: "How the cable permit lottery works, the preseason and daily odds, and what to climb instead when the draw goes against you."
+  }, {
+    route: "fall-color",
+    name: "Fall color",
+    note: "When Yosemite's maples, oaks, dogwoods and aspens turn, band by band down the mountain, where the park's own naturalists look, and what ends the season."
+  }, {
+    route: "moonbow",
+    name: "The moonbow",
+    note: "Rainbows by moonlight in the spray of Yosemite Falls: the spring full-moon nights, the geometry that sets the hour, where to stand, and the etiquette on the bridge."
+  }, {
+    route: "frazil-ice",
+    name: "Frazil ice",
+    note: "The cold spring mornings when Yosemite Creek runs white with frozen mist: what it is, when to look, where to watch it safely, and the park's film of it."
   }];
   var guide = [{
     route: "guide",

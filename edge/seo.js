@@ -280,7 +280,7 @@ const HUB_PROSE = {
     `<h2>Plan a trip</h2>` +
     `<p><a href="/planning">The Yosemite Planning Guide</a> · <a href="/map">The Map</a> · <a href="/itineraries">Itineraries</a> · <a href="/stay">Where to stay</a> · <a href="/conditions">Conditions</a> · <a href="/checklist">The first-week checklist</a> · <a href="/kit">The Kit</a> · <a href="/consult">Trip consults</a></p>` +
     `<h2>Dated events</h2>` +
-    `<p><a href="/firefall">Firefall</a> · <a href="/tioga-opening">The Tioga Road opening</a> · <a href="/half-dome-lottery">The Half Dome lottery</a></p>` +
+    `<p><a href="/firefall">Firefall</a> · <a href="/tioga-opening">The Tioga Road opening</a> · <a href="/half-dome-lottery">The Half Dome lottery</a> · <a href="/fall-color">Fall color</a> · <a href="/moonbow">The moonbow</a> · <a href="/frazil-ice">Frazil ice</a></p>` +
     `<h2>The Field Guide</h2>` +
     `<p><a href="/guide">The Field Guide</a> · <a href="/partners">Group codes</a></p>` +
     `<h2>The journal</h2>` +
@@ -511,6 +511,31 @@ const HUB_PROSE = {
     ) +
     `<p>The cables are up from about the Friday before Memorial Day to the day after the second Monday in October. A permit is required past the base of the subdome, checked against photo ID, with 300 hikers a day allowed through: roughly 225 day hikers from these lotteries and 75 backpackers on wilderness permits. Going without one violates 36 CFR 1.6 and carries a fine of up to $5,000.</p>` +
     `<p>Whether the hike itself is the right goal: <a href="/articles/so-you-want-to-hike-half-dome">So You Want to Hike Half Dome</a>, which makes the case for Clouds Rest. Every other permit the park runs: <a href="/articles/yosemite-wilderness-permits-guide">the wilderness permits guide</a> and <a href="/articles/yosemite-walk-up-and-day-of-permits">walk-up and day-of permits</a>.</p>`,
+  // The October 2026 event pages. Facts follow each page's own copy
+  // (page-fall-color.jsx, page-moonbow.jsx, page-frazil-ice.jsx), whose
+  // headers carry the sources; no year appears, and the moonbow's computed
+  // full-moon dates stay client-side.
+  "/fall-color": () =>
+    hubProse(
+      "Yosemite Fall Color",
+      "Most of Yosemite is evergreen, so autumn color here is concentrated: bigleaf maples gone yellow along the creeks, black oaks orange to gold in the meadows, dogwoods red under the conifers, aspens yellow up high. Color starts at the top of the park and walks down it. Aspens along the Tioga Road turn from late September; dogwoods at middle elevations follow; Yosemite Valley's maples and black oaks are showy from about mid-October, and the Valley's color usually builds through late October and holds until the first heavy storm or hard frost."
+    ) +
+    `<p>The park's own band of color is the bigleaf maples along the south wall, from below Bridalveil Creek past Sentinel Creek to Happy Isles. Add the black oaks of El Capitan Meadow, the planted sugar maple by the Yosemite Valley Chapel, and the elm in Cook's Meadow, which turns first. Outside the Valley: Wawona's oaks and dogwoods, aspens past Summit Meadow on Glacier Point Road, aspens near the Tuolumne Grove trailhead on the Tioga Road, and willows and cottonwoods at El Portal.</p>` +
+    `<p>Autumn also means low water, with Yosemite Falls often a trickle or dry, and the high roads closing for snow, usually sometime in November. A hard frost or the first big storm ends the color. More: <a href="/articles/yosemite-in-fall">Yosemite in fall</a>, <a href="/articles/yosemite-trees-identification-guide">the tree guide</a>, <a href="/articles/yosemite-photography-spots">the photography guide</a>, and <a href="/stay">where to stay</a>.</p>`,
+  "/moonbow": () =>
+    hubProse(
+      "The Yosemite Moonbow",
+      "On clear spring nights around the full moon, the spray of Yosemite Falls can hold a rainbow made of moonlight. The National Park Service puts it at times of especially high flow, generally in April and May, and says it depends on the water, a clear sky and the angle of the moon. The usable nights are the full moon and about two on either side, from about April into June."
+    ) +
+    `<p>A moonbow follows a rainbow's geometry: an arc 42 degrees around the point opposite the moon, so the moon must be low behind you, below about 42 degrees, and the bow comes about 50 minutes later each night. To the eye it looks silver; a camera on a tripod records the colors.</p>` +
+    `<p>The classic place is the footbridge at the base of Lower Yosemite Fall, on the paved loop from the Lower Yosemite Fall trailhead; Upper Yosemite Fall's bow is watched from Cook's Meadow. Bring a red headlamp, no flash, and a rain shell for the spray. The Valley shuttle stops at 10 p.m. More: <a href="/articles/yosemite-waterfalls-guide">the waterfalls guide</a>, <a href="/articles/yosemite-stargazing-where-to-look-up">stargazing in Yosemite</a>, and <a href="/frazil-ice">frazil ice</a>.</p>`,
+  "/frazil-ice": () =>
+    hubProse(
+      "Frazil Ice in Yosemite",
+      "Frazil ice is slush made from waterfall mist. On mornings when the creeks are running high but the temperature is below freezing, mist from the falls freezes into ice crystals that float down the creek, so a creek seems to be full of slush rather than water. In Yosemite it is most famously seen on Yosemite Creek just below Lower Yosemite Fall, and also on Ribbon Creek and Sentinel Creek."
+    ) +
+    `<p>It can come in fall, winter or spring, whenever the falls carry high flow and the Valley drops below freezing overnight, most often in April and sometimes in March and May, and usually before 9 a.m. The setup is a warm spell that swells the falls, then a sharp cold night. The National Park Service filmed it for Yosemite Nature Notes episode 9, Frazil Ice.</p>` +
+    `<p>Never walk on it: it is slush over moving water, people and animals can be trapped beneath it, and packed ice can dam the creek and send it somewhere new. In April 1953 it pushed Yosemite Creek across the road toward the lodge. It is not the ice cone, which builds at the base of Upper Yosemite Fall in winter. More: <a href="/articles/yosemite-in-march">Yosemite in March</a>, <a href="/articles/yosemite-in-winter">Yosemite in winter</a>, and <a href="/moonbow">the moonbow</a>.</p>`,
   // The three legal pages are indexable but render nothing for non-JS
   // crawlers without a prose entry — a one-paragraph summary each keeps them
   // from reading as empty (thin) pages. Facts follow the published page copy
@@ -1296,6 +1321,141 @@ function seoForPath(pathname, searchParams) {
         {
           q: "When are the Half Dome cables up?",
           a: "Typically from the Friday before Memorial Day until the day after the second Monday in October, shifting with snow and weather. Outside that window the cables are down and the summit route is not maintained.",
+        },
+      ],
+    },
+    "/fall-color": {
+      // Evergreen event page (October 2026): no year in the URL, title or copy.
+      // The FAQ mirrors FC_FAQ in page-fall-color.jsx word for word; its facts
+      // follow the NPS fall color and Visiting in Fall pages (sources in that
+      // file's header). Keep title and description byte-identical to app.jsx.
+      title: `Yosemite Fall Colors: when and where the leaves turn — ${SITE_NAME}`,
+      description:
+        "When Yosemite's fall color peaks, band by band from the Tioga Road aspens to the Valley's maples and black oaks, where the park's own naturalists look, and what ends the season.",
+      breadcrumb: [["Home", `${SITE_ORIGIN}/`], ["Fall color", null]],
+      // Edge-only FAQ, as on /firefall: the client entry carries none.
+      faq: [
+        {
+          q: "When is peak fall color in Yosemite?",
+          a: "In Yosemite Valley, usually late October into early November. The park's maples and black oaks are showy from about mid-October, and the Valley's color holds until the first heavy winter storm or hard frost, which in some years is early December. The high country turns weeks earlier.",
+        },
+        {
+          q: "Is Yosemite good for fall colors?",
+          a: "In places. The park says it is not known for spectacular fall color, because most of its trees are evergreen. What it has is concentrated: maples along the south wall, black oaks in the meadows, dogwoods under the conifers, aspens up high. Against grey granite it reads brighter than the acreage suggests.",
+        },
+        {
+          q: "Where are the best fall colors in Yosemite Valley?",
+          a: "The bigleaf maples along the south wall from below Bridalveil Creek past Sentinel Creek to Happy Isles, the black oaks in El Capitan Meadow, the sugar maple beside the Yosemite Valley Chapel, and the elm in Cook's Meadow, which turns first.",
+        },
+        {
+          q: "When do the aspens turn on Tioga Road?",
+          a: "Late September through October, earliest of anything in the park. Look near the Tuolumne Grove trailhead and the Yosemite Creek picnic area. The road closes for the winter, usually sometime in November.",
+        },
+        {
+          q: "Are the waterfalls running in the fall?",
+          a: "Barely. Yosemite Falls is often a trickle or dry from late summer until the autumn storms; Vernal, Nevada and Bridalveil run all year but slow to a trickle. A big early storm can bring them back for a few days.",
+        },
+        {
+          q: "What ends the fall color?",
+          a: "A hard frost or the first heavy storm. Frost kills the leaves before they finish turning, and a windy storm strips what has turned. Clear, dry, cool days with nights above freezing make the best color.",
+        },
+        {
+          q: "Is October a good month to visit Yosemite?",
+          a: "Yes, for the color, the light and the cooler walking weather, with the falls low and the high roads on borrowed time. From October 15 there is no overnight parking along the Tioga or Glacier Point roads.",
+        },
+        {
+          q: "Is the red tree by the Yosemite Chapel native?",
+          a: "No. It is a sugar maple, planted, and the brightest red in the Valley. The native maple here is the bigleaf, which turns yellow.",
+        },
+      ],
+    },
+    "/moonbow": {
+      // Evergreen event page (October 2026): no year in the URL, title or copy;
+      // the page computes the coming full moons in the browser. The FAQ
+      // mirrors MB_FAQ in page-moonbow.jsx word for word (sources in that
+      // file's header). Keep title and description byte-identical to app.jsx.
+      title: `The Yosemite Moonbow: full-moon dates, where to stand, how it works — ${SITE_NAME}`,
+      description:
+        "The Yosemite moonbow at Lower Yosemite Fall: the spring full-moon nights, the 42-degree geometry that sets the hour, where to stand, what to bring, and how to behave on a crowded bridge in the dark.",
+      breadcrumb: [["Home", `${SITE_ORIGIN}/`], ["Moonbow", null]],
+      // Edge-only FAQ, as on /firefall: the client entry carries none.
+      faq: [
+        {
+          q: "When can you see a moonbow in Yosemite?",
+          a: "On clear nights around the full moon, from about April into June, while Yosemite Falls is running high. The park says generally April and May; in a big snow year the falls carry the season into June. The usable window is the full moon and about two nights either side.",
+        },
+        {
+          q: "Where do you see the moonbow in Yosemite?",
+          a: "Most often at Lower Yosemite Fall, from the footbridge at its base, a short walk on the paved loop from the Lower Yosemite Fall trailhead. Upper Yosemite Fall makes its own bow, seen from Cook's Meadow. In some years it forms at Glacier Point, once the road is open.",
+        },
+        {
+          q: "What time does the moonbow appear?",
+          a: "It depends on the night, the fall and where you stand. The bow forms when the moon is low enough, below about 42 degrees, behind you, and it comes about 50 minutes later each night, as the moon rises later. Nightly times by vantage point are published each spring at yosemitemoonbow.com.",
+        },
+        {
+          q: "Can you see the colors with the naked eye?",
+          a: "Mostly not. To the eye a moonbow is a silver or grey arc, because moonlight is too faint for the eye's color vision; keep watching and some people see faint color. A camera on a tripod records the full spectrum.",
+        },
+        {
+          q: "Is it crowded?",
+          a: "At Lower Yosemite Fall on a clear full-moon weekend, yes: photographers, tripods and a lot of people on one bridge. Cook's Meadow has more room. Weeknights and the earlier full moons are quieter.",
+        },
+        {
+          q: "Do I need a flashlight?",
+          a: "To walk in and out, a headlamp, ideally with a red mode. At the bridge, turn it off or point it at the ground, and turn off your camera's flash. The light ruins the view and the long exposures around you.",
+        },
+        {
+          q: "Will I get wet?",
+          a: "In a big water year, very. The spray at the base of Lower Yosemite Fall soaks the bridge. Bring a rain shell and protect the camera.",
+        },
+        {
+          q: "How do I get back to my car?",
+          a: "The Valley shuttle runs until about 10 p.m., often before the bow is done. Park at the Yosemite Falls lot or stay within walking distance, and carry a headlamp for the walk out.",
+        },
+      ],
+    },
+    "/frazil-ice": {
+      // Evergreen event page (October 2026). The FAQ mirrors FZ_FAQ in
+      // page-frazil-ice.jsx word for word; its facts follow the NPS frazil ice
+      // page and Yosemite Nature Notes (sources in that file's header). Keep
+      // title and description byte-identical to app.jsx.
+      title: `Frazil Ice in Yosemite: what it is, when it happens, where to see it — ${SITE_NAME}`,
+      description:
+        "Frazil ice on Yosemite Creek: waterfall mist frozen into slush that moves like lava on cold spring mornings. What it is, when the conditions line up, where to watch, the Nature Notes film, and why you never step on it.",
+      breadcrumb: [["Home", `${SITE_ORIGIN}/`], ["Frazil ice", null]],
+      // Edge-only FAQ, as on /firefall: the client entry carries none.
+      faq: [
+        {
+          q: "What is frazil ice?",
+          a: "Slush made from waterfall mist. On cold mornings when a creek is running high, mist from the fall freezes into tiny ice crystals that float down the creek, so the channel seems to be full of slush rather than water. In Yosemite it can pile up, dam the creek, and move like slow lava.",
+        },
+        {
+          q: "When can you see frazil ice in Yosemite?",
+          a: "Most often in spring, especially April, and sometimes in March and May. It can happen in fall or winter too, whenever the waterfalls carry a lot of water and the Valley drops below freezing overnight. It is weather-driven and hard to predict more than a day ahead.",
+        },
+        {
+          q: "What time of day does frazil ice happen?",
+          a: "In the morning, usually before 9 a.m., after a night below freezing. As the sun warms the Valley, the flow eases.",
+        },
+        {
+          q: "Where is the best place to see frazil ice?",
+          a: "Yosemite Creek just below Lower Yosemite Fall, from the paved Lower Yosemite Fall loop and its bridges. The park also lists Ribbon Creek and Sentinel Creek.",
+        },
+        {
+          q: "Is frazil ice dangerous?",
+          a: "Yes. It looks like snow you could walk on, but it is slush over moving water, and people and animals can sink in and be trapped beneath it. It can dam a creek and send the water somewhere new without warning. Watch from the trail, and stay off the ice and the banks.",
+        },
+        {
+          q: "Is frazil ice the same as the ice cone?",
+          a: "No. The ice cone is the mound of frozen spray and fallen ice that builds at the base of Upper Yosemite Fall in winter, sometimes more than 300 feet tall, usually melted by mid-April. Frazil ice forms in the creek below the Lower Fall.",
+        },
+        {
+          q: "How do I know if frazil ice is happening?",
+          a: "Watch for the setup: a warm spell that swells Yosemite Falls, then a clear night that drops well below freezing. Check the Yosemite Falls camera for a big white column, and the forecast low for the Valley floor. Then be at the creek early.",
+        },
+        {
+          q: "Is there a video of Yosemite frazil ice?",
+          a: "Yes. The National Park Service's Yosemite Nature Notes episode 9, Frazil Ice, filmed the flows on Yosemite Creek. It is embedded on this page.",
         },
       ],
     },

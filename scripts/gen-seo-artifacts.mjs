@@ -319,6 +319,9 @@ function buildSitemap(merged, categories) {
     // sitting at the date the page was written.
     ["/tioga-opening", nowLastmod()],
     ["/half-dome-lottery", "2026-07-21"],
+    ["/fall-color", "2026-10-04"],
+    ["/moonbow", "2026-10-04"],
+    ["/frazil-ice", "2026-10-04"],
     ["/distances", "2026-08-25"],
     ["/dates", "2026-09-05"],
     ["/international", "2026-09-05"],

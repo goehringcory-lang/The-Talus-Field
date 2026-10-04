@@ -81,6 +81,21 @@ var SEARCH_PAGES = [{
   dek: "How the cable permit lottery works, the real odds, and what to climb instead.",
   kind: "Page"
 }, {
+  route: "fall-color",
+  title: "Yosemite fall color",
+  dek: "When the leaves turn, band by band from the Tioga Road aspens to the Valley's maples and black oaks, where to look, and what ends the season.",
+  kind: "Page"
+}, {
+  route: "moonbow",
+  title: "The Yosemite moonbow",
+  dek: "Rainbows by moonlight at Lower Yosemite Fall: the spring full-moon nights, how the geometry sets the hour, and where to stand.",
+  kind: "Page"
+}, {
+  route: "frazil-ice",
+  title: "Frazil ice",
+  dek: "Waterfall mist frozen into slush that moves down Yosemite Creek on cold spring mornings: when, where to watch, and the park's film.",
+  kind: "Page"
+}, {
   route: "partners",
   title: "Group codes",
   dek: "The Field Guide in packs for hotels, inns, and rental hosts: one code per guest.",

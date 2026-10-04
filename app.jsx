@@ -29,6 +29,7 @@ const STATIC_ROUTE_KEYS = new Set([
   "guide", "map", "films", "itineraries", "conditions", "now", "firefall", "stay",
   "consult", "widget", "partners", "search", "tioga-opening", "half-dome-lottery",
   "explore", "distances", "webcams", "start-here", "dates", "international",
+  "fall-color", "moonbow", "frazil-ice",
 ]);
 
 function pathToRoute(pathname) {
@@ -119,6 +120,9 @@ const PAGE_MODULES = {
   explore: { scripts: ["/videos-data.js", "/dist/page-explore.js"], globals: ["ExplorePage"] },
   "tioga-opening": { scripts: ["/dist/page-tioga-opening.js"], globals: ["TiogaOpeningPage"] },
   "half-dome-lottery": { scripts: ["/dist/page-half-dome-lottery.js"], globals: ["HalfDomeLotteryPage"] },
+  "fall-color": { scripts: ["/dist/page-fall-color.js"], globals: ["FallColorPage"] },
+  moonbow: { scripts: ["/dist/page-moonbow.js"], globals: ["MoonbowPage"] },
+  "frazil-ice": { scripts: ["/dist/page-frazil-ice.js"], globals: ["FrazilIcePage"] },
   distances: { scripts: ["/dist/page-distances.js"], globals: ["DistancesPage"] },
   // dates-data.js is generated from scripts/data/deadlines.json (run `dates`);
   // fees-data.js is hand-written and swept by check-fee-calculator.mjs.
@@ -810,6 +814,27 @@ function buildSeo(route) {
       ogType: "website",
       breadcrumb: [["Home", `${SITE_ORIGIN}/`], ["Half Dome lottery", null]],
     },
+    "fall-color": {
+      title: `Yosemite Fall Colors: when and where the leaves turn — ${SITE_NAME}`,
+      description:
+        "When Yosemite's fall color peaks, band by band from the Tioga Road aspens to the Valley's maples and black oaks, where the park's own naturalists look, and what ends the season.",
+      ogType: "website",
+      breadcrumb: [["Home", `${SITE_ORIGIN}/`], ["Fall color", null]],
+    },
+    moonbow: {
+      title: `The Yosemite Moonbow: full-moon dates, where to stand, how it works — ${SITE_NAME}`,
+      description:
+        "The Yosemite moonbow at Lower Yosemite Fall: the spring full-moon nights, the 42-degree geometry that sets the hour, where to stand, what to bring, and how to behave on a crowded bridge in the dark.",
+      ogType: "website",
+      breadcrumb: [["Home", `${SITE_ORIGIN}/`], ["Moonbow", null]],
+    },
+    "frazil-ice": {
+      title: `Frazil Ice in Yosemite: what it is, when it happens, where to see it — ${SITE_NAME}`,
+      description:
+        "Frazil ice on Yosemite Creek: waterfall mist frozen into slush that moves like lava on cold spring mornings. What it is, when the conditions line up, where to watch, the Nature Notes film, and why you never step on it.",
+      ogType: "website",
+      breadcrumb: [["Home", `${SITE_ORIGIN}/`], ["Frazil ice", null]],
+    },
     webcams: {
       title: `Yosemite Webcams Live: Half Dome, Yosemite Falls, El Capitan — ${SITE_NAME}`,
       description:
@@ -1392,6 +1417,12 @@ function App() {
     page = <window.TiogaOpeningPage go={go} />;
   } else if (route === "half-dome-lottery") {
     page = <window.HalfDomeLotteryPage go={go} />;
+  } else if (route === "fall-color") {
+    page = <window.FallColorPage go={go} />;
+  } else if (route === "moonbow") {
+    page = <window.MoonbowPage go={go} />;
+  } else if (route === "frazil-ice") {
+    page = <window.FrazilIcePage go={go} />;
   } else if (route === "consult") {
     page = <window.ConsultPage go={go} />;
   } else if (route === "widget") {
