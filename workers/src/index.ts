@@ -7,6 +7,7 @@ import { auth } from './routes/auth'
 import { flow } from './routes/flow'
 import { checkout } from './routes/checkout'
 import { contact } from './routes/contact'
+import { feedback } from './routes/feedback'
 import { indexnow } from './routes/indexnow'
 import { ingestNpsWindow, programs } from './routes/programs'
 import { mapTiles } from './routes/maptiles'
@@ -188,6 +189,7 @@ app.route('/api/parking', parking)
 app.route('/api/auth', auth)
 app.route('/api/checkout', checkout)
 app.route('/api/contact', contact)
+app.route('/api/feedback', feedback)
 app.route('/api/indexnow', indexnow)
 app.route('/api/photos', photos)
 app.route('/api/programs', programs)

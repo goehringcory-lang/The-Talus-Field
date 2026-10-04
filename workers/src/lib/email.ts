@@ -823,6 +823,100 @@ export async function sendContactMessage(
   }
 }
 
+// One answered Field Guide survey (routes/feedback.ts). Goes to the operator
+// inbox, with the buyer's address as reply_to when the sign-in was an email,
+// so a one-tap reply reaches them.
+export async function sendFeedbackSurvey(
+  env: Env,
+  args: {
+    sub: string
+    replyTo?: string
+    account: string
+    purchasedAt: string | null
+    rating: number
+    worth: string
+    ranking: string[]
+    missing?: string
+    comment?: string
+    build?: string
+    installed?: boolean
+  },
+): Promise<void> {
+  if (!env.RESEND_API_KEY) {
+    throw new Error('RESEND_API_KEY not configured')
+  }
+
+  const a = args
+  const stars = `${a.rating} of 5`
+  const device =
+    a.installed === undefined ? 'unknown' : a.installed ? 'home-screen app' : 'browser tab'
+  const meta = [
+    `From:      ${a.sub}`,
+    `Account:   ${a.account}${a.purchasedAt ? `, since ${a.purchasedAt}` : ''}`,
+    `Build:     ${a.build ?? 'unknown'} (${device})`,
+  ]
+
+  const text = [
+    `New Field Guide survey response.`,
+    ``,
+    ...meta,
+    ``,
+    `1. How useful has the guide been?  ${stars}`,
+    `2. Worth the price?  ${a.worth}`,
+    `3. Missing features, most wanted first:`,
+    ...a.ranking.map((label, i) => `   ${i + 1}. ${label}`),
+    `4. Anything else it's missing?  ${a.missing ?? '(blank)'}`,
+    `5. Comments:`,
+    a.comment ?? '(blank)',
+  ].join('\n')
+
+  const row = (label: string, value: string) =>
+    `<tr><td style="padding: 4px 12px 4px 0; color: #50402e; vertical-align: top;">${label}</td><td style="padding: 4px 0;">${value}</td></tr>`
+
+  const html = `
+    <div style="font-family: -apple-system, Segoe UI, sans-serif; line-height: 1.55; color: #14110c;">
+      <p style="margin: 0 0 14px;"><strong>New Field Guide survey response.</strong></p>
+      <table style="border-collapse: collapse; margin: 0 0 18px; font-size: 14px;">
+        ${row('From', escapeHtml(a.sub))}
+        ${row('Account', escapeHtml(a.account) + (a.purchasedAt ? `, since ${escapeHtml(a.purchasedAt)}` : ''))}
+        ${row('Build', `${escapeHtml(a.build ?? 'unknown')} (${device})`)}
+      </table>
+      <p style="margin: 0 0 6px;"><strong>How useful has the guide been?</strong> ${stars}</p>
+      <p style="margin: 0 0 6px;"><strong>Worth the price?</strong> ${escapeHtml(a.worth)}</p>
+      <p style="margin: 0 0 4px;"><strong>Missing features, most wanted first:</strong></p>
+      <ol style="margin: 0 0 10px; padding-left: 22px;">
+        ${a.ranking.map((label) => `<li>${escapeHtml(label)}</li>`).join('')}
+      </ol>
+      <p style="margin: 0 0 10px;"><strong>Anything else it's missing?</strong> ${a.missing ? escapeHtml(a.missing) : '<em>(blank)</em>'}</p>
+      <p style="margin: 0 0 4px;"><strong>Comments:</strong></p>
+      <pre style="white-space: pre-wrap; font-family: inherit; font-size: 15px; margin: 0; padding: 16px; background: #f7f1e1; border-left: 3px solid #14110c;">${a.comment ? escapeHtml(a.comment) : '(blank)'}</pre>
+    </div>
+  `.trim()
+
+  const body: ResendBody = {
+    from: CONTACT_FROM,
+    to: [CONTACT_TO],
+    subject: `[Field Guide survey] ${stars}, worth it: ${a.worth}`,
+    text,
+    html,
+    ...(a.replyTo ? { reply_to: a.replyTo } : {}),
+  }
+
+  const res = await fetch('https://api.resend.com/emails', {
+    method: 'POST',
+    headers: {
+      Authorization: `Bearer ${env.RESEND_API_KEY}`,
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(body),
+  })
+
+  if (!res.ok) {
+    const detail = await res.text()
+    throw new Error(`Resend send failed (${res.status}): ${detail}`)
+  }
+}
+
 // Operator notice for a confirmed road-status change (lib/roads.ts). Plain
 // and short on purpose: the owner reads it on a phone and decides whether to
 // send the Buttondown alert. Goes to the same inbox as the contact form.

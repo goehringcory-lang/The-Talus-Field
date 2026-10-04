@@ -42,6 +42,8 @@ import TripDaysCard from '../components/TripDaysCard'
 import UpdatedStamp from '../components/UpdatedStamp'
 import Button from '../components/ui/Button'
 import Callout from '../components/ui/Callout'
+import FeedbackSurvey from '../components/FeedbackSurvey'
+import { noteSurveyVisit, shouldAskSurvey } from '../lib/survey'
 import './Home.css'
 
 const BEFORE_YOU_GO_DISMISS_KEY = 'tfg.beforeYouGo.dismissed'
@@ -288,6 +290,24 @@ function SectionHead({ eyebrow, title, id }: { eyebrow: string; title: string; i
   )
 }
 
+// The survey's one unprompted ask (lib/survey.ts has the rule). A few seconds
+// after Home settles, never over another dialog (the install sheet), and never
+// offline, where the answers could not send.
+function SurveyAsk() {
+  const [open, setOpen] = useState(false)
+  useEffect(() => {
+    noteSurveyVisit()
+    if (!shouldAskSurvey()) return
+    const t = window.setTimeout(() => {
+      if (!navigator.onLine) return
+      if (document.querySelector('[aria-modal="true"]')) return
+      setOpen(true)
+    }, 4000)
+    return () => window.clearTimeout(t)
+  }, [])
+  return open ? <FeedbackSurvey unprompted onClose={() => setOpen(false)} /> : null
+}
+
 export default function Home() {
   const { session } = useAuth()
   const { ids: favoriteIds } = useFavorites()
@@ -452,6 +472,8 @@ export default function Home() {
         </section>
 
         <UpdatedStamp />
+
+        <SurveyAsk />
 
         <p className="page-footnote">
           Signed in as <strong>{session?.username}</strong>. <Link to="/account">Account →</Link>

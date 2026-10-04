@@ -2,6 +2,7 @@
 // in-process with mocked KV + stubbed Stripe/Resend network calls.
 import worker from '../src/index'
 import { sweepRenewals } from '../src/lib/renewals'
+import { signAccessJwt } from '../src/lib/jwt'
 
 // ---------- mocks ----------
 class MockKV {
@@ -43,7 +44,7 @@ const ctx = { waitUntil(_p: Promise<unknown>) {}, passThroughOnException() {} } 
 
 // Capture outbound calls; fail on anything unexpected.
 let stripeCreateParams: URLSearchParams | null = null
-let sentEmails: { to: string; text: string; html: string }[] = []
+let sentEmails: { to: string; text: string; html: string; subject?: string; reply_to?: string }[] = []
 let resendMode: 'ok' | 'fail' = 'ok'
 // Retrieve responses for /api/checkout/claim's GET, keyed by session id.
 const stripeSessions = new Map<string, Record<string, unknown>>()
@@ -132,7 +133,7 @@ globalThis.fetch = (async (input: RequestInfo | URL, init?: RequestInit) => {
   if (url.startsWith('https://api.resend.com/emails')) {
     if (resendMode === 'fail') return new Response('boom', { status: 500 })
     const body = JSON.parse(String(init?.body))
-    sentEmails.push({ to: body.to[0], text: body.text, html: body.html })
+    sentEmails.push({ to: body.to[0], text: body.text, html: body.html, subject: body.subject, reply_to: body.reply_to })
     return new Response(JSON.stringify({ id: 'email_1' }), { status: 200, headers: { 'content-type': 'application/json' } })
   }
   throw new Error(`unexpected outbound fetch: ${url}`)
@@ -887,6 +888,64 @@ console.log('\n22. instant-access claim (/api/checkout/claim)')
     last = await claimCall('8.8.8.9', 'cs_claim_1')
   }
   check('21st claim from one IP -> 429', last!.status === 429, last)
+}
+
+console.log('\nS. Field Guide survey (/api/feedback)')
+{
+  const now = Math.floor(Date.now() / 1000)
+  const opJwt = await signAccessJwt('operator', 'test-signing-secret', now + 3600)
+  const post = (body: unknown, jwt?: string) =>
+    call('/api/feedback', {
+      method: 'POST',
+      headers: { 'content-type': 'application/json', ...(jwt ? { authorization: `Bearer ${jwt}` } : {}) },
+      body: JSON.stringify(body),
+    })
+  const good = {
+    rating: 4,
+    worth: 'yes',
+    ranking: ['audio-tours', 'shuttle-tracking'],
+    missing: 'Rock climbing beta',
+    comment: 'Loved the <b>map</b>.',
+    build: '2026-10-04',
+    installed: true,
+  }
+
+  const anon = await post(good)
+  check('survey without sign-in -> 401', anon.status === 401, anon)
+
+  sentEmails = []
+  const ok = await post(good, opJwt)
+  const mail = sentEmails[0]
+  check('operator survey -> 200, one email to the owner', ok.status === 200 && sentEmails.length === 1 &&
+    mail.to.toLowerCase() === 'goehring.cory@gmail.com', { ok, sentEmails })
+  check('email ranks features in order, by label', mail?.text.includes('1. Recorded naturalist audio tours') &&
+    mail?.text.includes('2. Live shuttle tracking') && mail?.text.includes('Operator login'), mail?.text)
+  check('operator survey has no reply_to; html is escaped', mail?.reply_to === undefined &&
+    mail?.html.includes('&lt;b&gt;map&lt;/b&gt;') && !mail?.html.includes('<b>map</b>'), mail)
+
+  sentEmails = []
+  const buyerJwt = await signAccessJwt('hiker@example.com', 'test-signing-secret', now + 3600)
+  const byBuyer = await post({ rating: 2, worth: 'no', ranking: ['more-parks'] }, buyerJwt)
+  check('buyer survey -> reply_to buyer, account named', byBuyer.status === 200 &&
+    sentEmails[0]?.reply_to === 'hiker@example.com' && /Account:\s+(Paid buyer|Promo trial)/.test(sentEmails[0]?.text ?? ''), sentEmails[0])
+
+  const unknown = await post({ ...good, ranking: ['jetpacks'] }, opJwt)
+  check('unknown feature id -> 400', unknown.status === 400, unknown)
+  const dupes = await post({ ...good, ranking: ['audio-tours', 'audio-tours'] }, opJwt)
+  check('duplicate ranking -> 400', dupes.status === 400, dupes)
+  const tooMany = await post({ ...good, ranking: ['audio-tours', 'shuttle-tracking', 'backpacking', 'more-parks'] }, opJwt)
+  check('more than three ranked -> 400', tooMany.status === 400, tooMany)
+  const noRating = await post({ ...good, rating: 9 }, opJwt)
+  check('rating out of range -> 400', noRating.status === 400, noRating)
+
+  resendMode = 'fail'
+  const fails = await post(good, buyerJwt)
+  check('Resend failure -> 502', fails.status === 502, fails)
+  resendMode = 'ok'
+
+  let last: Awaited<ReturnType<typeof call>> | null = null
+  for (let i = 0; i < 6; i++) last = await post(good, opJwt)
+  check('more than five surveys an hour from one account -> 429', last!.status === 429, last)
 }
 
 console.log('\nN. newsletter signup (/api/subscribe)')
