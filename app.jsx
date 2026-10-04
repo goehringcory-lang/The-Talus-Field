@@ -690,7 +690,7 @@ function buildSeo(route) {
         },
         {
           q: "What happens right after I pay?",
-          a: "Stripe handles checkout. Within about a minute you get an email with a sign-in link and a 6-digit code. Both keep working for the full 18 months, so you can sign in on a new device whenever you like.",
+          a: "Stripe handles checkout. When payment clears, the guide opens on that device, already signed in, with no code to type. An email with a sign-in link and a 6-digit code follows within a few minutes for your other devices. Both keep working for the full 18 months, so keep the email.",
         },
         {
           q: "How many devices can I use it on?",

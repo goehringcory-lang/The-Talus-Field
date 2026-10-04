@@ -16,6 +16,13 @@ import { apiFetch } from './api'
 // The editorial /guide page: the buy box, the pitch, the checkout.
 export const GUIDE_BUY_URL = 'https://thetalusfieldjournal.com/guide'
 
+// The direct path from the sample to payment (UX audit, October 2026): the
+// same page, opened at the buy box with the terms in view and its button
+// focused (page-guide.jsx, readBuyArrival). It never starts a Stripe session
+// on load; the reader still presses the button. GUIDE_BUY_URL stays the
+// "see everything included" link.
+export const GUIDE_CHECKOUT_URL = `${GUIDE_BUY_URL}?buy=preview#guide-buy`
+
 // The free sample: one stop per region (REGIONS order) plus one Secret Guide
 // entry, rendered in full by /preview and readable signed-out on /stop/:id.
 // IDs must exist in content/stops.ts / secret-spots.ts; consumers resolve

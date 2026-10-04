@@ -1,4 +1,4 @@
-/* global React, HpGuideBand, HpLetter, ResponsiveImage */
+/* global React, HpGuideBand, HpLetter, ResponsiveImage, GUIDE_TERMS */
 
 // Public URL of the PWA. Override at runtime via window.GUIDE_APP_BASE.
 const GUIDE_APP_BASE =
@@ -10,9 +10,12 @@ const GUIDE_API_BASE =
   (typeof window !== "undefined" && window.GUIDE_API_BASE) ||
   "https://api.thetalusfieldjournal.com";
 
-// Shown until /api/inventory answers with the live price; keep in sync with
-// GUIDE_PRICE_CENTS in workers/wrangler.toml.
-const GUIDE_PRICE_FALLBACK_CENTS = 399;
+// Shown until /api/inventory answers with the live price. Reads the shared
+// terms in components.jsx (GUIDE_TERMS), which must match GUIDE_PRICE_CENTS
+// in workers/wrangler.toml. Stripe's checkout page shows the amount actually
+// charged before the buyer approves it, so a stale fallback can mislead the
+// page but never the card.
+const GUIDE_PRICE_FALLBACK_CENTS = (window.GUIDE_TERMS && window.GUIDE_TERMS.priceCents) || 399;
 
 // GUIDE-LAUNCH: on sale July 2026, briefly flipped to a waitlist pause, now
 // back on sale. True renders the Stripe buy box (GuideBuyBox); false renders
@@ -91,6 +94,82 @@ function stashBuyLocation(location, gift) {
   window.safeStorage.setJSON(BUY_STASH_KEY, { location, gift: !!gift });
 }
 
+// One checkout start for every buy control on the page (the audit found three
+// copies, one of which swallowed its error). Resolves with the Stripe URL or
+// throws an Error whose message is written for the reader. Never retries on
+// its own: each call creates a live Stripe session and counts against the
+// Worker's hourly throttle.
+const CHECKOUT_TIMEOUT_MS = 15000;
+const GUIDE_SUPPORT_EMAIL = "cory@thetalusfieldjournal.com";
+
+async function startGuideCheckout(payload) {
+  if (typeof navigator !== "undefined" && navigator.onLine === false) {
+    throw new Error("You look to be offline. Checkout needs a connection; try again once you have one.");
+  }
+  const controller = typeof AbortController !== "undefined" ? new AbortController() : null;
+  const timer = controller ? setTimeout(() => controller.abort(), CHECKOUT_TIMEOUT_MS) : null;
+  let res;
+  try {
+    res = await fetch(`${GUIDE_API_BASE}/api/checkout/start`, {
+      method: "POST",
+      headers: payload ? { "Content-Type": "application/json" } : undefined,
+      body: payload ? JSON.stringify(payload) : undefined,
+      signal: controller ? controller.signal : undefined,
+    });
+  } catch (e) {
+    throw new Error(
+      e && e.name === "AbortError"
+        ? "Checkout took too long to answer. Nothing was charged. Try again."
+        : "Checkout could not be reached. Nothing was charged. Check your connection and try again."
+    );
+  } finally {
+    if (timer) clearTimeout(timer);
+  }
+  let body = null;
+  try {
+    body = await res.json();
+  } catch (_e) {
+    body = null;
+  }
+  if (res.ok && body && typeof body.url === "string" && body.url) return body.url;
+  if (res.status === 429) {
+    throw new Error("Too many checkout attempts from this connection. Nothing was charged. Wait a few minutes and try again.");
+  }
+  if (res.status === 400 && body && body.error) {
+    throw new Error(`${body.error}.`);
+  }
+  throw new Error("Checkout didn't start. Nothing was charged. Try again in a minute.");
+}
+
+// The visible half of a failed start: the reason, a retry, and the inbox. A
+// live region, so a screen reader hears it where the button was pressed.
+function CheckoutError({ message, onRetry, busy, className }) {
+  if (!message) return null;
+  return (
+    <div className={"guide-checkout-error" + (className ? ` ${className}` : "")} role="alert">
+      <p>{message}</p>
+      <p>
+        <button type="button" onClick={onRetry} disabled={busy}>
+          {busy ? "Trying…" : "Try again"}
+        </button>{" "}
+        or email <a href={`mailto:${GUIDE_SUPPORT_EMAIL}?subject=Field%20Guide%20checkout`}>{GUIDE_SUPPORT_EMAIL}</a>.
+      </p>
+    </div>
+  );
+}
+
+// ?buy=preview: the free sample's "Get the guide" lands here. It never starts
+// a checkout on load (a page view must not create a Stripe session); it opens
+// the buy box with the terms in view and focuses the button.
+function readBuyArrival() {
+  try {
+    const value = new URLSearchParams(window.location.search).get("buy");
+    return value === "preview" ? value : null;
+  } catch (_e) {
+    return null;
+  }
+}
+
 // The live price as inline text, wherever prose needs it. Renders the
 // fallback until /api/inventory answers (one shared fetch per page view).
 function LivePrice() {
@@ -109,17 +188,23 @@ function LivePrice() {
   return <React.Fragment>{formatPrice(priceCents)}</React.Fragment>;
 }
 
-function GuideBuyBox() {
+function GuideBuyBox({ go }) {
   const [busy, setBusy] = React.useState(false);
   const [error, setError] = React.useState(null);
   const [outcome] = React.useState(readCheckoutOutcome);
   const [claimSessionId] = React.useState(readCheckoutSessionId);
+  const [arrival] = React.useState(readBuyArrival);
+  const buttonRef = React.useRef(null);
+  const location = arrival === "preview" ? "preview_review" : "guide_aside";
 
-  // Report the completed purchase to GA4 exactly once. The stash is written
-  // at buy-click time and removed on read, so a refresh (or a bookmark) of
-  // the success URL finds nothing and counts nothing. A cancel clears it too:
-  // that click did not convert, and a later purchase re-stashes at its own
-  // click.
+  // Attribution only. This event marks a browser that came back from Stripe
+  // with ?guide=success; it is not proof of payment (a buyer who closes the
+  // tab never fires it, and nothing here can see a refund). Paid orders are
+  // counted from Stripe and the webhook's buyer records, never from GA4, and
+  // nothing on this page grants access: /claim verifies the session with
+  // Stripe before signing anyone in. `basis` says so in the data. The stash
+  // is written at buy-click time and removed on read, so a refresh (or a
+  // bookmark) of the success URL counts nothing. A cancel clears it too.
   React.useEffect(() => {
     if (outcome === "cancel") {
       window.safeStorage.remove(BUY_STASH_KEY);
@@ -132,16 +217,17 @@ function GuideBuyBox() {
     window.track("guide_purchase", {
       location: stash.location || "unknown",
       gift: outcome === "gift-success" || !!stash.gift,
+      basis: "return_page",
     });
   }, [outcome]);
 
-  // Instant access: forward the buyer into the app's /claim page, which signs
-  // them in against the session id, no email required. The success return
-  // lands HERE first (not straight in the app) so the guide_purchase event
-  // above keeps its placement attribution; the pause lets gtag flush and lets
-  // the buyer read "payment received" before the hand-off. Gift success stays
-  // put: the recipient, not the payer, gets access, by email. A refresh
-  // re-runs the redirect and the claim endpoint answers it idempotently.
+  // Instant access: forward the buyer into the app's /claim page, which
+  // verifies the session with Stripe and signs them in, no email required.
+  // The success return lands HERE first (not straight in the app) so the
+  // guide_purchase event above keeps its placement attribution; the pause
+  // lets gtag flush. Gift success stays put: the recipient, not the payer,
+  // gets access, by email. A refresh re-runs the redirect and the claim
+  // endpoint answers it idempotently.
   React.useEffect(() => {
     if (outcome !== "success" || !claimSessionId) return;
     const timer = setTimeout(() => {
@@ -151,6 +237,21 @@ function GuideBuyBox() {
     }, 1200);
     return () => clearTimeout(timer);
   }, [outcome, claimSessionId]);
+
+  // Arriving from the sample: bring the box and its terms into view and put
+  // focus on the button. The reader still presses it.
+  React.useEffect(() => {
+    if (!arrival || outcome) return;
+    const aside = document.getElementById("guide-buy");
+    if (!aside) return;
+    const reduce = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const t = setTimeout(() => {
+      aside.scrollIntoView({ behavior: reduce ? "auto" : "smooth", block: "start" });
+      if (buttonRef.current) buttonRef.current.focus({ preventScroll: true });
+    }, 300);
+    return () => clearTimeout(t);
+  }, [arrival, outcome]);
+
   const [priceCents, setPriceCents] = React.useState(GUIDE_PRICE_FALLBACK_CENTS);
   const [giftMode, setGiftMode] = React.useState(false);
   const [giftEmail, setGiftEmail] = React.useState("");
@@ -172,6 +273,7 @@ function GuideBuyBox() {
   }, []);
 
   async function startCheckout() {
+    if (busy) return;
     const recipient = giftEmail.trim();
     if (giftMode && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(recipient)) {
       setError("Enter the recipient's email address first.");
@@ -180,60 +282,59 @@ function GuideBuyBox() {
     setBusy(true);
     setError(null);
     if (window.track)
-      window.track("guide_buy_click", { location: "guide_aside", gift: giftMode });
-    stashBuyLocation("guide_aside", giftMode);
+      window.track("guide_buy_click", { location, gift: giftMode });
+    stashBuyLocation(location, giftMode);
     try {
-      const res = await fetch(`${GUIDE_API_BASE}/api/checkout/start`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: giftMode
-          ? JSON.stringify({ gift: true, recipientEmail: recipient, giftNote: giftNote.trim() })
-          : undefined,
-      });
-      const body = await res.json().catch(() => ({}));
-      if (!res.ok || !body.url) {
-        throw new Error(body.error || `HTTP ${res.status}`);
-      }
-      window.location = body.url;
-    } catch (_e) {
-      setError(
-        "Checkout didn't start. Try again in a minute, or email cory@thetalusfieldjournal.com."
+      const url = await startGuideCheckout(
+        giftMode ? { gift: true, recipientEmail: recipient, giftNote: giftNote.trim() } : null
       );
-    } finally {
+      window.location = url;
+    } catch (e) {
+      setError(e.message);
       setBusy(false);
     }
   }
+
+  const terms = window.GUIDE_TERMS || {};
+  const boxNote = { fontFamily: "var(--sans)", fontSize: 14, color: "var(--ink)", lineHeight: 1.55, margin: "0 0 18px", border: "1px solid var(--ink)", padding: "12px 14px", background: "var(--paper)" };
 
   return (
     <aside id="guide-buy" className="guide-buybox">
       <div className="eyebrow eyebrow--moss" style={{ marginBottom: 14 }}>The Field Guide</div>
       <div style={{ fontFamily: "var(--display)", fontSize: 44, lineHeight: 1.05, fontWeight: 500, marginBottom: 8 }}>{formatPrice(priceCents)}.</div>
-      <div style={{ fontFamily: "var(--sans)", fontSize: 12, textTransform: "uppercase", letterSpacing: "0.14em", color: "var(--ink-3)", fontWeight: 600, marginBottom: 24 }}>
-        Offline app · 2026 Edition
+      <div style={{ fontFamily: "var(--sans)", fontSize: 13, textTransform: "uppercase", letterSpacing: "0.12em", color: "var(--ink-2)", fontWeight: 600, marginBottom: 24 }}>
+        Offline app · {terms.months || 18} months of access
       </div>
-      {outcome === "success" && claimSessionId && (
-        <p style={{ fontFamily: "var(--sans)", fontSize: 14, color: "var(--ink)", lineHeight: 1.55, margin: "0 0 18px", border: "1px solid var(--ink)", padding: "12px 14px", background: "var(--paper)" }}>
-          Payment received. Opening your Field Guide, already signed in. If nothing happens, <a href={`${GUIDE_APP_BASE}/claim?session_id=${encodeURIComponent(claimSessionId)}`} style={{ color: "var(--ink-2)" }}>open it here →</a> Your access email follows for your other devices.
-        </p>
-      )}
-      {outcome === "success" && !claimSessionId && (
-        <p style={{ fontFamily: "var(--sans)", fontSize: 14, color: "var(--ink)", lineHeight: 1.55, margin: "0 0 18px", border: "1px solid var(--ink)", padding: "12px 14px", background: "var(--paper)" }}>
-          Payment received. Your access code and sign-in link are on their way to your email. Check spam if nothing arrives in a few minutes. Once you have the code, <a href={`${GUIDE_APP_BASE}/login`} style={{ color: "var(--ink-2)" }}>open the app and sign in →</a>
-        </p>
-      )}
-      {outcome === "gift-success" && (
-        <p style={{ fontFamily: "var(--sans)", fontSize: 14, color: "var(--ink)", lineHeight: 1.55, margin: "0 0 18px", border: "1px solid var(--ink)", padding: "12px 14px", background: "var(--paper)" }}>
-          Payment received. Their access email is on its way to them, and your receipt is on its way to you. If you typed the wrong address, reply to the receipt and it gets moved.
-        </p>
-      )}
-      {outcome === "cancel" && (
-        <p style={{ fontFamily: "var(--sans)", fontSize: 14, color: "var(--ink-2)", lineHeight: 1.55, margin: "0 0 18px" }}>
-          Checkout was cancelled. Nothing was charged.
-        </p>
-      )}
+      <div role="status">
+        {outcome === "success" && claimSessionId && (
+          <p style={boxNote}>
+            Checkout complete. Confirming your payment and opening your Field Guide, already signed in. If nothing happens, <a href={`${GUIDE_APP_BASE}/claim?session_id=${encodeURIComponent(claimSessionId)}`} style={{ color: "var(--ink-2)" }}>open it here →</a> Your access email follows for your other devices.
+          </p>
+        )}
+        {outcome === "success" && !claimSessionId && (
+          <p style={boxNote}>
+            Checkout complete. Once Stripe confirms the payment, your access code and sign-in link go to your email, usually within a few minutes. Check spam if nothing arrives. Once you have the code, <a href={`${GUIDE_APP_BASE}/login`} style={{ color: "var(--ink-2)" }}>open the app and sign in →</a>
+          </p>
+        )}
+        {outcome === "gift-success" && (
+          <p style={boxNote}>
+            Checkout complete. Stripe emails your receipt, and once the payment is confirmed their access email goes to them. If you typed the wrong address, reply to the receipt and it gets moved.
+          </p>
+        )}
+        {outcome === "cancel" && (
+          <p style={{ fontFamily: "var(--sans)", fontSize: 14, color: "var(--ink-2)", lineHeight: 1.55, margin: "0 0 18px" }}>
+            Checkout was cancelled. Nothing was charged.
+          </p>
+        )}
+        {arrival === "preview" && !outcome && (
+          <p style={boxNote}>
+            From the free sample. The terms are below; the button opens Stripe checkout, which shows the amount before you pay. <a href={`${GUIDE_APP_BASE}/preview`} style={{ color: "var(--ink-2)" }}>Back to the sample</a>
+          </p>
+        )}
+      </div>
 
       <React.Fragment>
-        <label style={{ display: "flex", alignItems: "center", gap: 8, fontFamily: "var(--sans)", fontSize: 13, color: "var(--ink-2)", marginBottom: 14, cursor: "pointer" }}>
+        <label style={{ display: "flex", alignItems: "center", gap: 8, fontFamily: "var(--sans)", fontSize: 14, color: "var(--ink-2)", marginBottom: 14, cursor: "pointer" }}>
           <input
             type="checkbox"
             checked={giftMode}
@@ -265,15 +366,17 @@ function GuideBuyBox() {
                 style={{ minHeight: 70 }}
               />
             </div>
-            <p style={{ fontFamily: "var(--sans)", fontSize: 12, color: "var(--ink-3)", lineHeight: 1.55, margin: "8px 0 0" }}>
+            <p style={{ fontFamily: "var(--sans)", fontSize: 13, color: "var(--ink-2)", lineHeight: 1.55, margin: "8px 0 0" }}>
               Their access email goes straight to them when payment clears. Their 18 months start today, so time it to the trip.
             </p>
           </div>
         )}
         <button
+          ref={buttonRef}
           type="button"
           className="btn"
           disabled={busy}
+          aria-busy={busy ? "true" : undefined}
           onClick={startCheckout}
           style={{ display: "block", width: "100%", textAlign: "center", border: 0, font: "inherit", cursor: busy ? "wait" : "pointer", marginBottom: 10 }}
         >
@@ -281,23 +384,30 @@ function GuideBuyBox() {
             ? "Opening checkout…"
             : `${giftMode ? "Gift the offline guide" : "Get the offline guide"} → ${formatPrice(priceCents)}`}
         </button>
-        <p style={{ fontFamily: "var(--sans)", fontSize: 12, color: "var(--ink-3)", lineHeight: 1.55, margin: "0 0 14px" }}>
-          Checkout by Stripe. The guide opens signed in the moment payment clears; your access code also arrives by email for your other devices.
+        <CheckoutError message={error} onRetry={startCheckout} busy={busy} />
+        <p style={{ fontFamily: "var(--sans)", fontSize: 13, color: "var(--ink-2)", lineHeight: 1.55, margin: "0 0 14px" }}>
+          Checkout by Stripe, which shows the amount before you pay. The guide opens signed in once the payment is confirmed; your access code also arrives by email for your other devices.
         </p>
       </React.Fragment>
 
-      {error && (
-        <p style={{ fontFamily: "var(--sans)", fontSize: 13, color: "var(--moss)", lineHeight: 1.55, margin: "0 0 14px" }}>
-          {error}
-        </p>
-      )}
-
-      <p style={{ fontFamily: "var(--serif)", fontSize: 14, color: "var(--ink-2)", lineHeight: 1.55, margin: 0 }}>
-        One payment of {formatPrice(priceCents)} for 18 months of access. The app, the photos on file, and the offline park map are yours on every device you own. A few entries still show a stand-in photo rather than the place itself. Updates push automatically through the 2026 season, including the Secret Guide as it grows.
+      <p style={{ fontFamily: "var(--serif)", fontSize: 15, color: "var(--ink-2)", lineHeight: 1.55, margin: 0 }}>
+        {terms.short || "One payment · 18 months of access · No automatic renewal"}. {terms.updates || "Updates included during your access period"}, the Secret Guide included as it grows. The app, the photos on file, and the offline park map are yours on every device you own. A few entries still show a stand-in photo rather than the place itself.
       </p>
 
-      <p style={{ fontFamily: "var(--serif)", fontSize: 14, color: "var(--ink-2)", lineHeight: 1.55, margin: "12px 0 0" }}>
-        If it doesn't earn its place on your home screen, email me and I'll make it right.
+      <p style={{ fontFamily: "var(--serif)", fontSize: 15, color: "var(--ink-2)", lineHeight: 1.55, margin: "12px 0 0" }}>
+        {terms.refund || "Refunded in full within 30 days if it does not work as described"}, per the{" "}
+        <a
+          href="/terms"
+          onClick={(e) => {
+            if (!go || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey || e.button !== 0) return;
+            e.preventDefault();
+            go("terms");
+          }}
+          style={{ color: "var(--ink-2)" }}
+        >
+          terms
+        </a>
+        .
       </p>
 
       <a
@@ -305,12 +415,12 @@ function GuideBuyBox() {
         onClick={() => {
           if (window.track) window.track("guide_sample_click", { location: "guide_aside" });
         }}
-        style={{ display: "block", textAlign: "center", border: "1px solid var(--ink)", padding: "10px 14px", marginTop: 16, fontFamily: "var(--sans)", fontSize: 12, textTransform: "uppercase", letterSpacing: "0.12em", fontWeight: 600, color: "var(--ink)", textDecoration: "none", background: "var(--paper)" }}
+        style={{ display: "block", textAlign: "center", border: "1px solid var(--ink)", padding: "10px 14px", marginTop: 16, fontFamily: "var(--sans)", fontSize: 13, textTransform: "uppercase", letterSpacing: "0.1em", fontWeight: 600, color: "var(--ink)", textDecoration: "none", background: "var(--paper)" }}
       >
-        Open the free sample first →
+        Read five entries free →
       </a>
 
-      <p style={{ fontFamily: "var(--sans)", fontSize: 12, color: "var(--ink-3)", lineHeight: 1.55, margin: "8px 0 0" }}>
+      <p style={{ fontFamily: "var(--sans)", fontSize: 13, color: "var(--ink-2)", lineHeight: 1.55, margin: "8px 0 0" }}>
         Already bought it? <a href={`${GUIDE_APP_BASE}/login`} style={{ color: "var(--ink-2)" }}>Sign in to the app →</a>
       </p>
 
@@ -337,7 +447,7 @@ function GuideBuyBox() {
 
       <div style={{ borderTop: "1px solid var(--rule)", marginTop: 24, paddingTop: 20 }}>
         <div className="eyebrow" style={{ marginBottom: 10 }}>Questions</div>
-        <p style={{ fontFamily: "var(--sans)", fontSize: 13, color: "var(--ink-3)", lineHeight: 1.55, margin: 0 }}>
+        <p style={{ fontFamily: "var(--sans)", fontSize: 13, color: "var(--ink-2)", lineHeight: 1.55, margin: 0 }}>
           Email <a href="mailto:cory@thetalusfieldjournal.com" style={{ color: "var(--ink-2)" }}>cory@thetalusfieldjournal.com</a>.
         </p>
       </div>
@@ -393,7 +503,7 @@ function GuideWaitlistBox() {
       <div className="eyebrow eyebrow--moss" style={{ marginBottom: 14 }}>The Field Guide</div>
       <div style={{ fontFamily: "var(--display)", fontSize: 44, lineHeight: 1.05, fontWeight: 500, marginBottom: 8 }}>Not out yet.</div>
       <div style={{ fontFamily: "var(--sans)", fontSize: 12, textTransform: "uppercase", letterSpacing: "0.14em", color: "var(--ink-3)", fontWeight: 600, marginBottom: 24 }}>
-        Offline app · 2026 Edition
+        Offline app · 18 months of access
       </div>
 
       <p style={{ fontFamily: "var(--serif)", fontSize: 15, color: "var(--ink)", lineHeight: 1.55, margin: "0 0 18px" }}>
@@ -691,6 +801,10 @@ function GuideWalkthrough() {
     setActive(i);
   }
 
+  // An obvious stop for the moving picture (WCAG 2.2.2), not only the
+  // implicit one of tapping a step.
+  const autoplay = !reducedMotion && !paused;
+
   return (
     <div className="guide-walkthrough" ref={rootRef}>
       <div className="guide-walkthrough__stage" aria-live="off">
@@ -707,6 +821,16 @@ function GuideWalkthrough() {
           />
         ))}
       </div>
+      {!reducedMotion && (
+        <button
+          type="button"
+          className="guide-walkthrough__pause"
+          aria-pressed={paused}
+          onClick={() => setPaused((p) => !p)}
+        >
+          {autoplay ? "Pause the slideshow" : "Play the slideshow"}
+        </button>
+      )}
       <ol className="guide-walkthrough__steps">
         {WALKTHROUGH_STEPS.map((step, i) => (
           <li key={step.src}>
@@ -1184,7 +1308,7 @@ function GuideOfflineDemo() {
   return (
     <div className="guide-offline">
       <div className="guide-offline__demo">
-        <div className="guide-offline__toggle" role="group" aria-label="Simulate cell service">
+        <div className="guide-offline__toggle" role="group" aria-label="Illustration: the same screen with and without cell service">
           <button
             type="button"
             className={off ? "" : "is-active"}
@@ -1218,6 +1342,7 @@ function GuideOfflineDemo() {
             ? "Airplane mode. The stop, its coordinate, its swap, the map, and your whole plan render exactly the same."
             : "With service you also get the live extras: webcams, entrance waits, fresh weather."}
         </p>
+        <p className="guide-offline__note">An illustration built from a real screenshot. The toggle does not change your connection.</p>
       </div>
       <div className="guide-offline__cols">
         <div>
@@ -1248,14 +1373,17 @@ function GuideOfflineDemo() {
   );
 }
 
-// Free tools vs. the guide. Every left-hand cell is a real page on this site
-// and stays free; the table says so out loud. Rendered as a real <table> so
-// crawlers and screen readers get the same comparison readers do.
+// Free tools vs. the guide, one task per row so each pair compares like with
+// like (the UX audit, October 2026, found rows pairing the conditions board
+// with the offline download). Every left-hand link is a real page on this
+// site and stays free; a cell that is a partial answer says so. Rendered as
+// a real <table> so crawlers and screen readers get what readers do.
 function GuideCompare({ go }) {
   const freeLink = (href, key, label) => (
     <a
       href={href}
       onClick={(e) => {
+        if (e.metaKey || e.ctrlKey || e.shiftKey || e.altKey || e.button !== 0) return;
         e.preventDefault();
         go(key);
       }}
@@ -1265,34 +1393,45 @@ function GuideCompare({ go }) {
   );
   return (
     <div className="guide-compare-wrap">
-      <table className="guide-compare">
+      <table className="guide-compare has-tasks">
         <caption>The free site stays free. The guide is the field version.</caption>
         <thead>
           <tr>
+            <th scope="col">The task</th>
             <th scope="col">Free on this site</th>
             <th scope="col">In the Field Guide</th>
           </tr>
         </thead>
         <tbody>
           <tr>
-            <td>{freeLink("/articles", "articles", "Articles")} and {freeLink("/planning", "planning", "planning guides")}</td>
-            <td>The complete stop library: 116 entries across four regions</td>
+            <th scope="row">Read up before the trip</th>
+            <td>{freeLink("/articles", "articles", "Articles")} and {freeLink("/planning", "planning", "the planning guide")}</td>
+            <td>116 entries across four regions, each with its parking, time budget and, on the flagship stops, the swap</td>
           </tr>
           <tr>
-            <td>{freeLink("/now", "now", "Current conditions")}</td>
-            <td>The whole guide offline, about 70 MB, plus the Help card, the compass and companion mode, which run on GPS with no bars</td>
+            <th scope="row">Plan the stops</th>
+            <td>The {freeLink("/map", "map", "trip map")} and four {freeLink("/itineraries", "itineraries", "selected itineraries")}</td>
+            <td>The trip builder: days you drag into shape, drive buffers, nine ready-made day plans, the dates that matter, calendar export</td>
           </tr>
           <tr>
-            <td>{freeLink("/itineraries", "itineraries", "Selected itineraries")}</td>
-            <td>All 57 day hikes, each with a daylight reading, and the 72-entry Secret Guide</td>
+            <th scope="row">Pick a hike</th>
+            <td>Trail articles for the best-known hikes</td>
+            <td>All 57 in-park day hikes with GPS tracks, elevation profiles and a daylight reading</td>
           </tr>
           <tr>
-            <td>The {freeLink("/map", "map", "basic trip map")}</td>
-            <td>The full trip builder: drag-and-drop days, drive buffers, the dates that matter, calendar export, and the 3D map that draws each day on the terrain</td>
+            <th scope="row">Use a map with no signal</th>
+            <td className="guide-compare__no">Not available: the site's pages need a connection</td>
+            <td>The 3D park map, downloaded by area, with every stop, trail and your trip's routes</td>
           </tr>
           <tr>
+            <th scope="row">Check conditions</th>
+            <td>The {freeLink("/conditions", "conditions", "conditions board")}, live, with a connection</td>
+            <td>The same live readings with a connection; the last sync stays readable offline</td>
+          </tr>
+          <tr>
+            <th scope="row">Stay current</th>
             <td>The {freeLink("/newsletter", "newsletter", "Sunday newsletter")}</td>
-            <td>18 months of silent updates as the season changes</td>
+            <td>Updates pushed to the app during your 18 months, no re-download</td>
           </tr>
         </tbody>
       </table>
@@ -1322,10 +1461,10 @@ function GuideTrust() {
           <strong>No affiliate placements inside.</strong> The recommendations are picked, not paid for.
         </div>
         <div>
-          <strong>Updates included.</strong> Seasonal addenda and Secret Guide additions push silently.
+          <strong>Updates included.</strong> Seasonal addenda and Secret Guide additions push silently during your 18 months.
         </div>
         <div>
-          <strong>30-day guarantee.</strong> If it does not work as described, it is refunded in full.
+          <strong>30-day refund.</strong> If it does not work as described, it is refunded in full, per the terms.
         </div>
       </div>
     </div>
@@ -1385,7 +1524,7 @@ const GUIDE_FAQ = [
   },
   {
     q: "What happens right after I pay?",
-    a: "Stripe handles checkout. Within about a minute you get an email with a sign-in link and a 6-digit code. Both keep working for the full 18 months, so you can sign in on a new device whenever you like.",
+    a: "Stripe handles checkout. When payment clears, the guide opens on that device, already signed in, with no code to type. An email with a sign-in link and a 6-digit code follows within a few minutes for your other devices. Both keep working for the full 18 months, so keep the email.",
   },
   {
     q: "How many devices can I use it on?",
@@ -1434,22 +1573,15 @@ function BuyNowButton({ location, label }) {
   const [note, setNote] = React.useState(null);
 
   async function buy() {
+    if (busy) return;
     setBusy(true);
     setNote(null);
     if (window.track) window.track("guide_buy_click", { location });
     stashBuyLocation(location, false);
     try {
-      const res = await fetch(`${GUIDE_API_BASE}/api/checkout/start`, { method: "POST" });
-      const body = await res.json().catch(() => ({}));
-      if (!res.ok || !body.url) {
-        throw new Error(body.error || `HTTP ${res.status}`);
-      }
-      window.location = body.url;
-    } catch (_e) {
-      setNote(
-        "Checkout didn't start. Try again in a minute, or email cory@thetalusfieldjournal.com."
-      );
-    } finally {
+      window.location = await startGuideCheckout(null);
+    } catch (e) {
+      setNote(e.message);
       setBusy(false);
     }
   }
@@ -1460,16 +1592,13 @@ function BuyNowButton({ location, label }) {
         type="button"
         className="btn"
         disabled={busy}
+        aria-busy={busy ? "true" : undefined}
         onClick={buy}
         style={{ border: 0, font: "inherit", cursor: busy ? "wait" : "pointer" }}
       >
         {busy ? "Opening checkout…" : label || "Get the offline Yosemite guide →"}
       </button>
-      {note && (
-        <p style={{ fontFamily: "var(--sans)", fontSize: 13, color: "var(--moss)", lineHeight: 1.55, margin: "12px 0 0" }}>
-          {note}
-        </p>
-      )}
+      <CheckoutError message={note} onRetry={buy} busy={busy} />
     </React.Fragment>
   );
 }
@@ -1484,6 +1613,8 @@ function GuideMobileBuyBar() {
   const [priceCents, setPriceCents] = React.useState(GUIDE_PRICE_FALLBACK_CENTS);
   const [busy, setBusy] = React.useState(false);
   const [visible, setVisible] = React.useState(false);
+  const [error, setError] = React.useState(null);
+  const barRef = React.useRef(null);
 
   React.useEffect(() => {
     let cancelled = false;
@@ -1535,49 +1666,88 @@ function GuideMobileBuyBar() {
     };
   }, []);
 
+  // A failure says what went wrong here, in the bar the reader tapped, with a
+  // retry. It used to scroll to the buy box with no message, which read as
+  // the button doing something random.
   async function buy() {
+    if (busy) return;
     setBusy(true);
+    setError(null);
     if (window.track) window.track("guide_buy_click", { location: "guide_mobile_bar" });
     stashBuyLocation("guide_mobile_bar", false);
     try {
-      const res = await fetch(`${GUIDE_API_BASE}/api/checkout/start`, { method: "POST" });
-      const body = await res.json().catch(() => ({}));
-      if (!res.ok || !body.url) {
-        throw new Error(body.error || `HTTP ${res.status}`);
-      }
-      window.location = body.url;
-    } catch (_e) {
-      // A network hiccup: hand off to the full buy box, which
-      // explains itself in place.
-      const aside = document.getElementById("guide-buy");
-      const reduce = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-      if (aside) aside.scrollIntoView({ behavior: reduce ? "auto" : "smooth" });
-    } finally {
+      window.location = await startGuideCheckout(null);
+    } catch (e) {
+      setError(e.message);
       setBusy(false);
     }
   }
 
+  // An open error keeps the bar up even if the reader scrolls onto another
+  // buy control, so the message does not vanish under their thumb.
+  const shown = visible || !!error;
+
+  // Off screen, the bar's controls must not take keyboard focus either. Set
+  // as a DOM property: React 18 has no `inert` prop.
+  React.useEffect(() => {
+    if (barRef.current) barRef.current.inert = !shown;
+  }, [shown]);
+
   return (
-    <div className={"guide-buybar" + (visible ? " is-visible" : "")} aria-hidden={visible ? undefined : "true"}>
-      <div className="guide-buybar__meta">
-        <span className="guide-buybar__price">{formatPrice(priceCents)}</span>
-        <span className="guide-buybar__sub">Offline app · 18 months</span>
+    <div
+      ref={barRef}
+      className={"guide-buybar" + (shown ? " is-visible" : "") + (error ? " has-error" : "")}
+      aria-hidden={shown ? undefined : "true"}
+    >
+      <div className="guide-buybar__row">
+        <div className="guide-buybar__meta">
+          <span className="guide-buybar__price">{formatPrice(priceCents)}</span>
+          <span className="guide-buybar__sub">Offline · 18 months</span>
+        </div>
+        <button type="button" className="guide-buybar__cta" disabled={busy} aria-busy={busy ? "true" : undefined} onClick={buy}>
+          {busy ? "Opening…" : error ? "Try again →" : "Get the guide →"}
+        </button>
       </div>
-      <button type="button" className="guide-buybar__cta" disabled={busy} onClick={buy}>
-        {busy ? "Opening…" : "Get the guide →"}
-      </button>
+      <div className="guide-buybar__error" role="alert">
+        {error ? (
+          <React.Fragment>
+            {error}{" "}
+            <a href={`mailto:${GUIDE_SUPPORT_EMAIL}?subject=Field%20Guide%20checkout`}>Email for help</a>
+            {" · "}
+            <button type="button" onClick={() => setError(null)}>Dismiss</button>
+          </React.Fragment>
+        ) : null}
+      </div>
     </div>
   );
 }
 
 // Since September 2026 the page is built on the homepage's design system
-// (the Hp* components in components.jsx): the hero is the shared Field Guide band,
-// with the checkout button where the homepage puts its link, the long pitch
-// runs as numbered design sections beside the sticky buy box, and the letter
-// closes the page. The product copy is unchanged.
+// (the Hp* components in components.jsx). The October 2026 UX and sales audit
+// (docs/UX-SALES-AUDIT-2026-10-04.md) reordered it around the buying
+// decision: the hero says what it is, what it costs and for how long; three
+// benefit lines; one short demonstration; the task-by-task comparison; what
+// works offline and what needs signal; setup after purchase; the author and
+// the refund; the offer; the questions. The long pitch, the 3D map and the
+// day-one demonstrations follow for the reader who wants them, and the full
+// screen gallery sits behind a disclosure. Nothing was removed to shorten it.
 const GUIDE_STATS = ["4 regions", "116 entries", "57 day hikes", "72 secret entries", "3D map, offline"];
 
+// The hero's three benefit lines, in HP_GUIDE_POINTS' shape. Each restates an
+// outcome block below (OUTCOMES), so a change there is a change here.
+const GUIDE_HERO_POINTS = [
+  { mark: "↳", title: "Build a day that fits.", text: "Stops in driving order, each with an honest time budget, drives figured between them." },
+  { mark: "⌁", title: "Know the move when a lot fills.", text: "The swap is printed on the flagship stops, before you need it." },
+  { mark: "◎", title: "Keep it all with no signal.", text: "Download the guide and the park map before you leave; they work past the tunnel." },
+];
+
 function GuidePage({ go }) {
+  const terms = window.GUIDE_TERMS || {};
+  const toTerms = (e) => {
+    if (e.metaKey || e.ctrlKey || e.shiftKey || e.altKey || e.button !== 0) return;
+    e.preventDefault();
+    go("terms");
+  };
   return (
     <div className="page hp-design hp-guide page--guide">
       {/* Hero */}
@@ -1585,10 +1755,10 @@ function GuidePage({ go }) {
         go={go}
         location="guide_hero"
         heading="h1"
-        eyebrow="THE FIELD GUIDE / OFFLINE APP / 2026 EDITION"
-        title="Three days in Yosemite. This is how you keep all three."
-        intro="Written by a naturalist who lives in the park: which stops are worth your morning, where to park, how long each one honestly takes, and where to go the moment the lot fills. It builds each day in driving order and downloads whole to your phone, 3D park map included. Then it keeps working where cell service doesn't, which is most of the park."
-        points={null}
+        eyebrow="THE FIELD GUIDE / OFFLINE YOSEMITE APP"
+        title="Your Yosemite plan, even when the signal disappears."
+        intro="Build your days with parking notes, realistic time budgets, and somewhere to go when a lot fills, written by a naturalist who lives in the park. Download the Field Guide and its 3D park map before you leave, and it keeps working where cell service doesn't, which is most of the park."
+        points={GUIDE_HERO_POINTS}
       >
         <ul className="hp-stats">
           {GUIDE_STATS.map((stat) => <li key={stat}>{stat}</li>)}
@@ -1596,26 +1766,24 @@ function GuidePage({ go }) {
         <div className="guide-hero-cta">
           <BuyNowButton location="guide_hero" />
           <p className="hp-terms">
-            <LivePrice />, once. No subscription, 18 months on every device you own, refunded in full within 30 days if it does not work as described.
+            <LivePrice /> once · {terms.months || 18} months of access · No automatic renewal · {terms.updates || "Updates included during your access period"}.{" "}
+            {terms.refund || "Refunded in full within 30 days if it does not work as described"}, per the{" "}
+            <a href="/terms" onClick={toTerms}>terms</a>.
           </p>
           <p className="hp-terms">
-            Or{" "}
+            A web app for iPhone, Android or a laptop browser, added to your home screen. No App Store.{" "}
             <a
               href={`${GUIDE_APP_BASE}/preview`}
               onClick={() => {
                 if (window.track) window.track("guide_sample_click", { location: "guide_hero" });
               }}
             >
-              read the free sample first ↗
+              Read five entries free ↗
             </a>{" "}
-            Five complete entries from the real app, no account needed.
+            No account needed.
           </p>
         </div>
       </HpGuideBand>
-
-      <GuideMap3D />
-
-      <GuideDayOne />
 
       <div className="hp-wrap hp-section">
         <div className="guide-layout">
@@ -1623,6 +1791,78 @@ function GuidePage({ go }) {
           {/* Left column. Body. Each h2 opens a numbered design section; the
               numbers are drawn by CSS counters, so the copy is untouched. */}
           <div className="prose guide-prose">
+            <h2>Sixty seconds inside the app</h2>
+
+            <p>
+              Five screens, in the order a trip actually uses them. These are unedited captures from the current build, the same one buyers open. Tap a step to hold it, or pause the slideshow.
+            </p>
+
+            <GuideWalkthrough />
+
+            <h2>The free site, and the guide</h2>
+
+            <p>
+              Everything this site publishes stays free: the articles, the trip map, the itineraries, the conditions board. The guide is not those pages repackaged. It is the field version: the complete library, the planner, and the offline download that makes both of them work standing in a pullout with no bars.
+            </p>
+
+            <GuideCompare go={go} />
+
+            <div style={{ marginTop: 24 }}>
+              <BuyNowButton location="guide_compare" />
+            </div>
+
+            <h2>Turn the service off</h2>
+
+            <p>
+              Cell service dies at the Wawona Tunnel, on most of Glacier Point Road, and along nearly all of Tioga. The guide treats that as the normal case, not the failure case.
+            </p>
+
+            <GuideOfflineDemo />
+
+            <h2>What happens when you tap the button</h2>
+
+            <GuideAfterPurchase go={go} />
+
+            <h2>Who wrote it, and how</h2>
+
+            <GuideTrust />
+
+            <div className="guide-closer">
+              <div className="eyebrow eyebrow--moss" style={{ marginBottom: 12 }}>The offer, in one place</div>
+              <p style={{ fontFamily: "var(--serif)", fontSize: 17, lineHeight: 1.6, margin: "0 0 20px" }}>
+                Four regional guides. 44 stops in driving order, each with GPS and a time budget, the flagship ones with a swap. All 57 in-park day hikes with GPS tracks, elevation profiles and a daylight reading. The 72-entry Secret Guide. The park's program schedule on your dates. A planning calendar you drag into shape, then save to the calendar you already use, with the dates that matter for your trip under it. A Help card, a bearing compass and a companion mode that run on GPS alone. And a 3D map of the park that holds it all together: every stop and trail on the terrain, your days drawn along the real roads, working offline. <LivePrice /> once, for {terms.months || 18} months on every device you own. Nothing renews.
+              </p>
+              <BuyNowButton location="guide_closer" />
+              <p style={{ fontFamily: "var(--sans)", fontSize: 13, color: "var(--ink-2)", lineHeight: 1.55, margin: "14px 0 0" }}>
+                Checkout by Stripe. The guide opens signed in once the payment is confirmed. Prefer to look first?{" "}
+                <a
+                  href={`${GUIDE_APP_BASE}/preview`}
+                  onClick={() => {
+                    if (window.track) window.track("guide_sample_click", { location: "guide_closer" });
+                  }}
+                  style={{ color: "var(--ink-2)" }}
+                >
+                  Read five entries free →
+                </a>
+              </p>
+            </div>
+
+            <h2>Questions, answered</h2>
+
+            <GuideFaq />
+
+            <h2>What it does for the day</h2>
+
+            <GuideOutcomes />
+
+            <h2>Read one stop, in full</h2>
+
+            <p>
+              This is the guide's first stop, quoted word for word from the app. Every one of the 116 entries is built this way: the numbers up top, the read underneath, the fallback printed on the page, and, where the record allows it, a sourced note from a century of park naturalists' field bulletins.
+            </p>
+
+            <GuideStopExample />
+
             <h2>What a wrong morning costs</h2>
 
             <p>
@@ -1647,79 +1887,11 @@ function GuidePage({ go }) {
               The internet has a thousand free articles telling you to drive to Glacier Point, walk through the Mariposa Grove, and look up at El Capitan from the Yosemite Valley floor. You don't need those repeated in a different font. This guide assumes you've done that reading and starts where the lists stop: the parking, the timing, the order, and the fallback.
             </p>
 
-            <h2>Sixty seconds inside the app</h2>
-
-            <p>
-              Five screens, in the order a trip actually uses them. These are unedited captures from the current 2026 build, the same one buyers open. Tap a step to hold it.
-            </p>
-
-            <GuideWalkthrough />
-
-            <h2>Every screen, unedited</h2>
-
-            <p>
-              The full set: ten screens from the current build, captured on a phone. What you see here is the product, not a mockup.
-            </p>
-
-            <AppShots />
-
-            <h2>New in the September 2026 build</h2>
-
-            <p>
-              The guide keeps changing after you buy it, and this is what the last month added. Nine more screens, captured the same way, from the same build.
-            </p>
-
-            <AppShots shots={NEW_SHOTS} />
-
-            <p>
-              Also new, and not pictured here: the 3D map now carries the park's infrastructure, the five entrances, the visitor and wilderness centers with their hours, the eighteen Valley shuttle stops numbered as the park numbers them, picnic areas, gas, EV charging, showers, laundry, stores and the clinic, every kind of pin drawn with its own mark, and a "Go to" menu that flies the map to a region. The map itself has its own section at the top of this page. The front page's conditions panel gained live parking-lot status, and the same status prints on the map's parking pins. The Secret Guide grew by thirteen entries, and every one of them, along with the ten new photographs, arrived as a silent update. Nothing here cost an existing buyer anything, and that is the arrangement for the rest of the 18 months.
-            </p>
-
-            <h2>What it does for the day</h2>
-
-            <GuideOutcomes />
-
-            <h2>Read one stop, in full</h2>
-
-            <p>
-              This is the guide's first stop, quoted word for word from the app. Every one of the 116 entries is built this way: the numbers up top, the read underneath, the fallback printed on the page, and, where the record allows it, a sourced note from a century of park naturalists' field bulletins.
-            </p>
-
-            <GuideStopExample />
-
-            <h2>Turn the service off</h2>
-
-            <p>
-              Cell service dies at the Wawona Tunnel, on most of Glacier Point Road, and along nearly all of Tioga. The guide treats that as the normal case, not the failure case.
-            </p>
-
-            <GuideOfflineDemo />
-
-            <h2>The free site, and the guide</h2>
-
-            <p>
-              Everything this site publishes stays free: the articles, the trip map, the itineraries, the conditions board. The guide is not those pages repackaged. It is the field version: the complete library, the planner, and the offline download that makes both of them work standing in a pullout with no bars.
-            </p>
-
-            <GuideCompare go={go} />
-
-            <p style={{ marginTop: 24 }}>
-              <BuyNowButton location="guide_compare" />
-            </p>
-
             <h2>The Secret Guide</h2>
 
             <p>
               There is a section of the guide that never makes it into articles: the parking turnouts locals use when the big lots fill, the trailheads with no signs from the road, the spots that belong to no region at all, and the few guided programs worth planning an evening around. It's in the app now, 72 entries in six numbered chapters: quiet vistas, hidden trails, parking, camping, the park after dark, and programs. It opens on the short version, six things to do if you do nothing else, then four routes that string the entries into a day or an evening in the order you would drive them, and every entry is numbered across the whole set and marked in gold on the 3D map. Twenty-two arrived at the end of September: ten more pullouts and small lots, from the dozen spaces at Valley View to the two day lots at Hetch Hetchy; the Yosemite Cemetery, Stoneman Meadow at dusk and the Half Dome view on the Big Oak Flat Road; and the programs chapter, led by the Conservancy's night sky program and the free Ahwahnee history tour. It keeps growing through the season, and every addition arrives as a silent update, no re-download, no second charge.
             </p>
-
-            <h2>Who wrote it, and how</h2>
-
-            <GuideTrust />
-
-            <h2>What happens when you tap the button</h2>
-
-            <GuideAfterPurchase go={go} />
 
             <h2>What's NOT inside</h2>
 
@@ -1742,41 +1914,46 @@ function GuidePage({ go }) {
               If you've already read every article on this site, taken thorough notes, built your own spreadsheet, called the park three times, and feel like you have a handle on it, you might not need the guide. The guide is for people who want the spreadsheet already built.
             </p>
 
-            <h2>Questions, answered</h2>
-
-            <GuideFaq />
-
             <h2>One small promise</h2>
 
             <p>
-              If the guide doesn't earn its place on your home screen, write to me and tell me why, and I'll make it right. I'd rather fix the trip that didn't work than pretend it did. The address is on the contact page.
+              If the guide doesn't earn its place on your home screen, write to me and tell me why. I'd rather fix the trip that didn't work than pretend it did. The address is on the contact page, and if the guide does not work as described, the 30-day refund in the{" "}
+              <a href="/terms" onClick={toTerms}>terms</a> applies.
             </p>
 
-            <div className="guide-closer">
-              <div className="eyebrow eyebrow--moss" style={{ marginBottom: 12 }}>The offer, in one place</div>
-              <p style={{ fontFamily: "var(--serif)", fontSize: 17, lineHeight: 1.6, margin: "0 0 20px" }}>
-                Four regional guides. 44 stops in driving order, each with GPS and a time budget, the flagship ones with a swap. All 57 in-park day hikes with GPS tracks, elevation profiles and a daylight reading. The 72-entry Secret Guide. The park's program schedule on your dates. A planning calendar you drag into shape, then save to the calendar you already use, with the dates that matter for your trip under it. A Help card, a bearing compass and a companion mode that run on GPS alone. And a 3D map of the park that holds it all together: every stop and trail on the terrain, your days drawn along the real roads, working offline. <LivePrice />, once, for 18 months on every device you own.
+            <details className="guide-more">
+              <summary>Every screen, unedited: nineteen captures and what changed lately</summary>
+
+              <h3>Every screen, unedited</h3>
+
+              <p>
+                The full set: ten screens from the current build, captured on a phone. What you see here is the product, not a mockup.
               </p>
-              <BuyNowButton location="guide_closer" />
-              <p style={{ fontFamily: "var(--sans)", fontSize: 12, color: "var(--ink-3)", lineHeight: 1.55, margin: "14px 0 0" }}>
-                Checkout by Stripe. The guide opens signed in the moment payment clears. Prefer to look first?{" "}
-                <a
-                  href={`${GUIDE_APP_BASE}/preview`}
-                  onClick={() => {
-                    if (window.track) window.track("guide_sample_click", { location: "guide_closer" });
-                  }}
-                  style={{ color: "var(--ink-2)" }}
-                >
-                  Read the free sample →
-                </a>
+
+              <AppShots />
+
+              <h3>New in the September 2026 build</h3>
+
+              <p>
+                The guide keeps changing after you buy it, and this is what the last month added. Nine more screens, captured the same way, from the same build.
               </p>
-            </div>
+
+              <AppShots shots={NEW_SHOTS} />
+
+              <p>
+                Also new, and not pictured here: the 3D map now carries the park's infrastructure, the five entrances, the visitor and wilderness centers with their hours, the eighteen Valley shuttle stops numbered as the park numbers them, picnic areas, gas, EV charging, showers, laundry, stores and the clinic, every kind of pin drawn with its own mark, and a "Go to" menu that flies the map to a region. The map itself has its own section further down this page. The front page's conditions panel gained live parking-lot status, and the same status prints on the map's parking pins. The Secret Guide grew by thirteen entries, and every one of them, along with the ten new photographs, arrived as a silent update. Nothing here cost an existing buyer anything, and that is the arrangement for the rest of the 18 months.
+              </p>
+            </details>
           </div>
 
           {/* Right column. Sticky buy box while on sale, waitlist before. */}
-          {GUIDE_ON_SALE ? <GuideBuyBox /> : <GuideWaitlistBox />}
+          {GUIDE_ON_SALE ? <GuideBuyBox go={go} /> : <GuideWaitlistBox />}
         </div>
       </div>
+
+      <GuideDayOne />
+
+      <GuideMap3D />
 
       {/* Newsletter */}
       <HpLetter

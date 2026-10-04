@@ -1,4 +1,4 @@
-/* global React, ResponsiveImage, HomeLink, HpArticleCard, AvailabilityLink, NewsletterInline, GUIDE_PROMO_APP_BASE */
+/* global React, ResponsiveImage, HomeLink, HpArticleCard, AvailabilityLink, NewsletterInline, GUIDE_PROMO_APP_BASE, GUIDE_TERMS */
 
 // =============================================================================
 // THE PLANNING GUIDE — `/planning`.
@@ -461,7 +461,7 @@ function PlanningGuide({ go }) {
           <p className="pg-hero__intro">Four decisions, in the order the park makes you take them: when you go, which of its four corners you can reach, where you sleep, and what you do each day. Twenty minutes here saves a day of driving there.</p>
           <div className="pg-actions">
             <HomeLink go={go} location="planning_hero" className="pg-btn pg-btn--ink" href="#step-1">Start with your month &nbsp;↓</HomeLink>
-            <HomeLink go={go} location="planning_hero" className="pg-btn pg-btn--ghost" href="#guide">See the Field Guide · $3.99</HomeLink>
+            <HomeLink go={go} location="planning_hero" className="pg-btn pg-btn--ghost" href="#guide">See the Field Guide · {GUIDE_TERMS.price}</HomeLink>
           </div>
           <p className="aff-disclosure pg-hero__aff">Some links on this page are affiliate links. <a href="/affiliate">How we choose them</a>.</p>
         </div>
@@ -570,7 +570,7 @@ function PlanningGuide({ go }) {
               <h3>See all four corners in 3D, on the real terrain.</h3>
               <p>Tilt the park, then drop into it. Every viewpoint, trailhead, day hike and parking lot sits on the actual relief, with the trails colored by difficulty. Download a region before you leave and it all works with no signal.</p>
               <div className="pg-actions">
-                <HomeLink go={go} location="planning_map_ad" className="pg-btn pg-btn--light" href="/guide">Get the Field Guide &nbsp;<span className="pg-price">$3.99</span></HomeLink>
+                <HomeLink go={go} location="planning_map_ad" className="pg-btn pg-btn--light" href="/guide">Get the Field Guide &nbsp;<span className="pg-price">{GUIDE_TERMS.price}</span></HomeLink>
                 <span className="pg-ad__note">Actual screens · Yosemite Valley, looking east</span>
               </div>
             </div>
@@ -675,7 +675,7 @@ function PlanningGuide({ go }) {
                 <div className="pg-plan__upsell">
                   <svg width="26" height="26" viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="5" y="10" width="14" height="10" rx="2" /><path d="M8 10 V7 a4 4 0 0 1 8 0 V10" /></svg>
                   <div><p className="pg-plan__upsell-t">Where to park for each stop, which trailhead lot fills first, and the ranger programs on your dates.</p><p className="pg-plan__upsell-d">This plan opens in the Field Guide, stop by stop, on the 3D map.</p></div>
-                  <HomeLink go={go} location="planning_plan" className="pg-btn pg-btn--accent" href="/guide">Take it into the park · $3.99</HomeLink>
+                  <HomeLink go={go} location="planning_plan" className="pg-btn pg-btn--accent" href="/guide">Take it into the park · {GUIDE_TERMS.price}</HomeLink>
                 </div>
               </div>
             )}
@@ -687,7 +687,7 @@ function PlanningGuide({ go }) {
       <section className="hp-wrap pg-section pg-compare" id="compare">
         <div className="pg-center">
           <p className="pg-eyebrow">Three ways to plan with us</p>
-          <h2 className="pg-h2">Read it free. Carry it for $3.99.</h2>
+          <h2 className="pg-h2">Read it free. Carry it for {GUIDE_TERMS.price}.</h2>
           <p className="pg-sub">Everything above stays free. The Field Guide is for the part of the trip that happens in the car, on the trail, and out of signal.</p>
         </div>
         <div className="pg-ways">
@@ -705,10 +705,10 @@ function PlanningGuide({ go }) {
           </div>
           <div className="pg-way pg-way--product">
             <span className="pg-way__flag">For the trip itself</span>
-            <p className="pg-eyebrow">$3.99 once · 18 months</p>
+            <p className="pg-eyebrow">{GUIDE_TERMS.price} once · {GUIDE_TERMS.months} months</p>
             <h3>The Field Guide app</h3>
             <p>The whole park on a 3D topographic map, every stop with its parking, every hike with a GPS track, the week's ranger programs, all of it offline.</p>
-            <HomeLink go={go} location="planning_compare" className="pg-btn pg-btn--accent" href="/guide">Get the Field Guide · $3.99</HomeLink>
+            <HomeLink go={go} location="planning_compare" className="pg-btn pg-btn--accent" href="/guide">Get the Field Guide · {GUIDE_TERMS.price}</HomeLink>
           </div>
         </div>
         <div className="pg-compare__scroll">
@@ -719,7 +719,7 @@ function PlanningGuide({ go }) {
               {PG_COMPARE.map(([label, a, b, c]) => (
                 <tr key={label}><th scope="row">{label}</th><PgCell value={a} /><PgCell value={b} /><PgCell value={c} product /></tr>
               ))}
-              <tr className="pg-compare__price"><th scope="row">Price</th><td>Free</td><td>Free</td><td className="pg-compare__product">$3.99 once</td></tr>
+              <tr className="pg-compare__price"><th scope="row">Price</th><td>Free</td><td>Free</td><td className="pg-compare__product">{GUIDE_TERMS.price} once</td></tr>
             </tbody>
           </table>
         </div>
@@ -739,10 +739,10 @@ function PlanningGuide({ go }) {
               <li><span>◎</span><div><strong>Know what's on tonight.</strong><p>Ranger walks, talks and campfire programs, filtered to your day and area.</p></div></li>
             </ul>
             <div className="pg-actions">
-              <HomeLink go={go} location="planning_hub" className="pg-btn pg-btn--light pg-btn--big" href="/guide">Get the Field Guide &nbsp;<span className="pg-price">$3.99 ↗</span></HomeLink>
+              <HomeLink go={go} location="planning_hub" className="pg-btn pg-btn--light pg-btn--big" href="/guide">Get the Field Guide &nbsp;<span className="pg-price">{GUIDE_TERMS.price} ↗</span></HomeLink>
               <a className="pg-guide__sample" href={`${GUIDE_PROMO_APP_BASE}/preview`} onClick={() => { if (window.track) window.track("guide_sample_click", { location: "planning_hub" }); }}>Read five entries free ↗</a>
             </div>
-            <p className="pg-guide__terms">One payment · 18 months of access · 30-day guarantee · works offline</p>
+            <p className="pg-guide__terms">{GUIDE_TERMS.short} · {GUIDE_TERMS.refundShort} · works offline</p>
           </div>
           <div className="pg-guide__screens">
             <div className="pg-phone pg-phone--left"><img src="/img/guide/screens/programs.v7.webp" alt="Field Guide programs screen" width="640" height="1385" loading="lazy" decoding="async" /></div>

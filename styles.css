@@ -4119,8 +4119,9 @@ main:focus { outline: none; }
   bottom: 0;
   z-index: 60;
   display: none;
-  align-items: center;
-  gap: 14px;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 8px;
   padding: 12px var(--gutter);
   padding-bottom: calc(12px + env(safe-area-inset-bottom));
   background: var(--ink);
@@ -4134,6 +4135,30 @@ main:focus { outline: none; }
   transform: translateY(0);
   visibility: visible;
   transition: transform 0.28s ease;
+}
+.guide-buybar__row {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+/* The checkout error, in the bar the reader tapped (UX audit, October 2026).
+   Empty until a start fails; the live region stays mounted so it announces. */
+.guide-buybar__error:empty { display: none; }
+.guide-buybar__error {
+  font-family: var(--sans);
+  font-size: 14px;
+  line-height: 1.45;
+  color: var(--paper);
+}
+.guide-buybar__error a,
+.guide-buybar__error button {
+  color: var(--paper);
+  text-decoration: underline;
+  background: none;
+  border: 0;
+  padding: 0;
+  font: inherit;
+  cursor: pointer;
 }
 .guide-buybar__meta {
   flex: 1;
@@ -4150,7 +4175,7 @@ main:focus { outline: none; }
 }
 .guide-buybar__sub {
   font-family: var(--sans);
-  font-size: 10px;
+  font-size: 11px;
   text-transform: uppercase;
   letter-spacing: 0.12em;
   font-weight: 600;
@@ -6922,7 +6947,7 @@ kbd {
 .hp-guide .hp-product .btn { background: #f3e9ca; color: var(--hp-ink); min-width: 310px; justify-content: space-between; }
 .hp-guide .hp-product .btn:hover { background: #fff6dc; color: var(--hp-ink); }
 .hp-guide .hp-product .guide-hero-cta > p:not(.hp-terms) { color: #f3c9b5 !important; }
-.hp-guide .hp-product .hp-terms { font-size: 10px; line-height: 1.7; max-width: 480px; }
+.hp-guide .hp-product .hp-terms { font-size: 12px; line-height: 1.7; max-width: 520px; }
 .hp-guide .guide-buybox { top: 24px; border: 1px solid var(--hp-rule); border-radius: 3px; background: var(--hp-card); }
 .hp-guide .guide-closer { border: 1px solid var(--hp-rule); border-radius: 3px; background: var(--hp-card); }
 .hp-guide .guide-prose { counter-reset: guide-section; font: 15px/1.85 var(--sans); color: var(--hp-ink); }
@@ -12549,3 +12574,81 @@ html[data-nav-mode="pinned"] { scroll-padding-top: 62px; }
 }
 /* The crawler fragment is not laid out as a grid. */
 #prerender-prose .fly-feature :is(.ff-split, .ff-facts, .fly-airports, .fly-choose, .fly-routes, .fly-loop, .ff-timeline, .ff-rules) { display: block; }
+
+/* ===== UX and sales audit (October 2026) =====
+   The shared checkout error under every /guide buy button, the walkthrough's
+   pause control, the offline toggle's illustration note, the band's
+   returning-buyer line, the task-by-task comparison, and the long-version
+   disclosure that holds the full screen gallery. */
+.guide-checkout-error {
+  margin: 10px 0 14px;
+  padding: 10px 12px;
+  border: 1px solid var(--rust);
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--sans);
+  font-size: 14px;
+  line-height: 1.5;
+  text-align: left;
+}
+.guide-checkout-error p { margin: 0; }
+.guide-checkout-error p + p { margin-top: 6px; }
+.guide-checkout-error button {
+  background: none;
+  border: 0;
+  padding: 0;
+  font: inherit;
+  font-weight: 600;
+  color: var(--ink);
+  text-decoration: underline;
+  cursor: pointer;
+}
+.guide-checkout-error a { color: var(--ink-2); text-decoration: underline; }
+.hp-product .guide-checkout-error { color: var(--ink); }
+.guide-walkthrough__pause {
+  display: inline-block;
+  margin: 10px 0 4px;
+  background: none;
+  border: 1px solid var(--rule);
+  padding: 6px 12px;
+  font-family: var(--sans);
+  font-size: 13px;
+  color: var(--ink-2);
+  cursor: pointer;
+}
+.guide-walkthrough__pause:focus-visible { outline: 2px solid var(--ink); outline-offset: 2px; }
+.guide-offline__note {
+  font-family: var(--sans);
+  font-size: 13px;
+  color: var(--ink-2);
+  margin: 6px 0 0;
+}
+.hp-design .hp-product .hp-owner { margin-top: 4px; }
+.guide-compare tbody th[scope="row"] {
+  text-transform: none;
+  letter-spacing: 0;
+  font-size: 14px;
+  color: var(--ink);
+  background: none;
+  border-bottom: 0;
+  border-top: 1px solid var(--rule-soft);
+  vertical-align: top;
+  width: 22%;
+}
+.guide-compare.has-tasks td { width: 39%; }
+.guide-compare .guide-compare__no { color: var(--ink-3); }
+.guide-more {
+  margin: 32px 0 0;
+  border-top: 1px solid var(--rule);
+  padding-top: 18px;
+}
+.guide-more > summary {
+  cursor: pointer;
+  font-family: var(--sans);
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  color: var(--ink);
+}
+.guide-more > summary:focus-visible { outline: 2px solid var(--ink); outline-offset: 3px; }
+.guide-more h3 { margin-top: 28px; }

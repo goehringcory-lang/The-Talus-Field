@@ -13,13 +13,15 @@ function HomeHero({
     go: go,
     location: "home_hero",
     className: "hp-button",
-    href: "#home-start-here"
-  }, "Plan your first visit \xA0 ↓"), React.createElement(HomeLink, {
+    href: "/start-here"
+  }, "Plan my first visit, free \xA0 ↗"), React.createElement(HomeLink, {
     go: go,
     location: "home_hero",
     className: "hp-link",
-    href: "#field-guide"
-  }, "Meet your pocket guide ↗")), React.createElement("p", {
+    href: "/guide"
+  }, "Explore the offline Field Guide ↗")), React.createElement("p", {
+    className: "hp-byline hp-hero-terms"
+  }, "The Field Guide: ", window.GUIDE_TERMS && window.GUIDE_TERMS.price || "$3.99", " once, 18 months, works with no signal."), React.createElement("p", {
     className: "hp-byline"
   }, "Independent advice. Twenty seasons of paying attention.")), React.createElement("figure", null, React.createElement(ResponsiveImage, {
     image: "/img/valley-view-sunset-rodrigo-soares.jpg",

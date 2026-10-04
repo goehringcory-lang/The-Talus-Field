@@ -14,10 +14,15 @@ function HomeHero({ go }) {
       <h1>A remarkable place.<br />A better way<br />to <em>be there.</em>
       </h1>
       <p className="hp-intro">Your first Yosemite trip doesn’t need to feel like homework. Get local advice on where to stay, what to see, and how to make the most of your days.</p>
+      {/* Two literal doors (UX audit, October 2026): the free first-trip page
+          and the paid offline guide, each straight to its own page rather
+          than a jump down this one. The terms line reads GUIDE_TERMS, which
+          carries no date, so the shell's year guard stays satisfied. */}
       <div className="hp-actions">
-        <HomeLink go={go} location="home_hero" className="hp-button" href="#home-start-here">Plan your first visit &nbsp; ↓</HomeLink>
-        <HomeLink go={go} location="home_hero" className="hp-link" href="#field-guide">Meet your pocket guide ↗</HomeLink>
+        <HomeLink go={go} location="home_hero" className="hp-button" href="/start-here">Plan my first visit, free &nbsp; ↗</HomeLink>
+        <HomeLink go={go} location="home_hero" className="hp-link" href="/guide">Explore the offline Field Guide ↗</HomeLink>
       </div>
+      <p className="hp-byline hp-hero-terms">The Field Guide: {(window.GUIDE_TERMS && window.GUIDE_TERMS.price) || "$3.99"} once, 18 months, works with no signal.</p>
       <p className="hp-byline">Independent advice. Twenty seasons of paying attention.</p>
     </div>
     <figure>
