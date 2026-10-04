@@ -295,8 +295,10 @@ rendered = blankDateSlots(rendered);
 const MUST_CONTAIN = [
   ['<h1>A remarkable place.', "the hero h1"],
   ['class="hp-intro"', "the hero introduction"],
-  ['Plan your first visit', "the primary planning CTA"],
-  ['href="#field-guide"', "the app section CTA"],
+  ['Plan my first visit', "the primary planning CTA"],
+  ['href="/start-here"', "the hero's first-trip door"],
+  ['Explore the offline Field Guide', "the hero's Field Guide door"],
+  ['href="#field-guide"', "the masthead's app button (a jump to the band on /)"],
   ['href="#home-newsletter"', "the newsletter section CTA (the Read menu's Sunday Letter link)"],
   ['id="masthead-search"', "the masthead's search box"],
   ['data-menu="now"', "the masthead's Park now menu"],

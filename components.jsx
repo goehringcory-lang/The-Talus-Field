@@ -1403,6 +1403,26 @@ function HpPageHead({ go, crumbs, eyebrow, title, intro, actions, byline, aside,
   );
 }
 
+// The Field Guide's terms, stated one way everywhere the site sells it (the
+// UX and sales audit, October 2026, found the buy box, the bands, the FAQ and
+// /terms each saying it differently). Static on purpose: the bands bake into
+// the home shell and the prerendered pages, so they cannot wait on an API.
+// Checkout itself charges GUIDE_PRICE_CENTS from workers/wrangler.toml, and
+// Stripe shows the buyer that amount before they pay; `price` is the display
+// copy and must change with it. `refund` restates /terms section 1 (page-legal.jsx)
+// and must not promise more than it does. page-guide.jsx, page-planning-guide.jsx,
+// the /guide FAQ (mirrored in app.jsx and edge/seo.js) read or restate these.
+const GUIDE_TERMS = {
+  priceCents: 399,
+  price: "$3.99",
+  months: 18,
+  short: "One payment · 18 months of access · No automatic renewal",
+  updates: "Updates included during your access period",
+  refund: "Refunded in full within 30 days if it does not work as described",
+  refundShort: "30-day refund if it does not work as described",
+};
+window.GUIDE_TERMS = GUIDE_TERMS;
+
 // The three benefit lines the homepage prints for the Field Guide. Literal
 // copy, like everything on the homepage: edit here when the guide changes.
 const HP_GUIDE_POINTS = [
@@ -1436,9 +1456,12 @@ function HpGuideBand({ go, location, id, eyebrow = "THE TALUS FIELD GUIDE / THE 
             ))}
           </ul>}
           {children || <React.Fragment>
-            <HomeLink go={go} location={location} className="hp-button hp-light" href="/guide">Get the Field Guide <span>$3.99 ↗</span>
+            <HomeLink go={go} location={location} className="hp-button hp-light" href="/guide">Get the offline Field Guide <span>{GUIDE_TERMS.price} ↗</span>
             </HomeLink>
-            <p className="hp-terms">One payment · 18 months of access · 30-day guarantee</p>
+            <p className="hp-terms">{GUIDE_TERMS.short} · {GUIDE_TERMS.refundShort}</p>
+            <p className="hp-terms hp-owner">Already bought it?{" "}
+              <a href={`${GUIDE_PROMO_APP_BASE}/`} onClick={() => { if (window.track) window.track("guide_open_click", { location }); }}>Open your guide ↗</a>
+            </p>
           </React.Fragment>}
           {sample && (
             <p className="hp-terms hp-sample">Not sure yet? Five entries are free to read, no email required:{" "}

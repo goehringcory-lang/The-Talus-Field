@@ -2,7 +2,8 @@ var CONSULT_PAYMENT_LINK_URL = "";
 var CONSULT_BOOKING_URL = "";
 var CONSULT_PRICE = "$95";
 var CONSULT_SLOTS_PER_MONTH = 6;
-var CONSULT_MAILTO = "mailto:cory@thetalusfieldjournal.com?subject=Field%20consult";
+var CONSULT_INTAKE = ["Travel dates:", "How many in the party (and ages, if kids):", "Where you are staying, or the towns you are weighing:", "The main thing you are trying to figure out:", "Anything that limits the plan (knees, a dog, a flight time, a permit you did or did not get):", "A call or a written plan:"].join("\n\n");
+var CONSULT_MAILTO = "mailto:cory@thetalusfieldjournal.com?subject=Field%20consult%20inquiry&body=" + encodeURIComponent(CONSULT_INTAKE + "\n");
 function ConsultPage({
   go
 }) {
@@ -26,7 +27,7 @@ function ConsultPage({
     className: "fj-head fj-topo",
     eyebrow: `ONE ON ONE · ${CONSULT_SLOTS_PER_MONTH} A MONTH`,
     title: "Thirty minutes on your Yosemite plan.",
-    intro: `A call with a naturalist who lives in the park: your dates, your group, your plan, taken apart and put back together by someone who has spent twenty seasons watching plans meet the actual park. ${CONSULT_PRICE}, thirty minutes, ${CONSULT_SLOTS_PER_MONTH} slots a month. When they are gone, they are gone.`,
+    intro: `A call with a naturalist who lives in the park: your dates, your group, your plan, taken apart and put back together by someone who has spent twenty seasons watching plans meet the actual park. ${CONSULT_PRICE}, thirty minutes, ${CONSULT_SLOTS_PER_MONTH} slots a month.`,
     aside: React.createElement("div", {
       className: "hp-consult__book"
     }, React.createElement("p", {
@@ -45,13 +46,13 @@ function ConsultPage({
       className: "hp-link"
     }, "Already paid? Pick your time →")) : React.createElement(React.Fragment, null, React.createElement("p", {
       className: "hp-consult__soon"
-    }, "Booking opens shortly. Until the calendar is live, email works: say your dates and what you are trying to figure out, and you will get a reply about this month's slots."), React.createElement("a", {
+    }, "Consults are booked by email for now, not through a calendar. Send your dates, party, base and main question (the email opens with those prompts filled in), and the reply says whether one of this month's slots fits, and how to pay for it and pick a time. Nothing is charged before that."), React.createElement("a", {
       className: "hp-button",
       href: CONSULT_MAILTO,
       onClick: () => trackClick("consult_mailto")
-    }, "Email about a consult →")), React.createElement("p", {
+    }, "Ask about a consult →")), React.createElement("p", {
       className: "hp-terms"
-    }, "If the month is sold out, the button says so. No waitlist for consults; the newsletter announces when slots reopen."))
+    }, live ? "No waitlist for consults; the newsletter announces when slots reopen." : "Times are agreed by email. No waitlist for consults; the newsletter announces when slots reopen."))
   }), React.createElement("div", {
     className: "hp-wrap fj-band"
   }, React.createElement(FjFacts, {
@@ -75,10 +76,16 @@ function ConsultPage({
     side: true,
     cite: "What it is not"
   }, "Lotteries stay lotteries."), React.createElement("p", null, "Not a booking service, not a guided tour, and not a way around the park's permit systems. Lotteries stay lotteries. What a consult does is make sure everything outside the lottery is working in your favor."), React.createElement(FjRidge, null), React.createElement("h2", null, "How it works"), React.createElement(FjSteps, {
-    steps: [{
+    steps: live ? [{
       title: `Pay for the slot. ${CONSULT_PRICE}, thirty minutes.`
     }, {
       title: React.createElement(React.Fragment, null, "Pick a time on the calendar, or reply to the receipt with \"written plan\" and your details.")
+    }, {
+      title: "Talk, or read. Either way you end up with the plan in writing."
+    }] : [{
+      title: "Email your dates, party, base and main question."
+    }, {
+      title: `The reply says whether a slot fits this month, and how to pay (${CONSULT_PRICE}) and pick a time, or ask for a written plan instead.`
     }, {
       title: "Talk, or read. Either way you end up with the plan in writing."
     }]
@@ -94,7 +101,7 @@ function ConsultPage({
     className: "hp-button",
     href: CONSULT_MAILTO,
     onClick: () => trackClick("consult_steps")
-  }, "Email about a consult →")))), React.createElement(HpLetter, {
+  }, "Ask about a consult →")))), React.createElement(HpLetter, {
     eyebrow: "SUNDAY FIELD NOTES / FREE",
     title: "Not ready to book?",
     heading: "Not ready to book?",

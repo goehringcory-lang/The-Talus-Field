@@ -549,7 +549,7 @@ function PlanningGuide({
     location: "planning_hero",
     className: "pg-btn pg-btn--ghost",
     href: "#guide"
-  }, "See the Field Guide · $3.99")), React.createElement("p", {
+  }, "See the Field Guide · ", GUIDE_TERMS.price)), React.createElement("p", {
     className: "aff-disclosure pg-hero__aff"
   }, "Some links on this page are affiliate links. ", React.createElement("a", {
     href: "/affiliate"
@@ -741,7 +741,7 @@ function PlanningGuide({
     href: "/guide"
   }, "Get the Field Guide \xA0", React.createElement("span", {
     className: "pg-price"
-  }, "$3.99")), React.createElement("span", {
+  }, GUIDE_TERMS.price)), React.createElement("span", {
     className: "pg-ad__note"
   }, "Actual screens · Yosemite Valley, looking east"))), React.createElement("div", {
     className: "pg-ad__media"
@@ -928,7 +928,7 @@ function PlanningGuide({
     location: "planning_plan",
     className: "pg-btn pg-btn--accent",
     href: "/guide"
-  }, "Take it into the park · $3.99")))))), React.createElement("section", {
+  }, "Take it into the park · ", GUIDE_TERMS.price)))))), React.createElement("section", {
     className: "hp-wrap pg-section pg-compare",
     id: "compare"
   }, React.createElement("div", {
@@ -937,7 +937,7 @@ function PlanningGuide({
     className: "pg-eyebrow"
   }, "Three ways to plan with us"), React.createElement("h2", {
     className: "pg-h2"
-  }, "Read it free. Carry it for $3.99."), React.createElement("p", {
+  }, "Read it free. Carry it for ", GUIDE_TERMS.price, "."), React.createElement("p", {
     className: "pg-sub"
   }, "Everything above stays free. The Field Guide is for the part of the trip that happens in the car, on the trail, and out of signal.")), React.createElement("div", {
     className: "pg-ways"
@@ -965,12 +965,12 @@ function PlanningGuide({
     className: "pg-way__flag"
   }, "For the trip itself"), React.createElement("p", {
     className: "pg-eyebrow"
-  }, "$3.99 once · 18 months"), React.createElement("h3", null, "The Field Guide app"), React.createElement("p", null, "The whole park on a 3D topographic map, every stop with its parking, every hike with a GPS track, the week's ranger programs, all of it offline."), React.createElement(HomeLink, {
+  }, GUIDE_TERMS.price, " once · ", GUIDE_TERMS.months, " months"), React.createElement("h3", null, "The Field Guide app"), React.createElement("p", null, "The whole park on a 3D topographic map, every stop with its parking, every hike with a GPS track, the week's ranger programs, all of it offline."), React.createElement(HomeLink, {
     go: go,
     location: "planning_compare",
     className: "pg-btn pg-btn--accent",
     href: "/guide"
-  }, "Get the Field Guide · $3.99"))), React.createElement("div", {
+  }, "Get the Field Guide · ", GUIDE_TERMS.price))), React.createElement("div", {
     className: "pg-compare__scroll"
   }, React.createElement("table", {
     className: "pg-compare__table"
@@ -1002,7 +1002,7 @@ function PlanningGuide({
     scope: "row"
   }, "Price"), React.createElement("td", null, "Free"), React.createElement("td", null, "Free"), React.createElement("td", {
     className: "pg-compare__product"
-  }, "$3.99 once")))))), React.createElement("section", {
+  }, GUIDE_TERMS.price, " once")))))), React.createElement("section", {
     className: "pg-guide",
     id: "guide",
     tabIndex: -1
@@ -1025,7 +1025,7 @@ function PlanningGuide({
     href: "/guide"
   }, "Get the Field Guide \xA0", React.createElement("span", {
     className: "pg-price"
-  }, "$3.99 ↗")), React.createElement("a", {
+  }, GUIDE_TERMS.price, " ↗")), React.createElement("a", {
     className: "pg-guide__sample",
     href: `${GUIDE_PROMO_APP_BASE}/preview`,
     onClick: () => {
@@ -1035,7 +1035,7 @@ function PlanningGuide({
     }
   }, "Read five entries free ↗")), React.createElement("p", {
     className: "pg-guide__terms"
-  }, "One payment · 18 months of access · 30-day guarantee · works offline")), React.createElement("div", {
+  }, GUIDE_TERMS.short, " · ", GUIDE_TERMS.refundShort, " · works offline")), React.createElement("div", {
     className: "pg-guide__screens"
   }, React.createElement("div", {
     className: "pg-phone pg-phone--left"

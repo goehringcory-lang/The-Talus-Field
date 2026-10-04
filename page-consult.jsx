@@ -21,8 +21,19 @@ const CONSULT_BOOKING_URL = "";
 
 const CONSULT_PRICE = "$95";
 const CONSULT_SLOTS_PER_MONTH = 6;
+// The inquiry email carries the short intake the reply needs, so the first
+// answer can say whether a slot fits instead of asking for the basics.
+const CONSULT_INTAKE = [
+  "Travel dates:",
+  "How many in the party (and ages, if kids):",
+  "Where you are staying, or the towns you are weighing:",
+  "The main thing you are trying to figure out:",
+  "Anything that limits the plan (knees, a dog, a flight time, a permit you did or did not get):",
+  "A call or a written plan:",
+].join("\n\n");
 const CONSULT_MAILTO =
-  "mailto:cory@thetalusfieldjournal.com?subject=Field%20consult";
+  "mailto:cory@thetalusfieldjournal.com?subject=Field%20consult%20inquiry&body=" +
+  encodeURIComponent(CONSULT_INTAKE + "\n");
 
 function ConsultPage({ go }) {
   const live = Boolean(CONSULT_PAYMENT_LINK_URL && CONSULT_BOOKING_URL);
@@ -39,7 +50,7 @@ function ConsultPage({ go }) {
         className="fj-head fj-topo"
         eyebrow={`ONE ON ONE · ${CONSULT_SLOTS_PER_MONTH} A MONTH`}
         title="Thirty minutes on your Yosemite plan."
-        intro={`A call with a naturalist who lives in the park: your dates, your group, your plan, taken apart and put back together by someone who has spent twenty seasons watching plans meet the actual park. ${CONSULT_PRICE}, thirty minutes, ${CONSULT_SLOTS_PER_MONTH} slots a month. When they are gone, they are gone.`}
+        intro={`A call with a naturalist who lives in the park: your dates, your group, your plan, taken apart and put back together by someone who has spent twenty seasons watching plans meet the actual park. ${CONSULT_PRICE}, thirty minutes, ${CONSULT_SLOTS_PER_MONTH} slots a month.`}
         aside={
     <div className="hp-consult__book">
       <p className="hp-eyebrow">THE CONSULT / {CONSULT_PRICE}</p>
@@ -67,18 +78,21 @@ function ConsultPage({ go }) {
       ) : (
         <>
           <p className="hp-consult__soon">
-            Booking opens shortly. Until the calendar is live, email works: say
-            your dates and what you are trying to figure out, and you will get
-            a reply about this month's slots.
+            Consults are booked by email for now, not through a calendar. Send
+            your dates, party, base and main question (the email opens with
+            those prompts filled in), and the reply says whether one of this
+            month's slots fits, and how to pay for it and pick a time. Nothing
+            is charged before that.
           </p>
           <a className="hp-button" href={CONSULT_MAILTO} onClick={() => trackClick("consult_mailto")}>
-            Email about a consult →
+            Ask about a consult →
           </a>
         </>
       )}
       <p className="hp-terms">
-        If the month is sold out, the button says so. No waitlist for consults;
-        the newsletter announces when slots reopen.
+        {live
+          ? "No waitlist for consults; the newsletter announces when slots reopen."
+          : "Times are agreed by email. No waitlist for consults; the newsletter announces when slots reopen."}
       </p>
     </div>
 
@@ -126,10 +140,16 @@ function ConsultPage({ go }) {
 
           <FjRidge />
           <h2>How it works</h2>
+          {/* Two honest versions: the self-serve flow once the payment link
+              and the calendar exist, the email inquiry until then. */}
           <FjSteps
-            steps={[
+            steps={live ? [
               { title: `Pay for the slot. ${CONSULT_PRICE}, thirty minutes.` },
               { title: <>Pick a time on the calendar, or reply to the receipt with "written plan" and your details.</> },
+              { title: "Talk, or read. Either way you end up with the plan in writing." },
+            ] : [
+              { title: "Email your dates, party, base and main question." },
+              { title: `The reply says whether a slot fits this month, and how to pay (${CONSULT_PRICE}) and pick a time, or ask for a written plan instead.` },
               { title: "Talk, or read. Either way you end up with the plan in writing." },
             ]}
           />
@@ -140,7 +160,7 @@ function ConsultPage({ go }) {
               </a>
             ) : (
               <a className="hp-button" href={CONSULT_MAILTO} onClick={() => trackClick("consult_steps")}>
-                Email about a consult →
+                Ask about a consult →
               </a>
             )}
           </div>

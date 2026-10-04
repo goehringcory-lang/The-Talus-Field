@@ -1568,6 +1568,16 @@ function HpPageHead({
     className: "hp-pagehead__aside"
   }, aside));
 }
+var GUIDE_TERMS = {
+  priceCents: 399,
+  price: "$3.99",
+  months: 18,
+  short: "One payment · 18 months of access · No automatic renewal",
+  updates: "Updates included during your access period",
+  refund: "Refunded in full within 30 days if it does not work as described",
+  refundShort: "30-day refund if it does not work as described"
+};
+window.GUIDE_TERMS = GUIDE_TERMS;
 var HP_GUIDE_POINTS = [{
   mark: "↳",
   title: "Find your next stop.",
@@ -1611,9 +1621,18 @@ function HpGuideBand({
     location: location,
     className: "hp-button hp-light",
     href: "/guide"
-  }, "Get the Field Guide ", React.createElement("span", null, "$3.99 ↗")), React.createElement("p", {
+  }, "Get the offline Field Guide ", React.createElement("span", null, GUIDE_TERMS.price, " ↗")), React.createElement("p", {
     className: "hp-terms"
-  }, "One payment · 18 months of access · 30-day guarantee")), sample && React.createElement("p", {
+  }, GUIDE_TERMS.short, " · ", GUIDE_TERMS.refundShort), React.createElement("p", {
+    className: "hp-terms hp-owner"
+  }, "Already bought it?", " ", React.createElement("a", {
+    href: `${GUIDE_PROMO_APP_BASE}/`,
+    onClick: () => {
+      if (window.track) window.track("guide_open_click", {
+        location
+      });
+    }
+  }, "Open your guide ↗"))), sample && React.createElement("p", {
     className: "hp-terms hp-sample"
   }, "Not sure yet? Five entries are free to read, no email required:", " ", React.createElement("a", {
     href: `${GUIDE_PROMO_APP_BASE}/preview`,

@@ -1,6 +1,6 @@
 var GUIDE_APP_BASE = typeof window !== "undefined" && window.GUIDE_APP_BASE || "https://guide.thetalusfieldjournal.com";
 var GUIDE_API_BASE = typeof window !== "undefined" && window.GUIDE_API_BASE || "https://api.thetalusfieldjournal.com";
-var GUIDE_PRICE_FALLBACK_CENTS = 399;
+var GUIDE_PRICE_FALLBACK_CENTS = window.GUIDE_TERMS && window.GUIDE_TERMS.priceCents || 399;
 var GUIDE_ON_SALE = true;
 function formatPrice(cents) {
   var dollars = cents / 100;
@@ -46,6 +46,70 @@ function stashBuyLocation(location, gift) {
     gift: !!gift
   });
 }
+var CHECKOUT_TIMEOUT_MS = 15000;
+var GUIDE_SUPPORT_EMAIL = "cory@thetalusfieldjournal.com";
+async function startGuideCheckout(payload) {
+  if (typeof navigator !== "undefined" && navigator.onLine === false) {
+    throw new Error("You look to be offline. Checkout needs a connection; try again once you have one.");
+  }
+  var controller = typeof AbortController !== "undefined" ? new AbortController() : null;
+  var timer = controller ? setTimeout(() => controller.abort(), CHECKOUT_TIMEOUT_MS) : null;
+  var res;
+  try {
+    res = await fetch(`${GUIDE_API_BASE}/api/checkout/start`, {
+      method: "POST",
+      headers: payload ? {
+        "Content-Type": "application/json"
+      } : undefined,
+      body: payload ? JSON.stringify(payload) : undefined,
+      signal: controller ? controller.signal : undefined
+    });
+  } catch (e) {
+    throw new Error(e && e.name === "AbortError" ? "Checkout took too long to answer. Nothing was charged. Try again." : "Checkout could not be reached. Nothing was charged. Check your connection and try again.");
+  } finally {
+    if (timer) clearTimeout(timer);
+  }
+  var body = null;
+  try {
+    body = await res.json();
+  } catch (_e) {
+    body = null;
+  }
+  if (res.ok && body && typeof body.url === "string" && body.url) return body.url;
+  if (res.status === 429) {
+    throw new Error("Too many checkout attempts from this connection. Nothing was charged. Wait a few minutes and try again.");
+  }
+  if (res.status === 400 && body && body.error) {
+    throw new Error(`${body.error}.`);
+  }
+  throw new Error("Checkout didn't start. Nothing was charged. Try again in a minute.");
+}
+function CheckoutError({
+  message,
+  onRetry,
+  busy,
+  className
+}) {
+  if (!message) return null;
+  return React.createElement("div", {
+    className: "guide-checkout-error" + (className ? ` ${className}` : ""),
+    role: "alert"
+  }, React.createElement("p", null, message), React.createElement("p", null, React.createElement("button", {
+    type: "button",
+    onClick: onRetry,
+    disabled: busy
+  }, busy ? "Trying…" : "Try again"), " ", "or email ", React.createElement("a", {
+    href: `mailto:${GUIDE_SUPPORT_EMAIL}?subject=Field%20Guide%20checkout`
+  }, GUIDE_SUPPORT_EMAIL), "."));
+}
+function readBuyArrival() {
+  try {
+    var value = new URLSearchParams(window.location.search).get("buy");
+    return value === "preview" ? value : null;
+  } catch (_e) {
+    return null;
+  }
+}
 function LivePrice() {
   var [priceCents, setPriceCents] = React.useState(GUIDE_PRICE_FALLBACK_CENTS);
   React.useEffect(() => {
@@ -61,11 +125,16 @@ function LivePrice() {
   }, []);
   return React.createElement(React.Fragment, null, formatPrice(priceCents));
 }
-function GuideBuyBox() {
+function GuideBuyBox({
+  go
+}) {
   var [busy, setBusy] = React.useState(false);
   var [error, setError] = React.useState(null);
   var [outcome] = React.useState(readCheckoutOutcome);
   var [claimSessionId] = React.useState(readCheckoutSessionId);
+  var [arrival] = React.useState(readBuyArrival);
+  var buttonRef = React.useRef(null);
+  var location = arrival === "preview" ? "preview_review" : "guide_aside";
   React.useEffect(() => {
     if (outcome === "cancel") {
       window.safeStorage.remove(BUY_STASH_KEY);
@@ -77,7 +146,8 @@ function GuideBuyBox() {
     window.safeStorage.remove(BUY_STASH_KEY);
     window.track("guide_purchase", {
       location: stash.location || "unknown",
-      gift: outcome === "gift-success" || !!stash.gift
+      gift: outcome === "gift-success" || !!stash.gift,
+      basis: "return_page"
     });
   }, [outcome]);
   React.useEffect(() => {
@@ -87,6 +157,22 @@ function GuideBuyBox() {
     }, 1200);
     return () => clearTimeout(timer);
   }, [outcome, claimSessionId]);
+  React.useEffect(() => {
+    if (!arrival || outcome) return;
+    var aside = document.getElementById("guide-buy");
+    if (!aside) return;
+    var reduce = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    var t = setTimeout(() => {
+      aside.scrollIntoView({
+        behavior: reduce ? "auto" : "smooth",
+        block: "start"
+      });
+      if (buttonRef.current) buttonRef.current.focus({
+        preventScroll: true
+      });
+    }, 300);
+    return () => clearTimeout(t);
+  }, [arrival, outcome]);
   var [priceCents, setPriceCents] = React.useState(GUIDE_PRICE_FALLBACK_CENTS);
   var [giftMode, setGiftMode] = React.useState(false);
   var [giftEmail, setGiftEmail] = React.useState("");
@@ -104,6 +190,7 @@ function GuideBuyBox() {
     };
   }, []);
   async function startCheckout() {
+    if (busy) return;
     var recipient = giftEmail.trim();
     if (giftMode && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(recipient)) {
       setError("Enter the recipient's email address first.");
@@ -112,33 +199,33 @@ function GuideBuyBox() {
     setBusy(true);
     setError(null);
     if (window.track) window.track("guide_buy_click", {
-      location: "guide_aside",
+      location,
       gift: giftMode
     });
-    stashBuyLocation("guide_aside", giftMode);
+    stashBuyLocation(location, giftMode);
     try {
-      var res = await fetch(`${GUIDE_API_BASE}/api/checkout/start`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json"
-        },
-        body: giftMode ? JSON.stringify({
-          gift: true,
-          recipientEmail: recipient,
-          giftNote: giftNote.trim()
-        }) : undefined
-      });
-      var body = await res.json().catch(() => ({}));
-      if (!res.ok || !body.url) {
-        throw new Error(body.error || `HTTP ${res.status}`);
-      }
-      window.location = body.url;
-    } catch (_e) {
-      setError("Checkout didn't start. Try again in a minute, or email cory@thetalusfieldjournal.com.");
-    } finally {
+      var url = await startGuideCheckout(giftMode ? {
+        gift: true,
+        recipientEmail: recipient,
+        giftNote: giftNote.trim()
+      } : null);
+      window.location = url;
+    } catch (e) {
+      setError(e.message);
       setBusy(false);
     }
   }
+  var terms = window.GUIDE_TERMS || {};
+  var boxNote = {
+    fontFamily: "var(--sans)",
+    fontSize: 14,
+    color: "var(--ink)",
+    lineHeight: 1.55,
+    margin: "0 0 18px",
+    border: "1px solid var(--ink)",
+    padding: "12px 14px",
+    background: "var(--paper)"
+  };
   return React.createElement("aside", {
     id: "guide-buy",
     className: "guide-buybox"
@@ -158,57 +245,32 @@ function GuideBuyBox() {
   }, formatPrice(priceCents), "."), React.createElement("div", {
     style: {
       fontFamily: "var(--sans)",
-      fontSize: 12,
+      fontSize: 13,
       textTransform: "uppercase",
-      letterSpacing: "0.14em",
-      color: "var(--ink-3)",
+      letterSpacing: "0.12em",
+      color: "var(--ink-2)",
       fontWeight: 600,
       marginBottom: 24
     }
-  }, "Offline app · 2026 Edition"), outcome === "success" && claimSessionId && React.createElement("p", {
-    style: {
-      fontFamily: "var(--sans)",
-      fontSize: 14,
-      color: "var(--ink)",
-      lineHeight: 1.55,
-      margin: "0 0 18px",
-      border: "1px solid var(--ink)",
-      padding: "12px 14px",
-      background: "var(--paper)"
-    }
-  }, "Payment received. Opening your Field Guide, already signed in. If nothing happens, ", React.createElement("a", {
+  }, "Offline app · ", terms.months || 18, " months of access"), React.createElement("div", {
+    role: "status"
+  }, outcome === "success" && claimSessionId && React.createElement("p", {
+    style: boxNote
+  }, "Checkout complete. Confirming your payment and opening your Field Guide, already signed in. If nothing happens, ", React.createElement("a", {
     href: `${GUIDE_APP_BASE}/claim?session_id=${encodeURIComponent(claimSessionId)}`,
     style: {
       color: "var(--ink-2)"
     }
   }, "open it here →"), " Your access email follows for your other devices."), outcome === "success" && !claimSessionId && React.createElement("p", {
-    style: {
-      fontFamily: "var(--sans)",
-      fontSize: 14,
-      color: "var(--ink)",
-      lineHeight: 1.55,
-      margin: "0 0 18px",
-      border: "1px solid var(--ink)",
-      padding: "12px 14px",
-      background: "var(--paper)"
-    }
-  }, "Payment received. Your access code and sign-in link are on their way to your email. Check spam if nothing arrives in a few minutes. Once you have the code, ", React.createElement("a", {
+    style: boxNote
+  }, "Checkout complete. Once Stripe confirms the payment, your access code and sign-in link go to your email, usually within a few minutes. Check spam if nothing arrives. Once you have the code, ", React.createElement("a", {
     href: `${GUIDE_APP_BASE}/login`,
     style: {
       color: "var(--ink-2)"
     }
   }, "open the app and sign in →")), outcome === "gift-success" && React.createElement("p", {
-    style: {
-      fontFamily: "var(--sans)",
-      fontSize: 14,
-      color: "var(--ink)",
-      lineHeight: 1.55,
-      margin: "0 0 18px",
-      border: "1px solid var(--ink)",
-      padding: "12px 14px",
-      background: "var(--paper)"
-    }
-  }, "Payment received. Their access email is on its way to them, and your receipt is on its way to you. If you typed the wrong address, reply to the receipt and it gets moved."), outcome === "cancel" && React.createElement("p", {
+    style: boxNote
+  }, "Checkout complete. Stripe emails your receipt, and once the payment is confirmed their access email goes to them. If you typed the wrong address, reply to the receipt and it gets moved."), outcome === "cancel" && React.createElement("p", {
     style: {
       fontFamily: "var(--sans)",
       fontSize: 14,
@@ -216,13 +278,20 @@ function GuideBuyBox() {
       lineHeight: 1.55,
       margin: "0 0 18px"
     }
-  }, "Checkout was cancelled. Nothing was charged."), React.createElement(React.Fragment, null, React.createElement("label", {
+  }, "Checkout was cancelled. Nothing was charged."), arrival === "preview" && !outcome && React.createElement("p", {
+    style: boxNote
+  }, "From the free sample. The terms are below; the button opens Stripe checkout, which shows the amount before you pay. ", React.createElement("a", {
+    href: `${GUIDE_APP_BASE}/preview`,
+    style: {
+      color: "var(--ink-2)"
+    }
+  }, "Back to the sample"))), React.createElement(React.Fragment, null, React.createElement("label", {
     style: {
       display: "flex",
       alignItems: "center",
       gap: 8,
       fontFamily: "var(--sans)",
-      fontSize: 13,
+      fontSize: 14,
       color: "var(--ink-2)",
       marginBottom: 14,
       cursor: "pointer"
@@ -264,15 +333,17 @@ function GuideBuyBox() {
   })), React.createElement("p", {
     style: {
       fontFamily: "var(--sans)",
-      fontSize: 12,
-      color: "var(--ink-3)",
+      fontSize: 13,
+      color: "var(--ink-2)",
       lineHeight: 1.55,
       margin: "8px 0 0"
     }
   }, "Their access email goes straight to them when payment clears. Their 18 months start today, so time it to the trip.")), React.createElement("button", {
+    ref: buttonRef,
     type: "button",
     className: "btn",
     disabled: busy,
+    "aria-busy": busy ? "true" : undefined,
     onClick: startCheckout,
     style: {
       display: "block",
@@ -283,39 +354,45 @@ function GuideBuyBox() {
       cursor: busy ? "wait" : "pointer",
       marginBottom: 10
     }
-  }, busy ? "Opening checkout…" : `${giftMode ? "Gift the offline guide" : "Get the offline guide"} → ${formatPrice(priceCents)}`), React.createElement("p", {
-    style: {
-      fontFamily: "var(--sans)",
-      fontSize: 12,
-      color: "var(--ink-3)",
-      lineHeight: 1.55,
-      margin: "0 0 14px"
-    }
-  }, "Checkout by Stripe. The guide opens signed in the moment payment clears; your access code also arrives by email for your other devices.")), error && React.createElement("p", {
+  }, busy ? "Opening checkout…" : `${giftMode ? "Gift the offline guide" : "Get the offline guide"} → ${formatPrice(priceCents)}`), React.createElement(CheckoutError, {
+    message: error,
+    onRetry: startCheckout,
+    busy: busy
+  }), React.createElement("p", {
     style: {
       fontFamily: "var(--sans)",
       fontSize: 13,
-      color: "var(--moss)",
+      color: "var(--ink-2)",
       lineHeight: 1.55,
       margin: "0 0 14px"
     }
-  }, error), React.createElement("p", {
+  }, "Checkout by Stripe, which shows the amount before you pay. The guide opens signed in once the payment is confirmed; your access code also arrives by email for your other devices.")), React.createElement("p", {
     style: {
       fontFamily: "var(--serif)",
-      fontSize: 14,
+      fontSize: 15,
       color: "var(--ink-2)",
       lineHeight: 1.55,
       margin: 0
     }
-  }, "One payment of ", formatPrice(priceCents), " for 18 months of access. The app, the photos on file, and the offline park map are yours on every device you own. A few entries still show a stand-in photo rather than the place itself. Updates push automatically through the 2026 season, including the Secret Guide as it grows."), React.createElement("p", {
+  }, terms.short || "One payment · 18 months of access · No automatic renewal", ". ", terms.updates || "Updates included during your access period", ", the Secret Guide included as it grows. The app, the photos on file, and the offline park map are yours on every device you own. A few entries still show a stand-in photo rather than the place itself."), React.createElement("p", {
     style: {
       fontFamily: "var(--serif)",
-      fontSize: 14,
+      fontSize: 15,
       color: "var(--ink-2)",
       lineHeight: 1.55,
       margin: "12px 0 0"
     }
-  }, "If it doesn't earn its place on your home screen, email me and I'll make it right."), React.createElement("a", {
+  }, terms.refund || "Refunded in full within 30 days if it does not work as described", ", per the", " ", React.createElement("a", {
+    href: "/terms",
+    onClick: e => {
+      if (!go || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey || e.button !== 0) return;
+      e.preventDefault();
+      go("terms");
+    },
+    style: {
+      color: "var(--ink-2)"
+    }
+  }, "terms"), "."), React.createElement("a", {
     href: `${GUIDE_APP_BASE}/preview`,
     onClick: () => {
       if (window.track) window.track("guide_sample_click", {
@@ -329,19 +406,19 @@ function GuideBuyBox() {
       padding: "10px 14px",
       marginTop: 16,
       fontFamily: "var(--sans)",
-      fontSize: 12,
+      fontSize: 13,
       textTransform: "uppercase",
-      letterSpacing: "0.12em",
+      letterSpacing: "0.1em",
       fontWeight: 600,
       color: "var(--ink)",
       textDecoration: "none",
       background: "var(--paper)"
     }
-  }, "Open the free sample first →"), React.createElement("p", {
+  }, "Read five entries free →"), React.createElement("p", {
     style: {
       fontFamily: "var(--sans)",
-      fontSize: 12,
-      color: "var(--ink-3)",
+      fontSize: 13,
+      color: "var(--ink-2)",
       lineHeight: 1.55,
       margin: "8px 0 0"
     }
@@ -386,7 +463,7 @@ function GuideBuyBox() {
     style: {
       fontFamily: "var(--sans)",
       fontSize: 13,
-      color: "var(--ink-3)",
+      color: "var(--ink-2)",
       lineHeight: 1.55,
       margin: 0
     }
@@ -462,7 +539,7 @@ function GuideWaitlistBox() {
       fontWeight: 600,
       marginBottom: 24
     }
-  }, "Offline app · 2026 Edition"), React.createElement("p", {
+  }, "Offline app · 18 months of access"), React.createElement("p", {
     style: {
       fontFamily: "var(--serif)",
       fontSize: 15,
@@ -741,6 +818,7 @@ function GuideWalkthrough() {
     setPaused(true);
     setActive(i);
   }
+  var autoplay = !reducedMotion && !paused;
   return React.createElement("div", {
     className: "guide-walkthrough",
     ref: rootRef
@@ -756,7 +834,12 @@ function GuideWalkthrough() {
     height: "1385",
     loading: "lazy",
     decoding: "async"
-  }))), React.createElement("ol", {
+  }))), !reducedMotion && React.createElement("button", {
+    type: "button",
+    className: "guide-walkthrough__pause",
+    "aria-pressed": paused,
+    onClick: () => setPaused(p => !p)
+  }, autoplay ? "Pause the slideshow" : "Play the slideshow"), React.createElement("ol", {
     className: "guide-walkthrough__steps"
   }, WALKTHROUGH_STEPS.map((step, i) => React.createElement("li", {
     key: step.src
@@ -1185,7 +1268,7 @@ function GuideOfflineDemo() {
   }, React.createElement("div", {
     className: "guide-offline__toggle",
     role: "group",
-    "aria-label": "Simulate cell service"
+    "aria-label": "Illustration: the same screen with and without cell service"
   }, React.createElement("button", {
     type: "button",
     className: off ? "" : "is-active",
@@ -1210,7 +1293,9 @@ function GuideOfflineDemo() {
     decoding: "async"
   })), React.createElement("p", {
     className: "guide-offline__caption"
-  }, off ? "Airplane mode. The stop, its coordinate, its swap, the map, and your whole plan render exactly the same." : "With service you also get the live extras: webcams, entrance waits, fresh weather.")), React.createElement("div", {
+  }, off ? "Airplane mode. The stop, its coordinate, its swap, the map, and your whole plan render exactly the same." : "With service you also get the live extras: webcams, entrance waits, fresh weather."), React.createElement("p", {
+    className: "guide-offline__note"
+  }, "An illustration built from a real screenshot. The toggle does not change your connection.")), React.createElement("div", {
     className: "guide-offline__cols"
   }, React.createElement("div", null, React.createElement("div", {
     className: "eyebrow"
@@ -1226,6 +1311,7 @@ function GuideCompare({
   var freeLink = (href, key, label) => React.createElement("a", {
     href: href,
     onClick: e => {
+      if (e.metaKey || e.ctrlKey || e.shiftKey || e.altKey || e.button !== 0) return;
       e.preventDefault();
       go(key);
     }
@@ -1233,12 +1319,28 @@ function GuideCompare({
   return React.createElement("div", {
     className: "guide-compare-wrap"
   }, React.createElement("table", {
-    className: "guide-compare"
+    className: "guide-compare has-tasks"
   }, React.createElement("caption", null, "The free site stays free. The guide is the field version."), React.createElement("thead", null, React.createElement("tr", null, React.createElement("th", {
+    scope: "col"
+  }, "The task"), React.createElement("th", {
     scope: "col"
   }, "Free on this site"), React.createElement("th", {
     scope: "col"
-  }, "In the Field Guide"))), React.createElement("tbody", null, React.createElement("tr", null, React.createElement("td", null, freeLink("/articles", "articles", "Articles"), " and ", freeLink("/planning", "planning", "planning guides")), React.createElement("td", null, "The complete stop library: 116 entries across four regions")), React.createElement("tr", null, React.createElement("td", null, freeLink("/now", "now", "Current conditions")), React.createElement("td", null, "The whole guide offline, about 70 MB, plus the Help card, the compass and companion mode, which run on GPS with no bars")), React.createElement("tr", null, React.createElement("td", null, freeLink("/itineraries", "itineraries", "Selected itineraries")), React.createElement("td", null, "All 57 day hikes, each with a daylight reading, and the 72-entry Secret Guide")), React.createElement("tr", null, React.createElement("td", null, "The ", freeLink("/map", "map", "basic trip map")), React.createElement("td", null, "The full trip builder: drag-and-drop days, drive buffers, the dates that matter, calendar export, and the 3D map that draws each day on the terrain")), React.createElement("tr", null, React.createElement("td", null, "The ", freeLink("/newsletter", "newsletter", "Sunday newsletter")), React.createElement("td", null, "18 months of silent updates as the season changes")))));
+  }, "In the Field Guide"))), React.createElement("tbody", null, React.createElement("tr", null, React.createElement("th", {
+    scope: "row"
+  }, "Read up before the trip"), React.createElement("td", null, freeLink("/articles", "articles", "Articles"), " and ", freeLink("/planning", "planning", "the planning guide")), React.createElement("td", null, "116 entries across four regions, each with its parking, time budget and, on the flagship stops, the swap")), React.createElement("tr", null, React.createElement("th", {
+    scope: "row"
+  }, "Plan the stops"), React.createElement("td", null, "The ", freeLink("/map", "map", "trip map"), " and four ", freeLink("/itineraries", "itineraries", "selected itineraries")), React.createElement("td", null, "The trip builder: days you drag into shape, drive buffers, nine ready-made day plans, the dates that matter, calendar export")), React.createElement("tr", null, React.createElement("th", {
+    scope: "row"
+  }, "Pick a hike"), React.createElement("td", null, "Trail articles for the best-known hikes"), React.createElement("td", null, "All 57 in-park day hikes with GPS tracks, elevation profiles and a daylight reading")), React.createElement("tr", null, React.createElement("th", {
+    scope: "row"
+  }, "Use a map with no signal"), React.createElement("td", {
+    className: "guide-compare__no"
+  }, "Not available: the site's pages need a connection"), React.createElement("td", null, "The 3D park map, downloaded by area, with every stop, trail and your trip's routes")), React.createElement("tr", null, React.createElement("th", {
+    scope: "row"
+  }, "Check conditions"), React.createElement("td", null, "The ", freeLink("/conditions", "conditions", "conditions board"), ", live, with a connection"), React.createElement("td", null, "The same live readings with a connection; the last sync stays readable offline")), React.createElement("tr", null, React.createElement("th", {
+    scope: "row"
+  }, "Stay current"), React.createElement("td", null, "The ", freeLink("/newsletter", "newsletter", "Sunday newsletter")), React.createElement("td", null, "Updates pushed to the app during your 18 months, no re-download")))));
 }
 function GuideTrust() {
   return React.createElement("div", {
@@ -1247,7 +1349,7 @@ function GuideTrust() {
     className: "guide-trust__intro"
   }, "The guide is written by Cory Goehring, a naturalist who lives in Yosemite National Park and has worked in and around it for twenty seasons, mostly on foot. Every stop was visited, timed, and written up the way the articles on this site are written: from the ground, not from a search-result roundup."), React.createElement("div", {
     className: "guide-trust__grid"
-  }, React.createElement("div", null, React.createElement("strong", null, "Works without cellular service."), " Built offline-first, because the park mostly is."), React.createElement("div", null, React.createElement("strong", null, "Every personal device."), " One purchase signs in your phone, tablet, and laptop."), React.createElement("div", null, React.createElement("strong", null, "No subscription."), " One payment, 18 months, nothing auto-renews."), React.createElement("div", null, React.createElement("strong", null, "No affiliate placements inside."), " The recommendations are picked, not paid for."), React.createElement("div", null, React.createElement("strong", null, "Updates included."), " Seasonal addenda and Secret Guide additions push silently."), React.createElement("div", null, React.createElement("strong", null, "30-day guarantee."), " If it does not work as described, it is refunded in full.")));
+  }, React.createElement("div", null, React.createElement("strong", null, "Works without cellular service."), " Built offline-first, because the park mostly is."), React.createElement("div", null, React.createElement("strong", null, "Every personal device."), " One purchase signs in your phone, tablet, and laptop."), React.createElement("div", null, React.createElement("strong", null, "No subscription."), " One payment, 18 months, nothing auto-renews."), React.createElement("div", null, React.createElement("strong", null, "No affiliate placements inside."), " The recommendations are picked, not paid for."), React.createElement("div", null, React.createElement("strong", null, "Updates included."), " Seasonal addenda and Secret Guide additions push silently during your 18 months."), React.createElement("div", null, React.createElement("strong", null, "30-day refund."), " If it does not work as described, it is refunded in full, per the terms.")));
 }
 function GuideAfterPurchase({
   go
@@ -1276,7 +1378,7 @@ var GUIDE_FAQ = [{
   a: "No. It is a web app you add to your home screen in one step, on iPhone or Android. No store account, no install wait, no version to manage. Once it is there it looks and behaves like a native app."
 }, {
   q: "What happens right after I pay?",
-  a: "Stripe handles checkout. Within about a minute you get an email with a sign-in link and a 6-digit code. Both keep working for the full 18 months, so you can sign in on a new device whenever you like."
+  a: "Stripe handles checkout. When payment clears, the guide opens on that device, already signed in, with no code to type. An email with a sign-in link and a 6-digit code follows within a few minutes for your other devices. Both keep working for the full 18 months, so keep the email."
 }, {
   q: "How many devices can I use it on?",
   a: "Every device you personally own. Phone at the trailhead, tablet in the car, laptop the night before. The same code signs them all in."
@@ -1315,6 +1417,7 @@ function BuyNowButton({
   var [busy, setBusy] = React.useState(false);
   var [note, setNote] = React.useState(null);
   async function buy() {
+    if (busy) return;
     setBusy(true);
     setNote(null);
     if (window.track) window.track("guide_buy_click", {
@@ -1322,17 +1425,9 @@ function BuyNowButton({
     });
     stashBuyLocation(location, false);
     try {
-      var res = await fetch(`${GUIDE_API_BASE}/api/checkout/start`, {
-        method: "POST"
-      });
-      var body = await res.json().catch(() => ({}));
-      if (!res.ok || !body.url) {
-        throw new Error(body.error || `HTTP ${res.status}`);
-      }
-      window.location = body.url;
-    } catch (_e) {
-      setNote("Checkout didn't start. Try again in a minute, or email cory@thetalusfieldjournal.com.");
-    } finally {
+      window.location = await startGuideCheckout(null);
+    } catch (e) {
+      setNote(e.message);
       setBusy(false);
     }
   }
@@ -1340,26 +1435,25 @@ function BuyNowButton({
     type: "button",
     className: "btn",
     disabled: busy,
+    "aria-busy": busy ? "true" : undefined,
     onClick: buy,
     style: {
       border: 0,
       font: "inherit",
       cursor: busy ? "wait" : "pointer"
     }
-  }, busy ? "Opening checkout…" : label || "Get the offline Yosemite guide →"), note && React.createElement("p", {
-    style: {
-      fontFamily: "var(--sans)",
-      fontSize: 13,
-      color: "var(--moss)",
-      lineHeight: 1.55,
-      margin: "12px 0 0"
-    }
-  }, note));
+  }, busy ? "Opening checkout…" : label || "Get the offline Yosemite guide →"), React.createElement(CheckoutError, {
+    message: note,
+    onRetry: buy,
+    busy: busy
+  }));
 }
 function GuideMobileBuyBar() {
   var [priceCents, setPriceCents] = React.useState(GUIDE_PRICE_FALLBACK_CENTS);
   var [busy, setBusy] = React.useState(false);
   var [visible, setVisible] = React.useState(false);
+  var [error, setError] = React.useState(null);
+  var barRef = React.useRef(null);
   React.useEffect(() => {
     var cancelled = false;
     fetchInventory().then(body => {
@@ -1400,60 +1494,85 @@ function GuideMobileBuyBar() {
     };
   }, []);
   async function buy() {
+    if (busy) return;
     setBusy(true);
+    setError(null);
     if (window.track) window.track("guide_buy_click", {
       location: "guide_mobile_bar"
     });
     stashBuyLocation("guide_mobile_bar", false);
     try {
-      var res = await fetch(`${GUIDE_API_BASE}/api/checkout/start`, {
-        method: "POST"
-      });
-      var body = await res.json().catch(() => ({}));
-      if (!res.ok || !body.url) {
-        throw new Error(body.error || `HTTP ${res.status}`);
-      }
-      window.location = body.url;
-    } catch (_e) {
-      var aside = document.getElementById("guide-buy");
-      var reduce = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-      if (aside) aside.scrollIntoView({
-        behavior: reduce ? "auto" : "smooth"
-      });
-    } finally {
+      window.location = await startGuideCheckout(null);
+    } catch (e) {
+      setError(e.message);
       setBusy(false);
     }
   }
+  var shown = visible || !!error;
+  React.useEffect(() => {
+    if (barRef.current) barRef.current.inert = !shown;
+  }, [shown]);
   return React.createElement("div", {
-    className: "guide-buybar" + (visible ? " is-visible" : ""),
-    "aria-hidden": visible ? undefined : "true"
+    ref: barRef,
+    className: "guide-buybar" + (shown ? " is-visible" : "") + (error ? " has-error" : ""),
+    "aria-hidden": shown ? undefined : "true"
+  }, React.createElement("div", {
+    className: "guide-buybar__row"
   }, React.createElement("div", {
     className: "guide-buybar__meta"
   }, React.createElement("span", {
     className: "guide-buybar__price"
   }, formatPrice(priceCents)), React.createElement("span", {
     className: "guide-buybar__sub"
-  }, "Offline app · 18 months")), React.createElement("button", {
+  }, "Offline · 18 months")), React.createElement("button", {
     type: "button",
     className: "guide-buybar__cta",
     disabled: busy,
+    "aria-busy": busy ? "true" : undefined,
     onClick: buy
-  }, busy ? "Opening…" : "Get the guide →"));
+  }, busy ? "Opening…" : error ? "Try again →" : "Get the guide →")), React.createElement("div", {
+    className: "guide-buybar__error",
+    role: "alert"
+  }, error ? React.createElement(React.Fragment, null, error, " ", React.createElement("a", {
+    href: `mailto:${GUIDE_SUPPORT_EMAIL}?subject=Field%20Guide%20checkout`
+  }, "Email for help"), " · ", React.createElement("button", {
+    type: "button",
+    onClick: () => setError(null)
+  }, "Dismiss")) : null));
 }
 var GUIDE_STATS = ["4 regions", "116 entries", "57 day hikes", "72 secret entries", "3D map, offline"];
+var GUIDE_HERO_POINTS = [{
+  mark: "↳",
+  title: "Build a day that fits.",
+  text: "Stops in driving order, each with an honest time budget, drives figured between them."
+}, {
+  mark: "⌁",
+  title: "Know the move when a lot fills.",
+  text: "The swap is printed on the flagship stops, before you need it."
+}, {
+  mark: "◎",
+  title: "Keep it all with no signal.",
+  text: "Download the guide and the park map before you leave; they work past the tunnel."
+}];
 function GuidePage({
   go
 }) {
+  var terms = window.GUIDE_TERMS || {};
+  var toTerms = e => {
+    if (e.metaKey || e.ctrlKey || e.shiftKey || e.altKey || e.button !== 0) return;
+    e.preventDefault();
+    go("terms");
+  };
   return React.createElement("div", {
     className: "page hp-design hp-guide page--guide"
   }, React.createElement(HpGuideBand, {
     go: go,
     location: "guide_hero",
     heading: "h1",
-    eyebrow: "THE FIELD GUIDE / OFFLINE APP / 2026 EDITION",
-    title: "Three days in Yosemite. This is how you keep all three.",
-    intro: "Written by a naturalist who lives in the park: which stops are worth your morning, where to park, how long each one honestly takes, and where to go the moment the lot fills. It builds each day in driving order and downloads whole to your phone, 3D park map included. Then it keeps working where cell service doesn't, which is most of the park.",
-    points: null
+    eyebrow: "THE FIELD GUIDE / OFFLINE YOSEMITE APP",
+    title: "Your Yosemite plan, even when the signal disappears.",
+    intro: "Build your days with parking notes, realistic time budgets, and somewhere to go when a lot fills, written by a naturalist who lives in the park. Download the Field Guide and its 3D park map before you leave, and it keeps working where cell service doesn't, which is most of the park.",
+    points: GUIDE_HERO_POINTS
   }, React.createElement("ul", {
     className: "hp-stats"
   }, GUIDE_STATS.map(stat => React.createElement("li", {
@@ -1464,34 +1583,35 @@ function GuidePage({
     location: "guide_hero"
   }), React.createElement("p", {
     className: "hp-terms"
-  }, React.createElement(LivePrice, null), ", once. No subscription, 18 months on every device you own, refunded in full within 30 days if it does not work as described."), React.createElement("p", {
+  }, React.createElement(LivePrice, null), " once · ", terms.months || 18, " months of access · No automatic renewal · ", terms.updates || "Updates included during your access period", ".", " ", terms.refund || "Refunded in full within 30 days if it does not work as described", ", per the", " ", React.createElement("a", {
+    href: "/terms",
+    onClick: toTerms
+  }, "terms"), "."), React.createElement("p", {
     className: "hp-terms"
-  }, "Or", " ", React.createElement("a", {
+  }, "A web app for iPhone, Android or a laptop browser, added to your home screen. No App Store.", " ", React.createElement("a", {
     href: `${GUIDE_APP_BASE}/preview`,
     onClick: () => {
       if (window.track) window.track("guide_sample_click", {
         location: "guide_hero"
       });
     }
-  }, "read the free sample first ↗"), " ", "Five complete entries from the real app, no account needed."))), React.createElement(GuideMap3D, null), React.createElement(GuideDayOne, null), React.createElement("div", {
+  }, "Read five entries free ↗"), " ", "No account needed."))), React.createElement("div", {
     className: "hp-wrap hp-section"
   }, React.createElement("div", {
     className: "guide-layout"
   }, React.createElement("div", {
     className: "prose guide-prose"
-  }, React.createElement("h2", null, "What a wrong morning costs"), React.createElement("p", null, "Yosemite charges its real fees in hours. The Glacier Point lot fills by mid-morning in July; arrive at ten and the hour of driving becomes three of circling. Miss the early window at the Mist Trail and the day reorganizes itself around a shuttle line. The $35 your car pays at the entrance covers seven days no matter what you do with them. What those days contain is decided by timing, and timing is exactly what a list of famous viewpoints doesn't give you."), React.createElement("p", null, "That's the problem this guide is built against. Time budgets tell you what actually fits before lunch. Swaps tell you where to go the second a lot is full. And because all of it lives on your phone and works without signal, the answer is there at the moment the day wobbles, which is never a moment with bars."), React.createElement("p", null, "The guide is ", React.createElement(LivePrice, null), ". Everything else about your trip costs more and decides less."), React.createElement("h2", null, "The picnic table in El Portal"), React.createElement("p", null, "This guide is the conversation you'd get if you sat across from me at a picnic table in El Portal and said, \"I have three days. Show me how to do this well.\" Which stops are worth your morning, which can wait, where to park, how long each one actually takes, and what to do instead when the lot is full."), React.createElement("p", null, "The internet has a thousand free articles telling you to drive to Glacier Point, walk through the Mariposa Grove, and look up at El Capitan from the Yosemite Valley floor. You don't need those repeated in a different font. This guide assumes you've done that reading and starts where the lists stop: the parking, the timing, the order, and the fallback."), React.createElement("h2", null, "Sixty seconds inside the app"), React.createElement("p", null, "Five screens, in the order a trip actually uses them. These are unedited captures from the current 2026 build, the same one buyers open. Tap a step to hold it."), React.createElement(GuideWalkthrough, null), React.createElement("h2", null, "Every screen, unedited"), React.createElement("p", null, "The full set: ten screens from the current build, captured on a phone. What you see here is the product, not a mockup."), React.createElement(AppShots, null), React.createElement("h2", null, "New in the September 2026 build"), React.createElement("p", null, "The guide keeps changing after you buy it, and this is what the last month added. Nine more screens, captured the same way, from the same build."), React.createElement(AppShots, {
-    shots: NEW_SHOTS
-  }), React.createElement("p", null, "Also new, and not pictured here: the 3D map now carries the park's infrastructure, the five entrances, the visitor and wilderness centers with their hours, the eighteen Valley shuttle stops numbered as the park numbers them, picnic areas, gas, EV charging, showers, laundry, stores and the clinic, every kind of pin drawn with its own mark, and a \"Go to\" menu that flies the map to a region. The map itself has its own section at the top of this page. The front page's conditions panel gained live parking-lot status, and the same status prints on the map's parking pins. The Secret Guide grew by thirteen entries, and every one of them, along with the ten new photographs, arrived as a silent update. Nothing here cost an existing buyer anything, and that is the arrangement for the rest of the 18 months."), React.createElement("h2", null, "What it does for the day"), React.createElement(GuideOutcomes, null), React.createElement("h2", null, "Read one stop, in full"), React.createElement("p", null, "This is the guide's first stop, quoted word for word from the app. Every one of the 116 entries is built this way: the numbers up top, the read underneath, the fallback printed on the page, and, where the record allows it, a sourced note from a century of park naturalists' field bulletins."), React.createElement(GuideStopExample, null), React.createElement("h2", null, "Turn the service off"), React.createElement("p", null, "Cell service dies at the Wawona Tunnel, on most of Glacier Point Road, and along nearly all of Tioga. The guide treats that as the normal case, not the failure case."), React.createElement(GuideOfflineDemo, null), React.createElement("h2", null, "The free site, and the guide"), React.createElement("p", null, "Everything this site publishes stays free: the articles, the trip map, the itineraries, the conditions board. The guide is not those pages repackaged. It is the field version: the complete library, the planner, and the offline download that makes both of them work standing in a pullout with no bars."), React.createElement(GuideCompare, {
+  }, React.createElement("h2", null, "Sixty seconds inside the app"), React.createElement("p", null, "Five screens, in the order a trip actually uses them. These are unedited captures from the current build, the same one buyers open. Tap a step to hold it, or pause the slideshow."), React.createElement(GuideWalkthrough, null), React.createElement("h2", null, "The free site, and the guide"), React.createElement("p", null, "Everything this site publishes stays free: the articles, the trip map, the itineraries, the conditions board. The guide is not those pages repackaged. It is the field version: the complete library, the planner, and the offline download that makes both of them work standing in a pullout with no bars."), React.createElement(GuideCompare, {
     go: go
-  }), React.createElement("p", {
+  }), React.createElement("div", {
     style: {
       marginTop: 24
     }
   }, React.createElement(BuyNowButton, {
     location: "guide_compare"
-  })), React.createElement("h2", null, "The Secret Guide"), React.createElement("p", null, "There is a section of the guide that never makes it into articles: the parking turnouts locals use when the big lots fill, the trailheads with no signs from the road, the spots that belong to no region at all, and the few guided programs worth planning an evening around. It's in the app now, 72 entries in six numbered chapters: quiet vistas, hidden trails, parking, camping, the park after dark, and programs. It opens on the short version, six things to do if you do nothing else, then four routes that string the entries into a day or an evening in the order you would drive them, and every entry is numbered across the whole set and marked in gold on the 3D map. Twenty-two arrived at the end of September: ten more pullouts and small lots, from the dozen spaces at Valley View to the two day lots at Hetch Hetchy; the Yosemite Cemetery, Stoneman Meadow at dusk and the Half Dome view on the Big Oak Flat Road; and the programs chapter, led by the Conservancy's night sky program and the free Ahwahnee history tour. It keeps growing through the season, and every addition arrives as a silent update, no re-download, no second charge."), React.createElement("h2", null, "Who wrote it, and how"), React.createElement(GuideTrust, null), React.createElement("h2", null, "What happens when you tap the button"), React.createElement(GuideAfterPurchase, {
+  })), React.createElement("h2", null, "Turn the service off"), React.createElement("p", null, "Cell service dies at the Wawona Tunnel, on most of Glacier Point Road, and along nearly all of Tioga. The guide treats that as the normal case, not the failure case."), React.createElement(GuideOfflineDemo, null), React.createElement("h2", null, "What happens when you tap the button"), React.createElement(GuideAfterPurchase, {
     go: go
-  }), React.createElement("h2", null, "What's NOT inside"), React.createElement("p", null, "I think you should know what you're not getting before you pay."), React.createElement("ul", null, React.createElement("li", null, "This is not the standard tourist guide. If you want a list of the ten most famous viewpoints with the basic directions to each, every other Yosemite site already gives you that for free. This guide is what comes after that."), React.createElement("li", null, "It is not a children's activity book or a photography manual. Both could be their own books."), React.createElement("li", null, "It does not include rock-climbing routes or technical canyoneering. There are excellent specialist guides for both."), React.createElement("li", null, "It does not have affiliate placements baked into the recommendations. The lodging suggestions are places I've stayed and would send my mother to. They're picked, not paid for.")), React.createElement("h2", null, "Who it's for"), React.createElement("p", null, "First-time visitors who want a real plan, not a list. Second-time visitors who came home from their first trip feeling like they'd missed the actual park and want to fix it. Families coordinating a multi-generational trip and trying to keep everyone happy. Anyone who'd rather spend an evening reading the guide than three weekends researching it."), React.createElement("p", null, "If you've already read every article on this site, taken thorough notes, built your own spreadsheet, called the park three times, and feel like you have a handle on it, you might not need the guide. The guide is for people who want the spreadsheet already built."), React.createElement("h2", null, "Questions, answered"), React.createElement(GuideFaq, null), React.createElement("h2", null, "One small promise"), React.createElement("p", null, "If the guide doesn't earn its place on your home screen, write to me and tell me why, and I'll make it right. I'd rather fix the trip that didn't work than pretend it did. The address is on the contact page."), React.createElement("div", {
+  }), React.createElement("h2", null, "Who wrote it, and how"), React.createElement(GuideTrust, null), React.createElement("div", {
     className: "guide-closer"
   }, React.createElement("div", {
     className: "eyebrow eyebrow--moss",
@@ -1505,17 +1625,17 @@ function GuidePage({
       lineHeight: 1.6,
       margin: "0 0 20px"
     }
-  }, "Four regional guides. 44 stops in driving order, each with GPS and a time budget, the flagship ones with a swap. All 57 in-park day hikes with GPS tracks, elevation profiles and a daylight reading. The 72-entry Secret Guide. The park's program schedule on your dates. A planning calendar you drag into shape, then save to the calendar you already use, with the dates that matter for your trip under it. A Help card, a bearing compass and a companion mode that run on GPS alone. And a 3D map of the park that holds it all together: every stop and trail on the terrain, your days drawn along the real roads, working offline. ", React.createElement(LivePrice, null), ", once, for 18 months on every device you own."), React.createElement(BuyNowButton, {
+  }, "Four regional guides. 44 stops in driving order, each with GPS and a time budget, the flagship ones with a swap. All 57 in-park day hikes with GPS tracks, elevation profiles and a daylight reading. The 72-entry Secret Guide. The park's program schedule on your dates. A planning calendar you drag into shape, then save to the calendar you already use, with the dates that matter for your trip under it. A Help card, a bearing compass and a companion mode that run on GPS alone. And a 3D map of the park that holds it all together: every stop and trail on the terrain, your days drawn along the real roads, working offline. ", React.createElement(LivePrice, null), " once, for ", terms.months || 18, " months on every device you own. Nothing renews."), React.createElement(BuyNowButton, {
     location: "guide_closer"
   }), React.createElement("p", {
     style: {
       fontFamily: "var(--sans)",
-      fontSize: 12,
-      color: "var(--ink-3)",
+      fontSize: 13,
+      color: "var(--ink-2)",
       lineHeight: 1.55,
       margin: "14px 0 0"
     }
-  }, "Checkout by Stripe. The guide opens signed in the moment payment clears. Prefer to look first?", " ", React.createElement("a", {
+  }, "Checkout by Stripe. The guide opens signed in once the payment is confirmed. Prefer to look first?", " ", React.createElement("a", {
     href: `${GUIDE_APP_BASE}/preview`,
     onClick: () => {
       if (window.track) window.track("guide_sample_click", {
@@ -1525,7 +1645,16 @@ function GuidePage({
     style: {
       color: "var(--ink-2)"
     }
-  }, "Read the free sample →")))), GUIDE_ON_SALE ? React.createElement(GuideBuyBox, null) : React.createElement(GuideWaitlistBox, null))), React.createElement(HpLetter, {
+  }, "Read five entries free →"))), React.createElement("h2", null, "Questions, answered"), React.createElement(GuideFaq, null), React.createElement("h2", null, "What it does for the day"), React.createElement(GuideOutcomes, null), React.createElement("h2", null, "Read one stop, in full"), React.createElement("p", null, "This is the guide's first stop, quoted word for word from the app. Every one of the 116 entries is built this way: the numbers up top, the read underneath, the fallback printed on the page, and, where the record allows it, a sourced note from a century of park naturalists' field bulletins."), React.createElement(GuideStopExample, null), React.createElement("h2", null, "What a wrong morning costs"), React.createElement("p", null, "Yosemite charges its real fees in hours. The Glacier Point lot fills by mid-morning in July; arrive at ten and the hour of driving becomes three of circling. Miss the early window at the Mist Trail and the day reorganizes itself around a shuttle line. The $35 your car pays at the entrance covers seven days no matter what you do with them. What those days contain is decided by timing, and timing is exactly what a list of famous viewpoints doesn't give you."), React.createElement("p", null, "That's the problem this guide is built against. Time budgets tell you what actually fits before lunch. Swaps tell you where to go the second a lot is full. And because all of it lives on your phone and works without signal, the answer is there at the moment the day wobbles, which is never a moment with bars."), React.createElement("p", null, "The guide is ", React.createElement(LivePrice, null), ". Everything else about your trip costs more and decides less."), React.createElement("h2", null, "The picnic table in El Portal"), React.createElement("p", null, "This guide is the conversation you'd get if you sat across from me at a picnic table in El Portal and said, \"I have three days. Show me how to do this well.\" Which stops are worth your morning, which can wait, where to park, how long each one actually takes, and what to do instead when the lot is full."), React.createElement("p", null, "The internet has a thousand free articles telling you to drive to Glacier Point, walk through the Mariposa Grove, and look up at El Capitan from the Yosemite Valley floor. You don't need those repeated in a different font. This guide assumes you've done that reading and starts where the lists stop: the parking, the timing, the order, and the fallback."), React.createElement("h2", null, "The Secret Guide"), React.createElement("p", null, "There is a section of the guide that never makes it into articles: the parking turnouts locals use when the big lots fill, the trailheads with no signs from the road, the spots that belong to no region at all, and the few guided programs worth planning an evening around. It's in the app now, 72 entries in six numbered chapters: quiet vistas, hidden trails, parking, camping, the park after dark, and programs. It opens on the short version, six things to do if you do nothing else, then four routes that string the entries into a day or an evening in the order you would drive them, and every entry is numbered across the whole set and marked in gold on the 3D map. Twenty-two arrived at the end of September: ten more pullouts and small lots, from the dozen spaces at Valley View to the two day lots at Hetch Hetchy; the Yosemite Cemetery, Stoneman Meadow at dusk and the Half Dome view on the Big Oak Flat Road; and the programs chapter, led by the Conservancy's night sky program and the free Ahwahnee history tour. It keeps growing through the season, and every addition arrives as a silent update, no re-download, no second charge."), React.createElement("h2", null, "What's NOT inside"), React.createElement("p", null, "I think you should know what you're not getting before you pay."), React.createElement("ul", null, React.createElement("li", null, "This is not the standard tourist guide. If you want a list of the ten most famous viewpoints with the basic directions to each, every other Yosemite site already gives you that for free. This guide is what comes after that."), React.createElement("li", null, "It is not a children's activity book or a photography manual. Both could be their own books."), React.createElement("li", null, "It does not include rock-climbing routes or technical canyoneering. There are excellent specialist guides for both."), React.createElement("li", null, "It does not have affiliate placements baked into the recommendations. The lodging suggestions are places I've stayed and would send my mother to. They're picked, not paid for.")), React.createElement("h2", null, "Who it's for"), React.createElement("p", null, "First-time visitors who want a real plan, not a list. Second-time visitors who came home from their first trip feeling like they'd missed the actual park and want to fix it. Families coordinating a multi-generational trip and trying to keep everyone happy. Anyone who'd rather spend an evening reading the guide than three weekends researching it."), React.createElement("p", null, "If you've already read every article on this site, taken thorough notes, built your own spreadsheet, called the park three times, and feel like you have a handle on it, you might not need the guide. The guide is for people who want the spreadsheet already built."), React.createElement("h2", null, "One small promise"), React.createElement("p", null, "If the guide doesn't earn its place on your home screen, write to me and tell me why. I'd rather fix the trip that didn't work than pretend it did. The address is on the contact page, and if the guide does not work as described, the 30-day refund in the", " ", React.createElement("a", {
+    href: "/terms",
+    onClick: toTerms
+  }, "terms"), " applies."), React.createElement("details", {
+    className: "guide-more"
+  }, React.createElement("summary", null, "Every screen, unedited: nineteen captures and what changed lately"), React.createElement("h3", null, "Every screen, unedited"), React.createElement("p", null, "The full set: ten screens from the current build, captured on a phone. What you see here is the product, not a mockup."), React.createElement(AppShots, null), React.createElement("h3", null, "New in the September 2026 build"), React.createElement("p", null, "The guide keeps changing after you buy it, and this is what the last month added. Nine more screens, captured the same way, from the same build."), React.createElement(AppShots, {
+    shots: NEW_SHOTS
+  }), React.createElement("p", null, "Also new, and not pictured here: the 3D map now carries the park's infrastructure, the five entrances, the visitor and wilderness centers with their hours, the eighteen Valley shuttle stops numbered as the park numbers them, picnic areas, gas, EV charging, showers, laundry, stores and the clinic, every kind of pin drawn with its own mark, and a \"Go to\" menu that flies the map to a region. The map itself has its own section further down this page. The front page's conditions panel gained live parking-lot status, and the same status prints on the map's parking pins. The Secret Guide grew by thirteen entries, and every one of them, along with the ten new photographs, arrived as a silent update. Nothing here cost an existing buyer anything, and that is the arrangement for the rest of the 18 months."))), GUIDE_ON_SALE ? React.createElement(GuideBuyBox, {
+    go: go
+  }) : React.createElement(GuideWaitlistBox, null))), React.createElement(GuideDayOne, null), React.createElement(GuideMap3D, null), React.createElement(HpLetter, {
     eyebrow: "FOR BUYERS AND READERS",
     title: "Sunday Field Notes",
     heading: "Sunday Field Notes",

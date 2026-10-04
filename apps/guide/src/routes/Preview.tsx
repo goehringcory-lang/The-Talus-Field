@@ -5,12 +5,14 @@
 // spot), rendered by the same StopCard the paid app uses: the sample IS the
 // product, not screenshots of it. Everything else stays locked, and the
 // locked rows say exactly how much more each section holds. Buy actions link
-// out to the editorial /guide page, where the checkout lives; signed-in
+// out to the editorial /guide page, where the checkout lives: the primary one
+// opens it at the buy box (GUIDE_CHECKOUT_URL), the quiet one at the top of
+// the pitch for a reader who wants everything included; signed-in
 // buyers are bounced straight into the app.
 // =============================================================================
 
 import { Navigate } from 'react-router-dom'
-import { EDITION_LABEL } from '../lib/buildInfo'
+import { BUILD_DATE, EDITION_LABEL } from '../lib/buildInfo'
 import { useAuth } from '../auth/useAuth'
 import {
   REGIONS,
@@ -25,6 +27,7 @@ import Button from '../components/ui/Button'
 import PageHeader from '../components/ui/PageHeader'
 import {
   GUIDE_BUY_URL,
+  GUIDE_CHECKOUT_URL,
   PREVIEW_SECRET_SPOT_ID,
   PREVIEW_STOP_IDS,
   useGuidePrice,
@@ -96,17 +99,23 @@ export default function Preview() {
 
         <section className="page-section" aria-label="Get the guide">
           <div className="card">
-            <span className="eyebrow eyebrow--moss">The Field Guide · {EDITION_LABEL}</span>
+            <span className="eyebrow eyebrow--moss">
+              The Field Guide{BUILD_DATE !== 'dev' ? ` · Last updated ${BUILD_DATE}` : ''}
+            </span>
             <div className="buy-card__price">{price}.</div>
             <p className="card__note" style={{ margin: '0 0 18px' }}>
-              One payment. The app, the photos on file, and the offline park map are yours
-              for 18 months on every device you own. A few entries still show a stand-in
-              photo rather than the place itself. Updates push automatically for the full 18 months, the Secret Guide
-              included.
+              One payment · 18 months of access · No automatic renewal. The app, the photos
+              on file, and the offline park map are yours on every device you own. Updates
+              are included during your access period, the Secret Guide included. A few
+              entries still show a stand-in photo rather than the place itself. Refunded in
+              full within 30 days if it does not work as described.
             </p>
             <div className="action-row">
-              <Button href={GUIDE_BUY_URL} external>
-                Get the guide →
+              <Button href={GUIDE_CHECKOUT_URL} external>
+                Get the guide · {price} →
+              </Button>
+              <Button variant="quiet" href={GUIDE_BUY_URL} external>
+                See everything included
               </Button>
               <Button variant="quiet" to="/login">
                 Already bought it? Sign in

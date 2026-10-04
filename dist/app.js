@@ -607,7 +607,7 @@ function buildSeo(route) {
         a: "No. It is a web app you add to your home screen in one step, on iPhone or Android. No store account, no install wait, no version to manage. Once it is there it looks and behaves like a native app."
       }, {
         q: "What happens right after I pay?",
-        a: "Stripe handles checkout. Within about a minute you get an email with a sign-in link and a 6-digit code. Both keep working for the full 18 months, so you can sign in on a new device whenever you like."
+        a: "Stripe handles checkout. When payment clears, the guide opens on that device, already signed in, with no code to type. An email with a sign-in link and a 6-digit code follows within a few minutes for your other devices. Both keep working for the full 18 months, so keep the email."
       }, {
         q: "How many devices can I use it on?",
         a: "Every device you personally own. Phone at the trailhead, tablet in the car, laptop the night before. The same code signs them all in."
