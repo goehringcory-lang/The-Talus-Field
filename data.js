@@ -110,7 +110,7 @@ window.planningSeriesFor = function (slug) {
 // verifies this map stays in sync with the files in bodies/.
 // ============================================================
 window.BODY_VERSIONS = {
-  "yosemite-trees-identification-guide": 1,
+  "yosemite-trees-identification-guide": 2,
   "tioga-road-stop-by-stop": 1,
   "yosemite-place-names-meanings": 1,
   "best-airport-for-yosemite": 1,

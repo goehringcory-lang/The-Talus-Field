@@ -9,9 +9,40 @@ window.ARTICLE_BODIES["yosemite-trees-identification-guide"] = function Yosemite
         Most visitors drive into Yosemite through a forest they could describe only as pine trees. The park's naturalists counted seventeen cone-bearing trees inside the boundary in 1939, about forty percent of the forty-three then known in California, and in 1947 they put the park's native tree species at thirty-five, eighteen of them broadleaved. The reason is altitude. The park runs from about <strong>1,800 feet at El Portal to over 13,000 feet</strong> at the crest, and each belt of that climb has its own short list of trees. Learn the list for the belt you are standing in, and a few questions about needles, cones and bark will name almost anything you can reach.
       </p>
 
+      <figure className="diagram-plate">
+        <Placeholder
+          caption="Profile of the Sierra Nevada through Yosemite, from Snelling in the San Joaquin Valley up the Merced River, through Yosemite Valley and over Tioga Pass to Mono Lake, colored by life zone"
+          image="img/yosemite-life-zones-profile-1924.jpg"
+          credit="Grinnell and Storer, Animal Life in the Yosemite (1924), plate 61"
+          tag="FIG. 1"
+          natural
+        />
+        <figcaption>
+          The climb in one picture. Joseph Grinnell and Tracy Storer drew this profile for <em>Animal Life in the Yosemite</em> along nearly the line this guide follows: up the Merced River from Snelling, through Yosemite Valley and Tenaya Canyon, then the Tioga Road over Tioga Pass and down to Mono Lake. Each color is a life zone, the belts naturalists of the time named under C. Hart Merriam's system, from Lower Sonoran at the bottom to Alpine-Arctic on the peaks. On it El Portal sits at the top of the Upper Sonoran, the Valley floor in the Transition zone, and Tuolumne Meadows and Tioga Pass in the Hudsonian. The names are older than the Park Service's; the climb is the same. Select the plate to enlarge it.
+          <br />
+          <span className="diagram-plate__credit">Joseph Grinnell and Tracy Irwin Storer, <em>Animal Life in the Yosemite</em> (1924), plate 61. Public domain, scan by the Internet Archive via Wikimedia Commons.</span>
+        </figcaption>
+      </figure>
+
       <p>
         The belts below run in the order a visitor drives them from the west. The elevation bands are the Park Service's; older measurements are credited to the three books, published between 1932 and 1948, they come from.
       </p>
+
+      <figure className="diagram-plate diagram-plate--narrow">
+        <Placeholder
+          caption="Map of Yosemite National Park colored by vegetation zone: foothill woodland, lower montane forest, upper montane forest, subalpine forest and alpine"
+          image="img/yosemite-vegetation-zones-map-usgs.jpg"
+          credit="Map: Jan van Wagtendonk / USGS"
+          tag="FIG. 2"
+          natural
+          sizes="(max-width: 700px) 100vw, 520px"
+        />
+        <figcaption>
+          The same belts as they lie across the park, under the names this guide uses. Foothill woodland, in yellow, reaches in only along the low canyons at El Portal and Hetch Hetchy. Lower montane forest, in green, holds Yosemite Valley, Wawona and the western roads. Upper montane forest, in blue, covers the middle elevations, and subalpine forest and the alpine zone take the high country around Tuolumne Meadows.
+          <br />
+          <span className="diagram-plate__credit">Map: Jan van Wagtendonk, U.S. Geological Survey. Public domain, via Wikimedia Commons.</span>
+        </figcaption>
+      </figure>
 
       <h2>Three questions that do most of the work</h2>
 
@@ -106,6 +137,21 @@ window.ARTICLE_BODIES["yosemite-trees-identification-guide"] = function Yosemite
         On the talus at the foot of the walls, the oak with holly-like leaves is <strong>canyon live oak</strong>. It is evergreen, its acorn cups are covered in yellow wool, which gave it the name golden cup oak, and its leaves are spiny on young shoots and smooth-edged on older branches. Brockman found it most abundant on the lower Yosemite Falls and Four Mile trails and the path from Happy Isles toward Nevada Fall.
       </p>
 
+      <figure className="diagram-plate">
+        <Placeholder
+          caption="Diagrammatic cross-section of Yosemite Valley looking west: golden oak on the talus slopes under each wall, black oak and yellow pine on the floor, willow and cottonwood along the Merced River"
+          image="img/yosemite-valley-cross-section-1924.jpg"
+          credit="Grinnell and Storer, Animal Life in the Yosemite (1924), fig. 56"
+          tag="FIG. 3"
+          natural
+        />
+        <figcaption>
+          The Valley floor wall to wall, looking west. Under each cliff is golden oak on the talus, the old name for canyon live oak; across the floor are black oak and yellow pine, the old name for ponderosa, with a fern glade and a thimbleberry thicket; at the center are willow and cottonwood along the Merced. The other names drawn on the trees (Calaveras, Audubon, Hermit and the rest) are the seven warblers that feed in each layer, which was the figure's original subject.
+          <br />
+          <span className="diagram-plate__credit">Joseph Grinnell and Tracy Irwin Storer, <em>Animal Life in the Yosemite</em> (1924), fig. 56. Public domain, scan by the Internet Archive via Wikimedia Commons.</span>
+        </figcaption>
+      </figure>
+
       <p>
         Near the falls and on the shady side of the canyon, the soft, drooping conifer is <strong>Douglas-fir</strong>. Its needles stand out all around the twig instead of lying in flat rows, and its cones settle the question: they hang down, fall whole, and carry a <strong>three-pointed bract</strong> poking out from under every scale. Park Service naturalists describe it as the hind end of a mouse diving into the cone, two feet and a tail. Cole gave its Yosemite range as 3,500 to 5,500 feet and noted it is not a true fir at all.
       </p>
@@ -192,6 +238,8 @@ window.ARTICLE_BODIES["yosemite-trees-identification-guide"] = function Yosemite
         <li><a href="https://www.yosemite.ca.us/library/cone-bearing_trees/" target="_blank" rel="noopener noreferrer">James E. Cole, <em>The Cone-bearing Trees of Yosemite</em> (1939), Yosemite Natural History Association</a></li>
         <li><a href="https://www.yosemite.ca.us/library/broadleaved_trees/" target="_blank" rel="noopener noreferrer">C. Frank Brockman, <em>Broadleaved Trees of Yosemite National Park</em> (1947)</a></li>
         <li><a href="https://www.yosemite.ca.us/library/trees_of_yosemite/" target="_blank" rel="noopener noreferrer">Mary Curry Tresidder, <em>The Trees of Yosemite</em> (1932, revised 1948)</a></li>
+        <li><a href="https://archive.org/details/animallifeinyose00grin" target="_blank" rel="noopener noreferrer">Joseph Grinnell and Tracy Irwin Storer, <em>Animal Life in the Yosemite</em> (1924), University of California Press</a> (figures 1 and 3)</li>
+        <li><a href="https://commons.wikimedia.org/wiki/File:Yose_veg_zonesm.jpg" target="_blank" rel="noopener noreferrer">Jan van Wagtendonk, map of Yosemite vegetation zones, U.S. Geological Survey</a> (figure 2)</li>
         <li><a href="https://www.nps.gov/lavo/learn/kidsyouth/upload/Conifer-Guide.pdf" target="_blank" rel="noopener noreferrer">Conifer Guide, NPS Lassen Volcanic</a></li>
         <li><em>Nature Notes</em> Vol. 39, No. 3 (March 1960), "The Pacific Dogwood." <a href="/archive/1960/vol-39-no-3/">Read it in the archive</a>.</li>
       </ul>

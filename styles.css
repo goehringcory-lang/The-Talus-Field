@@ -12878,3 +12878,27 @@ html[data-nav-mode="pinned"] { scroll-padding-top: 62px; }
 }
 /* The crawler fragment is not laid out as a grid. */
 #prerender-prose .ft-feature :is(.ff-split, .ff-facts, .ft-ways, .ft-thing, .ft-questions, .ft-days, .ft-months ol, .ft-windows, .ft-order, .ft-cannot, .ft-fees, .ff-rules) { display: block; }
+/* ===== Diagram plates (October 2026, the trees guide's life-zone figures) =====
+   A found diagram or historic plate set in an article body: <figure
+   className="diagram-plate"> around a natural-mode Placeholder, with the
+   explanation and the full credit in the figcaption. The photo plate's dark
+   gradient, corner tag and overlaid credit would sit on the plate's own
+   printed labels, so a diagram shows whole, on paper, behind a hairline. The
+   Placeholder keeps its credit prop: the lightbox reads it for its caption. */
+.prose .diagram-plate { margin: 34px 0 36px; }
+.prose .diagram-plate .placeholder--photo {
+  background: var(--paper-2);
+  border: 1px solid var(--hp-rule);
+}
+.prose .diagram-plate .placeholder--photo::before,
+.prose .diagram-plate .placeholder::after,
+.prose .diagram-plate .placeholder__credit { display: none; }
+.prose .diagram-plate--narrow .placeholder { max-width: 520px; margin: 0 auto; }
+.prose .diagram-plate figcaption { font-size: 13px; }
+.prose .diagram-plate__credit {
+  display: inline-block;
+  margin-top: 6px;
+  font-size: 11px;
+  letter-spacing: 0.02em;
+}
+.prose .diagram-plate--narrow figcaption { max-width: 520px; margin-left: auto; margin-right: auto; }
