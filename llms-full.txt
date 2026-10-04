@@ -8,11 +8,337 @@
 Publisher: The Talus Field (https://thetalusfieldjournal.com). Editor: Cory Goehring.
 Citation guidance and the annotated page index: https://thetalusfieldjournal.com/llms.txt
 Canonical article URL pattern: https://thetalusfieldjournal.com/articles/<slug>
-Contents: 77 articles. Most recent update: 2026-10-03.
+Contents: 80 articles. Most recent update: 2026-10-04.
 
 Not in this file: the Yosemite Nature Notes archive, all 512 issues of the
 National Park Service's Yosemite bulletin (1922-2003), transcribed in full
 as plain static HTML at https://thetalusfieldjournal.com/archive/.
+
+---
+
+## Yosemite trees: how to tell them apart, from the foothills to Tioga Pass
+
+URL: https://thetalusfieldjournal.com/articles/yosemite-trees-identification-guide
+Section: Wildlife and Nature. Published: 2026-10-04. Last updated: 2026-10-04.
+Summary: Identify Yosemite's trees by elevation belt: needle counts, cones, bark, and the tests that separate Jeffrey from ponderosa and red fir from white fir.
+
+Most visitors drive into Yosemite through a forest they could describe only as pine trees. The park's naturalists counted seventeen cone-bearing trees inside the boundary in 1939, about forty percent of the forty-three then known in California, and in 1947 they put the park's native tree species at thirty-five, eighteen of them broadleaved. The reason is altitude. The park runs from about 1,800 feet at El Portal to over 13,000 feet at the crest, and each belt of that climb has its own short list of trees. Learn the list for the belt you are standing in, and a few questions about needles, cones and bark will name almost anything you can reach.
+
+The belts below run in the order a visitor drives them from the west. The elevation bands are the Park Service's; older measurements are credited to the three books, published between 1932 and 1948, they come from.
+
+### Three questions that do most of the work
+
+First, how are the needles attached? Pines carry their needles in bundles held together by a papery sheath at the base. Firs, Douglas-fir, mountain hemlock and California nutmeg carry them one at a time along the twig. Incense cedar, western juniper and giant sequoia have only small scales pressed against the twig. James E. Cole's 1939 booklet, The Cone-bearing Trees of Yosemite, starts every identification here.
+
+Second, if it is a pine, how many needles are in a bundle? In Yosemite the count narrows the field to a few trees. Two means lodgepole pine, the only two-needle pine in the park. Three means, almost always, gray pine, ponderosa or Jeffrey. Five means sugar pine, western white pine or whitebark pine; Cole's mnemonic for the white pines was that the needles in a bundle match the letters in the word "white."
+
+Third, where is the cone, and does it fall whole? Most pine cones, and Douglas-fir cones, hang down and fall whole. The cones of the two true firs stand upright on the topmost branches and come apart on the tree, scale by scale, leaving a bare spike behind, so a whole fir cone on the ground is rare. Whitebark pine cones also break up before they fall. Elevation breaks ties: Cole wrote that young sugar and western white pines, with nearly identical needles, are told apart only by knowing that sugar pine seldom grows above 7,500 feet and western white pine rarely below 8,000.
+
+Pine | Needles per bundle | Needle length | Cone | Where
+
+Lodgepole | 2 | 1 to 2.5 in, stiff, flat | 1 to 2 in, stays on the branch for seasons | Valley streamsides to timberline, thickest from 7,000 to 10,000 ft
+Gray pine | 3 | 8 to 12 in, gray-green, drooping | 6 to 10 in, heavy, hooked scales | Foothills, Merced canyon to about Arch Rock
+Ponderosa | 3 | 4 to 11 in, yellow-green | 3 to 5 in, prickly to hold | Valley floor and lower montane forest
+Jeffrey | 3 | long, blue-green, denser | 5 to 10 in, prickles turned in | Valley edges up to about 10,000 ft
+Sugar | 5 | 2 to 3.5 in | 14 to 24 in, hangs from branch tips | About 4,000 to 7,500 ft
+Western white | 5 | 2 to 3.5 in | 6 to 8 in, curved | 7,000 to 8,000 ft up to near timberline
+Whitebark | 5 | 1.5 to 2.75 in, stiff, crowded at tips | 1.5 to 3 in, purple, breaks apart on the tree | Timberline, Tioga Pass
+
+The measurements are from Cole's 1939 key, written for Yosemite alone; a tree at the edge of its range can run short or long.
+
+### The foothills: the Merced canyon to Arch Rock
+
+The Park Service calls the park's lowest country the foothill-woodland zone: El Portal at about 1,800 feet, hot and dry in summer, little or no snow in winter, with chamise, ceanothus and manzanita among the trees. It lies along the park's western boundary, and the same plant communities turn up again near Hetch Hetchy Reservoir.
+
+Photo: Cory Goehring
+
+Gray pine is the conifer of this belt, and it does not look like a pine. The trunk usually forks into two or more stems, the crown is open and rounded like an oak's, and the long gray-green needles, three to a bundle, are so thin a cover that John Muir wrote the sunbeams sift through it with scarcely any interruption. The cones are among the heaviest of any American pine, with scale tips drawn into stout hooks. Cole recorded it in the Merced canyon from the western boundary up to about 3,000 feet at Arch Rock, and more abundantly around Hetch Hetchy. Cole used an older common name; the Park Service now says gray pine.
+
+Two oaks share the hillsides. Blue oak has blue-green leaves and light ash-gray, flaky bark. Interior live oak is evergreen, with shiny leathery leaves that can be smooth-edged or spiny. The Park Service lists both in this zone, and C. Frank Brockman's 1947 booklet on the park's broadleaved trees called both very rare inside the boundary and common along the approach roads below it.
+
+Between Arch Rock and Cascade Fall, Cole placed California nutmeg along the highway: a small tree with flat, dark green, fir-like sprays that draws little attention because it resembles Douglas-fir. Its needles are flat, lance-shaped and tipped with a sharp bristle, and a crushed sprig smells bad enough to have earned it the old name stinking yew. In fall it hangs green, plum-like fruit from its outer branches, which no fir does.
+
+### The Valley floor, 4,000 feet
+
+The Valley sits in the Park Service's lower montane forest, which begins near 3,000 feet and includes California black oak, ponderosa pine, incense cedar and white fir. Mary Curry Tresidder's Trees of Yosemite (1932, revised 1948) found native examples of almost every tree in the region on the Valley floor between Mirror Lake and the Cascades.
+
+Ponderosa pine, the commonest conifer on the floor, comes in two colors. Old trees have the bark the species is known for: thick, tawny-yellow plates up to three or four feet long, made of thin scales that come away like jigsaw pieces. Young trees are blackish and rough, and Cole noted that visitors rarely realized the dark trees around their campsites were the same species. Its needles come three to a bundle, long and yellow-green, in upturned tufts.
+
+Incense cedar, which the 1939 booklet ranked second in abundance among the Valley's conifers, is the tree visitors mistake for a giant sequoia. Its trunk is cinnamon-red, deeply ridged and buttressed at the base, and Cole wrote that many visitors left believing they had seen sequoias in the Valley. Look up. Incense cedar foliage hangs in flat, vertical sprays of tiny overlapping scales that smell sharp when crushed, and its inch-long cones open into three scales shaped like a fleur-de-lis. A sequoia's foliage is scaly and awl-like, not flattened into sprays, and its cones are small and egg-shaped.
+
+California black oak is the Valley's defining broadleaf. The leaves are deeply cut into about seven lobes, each tipped with bristles; they unfold pink and velvety in spring and turn tawny yellow to golden brown in fall, the color that sets the Valley's autumn apart from its summer. The acorns run one to one and a half inches and take two seasons to ripen. Brockman placed the tree from 3,000 to 5,000 feet and called it one of the most common on the Valley floor. The 1939 booklet put black oak acorns at four-fifths of the Valley people's yearly food. The Park Service says today black oak acorns were a major part of American Indian diets, that traditional gathering still goes on, and that the acorns feed bears, deer, woodpeckers and squirrels as well. Brockman noted the mortar holes worn into rock across the Valley by the work of pounding acorns into flour.
+
+The open oak groves were tended. Cole wrote in 1939 that the Valley's people set spring ground fires along the edges of the pine thickets to kill pine seedlings that would otherwise crowd out the oaks, and that once the burning stopped, a Valley he described as three-quarters open land had become nearly three-quarters forest. The Park Service's current account agrees in outline: early settlers described an open oak woodland with few conifers, the result of centuries of burning by American Indians to favor the oaks. The park's own studies found that the Valley's oak canopy held steady between 1944 and 2005 because fewer, larger trees filled it, and that today's groves have seedlings but few saplings, a population tree cores show was healthy until about 1920.
+
+On the talus at the foot of the walls, the oak with holly-like leaves is canyon live oak. It is evergreen, its acorn cups are covered in yellow wool, which gave it the name golden cup oak, and its leaves are spiny on young shoots and smooth-edged on older branches. Brockman found it most abundant on the lower Yosemite Falls and Four Mile trails and the path from Happy Isles toward Nevada Fall.
+
+Near the falls and on the shady side of the canyon, the soft, drooping conifer is Douglas-fir. Its needles stand out all around the twig instead of lying in flat rows, and its cones settle the question: they hang down, fall whole, and carry a three-pointed bract poking out from under every scale. Park Service naturalists describe it as the hind end of a mouse diving into the cone, two feet and a tail. Cole gave its Yosemite range as 3,500 to 5,500 feet and noted it is not a true fir at all.
+
+Along the water, Brockman's booklet sorts the broadleaves quickly. Black cottonwood fills the midsummer air with cottony seed. White alder carries small woody "cones" and is the only broadleaf in the park with stalked buds. Willows have a single scale over each bud, and their twigs went into the region's baskets. Bigleaf maple has opposite, five-lobed leaves that can exceed twelve inches across, which turn yellow to brown in fall. Pacific dogwood is the understory tree that blooms white in spring. Its "flower" is a cluster: four to six cream-white bracts around a central button of small true flowers, a distinction a ranger-naturalist laid out in the March 1960 issue of Nature Notes. Brockman listed Happy Isles, Fern Spring and Pohono Bridge as Valley places to find it; in fall its leaves and fruit both turn red.
+
+### The mixed-conifer belt: the roads out of the Valley
+
+The Park Service lists the Wawona, Hetch Hetchy and Big Oak Flat roads as the places to see the lower montane forest, and the tree that changes the skyline on them is sugar pine. Cole described a few enormous horizontal limbs, sometimes thirty or forty feet long near the top, that give a mature tree a flat-topped crown no other has. The cones settle it: the 1939 booklet measured them at fourteen to eighteen inches on average and up to twenty-four, hanging from the very tips of the upper branches. Cole sent readers to the Wawona Road between the tunnel and Chinquapin and the road toward Crane Flat for the biggest trunks, and Tresidder called the Big Oak Flat Road's sugar pines above Lily Creek a hall of columns.
+
+White fir is the symmetrical fir scattered among the pines. Its needles are three-quarters of an inch to two inches long, pale with a whitish cast, and lie in flat sprays. Cole gave it a range of 3,500 to 8,000 feet. Old white fir bark is ashy gray outside, and a broken piece shows yellowish, corky inner bark.
+
+The three sequoia groves, Mariposa, Merced and Tuolumne, sit in this same lower montane belt, and the tree is easy to tell once you are in front of it: scale-like foliage, small egg-shaped cones about two to three inches long, and fibrous cinnamon-red bark that the 1939 booklet measured at up to two feet thick. Why that bark matters is the subject of how giant sequoias survive the fires that kill their neighbors, and the practical side of standing under one is in the guide to visiting the Mariposa Grove.
+
+### Red fir and lodgepole: Glacier Point Road and the Tioga Road past Crane Flat
+
+Near 6,000 feet the Park Service's upper montane forest begins, with snow from November that can lie six feet deep into June. Pure stands of red fir and lodgepole pine are the signature, with Jeffrey pine and western juniper in the open, and the park names the Tioga Road east of Crane Flat and the Glacier Point Road as the places to see it. Cole counted the abrupt switch from lodgepoles at the meadows to red fir on the ridges among the pleasures of the drive to Glacier Point.
+
+Red fir and white fir look alike from a distance, and Cole gave a test he said never failed. Pull a needle. A white fir needle has a short stalk with a distinct half twist where it joins the twig; a red fir needle has no stalk and no twist, is shorter (three-quarters of an inch to about an inch), and is four-sided in cross section. On a big tree you cannot reach, use the bark: red fir's is deeply fissured into a zigzag of short diagonal ridges, purplish-red outside, and a bright red where it is freshly broken, against white fir's gray outside and yellowish inside. Red fir cones, five to eight inches long, stand upright like candles at the top of the tree.
+
+Lodgepole pine fills the flats and meadow edges, and the needle count names it at once: two per bundle, short and stiff, on a tree with thin, scaly, grayish bark. Cole pointed to the Glacier Point Road meadows along Bridalveil Creek. Older writers also called it tamarack, and Tresidder wrote of lodgepoles entering the picture "as Tamarack Flat witnesses."
+
+Jeffrey pine takes the open granite: the rim around Glacier Point and Sentinel Dome, the floor of Little Yosemite Valley above Nevada Fall, and the dry sides of the Valley itself, where it mixes with ponderosa. The two intergrade where they meet; Tresidder, in 1948, treated the Jeffrey as a variety of ponderosa. Three things help. The Jeffrey's foliage is darker blue-green and denser, because Cole recorded its needles staying on the branch five to nine years against about three for ponderosa. Its bark has a smell, which the Park Service's Yosemite page describes as vanilla and Cole as vanilla or pineapple, strongest in the crevices on a warm day. A Park Service conifer guide from Lassen Volcanic adds butterscotch and says ponderosas smell similar, so the nose gives a hint, not a verdict. The cone decides it. Ponderosa scale tips stick straight out and prick the hand that grips the cone; the Jeffrey's larger cone has its prickles turned in. The Lassen guide's version: roll the cone between your hands, and a ponderosa feels prickly, a Jeffrey smooth.
+
+Three more trees enter here. Quaking aspen, smooth-barked and white, with round leaves on flattened stems that flutter in the slightest air, rarely grows below 5,000 feet and turns gold in September; Brockman sent readers to the Tioga Road near Yosemite Creek, the Glacier Point Road near Bridalveil Creek and Badger Pass, and Aspen Valley, named for its groves. Western white pine looks like a smaller sugar pine, five needles to a bundle and long arms in the middle of the crown, but its upper branches sweep upward instead of out, its cones are six to eight inches and curved, and its bark is broken into small, nearly square plates that Cole called unlike any other conifer's in the park. Western juniper, which Tresidder called the Sierra juniper, grows alone on bare granite, a squat, buttressed trunk with cinnamon-brown bark peeling in ribbons, scale foliage, and blue-black berries under a white bloom. Cole put it on the rock walls along the Tioga Road just beyond Tenaya Lake. John Muir once counted 1,140 rings on a juniper stump under three feet across.
+
+### The subalpine: Tuolumne Meadows to Tioga Pass
+
+The Park Service places the start of the subalpine forest near 8,000 feet, with western white pine, mountain hemlock and lodgepole pine around meadows that flower in July and August, seen from Tuolumne Meadows east to Tioga Pass. Tuolumne Meadows sits at 8,600 feet. Tresidder's tour of the Tioga Road gives the order: lodgepole leading through the meadows, western white pine on the slopes above them, junipers on the domes, hemlock in the moist and shaded places, and whitebark pine at the top.
+
+Photo: basiciggy / Pexels
+
+Mountain hemlock is identifiable from across a meadow by its top, which droops over instead of pointing up, and by branches kept all the way to the ground. Its needles are single, a half inch to three-quarters long, on tiny stalks, all the way around the twig. Cole found it on north-facing slopes around 9,000 feet where snowbanks linger, and on the Tioga Road between Tenaya Lake and Tuolumne Meadows.
+
+Whitebark pine is the last tree. Its bark is smooth and nearly white on young stems and upper branches, its five stiff needles are crowded at the branch tips, and its purple cones break apart on the tree; Cole noted that Clark's nutcrackers and chipmunks tear them open so quickly that an intact one is seldom found. Lower down it is a small upright tree; higher, wind and snow press it into a mat. The Park Service starts the treeless alpine zone near 9,500 feet, where a hiker may still meet whitebarks stunted into krummholz. At Tioga Pass, 9,945 feet, Cole sent readers to the upright whitebarks a few yards from the ranger station of his day and the matted ones on the ridge behind it. The stops on the way up are in the Tuolumne Meadows day plan.
+
+### Reading the forest honestly
+
+A cone on the ground can mislead: the Lassen guide notes that a whole fir cone on the ground is usually one a squirrel cut down. Few trees are typical, as Tresidder warned, so check every mark you can before settling. And the historic numbers in this guide, the cone lengths and elevation ranges, come from books written between 1932 and 1948 about a forest that has changed since. The Park Service counts 142 million trees lost across California between 2012 and 2018 to drought, crowding and the native beetles that follow them, pine beetles in the pines, fir engravers in the firs, and cedar bark beetles in the incense cedars.
+
+The method still works because the trees keep their belts. Note the elevation, pull a needle or a bundle and count, find a cone, look at the bark, and smell it if it is a pine on warm rock. Six trees answer most of a Valley visit: ponderosa, incense cedar, black oak, canyon live oak, Douglas-fir and white fir. Add sugar pine on the way out, red fir and lodgepole on the Glacier Point Road, and hemlock and whitebark at Tioga Pass, and you have met most of the park's forest by name.
+
+#### Sources
+
+- Plants (vegetation zones), NPS Yosemite
+- Black Oaks, NPS Yosemite
+- Climate Change: Tree Mortality, NPS Yosemite
+- James E. Cole, The Cone-bearing Trees of Yosemite (1939), Yosemite Natural History Association
+- C. Frank Brockman, Broadleaved Trees of Yosemite National Park (1947)
+- Mary Curry Tresidder, The Trees of Yosemite (1932, revised 1948)
+- Conifer Guide, NPS Lassen Volcanic
+- Nature Notes Vol. 39, No. 3 (March 1960), "The Pacific Dogwood." Read it in the archive.
+
+---
+
+## Tioga Road, stop by stop: the drive and the history under it
+
+URL: https://thetalusfieldjournal.com/articles/tioga-road-stop-by-stop
+Section: Planning. Published: 2026-10-04. Last updated: 2026-10-04.
+Summary: Tioga Road stop by stop, Crane Flat to Tioga Pass: every turnout, short walk and the history behind it, from the 1883 mine road to the 1961 realignment.
+
+You are at Crane Flat with a full tank, the Valley behind you, and roughly 46 miles of Tioga Road ahead before the park ends at Tioga Pass. This guide takes it turnout by turnout, west to east, and pairs each stop with what happened there, because almost every pullout on this road sits on top of a story: a silver mine that never sent its ore to a mill, a wagon road built in 130 days to serve it, a government official who paid for much of the road himself, and a 1950s highway project that Ansel Adams called a desecration.
+
+### Before you turn at Crane Flat
+
+The Park Service describes Tioga Road as a 47-mile drive between Crane Flat and Tioga Pass, and its plow crews clear 45.5 miles of it each spring. Keith Trexler's 1961 history, written for the park's own naturalist publication, puts the road at 6,192 feet at Crane Flat and 9,945 feet at the pass, 46 miles later.
+
+The road is seasonal. The Park Service's standing line is that Tioga Road is typically open to vehicles from late May or June until sometime in November; plowing usually begins around April 15, and the opening date moves with the snowpack. The Tioga opening page tracks the window, and the conditions board carries the park's live road status. Services in Tuolumne Meadows, the park notes, may not be running in the first month after opening or from September until closing.
+
+Fill the tank here. Crane Flat sells gas around the clock with a credit card. There is no gas at Tuolumne Meadows; the Park Service's driving page says plainly that it is no longer available there. On the east side the next fuel is Lee Vining, below the pass. Bring your own water and lunch for the whole drive.
+
+The road follows an older line than the asphalt. Trexler describes the Mono Trail, a Native trade path from Crane Flat past Tenaya Lake to Tuolumne Meadows, used by Miwok people from the west slope and Mono people from the east, and probably followed by Joseph Reddeford Walker's party, the first non-Native party to pass through what is now the park (the park's 1956 auto tour dates the crossing to 1833).
+
+### Tuolumne Grove: walk down the wagon road
+
+A few minutes east of the Crane Flat junction is the Tuolumne Grove trailhead. The Park Service describes the walk as 2.5 miles round trip with 500 feet of climb on the return, down a historic wagon road to a small grove of giant sequoias with a half-mile nature trail at the bottom. The park's 1956 auto tour counted about 25 large trees in the grove and described a tunnel cut through the Dead Giant in 1878. Parking at the trailhead is very limited, so this stop works best early.
+
+### Siesta Lake: the 1939 road
+
+From Crane Flat to the White Wolf turnoff you are on road finished in 1939. Trexler records that 14.5 miles of new road between Crane Flat and McSwain Meadow, near the White Wolf junction, were completed on July 18, 1939. The original approach had come up from Crocker's Station by way of Aspen Valley.
+
+Siesta Lake sits beside the road about 13 miles east of the Crane Flat gas station, by the Park Service's count. The 1956 auto tour describes it as a spring-fed lake no more than five feet deep, ringed by lodgepole pine and red fir, and says the road was routed around it to avoid spoiling it.
+
+### White Wolf: where the old road leaves
+
+The White Wolf turnoff marks the start of what was, until 1961, the last surviving stretch of the 1883 wagon road in daily use: 21 miles of it, narrow and steep, running from here to the Cathedral Creek area near Tuolumne Meadows. Sources disagree about the name. Trexler says a sheepherder saw a white wolf there; the 1956 auto tour says a cattleman named John Meyer named it for the leader of a Native encampment called White Wolf. By 1930 Mrs. Meyer ran a tent resort here with a gas station; Trexler records it reopening under the concessioner as a High Sierra Camp in 1953.
+
+Today White Wolf is a summer campground at about 8,000 feet and a small lodge with a restaurant and store; its season has been disrupted in recent years, so confirm the lodge is open before planning a meal there. Lukens Lake, 1.6 miles round trip from its Tioga Road trailhead, reaches a small lake in a meadow; the Park Service says the trail stays wet and muddy until early August.
+
+The old road is still here if you want it. When the new road opened, the Park Service kept pieces of the 1883 alignment "as is." Trexler's 1961 history names two: a section that leaves the new road just east of the White Wolf intersection and winds about five miles down to the Yosemite Creek campground, and a two-mile section that climbs past Snow Flat to the May Lake trail junction. The Park Service lists RVs and trailers as not recommended at Yosemite Creek campground, which tells you what that road is like.
+
+### Yosemite Creek: the bridge that kept washing out
+
+The new road crosses Yosemite Creek at a picnic area with tables and vault toilets but no drinking water and very little parking. This is the creek that becomes Yosemite Falls downstream.
+
+The crossing troubled every owner of the road. Mrs. H. R. Crocker, whose station at the road's western end had been its construction headquarters, reported in 1907 that she had paid to replace the Yosemite Creek bridge, which had been out for eight years. The park replaced it again in 1916 after taking over the road.
+
+### Porcupine Flat and May Lake
+
+Porcupine Flat is a small campground at about 8,100 feet. Beyond it is Snow Flat, which the 1956 auto tour describes as recording some of the deepest snow in the park.
+
+The turnoff for May Lake comes next. Trexler's 1961 history describes a two-mile section of the old road climbing past Snow Flat to the May Lake trail junction; the Park Service today sends hikers 1.75 miles up May Lake Road to the parking area, and from there a 2.4-mile round trip with about 500 feet of climb reaches a lake directly under Mount Hoffmann. The High Sierra Camp at May Lake exists because of Tenaya Lake: Trexler records that the concessioner closed its Tenaya Lake camp in 1938 "in favor of a more isolated location at May Lake."
+
+### Olmsted Point: the cut that started an argument
+
+Olmsted Point sits at about 8,400 feet. From the parking area you look down Tenaya Canyon at the back of Half Dome and at Clouds Rest, with Tenaya Lake to the east. The Park Service describes a short, hilly quarter-mile walk each way out onto the point past glacial erratics, boulders the ice carried here and left behind. It is also, the park says, the most dangerous of the avalanche zones its plow crews work through each spring.
+
+The overlook is named for Frederick Law Olmsted Jr., the landscape architect whose father helped bring about the 1864 Yosemite Grant. The son chaired the Yosemite Advisory Board that reviewed the route for the new road. By 1935, Trexler writes, the route had general agreement, the Sierra Club's included, and when a "high-line" alternative north of Polly Dome was proposed after the war, the board rejected it as an intrusion into wilderness.
+
+Construction on the final 21 miles began in 1957, and the cut you parked beside is part of it. In 1958, Ansel Adams telegrammed the Secretaries of Interior and Commerce and the Park Service director to protest "the desecration of Tenaya Lake," calling the damage "entirely unnecessary" and asking that work in the Tenaya Lake area stop. David Brower, writing in 2000, said the Sierra Club had let it happen by not opposing the project strongly enough. Neither objection appears in Trexler's history, which ran in the park's naturalist publication; the online edition at yosemite.ca.us notes the omission and reprints both. The polished slabs you see along the cut are what both men were trying to save.
+
+### Tenaya Lake: the shore the 1883 crews blasted
+
+Tenaya Lake, at about 8,150 feet, is the largest lake in Yosemite's frontcountry, with several parking areas along the lake, a sandy beach at the east end, and a flat loop of about 2.5 miles around it. It carries the name of Tenaya, whose band the Mariposa Battalion captured on its shore in 1851; how the lake and the Valley got their names is a story of its own. The Sunrise Lakes trailhead at the west end of the lake is where the Clouds Rest hike begins.
+
+The lake has been a blasting site twice. In August 1883, the Homer Mining Index reported that the wagon road's powder gang had reached the lake and would "skip the heavy blasting along the margin of the lake for the present," then come back with a hundred blasters to finish three-quarters of a mile along the shore. In 1899 a congressional commission found that work still sound, describing "a particularly well-built section of sea wall along the shore of Lake Tenaiya." The 1956 auto tour points out the glacial polish beside the old road on the lake's northwest side; the 1958 work that Adams protested was on the same shoreline.
+
+Before either road, Trexler records, a former Yosemite guide named John L. Murphy homesteaded the meadow at the lake's south end on August 1, 1878, and planted 52 brook trout carried from the Tuolumne River. By 1882 a Bodie newspaper correspondent reported the lake "swarming with fish."
+
+### Pothole Dome and the granite before the meadows
+
+East of Tenaya Lake the road passes Fairview Dome on its way into Tuolumne Meadows. The 1937 road starts near here: Trexler records that the 11.6 miles from Cathedral Creek through Tuolumne Meadows to Tioga Pass were paved in the fall of 1937, the first dust-free section in the road's history.
+
+Pothole Dome, at the west end of the meadow, is the best short walk on the whole drive: the Park Service lists it at 1 mile round trip and 200 feet of climb, up a gentle slope of glacier-polished granite to a view of the full sweep of the meadows. Do it in the morning; a bare dome is the wrong place to be when the afternoon thunderstorms build.
+
+### Tuolumne Meadows: Lembert, the Sierra Club and Parsons Lodge
+
+Photo: Pacific Southwest Region USFWS / Wikimedia Commons (public domain)
+
+Tuolumne Meadows lies at about 8,600 feet, one of the largest high-elevation meadows in the Sierra Nevada. Its services run short summer seasons, and the Tuolumne Meadows day guide covers what is open, the walks and the altitude. The Cathedral Lakes trail now starts beside the visitor center; the Cathedral Lakes guide has the current trailhead and distances.
+
+The walk with the most history is Soda Springs and Parsons Memorial Lodge, 1.4 miles round trip and mostly flat from the Lembert Dome parking area or the visitor center. The springs are cold, carbonated water bubbling up inside a log enclosure, with iron-stained mud around them.
+
+The man the dome is named for lived beside them. John Lembert homesteaded the Soda Springs property in 1885, Trexler writes, after spending summers there since at least 1882. The company's surveyors, who were picking a line for a railroad as well as the road, planted their stakes within a hundred feet of his hut, and a Bodie paper predicted that his "lonely reveries will be broken by the shrill whistle of the locomotive." The railroad was never built. Lembert left the meadows in 1890 after losing his goat herd to snow, and his brother sold the homestead after his death in 1896.
+
+The Sierra Club bought the land in 1912 and built Parsons Memorial Lodge in 1915. The club sold the property to the Park Service in December 1973, for $208,750, citing the problems of running a campground inside a national park. The Park Service describes the area as the place where John Muir and Robert Underwood Johnson conceived the idea of establishing Yosemite National Park, and the lodge itself is open from about late June to early September.
+
+### Lembert Dome and Dog Lake
+
+Lembert Dome stands over the east end of the meadow, and its trailhead is the parking area just past the river. The walk up the back of the dome is about 2.8 miles round trip with 850 feet of climb, and Dog Lake is about 2.8 miles with 650 feet; the Park Service lists the two together as a 3.8-mile outing from the Dog Lake parking area. The summit is open granite. Go up before noon in thunderstorm season.
+
+### Dana Meadows: the last climb
+
+East of Tuolumne the road follows the Dana Fork of the Tuolumne River and climbs to Dana Meadows, below the pass. Mount Dana rises to the east; the 1956 auto tour calls it the second highest peak in the park.
+
+The Mono Pass trail leaves from Dana Meadows, 8 miles round trip and about 1,000 feet of climb by the Park Service's count, and it walks straight into the mining story. Douglass Hubbard's 1958 Ghost Mines of Yosemite describes five whitebark pine cabins of the Golden Crown and Ella Bloss mines standing at Mono Pass, property of the same company that built the road. The pass tops Bloody Canyon, the route Lt. Tredwell Moore's troopers followed in 1852; the gold samples Moore carried out, Trexler writes, kindled public interest in mining east of the Sierra.
+
+### Tioga Pass: 9,945 feet and a bottle of seawater
+
+Photo: daveynin / Wikimedia Commons (CC BY 2.0)
+
+The road tops out at the Tioga Pass entrance station, 9,945 feet, the highest highway pass in California. The Gaylor Lakes trail starts here: 2.6 miles round trip and 500 feet of climb by the Park Service's figures, starting near 10,000 feet.
+
+This is where the road became public. By 1915 the wagon road had been largely neglected for three decades, owned by the heirs of the Swift family of New Bedford, who had bought the failed mining company's property at a sheriff's sale in 1888. Stephen Mather, then assistant to the Secretary of the Interior and soon the first director of the National Park Service, decided to buy it. Trexler records the price as $15,500, raised partly from friends, the Modesto Chamber of Commerce and the Sierra Club, with Mather paying the balance himself. Because a government employee could not donate the road, his friend William Colby of the Sierra Club bought it from the Swift estate, and title passed to the United States on April 10, 1915.
+
+That summer Mather brought a party up the Lee Vining grade and, Trexler writes, dedicated the road at the top of the range by breaking a champagne bottle filled with Pacific Ocean water "at a spot where it would flow both east and west." The 1915 report of the superintendent of national parks gives the formal opening as July 28, 1915, and records 190 cars entering the park over Tioga Pass that season. Both Hubbard's 1958 book and the June 1961 issue of the park's naturalist publication picture a plaque to Mather at the pass.
+
+Mather's road stayed all dirt until 1937, and the 1883 alignment carried traffic on the middle 21 miles until the new section opened on June 24, 1961. Trexler gives the cost of that central section as $5,491,000, and of the whole 46 miles from Crane Flat to the pass as $6,941,000. The original wagon road, by his count, cost $61,095.22.
+
+### Bennettville: the mine the road was built for
+
+Just east of the park boundary, outside Yosemite in the Inyo National Forest, is the reason any of this exists. Trexler records that a dentist named George Chase scratched a claim notice on a flattened tin can on Tioga Hill in 1860 and never returned, and that a sheepherder, William Brusky, found the can years later; an 1877 assay found the ore rich in silver. The Tioga Mining District was organized in 1878, and in 1881 the Great Sierra Consolidated Silver Company, financed by eastern investors, bought up the claims on Tioga Hill.
+
+The company's headquarters was Bennettville, named for its president, Thomas Bennett Jr., with a post office from March 1882. Its tunnel was begun on February 25, 1882, and that spring, Trexler writes, the manager J. C. Kemp spent from March 4 to May 6 sledding 16,000 pounds of drilling machinery about nine miles over the snow from Lundy. That ordeal is why the road was built: the wagon road from near Crocker's Station on the Big Oak Flat Road ran about 56 miles to Bennettville and was finished on September 4, 1883, in 130 days. Trexler counts a crew of about 160, largely Chinese laborers paid $1.20 a day, and notes that a receipt for the hospital tax on at least 35 Chinese workers survives in the Yosemite Museum collections.
+
+The mine did not last a year after the road was finished. On July 3, 1884, with the tunnel at 1,784 feet and the company out of money, the executive committee suspended all operations. More than $300,000 had been spent, and as far as Trexler could find, no ore ever left the mine for milling. Hubbard records a second attempt from 1933 that drove the tunnel several hundred feet farther without striking the lode.
+
+Hubbard found two of Bennettville's buildings still standing in 1958. The Forest Service's Junction Campground sits at the junction of Highway 120 and Saddlebag Lake Road near the Tioga Pass entrance, and published hiking accounts start the walk to the townsite there, but we could not find a current Forest Service page for the trail itself. Ask about access and conditions at the Mono Basin Scenic Area Visitor Center in Lee Vining (760-647-3044) before you go, and stay out of any old mine opening.
+
+### Driving it in a day
+
+The Park Service's driving times from Yosemite Valley run about 30 minutes to Crane Flat, an hour to White Wolf, an hour and a half to Tuolumne Meadows, and an hour and 45 minutes to Tioga Pass, without stops. With Tuolumne Grove, Olmsted Point, Tenaya Lake, Pothole Dome and Soda Springs, the road is a full day, and opening weekend is a different and colder version of it. If you are reading the history on the road, the original is in the archive: Trexler's account first appeared as the June 1961 issue of Yosemite Nature Notes, the month the new road opened.
+
+- Check the road and fill the tank at Crane Flat. No gas until Lee Vining.
+- Carry all your food and water. Services along the road are seasonal and thin, and the picnic areas have no drinking water.
+- Do the exposed stops in the morning. Pothole Dome and Lembert Dome are bare granite; save Tenaya Lake's beach and the Soda Springs walk for the afternoon, when the storms of July and August build over the domes.
+- Read the road as you drive it. Crane Flat to White Wolf dates from 1939, White Wolf to Cathedral Creek from 1961, and Cathedral Creek over the pass from 1937. The narrow road down to Yosemite Creek campground is the 1883 alignment.
+
+---
+
+## What Yosemite's names mean: Ahwahnee, El Capitan, Half Dome and who named them
+
+URL: https://thetalusfieldjournal.com/articles/yosemite-place-names-meanings
+Section: Wildlife and Nature. Published: 2026-10-04. Last updated: 2026-10-04.
+Summary: What Yosemite, Ahwahnee, El Capitan, Half Dome and the Valley's falls really mean, who named them in 1851, and which old translations were guesses.
+
+Stand at Tunnel View with the park map open and you can read most of the Valley off it in a minute: El Capitan on the left, Bridalveil Fall on the right, Half Dome at the far end, Cathedral Rocks along the south wall. The names feel as permanent as the granite. Most of the landmark names on that map date from 1851 or later, and many were chosen by men who had come into the Valley that year to remove the people who lived there, and several of the translations that still circulate were guesses when they were first printed. The word on the park entrance sign is the clearest case. For most of a century it was said to mean "grizzly bear." It almost certainly does not.
+
+What follows is the record as the sources give it: who named each landmark, when, the earlier name, and how much weight each translation can bear. The main witness is Lafayette Bunnell of the Mariposa Battalion, whose Discovery of the Yosemite (1880) is candid about where he was guessing. The corrections come from linguists and from the park's own naturalists in Yosemite Nature Notes.
+
+### A name given by a campfire vote
+
+The Mariposa Battalion was a volunteer force sanctioned by the State of California in 1851. The Park Service describes its purpose plainly: to rid the area of the perceived threat of Indians, after thousands of gold rush miners had pushed into the foothills and some Indians struck back by raiding a trading post, killing several miners. Its companies entered the Valley in March 1851. Bunnell put the date at "about the 21st of March." When they arrived, the Park Service says, they systematically burned villages and food supplies and forced men, women, and children away from their homes.
+
+That first evening in the Valley, by Bunnell's account, the talk around the fire turned to what to call the place. Others offered romantic, foreign and scriptural names. Bunnell argued for "an American name," saying an Indian name would be better than an imported one, and proposed "Yo-sem-i-ty," the name the battalion used for the band it was pursuing, so that "the name of the tribe of Indians which we met leaving their homes in this valley, perhaps never to return, would be perpetuated." One man objected that the Indians' name should not be honored at all; another suggested Paradise Valley instead. A Texan named John O'Neal called a voice vote, and Bunnell records that Yo-sem-i-ty was "almost unanimously adopted."
+
+The spelling changed within a year. Bunnell credits Lieutenant Moore of the U.S. Army, reporting on an expedition to the Valley in 1852, with replacing the final "y" with an "e," "no doubt thinking the use of e more scholarly." The new spelling stuck. So did the name, despite a challenge: James Hutchings, who visited in 1855 and whose energetic publishing did much to advertise the Valley, called it "Yo-Hamite" for some time, and a San Francisco minister proposed "Yo-Amite." Bunnell supplied the facts for newspaper editorials defending the original, and in 1859 Hutchings published Bunnell's account in his own magazine and conceded the point.
+
+Photo: Anita Ritenour / Wikimedia Commons (CC BY 2.0)
+
+### What "Yosemite" means
+
+At the campfire, Bunnell writes, the meaning of the word "was not generally known to our battalion." The battalion's commander, Major James Savage, a trader who spoke several of the region's languages, told them it signified "a full-grown grizzly bear," and that the name had been given to Tenaya's band "because of their lawless and predatory character." Savage also admitted that he "could not readily understand" Tenaya or the Indian guide. Bunnell later learned from Savage that Tenaya rejected the word as a name for the Valley but accepted it for his band.
+
+The grizzly reading lasted a long time because serious people kept it alive. In 1921 the anthropologist A. L. Kroeber called "Yosemite" a corruption of the Miwok word for grizzly bear, reasoning from the Miwok division of people into two halves, one of which the grizzly bear belonged to. C. Hart Merriam, who had described that division in 1917, agreed. As late as July 1936 a park naturalist, James Cole, weighed the evidence in Nature Notes and judged that theory the strongest of the several he examined. His article, with its doubts left in, is in this site's Nature Notes archive.
+
+The linguists went the other way. In 1919 S. A. Barrett broke the word into "yo-he," to kill, and a word for "people." In 1955 Madison Beeler, a Berkeley linguist, set out the case in the journal Names, working from Lucy Freeland's 1951 grammar of Sierra Miwok. Freeland had recorded two similar words: one for bear, and one defined as "the Killers." Beeler argued the second was the source. The word for bear lacks the initial "y" sound; the other fits Miwok grammar exactly, a root meaning "to kill," a suffix meaning "one who," and a collective plural. Freeland's note, which Beeler quotes, describes it as "the name which was applied by the neighboring Miwok to the dwellers in Yosemite Valley." Sylvia Broadbent's 1964 study of the Southern Sierra Miwok language supports the same reading.
+
+Craig Bates summed it up in Yosemite Nature Notes in 1978: the word translates as "they are killers," on the evidence of fluent Southern Sierra Miwok speakers. So "Yosemite" was what outsiders called Tenaya's people, and Bunnell, also an outsider, gave it to the Valley. One loose variant should be set aside. A 1977 revision of the booklet Yosemite Indians rendered the word "some among them are killers." Dan Anderson, who edits the yosemite.ca.us online library, points out that nothing in the word means "some," and Bates's own 1978 article gives only "they are killers." Anderson also answers the idea that "killers" referred to the battalion: the word was in Miwok use before the battalion existed.
+
+### Ahwahnee, and the people who lived there
+
+The Valley already had a name. Tenaya told the battalion, through interpreters, "I am the descendant of an Ah-wah-ne-chee chief. ... The valley was then called Ah-wah-nee. Ah-wah-ne-chee signifies the dwellers in Ahwahnee." The battalion's Captain Boling replied, in Bunnell's account, that the older name was "all right enough for history or poetry" but that "we could not now change the name Yosemite."
+
+Bunnell tried to learn what Ahwahnee meant. Tenaya, he writes, "by the motion of his hands, indicated depth," while plucking grass and holding it up. "From these 'signs' I inferred that it must mean the deep grassy valley. Still, it may not mean that." Later writers dropped the caution and kept the guess. Bates traced the word to a Southern Miwok stem for "mouth," giving "the big mouth" or "place of the big mouth," and quoted a 1940 letter by a park naturalist reporting that Chief Lemee, a local Indian, "explained Ahwahnee as big mouth." The Park Service now gives the meaning as "gaping mouth-like place," and says the people who lived there called themselves Ahwahneechee. Bates also recorded what Miwok speakers remembered in 1978: the word as a name for the Yosemite people, and possible senses such as "place you go to pound acorn." His conclusion is worth keeping beside any translation in this piece: when searching for the meaning of a native term, "one can never be too careful, nor ultimately correct."
+
+Who those people were is part of the story too. Bunnell repeats the battalion's belief that Tenaya's band had been formed from refugees of other tribes, and Tenaya's own account that his mother was a Mono woman. The Park Service describes nineteenth-century Yosemite as home to Southern Miwok people who had been joined by Mono Lake Kootzaduka'a, Chukchansi Yokuts, Western Mono and former Mission Indians. Its summary of what followed is blunt: by 1910, over 90 percent of the original Ahwahneechee inhabitants were dead or missing. The park today recognizes seven traditionally associated tribes and groups: the American Indian Council of Mariposa County (the Southern Sierra Miwuk Nation), the Bishop Paiute Tribe, the Bridgeport Indian Colony, the Mono Lake Kootzaduka'a Tribe of California and Nevada, the North Fork Rancheria of Mono Indians of California, the Picayune Rancheria of the Chukchansi Indians, and the Tuolumne Band of Me-Wuk Indians. "Miwok," the Park Service notes, translates as "people."
+
+### El Capitan, Half Dome and the domes
+
+El Capitan. Bunnell heard the cliff called Tote-ack-ah-noo-la by the battalion's scouts and by Tenaya, and the scouts translated it as "the Rock Chief" or "the Captain." Asked why a cliff would be called "he," one scout took Bunnell to a spot where a stain on the face resembled a man's head. The battalion adopted the Spanish "El Capitan," Bunnell writes, to please its mission interpreters. He rejected a claim then in print that the name meant "Crane Mountain." A different reading, "measuring-worm stone," comes from the ethnographer Stephen Powers and a story about a measuring worm that rescued two children stranded when the rock grew. That is the version park naturalist Richard Hartesveldt printed in his 1955 Yosemite Valley Place Names. The two translations do not reconcile, and neither has a modern linguist's endorsement in these sources.
+
+Half Dome. Bunnell says the battalion named the North Dome, the South Dome and the Half Dome "from their localities and peculiar configuration," and records a sergeant's story that a man named Spencer looked at the "mountain with one side split off" and "called it a 'half dome.'" The labels then shifted: the battalion's South Dome became Sentinel Dome, and Half Dome itself was for years called South Dome. Bunnell gives the native name as Tis-sa-ack, "represented as meaning the 'Cleft Rock.'" The better-known story, in which Tis-sa-ack is a woman who quarreled with her husband and was turned to stone, her tears the dark streaks on the face, is the one Hartesveldt retold in 1955; he also noted an early trail leaflet's "Goddess of the Valley," a translation Bunnell had already found in Hutchings and called "more artistically imaginative than correct." For the climb itself, see our guide to hiking Half Dome.
+
+North Dome and Royal Arches. Bunnell gives North Dome's native name as To-ko-ya, "the Basket." The arches beneath it were Scho-ko-ni, the movable shade over a baby's cradle. The English name came from a battalion member who belonged to the Masonic fraternity and called it "The Royal Arch"; it became the plural over time.
+
+Three Brothers. This name records the campaign directly. Bunnell writes that the battalion brought in five captives near the base of these peaks, three of them sons of Tenaya, "one of whom was afterwards killed," and named the peaks for the coincidence. The native name, Kom-po-pai-zes, he connected to a resemblance between the peaks and the heads of frogs sitting up to leap, then added that "a literal translation is not desirable." The online edition's editor glosses the omitted meaning as a sexual one. The "mountains playing leap-frog" has, Hartesveldt wrote, no basis. Bunnell also describes Indians the battalion was chasing escaping into the Talus below the Three Brothers, the apron of broken rock that the site's piece on talus fields explains.
+
+Clouds Rest. One of the few names Bunnell credits to his comrades. A party exploring Little Yosemite turned back when clouds settled on the mountain, a sign of the snowstorm that followed.
+
+### The waterfalls
+
+Yosemite Falls. Bunnell named it, and says he followed the native usage: the fall was called "Choo-look" or "Scholook," which in this case signified "The Fall."
+
+Bridalveil Fall. The Ahwahneechee name was Pohono. Bunnell could not get a literal meaning at first and later accepted "a daily puffing wind," citing Stephen Cunningham, and it matches what he saw the fall do: an air current up the canyon threw the water "back and up in rocket-like jets." Hutchings's "Spirit of the Evil Wind" Bunnell judged "more artistically imaginative than correct." The people who summered in that drainage were the Po-ho-no-chee, "the dwellers in Po-ho-no." The English name was suggested by Warren Baer, editor of the Mariposa Democrat, on a visit with Bunnell; Hartesveldt dates it to August 1856 and notes that Hutchings also claimed it. The site's waterfalls guide covers when each fall is worth the trip.
+
+Vernal and Nevada falls. Both are Bunnell's, given during the battalion's spring stay. The Merced up to Vernal was Yan-o-pah, "the water cloud" or "little cloud," because the trail passed through the spray; Vernal Fall took the English word for spring because the spray, sun and new grass there "suggested the sensation of spring." Nevada Fall's native name was Yo-wy-we, which Bunnell connected to the twist the water takes over an obstructing rock; Hartesveldt renders it "twisted water." Bunnell chose "Nevada," Spanish for snowy, because the white water looked to him like an avalanche and because the fall was nearest the Sierra Nevada.
+
+Illilouette Fall. Bunnell gives the native name of the creek as Too-lool-lo-we-ack and declared the spelling "Illeuette" "not Indian, and is, therefore, meaningless and absurd." He called a literal translation of the original "inadmissable," mocked the published rendering "The Beautiful," and proposed "Glacier Fall" instead. Nobody adopted it.
+
+### Sentinel, Cathedral, Glacier Point and the rim
+
+Sentinel Rock. The sources disagree. Bunnell writes that the battalion's mission Indians figuratively called Half Dome "the Sentinel," and that the rock now bearing the name was Loya, which he took to be a corruption of the Spanish olla, a water pot, from its shape. Hartesveldt credits the English name to the Whitney survey party, for the rock's tower-like position.
+
+Photo: OMCV / Wikimedia Commons (public domain)
+
+Cathedral Rocks and Spires. Bunnell gives the native name for the rocks and spires together as Poo-see-na-chuc-ka, "Mouse-proof Rocks," from their resemblance to the acorn caches. Hartesveldt preferred "large acorn cache" and said the "mouse-proof" sense was not verified elsewhere. Hutchings named the spires in September 1862 because they looked like the towers of a Gothic cathedral. Seen from the west the same rocks were once called the Three Graces, a usage Hartesveldt quotes from Galen Clark; Bunnell never learned the meaning of their native name, Ko-sü-kong.
+
+Glacier Point. Its naming is unknown, Hartesveldt wrote. Bunnell gives the native name as Pa-til-le-ma and says he cannot translate it. Hartesveldt doubted the battalion chose the English name, since few of its members would have known enough about glaciers to see the point in it. A guidebook translation of another supposed native name as "Great Rock of the Elk" he called illogical, because elk did not live in the region. More on the overlook is in our Glacier Point guide.
+
+Washburn Point. Hartesveldt wrote that it was "undoubtedly" named for Albert Washburn of Wawona, one of the men who took over Clark's and Moore's station. Washburn Slide, a talus slope below Silver Strand Falls, carries the surname too; Hartesveldt does not say for whom.
+
+Mirror Lake. Bunnell's. The scouts pointed to the morning reflection and said "Look at Wai-ack," interpreted as "Water Rock," the name for both the lake and the mountain it reflected. Others objected that all still water is a mirror; Bunnell answered that he would move the name if anyone showed him a better pool. The mountain is now Mount Watkins, which Hartesveldt says was named for the photographer Carleton Watkins.
+
+### Tenaya Lake and the high country
+
+Photo: Michael Hogarth / Wikimedia Commons (public domain)
+
+The most uncomfortable naming in the record happened in the high country. In early June 1851, by Bunnell's dating, the battalion surprised the last of Tenaya's band camped on the shore of a lake and led them out of the mountains. Bunnell proposed naming the lake for the chief, and Captain Boling agreed it was "a kind of justice." When Bunnell told Tenaya, the chief pointed to the glistening peaks at the head of the lake and said, "It already has a name; we call it Py-we-ack." Bunnell understood it as "the river of glistening rocks." He also writes that Tenaya's "countenance fell," that he walked away, and that his face said he thought the naming "no equivalent for the loss of his territory." The lake, the creek and the canyon below it all carry Tenaya's name now; Py-we-ack survives only in the record. The lake is now a roadside stop on the drive over Tioga Road.
+
+The peaks above Tuolumne took their names a decade later from a different kind of expedition. The California Geological Survey under Josiah Whitney named Mount Dana on June 28, 1863, for the Yale geologist James Dwight Dana, according to the record its party left on the summit, and Mount Hoffmann that year for the survey's own topographer, Charles F. Hoffmann. Whitney's 1870 guidebook explains Mount Lyell as named for the British geologist Sir Charles Lyell. Whitney also observed that the names given by early white visitors "have entirely replaced the native ones." On the main Valley landmarks, the record above bears that out.
+
+### Where to see the names in place
+
+The Valley's names are easiest to read where most of them are in one view. Tunnel View lines up El Capitan, Bridalveil Fall and Half Dome. Hartesveldt places the battalion's first view of the Valley at Old Inspiration Point, on the south rim about a mile southeast of Inspiration Point, which sits just south of the Wawona Tunnel. Ahwahnee Meadow, the largest meadow on the Valley floor, between Yosemite Village and the Royal Arches, keeps the older name; Hartesveldt wrote that it may first have belonged to this meadow alone.
+
+Behind the Yosemite Museum, the Park Service maintains the Indian Village of Ahwahnee on the site of what it describes as the largest Indian village in Yosemite Valley. Members of the local American Indian community still use it for ceremonies and gatherings. In summer and fall the museum hosts demonstrations by Native artists from the associated tribes; our piece on Connecting to Traditions has the schedule.
+
+For the sources themselves, Bunnell's Discovery of the Yosemite, Hartesveldt's Yosemite Valley Place Names, Bates's 1978 article and Beeler's 1955 note are all transcribed in the yosemite.ca.us online library. In this record, the translations that sound most poetic are usually the ones with the weakest sources.
 
 ---
 

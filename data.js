@@ -110,6 +110,9 @@ window.planningSeriesFor = function (slug) {
 // verifies this map stays in sync with the files in bodies/.
 // ============================================================
 window.BODY_VERSIONS = {
+  "yosemite-trees-identification-guide": 1,
+  "tioga-road-stop-by-stop": 1,
+  "yosemite-place-names-meanings": 1,
   "best-airport-for-yosemite": 1,
   "sustainable-yosemite-car-free-zero-waste": 2,
   "yosemite-in-december": 1,
@@ -753,6 +756,48 @@ window.KIT.lists.forEach((l) => {
 // AffiliateDisclosure line under the byline, before the first link;
 // scripts/check-affiliate-links.mjs fails when the flag and the body disagree.
 window.ARTICLES = [
+  {
+    slug: "yosemite-trees-identification-guide",
+    cat: "wildlife",
+    title: "Yosemite trees: how to tell them apart, from the foothills to Tioga Pass",
+    dek: "The park's naturalists counted seventeen cone-bearing trees inside the boundary, and each elevation belt carries its own short list. A field guide to the conifers and the main broadleaved trees in the order a visitor drives past them: needle counts, which cones fall whole, the cone test that separates Jeffrey from ponderosa, red fir against white fir, and why the Valley's black oak groves were kept open by fire.",
+    seoDek: "Identify Yosemite's trees by elevation belt: needle counts, cones, bark, and the tests that separate Jeffrey from ponderosa and red fir from white fir.",
+    date: "October 4, 2026",
+    isoDate: "2026-10-04",
+    isoModified: "2026-10-04",
+    read: "12 min",
+    placeholder: "California black oaks in autumn color on the Yosemite Valley floor",
+    image: "img/yosemite-valley-black-oaks-autumn.jpg",
+    credit: "Photo: Bernard Spragg / Wikimedia Commons (CC0)",
+  },
+  {
+    slug: "tioga-road-stop-by-stop",
+    cat: "planning",
+    title: "Tioga Road, stop by stop: the drive and the history under it",
+    dek: "Forty-six miles from Crane Flat to Tioga Pass, taken turnout by turnout: Tuolumne Grove, Siesta Lake, White Wolf, Yosemite Creek, May Lake, Olmsted Point, Tenaya Lake, Pothole Dome, Soda Springs, Lembert Dome, Dana Meadows and the pass. Each stop with what to do there and what happened there, from the 1883 silver-mine wagon road and Stephen Mather's 1915 purchase to the 1961 realignment Ansel Adams fought, and the ghost town of Bennettville just outside the gate.",
+    seoDek: "Tioga Road stop by stop, Crane Flat to Tioga Pass: every turnout, short walk and the history behind it, from the 1883 mine road to the 1961 realignment.",
+    date: "October 4, 2026",
+    isoDate: "2026-10-04",
+    isoModified: "2026-10-04",
+    read: "12 min",
+    placeholder: "Tenaya Lake beside the Tioga Road, ringed by glacier-polished granite domes",
+    image: "img/tenaya-lake.jpg",
+    credit: "Photo: Michael Hogarth / Wikimedia Commons (public domain)",
+  },
+  {
+    slug: "yosemite-place-names-meanings",
+    cat: "wildlife",
+    title: "What Yosemite's names mean: Ahwahnee, El Capitan, Half Dome and who named them",
+    dek: "Most of the names on the Valley map date from 1851, chosen by the volunteer battalion that came to remove the people who lived there. 'Yosemite' was said for a century to mean grizzly bear; the linguists read it as 'they are killers,' a neighbors' name for Tenaya's band. Here is who named each landmark, what the older name was, and how far each translation can be trusted.",
+    seoDek: "What Yosemite, Ahwahnee, El Capitan, Half Dome and the Valley's falls really mean, who named them in 1851, and which old translations were guesses.",
+    date: "October 4, 2026",
+    isoDate: "2026-10-04",
+    isoModified: "2026-10-04",
+    read: "12 min",
+    placeholder: "Tunnel View: El Capitan, Bridalveil Fall and Half Dome from the overlook",
+    image: "img/tunnel-view-valley-spring.jpg",
+    credit: "Photo: Kyle D / Wikimedia Commons (public domain)",
+  },
   {
     slug: "best-airport-for-yosemite",
     aff: true,
@@ -2015,6 +2060,12 @@ window.START_HERE = [
 // Curate a piece when it earns real search impressions, when it anchors a
 // cluster, or when it is the destination that needs the equity.
 window.RELATED = {
+  // Yosemite trees: how to tell them apart, from the foothills to Tioga Pass
+  "yosemite-trees-identification-guide": ["giant-sequoias-fire-adaptation", "yosemite-in-fall", "yosemite-wildflowers-guide", "mariposa-grove-how-to-visit", "tuolumne-meadows-in-a-day", "yosemite-wildlife-viewing-guide"],
+  // Tioga Road, stop by stop: the drive and the history under it
+  "tioga-road-stop-by-stop": ["tuolumne-meadows-in-a-day", "tioga-road-opening-weekend", "cathedral-lakes-day-hike", "clouds-rest-hike", "yosemite-from-las-vegas", "yosemite-glaciers-climate"],
+  // What Yosemite's names mean: Ahwahnee, El Capitan, Half Dome and who named them
+  "yosemite-place-names-meanings": ["yosemite-connecting-to-traditions", "what-is-a-talus-field", "yosemite-waterfalls-guide", "so-you-want-to-hike-half-dome", "glacier-point-how-to-visit", "yosemite-glaciers-climate"],
   // The best airport for Yosemite: the arrival guide for visitors from abroad.
   // Onward to the entrances, the transit guide, the LA drive, the Bay Area
   // day-trip arithmetic, the gateway towns and the trip budget.
@@ -2106,7 +2157,7 @@ window.RELATED = {
   "yosemite-in-fall": ["yosemite-in-october-2026", "yosemite-in-september-2026", "clouds-rest-hike", "when-to-visit-yosemite", "yosemite-in-winter", "yosemite-during-smoke-season"],
   "yosemite-in-winter": ["yosemite-winter-hikes", "yosemite-in-december", "horsetail-fall-firefall", "when-to-visit-yosemite", "yosemite-in-march", "bracebridge-dinner-and-vintners-holidays"],
   "yosemite-in-march": ["yosemite-in-winter", "yosemite-waterfalls-guide", "horsetail-fall-firefall", "when-to-visit-yosemite", "yosemite-in-december"],
-  "tioga-road-opening-weekend": ["cathedral-lakes-day-hike", "tuolumne-meadows-in-a-day", "yosemite-from-las-vegas", "memorial-day-skip-the-valley-go-high-2026", "yosemite-stargazing-where-to-look-up", "when-to-visit-yosemite"],
+  "tioga-road-opening-weekend": ["cathedral-lakes-day-hike", "tuolumne-meadows-in-a-day", "yosemite-from-las-vegas", "memorial-day-skip-the-valley-go-high-2026", "yosemite-stargazing-where-to-look-up", "tioga-road-stop-by-stop"],
   "glacier-point-road-open-2026": ["four-mile-up-panorama-down", "glacier-point-how-to-visit", "yosemite-photography-spots", "yosemite-stargazing-where-to-look-up", "yosemite-for-non-hikers"],
   "yosemite-heat-safety-guide": ["swimming-in-the-merced", "mist-trail-the-real-guide", "when-to-visit-yosemite", "yosemite-during-smoke-season", "yosemite-waterfalls-guide", "yosemite-falls-trail"],
   "yosemite-during-smoke-season": ["yosemite-heat-safety-guide", "yosemite-fire-restrictions-explained", "when-to-visit-yosemite", "yosemite-in-fall", "giant-sequoias-fire-adaptation", "wildfire-in-yosemite-during-your-trip"],
@@ -2114,12 +2165,12 @@ window.RELATED = {
   "memorial-day-skip-the-valley-go-high-2026": ["tioga-road-opening-weekend", "tuolumne-meadows-in-a-day", "when-to-visit-yosemite", "clouds-rest-hike", "hetch-hetchy-the-other-yosemite-valley", "cathedral-lakes-day-hike"],
   "swimming-in-the-merced": ["yosemite-heat-safety-guide", "yosemite-with-kids-no-reservations-2026", "mist-trail-the-real-guide", "yosemite-waterfalls-guide", "yosemite-in-june"],
   "horsetail-fall-firefall": ["yosemite-in-winter", "yosemite-photography-spots", "yosemite-winter-hikes", "when-to-visit-yosemite", "yosemite-in-march"],
-  "yosemite-stargazing-where-to-look-up": ["tuolumne-meadows-in-a-day", "glacier-point-road-open-2026", "yosemite-photography-spots", "tioga-road-opening-weekend", "yosemite-in-fall"],
+  "yosemite-stargazing-where-to-look-up": ["tuolumne-meadows-in-a-day", "glacier-point-road-open-2026", "yosemite-photography-spots", "tioga-road-opening-weekend", "yosemite-in-fall", "tioga-road-stop-by-stop"],
 
   // Doing and seeing
   "yosemite-photography-spots": ["yosemite-stargazing-where-to-look-up", "horsetail-fall-firefall", "four-mile-up-panorama-down", "yosemite-waterfalls-guide", "yosemite-in-fall", "watching-climbers-el-capitan"],
   "watching-climbers-el-capitan": ["yosemite-for-non-hikers", "yosemite-photography-spots", "yosemite-valley-parking-guide", "where-to-propose-in-yosemite", "yosemite-ranger-programs"],
-  "mariposa-grove-how-to-visit": ["giant-sequoias-fire-adaptation", "yosemite-accessibility-guide", "yosemite-gateway-towns-compared", "yosemite-for-non-hikers", "yosemite-tunnel-trees"],
+  "mariposa-grove-how-to-visit": ["giant-sequoias-fire-adaptation", "yosemite-accessibility-guide", "yosemite-gateway-towns-compared", "yosemite-for-non-hikers", "yosemite-tunnel-trees", "yosemite-trees-identification-guide"],
   "yosemite-ranger-programs": ["yosemite-with-kids-no-reservations-2026", "yosemite-wildlife-viewing-guide", "yosemite-for-non-hikers", "yosemite-accessibility-guide", "yosemite-facelift-volunteer-guide"],
   "where-to-propose-in-yosemite": ["yosemite-photography-spots", "yosemite-for-non-hikers", "where-to-eat-yosemite", "where-to-stay-in-yosemite", "yosemite-in-one-or-two-days"],
   "working-in-yosemite": ["yosemite-ranger-programs", "yosemite-gateway-towns-compared", "yosemite-connecting-to-traditions", "yosemite-needs-a-reservation-system", "yosemite-in-winter"],
@@ -2129,14 +2180,14 @@ window.RELATED = {
   "is-bear-spray-allowed-in-yosemite": ["yosemite-bears-safety-guide", "yosemite-wildlife-viewing-guide", "camping-in-yosemite-first-time", "pack-your-car-for-yosemite"],
   "yosemite-bears-safety-guide": ["is-bear-spray-allowed-in-yosemite", "yosemite-wildlife-viewing-guide", "camping-in-yosemite-first-time", "yosemite-camping-complete-guide"],
   "yosemite-wildlife-viewing-guide": ["yosemite-bears-safety-guide", "water-ouzels-waterfalls", "yosemite-ranger-programs", "yosemite-stargazing-where-to-look-up"],
-  "yosemite-wildflowers-guide": ["showy-milkweed-yosemite-valley", "yosemite-wildlife-viewing-guide", "tuolumne-meadows-in-a-day", "yosemite-in-june", "giant-sequoias-fire-adaptation"],
-  "giant-sequoias-fire-adaptation": ["mariposa-grove-how-to-visit", "yosemite-tunnel-trees", "yosemite-during-smoke-season", "yosemite-fire-restrictions-explained", "yosemite-glaciers-climate"],
-  "what-is-a-talus-field": ["yosemite-glaciers-climate", "giant-sequoias-fire-adaptation", "yosemite-wildlife-viewing-guide", "mist-trail-the-real-guide", "tuolumne-meadows-in-a-day"],
+  "yosemite-wildflowers-guide": ["showy-milkweed-yosemite-valley", "yosemite-wildlife-viewing-guide", "tuolumne-meadows-in-a-day", "yosemite-in-june", "giant-sequoias-fire-adaptation", "yosemite-trees-identification-guide"],
+  "giant-sequoias-fire-adaptation": ["mariposa-grove-how-to-visit", "yosemite-tunnel-trees", "yosemite-during-smoke-season", "yosemite-fire-restrictions-explained", "yosemite-glaciers-climate", "yosemite-trees-identification-guide"],
+  "what-is-a-talus-field": ["yosemite-glaciers-climate", "giant-sequoias-fire-adaptation", "yosemite-wildlife-viewing-guide", "mist-trail-the-real-guide", "tuolumne-meadows-in-a-day", "yosemite-place-names-meanings"],
   "yosemite-glaciers-climate": ["what-is-a-talus-field", "yosemite-waterfalls-guide", "giant-sequoias-fire-adaptation", "cathedral-lakes-day-hike", "tuolumne-meadows-in-a-day"],
   "water-ouzels-waterfalls": ["yosemite-waterfalls-guide", "yosemite-wildlife-viewing-guide", "mist-trail-the-real-guide", "swimming-in-the-merced", "showy-milkweed-yosemite-valley"],
   "yosemite-tunnel-trees": ["giant-sequoias-fire-adaptation", "mariposa-grove-how-to-visit", "yosemite-connecting-to-traditions", "what-is-a-talus-field", "yosemite-needs-a-reservation-system"],
   "showy-milkweed-yosemite-valley": ["yosemite-wildflowers-guide", "yosemite-wildlife-viewing-guide", "water-ouzels-waterfalls", "swimming-in-the-merced", "giant-sequoias-fire-adaptation"],
-  "yosemite-connecting-to-traditions": ["yosemite-tunnel-trees", "yosemite-ranger-programs", "working-in-yosemite", "mariposa-grove-how-to-visit", "yosemite-wildlife-viewing-guide"],
+  "yosemite-connecting-to-traditions": ["yosemite-tunnel-trees", "yosemite-ranger-programs", "working-in-yosemite", "mariposa-grove-how-to-visit", "yosemite-wildlife-viewing-guide", "yosemite-place-names-meanings"],
 };
 
 // How many links a related block carries. Six is the working number: enough

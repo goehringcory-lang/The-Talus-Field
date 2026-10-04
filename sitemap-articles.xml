@@ -5,7 +5,7 @@
   <!-- Hub pages -->
   <url>
     <loc>https://thetalusfieldjournal.com/</loc>
-    <lastmod>2026-10-03</lastmod>
+    <lastmod>2026-10-04</lastmod>
     <image:image>
       <image:loc>https://thetalusfieldjournal.com/img/responsive/half-dome-winter-storm-1600.jpg</image:loc>
       <image:title>Half Dome in a clearing winter storm</image:title>
@@ -13,11 +13,11 @@
   </url>
   <url>
     <loc>https://thetalusfieldjournal.com/articles</loc>
-    <lastmod>2026-10-03</lastmod>
+    <lastmod>2026-10-04</lastmod>
   </url>
   <url>
     <loc>https://thetalusfieldjournal.com/planning</loc>
-    <lastmod>2026-10-03</lastmod>
+    <lastmod>2026-10-04</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
@@ -31,7 +31,7 @@
   <!-- Sections -->
   <url>
     <loc>https://thetalusfieldjournal.com/section/planning</loc>
-    <lastmod>2026-10-03</lastmod>
+    <lastmod>2026-10-04</lastmod>
   </url>
   <url>
     <loc>https://thetalusfieldjournal.com/section/trails</loc>
@@ -39,7 +39,7 @@
   </url>
   <url>
     <loc>https://thetalusfieldjournal.com/section/wildlife</loc>
-    <lastmod>2026-10-01</lastmod>
+    <lastmod>2026-10-04</lastmod>
   </url>
   <url>
     <loc>https://thetalusfieldjournal.com/section/seasonal</loc>
@@ -161,6 +161,30 @@
   </url>
 
   <!-- Articles -->
+  <url>
+    <loc>https://thetalusfieldjournal.com/articles/yosemite-trees-identification-guide</loc>
+    <lastmod>2026-10-04</lastmod>
+    <image:image>
+      <image:loc>https://thetalusfieldjournal.com/img/responsive/yosemite-valley-black-oaks-autumn-1600.jpg</image:loc>
+      <image:title>California black oaks in autumn color on the Yosemite Valley floor</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://thetalusfieldjournal.com/articles/tioga-road-stop-by-stop</loc>
+    <lastmod>2026-10-04</lastmod>
+    <image:image>
+      <image:loc>https://thetalusfieldjournal.com/img/responsive/tenaya-lake-1600.jpg</image:loc>
+      <image:title>Tenaya Lake beside the Tioga Road, ringed by glacier-polished granite domes</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://thetalusfieldjournal.com/articles/yosemite-place-names-meanings</loc>
+    <lastmod>2026-10-04</lastmod>
+    <image:image>
+      <image:loc>https://thetalusfieldjournal.com/img/responsive/tunnel-view-valley-spring-1600.jpg</image:loc>
+      <image:title>Tunnel View: El Capitan, Bridalveil Fall and Half Dome from the overlook</image:title>
+    </image:image>
+  </url>
   <url>
     <loc>https://thetalusfieldjournal.com/articles/best-airport-for-yosemite</loc>
     <lastmod>2026-10-03</lastmod>

@@ -80,6 +80,9 @@ window.INTENT_FACETS = [
 
 // Per-article tags. Keyed by the slug in window.ARTICLES.
 window.ARTICLE_INTENT = {
+  "yosemite-trees-identification-guide": { stage: ["in-park"], who: ["families", "non-hikers"], topic: [] },
+  "tioga-road-stop-by-stop": { stage: ["dates-set", "week-before", "in-park"], who: ["first-trip", "non-hikers"], topic: ["transportation", "trails"] },
+  "yosemite-place-names-meanings": { stage: ["in-park"], who: [], topic: [] },
   // The three arrival-logistics pieces carry an empty `who` on purpose. Parking,
   // the buses, and what is still available today are questions every traveler
   // type asks in the same words, so tagging them with a subset would both cost
@@ -306,6 +309,8 @@ window.INTENT_NO_TAGS = {
 //   follows. Do not widen or narrow one from memory: if the body does not state
 //   a window, the entry does not belong in this table.
 window.ARTICLE_MONTHS = {
+  // Road-dependent: "The Park Service's standing line is that Tioga Road is typically open to vehicles from late May or June until sometime in November; plowing usually begins around April 15, and the opening date moves with the snowpack."
+  "tioga-road-stop-by-stop": ["may", "jun", "jul", "aug", "sep", "oct"],
   // Seasonal essays and month guides.
   "yosemite-in-fall": ["sep", "oct", "nov"],
   "yosemite-in-october-2026": ["oct"],
