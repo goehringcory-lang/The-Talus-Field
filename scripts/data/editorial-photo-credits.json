@@ -19,6 +19,11 @@
     "license": "Public domain",
     "source": "https://commons.wikimedia.org/wiki/File:Fee_Collection._Group_of_visitors_at_the_entrance_station_for_Yosemite_National_Park_._(99ed92205f8e4eeda0e59081a75f930e).jpg"
   },
+  "img/bear-resistant-recycling-upper-pines.jpg": {
+    "author": "Mx. Granger",
+    "license": "CC0",
+    "source": "https://commons.wikimedia.org/wiki/File:Bear-resistant_container_1.jpg"
+  },
   "img/big-oak-flat-road-tunnel.jpg": {
     "author": "Famartin",
     "license": "CC BY-SA 3.0",
@@ -179,6 +184,11 @@
     "license": "CC BY-SA 2.0",
     "source": "https://commons.wikimedia.org/wiki/File:Oakhurst,_California_skyline.jpg"
   },
+  "img/propane-canister-recycling-yosemite.jpg": {
+    "author": "Mx. Granger",
+    "license": "CC0",
+    "source": "https://commons.wikimedia.org/wiki/File:Propane_canister_recycling.jpg"
+  },
   "img/tioga-pass-entrance-station.jpg": {
     "author": "daveynin from United States",
     "license": "CC BY 2.0",
@@ -229,6 +239,11 @@
     "license": "Public domain",
     "source": "https://commons.wikimedia.org/wiki/File:Horse-drawn_wagon_driving_through_a_hole_cut_in_a_Big_Tree_in_Mariposa_Grove_in_Yosemite_National_Park,_California,_ca.1900_(CHS-1695).jpg"
   },
+  "img/yarts-bus-merced-amtrak.jpg": {
+    "author": "RickyCourtney",
+    "license": "CC BY-SA 3.0",
+    "source": "https://commons.wikimedia.org/wiki/File:YARTS_Bus_at_Merced.jpg"
+  },
   "img/yosemite-ceanothus-bloom.jpg": {
     "author": "Dawn Endico",
     "license": "CC BY-SA 2.0",
@@ -238,6 +253,11 @@
     "author": "Rachelle Haun",
     "license": "CC BY 2.0",
     "source": "https://commons.wikimedia.org/wiki/File:Yosemite-07_(49260763823).jpg"
+  },
+  "img/yosemite-life-zones-profile-1924.jpg": {
+    "author": "Joseph Grinnell and Tracy Irwin Storer, Animal Life in the Yosemite (1924), Museum of Vertebrate Zoology; scan by the Internet Archive",
+    "license": "Public domain",
+    "source": "https://commons.wikimedia.org/wiki/File:Animal_life_in_the_Yosemite;_an_account_of_the_mammals,_birds,_reptiles,_and_amphibians_in_a_cross-section_of_the_Sierra_Nevada_(1924)_(18199458551).jpg"
   },
   "img/yosemite-ranger-program-visitors.jpg": {
     "author": "Richard Frear",
@@ -249,10 +269,20 @@
     "license": "CC BY-SA 4.0",
     "source": "https://commons.wikimedia.org/wiki/File:Yosemite_Shuttle_bus_with_Half_Dome_behind,_May_2022.JPG"
   },
+  "img/yosemite-valley-bike-path.jpg": {
+    "author": "Vulturesong",
+    "license": "CC0",
+    "source": "https://commons.wikimedia.org/wiki/File:Yosemite_National_Park_-_HCP_-_October_07,_2022_-_172.jpg"
+  },
   "img/yosemite-valley-black-oaks-autumn.jpg": {
     "author": "Bernard Spragg. NZ from Christchurch, New Zealand",
     "license": "CC0",
     "source": "https://commons.wikimedia.org/wiki/File:Yosemite_National_Park;_2007_(1).jpg"
+  },
+  "img/yosemite-valley-cross-section-1924.jpg": {
+    "author": "Joseph Grinnell and Tracy Irwin Storer, Animal Life in the Yosemite (1924), Museum of Vertebrate Zoology; scan by the Internet Archive",
+    "license": "Public domain",
+    "source": "https://commons.wikimedia.org/wiki/File:Animal_life_in_the_Yosemite;_an_account_of_the_mammals,_birds,_reptiles,_and_amphibians_in_a_cross-section_of_the_Sierra_Nevada_(1924)_(18011695339).jpg"
   },
   "img/yosemite-valley-lodge-entrance.jpg": {
     "author": "Rennett Stowe",
@@ -264,6 +294,11 @@
     "license": "Public domain",
     "source": "https://commons.wikimedia.org/wiki/File:Snow_coats_Yosemite_Valley_in_Yosemite_National_Park,_California,_during_a_winter_storm,_1850-1930_(CHS-1202).jpg"
   },
+  "img/yosemite-vegetation-zones-map-usgs.jpg": {
+    "author": "Jan van Wagtendonk / USGS",
+    "license": "Public domain",
+    "source": "https://commons.wikimedia.org/wiki/File:Yose_veg_zonesm.jpg"
+  },
   "img/yosemite-village-shuttle-stop.jpg": {
     "author": "Pi.1415926535",
     "license": "CC BY-SA 4.0",
@@ -273,25 +308,5 @@
     "author": "Rennett Stowe from USA",
     "license": "CC BY 2.0",
     "source": "https://commons.wikimedia.org/wiki/File:Yosemite_Village_Store_(3020745703).jpg"
-  },
-  "img/yarts-bus-merced-amtrak.jpg": {
-    "author": "RickyCourtney",
-    "license": "CC BY-SA 3.0",
-    "source": "https://commons.wikimedia.org/wiki/File:YARTS_Bus_at_Merced.jpg"
-  },
-  "img/yosemite-valley-bike-path.jpg": {
-    "author": "Vulturesong",
-    "license": "CC0",
-    "source": "https://commons.wikimedia.org/wiki/File:Yosemite_National_Park_-_HCP_-_October_07,_2022_-_172.jpg"
-  },
-  "img/bear-resistant-recycling-upper-pines.jpg": {
-    "author": "Mx. Granger",
-    "license": "CC0",
-    "source": "https://commons.wikimedia.org/wiki/File:Bear-resistant_container_1.jpg"
-  },
-  "img/propane-canister-recycling-yosemite.jpg": {
-    "author": "Mx. Granger",
-    "license": "CC0",
-    "source": "https://commons.wikimedia.org/wiki/File:Propane_canister_recycling.jpg"
   }
 }

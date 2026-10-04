@@ -665,5 +665,35 @@
     "author": "Mx. Granger",
     "license": "CC0",
     "source": "https://commons.wikimedia.org/wiki/File:Propane_canister_recycling.jpg"
+  },
+  {
+    "file": "yosemite-life-zones-profile-1924.jpg",
+    "slot": "article:yosemite-trees-identification-guide",
+    "tier": 1,
+    "subject": "Grinnell and Storer 1924, plate 61: colored profile of the Yosemite section, Snelling to Mono Lake, showing the six life zones by altitude",
+    "directUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2d/Animal_life_in_the_Yosemite%3B_an_account_of_the_mammals%2C_birds%2C_reptiles%2C_and_amphibians_in_a_cross-section_of_the_Sierra_Nevada_%281924%29_%2818199458551%29.jpg/1920px-Animal_life_in_the_Yosemite%3B_an_account_of_the_mammals%2C_birds%2C_reptiles%2C_and_amphibians_in_a_cross-section_of_the_Sierra_Nevada_%281924%29_%2818199458551%29.jpg",
+    "author": "Joseph Grinnell and Tracy Irwin Storer, Animal Life in the Yosemite (1924), Museum of Vertebrate Zoology; scan by the Internet Archive",
+    "license": "Public domain",
+    "source": "https://commons.wikimedia.org/wiki/File:Animal_life_in_the_Yosemite;_an_account_of_the_mammals,_birds,_reptiles,_and_amphibians_in_a_cross-section_of_the_Sierra_Nevada_(1924)_(18199458551).jpg"
+  },
+  {
+    "file": "yosemite-valley-cross-section-1924.jpg",
+    "slot": "article:yosemite-trees-identification-guide",
+    "tier": 1,
+    "subject": "Grinnell and Storer 1924, fig. 56: diagrammatic cross-section of Yosemite Valley with its vegetation from talus to river",
+    "directUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0c/Animal_life_in_the_Yosemite%3B_an_account_of_the_mammals%2C_birds%2C_reptiles%2C_and_amphibians_in_a_cross-section_of_the_Sierra_Nevada_%281924%29_%2818011695339%29.jpg/1920px-Animal_life_in_the_Yosemite%3B_an_account_of_the_mammals%2C_birds%2C_reptiles%2C_and_amphibians_in_a_cross-section_of_the_Sierra_Nevada_%281924%29_%2818011695339%29.jpg",
+    "author": "Joseph Grinnell and Tracy Irwin Storer, Animal Life in the Yosemite (1924), Museum of Vertebrate Zoology; scan by the Internet Archive",
+    "license": "Public domain",
+    "source": "https://commons.wikimedia.org/wiki/File:Animal_life_in_the_Yosemite;_an_account_of_the_mammals,_birds,_reptiles,_and_amphibians_in_a_cross-section_of_the_Sierra_Nevada_(1924)_(18011695339).jpg"
+  },
+  {
+    "file": "yosemite-vegetation-zones-map-usgs.jpg",
+    "slot": "article:yosemite-trees-identification-guide",
+    "tier": 1,
+    "subject": "Map of Yosemite's five vegetation zones (foothill woodland to alpine) by Jan van Wagtendonk, USGS",
+    "directUrl": "https://upload.wikimedia.org/wikipedia/commons/5/5e/Yose_veg_zonesm.jpg",
+    "author": "Jan van Wagtendonk / USGS",
+    "license": "Public domain",
+    "source": "https://commons.wikimedia.org/wiki/File:Yose_veg_zonesm.jpg"
   }
 ]
