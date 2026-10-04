@@ -2035,7 +2035,7 @@ window.START_HERE = [
   "first-time-yosemite-overwhelm",
   "yosemite-without-reservations-2026",
   "yosemite-gateway-towns-compared",
-  "yosemite-in-one-or-two-days",
+  "best-airport-for-yosemite",
 ];
 
 // Related reading, hand-curated per article.
