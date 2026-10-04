@@ -174,7 +174,7 @@ window.BODY_VERSIONS = {
   "so-you-want-to-hike-half-dome": 80,
   "glacier-point-road-open-2026": 84,
   "mist-trail-the-real-guide": 91,
-  "first-time-yosemite-overwhelm": 90,
+  "first-time-yosemite-overwhelm": 92,
   "yosemite-without-reservations-2026": 87,
   "yosemite-during-smoke-season": 79,
   "yosemite-gateway-towns-compared": 102,
@@ -2022,11 +2022,19 @@ window.ARTICLES = [
     seoDek: "First time in Yosemite? How many days you need, the best month, where to stay, what to see in what order, and the 2026 fees. From a park naturalist.",
     date: "April 25, 2026",
     isoDate: "2026-04-25",
-    isoModified: "2026-09-21",
+    isoModified: "2026-10-04",
     read: "13 min",
     placeholder: "Half Dome down the length of Yosemite Valley under summer cumulus",
     image: "img/half-dome-valley-cumulus.jpg",
     credit: "Photo: elijahjcobb / Pexels",
+    // The /firefall layout for an article (page-article.jsx), as on the
+    // non-hikers piece: a full-width photo cover, and a body that lays out its
+    // own sections. The two buttons jump to the questions and the order.
+    feature: {
+      eyebrow: "BEFORE YOU BOOK · HOW LONG · WHEN · WHERE TO SLEEP · WHAT FIRST",
+      focus: "50% 45%",
+      actions: [["#sec-3-three-questions-before-you-book-anything", "Three questions first"], ["#sec-7-what-to-see-in-yosemite-the-first-time-in-the-right-order", "What to see, in order"]],
+    },
   },
 ];
 
