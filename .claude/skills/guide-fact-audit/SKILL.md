@@ -1,6 +1,6 @@
 ---
 name: guide-fact-audit
-description: The Field Guide fact audit — once a week, re-verify the perishable facts already in the paid PWA (hours, fees, shuttle and road windows, parking rules, trail access, phone numbers) against primary sources: the next ten stops, hikes, or secret spots in the rotation, one whole content file, or the in-park dining hours and help numbers when a new Yosemite Guide edition has landed, as `npm run audit:candidates` picks; correct what changed, flag what this lane cannot change, one [guide] PR. Run by the "Field Guide fact audit" Routine (Friday mornings Pacific) in a fresh session; also runnable by hand when asked to "run the guide fact audit".
+description: "The Field Guide fact audit — once a week, re-verify the perishable facts already in the paid PWA (hours, fees, shuttle and road windows, parking rules, trail access, phone numbers) against primary sources: the next ten stops, hikes, or secret spots in the rotation, one whole content file, or the in-park dining hours and help numbers when a new Yosemite Guide edition has landed, as `npm run audit:candidates` picks; correct what changed, flag what this lane cannot change, one [guide] PR. Run by the \"Field Guide fact audit\" Routine (Friday mornings Pacific) in a fresh session; also runnable by hand when asked to \"run the guide fact audit\"."
 ---
 
 # The Field Guide fact audit: keep the paid guide true

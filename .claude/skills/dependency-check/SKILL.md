@@ -1,6 +1,6 @@
 ---
 name: dependency-check
-description: The dependency and security check — on the 1st of each month, audit the three npm packages (apps/guide, workers, scripts) and the GitHub Actions the workflows pin: triage every security advisory for whether it reaches code this repo actually runs, record the verdict in scripts/data/dependency-triage.json, apply the fixes and safe in-range updates, run each package's gates, and open one PR (flagged [api] with the owner's wrangler deploy step when workers/ changed). Run by the "Dependency and security check" Routine (1st of each month, early morning Pacific) in a fresh session; also runnable by hand when asked to "run the dependency check".
+description: "The dependency and security check — on the 1st of each month, audit the three npm packages (apps/guide, workers, scripts) and the GitHub Actions the workflows pin: triage every security advisory for whether it reaches code this repo actually runs, record the verdict in scripts/data/dependency-triage.json, apply the fixes and safe in-range updates, run each package's gates, and open one PR (flagged [api] with the owner's wrangler deploy step when workers/ changed). Run by the \"Dependency and security check\" Routine (1st of each month, early morning Pacific) in a fresh session; also runnable by hand when asked to \"run the dependency check\"."
 ---
 
 # The dependency and security check
