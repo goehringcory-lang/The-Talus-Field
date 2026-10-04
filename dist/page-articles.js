@@ -726,7 +726,7 @@ function PlanningSectionPage({
     className: "ps-drive__go"
   }, cta)))))), React.createElement("p", {
     className: "ff-note"
-  }, "Drive times between any two points in and around the park: ", L("section_planning", "/distances", "the distance table"), ". Road closed on the way in: ", L("section_planning", "/articles/highway-140-closed-yosemite", "Highway 140 closed"), ". Today's roads and entrance waits: ", L("section_planning", "/conditions", "the conditions board"), "."))), React.createElement("section", {
+  }, "Drive times between any two points in and around the park: ", L("section_planning", "/distances", "the distance table"), ". Road closed on the way in: ", L("section_planning", "/articles/highway-140-closed-yosemite", "Highway 140 closed"), ". Today's roads and entrance waits: ", L("section_planning", "/conditions", "the conditions board"), ". Flying in: ", L("section_planning", "/articles/best-airport-for-yosemite", "which airport, and the drive or bus from it"), ". Leaving the car at home: ", L("section_planning", "/articles/sustainable-yosemite-car-free-zero-waste", "the train, the bus and the free shuttle"), ". The high-country drive itself: ", L("section_planning", "/articles/tioga-road-stop-by-stop", "Tioga Road, stop by stop"), "."))), React.createElement("section", {
     className: "hp-wrap hp-section",
     id: "ps-every-entry",
     tabIndex: -1
@@ -978,7 +978,7 @@ var SX_SEASONS = [{
   label: "Winter",
   months: "December to February",
   lead: "yosemite-in-winter",
-  slugs: ["yosemite-in-winter", "horsetail-fall-firefall", "bracebridge-dinner-and-vintners-holidays", "yosemite-winter-hikes"]
+  slugs: ["yosemite-in-winter", "yosemite-in-december", "horsetail-fall-firefall", "bracebridge-dinner-and-vintners-holidays", "yosemite-winter-hikes"]
 }, {
   key: "spring",
   label: "Spring",
@@ -996,7 +996,7 @@ var SX_SEASONS = [{
   label: "Fall",
   months: "September to November",
   lead: "yosemite-in-fall",
-  slugs: ["yosemite-in-fall", "yosemite-in-september-2026", "yosemite-in-october-2026", "yosemite-connecting-to-traditions"]
+  slugs: ["yosemite-in-fall", "yosemite-in-september-2026", "yosemite-in-october-2026", "yosemite-connecting-to-traditions", "wildfire-in-yosemite-during-your-trip"]
 }];
 var SX_ROAD_LABEL = {
   open: "Open",
@@ -1550,7 +1550,7 @@ var SX_BLOOM = [{
   what: "Redbud, then poppies"
 }];
 var SX_BLOOM_MONTHS = ["Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug"];
-var SX_WILD_GROUPS = [["animals", "Animals", ["yosemite-wildlife-viewing-guide", "water-ouzels-waterfalls", "showy-milkweed-yosemite-valley"]], ["bears", "Bears", ["yosemite-bears-safety-guide", "is-bear-spray-allowed-in-yosemite"]], ["plants", "Plants and trees", ["yosemite-wildflowers-guide", "giant-sequoias-fire-adaptation", "yosemite-tunnel-trees"]], ["land", "Rock and ice", ["what-is-a-talus-field", "yosemite-glaciers-climate"]]];
+var SX_WILD_GROUPS = [["animals", "Animals", ["yosemite-wildlife-viewing-guide", "water-ouzels-waterfalls", "showy-milkweed-yosemite-valley"]], ["bears", "Bears", ["yosemite-bears-safety-guide", "is-bear-spray-allowed-in-yosemite"]], ["plants", "Plants and trees", ["yosemite-wildflowers-guide", "yosemite-trees-identification-guide", "giant-sequoias-fire-adaptation", "yosemite-tunnel-trees"]], ["land", "Rock and ice", ["what-is-a-talus-field", "yosemite-glaciers-climate"]], ["names", "Names and history", ["yosemite-place-names-meanings"]]];
 function WildlifeSectionPage({
   go
 }) {
@@ -1735,9 +1735,9 @@ function WildlifeSectionPage({
     className: "hp-eyebrow"
   }, "THE GROUND BENEATH"), React.createElement("h2", null, "Rock, ice and the oldest trees")), React.createElement("p", {
     className: "ff-lede ps-flush"
-  }, "The natural-history essays: the landform the Valley is built on, the glaciers that carved it and are now leaving, and the trees that need fire.")), React.createElement("div", {
-    className: "ps-paths sx-paths"
-  }, card("what-is-a-talus-field", "mountain", "LANDFORM", "What is a talus field?", "Read the essay →"), card("yosemite-glaciers-climate", "gain", "ICE", "The disappearing glaciers", "Read the essay →"), card("giant-sequoias-fire-adaptation", "flower", "TREES", "Why sequoias thrive in fire", "Read the essay →")))), React.createElement(SxEveryEntry, {
+  }, "The natural-history essays: the landform the Valley is built on, the glaciers that carved it and are now leaving, the trees that need fire, and how to tell the conifers apart, belt by belt.")), React.createElement("div", {
+    className: "ps-paths"
+  }, card("what-is-a-talus-field", "mountain", "LANDFORM", "What is a talus field?", "Read the essay →"), card("yosemite-glaciers-climate", "gain", "ICE", "The disappearing glaciers", "Read the essay →"), card("giant-sequoias-fire-adaptation", "flower", "TREES", "Why sequoias thrive in fire", "Read the essay →"), card("yosemite-trees-identification-guide", "flower", "FIELD ID", "Tell the trees apart", "Read the guide →")))), React.createElement(SxEveryEntry, {
     slugCat: "wildlife",
     groups: SX_WILD_GROUPS,
     go: go,

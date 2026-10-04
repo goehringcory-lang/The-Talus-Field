@@ -58,7 +58,7 @@ window.ARTICLE_BODIES["yosemite-in-fall"] = function YosemiteInFallBody() {
       <h2>Fall color: the received wisdom is wrong</h2>
 
       <p>
-        You will read, in more than one place, that Yosemite has no fall color because the trees are conifers. That is half right. Most of the forest is evergreen, correct. But the Valley floor is not forest, it is meadow and oak woodland and riparian corridor, and those are exactly the places deciduous trees live.
+        You will read, in more than one place, that Yosemite has no fall color because the trees are conifers. That is half right. Most of the forest is evergreen, correct, and <a href="/articles/yosemite-trees-identification-guide">the field guide to the park's trees</a> sorts those conifers belt by belt. But the Valley floor is not forest, it is meadow and oak woodland and riparian corridor, and those are exactly the places deciduous trees live.
       </p>
 
       <p>

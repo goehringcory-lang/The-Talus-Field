@@ -48,7 +48,7 @@ window.ARTICLE_BODIES["yosemite-waterfalls-guide"] = function YosemiteWaterfalls
       </p>
 
       <p>
-        The Ahwahneechee called it <strong>Pohono</strong>, often translated as spirit of the puffing wind, and the name is a field observation. Bridalveil rarely falls straight. Afternoon breezes catch the column and swing it sideways across the cliff face, sometimes lifting the lower half into pure mist before it reaches the ground. The approach trail and viewing area were rebuilt in a multi-year restoration finished in 2023, and the short paved walk to the base is an easy add to any Valley day. Expect to get wet at the viewpoint in May.
+        The Ahwahneechee called it <strong>Pohono</strong>, often translated as spirit of the puffing wind (how far the old translations can be trusted is the subject of <a href="/articles/yosemite-place-names-meanings">what Yosemite's names mean</a>), and the name is a field observation. Bridalveil rarely falls straight. Afternoon breezes catch the column and swing it sideways across the cliff face, sometimes lifting the lower half into pure mist before it reaches the ground. The approach trail and viewing area were rebuilt in a multi-year restoration finished in 2023, and the short paved walk to the base is an easy add to any Valley day. Expect to get wet at the viewpoint in May.
       </p>
 
       <h2>The Mist Trail corridor: Vernal and Nevada</h2>

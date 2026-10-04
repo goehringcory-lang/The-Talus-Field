@@ -66,7 +66,7 @@ window.ARTICLE_BODIES["tioga-road-opening-weekend"] = function TiogaRoadOpeningW
       </p>
 
       <p>
-        <strong>Arrive early.</strong> Before 8 a.m. is the target if you want to beat the congestion and the full parking lots, especially on opening weekend. Sunrise at Olmsted is a strong photograph, and you will share it with almost no one.
+        <strong>Arrive early.</strong> Before 8 a.m. is the target if you want to beat the congestion and the full parking lots, especially on opening weekend. Sunrise at Olmsted is a strong photograph, and you will share it with almost no one. The rest of the turnouts between Crane Flat and the pass, with the history under each, are in <a href="/articles/tioga-road-stop-by-stop">Tioga Road, stop by stop</a>.
       </p>
 
       <h2>The best Tioga Road stops and short hikes for opening weekend</h2>

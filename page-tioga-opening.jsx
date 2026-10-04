@@ -417,7 +417,7 @@ function TiogaOpeningPage({ go }) {
               <ResponsiveImage image="img/tuolumne-meadows-lembert-dome.jpg" alt="Lembert Dome above the edge of Tuolumne Meadows" sizes="(max-width: 880px) calc(100vw - 40px), 520px" />
               <figcaption>Lembert Dome from Tuolumne Meadows. Photo: Pacific Southwest Region USFWS / Wikimedia Commons (public domain)</figcaption>
             </figure>
-            <p className="ff-note">Every stop, where to eat in Lee Vining, and what the meadows look like under snowmelt: <HomeLink go={go} location="tioga_article" href="/articles/tioga-road-opening-weekend">the opening-weekend field guide</HomeLink>.</p>
+            <p className="ff-note">Every stop, where to eat in Lee Vining, and what the meadows look like under snowmelt: <HomeLink go={go} location="tioga_article" href="/articles/tioga-road-opening-weekend">the opening-weekend field guide</HomeLink>. Every turnout from Crane Flat to the pass, and the history under the road: <HomeLink go={go} location="tioga_article" href="/articles/tioga-road-stop-by-stop">Tioga Road, stop by stop</HomeLink>.</p>
           </div>
           <ol className="ff-hours">
             <li><span>Before 8 a.m.</span><p>Through the gate and climbing. Early beats the congestion and the full lots, and sunrise at Olmsted Point is shared with almost no one.</p></li>

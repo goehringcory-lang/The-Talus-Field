@@ -20,7 +20,7 @@ window.ARTICLE_BODIES["tuolumne-meadows-in-a-day"] = function TuolumneMeadowsInA
       </p>
 
       <p>
-        Tioga Road opened on May 15 this year, unusually early, and it is open now. <a href="/articles/tioga-road-opening-weekend">The opening-weekend piece</a> covers the early-season version of this day, which is a different trip, and <a href="/tioga-opening">the Tioga Road opening page</a> tracks when the road comes back each spring. One current caution: there is water distribution system construction near the visitor center, with one-way traffic control and short holds. Budget a few extra minutes and do not treat a queue as a closure. There is no vehicle reservation required to enter Yosemite in 2026.
+        Tioga Road opened on May 15 this year, unusually early, and it is open now. <a href="/articles/tioga-road-opening-weekend">The opening-weekend piece</a> covers the early-season version of this day, which is a different trip, and <a href="/tioga-opening">the Tioga Road opening page</a> tracks when the road comes back each spring. For the drive in, turnout by turnout, see <a href="/articles/tioga-road-stop-by-stop">Tioga Road, stop by stop</a>. One current caution: there is water distribution system construction near the visitor center, with one-way traffic control and short holds. Budget a few extra minutes and do not treat a queue as a closure. There is no vehicle reservation required to enter Yosemite in 2026.
       </p>
 
       <h2>What is actually open, which changes every year</h2>
