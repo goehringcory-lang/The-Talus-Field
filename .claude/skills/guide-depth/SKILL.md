@@ -1,6 +1,6 @@
 ---
 name: guide-depth
-description: The Field Guide depth pass — once a week, make the paid PWA deeper with work the repo can verify offline: two or three sourced Nature Notes archive notes on stops and secret spots that lack one, plus at most one body-derived field (a swap, hazard, photo-timing, or teaser) that the entry's own text already supports; build, lint, citation check, one [guide] PR. Run by the "Field Guide depth pass" Routine (Tuesday mornings Pacific) in a fresh session; also runnable by hand when asked to "run the guide depth pass".
+description: "The Field Guide depth pass — once a week, make the paid PWA deeper with work the repo can verify offline: two or three sourced Nature Notes archive notes on stops and secret spots that lack one, plus at most one body-derived field (a swap, hazard, photo-timing, or teaser) that the entry's own text already supports; build, lint, citation check, one [guide] PR. Run by the \"Field Guide depth pass\" Routine (Tuesday mornings Pacific) in a fresh session; also runnable by hand when asked to \"run the guide depth pass\"."
 ---
 
 # The Field Guide depth pass

@@ -1,6 +1,6 @@
 ---
 name: cornerstone-article
-description: The cornerstone article — the second weekly article, driven by standing search demand rather than the week's news: build the catalog's gap ledger live (head terms, the evergreen month guides, the questions people keep asking, thin cells in the trip selector), pick the one gap with the most trip-planning value, write it fact-checked in house voice through the full SEO pipeline, and open a PR. Run by the "Cornerstone article" Routine (Thursday mornings Pacific) in a fresh session; also runnable by hand when asked to "write a cornerstone article".
+description: "The cornerstone article — the second weekly article, driven by standing search demand rather than the week's news: build the catalog's gap ledger live (head terms, the evergreen month guides, the questions people keep asking, thin cells in the trip selector), pick the one gap with the most trip-planning value, write it fact-checked in house voice through the full SEO pipeline, and open a PR. Run by the \"Cornerstone article\" Routine (Thursday mornings Pacific) in a fresh session; also runnable by hand when asked to \"write a cornerstone article\"."
 ---
 
 # The cornerstone article: fill the standing gaps
