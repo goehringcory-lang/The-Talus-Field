@@ -493,7 +493,7 @@ const HUB_PROSE = {
   "/international": () =>
     hubProse(
       "Yosemite for Visitors From Outside the United States",
-      "Since January 1, 2026, a visitor who is not a US citizen or resident pays a non-resident fee of $100 per person aged 16 and older to enter Yosemite, on top of the standard entrance fee of $35 per car, $30 per motorcycle or $20 per person on foot or by bus, unless covered by an annual pass. The non-resident America the Beautiful pass costs $250, covers the holder's vehicle and its occupants for twelve months at every federal fee site, and waives the non-resident fee for them. One adult in one car pays $135 at the gate; three adults pay $335 at the gate or $250 with the pass. The fee-free days are for US residents only in 2026. The gate takes cards, not cash. The same surcharge applies at Acadia, Bryce Canyon, Everglades, Glacier, Grand Canyon, Grand Teton, Rocky Mountain, Sequoia and Kings Canyon, Yellowstone and Zion.",
+      "Since January 1, 2026, a visitor who is not a US citizen or resident pays a non-resident fee of $100 per person aged 16 and older to enter Yosemite, on top of the standard entrance fee of $35 per car, $30 for up to two motorcycles or $20 per person on foot or by bus, unless covered by an annual pass. The non-resident America the Beautiful pass costs $250, covers the holder's vehicle and its occupants for twelve months at every federal fee site, and waives the non-resident fee for them. One adult in one car pays $135 at the gate; three adults pay $335 at the gate or $250 with the pass. The fee-free days are for US residents only in 2026. The gate takes cards, not cash. The same surcharge applies at Acadia, Bryce Canyon, Everglades, Glacier, Grand Canyon, Grand Teton, Rocky Mountain, Sequoia and Kings Canyon, Yellowstone and Zion.",
       `<p>What else is different here: the nearest big airports are hours away (<a href="/articles/best-airport-for-yosemite">which airport to fly into</a>); no entry reservation is needed in 2026 (<a href="/articles/yosemite-without-reservations-2026">the no-reservations strategy</a>); most of the park has no mobile signal; Tioga Road and Glacier Point Road close from roughly November to late May (<a href="/tioga-opening">the Tioga Road page</a>); chains are required by law in winter, in rental cars too (<a href="/articles/getting-to-yosemite">getting to Yosemite</a>); the park can be reached without a car by Amtrak and YARTS (<a href="/articles/yosemite-shuttle-and-yarts">the shuttle and YARTS guide</a>); in-park beds sell out a year ahead (<a href="/stay">where to stay</a>); bear rules carry fines (<a href="/articles/yosemite-bears-safety-guide">the bears guide</a>). What a week costs all in: <a href="/articles/yosemite-trip-cost-budget">the trip-cost breakdown</a>.</p>`
     ),
   "/start-here": () =>
@@ -1172,7 +1172,7 @@ function seoForPath(pathname, searchParams) {
       faq: [
         {
           q: "How much does it cost for a non-US resident to enter Yosemite in 2026?",
-          a: "The standard entrance fee ($35 per car for seven days, $30 per motorcycle, $20 per person on foot or by bus) plus a non-resident fee of $100 per person aged 16 and older, charged at each entry unless that person is covered by an annual pass. One adult in one car pays $135. The gate is card only.",
+          a: "The standard entrance fee ($35 per car for seven days, $30 for up to two motorcycles, $20 per person on foot or by bus) plus a non-resident fee of $100 per person aged 16 and older, charged at each entry unless that person is covered by an annual pass. One adult in one car pays $135. The gate is card only.",
         },
         {
           q: "Is the $250 non-resident pass worth it?",
@@ -1184,7 +1184,7 @@ function seoForPath(pathname, searchParams) {
         },
         {
           q: "Do you need a reservation to enter Yosemite in 2026?",
-          a: "No. There is no timed-entry or peak-hours reservation in 2026. You pay at the gate and drive in; what rations a summer day is parking, which is solved by being through the entrance before 8 a.m. or after 4 p.m.",
+          a: "No. There is no timed-entry or peak-hours reservation in 2026. You pay at the gate and drive in; what rations a summer day is parking, which is solved by being through the entrance before 8 a.m. or after 5 p.m.",
         },
       ],
     },

@@ -126,7 +126,7 @@ function InternationalPage({ go }) {
           <h2>The 2026 non-resident fee</h2>
           <p>
             Every visitor pays the entrance fee: {money(F.vehicle)} per car for
-            seven days, {money(F.motorcycle)} per motorcycle, {money(F.perPerson)} per
+            seven days, {money(F.motorcycle)} for up to two motorcycles, {money(F.perPerson)} per
             person on foot, by bicycle or by bus, children under {F.perPersonFreeUnder} free.
             On top of that, since January 1, 2026, a visitor who is not a US
             citizen or resident pays a non-resident fee of {money(F.surcharge)} per
@@ -142,7 +142,7 @@ function InternationalPage({ go }) {
             </thead>
             <tbody>
               <tr><td>Entrance, private vehicle</td><td>{money(F.vehicle)}</td><td>The car and everyone in it, seven days</td></tr>
-              <tr><td>Entrance, motorcycle</td><td>{money(F.motorcycle)}</td><td>Seven days</td></tr>
+              <tr><td>Entrance, motorcycle</td><td>{money(F.motorcycle)}</td><td>Up to two motorcycles, seven days</td></tr>
               <tr><td>Entrance, per person</td><td>{money(F.perPerson)}</td><td>On foot, bicycle or bus; under {F.perPersonFreeUnder} free</td></tr>
               <tr><td>Non-resident fee</td><td>{money(F.surcharge)} per person</td><td>Age {F.surchargeAgeFrom} and older, each entry, unless holding a pass</td></tr>
               <tr><td>Non-resident annual pass</td><td>{money(F.nonResidentAnnual)}</td><td>The holder's vehicle and its occupants, twelve months, every federal fee site; no non-resident fee</td></tr>
@@ -190,7 +190,7 @@ function InternationalPage({ go }) {
               <strong>No reservation is needed to enter in 2026.</strong> You
               pay at the gate and drive in. What rations a summer day now is
               parking, which is solved by being through the entrance before
-              8 a.m. or after 4 p.m. The full picture is in{" "}
+              8 a.m. or after 5 p.m. The full picture is in{" "}
               <a href="/articles/yosemite-without-reservations-2026" onClick={(e) => goA(e, "yosemite-without-reservations-2026")}>the no-reservations strategy</a>.
             </li>
             <li>
@@ -228,7 +228,7 @@ function InternationalPage({ go }) {
             </li>
             <li>
               <strong>Bears are real and the rules carry fines.</strong> No food
-              or anything scented left in a car overnight, anywhere in the park.{" "}
+              or anything scented left in a car after dark, anywhere in the park.{" "}
               <a href="/articles/yosemite-bears-safety-guide" onClick={(e) => goA(e, "yosemite-bears-safety-guide")}>The bears guide</a> covers what that means in practice.
             </li>
             <li>
