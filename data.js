@@ -110,6 +110,7 @@ window.planningSeriesFor = function (slug) {
 // verifies this map stays in sync with the files in bodies/.
 // ============================================================
 window.BODY_VERSIONS = {
+  "best-yosemite-backpacking-trips": 1,
   "yosemite-trees-identification-guide": 2,
   "tioga-road-stop-by-stop": 1,
   "yosemite-place-names-meanings": 1,
@@ -131,7 +132,7 @@ window.BODY_VERSIONS = {
   "yosemite-in-three-to-five-days": 6,
   "yosemite-winter-hikes": 5,
   "camping-in-yosemite-first-time": 2,
-  "first-yosemite-backpacking-trip": 4,
+  "first-yosemite-backpacking-trip": 5,
   "yosemite-day-trip-from-bay-area": 3,
   "mariposa-grove-how-to-visit": 5,
   "tuolumne-meadows-in-a-day": 6,
@@ -756,6 +757,20 @@ window.KIT.lists.forEach((l) => {
 // AffiliateDisclosure line under the byline, before the first link;
 // scripts/check-affiliate-links.mjs fails when the flag and the body disagree.
 window.ARTICLES = [
+  {
+    slug: "best-yosemite-backpacking-trips",
+    cat: "trails",
+    title: "The Best Yosemite Backpacking Trips, in Order: The Permit, the Pickup, and Five Routes",
+    dek: "A backpacking trip takes three things a day hike does not: a permit, a morning at a wilderness center, and a route sized to what you know. The Recreation.gov steps, where to collect the permit, and five Tioga Road trips to work up through, from May Lake to Young Lakes.",
+    seoDek: "How to get a Yosemite wilderness permit on Recreation.gov, where to pick it up, and five backpacking trips in order: May Lake, Glen Aulin, Vogelsang, Young Lakes.",
+    date: "October 4, 2026",
+    isoDate: "2026-10-04",
+    isoModified: "2026-10-04",
+    read: "11 min",
+    placeholder: "Mount Hoffmann reflected in May Lake on a still summer morning",
+    image: "img/may-lake-mount-hoffmann.jpg",
+    credit: "Photo: au_ears / Wikimedia Commons (CC BY-SA 2.0), cropped",
+  },
   {
     slug: "yosemite-trees-identification-guide",
     cat: "wildlife",
@@ -2070,6 +2085,8 @@ window.START_HERE = [
 // Curate a piece when it earns real search impressions, when it anchors a
 // cluster, or when it is the destination that needs the equity.
 window.RELATED = {
+  // The best Yosemite backpacking trips, in order: the permit, the pickup, and five routes
+  "best-yosemite-backpacking-trips": ["first-yosemite-backpacking-trip", "yosemite-wilderness-permits-guide", "yosemite-walk-up-and-day-of-permits", "yosemite-bears-safety-guide", "tuolumne-meadows-in-a-day", "cathedral-lakes-day-hike"],
   // Yosemite trees: how to tell them apart, from the foothills to Tioga Pass
   "yosemite-trees-identification-guide": ["giant-sequoias-fire-adaptation", "yosemite-in-fall", "yosemite-wildflowers-guide", "mariposa-grove-how-to-visit", "tuolumne-meadows-in-a-day", "yosemite-wildlife-viewing-guide"],
   // Tioga Road, stop by stop: the drive and the history under it
@@ -2134,10 +2151,10 @@ window.RELATED = {
   "pack-your-car-for-yosemite": ["yosemite-bears-safety-guide", "camping-in-yosemite-first-time", "getting-to-yosemite", "yosemite-valley-parking-guide", "first-time-yosemite-overwhelm", "cell-service-in-yosemite"],
 
   // Permits
-  "yosemite-wilderness-permits-guide": ["first-yosemite-backpacking-trip", "yosemite-walk-up-and-day-of-permits", "so-you-want-to-hike-half-dome", "yosemite-camping-complete-guide", "mist-trail-the-real-guide"],
-  "yosemite-walk-up-and-day-of-permits": ["yosemite-wilderness-permits-guide", "so-you-want-to-hike-half-dome", "first-yosemite-backpacking-trip", "yosemite-without-reservations-2026", "mist-trail-the-real-guide"],
+  "yosemite-wilderness-permits-guide": ["best-yosemite-backpacking-trips", "first-yosemite-backpacking-trip", "yosemite-walk-up-and-day-of-permits", "so-you-want-to-hike-half-dome", "yosemite-camping-complete-guide", "mist-trail-the-real-guide"],
+  "yosemite-walk-up-and-day-of-permits": ["yosemite-wilderness-permits-guide", "best-yosemite-backpacking-trips", "so-you-want-to-hike-half-dome", "first-yosemite-backpacking-trip", "yosemite-without-reservations-2026", "mist-trail-the-real-guide"],
   "so-you-want-to-hike-half-dome": ["clouds-rest-hike", "mist-trail-the-real-guide", "yosemite-wilderness-permits-guide", "cathedral-lakes-day-hike", "four-mile-up-panorama-down", "yosemite-heat-safety-guide"],
-  "first-yosemite-backpacking-trip": ["yosemite-wilderness-permits-guide", "yosemite-bears-safety-guide", "cathedral-lakes-day-hike", "yosemite-camping-complete-guide", "yosemite-walk-up-and-day-of-permits", "cell-service-in-yosemite"],
+  "first-yosemite-backpacking-trip": ["best-yosemite-backpacking-trips", "yosemite-wilderness-permits-guide", "yosemite-bears-safety-guide", "cathedral-lakes-day-hike", "yosemite-camping-complete-guide", "yosemite-walk-up-and-day-of-permits"],
 
   // Trails
   "mist-trail-the-real-guide": ["yosemite-waterfalls-guide", "so-you-want-to-hike-half-dome", "four-mile-up-panorama-down", "yosemite-heat-safety-guide", "yosemite-valley-parking-guide", "yosemite-falls-trail"],
