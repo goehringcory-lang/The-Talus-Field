@@ -651,6 +651,18 @@ var NAV_GROUPS = [{
       key: "half-dome-lottery",
       label: "Half Dome lottery",
       note: "The permit odds, plainly"
+    }, {
+      key: "fall-color",
+      label: "Fall color",
+      note: "When and where the leaves turn"
+    }, {
+      key: "moonbow",
+      label: "Moonbow",
+      note: "Rainbows by moonlight at Yosemite Falls"
+    }, {
+      key: "frazil-ice",
+      label: "Frazil ice",
+      note: "The mornings the creek runs white"
     }]
   }]
 }, {
@@ -2257,6 +2269,63 @@ var KEEP_GOING = {
       key: "kit",
       label: "Kit",
       note: "What earns its place in the pack"
+    }]
+  },
+  "fall-color": {
+    links: [{
+      key: "a:yosemite-in-fall",
+      label: "Yosemite in fall",
+      note: "The rest of the season, beyond the leaves"
+    }, {
+      key: "tioga-opening",
+      label: "Tioga Road",
+      note: "The high road, before it closes for snow"
+    }, {
+      key: "firefall",
+      label: "Firefall",
+      note: "The next light people plan around"
+    }, {
+      key: "stay",
+      label: "Where to stay",
+      note: "Every gateway road, compared"
+    }]
+  },
+  moonbow: {
+    links: [{
+      key: "frazil-ice",
+      label: "Frazil ice",
+      note: "The same creek on a freezing morning"
+    }, {
+      key: "a:yosemite-waterfalls-guide",
+      label: "The waterfalls guide",
+      note: "How much water, month by month"
+    }, {
+      key: "firefall",
+      label: "Firefall",
+      note: "The other light show on a waterfall"
+    }, {
+      key: "stay",
+      label: "Where to stay",
+      note: "Close enough to walk home"
+    }]
+  },
+  "frazil-ice": {
+    links: [{
+      key: "moonbow",
+      label: "Moonbow",
+      note: "The same falls on full-moon nights"
+    }, {
+      key: "a:yosemite-in-march",
+      label: "Yosemite in March",
+      note: "The month it most often starts"
+    }, {
+      key: "firefall",
+      label: "Firefall",
+      note: "February's light on Horsetail Fall"
+    }, {
+      key: "conditions",
+      label: "Conditions",
+      note: "Webcams, forecasts and closures"
     }]
   },
   about: {

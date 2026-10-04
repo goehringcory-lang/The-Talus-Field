@@ -11,7 +11,7 @@ function routeToPath(route) {
   if (route.startsWith("a:")) return `/articles/${route.slice(2)}`;
   return `/${route}`;
 }
-var STATIC_ROUTE_KEYS = new Set(["home", "articles", "planning", "checklist", "about", "kit", "places", "advertise", "newsletter", "contact", "privacy", "terms", "affiliate", "guide", "map", "films", "itineraries", "conditions", "now", "firefall", "stay", "consult", "widget", "partners", "search", "tioga-opening", "half-dome-lottery", "explore", "distances", "webcams", "start-here", "dates", "international"]);
+var STATIC_ROUTE_KEYS = new Set(["home", "articles", "planning", "checklist", "about", "kit", "places", "advertise", "newsletter", "contact", "privacy", "terms", "affiliate", "guide", "map", "films", "itineraries", "conditions", "now", "firefall", "stay", "consult", "widget", "partners", "search", "tioga-opening", "half-dome-lottery", "explore", "distances", "webcams", "start-here", "dates", "international", "fall-color", "moonbow", "frazil-ice"]);
 function pathToRoute(pathname) {
   var path = (pathname || "/").replace(/\/+$/, "") || "/";
   if (path === "/") return "home";
@@ -154,6 +154,18 @@ var PAGE_MODULES = {
   "half-dome-lottery": {
     scripts: ["/dist/page-half-dome-lottery.js"],
     globals: ["HalfDomeLotteryPage"]
+  },
+  "fall-color": {
+    scripts: ["/dist/page-fall-color.js"],
+    globals: ["FallColorPage"]
+  },
+  moonbow: {
+    scripts: ["/dist/page-moonbow.js"],
+    globals: ["MoonbowPage"]
+  },
+  "frazil-ice": {
+    scripts: ["/dist/page-frazil-ice.js"],
+    globals: ["FrazilIcePage"]
   },
   distances: {
     scripts: ["/dist/page-distances.js"],
@@ -706,6 +718,24 @@ function buildSeo(route) {
       ogType: "website",
       breadcrumb: [["Home", `${SITE_ORIGIN}/`], ["Half Dome lottery", null]]
     },
+    "fall-color": {
+      title: `Yosemite Fall Colors: when and where the leaves turn — ${SITE_NAME}`,
+      description: "When Yosemite's fall color peaks, band by band from the Tioga Road aspens to the Valley's maples and black oaks, where the park's own naturalists look, and what ends the season.",
+      ogType: "website",
+      breadcrumb: [["Home", `${SITE_ORIGIN}/`], ["Fall color", null]]
+    },
+    moonbow: {
+      title: `The Yosemite Moonbow: full-moon dates, where to stand, how it works — ${SITE_NAME}`,
+      description: "The Yosemite moonbow at Lower Yosemite Fall: the spring full-moon nights, the 42-degree geometry that sets the hour, where to stand, what to bring, and how to behave on a crowded bridge in the dark.",
+      ogType: "website",
+      breadcrumb: [["Home", `${SITE_ORIGIN}/`], ["Moonbow", null]]
+    },
+    "frazil-ice": {
+      title: `Frazil Ice in Yosemite: what it is, when it happens, where to see it — ${SITE_NAME}`,
+      description: "Frazil ice on Yosemite Creek: waterfall mist frozen into slush that moves like lava on cold spring mornings. What it is, when the conditions line up, where to watch, the Nature Notes film, and why you never step on it.",
+      ogType: "website",
+      breadcrumb: [["Home", `${SITE_ORIGIN}/`], ["Frazil ice", null]]
+    },
     webcams: {
       title: `Yosemite Webcams Live: Half Dome, Yosemite Falls, El Capitan — ${SITE_NAME}`,
       description: "Live Yosemite webcams: Half Dome, Yosemite Falls, El Capitan and Wawona, how to read them, and what to check for Tuolumne Meadows, which has no Conservancy camera.",
@@ -1227,6 +1257,18 @@ function App() {
     });
   } else if (route === "half-dome-lottery") {
     page = React.createElement(window.HalfDomeLotteryPage, {
+      go: go
+    });
+  } else if (route === "fall-color") {
+    page = React.createElement(window.FallColorPage, {
+      go: go
+    });
+  } else if (route === "moonbow") {
+    page = React.createElement(window.MoonbowPage, {
+      go: go
+    });
+  } else if (route === "frazil-ice") {
+    page = React.createElement(window.FrazilIcePage, {
       go: go
     });
   } else if (route === "consult") {

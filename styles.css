@@ -12902,3 +12902,87 @@ html[data-nav-mode="pinned"] { scroll-padding-top: 62px; }
   letter-spacing: 0.02em;
 }
 .prose .diagram-plate--narrow figcaption { max-width: 520px; margin-left: auto; margin-right: auto; }
+/* ── /fall-color (page-fall-color.jsx): the autumn event page, October 2026 ──
+   On /firefall's system (`.hp-event` + the `.ff-*` rules). This layer adds
+   only the autumn pieces: the cover's crop, the pin numerals on the whole
+   NPS Valley map (2560 px wide, so its markers are drawn larger in map
+   units), the six-tree key with a swatch per tree, and the out-of-Valley
+   list. The swatches are the trees' own colours, set inline from FC_TREES. */
+.fcol-cover .ff-cover__img { object-position: 50% 55%; }
+.npsmap__num.fcol-num { font-size: 24px; }
+.fcol-trees { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; }
+.fcol-trees li { background: var(--hp-card); border: 1px solid var(--hp-rule); border-radius: 4px; padding: 20px; display: grid; grid-template-columns: auto 1fr; column-gap: 12px; row-gap: 4px; align-content: start; }
+.fcol-swatch { grid-row: span 2; width: 30px; height: 30px; border-radius: 50%; box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.12); margin-top: 2px; }
+.fcol-trees strong { font: 400 22px/1.15 var(--serif); color: var(--hp-ink); }
+.fcol-trees span { font: 600 11px var(--sans); letter-spacing: 1.2px; text-transform: uppercase; color: var(--hp-muted); }
+.fcol-trees p { grid-column: 1 / -1; margin: 8px 0 0; font: 14px/1.6 var(--sans); color: var(--ink-2); }
+.fcol-why { margin-top: 48px; }
+.fcol-why .nn-film { margin: 0; }
+.fcol-else { margin-top: 36px; max-width: 880px; }
+.fcol-else ul { list-style: none; margin: 14px 0 0; padding: 0; border-top: 2px solid var(--hp-ink); }
+.fcol-else li { display: grid; grid-template-columns: auto 1fr; gap: 14px; padding-block: 15px; border-bottom: 1px solid var(--hp-rule); }
+.fcol-else .ff-icon { color: var(--hp-accent); margin-top: 2px; }
+.fcol-else strong { display: block; font: 400 21px/1.2 var(--serif); color: var(--hp-ink); }
+.fcol-else p { margin: 4px 0 0; font: 14px/1.55 var(--sans); color: var(--ink-2); }
+.fcol-towns { margin-top: 8px; }
+.fcol-towns .ff-town { grid-template-columns: minmax(0, 1fr) minmax(0, 1.6fr) auto; }
+@media (max-width: 1100px) {
+  .fcol-trees { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (max-width: 760px) {
+  .fcol-trees { grid-template-columns: 1fr; }
+}
+
+/* ── /moonbow (page-moonbow.jsx): the spring event page, October 2026 ──────
+   On /firefall's system. Adds the cover's crop, the computed full-moon card
+   (`.mb-nights`, in `.ff-short`'s night-ink language, since it is the one
+   panel on the page about the dark), the 42-degree diagram, and a two-column
+   rule grid for the night section's narrow column. */
+.mb-cover .ff-cover__img { object-position: 50% 80%; }
+.mb-cover::before { background: linear-gradient(90deg, rgba(8, 14, 22, 0.7) 0%, rgba(8, 14, 22, 0.45) 40%, rgba(8, 14, 22, 0) 70%); }
+.mb-photo img { height: 440px; object-position: 50% 80%; }
+.mb-nights { background: var(--hp-ink); color: var(--hp-paper); border-radius: 4px; padding: 28px; display: grid; gap: 14px; }
+.mb-nights__head { display: flex; align-items: center; gap: 10px; margin: 0; font: 700 11px var(--sans); letter-spacing: 1.6px; text-transform: uppercase; color: var(--hp-gold); }
+.mb-nights ol { list-style: none; margin: 0; padding: 0; display: grid; gap: 0; }
+.mb-nights li { display: grid; grid-template-columns: 90px 1fr; column-gap: 14px; padding-block: 12px; border-top: 1px solid rgba(247, 241, 225, 0.18); }
+.mb-nights li span { grid-row: span 2; font: 600 11px var(--sans); letter-spacing: 1.2px; text-transform: uppercase; color: var(--hp-band-muted); padding-top: 6px; }
+.mb-nights li strong { font: 400 24px/1.2 var(--serif); color: #fbf6ea; }
+.mb-nights li p { margin: 2px 0 0; font: 14px/1.5 var(--sans); color: rgba(247, 241, 225, 0.82); }
+.mb-nights .ff-note { margin: 0; color: var(--hp-band-muted); }
+.mb-nights .ff-note a { color: var(--hp-gold); }
+.mb-geo { display: block; width: 100%; height: auto; margin-top: 18px; background: #16232e; border-radius: 4px; }
+.mb-geo__ground { stroke: #8ea0ad; stroke-width: 1.5; }
+.mb-geo__fall { fill: rgba(223, 231, 234, 0.22); }
+.mb-geo__ghost { fill: none; stroke: #8ea0ad; stroke-width: 1.2; stroke-dasharray: 4 5; opacity: 0.6; }
+.mb-geo__bow { fill: none; stroke: #e7e2d0; stroke-width: 7; opacity: 0.9; }
+.mb-geo__mark { stroke: var(--hp-gold); stroke-width: 2; }
+.mb-geo__title { font: 600 12px var(--sans); letter-spacing: 1.2px; text-transform: uppercase; fill: var(--hp-gold); }
+.mb-geo__label { font: 13px var(--sans); fill: #c9d3da; }
+.mb-rules { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+@media (max-width: 760px) {
+  .mb-cover::before { background: linear-gradient(180deg, rgba(8, 14, 22, 0.5) 0%, rgba(8, 14, 22, 0.55) 45%, rgba(8, 14, 22, 0.85) 100%); }
+  .mb-photo img { height: 340px; }
+  .mb-rules { grid-template-columns: 1fr; }
+  .mb-nights li { grid-template-columns: 1fr; }
+  .mb-nights li span { grid-row: auto; padding-top: 0; }
+}
+
+/* ── /frazil-ice (page-frazil-ice.jsx): the cold-morning event page ─────────
+   On /firefall's system. Adds the cover's crop, the film section (the Nature
+   Notes episode is the page's centerpiece, so it sits in the first split at
+   full column width), the formation steps on `.ff-hours`, the ice-cone
+   aside, and the closing card's light-ground disclosure. */
+.fz-cover .ff-cover__img { object-position: 50% 50%; }
+.fz-cover .ff-cover__credit { padding: 2px 6px; border-radius: 2px; background: rgba(8, 14, 22, 0.55); }
+.fz-film .ff-split { align-items: center; }
+.fz-film .nn-film { margin: 0; }
+.fz-steps { margin-top: 8px; }
+.fz-cone { margin-top: 40px; align-items: end; }
+.fz-cone h3 { margin-bottom: 10px; }
+.ff-closing .fz-disclosure { color: var(--hp-muted); }
+.ff-closing .fz-disclosure a { color: var(--hp-accent); }
+
+/* The three October 2026 event pages link out of their archive cards and
+   rule cards, which /firefall never does; give those links the page's
+   in-copy link style. Scoped to the three, so /firefall is unchanged. */
+:where(.hp-fall-color, .hp-moonbow, .hp-frazil-ice) :is(.ff-history, .ff-rules) p a { color: var(--hp-accent); text-decoration: underline; text-underline-offset: 2px; }

@@ -653,6 +653,9 @@ const NAV_GROUPS = [
           { key: "tioga-opening", label: "Tioga Road opening", note: "When the high country actually opens" },
           { key: "firefall", label: "Firefall", note: "Whether to plan a trip around Horsetail Fall" },
           { key: "half-dome-lottery", label: "Half Dome lottery", note: "The permit odds, plainly" },
+          { key: "fall-color", label: "Fall color", note: "When and where the leaves turn" },
+          { key: "moonbow", label: "Moonbow", note: "Rainbows by moonlight at Yosemite Falls" },
+          { key: "frazil-ice", label: "Frazil ice", note: "The mornings the creek runs white" },
         ],
       },
     ],
@@ -1829,7 +1832,7 @@ const KEEP_GOING = {
     { key: "itineraries", label: "Itineraries", note: "Plans in drive order" },
   ] },
 
-  // --- The three dated-event pages, which are each other's best next link ---
+  // --- The event pages, which are each other's best next link ---
   firefall: { links: [
     { key: "tioga-opening", label: "Tioga Road opening", note: "The other date people plan around" },
     { key: "half-dome-lottery", label: "Half Dome lottery", note: "The permit odds, plainly" },
@@ -1847,6 +1850,24 @@ const KEEP_GOING = {
     { key: "firefall", label: "Firefall", note: "Whether the light is worth the trip" },
     { key: "cat:trails", label: "Trails and hikes", note: "The rest of the park's big days" },
     { key: "kit", label: "Kit", note: "What earns its place in the pack" },
+  ] },
+  "fall-color": { links: [
+    { key: "a:yosemite-in-fall", label: "Yosemite in fall", note: "The rest of the season, beyond the leaves" },
+    { key: "tioga-opening", label: "Tioga Road", note: "The high road, before it closes for snow" },
+    { key: "firefall", label: "Firefall", note: "The next light people plan around" },
+    { key: "stay", label: "Where to stay", note: "Every gateway road, compared" },
+  ] },
+  moonbow: { links: [
+    { key: "frazil-ice", label: "Frazil ice", note: "The same creek on a freezing morning" },
+    { key: "a:yosemite-waterfalls-guide", label: "The waterfalls guide", note: "How much water, month by month" },
+    { key: "firefall", label: "Firefall", note: "The other light show on a waterfall" },
+    { key: "stay", label: "Where to stay", note: "Close enough to walk home" },
+  ] },
+  "frazil-ice": { links: [
+    { key: "moonbow", label: "Moonbow", note: "The same falls on full-moon nights" },
+    { key: "a:yosemite-in-march", label: "Yosemite in March", note: "The month it most often starts" },
+    { key: "firefall", label: "Firefall", note: "February's light on Horsetail Fall" },
+    { key: "conditions", label: "Conditions", note: "Webcams, forecasts and closures" },
   ] },
 
   // --- The journal ---
