@@ -172,6 +172,16 @@ var START_MISTAKES = [{
   title: "Doing too much",
   text: "Three things well beats seven from the driver's seat."
 }];
+var START_PAGE_CARDS = {
+  "/itineraries": {
+    eyebrow: "ITINERARIES",
+    meta: "FOUR PLANS",
+    title: "Yosemite, in day-sized pieces",
+    dek: "Half a day to three days, built from the map's curated pins and ordered the way you would actually drive them. Pick the one that matches your time and open it on the map.",
+    image: "img/half-dome-valley-vista.jpg",
+    alt: "Half Dome from the rim above autumn color"
+  }
+};
 var START_THEN = [{
   href: "/articles/yosemite-in-three-to-five-days",
   label: "Three to five days"
@@ -369,7 +379,10 @@ function StartHerePage({
     plan: itineraries.find(it => it.id === p.id)
   })).filter(p => p.plan);
   var halfDay = itineraries.find(it => it.id === "halfday");
-  var articles = (window.START_HERE || []).map(slug => (window.ARTICLES || []).find(a => a.slug === slug)).filter(Boolean);
+  var articles = (window.START_HERE || []).map(key => START_PAGE_CARDS[key] ? {
+    page: key,
+    ...START_PAGE_CARDS[key]
+  } : (window.ARTICLES || []).find(a => a.slug === key)).filter(Boolean);
   var hero = {
     image: "img/tunnel-view-valley-spring.jpg",
     alt: "Yosemite Valley from Tunnel View in spring",
@@ -499,7 +512,18 @@ function StartHerePage({
     className: "start-lede"
   }, "The long answers behind this page, in the order most first-timers need them."), React.createElement("div", {
     className: "hp-journal-grid start-reads"
-  }, articles.map(a => React.createElement(HpArticleCard, {
+  }, articles.map(a => a.page ? React.createElement(HpCard, {
+    key: a.page,
+    go: go,
+    location: START_LOCATION,
+    href: a.page,
+    image: a.image,
+    alt: a.alt,
+    eyebrow: React.createElement(React.Fragment, null, a.eyebrow, React.createElement("span", null, a.meta)),
+    title: a.title,
+    text: React.createElement(React.Fragment, null, a.dek, " ↗"),
+    sizes: "(max-width: 760px) calc(100vw - 40px), (max-width: 1100px) 45vw, 420px"
+  }) : React.createElement(HpArticleCard, {
     key: a.slug,
     article: a,
     go: go,

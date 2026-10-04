@@ -1,4 +1,4 @@
-/* global React, HpPageHead, HpHeading, HpArticleCard, HpGuideBand, HpLetter, HomeLink, ResponsiveImage, LodgingCta, AffiliateDisclosure */
+/* global React, HpPageHead, HpHeading, HpArticleCard, HpCard, HpGuideBand, HpLetter, HomeLink, ResponsiveImage, LodgingCta, AffiliateDisclosure */
 
 // =============================================================================
 // START HERE — `/start-here` route. The first-time visitor hub.
@@ -31,8 +31,10 @@
 //      day that repeats an earlier plan's day collapses to one line instead of
 //      printing nine stops a second and third time. Nothing about a plan is
 //      restated in this file.
-//   3. The article cards are window.START_HERE resolved through the catalog,
-//      so a retitled article or a new photo reaches this page on its own.
+//   3. The reading cards are window.START_HERE resolved through the catalog,
+//      so a retitled article or a new photo reaches this page on its own; a
+//      standing page in that list (/itineraries) is drawn from
+//      START_PAGE_CARDS.
 //   4. Nothing here asserts a condition the site has not read. The place
 //      blocks carry each road's season, never its status this week; the map
 //      key sends the reader to the Park Bulletin for that. A hardcoded "open"
@@ -234,6 +236,19 @@ const START_MISTAKES = [
   { title: "Doing too much", text: "Three things well beats seven from the driver's seat." },
 ];
 
+// A standing page in window.START_HERE, drawn as a card beside the articles.
+// The copy restates the page's own head; the photo is not that page's cover
+// because this page's hero is the same Tunnel View.
+const START_PAGE_CARDS = {
+  "/itineraries": {
+    eyebrow: "ITINERARIES", meta: "FOUR PLANS",
+    title: "Yosemite, in day-sized pieces",
+    dek: "Half a day to three days, built from the map's curated pins and ordered the way you would actually drive them. Pick the one that matches your time and open it on the map.",
+    image: "img/half-dome-valley-vista.jpg",
+    alt: "Half Dome from the rim above autumn color",
+  },
+};
+
 const START_THEN = [
   { href: "/articles/yosemite-in-three-to-five-days", label: "Three to five days" },
   { href: "/articles/when-to-visit-yosemite", label: "The crowd forecast" },
@@ -392,7 +407,9 @@ function StartHerePage({ go }) {
   const halfDay = itineraries.find((it) => it.id === "halfday");
 
   const articles = (window.START_HERE || [])
-    .map((slug) => (window.ARTICLES || []).find((a) => a.slug === slug))
+    .map((key) => START_PAGE_CARDS[key]
+      ? { page: key, ...START_PAGE_CARDS[key] }
+      : (window.ARTICLES || []).find((a) => a.slug === key))
     .filter(Boolean);
 
   // The head's photograph is the Valley's first stop, not the Valley block's.
@@ -488,7 +505,12 @@ function StartHerePage({ go }) {
           <HpHeading id="reading-h" eyebrow="03 / START HERE READING" title="Read these four first" />
           <p className="start-lede">The long answers behind this page, in the order most first-timers need them.</p>
           <div className="hp-journal-grid start-reads">
-            {articles.map((a) => <HpArticleCard key={a.slug} article={a} go={go} location={START_LOCATION} />)}
+            {articles.map((a) => a.page
+              ? <HpCard key={a.page} go={go} location={START_LOCATION} href={a.page} image={a.image} alt={a.alt}
+                  eyebrow={<React.Fragment>{a.eyebrow}<span>{a.meta}</span></React.Fragment>}
+                  title={a.title} text={<React.Fragment>{a.dek} ↗</React.Fragment>}
+                  sizes="(max-width: 760px) calc(100vw - 40px), (max-width: 1100px) 45vw, 420px" />
+              : <HpArticleCard key={a.slug} article={a} go={go} location={START_LOCATION} />)}
           </div>
           <nav className="start-then" aria-label="Further reading">
             <span>Then</span>

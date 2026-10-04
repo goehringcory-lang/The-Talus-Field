@@ -2030,10 +2030,12 @@ window.ARTICLES = [
   },
 ];
 
-// Curated onboarding row on the homepage. Order is the read order.
+// The "Read these four first" row on /start-here. Order is the read order.
+// An entry is an article slug, or a standing page's path ("/itineraries"),
+// which page-start-here.jsx draws from its START_PAGE_CARDS table.
 window.START_HERE = [
   "first-time-yosemite-overwhelm",
-  "yosemite-without-reservations-2026",
+  "/itineraries",
   "yosemite-gateway-towns-compared",
   "best-airport-for-yosemite",
 ];
