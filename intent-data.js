@@ -123,6 +123,7 @@ window.ARTICLE_INTENT = {
   //   on TRIP_RULES.stay.daytrip, which until now pointed only at the entrances
   //   piece.
   "camping-in-yosemite-first-time":            { stage: ["before-booking", "dates-set", "week-before"], who: ["first-trip", "families"], topic: ["camping"] },
+  "best-yosemite-backpacking-trips":           { stage: ["before-booking", "dates-set"], who: ["backpacking"], topic: ["permits", "trails"] },
   "first-yosemite-backpacking-trip":           { stage: ["dates-set", "week-before"], who: ["backpacking"], topic: ["conditions", "trails", "permits"] },
   // The Los Angeles drive is a first-trip piece by construction (it is written
   // for someone who has never made the drive), and `lodging` is earned by the
@@ -311,6 +312,8 @@ window.INTENT_NO_TAGS = {
 window.ARTICLE_MONTHS = {
   // Road-dependent: "The Park Service's standing line is that Tioga Road is typically open to vehicles from late May or June until sometime in November; plowing usually begins around April 15, and the opening date moves with the snowpack."
   "tioga-road-stop-by-stop": ["may", "jun", "jul", "aug", "sep", "oct"],
+  // "Tioga Road is typically open from late May or June until sometime in November ... Treat these as summer and early fall trips."
+  "best-yosemite-backpacking-trips": ["jun", "jul", "aug", "sep", "oct"],
   // Seasonal essays and month guides.
   "yosemite-in-fall": ["sep", "oct", "nov"],
   "yosemite-in-october-2026": ["oct"],

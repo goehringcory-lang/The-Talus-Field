@@ -8,11 +8,130 @@
 Publisher: The Talus Field (https://thetalusfieldjournal.com). Editor: Cory Goehring.
 Citation guidance and the annotated page index: https://thetalusfieldjournal.com/llms.txt
 Canonical article URL pattern: https://thetalusfieldjournal.com/articles/<slug>
-Contents: 80 articles. Most recent update: 2026-10-04.
+Contents: 81 articles. Most recent update: 2026-10-04.
 
 Not in this file: the Yosemite Nature Notes archive, all 512 issues of the
 National Park Service's Yosemite bulletin (1922-2003), transcribed in full
 as plain static HTML at https://thetalusfieldjournal.com/archive/.
+
+---
+
+## The Best Yosemite Backpacking Trips, in Order: The Permit, the Pickup, and Five Routes
+
+URL: https://thetalusfieldjournal.com/articles/best-yosemite-backpacking-trips
+Section: Trails and Hikes. Published: 2026-10-04. Last updated: 2026-10-04.
+Summary: How to get a Yosemite wilderness permit on Recreation.gov, where to pick it up, and five backpacking trips in order: May Lake, Glen Aulin, Vogelsang, Young Lakes.
+
+A day hike in Yosemite ends at the car. A backpacking trip ends somewhere the car cannot go, at dusk, with the people who drove up for the afternoon already gone. Getting there takes three things a day hike does not: a wilderness permit, a trip to a wilderness center to collect it, and a route sized to what you actually know how to do. This piece walks through all three, in the order they come at you, and finishes with the five trips I would hand someone working their way up, from the shortest overnight in the park to the one I go back to most.
+
+The system itself, and why it works the way it does, is covered in the wilderness permit explainer. The conditions a permit does not mention, snow on the passes, creek levels, mosquitoes, altitude, are in the first-trip field notes. What follows is the practical sequence: which buttons, which building, which trail.
+
+### Step one: you are reserving a trailhead, not a campsite
+
+Every decision in the application follows from one rule. Yosemite meters overnight hikers by entry trailhead and entry date. Each trailhead has a daily quota, and once you are past the sign you camp where the regulations allow. You must exit where the permit says, but nothing in it assigns you a site for night two.
+
+So before you open Recreation.gov, work backwards from the trip to the trailhead. All five trips below leave from Tioga Road or Tuolumne Meadows: May Lake from its own trailhead off the road, Glen Aulin and Young Lakes from the Lembert Dome parking area, Vogelsang from Rafferty Creek. Write down a first choice, then two alternate dates or trailheads you would genuinely take. Popular trailheads are where the lottery is lost; the second list is where it is usually won.
+
+Two exceptions to the camp-anywhere rule matter here. Only at the five High Sierra Camps (Glen Aulin, May Lake, Sunrise, Merced Lake and Vogelsang) and in Little Yosemite Valley must you sleep in a designated campground, and within a mile of a High Sierra Camp that campground is the only legal place to camp. Everywhere else, camp at least four trail miles from Tuolumne Meadows and the other developed areas, at least a mile from any road, and 100 feet from water and trail.
+
+### Step two: the application
+
+The application lives on Recreation.gov, on the Yosemite wilderness permit page, and needs an account. The sequence:
+
+The lottery, 24 weeks ahead. Sixty percent of each trailhead's quota goes by weekly lottery. The window for a given week of start dates opens Sunday at 12:01 a.m. and closes Saturday at 11:59 p.m., 24 weeks before those dates. You choose the entry trailhead and entry date, enter the group size, and add up to three alternate trip leaders, any of whom can pick the permit up if you cannot. Alternates have to be added before payment and cannot be changed afterward, which is the step people regret skipping. The application costs $10, non-refundable. Each group gets one application per weekly lottery: if two people in the same party both apply, both applications are removed.
+
+Results. They arrive by email by 5 p.m. the following Monday. A winning application has to be accepted by Thursday at 11:59 p.m., when you pay the second fee, $5 per person. Miss the Thursday deadline and the permit goes back into the pool.
+
+The leftovers, Fridays at 9 a.m. Pacific. Lottery quota nobody won or accepted goes on sale first come, first served, and stays bookable until three days before the start date.
+
+The seven-day release. The remaining 40 percent of each quota releases at 7 a.m. Pacific seven days before the entry date, also first come, first served, at the same $10 plus $5 a person. It is a rolling daily release, so every morning brings a new start date. For a flexible party it is often the easier route: no lottery, no waiting, just an alarm and your list of alternates.
+
+You can hold up to six future reservations at a time. Walk-up permits exist in principle, but from late April to mid-October the park describes them as extremely scarce, which is a polite way of saying do not plan on one.
+
+The permit calendar, drawn from the figures in this article. Fees are non-refundable and non-transferable.
+
+### Step three: the pickup, in person
+
+The email confirming your reservation is not a permit. Yosemite does not issue permits by phone or email, and you cannot print one at home. The trip leader or one of the named alternates collects it in person at a wilderness center, either the day before the trip between 8 a.m. and 5 p.m., or the morning of the start date between 8 and 11 a.m.
+
+The 11 a.m. line is the one that bites. If you will reach the park later than that on your start day, set a late-arrival hold on the reservation (under Modify, within seven days of entry), which extends pickup to 5 p.m. Without it, the park cancels the reservation. Every station keeps 8 a.m. to 5 p.m. hours, and none issues permits after hours.
+
+Where to go depends on where you start:
+
+- Tuolumne Meadows Wilderness Center, from about late May to October 14, conditions permitting. The natural stop for all five trips below.
+- Yosemite Valley Wilderness Center, May through October, in Yosemite Village. Self-registration from November to April.
+- Big Oak Flat Information Station, May to October, at the entrance on Highway 120 west. It also issues Hetch Hetchy permits from about April through October.
+- Wawona Visitor Center at Hill's Studio, May to October, for the southern trailheads.
+
+The permit desk is also where the trip gets better. Ask about snow on your route, water, and which drainage a bear has been working, and rent a canister if you do not own one: a bear-resistant canister is required for every overnight trip in the Yosemite Wilderness, and the wilderness centers rent them for $5 a week against a $95 deposit on a card. Everything scented goes inside, from the food to the toothpaste. The bear guide explains why the park stopped accepting food hangs.
+
+A wilderness permit also buys a place to sleep before the trip. Backpackers' campgrounds take permit holders for the night before and the night after, at $8 per person, with no reservation. The one in Tuolumne runs from mid-July to late September; the Valley's, behind North Pines, from mid-April to early October. A night at 8,600 feet before you walk is the cheapest altitude acclimatization there is.
+
+Photo: National Park Service (public domain)
+
+### The five trips, on the park's own map
+
+All five sit in the Tioga Road high country, which means they share a season: Tioga Road is typically open from late May or June until sometime in November, and the wilderness centers and trailhead parking close earlier than the road does. Overnight parking at May Lake ends October 15. Treat these as summer and early fall trips.
+
+1 May Lake, below Mount Hoffmann. 1.2 mi from the trailhead.2 Glen Aulin, down the Tuolumne River. 5.3 mi from the Lembert Dome parking area.3 Sunrise, one camp on the High Sierra Camps loop, which links 1, 2, 3 and 4 with Merced Lake, south of this map.4 Vogelsang, in the Cathedral Range. 6.9 mi up Rafferty Creek.5 Young Lakes, under Ragged Peak. 6 mi from the Lembert Dome parking area.The Tuolumne Meadows Wilderness Center is the green W symbol on the map, beside the visitor center.Map: National Park Service (public domain), cropped and enlarged.
+
+National Park Service round-trip distances and gains. The loop runs past the end of the scale, but no single day on it is longer than 9.5 miles.
+
+### 1. May Lake: the first night out
+
+May Lake is the shortest backpacking trip in Yosemite, and that is the entire argument for it. The trail is 1.2 miles from the May Lake trailhead, about 485 feet of climbing, to a lake at 9,350 feet with Mount Hoffmann standing directly above it. You can be at the water within an hour of leaving the car.
+
+Short is the point. A first backpacking trip is really a gear test: whether the pack rides right, whether the pad is warm enough, whether the stove lights at altitude, whether the canister actually holds what you packed. On May Lake you learn all of that a mile and a bit from the car. If something fails, the fix is a short walk down, not a forced march out of a canyon. Nothing about it is committing, and that makes it the right place to make your mistakes.
+
+It also takes the most daunting part of backpacking off the table for one more trip. There is a toilet up there. The High Sierra Camp at the lake has restrooms in season, and there is a vault toilet at the trailhead parking. You can learn to sleep in a tent at 9,000 feet without also learning, the same night, how to dig a cathole six inches deep and 100 feet from water, trail and camp, then carry the toilet paper out. Save that lesson for trip two.
+
+Camping at May Lake is in the designated backpackers' campground beside the High Sierra Camp, with shared food lockers. Fires go only in the communal ring, when fire restrictions allow. The trailhead itself is 1.75 miles up an unpaved road off Tioga Road, and early in the summer that road can still be closed, adding 1.75 miles each way on foot. The catch is demand: the park rates May Lake's permit demand as very high, so it is a seven-day-release and midweek trip for most people.
+
+The day hike: Mount Hoffmann. With camp set up, the summit is about two miles beyond the lake and roughly 1,500 feet higher, at 10,850 feet. Hoffmann sits at the geographic center of the park, and from the top most of Yosemite's high country lies around you. Be clear-eyed about it: this is a strenuous walk, on an unofficial, unmarked spur rather than a maintained trail, following informal paths and cairns up alpine scree near the top. Start early, carry water, and be off the summit before the afternoon clouds build. Hoffmann is a fine day; it is not an easy one.
+
+### 2. Glen Aulin: the second trip, with a river
+
+Glen Aulin is the trip after May Lake: long enough to feel like a backpacking trip, gentle enough that the miles do not punish a newer pack carrier. It starts at the Lembert Dome parking area, at the Glen Aulin and Soda Springs trailhead, and runs about 5.3 miles down the Tuolumne River past Tuolumne Fall and the White Cascade, roughly four miles in, to the camp. The park lists it at 11 miles round trip and about 800 feet of elevation change. Note the direction: the trail loses height on the way in, so the climbing waits for the walk out, on tired legs.
+
+Photo: Lela Getzler / Wikimedia Commons (CC BY 2.0)
+
+Like May Lake, Glen Aulin is a High Sierra Camp, so you sleep in the designated backpackers' campground beside it, with food lockers, and fires only in the communal ring. The river is the main event, and it is also the hazard. The trailhead notes several unbridged stream crossings, which are trivial in late summer and serious in a big runoff year; the first-trip field notes cover how to read a crossing. From camp, a layover day continues down the canyon to Waterwheel Falls, 8.2 miles from the trailhead. Permit demand is high, which is the cost of a trail this good.
+
+### 3. The High Sierra Camps: camp to camp, carrying your own
+
+The High Sierra Camps are tent-cabin camps strung through the backcountry a day's walk apart. The concessioner's loop links Tuolumne Meadows with Glen Aulin, May Lake, Sunrise, Merced Lake and Vogelsang, 49 miles in all, in legs of 8 to 9.5 miles: Tuolumne to Glen Aulin is 8, Glen Aulin to May Lake 8.5, May Lake to Sunrise 8.25, Sunrise to Merced Lake 9.5. A bed in the cabins is booked by lottery through the concessioner, and it is a different trip.
+
+The backpacker's version needs only a wilderness permit and a canister. Each camp has a designated backpackers' campground beside it, with shared food lockers, and the regulations require you to use it within a mile of the camp. Those campgrounds are not in the campground reservation system; the permit is the reservation. What makes the loop the natural third trip is the structure: you already know two of its camps, the daily distances are fixed and sensible, and each night ends at a known site instead of a search for flat ground. When the camps are operating, the concessioner also sells meals to backpackers, which is a reasonable way to carry two fewer dinners.
+
+The permit logic is the same as any other trip: one entry trailhead, one entry date, and the exit the permit names. You do not need the whole 49 miles. Two or three nights on a segment, walked as an out-and-back or a loop back to the car, is a full trip.
+
+Photo: Dean Wallraff / Wikimedia Commons (CC BY-SA 4.0)
+
+### 4. Vogelsang: above 10,000 feet
+
+Vogelsang is where the ladder gets high. The trail leaves from the Rafferty Creek trailhead in Tuolumne Meadows and climbs 6.9 miles to the Vogelsang High Sierra Camp, about 14.4 miles round trip with 1,600 feet of gain, into a basin of lakes and peaks in the Cathedral Range. The camp sits at about 10,100 feet, the highest of the five, and nothing on the walk is technical. The difficulty is the air.
+
+Photo: btwashburn / Wikimedia Commons (CC BY 2.0)
+
+That is why it comes fourth. Sleeping above 10,000 feet the night after leaving the coast is close to the exact profile altitude guidance warns against, and the first-trip notes on altitude apply in full here. Spend the night before in the Tuolumne backpackers' campground at 8,600 feet and walk in the next morning. Two rules change at this height: no fires at all, since fires are banned above 9,600 feet and specifically at the Vogelsang campground, and a warmer sleeping bag than the calendar suggests.
+
+Vogelsang rewards a second night. The longer options from the same trailhead include coming home down Lyell Canyon, 12.3 miles from the camp by that route, or the Ireland and Evelyn lakes loop, 22.2 miles and 2,150 feet of gain in all. Permit demand is high.
+
+### 5. Young Lakes: my favorite
+
+Young Lakes is the trip I return to. Three lakes in a chain under Ragged Peak, a little under 10,000 feet, with the Cathedral Range across the basin to the south. The trail leaves from the Lembert Dome parking area and reaches the lakes in about six miles by either of two routes: past Dog Lake, 1.5 miles in, or by the Glen Aulin trail and then north toward Ragged Peak. The park lists the trip at 13.6 miles round trip and 1,300 feet of gain. Going in by one route and out by the other makes a loop of about twelve miles.
+
+Photo: Kenneth Liou / Wikimedia Commons (CC BY-SA 4.0)
+
+The official trail ends at the first lake. A well-used informal path continues to the second and third, and the farther you go the fewer people you share the basin with. That is the quiet reason it is my favorite: the park rates its permit demand as medium, where Glen Aulin and Vogelsang run high and May Lake very high. It is a full high-country trip, with the granite, the lakes and the peak at sunset, that a seven-day-release alarm usually wins.
+
+It belongs at the top of the ladder because nothing here is arranged for you. There is no High Sierra Camp, no designated campground, no toilet, and no locker. You choose a site at least 100 feet from water and trail, the canister sits on the ground, the cathole you learned on trip two gets dug, and the lakes are above the 9,600-foot line, so there are no fires. Camp a short walk from the water, on durable ground, and watch the light leave Ragged Peak. Dog Lake makes a good last swim on the way out, though camping there is not allowed.
+
+### The order, and why
+
+The ladder runs in a deliberate sequence. May Lake teaches the gear with a toilet and a short walk out. Glen Aulin adds real distance and a river, with a designated campground still waiting at the end. The High Sierra Camps string several nights together on known legs. Vogelsang adds altitude. Young Lakes asks for all of it at once, with no facilities, and gives back the quietest country of the five.
+
+The paperwork is the same each time: a trailhead and a date on Recreation.gov, an alarm for the lottery or the seven-day release, a morning at the Tuolumne Meadows Wilderness Center, a canister in the trunk. Do it once and it stops being the hard part. If you want the drive and the day hikes that frame these trips, Tuolumne Meadows in a day covers the country you will be walking out of.
 
 ---
 
@@ -2861,7 +2980,7 @@ Photo: Cory Goehring
 
 ### Four first trips that work
 
-All four are short, well-signed, reliably watered, and free of any crossing that becomes a decision in a normal year past early July.
+All four are short, well-signed, reliably watered, and free of any crossing that becomes a decision in a normal year past early July. For a shorter start and a sequence to grow into, five Tioga Road backpacking trips in order begins with the 1.2-mile walk to May Lake.
 
 Cathedral Lakes, from Tioga Road at Tuolumne Meadows. Roughly four and a half miles in, and nine or so round trip, with somewhere between a thousand and 1,400 feet of cumulative gain depending on which lakes you visit, to a pair of them sitting under one of the most photographed spires in the range. It is the standard first Yosemite overnight for good reason, and consequently one of the harder permits to draw. The day-hike version is the same trail if the permit does not come through, and it has the full breakdown of the walk.
 

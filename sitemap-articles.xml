@@ -35,7 +35,7 @@
   </url>
   <url>
     <loc>https://thetalusfieldjournal.com/section/trails</loc>
-    <lastmod>2026-09-27</lastmod>
+    <lastmod>2026-10-04</lastmod>
   </url>
   <url>
     <loc>https://thetalusfieldjournal.com/section/wildlife</loc>
@@ -161,6 +161,14 @@
   </url>
 
   <!-- Articles -->
+  <url>
+    <loc>https://thetalusfieldjournal.com/articles/best-yosemite-backpacking-trips</loc>
+    <lastmod>2026-10-04</lastmod>
+    <image:image>
+      <image:loc>https://thetalusfieldjournal.com/img/responsive/may-lake-mount-hoffmann-1600.jpg</image:loc>
+      <image:title>Mount Hoffmann reflected in May Lake on a still summer morning</image:title>
+    </image:image>
+  </url>
   <url>
     <loc>https://thetalusfieldjournal.com/articles/yosemite-trees-identification-guide</loc>
     <lastmod>2026-10-04</lastmod>

@@ -202,7 +202,7 @@ window.ARTICLE_BODIES["first-yosemite-backpacking-trip"] = function FirstYosemit
       <h2>Four first trips that work</h2>
 
       <p>
-        All four are short, well-signed, reliably watered, and free of any crossing that becomes a decision in a normal year past early July.
+        All four are short, well-signed, reliably watered, and free of any crossing that becomes a decision in a normal year past early July. For a shorter start and a sequence to grow into, <a href="/articles/best-yosemite-backpacking-trips">five Tioga Road backpacking trips in order</a> begins with the 1.2-mile walk to May Lake.
       </p>
 
       <p>

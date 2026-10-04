@@ -1,5 +1,31 @@
 [
   {
+    "slug": "best-yosemite-backpacking-trips",
+    "cat": "trails",
+    "title": "The Best Yosemite Backpacking Trips, in Order: The Permit, the Pickup, and Five Routes",
+    "dek": "A backpacking trip takes three things a day hike does not: a permit, a morning at a wilderness center, and a route sized to what you know. The Recreation.gov steps, where to collect the permit, and five Tioga Road trips to work up through, from May Lake to Young Lakes.",
+    "seoDek": "How to get a Yosemite wilderness permit on Recreation.gov, where to pick it up, and five backpacking trips in order: May Lake, Glen Aulin, Vogelsang, Young Lakes.",
+    "date": "October 4, 2026",
+    "isoDate": "2026-10-04",
+    "isoModified": "2026-10-04",
+    "read": "11 min",
+    "image": "img/may-lake-mount-hoffmann.jpg",
+    "ogImage": { "url": "img/responsive/may-lake-mount-hoffmann-1600.jpg", "width": 1600, "height": 900 },
+    "placeholder": "Mount Hoffmann reflected in May Lake on a still summer morning",
+    "wordCount": 2704,
+    "keywords": ["best Yosemite backpacking trips", "Yosemite backpacking for beginners", "how to get a Yosemite wilderness permit", "Yosemite wilderness permit pickup", "May Lake backpacking", "Mount Hoffmann hike", "Glen Aulin backpacking", "Vogelsang backpacking", "Young Lakes Yosemite", "High Sierra Camps backpacking"],
+    "faq": [
+      { "q": "How do I get a Yosemite wilderness permit on Recreation.gov?", "a": "Apply on the Yosemite wilderness permit page on Recreation.gov. Sixty percent of each trailhead's quota goes by weekly lottery 24 weeks ahead: the window opens Sunday at 12:01 a.m. and closes Saturday at 11:59 p.m. You choose an entry trailhead, entry date and group size, and add up to three alternate trip leaders before paying the $10 application fee. Results arrive by email by 5 p.m. the following Monday; accept by Thursday at 11:59 p.m. and pay $5 per person. The other 40 percent releases at 7 a.m. Pacific seven days before each entry date." },
+      { "q": "Can I print my Yosemite wilderness permit at home?", "a": "No. Yosemite does not issue permits by phone or email, and you cannot print one at home. The trip leader or a named alternate collects it in person at a wilderness center, either the day before between 8 a.m. and 5 p.m. or the morning of the start date between 8 and 11 a.m." },
+      { "q": "What happens if I arrive after 11 a.m. on my permit start date?", "a": "Set a late-arrival hold on the reservation, under Modify, within seven days of entry. It extends pickup to 5 p.m. Without it, the park cancels the reservation." },
+      { "q": "Where do I pick up a wilderness permit for Tuolumne Meadows trips?", "a": "The Tuolumne Meadows Wilderness Center, open from about late May to October 14, conditions permitting, 8 a.m. to 5 p.m. It is the natural stop for May Lake, Glen Aulin, the High Sierra Camps, Vogelsang and Young Lakes. The wilderness centers also rent bear canisters for $5 a week against a $95 deposit." },
+      { "q": "What is the best first backpacking trip in Yosemite?", "a": "May Lake. It is the shortest backpacking trip in the park, 1.2 miles from the May Lake trailhead with about 485 feet of climbing, to a lake at 9,350 feet below Mount Hoffmann. It works as a gear test a short walk from the car, and the High Sierra Camp at the lake has restrooms in season. Permit demand is very high, so it is usually a seven-day-release and midweek trip." },
+      { "q": "How hard is the Mount Hoffmann hike from May Lake?", "a": "Strenuous. The 10,850-foot summit is about two miles beyond the lake and roughly 1,500 feet higher, on an unofficial, unmarked spur rather than a maintained trail, following informal paths and cairns up alpine scree near the top. Start early and be off the summit before the afternoon clouds build." },
+      { "q": "How far is it to Young Lakes?", "a": "About six miles from the Lembert Dome parking area, by the Dog Lake route or by the Glen Aulin trail. The park lists the trip at 13.6 miles round trip with 1,300 feet of gain, and going in one way and out the other makes a loop of about twelve miles. Permit demand is medium, there are no facilities, and fires are not allowed." }
+    ],
+    "related": ["first-yosemite-backpacking-trip", "yosemite-wilderness-permits-guide", "yosemite-walk-up-and-day-of-permits", "yosemite-bears-safety-guide", "tuolumne-meadows-in-a-day", "cathedral-lakes-day-hike"]
+  },
+  {
     "slug": "yosemite-trees-identification-guide",
     "cat": "wildlife",
     "title": "Yosemite trees: how to tell them apart, from the foothills to Tioga Pass",
@@ -592,7 +618,7 @@
       { "q": "Is a bear canister required for backpacking in Yosemite?", "a": "Yes, parkwide for any overnight wilderness stay. Hanging food is not an accepted alternative here. Yosemite also maintains its own approved-container list that is narrower than the certifications other agencies accept, and soft-sided bag-style containers of the Ursack type are not on it. Confirm your specific model against the park's current list, or rent a canister from a wilderness center for a few dollars a week plus a refundable deposit." },
       { "q": "What are good first backpacking trips in Yosemite?", "a": "Cathedral Lakes from Tuolumne Meadows, roughly four and a half miles in and nine or so round trip, with a thousand to 1,400 feet of cumulative gain. Sunrise Lakes from Tenaya Lake, about seven and a half miles round trip with roughly 1,400 feet. Glen Aulin, about eleven miles round trip but only around 800 feet of elevation change. And Little Yosemite Valley from Happy Isles, under ten miles round trip with about 2,000 feet of gain." }
     ],
-    "related": ["yosemite-wilderness-permits-guide", "yosemite-bears-safety-guide", "cathedral-lakes-day-hike", "yosemite-camping-complete-guide", "yosemite-walk-up-and-day-of-permits", "cell-service-in-yosemite"]
+    "related": ["best-yosemite-backpacking-trips", "yosemite-wilderness-permits-guide", "yosemite-bears-safety-guide", "cathedral-lakes-day-hike", "yosemite-camping-complete-guide", "yosemite-walk-up-and-day-of-permits"]
   },
   {
     "slug": "yosemite-day-trip-from-bay-area",
@@ -770,7 +796,7 @@
       { "q": "Are Yosemite wilderness permits free in winter?", "a": "Roughly November through April the quota season ends and wilderness permits become free, unlimited, and self-issued at trailhead registers. No lottery, no Recreation.gov, no counter. It is the largest gap between how hard the park looks to get into and how easy it actually is, though the weather that opens the door also makes the walking serious." },
       { "q": "Can you camp in Yosemite without a reservation?", "a": "It is the hardest same-day problem in the park. Camp 4 is the Valley's walk-in campground, but during the reservation season its sites release on Recreation.gov on a rolling seven-day window at 7 a.m. Pacific rather than by a queue, reverting to first come, first served outside it. That is the shortest booking horizon of any campground in the park. Cancellations released continuously on Recreation.gov are the real inventory, especially in the evening. National forest campgrounds along every approach highway are the reliable fallback, and several are first come, first served." }
     ],
-    "related": ["yosemite-wilderness-permits-guide", "so-you-want-to-hike-half-dome", "first-yosemite-backpacking-trip", "yosemite-without-reservations-2026", "mist-trail-the-real-guide"]
+    "related": ["yosemite-wilderness-permits-guide", "best-yosemite-backpacking-trips", "so-you-want-to-hike-half-dome", "first-yosemite-backpacking-trip", "yosemite-without-reservations-2026", "mist-trail-the-real-guide"]
   },
   {
     "slug": "yosemite-in-fall",
@@ -1134,7 +1160,7 @@
       { "q": "Can I climb Half Dome on a wilderness permit?", "a": "If your route plausibly passes Half Dome, you can request Half Dome access as an add-on to a wilderness permit for $10 per person, subject to its own daily cap. For many hikers this beats the day-hiker lottery odds." },
       { "q": "Is a bear canister required in the Yosemite Wilderness?", "a": "Yes. An approved bear-resistant food canister is required for overnight trips, carrying everything with a scent, from food to toothpaste. Rentals are inexpensive at the wilderness centers." }
     ],
-    "related": ["first-yosemite-backpacking-trip", "yosemite-walk-up-and-day-of-permits", "so-you-want-to-hike-half-dome", "yosemite-camping-complete-guide", "mist-trail-the-real-guide"]
+    "related": ["best-yosemite-backpacking-trips", "first-yosemite-backpacking-trip", "yosemite-walk-up-and-day-of-permits", "so-you-want-to-hike-half-dome", "yosemite-camping-complete-guide", "mist-trail-the-real-guide"]
   },
   {
     "slug": "yosemite-accessibility-guide",
