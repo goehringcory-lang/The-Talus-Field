@@ -92,6 +92,7 @@ const TRIP_EMAIL_ATTEMPTS_KEY = (ipHash: string) => `tripEmailAttempts:${ipHash}
 const WAITLIST_ATTEMPTS_KEY = (ipHash: string) => `waitlistAttempts:${ipHash}`
 const CONTACT_ATTEMPTS_KEY = (ipHash: string) => `contactAttempts:${ipHash}`
 const SUBSCRIBE_ATTEMPTS_KEY = (ipHash: string) => `subscribeAttempts:${ipHash}`
+const FEEDBACK_ATTEMPTS_KEY = (sub: string) => `feedbackAttempts:${sub.toLowerCase()}`
 const RENEWAL_NOTICE_KEY = (email: string, stage: string) =>
   `renewalNotice:${email.toLowerCase()}:${stage}`
 const RENEW_LINK_ATTEMPTS_KEY = (ipHash: string) => `renewLinkAttempts:${ipHash}`
@@ -250,6 +251,12 @@ export async function recordContactAttempt(env: Env, ipHash: string): Promise<nu
 // The newsletter signup creates a Buttondown subscriber per call; keyed by
 // hashed IP (the endpoint is unauthenticated). Ten an hour leaves room for a
 // household or a typo and stops a script from filling the list.
+// The Field Guide survey mails the operator inbox per call. JWT-gated, so the
+// window is keyed by the signed-in account rather than an IP.
+export async function recordFeedbackAttempt(env: Env, sub: string): Promise<number> {
+  return incrementFixedWindow(env, FEEDBACK_ATTEMPTS_KEY(sub))
+}
+
 export async function recordSubscribeAttempt(env: Env, ipHash: string): Promise<number> {
   return incrementFixedWindow(env, SUBSCRIBE_ATTEMPTS_KEY(ipHash))
 }

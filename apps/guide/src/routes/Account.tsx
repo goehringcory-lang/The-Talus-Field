@@ -7,6 +7,7 @@ import DownloadManager from '../components/DownloadManager'
 import InstallSheet from '../components/InstallSheet'
 import NotificationsCard from '../components/NotificationsCard'
 import SyncCard from '../components/SyncCard'
+import FeedbackSurvey from '../components/FeedbackSurvey'
 import Button from '../components/ui/Button'
 import PageHeader from '../components/ui/PageHeader'
 import Skeleton from '../components/ui/Skeleton'
@@ -358,6 +359,30 @@ function EditionNotes() {
 
 const EDITORIAL_ORIGIN = 'https://thetalusfieldjournal.com'
 
+// The survey on demand (the same sheet Home opens once on its own). Always
+// here, so a reader who tapped "Not now" can still answer, and the operator
+// can check what buyers see.
+function SurveyCard() {
+  const [open, setOpen] = useState(false)
+  return (
+    <div className="card">
+      <span className="eyebrow" style={{ display: 'block', marginBottom: 8 }}>
+        Tell us what you think
+      </span>
+      <p>
+        Four quick questions: how the guide is working, whether it was worth it, and what it
+        should add next. The answers go to the editor.
+      </p>
+      <div className="action-row" style={{ marginTop: 12 }}>
+        <Button size="sm" onClick={() => setOpen(true)}>
+          Take the survey
+        </Button>
+      </div>
+      {open && <FeedbackSurvey onClose={() => setOpen(false)} />}
+    </div>
+  )
+}
+
 // Support, the guarantee, and the policies. The policies live on the
 // editorial site and open there.
 function SupportCard() {
@@ -524,6 +549,8 @@ export default function Account() {
           <div className="card" id="offline">
             <DownloadManager />
           </div>
+
+          <SurveyCard />
 
           <SupportCard />
         </div>

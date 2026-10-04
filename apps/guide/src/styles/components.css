@@ -966,7 +966,8 @@
    native install prompt to defer to, so this is the whole ask; it sits above
    the bottom nav and the banner, and on a phone it docks to the bottom edge,
    as close to Safari's Share button as the page can get. */
-.install-sheet__backdrop {
+.install-sheet__backdrop,
+.survey-sheet__backdrop {
   position: fixed;
   inset: 0;
   z-index: 400;
@@ -975,7 +976,8 @@
   align-items: flex-end;
   justify-content: center;
 }
-.install-sheet {
+.install-sheet,
+.survey-sheet {
   width: 100%;
   max-width: 460px;
   background: var(--paper);
@@ -987,13 +989,15 @@
   overflow-y: auto;
   outline: none;
 }
-.install-sheet__title {
+.install-sheet__title,
+.survey-sheet__title {
   font-family: var(--serif);
   font-size: 22px;
   line-height: 1.2;
   margin: 6px 0 10px;
 }
-.install-sheet__lede {
+.install-sheet__lede,
+.survey-sheet__lede {
   font-size: 14px;
   line-height: 1.5;
   color: var(--ink-2);
@@ -1027,21 +1031,82 @@
   word-break: break-all;
   margin: 10px 0 0;
 }
-.install-sheet__actions {
+.install-sheet__actions,
+.survey-sheet__actions {
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
   gap: var(--s3);
   margin-top: 16px;
 }
 @media (min-width: 560px) {
-  .install-sheet__backdrop {
+  .install-sheet__backdrop,
+  .survey-sheet__backdrop {
     align-items: center;
   }
-  .install-sheet {
+  .install-sheet,
+  .survey-sheet {
     border-bottom: 1px solid var(--ink);
     border-radius: var(--radius);
     box-shadow: 4px 4px 0 0 var(--ink);
   }
+}
+
+/* Field Guide survey (components/FeedbackSurvey.tsx). The sheet shares the
+   install sheet's box above; these are the questions inside it. */
+.survey-form { display: grid; gap: var(--s4); }
+.survey-form__q { border: 0; margin: 0; padding: 0; display: grid; gap: var(--s2); }
+.survey-form__q legend {
+  font-family: var(--serif);
+  font-size: 15px;
+  line-height: 1.4;
+  margin-bottom: 6px;
+}
+.survey-form__q .theme-picker { margin: 0; }
+.survey-form__scale {
+  display: flex;
+  justify-content: space-between;
+  margin: 0;
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+}
+.survey-form__text textarea { width: 100%; resize: vertical; font: inherit; }
+.survey-form__error { margin: 0; font-size: 14px; color: var(--rust); }
+.survey-rank { list-style: none; margin: 0; padding: 0; display: grid; gap: 6px; }
+.survey-rank__item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  min-height: 44px;
+  padding: 6px 10px;
+  border: 1px solid var(--rule);
+  border-radius: var(--radius);
+  background: var(--paper);
+  color: var(--ink);
+  font: 14px var(--sans);
+  text-align: left;
+  cursor: pointer;
+}
+.survey-rank__item[aria-pressed='true'] { border-color: var(--ink); }
+.survey-rank__item[aria-disabled='true'] { opacity: 0.5; cursor: default; }
+.survey-rank__pos {
+  flex: none;
+  display: inline-grid;
+  place-items: center;
+  width: 24px;
+  height: 24px;
+  border: 1px solid var(--rule);
+  border-radius: 50%;
+  font: 600 12px var(--mono);
+}
+.survey-rank__item[aria-pressed='true'] .survey-rank__pos {
+  background: var(--ink);
+  border-color: var(--ink);
+  color: var(--paper);
 }
 
 /* ============================================================
