@@ -476,7 +476,9 @@ window.ARTICLE_BODIES["where-to-eat-yosemite"] = function WhereToEatYosemiteBody
     className: "eat-dress"
   }, React.createElement("p", null, "\"Long pants and a shirt with a collar, or a dress, skirt, or long pants with a blouse. Please refrain from wearing hiking attire, shorts, T-shirts, tank tops, flip-flops, and baseball caps.\""), React.createElement("cite", null, "The dinner dress code, as the hotel publishes it")), React.createElement("div", {
     className: "eat-prose"
-  }, React.createElement("p", null, "That rules out the clothes most people pack for Yosemite, so bring one outfit for it. Dinner without the dress code or the price is the ", React.createElement("strong", null, "Ahwahnee Bar"), " next door: cocktails, wine, appetizers and lighter plates. Afternoon tea in the lounge is for hotel guests only. The kitchen publishes a vegan menu and a children's menu. On holidays the room books separately: Thanksgiving 2026 is November 26, noon to 8 p.m., $165 for an adult and $82.50 for a child with tax and tip included, booked at 888/413-8869. ", React.createElement("a", {
+  }, React.createElement("p", null, "That rules out the clothes most people pack for Yosemite, so bring one outfit for it. Dinner without the dress code or the price is the ", React.createElement("strong", null, "Ahwahnee Bar"), " next door: cocktails, wine, appetizers and lighter plates. Afternoon tea in the lounge is for hotel guests only. The kitchen publishes a vegan menu and a children's menu. On holidays the room books separately: ", React.createElement("a", {
+    href: "/articles/thanksgiving-in-yosemite"
+  }, "Thanksgiving 2026"), " is November 26, noon to 8 p.m., $165 for an adult and $82.50 for a child with tax and tip included, booked at 888/413-8869. ", React.createElement("a", {
     href: "/articles/bracebridge-dinner-and-vintners-holidays"
   }, "The Bracebridge Dinner"), " in December is its own event."))))), React.createElement("section", {
     className: "hp-wrap hp-section",

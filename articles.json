@@ -1,5 +1,31 @@
 [
   {
+    "slug": "thanksgiving-in-yosemite",
+    "cat": "seasonal",
+    "title": "Thanksgiving in Yosemite: The Dinner, the Rooms, and What Is Still Open That Weekend",
+    "dek": "Thanksgiving is the one busy weekend in a quiet month, and it lands between seasons: the high roads are almost always closed, Badger Pass has not started, and Curry Village shuts the Sunday it ends. The Ahwahnee's holiday dinner, where to sleep and camp, the chain rules, the road record, and four short days planned.",
+    "seoDek": "Thanksgiving in Yosemite: the Ahwahnee dinner, open lodging and campgrounds, the road record for Tioga and Glacier Point, chains, YARTS, and a plan.",
+    "date": "October 5, 2026",
+    "isoDate": "2026-10-05",
+    "isoModified": "2026-10-05",
+    "read": "10 min",
+    "image": "img/tunnel-view-autumn-aniket-deole.jpg",
+    "ogImage": { "url": "img/responsive/tunnel-view-autumn-aniket-deole-1600.jpg", "width": 1600, "height": 1067 },
+    "placeholder": "Tunnel View in late autumn, with fresh snow on the high rims above fall color on the Valley floor",
+    "wordCount": 2580,
+    "keywords": ["thanksgiving in yosemite", "yosemite thanksgiving dinner", "ahwahnee thanksgiving dinner", "yosemite thanksgiving weekend", "is tioga road open at thanksgiving", "glacier point road november", "yosemite in late november", "camping in yosemite thanksgiving", "curry village november closure", "yosemite chains november"],
+    "faq": [
+      { "q": "When is Thanksgiving dinner at the Ahwahnee, and what does it cost?", "a": "In 2026 the Ahwahnee Dining Room serves Thanksgiving dinner on November 26 from noon to 8 p.m., at $165 for an adult and $82.50 for a child, tax and gratuity included. The menu centers on carved prime rib, roasted turkey and carved ham, and reservations are by phone at 888-413-8869." },
+      { "q": "Are Tioga Road and Glacier Point Road open at Thanksgiving?", "a": "Almost certainly not. In every season from 2016 through 2025 Tioga Road had closed for the winter before Thanksgiving. Glacier Point Road had closed before Thanksgiving in every season it opened in that span but one, 2021, when it held until December 7. The road is plowed to Badger Pass only from mid-December. Glacier Point is still reachable on foot by the Four Mile Trail, which was open on Thanksgiving Day in nine of the ten seasons from 2016 through 2025." },
+      { "q": "Where can I stay in Yosemite over Thanksgiving?", "a": "Inside the park, the Ahwahnee, Yosemite Valley Lodge and Curry Village operate that weekend, though Curry Village will not be open from November 29 through December 10, 2026. The Redwoods in Yosemite rents private cabins in Wawona. White Wolf Lodge, Tuolumne Meadows Lodge, Housekeeping Camp and the Wawona Hotel are closed. Outside the park, the gateway towns are El Portal and Mariposa on Highway 140, Oakhurst and Fish Camp on Highway 41, and Groveland on Highway 120." },
+      { "q": "Can I camp in Yosemite at Thanksgiving?", "a": "Yes. Upper Pines is the only campground on reservations all year, and its sites for that window were released on July 15 and sell out within minutes, so the route now is a cancellation. Camp 4 takes reservations one week ahead through November 29 at $10 per person per night. Wawona and Hodgdon Meadow run first-come, first-served in winter and can fill on holidays and weekends." },
+      { "q": "Do I need chains to drive to Yosemite at Thanksgiving?", "a": "Carry them. Within a chain control area every vehicle must have chains or cables in it, even if it is exempt from putting them on, and rental cars are not exempt. The park lists a citation of up to $5,000 for not putting chains on when required." },
+      { "q": "Is the Mariposa Grove shuttle running at Thanksgiving?", "a": "In 2026 the free shuttle from the Welcome Plaza runs through November, weather permitting, from 8 a.m. to 3:30 p.m., with the last bus leaving the grove at 5 p.m. From December 1 there is no shuttle and the way in is a two-mile walk with about 500 feet of gain." },
+      { "q": "Does YARTS run on Thanksgiving?", "a": "YARTS lists Thanksgiving Day among the holidays on which it does not operate, but its Highway 140 page prints the date as November 27, 2026, which is the Friday, so call before planning to ride on either day." }
+    ],
+    "related": ["where-to-stay-in-yosemite", "where-to-eat-yosemite", "yosemite-in-winter", "yosemite-in-december", "bracebridge-dinner-and-vintners-holidays", "yosemite-camping-complete-guide"]
+  },
+  {
     "slug": "best-yosemite-backpacking-trips",
     "cat": "trails",
     "title": "The Best Yosemite Backpacking Trips, in Order: The Permit, the Pickup, and Five Routes",
@@ -179,7 +205,7 @@
       { "q": "Can you camp in Yosemite in December?", "a": "Yes, at a short list of campgrounds. Upper Pines is the only campground on reservations all year: arrivals from November 15 through December 14 go on sale July 15, and arrivals from December 15 through January 14 go on sale August 15, at 7 a.m. Pacific. Camp 4, Wawona, and Hodgdon Meadow are first come, first served in winter." },
       { "q": "Is Curry Village open in December?", "a": "Not for the whole month. The concessioner currently lists Curry Village as not open from November 29 through December 10, 2026, with its winter rate starting December 13. The Ahwahnee and Yosemite Valley Lodge run through the month." }
     ],
-    "related": ["yosemite-in-winter", "yosemite-winter-hikes", "bracebridge-dinner-and-vintners-holidays", "where-to-stay-in-yosemite", "getting-to-yosemite", "yosemite-in-march"]
+    "related": ["yosemite-in-winter", "yosemite-winter-hikes", "bracebridge-dinner-and-vintners-holidays", "where-to-stay-in-yosemite", "thanksgiving-in-yosemite", "yosemite-in-march"]
   },
   {
     "slug": "wildfire-in-yosemite-during-your-trip",
@@ -466,7 +492,7 @@
       { "q": "When do Bracebridge Dinner tickets go on sale, and do they sell out?", "a": "Typically eight to nine months before the December performances, which lands around March or April. They have sold out every year since the dinner's 2024 return, so tickets bought in late summer for that same December are usually working the cancellation list rather than the original sale." },
       { "q": "When should I book Vintners' Holidays?", "a": "The lodging that Vintners' Holidays packages are built around books on the same 366-day advance window as any other Ahwahnee, Lodge, or Curry Village reservation. If you miss that window, check back regularly: cancellations happen continuously, with a real wave in the final weeks before any date." }
     ],
-    "related": ["where-to-stay-in-yosemite", "yosemite-in-winter", "yosemite-in-december", "yosemite-trip-cost-budget", "yosemite-gateway-towns-compared", "where-to-eat-yosemite"]
+    "related": ["where-to-stay-in-yosemite", "yosemite-in-winter", "yosemite-in-december", "thanksgiving-in-yosemite", "yosemite-gateway-towns-compared", "where-to-eat-yosemite"]
   },
   {
     "slug": "yosemite-fire-restrictions-explained",
@@ -825,7 +851,7 @@
       { "q": "Is there smoke in Yosemite in the fall?", "a": "Sometimes, and it is often planned rather than wild. Autumn is prescribed fire season in Yosemite: once cooler temperatures and moisture make burning controllable, crews run projects in Yosemite Valley, around Crane Flat, and in the Studhorse units near Wawona, and smoke from those burns is routinely visible in the Valley, in Foresta, and in El Portal. Burns are scheduled against weather windows and postponed often, so check conditions on arrival rather than planning around it months out." },
       { "q": "Are bears more active in Yosemite in the fall?", "a": "Yes. From September, black bears enter hyperphagia, a state of near-continuous eating before winter, taking in up to 20,000 calories a day, foraging as much as 20 hours out of 24, and gaining two to three pounds daily, roughly eleven pounds of acorns' worth. Large transient males that spend the summer in the backcountry come down to Yosemite Valley, Wawona, and El Portal for the acorn crop, so there are more bears near people in October than in July and food storage discipline matters most in this season." }
     ],
-    "related": ["yosemite-in-october-2026", "yosemite-in-september-2026", "clouds-rest-hike", "when-to-visit-yosemite", "yosemite-in-winter", "yosemite-during-smoke-season"]
+    "related": ["yosemite-in-october-2026", "yosemite-in-september-2026", "clouds-rest-hike", "when-to-visit-yosemite", "thanksgiving-in-yosemite", "yosemite-during-smoke-season"]
   },
   {
     "slug": "yosemite-tunnel-trees",
