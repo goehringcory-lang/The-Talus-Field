@@ -1438,10 +1438,40 @@ const HP_GUIDE_POINTS = [
 // page ("nothing is asked for twice"). `children` replaces the default buy
 // link and terms (the /guide page puts its own checkout button there);
 // `points={null}` drops the benefit lines; `sample` adds the free-preview line.
+// The guide band's denominator. guide_cta_click says how many readers clicked
+// a placement; without a matching view count nobody can tell a placement that
+// converts from one nobody scrolls to (the article_end band sits below the
+// related rail). Fires guide_band_impression once per mount, the first time
+// the band is 40% visible, with the caller's `location`, the same rule
+// useNewsletterImpression uses for the letter units.
+function useGuideBandImpression(location) {
+  const ref = useRef(null);
+  const firedRef = useRef(false);
+  useEffect(() => {
+    const node = ref.current;
+    if (!node) return;
+    const fire = () => {
+      if (firedRef.current) return;
+      firedRef.current = true;
+      if (window.track) window.track("guide_band_impression", { location: location || "unknown" });
+    };
+    if (typeof IntersectionObserver === "undefined") { fire(); return; }
+    const io = new IntersectionObserver((entries) => {
+      for (const e of entries) {
+        if (e.isIntersecting) { fire(); io.disconnect(); break; }
+      }
+    }, { threshold: 0.4 });
+    io.observe(node);
+    return () => io.disconnect();
+  }, [location]);
+  return ref;
+}
+
 function HpGuideBand({ go, location, id, eyebrow = "THE TALUS FIELD GUIDE / THE OFFLINE APP", title, intro, points = HP_GUIDE_POINTS, heading = "h2", sample, children }) {
   const H = heading;
+  const ref = useGuideBandImpression(location);
   return (
-    <section className="hp-product" id={id} tabIndex={id ? -1 : undefined}>
+    <section className="hp-product" id={id} tabIndex={id ? -1 : undefined} ref={ref}>
       <div className="hp-wrap hp-product-grid">
         <div>
           <p className="hp-eyebrow">{eyebrow}</p>
