@@ -1603,6 +1603,39 @@ var HP_GUIDE_POINTS = [{
   title: "Bring a little local knowledge.",
   text: "72 Secret Guide entries to look beyond the obvious."
 }];
+function useGuideBandImpression(location) {
+  var ref = useRef(null);
+  var firedRef = useRef(false);
+  useEffect(() => {
+    var node = ref.current;
+    if (!node) return;
+    var fire = () => {
+      if (firedRef.current) return;
+      firedRef.current = true;
+      if (window.track) window.track("guide_band_impression", {
+        location: location || "unknown"
+      });
+    };
+    if (typeof IntersectionObserver === "undefined") {
+      fire();
+      return;
+    }
+    var io = new IntersectionObserver(entries => {
+      for (var e of entries) {
+        if (e.isIntersecting) {
+          fire();
+          io.disconnect();
+          break;
+        }
+      }
+    }, {
+      threshold: 0.4
+    });
+    io.observe(node);
+    return () => io.disconnect();
+  }, [location]);
+  return ref;
+}
 function HpGuideBand({
   go,
   location,
@@ -1616,10 +1649,12 @@ function HpGuideBand({
   children
 }) {
   var H = heading;
+  var ref = useGuideBandImpression(location);
   return React.createElement("section", {
     className: "hp-product",
     id: id,
-    tabIndex: id ? -1 : undefined
+    tabIndex: id ? -1 : undefined,
+    ref: ref
   }, React.createElement("div", {
     className: "hp-wrap hp-product-grid"
   }, React.createElement("div", null, React.createElement("p", {
