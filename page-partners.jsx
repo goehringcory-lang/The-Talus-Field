@@ -88,7 +88,7 @@ function PartnersPage({ go }) {
         className="fj-head"
         eyebrow="FOR LODGING AND HOSPITALITY · GROUP CODES"
         title="Give every guest the field guide."
-        intro="The Talus Field Guide is the offline Yosemite app your guests wish they had found before they drove in: 44 stops with tappable GPS and real time budgets, all 57 in-park day hikes, the ranger program schedule on their dates, and a topo map of the park that works when service dies. Buy it in packs, hand a code to every booking, and it arrives as your amenity, not a link they found on their own."
+        intro="The Talus Field Guide is the offline Yosemite app your guests wish they had found before they drove in: 44 stops with tappable GPS and real time budgets, all 57 in-park day hikes, the ranger programs running on their dates, and a topo map of the park that works when service dies. Buy it in packs, hand a code to every booking, and it arrives as your amenity, not a link they found on their own."
         aside={
           <FjPlate
             image="img/ahwahnee-hotel.jpg"
@@ -199,7 +199,7 @@ function PartnersPage({ go }) {
             <li>A trip planner that lays out each day with real drive-time and parking buffers, and syncs to Google or Apple Calendar.</li>
             <li>Ranger walks, Junior Ranger sessions, tours, and star parties on the guest's own dates.</li>
             <li>An essentials section: entrance reservations, getting around the Valley without moving the car, bears, where coverage dies, roads by season, and a packing checklist for the night before.</li>
-            <li>The Secret Guide: 37 unsigned turnouts, hidden stops, and spots that belong to no region at all.</li>
+            <li>The 72-entry Secret Guide: quiet vistas, hidden trails, parking moves, camping, the park after dark, and the programs worth booking.</li>
           </ul>
 
           <h2>Why it is worth more than it costs</h2>

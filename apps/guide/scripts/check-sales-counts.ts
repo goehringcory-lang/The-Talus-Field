@@ -80,6 +80,9 @@ const RULES: Rule[] = [
   { name: 'N-entry Secret Guide', re: /\b(\d+)-entry Secret Guide/g, expect: () => ['secret'] },
   { name: 'N Secret Guide entries', re: /\b(\d+) Secret Guide entries/g, expect: () => ['secret'] },
   { name: 'N secret entries', re: /\b(\d+) secret entries/g, expect: () => ['secret'] },
+  // "The Secret Guide: 37 unsigned turnouts" on /partners slipped past every
+  // rule above until October 2026; any count straight after the name is one.
+  { name: 'Secret Guide: N', re: /Secret Guide: (\d+)\b/g, expect: () => ['secret'] },
   {
     name: 'N entries',
     re: /\b(\d+) entries\b/g,

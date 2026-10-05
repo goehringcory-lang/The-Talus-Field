@@ -613,7 +613,7 @@ function buildSeo(route) {
       breadcrumb: [["Home", `${SITE_ORIGIN}/`], ["The Field Guide", null]],
       faq: [{
         q: "Does it really work with no cell service?",
-        a: "Yes. One tap downloads the whole guide, about 70 MB: every entry, the photos on file, all 57 hike tracks, and the 3D park map, which you can also take one area at a time. A few entries still show a stand-in photo rather than the place itself. The Help card's position readout, the bearing compass and companion mode run on GPS, which needs no data. Only the live extras need signal: webcams, entrance waits, parking-lot status, and fresh weather and program updates."
+        a: "Yes. One tap downloads the whole guide, about 70 MB: every entry, the photos on file, all 57 hike tracks, and the 3D park map, which you can also take one area at a time. A few entries still show a stand-in photo rather than the place itself. The Help card's position readout, the bearing compass and companion mode run on GPS, which needs no data. Only the live extras need signal: webcams, entrance waits, parking-lot status, and fresh weather and program updates. So does calling or texting 911: the Help card shows your position with no signal, but the call or text itself needs a cell tower, and the card says where a landline reaches dispatch when a phone cannot."
       }, {
         q: "Is it an App Store app?",
         a: "No. It is a web app you add to your home screen in one step, on iPhone or Android. No store account, no install wait, no version to manage. Once it is there it looks and behaves like a native app."

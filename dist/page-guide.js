@@ -175,6 +175,7 @@ function GuideBuyBox({
   }, [arrival, outcome]);
   var [priceCents, setPriceCents] = React.useState(GUIDE_PRICE_FALLBACK_CENTS);
   var [giftMode, setGiftMode] = React.useState(false);
+  var [pressedGift, setPressedGift] = React.useState(false);
   var [giftEmail, setGiftEmail] = React.useState("");
   var [giftNote, setGiftNote] = React.useState("");
   React.useEffect(() => {
@@ -189,10 +190,12 @@ function GuideBuyBox({
       cancelled = true;
     };
   }, []);
-  async function startCheckout() {
+  async function startCheckout(asGift) {
     if (busy) return;
+    var gift = !!asGift;
+    setPressedGift(gift);
     var recipient = giftEmail.trim();
-    if (giftMode && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(recipient)) {
+    if (gift && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(recipient)) {
       setError("Enter the recipient's email address first.");
       return;
     }
@@ -200,11 +203,11 @@ function GuideBuyBox({
     setError(null);
     if (window.track) window.track("guide_buy_click", {
       location,
-      gift: giftMode
+      gift
     });
-    stashBuyLocation(location, giftMode);
+    stashBuyLocation(location, gift);
     try {
-      var url = await startGuideCheckout(giftMode ? {
+      var url = await startGuideCheckout(gift ? {
         gift: true,
         recipientEmail: recipient,
         giftNote: giftNote.trim()
@@ -216,6 +219,15 @@ function GuideBuyBox({
     }
   }
   var terms = window.GUIDE_TERMS || {};
+  var buyButtonStyle = {
+    display: "block",
+    width: "100%",
+    textAlign: "center",
+    border: 0,
+    font: "inherit",
+    cursor: busy ? "wait" : "pointer",
+    marginBottom: 10
+  };
   var boxNote = {
     fontFamily: "var(--sans)",
     fontSize: 14,
@@ -285,7 +297,27 @@ function GuideBuyBox({
     style: {
       color: "var(--ink-2)"
     }
-  }, "Back to the sample"))), React.createElement(React.Fragment, null, React.createElement("label", {
+  }, "Back to the sample"))), React.createElement(React.Fragment, null, React.createElement("button", {
+    ref: buttonRef,
+    type: "button",
+    className: "btn",
+    disabled: busy,
+    "aria-busy": busy ? "true" : undefined,
+    onClick: () => startCheckout(false),
+    style: buyButtonStyle
+  }, busy && !pressedGift ? "Opening checkout…" : `Get the Field Guide · ${formatPrice(priceCents)} →`), !pressedGift && React.createElement(CheckoutError, {
+    message: error,
+    onRetry: () => startCheckout(false),
+    busy: busy
+  }), React.createElement("p", {
+    style: {
+      fontFamily: "var(--sans)",
+      fontSize: 13,
+      color: "var(--ink-2)",
+      lineHeight: 1.55,
+      margin: "0 0 14px"
+    }
+  }, "Checkout by Stripe, which shows the amount before you pay. The guide opens signed in once the payment is confirmed; your access code also arrives by email for your other devices."), React.createElement("label", {
     style: {
       display: "flex",
       alignItems: "center",
@@ -299,13 +331,16 @@ function GuideBuyBox({
   }, React.createElement("input", {
     type: "checkbox",
     checked: giftMode,
-    onChange: e => setGiftMode(e.target.checked),
+    onChange: e => {
+      setGiftMode(e.target.checked);
+      setError(null);
+    },
     style: {
       accentColor: "var(--ink)"
     }
   }), "Buying it as a gift?"), giftMode && React.createElement("div", {
     style: {
-      marginBottom: 14
+      marginBottom: 18
     }
   }, React.createElement("div", {
     className: "field"
@@ -336,37 +371,20 @@ function GuideBuyBox({
       fontSize: 13,
       color: "var(--ink-2)",
       lineHeight: 1.55,
-      margin: "8px 0 0"
+      margin: "8px 0 14px"
     }
-  }, "Their access email goes straight to them when payment clears. Their 18 months start today, so time it to the trip.")), React.createElement("button", {
-    ref: buttonRef,
+  }, "Their access email goes straight to them when payment clears. Their 18 months start today, so time it to the trip."), React.createElement("button", {
     type: "button",
     className: "btn",
     disabled: busy,
     "aria-busy": busy ? "true" : undefined,
-    onClick: startCheckout,
-    style: {
-      display: "block",
-      width: "100%",
-      textAlign: "center",
-      border: 0,
-      font: "inherit",
-      cursor: busy ? "wait" : "pointer",
-      marginBottom: 10
-    }
-  }, busy ? "Opening checkout…" : `${giftMode ? "Gift the offline guide" : "Get the offline guide"} → ${formatPrice(priceCents)}`), React.createElement(CheckoutError, {
+    onClick: () => startCheckout(true),
+    style: buyButtonStyle
+  }, busy && pressedGift ? "Opening checkout…" : `Gift the Field Guide · ${formatPrice(priceCents)} →`), pressedGift && React.createElement(CheckoutError, {
     message: error,
-    onRetry: startCheckout,
+    onRetry: () => startCheckout(true),
     busy: busy
-  }), React.createElement("p", {
-    style: {
-      fontFamily: "var(--sans)",
-      fontSize: 13,
-      color: "var(--ink-2)",
-      lineHeight: 1.55,
-      margin: "0 0 14px"
-    }
-  }, "Checkout by Stripe, which shows the amount before you pay. The guide opens signed in once the payment is confirmed; your access code also arrives by email for your other devices.")), React.createElement("p", {
+  }))), React.createElement("p", {
     style: {
       fontFamily: "var(--serif)",
       fontSize: 15,
@@ -448,7 +466,7 @@ function GuideBuyBox({
       color: "var(--ink-2)",
       lineHeight: 1.7
     }
-  }, React.createElement("li", null, "· Four regional guides: the Valley, Glacier Point & Mariposa, Tuolumne, Hetch Hetchy"), React.createElement("li", null, "· Tappable GPS for every stop"), React.createElement("li", null, "· A 3D map of the park: every stop and all 57 trails on the terrain, your trip drawn day by day, downloadable by area"), React.createElement("li", null, "· Download the whole guide for offline, about 70 MB"), React.createElement("li", null, "· Time budgets and a swap for when the lot is full"), React.createElement("li", null, "· Programs by your dates: ranger walks, Junior Ranger, tours, star parties. Synced online, readable offline"), React.createElement("li", null, "· A planning calendar that lays out each day, drive times included, and saves the trip to your calendar as a file, no signal needed"), React.createElement("li", null, "· Know-before-you-go essentials, a night-before checklist, and a packing list you check off in-app"), React.createElement("li", null, "· Search across everything"), React.createElement("li", null, "· The Secret Guide: 72 entries of quiet vistas, hidden trails, parking moves, camping, the park after dark and the programs worth booking, included"), React.createElement("li", null, "· The dates that matter for your trip, under the trip board, with calendar files and reminders"), React.createElement("li", null, "· The Help card: 911 by call or text, your GPS position in the form a dispatcher reads, the park's printed numbers"), React.createElement("li", null, "· Companion mode: the nearest entry as you drive, read aloud for the passenger"), React.createElement("li", null, "· A bearing compass that points at any stop, and a daylight reading on every hike"), React.createElement("li", null, "· Quick ID for wildlife with a photo on every entry, and a life list"))), React.createElement("div", {
+  }, React.createElement("li", null, "· Four regional guides: the Valley, Glacier Point & Mariposa, Tuolumne, Hetch Hetchy"), React.createElement("li", null, "· Tappable GPS for every stop"), React.createElement("li", null, "· A 3D map of the park: every stop and all 57 trails on the terrain, your trip drawn day by day, downloadable by area"), React.createElement("li", null, "· Download the whole guide for offline, about 70 MB"), React.createElement("li", null, "· Time budgets and a swap for when the lot is full"), React.createElement("li", null, "· Programs by your dates: ranger walks, Junior Ranger, tours, star parties. Synced online, readable offline"), React.createElement("li", null, "· A planning calendar that lays out each day, drive times included, and saves the trip to your calendar as a file, no signal needed"), React.createElement("li", null, "· Know-before-you-go essentials, a night-before checklist, and a packing list you check off in-app"), React.createElement("li", null, "· Search across everything"), React.createElement("li", null, "· The Secret Guide: 72 entries of quiet vistas, hidden trails, parking moves, camping, the park after dark and the programs worth booking, included"), React.createElement("li", null, "· The dates that matter for your trip, under the trip board, with calendar files and reminders"), React.createElement("li", null, "· The Help card: your GPS position in the form a dispatcher reads, with no signal needed; 911 by call or text and the park's printed numbers one tap away (a call or text still needs a cell signal)"), React.createElement("li", null, "· Companion mode: the nearest entry as you drive, read aloud for the passenger"), React.createElement("li", null, "· A bearing compass that points at any stop, and a daylight reading on every hike"), React.createElement("li", null, "· Quick ID for wildlife with a photo on every entry, and a life list"))), React.createElement("div", {
     style: {
       borderTop: "1px solid var(--rule)",
       marginTop: 24,
@@ -628,7 +646,7 @@ function GuideWaitlistBox() {
       color: "var(--ink-2)",
       lineHeight: 1.7
     }
-  }, React.createElement("li", null, "· Four regional guides: the Valley, Glacier Point & Mariposa, Tuolumne, Hetch Hetchy"), React.createElement("li", null, "· Tappable GPS for every stop"), React.createElement("li", null, "· A 3D map of the park: every stop and all 57 trails on the terrain, your trip drawn day by day, downloadable by area"), React.createElement("li", null, "· Download the whole guide for offline, about 70 MB"), React.createElement("li", null, "· Time budgets and a swap for when the lot is full"), React.createElement("li", null, "· Programs by your dates: ranger walks, Junior Ranger, tours, star parties. Synced online, readable offline"), React.createElement("li", null, "· A planning calendar that lays out each day, drive times included, and saves the trip to your calendar as a file, no signal needed"), React.createElement("li", null, "· Know-before-you-go essentials, a night-before checklist, and a packing list you check off in-app"), React.createElement("li", null, "· Search across everything"), React.createElement("li", null, "· The Secret Guide: 72 entries of quiet vistas, hidden trails, parking moves, camping, the park after dark and the programs worth booking, included"), React.createElement("li", null, "· The dates that matter for your trip, under the trip board, with calendar files and reminders"), React.createElement("li", null, "· The Help card: 911 by call or text, your GPS position in the form a dispatcher reads, the park's printed numbers"), React.createElement("li", null, "· Companion mode: the nearest entry as you drive, read aloud for the passenger"), React.createElement("li", null, "· A bearing compass that points at any stop, and a daylight reading on every hike"), React.createElement("li", null, "· Quick ID for wildlife with a photo on every entry, and a life list"))), React.createElement("div", {
+  }, React.createElement("li", null, "· Four regional guides: the Valley, Glacier Point & Mariposa, Tuolumne, Hetch Hetchy"), React.createElement("li", null, "· Tappable GPS for every stop"), React.createElement("li", null, "· A 3D map of the park: every stop and all 57 trails on the terrain, your trip drawn day by day, downloadable by area"), React.createElement("li", null, "· Download the whole guide for offline, about 70 MB"), React.createElement("li", null, "· Time budgets and a swap for when the lot is full"), React.createElement("li", null, "· Programs by your dates: ranger walks, Junior Ranger, tours, star parties. Synced online, readable offline"), React.createElement("li", null, "· A planning calendar that lays out each day, drive times included, and saves the trip to your calendar as a file, no signal needed"), React.createElement("li", null, "· Know-before-you-go essentials, a night-before checklist, and a packing list you check off in-app"), React.createElement("li", null, "· Search across everything"), React.createElement("li", null, "· The Secret Guide: 72 entries of quiet vistas, hidden trails, parking moves, camping, the park after dark and the programs worth booking, included"), React.createElement("li", null, "· The dates that matter for your trip, under the trip board, with calendar files and reminders"), React.createElement("li", null, "· The Help card: your GPS position in the form a dispatcher reads, with no signal needed; 911 by call or text and the park's printed numbers one tap away (a call or text still needs a cell signal)"), React.createElement("li", null, "· Companion mode: the nearest entry as you drive, read aloud for the passenger"), React.createElement("li", null, "· A bearing compass that points at any stop, and a daylight reading on every hike"), React.createElement("li", null, "· Quick ID for wildlife with a photo on every entry, and a life list"))), React.createElement("div", {
     style: {
       borderTop: "1px solid var(--rule)",
       marginTop: 24,
@@ -1012,7 +1030,7 @@ var OUTCOMES = [{
   proof: "Drive buffers figured from real distances, 10 to 75 minutes"
 }, {
   kicker: "Know where you are when it matters",
-  body: "The Help card reads your GPS position back in the two forms a dispatcher and a rescue team use, names the nearest place with its distance and bearing, and lists the park's printed numbers as one-tap rows, with 911 by call or text at the top. Companion mode names the entry you are passing and reads it aloud for the passenger. The bearing compass points at any stop from the phone's sensors alone. None of it needs a data connection.",
+  body: "The Help card reads your GPS position back in the two forms a dispatcher and a rescue team use, names the nearest place with its distance and bearing, and lists the park's printed numbers as one-tap rows, with 911 by call or text at the top. Companion mode names the entry you are passing and reads it aloud for the passenger. The bearing compass points at any stop from the phone's sensors alone. None of it needs a data connection; only the 911 call or text itself needs a cell signal.",
   proof: "Position in decimal degrees and degrees-minutes · the nearest named place with distance and bearing"
 }, {
   kicker: "Know the dates that matter before they pass",
@@ -1301,7 +1319,7 @@ function GuideOfflineDemo() {
     className: "eyebrow"
   }, "Works with zero bars"), React.createElement("ul", null, React.createElement("li", null, "· All 116 entries, each with a photo (some are stand-ins)"), React.createElement("li", null, "· All 57 hikes with tracks, elevation profiles and the daylight reading"), React.createElement("li", null, "· The 3D park map in the areas you downloaded: pins, trails, and your trip's routes"), React.createElement("li", null, "· The trip board, the day view, the dates that matter, and calendar export"), React.createElement("li", null, "· The Help card's position readout, the compass, and companion mode (GPS needs no data)"), React.createElement("li", null, "· Checklists, essentials, search, Quick ID, the Secret Guide"))), React.createElement("div", null, React.createElement("div", {
     className: "eyebrow"
-  }, "Needs signal"), React.createElement("ul", null, React.createElement("li", null, "· The live park webcams"), React.createElement("li", null, "· Entrance waits and parking-lot status right now"), React.createElement("li", null, "· Fresh weather and program updates (the last sync stays readable)"), React.createElement("li", null, "· The Nature Notes archive links back to this site")))), React.createElement("p", {
+  }, "Needs signal"), React.createElement("ul", null, React.createElement("li", null, "· The live park webcams"), React.createElement("li", null, "· Entrance waits and parking-lot status right now"), React.createElement("li", null, "· Fresh weather and program updates (the last sync stays readable)"), React.createElement("li", null, "· The Nature Notes archive links back to this site"), React.createElement("li", null, "· Calling or texting 911, like any call (a lodge or visitor center landline reaches dispatch when a phone cannot)")))), React.createElement("p", {
     className: "guide-offline__fineprint"
   }, "The full download is about 70 MB. The 3D park map is about 25 MB of it, in pieces: a 7 MB overview of the whole park, then the Valley, Glacier Point and Wawona, Tioga Road and Tuolumne, and Hetch Hetchy at trailhead scale, each downloaded on its own."));
 }
@@ -1372,7 +1390,7 @@ function GuideAfterPurchase({
 }
 var GUIDE_FAQ = [{
   q: "Does it really work with no cell service?",
-  a: "Yes. One tap downloads the whole guide, about 70 MB: every entry, the photos on file, all 57 hike tracks, and the 3D park map, which you can also take one area at a time. A few entries still show a stand-in photo rather than the place itself. The Help card's position readout, the bearing compass and companion mode run on GPS, which needs no data. Only the live extras need signal: webcams, entrance waits, parking-lot status, and fresh weather and program updates."
+  a: "Yes. One tap downloads the whole guide, about 70 MB: every entry, the photos on file, all 57 hike tracks, and the 3D park map, which you can also take one area at a time. A few entries still show a stand-in photo rather than the place itself. The Help card's position readout, the bearing compass and companion mode run on GPS, which needs no data. Only the live extras need signal: webcams, entrance waits, parking-lot status, and fresh weather and program updates. So does calling or texting 911: the Help card shows your position with no signal, but the call or text itself needs a cell tower, and the card says where a landline reaches dispatch when a phone cannot."
 }, {
   q: "Is it an App Store app?",
   a: "No. It is a web app you add to your home screen in one step, on iPhone or Android. No store account, no install wait, no version to manage. Once it is there it looks and behaves like a native app."
@@ -1442,7 +1460,7 @@ function BuyNowButton({
       font: "inherit",
       cursor: busy ? "wait" : "pointer"
     }
-  }, busy ? "Opening checkout…" : label || "Get the offline Yosemite guide →"), React.createElement(CheckoutError, {
+  }, busy ? "Opening checkout…" : label || React.createElement(React.Fragment, null, "Get the Field Guide · ", React.createElement(LivePrice, null), " →")), React.createElement(CheckoutError, {
     message: note,
     onRetry: buy,
     busy: busy
@@ -1625,7 +1643,7 @@ function GuidePage({
       lineHeight: 1.6,
       margin: "0 0 20px"
     }
-  }, "Four regional guides. 44 stops in driving order, each with GPS and a time budget, the flagship ones with a swap. All 57 in-park day hikes with GPS tracks, elevation profiles and a daylight reading. The 72-entry Secret Guide. The park's program schedule on your dates. A planning calendar you drag into shape, then save to the calendar you already use, with the dates that matter for your trip under it. A Help card, a bearing compass and a companion mode that run on GPS alone. And a 3D map of the park that holds it all together: every stop and trail on the terrain, your days drawn along the real roads, working offline. ", React.createElement(LivePrice, null), " once, for ", terms.months || 18, " months on every device you own. Nothing renews."), React.createElement(BuyNowButton, {
+  }, "Four regional guides. 44 stops in driving order, each with GPS and a time budget, the flagship ones with a swap. All 57 in-park day hikes with GPS tracks, elevation profiles and a daylight reading. The 72-entry Secret Guide. The park's ranger and partner programs, listed for the dates of your trip. A planning calendar you drag into shape, then save to the calendar you already use, with the dates that matter for your trip under it. A Help card that reads your position with no signal (the 911 call itself still needs one), a bearing compass, and a companion mode that runs on GPS alone. And a 3D map of the park that holds it all together: every stop and trail on the terrain, your days drawn along the real roads, working offline. ", React.createElement(LivePrice, null), " once, for ", terms.months || 18, " months on every device you own. Nothing renews."), React.createElement(BuyNowButton, {
     location: "guide_closer"
   }), React.createElement("p", {
     style: {
