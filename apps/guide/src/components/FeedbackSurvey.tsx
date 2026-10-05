@@ -9,6 +9,7 @@
 
 import { useEffect, useRef, useState } from 'react'
 import Button from './ui/Button'
+import { ApiError } from '../lib/api'
 import { ChipButton } from './ui/Chip'
 import {
   SURVEY_FEATURES,
@@ -27,6 +28,25 @@ const RATINGS = [
   { value: 4, label: '4' },
   { value: 5, label: '5' },
 ]
+
+// Only a request that never got an answer is a connection problem. Every
+// status the Worker sends has its own line, so a server-side failure no longer
+// tells a reader on good Wi-Fi to check their connection.
+function failureMessage(err: unknown): string {
+  if (!(err instanceof ApiError)) {
+    return 'That did not send. Check your connection and try again.'
+  }
+  if (err.status === 401) {
+    return 'Your sign-in has lapsed on this device. Sign out and back in from Account, then send again.'
+  }
+  if (err.status === 429) {
+    return 'That is more sends than an hour allows. Try again in an hour.'
+  }
+  if (err.status === 400) {
+    return `The server did not accept these answers (error ${err.status}). Try again after the app updates.`
+  }
+  return `The server could not send it (error ${err.status}). Your answers are still here; try again in a few minutes.`
+}
 
 const WORTH: { id: SurveyAnswers['worth']; label: string }[] = [
   { id: 'yes', label: 'Yes' },
@@ -49,6 +69,7 @@ export default function FeedbackSurvey({
   const [missing, setMissing] = useState('')
   const [comment, setComment] = useState('')
   const [state, setState] = useState<'idle' | 'sending' | 'sent' | 'failed'>('idle')
+  const [error, setError] = useState('')
 
   // A dismissal by Escape or the backdrop counts as "Not now" when the app
   // opened the sheet, so it does not come back on the next visit to Home.
@@ -116,7 +137,8 @@ export default function FeedbackSurvey({
         comment: comment.trim() || undefined,
       })
       setState('sent')
-    } catch {
+    } catch (err) {
+      setError(failureMessage(err))
       setState('failed')
     }
   }
@@ -259,7 +281,7 @@ export default function FeedbackSurvey({
 
             {state === 'failed' && (
               <p className="survey-form__error" role="alert">
-                That did not send. Check your connection and try again.
+                {error}
               </p>
             )}
 
