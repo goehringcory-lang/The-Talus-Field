@@ -481,7 +481,7 @@ window.ARTICLE_BODIES["where-to-eat-yosemite"] = function WhereToEatYosemiteBody
             </blockquote>
             <div className="eat-prose">
               <p>
-                That rules out the clothes most people pack for Yosemite, so bring one outfit for it. Dinner without the dress code or the price is the <strong>Ahwahnee Bar</strong> next door: cocktails, wine, appetizers and lighter plates. Afternoon tea in the lounge is for hotel guests only. The kitchen publishes a vegan menu and a children's menu. On holidays the room books separately: Thanksgiving 2026 is November 26, noon to 8 p.m., $165 for an adult and $82.50 for a child with tax and tip included, booked at 888/413-8869. <a href="/articles/bracebridge-dinner-and-vintners-holidays">The Bracebridge Dinner</a> in December is its own event.
+                That rules out the clothes most people pack for Yosemite, so bring one outfit for it. Dinner without the dress code or the price is the <strong>Ahwahnee Bar</strong> next door: cocktails, wine, appetizers and lighter plates. Afternoon tea in the lounge is for hotel guests only. The kitchen publishes a vegan menu and a children's menu. On holidays the room books separately: <a href="/articles/thanksgiving-in-yosemite">Thanksgiving 2026</a> is November 26, noon to 8 p.m., $165 for an adult and $82.50 for a child with tax and tip included, booked at 888/413-8869. <a href="/articles/bracebridge-dinner-and-vintners-holidays">The Bracebridge Dinner</a> in December is its own event.
               </p>
             </div>
           </div>

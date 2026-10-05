@@ -184,6 +184,7 @@ window.ARTICLE_INTENT = {
   "yosemite-in-december":                      { stage: ["before-booking", "dates-set"], who: [], topic: ["conditions", "transportation", "lodging", "camping"] },
   "yosemite-in-winter":                        { stage: ["before-booking", "dates-set"], who: ["first-trip"], topic: ["conditions", "transportation"] },
   "where-to-stay-in-yosemite":                 { stage: ["before-booking"], who: ["first-trip", "families", "accessible"], topic: ["lodging"] },
+  "thanksgiving-in-yosemite":                  { stage: ["before-booking", "dates-set"], who: [], topic: ["lodging", "camping", "food", "conditions", "transportation"] },
   "bracebridge-dinner-and-vintners-holidays":  { stage: ["before-booking"], who: ["non-hikers"], topic: ["lodging", "food", "conditions"] },
   "yosemite-wildflowers-guide":                { stage: ["dates-set"], who: ["photography", "non-hikers"], topic: ["conditions"] },
   "watching-climbers-el-capitan":              { stage: ["in-park"], who: ["families", "non-hikers", "accessible"], topic: [] },
@@ -327,6 +328,8 @@ window.ARTICLE_MONTHS = {
   "tioga-road-opening-weekend": ["may", "jun"],
   "glacier-point-road-open-2026": ["may", "jun"],
   "yosemite-in-winter": ["nov", "dec", "jan", "feb", "mar"],
+  // "Thanksgiving 2026 falls on Thursday, November 26": a holiday-weekend trip.
+  "thanksgiving-in-yosemite": ["nov"],
   "bracebridge-dinner-and-vintners-holidays": ["nov", "dec"],
   "yosemite-heat-safety-guide": ["jun", "jul", "aug", "sep"],
   "yosemite-during-smoke-season": ["jul", "aug", "sep", "oct"],

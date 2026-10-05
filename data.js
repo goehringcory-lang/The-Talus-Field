@@ -110,6 +110,7 @@ window.planningSeriesFor = function (slug) {
 // verifies this map stays in sync with the files in bodies/.
 // ============================================================
 window.BODY_VERSIONS = {
+  "thanksgiving-in-yosemite": 1,
   "best-yosemite-backpacking-trips": 1,
   "yosemite-trees-identification-guide": 2,
   "tioga-road-stop-by-stop": 1,
@@ -189,7 +190,7 @@ window.BODY_VERSIONS = {
   "water-ouzels-waterfalls": 78,
   "working-in-yosemite": 79,
   "yosemite-in-one-or-two-days": 90,
-  "where-to-eat-yosemite": 90,
+  "where-to-eat-yosemite": 91,
   "yosemite-in-march": 5,
 };
 
@@ -757,6 +758,21 @@ window.KIT.lists.forEach((l) => {
 // AffiliateDisclosure line under the byline, before the first link;
 // scripts/check-affiliate-links.mjs fails when the flag and the body disagree.
 window.ARTICLES = [
+  {
+    slug: "thanksgiving-in-yosemite",
+    aff: true,
+    cat: "seasonal",
+    title: "Thanksgiving in Yosemite: The Dinner, the Rooms, and What Is Still Open That Weekend",
+    dek: "Thanksgiving is the one busy weekend in a quiet month, and it lands between seasons: the high roads are almost always closed, Badger Pass has not started, and Curry Village shuts the Sunday it ends. The Ahwahnee's holiday dinner, where to sleep and camp, the chain rules, the road record, and four short days planned.",
+    seoDek: "Thanksgiving in Yosemite: the Ahwahnee dinner, open lodging and campgrounds, the road record for Tioga and Glacier Point, chains, YARTS, and a plan.",
+    date: "October 5, 2026",
+    isoDate: "2026-10-05",
+    isoModified: "2026-10-05",
+    read: "10 min",
+    placeholder: "Tunnel View in late autumn, with fresh snow on the high rims above fall color on the Valley floor",
+    image: "img/tunnel-view-autumn-aniket-deole.jpg",
+    credit: "Photo: Aniket Deole / Unsplash",
+  },
   {
     slug: "best-yosemite-backpacking-trips",
     cat: "trails",
@@ -2085,6 +2101,7 @@ window.START_HERE = [
 // Curate a piece when it earns real search impressions, when it anchors a
 // cluster, or when it is the destination that needs the equity.
 window.RELATED = {
+  "thanksgiving-in-yosemite": ["where-to-stay-in-yosemite", "where-to-eat-yosemite", "yosemite-in-winter", "yosemite-in-december", "bracebridge-dinner-and-vintners-holidays", "yosemite-camping-complete-guide"],
   // The best Yosemite backpacking trips, in order: the permit, the pickup, and five routes
   "best-yosemite-backpacking-trips": ["first-yosemite-backpacking-trip", "yosemite-wilderness-permits-guide", "yosemite-walk-up-and-day-of-permits", "yosemite-bears-safety-guide", "tuolumne-meadows-in-a-day", "cathedral-lakes-day-hike"],
   // Yosemite trees: how to tell them apart, from the foothills to Tioga Pass
@@ -2101,7 +2118,7 @@ window.RELATED = {
   // Yosemite in December: the evergreen month guide. Onward to the season
   // piece, the winter trails, the holiday dinner, the lodging and entrance
   // guides, and the next month guide in the series.
-  "yosemite-in-december": ["yosemite-in-winter", "yosemite-winter-hikes", "bracebridge-dinner-and-vintners-holidays", "where-to-stay-in-yosemite", "getting-to-yosemite", "yosemite-in-march"],
+  "yosemite-in-december": ["yosemite-in-winter", "yosemite-winter-hikes", "bracebridge-dinner-and-vintners-holidays", "where-to-stay-in-yosemite", "thanksgiving-in-yosemite", "yosemite-in-march"],
   // A wildfire in Yosemite during your trip: the evergreen decision guide the
   // Dome Fire week asked for. Onward to smoke, the restrictions, the road it
   // closed and its hike-in alternative, the other closure guide, and the towns.
@@ -2128,7 +2145,7 @@ window.RELATED = {
   "yosemite-facelift-volunteer-guide": ["yosemite-in-september-2026", "yosemite-camping-complete-guide", "yosemite-ranger-programs", "yosemite-fire-restrictions-explained", "yosemite-shuttle-and-yarts"],
 
   // Lodging and gateway towns
-  "bracebridge-dinner-and-vintners-holidays": ["where-to-stay-in-yosemite", "yosemite-in-winter", "yosemite-in-december", "yosemite-trip-cost-budget", "yosemite-gateway-towns-compared", "where-to-eat-yosemite"],
+  "bracebridge-dinner-and-vintners-holidays": ["where-to-stay-in-yosemite", "yosemite-in-winter", "yosemite-in-december", "thanksgiving-in-yosemite", "yosemite-gateway-towns-compared", "where-to-eat-yosemite"],
   "yosemite-gateway-towns-compared": ["where-to-stay-in-yosemite", "yosemite-from-los-angeles", "yosemite-with-kids-no-reservations-2026", "highway-140-closed-yosemite", "yosemite-trip-cost-budget", "getting-to-yosemite"],
   "where-to-stay-in-yosemite": ["yosemite-gateway-towns-compared", "yosemite-camping-complete-guide", "yosemite-trip-cost-budget", "bracebridge-dinner-and-vintners-holidays", "where-to-eat-yosemite"],
   "yosemite-camping-complete-guide": ["camping-in-yosemite-first-time", "where-to-stay-in-yosemite", "first-yosemite-backpacking-trip", "yosemite-trip-cost-budget", "yosemite-facelift-volunteer-guide", "sustainable-yosemite-car-free-zero-waste"],
@@ -2181,7 +2198,7 @@ window.RELATED = {
   // Seasonal
   "yosemite-in-june": ["when-to-visit-yosemite", "yosemite-waterfalls-guide", "tioga-road-opening-weekend", "yosemite-heat-safety-guide"],
   "yosemite-in-september-2026": ["when-to-visit-yosemite", "yosemite-in-fall", "tuolumne-meadows-in-a-day", "yosemite-during-smoke-season", "cathedral-lakes-day-hike", "mist-trail-the-real-guide"],
-  "yosemite-in-fall": ["yosemite-in-october-2026", "yosemite-in-september-2026", "clouds-rest-hike", "when-to-visit-yosemite", "yosemite-in-winter", "yosemite-during-smoke-season"],
+  "yosemite-in-fall": ["yosemite-in-october-2026", "yosemite-in-september-2026", "clouds-rest-hike", "when-to-visit-yosemite", "thanksgiving-in-yosemite", "yosemite-during-smoke-season"],
   "yosemite-in-winter": ["yosemite-winter-hikes", "yosemite-in-december", "horsetail-fall-firefall", "when-to-visit-yosemite", "yosemite-in-march", "bracebridge-dinner-and-vintners-holidays"],
   "yosemite-in-march": ["yosemite-in-winter", "yosemite-waterfalls-guide", "horsetail-fall-firefall", "when-to-visit-yosemite", "yosemite-in-december"],
   "tioga-road-opening-weekend": ["cathedral-lakes-day-hike", "tuolumne-meadows-in-a-day", "yosemite-from-las-vegas", "memorial-day-skip-the-valley-go-high-2026", "yosemite-stargazing-where-to-look-up", "tioga-road-stop-by-stop"],
