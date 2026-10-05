@@ -254,6 +254,9 @@ function GuideBuyBox({ go }) {
 
   const [priceCents, setPriceCents] = React.useState(GUIDE_PRICE_FALLBACK_CENTS);
   const [giftMode, setGiftMode] = React.useState(false);
+  // Which button started the last checkout, so its busy label and any error
+  // show beside that button and not the other one.
+  const [pressedGift, setPressedGift] = React.useState(false);
   const [giftEmail, setGiftEmail] = React.useState("");
   const [giftNote, setGiftNote] = React.useState("");
 
@@ -272,21 +275,23 @@ function GuideBuyBox({ go }) {
     };
   }, []);
 
-  async function startCheckout() {
+  async function startCheckout(asGift) {
     if (busy) return;
+    const gift = !!asGift;
+    setPressedGift(gift);
     const recipient = giftEmail.trim();
-    if (giftMode && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(recipient)) {
+    if (gift && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(recipient)) {
       setError("Enter the recipient's email address first.");
       return;
     }
     setBusy(true);
     setError(null);
     if (window.track)
-      window.track("guide_buy_click", { location, gift: giftMode });
-    stashBuyLocation(location, giftMode);
+      window.track("guide_buy_click", { location, gift });
+    stashBuyLocation(location, gift);
     try {
       const url = await startGuideCheckout(
-        giftMode ? { gift: true, recipientEmail: recipient, giftNote: giftNote.trim() } : null
+        gift ? { gift: true, recipientEmail: recipient, giftNote: giftNote.trim() } : null
       );
       window.location = url;
     } catch (e) {
@@ -296,6 +301,7 @@ function GuideBuyBox({ go }) {
   }
 
   const terms = window.GUIDE_TERMS || {};
+  const buyButtonStyle = { display: "block", width: "100%", textAlign: "center", border: 0, font: "inherit", cursor: busy ? "wait" : "pointer", marginBottom: 10 };
   const boxNote = { fontFamily: "var(--sans)", fontSize: 14, color: "var(--ink)", lineHeight: 1.55, margin: "0 0 18px", border: "1px solid var(--ink)", padding: "12px 14px", background: "var(--paper)" };
 
   return (
@@ -334,17 +340,38 @@ function GuideBuyBox({ go }) {
       </div>
 
       <React.Fragment>
+        {/* The button sits directly under the price: a reader who has
+            decided should not have to look for where to buy. The gift path
+            follows it, with its own button once the box is ticked. */}
+        <button
+          ref={buttonRef}
+          type="button"
+          className="btn"
+          disabled={busy}
+          aria-busy={busy ? "true" : undefined}
+          onClick={() => startCheckout(false)}
+          style={buyButtonStyle}
+        >
+          {busy && !pressedGift ? "Opening checkout…" : `Get the Field Guide · ${formatPrice(priceCents)} →`}
+        </button>
+        {!pressedGift && <CheckoutError message={error} onRetry={() => startCheckout(false)} busy={busy} />}
+        <p style={{ fontFamily: "var(--sans)", fontSize: 13, color: "var(--ink-2)", lineHeight: 1.55, margin: "0 0 14px" }}>
+          Checkout by Stripe, which shows the amount before you pay. The guide opens signed in once the payment is confirmed; your access code also arrives by email for your other devices.
+        </p>
         <label style={{ display: "flex", alignItems: "center", gap: 8, fontFamily: "var(--sans)", fontSize: 14, color: "var(--ink-2)", marginBottom: 14, cursor: "pointer" }}>
           <input
             type="checkbox"
             checked={giftMode}
-            onChange={(e) => setGiftMode(e.target.checked)}
+            onChange={(e) => {
+              setGiftMode(e.target.checked);
+              setError(null);
+            }}
             style={{ accentColor: "var(--ink)" }}
           />
           Buying it as a gift?
         </label>
         {giftMode && (
-          <div style={{ marginBottom: 14 }}>
+          <div style={{ marginBottom: 18 }}>
             <div className="field">
               <label htmlFor="gift-email">Recipient's email</label>
               <input
@@ -366,28 +393,22 @@ function GuideBuyBox({ go }) {
                 style={{ minHeight: 70 }}
               />
             </div>
-            <p style={{ fontFamily: "var(--sans)", fontSize: 13, color: "var(--ink-2)", lineHeight: 1.55, margin: "8px 0 0" }}>
+            <p style={{ fontFamily: "var(--sans)", fontSize: 13, color: "var(--ink-2)", lineHeight: 1.55, margin: "8px 0 14px" }}>
               Their access email goes straight to them when payment clears. Their 18 months start today, so time it to the trip.
             </p>
+            <button
+              type="button"
+              className="btn"
+              disabled={busy}
+              aria-busy={busy ? "true" : undefined}
+              onClick={() => startCheckout(true)}
+              style={buyButtonStyle}
+            >
+              {busy && pressedGift ? "Opening checkout…" : `Gift the Field Guide · ${formatPrice(priceCents)} →`}
+            </button>
+            {pressedGift && <CheckoutError message={error} onRetry={() => startCheckout(true)} busy={busy} />}
           </div>
         )}
-        <button
-          ref={buttonRef}
-          type="button"
-          className="btn"
-          disabled={busy}
-          aria-busy={busy ? "true" : undefined}
-          onClick={startCheckout}
-          style={{ display: "block", width: "100%", textAlign: "center", border: 0, font: "inherit", cursor: busy ? "wait" : "pointer", marginBottom: 10 }}
-        >
-          {busy
-            ? "Opening checkout…"
-            : `${giftMode ? "Gift the offline guide" : "Get the offline guide"} → ${formatPrice(priceCents)}`}
-        </button>
-        <CheckoutError message={error} onRetry={startCheckout} busy={busy} />
-        <p style={{ fontFamily: "var(--sans)", fontSize: 13, color: "var(--ink-2)", lineHeight: 1.55, margin: "0 0 14px" }}>
-          Checkout by Stripe, which shows the amount before you pay. The guide opens signed in once the payment is confirmed; your access code also arrives by email for your other devices.
-        </p>
       </React.Fragment>
 
       <p style={{ fontFamily: "var(--serif)", fontSize: 15, color: "var(--ink-2)", lineHeight: 1.55, margin: 0 }}>
@@ -438,7 +459,7 @@ function GuideBuyBox({ go }) {
           <li>· Search across everything</li>
           <li>· The Secret Guide: 72 entries of quiet vistas, hidden trails, parking moves, camping, the park after dark and the programs worth booking, included</li>
           <li>· The dates that matter for your trip, under the trip board, with calendar files and reminders</li>
-          <li>· The Help card: 911 by call or text, your GPS position in the form a dispatcher reads, the park's printed numbers</li>
+          <li>· The Help card: your GPS position in the form a dispatcher reads, with no signal needed; 911 by call or text and the park's printed numbers one tap away (a call or text still needs a cell signal)</li>
           <li>· Companion mode: the nearest entry as you drive, read aloud for the passenger</li>
           <li>· A bearing compass that points at any stop, and a daylight reading on every hike</li>
           <li>· Quick ID for wildlife with a photo on every entry, and a life list</li>
@@ -568,7 +589,7 @@ function GuideWaitlistBox() {
           <li>· Search across everything</li>
           <li>· The Secret Guide: 72 entries of quiet vistas, hidden trails, parking moves, camping, the park after dark and the programs worth booking, included</li>
           <li>· The dates that matter for your trip, under the trip board, with calendar files and reminders</li>
-          <li>· The Help card: 911 by call or text, your GPS position in the form a dispatcher reads, the park's printed numbers</li>
+          <li>· The Help card: your GPS position in the form a dispatcher reads, with no signal needed; 911 by call or text and the park's printed numbers one tap away (a call or text still needs a cell signal)</li>
           <li>· Companion mode: the nearest entry as you drive, read aloud for the passenger</li>
           <li>· A bearing compass that points at any stop, and a daylight reading on every hike</li>
           <li>· Quick ID for wildlife with a photo on every entry, and a life list</li>
@@ -1066,7 +1087,7 @@ const OUTCOMES = [
   {
     kicker: "Know where you are when it matters",
     body:
-      "The Help card reads your GPS position back in the two forms a dispatcher and a rescue team use, names the nearest place with its distance and bearing, and lists the park's printed numbers as one-tap rows, with 911 by call or text at the top. Companion mode names the entry you are passing and reads it aloud for the passenger. The bearing compass points at any stop from the phone's sensors alone. None of it needs a data connection.",
+      "The Help card reads your GPS position back in the two forms a dispatcher and a rescue team use, names the nearest place with its distance and bearing, and lists the park's printed numbers as one-tap rows, with 911 by call or text at the top. Companion mode names the entry you are passing and reads it aloud for the passenger. The bearing compass points at any stop from the phone's sensors alone. None of it needs a data connection; only the 911 call or text itself needs a cell signal.",
     proof: "Position in decimal degrees and degrees-minutes · the nearest named place with distance and bearing",
   },
   {
@@ -1363,6 +1384,7 @@ function GuideOfflineDemo() {
             <li>· Entrance waits and parking-lot status right now</li>
             <li>· Fresh weather and program updates (the last sync stays readable)</li>
             <li>· The Nature Notes archive links back to this site</li>
+            <li>· Calling or texting 911, like any call (a lodge or visitor center landline reaches dispatch when a phone cannot)</li>
           </ul>
         </div>
       </div>
@@ -1516,7 +1538,7 @@ function GuideAfterPurchase({ go }) {
 const GUIDE_FAQ = [
   {
     q: "Does it really work with no cell service?",
-    a: "Yes. One tap downloads the whole guide, about 70 MB: every entry, the photos on file, all 57 hike tracks, and the 3D park map, which you can also take one area at a time. A few entries still show a stand-in photo rather than the place itself. The Help card's position readout, the bearing compass and companion mode run on GPS, which needs no data. Only the live extras need signal: webcams, entrance waits, parking-lot status, and fresh weather and program updates.",
+    a: "Yes. One tap downloads the whole guide, about 70 MB: every entry, the photos on file, all 57 hike tracks, and the 3D park map, which you can also take one area at a time. A few entries still show a stand-in photo rather than the place itself. The Help card's position readout, the bearing compass and companion mode run on GPS, which needs no data. Only the live extras need signal: webcams, entrance waits, parking-lot status, and fresh weather and program updates. So does calling or texting 911: the Help card shows your position with no signal, but the call or text itself needs a cell tower, and the card says where a landline reaches dispatch when a phone cannot.",
   },
   {
     q: "Is it an App Store app?",
@@ -1567,7 +1589,8 @@ function GuideFaq() {
 
 // The end-of-section buy button: same checkout POST as the aside, no gift
 // path. A reader who made it through the pitch shouldn't have to scroll back
-// up to act on it. The label states the outcome, not the transaction.
+// up to act on it. The default label names the product and its price, so
+// no reader has to hunt for what the button costs.
 function BuyNowButton({ location, label }) {
   const [busy, setBusy] = React.useState(false);
   const [note, setNote] = React.useState(null);
@@ -1596,7 +1619,7 @@ function BuyNowButton({ location, label }) {
         onClick={buy}
         style={{ border: 0, font: "inherit", cursor: busy ? "wait" : "pointer" }}
       >
-        {busy ? "Opening checkout…" : label || "Get the offline Yosemite guide →"}
+        {busy ? "Opening checkout…" : label || <React.Fragment>Get the Field Guide · <LivePrice /> →</React.Fragment>}
       </button>
       <CheckoutError message={note} onRetry={buy} busy={busy} />
     </React.Fragment>
@@ -1830,7 +1853,7 @@ function GuidePage({ go }) {
             <div className="guide-closer">
               <div className="eyebrow eyebrow--moss" style={{ marginBottom: 12 }}>The offer, in one place</div>
               <p style={{ fontFamily: "var(--serif)", fontSize: 17, lineHeight: 1.6, margin: "0 0 20px" }}>
-                Four regional guides. 44 stops in driving order, each with GPS and a time budget, the flagship ones with a swap. All 57 in-park day hikes with GPS tracks, elevation profiles and a daylight reading. The 72-entry Secret Guide. The park's program schedule on your dates. A planning calendar you drag into shape, then save to the calendar you already use, with the dates that matter for your trip under it. A Help card, a bearing compass and a companion mode that run on GPS alone. And a 3D map of the park that holds it all together: every stop and trail on the terrain, your days drawn along the real roads, working offline. <LivePrice /> once, for {terms.months || 18} months on every device you own. Nothing renews.
+                Four regional guides. 44 stops in driving order, each with GPS and a time budget, the flagship ones with a swap. All 57 in-park day hikes with GPS tracks, elevation profiles and a daylight reading. The 72-entry Secret Guide. The park's ranger and partner programs, listed for the dates of your trip. A planning calendar you drag into shape, then save to the calendar you already use, with the dates that matter for your trip under it. A Help card that reads your position with no signal (the 911 call itself still needs one), a bearing compass, and a companion mode that runs on GPS alone. And a 3D map of the park that holds it all together: every stop and trail on the terrain, your days drawn along the real roads, working offline. <LivePrice /> once, for {terms.months || 18} months on every device you own. Nothing renews.
               </p>
               <BuyNowButton location="guide_closer" />
               <p style={{ fontFamily: "var(--sans)", fontSize: 13, color: "var(--ink-2)", lineHeight: 1.55, margin: "14px 0 0" }}>
