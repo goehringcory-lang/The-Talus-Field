@@ -3,6 +3,7 @@
 import worker from '../src/index'
 import { sweepRenewals } from '../src/lib/renewals'
 import { signAccessJwt } from '../src/lib/jwt'
+import { retryQueuedFeedback } from '../src/lib/feedbackQueue'
 
 // ---------- mocks ----------
 class MockKV {
@@ -938,10 +939,31 @@ console.log('\nS. Field Guide survey (/api/feedback)')
   const noRating = await post({ ...good, rating: 9 }, opJwt)
   check('rating out of range -> 400', noRating.status === 400, noRating)
 
+  // A hand-seeded buyer record (DEPLOY.md's owner-access block) with no
+  // numeric purchasedAt used to throw from toISOString and 500 the survey.
+  await buyers.put('buyer:owner@example.com', JSON.stringify({
+    email: 'owner@example.com', expiresAt: 4102444800, accessToken: 'x', accessCode: '000000',
+  }))
+  sentEmails = []
+  const ownerJwt = await signAccessJwt('owner@example.com', 'test-signing-secret', now + 3600)
+  const byOwner = await post(good, ownerJwt)
+  check('buyer record without purchasedAt -> 200, still mailed', byOwner.status === 200 &&
+    sentEmails.length === 1 && sentEmails[0].text.includes('Paid buyer'), { byOwner, sentEmails })
+
   resendMode = 'fail'
   const fails = await post(good, buyerJwt)
-  check('Resend failure -> 502', fails.status === 502, fails)
+  const queued = [...buyers.store.keys()].filter((k) => k.startsWith('feedbackQueue:'))
+  check('Resend failure -> 202, survey queued instead of lost', fails.status === 202 &&
+    fails.json?.queued === true && queued.length === 1, { fails, queued })
+  const stillDown = await retryQueuedFeedback(env as never)
+  check('retry while Resend is down keeps the survey', stillDown.failed === 1 &&
+    [...buyers.store.keys()].some((k) => k.startsWith('feedbackQueue:')), stillDown)
   resendMode = 'ok'
+  sentEmails = []
+  const retried = await retryQueuedFeedback(env as never)
+  check('nightly retry mails the queued survey and clears it', retried.sent === 1 && sentEmails.length === 1 &&
+    sentEmails[0].reply_to === 'hiker@example.com' &&
+    ![...buyers.store.keys()].some((k) => k.startsWith('feedbackQueue:')), { retried, sentEmails })
 
   let last: Awaited<ReturnType<typeof call>> | null = null
   for (let i = 0; i < 6; i++) last = await post(good, opJwt)

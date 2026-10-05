@@ -826,22 +826,21 @@ export async function sendContactMessage(
 // One answered Field Guide survey (routes/feedback.ts). Goes to the operator
 // inbox, with the buyer's address as reply_to when the sign-in was an email,
 // so a one-tap reply reaches them.
-export async function sendFeedbackSurvey(
-  env: Env,
-  args: {
-    sub: string
-    replyTo?: string
-    account: string
-    purchasedAt: string | null
-    rating: number
-    worth: string
-    ranking: string[]
-    missing?: string
-    comment?: string
-    build?: string
-    installed?: boolean
-  },
-): Promise<void> {
+export type FeedbackSurvey = {
+  sub: string
+  replyTo?: string
+  account: string
+  purchasedAt: string | null
+  rating: number
+  worth: string
+  ranking: string[]
+  missing?: string
+  comment?: string
+  build?: string
+  installed?: boolean
+}
+
+export async function sendFeedbackSurvey(env: Env, args: FeedbackSurvey): Promise<void> {
   if (!env.RESEND_API_KEY) {
     throw new Error('RESEND_API_KEY not configured')
   }

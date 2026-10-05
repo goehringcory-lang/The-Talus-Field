@@ -29,6 +29,7 @@ import { refreshFlow } from './lib/flow'
 import { refreshWeather } from './lib/weather'
 import { watchRoads } from './lib/roads'
 import { sweepRenewals } from './lib/renewals'
+import { retryQueuedFeedback } from './lib/feedbackQueue'
 import { sweepPush } from './lib/pushSweep'
 import {
   currentMonthLabel,
@@ -264,6 +265,11 @@ async function scheduled(
   ctx.waitUntil(
     sweepRenewals(env).catch((err) => {
       console.error('scheduled: renewal sweep failed', err)
+    }),
+  )
+  ctx.waitUntil(
+    retryQueuedFeedback(env).catch((err) => {
+      console.error('scheduled: feedback retry failed', err)
     }),
   )
 }

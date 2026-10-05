@@ -1,14 +1,15 @@
 import { Hono } from 'hono'
 import { z } from 'zod'
 import type { Env } from '../env'
-import { getBuyer, recordFeedbackAttempt } from '../lib/kv'
-import { sendFeedbackSurvey } from '../lib/email'
+import { getBuyer, queueFeedback, recordFeedbackAttempt } from '../lib/kv'
+import { sendFeedbackSurvey, type FeedbackSurvey } from '../lib/email'
 import { requireAuth, type AuthVariables } from '../middleware/require-auth'
 
 // The Field Guide survey (apps/guide/src/components/FeedbackSurvey.tsx).
 // JWT-gated: only a signed-in buyer or an operator login can answer, so the
 // inbox hears from people who have used the paid guide, not from bots. The
-// answers are mailed to the operator inbox and stored nowhere else.
+// answers are mailed to the operator inbox; only a survey whose email fails is
+// kept, in KV, until the nightly cron delivers it (lib/feedbackQueue.ts).
 export const feedback = new Hono<{ Bindings: Env; Variables: AuthVariables }>()
 
 // Hand-mirrored from SURVEY_FEATURES in apps/guide/src/lib/survey.ts. The ids
@@ -55,34 +56,64 @@ feedback.post('/', requireAuth, async (c) => {
     return c.json({ error: 'Too many requests. Try again later.' }, 429)
   }
 
-  // Who answered, in the terms the owner cares about: a paid buyer, a promo
-  // trial, or an operator login (no buyer record behind the username).
-  const buyer = sub.includes('@') ? await getBuyer(c.env, sub) : null
-  let account: string
-  if (!buyer) account = sub.includes('@') ? 'Signed in, no buyer record' : 'Operator login'
-  else if (buyer.promoCode) account = `Promo trial (${buyer.promoCode})`
-  else account = 'Paid buyer'
-  const purchasedAt = buyer ? new Date(buyer.purchasedAt * 1000).toISOString().slice(0, 10) : null
-
   const d = parsed.data
+  const survey: FeedbackSurvey = {
+    sub,
+    replyTo: sub.includes('@') ? sub : undefined,
+    ...(await describeAccount(c.env, sub)),
+    rating: d.rating,
+    worth: WORTH[d.worth],
+    ranking: d.ranking.map((id) => SURVEY_FEATURES[id]),
+    missing: d.missing?.trim() || undefined,
+    comment: d.comment?.trim() || undefined,
+    build: d.build,
+    installed: d.installed,
+  }
+
   try {
-    await sendFeedbackSurvey(c.env, {
-      sub,
-      replyTo: sub.includes('@') ? sub : undefined,
-      account,
-      purchasedAt,
-      rating: d.rating,
-      worth: WORTH[d.worth],
-      ranking: d.ranking.map((id) => SURVEY_FEATURES[id]),
-      missing: d.missing?.trim() || undefined,
-      comment: d.comment?.trim() || undefined,
-      build: d.build,
-      installed: d.installed,
-    })
+    await sendFeedbackSurvey(c.env, survey)
   } catch (err) {
-    console.error('feedback send failed', err)
-    return c.json({ error: 'Send failed' }, 502)
+    // The reader's answers are already valid; a mail outage is ours, not
+    // theirs. Keep the survey for the nightly retry and answer success, so
+    // the app never tells a reader with a working connection to check it.
+    console.error('feedback send failed, queueing for retry', err)
+    try {
+      await queueFeedback(c.env, survey)
+    } catch (queueErr) {
+      console.error('feedback queue failed', queueErr)
+      return c.json({ error: 'Send failed' }, 502)
+    }
+    return c.json({ ok: true, queued: true }, 202)
   }
 
   return c.json({ ok: true }, 200)
 })
+
+// Who answered, in the terms the owner cares about: a paid buyer, a promo
+// trial, or an operator login (no buyer record behind the username). Context
+// for the email only, so it can never fail the send: a hand-seeded buyer
+// record without a numeric purchasedAt used to throw RangeError from
+// toISOString() here and 500 the whole survey.
+async function describeAccount(
+  env: Env,
+  sub: string,
+): Promise<{ account: string; purchasedAt: string | null }> {
+  try {
+    const buyer = sub.includes('@') ? await getBuyer(env, sub) : null
+    if (!buyer) {
+      return {
+        account: sub.includes('@') ? 'Signed in, no buyer record' : 'Operator login',
+        purchasedAt: null,
+      }
+    }
+    const account = buyer.promoCode ? `Promo trial (${buyer.promoCode})` : 'Paid buyer'
+    const at = Number(buyer.purchasedAt)
+    const purchasedAt = Number.isFinite(at)
+      ? new Date(at * 1000).toISOString().slice(0, 10)
+      : null
+    return { account, purchasedAt }
+  } catch (err) {
+    console.error('feedback account lookup failed', err)
+    return { account: 'Signed in (account lookup failed)', purchasedAt: null }
+  }
+}

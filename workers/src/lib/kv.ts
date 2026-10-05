@@ -257,6 +257,21 @@ export async function recordFeedbackAttempt(env: Env, sub: string): Promise<numb
   return incrementFixedWindow(env, FEEDBACK_ATTEMPTS_KEY(sub))
 }
 
+// A survey whose email failed to send waits here instead of being lost: the
+// route answers the reader with success, and the nightly cron
+// (retryQueuedFeedback in lib/feedbackQueue.ts) mails it once Resend answers.
+// Thirty days is long enough to outlast any outage and short enough that a
+// survey nobody can deliver does not sit in KV forever.
+export const FEEDBACK_QUEUE_PREFIX = 'feedbackQueue:'
+const FEEDBACK_QUEUE_TTL_SECONDS = 30 * 24 * 60 * 60
+
+export async function queueFeedback(env: Env, payload: unknown): Promise<void> {
+  const id = `${Date.now()}-${crypto.randomUUID()}`
+  await env.GUIDE_BUYERS.put(`${FEEDBACK_QUEUE_PREFIX}${id}`, JSON.stringify(payload), {
+    expirationTtl: FEEDBACK_QUEUE_TTL_SECONDS,
+  })
+}
+
 export async function recordSubscribeAttempt(env: Env, ipHash: string): Promise<number> {
   return incrementFixedWindow(env, SUBSCRIBE_ATTEMPTS_KEY(ipHash))
 }
