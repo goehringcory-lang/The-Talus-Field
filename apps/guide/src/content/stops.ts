@@ -1503,6 +1503,19 @@ const seed: StopInput[] = [
     body:
       'The store, the grill, and the lodge dining tent are closed for the 2026 season. The Yosemite Guide for September 23 to November 24 lists all three as closed, and Tioga Road stays open until snow shuts it. Bring water, lunch, and a full tank from Crane Flat; the next food eastbound is Lee Vining.\n\nWhen open, the grill serves burgers, breakfast sandwiches, chili, and soft-serve from a griddle in a canvas-sided building beside the store. The picnic tables fill with Pacific Crest Trail and John Muir Trail hikers, day hikers, climbers, and rangers.\n\nThe store is a small outfitter: fuel canisters, groceries, the only supplies in the high country, plus a seasonal post office where thru-hikers collect resupply boxes. The complex is tents and trailers struck every fall and rebuilt when Tioga Road opens; it does not exist in winter.',
     photos: [{ src: '/photos/tuolumne-meadows-grill.jpg', caption: 'Tuolumne Meadows at the end of the season. The store and grill tents sit at the meadow\'s east end.' }],
+
+    history: {
+      note:
+        'On the afternoon of July 20, 1952, David C. Ochsner of the Yosemite Field ' +
+        'School and a companion, across from the Tuolumne Meadows store, watched a ' +
+        'California badger dig a series of about six holes along a Belding ground ' +
+        'squirrel\'s tunnel until it caught a young squirrel. Followed for seven ' +
+        'hundred feet, it noticed them and dropped its catch. They returned the ' +
+        'squirrel and were thanked with a loud growl.',
+      volume: 31,
+      number: 8,
+      issueDate: 'August 1952',
+    },
   },
   {
     id: 'gaylor-lake',
@@ -1751,6 +1764,18 @@ const seed: StopInput[] = [
       'Two miles round trip to a bare granite knob above the entrance station: the reservoir, Kolana Rock, and Wapama Falls from above. April and May are the season.',
     body:
       'About 2 miles round trip and 680 feet of gain, an hour to ninety minutes. The trail leaves from near the Hetch Hetchy entrance station at Mather and climbs through pine and recovering burn to a bare granite knob. From the top: the reservoir below, Kolana Rock on the south wall, and in spring Wapama Falls on the north wall.\n\nApril and May are the season, with the falls at full volume and good wildflowers around the knob. Do it first on a Hetch Hetchy day, before the dam and the Wapama walk.',
+    history: {
+      note:
+        'In September 1926 C. P. Russell described what this knob looks down on. ' +
+        'Kolana, standing out from the south wall, was the outermost of a group ' +
+        '2300 feet high, the counterpart of Yosemite\'s Cathedral Rocks. Wapama, ' +
+        '1700 feet, carried more water than Yosemite Fall, and Tueeulala fell free ' +
+        'for a thousand feet from Kolana\'s brow. The reservoir\'s normal depth was ' +
+        '220 feet, and it reached seven and one-half miles back from the dam.',
+      volume: 5,
+      number: 9,
+      issueDate: 'September 30, 1926',
+    },
   },
   {
     id: 'oshaughnessy-dam',
