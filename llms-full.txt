@@ -8,7 +8,7 @@
 Publisher: The Talus Field (https://thetalusfieldjournal.com). Editor: Cory Goehring.
 Citation guidance and the annotated page index: https://thetalusfieldjournal.com/llms.txt
 Canonical article URL pattern: https://thetalusfieldjournal.com/articles/<slug>
-Contents: 82 articles. Most recent update: 2026-10-05.
+Contents: 82 articles. Most recent update: 2026-10-07.
 
 Not in this file: the Yosemite Nature Notes archive, all 512 issues of the
 National Park Service's Yosemite bulletin (1922-2003), transcribed in full
@@ -2368,7 +2368,7 @@ None of it requires you to plan a separate trip. A Facelift day slots into an or
 ## Bracebridge Dinner and Vintners' Holidays: An Honest Guide
 
 URL: https://thetalusfieldjournal.com/articles/bracebridge-dinner-and-vintners-holidays
-Section: Seasonal Guides. Published: 2026-08-27. Last updated: 2026-10-03.
+Section: Seasonal Guides. Published: 2026-08-27. Last updated: 2026-10-07.
 Summary: Bracebridge Dinner and Vintners' Holidays, explained: what they cost, what's included, when tickets sell out, and whether they're worth it.
 
 Two names turn up every year in the same searches: the Bracebridge Dinner and Vintners' Holidays. Both happen at the Ahwahnee. Both get described online as "iconic," "legendary," "bucket list." None of that tells you what the evening actually is, what it costs, or whether the tickets you want are still there to be had. They are two different events, on two different calendars, sold two different ways, and conflating them is how people book the wrong one or miss the window on both. What follows covers each event's format, cost, sale window, and whether it is worth the trip.
@@ -2408,6 +2408,8 @@ The two events sell out on different schedules. Bracebridge Dinner tickets typic
 The 2026 dinners run on eight nights: December 8, 10, 12, 14, 16, 18, 20 and 22, all at the Ahwahnee, according to the concessioner's ticket page. The Madera County visitors bureau bills this season's as the 99th Bracebridge Dinner. As of October 3, the page marked December 12 sold out and four more nights almost sold out or going fast. Tickets, and the Bracebridge lodging packages that pair a room with a performance night, are on travelyosemite.com or at 888-413-8869.
 
 Vintners' Holidays lodging books on the same 366-day window as any other Ahwahnee, Lodge, or Curry Village reservation, one year and a day ahead, rolling. That means the November session dates open to booking roughly a year before each one runs, and the same logic the Field Guide has laid out for in-park lodging generally applies here without modification: set a reminder for the morning that window opens if your dates are fixed, and if you miss it, check back regularly. Cancellations happen continuously, with a real wave in the final weeks before any date, and a Vintners' Holidays package that shows sold out in July can have space again in September.
+
+The 2026 Vintners' Holidays sessions run November 8 to 11, November 11 to 13, November 15 to 18 and November 18 to 20, according to the concessioner's Vintners' Holidays page, each offered with an Ahwahnee, Yosemite Valley Lodge or Curry Village package. As of October 7, the page marked none of the four sold out and printed no price. Sessions book through travelyosemite.com or at 888-413-8869.
 
 If you want this December's Bracebridge Dinner and you haven't already booked it, you are likely working the cancellation list, not the original sale. If you want next December's, the move is to watch for tickets to go on sale in the spring and buy immediately. Vintners' Holidays gives you more runway either way, since it rides the same rolling booking window as a normal room, and cancellations reward the same persistence.
 
