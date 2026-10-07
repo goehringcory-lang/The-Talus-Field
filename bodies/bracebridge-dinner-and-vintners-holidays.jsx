@@ -80,6 +80,10 @@ window.ARTICLE_BODIES["bracebridge-dinner-and-vintners-holidays"] = function Bra
       </p>
 
       <p>
+        <strong>The 2026 Vintners' Holidays sessions run November 8 to 11, November 11 to 13, November 15 to 18 and November 18 to 20</strong>, according to the concessioner's Vintners' Holidays page, each offered with an Ahwahnee, Yosemite Valley Lodge or Curry Village package. As of October 7, the page marked none of the four sold out and printed no price. Sessions book through travelyosemite.com or at 888-413-8869.
+      </p>
+
+      <p>
         If you want this December's Bracebridge Dinner and you haven't already booked it, you are likely working the cancellation list, not the original sale. If you want next December's, the move is to watch for tickets to go on sale in the spring and buy immediately. Vintners' Holidays gives you more runway either way, since it rides the same rolling booking window as a normal room, and cancellations reward the same persistence.
       </p>
 
