@@ -6,7 +6,7 @@ window.ARTICLE_BODIES["yosemite-in-november"] = function YosemiteInNovemberBody(
   return (
     <>
       <p className="dropcap">
-        November is the month Yosemite changes seasons, and it does so on a schedule a visitor can mostly read in advance. The month opens with the high roads usually still open, the last color on the Valley floor, and the clocks falling back an hour. It closes with Tioga Road and Glacier Point Road shut in almost every year on record, the Mariposa Grove shuttle stopped, the first storms of the wet season behind it, and a Thanksgiving crowd in the Valley lodges. The two halves are different trips. The question for a November visitor is not whether the park is open, since the Valley never closes, but how much of the rest of it will still be there on the dates you pick.
+        November is the month Yosemite changes seasons, and it does so on a schedule a visitor can mostly read in advance. The month opens with the high roads usually still open, the last color on the Valley floor, and the clocks falling back an hour. It closes with Tioga Road and Glacier Point Road shut by its last day in every year since 2016 but one, the Mariposa Grove shuttle stopped, the first storms of the wet season behind it, and a Thanksgiving crowd in the Valley lodges. The two halves are different trips. The question for a November visitor is not whether the park is open, since the Valley never closes, but how much of the rest of it will still be there on the dates you pick.
       </p>
 
       <p>
@@ -24,7 +24,7 @@ window.ARTICLE_BODIES["yosemite-in-november"] = function YosemiteInNovemberBody(
       </p>
 
       <p>
-        Pack for the low, not the high. A 33°F average low means many nights below freezing on the Valley floor, and the walls keep the sun off parts of it for much of the day.
+        Pack for the low, not the high. A 33°F average low means many nights below freezing on the Valley floor.
       </p>
 
       <h2>The light</h2>
@@ -65,7 +65,7 @@ window.ARTICLE_BODIES["yosemite-in-november"] = function YosemiteInNovemberBody(
       </table>
 
       <p>
-        Two cautions on reading it. First, a road that is open is not necessarily open all day: the first storms of the season can close either road for a day or two before the winter closure, and the park's fall page warns that short-term closures for snow may occur. Second, snow is not the only thing that closes these roads. In 2026 Glacier Point Road was already closed in early October for firefighting on the Dome Fire, before any snow. The park's own guidance for the Tioga Road also changes ahead of the closure: overnight parking along it ends on October 15, and services along it are not available after September.
+        Two cautions on reading it. First, a road that is open is not necessarily open all day: the first storms of the season can close either road for a day or two before the winter closure, and the park's fall page warns that short-term closures for snow may occur. Second, snow is not the only thing that closes these roads. In early October 2026 Glacier Point Road was closed for smoke and firefighting operations on the Dome Fire, before any snow. The park's own guidance for the Tioga Road also changes ahead of the closure: overnight parking along it ends on October 15, and services along it are not available after September.
       </p>
 
       <p>
@@ -99,7 +99,7 @@ window.ARTICLE_BODIES["yosemite-in-november"] = function YosemiteInNovemberBody(
       </p>
 
       <p>
-        The Valley's three routinely closed trails, the Mist Trail to the top of Vernal Fall, the John Muir Trail's "ice cut" between Clark Point and the top of Nevada Fall, and the Four Mile Trail to Glacier Point, close each winter when ice makes them unsafe, and the record shows November is when the risk begins. In the seven seasons from 2018 through 2024, the Mist Trail's winter closure came in November three times (2019, 2020, and 2022) and in December or January the other four. The Four Mile Trail closed in November only once in that span, on November 11, 2022, and in December or early January the other six times. The ice cut closed in November in 2020, 2022, and 2024, though the 2024 date reflects an early closure for trail work rather than ice.
+        The Valley's three routinely closed trails, the Mist Trail to the top of Vernal Fall, the John Muir Trail between Clark Point and near the top of Nevada Fall, including the "ice cut," and the Four Mile Trail to Glacier Point, close each winter, usually for ice, and the record shows November is when the closures begin. In the seven seasons from 2018 through 2024, the Mist Trail's winter closure came in November three times (2019, 2020, and 2022, though in 2020 it reopened later that month) and in December or January the other four. The Four Mile Trail closed in November only once in that span, on November 11, 2022, and in December or early January the other six times. The ice cut closed in November in 2020, 2022, and 2024, though the 2024 date reflects an early closure for trail work rather than ice.
       </p>
 
       <p>
@@ -113,7 +113,7 @@ window.ARTICLE_BODIES["yosemite-in-november"] = function YosemiteInNovemberBody(
       </p>
 
       <p>
-        The color is ending as the month starts. The park says big-leaf maples, black oaks, and Pacific dogwoods tend to be showiest around mid-October, so the first days of November catch the tail of it, and a storm can strip the rest in a night. The Valley's own record of what that looks like is a century old: the November 30, 1923 issue of <a href="/archive/1923/vol-2-no-15/">Yosemite Nature Notes</a> found the white alders along the river still fully green on November 12, while the willows had gone yellow and ragged, the creek dogwoods red and then bare, and the cottonwoods had carpeted the forest floor with their creamy yellow leaves. Alders, the note explained, hold their leaves late and drop them while they are still green.
+        The color is past its peak as the month starts. The park says big-leaf maples, black oaks, and Pacific dogwoods tend to be showy around mid-October, so the first days of November catch the tail of it, and a storm can strip the rest in a night. A century-old record shows the shape of it: the November 30, 1923 issue of <a href="/archive/1923/vol-2-no-15/">Yosemite Nature Notes</a> found the white alders along the stream banks still fully green on November 12, standing among golden maples and variegated black oaks, while the willows had gone yellow and ragged, the creek dogwoods red and then bare, and the cottonwoods had carpeted the forest floor with their creamy yellow leaves. Alders, the note explained, hold their leaves late and drop them while they are still green.
       </p>
 
       <h2>The month's calendar</h2>
@@ -123,7 +123,7 @@ window.ARTICLE_BODIES["yosemite-in-november"] = function YosemiteInNovemberBody(
       </p>
 
       <p>
-        <strong>Vintners' Holidays.</strong> The Ahwahnee's wine program runs in multi-day sessions through the first three weeks of the month. The concessioner's 2026 schedule lists four: November 8 to 11, 11 to 13, 15 to 18, and 18 to 20, each with a "Meet the Vintners" reception, seminars, and a closing gala dinner, offered with packages at the Ahwahnee, Yosemite Valley Lodge, or Curry Village. The seminars are held in public space and are open to the public. What a session includes and costs is in <a href="/articles/bracebridge-dinner-and-vintners-holidays">the Bracebridge and Vintners' Holidays guide</a>. For everyone else, the practical point is that session nights fill rooms in the Valley in what is otherwise a quiet part of the month.
+        <strong>Vintners' Holidays.</strong> The Ahwahnee's wine program runs in multi-day sessions in the second and third weeks of the month. The concessioner's 2026 schedule lists four: November 8 to 11, 11 to 13, 15 to 18, and 18 to 20, each with a "Meet the Vintners" reception, seminars, and a closing gala dinner, offered with packages at the Ahwahnee, Yosemite Valley Lodge, or Curry Village; check what lodging a package includes when you book. The seminars are held in public space and are open to the public. What a session includes and costs is in <a href="/articles/bracebridge-dinner-and-vintners-holidays">the Bracebridge and Vintners' Holidays guide</a>. For everyone else, the practical point is that session nights fill rooms in the Valley in what is otherwise a quiet part of the month.
       </p>
 
       <p>
@@ -161,7 +161,7 @@ window.ARTICLE_BODIES["yosemite-in-november"] = function YosemiteInNovemberBody(
       </p>
 
       <p>
-        <strong>Camping</strong> in November is a short list. The high campgrounds, from Crane Flat and Bridalveil Creek up to Tuolumne Meadows, are closed: in every year of the park's record since 2014, the last of them closed by October 15. Lower Pines and North Pines close in October. That leaves four. <strong>Upper Pines</strong> is the only campground on reservations all year, at $36 a night; its reservations are released five months ahead on the 15th of each month, so arrivals from October 15 to November 14 go on sale June 15 and arrivals from November 15 to December 14 on July 15. <strong>Camp 4, Wawona, and Hodgdon Meadow</strong> are open all year and first come, first served in winter, though the park notes they can fill on holidays and weekends. In 2026 the park extended reservations at Camp 4 and at Wawona's Loop A through the night of November 28, so check the campgrounds page for the current year before you count on a walk-up site. Plan on overnight lows below freezing either way.
+        <strong>Camping</strong> in November is a short list. The high campgrounds, from Crane Flat and Bridalveil Creek up to Tuolumne Meadows, are closed: in every year of the park's record since 2014, the last of them closed by October 15. Lower Pines and North Pines close in October. That leaves four. <strong>Upper Pines</strong> is the only campground on reservations all year, at $36 a night; its reservations are released five months ahead on the 15th of each month, so arrivals from October 15 to November 14 go on sale June 15 and arrivals from November 15 to December 14 on July 15. <strong>Camp 4, Wawona (only Loop A after late October), and Hodgdon Meadow</strong> are open all year and first come, first served in winter, though the park notes they can fill on holidays and weekends. In 2026 the park extended reservations at Camp 4 and at Wawona's Loop A through the night of November 28, so check the campgrounds page for the current year before you count on a walk-up site. Plan on overnight lows below freezing either way.
       </p>
 
       <p>
@@ -171,11 +171,11 @@ window.ARTICLE_BODIES["yosemite-in-november"] = function YosemiteInNovemberBody(
       <h2>A naturalist's November</h2>
 
       <p>
-        A century ago the park's naturalists noticed that the Valley's owls are heard most in autumn, and they traced it to mice. In the same November 1923 bulletin, the naturalist Enid Michael asked why the owls are heard so often in autumn and so seldom at other times. Her answer was that this is their hunting season on the Valley floor. Mice of at least three species gather there in autumn to winter alongside the few residents, and owls come down from the forests above the rim, and perhaps up from the foothills below, to hunt them. She listed what to listen for: the chorus of great horned owls (she called them Pacific horned owls), the occasional sharp, barking call of the spotted owl, and the pygmy owl, which hunts by day and sings in the morning from the top of a tall pine.
+        A century ago one of the park's naturalists noticed that the Valley's owls are heard most in autumn, and they traced it to mice. In the same November 1923 bulletin, the naturalist Enid Michael asked why the owls are heard so often in autumn and so seldom at other times. Her answer was that this is their hunting season on the Valley floor. Mice of at least three species gather there in autumn to winter alongside the Valley's few human residents, and owls come down from the forests above the rim, and perhaps up from the valleys below, to hunt them. She listed what to listen for: the chorus of great horned owls (she called them Pacific horned owls), the occasional sharp, barking call of the spotted owl, and the pygmy owl, which hunts by day and sings in the morning from the top of a tall pine.
       </p>
 
       <p>
-        Old notes are not a census, and no one can promise a particular owl on a particular night. But the observation holds up as a way to spend a long November evening: the dark comes at five, the Valley is quiet, and the sounds that carry are the ones the naturalists were writing down a century ago. Walk out to the edge of a meadow after dinner, stand still, and listen.
+        No one can promise a particular owl on a particular night, but the observation holds up as a way to spend a long November evening: the dark comes at five, the Valley is quiet, and the sounds that carry are the ones the naturalists were writing down a century ago. Walk out to the edge of a meadow after dinner, stand still, and listen.
       </p>
 
       <h2>How to build a November trip</h2>
@@ -221,6 +221,7 @@ window.ARTICLE_BODIES["yosemite-in-november"] = function YosemiteInNovemberBody(
         <li><a href="https://www.travelyosemite.com/lodging/housekeeping-camp/" target="_blank" rel="noopener noreferrer">Housekeeping Camp, Yosemite Hospitality</a></li>
         <li><a href="https://www.travelyosemite.com/lodging/" target="_blank" rel="noopener noreferrer">Lodging, Yosemite Hospitality</a></li>
         <li><a href="https://www.travelyosemite.com/things-to-do/specialty-events/holiday-events/vintners-holidays" target="_blank" rel="noopener noreferrer">Vintners' Holidays, Yosemite Hospitality</a></li>
+        <li><a href="https://www.travelyosemite.com/things-to-do/specialty-events/holiday-events/thanksgiving-dinner" target="_blank" rel="noopener noreferrer">Thanksgiving Dinner, Yosemite Hospitality</a></li>
         <li><a href="https://www.travelyosemite.com/things-to-do/ice-skating/" target="_blank" rel="noopener noreferrer">Curry Village Ice Skating Rink, Yosemite Hospitality</a></li>
         <li><a href="https://aa.usno.navy.mil/data/RS_OneDay" target="_blank" rel="noopener noreferrer">Sun and Moon Data for One Day, US Naval Observatory</a></li>
         <li><a href="/archive/1923/vol-2-no-15/">Yosemite Nature Notes, November 30, 1923</a></li>

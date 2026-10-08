@@ -110,7 +110,7 @@ window.planningSeriesFor = function (slug) {
 // verifies this map stays in sync with the files in bodies/.
 // ============================================================
 window.BODY_VERSIONS = {
-  "yosemite-in-november": 1,
+  "yosemite-in-november": 2,
   "thanksgiving-in-yosemite": 1,
   "best-yosemite-backpacking-trips": 1,
   "yosemite-trees-identification-guide": 2,
@@ -764,7 +764,7 @@ window.ARTICLES = [
     aff: true,
     cat: "seasonal",
     title: "Yosemite in November: The Month the High Roads Close",
-    dek: "November opens with Tioga and Glacier Point Roads usually still open and closes with both shut in almost every year on record, the Mariposa Grove shuttle stopped, and a Thanksgiving crowd in the Valley. The weather in numbers, the road record as odds by date, the trails that start to close, the month's calendar, chains, and where to sleep.",
+    dek: "November opens with Tioga and Glacier Point Roads usually still open and closes with both shut by its last day in nearly every recent year, the Mariposa Grove shuttle stopped, and a Thanksgiving crowd in the Valley. The weather in numbers, the road record as odds by date, the trails that start to close, the month's calendar, chains, and where to sleep.",
     seoDek: "Yosemite in November: weather, the odds Tioga and Glacier Point Roads are open by date, trail closures, chains, the last grove shuttle, and camping.",
     date: "October 8, 2026",
     isoDate: "2026-10-08",
