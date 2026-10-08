@@ -1,5 +1,31 @@
 [
   {
+    "slug": "yosemite-in-november",
+    "cat": "seasonal",
+    "title": "Yosemite in November: The Month the High Roads Close",
+    "dek": "November opens with Tioga and Glacier Point Roads usually still open and closes with both shut by its last day in nearly every recent year, the Mariposa Grove shuttle stopped, and a Thanksgiving crowd in the Valley. The weather in numbers, the road record as odds by date, the trails that start to close, the month's calendar, chains, and where to sleep.",
+    "seoDek": "Yosemite in November: weather, the odds Tioga and Glacier Point Roads are open by date, trail closures, chains, the last grove shuttle, and camping.",
+    "date": "October 8, 2026",
+    "isoDate": "2026-10-08",
+    "isoModified": "2026-10-08",
+    "read": "12 min",
+    "image": "img/tunnel-view-autumn-aniket-deole.jpg",
+    "ogImage": { "url": "img/responsive/tunnel-view-autumn-aniket-deole-1600.jpg", "width": 1600, "height": 1067 },
+    "placeholder": "Tunnel View in late autumn, with fresh snow on the high rims above the last color on the Valley floor",
+    "wordCount": 3175,
+    "keywords": ["yosemite in november", "visiting yosemite in november", "yosemite november weather", "is tioga road open in november", "is glacier point road open in november", "yosemite chains november", "mariposa grove shuttle november", "camping in yosemite in november", "yosemite waterfalls november"],
+    "faq": [
+      { "q": "Is Yosemite open in November?", "a": "Yes. Yosemite Valley and Wawona are reachable by car all year. Tioga Road and Glacier Point Road close for the winter during the month in most years, the Half Dome cables are already down, and the free Mariposa Grove shuttle runs into November and stops on or before November 30." },
+      { "q": "What is the weather like in Yosemite in November?", "a": "The Park Service's 1991 to 2020 normals for Yosemite Valley give November an average high of 56°F and an average low of 33°F, with 4.1 inches of precipitation, against 71°F and 1.6 inches in October. A Valley storm can arrive as rain or snow. Tuolumne Meadows averages a November high of 47°F and a low of 20°F." },
+      { "q": "Is Tioga Road open in November?", "a": "Early in the month, usually. In the ten seasons from 2016 through 2025, Tioga Road closed for the winter in November eight times, on dates from November 5 to November 20, and was already closed by October 31 in the other two. It was open on November 1 in eight of those ten years, on November 10 in seven, on November 15 in three, and on November 21 in none." },
+      { "q": "Is Glacier Point Road open in November?", "a": "In the first part of the month, usually. In the nine seasons from 2016 through 2025 that the road opened, it closed in November eight times, on dates from November 5 to November 25, and held until December 7 in 2021. It was open on November 10 in eight of those nine years and on November 15 in four. Fire and other closures can shut it earlier, as the Dome Fire did in 2026." },
+      { "q": "Do you need chains to drive to Yosemite in November?", "a": "Carry them. The Park Service says to expect chain requirements anywhere in Yosemite from November through March, even for a Valley-only visit, and whenever chain controls are in effect every vehicle must have chains in it, four-wheel drives and rentals included. Failing to put them on when required can bring a citation of up to $5,000. The in-park road line is 209/372-0200, then 1, then 1." },
+      { "q": "Can you camp in Yosemite in November?", "a": "Yes, at four campgrounds. Upper Pines is on reservations all year, released five months ahead on the 15th of each month, and Camp 4, Wawona (only Loop A after late October), and Hodgdon Meadow are open all year and first come, first served in winter. In 2026 the park extended reservations at Camp 4 and Wawona's Loop A through the night of November 28. The high campgrounds have closed by October 15 in every year of the park's record since 2014." },
+      { "q": "Are the waterfalls running in Yosemite in November?", "a": "They start the month at their lowest, with Yosemite Falls holding little or no water, while Vernal, Nevada, and Bridalveil run all year at a trickle. Once some rain and snow have fallen, the park says, Yosemite Falls begins flowing again, though not at springtime levels." }
+    ],
+    "related": ["thanksgiving-in-yosemite", "yosemite-in-fall", "yosemite-in-winter", "yosemite-in-december", "mariposa-grove-how-to-visit", "bracebridge-dinner-and-vintners-holidays"]
+  },
+  {
     "slug": "thanksgiving-in-yosemite",
     "cat": "seasonal",
     "title": "Thanksgiving in Yosemite: The Dinner, the Rooms, and What Is Still Open That Weekend",
@@ -23,7 +49,7 @@
       { "q": "Is the Mariposa Grove shuttle running at Thanksgiving?", "a": "In 2026 the free shuttle from the Welcome Plaza runs through November, weather permitting, from 8 a.m. to 3:30 p.m., with the last bus leaving the grove at 5 p.m. From December 1 there is no shuttle and the way in is a two-mile walk with about 500 feet of gain." },
       { "q": "Does YARTS run on Thanksgiving?", "a": "YARTS lists Thanksgiving Day among the holidays on which it does not operate, but its Highway 140 page prints the date as November 27, 2026, which is the Friday, so call before planning to ride on either day." }
     ],
-    "related": ["where-to-stay-in-yosemite", "where-to-eat-yosemite", "yosemite-in-winter", "yosemite-in-december", "bracebridge-dinner-and-vintners-holidays", "yosemite-camping-complete-guide"]
+    "related": ["where-to-stay-in-yosemite", "where-to-eat-yosemite", "yosemite-in-winter", "yosemite-in-december", "bracebridge-dinner-and-vintners-holidays", "yosemite-in-november"]
   },
   {
     "slug": "best-yosemite-backpacking-trips",
@@ -205,7 +231,7 @@
       { "q": "Can you camp in Yosemite in December?", "a": "Yes, at a short list of campgrounds. Upper Pines is the only campground on reservations all year: arrivals from November 15 through December 14 go on sale July 15, and arrivals from December 15 through January 14 go on sale August 15, at 7 a.m. Pacific. Camp 4, Wawona, and Hodgdon Meadow are first come, first served in winter." },
       { "q": "Is Curry Village open in December?", "a": "Not for the whole month. The concessioner currently lists Curry Village as not open from November 29 through December 10, 2026, with its winter rate starting December 13. The Ahwahnee and Yosemite Valley Lodge run through the month." }
     ],
-    "related": ["yosemite-in-winter", "yosemite-winter-hikes", "bracebridge-dinner-and-vintners-holidays", "where-to-stay-in-yosemite", "thanksgiving-in-yosemite", "yosemite-in-march"]
+    "related": ["yosemite-in-winter", "yosemite-winter-hikes", "bracebridge-dinner-and-vintners-holidays", "where-to-stay-in-yosemite", "thanksgiving-in-yosemite", "yosemite-in-november"]
   },
   {
     "slug": "wildfire-in-yosemite-during-your-trip",
@@ -851,7 +877,7 @@
       { "q": "Is there smoke in Yosemite in the fall?", "a": "Sometimes, and it is often planned rather than wild. Autumn is prescribed fire season in Yosemite: once cooler temperatures and moisture make burning controllable, crews run projects in Yosemite Valley, around Crane Flat, and in the Studhorse units near Wawona, and smoke from those burns is routinely visible in the Valley, in Foresta, and in El Portal. Burns are scheduled against weather windows and postponed often, so check conditions on arrival rather than planning around it months out." },
       { "q": "Are bears more active in Yosemite in the fall?", "a": "Yes. From September, black bears enter hyperphagia, a state of near-continuous eating before winter, taking in up to 20,000 calories a day, foraging as much as 20 hours out of 24, and gaining two to three pounds daily, roughly eleven pounds of acorns' worth. Large transient males that spend the summer in the backcountry come down to Yosemite Valley, Wawona, and El Portal for the acorn crop, so there are more bears near people in October than in July and food storage discipline matters most in this season." }
     ],
-    "related": ["yosemite-in-october-2026", "yosemite-in-september-2026", "clouds-rest-hike", "when-to-visit-yosemite", "thanksgiving-in-yosemite", "yosemite-during-smoke-season"]
+    "related": ["yosemite-in-october-2026", "yosemite-in-september-2026", "clouds-rest-hike", "when-to-visit-yosemite", "thanksgiving-in-yosemite", "yosemite-in-november"]
   },
   {
     "slug": "yosemite-tunnel-trees",

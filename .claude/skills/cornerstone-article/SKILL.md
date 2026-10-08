@@ -77,19 +77,14 @@ recent colon style, one of the four categories.
 ### Standing head-term list (September 2026; verify, then prune)
 
 - The evergreen month guides not yet written: January, February, April,
-  May, July, August, October, November (the catalog has March, December,
+  May, July, August, October (the catalog has March, November, December,
   fall, winter, the dated September and October editions, and June,
   whose `yosemite-in-june` the monthly edition refreshes in place each
   May: never write a second June guide).
 - Sentinel Dome and Taft Point: the loop most first-timers should do
   instead of the Mist Trail on a crowded day.
-- Winter driving and chain requirements, if `yosemite-in-winter` does not
-  carry them in depth.
 - Badger Pass: skiing and snowshoeing for people who are not skiers.
 - Biking the Valley loop; rafting the Merced (the swimming piece exists).
-- In-park lodging by property (the Ahwahnee, Yosemite Valley Lodge, Curry
-  Village, Wawona, Housekeeping Camp), if `where-to-stay-in-yosemite` does
-  not already treat each.
 - Yosemite elevation, altitude, and the weather by month as one reference.
 - The Valley without a car: the free shuttle as an itinerary.
 - Yosemite with a baby or toddler, if the kids piece does not cover it.
