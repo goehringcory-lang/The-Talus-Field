@@ -61,7 +61,7 @@
     "crane-flat-meadow": "2026-09-24",
     "white-wolf": "2026-09-24",
     "olmsted-point": "2026-09-24",
-    "may-lake": "2026-09-24",
+    "may-lake": "2026-10-09",
     "tenaya-lake": "2026-09-24",
     "cathedral-lakes": "2026-09-24",
     "soda-springs-parsons-lodge": "2026-09-24",
@@ -143,14 +143,17 @@
     "summerdale-campground": "2026-09-24",
     "yosemite-falls-moonbow": "2026-09-24",
     "glacier-point-star-party": "2026-09-24",
-    "great-gray-owl-dusk": "2026-09-24"
+    "great-gray-owl-dusk": "2026-09-24",
+    "half-dome-view-big-oak-flat": "2026-10-09",
+    "wildcat-falls": "2026-10-09",
+    "yosemite-cemetery": "2026-10-09",
+    "stoneman-meadow-dusk": "2026-10-09",
+    "nunatak-tioga-tarns": "2026-10-09",
+    "conservancy-night-sky": "2026-10-09",
+    "ahwahnee-history-tour": "2026-10-09",
+    "curry-village-evening-program": "2026-10-09",
+    "conservation-heritage-center": "2026-10-09",
+    "ranger-programs-to-pick": "2026-10-09"
   },
-  "queue": [
-    {
-      "id": "may-lake",
-      "file": "stops.ts",
-      "added": "2026-10-02",
-      "note": "Body says to follow the Old Tioga Road spur '1.7 miles to the trailhead parking'. The NPS May Lake Trailhead page (nps.gov/places/000/may-lake-trailhead.htm, accessed 2026-10-02) puts the parking area 1.75 miles north of Tioga Road, and the 2026-10-02 audit set the may-lake-snow-flat-lot secret spot to 1.75. Align the stop when it comes up in the rotation."
-    }
-  ]
+  "queue": []
 }
