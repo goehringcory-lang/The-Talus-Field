@@ -36,8 +36,11 @@ stop.
 
 Before writing, establish from primary sources (nps.gov/yose,
 recreation.gov, travel.yosemite.com, Caltrans, YARTS, NWS) what the target
-month decides this year: entrance-reservation requirements and their exact
-dates, Tioga and Glacier Point road status (use `TRIP_MONTHS` language:
+month decides this year (and, per `DAILY-REPORT.md`, the last fourteen
+days of the park's Daily Report for detours, construction delays, fire
+restrictions, and closures that run into the target month, each sourced to
+the public page or the report's date): entrance-reservation requirements
+and their exact dates, Tioga and Glacier Point road status (use `TRIP_MONTHS` language:
 open / closed / unsettled, and say which), concession and shuttle season
 dates (the current `bulletin.json` edition is a strong source if its dates
 cover the target month), permit and lottery windows, dated events, and the

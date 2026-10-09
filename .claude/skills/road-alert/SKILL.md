@@ -57,7 +57,12 @@ two.
    nothing advances, and silence from a dead feed is not a reading.
 4. **No candidate and no confirmed change** → Phase 3 (update the issue's
    state block and its last-checked line) and stop. This is the common
-   case.
+   case. Before stopping, if the Gmail connector is present, check the
+   last two days of the Daily Report (`DAILY-REPORT.md`) for an announced
+   opening or closure of one of the seven roads; one the feed has not shown
+   yet goes in the watch issue as a dated note ("announced for Sat Oct 10,
+   7am; not yet in the feed"), and nothing is drafted from it. The watch
+   still decides.
 
 ## Phase 1 — A candidate: confirm it from a second source, or wait
 
@@ -70,6 +75,11 @@ park already says the same thing somewhere a person reads:
 - Highways 120, 140, 41: Caltrans (`https://roads.dot.ca.gov/`, QuickMap)
   for the road outside the park, the NPS conditions page for the miles
   inside it.
+
+- The park's Daily Report (`DAILY-REPORT.md`, window 2 days), for the four
+  park roads only: a report or a "Daily Report Addition" that states the
+  same status for the same road counts as the second source, and the
+  change issue cites it by date. It never confirms a highway change.
 
 If the second source states the same status for the same road, confirm it
 now:
@@ -172,7 +182,8 @@ the change, the draft or issue link, and whom it is addressed to.
 - Never send, never schedule, never touch an email this routine did not
   create, and never draft for anyone outside the alert tags.
 - Never draft a change the watch has not confirmed, and never a highway
-  change without Caltrans or the park's conditions page agreeing.
+  change without Caltrans or the park's conditions page agreeing. The
+  Daily Report can confirm a park road; it never starts a draft on its own.
 - Every sentence in an alert traces to the park's notice or the site's
   published copy.
 - Never edit the site, the Worker, or `bulletin.json`; list the copy for its

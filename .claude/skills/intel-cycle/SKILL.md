@@ -118,6 +118,18 @@ drops a source.
    page), Mariposa Gazette,
    Sierra Star, Union Democrat, plus one general web search over the window.
 
+**The park's Daily Report** is read in the main context while the scouts
+run, not by a scout (they have no Gmail). Follow `DAILY-REPORT.md` with the
+window set to the one from Phase 0: every item it calls publishable goes
+into the merge as `headline | date | NPS Yosemite Daily Report, <date> |
+two-sentence summary`, plus the public page that carries the same fact if
+one does. It is the beat most likely to surface a mid-edition **bulletin
+item** (a closure, a detour window, a road reopening time, a facility
+closing) and an **update existing article** where a detour or project
+contradicts what an article tells the reader. Staff-only items never reach
+the brief. If the connector is absent, the brief's summary line says
+`Daily Report: not read (Gmail connector not attached)`.
+
 ## Phase 2 — Interpretation (main context)
 
 Merge the digests. Drop dedupe-ledger hits. For each survivor, score it
@@ -182,8 +194,11 @@ something `intel-execute` (or the owner) can actually do.
 - **Read-only.** No commits, no branches, no PRs, no merges, no edits to any
   repo file, nothing sent anywhere except the one GitHub issue.
 - Never fabricate a finding: every item carries a real URL that was actually
-  fetched or returned by search this run. An unverifiable rumor either dies
-  or is labeled explicitly as unconfirmed.
+  fetched or returned by search this run, or, for a Daily Report item, the
+  report's date (`DAILY-REPORT.md`). An unverifiable rumor either dies or
+  is labeled explicitly as unconfirmed.
+- The mailbox is read-only: nothing in Gmail is replied to, labeled, or
+  marked read.
 - Scouts are capped as specified; do not widen the fan-out because a beat was
   quiet. Quiet is a result.
 - One issue per cycle, ever. If a brief for today already exists (a manual

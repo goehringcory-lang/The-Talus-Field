@@ -59,7 +59,12 @@ Rules that have teeth:
 
 - **Facts come from the printed Guide plus park sources only.** Never
   invent a program, time, date, or closure. A row the Guide does not carry
-  is a row this file does not carry.
+  is a row this file does not carry. One exception: the printed Guide
+  goes to press weeks before it runs, so the last seven days of the park's
+  Daily Report (`DAILY-REPORT.md`, when the Gmail connector is attached)
+  may add a current closure, detour window, or project delay to
+  `headlines` or `changes`, with absolute dates and the report's date in
+  the PR body's source list.
 - **Every date is ISO and absolute.** Since the September 2026 redesign the
   page reads this file against today's date in the park: it works out which
   programs run on the day a reader picks, which `changes` are still coming,
