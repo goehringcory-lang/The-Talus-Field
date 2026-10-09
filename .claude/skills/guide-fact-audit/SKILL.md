@@ -103,6 +103,16 @@ that rests only on secondary coverage is hedged or cut, never left
 standing. A CONNECT 403 from the agent proxy means the environment's
 network policy regressed: say so and stop.
 
+Read the last seven days of the park's Daily Report per `DAILY-REPORT.md`
+(skip with its one not-read line if the Gmail connector is absent). Its
+closures, detours, and ONGOING PROJECTS are the freshest statement of
+access the park makes: a closure or detour touching an entry in this run
+is verified like any other claim (the public page first, the report by
+date when it is the only source), and one touching an entry outside the
+run goes under Flags with the entry, the item, and the report's date. A
+temporary detour changes an entry only when the entry states the access
+the detour contradicts; the guide does not carry dated notices.
+
 Check the site's own canon as well: `bulletin.json` and the article that
 covers the place. The NPS page wins a disagreement. A disagreement inside
 an article is a Flag for the evergreen refresh, never an edit here.

@@ -81,7 +81,11 @@ gateway-town pages. Fetch and read each page directly (`ROUTINES.md`,
 "Network access"); a page that fails after one retry may be corroborated by
 a WebSearch result quoting it, marked `(via search)`; a claim resting only
 on secondary coverage is hedged or cut. A CONNECT 403 from the agent proxy
-means the environment's network policy regressed: say so and stop.
+means the environment's network policy regressed: say so and stop. Read
+the last seven days of the park's Daily Report per `DAILY-REPORT.md` (when
+the Gmail connector is attached) for closures, detours, and projects
+touching the page's subject; one that contradicts the page is a row in the
+table, sourced to the public page or the report's date.
 
 A claim the page renders from another lane's data (a fee from
 `fees-data.js`, a date from `deadlines.json`, a row from `bulletin.json`) is

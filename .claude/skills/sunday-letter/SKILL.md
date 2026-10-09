@@ -138,6 +138,17 @@ in a minute.
      (`https://www.nps.gov/yose/learn/photosmultimedia/webcams.htm`) for
      what the cameras show today, stated as what the camera showed at the
      time read.
+   - Not a web source, but a primary one: **the park's Daily Report** for
+     the past seven days, read per `DAILY-REPORT.md` when the Gmail
+     connector is attached. It carries what the park itself recorded this
+     week: fire containment and acreage, smoke advisories, fire
+     restrictions, the NWS zone forecast, public science events (the
+     annual Hydroclimate Workshop), volunteer tallies, and the dated
+     closures and detours a reader would meet. Use it for context in the
+     lead, a note under "Also in season", and the lines under "Before you
+     go", stated as the park's notice with its date; a fact the
+     conditions page also carries links there instead. Staff-only items
+     never appear, and no individual employee is named.
 6. **The science, from reference sources.** For the mechanism, the
    scientific name, and the numbers behind a phenomenon (not for what is
    happening this week, which only step 5 can say), the letter may also
@@ -286,8 +297,9 @@ at Tuolumne Meadows at 6am and not "cold nights". Structure, in order:
 5. **Before you go** (optional; no heading needed; at most two lines). Only
    when the season forces a decision that affects seeing what the letter
    describes: a road closing, a trail or area closed, a first-snow
-   forecast. Each line is traceable to NPS conditions, `bulletin.json`, the
-   almanac, or `TRIP_MONTHS`, and carries its date. One line may point to
+   forecast. Each line is traceable to NPS conditions, the park's Daily
+   Report, `bulletin.json`, the almanac, or `TRIP_MONTHS`, and carries its
+   date. One line may point to
    the Park Bulletin (`https://thetalusfieldjournal.com/now`) for the rest.
    Nothing about what the site published, changed, or refreshed.
 6. **One ask**, and only one:
@@ -480,8 +492,8 @@ letter.
   guide changelog. Three to five contextual article links, each earning
   its place in a sentence about the park.
 - **Every fact is traceable** to a repo file, an archive page, or one of
-  the named primary or reference sources in Phase 0, read this run and
-  listed in the issue. No weather, no bloom, no sighting, no scientific
+  the named primary or reference sources in Phase 0 (the Daily Report
+  among them, cited by date), read this run and listed in the issue. No weather, no bloom, no sighting, no scientific
   claim, no date from memory or from search. A gauge, a forecast, and a
   webcam are quoted with the time they showed. This letter goes out under
   the owner's name, and the owner is a naturalist: a wrong scientific name

@@ -80,7 +80,11 @@ full Internet access; `ROUTINES.md`, "Network access"). A page that fails
 to load after one retry may be corroborated by a WebSearch result that
 quotes it, marked `(via search)`, with the failure named in the PR body; a
 claim that rests only on secondary coverage is **hedged or cut**, never
-left standing as a fact. Also check the site's own canon: `bulletin.json` and the related
+left standing as a fact. Read the last seven days of the park's Daily
+Report per `DAILY-REPORT.md` (when the Gmail connector is attached) for
+closures, detours, and ongoing projects at the article's places: one that
+contradicts the body is a row in the table, sourced to the public page or
+the report's date. Also check the site's own canon: `bulletin.json` and the related
 articles. Where the body and a current NPS page disagree, the NPS page wins,
 and the discrepancy is listed for the owner if it touches other articles.
 

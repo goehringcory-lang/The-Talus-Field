@@ -103,6 +103,7 @@ could do the same thing, the table says which one does.
 | Road alerts: the email the `alert-roads` and `alert-tioga` signups were promised, and the `road-alert` issues | Road alert drafter (a draft addressed only to those tags, never scheduled, never sent) | never; the site copy a road change makes wrong stays with its owners |
 | Dependencies: `package.json` and lockfiles in `apps/guide`, `workers`, `scripts`; the action versions in `.github/workflows` | Dependency and security check | never; `vendor/` React, the root `package.json`, and the Node pin are report-only |
 | External signals, competitor and partner moves, outreach drafts | Intel cycle + executor | never sent by anyone |
+| The park's Daily Report in the owner's Gmail (`DAILY-REPORT.md`) | nobody: read-only to the eight routines that read it | never replied to, labeled, forwarded, or marked read |
 
 ## Network access: full Internet since September 2026
 
@@ -154,6 +155,23 @@ Default Cloud Environment's settings (never in the repo), read by
 session that does not carry it falls back to a paste-ready issue: the
 letter routine's issue says so at the top, and a road-alert issue carries
 the alert text and its audience.
+
+## The park's Daily Report (Gmail)
+
+Yosemite's weekday **Daily Report** (`yose_daily_report@nps.gov`) reaches
+the owner's Gmail and often states a closure, a detour window, or a road
+reopening time before `nps.gov` does. Eight routines read it through the
+**Gmail connector**: the intel cycle, the road alert drafter, the Sunday
+letter, the Field Guide fact audit, the evergreen refresh, the reference
+page refresh, the monthly edition, and the bulletin turn.
+`DAILY-REPORT.md` is the rule book: how to search it, the window each
+routine reads, what may reach the site (visitor-facing operations only;
+nothing addressed to staff, no employee's name or address), and how a fact
+from it is cited. It adds no lane: each routine uses it inside the lane
+the territory table already gives it. The mailbox is read-only to every
+routine. **The connector is attached per Routine** in the Routines
+settings; a run without it writes `Daily Report: not read (Gmail connector
+not attached)` and proceeds as before.
 
 For reference, the hosts the runbooks reach, should the policy ever need
 to be narrowed to an allow-list again:
