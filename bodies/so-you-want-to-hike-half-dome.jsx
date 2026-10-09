@@ -117,11 +117,11 @@ window.ARTICLE_BODIES["so-you-want-to-hike-half-dome"] = function SoYouWantToHik
       </p>
 
       <p>
-        Saturdays are the most requested day, with about 21% of all applications targeting a Saturday. Mondays and Tuesdays are the least popular. If you have flexibility on dates, weekdays give you better odds, but "better" still means most people don't get in.
+        Saturdays are the most requested day, with about 21% of all applications targeting a Saturday. Mondays and Thursdays are the least popular, at about 12% each. If you have flexibility on dates, weekdays give you better odds, but "better" still means most people don't get in.
       </p>
 
       <p>
-        <strong>The daily lottery</strong> is a second chance. During cable season, additional permits are released two days before each hiking date. You apply by 4 PM Pacific time, and results come late that evening. In 2024, 35,561 daily lottery applications were submitted with a 19% success rate. Weekday odds run around 22%. Weekend odds drop to about 14%.
+        <strong>The daily lottery</strong> is a second chance. During cable season, <a href="/articles/yosemite-walk-up-and-day-of-permits">additional permits are released two days before each hiking date</a>. You apply by 4 PM Pacific time, and results come late that evening. In 2024, 35,561 daily lottery applications were submitted with a 19% success rate. Weekday odds run around 22%. Weekend odds drop to about 14%.
       </p>
 
       <p>
@@ -143,7 +143,7 @@ window.ARTICLE_BODIES["so-you-want-to-hike-half-dome"] = function SoYouWantToHik
       </p>
 
       <p>
-        But if what you're really after is an incredible full-day hike in Yosemite with a summit that makes your jaw drop and views that make you feel like you're standing on top of the Sierra Nevada, I want to tell you about Clouds Rest.
+        But if what you're really after is an incredible full-day hike in Yosemite with a summit that makes your jaw drop and views that make you feel like you're standing on top of the Sierra Nevada, I want to tell you about <a href="/articles/clouds-rest-hike">Clouds Rest</a>.
       </p>
 
       <p>Clouds Rest is the better hike.</p>
@@ -159,7 +159,7 @@ window.ARTICLE_BODIES["so-you-want-to-hike-half-dome"] = function SoYouWantToHik
       <p>And you don't need a permit.</p>
 
       <p>
-        The hike starts at the Sunrise Lakes trailhead on Tioga Road, about 1.4 miles east of Olmsted Point at the south end of Tenaya Lake. It's 14 miles round trip with roughly 2,300 feet of elevation gain in two separate pushes. The trailhead sits at 8,151 feet, which means you start high and stay high the entire day. No climbing 4,800 feet from the Valley floor. No Mist Trail staircase with a thousand other people. No heat radiating off the Valley walls in July.
+        The hike starts at the Sunrise Lakes trailhead on Tioga Road, east of Olmsted Point at the west end of Tenaya Lake. It's 14 miles round trip with roughly 2,300 feet of elevation gain in two separate pushes. The trailhead sits at 8,151 feet, which means you start high and stay high the entire day. No climbing 4,800 feet from the Valley floor. No Mist Trail staircase with a thousand other people. No heat radiating off the Valley walls in July.
       </p>
 
       <p>The heat matters more than most people expect.</p>
@@ -174,7 +174,7 @@ window.ARTICLE_BODIES["so-you-want-to-hike-half-dome"] = function SoYouWantToHik
       <h2>Why this is better than Half Dome in July and August</h2>
 
       <p>
-        Half Dome's cable season peaks in July and August. Those are also the hottest months in Yosemite Valley, where the trailhead sits at 4,000 feet. You wake up at 4 AM to beat the heat. You climb 4,800 feet on a trail that has no shade for long stretches. You share the Mist Trail with what feels like the entire state of California, and the <a href="/articles/mist-trail-the-real-guide">Mist Trail can be genuinely dangerous</a> when it's that crowded. By the time you reach the subdome, you've been hiking for five or six hours in conditions that punish anyone who didn't bring enough water or didn't train enough.
+        Half Dome's cable season peaks in July and August. Those are also the hottest months in Yosemite Valley, where the trailhead sits at 4,000 feet. You wake up at 4 AM to beat the heat. You climb 4,800 feet on a trail that has no shade for long stretches. You share the Mist Trail with what feels like the entire state of California, and the <a href="/articles/mist-trail-the-real-guide">Mist Trail can be genuinely dangerous</a> when it's that crowded. By the time you reach the subdome, you've been hiking for five or six hours in <a href="/articles/yosemite-heat-safety-guide">conditions that punish anyone who didn't bring enough water</a> or didn't train enough.
       </p>
 
       <p>
@@ -238,11 +238,11 @@ window.ARTICLE_BODIES["so-you-want-to-hike-half-dome"] = function SoYouWantToHik
       </p>
 
       <p>
-        <strong>Start time:</strong> Leave the trailhead by 7 AM at the latest in summer. Earlier is better. The hike takes 7 to 10 hours round trip for most people, and you want to be off the summit before afternoon thunderstorms build. Lightning on the spine of Clouds Rest is not a theoretical risk. It's the primary safety concern of this hike. If you see clouds building, turn around. The summit will be there tomorrow.
+        <strong>Start time:</strong> Leave the trailhead by 7 AM at the latest in summer. Earlier is better. The Park Service puts the round trip at 8 to 10 hours, and you want to be off the summit before afternoon thunderstorms build. Lightning on the spine of Clouds Rest is not a theoretical risk. It's the primary safety concern of this hike. If you see clouds building, turn around. The summit will be there tomorrow.
       </p>
 
       <p>
-        <strong>Parking:</strong> The Sunrise Lakes trailhead parking lot is small, roughly a dozen spots. On summer weekends, it fills by 7 AM. Additional parking is available along the shoulder of Tioga Road nearby, but check for "no parking" signs. On weekdays, parking is rarely an issue before 8 AM.
+        <strong>Parking:</strong> The Sunrise Lakes trailhead parking lot is small, and on summer weekends it can fill early. Additional parking is available along the shoulder of Tioga Road nearby, but check for "no parking" signs. On weekdays, parking is rarely an issue before 8 AM.
       </p>
 
       <p>
@@ -268,7 +268,7 @@ window.ARTICLE_BODIES["so-you-want-to-hike-half-dome"] = function SoYouWantToHik
       </p>
 
       <p>
-        <strong>Distance and altitude.</strong> Thirteen miles at 8,000 to 10,000 feet is a serious day, especially if you're visiting from sea level. The altitude makes everything harder. Drink water before you're thirsty, eat before you're hungry, and take rest breaks in the shade. Altitude sickness symptoms include headache and nausea. If you feel them, descend.
+        <strong>Distance and altitude.</strong> Fourteen miles at 8,000 to 10,000 feet is a serious day, especially if you're visiting from sea level. The altitude makes everything harder. Drink water before you're thirsty, eat before you're hungry, and take rest breaks in the shade. Altitude sickness symptoms include headache and nausea. If you feel them, descend.
       </p>
 
       <p>
@@ -286,12 +286,12 @@ window.ARTICLE_BODIES["so-you-want-to-hike-half-dome"] = function SoYouWantToHik
           </tr>
         </thead>
         <tbody>
-          <tr><td><strong>Round trip distance</strong></td><td>14 to 16 miles</td><td>13 miles</td></tr>
-          <tr><td><strong>Elevation gain</strong></td><td>4,800 feet</td><td>~2,000 feet</td></tr>
+          <tr><td><strong>Round trip distance</strong></td><td>14 to 16 miles</td><td>14 miles</td></tr>
+          <tr><td><strong>Elevation gain</strong></td><td>4,800 feet</td><td>~2,300 feet</td></tr>
           <tr><td><strong>Summit elevation</strong></td><td>8,839 feet</td><td>9,926 feet</td></tr>
           <tr><td><strong>Starting elevation</strong></td><td>~4,000 feet (Valley)</td><td>8,151 feet (Tioga Road)</td></tr>
           <tr><td><strong>Permit required</strong></td><td>Yes, lottery, ~20% odds</td><td>No</td></tr>
-          <tr><td><strong>Typical time</strong></td><td>10 to 14 hours</td><td>7 to 10 hours</td></tr>
+          <tr><td><strong>Typical time</strong></td><td>10 to 12 hours</td><td>8 to 10 hours</td></tr>
           <tr><td><strong>Crowds on trail</strong></td><td>Heavy (Mist Trail, cables)</td><td>Light to moderate</td></tr>
           <tr><td><strong>The cables</strong></td><td>Unique, nothing like it</td><td>No cables, open granite ridge</td></tr>
           <tr><td><strong>Summit views</strong></td><td>Spectacular, mostly south/west</td><td>360-degree, higher elevation</td></tr>
@@ -316,7 +316,7 @@ window.ARTICLE_BODIES["so-you-want-to-hike-half-dome"] = function SoYouWantToHik
       </p>
 
       <p>
-        But if the permit doesn't come through, or if you're visiting in June before the cables go up, or if the idea of the Mist Trail in August makes you feel tired just thinking about it, go do Clouds Rest. Drive up Tioga Road, park at the Sunrise trailhead, walk seven miles through some of the most beautiful high country in the Sierra Nevada, and stand on a summit that's higher than Half Dome, quieter than Half Dome, and more beautiful than Half Dome.
+        But if the permit doesn't come through, or if you're visiting in June before the cables go up, or if the idea of the Mist Trail in August makes you feel tired just thinking about it, go do Clouds Rest. <a href="/articles/tioga-road-stop-by-stop">Drive up Tioga Road</a>, park at the Sunrise trailhead, walk seven miles through some of the most beautiful high country in the Sierra Nevada, and stand on a summit that's higher than Half Dome, quieter than Half Dome, and more beautiful than Half Dome.
       </p>
 
       <p>You won't feel like you missed anything.</p>
