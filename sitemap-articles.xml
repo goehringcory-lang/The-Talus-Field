@@ -5,7 +5,7 @@
   <!-- Hub pages -->
   <url>
     <loc>https://thetalusfieldjournal.com/</loc>
-    <lastmod>2026-10-07</lastmod>
+    <lastmod>2026-10-08</lastmod>
     <image:image>
       <image:loc>https://thetalusfieldjournal.com/img/responsive/half-dome-winter-storm-1600.jpg</image:loc>
       <image:title>Half Dome in a clearing winter storm</image:title>
@@ -13,7 +13,7 @@
   </url>
   <url>
     <loc>https://thetalusfieldjournal.com/articles</loc>
-    <lastmod>2026-10-07</lastmod>
+    <lastmod>2026-10-08</lastmod>
   </url>
   <url>
     <loc>https://thetalusfieldjournal.com/planning</loc>
@@ -43,7 +43,7 @@
   </url>
   <url>
     <loc>https://thetalusfieldjournal.com/section/seasonal</loc>
-    <lastmod>2026-10-07</lastmod>
+    <lastmod>2026-10-08</lastmod>
   </url>
 
   <!-- Static pages -->
@@ -113,7 +113,7 @@
   </url>
   <url>
     <loc>https://thetalusfieldjournal.com/tioga-opening</loc>
-    <lastmod>2026-10-07</lastmod>
+    <lastmod>2026-10-09</lastmod>
   </url>
   <url>
     <loc>https://thetalusfieldjournal.com/half-dome-lottery</loc>
@@ -169,10 +169,18 @@
   </url>
   <url>
     <loc>https://thetalusfieldjournal.com/now</loc>
-    <lastmod>2026-10-07</lastmod>
+    <lastmod>2026-10-09</lastmod>
   </url>
 
   <!-- Articles -->
+  <url>
+    <loc>https://thetalusfieldjournal.com/articles/yosemite-in-november</loc>
+    <lastmod>2026-10-08</lastmod>
+    <image:image>
+      <image:loc>https://thetalusfieldjournal.com/img/responsive/tunnel-view-autumn-aniket-deole-1600.jpg</image:loc>
+      <image:title>Tunnel View in late autumn, with fresh snow on the high rims above the last color on the Valley floor</image:title>
+    </image:image>
+  </url>
   <url>
     <loc>https://thetalusfieldjournal.com/articles/thanksgiving-in-yosemite</loc>
     <lastmod>2026-10-05</lastmod>

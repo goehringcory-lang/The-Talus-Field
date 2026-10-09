@@ -52,7 +52,7 @@ window.ARTICLE_BODIES["yosemite-in-fall"] = function YosemiteInFallBody() {
       </p>
 
       <p>
-        <strong>November.</strong> Glacier Point Road closes on roughly the same schedule as Tioga, and once both are shut you are in the winter park: Yosemite Valley, Wawona, Hetch Hetchy, and the plowed roads that reach them, all open, all year. That park has its own case, made in <a href="/articles/yosemite-in-winter">the winter guide</a>. November is the seam between the two seasons and the least predictable month in Yosemite. It can hand you golden black oaks under blue sky or four inches of wet snow, sometimes in the same week.
+        <strong>November.</strong> Glacier Point Road closes on roughly the same schedule as Tioga, and once both are shut you are in the winter park: Yosemite Valley, Wawona, Hetch Hetchy, and the plowed roads that reach them, all open, all year. That park has its own case, made in <a href="/articles/yosemite-in-winter">the winter guide</a>. November is the seam between the two seasons and the least predictable month in Yosemite, and <a href="/articles/yosemite-in-november">the November guide</a> reads the park's road record as odds by date. It can hand you golden black oaks under blue sky or four inches of wet snow, sometimes in the same week.
       </p>
 
       <h2>Fall color: the received wisdom is wrong</h2>

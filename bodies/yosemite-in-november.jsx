@@ -1,0 +1,231 @@
+/* global React, Placeholder, MotifMountains, MotifTrees, AffiliateNote, LodgingCta */
+
+window.ARTICLE_BODIES = window.ARTICLE_BODIES || {};
+
+window.ARTICLE_BODIES["yosemite-in-november"] = function YosemiteInNovemberBody() {
+  return (
+    <>
+      <p className="dropcap">
+        November is the month Yosemite changes seasons, and it does so on a schedule a visitor can mostly read in advance. The month opens with the high roads usually still open, the last color on the Valley floor, and the clocks falling back an hour. It closes with Tioga Road and Glacier Point Road shut by its last day in every year since 2016 but one, the Mariposa Grove shuttle stopped, the first storms of the wet season behind it, and a Thanksgiving crowd in the Valley lodges. The two halves are different trips. The question for a November visitor is not whether the park is open, since the Valley never closes, but how much of the rest of it will still be there on the dates you pick.
+      </p>
+
+      <p>
+        What follows is the month as the park's own records describe it: the weather normals, the road and trail closing history, the campground and shuttle windows, and the dates the concessioner publishes. The broader case for the shoulder season is in <a href="/articles/yosemite-in-fall">the fall guide</a>, and the full winter playbook, Badger Pass included, is in <a href="/articles/yosemite-in-winter">the winter guide</a>. This piece covers what is specific to November.
+      </p>
+
+      <h2>The weather, in numbers</h2>
+
+      <p>
+        The Park Service's 1991 to 2020 normals for Yosemite Valley, at about 4,000 feet, give November an <strong>average high of 56°F and an average low of 33°F</strong>, with 4.1 inches of precipitation. The step from October is the sharpest of the year: October averages 71°F and 1.6 inches, so November is fifteen degrees cooler by its high, the biggest month-to-month drop in the table, and adds two and a half inches of precipitation, the biggest rise. The park's summary of its climate explains the jump. Yosemite receives 95 percent of its precipitation between October and May and more than 75 percent of it between November and March. November is the first month of that wetter stretch.
+      </p>
+
+      <p>
+        In practice that means the month's weather arrives in storms, separated by dry spells. The park's fall page calls the season "quite variable, with weather ranging from hot to cold, dry to rainy or snowy," and its weather page notes that the Valley "can be rainy or snowy in any given winter storm." A dry November week is cold, clear, and still. A wet one can leave snow on the Valley floor. Higher up there is less doubt: Tuolumne Meadows, at 8,600 feet, averages a November high of 47°F and a low of 20°F, and the park describes most of Yosemite as blanketed in snow from about November through May.
+      </p>
+
+      <p>
+        Pack for the low, not the high. A 33°F average low means many nights below freezing on the Valley floor.
+      </p>
+
+      <h2>The light</h2>
+
+      <p>
+        Daylight saving time ends on the first Sunday in November, and the change is the first thing a visitor notices. The US Naval Observatory's figures for Yosemite Valley put sunset at 6:01 p.m. on the last day of October and at <strong>5:00 p.m. the next day</strong>, once the clocks fall back. By November 30 the sun sets at 4:40 p.m. and rises at 6:54 a.m. The day shrinks from about ten and a half hours at the start of the month to under ten at the end.
+      </p>
+
+      <p>
+        Those times assume a level horizon, and the Valley does not have one. The rim takes direct sun off much of the floor well before the official sunset. Plan the long walk for the middle of the day, and plan to be off any trail with exposure or ice before the light goes flat.
+      </p>
+
+      <h2>The high roads close this month</h2>
+
+      <p>
+        <strong>Yosemite Valley and Wawona are reachable by car all year</strong>, the park says. Tioga Road and Glacier Point Road are not, and November is when they close. The park's fall page puts it plainly: all areas of the park usually remain open through October, "and sometimes into November." Its historical dataset of opening and closing dates shows how often "sometimes" happens.
+      </p>
+
+      <p>
+        <strong>Tioga Road</strong>, the high crossing through Tuolumne Meadows, closed for the winter in November in eight of the ten seasons from 2016 through 2025, on dates from November 5 to November 20. In the other two years, 2021 and 2022, it was already closed by October 31. <strong>Glacier Point Road</strong> closed in November in eight of the nine seasons it opened in that span, on dates from November 5 to November 25. It held until December 7 in 2021, and in 2022 it did not open at all because of a rehabilitation project. Read as odds for a given date, the record looks like this:
+      </p>
+
+      <table>
+        <thead>
+          <tr>
+            <th>Road open on</th>
+            <th>Tioga Road (10 seasons, 2016 to 2025)</th>
+            <th>Glacier Point Road (9 seasons it opened)</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td><strong>November 1</strong></td><td>8 of 10</td><td>9 of 9</td></tr>
+          <tr><td><strong>November 10</strong></td><td>7 of 10</td><td>8 of 9</td></tr>
+          <tr><td><strong>November 15</strong></td><td>3 of 10</td><td>4 of 9</td></tr>
+          <tr><td><strong>November 21</strong></td><td>0 of 10</td><td>2 of 9</td></tr>
+          <tr><td><strong>December 1</strong></td><td>0 of 10</td><td>1 of 9</td></tr>
+        </tbody>
+      </table>
+
+      <p>
+        Two cautions on reading it. First, a road that is open is not necessarily open all day: the first storms of the season can close either road for a day or two before the winter closure, and the park's fall page warns that short-term closures for snow may occur. Second, snow is not the only thing that closes these roads. In early October 2026 Glacier Point Road was closed for smoke and firefighting operations on the Dome Fire, before any snow. The park's own guidance for the Tioga Road also changes ahead of the closure: overnight parking along it ends on October 15, and services along it are not available after September.
+      </p>
+
+      <p>
+        The practical rule follows from the table. <strong>If Olmsted Point, Tenaya Lake, Tuolumne Meadows, or the drive-up view from Glacier Point is the reason for your trip, come in the first ten days of the month, and have a Valley plan ready anyway.</strong> After mid-month, assume both roads are closed and treat an open one as a bonus. Once Tioga Road closes, the park does not allow vehicles between Crane Flat and Tioga Pass, and the eastern approach over the pass is gone with it.
+      </p>
+
+      <h2>The last month of the Mariposa Grove shuttle</h2>
+
+      <p>
+        The free shuttle from the Mariposa Grove Welcome Plaza, near the South Entrance, to the grove of giant sequoias runs into November and stops by the end of it. The park says that in any year the service closes <strong>on or before November 30</strong>, depending on conditions. Its 2026 schedule runs the shuttle from November 1 through November 30, weather permitting, from 8 a.m. to 3:30 p.m., with the last bus leaving the grove at 5 p.m., and none from December 1 until at least April 15. The road to the grove closed to vehicles on November 30 in each of the three seasons from 2023 through 2025.
+      </p>
+
+      <p>
+        When the shuttle is not running, the grove is a walk. The park describes the Washburn Trail, or the closed grove road, as a two-mile route each way with about 500 feet of elevation gain, and it warns that in winter the trails may be snowy or icy. A November visitor usually catches the shuttle; a visitor in the last days of the month, or after an early storm, should plan for the walk. The full plan, including where to park and what to see inside the grove, is in <a href="/articles/mariposa-grove-how-to-visit">the Mariposa Grove guide</a>.
+      </p>
+
+      <Placeholder
+        caption="The trail through the Mariposa Grove, which in November is the last month the free shuttle reaches it"
+        image="img/mariposa-grove-giants-trail.jpg"
+        credit="Photo: Justin Vidamo / Wikimedia Commons (CC BY 2.0)"
+        tag="PLATE I"
+        size="lg"
+        style={{ aspectRatio: "16 / 10", margin: "32px 0" }}
+        motif={<MotifTrees />}
+      />
+
+      <h2>The trails: what is down, what is closing</h2>
+
+      <p>
+        <strong>The Half Dome cables are down.</strong> In every season of the park's record from 2014 through 2025 they came down in October, on dates from October 9 to October 22. No November itinerary includes the summit by the cables.
+      </p>
+
+      <p>
+        The Valley's three routinely closed trails, the Mist Trail to the top of Vernal Fall, the John Muir Trail between Clark Point and near the top of Nevada Fall, including the "ice cut," and the Four Mile Trail to Glacier Point, close each winter, usually for ice, and the record shows November is when the closures begin. In the seven seasons from 2018 through 2024, the Mist Trail's winter closure came in November three times (2019, 2020, and 2022, though in 2020 it reopened later that month) and in December or January the other four. The Four Mile Trail closed in November only once in that span, on November 11, 2022, and in December or early January the other six times. The ice cut closed in November in 2020, 2022, and 2024, though the 2024 date reflects an early closure for trail work rather than ice.
+      </p>
+
+      <p>
+        The pattern is the useful part. Early in the month, the big Valley hikes are usually open. Late in the month, after a storm, any of them may be gated, and the closure can come with a single cold night. Elsewhere, the park's conditions page warns that trails not listed as closed "may be snowy and very difficult to find from about November through May/June." The high country is no place for a casual hike this month, and the winter-safe Valley walks become the plan.
+      </p>
+
+      <h2>Waterfalls and the end of the color</h2>
+
+      <p>
+        The waterfalls start the month at their lowest. The park's fall page says water levels "tend to be very low, with waterfalls (including Yosemite Falls) containing little or no water," while Vernal, Nevada, and Bridalveil run all year at a trickle. The change comes with the storms: once some snow and rain have fallen, the park says, Yosemite Falls begins flowing again, though not at springtime levels. A wet November can bring the Valley's best-known waterfall back from a dry stripe on the wall. A dry one leaves it quiet into December.
+      </p>
+
+      <p>
+        The color is past its peak as the month starts. The park says big-leaf maples, black oaks, and Pacific dogwoods tend to be showy around mid-October, so the first days of November catch the tail of it, and a storm can strip the rest in a night. A century-old record shows the shape of it: the November 30, 1923 issue of <a href="/archive/1923/vol-2-no-15/">Yosemite Nature Notes</a> found the white alders along the stream banks still fully green on November 12, standing among golden maples and variegated black oaks, while the willows had gone yellow and ragged, the creek dogwoods red and then bare, and the cottonwoods had carpeted the forest floor with their creamy yellow leaves. Alders, the note explained, hold their leaves late and drop them while they are still green.
+      </p>
+
+      <h2>The month's calendar</h2>
+
+      <p>
+        <strong>Veterans Day.</strong> The Park Service's 2026 list of entrance fee-free days includes November 11, Veterans Day, when entry is free for US citizens and residents. The list is set year by year, so check the park's fees page for the current one. On any other day the standard pass is $35 per private vehicle for seven days, and non-US residents aged 16 and over pay an additional $100 per person unless they enter with an annual or America the Beautiful pass. There is no entrance reservation to plan around in 2026: the park dropped its timed-entry system for the year.
+      </p>
+
+      <p>
+        <strong>Vintners' Holidays.</strong> The Ahwahnee's wine program runs in multi-day sessions in the second and third weeks of the month. The concessioner's 2026 schedule lists four: November 8 to 11, 11 to 13, 15 to 18, and 18 to 20, each with a "Meet the Vintners" reception, seminars, and a closing gala dinner, offered with packages at the Ahwahnee, Yosemite Valley Lodge, or Curry Village; check what lodging a package includes when you book. The seminars are held in public space and are open to the public. What a session includes and costs is in <a href="/articles/bracebridge-dinner-and-vintners-holidays">the Bracebridge and Vintners' Holidays guide</a>. For everyone else, the practical point is that session nights fill rooms in the Valley in what is otherwise a quiet part of the month.
+      </p>
+
+      <p>
+        <strong>Thanksgiving.</strong> The fourth Thursday is the one busy weekend in a quiet month. The Ahwahnee serves a holiday dinner, the Valley lodges fill, and the weekend lands after the high roads have almost always closed. The dinner, the rooms, the campgrounds, and a four-day plan are in <a href="/articles/thanksgiving-in-yosemite">the Thanksgiving guide</a>.
+      </p>
+
+      <p>
+        <strong>The end of the month.</strong> Several things stop together. The Mariposa Grove shuttle ends by November 30. In 2026 the concessioner lists Curry Village as not open from November 29 through December 10, so the Saturday night of Thanksgiving weekend is its last until December 11. The ice rink at Curry Village opens for the season on a date the concessioner sets; as of this writing it lists the coming season's as to be determined. The free shuttle to Badger Pass runs only when the ski area is open, which the park says is typically mid-December through March, so November has no ski season.
+      </p>
+
+      <h2>Driving in: assume chains</h2>
+
+      <p>
+        The Park Service's chain page says it without hedging: if you are visiting any location in Yosemite from November through March, you should expect chain requirements to be in effect, even if you only plan to visit Yosemite Valley and use the free shuttle. <strong>Any time chain controls are in effect, every vehicle must carry chains</strong>, four-wheel drives and rental cars included, whether or not the control level requires them on the tires. The speed limit inside a chain control area is 25 mph, and failing to put chains on when required can bring a citation of up to $5,000. Rental companies generally do not provide chains, and few businesses rent them, so buy a set that fits your tires before you leave a gateway town. The three control levels, and which cars each one exempts, are drawn out in <a href="/articles/yosemite-in-winter">the winter guide</a>.
+      </p>
+
+      <p>
+        Route choice matters. The park says chains are required more often on the Wawona Road (Highway 41), the Big Oak Flat Road (Highway 120 from the west), and the Badger Pass Road than on the El Portal Road (Highway 140) and the roads inside the Valley, because the higher roads take more snow. Highway 140 through the Merced River canyon is also the one route YARTS runs all year, from Merced through Mariposa and El Portal into the Valley, and the park suggests parking at a YARTS stop below the chain control and riding in as the alternative to chaining up. The in-park road line, 209/372-0200 (then 1, then 1), carries the current chain requirements, and it is the call to make the morning you drive.
+      </p>
+
+      <Placeholder
+        caption="Highway 140 in the Merced River canyon, the lowest road into the Valley and the one YARTS runs all year"
+        image="img/merced-canyon-road-cory-goehring.jpg"
+        credit="Photo: Cory Goehring"
+        tag="PLATE II"
+        size="lg"
+        style={{ aspectRatio: "16 / 10", margin: "32px 0" }}
+        motif={<MotifMountains />}
+      />
+
+      <h2>Where to sleep in November</h2>
+
+      <p>
+        <strong>In the park</strong>, the Ahwahnee, Yosemite Valley Lodge, and Curry Village carry the month, with Curry closing after Thanksgiving weekend in 2026 as noted above. Curry's heated canvas tent cabins are a real cold-weather option: the concessioner turns the heat on from the Tuesday after Labor Day to the Friday before Memorial Day. The tents have no plumbing, so the bathroom is a walk on what may be a frosty path. Housekeeping Camp is out of season (its 2026 season ran April 3 to October 12), and the Wawona Hotel is closed while the Park Service conducts a condition assessment of the complex, with no reopening date posted. Valley rooms book on a rolling 366-day window, and outside the Vintners' Holidays nights and Thanksgiving week, November is usually one of the easier months of the year to find one.
+      </p>
+
+      <p>
+        <strong>Camping</strong> in November is a short list. The high campgrounds, from Crane Flat and Bridalveil Creek up to Tuolumne Meadows, are closed: in every year of the park's record since 2014, the last of them closed by October 15. Lower Pines and North Pines close in October. That leaves four. <strong>Upper Pines</strong> is the only campground on reservations all year, at $36 a night; its reservations are released five months ahead on the 15th of each month, so arrivals from October 15 to November 14 go on sale June 15 and arrivals from November 15 to December 14 on July 15. <strong>Camp 4, Wawona (only Loop A after late October), and Hodgdon Meadow</strong> are open all year and first come, first served in winter, though the park notes they can fill on holidays and weekends. In 2026 the park extended reservations at Camp 4 and at Wawona's Loop A through the night of November 28, so check the campgrounds page for the current year before you count on a walk-up site. Plan on overnight lows below freezing either way.
+      </p>
+
+      <p>
+        <strong>Outside the park</strong>, the Highway 140 towns put you below most of the snow and on the year-round bus route, which is the strongest argument for Mariposa or El Portal this month. The town-by-town comparison is on <a href="/stay">the lodging board</a>.
+      </p>
+
+      <h2>A naturalist's November</h2>
+
+      <p>
+        A century ago one of the park's naturalists noticed that the Valley's owls are heard most in autumn, and they traced it to mice. In the same November 1923 bulletin, the naturalist Enid Michael asked why the owls are heard so often in autumn and so seldom at other times. Her answer was that this is their hunting season on the Valley floor. Mice of at least three species gather there in autumn to winter alongside the Valley's few human residents, and owls come down from the forests above the rim, and perhaps up from the valleys below, to hunt them. She listed what to listen for: the chorus of great horned owls (she called them Pacific horned owls), the occasional sharp, barking call of the spotted owl, and the pygmy owl, which hunts by day and sings in the morning from the top of a tall pine.
+      </p>
+
+      <p>
+        No one can promise a particular owl on a particular night, but the observation holds up as a way to spend a long November evening: the dark comes at five, the Valley is quiet, and the sounds that carry are the ones the naturalists were writing down a century ago. Walk out to the edge of a meadow after dinner, stand still, and listen.
+      </p>
+
+      <h2>How to build a November trip</h2>
+
+      <p>
+        <strong>Pick your half of the month first.</strong> The first ten days are the last chance at the full park: the high roads open in most years, the Mariposa Grove shuttle running, the big Valley hikes usually open, and the end of the color. The middle of the month is the quietest stretch of the autumn, with the high roads likely closed, Vintners' Holidays filling some Valley rooms, and few other crowds. The last week is Thanksgiving, then the end-of-month closures.
+      </p>
+
+      <p>
+        <strong>Then plan around the storm.</strong> A November trip of more than a few days will probably meet one. Carry chains, keep one day loose, and treat the storm as part of the trip: the park's waterfalls come back with the rain, and a dusting of snow on the Valley walls is the reason many people come this month.
+      </p>
+
+      <p>
+        <strong>Read the conditions page the morning of.</strong> Road closures, trail gates, chain controls, and the grove shuttle all change by the day in this month. The <a href="/conditions">conditions page</a> collects the park's live feeds and the phone numbers in one place.
+      </p>
+
+      <LodgingCta
+        destination="Yosemite National Park"
+        heading="November rooms depend on which week"
+        note="Most of November is one of the easiest times of the year to find a room in or near the Valley. The Vintners' Holidays nights and Thanksgiving week are the exceptions. A search on your dates shows quickly which November you are dealing with."
+        list="article_cta"
+        slug="yosemite-in-november"
+        cta="Search November lodging around Yosemite →"
+      />
+
+      <AffiliateNote />
+
+      <h3>Sources</h3>
+      <ul style={{ fontSize: 14 }}>
+        <li><a href="https://www.nps.gov/yose/planyourvisit/weather.htm" target="_blank" rel="noopener noreferrer">Weather and Climate, NPS Yosemite</a></li>
+        <li><a href="https://www.nps.gov/yose/planyourvisit/fall.htm" target="_blank" rel="noopener noreferrer">Visiting in Fall, NPS Yosemite</a></li>
+        <li><a href="https://www.nps.gov/yose/planyourvisit/winter.htm" target="_blank" rel="noopener noreferrer">Visiting in Winter, NPS Yosemite</a></li>
+        <li><a href="https://www.nps.gov/yose/planyourvisit/seasonal.htm" target="_blank" rel="noopener noreferrer">Historical Seasonal Opening and Closing Dates, NPS Yosemite</a></li>
+        <li><a href="https://www.nps.gov/yose/planyourvisit/conditions.htm" target="_blank" rel="noopener noreferrer">Current Conditions, NPS Yosemite</a></li>
+        <li><a href="https://www.nps.gov/yose/planyourvisit/mg.htm" target="_blank" rel="noopener noreferrer">Mariposa Grove, NPS Yosemite</a></li>
+        <li><a href="https://www.nps.gov/yose/planyourvisit/tirechains.htm" target="_blank" rel="noopener noreferrer">Tire Chain Requirements, NPS Yosemite</a></li>
+        <li><a href="https://www.nps.gov/yose/planyourvisit/publictransportation.htm" target="_blank" rel="noopener noreferrer">Public Transportation, NPS Yosemite</a></li>
+        <li><a href="https://www.nps.gov/yose/planyourvisit/camping.htm" target="_blank" rel="noopener noreferrer">Campground Reservations, NPS Yosemite</a></li>
+        <li><a href="https://www.nps.gov/yose/planyourvisit/campgrounds.htm" target="_blank" rel="noopener noreferrer">Campgrounds, NPS Yosemite</a></li>
+        <li><a href="https://www.nps.gov/yose/planyourvisit/fees.htm" target="_blank" rel="noopener noreferrer">Fees and Passes, NPS Yosemite</a></li>
+        <li><a href="https://www.nps.gov/yose/planyourvisit/reservations.htm" target="_blank" rel="noopener noreferrer">Entrance Reservations, NPS Yosemite</a></li>
+        <li><a href="https://www.travelyosemite.com/lodging/curry-village/" target="_blank" rel="noopener noreferrer">Curry Village, Yosemite Hospitality</a></li>
+        <li><a href="https://www.travelyosemite.com/lodging/housekeeping-camp/" target="_blank" rel="noopener noreferrer">Housekeeping Camp, Yosemite Hospitality</a></li>
+        <li><a href="https://www.travelyosemite.com/lodging/" target="_blank" rel="noopener noreferrer">Lodging, Yosemite Hospitality</a></li>
+        <li><a href="https://www.travelyosemite.com/things-to-do/specialty-events/holiday-events/vintners-holidays" target="_blank" rel="noopener noreferrer">Vintners' Holidays, Yosemite Hospitality</a></li>
+        <li><a href="https://www.travelyosemite.com/things-to-do/specialty-events/holiday-events/thanksgiving-dinner" target="_blank" rel="noopener noreferrer">Thanksgiving Dinner, Yosemite Hospitality</a></li>
+        <li><a href="https://www.travelyosemite.com/things-to-do/ice-skating/" target="_blank" rel="noopener noreferrer">Curry Village Ice Skating Rink, Yosemite Hospitality</a></li>
+        <li><a href="https://aa.usno.navy.mil/data/RS_OneDay" target="_blank" rel="noopener noreferrer">Sun and Moon Data for One Day, US Naval Observatory</a></li>
+        <li><a href="/archive/1923/vol-2-no-15/">Yosemite Nature Notes, November 30, 1923</a></li>
+      </ul>
+    </>
+  );
+};
