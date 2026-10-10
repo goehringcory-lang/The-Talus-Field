@@ -159,7 +159,7 @@ window.BODY_VERSIONS = {
   "yosemite-accessibility-guide": 5,
   "pets-in-yosemite": 6,
   "yosemite-ranger-programs": 5,
-  "yosemite-camping-complete-guide": 13,
+  "yosemite-camping-complete-guide": 14,
   "where-to-propose-in-yosemite": 3,
   "is-bear-spray-allowed-in-yosemite": 3,
   "yosemite-bears-safety-guide": 123,
