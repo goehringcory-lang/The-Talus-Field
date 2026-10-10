@@ -36,7 +36,7 @@ import { z } from 'zod'
 import { addDaysIso } from '../utils/date'
 
 // The `verified` date from the JSON, printed on the board.
-export const DEADLINES_VERIFIED = '2026-09-22'
+export const DEADLINES_VERIFIED = '2026-10-10'
 
 const MonthDay = z.object({ month: z.number().int().min(1).max(12), day: z.number().int().min(1).max(31) })
 const IsoDate = z.string().regex(/^\d{4}-\d{2}-\d{2}$/)
@@ -86,7 +86,7 @@ const seed: DeadlineInput[] = [
     offsetDays: -2,
     time: 'midnight to 4 p.m.',
     detail:
-      'About 50 permits a day are drawn two days before the hiking date. Apply between midnight and 4 p.m. Pacific two days ahead; results arrive that evening. $10 per application plus $10 per person.',
+      'Extra permits, set by the expected rate of no-shows and cancellations, are drawn two days before the hiking date. Apply between midnight and 4 p.m. Pacific two days ahead; results arrive that evening. $10 per application plus $10 per person.',
     confidence: 'published',
     source: 'https://www.nps.gov/yose/planyourvisit/hdpermits.htm',
     tag: 'date-halfdome',
@@ -99,7 +99,7 @@ const seed: DeadlineInput[] = [
     rule: 'cables-season',
     time: 'all day',
     detail:
-      'The cables go up the Friday before Memorial Day and come down the day after the second Monday in October, conditions permitting. No permit is issued for a day outside the season.',
+      'The cables go up the Friday before Memorial Day, and the last day to use them is the day after the second Monday in October, conditions permitting. No permit is issued for a day outside the season.',
     confidence: 'published',
     source: 'https://www.nps.gov/yose/planyourvisit/hdpermits.htm',
     tag: 'date-halfdome',
