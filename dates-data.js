@@ -5,10 +5,11 @@
 // The Field Guide carries a hand mirror at apps/guide/src/content/deadlines.ts,
 // asserted equal to the JSON by scripts/check-deadlines.mjs.
 window.DEADLINES = {
-  "verified": "2026-09-22",
+  "verified": "2026-10-10",
   "ruleYears": [
     2026,
-    2027
+    2027,
+    2028
   ],
   "items": [
     {
@@ -38,7 +39,7 @@ window.DEADLINES = {
       "kind": "relative",
       "offsetDays": -2,
       "time": "midnight to 4 p.m.",
-      "detail": "About 50 permits a day are drawn two days before the hiking date. Apply between midnight and 4 p.m. Pacific two days ahead; results arrive that evening. $10 per application plus $10 per person.",
+      "detail": "Extra permits, set by the expected rate of no-shows and cancellations, are drawn two days before the hiking date. Apply between midnight and 4 p.m. Pacific two days ahead; results arrive that evening. $10 per application plus $10 per person.",
       "confidence": "published",
       "source": "https://www.nps.gov/yose/planyourvisit/hdpermits.htm",
       "tag": "date-halfdome",
@@ -52,7 +53,7 @@ window.DEADLINES = {
       "kind": "rule",
       "rule": "cables-season",
       "time": "all day",
-      "detail": "The cables go up the Friday before Memorial Day and come down the day after the second Monday in October, conditions permitting. No permit is issued for a day outside the season.",
+      "detail": "The cables go up the Friday before Memorial Day, and the last day to use them is the day after the second Monday in October, conditions permitting. No permit is issued for a day outside the season.",
       "confidence": "published",
       "source": "https://www.nps.gov/yose/planyourvisit/hdpermits.htm",
       "tag": "date-halfdome",

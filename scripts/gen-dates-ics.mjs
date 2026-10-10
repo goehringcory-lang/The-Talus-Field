@@ -39,7 +39,7 @@ const table = JSON.parse(readFileSync(SRC, "utf8"));
 
 // Years the rule-based rows are written out for. Two at a time keeps the
 // calendar useful across a season boundary without pretending to know 2030.
-const RULE_YEARS = [2026, 2027];
+const RULE_YEARS = [2026, 2027, 2028];
 
 const KINDS = new Set(["annual", "relative", "release-15th", "rule", "season"]);
 const CONF = new Set(["published", "typical"]);

@@ -6,15 +6,15 @@ METHOD:PUBLISH
 X-WR-CALNAME:Yosemite: Half Dome cables season
 BEGIN:VEVENT
 UID:halfdome-cables-2026@dates.thetalusfieldjournal.com
-DTSTAMP:20260922T000000Z
+DTSTAMP:20261010T000000Z
 DTSTART;VALUE=DATE:20260522
 DTEND;VALUE=DATE:20261014
 SUMMARY:Yosemite: Half Dome cables season 2026
-DESCRIPTION:The cables go up the Friday before Memorial Day and come down t
- he day after the second Monday in October\, conditions permitting. No perm
- it is issued for a day outside the season. Source: https://www.nps.gov/yos
- e/planyourvisit/hdpermits.htm. Verified 2026-09-22. The Talus Field\, http
- s://thetalusfieldjournal.com/dates
+DESCRIPTION:The cables go up the Friday before Memorial Day\, and the last 
+ day to use them is the day after the second Monday in October\, conditions
+  permitting. No permit is issued for a day outside the season. Source: htt
+ ps://www.nps.gov/yose/planyourvisit/hdpermits.htm. Verified 2026-10-10. Th
+ e Talus Field\, https://thetalusfieldjournal.com/dates
 URL:https://thetalusfieldjournal.com/dates
 BEGIN:VALARM
 ACTION:DISPLAY
@@ -24,19 +24,37 @@ END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:halfdome-cables-2027@dates.thetalusfieldjournal.com
-DTSTAMP:20260922T000000Z
+DTSTAMP:20261010T000000Z
 DTSTART;VALUE=DATE:20270528
 DTEND;VALUE=DATE:20271013
 SUMMARY:Yosemite: Half Dome cables season 2027
-DESCRIPTION:The cables go up the Friday before Memorial Day and come down t
- he day after the second Monday in October\, conditions permitting. No perm
- it is issued for a day outside the season. Source: https://www.nps.gov/yos
- e/planyourvisit/hdpermits.htm. Verified 2026-09-22. The Talus Field\, http
- s://thetalusfieldjournal.com/dates
+DESCRIPTION:The cables go up the Friday before Memorial Day\, and the last 
+ day to use them is the day after the second Monday in October\, conditions
+  permitting. No permit is issued for a day outside the season. Source: htt
+ ps://www.nps.gov/yose/planyourvisit/hdpermits.htm. Verified 2026-10-10. Th
+ e Talus Field\, https://thetalusfieldjournal.com/dates
 URL:https://thetalusfieldjournal.com/dates
 BEGIN:VALARM
 ACTION:DISPLAY
 DESCRIPTION:Yosemite: Half Dome cables season 2027
+TRIGGER:-P1D
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:halfdome-cables-2028@dates.thetalusfieldjournal.com
+DTSTAMP:20261010T000000Z
+DTSTART;VALUE=DATE:20280526
+DTEND;VALUE=DATE:20281011
+SUMMARY:Yosemite: Half Dome cables season 2028
+DESCRIPTION:The cables go up the Friday before Memorial Day\, and the last 
+ day to use them is the day after the second Monday in October\, conditions
+  permitting. No permit is issued for a day outside the season. Source: htt
+ ps://www.nps.gov/yose/planyourvisit/hdpermits.htm. Verified 2026-10-10. Th
+ e Talus Field\, https://thetalusfieldjournal.com/dates
+URL:https://thetalusfieldjournal.com/dates
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Yosemite: Half Dome cables season 2028
 TRIGGER:-P1D
 END:VALARM
 END:VEVENT

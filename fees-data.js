@@ -6,14 +6,14 @@
 //
 // SOURCING. Every number here is quoted from an NPS page, named in FEES.sources,
 // and the page that renders this prints FEES.verified. Fee policy changes by
-// rule, not by season, so a change lands here first and the evergreen-refresh
-// routine re-verifies the page against those sources.
+// rule, not by season, so a change lands here first and the season pre-flight
+// routine re-verifies the table against those sources each month.
 //
 // The one interpretive question, settled here in code and stated on the page:
 // how the $100 non-resident fee interacts with the $250 non-resident annual
 // pass for the other people in the car. nps.gov/yose/planyourvisit/fees.htm
-// says the surcharge is "$100 per person (age 16+) unless holding an Annual or
-// America the Beautiful Pass". America the Beautiful passes admit the holder
+// says each nonresident 16 and older pays the $100 fee "unless admitted with an
+// Annual or America the Beautiful Pass". America the Beautiful passes admit the holder
 // and everyone in one private vehicle, and the Yosemite Conservancy's 2026
 // know-before-you-go page prints the two options side by side as "$35/vehicle
 // + $100 per nonresident age 16 and older" against "$250/vehicle (no
@@ -24,7 +24,7 @@
 // =============================================================================
 
 window.FEES = {
-  verified: "2026-09-05",
+  verified: "2026-10-10",
   sources: {
     yosemite: "https://www.nps.gov/yose/planyourvisit/fees.htm",
     passes: "https://www.nps.gov/planyourvisit/passes.htm",
