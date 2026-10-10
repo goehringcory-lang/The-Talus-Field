@@ -16,7 +16,7 @@ window.ARTICLE_BODIES["yosemite-in-october-2026"] = function YosemiteInOctober20
       <h2>Glacier Point Road is closed, and the fire decides for how long</h2>
 
       <p>
-        The <strong>Dome Fire</strong> was reported on the morning of September 15, about a quarter mile north of Chilnualna Falls, and on September 30 the local press reported that the Forest Service has found it human-caused, sparked by an abandoned campfire. The federal incident page still lists the cause as undetermined. By the evening of September 24 it had burned <strong>4,133 acres at 16 percent containment</strong>. Two helicopter pilots were killed fighting it on September 20.
+        The <strong>Dome Fire</strong> was reported on the morning of September 15, about a quarter mile north of Chilnualna Falls, and its cause is not settled. On September 30 the local press reported a Forest Service finding that an abandoned campfire started it; on October 6 the Forest Service withdrew that finding without giving a reason, and the federal incident page, InciWeb, lists the cause as undetermined. By the evening of September 24 it had burned <strong>4,133 acres at 16 percent containment</strong>. Two helicopter pilots were killed fighting it on September 20.
       </p>
 
       <p>
@@ -24,7 +24,7 @@ window.ARTICLE_BODIES["yosemite-in-october-2026"] = function YosemiteInOctober20
       </p>
 
       <p>
-        The trails around the fire are closed until further notice: the <strong>Chilnualna Falls trail</strong> and the trails above it toward Buena Vista and Crescent Lakes, and the <strong>Ostrander Lake Trail and every area and trail south of it</strong>, which takes in the country east of Wawona Road from Chinquapin to Wawona.
+        The country around the fire is closed until further notice under the park's October 2 order: the area east of Wawona Road and south of Glacier Point Road, north of Wawona and out to Buena Vista Creek, which takes in the <strong>Ostrander Lake, Mono Meadow and Buena Vista trails</strong>. The <strong>Chilnualna Falls trail</strong> has reopened from the trailhead to the falls and Crescent Lake.
       </p>
 
       <p>
@@ -164,7 +164,7 @@ window.ARTICLE_BODIES["yosemite-in-october-2026"] = function YosemiteInOctober20
       </p>
 
       <p>
-        Fire restrictions are still in force: fires only in portable stoves, grills and established rings, never unattended, and out cold before you walk away. The Forest Service, as reported on September 30, has traced the Dome Fire to an abandoned campfire. <a href="/articles/yosemite-fire-restrictions-explained">The fire restrictions piece</a> explains the rules and how to check the current stage.
+        Fire restrictions are still in force: fires only in portable stoves, grills and established rings, never unattended, and out cold before you walk away. <a href="/articles/yosemite-fire-restrictions-explained">The fire restrictions piece</a> explains the rules and how to check the current stage.
       </p>
 
       <h2>What is on, with dates</h2>
