@@ -1126,11 +1126,7 @@ window.ARTICLE_BODIES["yosemite-camping-complete-guide"] = function YosemiteCamp
     href: "https://www.blm.gov/visit/railroad-flat-campground",
     target: "_blank",
     rel: "noopener noreferrer"
-  }, "Railroad Flat Campground, Bureau of Land Management")), React.createElement("li", null, React.createElement("a", {
-    href: "https://www.fs.usda.gov/r05/stanislaus/recreation/campgrounds-highway-120-corridor",
-    target: "_blank",
-    rel: "noopener noreferrer"
-  }, "Highway 120 corridor, Stanislaus National Forest"), " and ", React.createElement("a", {
+  }, "Railroad Flat Campground, Bureau of Land Management")), React.createElement("li", null, "Highway 120 corridor, Stanislaus National Forest, and ", React.createElement("a", {
     href: "https://www.fs.usda.gov/r05/stanislaus/permits/campfire-permits",
     target: "_blank",
     rel: "noopener noreferrer"

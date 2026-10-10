@@ -288,7 +288,7 @@ function buildSitemap(merged, categories) {
       lastmod: allNewest,
       // Responsive JPEG variant, not the multi-MB source file: image sitemaps
       // should point at what a crawler can cheaply fetch and index.
-      image: { loc: `${SITE_ORIGIN}/img/responsive/half-dome-winter-storm-1600.jpg`, title: "Half Dome in a clearing winter storm" },
+      image: { loc: `${SITE_ORIGIN}/img/responsive/valley-view-sunset-rodrigo-soares-1600.jpg`, title: "El Capitan and Bridalveil Fall above the Merced River at sunset" },
     }),
     urlBlock({ loc: "/articles", lastmod: allNewest }),
     urlBlock({ loc: "/planning", lastmod: planningNewest, changefreq: "weekly", priority: "0.9" }),

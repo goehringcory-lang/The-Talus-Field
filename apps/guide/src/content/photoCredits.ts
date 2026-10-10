@@ -111,7 +111,7 @@ export const PHOTO_CREDITS: Record<string, PhotoCredit> = {
   "/photos/merced-river-pool.jpg": { author: "Robert Schrader", license: "Pexels License", source: "https://www.pexels.com/" },
   "/photos/milky-way-sentinel-dome.jpg": { author: "Jackhen1992", license: "CC BY-SA 4.0", source: "" },
   "/photos/mirror-lake.jpg": { author: "Mutineer", license: "CC0", source: "https://commons.wikimedia.org/wiki/File:MirrorLakeYosemiteLandscape.JPG" },
-  "/photos/mono-pass-meadows.jpg": { author: "Carleton Watkins", license: "Public domain", source: "https://commons.wikimedia.org/wiki/File:Carleton_Watkins_(American_-_The_Mono_Pass,_Yosemite_Valley,_Mariposa_County,_Cal._-_Google_Art_Project.jpg" },
+  "/photos/mono-pass-meadows.jpg": { author: "Carleton Watkins", license: "Public domain", source: "https://commons.wikimedia.org/wiki/File:Carleton_Watkins_(American_-_The_Mono_Pass,_Yosemite_Valley,_Mariposa_County,_Cal._-_Google_Art_Project.jpg)" },
   "/photos/north-dome-indian-rock.jpg": { author: "Watkins, Carleton E., 1829-1916, photographer", license: "Public domain", source: "https://commons.wikimedia.org/wiki/File:North_Dome,_Yosemite_LCCN95514319.jpg" },
   "/photos/old-big-oak-flat-road.jpg": { author: "Soly Moses", license: "Pexels License", source: "https://www.pexels.com/photo/serene-oak-trees-under-sunlight-in-yucaipa-forest-31592697/" },
   "/photos/old-road-trailhead-pullout.jpg": { author: "Stephen Leonardi", license: "Pexels License", source: "https://www.pexels.com/photo/majestic-oak-tree-in-yosemite-national-park-30140436/" },

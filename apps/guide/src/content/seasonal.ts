@@ -807,7 +807,7 @@ const WILDFLOWERS_MEADOWS_DESC =
   'Mid-elevation meadows typically peak from mid-June into mid-July, later at McGurk Meadow on Glacier Point Road, where July is peak, than at lower, earlier-blooming Wawona Meadow. Both are easy, flat walks. Glacier Point Road has to be open to reach McGurk; it usually is well before this window closes.'
 const WILDFLOWERS_HIGH_DESC =
   'High-country meadows typically bloom from mid-July into mid-August, once the snowmelt clears and the ground warms at 8,600 feet. Lupine and paintbrush color the meadow edges around Tuolumne, later and shorter-lived than anything at valley elevation. Timing tracks the snowpack: a big winter pushes the bloom toward August, a light one brings it forward. The Soda Springs walk from the Lembert Dome lot is an easy way to see it up close.'
-const WILDFLOWERS_SOURCE_URL = 'https://www.nps.gov/yose/learn/nature/wildflowers.htm'
+const WILDFLOWERS_SOURCE_URL = 'https://www.nps.gov/yose/learn/nature/wildflowerviewing.htm'
 
 const wildflowerEntries: SeasonalInput[] = [
   {
