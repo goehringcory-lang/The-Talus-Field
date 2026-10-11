@@ -2,8 +2,10 @@ import { Hono } from 'hono'
 import type { Env } from '../env'
 import {
   getBuyer,
+  getSingleUseRedemption,
   hasPromoRedemption,
   markPromoRedemption,
+  markSingleUseRedemption,
   putBuyer,
   recordRedeemAttempt,
   recordRedeemAttemptByIp,
@@ -64,6 +66,30 @@ export function parsePromoCodes(raw: string | undefined): Map<string, number> {
   return codes
 }
 
+// SINGLE_USE_CODES → { sha256hex: days }. Entries are separated by commas or
+// whitespace (wrangler.toml keeps one per line). Same skip-don't-fail rule.
+export function parseSingleUseCodes(raw: string | undefined): Map<string, number> {
+  const codes = new Map<string, number>()
+  for (const entry of (raw ?? '').split(/[\s,]+/)) {
+    const [hash, daysRaw] = entry.split(':')
+    const normalized = hash?.trim().toLowerCase()
+    const days = Number.parseInt(daysRaw ?? '', 10)
+    if (!normalized || !/^[0-9a-f]{64}$/.test(normalized) || Number.isNaN(days) || days < 1) continue
+    codes.set(normalized, days)
+  }
+  return codes
+}
+
+// The hash is over letters and digits only, so dashes and spaces a reader
+// adds or drops when retyping the code do not matter.
+export async function singleUseCodeHash(code: string): Promise<string> {
+  const data = new TextEncoder().encode(code.toUpperCase().replace(/[^A-Z0-9]/g, ''))
+  const digest = await crypto.subtle.digest('SHA-256', data)
+  return [...new Uint8Array(digest)]
+    .map((b) => b.toString(16).padStart(2, '0'))
+    .join('')
+}
+
 type RedeemBody = {
   email?: unknown
   code?: unknown
@@ -102,11 +128,15 @@ redeem.post('/', async (c) => {
 
   const code = codeInput.toUpperCase()
   const days = parsePromoCodes(c.env.PROMO_CODES).get(code)
-  if (!days) {
-    return c.json({ error: 'That code is not recognized.' }, 404)
-  }
-
   const nowSeconds = Math.floor(Date.now() / 1000)
+  if (!days) {
+    const codeHash = await singleUseCodeHash(code)
+    const singleUseDays = parseSingleUseCodes(c.env.SINGLE_USE_CODES).get(codeHash)
+    if (!singleUseDays) {
+      return c.json({ error: 'That code is not recognized.' }, 404)
+    }
+    return redeemSingleUse(c.env, email, codeHash, singleUseDays, nowSeconds)
+  }
 
   // An ACTIVE record is never clobbered: a paid buyer clicking the newsletter
   // offer would otherwise trade 18 months for 30 days, and a trial redeemed
@@ -172,3 +202,78 @@ redeem.post('/', async (c) => {
   await markPromoRedemption(c.env, code, email)
   return c.json({ ok: true })
 })
+
+// A one-time code grants access to the first email that redeems it and is
+// then spent for everyone else. Unlike a shared code it is worth real time
+// (548 days for the October 2026 batch), so an active record with less time
+// left is extended in place, keeping its token and 6-digit code, rather than
+// re-sent unchanged; a record that already runs past the grant is re-sent and
+// the code stays unspent, so a paid buyer typing one wastes nothing.
+//
+// KV is eventually consistent, so two redemptions of one code racing within
+// the same second from different addresses could both land. The codes go to
+// named people and the endpoint is rate-limited, so that window is accepted.
+async function redeemSingleUse(
+  env: Env,
+  email: string,
+  codeHash: string,
+  days: number,
+  nowSeconds: number,
+): Promise<Response> {
+  const json = (body: unknown, status = 200) =>
+    new Response(JSON.stringify(body), {
+      status,
+      headers: { 'content-type': 'application/json' },
+    })
+
+  const claimedBy = await getSingleUseRedemption(env, codeHash)
+  if (claimedBy !== null && claimedBy !== email) {
+    return json({ error: 'That code has already been used.' }, 409)
+  }
+
+  const grantEnd = nowSeconds + days * 24 * 60 * 60
+  const existing = await getBuyer(env, email)
+  const active = existing && existing.refundedAt == null && existing.expiresAt > nowSeconds
+  // The claimant's own grant has lapsed: the code is spent for them too.
+  if (claimedBy === email && !active) {
+    return json({ error: 'That code has already been used.' }, 409)
+  }
+
+  let record: BuyerRecord
+  if (active && (claimedBy === email || existing.expiresAt >= grantEnd)) {
+    record = existing
+  } else if (active) {
+    record = { ...existing, expiresAt: grantEnd }
+    await putBuyer(env, record)
+  } else {
+    record = {
+      email,
+      purchasedAt: nowSeconds,
+      expiresAt: grantEnd,
+      accessToken: generateAccessToken(),
+      accessCode: generateAccessCode(),
+      promoCode: `ONETIME-${codeHash.slice(0, 8).toUpperCase()}`,
+    }
+    // No sales-tally increment: the tally counts paid copies.
+    await putBuyer(env, record)
+  }
+
+  const magicLink = `${env.APP_BASE_URL}/open?token=${record.accessToken}`
+  try {
+    await sendTrialAccess(env, {
+      to: email,
+      magicLink,
+      code: record.accessCode,
+      expiresAt: record.expiresAt,
+    })
+  } catch (err) {
+    console.error('redeem: one-time access email failed', { email, err })
+    return json({ error: 'Could not send the access email. Try again.' }, 502)
+  }
+
+  // Claimed only after the email lands, so a failed send can be retried.
+  if (claimedBy === null && record.expiresAt === grantEnd) {
+    await markSingleUseRedemption(env, codeHash, email)
+  }
+  return json({ ok: true })
+}

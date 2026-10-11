@@ -98,6 +98,7 @@ const RENEWAL_NOTICE_KEY = (email: string, stage: string) =>
 const RENEW_LINK_ATTEMPTS_KEY = (ipHash: string) => `renewLinkAttempts:${ipHash}`
 const PROMO_REDEEMED_KEY = (code: string, email: string) =>
   `promoRedeemed:${code.toUpperCase()}:${email.toLowerCase()}`
+const SINGLE_USE_REDEEMED_KEY = (codeHash: string) => `singleUseRedeemed:${codeHash}`
 const REDEEM_ATTEMPTS_KEY = (email: string) => `redeemAttempts:${email.toLowerCase()}`
 const REDEEM_ATTEMPTS_IP_KEY = (ipHash: string) => `redeemAttemptsIp:${ipHash}`
 
@@ -458,6 +459,24 @@ export async function markPromoRedemption(
   email: string,
 ): Promise<void> {
   await env.GUIDE_BUYERS.put(PROMO_REDEEMED_KEY(code, email), '1')
+}
+
+// Single-use codes (SINGLE_USE_CODES) are consumed globally, not per email:
+// the sentinel holds the email that claimed it, so that address can still
+// get its access re-sent while every other address is refused.
+export async function getSingleUseRedemption(
+  env: Env,
+  codeHash: string,
+): Promise<string | null> {
+  return env.GUIDE_BUYERS.get(SINGLE_USE_REDEEMED_KEY(codeHash))
+}
+
+export async function markSingleUseRedemption(
+  env: Env,
+  codeHash: string,
+  email: string,
+): Promise<void> {
+  await env.GUIDE_BUYERS.put(SINGLE_USE_REDEEMED_KEY(codeHash), email.toLowerCase())
 }
 
 // Redemption sends a real email per call, so it takes the same two-bucket

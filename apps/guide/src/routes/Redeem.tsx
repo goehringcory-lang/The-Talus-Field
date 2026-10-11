@@ -9,7 +9,8 @@ import ResponsivePhoto from '../components/ResponsivePhoto'
 import Button from '../components/ui/Button'
 import { GUIDE_BUY_URL, useGuidePrice } from '../lib/storefront'
 
-// Public redemption page for the shared newsletter codes (POST /api/redeem).
+// Public redemption page for the shared newsletter codes and the one-time
+// access codes (POST /api/redeem).
 // The newsletter links here with the code in the URL, e.g. /redeem?code=TALUS30,
 // so a subscriber only types their email. Access always arrives BY EMAIL (the
 // magic link + 6-digit code, exactly like a purchase): the endpoint never
@@ -42,7 +43,14 @@ export default function Redeem() {
       setDone(true)
     } catch (err) {
       if (err instanceof ApiError && err.status === 404) {
-        setError('That code is not recognized. Check it against the newsletter.')
+        setError('That code is not recognized. Check it and try again.')
+      } else if (
+        err instanceof ApiError &&
+        err.status === 409 &&
+        err.message === 'That code has already been used.'
+      ) {
+        // A one-time code (SINGLE_USE_CODES) someone has already redeemed.
+        setError(`That code has already been used. The full guide is ${price} for 18 months.`)
       } else if (err instanceof ApiError && err.status === 409) {
         setError(
           `That code has already been used with this email. If your access has since ended, the full guide is ${price} for 18 months.`,
@@ -105,7 +113,7 @@ export default function Redeem() {
           <span className="eyebrow eyebrow--moss">The Field Guide · {EDITION_LABEL}</span>
           <h1 className="login-title">Redeem a code</h1>
           <p className="login-intro">
-            Enter the code from the newsletter and your email. The access link, your
+            Enter your code and your email. The access link, your
             sign-in code, and the end date all arrive by email.
           </p>
         </div>
@@ -143,7 +151,7 @@ export default function Redeem() {
               />
             </label>
             <label className="field">
-              Newsletter code
+              Access code
               <input
                 className="input"
                 type="text"

@@ -73,7 +73,9 @@ export async function sweepRenewals(env: Env): Promise<void> {
       // day they redeem with a subject claiming two months. They still get
       // t14/t1, which are accurate and are the trial's conversion notices; a
       // payment clears promoCode (stripe.ts) and restores the full ladder.
-      if (stage === 't60' && buyer.promoCode) continue
+      // A one-time code's 548-day grant is long enough for t60 to be true.
+      const shortGrant = buyer.expiresAt - buyer.purchasedAt <= 60 * 86400
+      if (stage === 't60' && buyer.promoCode && shortGrant) continue
       if (await hasRenewalNotice(env, buyer.email, stage)) continue
 
       const renewUrl = `${API_ORIGIN}/api/checkout/renew?token=${buyer.accessToken}`
