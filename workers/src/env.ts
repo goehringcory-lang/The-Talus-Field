@@ -29,6 +29,9 @@ export type Env = {
   // e.g. "TALUS30:30". Optional: unset or empty means every code is unknown
   // and the endpoint refuses politely.
   PROMO_CODES?: string
+  // One-time codes for POST /api/redeem, "SHA256HEX:DAYS" comma-separated.
+  // Only the hash of each code is stored; see wrangler.toml.
+  SINGLE_USE_CODES?: string
 
   // Secrets (wrangler secret put)
   STRIPE_SECRET_KEY: string

@@ -94,6 +94,26 @@ GUIDE_PRODUCT_TAG = "field_guide_2026"
 # To retire a code, delete it from this list; already-granted access keeps its
 # own expiry. TALUS30 is the standing 30-day newsletter-subscriber code.
 PROMO_CODES = "TALUS30:30"
+# One-time access codes for POST /api/redeem: each works for exactly one
+# email address, ever, then answers "already used" to everyone else. Unlike
+# PROMO_CODES these are handed to individuals, so only the SHA-256 of each
+# code is committed ("HASH:DAYS"; the hash is taken over the code's letters
+# and digits, uppercased, so "talus-abcd-efgh" and "TALUSABCDEFGH" match).
+# One entry per line. The plaintext codes never enter the repo. To add one,
+# hash it and append; to revoke an unused one, delete its line. October 2026:
+# ten 548-day (full 18-month) codes for the owner to hand out.
+SINGLE_USE_CODES = """
+45b3a6cd3461ba91d99e22ee77e027d54c052c1fbd6027fa7f8bd92a0426e21a:548
+7aab476a356a148637abf9db03d3c5fd6ba377f252187bd97e8c7ada70ecee88:548
+3a06e353ff779592f7950f97ab5eafe3e8cdcae57385251ad28f3c7cd5452660:548
+566adee0c3198175e8a913636cf5315a0f99c70798cb7d7156f9ef5cbf2965a6:548
+d6536f1c95a913a898a59fb4f307e3b7b2ff5db2bf191a205db16b9901a425ce:548
+e14d1fa5b6242cd38118d2248bdbb9ccc34aeb97ad05b00c486497eb41a4e709:548
+3d412ba9942b66fa3b587a1942fdd733d65f7fd5a0a7a007f6c01eafb2b80a05:548
+9733f397619731c123f1af485e5c66c81a5494d8d6bba959735d7b263f15ebb7:548
+754f9a7ae6eb5584ecca4a7e735a843cfd99b3332e492c3093284ddc0598551d:548
+5eaaaa9d3403306bf615a20c1d0d4528f725d7886c95f1567fe9c04e081fd818:548
+"""
 
 # Routes the Worker to api.thetalusfieldjournal.com.
 #

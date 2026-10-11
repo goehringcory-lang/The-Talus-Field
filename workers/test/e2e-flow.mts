@@ -38,6 +38,8 @@ const env: Record<string, unknown> = {
   MAGIC_LINK_SIGNING_SECRET: 'test-signing-secret',
   RESEND_API_KEY: 're_test_dummy',
   PROMO_CODES: 'TALUS30:30',
+  // sha256('TALUSTEST0001'): the one-time code TALUS-TEST-0001, 548 days.
+  SINGLE_USE_CODES: '4b266d0ee94b597965c5eb4c103100b328aefcce49c05e16e6017fd231f7d9cf:548',
   BUTTONDOWN_API_KEY: 'bd_test_dummy',
 }
 
@@ -739,6 +741,72 @@ console.log('\n21. promo-code redemption (/api/redeem)')
   await buyers.put('buyer:lapsed@example.com', JSON.stringify({ ...lapsedRec, expiresAt: now - 60 }))
   const l2 = await redeemCall('9.9.9.3', { email: 'lapsed@example.com', code: 'TALUS30' })
   check('expired trial re-redeem -> 409 (sentinel)', l2.status === 409, l2)
+}
+
+console.log('\n21b. one-time code redemption (/api/redeem, SINGLE_USE_CODES)')
+{
+  const now = Math.floor(Date.now() / 1000)
+  const hash = '4b266d0ee94b597965c5eb4c103100b328aefcce49c05e16e6017fd231f7d9cf'
+  const redeemCall = (ip: string, body: Record<string, unknown>) =>
+    call('/api/redeem', {
+      method: 'POST',
+      body: JSON.stringify(body),
+      headers: { 'cf-connecting-ip': ip },
+    })
+
+  // -- a send failure spends nothing --
+  resendMode = 'fail'
+  const failed = await redeemCall('7.7.7.1', { email: 'first@example.com', code: 'TALUS-TEST-0001' })
+  resendMode = 'ok'
+  check('one-time redeem with failed email -> 502, code unspent',
+    failed.status === 502 && (await buyers.get(`singleUseRedeemed:${hash}`)) === null, failed)
+
+  // -- first redemption: dashes and case do not matter, 548-day record --
+  const emailsBefore = sentEmails.length
+  const o1 = await redeemCall('7.7.7.1', { email: 'first@example.com', code: 'talus test 0001' })
+  check('one-time redeem -> 200', o1.status === 200 && o1.json.ok === true, o1)
+  const rec = JSON.parse((await buyers.get('buyer:first@example.com'))!)
+  check('record runs ~548 days and is marked one-time',
+    Math.abs(rec.expiresAt - (now + 548 * 86400)) < 60 && rec.promoCode.startsWith('ONETIME-'), rec)
+  check('code claimed by the redeemer', (await buyers.get(`singleUseRedeemed:${hash}`)) === 'first@example.com')
+  check('access email sent with token and code',
+    sentEmails.length === emailsBefore + 1 && sentEmails[sentEmails.length - 1].text.includes(rec.accessToken) &&
+    sentEmails[sentEmails.length - 1].text.includes(rec.accessCode), sentEmails[sentEmails.length - 1]?.text)
+
+  // -- spent for everyone else; the claimant can still get access re-sent --
+  const o2 = await redeemCall('7.7.7.2', { email: 'second@example.com', code: 'TALUS-TEST-0001' })
+  check('second email -> 409, no record', o2.status === 409 && (await buyers.get('buyer:second@example.com')) === null, o2)
+  const o3 = await redeemCall('7.7.7.1', { email: 'first@example.com', code: 'TALUS-TEST-0001' })
+  const rec3 = JSON.parse((await buyers.get('buyer:first@example.com'))!)
+  check('claimant re-redeem -> 200, same keys, not extended',
+    o3.status === 200 && rec3.accessToken === rec.accessToken && rec3.expiresAt === rec.expiresAt, o3)
+
+  // -- the claimant's lapsed grant does not re-arm the code --
+  await buyers.put('buyer:first@example.com', JSON.stringify({ ...rec, expiresAt: now - 60 }))
+  await buyers.delete('redeemAttempts:first@example.com') // three calls above filled the hourly cap
+  const o4 = await redeemCall('7.7.7.1', { email: 'first@example.com', code: 'TALUS-TEST-0001' })
+  check('claimant re-redeem after expiry -> 409', o4.status === 409, o4)
+
+  // -- an active shorter record is extended in place, keys kept --
+  await buyers.delete(`singleUseRedeemed:${hash}`)
+  const short = { email: 'trial@example.com', purchasedAt: now, expiresAt: now + 10 * 86400, accessToken: 'tok_trial_x', accessCode: '123456', promoCode: 'TALUS30' }
+  await buyers.put('buyer:trial@example.com', JSON.stringify(short))
+  const o5 = await redeemCall('7.7.7.3', { email: 'trial@example.com', code: 'TALUS-TEST-0001' })
+  const rec5 = JSON.parse((await buyers.get('buyer:trial@example.com'))!)
+  check('active trial extended to 548 days, keys kept, code claimed',
+    o5.status === 200 && Math.abs(rec5.expiresAt - (now + 548 * 86400)) < 60 &&
+    rec5.accessToken === 'tok_trial_x' && rec5.accessCode === '123456' &&
+    (await buyers.get(`singleUseRedeemed:${hash}`)) === 'trial@example.com', rec5)
+
+  // -- a record that already outlasts the grant leaves the code unspent --
+  await buyers.delete(`singleUseRedeemed:${hash}`)
+  const long = { email: 'paid@example.com', purchasedAt: now, expiresAt: now + 600 * 86400, accessToken: 'tok_paid_x', accessCode: '654321' }
+  await buyers.put('buyer:paid@example.com', JSON.stringify(long))
+  const o6 = await redeemCall('7.7.7.4', { email: 'paid@example.com', code: 'TALUS-TEST-0001' })
+  const rec6 = JSON.parse((await buyers.get('buyer:paid@example.com'))!)
+  check('longer paid record untouched, code unspent',
+    o6.status === 200 && rec6.expiresAt === long.expiresAt && (await buyers.get(`singleUseRedeemed:${hash}`)) === null, o6)
+  for (const k of ['buyer:trial@example.com', 'buyer:paid@example.com', 'buyer:first@example.com']) await buyers.delete(k)
 }
 
 console.log('\n22. instant-access claim (/api/checkout/claim)')
