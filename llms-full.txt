@@ -8,11 +8,130 @@
 Publisher: The Talus Field (https://thetalusfieldjournal.com). Editor: Cory Goehring.
 Citation guidance and the annotated page index: https://thetalusfieldjournal.com/llms.txt
 Canonical article URL pattern: https://thetalusfieldjournal.com/articles/<slug>
-Contents: 83 articles. Most recent update: 2026-10-10.
+Contents: 84 articles. Most recent update: 2026-10-12.
 
 Not in this file: the Yosemite Nature Notes archive, all 512 issues of the
 National Park Service's Yosemite bulletin (1922-2003), transcribed in full
 as plain static HTML at https://thetalusfieldjournal.com/archive/.
+
+---
+
+## Wawona: What Is at Yosemite's South End, and How to Spend a Day There
+
+URL: https://thetalusfieldjournal.com/articles/wawona-yosemite-guide
+Section: Planning. Published: 2026-10-12. Last updated: 2026-10-12.
+Summary: Wawona in Yosemite: the history center, Chilnualna Falls, the meadow loop, gas and groceries, the closed hotel, camping, and a day with the Mariposa Grove.
+
+Most people who see Wawona see it through a windshield. It is the cluster of white buildings, a meadow and a gas station on Wawona Road between the South Entrance and the Valley, the place the signs name on the way to the giant sequoias or on the way out of the park at dusk. This fall it has also been the place in the headlines, because the Dome Fire has been burning in the country northeast of it since mid-September. Neither of those is a good reason to skip it. Wawona is the park's southern district, with its own history center, its own waterfall hike, the only hiking trail in Yosemite where a bicycle and a leashed dog are both allowed, and the services a south-end day runs on. This is what is there, what is closed, and how to fit it into a trip.
+
+### Where Wawona is, and what kind of place it is
+
+The Park Service describes Wawona as a large mid-elevation basin on Wawona Road, which is what Highway 41 is called once it crosses into the park. Its campground sits at 4,000 feet, about the same height as the Valley floor. By the park's driving table it is 27 miles and about 45 minutes from Yosemite Valley; the South Entrance is 35 miles from the Valley on the same road, so anyone coming in from Fresno or Oakhurst passes through Wawona on the way to everything else. The Mariposa Grove is next door, but the park is explicit that no shuttle runs between Wawona and the grove: the grove's shuttle starts at its own parking area by the South Entrance.
+
+Wawona is also unlike the rest of the park in one respect. Parts of it are private inholdings, land that stayed in private hands when the park took in the area, so a stretch of Chilnualna Falls Road is lined with cabins and homes rather than forest. That is why there is lodging here while the hotel is closed.
+
+The road stays open all year. The park's own Wawona page says the district is accessible by car year-round, though tire chains may be required from October through April. The chain rules, and why every car in the park has to carry a set when a control is posted, are laid out in the winter guide.
+
+### This fall: the Dome Fire next door
+
+The Dome Fire was reported on September 15 about a quarter mile north of Chilnualna Falls and spread north and northeast. The park's update of October 11 put it at 6,805 acres and 69 percent contained, with 926 people assigned, and repeated the line that has opened every update: the park is open and operating normally, with exceptions. The exceptions that touch Wawona are these.
+
+- The country east of Wawona Road and south of Glacier Point Road is closed, as the park's current conditions page puts it, and every trail inside the fire's footprint is closed with it. The Buena Vista Trail is closed.
+- The Chilnualna Falls Trail is open from the trailhead east to Chilnualna Fall and Crescent Lake. It was the first trail closed when the fire was reported, and it has since reopened.
+- The Alder Creek Trail is open north to the Deer Camp Trailhead, in the update's words.
+- Glacier Point Road reopened at 7 a.m. on Saturday, October 10, after closing for smoke and firefighting operations. The park asks drivers to watch for firefighters working along it.
+- Fire restrictions are in effect below 8,000 feet, which takes in all of Wawona.
+
+Wawona Road, the town, the campground and the Mariposa Grove have stayed open. Smoke is the variable that does not respect a closure map: it settles in the low basins overnight and lifts as the day warms, and the incident's air outlooks this fall have had Wawona and the Valley worse in the morning than the afternoon. A fire changes week to week, so read the park's conditions page the morning you drive. How to make the larger call, whether a fire in the park changes your trip at all, is the subject of the guide to a wildfire during your trip.
+
+### The history center and the covered bridge
+
+The Yosemite History Center, which the Park Service also lists as the Pioneer Yosemite History Center, is the reason to park in Wawona rather than drive through it. It is a collection of historic buildings with an interpretive sign in front of each, about the people who shaped the park. Most of them were not built here. Many were moved to Wawona from elsewhere in the park in the 1950s and 1960s, to clear room for modern facilities and to gather the park's history in one place. The roster includes the Chinese Laundry, built in Wawona in 1917, the Acting Superintendent's Office, the Yosemite Transportation Office, a blacksmith shop, the Gray Barn, the Anderson Cabin, an artist's cabin, a homestead cabin, Degnan's Bakery, a powder house and a ranger patrol cabin.
+
+At the center of the complex is the Wawona Covered Bridge over the South Fork of the Merced. Galen Clark, the first state-appointed guardian of Yosemite, paid for an uncovered bridge here in the mid-1800s as part of a planned road to the Valley. Henry Washburn finished that road in 1875 and the bridge was covered a few years later. It is no longer part of Wawona Road.
+
+The center is open year-round, and the current Yosemite Guide lists its outdoor exhibits as open daily. The staffed part is a summer affair: in summer the park opens the Chinese Laundry and the Acting Superintendent's Office, runs horse-drawn wagon rides, and has blacksmiths working a coal forge. In October and after, expect the buildings, the signs, the bridge and very few people, which is not a bad trade.
+
+Two practical notes from the park's accessibility listing: the paths in the complex are dirt, and there is no designated accessible parking. The best access is from the parking by the Wawona Store, on a paved route that includes a stretch at an 8.1 percent slope. An accessible restroom is near the parking lot.
+
+### The hotel, which is closed
+
+The white, verandaed Wawona Hotel is the building most people picture when they hear the name, and it grew from Clark's Station, the stopping place Galen Clark built on the old route into the Valley. The Park Service dates the establishment of the hotel to 1856.
+
+It has been closed since December 2, 2024, for what the concessioner calls a comprehensive condition assessment, begun after a roof replacement project showed the need for a closer look. Lodging and the dining room are both closed, and the concessioner's page says there is no anticipated reopening date. Treat any older guide that sends you to the hotel's porch, bar or dining room as out of date. The in-park lodging guide follows the closure along with every other property in the park.
+
+Beside the hotel stands Hill's Studio, built in 1884 as a painting studio for Thomas Hill, the California landscape painter known for his paintings of Yosemite Valley. After Hill died in 1908 it spent roughly a century as other things, an ice cream parlor and a dance hall among them, and it became the Wawona Visitor Center in 2009. This season it is open 8 a.m. to 5 p.m. and closes for the year on October 31. Yosemite Conservancy says the Park Service will use the 2026 winter closure to begin reconstructing the building's exterior, rear landing, stairs and restroom access.
+
+Across the road is the nine-hole golf course, which this season runs 8 a.m. to 6 p.m. and closes for the season on October 25; tee times are booked at the Wawona Store. The Wawona stable is closed for the season.
+
+Photo: C.C. Pierce / Wikimedia Commons (public domain)
+
+### Three walks and one long climb
+
+Wawona's trails are the opposite of the Valley's in the way that matters most in a busy season: they are uncrowded. The Park Service lists four from the district, and they cover every length from a half hour to a full day.
+
+The Swinging Bridge. 0.6 miles round trip, about 30 minutes and mostly flat, from the Swinging Bridge Trailhead at the end of Forest Drive. It leads to a suspended footbridge over the South Fork of the Merced and a swimming hole the park calls popular. This is a different bridge from the Swinging Bridge on the Valley floor that the Merced swimming guide covers, and the park lists water activities in Wawona as summer only.
+
+The Wawona Meadow Loop. 3.5 miles, two to three hours, mostly flat on uneven ground, starting by the Wawona Hotel. Wildflowers come in spring and early summer. The park lists it as the only Yosemite hiking trail where bicycles and leashed pets are allowed, which makes it the walk for anyone traveling with a dog; the pets guide has the rest of the rules. It is not dramatic. It is a long, quiet circuit of a meadow under the pines, and on most days it is close to empty.
+
+Chilnualna Falls. 8.2 miles round trip with 2,400 feet of gain, five to seven hours, rated very challenging, from the trailhead near the end of Chilnualna Falls Road. It follows Chilnualna Creek and then switchbacks hard uphill to the top falls. The useful fact for anyone who does not want the whole climb is that waterfall views begin a quarter mile from the trailhead, at the lower cascades. The park says the falls flow year-round and peak in May, so an October visit sees a thin version. Watch the cascades from the trail rather than the rocks beside them.
+
+Alder Creek. 12 miles round trip with 2,500 feet of gain, seven to nine hours, also very challenging, from the Alder Creek Trailhead on Chilnualna Falls Road, to a rarely visited 100-foot cascade. A shorter option of 7.4 miles round trip starts at the Mosquito Creek Trailhead on Wawona Road. Check its status against the fire updates before setting out; this fall the park has been reporting it open only as far as the Deer Camp Trailhead.
+
+Drinking water is at the Wawona Store parking area and near the restrooms, not on the trails. Wilderness permits for overnight trips from Wawona trailheads were picked up at the visitor center through October 14; after that, the park has backpackers self-register on the visitor center's front porch, for Wawona trailheads only. The wilderness permits guide explains the rest of the system.
+
+### Wawona and the grove in one day
+
+Wawona's best use for most visitors is as the second half of a Mariposa Grove day. The order matters, and the reason is parking. The grove's Welcome Plaza by the South Entrance has about 300 parking spaces, and the park warns that it may fill by late morning. Wawona's lots do not have that problem.
+
+So do the grove first. Park at the Welcome Plaza early, take the free shuttle up, walk the Grizzly Giant Loop or longer, and come back down. The shuttle runs about every 15 minutes with no ticket: 8 a.m. to 5 p.m. through October 31, with the last bus leaving the grove at 5:30, and 8 a.m. to 3:30 p.m. through November, with the last bus leaving the grove at 5. Then drive north to Wawona for the afternoon: lunch from the store at a picnic table, the covered bridge and the history center, and either the Swinging Bridge or a lap of the meadow. Chilnualna Falls is a day of its own and does not combine with the grove for most people.
+
+Photo: Justin Vidamo / Wikimedia Commons (CC BY 2.0)
+
+### Gas, groceries, mail and a charger
+
+Wawona's services matter more than its size suggests, because the Valley has none of one of them. There is no gas in Yosemite Valley. The Wawona Gas Station, 28 miles from the Valley on Wawona Road, is one of the three stations the park's Guide lists for Valley visitors, with gas and diesel 24 hours a day at the pump with a card. It is staffed 9 a.m. to 5 p.m., and propane is sold only when it is staffed.
+
+- Wawona Store: 8 a.m. to 8 p.m. in the current edition of the park's Guide. It is the grocery for the south end of the park and the place to book golf.
+- Post office: Monday through Friday 9 a.m. to 1 p.m., Saturday 9 a.m. to noon.
+- EV charging: 24 Level 2 chargers at the Wawona Store, all with J1772 connectors, the largest bank in the park.
+- Wifi: free at the Mariposa County Library branch in Wawona.
+
+What Wawona does not have, with the hotel closed, is a restaurant. Groceries come from the store; a sit-down meal means driving south out of the park toward Fish Camp, or north to the Valley. The park dining guide lists what is open at the south end and beyond the gate.
+
+### Sleeping in Wawona
+
+Wawona Campground has 95 sites, four of them accessible, at 4,000 feet, with tap water, a $36 nightly fee and room for trailers up to 35 feet. It is open all year. In season it is reservation-only, released on Recreation.gov five months ahead on the 15th. The park's campground page has Loops B and C closing for the season on October 26 and Loop A taking reservations through November 29; the current Yosemite Guide says Wawona goes first-come, first-served after October 26. Where the two pages differ, book on Recreation.gov if it lets you, and arrive early if it does not. The camping guide covers the release calendar and the off-season rules.
+
+The other in-park option is The Redwoods in Yosemite, a company renting more than 120 cabins and homes on those private Wawona parcels, all of them inside the park, some of them pet-friendly, booked through the company rather than the park concessioner. Bring groceries: the district's only food is a general store.
+
+Beyond that, the south end's beds are outside the gate, in Fish Camp, Oakhurst and Bass Lake, which put Wawona and the grove close and the Valley about an hour or more away. The gateway towns comparison weighs them against the other approaches.
+
+### Without a car, and in winter
+
+YARTS, the regional bus, runs a Highway 41 route from Oakhurst to the Valley that stops in Wawona seasonally. This year that route ran through September 25 and then stopped for the season; only the Highway 140 route from Merced runs through the winter, and it does not pass through Wawona. The transit guide has the schedules when the 41 route returns.
+
+Winter is when Wawona's elevation pays off. At about the height of the Valley floor, it stays reachable while the high roads close, and the park lists hiking, picnicking, birdwatching and art among the things to do there all year. The visitor center, the golf course, the stable and the summer demonstrations are closed, and chains may be required on the road from October through April. Badger Pass, the park's ski area, is reached by Glacier Point Road from the junction on Wawona Road north of town and, by the park's Guide, typically opens in December or January depending on snow.
+
+### The short version
+
+Stop in Wawona on the way in or out of the south end rather than driving through it. Do the Mariposa Grove in the morning, before its parking fills, and give Wawona the afternoon: the covered bridge and the history center, a short walk to the Swinging Bridge or a long one around the meadow, and a tank of gas before the Valley. Save Chilnualna Falls for a day that can hold eight miles and 2,400 feet of climbing, and for spring, when it is at full volume. Do not plan a meal at the hotel; it has been closed since December 2024. This fall, read the conditions page the morning you go, because the Dome Fire's closures sit just northeast of town and the morning air can be smoky. Check the park bulletin for the current edition's hours, which change again in November.
+
+#### Sources
+
+- Wawona, NPS Yosemite
+- Wawona and Mariposa Grove hikes, NPS Yosemite
+- Yosemite History Center, NPS Yosemite
+- Pioneer Yosemite History Center, NPS
+- Wawona Hotel, NPS
+- Wawona Hotel, Yosemite Hospitality
+- Hill's Studio Visitor Center, Yosemite Conservancy
+- Dome Fire Update, October 11, 2026, NPS Yosemite
+- Current Conditions, NPS Yosemite
+- Yosemite Guide, September 23 to November 24, 2026, NPS Yosemite
+- Campgrounds, NPS Yosemite
+- Driving times, NPS Yosemite
+- The Redwoods in Yosemite
 
 ---
 

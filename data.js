@@ -110,6 +110,7 @@ window.planningSeriesFor = function (slug) {
 // verifies this map stays in sync with the files in bodies/.
 // ============================================================
 window.BODY_VERSIONS = {
+  "wawona-yosemite-guide": 1,
   "yosemite-in-november": 2,
   "thanksgiving-in-yosemite": 1,
   "best-yosemite-backpacking-trips": 1,
@@ -136,7 +137,7 @@ window.BODY_VERSIONS = {
   "camping-in-yosemite-first-time": 2,
   "first-yosemite-backpacking-trip": 5,
   "yosemite-day-trip-from-bay-area": 3,
-  "mariposa-grove-how-to-visit": 5,
+  "mariposa-grove-how-to-visit": 6,
   "tuolumne-meadows-in-a-day": 6,
   "swimming-in-the-merced": 3,
   "yosemite-valley-parking-guide": 3,
@@ -759,6 +760,20 @@ window.KIT.lists.forEach((l) => {
 // AffiliateDisclosure line under the byline, before the first link;
 // scripts/check-affiliate-links.mjs fails when the flag and the body disagree.
 window.ARTICLES = [
+  {
+    slug: "wawona-yosemite-guide",
+    cat: "planning",
+    title: "Wawona: What Is at Yosemite's South End, and How to Spend a Day There",
+    dek: "Most visitors see Wawona through a windshield on the way to the giant sequoias. It has the park's history center and covered bridge, a waterfall climb that empties out while the Mist Trail fills, the one hiking trail open to bikes and leashed dogs, and the gas the Valley does not have. What is open, what is closed, the Dome Fire next door, and how to pair it with the Mariposa Grove.",
+    seoDek: "Wawona in Yosemite: the history center, Chilnualna Falls, the meadow loop, gas and groceries, the closed hotel, camping, and a day with the Mariposa Grove.",
+    date: "October 12, 2026",
+    isoDate: "2026-10-12",
+    isoModified: "2026-10-12",
+    read: "11 min",
+    placeholder: "The Wawona Hotel's white verandaed buildings behind a lawn and an oak, closed since December 2024",
+    image: "img/wawona-hotel.jpg",
+    credit: "Photo: Rennett Stowe / Wikimedia Commons (CC BY 2.0)",
+  },
   {
     slug: "yosemite-in-november",
     aff: true,
@@ -2117,6 +2132,8 @@ window.START_HERE = [
 // Curate a piece when it earns real search impressions, when it anchors a
 // cluster, or when it is the destination that needs the equity.
 window.RELATED = {
+  // Wawona: what is at Yosemite's south end, and how to spend a day there
+  "wawona-yosemite-guide": ["mariposa-grove-how-to-visit", "where-to-stay-in-yosemite", "where-to-eat-yosemite", "pets-in-yosemite", "wildfire-in-yosemite-during-your-trip", "yosemite-gateway-towns-compared"],
   // Yosemite in November: the evergreen month guide
   "yosemite-in-november": ["thanksgiving-in-yosemite", "yosemite-in-fall", "yosemite-in-winter", "yosemite-in-december", "mariposa-grove-how-to-visit", "bracebridge-dinner-and-vintners-holidays"],
   "thanksgiving-in-yosemite": ["where-to-stay-in-yosemite", "where-to-eat-yosemite", "yosemite-in-winter", "yosemite-in-december", "bracebridge-dinner-and-vintners-holidays", "yosemite-in-november"],
@@ -2165,7 +2182,7 @@ window.RELATED = {
   // Lodging and gateway towns
   "bracebridge-dinner-and-vintners-holidays": ["where-to-stay-in-yosemite", "yosemite-in-winter", "yosemite-in-december", "thanksgiving-in-yosemite", "yosemite-gateway-towns-compared", "where-to-eat-yosemite"],
   "yosemite-gateway-towns-compared": ["where-to-stay-in-yosemite", "yosemite-from-los-angeles", "yosemite-with-kids-no-reservations-2026", "highway-140-closed-yosemite", "yosemite-trip-cost-budget", "getting-to-yosemite"],
-  "where-to-stay-in-yosemite": ["yosemite-gateway-towns-compared", "yosemite-camping-complete-guide", "yosemite-trip-cost-budget", "bracebridge-dinner-and-vintners-holidays", "where-to-eat-yosemite"],
+  "where-to-stay-in-yosemite": ["yosemite-gateway-towns-compared", "yosemite-camping-complete-guide", "wawona-yosemite-guide", "yosemite-trip-cost-budget", "bracebridge-dinner-and-vintners-holidays", "where-to-eat-yosemite"],
   "yosemite-camping-complete-guide": ["camping-in-yosemite-first-time", "where-to-stay-in-yosemite", "first-yosemite-backpacking-trip", "yosemite-trip-cost-budget", "yosemite-facelift-volunteer-guide", "sustainable-yosemite-car-free-zero-waste"],
   "camping-in-yosemite-first-time": ["yosemite-camping-complete-guide", "yosemite-bears-safety-guide", "is-bear-spray-allowed-in-yosemite", "where-to-stay-in-yosemite", "pets-in-yosemite"],
   "yosemite-trip-cost-budget": ["where-to-stay-in-yosemite", "yosemite-gateway-towns-compared", "yosemite-camping-complete-guide", "where-to-eat-yosemite", "bracebridge-dinner-and-vintners-holidays"],
@@ -2204,7 +2221,7 @@ window.RELATED = {
   "yosemite-for-non-hikers": ["yosemite-accessibility-guide", "glacier-point-how-to-visit", "yosemite-photography-spots", "yosemite-in-one-or-two-days", "watching-climbers-el-capitan", "yosemite-shuttle-and-yarts"],
   "yosemite-accessibility-guide": ["yosemite-for-non-hikers", "yosemite-shuttle-and-yarts", "mariposa-grove-how-to-visit", "yosemite-valley-parking-guide", "yosemite-ranger-programs"],
   "yosemite-with-kids-no-reservations-2026": ["yosemite-ranger-programs", "yosemite-for-non-hikers", "swimming-in-the-merced", "yosemite-bears-safety-guide", "camping-in-yosemite-first-time"],
-  "pets-in-yosemite": ["yosemite-for-non-hikers", "yosemite-accessibility-guide", "yosemite-camping-complete-guide", "yosemite-gateway-towns-compared", "yosemite-valley-parking-guide"],
+  "pets-in-yosemite": ["wawona-yosemite-guide", "yosemite-for-non-hikers", "yosemite-accessibility-guide", "yosemite-camping-complete-guide", "yosemite-gateway-towns-compared", "yosemite-valley-parking-guide"],
 
   // First trips and timing
   "first-time-yosemite-overwhelm": ["yosemite-in-one-or-two-days", "when-to-visit-yosemite", "yosemite-gateway-towns-compared", "yosemite-without-reservations-2026", "yosemite-in-three-to-five-days", "pack-your-car-for-yosemite"],
@@ -2232,7 +2249,7 @@ window.RELATED = {
   // Doing and seeing
   "yosemite-photography-spots": ["yosemite-stargazing-where-to-look-up", "horsetail-fall-firefall", "four-mile-up-panorama-down", "yosemite-waterfalls-guide", "yosemite-in-fall", "watching-climbers-el-capitan"],
   "watching-climbers-el-capitan": ["yosemite-for-non-hikers", "yosemite-photography-spots", "yosemite-valley-parking-guide", "where-to-propose-in-yosemite", "yosemite-ranger-programs"],
-  "mariposa-grove-how-to-visit": ["giant-sequoias-fire-adaptation", "yosemite-accessibility-guide", "yosemite-gateway-towns-compared", "yosemite-for-non-hikers", "yosemite-tunnel-trees", "yosemite-trees-identification-guide"],
+  "mariposa-grove-how-to-visit": ["wawona-yosemite-guide", "giant-sequoias-fire-adaptation", "yosemite-accessibility-guide", "yosemite-gateway-towns-compared", "yosemite-for-non-hikers", "yosemite-tunnel-trees"],
   "yosemite-ranger-programs": ["yosemite-with-kids-no-reservations-2026", "yosemite-wildlife-viewing-guide", "yosemite-for-non-hikers", "yosemite-accessibility-guide", "yosemite-facelift-volunteer-guide"],
   "where-to-propose-in-yosemite": ["yosemite-photography-spots", "yosemite-for-non-hikers", "where-to-eat-yosemite", "where-to-stay-in-yosemite", "yosemite-in-one-or-two-days"],
   "working-in-yosemite": ["yosemite-ranger-programs", "yosemite-gateway-towns-compared", "yosemite-connecting-to-traditions", "yosemite-needs-a-reservation-system", "yosemite-in-winter"],

@@ -223,7 +223,7 @@ window.ARTICLE_BODIES["mariposa-grove-how-to-visit"] = function MariposaGroveHow
       </p>
 
       <p>
-        For the day itself, allow two hours as an absolute floor, and that only buys the shuttle both ways and the Big Trees Loop. Half a day is right for the Grizzly Giant Loop with time to stand around. A full day is the upper grove. Add the hour each way from the Valley if that is where you are staying, and consider whether the grove wants to be paired with Wawona rather than squeezed onto a Valley day. <a href="/articles/yosemite-in-one-or-two-days">The one or two day guide</a> takes a position on that trade.
+        For the day itself, allow two hours as an absolute floor, and that only buys the shuttle both ways and the Big Trees Loop. Half a day is right for the Grizzly Giant Loop with time to stand around. A full day is the upper grove. Add the hour each way from the Valley if that is where you are staying, and consider whether the grove wants to be <a href="/articles/wawona-yosemite-guide">paired with Wawona</a> rather than squeezed onto a Valley day. <a href="/articles/yosemite-in-one-or-two-days">The one or two day guide</a> takes a position on that trade.
       </p>
 
       <h2>The short version</h2>
