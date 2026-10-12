@@ -182,7 +182,7 @@
 }
 
 /* ---- Panels ---------------------------------------------------------------- */
-.plan-tabs {
+.day-tabs {
   position: sticky;
   top: calc(var(--chrome-top-h) + env(safe-area-inset-top, 0px));
   z-index: 5;
@@ -191,7 +191,7 @@
   background: var(--paper);
   border-bottom: 1px solid var(--rule-soft);
 }
-.plan-tab {
+.day-tab {
   min-height: 52px;
   display: grid;
   align-content: center;
@@ -205,8 +205,8 @@
   font-weight: 600;
   cursor: pointer;
 }
-.plan-tab--on { color: var(--ink); border-bottom-color: var(--moss); }
-.plan-tab__count {
+.day-tab--on { color: var(--ink); border-bottom-color: var(--moss); }
+.day-tab__count {
   font-family: var(--mono);
   font-size: 10px;
   letter-spacing: 0.1em;

@@ -403,7 +403,7 @@ export default function RegionPlan() {
 
             {/* The three panels */}
             <section className="page-section plan-panels" aria-label="Build the day">
-              <div className="plan-tabs" role="tablist" aria-label="Build the day from">
+              <div className="day-tabs" role="tablist" aria-label="Build the day from">
                 {(
                   [
                     ['programs', 'Programs', herePrograms.length, pickedHere.programs],
@@ -418,11 +418,11 @@ export default function RegionPlan() {
                     id={`plan-tab-${key}`}
                     aria-controls={`plan-panel-${key}`}
                     aria-selected={panel === key}
-                    className={`plan-tab${panel === key ? ' plan-tab--on' : ''}`}
+                    className={`day-tab${panel === key ? ' day-tab--on' : ''}`}
                     onClick={() => setPanel(key)}
                   >
                     {label}
-                    <span className="plan-tab__count">{picked ? `${picked} picked` : count}</span>
+                    <span className="day-tab__count">{picked ? `${picked} picked` : count}</span>
                   </button>
                 ))}
               </div>

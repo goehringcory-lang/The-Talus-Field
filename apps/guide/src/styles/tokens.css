@@ -592,6 +592,10 @@ p { margin: 0 0 1.1em; text-wrap: pretty; }
   gap: 20px;
   flex-shrink: 0;
 }
+@media (max-width: 430px) {
+  .gated-chrome { gap: 12px; }
+  .gated-chrome__right { gap: 14px; }
+}
 .gated-chrome__links {
   display: flex;
   align-items: center;

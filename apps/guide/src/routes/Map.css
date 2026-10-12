@@ -333,6 +333,19 @@
   }
 }
 
+/* At 360px the equal-width tabs could not hold "Information" and pushed the
+ * page 13px sideways. On narrow phones each tab sizes to its label and the
+ * tracking tightens, which fits all four with room to spare. */
+@media (max-width: 400px) {
+  .map-tabbar__tab {
+    flex: 1 1 auto;
+    min-width: 0;
+    padding: 14px 4px;
+    font-size: 11px;
+    letter-spacing: 0.04em;
+  }
+}
+
 .map-tabbar__tab[aria-pressed='true'] {
   color: var(--ink);
   border-bottom-color: var(--moss);
@@ -352,6 +365,10 @@
 }
 
 .map-filterbar__row {
+  /* The containing block for the trail-length label's .sr-only span: without
+   * it the span is placed against the page, escapes the row's scroll clip at
+   * the row's far end, and scrolled the whole map page 11px sideways. */
+  position: relative;
   display: flex;
   gap: 8px;
   overflow-x: auto;

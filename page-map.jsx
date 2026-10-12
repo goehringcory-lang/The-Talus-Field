@@ -1614,6 +1614,10 @@ function MapView({ go }) {
 
   return (
     <div className={`map-page${!unlocked ? " map-page--locked" : ""}`}>
+      {/* The one route with no visible title: the map is the page. Screen
+          readers and the heading outline still get one h1, like every other
+          route. */}
+      <h1 className="map-page__h1">Yosemite trip planner map</h1>
       <TripPlannerSidebar
         features={features}
         tripStopIds={tripStopIds}

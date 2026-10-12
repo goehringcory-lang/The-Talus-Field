@@ -47,6 +47,22 @@
   color: var(--ink-3);
 }
 
+/* Narrow phones: the wordmark, the offline chip and Help need about 380px at
+   full tracking, so at 360px "The Talus Field" ran under the chip's dot. Below
+   430px the tracking and gaps tighten; the title clips with an ellipsis as a
+   last resort (320px) rather than overlapping the chip. */
+@media (max-width: 430px) {
+  .masthead-brand { gap: 8px; overflow: hidden; }
+  .masthead-brand__mark { height: 26px; }
+  .masthead-brand__text { min-width: 0; }
+  .masthead-brand__title {
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+}
+
 /* Full lockup for the front door (login, magic-link landing). */
 .brand-lockup {
   display: flex;
@@ -301,6 +317,12 @@
   padding: 1px 6px;
   border-color: var(--rule);
   color: inherit;
+  /* A season badge can carry a sentence ("Upper trail closes in snow,
+     November or December to May"), which ran 20px off a 390px screen.
+     Short badges still sit on one line; a long one wraps inside the line. */
+  max-width: 100%;
+  white-space: normal;
+  line-height: 1.35;
 }
 
 /* Tappable secondary action (+ Add, preset seeds). */
@@ -536,6 +558,19 @@
   text-decoration: none;
 }
 .plan-tabs__tab:first-child { padding-left: 2px; }
+/* Four uppercase tabs at 18px padding ran 4 to 30px past a 390px or 360px
+   screen and scrolled the whole page sideways. Below 430px they share the
+   row and tighten their tracking; the 44px tap height is unchanged. */
+@media (max-width: 430px) {
+  .plan-tabs__tab {
+    flex: 1 1 auto;
+    justify-content: center;
+    padding: 12px 6px 10px;
+    letter-spacing: 0.06em;
+    white-space: nowrap;
+  }
+  .plan-tabs__tab:first-child { padding-left: 2px; justify-content: flex-start; }
+}
 @media (hover: hover) {
   .plan-tabs__tab:hover { color: var(--ink); }
 }
@@ -952,6 +987,12 @@
   color: var(--ink-2);
   line-height: 1.5;
   margin-top: 4px;
+}
+/* On a phone the two buttons left the text a 90px column, five lines deep.
+   Below 430px the text takes the full width and the buttons sit under it. */
+@media (max-width: 430px) {
+  .install-banner { flex-wrap: wrap; justify-content: flex-end; row-gap: var(--s2); }
+  .install-banner__body { flex: 1 0 100%; }
 }
 .install-banner__key {
   display: inline-block;
@@ -1479,6 +1520,10 @@ a.masthead-offline:hover { color: var(--ink); }
 }
 .masthead-help:hover,
 .masthead-help[aria-current='page'] { text-decoration: underline; text-underline-offset: 3px; }
+@media (max-width: 430px) {
+  .masthead-offline { gap: 5px; letter-spacing: 0.08em; }
+  .masthead-help { letter-spacing: 0.1em; }
+}
 
 /* The photo exists but this phone has none and no signal: say so plainly. */
 .photo-placeholder--offline span { text-align: center; line-height: 1.5; }

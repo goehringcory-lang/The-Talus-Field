@@ -79,7 +79,7 @@ function HomePage({
     className: "hp-door__body"
   }, React.createElement("p", {
     className: "hp-eyebrow"
-  }, "THE FIRST-TRIP PAGE"), React.createElement("h3", null, "Everything a first visit needs,", React.createElement("br", null), "on one page."), React.createElement("p", {
+  }, "THE FIRST-TRIP PAGE"), React.createElement("h3", null, "Everything a first visit needs,", " ", React.createElement("br", null), "on one page."), React.createElement("p", {
     className: "hp-door__intro"
   }, "Where to begin, what to see, and how to shape the days, in the order the decisions come."), React.createElement("ul", {
     className: "hp-door__list"
@@ -132,7 +132,7 @@ function HomePage({
     go: go,
     location: "home_content",
     href: "/articles/yosemite-camping-complete-guide",
-    image: "/img/camp-ahwahnee-sentinel-rock.jpg",
+    image: "/img/camp-ahwahnee-sentinel-rock-card.jpg",
     alt: "A hand-colored postcard of a tent camp beneath Sentinel Rock",
     eyebrow: "CAMPING",
     title: "Thirteen campgrounds, one guide.",

@@ -1301,7 +1301,7 @@
     "isoModified": "2026-07-08",
     "read": "5 min",
     "image": "img/nps-ranger-horseback-visitors.jpg",
-    "ogImage": { "url": "img/nps-ranger-horseback-visitors.jpg", "width": 1600, "height": 1082 },
+    "ogImage": { "url": "img/responsive/nps-ranger-horseback-visitors-1600.jpg", "width": 1600, "height": 1082 },
     "placeholder": "A National Park Service ranger on horseback with young visitors in Yosemite, from the park's photo archive",
     "planningSeries": true,
     "wordCount": 820,

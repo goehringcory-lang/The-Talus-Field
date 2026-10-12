@@ -114,7 +114,7 @@ window.BODY_VERSIONS = {
   "yosemite-in-november": 2,
   "thanksgiving-in-yosemite": 1,
   "best-yosemite-backpacking-trips": 1,
-  "yosemite-trees-identification-guide": 2,
+  "yosemite-trees-identification-guide": 3,
   "tioga-road-stop-by-stop": 1,
   "yosemite-place-names-meanings": 1,
   "best-airport-for-yosemite": 1,

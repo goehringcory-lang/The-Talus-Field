@@ -1323,7 +1323,9 @@ function MapView({
   }
   return React.createElement("div", {
     className: `map-page${!unlocked ? " map-page--locked" : ""}`
-  }, React.createElement(TripPlannerSidebar, {
+  }, React.createElement("h1", {
+    className: "map-page__h1"
+  }, "Yosemite trip planner map"), React.createElement(TripPlannerSidebar, {
     features: features,
     tripStopIds: tripStopIds,
     selectedStopId: selectedStopId,
