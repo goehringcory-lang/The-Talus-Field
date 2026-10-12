@@ -72,9 +72,10 @@ function FilmsTheater({
   })) : React.createElement("button", {
     type: "button",
     className: "hp-films__screen",
-    "aria-label": `Play film: ${ep.title}`,
     onClick: onPlay
-  }, React.createElement("img", {
+  }, React.createElement("span", {
+    className: "hp-sr-only"
+  }, "Play film: ", ep.title), React.createElement("img", {
     key: ep.id,
     src: `https://i.ytimg.com/vi/${ep.youtubeId}/maxresdefault.jpg`,
     alt: "",
@@ -95,7 +96,8 @@ function FilmsTheater({
   }, React.createElement(FilmsPlayGlyph, {
     size: 28
   })), React.createElement("span", {
-    className: "hp-films__badge"
+    className: "hp-films__badge",
+    "aria-hidden": "true"
   }, ep.id === FILMS_START_ID ? "START HERE" : "NOW SHOWING")), React.createElement("div", {
     className: "hp-films__caption"
   }, React.createElement("div", null, React.createElement("p", {
@@ -115,9 +117,10 @@ function FilmCard({
   return React.createElement("button", {
     type: "button",
     className: "hp-films__card",
-    onClick: () => onPick(ep, "grid"),
-    "aria-label": `Play film: ${ep.title}`
+    onClick: () => onPick(ep, "grid")
   }, React.createElement("span", {
+    className: "hp-sr-only"
+  }, "Play film: "), React.createElement("span", {
     className: "hp-films__thumb"
   }, React.createElement("img", {
     src: filmsThumb(ep),
@@ -269,9 +272,10 @@ function FilmsPage({
       type: "button",
       className: `hp-films__mini${on ? " is-on" : ""}`,
       "aria-pressed": on,
-      "aria-label": `Play film: ${ep.title}`,
       onClick: () => pick(ep, "strip")
     }, React.createElement("span", {
+      className: "hp-sr-only"
+    }, "Play film: "), React.createElement("span", {
       className: "hp-films__minithumb"
     }, React.createElement("img", {
       src: filmsThumb(ep),
@@ -282,7 +286,8 @@ function FilmsPage({
     }), React.createElement("span", {
       className: "hp-films__minitag"
     }, filmsTag(ep)), on && React.createElement("span", {
-      className: "hp-films__nowtag"
+      className: "hp-films__nowtag",
+      "aria-hidden": "true"
     }, "NOW SHOWING")), React.createElement("span", {
       className: "hp-films__minititle"
     }, ep.title));

@@ -314,6 +314,7 @@ function ItinMonths({
       key: m.key,
       className: "is-" + s
     }, React.createElement("span", {
+      role: "img",
       "aria-label": `${m.name}: ${word[s]}`,
       title: `${m.name}: ${word[s]}`
     }));

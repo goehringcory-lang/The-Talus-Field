@@ -900,6 +900,7 @@ function MastheadSearch({ go, location }) {
     <form
       className="hp-search"
       role="search"
+      aria-label="Search the journal"
       action="/search"
       method="get"
       onSubmit={(e) => { e.preventDefault(); toSearchPage(q); }}
@@ -1224,13 +1225,15 @@ function HomeMasthead({ go, current = "home", route }) {
   })();
 
   return (
-    <div className="hp-design hp-navigation" ref={blockRef}>
+    // The whole block is the banner landmark: the tagline strip used to sit
+    // outside any landmark (axe "region") above an inner <header>.
+    <div className="hp-design hp-navigation" ref={blockRef} role="banner">
       <a className="skip-link" href="#main">Skip to content</a>
       <div className="hp-top">
         AN INDEPENDENT GUIDE TO YOSEMITE
         <span>Written here. Taken everywhere.</span>
       </div>
-      <header className="hp-wrap hp-header" ref={headerRef}>
+      <div className="hp-wrap hp-header" ref={headerRef}>
         <HomeLink go={go} location={location} className="hp-brand" href="/"
           onClickCapture={(e) => releaseRockfall(e.currentTarget.querySelector("img"))}>
           <img src="/img/talus-field-mark-masthead.png?v=2" width="214" height="168" alt="" />
@@ -1324,7 +1327,7 @@ function HomeMasthead({ go, current = "home", route }) {
         </nav>
         <MastheadSearch go={go} location={location} />
         <HomeLink go={go} location={location} className="hp-button" href={home ? "#field-guide" : "/guide"} aria-current={here("guide")}>Get the app ↗</HomeLink>
-      </header>
+      </div>
     </div>
   );
 }
@@ -1645,7 +1648,7 @@ function Footer({ go }) {
             >Everything on this site →</a>
           </div>
           <div>
-            <h4>Plan a trip</h4>
+            <h2>Plan a trip</h2>
             <ul>
               {link("start-here", "Start here")}
               {link("planning", "The Planning Guide")}
@@ -1660,7 +1663,7 @@ function Footer({ go }) {
             </ul>
           </div>
           <div>
-            <h4>Park now</h4>
+            <h2>Park now</h2>
             <ul>
               {link("now", "The Park Bulletin")}
               {link("conditions", "Conditions")}
@@ -1669,7 +1672,7 @@ function Footer({ go }) {
             </ul>
           </div>
           <div>
-            <h4>Read</h4>
+            <h2>Read</h2>
             <ul>
               {link("articles", "All articles")}
               {window.CATEGORIES.map(c => (
@@ -1694,7 +1697,7 @@ function Footer({ go }) {
               they no longer outrank the writing for the site's own link
               equity. */}
           <div>
-            <h4>The journal</h4>
+            <h2>The journal</h2>
             <ul>
               {link("about", "About")}
               {link("newsletter", "Newsletter")}
@@ -3230,12 +3233,14 @@ function FilmEmbed({ ep, location }) {
     <button
       type="button"
       className="film__facade"
-      aria-label={`Play film: ${ep.title}`}
       onClick={() => {
         if (window.track) window.track("film_play", { film_id: ep.id, film_title: ep.title, location: location || "films" });
         setPlaying(true);
       }}
     >
+      {/* Named by a hidden line rather than aria-label, so nothing visible is
+          left out of the name. */}
+      <span className="hp-sr-only">Play film: {ep.title}</span>
       {/* hqdefault is 4:3 with letterbox bars; the 16:9 facade crops them via object-fit. */}
       <img
         className="film__thumb"

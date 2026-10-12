@@ -85,7 +85,10 @@ function ArticlesIndex({ go, initialCat }) {
         />
       </section>
 
-      <section className="hp-wrap hp-section hp-index__list">
+      <section className="hp-wrap hp-section hp-index__list" aria-labelledby="articles-list-h">
+        {/* The cards are h3s; without this the outline jumped from the page's
+            h1 straight to them (Lighthouse heading-order). */}
+        <h2 id="articles-list-h" className="hp-sr-only">The articles</h2>
         {list.length > 0 ? (
           <div className="hp-journal-grid">
             {list.map(a => <HpArticleCard key={a.slug} article={a} go={go} location="articles_list" />)}
@@ -492,7 +495,7 @@ function PlanningSectionPage({ go }) {
           <div className="ps-pack">
             {kit.groups.map((g) => (
               <div className="ps-pack__g" key={g.title}>
-                <h4>{g.title}</h4>
+                <h3>{g.title}</h3>
                 <ul>
                   {g.items.map(([name, note]) => (
                     <li key={name}><i aria-hidden="true" /><span>{name}{note && <em>{note}</em>}</span></li>
@@ -872,7 +875,7 @@ function SeasonalSectionPage({ go }) {
           </div>
           <div className="sx-roads" role="table" aria-label="Road status by month">
             <div className="sx-roads__head" role="row">
-              <span role="columnheader" className="sx-roads__road" />
+              <span role="columnheader" className="sx-roads__road"><span className="hp-sr-only">Road</span></span>
               {months.map((x) => <span role="columnheader" key={x.key}>{x.label}</span>)}
             </div>
             {[["tioga", "Tioga Road", "/tioga-opening"], ["glacier", "Glacier Point Road", "/articles/glacier-point-road-open-2026"]].map(([k, label, href]) => (
@@ -1067,7 +1070,7 @@ function TrailsSectionPage({ go }) {
               <HomeLink key={h.slug} go={go} location="section_trails" href={`/articles/${h.slug}`} className={"sx-hike" + (st === "out" ? " is-out" : "")}>
                 <span className="sx-hike__name">{h.name}<small>{h.dist}</small></span>
                 <span className="sx-hike__why">{a ? sxFirst(a.dek) : ""}</span>
-                <span className="sx-hike__gain" aria-label={`${h.gainText} of climbing`}>
+                <span className="sx-hike__gain" role="img" aria-label={`${h.gainText} of climbing`}>
                   <span className="sx-bar"><i style={{ width: `${Math.round((h.gain / 4800) * 100)}%` }} /></span>
                   <b>{h.gainText}</b>
                 </span>

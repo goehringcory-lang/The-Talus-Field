@@ -341,7 +341,10 @@ function ArticlePage({ slug, go }) {
       el.setAttribute("tabindex", "0");
       el.setAttribute("role", "button");
       const alt = (el.querySelector("img") || {}).alt || "";
-      el.setAttribute("aria-label", alt ? `Enlarge: ${alt}` : "Enlarge this photo");
+      // The plate's visible text is its credit, so the name carries it too
+      // (axe label-content-name-mismatch): "Enlarge: <alt>. Photo: <credit>".
+      const credit = ((el.querySelector(".placeholder__credit") || {}).textContent || "").trim();
+      el.setAttribute("aria-label", (alt ? `Enlarge: ${alt}` : "Enlarge this photo") + (credit ? `. ${credit}` : ""));
     });
     const open = (el) => {
       const img = el.querySelector("img");

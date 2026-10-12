@@ -8426,11 +8426,9 @@ Yosemite West is a private enclave just outside the park's southern boundary, re
 - No gas station
 - No shuttle
 
-Nearest foodYosemite Valley
-Roughly 40 minutes each way
+Nearest foodYosemite ValleyRoughly 40 minutes each way
 
-OrWawona
-About half an hour south
+OrWawonaAbout half an hour south
 
 #### Four more places to bring lunch to
 
@@ -9704,7 +9702,7 @@ Early season hazards. Snow patches on the trail can linger into late June, espec
 
 ### Half Dome vs. Clouds Rest: the honest comparison
 
-| Half Dome | Clouds Rest (from Sunrise)
+Compared | Half Dome | Clouds Rest (from Sunrise)
 
 Round trip distance | 14 to 16 miles | 14 miles
 Elevation gain | 4,800 feet | ~2,300 feet

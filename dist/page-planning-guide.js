@@ -466,12 +466,14 @@ function PgCell({
     className: cls
   }, React.createElement("span", {
     className: "pg-no",
+    role: "img",
     "aria-label": "Not included"
   }));
   return React.createElement("td", {
     className: cls
   }, React.createElement("span", {
     className: "pg-yes",
+    role: "img",
     "aria-label": "Included"
   }, "✓"), typeof value === "string" && React.createElement("span", {
     className: "pg-yes__note"

@@ -78,9 +78,11 @@ function GatewayMap() {
           <img src="/img/responsive/nps-yosemite-park-map-1200.jpg" srcSet={srcs("jpg")} sizes="(max-width: 760px) 100vw, 680px" width={W} height={H} loading="lazy" decoding="async"
             alt="The National Park Service's official map of Yosemite National Park, with the four entrance stations the five gateway towns serve marked: Arch Rock, South, Big Oak Flat and Tioga Pass." />
         </picture>
-        <svg viewBox={`0 0 ${W} ${H}`} aria-hidden="true" focusable="false">
+        {/* Not aria-hidden: the four entrance pins are labelled links, and a hidden
+            parent left them focusable but unannounced (axe aria-hidden-focus). */}
+        <svg viewBox={`0 0 ${W} ${H}`} role="group" aria-label="Entrance stations" focusable="false">
           {MAP_ENTRANCES.map((e) => (
-            <a key={e.n} href={GATEWAY_TOWNS[e.towns[0]].href} className="npsmap__town" aria-label={e.name + ", jump to " + GATEWAY_TOWNS[e.towns[0]].name}>
+            <a key={e.n} href={GATEWAY_TOWNS[e.towns[0]].href} className="npsmap__town" aria-label={e.n + ", " + e.name + ", jump to " + GATEWAY_TOWNS[e.towns[0]].name}>
               <circle cx={e.x} cy={e.y} r="40" />
               <text x={e.x} y={e.y + 16} style={{ fontSize: 46 }}>{e.n}</text>
             </a>

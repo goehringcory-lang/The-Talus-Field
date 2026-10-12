@@ -216,7 +216,7 @@ function ItinMonths({ itineraries }) {
               <th scope="row"><a href={`#${it.id}`}>{it.label}</a><small>{it.title}</small></th>
               {months.map((m) => {
                 const s = status(it, m);
-                return <td key={m.key} className={"is-" + s}><span aria-label={`${m.name}: ${word[s]}`} title={`${m.name}: ${word[s]}`} /></td>;
+                return <td key={m.key} className={"is-" + s}><span role="img" aria-label={`${m.name}: ${word[s]}`} title={`${m.name}: ${word[s]}`} /></td>;
               })}
             </tr>
           ))}

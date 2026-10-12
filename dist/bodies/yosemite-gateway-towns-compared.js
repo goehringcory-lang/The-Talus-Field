@@ -105,13 +105,14 @@ function GatewayMap() {
     alt: "The National Park Service's official map of Yosemite National Park, with the four entrance stations the five gateway towns serve marked: Arch Rock, South, Big Oak Flat and Tioga Pass."
   })), React.createElement("svg", {
     viewBox: `0 0 ${W} ${H}`,
-    "aria-hidden": "true",
+    role: "group",
+    "aria-label": "Entrance stations",
     focusable: "false"
   }, MAP_ENTRANCES.map(e => React.createElement("a", {
     key: e.n,
     href: GATEWAY_TOWNS[e.towns[0]].href,
     className: "npsmap__town",
-    "aria-label": e.name + ", jump to " + GATEWAY_TOWNS[e.towns[0]].name
+    "aria-label": e.n + ", " + e.name + ", jump to " + GATEWAY_TOWNS[e.towns[0]].name
   }, React.createElement("circle", {
     cx: e.x,
     cy: e.y,

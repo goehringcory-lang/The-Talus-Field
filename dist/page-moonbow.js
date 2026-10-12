@@ -366,7 +366,17 @@ function MoonbowPage({
     className: "ff-lede"
   }, "That geometry decides the hour. The moon has to be behind you and low: the higher it climbs, the lower the bow sits, and once the moon is above 42 degrees the bow drops below the ground. It needs a bright moon, because moonlight is far fainter than sunlight, which is also why the eye sees it as silver."), React.createElement(MbGeometry, null)), React.createElement("div", null, React.createElement("dl", {
     className: "ff-when"
-  }, React.createElement("div", null, React.createElement("dt", null, "Water"), React.createElement("dd", null, "High flow, heavy spray"), React.createElement("p", null, "The bow lives in the mist. No mist, no bow.")), React.createElement("div", null, React.createElement("dt", null, "Moon"), React.createElement("dd", null, "Full or nearly full"), React.createElement("p", null, "About two nights either side of full.")), React.createElement("div", null, React.createElement("dt", null, "Height"), React.createElement("dd", null, "Below about 42°"), React.createElement("p", null, "And not hidden behind the Valley's walls.")), React.createElement("div", null, React.createElement("dt", null, "Sky"), React.createElement("dd", null, "Clear and dark"), React.createElement("p", null, "A cloud over the moon switches it off.")), React.createElement("div", null, React.createElement("dt", null, "Timing"), React.createElement("dd", null, "About 50 min later each night"), React.createElement("p", null, "The moon rises later every evening."))), React.createElement(NatureNotesFilm, {
+  }, React.createElement("div", null, React.createElement("dt", null, "Water"), React.createElement("dd", null, "High flow, heavy spray"), React.createElement("dd", {
+    className: "ff-when__note"
+  }, "The bow lives in the mist. No mist, no bow.")), React.createElement("div", null, React.createElement("dt", null, "Moon"), React.createElement("dd", null, "Full or nearly full"), React.createElement("dd", {
+    className: "ff-when__note"
+  }, "About two nights either side of full.")), React.createElement("div", null, React.createElement("dt", null, "Height"), React.createElement("dd", null, "Below about 42°"), React.createElement("dd", {
+    className: "ff-when__note"
+  }, "And not hidden behind the Valley's walls.")), React.createElement("div", null, React.createElement("dt", null, "Sky"), React.createElement("dd", null, "Clear and dark"), React.createElement("dd", {
+    className: "ff-when__note"
+  }, "A cloud over the moon switches it off.")), React.createElement("div", null, React.createElement("dt", null, "Timing"), React.createElement("dd", null, "About 50 min later each night"), React.createElement("dd", {
+    className: "ff-when__note"
+  }, "The moon rises later every evening."))), React.createElement(NatureNotesFilm, {
     id: "moonbows",
     title: "Moonbows",
     youtubeId: "W6KMnPzZ0Eo",

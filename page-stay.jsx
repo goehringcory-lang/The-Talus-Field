@@ -1531,7 +1531,7 @@ function StayPage({ go }) {
           {others.map((p) => <StayCard key={p.id} item={p} />)}
         </div>
 
-        <aside className="stay-plate stay-fallback" aria-label="Lodging availability">
+        <aside className="stay-plate stay-fallback" aria-label="If the picks are booked">
           <div className="stay-fallback__main">
             <div className="stay-plate__eyebrow">In-park inventory gone for your dates? For summer it usually is.</div>
             <h2 className="stay-fallback__title">
@@ -1666,7 +1666,7 @@ function StayPage({ go }) {
 
       {/* The closing ask: the same search, where the reader has decided */}
       <section className="hp-wrap stay-section">
-        <aside className="stay-closing" aria-label="Lodging availability" ref={closingRef}>
+        <aside className="stay-closing" aria-label="Check your dates" ref={closingRef}>
           <StayFigure item={IN_PARK.find((p) => p.id === "tuolumne-lodge")} className="stay-closing__figure" sizes="(max-width: 880px) 100vw, 520px" />
           <div className="stay-closing__body">
             <p className="hp-eyebrow">The last step</p>

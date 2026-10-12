@@ -533,7 +533,15 @@ function FirefallPage({
     className: "ff-note"
   }, "The shape, not a forecast. Water and cloud decide any given evening.")), React.createElement("dl", {
     className: "ff-when"
-  }, React.createElement("div", null, React.createElement("dt", null, "Window opens"), React.createElement("dd", null, "About February 10"), React.createElement("p", null, "Color is weak and brief.")), React.createElement("div", null, React.createElement("dt", null, "Strongest color"), React.createElement("dd", null, "About February 17 to 24"), React.createElement("p", null, "Also the most crowded evenings, especially the Presidents' Day weekend.")), React.createElement("div", null, React.createElement("dt", null, "Window closes"), React.createElement("dd", null, "About February 26 to 28"), React.createElement("p", null, "The angle slides off the fall.")), React.createElement("div", null, React.createElement("dt", null, "The glow"), React.createElement("dd", null, "A little before 6 p.m."), React.createElement("p", null, "The last ten to fifteen minutes before sunset.")))))), React.createElement("section", {
+  }, React.createElement("div", null, React.createElement("dt", null, "Window opens"), React.createElement("dd", null, "About February 10"), React.createElement("dd", {
+    className: "ff-when__note"
+  }, "Color is weak and brief.")), React.createElement("div", null, React.createElement("dt", null, "Strongest color"), React.createElement("dd", null, "About February 17 to 24"), React.createElement("dd", {
+    className: "ff-when__note"
+  }, "Also the most crowded evenings, especially the Presidents' Day weekend.")), React.createElement("div", null, React.createElement("dt", null, "Window closes"), React.createElement("dd", null, "About February 26 to 28"), React.createElement("dd", {
+    className: "ff-when__note"
+  }, "The angle slides off the fall.")), React.createElement("div", null, React.createElement("dt", null, "The glow"), React.createElement("dd", null, "A little before 6 p.m."), React.createElement("dd", {
+    className: "ff-when__note"
+  }, "The last ten to fifteen minutes before sunset.")))))), React.createElement("section", {
     className: "hp-wrap hp-section ff-parking",
     id: "firefall-parking",
     tabIndex: -1

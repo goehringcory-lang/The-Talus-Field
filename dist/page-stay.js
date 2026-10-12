@@ -1565,7 +1565,7 @@ function StayPage({
     item: p
   }))), React.createElement("aside", {
     className: "stay-plate stay-fallback",
-    "aria-label": "Lodging availability"
+    "aria-label": "If the picks are booked"
   }, React.createElement("div", {
     className: "stay-fallback__main"
   }, React.createElement("div", {
@@ -1672,7 +1672,7 @@ function StayPage({
     className: "hp-wrap stay-section"
   }, React.createElement("aside", {
     className: "stay-closing",
-    "aria-label": "Lodging availability",
+    "aria-label": "Check your dates",
     ref: closingRef
   }, React.createElement(StayFigure, {
     item: IN_PARK.find(p => p.id === "tuolumne-lodge"),

@@ -393,10 +393,10 @@ const PG_COMPARE = [
 
 function PgCell({ value, product }) {
   const cls = product ? "pg-compare__product" : undefined;
-  if (value === false) return <td className={cls}><span className="pg-no" aria-label="Not included" /></td>;
+  if (value === false) return <td className={cls}><span className="pg-no" role="img" aria-label="Not included" /></td>;
   return (
     <td className={cls}>
-      <span className="pg-yes" aria-label="Included">✓</span>
+      <span className="pg-yes" role="img" aria-label="Included">✓</span>
       {typeof value === "string" && <span className="pg-yes__note"> {value}</span>}
     </td>
   );

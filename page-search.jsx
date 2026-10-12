@@ -428,6 +428,7 @@ function SearchPage({ go }) {
         <form
           className="search-form"
           role="search"
+          aria-label="Search this site"
           onSubmit={(e) => e.preventDefault()}
         >
           <label className="search-form__label" htmlFor="site-search">

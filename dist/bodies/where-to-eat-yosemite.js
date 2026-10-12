@@ -593,7 +593,11 @@ window.ARTICLE_BODIES["where-to-eat-yosemite"] = function WhereToEatYosemiteBody
     size: 28
   }), "No shuttle")), React.createElement("dl", {
     className: "eat-none__drive"
-  }, React.createElement("div", null, React.createElement("dt", null, "Nearest food"), React.createElement("dd", null, "Yosemite Valley"), React.createElement("p", null, "Roughly 40 minutes each way")), React.createElement("div", null, React.createElement("dt", null, "Or"), React.createElement("dd", null, "Wawona"), React.createElement("p", null, "About half an hour south")))), React.createElement("h3", {
+  }, React.createElement("div", null, React.createElement("dt", null, "Nearest food"), React.createElement("dd", null, "Yosemite Valley"), React.createElement("dd", {
+    className: "eat-none__note"
+  }, "Roughly 40 minutes each way")), React.createElement("div", null, React.createElement("dt", null, "Or"), React.createElement("dd", null, "Wawona"), React.createElement("dd", {
+    className: "eat-none__note"
+  }, "About half an hour south")))), React.createElement("h3", {
     className: "eat-subhead eat-subhead--rule"
   }, "Four more places to bring lunch to"), React.createElement("ul", {
     className: "eat-nofood"

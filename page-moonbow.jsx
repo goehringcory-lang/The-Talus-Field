@@ -296,11 +296,11 @@ function MoonbowPage({ go }) {
           </div>
           <div>
             <dl className="ff-when">
-              <div><dt>Water</dt><dd>High flow, heavy spray</dd><p>The bow lives in the mist. No mist, no bow.</p></div>
-              <div><dt>Moon</dt><dd>Full or nearly full</dd><p>About two nights either side of full.</p></div>
-              <div><dt>Height</dt><dd>Below about 42°</dd><p>And not hidden behind the Valley's walls.</p></div>
-              <div><dt>Sky</dt><dd>Clear and dark</dd><p>A cloud over the moon switches it off.</p></div>
-              <div><dt>Timing</dt><dd>About 50 min later each night</dd><p>The moon rises later every evening.</p></div>
+              <div><dt>Water</dt><dd>High flow, heavy spray</dd><dd className="ff-when__note">The bow lives in the mist. No mist, no bow.</dd></div>
+              <div><dt>Moon</dt><dd>Full or nearly full</dd><dd className="ff-when__note">About two nights either side of full.</dd></div>
+              <div><dt>Height</dt><dd>Below about 42°</dd><dd className="ff-when__note">And not hidden behind the Valley's walls.</dd></div>
+              <div><dt>Sky</dt><dd>Clear and dark</dd><dd className="ff-when__note">A cloud over the moon switches it off.</dd></div>
+              <div><dt>Timing</dt><dd>About 50 min later each night</dd><dd className="ff-when__note">The moon rises later every evening.</dd></div>
             </dl>
             <NatureNotesFilm
               id="moonbows"

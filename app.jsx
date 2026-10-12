@@ -1220,6 +1220,44 @@ function App() {
     if (el) el.focus({ preventScroll: true });
   }, [route]);
 
+  // Sideways scrollers (wide tables, the NPS map crops, the Half Dome season
+  // strip) hold content a keyboard user could not reach: nothing inside them
+  // takes focus, so the arrow keys never scrolled them (axe
+  // scrollable-region-focusable, October 2026). Once a route has drawn, and
+  // again on resize, each one that actually overflows becomes a focusable,
+  // labelled region; one that fits gives the stop back. Pages and bodies keep
+  // their markup, so the prerendered fragments are unchanged.
+  useEffect(() => {
+    // Every sideways scroller in the page, found by its computed overflow
+    // rather than a class list, so a new chart or table is covered too.
+    const mark = () => {
+      const main = document.getElementById("main");
+      if (!main) return;
+      main.querySelectorAll("*").forEach((el) => {
+        if (!el.dataset.scrollStop && !/auto|scroll/.test(getComputedStyle(el).overflowX)) return;
+        if (!el.dataset.scrollStop && el.querySelector("a[href], button, input, select, textarea, [tabindex]")) return;
+        const overflows = el.scrollWidth > el.clientWidth + 1 && /auto|scroll/.test(getComputedStyle(el).overflowX);
+        if (overflows && !el.hasAttribute("tabindex")) {
+          el.setAttribute("tabindex", "0");
+          el.dataset.scrollStop = "1";
+          if (!el.hasAttribute("role") && !/^(TABLE|FIGURE)$/.test(el.tagName)) el.setAttribute("role", "region");
+          if (!el.hasAttribute("aria-label") && el.tagName !== "TABLE") {
+            const cap = el.closest("figure")?.querySelector("figcaption")?.textContent.trim();
+            el.setAttribute("aria-label", cap ? `${cap.slice(0, 80)} (scrolls sideways)` : "Scrolls sideways");
+          }
+        } else if (!overflows && el.dataset.scrollStop) {
+          el.removeAttribute("tabindex");
+          delete el.dataset.scrollStop;
+        }
+      });
+    };
+    const t = setTimeout(mark, 600);
+    let raf = 0;
+    const onResize = () => { cancelAnimationFrame(raf); raf = requestAnimationFrame(mark); };
+    window.addEventListener("resize", onResize);
+    return () => { clearTimeout(t); cancelAnimationFrame(raf); window.removeEventListener("resize", onResize); };
+  }, [route]);
+
   // Navigations await the target bundle before the route commits, so two in
   // quick succession can resolve out of order and the slower bundle would
   // paint under the faster one's URL. Each navigation takes a ticket; a

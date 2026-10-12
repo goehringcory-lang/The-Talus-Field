@@ -256,7 +256,8 @@ function ArticlePage({
       el.setAttribute("tabindex", "0");
       el.setAttribute("role", "button");
       var alt = (el.querySelector("img") || {}).alt || "";
-      el.setAttribute("aria-label", alt ? `Enlarge: ${alt}` : "Enlarge this photo");
+      var credit = ((el.querySelector(".placeholder__credit") || {}).textContent || "").trim();
+      el.setAttribute("aria-label", (alt ? `Enlarge: ${alt}` : "Enlarge this photo") + (credit ? `. ${credit}` : ""));
     });
     var open = el => {
       var img = el.querySelector("img");

@@ -485,6 +485,7 @@ function SearchPage({
   }, React.createElement("form", {
     className: "search-form",
     role: "search",
+    "aria-label": "Search this site",
     onSubmit: e => e.preventDefault()
   }, React.createElement("label", {
     className: "search-form__label",

@@ -434,10 +434,10 @@ function FirefallPage({ go }) {
               <p className="ff-note">The shape, not a forecast. Water and cloud decide any given evening.</p>
             </figure>
             <dl className="ff-when">
-              <div><dt>Window opens</dt><dd>About February 10</dd><p>Color is weak and brief.</p></div>
-              <div><dt>Strongest color</dt><dd>About February 17 to 24</dd><p>Also the most crowded evenings, especially the Presidents' Day weekend.</p></div>
-              <div><dt>Window closes</dt><dd>About February 26 to 28</dd><p>The angle slides off the fall.</p></div>
-              <div><dt>The glow</dt><dd>A little before 6 p.m.</dd><p>The last ten to fifteen minutes before sunset.</p></div>
+              <div><dt>Window opens</dt><dd>About February 10</dd><dd className="ff-when__note">Color is weak and brief.</dd></div>
+              <div><dt>Strongest color</dt><dd>About February 17 to 24</dd><dd className="ff-when__note">Also the most crowded evenings, especially the Presidents' Day weekend.</dd></div>
+              <div><dt>Window closes</dt><dd>About February 26 to 28</dd><dd className="ff-when__note">The angle slides off the fall.</dd></div>
+              <div><dt>The glow</dt><dd>A little before 6 p.m.</dd><dd className="ff-when__note">The last ten to fifteen minutes before sunset.</dd></div>
             </dl>
           </div>
         </div>
