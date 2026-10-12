@@ -1430,7 +1430,7 @@ window.GUIDE_TERMS = GUIDE_TERMS;
 // copy, like everything on the homepage: edit here when the guide changes.
 const HP_GUIDE_POINTS = [
   { mark: "↳", title: "Find your next stop.", text: "44 stops, arranged in driving order." },
-  { mark: "⌁", title: "Choose a hike that fits your day.", text: "57 day hikes with GPS tracks." },
+  { mark: "△", title: "Choose a hike that fits your day.", text: "57 day hikes with GPS tracks." },
   { mark: "◎", title: "Bring a little local knowledge.", text: "72 Secret Guide entries to look beyond the obvious." },
 ];
 

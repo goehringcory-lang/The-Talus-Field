@@ -1566,7 +1566,7 @@ var GUIDE_HERO_POINTS = [{
   title: "Build a day that fits.",
   text: "Stops in driving order, each with an honest time budget, drives figured between them."
 }, {
-  mark: "⌁",
+  mark: "⇄",
   title: "Know the move when a lot fills.",
   text: "The swap is printed on the flagship stops, before you need it."
 }, {

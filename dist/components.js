@@ -1595,7 +1595,7 @@ var HP_GUIDE_POINTS = [{
   title: "Find your next stop.",
   text: "44 stops, arranged in driving order."
 }, {
-  mark: "⌁",
+  mark: "△",
   title: "Choose a hike that fits your day.",
   text: "57 day hikes with GPS tracks."
 }, {

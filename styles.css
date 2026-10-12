@@ -318,7 +318,10 @@ main:focus { outline: none; }
   font-size: 12px;
   color: var(--ink-3);
   line-height: 1.6;
-  max-width: 760px;
+  /* The rule spans the footer like the rules above and below it; the text
+     keeps its 760px measure. It used to cap the box, rule and all. */
+  max-width: none;
+  padding-right: max(0px, calc(100% - 760px));
 }
 /* Doubled class so this outranks the `.site-footer a { text-decoration: none }`
    reset below (same 0-1-1 specificity, later in the file, so it was winning and
@@ -4634,7 +4637,10 @@ main:focus { outline: none; }
   content: counter(guide-step);
   position: absolute;
   left: 0;
-  top: -4px;
+  /* line-height 1, or the numeral inherits the item's 1.6 (a 48px line box)
+     and sits about 10px below the first line it numbers. */
+  top: -6px;
+  line-height: 1;
   font-family: var(--display);
   font-size: 30px;
   font-weight: 500;
@@ -6213,7 +6219,10 @@ kbd {
   color:var(--hp-muted);
   font-size:13px;
   line-height:1.85;
-  margin:15px 0 29px
+  margin:15px 0 29px;
+  /* A reading measure: on a full-width section at 1366px an intro ran about
+     190 characters a line (/conditions). Narrower layouts are unaffected. */
+  max-width:72ch
 }
 .hp-design .hp-photo {
   height:260px;
@@ -13029,3 +13038,8 @@ html[data-nav-mode="pinned"] { scroll-padding-top: 62px; }
    rule cards, which /firefall never does; give those links the page's
    in-copy link style. Scoped to the three, so /firefall is unchanged. */
 :where(.hp-fall-color, .hp-moonbow, .hp-frazil-ice) :is(.ff-history, .ff-rules) p a { color: var(--hp-accent); text-decoration: underline; text-underline-offset: 2px; }
+
+/* /stay at desktop width: a lone town card (Tenaya Lodge) stretched across
+   the grid and the disclosure ran the full width, both near 200 characters
+   a line. They keep a reading measure. */
+.stay-prop__text, .hp-stay__disclosure { max-width: 72ch; }

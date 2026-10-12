@@ -221,14 +221,19 @@ function PhotoCreditsSection() {
       </p>
       <ul className="link-list" style={{ fontSize: 13 }}>
         {entries.map(([src, credit]) => {
-          const basename = src.split('/').pop() ?? src
+          // "ahwahnee-hotel.jpg" reads as "Ahwahnee hotel": the list is for
+          // readers, and a filename is a developer's label.
+          const name = (src.split('/').pop() ?? src).replace(/\.[a-z]+$/i, '').replace(/-/g, ' ')
+          const label = name.charAt(0).toUpperCase() + name.slice(1)
           return (
             <li key={src}>
-              {basename}: {credit.author}, {credit.license}
+              {label}: {credit.author}, {credit.license}
               {credit.source && (
                 <>
                   {' · '}
-                  <a href={credit.source} target="_blank" rel="noopener noreferrer">
+                  {/* .link-list sets its links at 18px; here the link is part
+                      of a 13px credit line and takes that size. */}
+                  <a href={credit.source} target="_blank" rel="noopener noreferrer" style={{ fontSize: 'inherit' }}>
                     source
                   </a>
                 </>

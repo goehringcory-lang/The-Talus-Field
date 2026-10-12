@@ -735,7 +735,7 @@ function PlanningGuide({ go }) {
             <ul>
               <li><span>◭</span><div><strong>The park in 3D.</strong><p>Topographic terrain you can tilt, with every stop, trailhead and lot on it.</p></div></li>
               <li><span>↳</span><div><strong>Find your next stop.</strong><p>44 stops, arranged in driving order, each with where to park.</p></div></li>
-              <li><span>⌁</span><div><strong>Choose a hike that fits your day.</strong><p>57 day hikes with GPS tracks.</p></div></li>
+              <li><span>△</span><div><strong>Choose a hike that fits your day.</strong><p>57 day hikes with GPS tracks.</p></div></li>
               <li><span>◎</span><div><strong>Know what's on tonight.</strong><p>Ranger walks, talks and campfire programs, filtered to your day and area.</p></div></li>
             </ul>
             <div className="pg-actions">

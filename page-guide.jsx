@@ -1760,7 +1760,7 @@ const GUIDE_STATS = ["4 regions", "116 entries", "57 day hikes", "72 secret entr
 // outcome block below (OUTCOMES), so a change there is a change here.
 const GUIDE_HERO_POINTS = [
   { mark: "↳", title: "Build a day that fits.", text: "Stops in driving order, each with an honest time budget, drives figured between them." },
-  { mark: "⌁", title: "Know the move when a lot fills.", text: "The swap is printed on the flagship stops, before you need it." },
+  { mark: "⇄", title: "Know the move when a lot fills.", text: "The swap is printed on the flagship stops, before you need it." },
   { mark: "◎", title: "Keep it all with no signal.", text: "Download the guide and the park map before you leave; they work past the tunnel." },
 ];
 
