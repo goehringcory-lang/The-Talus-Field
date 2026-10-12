@@ -6437,7 +6437,12 @@ kbd {
   background:#fff6dc
 }
 .hp-design .hp-terms {
-  font-size:9px;
+  /* 11px, not the mockup's 9px: this line carries the purchase terms ("One
+     payment, 18 months, no automatic renewal") and the newsletter's promise
+     on every page that ends in the guide band or the letter, and at 9px it
+     was the smallest sentence on the site. */
+  font-size:11px;
+  line-height:1.6;
   margin:12px 0 0;
   color:var(--hp-muted)
 }
@@ -6835,7 +6840,7 @@ kbd {
    second line, which `pretty` leaves alone on a two-line heading. Card and
    list titles that are not heading elements get `pretty` too. All at zero
    specificity, so a component's own text-wrap still wins. */
-:where(.hp-design) h1 { text-wrap: balance; }
+:where(.hp-design) :is(h1, h2, h3, [class*="__title"]) { text-wrap: balance; }
 :where(.hp-design) :is([class*="__title"], [class*="-title"], [class*="__name"], [class*="__head"] strong, dt) { text-wrap: pretty; }
 :where(.hp-design) a:hover { color: inherit; }
 .hp-design a.hp-button:hover { color: var(--hp-on-accent); }
@@ -13104,3 +13109,8 @@ html[data-nav-mode="pinned"] { scroll-padding-top: 62px; }
 @media (max-width: 760px) {
   .hp-films__themehead { flex-direction: column; align-items: flex-start; gap: 6px; }
 }
+
+/* Notes and fine print that ran 115 to 200 characters a line at desktop
+   width (measured on every route at 1366px). They keep a reading measure. */
+.ff-note, .ff-alert, .article-aff-note, .places-pitch__fineprint, .guide-offline__fineprint,
+.stay-table__foot, .stay-town__text, .bulletin-notice { max-width: 72ch; }

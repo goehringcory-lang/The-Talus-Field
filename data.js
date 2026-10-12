@@ -785,9 +785,9 @@ window.ARTICLES = [
     isoDate: "2026-10-08",
     isoModified: "2026-10-08",
     read: "12 min",
-    placeholder: "Tunnel View in late autumn, with fresh snow on the high rims above the last color on the Valley floor",
-    image: "img/tunnel-view-autumn-aniket-deole.jpg",
-    credit: "Photo: Aniket Deole / Unsplash",
+    placeholder: "Tioga Road above Tenaya Lake, the high road that usually closes for the winter in November",
+    image: "img/tioga-road-above-tenaya-lake.jpg",
+    credit: "Photo: National Archives / Wikimedia Commons (public domain)",
   },
   {
     slug: "thanksgiving-in-yosemite",
@@ -828,9 +828,9 @@ window.ARTICLES = [
     isoDate: "2026-10-04",
     isoModified: "2026-10-04",
     read: "12 min",
-    placeholder: "California black oaks in autumn color on the Yosemite Valley floor",
-    image: "img/yosemite-valley-black-oaks-autumn.jpg",
-    credit: "Photo: Bernard Spragg / Wikimedia Commons (CC0)",
+    placeholder: "The Grizzly Giant, a giant sequoia in the Mariposa Grove",
+    image: "img/mariposa-grove-grizzly-giant-nieves.jpg",
+    credit: "Photo: Nieves / Pexels",
   },
   {
     slug: "tioga-road-stop-by-stop",
@@ -1018,9 +1018,9 @@ window.ARTICLES = [
     isoDate: "2026-09-10",
     isoModified: "2026-09-10",
     read: "12 min",
-    placeholder: "Tenaya Lake beside the Tioga Road, the high-country lake an eastern arrival passes on the way down to the Valley",
-    image: "img/tenaya-lake.jpg",
-    credit: "Photo: Michael Hogarth / Wikimedia Commons (public domain)",
+    placeholder: "Half Dome and Clouds Rest from Olmsted Point on the Tioga Road, the view an eastern arrival meets on the way down to the Valley",
+    image: "img/olmsted-point-tioga-road.jpg",
+    credit: "Photo: Dcrjsr / Wikimedia Commons (CC BY 3.0)",
   },
   {
     slug: "highway-140-closed-yosemite",
@@ -2004,9 +2004,9 @@ window.ARTICLES = [
     isoDate: "2026-04-26",
     isoModified: "2026-10-01",
     read: "12 min",
-    placeholder: "Tunnel View: El Capitan, Bridalveil Fall and Half Dome from the overlook",
-    image: "img/tunnel-view-valley-spring.jpg",
-    credit: "Photo: Kyle D / Wikimedia Commons (public domain)",
+    placeholder: "Lower Yosemite Fall through the pines, reached on a 1-mile paved loop",
+    image: "img/lower-yosemite-fall-footbridge.jpg",
+    credit: "Photo: James St. John / Wikimedia Commons (CC BY 2.0)",
     // The /firefall layout for an article (page-article.jsx), as on the dining
     // piece: a full-width photo cover, and a body that lays out its own
     // sections.
