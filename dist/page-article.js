@@ -593,7 +593,13 @@ function ArticlePage({
   }, "Read how recommendations get made ↗"))), React.createElement(ShareRow, {
     title: article.title,
     slug: slug
-  })))), related.length > 0 && React.createElement("section", {
+  })))), tripIntent && React.createElement(HpGuideBand, {
+    go: go,
+    location: "article_end",
+    title: "The park, in your pocket.",
+    intro: "The app version of this journal: offline maps, GPS at the trailhead, and every stop with parking and timing notes. Works with no signal, which is most of the park.",
+    sample: true
+  }), related.length > 0 && React.createElement("section", {
     className: "hp-wrap hp-section hp-article__related"
   }, React.createElement(HpHeading, {
     go: go,
@@ -623,13 +629,7 @@ function ArticlePage({
     }
   }, a.title), React.createElement("span", {
     className: "relrail__dek"
-  }, a.seoDek || a.dek))))), tripIntent && React.createElement(HpGuideBand, {
-    go: go,
-    location: "article_end",
-    title: "The park, in your pocket.",
-    intro: "The app version of this journal: offline maps, GPS at the trailhead, and every stop with parking and timing notes. Works with no signal, which is most of the park.",
-    sample: true
-  }), !ARTICLE_BONUS[slug] && (() => {
+  }, a.seoDek || a.dek))))), !ARTICLE_BONUS[slug] && (() => {
     var endVariant = window.abVariant ? window.abVariant("article_end_copy") : "a";
     var offers = endVariant === "b" ? END_NEWSLETTER_OFFER_B : END_NEWSLETTER_OFFER;
     var offer = offers[article.cat] || {};
