@@ -1008,7 +1008,7 @@ function GuideMap3D() {
         location: "guide_map3d"
       });
     }
-  }, "Read the free sample ↗"))));
+  }, "Read the free sample\xA0↗"))));
 }
 var OUTCOMES = [{
   kicker: "Find the correct parking turnout",
@@ -1275,7 +1275,7 @@ function GuideDayOne() {
         location: "guide_day_one"
       });
     }
-  }, "Read the free sample ↗"))), React.createElement("p", {
+  }, "Read the free sample\xA0↗"))), React.createElement("p", {
     className: "guide-dayone__credits"
   }, "Photos via Wikimedia Commons: Dexter Perkins (CC0), Kyle D (public domain), Mutineer (CC0), Anita Ritenour (CC BY 2.0). Map: U.S. National Park Service (public domain)."));
 }
@@ -1615,7 +1615,7 @@ function GuidePage({
         location: "guide_hero"
       });
     }
-  }, "Read five entries free ↗"), " ", "No account needed."))), React.createElement("div", {
+  }, "Read five entries free\xA0↗"), " ", "No account needed."))), React.createElement("div", {
     className: "hp-wrap hp-section"
   }, React.createElement("div", {
     className: "guide-layout"

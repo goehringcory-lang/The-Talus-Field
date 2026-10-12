@@ -115,7 +115,8 @@ function readInitialFilters(): Filters {
 type Fix = { coord: [number, number] } | { error: string } | 'locating' | null
 
 function formatDistance(hike: HikeT): string {
-  return `${hike.distanceMi} mi${hike.route === 'one-way' ? ' one-way' : ''}`
+  // No-break spaces and no hyphen: "4.8 mi one- / way" split at the hyphen.
+  return `${hike.distanceMi}\u00a0mi${hike.route === 'one-way' ? '\u00a0one\u00a0way' : ''}`
 }
 
 function formatGain(ft: number): string {

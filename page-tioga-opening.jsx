@@ -1,4 +1,4 @@
-/* global React, HpPageHead, HpHeading, HomeLink, ResponsiveImage, AvailabilityLink, HpGuideBand, HpLetter, AffiliateDisclosure, EventIcon, NatureNotesFilm */
+/* global React, HpPageHead, HpHeading, HomeLink, ResponsiveImage, AvailabilityLink, HpGuideBand, HpLetter, AffiliateDisclosure, EventIcon, NatureNotesFilm, hpLongDate */
 
 // =============================================================================
 // TIOGA OPENING — `/tioga-opening` route. The second evergreen event page
@@ -31,7 +31,7 @@
 // previous edition. check-asset-freshness.mjs parses this literal and fails the
 // build if the three disagree, which is why it is written out in full rather
 // than imported or composed.
-const TIOGA_BULLETIN_URL = "/bulletin.json?v=20";
+const TIOGA_BULLETIN_URL = "/bulletin.json?v=21";
 
 // Published opening dates, most recent first.
 //
@@ -100,7 +100,7 @@ function TiogaStatus() {
       {edition && edition.updated && (
         <p className="fj-status__stamp">
           {ended ? "Last edition, ended " : "Last checked "}
-          {ended ? edition.label : edition.updated}
+          {ended ? edition.label : hpLongDate(edition.updated)}
         </p>
       )}
     </section>
@@ -275,7 +275,7 @@ function TiogaOpeningPage({ go }) {
                 <li>Start full at Crane Flat. Carry all the water and food.</li>
                 <li>Expect snow walls, ice at dawn and no signal.</li>
               </ul>
-              <p className="ff-disclosure">Current status: <a href="https://www.nps.gov/yose/planyourvisit/seasonal.htm" target="_blank" rel="noopener noreferrer">the NPS Tioga Road page ↗</a>, or text "ynptraffic" to 333111.</p>
+              <p className="ff-disclosure">Current status: <a href="https://www.nps.gov/yose/planyourvisit/seasonal.htm" target="_blank" rel="noopener noreferrer">the NPS Tioga Road page ↗</a>, or text "ynptraffic" to 333111.</p>
             </aside>
           </div>
         </div>
@@ -449,7 +449,7 @@ function TiogaOpeningPage({ go }) {
                 <span className="ff-tier">{t.tier}</span>
                 <p>{t.note}</p>
               </div>
-              <AvailabilityLink destination={t.dest} list="page_tioga" slug={t.id} className="ff-book">Search {t.name} lodging ↗</AvailabilityLink>
+              <AvailabilityLink destination={t.dest} list="page_tioga" slug={t.id} className="ff-book">Search {t.name} lodging ↗</AvailabilityLink>
             </div>
           ))}
           <p className="ff-note">The filled buttons search availability on Expedia; we may earn a commission. The recommendation is the same either way, and no link is to a specific property. <a href="/affiliate">How we handle affiliate links.</a> Every option compared: <HomeLink go={go} location="tioga_stay" href="/stay">where to stay</HomeLink>.</p>
@@ -488,7 +488,7 @@ function TiogaOpeningPage({ go }) {
         blurb="One email the day the park announces Tioga Road is open, and one when it closes for the season, sent to the people who asked for it. Sunday Field Notes carries the plowing progress in between."
         location="tioga-opening"
         tag="alert-tioga"
-        cta="Email me ↗"
+        cta="Email me ↗"
         terms="Only when Tioga Road opens or closes. Unsubscribe whenever."
         stamp="ROAD ALERTS"
         paper={<>Tioga opens.<br />Tioga closes.<br /><em>You hear once.</em></>}

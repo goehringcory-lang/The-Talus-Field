@@ -97,7 +97,7 @@ function PlacesPage({ go }) {
           <div className="conservancy__eyebrow">Currently listed</div>
           <h2 className="conservancy__name">Yosemite Conservancy</h2>
           <p className="conservancy__body">
-            The park's official nonprofit partner. They fund research, restoration, and other park projects, and run a calendar of naturalist-led programs in multi-day Yosemite field school format taught by expert naturalists. They are not a commercial operator and they are not paying for placement. I recommend them without reservation.
+            The park's official nonprofit partner. They fund research, restoration, and other park projects, and run a calendar of naturalist-led programs, from single-day outings to multi-day field courses, taught by expert naturalists. They are not a commercial operator and they are not paying for placement. I recommend them without reservation.
           </p>
           <a
             className="conservancy__link"
@@ -105,7 +105,7 @@ function PlacesPage({ go }) {
             target="_blank"
             rel="noopener noreferrer"
           >
-            yosemite.org ↗
+            yosemite.org ↗
           </a>
         </div>
       </section>

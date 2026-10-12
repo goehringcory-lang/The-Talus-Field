@@ -770,7 +770,7 @@ var HOME_NAV = [{
   label: "Read",
   group: "read"
 }];
-var homeMenuCta = cta => `${(cta || "Open the section").replace(/\s*→\s*$/, "")} ↗`;
+var homeMenuCta = cta => `${(cta || "Open the section").replace(/\s*→\s*$/, "")} ↗`;
 function navGroupOf(current) {
   if (!current || current === "home") return null;
   var g = NAV_GROUPS.find(group => group.columns && (group.route === current || group.columns.some(col => col.links.some(l => l.key === current))));
@@ -795,7 +795,7 @@ function NavMapFeature({
     className: "hp-navfeat__text"
   }, "Every pin in the park, assembled into a route you can share or open in the Field Guide."), link({
     key: "map",
-    label: "Open the map ↗"
+    label: "Open the map ↗"
   }, "hp-link"));
 }
 function NavWaitsFeature({
@@ -815,7 +815,7 @@ function NavWaitsFeature({
   }, "Posted by the National Park Service. A dash means no wait is posted right now."), link({
     key: "conditions",
     hash: "cond-waits",
-    label: "Gates and lots on Conditions ↗"
+    label: "Gates and lots on Conditions ↗"
   }, "hp-link"));
 }
 function NavNewestFeature({
@@ -1042,7 +1042,7 @@ function MastheadSearch({
       e.preventDefault();
       pick(r, i, e);
     }
-  }, r.all ? `All results for “${q}” ↗` : React.createElement(React.Fragment, null, React.createElement("span", {
+  }, r.all ? `All results for “${q}” ↗` : React.createElement(React.Fragment, null, React.createElement("span", {
     className: "hp-search__kind"
   }, r.kind), React.createElement("span", {
     className: "hp-search__title"
@@ -1395,7 +1395,7 @@ function HomeMasthead({
         className: "hp-menu__note"
       }, g.aside.text), menuLink({
         ...g.aside.link,
-        label: `${g.aside.link.label} ↗`
+        label: `${g.aside.link.label} ↗`
       }, "hp-link"))), React.createElement("div", {
         className: "hp-menu__cols"
       }, g.columns.map(col => React.createElement("div", {
@@ -1448,7 +1448,7 @@ function HomeMasthead({
     className: "hp-button",
     href: home ? "#field-guide" : "/guide",
     "aria-current": here("guide")
-  }, "Get the app ↗")));
+  }, "Get the app\xA0↗")));
 }
 function HpHeading({
   go,
@@ -1544,7 +1544,7 @@ function HpArticleCard({
     alt: article.placeholder || "",
     eyebrow: React.createElement(React.Fragment, null, cat ? cat.label.toUpperCase() : "", React.createElement("span", null, article.read ? article.read.toUpperCase() : "")),
     title: article.title,
-    text: React.createElement(React.Fragment, null, article.dek, " ↗"),
+    text: React.createElement(React.Fragment, null, article.dek, "\xA0↗"),
     sizes: "(max-width: 760px) calc(100vw - 40px), (max-width: 1100px) 45vw, 420px"
   });
 }
@@ -1668,7 +1668,7 @@ function HpGuideBand({
     location: location,
     className: "hp-button hp-light",
     href: "/guide"
-  }, "Get the offline Field Guide ", React.createElement("span", null, GUIDE_TERMS.price, " ↗")), React.createElement("p", {
+  }, "Get the offline Field Guide ", React.createElement("span", null, GUIDE_TERMS.price, "\xA0↗")), React.createElement("p", {
     className: "hp-terms"
   }, GUIDE_TERMS.short, " · ", GUIDE_TERMS.refundShort), React.createElement("p", {
     className: "hp-terms hp-owner"
@@ -1679,7 +1679,7 @@ function HpGuideBand({
         location
       });
     }
-  }, "Open your guide ↗"))), sample && React.createElement("p", {
+  }, "Open your guide\xA0↗"))), sample && React.createElement("p", {
     className: "hp-terms hp-sample"
   }, "Not sure yet? Five entries are free to read, no email required:", " ", React.createElement("a", {
     href: `${GUIDE_PROMO_APP_BASE}/preview`,
@@ -1688,7 +1688,7 @@ function HpGuideBand({
         location
       });
     }
-  }, "preview the guide ↗"))), React.createElement("div", {
+  }, "preview the guide\xA0↗"))), React.createElement("div", {
     className: "hp-screens"
   }, React.createElement("div", {
     className: "hp-orbit"
@@ -1736,7 +1736,7 @@ function HpLetter({
   tag,
   variant,
   send,
-  cta = "Send me the letter ↗",
+  cta = "Send me the letter ↗",
   terms = "Free to read. One letter a week. Unsubscribe whenever.",
   paper,
   stamp = "THE SUNDAY LETTER",
@@ -2774,7 +2774,7 @@ function RecommendedCard({
     slug: (slug ? slug + ":" : "") + it.id,
     name: it.what,
     className: "rec-card__link"
-  }, it.label || source, " ↗")))), linked && React.createElement("p", {
+  }, it.label || source, "\xA0↗")))), linked && React.createElement("p", {
     className: "rec-card__disclosure"
   }, source, " links are affiliate links. Any equivalent does the same job, and the list does not change for them. ", React.createElement("a", {
     href: "/affiliate"
@@ -3540,7 +3540,7 @@ function WebcamStrip({
     className: "cam-tile__label"
   }, cam.label), React.createElement("span", {
     className: "cam-tile__open"
-  }, "Open camera ↗")) : React.createElement("div", {
+  }, "Open camera\xA0↗")) : React.createElement("div", {
     className: "mono",
     style: {
       marginTop: 10,
@@ -4107,3 +4107,13 @@ Object.assign(window, {
   FjSteps,
   FjPlate
 });
+function hpLongDate(iso) {
+  if (typeof iso !== "string" || !/^\d{4}-\d{2}-\d{2}$/.test(iso)) return iso;
+  return new Date(`${iso}T12:00:00Z`).toLocaleDateString("en-US", {
+    month: "long",
+    day: "numeric",
+    year: "numeric",
+    timeZone: "UTC"
+  });
+}
+window.hpLongDate = hpLongDate;

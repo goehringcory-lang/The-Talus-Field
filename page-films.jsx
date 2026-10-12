@@ -308,8 +308,8 @@ function FilmsPage({ go }) {
               under each film are this journal's, not the Park Service's.
             </p>
             <div className="hp-films__links">
-              <a className="hp-link" href={nn.series.npsUrl} target="_blank" rel="noopener noreferrer">The originals at nps.gov ↗</a>
-              <a className="hp-link" href={nn.series.playlistUrl} target="_blank" rel="noopener noreferrer">The park's YouTube channel ↗</a>
+              <a className="hp-link" href={nn.series.npsUrl} target="_blank" rel="noopener noreferrer">The originals at nps.gov ↗</a>
+              <a className="hp-link" href={nn.series.playlistUrl} target="_blank" rel="noopener noreferrer">The park's YouTube channel ↗</a>
             </div>
           </div>
           {/* Static pages under /archive, outside the SPA: a plain link, no go(). */}

@@ -39,7 +39,7 @@
 // (page-tioga-opening.jsx) share the number; check-asset-freshness.mjs fails
 // the build if the three disagree.
 // =============================================================================
-const BULLETIN_URL = "/bulletin.json?v=20";
+const BULLETIN_URL = "/bulletin.json?v=21";
 
 // ---- Dates, in park time -----------------------------------------------------
 // ISO strings (YYYY-MM-DD) throughout: they compare correctly as strings, and
@@ -707,7 +707,7 @@ function BulletinEditionCard({ edition, today }) {
         Updated <time dateTime={edition.updated}>{bulletinDate(edition.updated)}</time> from the
         National Park Service Yosemite Guide.{" "}
         {edition.sourceUrl ? (
-          <a href={edition.sourceUrl} target="_blank" rel="noopener noreferrer">The full Guide on nps.gov ↗</a>
+          <a href={edition.sourceUrl} target="_blank" rel="noopener noreferrer">The full Guide on nps.gov ↗</a>
         ) : null}
       </p>
     </aside>
@@ -1356,7 +1356,7 @@ function BulletinPage({ go }) {
             <p className="bulletin-source">
               {edition.source}{" "}
               {edition.sourceUrl ? (
-                <a href={edition.sourceUrl} target="_blank" rel="noopener noreferrer">The full Guide is on nps.gov ↗</a>
+                <a href={edition.sourceUrl} target="_blank" rel="noopener noreferrer">The full Guide is on nps.gov ↗</a>
               ) : null}
             </p>
           </React.Fragment>

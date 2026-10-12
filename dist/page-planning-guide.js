@@ -297,7 +297,7 @@ function PgStaySearch() {
     "data-aff-list": "planning_search",
     "data-aff-item-slug": row.id,
     "data-aff-name": row.dest + " lodging search"
-  }, "Search stays on Expedia ↗"));
+  }, "Search stays on Expedia\xA0↗"));
 }
 function PgStatusText({
   state,
@@ -618,7 +618,7 @@ function PlanningGuide({
     className: "pg-month__lede"
   }, sel.note), React.createElement("a", {
     href: `/articles/${sel.read}`
-  }, "Read the ", sel.name, " guide ↗")), React.createElement("div", {
+  }, "Read the ", sel.name, " guide\xA0↗")), React.createElement("div", {
     className: "pg-road"
   }, React.createElement("p", {
     className: "pg-kicker"
@@ -819,7 +819,7 @@ function PlanningGuide({
     slug: t.id,
     name: t.name + " lodging search",
     className: "pg-btn pg-btn--accent pg-town__go"
-  }, "Search ", t.name, " ↗")))))), React.createElement("div", {
+  }, "Search ", t.name, "\xA0↗")))))), React.createElement("div", {
     className: "pg-inpark"
   }, React.createElement("figure", {
     className: "pg-inpark__media"
@@ -846,14 +846,14 @@ function PlanningGuide({
     href: PG_TRAVEL_YOSEMITE,
     target: "_blank",
     rel: "noopener noreferrer"
-  }, "Check dates ↗"))), React.createElement("div", {
+  }, "Check dates\xA0↗"))), React.createElement("div", {
     className: "pg-inpark__foot"
   }, React.createElement("p", null, "Gone for your dates? Mariposa and El Portal hold the most rooms within an hour. ", React.createElement(AvailabilityLink, {
     destination: "Mariposa, California",
     list: "planning_in_park",
     slug: "mariposa",
     name: "Mariposa lodging search"
-  }, "Search them ↗")), React.createElement("a", {
+  }, "Search them\xA0↗")), React.createElement("a", {
     href: "/stay",
     onClick: e => {
       if (e.button !== 0 || e.metaKey || e.ctrlKey) return;
@@ -1025,7 +1025,7 @@ function PlanningGuide({
     href: "/guide"
   }, "Get the Field Guide \xA0", React.createElement("span", {
     className: "pg-price"
-  }, GUIDE_TERMS.price, " ↗")), React.createElement("a", {
+  }, GUIDE_TERMS.price, "\xA0↗")), React.createElement("a", {
     className: "pg-guide__sample",
     href: `${GUIDE_PROMO_APP_BASE}/preview`,
     onClick: () => {
@@ -1033,7 +1033,7 @@ function PlanningGuide({
         location: "planning_hub"
       });
     }
-  }, "Read five entries free ↗")), React.createElement("p", {
+  }, "Read five entries free\xA0↗")), React.createElement("p", {
     className: "pg-guide__terms"
   }, GUIDE_TERMS.short, " · ", GUIDE_TERMS.refundShort, " · works offline")), React.createElement("div", {
     className: "pg-guide__screens"

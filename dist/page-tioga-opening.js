@@ -1,4 +1,4 @@
-var TIOGA_BULLETIN_URL = "/bulletin.json?v=20";
+var TIOGA_BULLETIN_URL = "/bulletin.json?v=21";
 var OPENING_HISTORY = [{
   year: "2026",
   date: "May 15",
@@ -40,7 +40,7 @@ function TiogaStatus() {
     className: "fj-status__note"
   }, row.note), edition && edition.updated && React.createElement("p", {
     className: "fj-status__stamp"
-  }, ended ? "Last edition, ended " : "Last checked ", ended ? edition.label : edition.updated));
+  }, ended ? "Last edition, ended " : "Last checked ", ended ? edition.label : hpLongDate(edition.updated)));
 }
 var TIOGA_AXIS_START = {
   month: 4,
@@ -266,7 +266,7 @@ function TiogaOpeningPage({
     href: "https://www.nps.gov/yose/planyourvisit/seasonal.htm",
     target: "_blank",
     rel: "noopener noreferrer"
-  }, "the NPS Tioga Road page ↗"), ", or text \"ynptraffic\" to 333111."))))), React.createElement("section", {
+  }, "the NPS Tioga Road page\xA0↗"), ", or text \"ynptraffic\" to 333111."))))), React.createElement("section", {
     className: "ff-band",
     id: "tioga-week-one",
     tabIndex: -1
@@ -453,7 +453,7 @@ function TiogaOpeningPage({
     list: "page_tioga",
     slug: t.id,
     className: "ff-book"
-  }, "Search ", t.name, " lodging ↗"))), React.createElement("p", {
+  }, "Search ", t.name, " lodging\xA0↗"))), React.createElement("p", {
     className: "ff-note"
   }, "The filled buttons search availability on Expedia; we may earn a commission. The recommendation is the same either way, and no link is to a specific property. ", React.createElement("a", {
     href: "/affiliate"
@@ -497,7 +497,7 @@ function TiogaOpeningPage({
     blurb: "One email the day the park announces Tioga Road is open, and one when it closes for the season, sent to the people who asked for it. Sunday Field Notes carries the plowing progress in between.",
     location: "tioga-opening",
     tag: "alert-tioga",
-    cta: "Email me ↗",
+    cta: "Email me\xA0↗",
     terms: "Only when Tioga Road opens or closes. Unsubscribe whenever.",
     stamp: "ROAD ALERTS",
     paper: React.createElement(React.Fragment, null, "Tioga opens.", React.createElement("br", null), "Tioga closes.", React.createElement("br", null), React.createElement("em", null, "You hear once."))

@@ -198,7 +198,7 @@ function PartnersPage({ go }) {
             <li>An offline topographic map of the whole park with every stop pinned, downloadable in one tap.</li>
             <li>A trip planner that lays out each day with real drive-time and parking buffers, and syncs to Google or Apple Calendar.</li>
             <li>Ranger walks, Junior Ranger sessions, tours, and star parties on the guest's own dates.</li>
-            <li>An essentials section: entrance reservations, getting around the Valley without moving the car, bears, where coverage dies, roads by season, and a packing checklist for the night before.</li>
+            <li>An essentials section: entrances and reservations, getting around the Valley without moving the car, bears, where coverage dies, roads by season, and a packing checklist for the night before.</li>
             <li>The 72-entry Secret Guide: quiet vistas, hidden trails, parking moves, camping, the park after dark, and the programs worth booking.</li>
           </ul>
 

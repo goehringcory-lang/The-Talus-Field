@@ -664,15 +664,17 @@ main:focus { outline: none; }
 .prose table:not([class]) td { border-bottom: 1px solid var(--hp-rule); padding: 10px 12px 10px 0; vertical-align: top; }
 /* Phones: a table of five or more columns crushed into one-word lines ("stays /
    on the / branch"). It scrolls sideways inside the column at a readable cell
-   width instead; narrower tables keep the full-width layout. */
+   width instead; narrower tables keep the full-width layout. A table that
+   already sits in a scrolling wrapper (.fj-tablewrap, .table-scroll) is left
+   to it: a second scroller inside the first clipped its last columns. */
 @media (max-width: 640px) {
-  .prose table:not([class]):has(th:nth-child(5)) { display: block; overflow-x: auto; -webkit-overflow-scrolling: touch; }
-  .prose table:not([class]):has(th:nth-child(5)) td,
-  .prose table:not([class]):has(th:nth-child(5)) th { min-width: 9em; }
-  .prose table:not([class]):has(th:nth-child(5)) td:first-child,
-  .prose table:not([class]):has(th:nth-child(5)) th:first-child { min-width: 6em; }
-  .prose table:not([class]):has(th:nth-child(5)) td:last-child,
-  .prose table:not([class]):has(th:nth-child(5)) th:last-child { min-width: 12em; }
+  .prose table:not([class]):has(th:nth-child(5)):not(:is(.fj-tablewrap, .table-scroll) > table) { display: block; overflow-x: auto; -webkit-overflow-scrolling: touch; }
+  .prose table:not([class]):has(th:nth-child(5)):not(:is(.fj-tablewrap, .table-scroll) > table) td,
+  .prose table:not([class]):has(th:nth-child(5)):not(:is(.fj-tablewrap, .table-scroll) > table) th { min-width: 9em; }
+  .prose table:not([class]):has(th:nth-child(5)):not(:is(.fj-tablewrap, .table-scroll) > table) td:first-child,
+  .prose table:not([class]):has(th:nth-child(5)):not(:is(.fj-tablewrap, .table-scroll) > table) th:first-child { min-width: 6em; }
+  .prose table:not([class]):has(th:nth-child(5)):not(:is(.fj-tablewrap, .table-scroll) > table) td:last-child,
+  .prose table:not([class]):has(th:nth-child(5)):not(:is(.fj-tablewrap, .table-scroll) > table) th:last-child { min-width: 12em; }
 }
 .prose .dropcap::first-letter, #prerender-prose .dropcap::first-letter {
   font-family: var(--serif);
@@ -6829,6 +6831,12 @@ kbd {
    2026 polish pass counted a dozen such orphans in the /articles card titles
    alone. `balance` would reshape the hero's hand-broken lines; this does not. */
 :where(.hp-design) h1, :where(.hp-design) h2, :where(.hp-design) h3 { text-wrap: pretty; }
+/* Page titles balance: a short h1 ("Send me a note.") kept a lone word on its
+   second line, which `pretty` leaves alone on a two-line heading. Card and
+   list titles that are not heading elements get `pretty` too. All at zero
+   specificity, so a component's own text-wrap still wins. */
+:where(.hp-design) h1 { text-wrap: balance; }
+:where(.hp-design) :is([class*="__title"], [class*="-title"], [class*="__name"], [class*="__head"] strong, dt) { text-wrap: pretty; }
 :where(.hp-design) a:hover { color: inherit; }
 .hp-design a.hp-button:hover { color: var(--hp-on-accent); }
 .hp-design a.hp-light:hover { color: var(--hp-ink); }
@@ -7764,6 +7772,10 @@ html[data-nav-mode="pinned"] { scroll-padding-top: 62px; }
 .kit-check__note { font-size: 12px; line-height: 1.7; color: var(--hp-muted); }
 .kit-check__box { accent-color: var(--hp-accent); }
 .kit-check--callout { background: var(--hp-card); border: 1px solid var(--hp-rule); border-radius: 3px; }
+/* The box hangs into the gutter by its own padding and border, so its
+   checkbox and name line up with the plain rows above and below (they sat
+   17px further right). */
+.kit-check--callout { margin-inline: -17px; }
 .kit-check__link, .kit-check__article { color: var(--hp-ink); border-bottom-color: #a7afa4; letter-spacing: normal; text-transform: none; }
 .kit-check__link:hover, .kit-check__article:hover { color: var(--hp-accent); border-bottom-color: var(--hp-accent); }
 
@@ -9197,7 +9209,7 @@ html[data-nav-mode="pinned"] { scroll-padding-top: 62px; }
 .ff-cover__credit { position: absolute; right: 16px; bottom: 10px; margin: 0; font: 10px var(--sans); color: rgba(247, 241, 225, 0.72); text-shadow: 0 1px 3px rgba(0, 0, 0, 0.6); }
 
 .ff-facts { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); margin: 0; border-bottom: 1px solid var(--hp-rule); }
-.ff-facts > div { display: grid; grid-template-columns: auto 1fr; column-gap: 12px; padding: 22px 24px 22px 0; }
+.ff-facts > div { display: grid; grid-template-columns: auto 1fr; column-gap: 12px; align-content: start; padding: 22px 24px 22px 0; }
 .ff-facts > div + div { padding-left: 24px; border-left: 1px solid var(--hp-rule); }
 .ff-facts .ff-icon { grid-row: span 2; color: var(--hp-accent); margin-top: 2px; }
 .ff-facts dt { font: 600 10px var(--sans); letter-spacing: 1.6px; text-transform: uppercase; color: var(--hp-muted); }
@@ -9271,7 +9283,7 @@ html[data-nav-mode="pinned"] { scroll-padding-top: 62px; }
 
 /* Is it on tonight? */
 .ff-conditions { margin: 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); border: 1px solid var(--hp-rule); border-radius: 4px; background: var(--hp-card); }
-.ff-conditions > div { display: grid; justify-items: center; text-align: center; gap: 6px; padding: 18px 10px; }
+.ff-conditions > div { display: grid; justify-items: center; align-content: start; text-align: center; gap: 6px; padding: 18px 10px; }
 .ff-conditions > div + div { border-left: 1px solid var(--hp-rule); }
 .ff-conditions .ff-icon { color: var(--hp-accent); }
 .ff-conditions dt { font: 19px var(--serif); color: var(--hp-ink); }
@@ -9357,6 +9369,17 @@ html[data-nav-mode="pinned"] { scroll-padding-top: 62px; }
   .npsmap__frame img, .npsmap__frame svg { min-width: 620px; }
   .npsmap__frame svg { width: 620px; }
   .npsmap figcaption { padding-inline: 20px; }
+}
+/* Below 640px the 620px map scrolls sideways inside its frame, and a reader
+   saw a key listing pins the screen did not show (/firefall, /tioga-opening,
+   /fall-color). The caption says the map moves. */
+@media (max-width: 640px) {
+  .npsmap figcaption::before {
+    content: "Swipe the map sideways to see every pin.";
+    flex-basis: 100%;
+    font-size: 12px;
+    color: var(--hp-muted);
+  }
 }
 
 .ff-rules { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 20px; }
@@ -11526,7 +11549,8 @@ html[data-nav-mode="pinned"] { scroll-padding-top: 62px; }
 .ps-seg { position: absolute; top: 0; bottom: 0; display: flex; align-items: center; justify-content: center; overflow: hidden; white-space: nowrap; font: 600 10px var(--sans); letter-spacing: 1px; text-transform: uppercase; }
 .ps-seg--quiet { background: var(--hp-ink); color: var(--hp-gold); }
 .ps-seg--gen { background: var(--hp-gold); color: var(--hp-ink); }
-.ps-seg--check { top: -16px; bottom: -16px; width: 0; border-left: 2px dashed var(--hp-accent); }
+/* Extends above the bar only: below it ran through the "Noon" tick label. */
+.ps-seg--check { top: -16px; bottom: 0; width: 0; border-left: 2px dashed var(--hp-accent); }
 .ps-clock__ticks { position: relative; height: 22px; font: 11px var(--sans); color: var(--hp-muted); }
 .ps-clock__ticks span { position: absolute; top: 6px; transform: translateX(-50%); }
 .ps-clock__ticks span:first-child { transform: none; }
@@ -12978,6 +13002,12 @@ html[data-nav-mode="pinned"] { scroll-padding-top: 62px; }
 .fcol-else p { margin: 4px 0 0; font: 14px/1.55 var(--sans); color: var(--ink-2); }
 .fcol-towns { margin-top: 8px; }
 .fcol-towns .ff-town { grid-template-columns: minmax(0, 1fr) minmax(0, 1.6fr) auto; }
+/* This override is more specific than the shared phone rule that stacks a
+   town row, so /fall-color kept three columns on a phone and set "Fish Camp /
+   and / Oakhurst" one word a line. It stacks at the same width. */
+@media (max-width: 760px) {
+  .fcol-towns .ff-town { grid-template-columns: 1fr; gap: 10px; }
+}
 @media (max-width: 1100px) {
   .fcol-trees { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 }
@@ -13043,3 +13073,34 @@ html[data-nav-mode="pinned"] { scroll-padding-top: 62px; }
    the grid and the disclosure ran the full width, both near 200 characters
    a line. They keep a reading measure. */
 .stay-prop__text, .hp-stay__disclosure { max-width: 72ch; }
+
+/* Scroll shadows for the sideways scrollers (wide tables, the Half Dome
+   season strip). A soft shadow shows on whichever edge has more to scroll
+   to and is covered once the reader reaches that end: the covers scroll
+   with the content (background-attachment: local), the shadows stay put.
+   Reviewers read a clipped last column as broken; this says "there is
+   more". The covers paint --scroll-bg, so each context names its ground. */
+.fj-tablewrap, .table-scroll, .hd-season,
+.prose table:not([class]):has(th:nth-child(5)):not(:is(.fj-tablewrap, .table-scroll) > table) {
+  --scroll-bg: var(--hp-paper);
+  background:
+    linear-gradient(to right, var(--scroll-bg) 30%, transparent) left center / 40px 100% no-repeat local,
+    linear-gradient(to left, var(--scroll-bg) 30%, transparent) right center / 40px 100% no-repeat local,
+    radial-gradient(farthest-side at 0 50%, rgb(35 62 53 / 18%), transparent) left center / 14px 100% no-repeat scroll,
+    radial-gradient(farthest-side at 100% 50%, rgb(35 62 53 / 18%), transparent) right center / 14px 100% no-repeat scroll;
+  background-color: var(--scroll-bg);
+}
+.hd-season { --scroll-bg: var(--hp-card); }
+.ff-band .fj-tablewrap { --scroll-bg: var(--ff-tint); }
+
+/* Two notes that are sentences, not bylines: /kit's affiliate disclosure and
+   /checklist's print tip borrowed .hp-byline and rendered at 8px on a phone.
+   They read at the page's small-print size instead. */
+.hp-design .kit__aff-note, .hp-design .hp-checklist__tip { font-size: 12px; line-height: 1.6; }
+
+/* /films on a phone: the subject head is a wrapping flex row, so the episode
+   range sat beside a short note and under a long one, differently on every
+   subject. It always stacks under the note at this width. */
+@media (max-width: 760px) {
+  .hp-films__themehead { flex-direction: column; align-items: flex-start; gap: 6px; }
+}

@@ -61,12 +61,12 @@ function FzCreekMap() {
 
 // The record. Past fact, and the page's only dated copy.
 const FZ_RECORD = [
-  ["1932", "The first photographs", "Ralph H. Anderson photographs frazil ice at the base of Lower Yosemite Fall on April 21. The park's photo archive still holds the prints.", "https://npgallery.nps.gov/AssetDetail/b70a2c29395c49b8b3db8ff59cd7e056", "The photograph ↗"],
+  ["1932", "The first photographs", "Ralph H. Anderson photographs frazil ice at the base of Lower Yosemite Fall on April 21. The park's photo archive still holds the prints.", "https://npgallery.nps.gov/AssetDetail/b70a2c29395c49b8b3db8ff59cd7e056", "The photograph ↗"],
   ["1953", "The creek leaves its bed", "April 10, after a warm spell and three nights in the twenties. By noon the jammed ice had lifted Yosemite Creek out of its channel and sent it across the highway toward the lodge cottages. A footbridge was lifted off its foundations; crews used a dragline, a fire pump and, by one account, explosives. A worker who tried to cross on snowshoes sank in and was pulled out; a deer was found drowned.", "/archive/1954/vol-33-no-4/", "Read the issue"],
   ["1954", "A bridge disappears", "In March the ice engulfed the footbridge near Lower Yosemite Fall so completely that no part of it showed. The park naturalist logged the temperatures: the forties while the falls rose, then 20 degrees on the day the flow peaked.", "/archive/1954/vol-33-no-4/", "Read the issue"],
-  ["1961", "More than 20 feet deep", "Nature Notes reports the ice along Yosemite Creek has at times stood more than 20 feet deep, that trails must be reopened with snow equipment, and that the banks can hold it for weeks.", "http://www.yosemite.ca.us/library/yosemite_nature_notes/40/40-2.pdf", "The issue ↗"],
-  ["2009 to 2010", "The film", "Producer Steven M. Bumgardner counts about seven events on Yosemite Creek in 2009, mostly in April, and 20 or 30 in 2010, in April, May and even early June, and makes Yosemite Nature Notes episode 9.", "https://www.nps.gov/yose/planyourvisit/frazilice.htm", "The NPS page ↗"],
-  ["2017 and 2023", "Closed trails", "In early 2017 the slush flooded the Lower Yosemite Fall Trail and it closed, as reported by the San Francisco Chronicle. In January 2023 rangers posted video of ice over the bridge and trail and closed the area until it melted.", "https://www.advnture.com/news/video-shows-dangerous-lava-like-frazil-ice-at-yosemite-national-park", "The report ↗"],
+  ["1961", "More than 20 feet deep", "Nature Notes reports the ice along Yosemite Creek has at times stood more than 20 feet deep, that trails must be reopened with snow equipment, and that the banks can hold it for weeks.", "http://www.yosemite.ca.us/library/yosemite_nature_notes/40/40-2.pdf", "The issue ↗"],
+  ["2009 to 2010", "The film", "Producer Steven M. Bumgardner counts about seven events on Yosemite Creek in 2009, mostly in April, and 20 or 30 in 2010, in April, May and even early June, and makes Yosemite Nature Notes episode 9.", "https://www.nps.gov/yose/planyourvisit/frazilice.htm", "The NPS page ↗"],
+  ["2017 and 2023", "Closed trails", "In early 2017 the slush flooded the Lower Yosemite Fall Trail and it closed, as reported by the San Francisco Chronicle. In January 2023 rangers posted video of ice over the bridge and trail and closed the area until it melted.", "https://www.advnture.com/news/video-shows-dangerous-lava-like-frazil-ice-at-yosemite-national-park", "The report ↗"],
 ];
 
 // Mirrored in edge/seo.js's "/frazil-ice" faq (the JSON-LD). Change both.
@@ -201,9 +201,9 @@ function FrazilIcePage({ go }) {
         <div className="ff-sources">
           <h3>Sources to keep open</h3>
           <ul>
-            <li><a href="https://www.nps.gov/yose/planyourvisit/frazilice.htm" target="_blank" rel="noopener noreferrer"><strong>NPS: Frazil ice ↗</strong><span>The park's own page on it</span></a></li>
-            <li><a href="https://forecast.weather.gov/MapClick.php?lat=37.7456&lon=-119.5936" target="_blank" rel="noopener noreferrer"><strong>NWS point forecast, Yosemite Valley ↗</strong><span>The overnight low is the number that matters</span></a></li>
-            <li><a href="https://www.nps.gov/yose/planyourvisit/conditions.htm" target="_blank" rel="noopener noreferrer"><strong>NPS current conditions ↗</strong><span>Trail and road closures, including Lower Yosemite Fall</span></a></li>
+            <li><a href="https://www.nps.gov/yose/planyourvisit/frazilice.htm" target="_blank" rel="noopener noreferrer"><strong>NPS: Frazil ice ↗</strong><span>The park's own page on it</span></a></li>
+            <li><a href="https://forecast.weather.gov/MapClick.php?lat=37.7456&lon=-119.5936" target="_blank" rel="noopener noreferrer"><strong>NWS point forecast, Yosemite Valley ↗</strong><span>The overnight low is the number that matters</span></a></li>
+            <li><a href="https://www.nps.gov/yose/planyourvisit/conditions.htm" target="_blank" rel="noopener noreferrer"><strong>NPS current conditions ↗</strong><span>Trail and road closures, including Lower Yosemite Fall</span></a></li>
           </ul>
           <p className="ff-note">Every live feed on one page: <HomeLink go={go} location="frazil_when" href="/conditions">the conditions board</HomeLink>.</p>
         </div>
@@ -262,7 +262,7 @@ function FrazilIcePage({ go }) {
             <p className="hp-eyebrow">BE THERE BY DAWN</p>
             <h3>Sleep close to the creek</h3>
             <p>The flow is usually over by 9 a.m. Yosemite Valley Lodge is beside the trailhead; outside the park, El Portal is 25 to 35 minutes away on the road that stays open all winter.</p>
-            <AvailabilityLink destination={elPortal.dest} list="page_frazil_ice" slug={elPortal.id} className="ff-book">Search El Portal lodging ↗</AvailabilityLink>
+            <AvailabilityLink destination={elPortal.dest} list="page_frazil_ice" slug={elPortal.id} className="ff-book">Search El Portal lodging ↗</AvailabilityLink>
             <p className="ff-disclosure fz-disclosure">Availability search on Expedia; we may earn a commission. <a href="/affiliate">Disclosure.</a></p>
           </div>
         </div>

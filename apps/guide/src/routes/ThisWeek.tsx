@@ -40,6 +40,16 @@ function addDays(dateIso: string, n: number): string {
   return d.toISOString().slice(0, 10)
 }
 
+// "Oct 25", the way the rest of the page writes a date (it printed "10/25"
+// and "11/08" beside "Oct 15 to Nov 7").
+function monthDay(dateIso: string): string {
+  return new Date(`${dateIso}T12:00:00Z`).toLocaleDateString('en-US', {
+    month: 'short',
+    day: 'numeric',
+    timeZone: 'UTC',
+  })
+}
+
 export default function ThisWeek() {
   const today = todayIso()
   const end = addDays(today, WINDOW_DAYS - 1)
@@ -144,8 +154,7 @@ export default function ThisWeek() {
               ? `A ${moon.phaseName} tonight`
               : `${moon.phaseName[0].toUpperCase()}${moon.phaseName.slice(1)} tonight`}
             , about {Math.round(moon.illumination * 100)}% lit. Next full moon{' '}
-            {moon.nextFull.dateIso.slice(5).replace('-', '/')}, next new moon{' '}
-            {moon.nextNew.dateIso.slice(5).replace('-', '/')}.
+            {monthDay(moon.nextFull.dateIso)}, next new moon {monthDay(moon.nextNew.dateIso)}.
           </p>
           <Link to="/night" className="more-link">
             The night sky page: dark spots, the moon, what's up →

@@ -207,7 +207,7 @@ window.ARTICLE_BODIES["where-to-stay-in-yosemite"] = function WhereToStayInYosem
               <li>An occasion: the Ahwahnee.</li>
               <li>A high-country trip: Tuolumne Meadows Lodge, in summer.</li>
             </ul>
-            <a className="eat-short__link" href={TY} target="_blank" rel="noopener noreferrer">Check in-park rooms at Travel Yosemite ↗</a>
+            <a className="eat-short__link" href={TY} target="_blank" rel="noopener noreferrer">Check in-park rooms at Travel Yosemite ↗</a>
           </aside>
         </div>
       </section>
@@ -406,7 +406,7 @@ window.ARTICLE_BODIES["where-to-stay-in-yosemite"] = function WhereToStayInYosem
                 Two caveats. The camps do not all open: in 2025 only Glen Aulin, May Lake and Sunrise operated, and Vogelsang and Merced Lake stayed closed. And they go by <strong>lottery</strong>, not by the 366-day window. The 2026 season, July 3 to September 9, is sold out; the concessioner says the 2027 lottery opens in fall 2026. Winners are told by email and have seven days to pay. If you want a backcountry night and lose, <a href="/articles/yosemite-wilderness-permits-guide">a wilderness permit</a> and your own tent is the other way in.
               </p>
             </div>
-            <a className="ff-ghost wts-ghost" href="https://www.travelyosemite.com/lodging/high-sierra-camps/high-sierra-camp-lottery" target="_blank" rel="noopener noreferrer">The High Sierra Camp lottery ↗</a>
+            <a className="ff-ghost wts-ghost" href="https://www.travelyosemite.com/lodging/high-sierra-camps/high-sierra-camp-lottery" target="_blank" rel="noopener noreferrer">The High Sierra Camp lottery ↗</a>
           </div>
         </div>
       </section>
@@ -448,13 +448,13 @@ window.ARTICLE_BODIES["where-to-stay-in-yosemite"] = function WhereToStayInYosem
                 <div><dt>Results</dt><dd>By October 23; payment due December 1</dd></div>
                 <div><dt>Leftovers</dt><dd>First come, from 9 a.m. December 1, 2026</dd></div>
               </dl>
-              <a className="ff-ghost" href="https://yosemite.org/experience/ostrander-ski-hut/" target="_blank" rel="noopener noreferrer">Ostrander at Yosemite Conservancy ↗</a>
+              <a className="ff-ghost" href="https://yosemite.org/experience/ostrander-ski-hut/" target="_blank" rel="noopener noreferrer">Ostrander at Yosemite Conservancy ↗</a>
             </article>
             <article className="ff-inpark">
               <p className="hp-eyebrow">THE CONCESSIONER · GUIDED</p>
               <h3>Glacier Point Ski Hut</h3>
               <p>A guided overnight: a 10.5-mile ski in to a hut that sleeps up to 20, minimum age 14 with an adult. It did not open for the 2025 to 2026 season because it had no power, and nothing has been announced for this winter.</p>
-              <a className="ff-ghost" href="https://www.travelyosemite.com/lodging/glacier-point-ski-hut/" target="_blank" rel="noopener noreferrer">Glacier Point Ski Hut ↗</a>
+              <a className="ff-ghost" href="https://www.travelyosemite.com/lodging/glacier-point-ski-hut/" target="_blank" rel="noopener noreferrer">Glacier Point Ski Hut ↗</a>
             </article>
           </div>
           <p className="ff-note">Both routes run through the Glacier Point Road area. Check the park's <a href="https://www.nps.gov/yose/learn/management/closures.htm" target="_blank" rel="noopener noreferrer">closures page</a> before you apply and again before you go.</p>

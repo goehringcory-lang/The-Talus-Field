@@ -347,7 +347,7 @@ window.ARTICLE_BODIES["where-to-eat-yosemite"] = function WhereToEatYosemiteBody
               <li>Staying in Yosemite West: shop before you arrive. There is nothing there.</li>
               <li>Every other lunch: a sandwich on a granite slab by the river.</li>
             </ul>
-            <a className="eat-short__link" href="/now">What's open this edition, on the Park Bulletin ↗</a>
+            <a className="eat-short__link" href="/now">What's open this edition, on the Park Bulletin ↗</a>
           </aside>
         </div>
       </section>

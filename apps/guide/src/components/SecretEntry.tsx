@@ -38,6 +38,7 @@ import StopActions from './StopActions'
 import { PHOTO_TIMING_LABEL, lightClock } from '../lib/photoLight'
 import { folioLabel } from '../lib/secretGuide'
 import { CalloutMarkdown } from './StopCard'
+import { glueNumbers } from '../utils/text'
 import { SgFacts, SgIcon, SgMiniTile, type SgFact } from './SecretGuideParts'
 
 // Four: two rows of two on a phone, one row on a wide screen, no hole.
@@ -219,7 +220,7 @@ export default function SecretEntry({ stop, prev, next, children, notices }: Pro
 
         <div className="sg-entry__body">
           <div className="prose prose--dropcap">
-            <ReactMarkdown>{stop.body}</ReactMarkdown>
+            <ReactMarkdown>{glueNumbers(stop.body)}</ReactMarkdown>
           </div>
 
           {stop.hazard && (

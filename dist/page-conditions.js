@@ -365,7 +365,7 @@ function ConditionsPage({
     title: "Entrance waits",
     link: {
       href: "/planning",
-      label: "Why the mornings matter ↗"
+      label: "Why the mornings matter ↗"
     }
   }), React.createElement("p", {
     className: "hp-sub"
@@ -381,7 +381,7 @@ function ConditionsPage({
     title: "Webcams",
     link: {
       href: "/webcams",
-      label: "All cameras, and how to read them ↗"
+      label: "All cameras, and how to read them ↗"
     }
   }), React.createElement(WebcamStrip, {
     variant: "board"
@@ -394,7 +394,7 @@ function ConditionsPage({
     title: "Forecasts",
     link: {
       href: "https://www.weather.gov/hnx/",
-      label: "National Weather Service ↗"
+      label: "National Weather Service ↗"
     }
   }), React.createElement("p", {
     className: "hp-sub"
@@ -432,13 +432,13 @@ function ConditionsPage({
     href: "https://www.nps.gov/yose/planyourvisit/conditions.htm",
     target: "_blank",
     rel: "noopener noreferrer"
-  }, "NPS current conditions ↗"), React.createElement("span", null, "Road status, chain controls, trail closures, and campground status. The authoritative page.")), React.createElement("li", {
+  }, "NPS current conditions\xA0↗"), React.createElement("span", null, "Road status, chain controls, trail closures, and campground status. The authoritative page.")), React.createElement("li", {
     className: "conditions__row"
   }, React.createElement("a", {
     href: "https://www.nps.gov/yose/planyourvisit/guide.htm",
     target: "_blank",
     rel: "noopener noreferrer"
-  }, "The Yosemite Guide ↗"), React.createElement("span", null, "The park's own seasonal newspaper: shuttle maps, program schedules, hours."))), React.createElement("p", {
+  }, "The Yosemite Guide\xA0↗"), React.createElement("span", null, "The park's own seasonal newspaper: shuttle maps, program schedules, hours."))), React.createElement("p", {
     className: "cond-note"
   }, "For how conditions shape a plan, the", " ", React.createElement("a", {
     href: "/planning",
@@ -483,7 +483,7 @@ function ConditionsPage({
     blurb: "One email when Tioga Road, Glacier Point Road, or a highway into the park opens or closes, sent to the people who asked for it. Sunday Field Notes carries the rest of the week from inside the park.",
     location: "conditions",
     tag: "alert-roads",
-    cta: "Email me ↗",
+    cta: "Email me\xA0↗",
     terms: "Only when a road changes. Unsubscribe whenever.",
     stamp: "ROAD ALERTS",
     paper: React.createElement(React.Fragment, null, "Roads open.", React.createElement("br", null), "Roads close.", React.createElement("br", null), React.createElement("em", null, "You hear once."))

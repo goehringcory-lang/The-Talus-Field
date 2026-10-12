@@ -630,7 +630,7 @@ function ItinerariesPage({
     list: "page_itineraries",
     slug: "itineraries",
     className: "ff-book"
-  }, "See what is available on your dates ↗"), React.createElement("p", {
+  }, "See what is available on your dates\xA0↗"), React.createElement("p", {
     className: "ff-note"
   }, "Availability search on Expedia; we may earn a commission, and the advice is the same either way. ", React.createElement("a", {
     href: "/affiliate"

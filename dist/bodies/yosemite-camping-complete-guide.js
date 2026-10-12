@@ -259,7 +259,7 @@ window.ARTICLE_BODIES["yosemite-camping-complete-guide"] = function YosemiteCamp
     href: "https://www.recreation.gov",
     target: "_blank",
     rel: "noopener noreferrer"
-  }, "Recreation.gov, where every site books ↗")))), React.createElement("section", {
+  }, "Recreation.gov, where every site books\xA0↗")))), React.createElement("section", {
     className: "ff-band",
     id: "sec-0-yosemite-camping-reservations-the-realit",
     tabIndex: -1

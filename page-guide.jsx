@@ -1041,7 +1041,7 @@ function GuideMap3D() {
               if (window.track) window.track("guide_sample_click", { location: "guide_map3d" });
             }}
           >
-            Read the free sample ↗
+            Read the free sample ↗
           </a>
         </div>
       </div>
@@ -1309,7 +1309,7 @@ function GuideDayOne() {
               if (window.track) window.track("guide_sample_click", { location: "guide_day_one" });
             }}
           >
-            Read the free sample ↗
+            Read the free sample ↗
           </a>
         </div>
       </div>
@@ -1801,7 +1801,7 @@ function GuidePage({ go }) {
                 if (window.track) window.track("guide_sample_click", { location: "guide_hero" });
               }}
             >
-              Read five entries free ↗
+              Read five entries free ↗
             </a>{" "}
             No account needed.
           </p>

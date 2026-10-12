@@ -97,7 +97,7 @@ function MbNights() {
           </li>
         ))}
       </ol>
-      <p className="ff-note">Full-moon dates computed for Pacific time. Whether a night delivers depends on the water and the sky; nightly times by vantage point are published each spring at <a href="https://www.yosemitemoonbow.com/" target="_blank" rel="noopener noreferrer">yosemitemoonbow.com ↗</a>.</p>
+      <p className="ff-note">Full-moon dates computed for Pacific time. Whether a night delivers depends on the water and the sky; nightly times by vantage point are published each spring at <a href="https://www.yosemitemoonbow.com/" target="_blank" rel="noopener noreferrer">yosemitemoonbow.com ↗</a>.</p>
     </div>
   );
 }
@@ -208,7 +208,7 @@ const MB_FAQ = [
 function MbBook({ town, list, children }) {
   return (
     <AvailabilityLink destination={town.dest} list={list} slug={town.id} className="ff-book">
-      {children || "See spring availability ↗"}
+      {children || "See spring availability ↗"}
     </AvailabilityLink>
   );
 }
@@ -393,7 +393,7 @@ function MoonbowPage({ go }) {
                   <div><strong>{g.what}</strong><p>{g.why}</p></div>
                   <a className="ff-gear__link" href={gearHref(g.q)}
                     target="_blank" rel="sponsored noopener"
-                    data-aff-network="patagonia" data-aff-list="moonbow_gear" data-aff-item-slug={g.id} data-aff-name={g.what}>{g.label} ↗</a>
+                    data-aff-network="patagonia" data-aff-list="moonbow_gear" data-aff-item-slug={g.id} data-aff-name={g.what}>{g.label} ↗</a>
                 </li>
               ))}
             </ul>
@@ -423,7 +423,7 @@ function MoonbowPage({ go }) {
                 <MbBook town={t} list="moonbow_town" />
               </div>
             ))}
-            <p className="ff-note">The filled buttons search availability on Expedia; we may earn a commission. No link is to a specific property. <a href="/affiliate">How we handle affiliate links.</a> In-park rooms: <a href="https://www.travelyosemite.com/lodging/" target="_blank" rel="noopener noreferrer">Travel Yosemite ↗</a>. Every option compared: <HomeLink go={go} location="moonbow_stay" href="/stay">where to stay</HomeLink>.</p>
+            <p className="ff-note">The filled buttons search availability on Expedia; we may earn a commission. No link is to a specific property. <a href="/affiliate">How we handle affiliate links.</a> In-park rooms: <a href="https://www.travelyosemite.com/lodging/" target="_blank" rel="noopener noreferrer">Travel Yosemite ↗</a>. Every option compared: <HomeLink go={go} location="moonbow_stay" href="/stay">where to stay</HomeLink>.</p>
           </div>
         </div>
       </section>
@@ -433,7 +433,7 @@ function MoonbowPage({ go }) {
         <p className="ff-lede ff-lede--intro">The park's naturalists were writing up the lunar bow long before anyone published a timetable. Their conditions are the same ones on this page.</p>
         <ol className="ff-history">
           {MB_ARCHIVE.map(([year, title, text, href]) => (
-            <li key={year}><span>{year}</span><strong>{title}</strong><p>{text} <a href={href} {...(href.startsWith("http") ? { target: "_blank", rel: "noopener noreferrer" } : {})}>{href.startsWith("http") ? "The paper ↗" : "Read the issue"}</a></p></li>
+            <li key={year}><span>{year}</span><strong>{title}</strong><p>{text} <a href={href} {...(href.startsWith("http") ? { target: "_blank", rel: "noopener noreferrer" } : {})}>{href.startsWith("http") ? "The paper ↗" : "Read the issue"}</a></p></li>
           ))}
         </ol>
       </section>
@@ -448,7 +448,7 @@ function MoonbowPage({ go }) {
               <p className="hp-eyebrow">PLANNING A FULL-MOON TRIP?</p>
               <h3>Search El Portal first</h3>
               <p>The closest beds outside the park, 25 to 35 minutes from the Yosemite Falls lot on the road that stays open all year.</p>
-              <MbBook town={elPortal} list="page_moonbow">Search El Portal lodging ↗</MbBook>
+              <MbBook town={elPortal} list="page_moonbow">Search El Portal lodging ↗</MbBook>
             </div>
           </div>
           <div className="ff-faq">

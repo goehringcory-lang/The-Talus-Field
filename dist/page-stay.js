@@ -882,7 +882,7 @@ function StayHeadFigure({
     slug: season.id,
     name: season.name + " lodging search",
     className: "stay-now__link"
-  }, season.cta.replace(/\s*→$/, ""), " ↗")), React.createElement("figcaption", null, React.createElement("span", null, "Half Dome at alpenglow, from Glacier Point"), React.createElement("span", null, STAY_HERO.credit.replace(/^Photo:\s*/, ""))));
+  }, season.cta.replace(/\s*→$/, ""), "\xA0↗")), React.createElement("figcaption", null, React.createElement("span", null, "Half Dome at alpenglow, from Glacier Point"), React.createElement("span", null, STAY_HERO.credit.replace(/^Photo:\s*/, ""))));
 }
 function StayTrust() {
   return React.createElement("section", {
@@ -960,7 +960,7 @@ function StayTopPick({
     slug: item.id,
     name: item.fallback.town + " lodging search",
     className: "stay-fallback-link"
-  }, item.fallback.text, " ↗"), pick.tip && React.createElement("p", {
+  }, item.fallback.text, "\xA0↗"), pick.tip && React.createElement("p", {
     className: "stay-pick__tip"
   }, pick.tip)) : React.createElement(React.Fragment, null, React.createElement(BookButton, {
     destination: item.dest,
@@ -1254,7 +1254,7 @@ function StayCard({
     slug: item.id,
     name: item.fallback.town + " lodging search",
     className: "stay-fallback-link"
-  }, item.fallback.text, " ↗"), item.more && React.createElement("a", {
+  }, item.fallback.text, "\xA0↗"), item.more && React.createElement("a", {
     className: "stay-card__more",
     href: item.more
   }, "The longer version →"))));
@@ -1312,7 +1312,7 @@ function PropertyRow({
     slug: id,
     name: item.name + " · " + item.town + " lodging search",
     className: "stay-prop__avail"
-  }, "What ", item.town, " has on your dates ↗"));
+  }, "What ", item.town, " has on your dates\xA0↗"));
 }
 var GATEWAY_ARTICLE = "/articles/yosemite-gateway-towns-compared";
 var CORRIDOR_INTROS = {
@@ -1668,7 +1668,7 @@ function StayPage({
     list: "stay_camping_fallback",
     slug: "camping-fallback",
     name: "Mariposa lodging search"
-  }, "search Mariposa for a roof tonight ↗"))))), React.createElement("section", {
+  }, "search Mariposa for a roof tonight\xA0↗"))))), React.createElement("section", {
     className: "hp-wrap stay-section"
   }, React.createElement("aside", {
     className: "stay-closing",

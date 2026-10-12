@@ -194,7 +194,7 @@ function FfBook({
     list: list,
     slug: town.id,
     className: "ff-book"
-  }, children || "See February availability ↗");
+  }, children || "See February availability ↗");
 }
 function FfSunChart() {
   var W = 630,
@@ -375,7 +375,7 @@ function FirefallPage({
   }), " The short version"), React.createElement("ul", null, React.createElement("li", null, "Book a refundable room now."), React.createElement("li", null, "Plan for two or three evenings, not one."), React.createElement("li", null, "Weekdays over weekends, always."), React.createElement("li", null, "Stay on Highway 140 if you can: it gets rain when the others get snow.")), React.createElement(FfBook, {
     town: elPortal,
     list: "firefall_urgency"
-  }, "Check El Portal availability ↗"), React.createElement("p", {
+  }, "Check El Portal availability\xA0↗"), React.createElement("p", {
     className: "ff-disclosure"
   }, "Availability search on Expedia. We may earn a commission if you book, at no cost to you. ", React.createElement("a", {
     href: "/affiliate"
@@ -411,7 +411,7 @@ function FirefallPage({
     href: "https://www.travelyosemite.com/lodging/",
     target: "_blank",
     rel: "noopener noreferrer"
-  }, "Check in-park rooms at Travel Yosemite ↗"), React.createElement("p", {
+  }, "Check in-park rooms at Travel Yosemite\xA0↗"), React.createElement("p", {
     className: "ff-note"
   }, "In-park rooms book only through the park concessioner. In the last two weeks, check daily for cancellations.")), React.createElement("div", {
     className: "ff-towns"
@@ -491,13 +491,13 @@ function FirefallPage({
     href: h,
     target: "_blank",
     rel: "noopener noreferrer"
-  }, React.createElement("strong", null, t, " ↗"), React.createElement("span", null, d))))), React.createElement("p", {
+  }, React.createElement("strong", null, t, "\xA0↗"), React.createElement("span", null, d))))), React.createElement("p", {
     className: "ff-note"
   }, "No gauge measures Horsetail Fall. The USGS gauge on the Merced River at Pohono Bridge is a rough proxy for how much the Valley's walls are shedding: a rising line after a storm is a good sign. ", React.createElement("a", {
     href: "https://waterdata.usgs.gov/monitoring-location/11266500/",
     target: "_blank",
     rel: "noopener noreferrer"
-  }, "Merced River at Pohono Bridge ↗"), " Every live feed on one page: ", React.createElement(HomeLink, {
+  }, "Merced River at Pohono Bridge\xA0↗"), " Every live feed on one page: ", React.createElement(HomeLink, {
     go: go,
     location: "firefall_tonight",
     href: "/conditions"
@@ -627,7 +627,7 @@ function FirefallPage({
     "data-aff-list": "firefall_gear",
     "data-aff-item-slug": g.id,
     "data-aff-name": g.what
-  }, g.label, " ↗")))), React.createElement("p", {
+  }, g.label, "\xA0↗")))), React.createElement("p", {
     className: "ff-note"
   }, "Patagonia links are affiliate links; we may earn a commission. Any warm synthetic or down jacket does the same job. ", React.createElement("a", {
     href: "/affiliate"
@@ -688,7 +688,7 @@ function FirefallPage({
   }, "STILL NO ROOM?"), React.createElement("h3", null, "Search the whole Highway 140 corridor"), React.createElement("p", null, "El Portal, Midpines and Mariposa sit on the road that gets rain when the others get snow, and it is the corridor with year-round bus service into the park."), React.createElement(FfBook, {
     town: mariposa,
     list: "page_firefall"
-  }, "Search Highway 140 lodging ↗"))), React.createElement("div", {
+  }, "Search Highway 140 lodging\xA0↗"))), React.createElement("div", {
     className: "ff-faq"
   }, FF_FAQ.map(([q, a], i) => React.createElement("details", {
     key: q,

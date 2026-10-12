@@ -886,7 +886,7 @@ function StayHeadFigure({ season }) {
         <p className="stay-now__answer">{SEASON_ANSWERS[season.id]}</p>
         <p className="stay-now__line">{season.now}</p>
         <AvailabilityLink destination={season.dest} list="stay_season_now" slug={season.id} name={season.name + " lodging search"} className="stay-now__link">
-          {season.cta.replace(/\s*→$/, "")} ↗
+          {season.cta.replace(/\s*→$/, "")} ↗
         </AvailabilityLink>
       </div>
       <figcaption><span>Half Dome at alpenglow, from Glacier Point</span><span>{STAY_HERO.credit.replace(/^Photo:\s*/, "")}</span></figcaption>
@@ -952,7 +952,7 @@ function StayTopPick({ pick, index }) {
               <span className="stay-pick__fine">The park's concessioner · we earn nothing on it</span>
               {item.fallback && (
                 <AvailabilityLink destination={item.fallback.dest} list="stay_pick_fallback" slug={item.id} name={item.fallback.town + " lodging search"} className="stay-fallback-link">
-                  {item.fallback.text} ↗
+                  {item.fallback.text} ↗
                 </AvailabilityLink>
               )}
               {pick.tip && <p className="stay-pick__tip">{pick.tip}</p>}
@@ -1214,7 +1214,7 @@ function StayCard({ item, lead }) {
           )}
           {!item.closed && item.fallback && (
             <AvailabilityLink destination={item.fallback.dest} list="stay_in_park_card" slug={item.id} name={item.fallback.town + " lodging search"} className="stay-fallback-link">
-              {item.fallback.text} ↗
+              {item.fallback.text} ↗
             </AvailabilityLink>
           )}
           {item.more && <a className="stay-card__more" href={item.more}>The longer version →</a>}
@@ -1266,7 +1266,7 @@ function PropertyRow({ item, id }) {
         slug={id}
         name={item.name + " · " + item.town + " lodging search"}
         className="stay-prop__avail"
-      >What {item.town} has on your dates ↗</AvailabilityLink>
+      >What {item.town} has on your dates ↗</AvailabilityLink>
     </div>
   );
 }
@@ -1658,7 +1658,7 @@ function StayPage({ go }) {
                 list="stay_camping_fallback"
                 slug="camping-fallback"
                 name="Mariposa lodging search"
-              >search Mariposa for a roof tonight ↗</AvailabilityLink>
+              >search Mariposa for a roof tonight ↗</AvailabilityLink>
             </p>
           </div>
         </div>

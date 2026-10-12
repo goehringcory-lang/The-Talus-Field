@@ -953,14 +953,17 @@ function humanDate(date: string): string {
   return `${MONTHS[m - 1]} ${d}, ${y}`
 }
 
-// "Feb 10 to Feb 28, 2027" (same-year ranges drop the first year).
+// "Feb 10 to Feb 28, 2027" (same-year ranges drop the first year). On screen
+// only, so each date's own spaces are no-break: a range may wrap at "to",
+// never inside a date ("May 22 to Oct / 13, 2026" on /this-week).
 export function seasonalRangeLabel(ev: SeasonalEventT): string {
-  if (ev.dateEnd === ev.dateStart) return humanDate(ev.dateStart)
+  const glue = (label: string) => label.replace(/ /g, '\u00a0')
+  if (ev.dateEnd === ev.dateStart) return glue(humanDate(ev.dateStart))
   const sameYear = ev.dateStart.slice(0, 4) === ev.dateEnd.slice(0, 4)
   const startLabel = sameYear
     ? `${MONTHS[Number(ev.dateStart.slice(5, 7)) - 1]} ${Number(ev.dateStart.slice(8, 10))}`
     : humanDate(ev.dateStart)
-  return `${startLabel} to ${humanDate(ev.dateEnd)}`
+  return `${glue(startLabel)} to ${glue(humanDate(ev.dateEnd))}`
 }
 
 // Convert an almanac entry to a ProgramEvent pinned to a specific day, so it

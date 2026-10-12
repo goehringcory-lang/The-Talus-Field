@@ -335,7 +335,7 @@ window.ARTICLE_BODIES["where-to-eat-yosemite"] = function WhereToEatYosemiteBody
   }), " The short version"), React.createElement("ul", null, React.createElement("li", null, "After a hike: pizza on the Curry Village deck."), React.createElement("li", null, "A dinner to remember: the Mountain Room or The Ahwahnee. Book ahead."), React.createElement("li", null, "A Tioga Road day: pack lunch. Tuolumne closes in September."), React.createElement("li", null, "Staying in Yosemite West: shop before you arrive. There is nothing there."), React.createElement("li", null, "Every other lunch: a sandwich on a granite slab by the river.")), React.createElement("a", {
     className: "eat-short__link",
     href: "/now"
-  }, "What's open this edition, on the Park Bulletin ↗")))), React.createElement("section", {
+  }, "What's open this edition, on the Park Bulletin\xA0↗")))), React.createElement("section", {
     className: "ff-band",
     id: "sec-0-is-there-food-in-yosemite-national-park",
     tabIndex: -1

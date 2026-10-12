@@ -78,7 +78,7 @@ function MbNights() {
     href: "https://www.yosemitemoonbow.com/",
     target: "_blank",
     rel: "noopener noreferrer"
-  }, "yosemitemoonbow.com ↗"), "."));
+  }, "yosemitemoonbow.com\xA0↗"), "."));
 }
 function MbGeoPanel({
   x,
@@ -265,7 +265,7 @@ function MbBook({
     list: list,
     slug: town.id,
     className: "ff-book"
-  }, children || "See spring availability ↗");
+  }, children || "See spring availability ↗");
 }
 function MoonbowPage({
   go
@@ -499,7 +499,7 @@ function MoonbowPage({
     "data-aff-list": "moonbow_gear",
     "data-aff-item-slug": g.id,
     "data-aff-name": g.what
-  }, g.label, " ↗")))), React.createElement("p", {
+  }, g.label, "\xA0↗")))), React.createElement("p", {
     className: "ff-note"
   }, "Patagonia links are affiliate links; we may earn a commission. Any shell and warm layer do the same job. ", React.createElement("a", {
     href: "/affiliate"
@@ -541,7 +541,7 @@ function MoonbowPage({
     href: "https://www.travelyosemite.com/lodging/",
     target: "_blank",
     rel: "noopener noreferrer"
-  }, "Travel Yosemite ↗"), ". Every option compared: ", React.createElement(HomeLink, {
+  }, "Travel Yosemite\xA0↗"), ". Every option compared: ", React.createElement(HomeLink, {
     go: go,
     location: "moonbow_stay",
     href: "/stay"
@@ -564,7 +564,7 @@ function MoonbowPage({
       target: "_blank",
       rel: "noopener noreferrer"
     } : {})
-  }, href.startsWith("http") ? "The paper ↗" : "Read the issue")))))), React.createElement("section", {
+  }, href.startsWith("http") ? "The paper ↗" : "Read the issue")))))), React.createElement("section", {
     className: "ff-band",
     id: "moonbow-faq",
     tabIndex: -1
@@ -593,7 +593,7 @@ function MoonbowPage({
   }, "PLANNING A FULL-MOON TRIP?"), React.createElement("h3", null, "Search El Portal first"), React.createElement("p", null, "The closest beds outside the park, 25 to 35 minutes from the Yosemite Falls lot on the road that stays open all year."), React.createElement(MbBook, {
     town: elPortal,
     list: "page_moonbow"
-  }, "Search El Portal lodging ↗"))), React.createElement("div", {
+  }, "Search El Portal lodging\xA0↗"))), React.createElement("div", {
     className: "ff-faq"
   }, MB_FAQ.map(([q, a], i) => React.createElement("details", {
     key: q,

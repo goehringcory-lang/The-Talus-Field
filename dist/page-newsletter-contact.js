@@ -74,7 +74,7 @@ function NewsletterPage({
       e.preventDefault();
       go("privacy");
     }
-  }, "Privacy ↗"))));
+  }, "Privacy\xA0↗"))));
 }
 function ContactPage({
   go

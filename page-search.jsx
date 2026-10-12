@@ -441,7 +441,7 @@ function SearchPage({ go }) {
               type="search"
               value={query}
               autoComplete="off"
-              placeholder="Half Dome permits, firefall, when to see the falls…"
+              placeholder="Half Dome permits, firefall, the falls…"
               onChange={(e) => setQuery(e.target.value)}
               onKeyDown={onFieldKey}
               aria-keyshortcuts="/"

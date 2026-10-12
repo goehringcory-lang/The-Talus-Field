@@ -134,7 +134,7 @@ function FcValleyMap() {
 function FcBook({ town, list, children }) {
   return (
     <AvailabilityLink destination={town.dest} list={list} slug={town.id} className="ff-book">
-      {children || "See autumn availability ↗"}
+      {children || "See autumn availability ↗"}
     </AvailabilityLink>
   );
 }
@@ -205,7 +205,7 @@ function FallColorPage({ go }) {
               <li>Watch the overnight lows: a hard freeze ends it.</li>
               <li>Come for color and light, not waterfalls.</li>
             </ul>
-            <FcBook town={mariposa} list="fall_color_town">Check Highway 140 availability ↗</FcBook>
+            <FcBook town={mariposa} list="fall_color_town">Check Highway 140 availability ↗</FcBook>
             <p className="ff-disclosure">Availability search on Expedia. We may earn a commission if you book, at no cost to you. <a href="/affiliate">Disclosure.</a></p>
           </aside>
         </div>
@@ -299,7 +299,7 @@ function FallColorPage({ go }) {
             <h3>Sources to keep open</h3>
             <ul>
               {FC_SOURCES.map(([t, d, h]) => (
-                <li key={h}><a href={h} target="_blank" rel="noopener noreferrer"><strong>{t} ↗</strong><span>{d}</span></a></li>
+                <li key={h}><a href={h} target="_blank" rel="noopener noreferrer"><strong>{t} ↗</strong><span>{d}</span></a></li>
               ))}
             </ul>
             <p className="ff-note">Every live feed on one page: <HomeLink go={go} location="fall_color_week" href="/conditions">the conditions board</HomeLink>. The cameras and how to read them: <HomeLink go={go} location="fall_color_week" href="/webcams">the webcams</HomeLink>.</p>
@@ -333,7 +333,7 @@ function FallColorPage({ go }) {
                 <FcBook town={t} list="fall_color_town" />
               </div>
             ))}
-            <p className="ff-note">The filled buttons search availability on Expedia; we may earn a commission. No link is to a specific property. <a href="/affiliate">How we handle affiliate links.</a> In-park rooms: <a href="https://www.travelyosemite.com/lodging/" target="_blank" rel="noopener noreferrer">Travel Yosemite ↗</a>. Every option compared: <HomeLink go={go} location="fall_color_stay" href="/stay">where to stay</HomeLink>.</p>
+            <p className="ff-note">The filled buttons search availability on Expedia; we may earn a commission. No link is to a specific property. <a href="/affiliate">How we handle affiliate links.</a> In-park rooms: <a href="https://www.travelyosemite.com/lodging/" target="_blank" rel="noopener noreferrer">Travel Yosemite ↗</a>. Every option compared: <HomeLink go={go} location="fall_color_stay" href="/stay">where to stay</HomeLink>.</p>
           </div>
         </div>
       </section>
@@ -358,7 +358,7 @@ function FallColorPage({ go }) {
               <p className="hp-eyebrow">PLANNING THE TRIP?</p>
               <h3>Search the Highway 140 corridor</h3>
               <p>El Portal, Midpines and Mariposa sit on the road that stays open all winter, so a November storm does not end the trip.</p>
-              <FcBook town={mariposa} list="page_fall_color">Search Highway 140 lodging ↗</FcBook>
+              <FcBook town={mariposa} list="page_fall_color">Search Highway 140 lodging ↗</FcBook>
             </div>
           </div>
           <div className="ff-faq">

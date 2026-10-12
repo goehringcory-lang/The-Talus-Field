@@ -1529,3 +1529,13 @@ a.masthead-offline:hover { color: var(--ink); }
 
 /* The photo exists but this phone has none and no signal: say so plainly. */
 .photo-placeholder--offline span { text-align: center; line-height: 1.5; }
+
+/* A wrapping row of filter chips. Shared by /hikes, /hunts and /search; it
+   lived in Hikes.css, a lazy route stylesheet, so on /hunts and /search the
+   chips butted together until the reader had opened /hikes. */
+.hikes-chips {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-bottom: 20px;
+}

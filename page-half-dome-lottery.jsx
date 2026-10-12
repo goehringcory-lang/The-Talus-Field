@@ -391,9 +391,9 @@ function HalfDomeLotteryPage({ go }) {
               <p>Dates, fees, and any rule changes for the current season: <a href="https://www.nps.gov/yose/planyourvisit/hdpermits.htm" target="_blank" rel="noopener noreferrer">the NPS Half Dome permits page</a> and <a href="https://www.recreation.gov/permits/234652" target="_blank" rel="noopener noreferrer">the Recreation.gov lottery page</a>. The wilderness office answers permit questions at 209-372-0826, weekday mornings and afternoons in season. The week's park-wide picture is on <HomeLink go={go} location="half_dome_rules" href="/now">the Park Bulletin</HomeLink>.</p>
               <h3>Sources</h3>
               <ul>
-                <li><a href="https://www.nps.gov/yose/planyourvisit/hdpermits.htm" target="_blank" rel="noopener noreferrer">Half Dome Permits, NPS ↗</a></li>
-                <li><a href="https://www.recreation.gov/permits/234652" target="_blank" rel="noopener noreferrer">Half Dome Permits, Recreation.gov ↗</a></li>
-                <li><a href="https://www.nps.gov/yose/planyourvisit/hdpermitsapps.htm" target="_blank" rel="noopener noreferrer">Half Dome Permit Lottery Statistics, NPS ↗</a></li>
+                <li><a href="https://www.nps.gov/yose/planyourvisit/hdpermits.htm" target="_blank" rel="noopener noreferrer">Half Dome Permits, NPS ↗</a></li>
+                <li><a href="https://www.recreation.gov/permits/234652" target="_blank" rel="noopener noreferrer">Half Dome Permits, Recreation.gov ↗</a></li>
+                <li><a href="https://www.nps.gov/yose/planyourvisit/hdpermitsapps.htm" target="_blank" rel="noopener noreferrer">Half Dome Permit Lottery Statistics, NPS ↗</a></li>
               </ul>
             </aside>
             {/* A permit day is a pre-dawn start after a 14-to-16-hour day, which
@@ -403,7 +403,7 @@ function HalfDomeLotteryPage({ go }) {
             <aside className="ff-closing hd-stay" aria-label="Lodging availability">
               <p className="hp-eyebrow">THE NIGHT BEFORE, AND THE NIGHT AFTER</p>
               <p>The hike wants a pre-dawn start and gives back a fourteen-to-sixteen-hour day. Driving in from Oakhurst at 3 a.m. and back out at 10 p.m. is how a permit gets wasted. A bed in the Valley or in El Portal is the difference, and the permit date is known far enough ahead to book one.</p>
-              <AvailabilityLink destination="Yosemite National Park" list="page_half_dome" slug="half-dome-lottery" className="ff-book">Search lodging near the trailhead ↗</AvailabilityLink>
+              <AvailabilityLink destination="Yosemite National Park" list="page_half_dome" slug="half-dome-lottery" className="ff-book">Search lodging near the trailhead ↗</AvailabilityLink>
               <p className="ff-note">Availability search on Expedia; we may earn a commission, and the advice is the same either way. <a href="/affiliate">Disclosure.</a> Every option compared: <HomeLink go={go} location="half_dome_stay" href="/stay">where to stay</HomeLink>.</p>
             </aside>
           </div>

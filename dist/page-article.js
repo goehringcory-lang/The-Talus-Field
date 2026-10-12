@@ -590,7 +590,7 @@ function ArticlePage({
       e.preventDefault();
       go("about");
     }
-  }, "Read how recommendations get made ↗"))), React.createElement(ShareRow, {
+  }, "Read how recommendations get made\xA0↗"))), React.createElement(ShareRow, {
     title: article.title,
     slug: slug
   })))), tripIntent && React.createElement(HpGuideBand, {
@@ -608,10 +608,10 @@ function ArticlePage({
     title: relatedSameCat ? `More from ${cat.label}` : "Keep reading",
     link: relatedSameCat ? {
       href: `/section/${cat.slug}`,
-      label: `All in ${cat.label} ↗`
+      label: `All in ${cat.label} ↗`
     } : {
       href: "/articles",
-      label: "All entries ↗"
+      label: "All entries ↗"
     }
   }), React.createElement("ul", {
     className: "relrail"

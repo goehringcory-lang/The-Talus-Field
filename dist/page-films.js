@@ -334,12 +334,12 @@ function FilmsPage({
     href: nn.series.npsUrl,
     target: "_blank",
     rel: "noopener noreferrer"
-  }, "The originals at nps.gov ↗"), React.createElement("a", {
+  }, "The originals at nps.gov\xA0↗"), React.createElement("a", {
     className: "hp-link",
     href: nn.series.playlistUrl,
     target: "_blank",
     rel: "noopener noreferrer"
-  }, "The park's YouTube channel ↗"))), React.createElement("a", {
+  }, "The park's YouTube channel\xA0↗"))), React.createElement("a", {
     className: "hp-films__archive",
     href: "/archive/"
   }, React.createElement("span", null, React.createElement("span", {

@@ -287,7 +287,7 @@ function PgStaySearch() {
         data-aff-list="planning_search"
         data-aff-item-slug={row.id}
         data-aff-name={row.dest + " lodging search"}
-      >Search stays on Expedia ↗</a>
+      >Search stays on Expedia ↗</a>
     </form>
   );
 }
@@ -505,7 +505,7 @@ function PlanningGuide({ go }) {
             <div className="pg-month__note">
               <p className="pg-eyebrow pg-eyebrow--gold">{sel.name} in Yosemite</p>
               <p className="pg-month__lede">{sel.note}</p>
-              <a href={`/articles/${sel.read}`}>Read the {sel.name} guide ↗</a>
+              <a href={`/articles/${sel.read}`}>Read the {sel.name} guide ↗</a>
             </div>
             <div className="pg-road">
               <p className="pg-kicker">Glacier Point Road</p>
@@ -612,7 +612,7 @@ function PlanningGuide({ go }) {
                   <p className="pg-town__drive">{t.drive}</p>
                   <p className="pg-town__line">{t.line}</p>
                   <AvailabilityLink destination={t.dest} list="planning_town" slug={t.id} name={t.name + " lodging search"} className="pg-btn pg-btn--accent pg-town__go">
-                    Search {t.name} ↗
+                    Search {t.name} ↗
                   </AvailabilityLink>
                 </div>
               </article>
@@ -633,11 +633,11 @@ function PlanningGuide({ go }) {
               <div key={p.name} className="pg-inpark__row">
                 <div><p className="pg-inpark__badge">{p.badge}</p><p className="pg-inpark__name">{p.name}</p></div>
                 <p className="pg-inpark__line">{p.line}</p>
-                <a className="pg-btn pg-btn--ghost" href={PG_TRAVEL_YOSEMITE} target="_blank" rel="noopener noreferrer">Check dates ↗</a>
+                <a className="pg-btn pg-btn--ghost" href={PG_TRAVEL_YOSEMITE} target="_blank" rel="noopener noreferrer">Check dates ↗</a>
               </div>
             ))}
             <div className="pg-inpark__foot">
-              <p>Gone for your dates? Mariposa and El Portal hold the most rooms within an hour. <AvailabilityLink destination="Mariposa, California" list="planning_in_park" slug="mariposa" name="Mariposa lodging search">Search them ↗</AvailabilityLink></p>
+              <p>Gone for your dates? Mariposa and El Portal hold the most rooms within an hour. <AvailabilityLink destination="Mariposa, California" list="planning_in_park" slug="mariposa" name="Mariposa lodging search">Search them ↗</AvailabilityLink></p>
               <a href="/stay" onClick={(e) => { if (e.button !== 0 || e.metaKey || e.ctrlKey) return; e.preventDefault(); go("stay"); }}>The full lodging board →</a>
             </div>
           </div>
@@ -739,8 +739,8 @@ function PlanningGuide({ go }) {
               <li><span>◎</span><div><strong>Know what's on tonight.</strong><p>Ranger walks, talks and campfire programs, filtered to your day and area.</p></div></li>
             </ul>
             <div className="pg-actions">
-              <HomeLink go={go} location="planning_hub" className="pg-btn pg-btn--light pg-btn--big" href="/guide">Get the Field Guide &nbsp;<span className="pg-price">{GUIDE_TERMS.price} ↗</span></HomeLink>
-              <a className="pg-guide__sample" href={`${GUIDE_PROMO_APP_BASE}/preview`} onClick={() => { if (window.track) window.track("guide_sample_click", { location: "planning_hub" }); }}>Read five entries free ↗</a>
+              <HomeLink go={go} location="planning_hub" className="pg-btn pg-btn--light pg-btn--big" href="/guide">Get the Field Guide &nbsp;<span className="pg-price">{GUIDE_TERMS.price} ↗</span></HomeLink>
+              <a className="pg-guide__sample" href={`${GUIDE_PROMO_APP_BASE}/preview`} onClick={() => { if (window.track) window.track("guide_sample_click", { location: "planning_hub" }); }}>Read five entries free ↗</a>
             </div>
             <p className="pg-guide__terms">{GUIDE_TERMS.short} · {GUIDE_TERMS.refundShort} · works offline</p>
           </div>

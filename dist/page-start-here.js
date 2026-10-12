@@ -249,12 +249,12 @@ function StartPlacesMap({
     href: START_NPS_MAP.source,
     target: "_blank",
     rel: "noopener noreferrer"
-  }, "The full-size map at nps.gov ↗"), React.createElement(HomeLink, {
+  }, "The full-size map at nps.gov\xA0↗"), React.createElement(HomeLink, {
     go: go,
     location: START_LOCATION,
     className: "hp-link",
     href: "/map"
-  }, "Build your own route on the trip map ↗"))));
+  }, "Build your own route on the trip map\xA0↗"))));
 }
 function StartPlace({
   place,
@@ -300,7 +300,7 @@ function StartPlace({
     location: START_LOCATION,
     className: "hp-link",
     href: place.link.href
-  }, place.link.label, " ↗")));
+  }, place.link.label, "\xA0↗")));
 }
 function StartPlan({
   plan,
@@ -352,7 +352,7 @@ function StartPlan({
     location: START_LOCATION,
     className: "hp-link",
     href: guide.href
-  }, guide.label, " ↗"));
+  }, guide.label, "\xA0↗"));
 }
 function StartHerePage({
   go
@@ -499,7 +499,7 @@ function StartHerePage({
     location: START_LOCATION,
     className: "hp-link",
     href: "/itineraries"
-  }, "Every plan, the half day included ↗")))), articles.length > 0 && React.createElement("section", {
+  }, "Every plan, the half day included\xA0↗")))), articles.length > 0 && React.createElement("section", {
     className: "hp-wrap start-section",
     id: "reading",
     tabIndex: -1,
@@ -521,7 +521,7 @@ function StartHerePage({
     alt: a.alt,
     eyebrow: React.createElement(React.Fragment, null, a.eyebrow, React.createElement("span", null, a.meta)),
     title: a.title,
-    text: React.createElement(React.Fragment, null, a.dek, " ↗"),
+    text: React.createElement(React.Fragment, null, a.dek, "\xA0↗"),
     sizes: "(max-width: 760px) calc(100vw - 40px), (max-width: 1100px) 45vw, 420px"
   }) : React.createElement(HpArticleCard, {
     key: a.slug,
@@ -537,7 +537,7 @@ function StartHerePage({
     location: START_LOCATION,
     className: "hp-link",
     href: l.href
-  }, l.label, " ↗")))), React.createElement("section", {
+  }, l.label, "\xA0↗")))), React.createElement("section", {
     className: "hp-wrap start-section",
     id: "answers",
     tabIndex: -1,
@@ -560,7 +560,7 @@ function StartHerePage({
     location: START_LOCATION,
     className: "hp-link",
     href: a.link.href
-  }, a.link.label, " ↗")))), React.createElement("div", {
+  }, a.link.label, "\xA0↗")))), React.createElement("div", {
     className: "start-mistakes"
   }, React.createElement("h3", null, "Five mistakes that spoil first trips"), React.createElement("ol", null, START_MISTAKES.map((m, i) => React.createElement("li", {
     key: m.title

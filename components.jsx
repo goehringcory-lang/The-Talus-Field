@@ -740,8 +740,8 @@ const HOME_NAV = [
 ];
 
 // A panel's landing link reads like the homepage's other text links, which
-// end in ↗ rather than →.
-const homeMenuCta = (cta) => `${(cta || "Open the section").replace(/\s*→\s*$/, "")} ↗`;
+// end in ↗ rather than →.
+const homeMenuCta = (cta) => `${(cta || "Open the section").replace(/\s*→\s*$/, "")} ↗`;
 
 // The menu group holding the page the reader is on, so its trigger can say
 // so. app.jsx passes "articles" for every article and section route.
@@ -762,7 +762,7 @@ function NavMapFeature({ link }) {
       <img className="hp-navfeat__art" src="/img/responsive/nps-yosemite-valley-map-800.jpg" width="236" height="104" loading="lazy" decoding="async"
         alt="A strip of the National Park Service map of Yosemite Valley" />
       <p className="hp-navfeat__text">Every pin in the park, assembled into a route you can share or open in the Field Guide.</p>
-      {link({ key: "map", label: "Open the map ↗" }, "hp-link")}
+      {link({ key: "map", label: "Open the map ↗" }, "hp-link")}
     </div>
   );
 }
@@ -777,7 +777,7 @@ function NavWaitsFeature({ live, link }) {
       <p className="hp-menu__heading">Entrance waits, live</p>
       {live ? <EntranceWaits variant="menu" /> : <GateReadout waits={null} />}
       <p className="hp-navfeat__text">Posted by the National Park Service. A dash means no wait is posted right now.</p>
-      {link({ key: "conditions", hash: "cond-waits", label: "Gates and lots on Conditions ↗" }, "hp-link")}
+      {link({ key: "conditions", hash: "cond-waits", label: "Gates and lots on Conditions ↗" }, "hp-link")}
     </div>
   );
 }
@@ -955,7 +955,7 @@ function MastheadSearch({ go, location }) {
                 pick(r, i, e);
               }}
             >
-              {r.all ? `All results for “${q}” ↗` : (
+              {r.all ? `All results for “${q}” ↗` : (
                 <React.Fragment>
                   <span className="hp-search__kind">{r.kind}</span>
                   <span className="hp-search__title">{r.title}</span>
@@ -1293,7 +1293,7 @@ function HomeMasthead({ go, current = "home", route }) {
                           <p className="hp-menu__heading">{g.aside.eyebrow}</p>
                           <p className="hp-menu__aside-title">{g.aside.title}</p>
                           <p className="hp-menu__note">{g.aside.text}</p>
-                          {menuLink({ ...g.aside.link, label: `${g.aside.link.label} ↗` }, "hp-link")}
+                          {menuLink({ ...g.aside.link, label: `${g.aside.link.label} ↗` }, "hp-link")}
                         </div>
                       )}
                     </div>
@@ -1323,7 +1323,7 @@ function HomeMasthead({ go, current = "home", route }) {
           </HomeLink>
         </nav>
         <MastheadSearch go={go} location={location} />
-        <HomeLink go={go} location={location} className="hp-button" href={home ? "#field-guide" : "/guide"} aria-current={here("guide")}>Get the app ↗</HomeLink>
+        <HomeLink go={go} location={location} className="hp-button" href={home ? "#field-guide" : "/guide"} aria-current={here("guide")}>Get the app ↗</HomeLink>
       </header>
     </div>
   );
@@ -1381,7 +1381,7 @@ function HpArticleCard({ article, go, location }) {
     <HpCard go={go} location={location} href={`/articles/${article.slug}`} image={article.image}
       alt={article.placeholder || ""}
       eyebrow={<React.Fragment>{cat ? cat.label.toUpperCase() : ""}<span>{article.read ? article.read.toUpperCase() : ""}</span></React.Fragment>}
-      title={article.title} text={<React.Fragment>{article.dek} ↗</React.Fragment>} sizes="(max-width: 760px) calc(100vw - 40px), (max-width: 1100px) 45vw, 420px" />
+      title={article.title} text={<React.Fragment>{article.dek} ↗</React.Fragment>} sizes="(max-width: 760px) calc(100vw - 40px), (max-width: 1100px) 45vw, 420px" />
   );
 }
 
@@ -1489,16 +1489,16 @@ function HpGuideBand({ go, location, id, eyebrow = "THE TALUS FIELD GUIDE / THE 
             ))}
           </ul>}
           {children || <React.Fragment>
-            <HomeLink go={go} location={location} className="hp-button hp-light" href="/guide">Get the offline Field Guide <span>{GUIDE_TERMS.price} ↗</span>
+            <HomeLink go={go} location={location} className="hp-button hp-light" href="/guide">Get the offline Field Guide <span>{GUIDE_TERMS.price} ↗</span>
             </HomeLink>
             <p className="hp-terms">{GUIDE_TERMS.short} · {GUIDE_TERMS.refundShort}</p>
             <p className="hp-terms hp-owner">Already bought it?{" "}
-              <a href={`${GUIDE_PROMO_APP_BASE}/`} onClick={() => { if (window.track) window.track("guide_open_click", { location }); }}>Open your guide ↗</a>
+              <a href={`${GUIDE_PROMO_APP_BASE}/`} onClick={() => { if (window.track) window.track("guide_open_click", { location }); }}>Open your guide ↗</a>
             </p>
           </React.Fragment>}
           {sample && (
             <p className="hp-terms hp-sample">Not sure yet? Five entries are free to read, no email required:{" "}
-              <a href={`${GUIDE_PROMO_APP_BASE}/preview`} onClick={() => { if (window.track) window.track("guide_sample_click", { location }); }}>preview the guide ↗</a>
+              <a href={`${GUIDE_PROMO_APP_BASE}/preview`} onClick={() => { if (window.track) window.track("guide_sample_click", { location }); }}>preview the guide ↗</a>
             </p>
           )}
         </div>
@@ -1538,7 +1538,7 @@ function HpPostcard({ paper, stamp = "THE SUNDAY LETTER" }) {
 // `blurb` are NewsletterInline's (the heading is visually hidden, since the
 // section's h2 stands in for it); `paper` is the postcard's line; `children`
 // sit between the h2 and the form (/dates puts its reminder chips there).
-function HpLetter({ id, eyebrow, title, heading, blurb, location, tag, variant, send, cta = "Send me the letter ↗", terms = "Free to read. One letter a week. Unsubscribe whenever.", paper, stamp = "THE SUNDAY LETTER", children }) {
+function HpLetter({ id, eyebrow, title, heading, blurb, location, tag, variant, send, cta = "Send me the letter ↗", terms = "Free to read. One letter a week. Unsubscribe whenever.", paper, stamp = "THE SUNDAY LETTER", children }) {
   return (
     <section className="hp-letter hp-wrap hp-section" id={id} tabIndex={id ? -1 : undefined}>
       <HpPostcard paper={paper} stamp={stamp} />
@@ -2239,7 +2239,7 @@ function RecommendedCard({ heading, note, items, list, slug, network = "patagoni
                 slug={(slug ? slug + ":" : "") + it.id}
                 name={it.what}
                 className="rec-card__link"
-              >{it.label || source} ↗</AffLink>
+              >{it.label || source} ↗</AffLink>
             )}
           </li>
         ))}
@@ -2970,7 +2970,7 @@ function WebcamStrip({ variant, only }) {
             {board ? (
               <span className="cam-tile__cap">
                 <span className="cam-tile__label">{cam.label}</span>
-                <span className="cam-tile__open">Open camera ↗</span>
+                <span className="cam-tile__open">Open camera ↗</span>
               </span>
             ) : (
               <div className="mono" style={{ marginTop: 10, fontSize: 11, textTransform: "uppercase", letterSpacing: "0.18em", color: "var(--ink-2)", fontWeight: 700 }}>
@@ -3335,3 +3335,13 @@ Object.assign(window, {
   HomeLink, HomeMasthead, HpHeading, HpRow, HpCard, HpArticleCard, HpPageHead, HpGuideBand, HpLetter, HpPostcard,
   FjLayout, FjFacts, FjPull, FjRidge, FjCard, FjSteps, FjPlate,
 });
+
+// "October 10, 2026" for a YYYY-MM-DD string, read as a calendar date (noon
+// UTC, formatted in UTC, so no reader's timezone moves it a day). Verified
+// and checked stamps printed the raw ISO date ("Verified 2026-10-10") in
+// reader copy. Anything that is not an ISO date passes through.
+function hpLongDate(iso) {
+  if (typeof iso !== "string" || !/^\d{4}-\d{2}-\d{2}$/.test(iso)) return iso;
+  return new Date(`${iso}T12:00:00Z`).toLocaleDateString("en-US", { month: "long", day: "numeric", year: "numeric", timeZone: "UTC" });
+}
+window.hpLongDate = hpLongDate;

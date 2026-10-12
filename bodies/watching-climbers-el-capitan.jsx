@@ -257,7 +257,7 @@ window.ARTICLE_BODIES["watching-climbers-el-capitan"] = function WatchingClimber
               <li>Come in spring or fall, and stay for the headlamps.</li>
               <li>Park fully off the road. Never shine a light at the wall.</li>
             </ul>
-            <a className="ec-short__link" href="/map?trip=el-capitan-meadow,el-capitan-bridge">Both viewpoints on the Valley map ↗</a>
+            <a className="ec-short__link" href="/map?trip=el-capitan-meadow,el-capitan-bridge">Both viewpoints on the Valley map ↗</a>
           </aside>
         </div>
       </section>

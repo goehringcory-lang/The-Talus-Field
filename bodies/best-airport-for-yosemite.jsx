@@ -160,7 +160,7 @@ window.ARTICLE_BODIES["best-airport-for-yosemite"] = function BestAirportForYose
   function TownBook({ town, children }) {
     return (
       <AvailabilityLink destination={town.dest} list="article_town" slug="best-airport-for-yosemite" className="ff-book">
-        {children || `Search ${town.name.split(" and ")[0]} ↗`}
+        {children || `Search ${town.name.split(" and ")[0]} ↗`}
       </AvailabilityLink>
     );
   }
@@ -199,7 +199,7 @@ window.ARTICLE_BODIES["best-airport-for-yosemite"] = function BestAirportForYose
               <li>Do not drive to the park the evening you land.</li>
               <li>October to April, carry chains or take Highway 140.</li>
             </ul>
-            <TownBook town={TOWNS[1]}>Search Groveland, on the road from SFO ↗</TownBook>
+            <TownBook town={TOWNS[1]}>Search Groveland, on the road from SFO ↗</TownBook>
             <p className="ff-disclosure">Availability search on Expedia. We may earn a commission if you book, at no cost to you. <a href="/affiliate">Disclosure.</a></p>
           </aside>
         </div>
@@ -436,7 +436,7 @@ window.ARTICLE_BODIES["best-airport-for-yosemite"] = function BestAirportForYose
               <p className="hp-eyebrow">LANDING AT LAX?</p>
               <h3>Sleep in Oakhurst</h3>
               <p>An Oakhurst or Fish Camp bed turns the push from Los Angeles into an afternoon drive and a morning at the gate before the line forms.</p>
-              <TownBook town={TOWNS[2]}>Search Oakhurst lodging ↗</TownBook>
+              <TownBook town={TOWNS[2]}>Search Oakhurst lodging ↗</TownBook>
             </div>
           </div>
           <div className="ff-faq">

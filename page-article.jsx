@@ -690,7 +690,7 @@ function ArticlePage({ slug, go }) {
                   <a href="/about" rel="author" onClick={(e) => { e.preventDefault(); go("about"); }}>{window.SITE.authorName}</a>
                 </p>
                 <p className="hp-article__bio">{window.SITE.authorBio}</p>
-                <a className="hp-link" href="/about" onClick={(e) => { e.preventDefault(); go("about"); }}>Read how recommendations get made ↗</a>
+                <a className="hp-link" href="/about" onClick={(e) => { e.preventDefault(); go("about"); }}>Read how recommendations get made ↗</a>
               </div>
             </div>
 
@@ -728,8 +728,8 @@ function ArticlePage({ slug, go }) {
             eyebrow="THE JOURNAL"
             title={relatedSameCat ? `More from ${cat.label}` : "Keep reading"}
             link={relatedSameCat
-              ? { href: `/section/${cat.slug}`, label: `All in ${cat.label} ↗` }
-              : { href: "/articles", label: "All entries ↗" }}
+              ? { href: `/section/${cat.slug}`, label: `All in ${cat.label} ↗` }
+              : { href: "/articles", label: "All entries ↗" }}
           />
           {/* Text rows, not a card grid. Five or six curated links carry more
               of the internal link graph than three did, and doing it as cards

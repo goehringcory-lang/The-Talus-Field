@@ -274,7 +274,7 @@ window.ARTICLE_BODIES["yosemite-camping-complete-guide"] = function YosemiteCamp
               <li>No hookups, and no showers at the campgrounds. Curry Village has pay showers.</li>
               <li>Full: Camp 4, a wilderness permit, national forest land, or a town.</li>
             </ul>
-            <a className="cg-short__link" href="https://www.recreation.gov" target="_blank" rel="noopener noreferrer">Recreation.gov, where every site books ↗</a>
+            <a className="cg-short__link" href="https://www.recreation.gov" target="_blank" rel="noopener noreferrer">Recreation.gov, where every site books ↗</a>
           </aside>
         </div>
       </section>
