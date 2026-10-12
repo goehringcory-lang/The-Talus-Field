@@ -12,6 +12,10 @@
   border-bottom: 1px solid var(--rule);
   margin: 0 0 var(--s5);
 }
+/* With nothing planned (and no webcam strip between them, offline or under
+   Data Saver) the empty state's own top rule sat 24px under this one: two
+   rules with nothing between. The conditions rule closes the block alone. */
+.today-conditions + .empty-state { border-top: 0; padding-top: 0; }
 .today-conditions__weather {
   font-family: var(--serif);
   font-size: 14px;
