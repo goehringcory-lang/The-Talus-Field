@@ -659,6 +659,18 @@ main:focus { outline: none; }
 .prose table:not([class]) { width: 100%; border-collapse: collapse; font: 14px/1.5 var(--sans); margin: 0 0 1.4em; }
 .prose table:not([class]) th { font: 600 9px var(--sans); letter-spacing: 1.4px; text-transform: uppercase; text-align: left; color: var(--hp-muted); border-bottom: 1px solid var(--hp-ink); padding: 8px 12px 8px 0; }
 .prose table:not([class]) td { border-bottom: 1px solid var(--hp-rule); padding: 10px 12px 10px 0; vertical-align: top; }
+/* Phones: a table of five or more columns crushed into one-word lines ("stays /
+   on the / branch"). It scrolls sideways inside the column at a readable cell
+   width instead; narrower tables keep the full-width layout. */
+@media (max-width: 640px) {
+  .prose table:not([class]):has(th:nth-child(5)) { display: block; overflow-x: auto; -webkit-overflow-scrolling: touch; }
+  .prose table:not([class]):has(th:nth-child(5)) td,
+  .prose table:not([class]):has(th:nth-child(5)) th { min-width: 9em; }
+  .prose table:not([class]):has(th:nth-child(5)) td:first-child,
+  .prose table:not([class]):has(th:nth-child(5)) th:first-child { min-width: 6em; }
+  .prose table:not([class]):has(th:nth-child(5)) td:last-child,
+  .prose table:not([class]):has(th:nth-child(5)) th:last-child { min-width: 12em; }
+}
 .prose .dropcap::first-letter, #prerender-prose .dropcap::first-letter {
   font-family: var(--serif);
   font-weight: 400;
@@ -4510,7 +4522,10 @@ main:focus { outline: none; }
 .guide-offline__cols ul {
   list-style: none;
   margin: 10px 0 0;
-  padding: 0;
+  /* Hanging indent for the literal "· " bullets: wrapped lines align with
+     the text, not under the dot. */
+  padding: 0 0 0 0.9em;
+  text-indent: -0.9em;
   font-family: var(--sans);
   font-size: 13px;
   line-height: 1.7;
@@ -6800,7 +6815,11 @@ kbd {
 }
 
 /* Integrate the existing shared form and footer without changing other routes. */
-:where(.hp-design) h1, :where(.hp-design) h2, :where(.hp-design) h3 { text-wrap: initial; }
+/* Headings wrap with `pretty`, which only reflows the last lines and only to
+   keep a single word off the final line ("...and When to / Go"); the October
+   2026 polish pass counted a dozen such orphans in the /articles card titles
+   alone. `balance` would reshape the hero's hand-broken lines; this does not. */
+:where(.hp-design) h1, :where(.hp-design) h2, :where(.hp-design) h3 { text-wrap: pretty; }
 :where(.hp-design) a:hover { color: inherit; }
 .hp-design a.hp-button:hover { color: var(--hp-on-accent); }
 .hp-design a.hp-light:hover { color: var(--hp-ink); }
@@ -9556,7 +9575,10 @@ html[data-nav-mode="pinned"] { scroll-padding-top: 62px; }
 .fj-card__stamp {
   position: absolute; top: -46px; right: 16px;
   width: 98px; height: 98px; border-radius: 50%;
-  white-space: nowrap;
+  /* Wraps inside the circle: a dated line ("Verified / October 10, 2026" on
+     /dates, "Revised / <date>" on the legal pages) is wider than the 86px
+     phone stamp and ran out past its edge, clipped. */
+  white-space: normal;
   border: 1px solid #233e3580;
   background: var(--hp-paper);
   box-shadow: 0 0 0 4px var(--hp-paper), 0 0 0 5px #233e3533;
@@ -10731,7 +10753,15 @@ html[data-nav-mode="pinned"] { scroll-padding-top: 62px; }
   .hp-planning .pg-way { padding: 16px; gap: 10px; border-radius: 14px; }
   .hp-planning .pg-way h3 { font-size: 22px; }
   .hp-planning .pg-way--product { margin-top: 10px; }
-  .hp-planning .pg-compare__table { font-size: 13px; min-width: 520px; }
+  /* All three columns fit a phone. At min-width 520px the table scrolled with
+     no sign that it did, so the first screen showed only the free column's
+     dashes and never the Field Guide's ticks. */
+  .hp-planning .pg-compare__table { font-size: 13px; min-width: 0; }
+  .hp-planning .pg-compare__table thead th { padding: 10px 4px; font-size: 12px; line-height: 1.25; }
+  .hp-planning .pg-compare__table thead th:first-child { width: 44%; }
+  .hp-planning .pg-compare__table tbody th { padding: 12px 8px 12px 0; }
+  .hp-planning .pg-compare__table td { padding: 12px 4px; }
+  .hp-planning .pg-compare__table .pg-yes__note { display: block; font-size: 11px; line-height: 1.25; }
 
   .hp-planning .pg-guide__grid { padding-block: 40px; gap: 16px; }
   .hp-planning .pg-guide__copy { gap: 16px; }

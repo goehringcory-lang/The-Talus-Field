@@ -459,7 +459,8 @@ function GuideBuyBox({
   }, "In the app"), React.createElement("ul", {
     style: {
       listStyle: "none",
-      padding: 0,
+      padding: "0 0 0 0.9em",
+      textIndent: "-0.9em",
       margin: 0,
       fontFamily: "var(--sans)",
       fontSize: 13,
@@ -639,7 +640,8 @@ function GuideWaitlistBox() {
   }, "In the app"), React.createElement("ul", {
     style: {
       listStyle: "none",
-      padding: 0,
+      padding: "0 0 0 0.9em",
+      textIndent: "-0.9em",
       margin: 0,
       fontFamily: "var(--sans)",
       fontSize: 13,
@@ -890,7 +892,7 @@ var MAP3D_SHOTS = [{
   width: 640,
   height: 1387,
   alt: "The My trip tab on a phone: the one-day Valley plan drawn on the terrain, ten numbered pins in the order the day runs, joined by the drives along the Valley's roads",
-  caption: "My trip draws your plan: numbered pins in the order the day runs, one colour a day, drives along the real roads. The itinerary in words sits one tap below."
+  caption: "My trip draws your plan: numbered pins in the order the day runs, one color a day, drives along the real roads. The itinerary in words sits one tap below."
 }];
 var MAP3D_POINTS = [{
   title: "Tilt it, turn it, fly it",

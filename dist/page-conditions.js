@@ -461,7 +461,7 @@ function ConditionsPage({
     className: "dialplate__copy"
   }, React.createElement("span", {
     className: "hp-eyebrow"
-  }, "When the web is wrong"), React.createElement("span", {
+  }, "WHEN THE WEB IS WRONG"), React.createElement("span", {
     className: "dialplate__say"
   }, "In winter and spring, call the recorded road line before trusting any website, including this one. It is read out by the people standing at the gates.")), React.createElement("span", {
     className: "dialplate__num"

@@ -388,7 +388,7 @@ const PG_COMPARE = [
   ["57 day hikes with GPS tracks", false, false, true],
   ["This week's ranger and interpretive programs, by day and area", false, false, true],
   ["A day-by-day planner for your own trip", false, false, true],
-  ["50 Secret Guide entries, beyond the obvious", false, false, true],
+  ["72 Secret Guide entries, beyond the obvious", false, false, true],
 ];
 
 function PgCell({ value, product }) {

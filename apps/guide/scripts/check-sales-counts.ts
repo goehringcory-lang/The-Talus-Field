@@ -59,6 +59,7 @@ const FILES = [
   'page-partners.jsx',
   'page-widget.jsx',
   'page-start-here.jsx',
+  'page-planning-guide.jsx',
   'app.jsx',
   'edge/seo.js',
   'index.html',

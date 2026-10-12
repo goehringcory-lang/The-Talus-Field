@@ -447,7 +447,7 @@ function GuideBuyBox({ go }) {
 
       <div style={{ borderTop: "1px solid var(--rule)", marginTop: 24, paddingTop: 20 }}>
         <div className="eyebrow" style={{ marginBottom: 10 }}>In the app</div>
-        <ul style={{ listStyle: "none", padding: 0, margin: 0, fontFamily: "var(--sans)", fontSize: 13, color: "var(--ink-2)", lineHeight: 1.7 }}>
+        <ul style={{ listStyle: "none", padding: "0 0 0 0.9em", textIndent: "-0.9em", margin: 0, fontFamily: "var(--sans)", fontSize: 13, color: "var(--ink-2)", lineHeight: 1.7 }}>
           <li>· Four regional guides: the Valley, Glacier Point & Mariposa, Tuolumne, Hetch Hetchy</li>
           <li>· Tappable GPS for every stop</li>
           <li>· A 3D map of the park: every stop and all 57 trails on the terrain, your trip drawn day by day, downloadable by area</li>
@@ -577,7 +577,7 @@ function GuideWaitlistBox() {
 
       <div style={{ borderTop: "1px solid var(--rule)", marginTop: 24, paddingTop: 20 }}>
         <div className="eyebrow" style={{ marginBottom: 10 }}>In the app</div>
-        <ul style={{ listStyle: "none", padding: 0, margin: 0, fontFamily: "var(--sans)", fontSize: 13, color: "var(--ink-2)", lineHeight: 1.7 }}>
+        <ul style={{ listStyle: "none", padding: "0 0 0 0.9em", textIndent: "-0.9em", margin: 0, fontFamily: "var(--sans)", fontSize: 13, color: "var(--ink-2)", lineHeight: 1.7 }}>
           <li>· Four regional guides: the Valley, Glacier Point & Mariposa, Tuolumne, Hetch Hetchy</li>
           <li>· Tappable GPS for every stop</li>
           <li>· A 3D map of the park: every stop and all 57 trails on the terrain, your trip drawn day by day, downloadable by area</li>
@@ -905,7 +905,7 @@ const MAP3D_SHOTS = [
     width: 640,
     height: 1387,
     alt: "The My trip tab on a phone: the one-day Valley plan drawn on the terrain, ten numbered pins in the order the day runs, joined by the drives along the Valley's roads",
-    caption: "My trip draws your plan: numbered pins in the order the day runs, one colour a day, drives along the real roads. The itinerary in words sits one tap below.",
+    caption: "My trip draws your plan: numbered pins in the order the day runs, one color a day, drives along the real roads. The itinerary in words sits one tap below.",
   },
 ];
 

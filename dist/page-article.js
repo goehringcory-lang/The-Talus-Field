@@ -434,7 +434,7 @@ function ArticlePage({
         caption: article.placeholder,
         image: article.image,
         credit: article.credit,
-        tag: "PLATE I",
+        tag: "FRONTISPIECE",
         size: "lg",
         eager: true,
         motif: React.createElement(MotifMountains, null)

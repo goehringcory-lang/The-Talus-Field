@@ -537,7 +537,9 @@ function ArticlePage({ slug, go }) {
                 caption={article.placeholder}
                 image={article.image}
                 credit={article.credit}
-                tag="PLATE I"
+                // The hero is the frontispiece, not Plate I: forty bodies
+                // number their own plates from I, which repeated the label.
+                tag="FRONTISPIECE"
                 size="lg"
                 eager
                 motif={<MotifMountains />}

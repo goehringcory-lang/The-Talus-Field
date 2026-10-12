@@ -456,7 +456,7 @@ var PG_AREAS = [{
   body: "Granite domes, subalpine lakes, a meadow the size of a town, and half the crowd. A different park, reached only on Tioga Road.",
   give: "Give it: a full day, west to east"
 }];
-var PG_COMPARE = [["Seasons, permits, lodging and trail articles", true, true, true], ["Road openings and booking windows, by email", false, true, "trip board"], ["A map of the main destinations", false, "31 pins", true], ["3D topographic map of the whole park, offline", false, false, true], ["44 stops in driving order, with parking and timing notes", false, false, true], ["57 day hikes with GPS tracks", false, false, true], ["This week's ranger and interpretive programs, by day and area", false, false, true], ["A day-by-day planner for your own trip", false, false, true], ["50 Secret Guide entries, beyond the obvious", false, false, true]];
+var PG_COMPARE = [["Seasons, permits, lodging and trail articles", true, true, true], ["Road openings and booking windows, by email", false, true, "trip board"], ["A map of the main destinations", false, "31 pins", true], ["3D topographic map of the whole park, offline", false, false, true], ["44 stops in driving order, with parking and timing notes", false, false, true], ["57 day hikes with GPS tracks", false, false, true], ["This week's ranger and interpretive programs, by day and area", false, false, true], ["A day-by-day planner for your own trip", false, false, true], ["72 Secret Guide entries, beyond the obvious", false, false, true]];
 function PgCell({
   value,
   product

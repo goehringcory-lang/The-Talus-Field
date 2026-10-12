@@ -417,7 +417,7 @@ function ConditionsPage({ go }) {
       <div className="hp-wrap cond-dial">
         <a className="dialplate" href="tel:+12093720200">
           <span className="dialplate__copy">
-            <span className="hp-eyebrow">When the web is wrong</span>
+            <span className="hp-eyebrow">WHEN THE WEB IS WRONG</span>
             <span className="dialplate__say">
               In winter and spring, call the recorded road line before trusting any website, including this one. It is read out by the people standing at the gates.
             </span>
