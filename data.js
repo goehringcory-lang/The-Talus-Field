@@ -800,9 +800,9 @@ window.ARTICLES = [
     isoDate: "2026-10-05",
     isoModified: "2026-10-05",
     read: "10 min",
-    placeholder: "Tunnel View in late autumn, with fresh snow on the high rims above fall color on the Valley floor",
-    image: "img/tunnel-view-autumn-aniket-deole.jpg",
-    credit: "Photo: Aniket Deole / Unsplash",
+    placeholder: "The Ahwahnee's Great Lounge in the evening, its iron chandeliers lit above the sofas and rugs",
+    image: "img/ahwahnee-great-lounge.jpg",
+    credit: "Photo: David Berry / Wikimedia Commons (CC BY 2.0)",
   },
   {
     slug: "best-yosemite-backpacking-trips",
