@@ -95,6 +95,7 @@ window.ARTICLE_INTENT = {
   // the river afternoon is the one Valley day that is built for small children.
   // Leaving `who` empty here would keep them out of exactly the filters they
   // were commissioned to answer.
+  "wawona-yosemite-guide":                     { stage: ["dates-set", "week-before", "in-park"], who: ["non-hikers", "dogs"], topic: ["transportation", "trails", "lodging"] },
   "mariposa-grove-how-to-visit":               { stage: ["dates-set", "week-before", "in-park"], who: ["families", "non-hikers", "accessible"], topic: ["transportation", "trails"] },
   "tuolumne-meadows-in-a-day":                 { stage: ["before-booking", "dates-set", "week-before", "in-park"], who: ["families", "non-hikers", "photography"], topic: ["transportation", "trails", "conditions"] },
   "swimming-in-the-merced":                    { stage: ["dates-set", "week-before", "in-park"], who: ["families", "non-hikers"], topic: ["conditions"] },
