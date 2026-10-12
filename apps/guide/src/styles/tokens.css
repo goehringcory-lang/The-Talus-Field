@@ -888,6 +888,9 @@ select:focus-visible {
   font-weight: 600;
   color: var(--moss);
 }
+/* The checklist count sits inline before "Read →"; without a gap the two ran
+   together as "0 OF 8 PACKEDREAD →". */
+.essential-row .dateline { margin-right: 14px; }
 
 /* ===== Packing checklist ===== */
 

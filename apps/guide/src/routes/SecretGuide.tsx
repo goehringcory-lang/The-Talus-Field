@@ -102,7 +102,11 @@ function Hero({
           </nav>
           <p className="sg-hero__eyebrow">
             <SgIcon name="lock" size={14} />
-            {SECRET_GUIDE_META.eyebrow} · {total} entries · {chapters} chapters
+            {/* Each segment keeps its own separator, so a wrapped line never
+                starts with "·". */}
+            <span className="sg-nowrap">{SECRET_GUIDE_META.eyebrow} ·</span>{' '}
+            <span className="sg-nowrap">{total} entries ·</span>{' '}
+            <span className="sg-nowrap">{chapters} chapters</span>
           </p>
           <h1 className="sg-hero__title">{SECRET_GUIDE_META.title}</h1>
           <p className="sg-hero__teaser">{SECRET_GUIDE_META.teaser}</p>

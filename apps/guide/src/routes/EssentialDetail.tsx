@@ -4,6 +4,7 @@ import { ESSENTIALS, getEssentialById } from '../content'
 import NotFound from './NotFound'
 import GatedChrome from '../components/GatedChrome'
 import ChecklistBlock from '../components/ChecklistBlock'
+import { checklistVerb } from '../lib/checklist'
 import PrevNextNav from '../components/PrevNextNav'
 import BackLink from '../components/ui/BackLink'
 import PageHeader from '../components/ui/PageHeader'
@@ -38,9 +39,7 @@ export default function EssentialDetail() {
         {topic.checklist && (
           <ChecklistBlock
             items={topic.checklist}
-            verb={
-              topic.id === 'before-you-go' || topic.id === 'safety-and-help' ? 'done' : 'packed'
-            }
+            verb={checklistVerb(topic.id)}
           />
         )}
 

@@ -4,10 +4,10 @@ import { ESSENTIAL_SECTIONS, ESSENTIALS, ESSENTIALS_META } from '../content'
 import GatedChrome from '../components/GatedChrome'
 import BackLink from '../components/ui/BackLink'
 import PageHeader from '../components/ui/PageHeader'
-import { CHECKLIST_STORAGE_KEY, listProgress } from '../lib/checklist'
+import { CHECKLIST_STORAGE_KEY, checklistVerb, listProgress } from '../lib/checklist'
 
-// "N of M packed" for a topic row that carries a checklist, live across tabs.
-function ChecklistProgress({ items }: { items: { id: string }[] }) {
+// "N of M packed" (or "done") for a topic row that carries a checklist, live across tabs.
+function ChecklistProgress({ items, verb }: { items: { id: string }[]; verb: 'packed' | 'done' }) {
   const [progress, setProgress] = useState(() => listProgress(items))
   useEffect(() => {
     const refresh = () => setProgress(listProgress(items))
@@ -26,7 +26,7 @@ function ChecklistProgress({ items }: { items: { id: string }[] }) {
   }, [items])
   return (
     <span className="dateline">
-      {progress.done} of {progress.total} packed
+      {progress.done} of {progress.total} {verb}
     </span>
   )
 }
@@ -57,7 +57,7 @@ export default function Essentials() {
                   <Link to={`/essentials/${topic.id}`} className="essential-row">
                     <h2 className="essential-row__title">{topic.title}</h2>
                     <p className="essential-row__teaser">{topic.teaser}</p>
-                    {topic.checklist && <ChecklistProgress items={topic.checklist} />}
+                    {topic.checklist && <ChecklistProgress items={topic.checklist} verb={checklistVerb(topic.id)} />}
                     <span className="essential-row__cta">Read →</span>
                   </Link>
                   {i < section.topics.length - 1 && <hr className="stop-divider" style={{ margin: '0' }} />}

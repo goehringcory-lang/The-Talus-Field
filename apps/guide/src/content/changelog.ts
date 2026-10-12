@@ -19,6 +19,13 @@ export type ChangelogEntryT = z.infer<typeof ChangelogEntry>
 
 const seed: ChangelogEntryT[] = [
   {
+    date: '2026-10-12',
+    lines: [
+      'On smaller phones nothing scrolls sideways any more: the plan tabs, the map tabs and filters, and long season notes on hike pages all fit the screen, and the masthead no longer runs under the offline count.',
+      'Dates read in full ("Verified October 10, 2026"), download sizes stay on one line, and the night-before checklist counts what is done rather than packed.',
+    ],
+  },
+  {
     date: '2026-10-01',
     lines: [
       'Offline downloads check every saved file and ask for a re-download when something is missing. Interrupted map downloads no longer show as complete.',

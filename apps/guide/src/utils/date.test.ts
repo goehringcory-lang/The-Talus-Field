@@ -9,6 +9,7 @@ import {
   formatDayHeader,
   parkNowMinutes,
   todayIso,
+  formatLongDate,
   tripDatesLabel,
   tripHeadline,
 } from './date'
@@ -66,5 +67,17 @@ describe('tripHeadline', () => {
   it('crosses a month and falls back to digits past ten days', () => {
     expect(tripHeadline({ start: '2026-10-30', end: '2026-11-02' })).toBe('Oct 30 to Nov 2, four days')
     expect(tripHeadline({ start: '2026-10-01', end: '2026-10-12' })).toBe('Oct 1 to 12, 12 days')
+  })
+})
+
+describe('formatLongDate', () => {
+  it('spells a calendar date in full, with no timezone drift', () => {
+    expect(formatLongDate('2026-10-10')).toBe('October 10, 2026')
+    expect(formatLongDate('2026-01-01')).toBe('January 1, 2026')
+    expect(formatLongDate('2026-12-31')).toBe('December 31, 2026')
+  })
+
+  it('passes a non-date through unchanged', () => {
+    expect(formatLongDate('dev')).toBe('dev')
   })
 })

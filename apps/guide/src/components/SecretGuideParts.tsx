@@ -206,6 +206,16 @@ function EntryPhoto({
 // ---------------------------------------------------------------------------
 // The chapter's feature: its first entry, photograph first.
 
+// "Viewpoint · Quiet vistas", but never "Parking · Parking" or "Program ·
+// Programs": the chapter is named only when it says more than the kind.
+function featureKicker(s: GuideStopT): string {
+  const kind = KIND_LABEL[s.kind]
+  if (!s.category) return kind
+  const chapter = SECRET_GUIDE_CATEGORY_TITLE[s.category]
+  const stem = (w: string) => w.toLowerCase().replace(/s$/, '')
+  return stem(chapter) === stem(kind) ? kind : `${kind} · ${chapter}`
+}
+
 export function SgFeature({ s, eager = false }: { s: GuideStopT; eager?: boolean }) {
   const meta = entryMeta(s)
   return (
@@ -215,10 +225,7 @@ export function SgFeature({ s, eager = false }: { s: GuideStopT; eager?: boolean
         <span className="sg-badge">{folioLabel(s.id)}</span>
       </Link>
       <div className="sg-feature__body">
-        <span className="sg-kicker">
-          {KIND_LABEL[s.kind]}
-          {s.category ? ` · ${SECRET_GUIDE_CATEGORY_TITLE[s.category]}` : ''}
-        </span>
+        <span className="sg-kicker">{featureKicker(s)}</span>
         <h3 className="sg-feature__title">
           <Link to={`/stop/${s.id}`}>{s.title}</Link>
         </h3>

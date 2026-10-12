@@ -197,6 +197,14 @@
   flex: 1;
   min-width: 0;
 }
+/* On a phone the day select ("Monday, October 12") and Add left the title
+   field about 30px wide. The row wraps: the title takes its own line, the day
+   and the button share the next. */
+@media (max-width: 520px) {
+  .trip-custom-add__row { flex-wrap: wrap; }
+  .trip-custom-add__row .field-control:first-child { flex: 1 0 100%; }
+  .trip-custom-add__row .field-control--sm { flex: 1 1 auto; min-width: 0; }
+}
 
 /* ===== Calendar export, below the board ===== */
 
