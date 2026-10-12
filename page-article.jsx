@@ -700,6 +700,23 @@ function ArticlePage({ slug, go }) {
         </div>
       </article>
 
+      {/* Field Guide: trip-intent readers (trails, planning, seasonal) only,
+          the same one guide ask this slot always carried (guide_cta_click /
+          guide_sample_click / guide_band_impression, location article_end).
+          It sits above the related rail since October 2026 (UX sales audit
+          ticket 08): below it, a reader met six exits before the offer. A
+          move, not a second offer; the location value is unchanged so the
+          before and after compare directly. */}
+      {tripIntent && (
+        <HpGuideBand
+          go={go}
+          location="article_end"
+          title="The park, in your pocket."
+          intro="The app version of this journal: offline maps, GPS at the trailhead, and every stop with parking and timing notes. Works with no signal, which is most of the park."
+          sample
+        />
+      )}
+
       {/* Related */}
       {related.length > 0 && (
         <section className="hp-wrap hp-section hp-article__related">
@@ -732,20 +749,6 @@ function ArticlePage({ slug, go }) {
             ))}
           </ul>
         </section>
-      )}
-
-      {/* Field Guide: trip-intent readers (trails, planning, seasonal) only,
-          the same one guide ask this slot always carried, now the shared
-          design band (guide_cta_click / guide_sample_click, location
-          article_end, as before). */}
-      {tripIntent && (
-        <HpGuideBand
-          go={go}
-          location="article_end"
-          title="The park, in your pocket."
-          intro="The app version of this journal: offline maps, GPS at the trailhead, and every stop with parking and timing notes. Works with no signal, which is most of the park."
-          sample
-        />
       )}
 
       {!ARTICLE_BONUS[slug] && (() => {
