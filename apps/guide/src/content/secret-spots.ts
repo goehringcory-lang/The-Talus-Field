@@ -237,6 +237,19 @@ const seed: SecretSpotInput[] = [
     hazard:
       'No water on the trail or at the top. The old grade has loose sand and drop-offs behind the brush at the viewpoint.',
     photos: [{ src: '/photos/inspiration-point.jpg', caption: 'The framed valley composition. Inspiration Point sits on the old road above the tunnel.' }],
+    history: {
+      note:
+        'The first tourist party to come to Yosemite Valley stopped at Old Inspiration ' +
+        'Point. Park Forester Emil Ernst recounted in 1955 that James M. Hutchings, ' +
+        'Thomas A. Ayres, Walter Millard and Alexander Stair, with two Indian ' +
+        'guides, Kos-sum and So-pin, came to it on July 27, 1855, descending from ' +
+        'the south rim. Ayres made his first sketch there, the best known of his ' +
+        'Yosemite work, and it delayed the party\'s arrival at its first camp in ' +
+        'Bridalveil Meadows.',
+      volume: 34,
+      number: 6,
+      issueDate: 'June 1955',
+    },
   },
   {
     id: 'hidden-lake',
