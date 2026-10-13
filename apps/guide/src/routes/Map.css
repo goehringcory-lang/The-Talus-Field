@@ -863,7 +863,9 @@
   color: var(--ink);
 }
 
-.map-info h1 {
+/* The pane's title is an h2 under the page's hidden h1; it keeps the look
+ * it had as an h1. */
+.map-info .map-info__title {
   font-family: var(--display);
   font-size: 28px;
   margin: 0 0 8px;
@@ -875,7 +877,7 @@
   margin-bottom: 24px;
 }
 
-.map-info h2 {
+.map-info h3 {
   font-family: var(--display);
   font-size: 18px;
   margin: 28px 0 8px;

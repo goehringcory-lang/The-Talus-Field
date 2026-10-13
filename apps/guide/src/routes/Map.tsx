@@ -3220,14 +3220,14 @@ function InfoPane({
   const allAreas = mapOffline.overview && mapOffline.regions.length === OFFLINE_REGIONS.length
   return (
     <div className="map-info">
-      <h1>How the map works offline</h1>
+      <h2 className="map-info__title">How the map works offline</h2>
       <p className="lede">
         This map is built to work with zero bars. Download it once and the
         terrain and map tiles live on your device; the pins are part of the
         app itself.
       </p>
 
-      <h2>Before you leave wifi</h2>
+      <h3>Before you leave wifi</h3>
       <ol>
         <li>
           Download the <strong>overview</strong> below and each area you're
@@ -3250,7 +3250,7 @@ function InfoPane({
       </ol>
 
       <section id="map-offline" className="map-info__offline" tabIndex={-1} aria-labelledby="map-offline-title">
-        <h2 id="map-offline-title">Offline areas</h2>
+        <h3 id="map-offline-title">Offline areas</h3>
         <DownloadManager
           only={(p) => MAP_PACK_IDS.includes(p.id)}
           intro={
@@ -3264,7 +3264,7 @@ function InfoPane({
         />
       </section>
 
-      <h2>In the park</h2>
+      <h3>In the park</h3>
       <ul>
         <li>
           Open the <strong>GPS points</strong> tab. Every pin carries the
@@ -3358,7 +3358,7 @@ function InfoPane({
         </li>
       </ul>
 
-      <h2>Itineraries tab</h2>
+      <h3>Itineraries tab</h3>
       <p>
         Filter the pin set to one ready-made plan: trip lengths, first
         visit, young kids, easy pace, and the rest. Use the day-by-day
@@ -3366,7 +3366,7 @@ function InfoPane({
         selection.
       </p>
 
-      <h2>Legend</h2>
+      <h3>Legend</h3>
       <ul className="map-legend" style={{ marginTop: 8 }}>
         {presentKinds.map((kind) => {
           const { label } = KIND_STYLES[kind]
@@ -3393,7 +3393,7 @@ function InfoPane({
         presets; add them to your trip from the pin or the stop page.
       </p>
 
-      <h2>The fine print</h2>
+      <h3>The fine print</h3>
       <ul>
         <li>
           This map shows where things are; it does not calculate driving
