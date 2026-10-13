@@ -111,6 +111,12 @@
   background: var(--panel-edge);
   margin-top: var(--s4);
 }
+/* A reading split across lines ("7:02 / a.m.") is no longer scannable, the
+   spec-strip rule; on a phone the three times step down a size to fit. */
+.plan-light .readout__value { white-space: nowrap; }
+@media (max-width: 430px) {
+  .plan-light .readout__value { font-size: 16px; }
+}
 
 /* ---- Handoff between regions --------------------------------------------- */
 .plan-handoff {
@@ -182,7 +188,7 @@
 }
 
 /* ---- Panels ---------------------------------------------------------------- */
-.plan-tabs {
+.day-tabs {
   position: sticky;
   top: calc(var(--chrome-top-h) + env(safe-area-inset-top, 0px));
   z-index: 5;
@@ -191,7 +197,7 @@
   background: var(--paper);
   border-bottom: 1px solid var(--rule-soft);
 }
-.plan-tab {
+.day-tab {
   min-height: 52px;
   display: grid;
   align-content: center;
@@ -205,8 +211,8 @@
   font-weight: 600;
   cursor: pointer;
 }
-.plan-tab--on { color: var(--ink); border-bottom-color: var(--moss); }
-.plan-tab__count {
+.day-tab--on { color: var(--ink); border-bottom-color: var(--moss); }
+.day-tab__count {
   font-family: var(--mono);
   font-size: 10px;
   letter-spacing: 0.1em;

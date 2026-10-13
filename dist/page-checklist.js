@@ -319,7 +319,7 @@ function ChecklistPage({
     type: "checkbox"
   }), "Don't hit ", React.createElement(A, {
     r: "a:yosemite-for-non-hikers"
-  }, "Lower Yosemite Fall"), " between 11 AM and 3 PM. Come early or after 5 PM."), React.createElement("label", {
+  }, "Lower Yosemite Fall"), " between 11 a.m. and 3 p.m. Come early or after 5 p.m."), React.createElement("label", {
     className: "fj-check"
   }, React.createElement("input", {
     type: "checkbox"
@@ -334,7 +334,7 @@ function ChecklistPage({
     type: "checkbox"
   }), React.createElement(A, {
     r: "a:yosemite-without-reservations-2026"
-  }, "Be in the park by 6:30 AM"), " on any peak day. The day's quality is decided before 9."), React.createElement("label", {
+  }, "Be in the park by 6:30 a.m."), " on any peak day. The day's quality is decided before 9 a.m."), React.createElement("label", {
     className: "fj-check"
   }, React.createElement("input", {
     type: "checkbox"

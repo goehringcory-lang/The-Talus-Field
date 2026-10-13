@@ -346,7 +346,7 @@ function ConditionsPage({ go }) {
           arm's length. Three gates, because three is what the NPS feed
           publishes. */}
       <section className="hp-wrap hp-section cond-section" id="cond-waits" tabIndex={-1}>
-        <HpHeading go={go} location="conditions" eyebrow="01 / AT THE GATES" title="Entrance waits" link={{ href: "/planning", label: "Why the mornings matter ↗" }} />
+        <HpHeading go={go} location="conditions" eyebrow="01 / AT THE GATES" title="Entrance waits" link={{ href: "/planning", label: "Why the mornings matter ↗" }} />
         <p className="hp-sub">
           Live wait estimates from the National Park Service, refreshed every few minutes. Summer mornings the arch at Highway 140 backs up first; by ten, all of them do. If the numbers below are already climbing at eight, you wanted to be inside an hour ago.
         </p>
@@ -356,7 +356,7 @@ function ConditionsPage({ go }) {
       {/* Webcams. The strongest argument on the page is a picture of the
           weather, so the board variant runs them two up instead of four. */}
       <section className="hp-wrap hp-section cond-section">
-        <HpHeading go={go} location="conditions" eyebrow="02 / SEE IT FOR YOURSELF" title="Webcams" link={{ href: "/webcams", label: "All cameras, and how to read them ↗" }} />
+        <HpHeading go={go} location="conditions" eyebrow="02 / SEE IT FOR YOURSELF" title="Webcams" link={{ href: "/webcams", label: "All cameras, and how to read them ↗" }} />
         <WebcamStrip variant="board" />
       </section>
 
@@ -364,7 +364,7 @@ function ConditionsPage({ go }) {
           valley floor and one sits nearly a mile above them, which is the
           whole reason a single forecast for "Yosemite" is useless. */}
       <section className="hp-wrap hp-section cond-section">
-        <HpHeading go={go} location="conditions" eyebrow="03 / THREE ELEVATIONS" title="Forecasts" link={{ href: "https://www.weather.gov/hnx/", label: "National Weather Service ↗" }} />
+        <HpHeading go={go} location="conditions" eyebrow="03 / THREE ELEVATIONS" title="Forecasts" link={{ href: "https://www.weather.gov/hnx/", label: "National Weather Service ↗" }} />
         <p className="hp-sub">
           The park spans 9,000 feet of elevation, so one forecast is never enough. These are National Weather Service point forecasts for the three places most trips actually go.
         </p>
@@ -394,11 +394,11 @@ function ConditionsPage({ go }) {
               <span>Our own board: road and area status, alerts, and the free-program clock, rewritten each time the park publishes a new Yosemite Guide.</span>
             </li>
             <li className="conditions__row">
-              <a href="https://www.nps.gov/yose/planyourvisit/conditions.htm" target="_blank" rel="noopener noreferrer">NPS current conditions ↗</a>
+              <a href="https://www.nps.gov/yose/planyourvisit/conditions.htm" target="_blank" rel="noopener noreferrer">NPS current conditions ↗</a>
               <span>Road status, chain controls, trail closures, and campground status. The authoritative page.</span>
             </li>
             <li className="conditions__row">
-              <a href="https://www.nps.gov/yose/planyourvisit/guide.htm" target="_blank" rel="noopener noreferrer">The Yosemite Guide ↗</a>
+              <a href="https://www.nps.gov/yose/planyourvisit/guide.htm" target="_blank" rel="noopener noreferrer">The Yosemite Guide ↗</a>
               <span>The park's own seasonal newspaper: shuttle maps, program schedules, hours.</span>
             </li>
           </ul>
@@ -417,7 +417,7 @@ function ConditionsPage({ go }) {
       <div className="hp-wrap cond-dial">
         <a className="dialplate" href="tel:+12093720200">
           <span className="dialplate__copy">
-            <span className="hp-eyebrow">When the web is wrong</span>
+            <span className="hp-eyebrow">WHEN THE WEB IS WRONG</span>
             <span className="dialplate__say">
               In winter and spring, call the recorded road line before trusting any website, including this one. It is read out by the people standing at the gates.
             </span>
@@ -449,7 +449,7 @@ function ConditionsPage({ go }) {
         blurb="One email when Tioga Road, Glacier Point Road, or a highway into the park opens or closes, sent to the people who asked for it. Sunday Field Notes carries the rest of the week from inside the park."
         location="conditions"
         tag="alert-roads"
-        cta="Email me ↗"
+        cta="Email me ↗"
         terms="Only when a road changes. Unsubscribe whenever."
         stamp="ROAD ALERTS"
         paper={<>Roads open.<br />Roads close.<br /><em>You hear once.</em></>}

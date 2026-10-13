@@ -70,7 +70,7 @@ function WebcamsPage({ go }) {
 
       <section className="hp-wrap hp-section hp-webcams__live">
         <HpHeading go={go} location="webcams" eyebrow="FOUR CAMERAS" title="Live now"
-          link={{ href: "https://yosemite.org/webcams/", label: "All Conservancy cameras ↗" }} />
+          link={{ href: "https://yosemite.org/webcams/", label: "All Conservancy cameras ↗" }} />
         <WebcamStrip />
       </section>
 

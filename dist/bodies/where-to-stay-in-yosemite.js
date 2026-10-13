@@ -195,7 +195,7 @@ window.ARTICLE_BODIES["where-to-stay-in-yosemite"] = function WhereToStayInYosem
     href: TY,
     target: "_blank",
     rel: "noopener noreferrer"
-  }, "Check in-park rooms at Travel Yosemite ↗")))), React.createElement("section", {
+  }, "Check in-park rooms at Travel Yosemite\xA0↗")))), React.createElement("section", {
     className: "ff-band",
     id: "inside-the-boundary",
     tabIndex: -1
@@ -377,7 +377,7 @@ window.ARTICLE_BODIES["where-to-stay-in-yosemite"] = function WhereToStayInYosem
     href: "https://www.travelyosemite.com/lodging/high-sierra-camps/high-sierra-camp-lottery",
     target: "_blank",
     rel: "noopener noreferrer"
-  }, "The High Sierra Camp lottery ↗")))), React.createElement("section", {
+  }, "The High Sierra Camp lottery\xA0↗")))), React.createElement("section", {
     className: "hp-wrap hp-section",
     id: "wawona-hotel",
     tabIndex: -1
@@ -424,7 +424,7 @@ window.ARTICLE_BODIES["where-to-stay-in-yosemite"] = function WhereToStayInYosem
     href: "https://yosemite.org/experience/ostrander-ski-hut/",
     target: "_blank",
     rel: "noopener noreferrer"
-  }, "Ostrander at Yosemite Conservancy ↗")), React.createElement("article", {
+  }, "Ostrander at Yosemite Conservancy\xA0↗")), React.createElement("article", {
     className: "ff-inpark"
   }, React.createElement("p", {
     className: "hp-eyebrow"
@@ -433,7 +433,7 @@ window.ARTICLE_BODIES["where-to-stay-in-yosemite"] = function WhereToStayInYosem
     href: "https://www.travelyosemite.com/lodging/glacier-point-ski-hut/",
     target: "_blank",
     rel: "noopener noreferrer"
-  }, "Glacier Point Ski Hut ↗"))), React.createElement("p", {
+  }, "Glacier Point Ski Hut\xA0↗"))), React.createElement("p", {
     className: "ff-note"
   }, "Both routes run through the Glacier Point Road area. Check the park's ", React.createElement("a", {
     href: "https://www.nps.gov/yose/learn/management/closures.htm",

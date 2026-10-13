@@ -226,8 +226,12 @@ export function buildPacks(format: PhotoFormat): Pack[] {
   return [...regionPacks, secretPack, wildlifePack, tracksPack, ...mapPacks()]
 }
 
+// A no-break space joins the number to its unit, so "2.9 MB" never wraps as
+// "2.9 / MB"; a device quota reads "1.1 GB", not "1122 MB".
 export function formatBytes(bytes: number): string {
-  if (bytes < 1_000_000) return `${Math.max(1, Math.round(bytes / 1000))} KB`
-  if (bytes < 10_000_000) return `${(bytes / 1_000_000).toFixed(1)} MB`
-  return `${Math.round(bytes / 1_000_000)} MB`
+  const nb = '\u00a0'
+  if (bytes < 1_000_000) return `${Math.max(1, Math.round(bytes / 1000))}${nb}KB`
+  if (bytes < 10_000_000) return `${(bytes / 1_000_000).toFixed(1)}${nb}MB`
+  if (bytes < 1_000_000_000) return `${Math.round(bytes / 1_000_000)}${nb}MB`
+  return `${(bytes / 1_000_000_000).toFixed(1)}${nb}GB`
 }

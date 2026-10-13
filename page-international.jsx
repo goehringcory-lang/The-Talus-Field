@@ -1,4 +1,4 @@
-/* global React, HpPageHead, LodgingCta, FEES, calcEntryFees, FEE_MODES, HpGuideBand, HpLetter, FjLayout, FjPull, FjRidge, FjCard, FjPlate, AffiliateDisclosure */
+/* global React, HpPageHead, LodgingCta, FEES, calcEntryFees, FEE_MODES, HpGuideBand, HpLetter, FjLayout, FjPull, FjRidge, FjCard, FjPlate, AffiliateDisclosure, hpLongDate */
 
 // =============================================================================
 // INTERNATIONAL — `/international` route. The page for the reader arriving
@@ -76,7 +76,7 @@ function FeeCalculator() {
         ))}
       </div>
       <p className="feecalc__note">
-        Children under {F.perPersonFreeUnder} pay nothing and owe no non-resident fee. Figures from the National Park Service fee pages, verified {F.verified}; the pass rule for passengers follows the park's own wording and the Yosemite Conservancy's 2026 summary, linked below. The gate is card only.
+        Children under {F.perPersonFreeUnder} pay nothing and owe no non-resident fee. Figures from the National Park Service fee pages, verified {hpLongDate(F.verified)}; the pass rule for passengers follows the park's own wording and the Yosemite Conservancy's 2026 summary, linked below. The gate is card only.
       </p>
     </div>
   );
@@ -152,9 +152,9 @@ function InternationalPage({ go }) {
           </table>
           </div>
           <p className="dates__hint">
-            Sources: <a href={F.sources.yosemite} target="_blank" rel="noopener noreferrer">Yosemite fees and passes, NPS ↗</a>,{" "}
-            <a href={F.sources.passes} target="_blank" rel="noopener noreferrer">America the Beautiful passes, NPS ↗</a>,{" "}
-            <a href={F.sources.conservancy} target="_blank" rel="noopener noreferrer">Know before you go 2026, Yosemite Conservancy ↗</a>. Verified {F.verified}.
+            Sources: <a href={F.sources.yosemite} target="_blank" rel="noopener noreferrer">Yosemite fees and passes, NPS ↗</a>,{" "}
+            <a href={F.sources.passes} target="_blank" rel="noopener noreferrer">America the Beautiful passes, NPS ↗</a>,{" "}
+            <a href={F.sources.conservancy} target="_blank" rel="noopener noreferrer">Know before you go 2026, Yosemite Conservancy ↗</a>. Verified {hpLongDate(F.verified)}.
           </p>
 
           <h2>The cheapest way in</h2>

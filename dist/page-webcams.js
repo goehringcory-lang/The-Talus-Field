@@ -44,7 +44,7 @@ function WebcamsPage({
     title: "Live now",
     link: {
       href: "https://yosemite.org/webcams/",
-      label: "All Conservancy cameras ↗"
+      label: "All Conservancy cameras ↗"
     }
   }), React.createElement(WebcamStrip, null)), React.createElement("div", {
     className: "hp-wrap hp-reading"

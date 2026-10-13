@@ -1030,6 +1030,41 @@ function App() {
       preventScroll: true
     });
   }, [route]);
+  useEffect(() => {
+    var mark = () => {
+      var main = document.getElementById("main");
+      if (!main) return;
+      main.querySelectorAll("*").forEach(el => {
+        if (!el.dataset.scrollStop && !/auto|scroll/.test(getComputedStyle(el).overflowX)) return;
+        if (!el.dataset.scrollStop && el.querySelector("a[href], button, input, select, textarea, [tabindex]")) return;
+        var overflows = el.scrollWidth > el.clientWidth + 1 && /auto|scroll/.test(getComputedStyle(el).overflowX);
+        if (overflows && !el.hasAttribute("tabindex")) {
+          el.setAttribute("tabindex", "0");
+          el.dataset.scrollStop = "1";
+          if (!el.hasAttribute("role") && !/^(TABLE|FIGURE)$/.test(el.tagName)) el.setAttribute("role", "region");
+          if (!el.hasAttribute("aria-label") && el.tagName !== "TABLE") {
+            var cap = el.closest("figure")?.querySelector("figcaption")?.textContent.trim();
+            el.setAttribute("aria-label", cap ? `${cap.slice(0, 80)} (scrolls sideways)` : "Scrolls sideways");
+          }
+        } else if (!overflows && el.dataset.scrollStop) {
+          el.removeAttribute("tabindex");
+          delete el.dataset.scrollStop;
+        }
+      });
+    };
+    var t = setTimeout(mark, 600);
+    var raf = 0;
+    var onResize = () => {
+      cancelAnimationFrame(raf);
+      raf = requestAnimationFrame(mark);
+    };
+    window.addEventListener("resize", onResize);
+    return () => {
+      clearTimeout(t);
+      cancelAnimationFrame(raf);
+      window.removeEventListener("resize", onResize);
+    };
+  }, [route]);
   var navTokenRef = useRef(0);
   var shownPathRef = useRef(window.location.pathname);
   useEffect(() => {

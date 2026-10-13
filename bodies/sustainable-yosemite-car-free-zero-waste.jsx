@@ -419,8 +419,8 @@ window.ARTICLE_BODIES["sustainable-yosemite-car-free-zero-waste"] = function Sus
             <div><dt>Yosemite Valley Lodge</dt><dd>8</dd></div>
             <div><dt>The Ahwahnee</dt><dd>6</dd></div>
             <div><dt>El Portal Market</dt><dd>2</dd></div>
-            <p className="ff-note">Level 2 chargers by location, from the Park Service's EV charging pages. Tuolumne Meadows also has chargers; the park had not published the count.</p>
           </dl>
+            <p className="ff-note">Level 2 chargers by location, from the Park Service's EV charging pages. Tuolumne Meadows also has chargers; the park had not published the count.</p>
         </div>
       </section>
 

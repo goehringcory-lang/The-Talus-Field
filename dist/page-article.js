@@ -256,7 +256,8 @@ function ArticlePage({
       el.setAttribute("tabindex", "0");
       el.setAttribute("role", "button");
       var alt = (el.querySelector("img") || {}).alt || "";
-      el.setAttribute("aria-label", alt ? `Enlarge: ${alt}` : "Enlarge this photo");
+      var credit = ((el.querySelector(".placeholder__credit") || {}).textContent || "").trim();
+      el.setAttribute("aria-label", (alt ? `Enlarge: ${alt}` : "Enlarge this photo") + (credit ? `. ${credit}` : ""));
     });
     var open = el => {
       var img = el.querySelector("img");
@@ -434,7 +435,7 @@ function ArticlePage({
         caption: article.placeholder,
         image: article.image,
         credit: article.credit,
-        tag: "PLATE I",
+        tag: "FRONTISPIECE",
         size: "lg",
         eager: true,
         motif: React.createElement(MotifMountains, null)
@@ -590,7 +591,7 @@ function ArticlePage({
       e.preventDefault();
       go("about");
     }
-  }, "Read how recommendations get made ↗"))), React.createElement(ShareRow, {
+  }, "Read how recommendations get made\xA0↗"))), React.createElement(ShareRow, {
     title: article.title,
     slug: slug
   })))), tripIntent && React.createElement(HpGuideBand, {
@@ -608,10 +609,10 @@ function ArticlePage({
     title: relatedSameCat ? `More from ${cat.label}` : "Keep reading",
     link: relatedSameCat ? {
       href: `/section/${cat.slug}`,
-      label: `All in ${cat.label} ↗`
+      label: `All in ${cat.label} ↗`
     } : {
       href: "/articles",
-      label: "All entries ↗"
+      label: "All entries ↗"
     }
   }), React.createElement("ul", {
     className: "relrail"

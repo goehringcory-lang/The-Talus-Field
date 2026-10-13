@@ -50,7 +50,7 @@ function NewsletterPage({ go }) {
           <p className="hp-sub">Used to send the dispatch. Not shared. Unsubscribe at the bottom of any letter.</p>
         </div>
         <p className="hp-nlpage__privacy">
-          <a className="hp-link" href="/privacy" onClick={(e) => { e.preventDefault(); go("privacy"); }}>Privacy ↗</a>
+          <a className="hp-link" href="/privacy" onClick={(e) => { e.preventDefault(); go("privacy"); }}>Privacy ↗</a>
         </p>
       </section>
     </div>

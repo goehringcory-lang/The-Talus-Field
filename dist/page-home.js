@@ -14,12 +14,12 @@ function HomeHero({
     location: "home_hero",
     className: "hp-button",
     href: "/start-here"
-  }, "Plan my first visit, free \xA0 ↗"), React.createElement(HomeLink, {
+  }, "Plan my first visit, free \xA0\xA0↗"), React.createElement(HomeLink, {
     go: go,
     location: "home_hero",
     className: "hp-link",
     href: "/guide"
-  }, "Explore the offline Field Guide ↗")), React.createElement("p", {
+  }, "Explore the offline Field Guide\xA0↗")), React.createElement("p", {
     className: "hp-byline hp-hero-terms"
   }, "The Field Guide: ", window.GUIDE_TERMS && window.GUIDE_TERMS.price || "$3.99", " once, 18 months, works with no signal."), React.createElement("p", {
     className: "hp-byline"
@@ -47,15 +47,15 @@ function HomePage({
     go: go,
     location: "home_content",
     href: "/conditions"
-  }, "Roads & conditions ↗"), React.createElement(HomeLink, {
+  }, "Roads & conditions\xA0↗"), React.createElement(HomeLink, {
     go: go,
     location: "home_content",
     href: "/articles/yosemite-without-reservations-2026"
-  }, "Entry & reservations ↗"), React.createElement(HomeLink, {
+  }, "Entry & reservations\xA0↗"), React.createElement(HomeLink, {
     go: go,
     location: "home_content",
     href: "/articles/yosemite-shuttle-and-yarts"
-  }, "Getting around ↗")), React.createElement("section", {
+  }, "Getting around\xA0↗")), React.createElement("section", {
     className: "hp-wrap hp-section",
     id: "home-start-here",
     tabIndex: -1
@@ -79,7 +79,7 @@ function HomePage({
     className: "hp-door__body"
   }, React.createElement("p", {
     className: "hp-eyebrow"
-  }, "THE FIRST-TRIP PAGE"), React.createElement("h3", null, "Everything a first visit needs,", React.createElement("br", null), "on one page."), React.createElement("p", {
+  }, "THE FIRST-TRIP PAGE"), React.createElement("h3", null, "Everything a first visit needs,", " ", React.createElement("br", null), "on one page."), React.createElement("p", {
     className: "hp-door__intro"
   }, "Where to begin, what to see, and how to shape the days, in the order the decisions come."), React.createElement("ul", {
     className: "hp-door__list"
@@ -106,7 +106,7 @@ function HomePage({
     title: "The questions that bring people here.",
     link: {
       href: "/articles",
-      label: "Explore the journal ↗"
+      label: "Explore the journal ↗"
     }
   }), React.createElement("div", {
     className: "hp-journal-grid"
@@ -118,7 +118,7 @@ function HomePage({
     alt: "A mural in Mariposa, the gateway town on Highway 140",
     eyebrow: "WHERE TO STAY",
     title: "Mariposa, Oakhurst or Groveland?",
-    text: "The gateway towns compared, drive by drive. ↗"
+    text: "The gateway towns compared, drive by drive.\xA0↗"
   }), React.createElement(HpCard, {
     go: go,
     location: "home_content",
@@ -127,16 +127,16 @@ function HomePage({
     alt: "Half Dome in alpenglow",
     eyebrow: "PERMITS",
     title: "The Half Dome lottery, decoded.",
-    text: "Both lotteries, the odds, and when to apply. ↗"
+    text: "Both lotteries, the odds, and when to apply.\xA0↗"
   }), React.createElement(HpCard, {
     go: go,
     location: "home_content",
     href: "/articles/yosemite-camping-complete-guide",
-    image: "/img/camp-ahwahnee-sentinel-rock.jpg",
+    image: "/img/camp-ahwahnee-sentinel-rock-card.jpg",
     alt: "A hand-colored postcard of a tent camp beneath Sentinel Rock",
     eyebrow: "CAMPING",
     title: "Thirteen campgrounds, one guide.",
-    text: "How to get a site, and where to go when they are full. ↗"
+    text: "How to get a site, and where to go when they are full.\xA0↗"
   }), React.createElement(HpCard, {
     go: go,
     location: "home_content",
@@ -145,7 +145,7 @@ function HomePage({
     alt: "Vernal Fall at high water in late spring",
     eyebrow: "WHEN TO GO",
     title: "The best time to visit, by the data.",
-    text: "A month-by-month crowd forecast. ↗"
+    text: "A month-by-month crowd forecast.\xA0↗"
   }), React.createElement(HpCard, {
     go: go,
     location: "home_content",
@@ -154,7 +154,7 @@ function HomePage({
     alt: "Tunnel View: El Capitan, Bridalveil Fall and Half Dome",
     eyebrow: "NO HIKING REQUIRED",
     title: "The whole park, without a trail.",
-    text: "A complete visit for non-hikers. ↗"
+    text: "A complete visit for non-hikers.\xA0↗"
   }), React.createElement(HpCard, {
     go: go,
     location: "home_content",
@@ -163,7 +163,7 @@ function HomePage({
     alt: "The Ahwahnee hotel",
     eyebrow: "INSIDE THE PARK",
     title: "Every bed inside the boundary.",
-    text: "In-park lodging, ranked, and how booking works. ↗"
+    text: "In-park lodging, ranked, and how booking works.\xA0↗"
   }))));
 }
 window.HomePage = HomePage;

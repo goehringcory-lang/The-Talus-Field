@@ -13,6 +13,7 @@
 
 import { Navigate } from 'react-router-dom'
 import { BUILD_DATE, EDITION_LABEL } from '../lib/buildInfo'
+import { formatLongDate } from '../utils/date'
 import { useAuth } from '../auth/useAuth'
 import {
   REGIONS,
@@ -100,7 +101,7 @@ export default function Preview() {
         <section className="page-section" aria-label="Get the guide">
           <div className="card">
             <span className="eyebrow eyebrow--moss">
-              The Field Guide{BUILD_DATE !== 'dev' ? ` · Last updated ${BUILD_DATE}` : ''}
+              The Field Guide{BUILD_DATE !== 'dev' ? ` · Last updated ${formatLongDate(BUILD_DATE)}` : ''}
             </span>
             <div className="buy-card__price">{price}.</div>
             <p className="card__note" style={{ margin: '0 0 18px' }}>

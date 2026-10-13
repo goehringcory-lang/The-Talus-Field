@@ -175,7 +175,7 @@ function KitPage({
         href: it.link.href,
         target: "_blank",
         rel: "noopener noreferrer"
-      }, it.link.label, " ↗"), isAff && React.createElement("a", {
+      }, it.link.label, "\xA0↗"), isAff && React.createElement("a", {
         className: "kit-check__link kit-check__aff",
         href: it.aff,
         target: "_blank",
@@ -184,7 +184,7 @@ function KitPage({
         "data-aff-list": list.slug,
         "data-aff-item-slug": it.id,
         "data-aff-name": it.name
-      }, "Shop Patagonia ↗"), it.articleSlug && React.createElement("a", {
+      }, "Shop Patagonia\xA0↗"), it.articleSlug && React.createElement("a", {
         className: "kit-check__article",
         href: `/articles/${it.articleSlug}`,
         onClick: e => {

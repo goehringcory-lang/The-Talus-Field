@@ -3,13 +3,6 @@
  * repurposed for distance and elevation gain. Chip primitives
  * (components.css) handle filters, badges, and the quick-add. */
 
-.hikes-chips {
-  display: flex;
-  gap: 8px;
-  flex-wrap: wrap;
-  margin-bottom: 20px;
-}
-
 .hikes-region-header {
   position: sticky;
   /* Below the sticky masthead, not behind it (same offset as .secret-guide-tabs). */

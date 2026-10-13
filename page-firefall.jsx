@@ -175,7 +175,7 @@ function FfIcon({ name, size = 22 }) {
 function FfBook({ town, list, children }) {
   return (
     <AvailabilityLink destination={town.dest} list={list} slug={town.id} className="ff-book">
-      {children || "See February availability ↗"}
+      {children || "See February availability ↗"}
     </AvailabilityLink>
   );
 }
@@ -303,7 +303,7 @@ function FirefallPage({ go }) {
               <li>Weekdays over weekends, always.</li>
               <li>Stay on Highway 140 if you can: it gets rain when the others get snow.</li>
             </ul>
-            <FfBook town={elPortal} list="firefall_urgency">Check El Portal availability ↗</FfBook>
+            <FfBook town={elPortal} list="firefall_urgency">Check El Portal availability ↗</FfBook>
             <p className="ff-disclosure">Availability search on Expedia. We may earn a commission if you book, at no cost to you. <a href="/affiliate">Disclosure.</a></p>
           </aside>
         </div>
@@ -331,7 +331,7 @@ function FirefallPage({ go }) {
                 <div><dt>Opens</dt><dd>About 366 days ahead, on a rolling basis</dd></div>
                 <div><dt>Firefall weekends</dt><dd>Gone within days of release</dd></div>
               </dl>
-              <a className="ff-ghost" href="https://www.travelyosemite.com/lodging/" target="_blank" rel="noopener noreferrer">Check in-park rooms at Travel Yosemite ↗</a>
+              <a className="ff-ghost" href="https://www.travelyosemite.com/lodging/" target="_blank" rel="noopener noreferrer">Check in-park rooms at Travel Yosemite ↗</a>
               <p className="ff-note">In-park rooms book only through the park concessioner. In the last two weeks, check daily for cancellations.</p>
             </article>
             <div className="ff-towns">
@@ -399,10 +399,10 @@ function FirefallPage({ go }) {
           <h3>Weather sources to keep open</h3>
           <ul>
             {FF_WEATHER.map(([t, d, h]) => (
-              <li key={h}><a href={h} target="_blank" rel="noopener noreferrer"><strong>{t} ↗</strong><span>{d}</span></a></li>
+              <li key={h}><a href={h} target="_blank" rel="noopener noreferrer"><strong>{t} ↗</strong><span>{d}</span></a></li>
             ))}
           </ul>
-          <p className="ff-note">No gauge measures Horsetail Fall. The USGS gauge on the Merced River at Pohono Bridge is a rough proxy for how much the Valley's walls are shedding: a rising line after a storm is a good sign. <a href="https://waterdata.usgs.gov/monitoring-location/11266500/" target="_blank" rel="noopener noreferrer">Merced River at Pohono Bridge ↗</a> Every live feed on one page: <HomeLink go={go} location="firefall_tonight" href="/conditions">the conditions board</HomeLink>.</p>
+          <p className="ff-note">No gauge measures Horsetail Fall. The USGS gauge on the Merced River at Pohono Bridge is a rough proxy for how much the Valley's walls are shedding: a rising line after a storm is a good sign. <a href="https://waterdata.usgs.gov/monitoring-location/11266500/" target="_blank" rel="noopener noreferrer">Merced River at Pohono Bridge ↗</a> Every live feed on one page: <HomeLink go={go} location="firefall_tonight" href="/conditions">the conditions board</HomeLink>.</p>
         </div>
       </section>
 
@@ -434,10 +434,10 @@ function FirefallPage({ go }) {
               <p className="ff-note">The shape, not a forecast. Water and cloud decide any given evening.</p>
             </figure>
             <dl className="ff-when">
-              <div><dt>Window opens</dt><dd>About February 10</dd><p>Color is weak and brief.</p></div>
-              <div><dt>Strongest color</dt><dd>About February 17 to 24</dd><p>Also the most crowded evenings, especially the Presidents' Day weekend.</p></div>
-              <div><dt>Window closes</dt><dd>About February 26 to 28</dd><p>The angle slides off the fall.</p></div>
-              <div><dt>The glow</dt><dd>A little before 6 p.m.</dd><p>The last ten to fifteen minutes before sunset.</p></div>
+              <div><dt>Window opens</dt><dd>About February 10</dd><dd className="ff-when__note">Color is weak and brief.</dd></div>
+              <div><dt>Strongest color</dt><dd>About February 17 to 24</dd><dd className="ff-when__note">Also the most crowded evenings, especially the Presidents' Day weekend.</dd></div>
+              <div><dt>Window closes</dt><dd>About February 26 to 28</dd><dd className="ff-when__note">The angle slides off the fall.</dd></div>
+              <div><dt>The glow</dt><dd>A little before 6 p.m.</dd><dd className="ff-when__note">The last ten to fifteen minutes before sunset.</dd></div>
             </dl>
           </div>
         </div>
@@ -511,7 +511,7 @@ function FirefallPage({ go }) {
                   <div><strong>{g.what}</strong><p>{g.why}</p></div>
                   <a className="ff-gear__link" href={window.buildAffiliateLink ? window.buildAffiliateLink("patagonia", `https://www.patagonia.com/search/?q=${g.q.replace(/ /g, "+")}`) : `https://www.patagonia.com/search/?q=${g.q.replace(/ /g, "+")}`}
                     target="_blank" rel="sponsored noopener"
-                    data-aff-network="patagonia" data-aff-list="firefall_gear" data-aff-item-slug={g.id} data-aff-name={g.what}>{g.label} ↗</a>
+                    data-aff-network="patagonia" data-aff-list="firefall_gear" data-aff-item-slug={g.id} data-aff-name={g.what}>{g.label} ↗</a>
                 </li>
               ))}
             </ul>
@@ -562,7 +562,7 @@ function FirefallPage({ go }) {
               <p className="hp-eyebrow">STILL NO ROOM?</p>
               <h3>Search the whole Highway 140 corridor</h3>
               <p>El Portal, Midpines and Mariposa sit on the road that gets rain when the others get snow, and it is the corridor with year-round bus service into the park.</p>
-              <FfBook town={mariposa} list="page_firefall">Search Highway 140 lodging ↗</FfBook>
+              <FfBook town={mariposa} list="page_firefall">Search Highway 140 lodging ↗</FfBook>
             </div>
           </div>
           <div className="ff-faq">

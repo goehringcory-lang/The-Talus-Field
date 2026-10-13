@@ -41,6 +41,18 @@ export function formatDayHeader(date: string): string {
   })
 }
 
+/** "October 10, 2026" for a YYYY-MM-DD date, same timezone-safe idiom. A
+ * string that is not an ISO date ('dev', an edition word) passes through. */
+export function formatLongDate(date: string): string {
+  if (!/^\d{4}-\d{2}-\d{2}$/.test(date)) return date
+  return new Date(`${date}T12:00:00Z`).toLocaleDateString('en-US', {
+    month: 'long',
+    day: 'numeric',
+    year: 'numeric',
+    timeZone: 'UTC',
+  })
+}
+
 /** "Jul 20–24" or "Jun 29 – Jul 2" for a {start, end} of YYYY-MM-DD dates.
  * Timezone-safe: noon UTC, formatted as UTC, same idiom as forecastDays.
  * Shared by Home's trip strip and the field card, so the two spell a trip

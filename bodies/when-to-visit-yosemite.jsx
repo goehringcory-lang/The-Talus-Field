@@ -199,7 +199,7 @@ window.ARTICLE_BODIES["when-to-visit-yosemite"] = function WhenToVisitYosemiteBo
       ". 2026 is projected between 4,475,340 and 4,620,759, which would rank second behind 2016.";
     return (
       <figure className="wv-fig">
-        <ol className="wv-hbars" role="img" aria-label={label}>
+        <ol className="wv-hbars" aria-label={label}>
           {YEARS.map((r) => (
             <li key={r.y} aria-hidden="true">
               <span className="wv-hbars__y">{r.y}</span>
@@ -260,7 +260,7 @@ window.ARTICLE_BODIES["when-to-visit-yosemite"] = function WhenToVisitYosemiteBo
       GATES.map(([n, g]) => n + " up " + g + " percent").join("; ") + ". Hetch Hetchy was down.";
     return (
       <figure className="wv-fig wv-fig--small">
-        <ol className="wv-gates" role="img" aria-label={label}>
+        <ol className="wv-gates" aria-label={label}>
           {GATES.map(([n, g]) => (
             <li key={n} aria-hidden="true">
               <span>{n}</span>

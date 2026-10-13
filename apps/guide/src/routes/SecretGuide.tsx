@@ -102,7 +102,11 @@ function Hero({
           </nav>
           <p className="sg-hero__eyebrow">
             <SgIcon name="lock" size={14} />
-            {SECRET_GUIDE_META.eyebrow} · {total} entries · {chapters} chapters
+            {/* Each segment keeps its own separator, so a wrapped line never
+                starts with "·". */}
+            <span className="sg-nowrap">{SECRET_GUIDE_META.eyebrow} ·</span>{' '}
+            <span className="sg-nowrap">{total} entries ·</span>{' '}
+            <span className="sg-nowrap">{chapters} chapters</span>
           </p>
           <h1 className="sg-hero__title">{SECRET_GUIDE_META.title}</h1>
           <p className="sg-hero__teaser">{SECRET_GUIDE_META.teaser}</p>
@@ -583,7 +587,6 @@ export default function SecretGuide() {
                     type="button"
                     className="sg-chapter"
                     aria-pressed={cat === c.id}
-                    aria-label={`Chapter ${c.numeral}, ${c.title}, ${plural(c.entries.length, 'entry', 'entries')}`}
                     onClick={() => select(cat === c.id ? null : c.id)}
                   >
                     <span className="sg-chapter__media">
@@ -605,8 +608,13 @@ export default function SecretGuide() {
                       </span>
                     </span>
                     <span className="sg-chapter__body">
+                      {/* Named by what it shows, with the numeral and count
+                          spoken around it (an aria-label left the tagline
+                          out of the name: axe label-content-name-mismatch). */}
+                      <span className="sr-only">Chapter {c.numeral}, </span>
                       <span className="sg-chapter__title">{c.title}</span>
                       <span className="sg-chapter__tag">{c.tagline}</span>
+                      <span className="sr-only">, {plural(c.entries.length, 'entry', 'entries')}</span>
                       <span className="sg-chapter__go" aria-hidden="true">
                         {plural(c.entries.length, 'entry', 'entries')}
                         <SgIcon name="down" size={12} />

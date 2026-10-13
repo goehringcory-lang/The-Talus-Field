@@ -4,9 +4,11 @@ import { ESSENTIALS, getEssentialById } from '../content'
 import NotFound from './NotFound'
 import GatedChrome from '../components/GatedChrome'
 import ChecklistBlock from '../components/ChecklistBlock'
+import { checklistVerb } from '../lib/checklist'
 import PrevNextNav from '../components/PrevNextNav'
 import BackLink from '../components/ui/BackLink'
 import PageHeader from '../components/ui/PageHeader'
+import { glueNumbers } from '../utils/text'
 
 export default function EssentialDetail() {
   const params = useParams<{ topicId: string }>()
@@ -32,15 +34,13 @@ export default function EssentialDetail() {
         <PageHeader eyebrow="Know before you go" title={topic.title} />
 
         <div className="prose">
-          <ReactMarkdown>{topic.body}</ReactMarkdown>
+          <ReactMarkdown>{glueNumbers(topic.body)}</ReactMarkdown>
         </div>
 
         {topic.checklist && (
           <ChecklistBlock
             items={topic.checklist}
-            verb={
-              topic.id === 'before-you-go' || topic.id === 'safety-and-help' ? 'done' : 'packed'
-            }
+            verb={checklistVerb(topic.id)}
           />
         )}
 

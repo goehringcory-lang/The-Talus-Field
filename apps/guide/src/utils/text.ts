@@ -25,3 +25,13 @@ export function plainSummary(markdown: string, maxChars = 260): string {
   const lastSpace = cut.lastIndexOf(' ')
   return `${(lastSpace > 40 ? cut.slice(0, lastSpace) : cut).replace(/[,;:]$/, '')}…`
 }
+
+// "209/372-0200" broke at its hyphen on a phone ("209/372- / 0200"). Swap
+// the hyphen inside a printed phone number for a non-breaking one (U+2011)
+// at render time; the content files keep plain hyphens, which the fact
+// audit's searches match, and tel: links carry their own digits.
+export function glueNumbers(text: string): string {
+  return text.replace(/\b(\d{3})([/ .-])(\d{3})-(\d{4})\b/g, (_, a: string, sep: string, b: string, c: string) =>
+    `${a}${sep === '-' ? '\u2011' : sep}${b}\u2011${c}`,
+  )
+}

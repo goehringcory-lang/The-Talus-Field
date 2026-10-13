@@ -13,6 +13,7 @@ window.ARTICLE_BODIES["yosemite-trees-identification-guide"] = function Yosemite
         <Placeholder
           caption="Profile of the Sierra Nevada through Yosemite, from Snelling in the San Joaquin Valley up the Merced River, through Yosemite Valley and over Tioga Pass to Mono Lake, colored by life zone"
           image="img/yosemite-life-zones-profile-1924.jpg"
+          style={{ aspectRatio: "1600 / 506" }}
           credit="Grinnell and Storer, Animal Life in the Yosemite (1924), plate 61"
           tag="FIG. 1"
           natural
@@ -32,6 +33,7 @@ window.ARTICLE_BODIES["yosemite-trees-identification-guide"] = function Yosemite
         <Placeholder
           caption="Map of Yosemite National Park colored by vegetation zone: foothill woodland, lower montane forest, upper montane forest, subalpine forest and alpine"
           image="img/yosemite-vegetation-zones-map-usgs.jpg"
+          style={{ aspectRatio: "620 / 749" }}
           credit="Map: Jan van Wagtendonk / USGS"
           tag="FIG. 2"
           natural
@@ -141,6 +143,7 @@ window.ARTICLE_BODIES["yosemite-trees-identification-guide"] = function Yosemite
         <Placeholder
           caption="Diagrammatic cross-section of Yosemite Valley looking west: golden oak on the talus slopes under each wall, black oak and yellow pine on the floor, willow and cottonwood along the Merced River"
           image="img/yosemite-valley-cross-section-1924.jpg"
+          style={{ aspectRatio: "1600 / 728" }}
           credit="Grinnell and Storer, Animal Life in the Yosemite (1924), fig. 56"
           tag="FIG. 3"
           natural

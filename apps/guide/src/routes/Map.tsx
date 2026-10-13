@@ -2652,7 +2652,9 @@ export default function Map() {
 
   return (
     <GatedChrome>
-      <div className="map-page">
+      <main className="map-page">
+        {/* The map is the page; the h1 is for the outline and screen readers. */}
+        <h1 className="sr-only">Park map</h1>
         {/* Only when it changes what the reader can expect of the map: it
             failed, or the phone is offline. Online, the download state rides
             on the Offline areas control over the map instead of a bar that
@@ -2732,25 +2734,28 @@ export default function Map() {
             <ChipButton
               variant="filter"
               pressed={kindFilter === null}
-              aria-label={`All kinds, ${allCount} pins`}
               onClick={clearKinds}
             >
               All <span className="map-filterbar__count">{allCount}</span>
+              <span className="sr-only"> pins</span>
             </ChipButton>
             {presentKinds.map((kind) => {
-              const { color, label } = getKindStyle(kind)
+              const { label } = getKindStyle(kind)
               return (
                 <ChipButton
                   key={kind}
                   variant="filter"
                   className={kindCounts[kind] === 0 ? 'map-filterbar__chip--empty' : undefined}
                   pressed={kindFilter?.has(kind) ?? false}
-                  aria-label={`${label}, ${kindCounts[kind]} pins`}
                   onClick={() => toggleKind(kind)}
                 >
+                  {/* Named by what the chip shows plus a hidden "pins": an
+                      aria-label kept drifting from the visible text (axe
+                      label-content-name-mismatch). */}
                   <KindMark kind={kind} />
-                  <span style={{ color: kindFilter?.has(kind) ? undefined : color }} className="map-filterbar__label">{label}</span>{' '}
+                  <span className="map-filterbar__label">{label}</span>{' '}
                   <span className="map-filterbar__count">{kindCounts[kind]}</span>
+                  <span className="sr-only"> pins</span>
                 </ChipButton>
               )
             })}
@@ -2759,11 +2764,11 @@ export default function Map() {
                 variant="filter"
                 className="map-filterbar__secret"
                 pressed={showSecret}
-                aria-label={`Secret Guide entries, ${secretCount} pins`}
                 onClick={() => setShowSecret((v) => !v)}
               >
                 <span className="map-filterbar__dot map-filterbar__dot--secret" aria-hidden />
                 Secret Guide <span className="map-filterbar__count">{secretCount}</span>
+                <span className="sr-only"> pins</span>
               </ChipButton>
             )}
             {/* Stays while it is on, even once the plan empties, so the
@@ -2896,14 +2901,15 @@ export default function Map() {
               type="button"
               className="map-view-controls__btn map-view-controls__offline"
               data-state={mapDownloaded ? 'ready' : mapOffline.overview ? 'partial' : 'none'}
-              aria-label={
-                mapDownloaded
-                  ? 'Offline areas: the whole map is on this device'
-                  : `Offline areas: ${mapOffline.overview ? mapOffline.regions.length : 0} of ${OFFLINE_REGIONS.length} downloaded`
-              }
               onClick={openOfflineAreas}
             >
-              Offline{' '}
+              {/* Named by its own words: "Offline" shows, the rest is said. */}
+              Offline
+              <span className="sr-only">
+                {mapDownloaded
+                  ? ' areas: the whole map is on this device'
+                  : ` areas: ${mapOffline.overview ? mapOffline.regions.length : 0} of ${OFFLINE_REGIONS.length} downloaded`}
+              </span>{' '}
               <span className="map-view-controls__meter" aria-hidden>
                 {mapDownloaded ? '✓' : `${mapOffline.overview ? mapOffline.regions.length : 0}/${OFFLINE_REGIONS.length}`}
               </span>
@@ -3104,7 +3110,7 @@ export default function Map() {
             <InfoPane presentKinds={presentKinds} mapOffline={mapOffline} />
           </section>
         </div>
-      </div>
+      </main>
     </GatedChrome>
   )
 }
@@ -3214,14 +3220,14 @@ function InfoPane({
   const allAreas = mapOffline.overview && mapOffline.regions.length === OFFLINE_REGIONS.length
   return (
     <div className="map-info">
-      <h1>How the map works offline</h1>
+      <h2 className="map-info__title">How the map works offline</h2>
       <p className="lede">
         This map is built to work with zero bars. Download it once and the
         terrain and map tiles live on your device; the pins are part of the
         app itself.
       </p>
 
-      <h2>Before you leave wifi</h2>
+      <h3>Before you leave wifi</h3>
       <ol>
         <li>
           Download the <strong>overview</strong> below and each area you're
@@ -3244,7 +3250,7 @@ function InfoPane({
       </ol>
 
       <section id="map-offline" className="map-info__offline" tabIndex={-1} aria-labelledby="map-offline-title">
-        <h2 id="map-offline-title">Offline areas</h2>
+        <h3 id="map-offline-title">Offline areas</h3>
         <DownloadManager
           only={(p) => MAP_PACK_IDS.includes(p.id)}
           intro={
@@ -3258,7 +3264,7 @@ function InfoPane({
         />
       </section>
 
-      <h2>In the park</h2>
+      <h3>In the park</h3>
       <ul>
         <li>
           Open the <strong>GPS points</strong> tab. Every pin carries the
@@ -3352,7 +3358,7 @@ function InfoPane({
         </li>
       </ul>
 
-      <h2>Itineraries tab</h2>
+      <h3>Itineraries tab</h3>
       <p>
         Filter the pin set to one ready-made plan: trip lengths, first
         visit, young kids, easy pace, and the rest. Use the day-by-day
@@ -3360,7 +3366,7 @@ function InfoPane({
         selection.
       </p>
 
-      <h2>Legend</h2>
+      <h3>Legend</h3>
       <ul className="map-legend" style={{ marginTop: 8 }}>
         {presentKinds.map((kind) => {
           const { label } = KIND_STYLES[kind]
@@ -3387,7 +3393,7 @@ function InfoPane({
         presets; add them to your trip from the pin or the stop page.
       </p>
 
-      <h2>The fine print</h2>
+      <h3>The fine print</h3>
       <ul>
         <li>
           This map shows where things are; it does not calculate driving

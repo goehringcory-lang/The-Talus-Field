@@ -205,7 +205,6 @@ window.ARTICLE_BODIES["when-to-visit-yosemite"] = function WhenToVisitYosemiteBo
       className: "wv-fig"
     }, React.createElement("ol", {
       className: "wv-hbars",
-      role: "img",
       "aria-label": label
     }, YEARS.map(r => React.createElement("li", {
       key: r.y,
@@ -280,7 +279,6 @@ window.ARTICLE_BODIES["when-to-visit-yosemite"] = function WhenToVisitYosemiteBo
       className: "wv-fig wv-fig--small"
     }, React.createElement("ol", {
       className: "wv-gates",
-      role: "img",
       "aria-label": label
     }, GATES.map(([n, g]) => React.createElement("li", {
       key: n,

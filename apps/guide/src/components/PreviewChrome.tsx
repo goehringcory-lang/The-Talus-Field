@@ -21,7 +21,7 @@ export default function PreviewChrome({ children }: Props) {
   return (
     <div className="app-shell">
       <header className="gated-chrome">
-        <Link to="/preview" className="masthead-brand" aria-label="The Field Guide, free sample">
+        <Link to="/preview" className="masthead-brand" aria-label="The Talus Field, Field Guide free sample">
           <img
             className="masthead-brand__mark"
             src="/brand/mark-96.png"

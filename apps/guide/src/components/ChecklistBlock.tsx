@@ -7,6 +7,7 @@ import {
   writeChecked,
   type CheckedMap,
 } from '../lib/checklist'
+import { glueNumbers } from '../utils/text'
 
 type Props = {
   items: NonNullable<EssentialTopicT['checklist']>
@@ -70,7 +71,7 @@ export default function ChecklistBlock({ items, verb = 'packed' }: Props) {
                 onChange={() => toggle(item.id)}
               />
               <span className={checked[item.id] ? 'checklist__label checklist__label--done' : 'checklist__label'}>
-                {item.label}
+                {glueNumbers(item.label)}
                 {item.season && <span className="checklist__season">{item.season}</span>}
                 {item.note && (
                   <span style={{ display: 'block', fontSize: 13, color: 'var(--ink-3)', marginTop: 2 }}>

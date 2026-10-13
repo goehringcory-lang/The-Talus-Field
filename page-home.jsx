@@ -19,8 +19,8 @@ function HomeHero({ go }) {
           than a jump down this one. The terms line reads GUIDE_TERMS, which
           carries no date, so the shell's year guard stays satisfied. */}
       <div className="hp-actions">
-        <HomeLink go={go} location="home_hero" className="hp-button" href="/start-here">Plan my first visit, free &nbsp; ↗</HomeLink>
-        <HomeLink go={go} location="home_hero" className="hp-link" href="/guide">Explore the offline Field Guide ↗</HomeLink>
+        <HomeLink go={go} location="home_hero" className="hp-button" href="/start-here">Plan my first visit, free &nbsp; ↗</HomeLink>
+        <HomeLink go={go} location="home_hero" className="hp-link" href="/guide">Explore the offline Field Guide ↗</HomeLink>
       </div>
       <p className="hp-byline hp-hero-terms">The Field Guide: {(window.GUIDE_TERMS && window.GUIDE_TERMS.price) || "$3.99"} once, 18 months, works with no signal.</p>
       <p className="hp-byline">Independent advice. Twenty seasons of paying attention.</p>
@@ -43,9 +43,9 @@ function HomePage({ go }) {
   <HomeHero go={go} />
   <div className="hp-utility hp-wrap">
     <span className="hp-eyebrow">BEFORE YOU HEAD IN</span>
-    <HomeLink go={go} location="home_content" href="/conditions">Roads &amp; conditions ↗</HomeLink>
-    <HomeLink go={go} location="home_content" href="/articles/yosemite-without-reservations-2026">Entry &amp; reservations ↗</HomeLink>
-    <HomeLink go={go} location="home_content" href="/articles/yosemite-shuttle-and-yarts">Getting around ↗</HomeLink>
+    <HomeLink go={go} location="home_content" href="/conditions">Roads &amp; conditions ↗</HomeLink>
+    <HomeLink go={go} location="home_content" href="/articles/yosemite-without-reservations-2026">Entry &amp; reservations ↗</HomeLink>
+    <HomeLink go={go} location="home_content" href="/articles/yosemite-shuttle-and-yarts">Getting around ↗</HomeLink>
   </div>
   {/* Start Here is one door, not a reading list: the whole card is a single
       link to /start-here, which carries the four articles this block used to
@@ -60,7 +60,7 @@ function HomePage({ go }) {
       </div>
       <div className="hp-door__body">
         <p className="hp-eyebrow">THE FIRST-TRIP PAGE</p>
-        <h3>Everything a first visit needs,<br />on one page.</h3>
+        <h3>Everything a first visit needs,{" "}<br />on one page.</h3>
         <p className="hp-door__intro">Where to begin, what to see, and how to shape the days, in the order the decisions come.</p>
         <ul className="hp-door__list">
           <li>The short answers: reservations, fees, how many days</li>
@@ -82,14 +82,14 @@ function HomePage({ go }) {
       page. Five of the six carry disclosed lodging links. Hand-written
       on purpose, like the rest of the page; re-curate from a fresh export. */}
   <section className="hp-journal hp-wrap hp-section">
-    <HpHeading go={go} location="home_content" eyebrow="WHAT VISITORS ASK FIRST" title="The questions that bring people here." link={{ href: "/articles", label: "Explore the journal ↗" }} />
+    <HpHeading go={go} location="home_content" eyebrow="WHAT VISITORS ASK FIRST" title="The questions that bring people here." link={{ href: "/articles", label: "Explore the journal ↗" }} />
     <div className="hp-journal-grid">
-      <HpCard go={go} location="home_content" href="/articles/yosemite-gateway-towns-compared" image="/img/mariposa-mural.jpg" alt="A mural in Mariposa, the gateway town on Highway 140" eyebrow="WHERE TO STAY" title="Mariposa, Oakhurst or Groveland?" text="The gateway towns compared, drive by drive. ↗" />
-      <HpCard go={go} location="home_content" href="/half-dome-lottery" image="/img/half-dome-alpenglow-madhu-shesharam.jpg" alt="Half Dome in alpenglow" eyebrow="PERMITS" title="The Half Dome lottery, decoded." text="Both lotteries, the odds, and when to apply. ↗" />
-      <HpCard go={go} location="home_content" href="/articles/yosemite-camping-complete-guide" image="/img/camp-ahwahnee-sentinel-rock.jpg" alt="A hand-colored postcard of a tent camp beneath Sentinel Rock" eyebrow="CAMPING" title="Thirteen campgrounds, one guide." text="How to get a site, and where to go when they are full. ↗" />
-      <HpCard go={go} location="home_content" href="/articles/when-to-visit-yosemite" image="/img/vernal-fall-high-water.jpg" alt="Vernal Fall at high water in late spring" eyebrow="WHEN TO GO" title="The best time to visit, by the data." text="A month-by-month crowd forecast. ↗" />
-      <HpCard go={go} location="home_content" href="/articles/yosemite-for-non-hikers" image="/img/tunnel-view-valley-spring.jpg" alt="Tunnel View: El Capitan, Bridalveil Fall and Half Dome" eyebrow="NO HIKING REQUIRED" title="The whole park, without a trail." text="A complete visit for non-hikers. ↗" />
-      <HpCard go={go} location="home_content" href="/articles/where-to-stay-in-yosemite" image="/img/ahwahnee-hotel.jpg" alt="The Ahwahnee hotel" eyebrow="INSIDE THE PARK" title="Every bed inside the boundary." text="In-park lodging, ranked, and how booking works. ↗" />
+      <HpCard go={go} location="home_content" href="/articles/yosemite-gateway-towns-compared" image="/img/mariposa-mural.jpg" alt="A mural in Mariposa, the gateway town on Highway 140" eyebrow="WHERE TO STAY" title="Mariposa, Oakhurst or Groveland?" text="The gateway towns compared, drive by drive. ↗" />
+      <HpCard go={go} location="home_content" href="/half-dome-lottery" image="/img/half-dome-alpenglow-madhu-shesharam.jpg" alt="Half Dome in alpenglow" eyebrow="PERMITS" title="The Half Dome lottery, decoded." text="Both lotteries, the odds, and when to apply. ↗" />
+      <HpCard go={go} location="home_content" href="/articles/yosemite-camping-complete-guide" image="/img/camp-ahwahnee-sentinel-rock-card.jpg" alt="A hand-colored postcard of a tent camp beneath Sentinel Rock" eyebrow="CAMPING" title="Thirteen campgrounds, one guide." text="How to get a site, and where to go when they are full. ↗" />
+      <HpCard go={go} location="home_content" href="/articles/when-to-visit-yosemite" image="/img/vernal-fall-high-water.jpg" alt="Vernal Fall at high water in late spring" eyebrow="WHEN TO GO" title="The best time to visit, by the data." text="A month-by-month crowd forecast. ↗" />
+      <HpCard go={go} location="home_content" href="/articles/yosemite-for-non-hikers" image="/img/tunnel-view-valley-spring.jpg" alt="Tunnel View: El Capitan, Bridalveil Fall and Half Dome" eyebrow="NO HIKING REQUIRED" title="The whole park, without a trail." text="A complete visit for non-hikers. ↗" />
+      <HpCard go={go} location="home_content" href="/articles/where-to-stay-in-yosemite" image="/img/ahwahnee-hotel.jpg" alt="The Ahwahnee hotel" eyebrow="INSIDE THE PARK" title="Every bed inside the boundary." text="In-park lodging, ranked, and how booking works. ↗" />
     </div>
   </section>
     </div>

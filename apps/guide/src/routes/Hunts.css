@@ -91,3 +91,6 @@
     color: #444;
   }
 }
+
+/* Item labels wrap like headings: no lone last word ("...in the / mist"). */
+.hunt__label { text-wrap: pretty; }

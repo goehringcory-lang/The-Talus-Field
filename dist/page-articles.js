@@ -70,8 +70,12 @@ function ArticlesIndex({
     resultCount: list.length,
     note: active === "all" ? "" : `Within ${window.findCategory(active).label}.`
   })), React.createElement("section", {
-    className: "hp-wrap hp-section hp-index__list"
-  }, list.length > 0 ? React.createElement("div", {
+    className: "hp-wrap hp-section hp-index__list",
+    "aria-labelledby": "articles-list-h"
+  }, React.createElement("h2", {
+    id: "articles-list-h",
+    className: "hp-sr-only"
+  }, "The articles"), list.length > 0 ? React.createElement("div", {
     className: "hp-journal-grid"
   }, list.map(a => React.createElement(HpArticleCard, {
     key: a.slug,
@@ -656,7 +660,7 @@ function PlanningSectionPage({
   }, kit.groups.map(g => React.createElement("div", {
     className: "ps-pack__g",
     key: g.title
-  }, React.createElement("h4", null, g.title), React.createElement("ul", null, g.items.map(([name, note]) => React.createElement("li", {
+  }, React.createElement("h3", null, g.title), React.createElement("ul", null, g.items.map(([name, note]) => React.createElement("li", {
     key: name
   }, React.createElement("i", {
     "aria-hidden": "true"
@@ -1155,7 +1159,9 @@ function SeasonalSectionPage({
   }, React.createElement("span", {
     role: "columnheader",
     className: "sx-roads__road"
-  }), months.map(x => React.createElement("span", {
+  }, React.createElement("span", {
+    className: "hp-sr-only"
+  }, "Road")), months.map(x => React.createElement("span", {
     role: "columnheader",
     key: x.key
   }, x.label))), [["tioga", "Tioga Road", "/tioga-opening"], ["glacier", "Glacier Point Road", "/articles/glacier-point-road-open-2026"]].map(([k, label, href]) => React.createElement("div", {
@@ -1414,6 +1420,7 @@ function TrailsSectionPage({
       className: "sx-hike__why"
     }, a ? sxFirst(a.dek) : ""), React.createElement("span", {
       className: "sx-hike__gain",
+      role: "img",
       "aria-label": `${h.gainText} of climbing`
     }, React.createElement("span", {
       className: "sx-bar"

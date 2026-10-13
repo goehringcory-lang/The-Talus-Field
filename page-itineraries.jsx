@@ -216,7 +216,7 @@ function ItinMonths({ itineraries }) {
               <th scope="row"><a href={`#${it.id}`}>{it.label}</a><small>{it.title}</small></th>
               {months.map((m) => {
                 const s = status(it, m);
-                return <td key={m.key} className={"is-" + s}><span aria-label={`${m.name}: ${word[s]}`} title={`${m.name}: ${word[s]}`} /></td>;
+                return <td key={m.key} className={"is-" + s}><span role="img" aria-label={`${m.name}: ${word[s]}`} title={`${m.name}: ${word[s]}`} /></td>;
               })}
             </tr>
           ))}
@@ -476,7 +476,7 @@ function ItinerariesPage({ go }) {
           <aside className="ff-closing" aria-label="Lodging availability">
             <p className="hp-eyebrow">EVERY PLAN ABOVE NEEDS A NIGHT BETWEEN THE DAYS</p>
             <p>These are built on early starts, which is a lodging decision before it is an itinerary decision: a bed in the Valley or in El Portal buys the first two hours of the day, and Oakhurst costs you them. The full comparison of every in-park and gateway option is one page over.</p>
-            <AvailabilityLink destination="Yosemite National Park" list="page_itineraries" slug="itineraries" className="ff-book">See what is available on your dates ↗</AvailabilityLink>
+            <AvailabilityLink destination="Yosemite National Park" list="page_itineraries" slug="itineraries" className="ff-book">See what is available on your dates ↗</AvailabilityLink>
             <p className="ff-note">Availability search on Expedia; we may earn a commission, and the advice is the same either way. <a href="/affiliate">Disclosure.</a> Every option compared: <HomeLink go={go} location="itineraries_stay" href="/stay">where to stay</HomeLink>.</p>
           </aside>
         </div>

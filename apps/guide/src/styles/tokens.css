@@ -592,6 +592,10 @@ p { margin: 0 0 1.1em; text-wrap: pretty; }
   gap: 20px;
   flex-shrink: 0;
 }
+@media (max-width: 430px) {
+  .gated-chrome { gap: 12px; }
+  .gated-chrome__right { gap: 14px; }
+}
 .gated-chrome__links {
   display: flex;
   align-items: center;
@@ -884,6 +888,9 @@ select:focus-visible {
   font-weight: 600;
   color: var(--moss);
 }
+/* The checklist count sits inline before "Read →"; without a gap the two ran
+   together as "0 OF 8 PACKEDREAD →". */
+.essential-row .dateline { margin-right: 14px; }
 
 /* ===== Packing checklist ===== */
 

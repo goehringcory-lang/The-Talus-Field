@@ -461,15 +461,15 @@ function HalfDomeLotteryPage({
     href: "https://www.nps.gov/yose/planyourvisit/hdpermits.htm",
     target: "_blank",
     rel: "noopener noreferrer"
-  }, "Half Dome Permits, NPS ↗")), React.createElement("li", null, React.createElement("a", {
+  }, "Half Dome Permits, NPS\xA0↗")), React.createElement("li", null, React.createElement("a", {
     href: "https://www.recreation.gov/permits/234652",
     target: "_blank",
     rel: "noopener noreferrer"
-  }, "Half Dome Permits, Recreation.gov ↗")), React.createElement("li", null, React.createElement("a", {
+  }, "Half Dome Permits, Recreation.gov\xA0↗")), React.createElement("li", null, React.createElement("a", {
     href: "https://www.nps.gov/yose/planyourvisit/hdpermitsapps.htm",
     target: "_blank",
     rel: "noopener noreferrer"
-  }, "Half Dome Permit Lottery Statistics, NPS ↗")))), React.createElement("aside", {
+  }, "Half Dome Permit Lottery Statistics, NPS\xA0↗")))), React.createElement("aside", {
     className: "ff-closing hd-stay",
     "aria-label": "Lodging availability"
   }, React.createElement("p", {
@@ -479,7 +479,7 @@ function HalfDomeLotteryPage({
     list: "page_half_dome",
     slug: "half-dome-lottery",
     className: "ff-book"
-  }, "Search lodging near the trailhead ↗"), React.createElement("p", {
+  }, "Search lodging near the trailhead\xA0↗"), React.createElement("p", {
     className: "ff-note"
   }, "Availability search on Expedia; we may earn a commission, and the advice is the same either way. ", React.createElement("a", {
     href: "/affiliate"

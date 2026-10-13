@@ -297,7 +297,7 @@ function PgStaySearch() {
     "data-aff-list": "planning_search",
     "data-aff-item-slug": row.id,
     "data-aff-name": row.dest + " lodging search"
-  }, "Search stays on Expedia ↗"));
+  }, "Search stays on Expedia\xA0↗"));
 }
 function PgStatusText({
   state,
@@ -456,7 +456,7 @@ var PG_AREAS = [{
   body: "Granite domes, subalpine lakes, a meadow the size of a town, and half the crowd. A different park, reached only on Tioga Road.",
   give: "Give it: a full day, west to east"
 }];
-var PG_COMPARE = [["Seasons, permits, lodging and trail articles", true, true, true], ["Road openings and booking windows, by email", false, true, "trip board"], ["A map of the main destinations", false, "31 pins", true], ["3D topographic map of the whole park, offline", false, false, true], ["44 stops in driving order, with parking and timing notes", false, false, true], ["57 day hikes with GPS tracks", false, false, true], ["This week's ranger and interpretive programs, by day and area", false, false, true], ["A day-by-day planner for your own trip", false, false, true], ["50 Secret Guide entries, beyond the obvious", false, false, true]];
+var PG_COMPARE = [["Seasons, permits, lodging and trail articles", true, true, true], ["Road openings and booking windows, by email", false, true, "trip board"], ["A map of the main destinations", false, "31 pins", true], ["3D topographic map of the whole park, offline", false, false, true], ["44 stops in driving order, with parking and timing notes", false, false, true], ["57 day hikes with GPS tracks", false, false, true], ["This week's ranger and interpretive programs, by day and area", false, false, true], ["A day-by-day planner for your own trip", false, false, true], ["72 Secret Guide entries, beyond the obvious", false, false, true]];
 function PgCell({
   value,
   product
@@ -466,12 +466,14 @@ function PgCell({
     className: cls
   }, React.createElement("span", {
     className: "pg-no",
+    role: "img",
     "aria-label": "Not included"
   }));
   return React.createElement("td", {
     className: cls
   }, React.createElement("span", {
     className: "pg-yes",
+    role: "img",
     "aria-label": "Included"
   }, "✓"), typeof value === "string" && React.createElement("span", {
     className: "pg-yes__note"
@@ -618,7 +620,7 @@ function PlanningGuide({
     className: "pg-month__lede"
   }, sel.note), React.createElement("a", {
     href: `/articles/${sel.read}`
-  }, "Read the ", sel.name, " guide ↗")), React.createElement("div", {
+  }, "Read the ", sel.name, " guide\xA0↗")), React.createElement("div", {
     className: "pg-road"
   }, React.createElement("p", {
     className: "pg-kicker"
@@ -819,7 +821,7 @@ function PlanningGuide({
     slug: t.id,
     name: t.name + " lodging search",
     className: "pg-btn pg-btn--accent pg-town__go"
-  }, "Search ", t.name, " ↗")))))), React.createElement("div", {
+  }, "Search ", t.name, "\xA0↗")))))), React.createElement("div", {
     className: "pg-inpark"
   }, React.createElement("figure", {
     className: "pg-inpark__media"
@@ -846,14 +848,14 @@ function PlanningGuide({
     href: PG_TRAVEL_YOSEMITE,
     target: "_blank",
     rel: "noopener noreferrer"
-  }, "Check dates ↗"))), React.createElement("div", {
+  }, "Check dates\xA0↗"))), React.createElement("div", {
     className: "pg-inpark__foot"
   }, React.createElement("p", null, "Gone for your dates? Mariposa and El Portal hold the most rooms within an hour. ", React.createElement(AvailabilityLink, {
     destination: "Mariposa, California",
     list: "planning_in_park",
     slug: "mariposa",
     name: "Mariposa lodging search"
-  }, "Search them ↗")), React.createElement("a", {
+  }, "Search them\xA0↗")), React.createElement("a", {
     href: "/stay",
     onClick: e => {
       if (e.button !== 0 || e.metaKey || e.ctrlKey) return;
@@ -1016,7 +1018,7 @@ function PlanningGuide({
     className: "pg-h2"
   }, "This page is the plan.", React.createElement("br", null), "The app is the trip."), React.createElement("p", {
     className: "pg-guide__intro"
-  }, "Most of the park has no signal. The Field Guide downloads before you leave and carries all four corners in your pocket: which lot to aim for, which hike fits the afternoon you have left, and what the rangers are leading tonight."), React.createElement("ul", null, React.createElement("li", null, React.createElement("span", null, "◭"), React.createElement("div", null, React.createElement("strong", null, "The park in 3D."), React.createElement("p", null, "Topographic terrain you can tilt, with every stop, trailhead and lot on it."))), React.createElement("li", null, React.createElement("span", null, "↳"), React.createElement("div", null, React.createElement("strong", null, "Find your next stop."), React.createElement("p", null, "44 stops, arranged in driving order, each with where to park."))), React.createElement("li", null, React.createElement("span", null, "⌁"), React.createElement("div", null, React.createElement("strong", null, "Choose a hike that fits your day."), React.createElement("p", null, "57 day hikes with GPS tracks."))), React.createElement("li", null, React.createElement("span", null, "◎"), React.createElement("div", null, React.createElement("strong", null, "Know what's on tonight."), React.createElement("p", null, "Ranger walks, talks and campfire programs, filtered to your day and area.")))), React.createElement("div", {
+  }, "Most of the park has no signal. The Field Guide downloads before you leave and carries all four corners in your pocket: which lot to aim for, which hike fits the afternoon you have left, and what the rangers are leading tonight."), React.createElement("ul", null, React.createElement("li", null, React.createElement("span", null, "◭"), React.createElement("div", null, React.createElement("strong", null, "The park in 3D."), React.createElement("p", null, "Topographic terrain you can tilt, with every stop, trailhead and lot on it."))), React.createElement("li", null, React.createElement("span", null, "↳"), React.createElement("div", null, React.createElement("strong", null, "Find your next stop."), React.createElement("p", null, "44 stops, arranged in driving order, each with where to park."))), React.createElement("li", null, React.createElement("span", null, "△"), React.createElement("div", null, React.createElement("strong", null, "Choose a hike that fits your day."), React.createElement("p", null, "57 day hikes with GPS tracks."))), React.createElement("li", null, React.createElement("span", null, "◎"), React.createElement("div", null, React.createElement("strong", null, "Know what's on tonight."), React.createElement("p", null, "Ranger walks, talks and campfire programs, filtered to your day and area.")))), React.createElement("div", {
     className: "pg-actions"
   }, React.createElement(HomeLink, {
     go: go,
@@ -1025,7 +1027,7 @@ function PlanningGuide({
     href: "/guide"
   }, "Get the Field Guide \xA0", React.createElement("span", {
     className: "pg-price"
-  }, GUIDE_TERMS.price, " ↗")), React.createElement("a", {
+  }, GUIDE_TERMS.price, "\xA0↗")), React.createElement("a", {
     className: "pg-guide__sample",
     href: `${GUIDE_PROMO_APP_BASE}/preview`,
     onClick: () => {
@@ -1033,7 +1035,7 @@ function PlanningGuide({
         location: "planning_hub"
       });
     }
-  }, "Read five entries free ↗")), React.createElement("p", {
+  }, "Read five entries free\xA0↗")), React.createElement("p", {
     className: "pg-guide__terms"
   }, GUIDE_TERMS.short, " · ", GUIDE_TERMS.refundShort, " · works offline")), React.createElement("div", {
     className: "pg-guide__screens"

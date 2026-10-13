@@ -1,4 +1,4 @@
-var BULLETIN_URL = "/bulletin.json?v=19";
+var BULLETIN_URL = "/bulletin.json?v=21";
 var BT_PARK_TZ = "America/Los_Angeles";
 var BT_DAY_CODES = ["su", "mo", "tu", "we", "th", "fr", "sa"];
 function btIsoValid(iso) {
@@ -714,7 +714,7 @@ function BulletinEditionCard({
     href: edition.sourceUrl,
     target: "_blank",
     rel: "noopener noreferrer"
-  }, "The full Guide on nps.gov ↗") : null));
+  }, "The full Guide on nps.gov\xA0↗") : null));
 }
 function BulletinHeadlines({
   headlines
@@ -1307,7 +1307,7 @@ function BulletinPage({
     href: edition.sourceUrl,
     target: "_blank",
     rel: "noopener noreferrer"
-  }, "The full Guide is on nps.gov ↗") : null)), React.createElement("p", {
+  }, "The full Guide is on nps.gov\xA0↗") : null)), React.createElement("p", {
     className: "bulletin-conditions"
   }, "Webcams, entrance waits, and forecasts are one page away:", " ", React.createElement("a", {
     href: "/conditions",

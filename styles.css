@@ -45,7 +45,7 @@
   --ink: #233e35;
   --ink-1: #233e35;
   --ink-2: #3d5249;
-  --ink-3: #647067;
+  --ink-3: #5c675f;
   --rule: #c3cabd;
   --rule-soft: #d6dacf;
   --moss: #a4462c;       /* the accent; the name predates the palette */
@@ -318,7 +318,10 @@ main:focus { outline: none; }
   font-size: 12px;
   color: var(--ink-3);
   line-height: 1.6;
-  max-width: 760px;
+  /* The rule spans the footer like the rules above and below it; the text
+     keeps its 760px measure. It used to cap the box, rule and all. */
+  max-width: none;
+  padding-right: max(0px, calc(100% - 760px));
 }
 /* Doubled class so this outranks the `.site-footer a { text-decoration: none }`
    reset below (same 0-1-1 specificity, later in the file, so it was winning and
@@ -367,7 +370,11 @@ main:focus { outline: none; }
   border-bottom: 1px solid currentColor;
 }
 .site-footer__index:hover { color: var(--ink) !important; }
-.site-footer h4 {
+/* Column labels are h2: the footer is its own landmark, and as h4 they
+   skipped a level after a page's last h2 (Lighthouse heading-order). The
+   look is unchanged; line-height restates the shared heading value h4 had. */
+.site-footer h2 {
+  line-height: 1.08;
   font-family: var(--sans);
   font-size: 10px;
   text-transform: uppercase;
@@ -659,6 +666,20 @@ main:focus { outline: none; }
 .prose table:not([class]) { width: 100%; border-collapse: collapse; font: 14px/1.5 var(--sans); margin: 0 0 1.4em; }
 .prose table:not([class]) th { font: 600 9px var(--sans); letter-spacing: 1.4px; text-transform: uppercase; text-align: left; color: var(--hp-muted); border-bottom: 1px solid var(--hp-ink); padding: 8px 12px 8px 0; }
 .prose table:not([class]) td { border-bottom: 1px solid var(--hp-rule); padding: 10px 12px 10px 0; vertical-align: top; }
+/* Phones: a table of five or more columns crushed into one-word lines ("stays /
+   on the / branch"). It scrolls sideways inside the column at a readable cell
+   width instead; narrower tables keep the full-width layout. A table that
+   already sits in a scrolling wrapper (.fj-tablewrap, .table-scroll) is left
+   to it: a second scroller inside the first clipped its last columns. */
+@media (max-width: 640px) {
+  .prose table:not([class]):has(th:nth-child(5)):not(:is(.fj-tablewrap, .table-scroll) > table) { display: block; overflow-x: auto; -webkit-overflow-scrolling: touch; }
+  .prose table:not([class]):has(th:nth-child(5)):not(:is(.fj-tablewrap, .table-scroll) > table) td,
+  .prose table:not([class]):has(th:nth-child(5)):not(:is(.fj-tablewrap, .table-scroll) > table) th { min-width: 9em; }
+  .prose table:not([class]):has(th:nth-child(5)):not(:is(.fj-tablewrap, .table-scroll) > table) td:first-child,
+  .prose table:not([class]):has(th:nth-child(5)):not(:is(.fj-tablewrap, .table-scroll) > table) th:first-child { min-width: 6em; }
+  .prose table:not([class]):has(th:nth-child(5)):not(:is(.fj-tablewrap, .table-scroll) > table) td:last-child,
+  .prose table:not([class]):has(th:nth-child(5)):not(:is(.fj-tablewrap, .table-scroll) > table) th:last-child { min-width: 12em; }
+}
 .prose .dropcap::first-letter, #prerender-prose .dropcap::first-letter {
   font-family: var(--serif);
   font-weight: 400;
@@ -2316,6 +2337,19 @@ main:focus { outline: none; }
 .map-sidebar__trip-btn--remove:hover:not(:disabled) {
   color: #8a2a2a;
   border-color: #d8a8a8;
+}
+
+/* /map's h1: present for the heading outline, not drawn. */
+.map-page__h1 {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+  border: 0;
 }
 
 /* Visually-hidden live-region announcer for screen readers. */
@@ -4497,7 +4531,10 @@ main:focus { outline: none; }
 .guide-offline__cols ul {
   list-style: none;
   margin: 10px 0 0;
-  padding: 0;
+  /* Hanging indent for the literal "· " bullets: wrapped lines align with
+     the text, not under the dot. */
+  padding: 0 0 0 0.9em;
+  text-indent: -0.9em;
   font-family: var(--sans);
   font-size: 13px;
   line-height: 1.7;
@@ -4555,7 +4592,9 @@ main:focus { outline: none; }
   border-left: 3px solid var(--moss);
   background: var(--paper-2);
 }
-.guide-compare td a { color: var(--ink-2); }
+/* Underlined: in the ink of the text around it, the link was told apart by
+   nothing at all (Lighthouse link-in-text-block). */
+.guide-compare td a { color: var(--ink-2); text-decoration: underline; text-decoration-color: #a7afa4; text-underline-offset: 3px; }
 
 /* Trust grid. */
 .guide-trust { margin: 24px 0 12px; }
@@ -4606,7 +4645,10 @@ main:focus { outline: none; }
   content: counter(guide-step);
   position: absolute;
   left: 0;
-  top: -4px;
+  /* line-height 1, or the numeral inherits the item's 1.6 (a 48px line box)
+     and sits about 10px below the first line it numbers. */
+  top: -6px;
+  line-height: 1;
   font-family: var(--display);
   font-size: 30px;
   font-weight: 500;
@@ -5134,7 +5176,7 @@ main:focus { outline: none; }
   font-size: 10.5px;
   font-weight: 400;
   letter-spacing: 0.04em;
-  opacity: 0.7;
+  /* No opacity fade: at 0.7 the count measured 3.6:1. */
 }
 
 /* A button that has to read as a link (clear-the-filters, inline actions). */
@@ -5957,7 +5999,10 @@ kbd {
   --hp-ink: #233e35;
   --hp-accent: #a4462c;
   --hp-accent-deep: #84361f;
-  --hp-muted: #647067;
+  /* #5c675f, not the mockup's #647067: the old grey measured 4.3:1 on the
+     card and band tints, under WCAG AA's 4.5:1 for body text (Lighthouse,
+     October 2026). This one clears 4.7:1 on every light ground the site uses. */
+  --hp-muted: #5c675f;
   --hp-rule: #d6dacf;
   --hp-on-accent: #fff9ed;
   --hp-gold: #d7b879;
@@ -6103,7 +6148,9 @@ kbd {
   font-size:11px;
   font-weight:600;
   border-bottom:1px solid #a7afa4;
-  padding-bottom:4px;
+  /* 5px, not 4: at 4 the link measured 23.7px tall, under the 24px minimum
+     touch target. */
+  padding-bottom:5px;
   white-space:nowrap
 }
 .hp-design .hp-byline {
@@ -6185,7 +6232,10 @@ kbd {
   color:var(--hp-muted);
   font-size:13px;
   line-height:1.85;
-  margin:15px 0 29px
+  margin:15px 0 29px;
+  /* A reading measure: on a full-width section at 1366px an intro ran about
+     190 characters a line (/conditions). Narrower layouts are unaffected. */
+  max-width:72ch
 }
 .hp-design .hp-photo {
   height:260px;
@@ -6398,7 +6448,12 @@ kbd {
   background:#fff6dc
 }
 .hp-design .hp-terms {
-  font-size:9px;
+  /* 11px, not the mockup's 9px: this line carries the purchase terms ("One
+     payment, 18 months, no automatic renewal") and the newsletter's promise
+     on every page that ends in the guide band or the letter, and at 9px it
+     was the smallest sentence on the site. */
+  font-size:11px;
+  line-height:1.6;
   margin:12px 0 0;
   color:var(--hp-muted)
 }
@@ -6532,7 +6587,10 @@ kbd {
   font-size:29px
 }
 .hp-design .hp-journal-grid a>p:last-child {
-  font-size:11px;
+  /* 13px, not 11: the summary is what a reader chooses an article by, and at
+     11px Lighthouse counted 11% of /articles' text as legible. */
+  font-size:13px;
+  line-height:1.6;
   color:var(--hp-muted)
 }
 .hp-design a:focus-visible,
@@ -6787,7 +6845,17 @@ kbd {
 }
 
 /* Integrate the existing shared form and footer without changing other routes. */
-:where(.hp-design) h1, :where(.hp-design) h2, :where(.hp-design) h3 { text-wrap: initial; }
+/* Headings wrap with `pretty`, which only reflows the last lines and only to
+   keep a single word off the final line ("...and When to / Go"); the October
+   2026 polish pass counted a dozen such orphans in the /articles card titles
+   alone. `balance` would reshape the hero's hand-broken lines; this does not. */
+:where(.hp-design) h1, :where(.hp-design) h2, :where(.hp-design) h3 { text-wrap: pretty; }
+/* Page titles balance: a short h1 ("Send me a note.") kept a lone word on its
+   second line, which `pretty` leaves alone on a two-line heading. Card and
+   list titles that are not heading elements get `pretty` too. All at zero
+   specificity, so a component's own text-wrap still wins. */
+:where(.hp-design) :is(h1, h2, h3, [class*="__title"]) { text-wrap: balance; }
+:where(.hp-design) :is([class*="__title"], [class*="-title"], [class*="__name"], [class*="__head"] strong, dt) { text-wrap: pretty; }
 :where(.hp-design) a:hover { color: inherit; }
 .hp-design a.hp-button:hover { color: var(--hp-on-accent); }
 .hp-design a.hp-light:hover { color: var(--hp-ink); }
@@ -7018,7 +7086,7 @@ kbd {
   cursor: pointer;
   white-space: nowrap;
 }
-.hp-design .hp-menu__trigger svg { display: block; color: #647067; transition: transform .2s, color .2s; }
+.hp-design .hp-menu__trigger svg { display: block; color: #5c675f; transition: transform .2s, color .2s; }
 .hp-design .hp-menu__trigger:hover,
 .hp-design .hp-menu.is-open > .hp-menu__trigger,
 .hp-navigation nav > a:hover { color: #a4462c; }
@@ -7106,7 +7174,7 @@ kbd {
   letter-spacing: 1.7px;
   font-weight: 600;
   text-transform: uppercase;
-  color: #647067;
+  color: #5c675f;
   margin: 0 0 6px;
   padding-bottom: 10px;
   border-bottom: 1px solid #d6dacf;
@@ -7122,7 +7190,7 @@ kbd {
   color: #233e35;
   transition: color .2s;
 }
-.hp-design .hp-menu__note { font-size: 11px; line-height: 1.5; color: #647067; }
+.hp-design .hp-menu__note { font-size: 11px; line-height: 1.5; color: #5c675f; }
 .hp-design .hp-menu__link:hover .hp-menu__label { color: #a4462c; }
 @media (max-width: 760px) {
   /* The row runs edge to edge on a 375 or 390px phone. It is space-between,
@@ -7166,7 +7234,7 @@ kbd {
 .hp-design .hp-menu__col--newest .hp-menu__label { font-size: 16px; line-height: 1.25; }
 .hp-design .hp-navfeat { display: flex; flex-direction: column; gap: 10px; align-items: flex-start; }
 .hp-design .hp-navfeat > .hp-menu__heading { align-self: stretch; margin-bottom: 0; }
-.hp-design .hp-navfeat__text { font-size: 11px; line-height: 1.6; color: #647067; margin: 0; }
+.hp-design .hp-navfeat__text { font-size: 11px; line-height: 1.6; color: #5c675f; margin: 0; }
 .hp-design .hp-navfeat__art { display: block; width: 100%; height: auto; aspect-ratio: 236 / 104; object-fit: cover; object-position: 45% 40%; background: #efeadc; border-radius: 3px; }
 /* The waits on an ink plate, the /conditions readout's treatment; the alarm
    colours are that readout's lifted pair, since the accent fails on ink. */
@@ -7198,7 +7266,7 @@ kbd {
   border: 1px solid #c3cabd;
   border-radius: 3px;
   background: #fffdf7;
-  color: #647067;
+  color: #5c675f;
   cursor: text;
   transition: border-color .2s, box-shadow .2s;
 }
@@ -7216,7 +7284,7 @@ kbd {
   -webkit-appearance: none;
   appearance: none;
 }
-.hp-design .hp-search input::placeholder { color: #647067; opacity: 1; }
+.hp-design .hp-search input::placeholder { color: #5c675f; opacity: 1; }
 .hp-design .hp-search input::-webkit-search-cancel-button { -webkit-appearance: none; }
 /* The field's border and ring carry focus; the system's 3px outline at a 5px
    offset would sit outside the box. */
@@ -7224,7 +7292,7 @@ kbd {
 .hp-design .hp-search kbd {
   flex: none;
   font: 600 10px/1.4 var(--sans);
-  color: #647067;
+  color: #5c675f;
   border: 1px solid #d6dacf;
   border-radius: 3px;
   padding: 1px 6px;
@@ -7247,8 +7315,8 @@ kbd {
 }
 .hp-design .hp-search__head,
 .hp-design .hp-search__empty { margin: 0; padding: 10px 18px 6px; }
-.hp-design .hp-search__head { font-size: 9px; letter-spacing: 1.7px; font-weight: 600; text-transform: uppercase; color: #647067; }
-.hp-design .hp-search__empty { font-size: 12px; line-height: 1.6; color: #647067; padding-bottom: 10px; }
+.hp-design .hp-search__head { font-size: 9px; letter-spacing: 1.7px; font-weight: 600; text-transform: uppercase; color: #5c675f; }
+.hp-design .hp-search__empty { font-size: 12px; line-height: 1.6; color: #5c675f; padding-bottom: 10px; }
 .hp-design .hp-search__opt { display: flex; flex-direction: column; gap: 3px; padding: 10px 18px; color: #233e35; }
 .hp-design .hp-search__opt.is-active { background: #efeadc; }
 .hp-design .hp-search__kind { font-size: 8px; letter-spacing: 1.7px; font-weight: 600; text-transform: uppercase; color: #a4462c; }
@@ -7307,7 +7375,7 @@ kbd {
     letter-spacing: 1.7px;
     font-weight: 600;
     text-transform: uppercase;
-    color: #647067;
+    color: #5c675f;
     white-space: nowrap;
   }
   .hp-navigation.is-stuck .hp-header__crumb a + a::before { content: "/"; margin-right: 10px; color: #c3cabd; }
@@ -7517,7 +7585,7 @@ html[data-nav-mode="pinned"] { scroll-padding-top: 62px; }
 .hp-films__striphead span { font: italic 18px var(--serif); color: var(--ink-2); }
 .hp-films__striphead small { font-size: 11px; color: var(--hp-muted); }
 .hp-films__strip { display: grid; grid-auto-flow: column; grid-auto-columns: 188px; gap: 16px; overflow-x: auto; padding: 4px 2px 10px; scroll-snap-type: x mandatory; }
-.hp-films__mini { display: block; padding: 0; border: 0; background: transparent; cursor: pointer; scroll-snap-align: start; min-height: 44px; text-align: left; }
+.hp-films__mini { position: relative; display: block; padding: 0; border: 0; background: transparent; cursor: pointer; scroll-snap-align: start; min-height: 44px; text-align: left; }
 .hp-films__minithumb { display: block; position: relative; aspect-ratio: 16 / 9; border-radius: 2px; overflow: hidden; background: var(--films-stage); }
 .hp-films__minithumb img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; transition: opacity .2s; }
 .hp-films__mini:hover img { opacity: .85; }
@@ -7544,7 +7612,7 @@ html[data-nav-mode="pinned"] { scroll-padding-top: 62px; }
 .hp-films__note { margin: 0; font-size: 14px; line-height: 1.8; color: var(--hp-muted); }
 .hp-films__range { font: italic 17px var(--serif); color: var(--hp-muted); }
 .hp-films__grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 40px 28px; }
-.hp-films__card { display: flex; flex-direction: column; padding: 0; border: 0; background: transparent; color: var(--hp-ink); text-align: left; cursor: pointer; font: inherit; }
+.hp-films__card { position: relative; display: flex; flex-direction: column; padding: 0; border: 0; background: transparent; color: var(--hp-ink); text-align: left; cursor: pointer; font: inherit; }
 .hp-films__thumb { display: block; position: relative; aspect-ratio: 16 / 9; border-radius: 3px; overflow: hidden; background: var(--films-stage); }
 .hp-films__thumb img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; transition: transform .4s ease; }
 .hp-films__tag { position: absolute; top: 12px; left: 12px; background: var(--hp-paper); color: var(--hp-ink); padding: 5px 9px; font: 600 10px var(--sans); letter-spacing: 1.2px; }
@@ -7711,7 +7779,8 @@ html[data-nav-mode="pinned"] { scroll-padding-top: 62px; }
 .kit__tab { border-right-color: var(--hp-rule); color: var(--hp-muted); }
 .kit__tab:hover { background: transparent; color: var(--hp-accent); }
 .kit__tab.is-active { background: transparent; color: var(--hp-ink); box-shadow: inset 0 -2px 0 var(--hp-accent); }
-.kit__tab-roman { font-family: var(--serif); font-style: normal; color: var(--hp-accent); }
+/* Full opacity: the legacy rule's 0.7 fade took the rust numeral to 3.1:1. */
+.kit__tab-roman { font-family: var(--serif); font-style: normal; color: var(--hp-accent); opacity: 1; }
 .kit__tab-label { font-size: 12px; letter-spacing: normal; text-transform: none; }
 .kit__list-roman { font-family: var(--serif); font-style: normal; color: var(--hp-accent); font-size: 24px; }
 .kit__count-num { font-family: var(--serif); font-weight: 400; }
@@ -7723,6 +7792,10 @@ html[data-nav-mode="pinned"] { scroll-padding-top: 62px; }
 .kit-check__note { font-size: 12px; line-height: 1.7; color: var(--hp-muted); }
 .kit-check__box { accent-color: var(--hp-accent); }
 .kit-check--callout { background: var(--hp-card); border: 1px solid var(--hp-rule); border-radius: 3px; }
+/* The box hangs into the gutter by its own padding and border, so its
+   checkbox and name line up with the plain rows above and below (they sat
+   17px further right). */
+.kit-check--callout { margin-inline: -17px; }
 .kit-check__link, .kit-check__article { color: var(--hp-ink); border-bottom-color: #a7afa4; letter-spacing: normal; text-transform: none; }
 .kit-check__link:hover, .kit-check__article:hover { color: var(--hp-accent); border-bottom-color: var(--hp-accent); }
 
@@ -8221,7 +8294,8 @@ html[data-nav-mode="pinned"] { scroll-padding-top: 62px; }
 .stay-card__figure { margin: 0; }
 .stay-card__img { display: block; width: 100%; aspect-ratio: 3 / 2; object-fit: cover; }
 .stay-card__caption { padding: 8px 20px 0; font-size: 11px; line-height: 1.45; color: var(--hp-muted); }
-.stay-card__credit { display: block; margin-top: 2px; opacity: 0.85; }
+/* No opacity: faded, the credit measured 4.0:1 against the 4.5:1 minimum. */
+.stay-card__credit { display: block; margin-top: 2px; }
 .stay-card__body { display: flex; flex-direction: column; flex: 1; gap: 10px; padding: 18px 22px 22px; }
 .stay-card--compact .stay-card__body { gap: 9px; padding: 20px; }
 .stay-card__kindrow { display: flex; justify-content: space-between; align-items: flex-start; gap: 8px; }
@@ -9156,7 +9230,7 @@ html[data-nav-mode="pinned"] { scroll-padding-top: 62px; }
 .ff-cover__credit { position: absolute; right: 16px; bottom: 10px; margin: 0; font: 10px var(--sans); color: rgba(247, 241, 225, 0.72); text-shadow: 0 1px 3px rgba(0, 0, 0, 0.6); }
 
 .ff-facts { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); margin: 0; border-bottom: 1px solid var(--hp-rule); }
-.ff-facts > div { display: grid; grid-template-columns: auto 1fr; column-gap: 12px; padding: 22px 24px 22px 0; }
+.ff-facts > div { display: grid; grid-template-columns: auto 1fr; column-gap: 12px; align-content: start; padding: 22px 24px 22px 0; }
 .ff-facts > div + div { padding-left: 24px; border-left: 1px solid var(--hp-rule); }
 .ff-facts .ff-icon { grid-row: span 2; color: var(--hp-accent); margin-top: 2px; }
 .ff-facts dt { font: 600 10px var(--sans); letter-spacing: 1.6px; text-transform: uppercase; color: var(--hp-muted); }
@@ -9230,7 +9304,7 @@ html[data-nav-mode="pinned"] { scroll-padding-top: 62px; }
 
 /* Is it on tonight? */
 .ff-conditions { margin: 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); border: 1px solid var(--hp-rule); border-radius: 4px; background: var(--hp-card); }
-.ff-conditions > div { display: grid; justify-items: center; text-align: center; gap: 6px; padding: 18px 10px; }
+.ff-conditions > div { display: grid; justify-items: center; align-content: start; text-align: center; gap: 6px; padding: 18px 10px; }
 .ff-conditions > div + div { border-left: 1px solid var(--hp-rule); }
 .ff-conditions .ff-icon { color: var(--hp-accent); }
 .ff-conditions dt { font: 19px var(--serif); color: var(--hp-ink); }
@@ -9279,7 +9353,8 @@ html[data-nav-mode="pinned"] { scroll-padding-top: 62px; }
 .ff-when > div { display: grid; grid-template-columns: 150px 200px 1fr; gap: 16px; align-items: baseline; padding-block: 13px; border-bottom: 1px solid var(--hp-rule); }
 .ff-when dt { font: 600 13px var(--sans); color: var(--hp-muted); }
 .ff-when dd { margin: 0; font: 20px var(--serif); color: var(--hp-ink); }
-.ff-when p { margin: 0; font: 14px/1.5 var(--sans); color: var(--ink-2); }
+/* The note is a second dd (a bare p inside a dl is invalid markup). */
+.ff-when .ff-when__note { margin: 0; font: 14px/1.5 var(--sans); color: var(--ink-2); }
 
 /* Parking and the walk. */
 /* An overlay on a crop of the National Park Service's map (firefall, the
@@ -9316,6 +9391,17 @@ html[data-nav-mode="pinned"] { scroll-padding-top: 62px; }
   .npsmap__frame img, .npsmap__frame svg { min-width: 620px; }
   .npsmap__frame svg { width: 620px; }
   .npsmap figcaption { padding-inline: 20px; }
+}
+/* Below 640px the 620px map scrolls sideways inside its frame, and a reader
+   saw a key listing pins the screen did not show (/firefall, /tioga-opening,
+   /fall-color). The caption says the map moves. */
+@media (max-width: 640px) {
+  .npsmap figcaption::before {
+    content: "Swipe the map sideways to see every pin.";
+    flex-basis: 100%;
+    font-size: 12px;
+    color: var(--hp-muted);
+  }
 }
 
 .ff-rules { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 20px; }
@@ -9394,7 +9480,7 @@ html[data-nav-mode="pinned"] { scroll-padding-top: 62px; }
   .ff-checks, .ff-clouds ul, .ff-rules { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .ff-gear ul { grid-template-columns: 1fr; }
   .ff-when > div { grid-template-columns: 130px 1fr; }
-  .ff-when p { grid-column: 1 / -1; }
+  .ff-when .ff-when__note { grid-column: 1 / -1; }
 }
 @media (max-width: 880px) {
   .ff-split, .ff-stay, .ff-kit { grid-template-columns: 1fr; }
@@ -9543,7 +9629,10 @@ html[data-nav-mode="pinned"] { scroll-padding-top: 62px; }
 .fj-card__stamp {
   position: absolute; top: -46px; right: 16px;
   width: 98px; height: 98px; border-radius: 50%;
-  white-space: nowrap;
+  /* Wraps inside the circle: a dated line ("Verified / October 10, 2026" on
+     /dates, "Revised / <date>" on the legal pages) is wider than the 86px
+     phone stamp and ran out past its edge, clipped. */
+  white-space: normal;
   border: 1px solid #233e3580;
   background: var(--hp-paper);
   box-shadow: 0 0 0 4px var(--hp-paper), 0 0 0 5px #233e3533;
@@ -10718,7 +10807,15 @@ html[data-nav-mode="pinned"] { scroll-padding-top: 62px; }
   .hp-planning .pg-way { padding: 16px; gap: 10px; border-radius: 14px; }
   .hp-planning .pg-way h3 { font-size: 22px; }
   .hp-planning .pg-way--product { margin-top: 10px; }
-  .hp-planning .pg-compare__table { font-size: 13px; min-width: 520px; }
+  /* All three columns fit a phone. At min-width 520px the table scrolled with
+     no sign that it did, so the first screen showed only the free column's
+     dashes and never the Field Guide's ticks. */
+  .hp-planning .pg-compare__table { font-size: 13px; min-width: 0; }
+  .hp-planning .pg-compare__table thead th { padding: 10px 4px; font-size: 12px; line-height: 1.25; }
+  .hp-planning .pg-compare__table thead th:first-child { width: 44%; }
+  .hp-planning .pg-compare__table tbody th { padding: 12px 8px 12px 0; }
+  .hp-planning .pg-compare__table td { padding: 12px 4px; }
+  .hp-planning .pg-compare__table .pg-yes__note { display: block; font-size: 11px; line-height: 1.25; }
 
   .hp-planning .pg-guide__grid { padding-block: 40px; gap: 16px; }
   .hp-planning .pg-guide__copy { gap: 16px; }
@@ -10892,7 +10989,7 @@ html[data-nav-mode="pinned"] { scroll-padding-top: 62px; }
 /* When the show runs: the season strip and the evening. */
 .ec-months { margin-top: 32px; }
 .ec-months ol { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); gap: 4px; }
-.ec-months ol li { height: 72px; display: flex; align-items: flex-end; justify-content: center; padding-bottom: 8px; border-radius: 2px; font: 600 11px var(--sans); color: var(--hp-muted); background: #e2ddcf; }
+.ec-months ol li { height: 72px; display: flex; align-items: flex-end; justify-content: center; padding-bottom: 8px; border-radius: 2px; font: 600 11px var(--sans); color: #525d55; background: #e2ddcf; }
 .ec-months ol li.is-on { background: var(--bt-open); color: #f7f1e1; }
 .ec-months ol li.is-part { background: linear-gradient(180deg, #e2ddcf 0 45%, var(--bt-open) 45%); color: #f7f1e1; }
 .ec-months ol li.is-thin { background: #e6cf97; color: var(--bt-warn); }
@@ -11113,7 +11210,8 @@ html[data-nav-mode="pinned"] { scroll-padding-top: 62px; }
 .eat-none__drive > div + div { padding-left: 24px; border-left: 1px solid var(--hp-rule); }
 .eat-none__drive dt { font: 700 10px var(--sans); letter-spacing: 1.6px; text-transform: uppercase; color: var(--hp-muted); }
 .eat-none__drive dd { margin: 0; font: 28px/1.1 var(--serif); color: var(--hp-ink); }
-.eat-none__drive p { margin: 0; font: 14px var(--sans); color: var(--ink-2); }
+/* A second dd: a bare p inside a dl is invalid markup. */
+.eat-none__drive .eat-none__note { margin: 0; font: 14px var(--sans); color: var(--ink-2); }
 
 /* The gateway towns. */
 .eat-towns { border-top: 2px solid var(--hp-ink); margin-top: 12px; }
@@ -11137,7 +11235,7 @@ html[data-nav-mode="pinned"] { scroll-padding-top: 62px; }
 .eat-week li { display: grid; justify-items: center; gap: 1px; padding: 6px 0; border-radius: 2px; background: var(--bt-open); color: #f7f1e1; }
 .eat-week span { font: 700 10px var(--sans); letter-spacing: 0.4px; }
 .eat-week small { font: 9px var(--sans); opacity: 0.85; }
-.eat-week li.is-closed { background: #e2ddcf; color: var(--hp-muted); }
+.eat-week li.is-closed { background: #e2ddcf; color: #525d55; }
 .eat-week li.is-closed span { text-decoration: line-through; }
 
 /* The roster. */
@@ -11474,7 +11572,8 @@ html[data-nav-mode="pinned"] { scroll-padding-top: 62px; }
 .ps-seg { position: absolute; top: 0; bottom: 0; display: flex; align-items: center; justify-content: center; overflow: hidden; white-space: nowrap; font: 600 10px var(--sans); letter-spacing: 1px; text-transform: uppercase; }
 .ps-seg--quiet { background: var(--hp-ink); color: var(--hp-gold); }
 .ps-seg--gen { background: var(--hp-gold); color: var(--hp-ink); }
-.ps-seg--check { top: -16px; bottom: -16px; width: 0; border-left: 2px dashed var(--hp-accent); }
+/* Extends above the bar only: below it ran through the "Noon" tick label. */
+.ps-seg--check { top: -16px; bottom: 0; width: 0; border-left: 2px dashed var(--hp-accent); }
 .ps-clock__ticks { position: relative; height: 22px; font: 11px var(--sans); color: var(--hp-muted); }
 .ps-clock__ticks span { position: absolute; top: 6px; transform: translateX(-50%); }
 .ps-clock__ticks span:first-child { transform: none; }
@@ -11522,7 +11621,7 @@ html[data-nav-mode="pinned"] { scroll-padding-top: 62px; }
 .ps-pack { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); border-top: 2px solid var(--hp-ink); }
 .ps-pack__g { padding: 20px 24px 16px 0; border-bottom: 1px solid var(--hp-rule); }
 .ps-pack__g:nth-child(even) { padding-left: 24px; border-left: 1px solid var(--hp-rule); }
-.ps-pack__g h4 { margin: 0 0 10px; font: 600 11px var(--sans); letter-spacing: 1.6px; text-transform: uppercase; color: var(--hp-muted); }
+.ps-pack__g h3 { margin: 0 0 10px; font: 600 11px var(--sans); letter-spacing: 1.6px; text-transform: uppercase; color: var(--hp-muted); }
 .ps-pack__g ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 8px; }
 .ps-pack__g li { display: flex; align-items: flex-start; gap: 10px; font: 15px/1.45 var(--sans); color: var(--hp-ink); }
 .ps-pack__g li i { flex-shrink: 0; width: 16px; height: 16px; margin-top: 2px; border: 1.5px solid var(--hp-ink); border-radius: 2px; }
@@ -11619,7 +11718,7 @@ html[data-nav-mode="pinned"] { scroll-padding-top: 62px; }
 .sx-roads { margin-top: 32px; display: grid; gap: 6px; overflow-x: auto; }
 .sx-roads__head, .sx-roads__row { display: grid; grid-template-columns: 150px repeat(12, minmax(46px, 1fr)); gap: 6px; align-items: stretch; min-width: 760px; }
 .sx-roads__head span { font: 600 11px var(--sans); letter-spacing: 1.2px; text-transform: uppercase; color: var(--hp-muted); text-align: center; }
-.sx-roads__road { font: 400 18px/1.2 var(--serif); display: flex; align-items: center; }
+.sx-roads__road { position: relative; font: 400 18px/1.2 var(--serif); display: flex; align-items: center; }
 .sx-roads__road a { color: var(--hp-ink); }
 .sx-roads__road a:hover { color: var(--hp-accent); }
 .sx-cell { display: flex; align-items: center; justify-content: center; min-height: 52px; font: 600 11px var(--sans); letter-spacing: .4px; text-transform: uppercase; }
@@ -12186,7 +12285,7 @@ html[data-nav-mode="pinned"] { scroll-padding-top: 62px; }
 .wv-clock__name { font: 600 13px/1.3 var(--sans); color: var(--hp-ink); }
 .wv-clock__track { position: relative; display: block; height: 30px; background: var(--ff-tint); border-radius: 2px; }
 .wv-clock__track i { position: absolute; top: 0; bottom: 0; display: flex; align-items: center; justify-content: center; border-radius: 2px; overflow: hidden; }
-.wv-clock__track i.is-nps { background: #8e9588; }
+.wv-clock__track i.is-nps { background: #6f766a; }
 .wv-clock__track i.is-pick { background: var(--bt-open); }
 .wv-clock__track em { padding: 0 6px; font: 600 11.5px var(--sans); font-style: normal; color: #fff; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 .wv-clock__ticks { position: relative; display: block; height: 16px; }
@@ -12454,8 +12553,10 @@ html[data-nav-mode="pinned"] { scroll-padding-top: 62px; }
 .nh-sources__note { margin: 0 0 10px; font: 12px var(--sans); color: var(--hp-muted); }
 .nh-sources ul { list-style: none; margin: 0; padding: 0; }
 .nh-sources li { padding-block: 8px; border-top: 1px solid var(--hp-rule); font: 13px/1.5 var(--sans); color: var(--hp-muted); }
-.nh-sources a { color: var(--hp-accent); }
-.nh-sources a:hover { text-decoration: underline; }
+/* Underlined at rest: in a muted list a rust link alone measured 1.0:1
+   against the text around it (axe link-in-text-block). */
+.nh-sources a { color: var(--hp-accent); text-decoration: underline; text-decoration-color: #d9b6a8; text-underline-offset: 3px; }
+.nh-sources a:hover { text-decoration-color: currentColor; }
 
 @media (max-width: 1100px) {
   .nh-stops, .nh-needs, .ff-rules.nh-rules { grid-template-columns: repeat(2, minmax(0, 1fr)); }
@@ -12926,6 +13027,12 @@ html[data-nav-mode="pinned"] { scroll-padding-top: 62px; }
 .fcol-else p { margin: 4px 0 0; font: 14px/1.55 var(--sans); color: var(--ink-2); }
 .fcol-towns { margin-top: 8px; }
 .fcol-towns .ff-town { grid-template-columns: minmax(0, 1fr) minmax(0, 1.6fr) auto; }
+/* This override is more specific than the shared phone rule that stacks a
+   town row, so /fall-color kept three columns on a phone and set "Fish Camp /
+   and / Oakhurst" one word a line. It stacks at the same width. */
+@media (max-width: 760px) {
+  .fcol-towns .ff-town { grid-template-columns: 1fr; gap: 10px; }
+}
 @media (max-width: 1100px) {
   .fcol-trees { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 }
@@ -12986,3 +13093,61 @@ html[data-nav-mode="pinned"] { scroll-padding-top: 62px; }
    rule cards, which /firefall never does; give those links the page's
    in-copy link style. Scoped to the three, so /firefall is unchanged. */
 :where(.hp-fall-color, .hp-moonbow, .hp-frazil-ice) :is(.ff-history, .ff-rules) p a { color: var(--hp-accent); text-decoration: underline; text-underline-offset: 2px; }
+
+/* /stay at desktop width: a lone town card (Tenaya Lodge) stretched across
+   the grid and the disclosure ran the full width, both near 200 characters
+   a line. They keep a reading measure. */
+.stay-prop__text, .hp-stay__disclosure { max-width: 72ch; }
+
+/* Scroll shadows for the sideways scrollers (wide tables, the Half Dome
+   season strip). A soft shadow shows on whichever edge has more to scroll
+   to and is covered once the reader reaches that end: the covers scroll
+   with the content (background-attachment: local), the shadows stay put.
+   Reviewers read a clipped last column as broken; this says "there is
+   more". The covers paint --scroll-bg, so each context names its ground. */
+.fj-tablewrap, .table-scroll, .hd-season,
+.prose table:not([class]):has(th:nth-child(5)):not(:is(.fj-tablewrap, .table-scroll) > table) {
+  --scroll-bg: var(--hp-paper);
+  background:
+    linear-gradient(to right, var(--scroll-bg) 30%, transparent) left center / 40px 100% no-repeat local,
+    linear-gradient(to left, var(--scroll-bg) 30%, transparent) right center / 40px 100% no-repeat local,
+    radial-gradient(farthest-side at 0 50%, rgb(35 62 53 / 18%), transparent) left center / 14px 100% no-repeat scroll,
+    radial-gradient(farthest-side at 100% 50%, rgb(35 62 53 / 18%), transparent) right center / 14px 100% no-repeat scroll;
+  background-color: var(--scroll-bg);
+}
+.hd-season { --scroll-bg: var(--hp-card); }
+.ff-band .fj-tablewrap { --scroll-bg: var(--ff-tint); }
+
+/* Two notes that are sentences, not bylines: /kit's affiliate disclosure and
+   /checklist's print tip borrowed .hp-byline and rendered at 8px on a phone.
+   They read at the page's small-print size instead. */
+.hp-design .kit__aff-note, .hp-design .hp-checklist__tip { font-size: 12px; line-height: 1.6; }
+
+/* /films on a phone: the subject head is a wrapping flex row, so the episode
+   range sat beside a short note and under a long one, differently on every
+   subject. It always stacks under the note at this width. */
+@media (max-width: 760px) {
+  .hp-films__themehead { flex-direction: column; align-items: flex-start; gap: 6px; }
+}
+
+/* Notes and fine print that ran 115 to 200 characters a line at desktop
+   width (measured on every route at 1366px). They keep a reading measure. */
+.ff-note, .ff-alert, .article-aff-note, .places-pitch__fineprint, .guide-offline__fineprint,
+.stay-table__foot, .stay-town__text, .bulletin-notice { max-width: 72ch; }
+
+/* Visually hidden, still read and still in the heading outline. */
+.hp-sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0 0 0 0); clip-path: inset(50%); white-space: nowrap; border: 0; }
+.hp-index__list { position: relative; }
+
+/* The scroll regions app.jsx makes focusable show where focus is. */
+[data-scroll-stop]:focus-visible { outline: 2px solid var(--hp-accent); outline-offset: 2px; }
+
+/* Text on the #e2ddcf "off" blocks (the El Cap months, the closed days on
+   where-to-eat) is #525d55: muted grey measured 4.3:1 there, under 4.5. The
+   NPS bar on when-to-visit's clock darkened for its white label (3.1 to 4.7). */
+
+/* Every article's sources list underlines its links at rest, as .nh-sources,
+   .cg-sources and .wv-sources already do: a rust link alone in a muted list
+   is told apart by colour only (axe link-in-text-block). */
+:is(.ec-sources, .eat-sources, .sv-sources, .ft-sources) a { text-decoration: underline; text-decoration-color: #d9b6a8; text-underline-offset: 3px; }
+:is(.ec-sources, .eat-sources, .sv-sources, .ft-sources) a:hover { text-decoration-color: currentColor; }

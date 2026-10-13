@@ -459,7 +459,8 @@ function GuideBuyBox({
   }, "In the app"), React.createElement("ul", {
     style: {
       listStyle: "none",
-      padding: 0,
+      padding: "0 0 0 0.9em",
+      textIndent: "-0.9em",
       margin: 0,
       fontFamily: "var(--sans)",
       fontSize: 13,
@@ -639,7 +640,8 @@ function GuideWaitlistBox() {
   }, "In the app"), React.createElement("ul", {
     style: {
       listStyle: "none",
-      padding: 0,
+      padding: "0 0 0 0.9em",
+      textIndent: "-0.9em",
       margin: 0,
       fontFamily: "var(--sans)",
       fontSize: 13,
@@ -890,7 +892,7 @@ var MAP3D_SHOTS = [{
   width: 640,
   height: 1387,
   alt: "The My trip tab on a phone: the one-day Valley plan drawn on the terrain, ten numbered pins in the order the day runs, joined by the drives along the Valley's roads",
-  caption: "My trip draws your plan: numbered pins in the order the day runs, one colour a day, drives along the real roads. The itinerary in words sits one tap below."
+  caption: "My trip draws your plan: numbered pins in the order the day runs, one color a day, drives along the real roads. The itinerary in words sits one tap below."
 }];
 var MAP3D_POINTS = [{
   title: "Tilt it, turn it, fly it",
@@ -1006,7 +1008,7 @@ function GuideMap3D() {
         location: "guide_map3d"
       });
     }
-  }, "Read the free sample ↗"))));
+  }, "Read the free sample\xA0↗"))));
 }
 var OUTCOMES = [{
   kicker: "Find the correct parking turnout",
@@ -1273,7 +1275,7 @@ function GuideDayOne() {
         location: "guide_day_one"
       });
     }
-  }, "Read the free sample ↗"))), React.createElement("p", {
+  }, "Read the free sample\xA0↗"))), React.createElement("p", {
     className: "guide-dayone__credits"
   }, "Photos via Wikimedia Commons: Dexter Perkins (CC0), Kyle D (public domain), Mutineer (CC0), Anita Ritenour (CC BY 2.0). Map: U.S. National Park Service (public domain)."));
 }
@@ -1564,7 +1566,7 @@ var GUIDE_HERO_POINTS = [{
   title: "Build a day that fits.",
   text: "Stops in driving order, each with an honest time budget, drives figured between them."
 }, {
-  mark: "⌁",
+  mark: "⇄",
   title: "Know the move when a lot fills.",
   text: "The swap is printed on the flagship stops, before you need it."
 }, {
@@ -1613,7 +1615,7 @@ function GuidePage({
         location: "guide_hero"
       });
     }
-  }, "Read five entries free ↗"), " ", "No account needed."))), React.createElement("div", {
+  }, "Read five entries free\xA0↗"), " ", "No account needed."))), React.createElement("div", {
     className: "hp-wrap hp-section"
   }, React.createElement("div", {
     className: "guide-layout"

@@ -80,5 +80,35 @@ export default async function checkImages() {
   }
 
   check.info(`${usages} editorial image usages; ${missingAlt} missing alt, ${missingDims} missing dimensions`);
+
+  // 3. Every local image the site renders through ResponsiveImage (an article's
+  // `image` in data.js, an `image=` prop in a page or body) needs its whole
+  // ladder: the helper lists a fixed AVIF/WebP/JPEG srcset with no manifest,
+  // so one missing width is a 404 the browser picks, and the hero renders as a
+  // broken image. Seen October 2026 on the ranger-programs article, whose
+  // master landed without `run images`. An error, since it is a visible break.
+  const IMAGE_REF = /image(?:=\{?|:\s*)["'](\/?img\/[^"']+\.(?:jpe?g|png))["']/g;
+  const sources = ["data.js", ...readdirSync(ROOT).filter((f) => f.endsWith(".jsx"))]
+    .concat(readdirSync(bodies).filter((f) => f.endsWith(".jsx")).map((f) => `bodies/${f}`));
+  const refs = new Set();
+  for (const rel of sources) {
+    for (const m of readFileSync(path.join(ROOT, rel), "utf8").matchAll(IMAGE_REF)) refs.add(m[1].replace(/^\//, ""));
+  }
+  let gaps = 0;
+  for (const ref of refs) {
+    const dir = path.dirname(ref);
+    const slug = slugify(path.basename(ref));
+    const missing = [];
+    for (const w of [400, 800, 1200, 1600]) {
+      for (const ext of ["avif", "webp", "jpg"]) {
+        if (!existsSync(path.join(ROOT, dir, "responsive", `${slug}-${w}.${ext}`))) missing.push(`${w}.${ext}`);
+      }
+    }
+    if (missing.length) {
+      gaps++;
+      check.error(`${ref}: responsive ladder incomplete (missing ${missing.join(", ")}); run \`npm --prefix scripts run images\``);
+    }
+  }
+  if (!gaps) check.info(`${refs.size} rendered images, every responsive ladder complete`);
   return check.result();
 }

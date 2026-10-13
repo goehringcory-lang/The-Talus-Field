@@ -27,7 +27,7 @@ import {
   type ResolvedDeadline,
 } from '../content/deadlines'
 import { isPushEnabled, readDeadlineOptIns, setDeadlineOptIn } from '../push/push'
-import { formatClock, todayIso } from '../utils/date'
+import { formatClock, formatLongDate, todayIso } from '../utils/date'
 import { deadlineEventFields } from './deadlineEvent'
 import { exportTripIcs, type ExportMethod } from './exportTrip'
 import { buildEventsIcs } from './ics'
@@ -152,7 +152,7 @@ export default function DeadlinesPanel({ dates }: Props) {
     <section id="dates" className="panel deadlines" aria-label="Dates that matter for this trip">
       <div className="panel__head">
         <span className="panel__title">Dates that matter</span>
-        <span className="panel__stamp">Verified {DEADLINES_VERIFIED}</span>
+        <span className="panel__stamp">Verified {formatLongDate(DEADLINES_VERIFIED)}</span>
       </div>
       {!dates ? (
         <p className="deadlines__empty">Pick your arriving and leaving dates above and the dates that decide this trip appear here.</p>

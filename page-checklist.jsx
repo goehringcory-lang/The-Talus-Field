@@ -141,12 +141,12 @@ function ChecklistPage({ go }) {
         <CheckSheet label="VI · What to skip" title="Don't try to do too much">
           <label className="fj-check"><input type="checkbox" />Don't try to "do" Tunnel View, <A r="a:glacier-point-road-open-2026">Glacier Point</A>, <A r="a:giant-sequoias-fire-adaptation">Mariposa Grove</A>, and <A r="a:tioga-road-opening-weekend">Tuolumne</A> in one day. Pick two.</label>
           <label className="fj-check"><input type="checkbox" />Don't drive Mariposa Grove to Tuolumne <A r="a:yosemite-in-one-or-two-days">in a single day</A> if anyone in your group fatigues.</label>
-          <label className="fj-check"><input type="checkbox" />Don't hit <A r="a:yosemite-for-non-hikers">Lower Yosemite Fall</A> between 11 AM and 3 PM. Come early or after 5 PM.</label>
+          <label className="fj-check"><input type="checkbox" />Don't hit <A r="a:yosemite-for-non-hikers">Lower Yosemite Fall</A> between 11 a.m. and 3 p.m. Come early or after 5 p.m.</label>
           <label className="fj-check"><input type="checkbox" />Don't expect to swim in the Merced before mid-July. <A r="a:mist-trail-the-real-guide">The current is dangerous</A>.</label>
         </CheckSheet>
 
         <CheckSheet label="VII · The non-negotiables" title="If you remember nothing else">
-          <label className="fj-check"><input type="checkbox" /><A r="a:yosemite-without-reservations-2026">Be in the park by 6:30 AM</A> on any peak day. The day's quality is decided before 9.</label>
+          <label className="fj-check"><input type="checkbox" /><A r="a:yosemite-without-reservations-2026">Be in the park by 6:30 a.m.</A> on any peak day. The day's quality is decided before 9 a.m.</label>
           <label className="fj-check"><input type="checkbox" />Every scented item in the <A r="a:yosemite-bears-safety-guide">bear box</A> when you leave the car. Trunk is not bear-proof.</label>
           <label className="fj-check"><input type="checkbox" />Print the <A r="half-dome-lottery">Half Dome permit</A> if you have one. No cell service at the subdome.</label>
           <label className="fj-check"><input type="checkbox" />Have a Plan B for every major stop. Parking, weather, and <A r="a:yosemite-during-smoke-season">smoke</A> will kill at least one Plan A.</label>

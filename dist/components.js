@@ -770,7 +770,7 @@ var HOME_NAV = [{
   label: "Read",
   group: "read"
 }];
-var homeMenuCta = cta => `${(cta || "Open the section").replace(/\s*→\s*$/, "")} ↗`;
+var homeMenuCta = cta => `${(cta || "Open the section").replace(/\s*→\s*$/, "")} ↗`;
 function navGroupOf(current) {
   if (!current || current === "home") return null;
   var g = NAV_GROUPS.find(group => group.columns && (group.route === current || group.columns.some(col => col.links.some(l => l.key === current))));
@@ -795,7 +795,7 @@ function NavMapFeature({
     className: "hp-navfeat__text"
   }, "Every pin in the park, assembled into a route you can share or open in the Field Guide."), link({
     key: "map",
-    label: "Open the map ↗"
+    label: "Open the map ↗"
   }, "hp-link"));
 }
 function NavWaitsFeature({
@@ -815,7 +815,7 @@ function NavWaitsFeature({
   }, "Posted by the National Park Service. A dash means no wait is posted right now."), link({
     key: "conditions",
     hash: "cond-waits",
-    label: "Gates and lots on Conditions ↗"
+    label: "Gates and lots on Conditions ↗"
   }, "hp-link"));
 }
 function NavNewestFeature({
@@ -957,6 +957,7 @@ function MastheadSearch({
   return React.createElement("form", {
     className: "hp-search",
     role: "search",
+    "aria-label": "Search the journal",
     action: "/search",
     method: "get",
     onSubmit: e => {
@@ -1042,7 +1043,7 @@ function MastheadSearch({
       e.preventDefault();
       pick(r, i, e);
     }
-  }, r.all ? `All results for “${q}” ↗` : React.createElement(React.Fragment, null, React.createElement("span", {
+  }, r.all ? `All results for “${q}” ↗` : React.createElement(React.Fragment, null, React.createElement("span", {
     className: "hp-search__kind"
   }, r.kind), React.createElement("span", {
     className: "hp-search__title"
@@ -1288,167 +1289,169 @@ function HomeMasthead({
     }];
     return null;
   })();
-  return React.createElement("div", {
-    className: "hp-design hp-navigation",
-    ref: blockRef
-  }, React.createElement("a", {
-    className: "skip-link",
-    href: "#main"
-  }, "Skip to content"), React.createElement("div", {
-    className: "hp-top"
-  }, "AN INDEPENDENT GUIDE TO YOSEMITE", React.createElement("span", null, "Written here. Taken everywhere.")), React.createElement("header", {
-    className: "hp-wrap hp-header",
-    ref: headerRef
-  }, React.createElement(HomeLink, {
-    go: go,
-    location: location,
-    className: "hp-brand",
-    href: "/",
-    onClickCapture: e => releaseRockfall(e.currentTarget.querySelector("img"))
-  }, React.createElement("img", {
-    src: "/img/talus-field-mark-masthead.png?v=2",
-    width: "214",
-    height: "168",
-    alt: ""
-  }), React.createElement("span", null, "The Talus Field", React.createElement("small", null, "YOSEMITE, FROM THE INSIDE."))), crumb && React.createElement("p", {
-    className: "hp-header__crumb"
-  }, crumb.map(c => React.createElement(HomeLink, {
-    key: c.key,
-    go: go,
-    location: location,
-    href: window.routeToPath ? window.routeToPath(c.key) : `/${c.key}`
-  }, c.label))), React.createElement("nav", {
-    "aria-label": "Main navigation",
-    ref: navRef
-  }, HOME_NAV.map(item => {
-    var g = item.group && NAV_GROUPS.find(group => group.key === item.group);
-    if (!g || !g.columns) {
-      return React.createElement(HomeLink, {
-        key: item.href,
-        go: go,
-        location: location,
-        href: item.href,
-        "aria-current": here(item.href.slice(1))
-      }, item.label);
-    }
-    var isOpen = open === g.key;
-    var panelId = `hp-menu-${g.key}`;
-    return (React.createElement("div", {
-        key: g.key,
-        "data-menu": g.key,
-        className: ["hp-menu", isOpen && "is-open", inGroup === g.key && "is-current"].filter(Boolean).join(" "),
-        onPointerEnter: e => {
-          if (fromMouse(e)) openMenu(g.key, !(open && pinned));
-        },
-        onPointerLeave: e => {
-          if (fromMouse(e) && !pinned) closeSoon();
-        },
-        onBlur: e => {
-          if (isOpen && !e.currentTarget.contains(e.relatedTarget)) closeMenu();
-        }
-      }, React.createElement("button", {
-        type: "button",
-        className: "hp-menu__trigger",
-        "aria-expanded": isOpen,
-        "aria-controls": panelId,
-        onClick: () => isOpen && pinned ? closeMenu() : openMenu(g.key, false),
-        onKeyDown: e => {
-          if (e.key !== "ArrowDown") return;
-          e.preventDefault();
-          openMenu(g.key, false);
-          focusFirst(panelId);
-        }
-      }, React.createElement("span", null, item.label), React.createElement("svg", {
-        viewBox: "0 0 10 6",
-        width: "9",
-        height: "6",
-        "aria-hidden": "true",
-        focusable: "false"
-      }, React.createElement("path", {
-        d: "M1 1l4 4 4-4",
-        fill: "none",
-        stroke: "currentColor",
-        strokeWidth: "1.4",
-        strokeLinecap: "round",
-        strokeLinejoin: "round"
-      }))), React.createElement("div", {
-        className: "hp-menu__panel",
-        id: panelId
-      }, React.createElement("div", {
-        className: "hp-menu__card"
-      }, React.createElement("div", {
-        className: "hp-menu__lede"
-      }, React.createElement("p", {
-        className: "hp-eyebrow hp-menu__eyebrow"
-      }, g.label), g.blurb && React.createElement("p", {
-        className: "hp-menu__blurb"
-      }, g.blurb), menuLink({
-        key: g.route,
-        label: homeMenuCta(g.cta)
-      }, "hp-link"), g.aside && React.createElement("div", {
-        className: "hp-menu__aside"
-      }, React.createElement("p", {
-        className: "hp-menu__heading"
-      }, g.aside.eyebrow), React.createElement("p", {
-        className: "hp-menu__aside-title"
-      }, g.aside.title), React.createElement("p", {
-        className: "hp-menu__note"
-      }, g.aside.text), menuLink({
-        ...g.aside.link,
-        label: `${g.aside.link.label} ↗`
-      }, "hp-link"))), React.createElement("div", {
-        className: "hp-menu__cols"
-      }, g.columns.map(col => React.createElement("div", {
-        key: col.heading,
-        className: "hp-menu__col"
-      }, React.createElement("p", {
-        className: "hp-menu__heading"
-      }, col.heading), col.links.map(link => menuLink(link, "hp-menu__link")))), g.feature === "map" && React.createElement(NavMapFeature, {
-        link: menuLink
-      }), g.feature === "waits" && React.createElement(NavWaitsFeature, {
-        live: nowSeen,
-        link: menuLink
-      }), g.feature === "newest" && React.createElement(NavNewestFeature, {
-        link: menuLink
-      })))))
-    );
-  }), React.createElement(HomeLink, {
-    go: go,
-    location: location,
-    className: "hp-nav__search",
-    href: "/search",
-    "aria-current": here("search")
-  }, React.createElement("svg", {
-    viewBox: "0 0 24 24",
-    width: "13",
-    height: "13",
-    "aria-hidden": "true",
-    focusable: "false"
-  }, React.createElement("circle", {
-    cx: "11",
-    cy: "11",
-    r: "6.5",
-    fill: "none",
-    stroke: "currentColor",
-    strokeWidth: "2"
-  }), React.createElement("line", {
-    x1: "16",
-    y1: "16",
-    x2: "21",
-    y2: "21",
-    stroke: "currentColor",
-    strokeWidth: "2",
-    strokeLinecap: "round"
-  })), React.createElement("span", null, "Search"))), React.createElement(MastheadSearch, {
-    go: go,
-    location: location
-  }), React.createElement(HomeLink, {
-    go: go,
-    location: location,
-    className: "hp-button",
-    href: home ? "#field-guide" : "/guide",
-    "aria-current": here("guide")
-  }, "Get the app ↗")));
+  return (React.createElement("div", {
+      className: "hp-design hp-navigation",
+      ref: blockRef,
+      role: "banner"
+    }, React.createElement("a", {
+      className: "skip-link",
+      href: "#main"
+    }, "Skip to content"), React.createElement("div", {
+      className: "hp-top"
+    }, "AN INDEPENDENT GUIDE TO YOSEMITE", React.createElement("span", null, "Written here. Taken everywhere.")), React.createElement("div", {
+      className: "hp-wrap hp-header",
+      ref: headerRef
+    }, React.createElement(HomeLink, {
+      go: go,
+      location: location,
+      className: "hp-brand",
+      href: "/",
+      onClickCapture: e => releaseRockfall(e.currentTarget.querySelector("img"))
+    }, React.createElement("img", {
+      src: "/img/talus-field-mark-masthead.png?v=2",
+      width: "214",
+      height: "168",
+      alt: ""
+    }), React.createElement("span", null, "The Talus Field", React.createElement("small", null, "YOSEMITE, FROM THE INSIDE."))), crumb && React.createElement("p", {
+      className: "hp-header__crumb"
+    }, crumb.map(c => React.createElement(HomeLink, {
+      key: c.key,
+      go: go,
+      location: location,
+      href: window.routeToPath ? window.routeToPath(c.key) : `/${c.key}`
+    }, c.label))), React.createElement("nav", {
+      "aria-label": "Main navigation",
+      ref: navRef
+    }, HOME_NAV.map(item => {
+      var g = item.group && NAV_GROUPS.find(group => group.key === item.group);
+      if (!g || !g.columns) {
+        return React.createElement(HomeLink, {
+          key: item.href,
+          go: go,
+          location: location,
+          href: item.href,
+          "aria-current": here(item.href.slice(1))
+        }, item.label);
+      }
+      var isOpen = open === g.key;
+      var panelId = `hp-menu-${g.key}`;
+      return (React.createElement("div", {
+          key: g.key,
+          "data-menu": g.key,
+          className: ["hp-menu", isOpen && "is-open", inGroup === g.key && "is-current"].filter(Boolean).join(" "),
+          onPointerEnter: e => {
+            if (fromMouse(e)) openMenu(g.key, !(open && pinned));
+          },
+          onPointerLeave: e => {
+            if (fromMouse(e) && !pinned) closeSoon();
+          },
+          onBlur: e => {
+            if (isOpen && !e.currentTarget.contains(e.relatedTarget)) closeMenu();
+          }
+        }, React.createElement("button", {
+          type: "button",
+          className: "hp-menu__trigger",
+          "aria-expanded": isOpen,
+          "aria-controls": panelId,
+          onClick: () => isOpen && pinned ? closeMenu() : openMenu(g.key, false),
+          onKeyDown: e => {
+            if (e.key !== "ArrowDown") return;
+            e.preventDefault();
+            openMenu(g.key, false);
+            focusFirst(panelId);
+          }
+        }, React.createElement("span", null, item.label), React.createElement("svg", {
+          viewBox: "0 0 10 6",
+          width: "9",
+          height: "6",
+          "aria-hidden": "true",
+          focusable: "false"
+        }, React.createElement("path", {
+          d: "M1 1l4 4 4-4",
+          fill: "none",
+          stroke: "currentColor",
+          strokeWidth: "1.4",
+          strokeLinecap: "round",
+          strokeLinejoin: "round"
+        }))), React.createElement("div", {
+          className: "hp-menu__panel",
+          id: panelId
+        }, React.createElement("div", {
+          className: "hp-menu__card"
+        }, React.createElement("div", {
+          className: "hp-menu__lede"
+        }, React.createElement("p", {
+          className: "hp-eyebrow hp-menu__eyebrow"
+        }, g.label), g.blurb && React.createElement("p", {
+          className: "hp-menu__blurb"
+        }, g.blurb), menuLink({
+          key: g.route,
+          label: homeMenuCta(g.cta)
+        }, "hp-link"), g.aside && React.createElement("div", {
+          className: "hp-menu__aside"
+        }, React.createElement("p", {
+          className: "hp-menu__heading"
+        }, g.aside.eyebrow), React.createElement("p", {
+          className: "hp-menu__aside-title"
+        }, g.aside.title), React.createElement("p", {
+          className: "hp-menu__note"
+        }, g.aside.text), menuLink({
+          ...g.aside.link,
+          label: `${g.aside.link.label} ↗`
+        }, "hp-link"))), React.createElement("div", {
+          className: "hp-menu__cols"
+        }, g.columns.map(col => React.createElement("div", {
+          key: col.heading,
+          className: "hp-menu__col"
+        }, React.createElement("p", {
+          className: "hp-menu__heading"
+        }, col.heading), col.links.map(link => menuLink(link, "hp-menu__link")))), g.feature === "map" && React.createElement(NavMapFeature, {
+          link: menuLink
+        }), g.feature === "waits" && React.createElement(NavWaitsFeature, {
+          live: nowSeen,
+          link: menuLink
+        }), g.feature === "newest" && React.createElement(NavNewestFeature, {
+          link: menuLink
+        })))))
+      );
+    }), React.createElement(HomeLink, {
+      go: go,
+      location: location,
+      className: "hp-nav__search",
+      href: "/search",
+      "aria-current": here("search")
+    }, React.createElement("svg", {
+      viewBox: "0 0 24 24",
+      width: "13",
+      height: "13",
+      "aria-hidden": "true",
+      focusable: "false"
+    }, React.createElement("circle", {
+      cx: "11",
+      cy: "11",
+      r: "6.5",
+      fill: "none",
+      stroke: "currentColor",
+      strokeWidth: "2"
+    }), React.createElement("line", {
+      x1: "16",
+      y1: "16",
+      x2: "21",
+      y2: "21",
+      stroke: "currentColor",
+      strokeWidth: "2",
+      strokeLinecap: "round"
+    })), React.createElement("span", null, "Search"))), React.createElement(MastheadSearch, {
+      go: go,
+      location: location
+    }), React.createElement(HomeLink, {
+      go: go,
+      location: location,
+      className: "hp-button",
+      href: home ? "#field-guide" : "/guide",
+      "aria-current": here("guide")
+    }, "Get the app\xA0↗")))
+  );
 }
 function HpHeading({
   go,
@@ -1544,7 +1547,7 @@ function HpArticleCard({
     alt: article.placeholder || "",
     eyebrow: React.createElement(React.Fragment, null, cat ? cat.label.toUpperCase() : "", React.createElement("span", null, article.read ? article.read.toUpperCase() : "")),
     title: article.title,
-    text: React.createElement(React.Fragment, null, article.dek, " ↗"),
+    text: React.createElement(React.Fragment, null, article.dek, "\xA0↗"),
     sizes: "(max-width: 760px) calc(100vw - 40px), (max-width: 1100px) 45vw, 420px"
   });
 }
@@ -1595,7 +1598,7 @@ var HP_GUIDE_POINTS = [{
   title: "Find your next stop.",
   text: "44 stops, arranged in driving order."
 }, {
-  mark: "⌁",
+  mark: "△",
   title: "Choose a hike that fits your day.",
   text: "57 day hikes with GPS tracks."
 }, {
@@ -1668,7 +1671,7 @@ function HpGuideBand({
     location: location,
     className: "hp-button hp-light",
     href: "/guide"
-  }, "Get the offline Field Guide ", React.createElement("span", null, GUIDE_TERMS.price, " ↗")), React.createElement("p", {
+  }, "Get the offline Field Guide ", React.createElement("span", null, GUIDE_TERMS.price, "\xA0↗")), React.createElement("p", {
     className: "hp-terms"
   }, GUIDE_TERMS.short, " · ", GUIDE_TERMS.refundShort), React.createElement("p", {
     className: "hp-terms hp-owner"
@@ -1679,7 +1682,7 @@ function HpGuideBand({
         location
       });
     }
-  }, "Open your guide ↗"))), sample && React.createElement("p", {
+  }, "Open your guide\xA0↗"))), sample && React.createElement("p", {
     className: "hp-terms hp-sample"
   }, "Not sure yet? Five entries are free to read, no email required:", " ", React.createElement("a", {
     href: `${GUIDE_PROMO_APP_BASE}/preview`,
@@ -1688,7 +1691,7 @@ function HpGuideBand({
         location
       });
     }
-  }, "preview the guide ↗"))), React.createElement("div", {
+  }, "preview the guide\xA0↗"))), React.createElement("div", {
     className: "hp-screens"
   }, React.createElement("div", {
     className: "hp-orbit"
@@ -1736,7 +1739,7 @@ function HpLetter({
   tag,
   variant,
   send,
-  cta = "Send me the letter ↗",
+  cta = "Send me the letter ↗",
   terms = "Free to read. One letter a week. Unsubscribe whenever.",
   paper,
   stamp = "THE SUNDAY LETTER",
@@ -1873,7 +1876,7 @@ function Footer({
       });
       go("explore");
     }
-  }, "Everything on this site →")), React.createElement("div", null, React.createElement("h4", null, "Plan a trip"), React.createElement("ul", null, link("start-here", "Start here"), link("planning", "The Planning Guide"), link("map", "The trip map"), link("itineraries", "Itineraries"), link("stay", "Where to stay"), link("distances", "Drive times"), link("international", "Visiting from abroad"), link("checklist", "First-week checklist"), link("kit", "Kit"), link("guide", "The Field Guide"))), React.createElement("div", null, React.createElement("h4", null, "Park now"), React.createElement("ul", null, link("now", "The Park Bulletin"), link("conditions", "Conditions"), link("webcams", "Webcams"), link("dates", "Dates that matter"))), React.createElement("div", null, React.createElement("h4", null, "Read"), React.createElement("ul", null, link("articles", "All articles"), window.CATEGORIES.map(c => React.createElement("li", {
+  }, "Everything on this site →")), React.createElement("div", null, React.createElement("h2", null, "Plan a trip"), React.createElement("ul", null, link("start-here", "Start here"), link("planning", "The Planning Guide"), link("map", "The trip map"), link("itineraries", "Itineraries"), link("stay", "Where to stay"), link("distances", "Drive times"), link("international", "Visiting from abroad"), link("checklist", "First-week checklist"), link("kit", "Kit"), link("guide", "The Field Guide"))), React.createElement("div", null, React.createElement("h2", null, "Park now"), React.createElement("ul", null, link("now", "The Park Bulletin"), link("conditions", "Conditions"), link("webcams", "Webcams"), link("dates", "Dates that matter"))), React.createElement("div", null, React.createElement("h2", null, "Read"), React.createElement("ul", null, link("articles", "All articles"), window.CATEGORIES.map(c => React.createElement("li", {
     key: c.slug
   }, React.createElement("a", {
     href: `/section/${c.slug}`,
@@ -1883,7 +1886,7 @@ function Footer({
     }
   }, c.label))), link("films", "Films"), React.createElement("li", null, React.createElement("a", {
     href: "/archive/"
-  }, "Nature Notes archive")))), React.createElement("div", null, React.createElement("h4", null, "The journal"), React.createElement("ul", null, link("about", "About"), link("newsletter", "Newsletter"), link("contact", "Contact")))), React.createElement("div", {
+  }, "Nature Notes archive")))), React.createElement("div", null, React.createElement("h2", null, "The journal"), React.createElement("ul", null, link("about", "About"), link("newsletter", "Newsletter"), link("contact", "Contact")))), React.createElement("div", {
     className: "site-footer__disclosure"
   }, "Some links on this site are affiliate links. If you book or buy through one, The Talus Field may earn a small commission at no extra cost to you. ", React.createElement("a", {
     href: "/affiliate",
@@ -2774,7 +2777,7 @@ function RecommendedCard({
     slug: (slug ? slug + ":" : "") + it.id,
     name: it.what,
     className: "rec-card__link"
-  }, it.label || source, " ↗")))), linked && React.createElement("p", {
+  }, it.label || source, "\xA0↗")))), linked && React.createElement("p", {
     className: "rec-card__disclosure"
   }, source, " links are affiliate links. Any equivalent does the same job, and the list does not change for them. ", React.createElement("a", {
     href: "/affiliate"
@@ -3540,7 +3543,7 @@ function WebcamStrip({
     className: "cam-tile__label"
   }, cam.label), React.createElement("span", {
     className: "cam-tile__open"
-  }, "Open camera ↗")) : React.createElement("div", {
+  }, "Open camera\xA0↗")) : React.createElement("div", {
     className: "mono",
     style: {
       marginTop: 10,
@@ -3799,7 +3802,6 @@ function FilmEmbed({
   return React.createElement("button", {
     type: "button",
     className: "film__facade",
-    "aria-label": `Play film: ${ep.title}`,
     onClick: () => {
       if (window.track) window.track("film_play", {
         film_id: ep.id,
@@ -3808,7 +3810,9 @@ function FilmEmbed({
       });
       setPlaying(true);
     }
-  }, React.createElement("img", {
+  }, React.createElement("span", {
+    className: "hp-sr-only"
+  }, "Play film: ", ep.title), React.createElement("img", {
     className: "film__thumb",
     src: `https://i.ytimg.com/vi/${ep.youtubeId}/hqdefault.jpg`,
     alt: "",
@@ -4107,3 +4111,13 @@ Object.assign(window, {
   FjSteps,
   FjPlate
 });
+function hpLongDate(iso) {
+  if (typeof iso !== "string" || !/^\d{4}-\d{2}-\d{2}$/.test(iso)) return iso;
+  return new Date(`${iso}T12:00:00Z`).toLocaleDateString("en-US", {
+    month: "long",
+    day: "numeric",
+    year: "numeric",
+    timeZone: "UTC"
+  });
+}
+window.hpLongDate = hpLongDate;

@@ -155,7 +155,7 @@ function FcBook({
     list: list,
     slug: town.id,
     className: "ff-book"
-  }, children || "See autumn availability ↗");
+  }, children || "See autumn availability ↗");
 }
 function FallColorPage({
   go
@@ -238,7 +238,7 @@ function FallColorPage({
   }), " The short version"), React.createElement("ul", null, React.createElement("li", null, "For the Valley, aim at late October."), React.createElement("li", null, "For aspens, go early, before Tioga Road closes."), React.createElement("li", null, "Watch the overnight lows: a hard freeze ends it."), React.createElement("li", null, "Come for color and light, not waterfalls.")), React.createElement(FcBook, {
     town: mariposa,
     list: "fall_color_town"
-  }, "Check Highway 140 availability ↗"), React.createElement("p", {
+  }, "Check Highway 140 availability\xA0↗"), React.createElement("p", {
     className: "ff-disclosure"
   }, "Availability search on Expedia. We may earn a commission if you book, at no cost to you. ", React.createElement("a", {
     href: "/affiliate"
@@ -346,7 +346,7 @@ function FallColorPage({
     href: h,
     target: "_blank",
     rel: "noopener noreferrer"
-  }, React.createElement("strong", null, t, " ↗"), React.createElement("span", null, d))))), React.createElement("p", {
+  }, React.createElement("strong", null, t, "\xA0↗"), React.createElement("span", null, d))))), React.createElement("p", {
     className: "ff-note"
   }, "Every live feed on one page: ", React.createElement(HomeLink, {
     go: go,
@@ -434,7 +434,7 @@ function FallColorPage({
     href: "https://www.travelyosemite.com/lodging/",
     target: "_blank",
     rel: "noopener noreferrer"
-  }, "Travel Yosemite ↗"), ". Every option compared: ", React.createElement(HomeLink, {
+  }, "Travel Yosemite\xA0↗"), ". Every option compared: ", React.createElement(HomeLink, {
     go: go,
     location: "fall_color_stay",
     href: "/stay"
@@ -482,7 +482,7 @@ function FallColorPage({
   }, "PLANNING THE TRIP?"), React.createElement("h3", null, "Search the Highway 140 corridor"), React.createElement("p", null, "El Portal, Midpines and Mariposa sit on the road that stays open all winter, so a November storm does not end the trip."), React.createElement(FcBook, {
     town: mariposa,
     list: "page_fall_color"
-  }, "Search Highway 140 lodging ↗"))), React.createElement("div", {
+  }, "Search Highway 140 lodging\xA0↗"))), React.createElement("div", {
     className: "ff-faq"
   }, FC_FAQ.map(([q, a], i) => React.createElement("details", {
     key: q,

@@ -347,7 +347,7 @@ window.ARTICLE_BODIES["where-to-eat-yosemite"] = function WhereToEatYosemiteBody
               <li>Staying in Yosemite West: shop before you arrive. There is nothing there.</li>
               <li>Every other lunch: a sandwich on a granite slab by the river.</li>
             </ul>
-            <a className="eat-short__link" href="/now">What's open this edition, on the Park Bulletin ↗</a>
+            <a className="eat-short__link" href="/now">What's open this edition, on the Park Bulletin ↗</a>
           </aside>
         </div>
       </section>
@@ -590,8 +590,8 @@ window.ARTICLE_BODIES["where-to-eat-yosemite"] = function WhereToEatYosemiteBody
               <li><EventIcon name="no" size={28} />No shuttle</li>
             </ul>
             <dl className="eat-none__drive">
-              <div><dt>Nearest food</dt><dd>Yosemite Valley</dd><p>Roughly 40 minutes each way</p></div>
-              <div><dt>Or</dt><dd>Wawona</dd><p>About half an hour south</p></div>
+              <div><dt>Nearest food</dt><dd>Yosemite Valley</dd><dd className="eat-none__note">Roughly 40 minutes each way</dd></div>
+              <div><dt>Or</dt><dd>Wawona</dd><dd className="eat-none__note">About half an hour south</dd></div>
             </dl>
           </div>
           <h3 className="eat-subhead eat-subhead--rule">Four more places to bring lunch to</h3>

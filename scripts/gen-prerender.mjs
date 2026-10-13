@@ -309,7 +309,7 @@ function RecommendedCard(props) {
                 slug: (props.slug ? props.slug + ":" : "") + it.id,
                 name: it.what,
                 className: "rec-card__link",
-              }, (it.label || source) + " ↗")
+              }, (it.label || source) + " ↗")
             : null)))
   );
   if (linked) {

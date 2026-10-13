@@ -119,15 +119,15 @@ function masthead() {
   // gen-brand-icons.mjs from the same master, 5.7 KB), drawn at the design
   // masthead's 48 px; unversioned, the same trade-off /styles.css makes on
   // these 512 pages.
-  return `<div class="hp-design hp-navigation">
+  return `<div class="hp-design hp-navigation" role="banner">
 <a class="skip-link" href="#main">Skip to content</a>
 <div class="hp-top">AN INDEPENDENT GUIDE TO YOSEMITE<span>Written here. Taken everywhere.</span></div>
-<header class="hp-wrap hp-header">
+<div class="hp-wrap hp-header">
   <a class="hp-brand" href="/"><img src="/img/favicon-96.png" width="96" height="96" alt="" /><span>The Talus Field<small>YOSEMITE, FROM THE INSIDE.</small></span></a>
   <nav aria-label="Main navigation">${nav}</nav>
   ${search}
   <a class="hp-button" href="/guide">Get the app ↗</a>
-</header>
+</div>
 </div>`;
 }
 
@@ -187,10 +187,10 @@ function siteFooter() {
         <p>Notes on a single park, kept slowly. Updated when something is worth saying.</p>
         <a class="site-footer__index" href="/explore">Everything on this site →</a>
       </div>
-      <div><h4>Plan a trip</h4><ul>${plan}</ul></div>
-      <div><h4>Park now</h4><ul>${now}</ul></div>
-      <div><h4>Read</h4><ul>${read}</ul></div>
-      <div><h4>The journal</h4><ul>${journal}</ul></div>
+      <div><h2>Plan a trip</h2><ul>${plan}</ul></div>
+      <div><h2>Park now</h2><ul>${now}</ul></div>
+      <div><h2>Read</h2><ul>${read}</ul></div>
+      <div><h2>The journal</h2><ul>${journal}</ul></div>
     </div>
     <div class="site-footer__disclosure">
       Some links on this site are affiliate links. If you book or buy through one, The Talus Field may earn a small commission at no extra cost to you. <a href="/affiliate">Full disclosure here.</a>

@@ -301,8 +301,8 @@ function StartPlacesMap({ go }) {
           <HomeLink go={go} location={START_LOCATION} href="/now">the Park Bulletin</HomeLink>.
         </p>
         <div className="start-map__links">
-          <a className="hp-link" href={START_NPS_MAP.source} target="_blank" rel="noopener noreferrer">The full-size map at nps.gov ↗</a>
-          <HomeLink go={go} location={START_LOCATION} className="hp-link" href="/map">Build your own route on the trip map ↗</HomeLink>
+          <a className="hp-link" href={START_NPS_MAP.source} target="_blank" rel="noopener noreferrer">The full-size map at nps.gov ↗</a>
+          <HomeLink go={go} location={START_LOCATION} className="hp-link" href="/map">Build your own route on the trip map ↗</HomeLink>
         </div>
       </div>
     </div>
@@ -336,7 +336,7 @@ function StartPlace({ place, flip, go }) {
             </div>
           ))}
         </dl>
-        <HomeLink go={go} location={START_LOCATION} className="hp-link" href={place.link.href}>{place.link.label} ↗</HomeLink>
+        <HomeLink go={go} location={START_LOCATION} className="hp-link" href={place.link.href}>{place.link.label} ↗</HomeLink>
       </div>
     </section>
   );
@@ -376,7 +376,7 @@ function StartPlan({ plan, guide, earlier, byId, go }) {
         onClick={() => { if (window.track) window.track("cta_click", { location: START_LOCATION, target: "/map", plan: plan.id }); }}>
         Open this plan on the trip map <span>↗</span>
       </a>
-      <HomeLink go={go} location={START_LOCATION} className="hp-link" href={guide.href}>{guide.label} ↗</HomeLink>
+      <HomeLink go={go} location={START_LOCATION} className="hp-link" href={guide.href}>{guide.label} ↗</HomeLink>
     </article>
   );
 }
@@ -494,7 +494,7 @@ function StartHerePage({ go }) {
             </div>
             <div className="start-halfday">
               {halfDay && <p><strong>Arriving late?</strong> {halfDay.dek}</p>}
-              <HomeLink go={go} location={START_LOCATION} className="hp-link" href="/itineraries">Every plan, the half day included ↗</HomeLink>
+              <HomeLink go={go} location={START_LOCATION} className="hp-link" href="/itineraries">Every plan, the half day included ↗</HomeLink>
             </div>
           </div>
         </section>
@@ -508,13 +508,13 @@ function StartHerePage({ go }) {
             {articles.map((a) => a.page
               ? <HpCard key={a.page} go={go} location={START_LOCATION} href={a.page} image={a.image} alt={a.alt}
                   eyebrow={<React.Fragment>{a.eyebrow}<span>{a.meta}</span></React.Fragment>}
-                  title={a.title} text={<React.Fragment>{a.dek} ↗</React.Fragment>}
+                  title={a.title} text={<React.Fragment>{a.dek} ↗</React.Fragment>}
                   sizes="(max-width: 760px) calc(100vw - 40px), (max-width: 1100px) 45vw, 420px" />
               : <HpArticleCard key={a.slug} article={a} go={go} location={START_LOCATION} />)}
           </div>
           <nav className="start-then" aria-label="Further reading">
             <span>Then</span>
-            {START_THEN.map((l) => <HomeLink key={l.href} go={go} location={START_LOCATION} className="hp-link" href={l.href}>{l.label} ↗</HomeLink>)}
+            {START_THEN.map((l) => <HomeLink key={l.href} go={go} location={START_LOCATION} className="hp-link" href={l.href}>{l.label} ↗</HomeLink>)}
           </nav>
         </section>
       )}
@@ -528,7 +528,7 @@ function StartHerePage({ go }) {
               <ul className="start-bullets">
                 {a.lines.map((l) => <li key={l}>{l}</li>)}
               </ul>
-              <HomeLink go={go} location={START_LOCATION} className="hp-link" href={a.link.href}>{a.link.label} ↗</HomeLink>
+              <HomeLink go={go} location={START_LOCATION} className="hp-link" href={a.link.href}>{a.link.label} ↗</HomeLink>
             </div>
           ))}
         </div>

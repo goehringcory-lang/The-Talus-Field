@@ -1,4 +1,4 @@
-/* global React, HpPageHead, HpGuideBand, HpLetter, SoftGate, LodgingCta, DEADLINES, FjLayout, FjCard, FjRidge, AffiliateDisclosure */
+/* global React, HpPageHead, HpGuideBand, HpLetter, SoftGate, LodgingCta, DEADLINES, FjLayout, FjCard, FjRidge, AffiliateDisclosure, hpLongDate */
 
 // =============================================================================
 // DATES — `/dates` route. The dates that decide a Yosemite trip, in one table,
@@ -333,7 +333,7 @@ function DatesPage({ go }) {
                       <td><strong>{longDate(date)}</strong><br /><span className="dates__time">{item.time}</span>{past && <span className="dates__time"> · passed</span>}</td>
                       <td>
                         <strong>{item.title}</strong>
-                        <p>{item.detail} <a href={item.source} target="_blank" rel="noopener noreferrer">NPS ↗</a></p>
+                        <p>{item.detail} <a href={item.source} target="_blank" rel="noopener noreferrer">NPS ↗</a></p>
                       </td>
                       <td>{item.tag === "date-halfdome" && instances.filter((x) => x.item.id === item.id).length > 1 ? `climbing ${shortDate(forDate)}` : `arriving ${shortDate(forDate)}`}</td>
                       <td>
@@ -356,7 +356,7 @@ function DatesPage({ go }) {
                     ? `${Math.abs(it.offsetDays) === 168 ? "24 weeks" : Math.abs(it.offsetDays) + " days"} before, ${it.time.replace(/\.$/, "")}.`
                     : `the 15th of the month, ${it.monthsAhead} months ahead, ${it.time.replace(/\.$/, "")}.`}{" "}
                   {it.detail}{" "}
-                  <a href={it.source} target="_blank" rel="noopener noreferrer">NPS ↗</a>
+                  <a href={it.source} target="_blank" rel="noopener noreferrer">NPS ↗</a>
                 </li>
               ))}
             </ul>
@@ -384,7 +384,7 @@ function DatesPage({ go }) {
                   </td>
                   <td>
                     <strong>{it.title}</strong>
-                    <p>{it.detail} <a href={it.source} target="_blank" rel="noopener noreferrer">NPS ↗</a></p>
+                    <p>{it.detail} <a href={it.source} target="_blank" rel="noopener noreferrer">NPS ↗</a></p>
                   </td>
                   <td>
                     <a className="dates__btn dates__btn--small" href={`/ics/${it.id}.ics`} download onClick={() => { if (window.track) window.track("dates_ics_download", { file: `${it.id}.ics` }); }}>
@@ -403,7 +403,7 @@ function DatesPage({ go }) {
             </p>
           </DatesCalendarGate>
           <p className="dates__hint">
-            Verified against the National Park Service pages linked above on {table.verified}. Each entry carries its source and that date. If a rule on this page disagrees with nps.gov, nps.gov is right and this page is behind; the{" "}
+            Verified against the National Park Service pages linked above on {hpLongDate(table.verified)}. Each entry carries its source and that date. If a rule on this page disagrees with nps.gov, nps.gov is right and this page is behind; the{" "}
             <a href="/contact" onClick={(e) => goRoute(e, "contact")}>contact page</a> reaches the editor.
           </p>
 

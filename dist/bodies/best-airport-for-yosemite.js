@@ -164,7 +164,7 @@ window.ARTICLE_BODIES["best-airport-for-yosemite"] = function BestAirportForYose
       list: "article_town",
       slug: "best-airport-for-yosemite",
       className: "ff-book"
-    }, children || `Search ${town.name.split(" and ")[0]} ↗`);
+    }, children || `Search ${town.name.split(" and ")[0]} ↗`);
   }
   return React.createElement("div", {
     className: "fly-feature"
@@ -203,7 +203,7 @@ window.ARTICLE_BODIES["best-airport-for-yosemite"] = function BestAirportForYose
     name: "alert"
   }), " The short version"), React.createElement("ul", null, React.createElement("li", null, "Land at SFO, or connect on to Fresno if you can."), React.createElement("li", null, "Rent a car unless it is one or two of you on a Valley-only trip."), React.createElement("li", null, "Do not drive to the park the evening you land."), React.createElement("li", null, "October to April, carry chains or take Highway 140.")), React.createElement(TownBook, {
     town: TOWNS[1]
-  }, "Search Groveland, on the road from SFO ↗"), React.createElement("p", {
+  }, "Search Groveland, on the road from SFO\xA0↗"), React.createElement("p", {
     className: "ff-disclosure"
   }, "Availability search on Expedia. We may earn a commission if you book, at no cost to you. ", React.createElement("a", {
     href: "/affiliate"
@@ -428,7 +428,7 @@ window.ARTICLE_BODIES["best-airport-for-yosemite"] = function BestAirportForYose
     className: "hp-eyebrow"
   }, "LANDING AT LAX?"), React.createElement("h3", null, "Sleep in Oakhurst"), React.createElement("p", null, "An Oakhurst or Fish Camp bed turns the push from Los Angeles into an afternoon drive and a morning at the gate before the line forms."), React.createElement(TownBook, {
     town: TOWNS[2]
-  }, "Search Oakhurst lodging ↗"))), React.createElement("div", {
+  }, "Search Oakhurst lodging\xA0↗"))), React.createElement("div", {
     className: "ff-faq"
   }, FAQ.map(([q, a], i) => React.createElement("details", {
     key: q,

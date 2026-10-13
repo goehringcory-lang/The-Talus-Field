@@ -44,3 +44,11 @@ export function listProgress(items: { id: string }[]): { done: number; total: nu
 }
 
 export const CHECKLIST_STORAGE_KEY = STORAGE_KEY
+
+// The count's verb for an essentials topic: the packing lists are "packed",
+// the night-before checks and the safety list are "done". One rule for the
+// list row and the topic page, which used to disagree ("0 of 8 packed" on
+// the row for the night-before downloads).
+export function checklistVerb(topicId: string): 'packed' | 'done' {
+  return topicId === 'before-you-go' || topicId === 'safety-and-help' ? 'done' : 'packed'
+}

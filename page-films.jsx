@@ -72,7 +72,8 @@ function FilmsTheater({ ep, themeTitle, playing, onPlay, screenRef }) {
             />
           </div>
         ) : (
-          <button type="button" className="hp-films__screen" aria-label={`Play film: ${ep.title}`} onClick={onPlay}>
+          <button type="button" className="hp-films__screen" onClick={onPlay}>
+            <span className="hp-sr-only">Play film: {ep.title}</span>
             <img
               key={ep.id}
               src={`https://i.ytimg.com/vi/${ep.youtubeId}/maxresdefault.jpg`}
@@ -88,7 +89,7 @@ function FilmsTheater({ ep, themeTitle, playing, onPlay, screenRef }) {
             />
             <span className="hp-films__shade" aria-hidden="true" />
             <span className="hp-films__bigplay" aria-hidden="true"><FilmsPlayGlyph size={28} /></span>
-            <span className="hp-films__badge">{ep.id === FILMS_START_ID ? "START HERE" : "NOW SHOWING"}</span>
+            <span className="hp-films__badge" aria-hidden="true">{ep.id === FILMS_START_ID ? "START HERE" : "NOW SHOWING"}</span>
           </button>
         )}
         <div className="hp-films__caption">
@@ -109,7 +110,10 @@ function FilmsTheater({ ep, themeTitle, playing, onPlay, screenRef }) {
 
 function FilmCard({ ep, onPick }) {
   return (
-    <button type="button" className="hp-films__card" onClick={() => onPick(ep, "grid")} aria-label={`Play film: ${ep.title}`}>
+    <button type="button" className="hp-films__card" onClick={() => onPick(ep, "grid")}>
+      {/* Named by its content, verb first, so the name holds what the card
+          shows (axe label-content-name-mismatch flagged the aria-label). */}
+      <span className="hp-sr-only">Play film: </span>
       <span className="hp-films__thumb">
         <img src={filmsThumb(ep)} alt="" loading="lazy" decoding="async" referrerPolicy="no-referrer" />
         <span className="hp-films__tag">{filmsTag(ep)}</span>
@@ -240,13 +244,16 @@ function FilmsPage({ go }) {
                   type="button"
                   className={`hp-films__mini${on ? " is-on" : ""}`}
                   aria-pressed={on}
-                  aria-label={`Play film: ${ep.title}`}
                   onClick={() => pick(ep, "strip")}
                 >
+                  {/* The name is what the button shows, with the verb first, so a
+                      voice user can say the visible tag or title (axe
+                      label-content-name-mismatch flagged the aria-label). */}
+                  <span className="hp-sr-only">Play film: </span>
                   <span className="hp-films__minithumb">
                     <img src={filmsThumb(ep)} alt="" loading="lazy" decoding="async" referrerPolicy="no-referrer" />
                     <span className="hp-films__minitag">{filmsTag(ep)}</span>
-                    {on && <span className="hp-films__nowtag">NOW SHOWING</span>}
+                    {on && <span className="hp-films__nowtag" aria-hidden="true">NOW SHOWING</span>}
                   </span>
                   <span className="hp-films__minititle">{ep.title}</span>
                 </button>
@@ -308,8 +315,8 @@ function FilmsPage({ go }) {
               under each film are this journal's, not the Park Service's.
             </p>
             <div className="hp-films__links">
-              <a className="hp-link" href={nn.series.npsUrl} target="_blank" rel="noopener noreferrer">The originals at nps.gov ↗</a>
-              <a className="hp-link" href={nn.series.playlistUrl} target="_blank" rel="noopener noreferrer">The park's YouTube channel ↗</a>
+              <a className="hp-link" href={nn.series.npsUrl} target="_blank" rel="noopener noreferrer">The originals at nps.gov ↗</a>
+              <a className="hp-link" href={nn.series.playlistUrl} target="_blank" rel="noopener noreferrer">The park's YouTube channel ↗</a>
             </div>
           </div>
           {/* Static pages under /archive, outside the SPA: a plain link, no go(). */}

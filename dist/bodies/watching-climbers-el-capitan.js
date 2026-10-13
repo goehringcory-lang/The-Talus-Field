@@ -381,7 +381,7 @@ window.ARTICLE_BODIES["watching-climbers-el-capitan"] = function WatchingClimber
   }), " The short version"), React.createElement("ul", null, React.createElement("li", null, "Stand in El Capitan Meadow, on Northside Drive beneath the wall."), React.createElement("li", null, "Bring binoculars. Without them you cannot pick out the climbers."), React.createElement("li", null, "Come in spring or fall, and stay for the headlamps."), React.createElement("li", null, "Park fully off the road. Never shine a light at the wall.")), React.createElement("a", {
     className: "ec-short__link",
     href: "/map?trip=el-capitan-meadow,el-capitan-bridge"
-  }, "Both viewpoints on the Valley map ↗")))), React.createElement("section", {
+  }, "Both viewpoints on the Valley map\xA0↗")))), React.createElement("section", {
     className: "ff-band",
     id: "sec-0-the-wall",
     tabIndex: -1

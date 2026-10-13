@@ -78,7 +78,7 @@ function MbNights() {
     href: "https://www.yosemitemoonbow.com/",
     target: "_blank",
     rel: "noopener noreferrer"
-  }, "yosemitemoonbow.com ↗"), "."));
+  }, "yosemitemoonbow.com\xA0↗"), "."));
 }
 function MbGeoPanel({
   x,
@@ -265,7 +265,7 @@ function MbBook({
     list: list,
     slug: town.id,
     className: "ff-book"
-  }, children || "See spring availability ↗");
+  }, children || "See spring availability ↗");
 }
 function MoonbowPage({
   go
@@ -366,7 +366,17 @@ function MoonbowPage({
     className: "ff-lede"
   }, "That geometry decides the hour. The moon has to be behind you and low: the higher it climbs, the lower the bow sits, and once the moon is above 42 degrees the bow drops below the ground. It needs a bright moon, because moonlight is far fainter than sunlight, which is also why the eye sees it as silver."), React.createElement(MbGeometry, null)), React.createElement("div", null, React.createElement("dl", {
     className: "ff-when"
-  }, React.createElement("div", null, React.createElement("dt", null, "Water"), React.createElement("dd", null, "High flow, heavy spray"), React.createElement("p", null, "The bow lives in the mist. No mist, no bow.")), React.createElement("div", null, React.createElement("dt", null, "Moon"), React.createElement("dd", null, "Full or nearly full"), React.createElement("p", null, "About two nights either side of full.")), React.createElement("div", null, React.createElement("dt", null, "Height"), React.createElement("dd", null, "Below about 42°"), React.createElement("p", null, "And not hidden behind the Valley's walls.")), React.createElement("div", null, React.createElement("dt", null, "Sky"), React.createElement("dd", null, "Clear and dark"), React.createElement("p", null, "A cloud over the moon switches it off.")), React.createElement("div", null, React.createElement("dt", null, "Timing"), React.createElement("dd", null, "About 50 min later each night"), React.createElement("p", null, "The moon rises later every evening."))), React.createElement(NatureNotesFilm, {
+  }, React.createElement("div", null, React.createElement("dt", null, "Water"), React.createElement("dd", null, "High flow, heavy spray"), React.createElement("dd", {
+    className: "ff-when__note"
+  }, "The bow lives in the mist. No mist, no bow.")), React.createElement("div", null, React.createElement("dt", null, "Moon"), React.createElement("dd", null, "Full or nearly full"), React.createElement("dd", {
+    className: "ff-when__note"
+  }, "About two nights either side of full.")), React.createElement("div", null, React.createElement("dt", null, "Height"), React.createElement("dd", null, "Below about 42°"), React.createElement("dd", {
+    className: "ff-when__note"
+  }, "And not hidden behind the Valley's walls.")), React.createElement("div", null, React.createElement("dt", null, "Sky"), React.createElement("dd", null, "Clear and dark"), React.createElement("dd", {
+    className: "ff-when__note"
+  }, "A cloud over the moon switches it off.")), React.createElement("div", null, React.createElement("dt", null, "Timing"), React.createElement("dd", null, "About 50 min later each night"), React.createElement("dd", {
+    className: "ff-when__note"
+  }, "The moon rises later every evening."))), React.createElement(NatureNotesFilm, {
     id: "moonbows",
     title: "Moonbows",
     youtubeId: "W6KMnPzZ0Eo",
@@ -499,7 +509,7 @@ function MoonbowPage({
     "data-aff-list": "moonbow_gear",
     "data-aff-item-slug": g.id,
     "data-aff-name": g.what
-  }, g.label, " ↗")))), React.createElement("p", {
+  }, g.label, "\xA0↗")))), React.createElement("p", {
     className: "ff-note"
   }, "Patagonia links are affiliate links; we may earn a commission. Any shell and warm layer do the same job. ", React.createElement("a", {
     href: "/affiliate"
@@ -541,7 +551,7 @@ function MoonbowPage({
     href: "https://www.travelyosemite.com/lodging/",
     target: "_blank",
     rel: "noopener noreferrer"
-  }, "Travel Yosemite ↗"), ". Every option compared: ", React.createElement(HomeLink, {
+  }, "Travel Yosemite\xA0↗"), ". Every option compared: ", React.createElement(HomeLink, {
     go: go,
     location: "moonbow_stay",
     href: "/stay"
@@ -564,7 +574,7 @@ function MoonbowPage({
       target: "_blank",
       rel: "noopener noreferrer"
     } : {})
-  }, href.startsWith("http") ? "The paper ↗" : "Read the issue")))))), React.createElement("section", {
+  }, href.startsWith("http") ? "The paper ↗" : "Read the issue")))))), React.createElement("section", {
     className: "ff-band",
     id: "moonbow-faq",
     tabIndex: -1
@@ -593,7 +603,7 @@ function MoonbowPage({
   }, "PLANNING A FULL-MOON TRIP?"), React.createElement("h3", null, "Search El Portal first"), React.createElement("p", null, "The closest beds outside the park, 25 to 35 minutes from the Yosemite Falls lot on the road that stays open all year."), React.createElement(MbBook, {
     town: elPortal,
     list: "page_moonbow"
-  }, "Search El Portal lodging ↗"))), React.createElement("div", {
+  }, "Search El Portal lodging\xA0↗"))), React.createElement("div", {
     className: "ff-faq"
   }, MB_FAQ.map(([q, a], i) => React.createElement("details", {
     key: q,

@@ -285,7 +285,7 @@
     "source": "https://commons.wikimedia.org/wiki/File:Lembert_dome.JPG"
   },
   "/photos/hike-lower-yosemite-fall.jpg": {
-    "author": "Micah Bochart ( talk · contribs )",
+    "author": "Micah Bochart",
     "license": "Public domain",
     "source": "https://commons.wikimedia.org/wiki/File:Lower_Yosemite_Falls.JPG"
   },
@@ -295,7 +295,7 @@
     "source": "https://commons.wikimedia.org/wiki/File:Lyell_Canyon.jpg"
   },
   "/photos/hike-mariposa-grove-guardians-loop.jpg": {
-    "author": "File:Mariposa Grove - upper grove panorama.jpg : Guywelch2000 Recoloring: Hike395",
+    "author": "Guywelch2000, recolored by Hike395",
     "license": "CC BY 4.0",
     "source": "https://commons.wikimedia.org/wiki/File:Mariposa_Grove_-_upper_grove_panorama_(natural_colors).jpg"
   },
@@ -400,7 +400,7 @@
     "source": "https://commons.wikimedia.org/wiki/File:Tuolumne_Grove_Trailhead_09_(4244818695).jpg"
   },
   "/photos/hike-upper-yosemite-fall.jpg": {
-    "author": "Micah Bochart ( talk · contribs )",
+    "author": "Micah Bochart",
     "license": "Public domain",
     "source": "https://commons.wikimedia.org/wiki/File:Upper_Yosemite_Falls.JPG"
   },
@@ -575,7 +575,7 @@
     "source": "https://commons.wikimedia.org/wiki/File:Sentinel_Dome_fallen_tree.jpg"
   },
   "/photos/siesta-lake.jpg": {
-    "author": "JERRYE AND ROY KLOTZ MD",
+    "author": "Jerrye and Roy Klotz, MD",
     "license": "CC BY-SA 3.0",
     "source": "https://commons.wikimedia.org/wiki/File:SIESTA_LAKE,_YOSEMITE_NATIONAL_PARK.jpg"
   },
@@ -721,7 +721,7 @@
   },
   "/photos/white-wolf.jpg": {
     "author": "Eeekster",
-    "license": "CC BY 3.0 us",
+    "license": "CC BY 3.0 US",
     "source": "https://commons.wikimedia.org/wiki/File:White-Wolf-Cafe.jpg"
   },
   "/photos/widows-tears-silver-strand.jpg": {
@@ -765,7 +765,7 @@
     "source": "https://commons.wikimedia.org/wiki/File:Raven_Searching_for_Food_(23612909143).jpg"
   },
   "/photos/wildlife-coyote.jpg": {
-    "author": "Unknown (public domain)",
+    "author": "Unknown photographer",
     "license": "Public domain",
     "source": "https://commons.wikimedia.org/wiki/File:Canis_latrans_standing.jpg"
   },
@@ -840,7 +840,7 @@
     "source": "https://commons.wikimedia.org/wiki/File:Peregrine_Falcon_La_Ca%C3%B1ada.jpg"
   },
   "/photos/wildlife-pika.jpg": {
-    "author": "ALAN SCHMIERER",
+    "author": "Alan Schmierer",
     "license": "CC0",
     "source": "https://commons.wikimedia.org/wiki/File:AMERICAN_PIKA_(Ochotona_princeps)_(8-19-13)_9000_ft,_just_s_of_stunner_pass,_conejos_co,_co_-04_(9592442561).jpg"
   },

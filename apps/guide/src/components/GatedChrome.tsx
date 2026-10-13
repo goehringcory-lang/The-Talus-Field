@@ -20,10 +20,17 @@ function OfflineChip() {
     <Link
       to="/account#offline"
       className="masthead-offline"
-      aria-label={`Offline downloads: ${done} of ${PACK_IDS.length}. Manage downloads`}
     >
       <span className="masthead-offline__dot" aria-hidden="true" />
-      {done === PACK_IDS.length ? 'Offline ready' : `Offline ${done}/${PACK_IDS.length}`}
+      {/* Spoken as a sentence, shown as a reading. Named by content rather
+          than an aria-label that left the visible "Offline 0/12" out of the
+          name (axe label-content-name-mismatch). */}
+      <span aria-hidden="true">{done === PACK_IDS.length ? 'Offline ready' : `Offline ${done}/${PACK_IDS.length}`}</span>
+      <span className="sr-only">
+        {done === PACK_IDS.length
+          ? 'Offline ready. Manage downloads'
+          : `Offline downloads: ${done} of ${PACK_IDS.length}. Manage downloads`}
+      </span>
     </Link>
   )
 }
@@ -52,7 +59,7 @@ export default function GatedChrome({ children }: Props) {
         Skip to content
       </a>
       <header className="gated-chrome">
-        <Link to="/" className="masthead-brand" aria-label="The Field Guide, home">
+        <Link to="/" className="masthead-brand" aria-label="The Talus Field, Field Guide home">
           <img
             className="masthead-brand__mark"
             src="/brand/mark-96.png"

@@ -63,7 +63,7 @@ function FeeCalculator() {
     className: "feecalc__saves"
   }, "The cheapest way in for this party", result.options.length > 1 && result.options.every(x => x.total === o.total) ? "; the options cost the same" : "", ".")))), React.createElement("p", {
     className: "feecalc__note"
-  }, "Children under ", F.perPersonFreeUnder, " pay nothing and owe no non-resident fee. Figures from the National Park Service fee pages, verified ", F.verified, "; the pass rule for passengers follows the park's own wording and the Yosemite Conservancy's 2026 summary, linked below. The gate is card only."));
+  }, "Children under ", F.perPersonFreeUnder, " pay nothing and owe no non-resident fee. Figures from the National Park Service fee pages, verified ", hpLongDate(F.verified), "; the pass rule for passengers follows the park's own wording and the Yosemite Conservancy's 2026 summary, linked below. The gate is card only."));
 }
 function InternationalPage({
   go
@@ -124,15 +124,15 @@ function InternationalPage({
     href: F.sources.yosemite,
     target: "_blank",
     rel: "noopener noreferrer"
-  }, "Yosemite fees and passes, NPS ↗"), ",", " ", React.createElement("a", {
+  }, "Yosemite fees and passes, NPS\xA0↗"), ",", " ", React.createElement("a", {
     href: F.sources.passes,
     target: "_blank",
     rel: "noopener noreferrer"
-  }, "America the Beautiful passes, NPS ↗"), ",", " ", React.createElement("a", {
+  }, "America the Beautiful passes, NPS\xA0↗"), ",", " ", React.createElement("a", {
     href: F.sources.conservancy,
     target: "_blank",
     rel: "noopener noreferrer"
-  }, "Know before you go 2026, Yosemite Conservancy ↗"), ". Verified ", F.verified, "."), React.createElement("h2", null, "The cheapest way in"), React.createElement("p", null, "The arithmetic turns on one comparison: the non-resident fee is charged per person and per entry, and the non-resident annual pass is charged once per car. One adult in one car for one week pays", " ", money(F.vehicle + F.surcharge), " at the gate and should. Three adults in the same car pay ", money(F.vehicle + 3 * F.surcharge), " at the gate and ", money(F.nonResidentAnnual), " with a pass. Anyone touring two of the eleven parks should buy the pass before the first gate."), React.createElement(FeeCalculator, null), React.createElement("p", null, "Buy the pass online at Recreation.gov before you fly, or at the entrance station; a digital pass shown on a phone is accepted. Passes and entrance fees are card only at every Yosemite gate, no cash. The car's driver should hold the pass, and every adult in the car should have identification, since residency is what the surcharge turns on."), React.createElement("h2", null, "What else is different here"), React.createElement("ul", {
+  }, "Know before you go 2026, Yosemite Conservancy\xA0↗"), ". Verified ", hpLongDate(F.verified), "."), React.createElement("h2", null, "The cheapest way in"), React.createElement("p", null, "The arithmetic turns on one comparison: the non-resident fee is charged per person and per entry, and the non-resident annual pass is charged once per car. One adult in one car for one week pays", " ", money(F.vehicle + F.surcharge), " at the gate and should. Three adults in the same car pay ", money(F.vehicle + 3 * F.surcharge), " at the gate and ", money(F.nonResidentAnnual), " with a pass. Anyone touring two of the eleven parks should buy the pass before the first gate."), React.createElement(FeeCalculator, null), React.createElement("p", null, "Buy the pass online at Recreation.gov before you fly, or at the entrance station; a digital pass shown on a phone is accepted. Passes and entrance fees are card only at every Yosemite gate, no cash. The car's driver should hold the pass, and every adult in the car should have identification, since residency is what the surcharge turns on."), React.createElement("h2", null, "What else is different here"), React.createElement("ul", {
     className: "fj-pair"
   }, React.createElement("li", null, React.createElement("strong", null, "The nearest big airports are hours away."), " San Francisco is four to five hours from the Valley by car and Los Angeles six to seven; Fresno, two and a quarter, takes connections from both.", " ", React.createElement("a", {
     href: "/articles/best-airport-for-yosemite",

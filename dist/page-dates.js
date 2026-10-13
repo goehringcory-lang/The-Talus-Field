@@ -298,7 +298,7 @@ function DatesPage({
       href: item.source,
       target: "_blank",
       rel: "noopener noreferrer"
-    }, "NPS ↗"))), React.createElement("td", null, item.tag === "date-halfdome" && instances.filter(x => x.item.id === item.id).length > 1 ? `climbing ${shortDate(forDate)}` : `arriving ${shortDate(forDate)}`), React.createElement("td", null, React.createElement("button", {
+    }, "NPS\xA0↗"))), React.createElement("td", null, item.tag === "date-halfdome" && instances.filter(x => x.item.id === item.id).length > 1 ? `climbing ${shortDate(forDate)}` : `arriving ${shortDate(forDate)}`), React.createElement("td", null, React.createElement("button", {
       type: "button",
       className: "dates__btn dates__btn--small",
       onClick: () => downloadText(`yosemite-${item.id}-${isoOf(forDate)}.ics`, icsFor([{
@@ -314,7 +314,7 @@ function DatesPage({
     href: it.source,
     target: "_blank",
     rel: "noopener noreferrer"
-  }, "NPS ↗")))), React.createElement("h2", null, "Fixed windows"), React.createElement("p", null, "These do not move with your trip. The published ones are policy; the typical ones are what the park has done in recent years and does not promise, so the calendar entry covers the whole range and the park's own announcement settles the day."), React.createElement(YearStrip, {
+  }, "NPS\xA0↗")))), React.createElement("h2", null, "Fixed windows"), React.createElement("p", null, "These do not move with your trip. The published ones are policy; the typical ones are what the park has done in recent years and does not promise, so the calendar entry covers the whole range and the park's own announcement settles the day."), React.createElement(YearStrip, {
     fixed: fixed,
     ruleYears: table.ruleYears || []
   }), React.createElement("table", {
@@ -331,7 +331,7 @@ function DatesPage({
     href: it.source,
     target: "_blank",
     rel: "noopener noreferrer"
-  }, "NPS ↗"))), React.createElement("td", null, React.createElement("a", {
+  }, "NPS\xA0↗"))), React.createElement("td", null, React.createElement("a", {
     className: "dates__btn dates__btn--small",
     href: `/ics/${it.id}.ics`,
     download: true,
@@ -351,7 +351,7 @@ function DatesPage({
     }
   }, "Add every fixed window to my calendar"))), React.createElement("p", {
     className: "dates__hint"
-  }, "Verified against the National Park Service pages linked above on ", table.verified, ". Each entry carries its source and that date. If a rule on this page disagrees with nps.gov, nps.gov is right and this page is behind; the", " ", React.createElement("a", {
+  }, "Verified against the National Park Service pages linked above on ", hpLongDate(table.verified), ". Each entry carries its source and that date. If a rule on this page disagrees with nps.gov, nps.gov is right and this page is behind; the", " ", React.createElement("a", {
     href: "/contact",
     onClick: e => goRoute(e, "contact")
   }, "contact page"), " reaches the editor."), React.createElement(FjRidge, null), React.createElement("h2", null, "What the dates mean"), React.createElement("p", null, "The Half Dome mechanics, the odds, and what to climb instead are on", " ", React.createElement("a", {

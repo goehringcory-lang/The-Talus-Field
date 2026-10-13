@@ -447,7 +447,7 @@ function GuideBuyBox({ go }) {
 
       <div style={{ borderTop: "1px solid var(--rule)", marginTop: 24, paddingTop: 20 }}>
         <div className="eyebrow" style={{ marginBottom: 10 }}>In the app</div>
-        <ul style={{ listStyle: "none", padding: 0, margin: 0, fontFamily: "var(--sans)", fontSize: 13, color: "var(--ink-2)", lineHeight: 1.7 }}>
+        <ul style={{ listStyle: "none", padding: "0 0 0 0.9em", textIndent: "-0.9em", margin: 0, fontFamily: "var(--sans)", fontSize: 13, color: "var(--ink-2)", lineHeight: 1.7 }}>
           <li>· Four regional guides: the Valley, Glacier Point & Mariposa, Tuolumne, Hetch Hetchy</li>
           <li>· Tappable GPS for every stop</li>
           <li>· A 3D map of the park: every stop and all 57 trails on the terrain, your trip drawn day by day, downloadable by area</li>
@@ -577,7 +577,7 @@ function GuideWaitlistBox() {
 
       <div style={{ borderTop: "1px solid var(--rule)", marginTop: 24, paddingTop: 20 }}>
         <div className="eyebrow" style={{ marginBottom: 10 }}>In the app</div>
-        <ul style={{ listStyle: "none", padding: 0, margin: 0, fontFamily: "var(--sans)", fontSize: 13, color: "var(--ink-2)", lineHeight: 1.7 }}>
+        <ul style={{ listStyle: "none", padding: "0 0 0 0.9em", textIndent: "-0.9em", margin: 0, fontFamily: "var(--sans)", fontSize: 13, color: "var(--ink-2)", lineHeight: 1.7 }}>
           <li>· Four regional guides: the Valley, Glacier Point & Mariposa, Tuolumne, Hetch Hetchy</li>
           <li>· Tappable GPS for every stop</li>
           <li>· A 3D map of the park: every stop and all 57 trails on the terrain, your trip drawn day by day, downloadable by area</li>
@@ -905,7 +905,7 @@ const MAP3D_SHOTS = [
     width: 640,
     height: 1387,
     alt: "The My trip tab on a phone: the one-day Valley plan drawn on the terrain, ten numbered pins in the order the day runs, joined by the drives along the Valley's roads",
-    caption: "My trip draws your plan: numbered pins in the order the day runs, one colour a day, drives along the real roads. The itinerary in words sits one tap below.",
+    caption: "My trip draws your plan: numbered pins in the order the day runs, one color a day, drives along the real roads. The itinerary in words sits one tap below.",
   },
 ];
 
@@ -1041,7 +1041,7 @@ function GuideMap3D() {
               if (window.track) window.track("guide_sample_click", { location: "guide_map3d" });
             }}
           >
-            Read the free sample ↗
+            Read the free sample ↗
           </a>
         </div>
       </div>
@@ -1309,7 +1309,7 @@ function GuideDayOne() {
               if (window.track) window.track("guide_sample_click", { location: "guide_day_one" });
             }}
           >
-            Read the free sample ↗
+            Read the free sample ↗
           </a>
         </div>
       </div>
@@ -1760,7 +1760,7 @@ const GUIDE_STATS = ["4 regions", "116 entries", "57 day hikes", "72 secret entr
 // outcome block below (OUTCOMES), so a change there is a change here.
 const GUIDE_HERO_POINTS = [
   { mark: "↳", title: "Build a day that fits.", text: "Stops in driving order, each with an honest time budget, drives figured between them." },
-  { mark: "⌁", title: "Know the move when a lot fills.", text: "The swap is printed on the flagship stops, before you need it." },
+  { mark: "⇄", title: "Know the move when a lot fills.", text: "The swap is printed on the flagship stops, before you need it." },
   { mark: "◎", title: "Keep it all with no signal.", text: "Download the guide and the park map before you leave; they work past the tunnel." },
 ];
 
@@ -1801,7 +1801,7 @@ function GuidePage({ go }) {
                 if (window.track) window.track("guide_sample_click", { location: "guide_hero" });
               }}
             >
-              Read five entries free ↗
+              Read five entries free ↗
             </a>{" "}
             No account needed.
           </p>

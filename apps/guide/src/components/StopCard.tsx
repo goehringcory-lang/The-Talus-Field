@@ -15,6 +15,7 @@ import { Chip } from './ui/Chip'
 import { sunTimes } from '../sun/solar'
 import { PHOTO_TIMING_LABEL, lightClock } from '../lib/photoLight'
 import { todayIso } from '../utils/date'
+import { glueNumbers } from '../utils/text'
 
 // Swap and hazard text through markdown, unwrapped: the named alternative in
 // a swap ("continue to [Valley View](/stop/valley-view)") should be one tap,
@@ -22,7 +23,7 @@ import { todayIso } from '../utils/date'
 // paragraph unwrap keeps the callout's inline flow (label then text) exactly
 // as it was when these rendered as plain strings.
 export function CalloutMarkdown({ text }: { text: string }) {
-  return <ReactMarkdown components={{ p: ({ children }) => <>{children}</> }}>{text}</ReactMarkdown>
+  return <ReactMarkdown components={{ p: ({ children }) => <>{children}</> }}>{glueNumbers(text)}</ReactMarkdown>
 }
 
 // Secret spots are stops minus `region`, which this card never reads —
@@ -182,7 +183,7 @@ export default function StopCard({
       )}
 
       <div className={compact ? 'prose' : 'prose prose--dropcap'}>
-        <ReactMarkdown>{stop.body}</ReactMarkdown>
+        <ReactMarkdown>{glueNumbers(stop.body)}</ReactMarkdown>
       </div>
 
       {stop.hazard && (

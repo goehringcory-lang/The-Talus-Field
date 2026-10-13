@@ -172,7 +172,7 @@ function KitPage({ go }) {
                               href={it.link.href}
                               target="_blank"
                               rel="noopener noreferrer"
-                            >{it.link.label} ↗</a>
+                            >{it.link.label} ↗</a>
                           )}
                           {isAff && (
                             <a
@@ -184,7 +184,7 @@ function KitPage({ go }) {
                               data-aff-list={list.slug}
                               data-aff-item-slug={it.id}
                               data-aff-name={it.name}
-                            >Shop Patagonia ↗</a>
+                            >Shop Patagonia ↗</a>
                           )}
                           {it.articleSlug && (
                             <a

@@ -87,12 +87,12 @@ function PlacesPage({
     className: "conservancy__name"
   }, "Yosemite Conservancy"), React.createElement("p", {
     className: "conservancy__body"
-  }, "The park's official nonprofit partner. They fund research, restoration, and other park projects, and run a calendar of naturalist-led programs in multi-day Yosemite field school format taught by expert naturalists. They are not a commercial operator and they are not paying for placement. I recommend them without reservation."), React.createElement("a", {
+  }, "The park's official nonprofit partner. They fund research, restoration, and other park projects, and run a calendar of naturalist-led programs, from single-day outings to multi-day field courses, taught by expert naturalists. They are not a commercial operator and they are not paying for placement. I recommend them without reservation."), React.createElement("a", {
     className: "conservancy__link",
     href: "https://yosemite.org",
     target: "_blank",
     rel: "noopener noreferrer"
-  }, "yosemite.org ↗"))), React.createElement("section", {
+  }, "yosemite.org\xA0↗"))), React.createElement("section", {
     className: "hp-wrap hp-section hp-places__block"
   }, React.createElement(HpHeading, {
     eyebrow: `${categories.length} SECTIONS, BUILDING`,

@@ -485,6 +485,7 @@ function SearchPage({
   }, React.createElement("form", {
     className: "search-form",
     role: "search",
+    "aria-label": "Search this site",
     onSubmit: e => e.preventDefault()
   }, React.createElement("label", {
     className: "search-form__label",
@@ -498,7 +499,7 @@ function SearchPage({
     type: "search",
     value: query,
     autoComplete: "off",
-    placeholder: "Half Dome permits, firefall, when to see the falls…",
+    placeholder: "Half Dome permits, firefall, the falls…",
     onChange: e => setQuery(e.target.value),
     onKeyDown: onFieldKey,
     "aria-keyshortcuts": "/"

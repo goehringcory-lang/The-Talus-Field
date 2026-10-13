@@ -280,7 +280,7 @@ window.ARTICLE_BODIES["so-you-want-to-hike-half-dome"] = function SoYouWantToHik
       <table>
         <thead>
           <tr>
-            <th></th>
+            <th><span className="hp-sr-only">Compared</span></th>
             <th>Half Dome</th>
             <th>Clouds Rest (from Sunrise)</th>
           </tr>
