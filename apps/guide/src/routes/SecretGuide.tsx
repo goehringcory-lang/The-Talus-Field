@@ -587,7 +587,6 @@ export default function SecretGuide() {
                     type="button"
                     className="sg-chapter"
                     aria-pressed={cat === c.id}
-                    aria-label={`Chapter ${c.numeral}, ${c.title}, ${plural(c.entries.length, 'entry', 'entries')}`}
                     onClick={() => select(cat === c.id ? null : c.id)}
                   >
                     <span className="sg-chapter__media">
@@ -609,8 +608,13 @@ export default function SecretGuide() {
                       </span>
                     </span>
                     <span className="sg-chapter__body">
+                      {/* Named by what it shows, with the numeral and count
+                          spoken around it (an aria-label left the tagline
+                          out of the name: axe label-content-name-mismatch). */}
+                      <span className="sr-only">Chapter {c.numeral}, </span>
                       <span className="sg-chapter__title">{c.title}</span>
                       <span className="sg-chapter__tag">{c.tagline}</span>
+                      <span className="sr-only">, {plural(c.entries.length, 'entry', 'entries')}</span>
                       <span className="sg-chapter__go" aria-hidden="true">
                         {plural(c.entries.length, 'entry', 'entries')}
                         <SgIcon name="down" size={12} />

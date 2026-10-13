@@ -19,6 +19,13 @@ export type ChangelogEntryT = z.infer<typeof ChangelogEntry>
 
 const seed: ChangelogEntryT[] = [
   {
+    date: '2026-10-13',
+    lines: [
+      'Better with a screen reader or a keyboard: every button and chip is named by what it shows, the "+ Add" buttons on hikes and programs no longer sit inside the row toggle, and the map and the printable plan have proper page structure.',
+      'Quieter text that was hard to read (past deadlines, the map\'s pin counts, the Secret Guide pager) is now legible.',
+    ],
+  },
+  {
     date: '2026-10-12',
     lines: [
       'On smaller phones nothing scrolls sideways any more: the plan tabs, the map tabs and filters, and long season notes on hike pages all fit the screen, and the masthead no longer runs under the offline count.',

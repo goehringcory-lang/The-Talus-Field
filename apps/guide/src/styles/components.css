@@ -528,7 +528,8 @@
 }
 .prevnext__side { flex: 1; min-width: 0; }
 .prevnext__side--next { text-align: right; }
-.prevnext__side--empty { opacity: 0.4; }
+/* Quieter by colour, not a 0.4 fade (its label measured 2:1). */
+.prevnext__side--empty, .prevnext__side--empty .eyebrow { color: var(--ink-3); }
 .prevnext__side a { display: block; }
 .prevnext__side .eyebrow { display: block; margin-bottom: 6px; }
 .prevnext__title { font-family: var(--display); font-size: 18px; }
@@ -1425,6 +1426,7 @@ a.spec {
 /* ---- Masthead offline chip ----------------------------------- */
 
 .masthead-offline {
+  position: relative;
   display: inline-flex;
   align-items: center;
   gap: 7px;
@@ -1539,3 +1541,13 @@ a.masthead-offline:hover { color: var(--ink); }
   flex-wrap: wrap;
   margin-bottom: 20px;
 }
+
+/* /hikes and /programs rows: the "+ Add" button follows the <summary>
+   rather than sitting inside it (a button inside a summary is a control
+   inside a control, axe nested-interactive). It sits after the <details>,
+   not inside it, because a closed <details> hides everything but its
+   summary. An invisible spacer of the same chip holds its column in the
+   summary's grid; the button is placed over it, at the top of the row. */
+.row-wrap { position: relative; }
+.row-action-spacer { visibility: hidden; align-self: start; }
+.row-action { position: absolute; top: 14px; right: 2px; }

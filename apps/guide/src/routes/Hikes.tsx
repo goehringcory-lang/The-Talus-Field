@@ -346,79 +346,83 @@ export default function Hikes() {
                 announceTripAdd(hike.title)
               }
               return (
-                <details className="hike-row" key={hike.id}>
-                  <summary>
-                    <span className="hike-row__distance">
-                      {formatDistance(hike)}
-                      <span className="hike-row__gain">{formatGain(hike.elevationGainFt)}</span>
-                      {track && <TrackSparkline spark={track.spark} />}
-                    </span>
-                    <span className="hike-row__main">
-                      <h2 className="hike-row__title">{hike.title}</h2>
-                      <span className="hike-row__meta">
-                        {effectiveSort === 'near' && here && hike.coord && (
-                          <span className="hike-row__away">
-                            {formatMiles(haversineMiles(here, hike.coord))} away
-                          </span>
-                        )}
-                        {effectiveSort !== 'region' && <span>{REGION_SHORT[hike.region]}</span>}
-                        <span>{DIFFICULTY_LABEL[hike.difficulty]}</span>
-                        <span>~{formatTime(hike.durationMin)}</span>
-                        <span>{ROUTE_LABEL[hike.route]}</span>
-                        {hike.permit && <Chip variant="badge">Permit</Chip>}
-                        {hike.season && <Chip variant="badge">{hike.season}</Chip>}
-                        {traits?.kidFriendly && <Chip variant="badge">Kids OK</Chip>}
-                        {traits?.stroller && <Chip variant="badge">Stroller</Chip>}
-                        {traits?.crowd === 'low' && <Chip variant="badge">Quieter</Chip>}
+                <div className="row-wrap" key={hike.id}>
+                  <details className="hike-row">
+                    <summary>
+                      <span className="hike-row__distance">
+                        {formatDistance(hike)}
+                        <span className="hike-row__gain">{formatGain(hike.elevationGainFt)}</span>
+                        {track && <TrackSparkline spark={track.spark} />}
                       </span>
-                    </span>
-                    {inPlan ? (
-                      <span className="hike-row__inplan">
-                        {/* A label on the glyph span alone is dropped: the
-                            span is role=generic. */}
-                        <span aria-hidden="true">✓</span>
-                        <span className="sr-only">In your trip plan</span>
+                      <span className="hike-row__main">
+                        <h2 className="hike-row__title">{hike.title}</h2>
+                        <span className="hike-row__meta">
+                          {effectiveSort === 'near' && here && hike.coord && (
+                            <span className="hike-row__away">
+                              {formatMiles(haversineMiles(here, hike.coord))} away
+                            </span>
+                          )}
+                          {effectiveSort !== 'region' && <span>{REGION_SHORT[hike.region]}</span>}
+                          <span>{DIFFICULTY_LABEL[hike.difficulty]}</span>
+                          <span>~{formatTime(hike.durationMin)}</span>
+                          <span>{ROUTE_LABEL[hike.route]}</span>
+                          {hike.permit && <Chip variant="badge">Permit</Chip>}
+                          {hike.season && <Chip variant="badge">{hike.season}</Chip>}
+                          {traits?.kidFriendly && <Chip variant="badge">Kids OK</Chip>}
+                          {traits?.stroller && <Chip variant="badge">Stroller</Chip>}
+                          {traits?.crowd === 'low' && <Chip variant="badge">Quieter</Chip>}
+                        </span>
                       </span>
-                    ) : (
-                      <ChipButton
-                        variant="action"
-                        aria-label={`Add ${hike.title} to trip`}
-                        className="hike-row__action"
-                        onClick={(e) => {
-                          // A click inside <summary> toggles the row by default;
-                          // preventDefault keeps the add from expanding it.
-                          e.preventDefault()
-                          e.stopPropagation()
-                          add()
-                        }}
-                      >
-                        + Add
-                      </ChipButton>
-                    )}
-                  </summary>
-                  <p className="hike-row__body">
-                    {hike.description}
-                    {hike.distanceNote && ` (${hike.distanceNote}.)`}
-                  </p>
-                  {hike.permit && <p className="hike-row__note">{hike.permit}</p>}
-                  {hike.hazard && <p className="hike-row__note">{hike.hazard}</p>}
-                  <p className="hike-row__note">Trailhead: {hike.trailhead}.</p>
-                  <p className="hike-row__body hike-row__footer">
-                    {inPlan ? (
-                      <Button variant="ghost" to="/trip">
-                        In your trip plan →
-                      </Button>
-                    ) : (
-                      <Button onClick={add}>Add to trip</Button>
-                    )}
-                    <Link to={`/hike/${hike.id}`}>
-                      {track ? 'Elevation profile & GPS track →' : 'Trail details →'}
-                    </Link>
-                    {trailheadStop && (
-                      <Link to={`/stop/${trailheadStop.id}`}>Trailhead in the guide →</Link>
-                    )}
-                  </p>
-                </details>
+                      {inPlan ? (
+                        <span className="hike-row__inplan">
+                          {/* A label on the glyph span alone is dropped: the
+                              span is role=generic. */}
+                          <span aria-hidden="true">✓</span>
+                          <span className="sr-only">In your trip plan</span>
+                        </span>
+                      ) : (
+                        // Spacer for the button below: a button inside
+                        // <summary> is a control inside a control (axe
+                        // nested-interactive), so the real one follows it.
+                        <span className="chip chip--action row-action-spacer" aria-hidden="true">
+                          + Add
+                        </span>
+                      )}
+                    </summary>
+                    <p className="hike-row__body">
+                      {hike.description}
+                      {hike.distanceNote && ` (${hike.distanceNote}.)`}
+                    </p>
+                    {hike.permit && <p className="hike-row__note">{hike.permit}</p>}
+                    {hike.hazard && <p className="hike-row__note">{hike.hazard}</p>}
+                    <p className="hike-row__note">Trailhead: {hike.trailhead}.</p>
+                    <p className="hike-row__body hike-row__footer">
+                      {inPlan ? (
+                        <Button variant="ghost" to="/trip">
+                          In your trip plan →
+                        </Button>
+                      ) : (
+                        <Button onClick={add}>Add to trip</Button>
+                      )}
+                      <Link to={`/hike/${hike.id}`}>
+                        {track ? 'Elevation profile & GPS track →' : 'Trail details →'}
+                      </Link>
+                      {trailheadStop && (
+                        <Link to={`/stop/${trailheadStop.id}`}>Trailhead in the guide →</Link>
+                      )}
+                    </p>
+                  </details>
+                  {!inPlan && (
+                    <ChipButton
+                      variant="action"
+                      aria-label={`Add ${hike.title} to trip`}
+                      className="hike-row__action row-action"
+                      onClick={add}
+                    >
+                      + Add
+                    </ChipButton>
+                  )}
+                </div>
               )
             })}
           </section>

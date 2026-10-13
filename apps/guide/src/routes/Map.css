@@ -416,9 +416,11 @@
 .map-filterbar__count {
   margin-left: 3px;
   font-weight: 400;
-  opacity: 0.65;
+  /* The muted ink, not a 0.65 fade, which measured 3.3:1. */
+  color: var(--ink-3);
   font-variant-numeric: tabular-nums;
 }
+.chip--filter[aria-pressed='true'] .map-filterbar__count { color: inherit; opacity: 0.85; }
 
 /* Pressed secret chip keeps the gold identity instead of plain ink. */
 .map-filterbar__secret[aria-pressed='true'] {
@@ -1087,6 +1089,7 @@
   max-width: calc(100% - 64px);
 }
 .map-view-controls__btn {
+  position: relative;
   min-height: 44px;
   padding: 0 12px;
   font-family: var(--mono);
@@ -1718,3 +1721,7 @@
     max-width: none;
   }
 }
+
+/* Attribution links are underlined: in the attribution line's own colour
+ * they were told apart by nothing (axe link-in-text-block). */
+.maplibregl-ctrl-attrib a { text-decoration: underline; text-underline-offset: 2px; }

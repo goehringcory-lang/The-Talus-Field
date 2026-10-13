@@ -43,7 +43,7 @@ export default function TripPrint() {
   const days = [...slotted.entries()]
 
   return (
-    <div className="trip-print">
+    <main className="trip-print">
       <div className="trip-print__controls">
         <Link to="/trip">← Back to the planner</Link>
         <button type="button" className="btn btn--sm" onClick={() => window.print()}>
@@ -115,6 +115,6 @@ export default function TripPrint() {
           GPS coordinates are latitude, longitude.
         </p>
       </footer>
-    </div>
+    </main>
   )
 }

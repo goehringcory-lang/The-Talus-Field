@@ -397,4 +397,6 @@
 }
 /* A date behind us stays on the board, dimmed: it is still a fact about the
    trip, and dropping it would make the list look shorter than it is. */
-.deadline--past { opacity: 0.55; }
+/* A past deadline reads quieter, but legibly: a 0.55 fade took its label to
+   2.4:1. The muted ink holds 5:1, and the row keeps its place. */
+.deadline--past, .deadline--past .readout__label, .deadline--past .readout__value { color: var(--ink-3); }

@@ -234,7 +234,12 @@ export default function Programs() {
 
   // Row action shared by seasonal windows and program rows: quick-add from
   // the collapsed summary, checkmark link once added.
-  function rowAction(inPlan: boolean, title: string, onAdd: () => void) {
+  // The row's action. The checkmark sits inside <summary> (it is not
+  // interactive); the "+ Add" button cannot (axe nested-interactive: a button
+  // inside a summary is a control inside a control), so the summary keeps an
+  // invisible spacer of the button's size and the button itself follows the
+  // summary, placed over that spacer by CSS.
+  function rowSlot(inPlan: boolean) {
     if (inPlan) {
       return (
         <span className="program-row__inplan">
@@ -246,17 +251,20 @@ export default function Programs() {
       )
     }
     return (
+      <span className="chip chip--action row-action-spacer" aria-hidden="true">
+        + Add
+      </span>
+    )
+  }
+
+  function rowButton(inPlan: boolean, title: string, onAdd: () => void) {
+    if (inPlan) return null
+    return (
       <ChipButton
         variant="action"
         aria-label={`Add ${title} to trip`}
-        className="program-row__action"
-        onClick={(e) => {
-          // A click inside <summary> toggles the row by default;
-          // preventDefault keeps the add from expanding it.
-          e.preventDefault()
-          e.stopPropagation()
-          onAdd()
-        }}
+        className="program-row__action row-action"
+        onClick={onAdd}
       >
         + Add
       </ChipButton>
@@ -370,23 +378,26 @@ export default function Programs() {
                 announceTripAdd(ev.title)
               }
               return (
-                <details className="program-row" key={ev.id}>
-                  <summary>
-                    <span className="program-row__time">{seasonalRangeLabel(ev)}</span>
-                    <span>
-                      <h2 className="program-row__title">{ev.title}</h2>
-                      <span className="program-row__meta">
-                        {ev.location && <span>{ev.location}</span>}
-                        <Chip variant="badge">
-                          {ev.confidence === 'typical' ? 'Typical window' : 'Confirmed'}
-                        </Chip>
+                <div className="row-wrap" key={ev.id}>
+                  <details className="program-row">
+                    <summary>
+                      <span className="program-row__time">{seasonalRangeLabel(ev)}</span>
+                      <span>
+                        <h2 className="program-row__title">{ev.title}</h2>
+                        <span className="program-row__meta">
+                          {ev.location && <span>{ev.location}</span>}
+                          <Chip variant="badge">
+                            {ev.confidence === 'typical' ? 'Typical window' : 'Confirmed'}
+                          </Chip>
+                        </span>
                       </span>
-                    </span>
-                    {rowAction(inPlan, ev.title, add)}
-                  </summary>
-                  <p className="program-row__body">{ev.description}</p>
-                  {rowFooter(inPlan, add, snapshot)}
-                </details>
+                      {rowSlot(inPlan)}
+                    </summary>
+                    <p className="program-row__body">{ev.description}</p>
+                    {rowFooter(inPlan, add, snapshot)}
+                  </details>
+                  {rowButton(inPlan, ev.title, add)}
+                </div>
               )
             })}
           </section>
@@ -456,28 +467,31 @@ export default function Programs() {
                 announceTripAdd(ev.title)
               }
               return (
-                <details className="program-row" key={ev.id}>
-                  <summary>
-                    <span className="program-row__time">{formatTime(ev.timeStart)}</span>
-                    <span>
-                      <h2 className="program-row__title">{ev.title}</h2>
-                      <span className="program-row__meta">
-                        {ev.location && <span>{ev.location}</span>}
-                        <span>{SOURCE_LABELS[ev.source]}</span>
-                        {ev.isFree === true && <Chip variant="badge">Free</Chip>}
-                        {ev.reservationRequired === true && <Chip variant="badge">Reservation</Chip>}
-                        {ev.familyFriendly === true && <Chip variant="badge">All ages</Chip>}
-                        {ev.accessible === true && <Chip variant="badge">Wheelchair accessible</Chip>}
+                <div className="row-wrap" key={ev.id}>
+                  <details className="program-row">
+                    <summary>
+                      <span className="program-row__time">{formatTime(ev.timeStart)}</span>
+                      <span>
+                        <h2 className="program-row__title">{ev.title}</h2>
+                        <span className="program-row__meta">
+                          {ev.location && <span>{ev.location}</span>}
+                          <span>{SOURCE_LABELS[ev.source]}</span>
+                          {ev.isFree === true && <Chip variant="badge">Free</Chip>}
+                          {ev.reservationRequired === true && <Chip variant="badge">Reservation</Chip>}
+                          {ev.familyFriendly === true && <Chip variant="badge">All ages</Chip>}
+                          {ev.accessible === true && <Chip variant="badge">Wheelchair accessible</Chip>}
+                        </span>
                       </span>
-                    </span>
-                    {rowAction(inPlan, ev.title, add)}
-                  </summary>
-                  <p className="program-row__body">
-                    {ev.description || 'No description published for this program.'}
-                    {ev.timeEnd && `\nEnds around ${formatTime(ev.timeEnd)}.`}
-                  </p>
-                  {rowFooter(inPlan, add, ev)}
-                </details>
+                      {rowSlot(inPlan)}
+                    </summary>
+                    <p className="program-row__body">
+                      {ev.description || 'No description published for this program.'}
+                      {ev.timeEnd && `\nEnds around ${formatTime(ev.timeEnd)}.`}
+                    </p>
+                    {rowFooter(inPlan, add, ev)}
+                  </details>
+                  {rowButton(inPlan, ev.title, add)}
+                </div>
               )
             })}
           </section>

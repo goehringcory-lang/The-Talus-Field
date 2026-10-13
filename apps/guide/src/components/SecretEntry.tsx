@@ -224,7 +224,7 @@ export default function SecretEntry({ stop, prev, next, children, notices }: Pro
           </div>
 
           {stop.hazard && (
-            <aside className="sg-callout sg-callout--hazard">
+            <aside className="sg-callout sg-callout--hazard" aria-label="Caution">
               <SgIcon name="warn" />
               <span className="sg-callout__label">Caution</span>
               <span>
@@ -236,7 +236,7 @@ export default function SecretEntry({ stop, prev, next, children, notices }: Pro
           {road && <RoadNote road={road} />}
 
           {stop.swap && (
-            <aside className="sg-callout sg-callout--swap">
+            <aside className="sg-callout sg-callout--swap" aria-label={stop.category === 'programs' ? 'Instead' : 'If full'}>
               <SgIcon name="swap" />
               <span className="sg-callout__label">{stop.category === 'programs' ? 'Instead' : 'If full'}</span>
               <span>
@@ -246,7 +246,7 @@ export default function SecretEntry({ stop, prev, next, children, notices }: Pro
           )}
 
           {stop.photoTiming && (
-            <aside className="sg-callout sg-callout--light">
+            <aside className="sg-callout sg-callout--light" aria-label="Best light">
               <SgIcon name={stop.photoTiming.best === 'night' ? 'moon' : 'sun'} />
               <span className="sg-callout__label">
                 Best light: {PHOTO_TIMING_LABEL[stop.photoTiming.best] ?? stop.photoTiming.best}
