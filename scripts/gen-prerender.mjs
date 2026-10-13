@@ -237,8 +237,10 @@ const EXPEDIA_CAMREF = "1110lKspj";
 const BOOKING_AFFILIATE_AID = "";
 const STAY22_AFFILIATE_ID = "";
 const HIPCAMP_AFFILIATE_BASE = "";
+const BOOKSHOP_LIST_URL = "https://bookshop.org/lists/yosemite-field-guides-a-naturalist-s-bookshelf";
 function buildAffiliateLink(network, targetUrl) {
   if (network === "patagonia") return buildPatagoniaAffiliateLink(targetUrl);
+  if (network === "bookshop") return targetUrl || BOOKSHOP_LIST_URL;
   if (network === "expedia") {
     const url = targetUrl || "https://www.expedia.com/";
     if (!EXPEDIA_CAMREF) return url;

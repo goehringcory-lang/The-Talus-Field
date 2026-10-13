@@ -485,6 +485,10 @@ function ArticlePage({ slug, go }) {
   // Tracked-caps eyebrow text, the design system's label voice.
   const upper = (t) => (t || "").toUpperCase();
   const tripIntent = article.cat === "trails" || article.cat === "planning" || article.cat === "seasonal";
+  // Wildlife and Nature pieces carry no guide band, so the slot after the
+  // article is free for the one thing a natural-history reader wants next:
+  // the bookshelf. A disclosed affiliate link, so the head discloses it too.
+  const bookshelf = article.cat === "wildlife";
 
   // A feature article (September 2026, the El Capitan redesign): the catalog
   // entry's `feature` block ({ eyebrow, focus, actions }) moves the page onto
@@ -570,9 +574,11 @@ function ArticlePage({ slug, go }) {
           {/* Affiliate disclosure before the first link (CLAUDE.md, affiliate
               rules). Read from the catalog, not the lazy body, so it is in
               the first commit and nothing shifts when the body arrives. */}
-          {article.aff && window.AffiliateDisclosure && (
+          {(article.aff || bookshelf) && window.AffiliateDisclosure && (
             <window.AffiliateDisclosure>
-              This article has affiliate links. If you buy or book through one, The Talus Field may earn a commission at no extra cost to you, and the recommendations do not change for it.
+              {article.aff
+                ? "This article has affiliate links. If you buy or book through one, The Talus Field may earn a commission at no extra cost to you, and the recommendations do not change for it."
+                : "This article ends with an affiliate link to the books I recommend. If you buy through it, The Talus Field may earn a commission at no extra cost to you."}
             </window.AffiliateDisclosure>
           )}
 
@@ -720,6 +726,19 @@ function ArticlePage({ slug, go }) {
           intro="The app version of this journal: offline maps, GPS at the trailhead, and every stop with parking and timing notes. Works with no signal, which is most of the park."
           sample
         />
+      )}
+
+      {bookshelf && window.BookshelfCard && (
+        <section className="hp-wrap hp-reading hp-article__bookshelf">
+          <div className="hp-reading__column">
+            <window.BookshelfCard
+              list="article_bookshelf"
+              slug={slug}
+              heading="Further reading"
+              note="The field guides and natural-history books I recommend for Yosemite, kept as one list."
+            />
+          </div>
+        </section>
       )}
 
       {/* Related */}

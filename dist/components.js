@@ -711,6 +711,10 @@ var NAV_GROUPS = [{
       label: "The Sunday Letter",
       note: "One short letter a week. Free"
     }, {
+      aff: "bookshop",
+      label: "The bookshelf ↗",
+      note: "The field guides I recommend, on Bookshop.org. Affiliate link"
+    }, {
       key: "explore",
       label: "Everything on this site",
       note: "Every page, with a line on each"
@@ -1245,6 +1249,24 @@ function HomeMasthead({
       label,
       note
     } = link;
+    if (link.aff) {
+      return React.createElement("a", {
+        key: `aff:${link.aff}`,
+        className: className,
+        href: window.buildAffiliateLink ? window.buildAffiliateLink(link.aff) : "#",
+        target: "_blank",
+        rel: "sponsored noopener",
+        "data-aff-network": link.aff,
+        "data-aff-list": "nav_menu",
+        "data-aff-item-slug": "bookshelf",
+        "data-aff-name": "Naturalist's bookshelf",
+        onClick: closeMenu
+      }, React.createElement("span", {
+        className: "hp-menu__label"
+      }, label), React.createElement("span", {
+        className: "hp-menu__note"
+      }, note));
+    }
     var hash = home && link.onHome ? link.onHome : link.hash;
     var base = home && link.onHome ? "" : href || (window.routeToPath ? window.routeToPath(key) : `/${key}`);
     var path = hash ? `${base}#${hash}` : base;
@@ -1414,7 +1436,17 @@ function HomeMasthead({
           link: menuLink
         })))))
       );
-    }), React.createElement(HomeLink, {
+    }), React.createElement("a", {
+      className: "hp-nav__books",
+      href: window.buildAffiliateLink ? window.buildAffiliateLink("bookshop") : "#",
+      target: "_blank",
+      rel: "sponsored noopener",
+      title: "The field guides I recommend, on Bookshop.org. Affiliate link",
+      "data-aff-network": "bookshop",
+      "data-aff-list": "nav_header",
+      "data-aff-item-slug": "bookshelf",
+      "data-aff-name": "Naturalist's bookshelf"
+    }, "Books ↗"), React.createElement(HomeLink, {
       go: go,
       location: location,
       className: "hp-nav__search",
@@ -2748,7 +2780,8 @@ function RecommendedCard({
   list,
   slug,
   network = "patagonia",
-  source = "Patagonia"
+  source = "Patagonia",
+  disclosure
 }) {
   var linked = (items || []).some(it => it.q || it.url);
   return React.createElement("aside", {
@@ -2779,9 +2812,32 @@ function RecommendedCard({
     className: "rec-card__link"
   }, it.label || source, "\xA0↗")))), linked && React.createElement("p", {
     className: "rec-card__disclosure"
-  }, source, " links are affiliate links. Any equivalent does the same job, and the list does not change for them. ", React.createElement("a", {
+  }, disclosure || `${source} links are affiliate links. Any equivalent does the same job, and the list does not change for them.`, " ", React.createElement("a", {
     href: "/affiliate"
   }, "Disclosure.")));
+}
+function BookshelfCard({
+  list,
+  slug,
+  heading,
+  note
+}) {
+  return React.createElement(RecommendedCard, {
+    heading: heading || "The bookshelf",
+    note: note || "The field guides and natural-history books I recommend for Yosemite, kept as one list.",
+    network: "bookshop",
+    source: "Bookshop.org",
+    disclosure: "This is an affiliate link. The list does not change for it.",
+    list: list,
+    slug: slug,
+    items: [{
+      id: "bookshelf",
+      what: "Yosemite field guides: a naturalist's bookshelf",
+      why: "Sold through Bookshop.org, which supports independent bookstores.",
+      url: window.buildAffiliateLink ? window.buildAffiliateLink("bookshop") : "",
+      label: "See the list on Bookshop.org"
+    }]
+  });
 }
 Object.assign(window, {
   expediaSearchUrl,
@@ -2790,7 +2846,8 @@ Object.assign(window, {
   ExpediaBanner,
   patagoniaSearchUrl,
   AffLink,
-  RecommendedCard
+  RecommendedCard,
+  BookshelfCard
 });
 var READ_LAST_KEY = "tfg.read.last";
 var READ_DONE_KEY = "tfg.read.done";
