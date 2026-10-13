@@ -729,6 +729,19 @@ const seed: StopInput[] = [
       'Cross the bridge above Upper Yosemite Fall and continue to the rim at 6,936 feet: Lost Arrow below, Half Dome ahead, the valley nearly 3,000 feet down.',
     body:
       'About 8.8 miles round trip from the trailhead behind Camp 4, with 3,200 feet of gain. Start at first light. Climb the Yosemite Falls Trail to the overlook above the upper fall, then cross the bridge over Yosemite Creek and continue east three quarters of a mile to the rim point at 6,936 feet. The spur costs less than an hour more and loses most of the crowd.\n\nFrom the point, the Lost Arrow spire stands off the cliff below, Half Dome is in the middle distance, the valley floor is nearly 3,000 feet down, and to the west the upper fall goes over the lip.\n\nIn spring 1871 John Muir worked onto Fern Ledge, a shelf partway up this wall that passes behind the upper fall. The ledge is still there. The way to it was never a trail, crosses steep dirt above open cliff, and has hurt people badly since. Read Muir\'s account instead.',
+    history: {
+      note:
+        'Before the summer of 1939 there were few records of Duck Hawks, Falco ' +
+        'peregrinus anatum, around Yosemite Valley. On June 22 that year ' +
+        'Ranger-Naturalist Lowell Adams watched two soaring back and forth at ' +
+        'Yosemite Point, calling kek-kek-kek. On July 10 he saw three here, and ' +
+        'one dove with tremendous speed into the valley. On July 20 ' +
+        'Ranger-Naturalist Schwartz counted four at the point, two young and two ' +
+        'adults, which confirmed the belief that the pair had nested.',
+      volume: 18,
+      number: 9,
+      issueDate: 'September 1939',
+    },
   },
   {
     id: 'eagle-peak',
@@ -1719,6 +1732,21 @@ const seed: StopInput[] = [
       'The road to Hetch Hetchy: 16 slow miles from Highway 120 to the dam, gated roughly sunrise to sunset, 25-foot vehicle limit. Plan a full day.',
     body:
       'About 16 miles, most of it slow, from Highway 120 to the O\'Shaughnessy Dam. Just outside the Big Oak Flat entrance, Evergreen Road runs north through forest and the old summer-camp community of Camp Mather; at Mather pick up Hetch Hetchy Road, pass the park entrance station, and wind down to the dam. The last several miles are hairpins with steep drops. Don\'t speed or pass.\n\nTwo rules. The road is gated, open roughly sunrise to sunset with exact hours posted at the entrance station, so a sunset-at-the-dam plan ends at a closed gate. And there\'s a 25-foot vehicle length limit: large RVs and trailers can\'t go.\n\nFrom Yosemite Valley it is roughly an hour and a half each way, so Hetch Hetchy works as a full day, not a half-day add-on. Along Evergreen Road you cross the 2013 Rim Fire\'s burn country in recovery before the reservoir appears below its granite walls. On a July Saturday when the Valley is jammed, there can be fewer than a hundred people here.',
+    hazard:
+      'The last several miles to the dam are hairpins with steep drops. Don\'t speed or pass.',
+    history: {
+      note:
+        'Nature Notes put both ends of this drive into one nesting record. On July ' +
+        '28, 1938, Jack Garrison, a resident of Mather, handed Bert F. Jones a ' +
+        'fledgling American Merganser caught three hours earlier on top of the ' +
+        'O\'Shaughnessy Dam, a hundred feet from the south end. It died a day later ' +
+        'and became specimen No. 487 in the Yosemite Museum. Jones judged it nine ' +
+        'or ten days old and concluded that mergansers had probably been raised at ' +
+        'the reservoir that year, a new park record.',
+      volume: 17,
+      number: 12,
+      issueDate: 'December 1938',
+    },
   },
   {
     id: 'carlon-falls',
