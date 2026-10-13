@@ -548,7 +548,7 @@ const seed: SecretSpotInput[] = [
       'Tunnel View has parking on both sides of Wawona Road at the east portal of the Wawona Tunnel, with designated accessible spaces, open all year. It is a viewpoint lot: most visitors look and move on, so spaces come free even on busy days.\n\nThe catch is the uphill lot. The Pohono Trail to Inspiration Point starts there, and a hiker\'s car holds its space for hours. If you are hiking, take the uphill lot early; if you are here for the view, the other lot is the one that turns over.\n\nThere is no overflow. The park forbids creating a new roadside space, and cars on vegetation or blocking traffic are cited and can be towed. If both lots are full, drive down to Bridalveil Fall, five minutes below, and come back up.',
     photos: [{ src: '/photos/tunnel-view-panorama.jpg', caption: 'The view both lots are for.' }],
     swap:
-      'If both lots are full, [Bridalveil Fall](/stop/bridalveil-roadside-parking) is five minutes down the road, and [Inspiration Point](/stop/inspiration-point) is the same view with nobody in it, 1.2 miles up the trail.',
+      'If both lots are full, [Bridalveil Fall](/stop/bridalveil-roadside-parking) is five minutes down the road, and [Inspiration Point](/stop/artist-point) is the same view with nobody in it, 1.2 miles up the trail.',
   },
   {
     id: 'bridalveil-roadside-parking',
