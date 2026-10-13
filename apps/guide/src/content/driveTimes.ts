@@ -153,7 +153,6 @@ export const SECRET_SPOT_DRIVE_NODE: Record<string, DriveNodeId> = {
   'foresta-barns-loop': 'foresta',
   'foresta-forest-service-camping': 'foresta',
   'little-nellie-falls': 'foresta',
-  'inspiration-point': 'tunnel-view',
   'hidden-lake': 'tenaya-lake',
   'swinging-bridge-reflection': 'valley',
   'siesta-lake': 'white-wolf',

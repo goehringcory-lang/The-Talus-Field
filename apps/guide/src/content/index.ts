@@ -89,11 +89,19 @@ export function getHiddenStops(): StopT[] {
 // SecretSpots do not. Narrow with `'region' in stop`.
 export type GuideStopT = StopT | SecretSpotT
 
+// Ids retired when two entries were merged, mapped to the entry that absorbed
+// them, so a saved stop, a planned one and a shared /stop/ link still land.
+const MERGED_STOP_IDS: Record<string, string> = {
+  'inspiration-point': 'artist-point',
+  'widows-tears-silver-strand': 'valley-ephemeral-falls',
+}
+
 // Single resolver for /stop/:id, the trip planner, ICS export, and the map
 // popup. Secret spots resolve here too, so a planned secret spot never
 // degrades to a raw id.
 export function getStopById(id: string): GuideStopT | undefined {
-  return stops.find((s) => s.id === id) ?? SECRET_SPOTS.find((s) => s.id === id)
+  const live = MERGED_STOP_IDS[id] ?? id
+  return stops.find((s) => s.id === live) ?? SECRET_SPOTS.find((s) => s.id === live)
 }
 
 export function isSecretGuideEntry(s: GuideStopT): boolean {

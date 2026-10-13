@@ -457,7 +457,7 @@ function GuideBuyBox({ go }) {
           <li>· A planning calendar that lays out each day, drive times included, and saves the trip to your calendar as a file, no signal needed</li>
           <li>· Know-before-you-go essentials, a night-before checklist, and a packing list you check off in-app</li>
           <li>· Search across everything</li>
-          <li>· The Secret Guide: 72 entries of quiet vistas, hidden trails, parking moves, camping, the park after dark and the programs worth booking, included</li>
+          <li>· The Secret Guide: 70 entries of quiet vistas, hidden trails, parking moves, camping, the park after dark and the programs worth booking, included</li>
           <li>· The dates that matter for your trip, under the trip board, with calendar files and reminders</li>
           <li>· The Help card: your GPS position in the form a dispatcher reads, with no signal needed; 911 by call or text and the park's printed numbers one tap away (a call or text still needs a cell signal)</li>
           <li>· Companion mode: the nearest entry as you drive, read aloud for the passenger</li>
@@ -587,7 +587,7 @@ function GuideWaitlistBox() {
           <li>· A planning calendar that lays out each day, drive times included, and saves the trip to your calendar as a file, no signal needed</li>
           <li>· Know-before-you-go essentials, a night-before checklist, and a packing list you check off in-app</li>
           <li>· Search across everything</li>
-          <li>· The Secret Guide: 72 entries of quiet vistas, hidden trails, parking moves, camping, the park after dark and the programs worth booking, included</li>
+          <li>· The Secret Guide: 70 entries of quiet vistas, hidden trails, parking moves, camping, the park after dark and the programs worth booking, included</li>
           <li>· The dates that matter for your trip, under the trip board, with calendar files and reminders</li>
           <li>· The Help card: your GPS position in the form a dispatcher reads, with no signal needed; 911 by call or text and the park's printed numbers one tap away (a call or text still needs a cell signal)</li>
           <li>· Companion mode: the nearest entry as you drive, read aloud for the passenger</li>
@@ -671,7 +671,7 @@ const APP_SHOTS = [
   {
     src: "img/guide/screens/secret-guide.v7.webp",
     alt: "The Secret Guide's cover in the app: 72 entries in 6 chapters over a night photograph of Valley View, with buttons to browse the chapters, take a route, or flip through as cards",
-    caption: "The Secret Guide opens on a cover, the six things to do first, and six numbered chapters: 72 entries, each numbered across the whole set, pinned in gold on the offline map, and strung into routes a day at a time.",
+    caption: "The Secret Guide opens on a cover, the six things to do first, and six numbered chapters: 70 entries, each numbered across the whole set, pinned in gold on the offline map, and strung into routes a day at a time.",
   },
 ];
 
@@ -1058,13 +1058,13 @@ const OUTCOMES = [
     kicker: "Find the correct parking turnout",
     body:
       "Every stop carries a coordinate that opens your Maps app with the line already drawn, and the parking is written into the stop itself: which lot, which pullout, which side of the road, and what the tell is when the sign is missing. The unsigned turnouts locals use have their own entries.",
-    proof: "A source-verified coordinate on 65 of the 66 stops",
+    proof: "A source-verified coordinate on 64 of the 65 stops",
   },
   {
     kicker: "Know how long each stop actually takes",
     body:
       "Each stop states its time budget, drive included, so you know what fits before lunch while it still matters. Hikes carry distance, climbing, an effort score computed from terrain data, not the trailhead sign's optimism, and a daylight reading: today's sunset against the time budget, and the latest start that gets you down with an hour of light in hand.",
-    proof: "Time budgets on 65 of 66 stops · 57 hikes with GPS tracks, elevation profiles and a daylight check",
+    proof: "Time budgets on 64 of 65 stops · 57 hikes with GPS tracks, elevation profiles and a daylight check",
   },
   {
     kicker: "Replace a hike when weather, crowds, or children change the plan",
@@ -1369,7 +1369,7 @@ function GuideOfflineDemo() {
         <div>
           <div className="eyebrow">Works with zero bars</div>
           <ul>
-            <li>· All 116 entries, each with a photo (some are stand-ins)</li>
+            <li>· All 114 entries, each with a photo (some are stand-ins)</li>
             <li>· All 57 hikes with tracks, elevation profiles and the daylight reading</li>
             <li>· The 3D park map in the areas you downloaded: pins, trails, and your trip's routes</li>
             <li>· The trip board, the day view, the dates that matter, and calendar export</li>
@@ -1428,7 +1428,7 @@ function GuideCompare({ go }) {
           <tr>
             <th scope="row">Read up before the trip</th>
             <td>{freeLink("/articles", "articles", "Articles")} and {freeLink("/planning", "planning", "the planning guide")}</td>
-            <td>116 entries across four regions, each with its parking, time budget and, on the flagship stops, the swap</td>
+            <td>114 entries across four regions, each with its parking, time budget and, on the flagship stops, the swap</td>
           </tr>
           <tr>
             <th scope="row">Plan the stops</th>
@@ -1566,7 +1566,7 @@ const GUIDE_FAQ = [
   },
   {
     q: "What do I get that the free site doesn't already give me?",
-    a: "The complete library: 116 entries including the 72-entry Secret Guide, all 57 day hikes with GPS tracks, elevation profiles and a daylight reading, the drag-and-drop trip builder with the dates that matter for your trip, the 3D park map with every trail and your trip drawn on the terrain, the Help card, the bearing compass, companion mode, and the offline download. The free site keeps the articles, the trip map, the itineraries, and the conditions board.",
+    a: "The complete library: 114 entries including the 70-entry Secret Guide, all 57 day hikes with GPS tracks, elevation profiles and a daylight reading, the drag-and-drop trip builder with the dates that matter for your trip, the 3D park map with every trail and your trip drawn on the terrain, the Help card, the bearing compass, companion mode, and the offline download. The free site keeps the articles, the trip map, the itineraries, and the conditions board.",
   },
   {
     q: "Does the guide change after I buy it?",
@@ -1754,7 +1754,7 @@ function GuideMobileBuyBar() {
 // the refund; the offer; the questions. The long pitch, the 3D map and the
 // day-one demonstrations follow for the reader who wants them, and the full
 // screen gallery sits behind a disclosure. Nothing was removed to shorten it.
-const GUIDE_STATS = ["4 regions", "116 entries", "57 day hikes", "72 secret entries", "3D map, offline"];
+const GUIDE_STATS = ["4 regions", "114 entries", "57 day hikes", "70 secret entries", "3D map, offline"];
 
 // The hero's three benefit lines, in HP_GUIDE_POINTS' shape. Each restates an
 // outcome block below (OUTCOMES), so a change there is a change here.
@@ -1853,7 +1853,7 @@ function GuidePage({ go }) {
             <div className="guide-closer">
               <div className="eyebrow eyebrow--moss" style={{ marginBottom: 12 }}>The offer, in one place</div>
               <p style={{ fontFamily: "var(--serif)", fontSize: 17, lineHeight: 1.6, margin: "0 0 20px" }}>
-                Four regional guides. 44 stops in driving order, each with GPS and a time budget, the flagship ones with a swap. All 57 in-park day hikes with GPS tracks, elevation profiles and a daylight reading. The 72-entry Secret Guide. The park's ranger and partner programs, listed for the dates of your trip. A planning calendar you drag into shape, then save to the calendar you already use, with the dates that matter for your trip under it. A Help card that reads your position with no signal (the 911 call itself still needs one), a bearing compass, and a companion mode that runs on GPS alone. And a 3D map of the park that holds it all together: every stop and trail on the terrain, your days drawn along the real roads, working offline. <LivePrice /> once, for {terms.months || 18} months on every device you own. Nothing renews.
+                Four regional guides. 44 stops in driving order, each with GPS and a time budget, the flagship ones with a swap. All 57 in-park day hikes with GPS tracks, elevation profiles and a daylight reading. The 70-entry Secret Guide. The park's ranger and partner programs, listed for the dates of your trip. A planning calendar you drag into shape, then save to the calendar you already use, with the dates that matter for your trip under it. A Help card that reads your position with no signal (the 911 call itself still needs one), a bearing compass, and a companion mode that runs on GPS alone. And a 3D map of the park that holds it all together: every stop and trail on the terrain, your days drawn along the real roads, working offline. <LivePrice /> once, for {terms.months || 18} months on every device you own. Nothing renews.
               </p>
               <BuyNowButton location="guide_closer" />
               <p style={{ fontFamily: "var(--sans)", fontSize: 13, color: "var(--ink-2)", lineHeight: 1.55, margin: "14px 0 0" }}>
@@ -1881,7 +1881,7 @@ function GuidePage({ go }) {
             <h2>Read one stop, in full</h2>
 
             <p>
-              This is the guide's first stop, quoted word for word from the app. Every one of the 116 entries is built this way: the numbers up top, the read underneath, the fallback printed on the page, and, where the record allows it, a sourced note from a century of park naturalists' field bulletins.
+              This is the guide's first stop, quoted word for word from the app. Every one of the 114 entries is built this way: the numbers up top, the read underneath, the fallback printed on the page, and, where the record allows it, a sourced note from a century of park naturalists' field bulletins.
             </p>
 
             <GuideStopExample />
@@ -1913,7 +1913,7 @@ function GuidePage({ go }) {
             <h2>The Secret Guide</h2>
 
             <p>
-              There is a section of the guide that never makes it into articles: the parking turnouts locals use when the big lots fill, the trailheads with no signs from the road, the spots that belong to no region at all, and the few guided programs worth planning an evening around. It's in the app now, 72 entries in six numbered chapters: quiet vistas, hidden trails, parking, camping, the park after dark, and programs. It opens on the short version, six things to do if you do nothing else, then four routes that string the entries into a day or an evening in the order you would drive them, and every entry is numbered across the whole set and marked in gold on the 3D map. Twenty-two arrived at the end of September: ten more pullouts and small lots, from the dozen spaces at Valley View to the two day lots at Hetch Hetchy; the Yosemite Cemetery, Stoneman Meadow at dusk and the Half Dome view on the Big Oak Flat Road; and the programs chapter, led by the Conservancy's night sky program and the free Ahwahnee history tour. It keeps growing through the season, and every addition arrives as a silent update, no re-download, no second charge.
+              There is a section of the guide that never makes it into articles: the parking turnouts locals use when the big lots fill, the trailheads with no signs from the road, the spots that belong to no region at all, and the few guided programs worth planning an evening around. It's in the app now, 70 entries in six numbered chapters: quiet vistas, hidden trails, parking, camping, the park after dark, and programs. It opens on the short version, six things to do if you do nothing else, then four routes that string the entries into a day or an evening in the order you would drive them, and every entry is numbered across the whole set and marked in gold on the 3D map. Twenty-two arrived at the end of September: ten more pullouts and small lots, from the dozen spaces at Valley View to the two day lots at Hetch Hetchy; the Yosemite Cemetery, Stoneman Meadow at dusk and the Half Dome view on the Big Oak Flat Road; and the programs chapter, led by the Conservancy's night sky program and the free Ahwahnee history tour. It keeps growing through the season, and every addition arrives as a silent update, no re-download, no second charge.
             </p>
 
             <h2>What's NOT inside</h2>

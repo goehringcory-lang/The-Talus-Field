@@ -1434,7 +1434,7 @@ window.GUIDE_TERMS = GUIDE_TERMS;
 const HP_GUIDE_POINTS = [
   { mark: "↳", title: "Find your next stop.", text: "44 stops, arranged in driving order." },
   { mark: "△", title: "Choose a hike that fits your day.", text: "57 day hikes with GPS tracks." },
-  { mark: "◎", title: "Bring a little local knowledge.", text: "72 Secret Guide entries to look beyond the obvious." },
+  { mark: "◎", title: "Bring a little local knowledge.", text: "70 Secret Guide entries to look beyond the obvious." },
 ];
 
 // The Field Guide band: the dark section with the two phone captures. One per
