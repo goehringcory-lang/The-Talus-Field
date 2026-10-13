@@ -23,6 +23,7 @@ const seed: ChangelogEntryT[] = [
     lines: [
       'Better with a screen reader or a keyboard: every button and chip is named by what it shows, the "+ Add" buttons on hikes and programs no longer sit inside the row toggle, and the map and the printable plan have proper page structure.',
       'Quieter text that was hard to read (past deadlines, the map\'s pin counts, the Secret Guide pager) is now legible.',
+      'Two pairs of Secret Guide entries that covered the same ground are now one each. Inspiration Point is part of the Artist Point entry, since one trail from Tunnel View reaches both, and Silver Strand and Widow\'s Tears have joined the other spring-only falls in The waterfalls nobody sees. Nothing was cut; the section now numbers 70.',
     ],
   },
   {

@@ -133,7 +133,7 @@ function PartnersPage({ go }) {
           <p>
             One code is one guest's full access to the Field Guide: the entire
             stop library across the Valley, Glacier Point and Mariposa Grove,
-            Tuolumne, and Hetch Hetchy, the 72-entry Secret Guide, the day-by-day
+            Tuolumne, and Hetch Hetchy, the 70-entry Secret Guide, the day-by-day
             trip planner with calendar export, park programs and weather on their
             dates, and the offline download, about 70 MB, that keeps all of it
             readable with no signal. Access runs 18 months from the day the guest
@@ -199,7 +199,7 @@ function PartnersPage({ go }) {
             <li>A trip planner that lays out each day with real drive-time and parking buffers, and syncs to Google or Apple Calendar.</li>
             <li>Ranger walks, Junior Ranger sessions, tours, and star parties on the guest's own dates.</li>
             <li>An essentials section: entrances and reservations, getting around the Valley without moving the car, bears, where coverage dies, roads by season, and a packing checklist for the night before.</li>
-            <li>The 72-entry Secret Guide: quiet vistas, hidden trails, parking moves, camping, the park after dark, and the programs worth booking.</li>
+            <li>The 70-entry Secret Guide: quiet vistas, hidden trails, parking moves, camping, the park after dark, and the programs worth booking.</li>
           </ul>
 
           <h2>Why it is worth more than it costs</h2>

@@ -136,7 +136,7 @@ const seed: HikeT[] = [
     route: 'out-and-back',
     durationMin: 150,
     trailhead: 'Tunnel View upper lot',
-    stopId: 'inspiration-point',
+    stopId: 'artist-point',
     coord: [-119.6773, 37.7156], // same pin as stop tunnel-view (trail starts from the upper lot)
     photo: { src: '/photos/hike-inspiration-point.jpg', alt: 'Yosemite Valley from Inspiration Point, El Capitan and Bridalveil Fall beyond the trees.' },
     description:

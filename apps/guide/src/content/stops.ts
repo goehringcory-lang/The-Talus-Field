@@ -689,25 +689,40 @@ const seed: StopInput[] = [
   // ---------------------------------------------------------------------------
   {
     id: 'artist-point',
-    title: 'Artist Point, the view the stagecoaches stopped for',
+    title: 'Artist Point and Inspiration Point, Tunnel View without the people',
     region: 'valley',
     order: 101,
     kind: 'trailhead',
     collection: 'hidden',
     category: 'trails',
-    difficulty: 'easy',
+    difficulty: 'moderate',
     coord: [-119.6697, 37.7135], // TODO: verify on the ground — GNIS (37.7121, -119.6749) conflicts with trail-guide geometry (~-119.667); current pin sits between the candidates (2026-07 web pass)
     elevationFt: 4700,
-    timeBudgetMin: 120,
+    timeBudgetMin: 150,
     photos: [{ src: '/photos/artist-point.jpg' }],
     teaser:
-      'Two miles round trip on the abandoned stagecoach grade above Tunnel View to the rim where Thomas Ayres sketched the valley in 1855.',
+      'Tunnel View\'s composition from the abandoned stagecoach grade above the tunnel, with nobody in it: two miles round trip to Artist Point, or 2.6 to Inspiration Point higher up, on the rim Thomas Ayres sketched from in 1855.',
     body:
-      'About a mile from the Tunnel View lot, two miles round trip with a modest climb. Start on the Pohono Trail from the east end of the [Tunnel View](/stop/tunnel-view) parking lot (that pin is the parking for this one). At half a mile, where the trail crosses the old stagecoach road, turn left onto the abandoned grade to Artist Point. The view is Tunnel View from higher and further east, usually with nobody there. Do it as the first or last hour of a valley day.\n\nIn 1855 Thomas Ayres sketched the valley from this rim, among the first drawings of it. From 1875 the stage road ran past the spot; when the Wawona Tunnel opened in 1933, the grade was abandoned. If you stay on the Pohono Trail another half mile before the turnoff, a stone marker notes the original Inspiration Point, though trees have mostly closed that view.',
+      'Two viewpoints off one trail. Start on the Pohono Trail from the east end of the [Tunnel View](/stop/tunnel-view) parking lot (that pin is the parking for this one). At half a mile, where the trail crosses the old stagecoach road, turn left onto the abandoned grade to Artist Point: about a mile from the lot, two miles round trip with a modest climb. The view is Tunnel View from higher and further east, usually with nobody there. Do it as the first or last hour of a valley day.\n\nStay on the Pohono Trail instead and it keeps climbing: 1.2 miles and about 1,000 feet from the lot to Inspiration Point, where a stone marker notes the old overlook. It is the Tunnel View composition of El Capitan, Bridalveil and Half Dome from a granite slab with few people on it, though trees have closed in on part of the view. Old Inspiration Point, the 1850s stage-road overlook, is two miles farther, 3.3 miles from the trailhead.\n\nIn 1855 Thomas Ayres sketched the valley from this rim, among the first drawings of it. From 1875 the Wawona stage road ran past the spot; when the Wawona Tunnel opened in 1933, the grade was abandoned.\n\nBoth points are day hikes. Much of the rim is day-use, and camps must be at least four trail miles from Yosemite Valley and a mile from any road, so legal ground starts well past Old Inspiration Point, toward Dewey Point; the park\'s wilderness trailheads map marks the line. A Pohono Trail permit from Tunnel View is one of the easier ones to get: 60 percent of each day\'s quota is reservable on recreation.gov 24 weeks ahead and the rest seven days ahead; in winter, when no reservation is needed, permits are issued the day before or the day of at the nearest station. Camping is dispersed, with a bear canister and the park\'s fire rules. Check current permit rules on the wilderness pages before counting on a spot.\n\nNo water on the trail. Carry what you will drink and start early in summer.',
+    hazard:
+      'No water on the trail or at either point. The old grade has loose sand and drop-offs behind the brush at the viewpoints.',
     photoTiming: {
       best: 'sunset',
       note:
         'The view here is Tunnel View shifted higher and east, so the same last light on El Capitan and Bridalveil applies.',
+    },
+    history: {
+      note:
+        'The first tourist party to come to Yosemite Valley stopped at Old Inspiration ' +
+        'Point. Park Forester Emil Ernst recounted in 1955 that James M. Hutchings, ' +
+        'Thomas A. Ayres, Walter Millard and Alexander Stair, with two Indian ' +
+        'guides, Kos-sum and So-pin, came to it on July 27, 1855, descending from ' +
+        'the south rim. Ayres made his first sketch there, the best known of his ' +
+        'Yosemite work, and it delayed the party\'s arrival at its first camp in ' +
+        'Bridalveil Meadows.',
+      volume: 34,
+      number: 6,
+      issueDate: 'June 1955',
     },
   },
   {
@@ -841,28 +856,9 @@ const seed: StopInput[] = [
     timeBudgetMin: 90,
     photos: [{ src: '/photos/valley-ephemeral-falls.jpg' }],
     teaser:
-      'Sentinel Fall, Staircase Falls, Royal Arch Cascade, Lehamite: the valley\'s second set of waterfalls, running a few weeks each spring beside famous neighbors.',
+      'Sentinel Fall, Staircase Falls, Royal Arch Cascade, Lehamite, and at the west end Silver Strand and Widow\'s Tears: the valley\'s second set of waterfalls, running a few weeks each spring beside famous neighbors.',
     body:
-      'March through May, and the days after any hard rain, several short-lived falls run beside the famous ones. Look up at the walls between landmarks on any valley-floor walk. By July most are dry.\n\nSentinel Fall drops roughly 2,000 feet in stages from the wall west of Sentinel Rock; see it from Southside Drive near Sentinel Beach. Staircase Falls comes down 1,300 feet of granite steps on the wall behind Curry Village. Royal Arch Cascade streams down the wall near the Ahwahnee after rain. Lehamite Falls drops 1,180 feet out of Indian Canyon about a mile east of Yosemite Falls.\n\nThe Ledge Trail to Glacier Point and the Sierra Point overlook above Happy Isles both appear on old postcards. The first was still open in the 1940s before the park abandoned it; the park let the second go after rockfall in the 1970s. Both are closed for cause, with fatalities behind the decision. The scramble to the summit of Sentinel Rock belongs to climbers. This guide gives directions to none of them.',
-  },
-  {
-    id: 'widows-tears-silver-strand',
-    title: 'Widow\'s Tears and Silver Strand, the west-end ephemerals',
-    region: 'valley',
-    order: 107,
-    kind: 'viewpoint',
-    collection: 'hidden',
-    category: 'vistas',
-    difficulty: 'easy',
-    season: 'March to May',
-    coord: [-119.6773, 37.7156], // verified 2026-07: viewed from the Tunnel View overlook (same pin as tunnel-view)
-    elevationFt: 4400,
-    timeBudgetMin: 45,
-    photos: [{ src: '/photos/widows-tears-silver-strand.jpg' }],
-    teaser:
-      'Stand at Tunnel View and look right instead: Silver Strand runs at the west end, and Widow\'s Tears drops well over a thousand feet for a few weeks of hard snowmelt.',
-    body:
-      'Two short-lived falls visible from [Tunnel View](/stop/tunnel-view) or [Artist Point](/stop/artist-point), no extra miles. In spring, look right of Bridalveil at the south wall west of the fall. Silver Strand Falls drops off the rim where Meadow Brook goes over, the westernmost waterfall in the valley. One drainage over is Widow\'s Tears, a slender plunge of well over a thousand feet that runs for only a few weeks of hard snowmelt. The name is Victorian humor: a widow\'s tears, the saying went, are the first to stop. Binoculars help; after a storm both can run at once.',
+      'March through May, and the days after any hard rain, several short-lived falls run beside the famous ones. Look up at the walls between landmarks on any valley-floor walk. By July most are dry.\n\nSentinel Fall drops roughly 2,000 feet in stages from the wall west of Sentinel Rock; see it from Southside Drive near Sentinel Beach. Staircase Falls comes down 1,300 feet of granite steps on the wall behind Curry Village. Royal Arch Cascade streams down the wall near the Ahwahnee after rain. Lehamite Falls drops 1,180 feet out of Indian Canyon about a mile east of Yosemite Falls.\n\nThe west end has two more, visible from [Tunnel View](/stop/tunnel-view) or [Artist Point](/stop/artist-point) with no extra miles. Look right of Bridalveil at the south wall west of the fall. Silver Strand Falls drops off the rim where Meadow Brook goes over, the westernmost waterfall in the valley. One drainage over is Widow\'s Tears, a slender plunge of well over a thousand feet that runs for only a few weeks of hard snowmelt. The name is Victorian humor: a widow\'s tears, the saying went, are the first to stop. Binoculars help; after a storm both can run at once.\n\nThe Ledge Trail to Glacier Point and the Sierra Point overlook above Happy Isles both appear on old postcards. The first was still open in the 1940s before the park abandoned it; the park let the second go after rockfall in the 1970s. Both are closed for cause, with fatalities behind the decision. The scramble to the summit of Sentinel Rock belongs to climbers. This guide gives directions to none of them.',
   },
 
   // ===========================================================================

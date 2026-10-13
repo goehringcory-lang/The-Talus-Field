@@ -59,7 +59,6 @@ export const UNVERIFIED_STOP_IDS: ReadonlySet<string> = new Set([
   'foresta-barns-loop',
   'foresta-forest-service-camping',
   'little-nellie-falls',
-  'inspiration-point',
   'hidden-lake',
   'yosemite-falls-moonbow',
   'great-gray-owl-dusk',

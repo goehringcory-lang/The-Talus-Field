@@ -1604,7 +1604,7 @@ var HP_GUIDE_POINTS = [{
 }, {
   mark: "◎",
   title: "Bring a little local knowledge.",
-  text: "72 Secret Guide entries to look beyond the obvious."
+  text: "70 Secret Guide entries to look beyond the obvious."
 }];
 function useGuideBandImpression(location) {
   var ref = useRef(null);

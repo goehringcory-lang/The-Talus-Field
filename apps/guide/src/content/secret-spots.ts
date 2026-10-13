@@ -220,37 +220,8 @@ const seed: SecretSpotInput[] = [
       'The route crosses two burn scars: snags fall without wind and the shade is thin. Carry water; the creek is the only source and needs treating.',
     photos: [{ src: '/photos/foresta-cascades.jpg', caption: 'A fall in the trees off the old road. Little Nellie is smaller, with a picnic table at the bottom of it.' }], // stand-in: not this entry, see guide-photo-manifest.json
   },
-  {
-    id: 'inspiration-point',
-    title: 'Inspiration Point, Tunnel View without the people',
-    order: 15,
-    category: 'camping',
-    kind: 'camping',
-    coord: [-119.682513, 37.714671], // user-provided — TODO: verify on the ground
-    elevationFt: 5400,
-    timeBudgetMin: 150,
-    difficulty: 'moderate',
-    teaser:
-      'Tunnel View\'s framed composition from the old stage road above the tunnel, with nobody in it, and a wilderness permit that is easier to hold than most for a night farther along the rim.',
-    body:
-      'The Pohono Trail starts across Wawona Road from the Tunnel View lots and climbs the old Wawona stage road grade, replaced by the tunnel in 1933: 1.2 miles and about 1,000 feet to Inspiration Point, the Tunnel View composition of El Capitan, Bridalveil and Half Dome from a granite slab with few people on it. Old Inspiration Point, the 1850s stage-road overlook, is two miles farther, 3.3 miles from the trailhead.\n\nInspiration Point is a day hike. Much of the rim is day-use, and camps must be at least four trail miles from Yosemite Valley and a mile from any road, so legal ground starts well past Old Inspiration Point, toward Dewey Point; the park\'s wilderness trailheads map marks the line. A Pohono Trail permit from Tunnel View is one of the easier ones to get: 60 percent of each day\'s quota is reservable on recreation.gov 24 weeks ahead and the rest seven days ahead; in winter, when no reservation is needed, permits are issued the day before or the day of at the nearest station. Camping is dispersed, with a bear canister and the park\'s fire rules.\n\nNo water on the trail. Carry what you will drink, start early in summer, and check current permit rules on the wilderness pages before counting on a spot.',
-    hazard:
-      'No water on the trail or at the top. The old grade has loose sand and drop-offs behind the brush at the viewpoint.',
-    photos: [{ src: '/photos/inspiration-point.jpg', caption: 'The framed valley composition. Inspiration Point sits on the old road above the tunnel.' }],
-    history: {
-      note:
-        'The first tourist party to come to Yosemite Valley stopped at Old Inspiration ' +
-        'Point. Park Forester Emil Ernst recounted in 1955 that James M. Hutchings, ' +
-        'Thomas A. Ayres, Walter Millard and Alexander Stair, with two Indian ' +
-        'guides, Kos-sum and So-pin, came to it on July 27, 1855, descending from ' +
-        'the south rim. Ayres made his first sketch there, the best known of his ' +
-        'Yosemite work, and it delayed the party\'s arrival at its first camp in ' +
-        'Bridalveil Meadows.',
-      volume: 34,
-      number: 6,
-      issueDate: 'June 1955',
-    },
-  },
+  // Inspiration Point lives in stops.ts with Artist Point (hidden collection,
+  // valley): one trail from Tunnel View reaches both, so it is one entry.
   {
     id: 'hidden-lake',
     title: 'Hidden Lake, the tarn behind Olmsted Point',
