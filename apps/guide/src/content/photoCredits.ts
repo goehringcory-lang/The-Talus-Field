@@ -118,7 +118,7 @@ export const PHOTO_CREDITS: Record<string, PhotoCredit> = {
   "/photos/olmsted-point-at-night.jpg": { author: "King of Hearts", license: "CC BY-SA 3.0", source: "https://commons.wikimedia.org/wiki/File:Olmsted_Point_Yosemite_August_2013_001.jpg" },
   "/photos/olmsted-point.jpg": { author: "Dcrjsr", license: "CC BY 3.0", source: "https://commons.wikimedia.org/wiki/File:Olmsted_Point_Yosemite_view.jpg" },
   "/photos/oshaughnessy-dam.jpg": { author: "Amit Patel", license: "CC BY 2.0", source: "https://commons.wikimedia.org/wiki/File:Hetch_Hetchy_Reservoir_(4357942127).jpg" },
-  "/photos/ostrander-lake.jpg": { author: "Tim Bergeron", license: "CC BY-SA 3.0", source: "https://commons.wikimedia.org/wiki/File:Ostrander_side.jpg" },
+  "/photos/ostrander-ski-hut.jpg": { author: "R. Drake", license: "CC BY-SA 3.0", source: "https://commons.wikimedia.org/wiki/File:Ostrander_Hut.jpg" },
   "/photos/poopenaut-valley.jpg": { author: "USGS", license: "Public domain", source: "https://commons.wikimedia.org/wiki/File:TuolumneRiverBeloveDam.jpg" },
   "/photos/pothole-dome-sunset.jpg": { author: "Stan Shebs", license: "CC BY-SA 3.0", source: "https://commons.wikimedia.org/wiki/File:Pothole_Dome.jpg" },
   "/photos/rainbow-pool.jpg": { author: "srsmedly", license: "CC BY-SA 3.0", source: "https://commons.wikimedia.org/wiki/File:South_Fork_River_-_panoramio_-_srsmedly.jpg" },

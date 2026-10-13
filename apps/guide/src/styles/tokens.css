@@ -816,17 +816,57 @@ a:active {
 
 /* ===== Sticky Prev/Next on stop detail ===== */
 
+/* The stop page's pager stays in reach on a phone, as one line: an arrow and
+   the neighbour's name on each side. It used to carry the eyebrow and the
+   full two-clause title on both sides, which stood a fifth of the screen
+   tall over the page it was pinned to, with the text behind showing through
+   a translucent ground. One line, an opaque ground, a rule on top. The
+   doubled class outranks the base .prevnext rules in components.css, which
+   load after this file. */
 @media (max-width: 640px) {
-  .stop-prevnext {
+  .prevnext.stop-prevnext {
     position: sticky;
-    bottom: calc(56px + env(safe-area-inset-bottom) + 8px);
-    background: color-mix(in oklab, var(--paper) 95%, transparent);
-    backdrop-filter: blur(6px);
-    -webkit-backdrop-filter: blur(6px);
-    padding-top: 16px;
-    padding-bottom: 16px;
-    margin-top: 48px;
+    bottom: calc(56px + env(safe-area-inset-bottom));
+    background: var(--paper);
+    gap: var(--s4);
+    padding-top: 0;
+    margin-top: 40px;
     z-index: 10;
+  }
+  .prevnext.stop-prevnext .eyebrow { display: none; }
+  .prevnext.stop-prevnext .prevnext__side { flex: 1 1 0; }
+  .prevnext.stop-prevnext .prevnext__side a,
+  .prevnext.stop-prevnext .prevnext__side--empty {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    min-height: 46px;
+    text-decoration: none;
+  }
+  .prevnext.stop-prevnext .prevnext__side--next a,
+  .prevnext.stop-prevnext .prevnext__side--next.prevnext__side--empty { justify-content: flex-end; }
+  .prevnext.stop-prevnext .prevnext__title {
+    font-size: 16px;
+    min-width: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+  /* The arrows belong to the link, not the title: inside the title they are
+     the first thing the ellipsis cuts off. */
+  .prevnext.stop-prevnext .prevnext__side:not(.prevnext__side--next) a::before,
+  .prevnext.stop-prevnext .prevnext__side--empty:not(.prevnext__side--next)::before {
+    content: '←';
+    flex: 0 0 auto;
+    font-family: var(--sans);
+    color: var(--ink-3);
+  }
+  .prevnext.stop-prevnext .prevnext__side--next a::after,
+  .prevnext.stop-prevnext .prevnext__side--next.prevnext__side--empty::after {
+    content: '→';
+    flex: 0 0 auto;
+    font-family: var(--sans);
+    color: var(--ink-3);
   }
 }
 

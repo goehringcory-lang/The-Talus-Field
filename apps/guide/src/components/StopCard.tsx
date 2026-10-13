@@ -1,3 +1,4 @@
+import type { ReactNode } from 'react'
 import { Link } from 'react-router-dom'
 import ReactMarkdown from 'react-markdown'
 import type { StopT } from '../content'
@@ -41,6 +42,10 @@ type Props = {
   // where the card is the page, passes h1. Gated on this prop rather than on
   // `compact` because /preview renders full cards and must not grow five h1s.
   titleAs?: 'h1' | 'h2'
+  // Full read only: rendered between the measured facts and the prose. The
+  // stop page puts its actions here, so the reader meets the name, the
+  // photo, the facts and the way to act on them before the essay starts.
+  children?: ReactNode
 }
 
 export default function StopCard({
@@ -49,6 +54,7 @@ export default function StopCard({
   regionLabel,
   actions = true,
   titleAs: Title = 'h2',
+  children,
 }: Props) {
   const photo = stop.photos[0]
   const credit = photo ? PHOTO_CREDITS[photo.src] : undefined
@@ -63,7 +69,22 @@ export default function StopCard({
   // be fifty on the Secret Guide).
   const road = compact ? null : roadForStopId(stop.id)
   return (
-    <article className="stop-card">
+    <article className={compact ? 'stop-card' : 'stop-card stop-card--full'}>
+      {/* The full read opens on the name: a reader who followed a link here
+          should learn where they are before the photo, and the photo, facts
+          and actions then read as one block under it. The list card keeps
+          the photo on top, where a stack of them scans by picture. */}
+      {!compact && (
+        <div className="stop-card__head">
+          <div className="eyebrow eyebrow--moss">
+            {stop.collection === 'hidden'
+              ? `Secret Guide · ${KIND_LABEL[stop.kind]}`
+              : KIND_LABEL[stop.kind]}
+          </div>
+          <Title className="stop-card__title">{stop.title}</Title>
+        </div>
+      )}
+
       <Plate
         tag={plateTag}
         caption={!compact ? photo?.caption : undefined}
@@ -99,17 +120,19 @@ export default function StopCard({
         )}
       </Plate>
 
-      <div className="stop-card__titlerow">
-        <div style={{ minWidth: 0 }}>
-          <div className="eyebrow eyebrow--moss">
-            {stop.collection === 'hidden'
-              ? `Secret Guide · ${KIND_LABEL[stop.kind]}`
-              : KIND_LABEL[stop.kind]}
+      {compact && (
+        <div className="stop-card__titlerow">
+          <div style={{ minWidth: 0 }}>
+            <div className="eyebrow eyebrow--moss">
+              {stop.collection === 'hidden'
+                ? `Secret Guide · ${KIND_LABEL[stop.kind]}`
+                : KIND_LABEL[stop.kind]}
+            </div>
+            <Title className="stop-card__title">{stop.title}</Title>
           </div>
-          <Title className="stop-card__title">{stop.title}</Title>
+          {actions && <StopActions stopId={stop.id} title={stop.title} />}
         </div>
-        {actions && <StopActions stopId={stop.id} title={stop.title} />}
-      </div>
+      )}
 
       {/* The full read states the measured facts as a spec strip: these are
           readings, and a row of pills reads as a set of filters instead. List
@@ -163,6 +186,8 @@ export default function StopCard({
             )}
           </div>
         )}
+
+      {!compact && children}
 
       {compact &&
         (stop.coord || stop.elevationFt || stop.timeBudgetMin || stop.difficulty || stop.season || regionLabel) && (
