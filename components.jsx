@@ -574,7 +574,11 @@ function releaseRockfall(markEl) {
 // its panel; the label itself opens the panel rather than navigating. `aside`
 // is a small block under the panel's lede, and `feature` names the panel's
 // third track (NavMapFeature, NavWaitsFeature, NavNewestFeature below). A
-// group with no `columns` renders as a plain link.
+// group with no `columns` renders as a plain link. A link with `aff` instead
+// of a key is an affiliate link out of the site (the bookshelf on
+// Bookshop.org): the masthead mints it from that network's registry entry in
+// affiliate.js with the full affiliate markup, and its `note` carries the
+// disclosure, since a menu has no page head to put one in.
 //
 // Two rules for the copy: keep a `note` to one short line, and keep years
 // out of all of it. The masthead is baked into index.html's static home shell
@@ -685,6 +689,7 @@ const NAV_GROUPS = [
           { href: "/archive/", label: "Nature Notes archive", note: "512 issues of the park's own bulletin" },
           { key: "films", label: "Films", note: "The NPS Nature Notes film series, annotated" },
           { key: "newsletter", onHome: "home-newsletter", label: "The Sunday Letter", note: "One short letter a week. Free" },
+          { aff: "bookshop", label: "The bookshelf ↗", note: "The field guides I recommend, on Bookshop.org. Affiliate link" },
           { key: "explore", label: "Everything on this site", note: "Every page, with a line on each" },
         ],
       },
@@ -1182,6 +1187,28 @@ function HomeMasthead({ go, current = "home", route }) {
   // do, and leave the panel open.
   const menuLink = (link, className) => {
     const { key, href, label, note } = link;
+    // An affiliate link out of the site. Literal target and rel, which is
+    // what check-affiliate-links.mjs reads; app.jsx's delegated listener
+    // fires affiliate_click from the data attributes.
+    if (link.aff) {
+      return (
+        <a
+          key={`aff:${link.aff}`}
+          className={className}
+          href={window.buildAffiliateLink ? window.buildAffiliateLink(link.aff) : "#"}
+          target="_blank"
+          rel="sponsored noopener"
+          data-aff-network={link.aff}
+          data-aff-list="nav_menu"
+          data-aff-item-slug="bookshelf"
+          data-aff-name="Naturalist's bookshelf"
+          onClick={closeMenu}
+        >
+          <span className="hp-menu__label">{label}</span>
+          <span className="hp-menu__note">{note}</span>
+        </a>
+      );
+    }
     // On "/" a link with `onHome` is a jump to that section of the homepage.
     const hash = home && link.onHome ? link.onHome : link.hash;
     const base = home && link.onHome ? "" : (href || (window.routeToPath ? window.routeToPath(key) : `/${key}`));
@@ -1316,6 +1343,21 @@ function HomeMasthead({ go, current = "home", route }) {
               </div>
             );
           })}
+          {/* The bookshelf: the owner's Bookshop.org list, the one link in
+              the row that leaves the site (owner's call, October 2026). An
+              affiliate link, so it carries the full markup and says so in
+              its title; the Read panel's entry has the written note. */}
+          <a
+            className="hp-nav__books"
+            href={window.buildAffiliateLink ? window.buildAffiliateLink("bookshop") : "#"}
+            target="_blank"
+            rel="sponsored noopener"
+            title="The field guides I recommend, on Bookshop.org. Affiliate link"
+            data-aff-network="bookshop"
+            data-aff-list="nav_header"
+            data-aff-item-slug="bookshelf"
+            data-aff-name="Naturalist's bookshelf"
+          >Books ↗</a>
           {/* Search as a link, for widths where the box below gives way. */}
           <HomeLink go={go} location={location} className="hp-nav__search" href="/search" aria-current={here("search")}>
             <svg viewBox="0 0 24 24" width="13" height="13" aria-hidden="true" focusable="false">
@@ -2220,7 +2262,7 @@ function AffLink({ network = "patagonia", url, q, list, slug, name, className, c
 // its own disclosure line, like LodgingCta, so it stays honest wherever it is
 // dropped. Item ids become the GA4 aff_item_slug. Any markup change here must
 // be hand-mirrored in scripts/gen-prerender.mjs.
-function RecommendedCard({ heading, note, items, list, slug, network = "patagonia", source = "Patagonia" }) {
+function RecommendedCard({ heading, note, items, list, slug, network = "patagonia", source = "Patagonia", disclosure }) {
   const linked = (items || []).some((it) => it.q || it.url);
   return (
     <aside className="rec-card" aria-label={heading || "What to bring"}>
@@ -2249,14 +2291,42 @@ function RecommendedCard({ heading, note, items, list, slug, network = "patagoni
       </ul>
       {linked && (
         <p className="rec-card__disclosure">
-          {source} links are affiliate links. Any equivalent does the same job, and the list does not change for them. <a href="/affiliate">Disclosure.</a>
+          {disclosure || `${source} links are affiliate links. Any equivalent does the same job, and the list does not change for them.`} <a href="/affiliate">Disclosure.</a>
         </p>
       )}
     </aside>
   );
 }
 
-Object.assign(window, { expediaSearchUrl, AvailabilityLink, LodgingCta, ExpediaBanner, patagoniaSearchUrl, AffLink, RecommendedCard });
+// The bookshelf: the owner's list of recommended field guides and
+// natural-history books on Bookshop.org (window.BOOKSHOP_LIST_URL in
+// affiliate.js). One boxed, disclosed link to the whole list, drawn as a
+// RecommendedCard so it reads as the same family as the gear box. It links
+// the list, never a title, so the copy names no book the list might drop.
+// Not in the gen-prerender.mjs sandbox: page-article.jsx and /kit mount it,
+// no article body does.
+function BookshelfCard({ list, slug, heading, note }) {
+  return (
+    <RecommendedCard
+      heading={heading || "The bookshelf"}
+      note={note || "The field guides and natural-history books I recommend for Yosemite, kept as one list."}
+      network="bookshop"
+      source="Bookshop.org"
+      disclosure="This is an affiliate link. The list does not change for it."
+      list={list}
+      slug={slug}
+      items={[{
+        id: "bookshelf",
+        what: "Yosemite field guides: a naturalist's bookshelf",
+        why: "Sold through Bookshop.org, which supports independent bookstores.",
+        url: window.buildAffiliateLink ? window.buildAffiliateLink("bookshop") : "",
+        label: "See the list on Bookshop.org",
+      }]}
+    />
+  );
+}
+
+Object.assign(window, { expediaSearchUrl, AvailabilityLink, LodgingCta, ExpediaBanner, patagoniaSearchUrl, AffLink, RecommendedCard, BookshelfCard });
 
 // ============================================================
 // Read history. The article page's progress tracker (page-article.jsx) writes

@@ -380,6 +380,7 @@ function ArticlePage({
   var relatedSameCat = related.length > 0 && related.every(a => a.cat === article.cat);
   var upper = t => (t || "").toUpperCase();
   var tripIntent = article.cat === "trails" || article.cat === "planning" || article.cat === "seasonal";
+  var bookshelf = article.cat === "wildlife";
   var feature = article.feature || null;
   var bodyEl = bodyState === "ready" && Body ? React.createElement(Body, null) : bodyState === "loading" ? React.createElement(BodySkeleton, null) : React.createElement("p", {
     className: "hp-article__soon"
@@ -460,7 +461,7 @@ function ArticlePage({
       className: "hp-article__dates"
     }, React.createElement("time", {
       dateTime: article.isoModified || article.isoDate
-    }, article.date), React.createElement("span", null, article.read, " read"), article.isoModified && article.isoModified !== article.isoDate && formatIsoDate(article.isoModified) && React.createElement("span", null, "Updated ", formatIsoDate(article.isoModified)))), article.aff && window.AffiliateDisclosure && React.createElement(window.AffiliateDisclosure, null, "This article has affiliate links. If you buy or book through one, The Talus Field may earn a commission at no extra cost to you, and the recommendations do not change for it."), (() => {
+    }, article.date), React.createElement("span", null, article.read, " read"), article.isoModified && article.isoModified !== article.isoDate && formatIsoDate(article.isoModified) && React.createElement("span", null, "Updated ", formatIsoDate(article.isoModified)))), (article.aff || bookshelf) && window.AffiliateDisclosure && React.createElement(window.AffiliateDisclosure, null, article.aff ? "This article has affiliate links. If you buy or book through one, The Talus Field may earn a commission at no extra cost to you, and the recommendations do not change for it." : "This article ends with an affiliate link to the books I recommend. If you buy through it, The Talus Field may earn a commission at no extra cost to you."), (() => {
       var series = window.planningSeriesFor && window.planningSeriesFor(slug);
       if (!series) return null;
       var prev = series.prev ? window.findArticle(series.prev) : null;
@@ -600,7 +601,16 @@ function ArticlePage({
     title: "The park, in your pocket.",
     intro: "The app version of this journal: offline maps, GPS at the trailhead, and every stop with parking and timing notes. Works with no signal, which is most of the park.",
     sample: true
-  }), related.length > 0 && React.createElement("section", {
+  }), bookshelf && window.BookshelfCard && React.createElement("section", {
+    className: "hp-wrap hp-reading hp-article__bookshelf"
+  }, React.createElement("div", {
+    className: "hp-reading__column"
+  }, React.createElement(window.BookshelfCard, {
+    list: "article_bookshelf",
+    slug: slug,
+    heading: "Further reading",
+    note: "The field guides and natural-history books I recommend for Yosemite, kept as one list."
+  }))), related.length > 0 && React.createElement("section", {
     className: "hp-wrap hp-section hp-article__related"
   }, React.createElement(HpHeading, {
     go: go,

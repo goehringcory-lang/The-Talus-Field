@@ -43,6 +43,16 @@ window.STAY22_AFFILIATE_ID = "";
 // different template.
 window.HIPCAMP_AFFILIATE_BASE = "";
 
+// Bookshop.org. The owner's affiliate list of recommended field guides and
+// natural-history books ("Yosemite Field Guides: A Naturalist's Bookshelf").
+// A list on an affiliate account credits that account for what is bought
+// from it, so the list URL is the tracking link and nothing is appended.
+// Every bookshelf link on the site (the Read menu, /kit, the Wildlife and
+// Nature articles) reads this one const through BookshelfCard / the registry
+// entry below. Per-title links would need the account's own affiliate ID
+// from the Bookshop dashboard; none is guessed here.
+window.BOOKSHOP_LIST_URL = "https://bookshop.org/lists/yosemite-field-guides-a-naturalist-s-bookshelf";
+
 // Expedia Travel Creator licensed banner creative. Paste `img` (the
 // Expedia-hosted banner image URL) and `href` (the camref click URL) from the
 // banner builder at creator.expediagroup.com/products/banners; pick an
@@ -117,6 +127,12 @@ window.AFFILIATES = {
       );
     },
   },
+  bookshop: {
+    // No target means the bookshelf list itself, which is the only Bookshop
+    // destination the site links today.
+    hostRe: /(^|\.)bookshop\.org$/i,
+    build: (targetUrl) => targetUrl || window.BOOKSHOP_LIST_URL,
+  },
   hipcamp: {
     hostRe: /(^|\.)hipcamp\.com$/i,
     build: (targetUrl) => {
@@ -164,8 +180,8 @@ window.buildPatagoniaAffiliateLink = function buildPatagoniaAffiliateLink(target
 //   - GetYourGuide or Viator: the guided Valley tours and Glacier Point
 //     tour the trip planning pages mention, booked through the concessioner
 //     today.
-//   - Bookshop.org: field guides and natural-history books for the Nature
-//     Notes archive topics and the species pieces (the archive's one-ask rule
-//     would need an owner decision first).
+//   - Bookshop.org is joined (the bookshelf list above). Still open: the
+//     Nature Notes archive pages, whose one-ask rule needs an owner decision
+//     before a second link goes under a transcription.
 //   - Amazon Associates: binoculars and camera gear for the wildlife,
 //     birding and photography pieces, where Patagonia carries nothing.

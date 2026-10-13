@@ -7326,6 +7326,11 @@ kbd {
   .hp-design .hp-search { display: none; }
   .hp-navigation nav > .hp-nav__search { display: inline-flex; }
 }
+/* Six labels do not fit one row under 400px since the Books link joined it,
+   so Search keeps its icon and its word goes to screen readers only. */
+@media (max-width: 399px) {
+  .hp-navigation nav > .hp-nav__search span { position: absolute; width: 1px; height: 1px; margin: -1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+}
 
 /* The compact bar (HomeMasthead's scroll effect). Past the masthead's slot
    the header is fixed to the top, one row, full bleed, with its content on
@@ -7474,6 +7479,9 @@ html[data-nav-mode="pinned"] { scroll-padding-top: 62px; }
 .hp-article__authorbox .hp-article__author { font: 400 22px/1.2 var(--serif); margin: 0 0 6px; }
 .hp-article__authorbox .hp-article__bio { font-size: 12px; line-height: 1.7; color: var(--hp-muted); margin: 0 0 12px; }
 .hp-article__related .relrail { margin-top: 34px; }
+/* The bookshelf card (window.BookshelfCard) under a Wildlife and Nature
+   article and at the foot of /kit: the card brings its own 36px margins. */
+.hp-article__bookshelf, .hp-kit__books { padding-block: 0; }
 .share-row { display: flex; align-items: center; flex-wrap: wrap; gap: 10px 14px; margin-top: 24px; font: 12px var(--sans); color: var(--hp-muted); }
 .share-row__btn { font: 600 11px var(--sans); color: var(--hp-ink); background: none; border: 1px solid var(--hp-rule); border-radius: 3px; padding: 9px 14px; cursor: pointer; transition: border-color .2s, color .2s; }
 .share-row__btn:hover { border-color: var(--hp-accent); color: var(--hp-accent); }

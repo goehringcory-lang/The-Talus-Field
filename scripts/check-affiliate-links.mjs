@@ -31,7 +31,7 @@ import { ROOT, loadDataJs } from "./lib/catalog.mjs";
 
 const traverse = traverseMod.default || traverseMod;
 const REL = "sponsored noopener";
-const AFF_HREF_RE = /buildAffiliateLink|buildPatagoniaAffiliateLink|pxf\.io|prf\.hn|search\.href|\.aff\b|EXPEDIA_BANNER|\bb\.href/;
+const AFF_HREF_RE = /buildAffiliateLink|buildPatagoniaAffiliateLink|pxf\.io|prf\.hn|bookshop\.org|BOOKSHOP_LIST_URL|search\.href|\.aff\b|EXPEDIA_BANNER|\bb\.href/;
 const BODY_AFF_RE = /<LodgingCta\b|<AvailabilityLink\b|<AffLink\b|<RecommendedCard\b|data-aff-network/;
 
 // Standing pages whose top-of-page notice is not the shared component, and
@@ -131,7 +131,7 @@ for (const [file, src] of sources) {
 
 // 5: affiliate.js and the prerender mirror carry the same IDs.
 const affJs = fs.readFileSync(path.join(ROOT, "affiliate.js"), "utf8");
-for (const k of ["PATAGONIA_AFFILIATE_BASE", "EXPEDIA_CAMREF", "BOOKING_AFFILIATE_AID", "STAY22_AFFILIATE_ID", "HIPCAMP_AFFILIATE_BASE"]) {
+for (const k of ["PATAGONIA_AFFILIATE_BASE", "EXPEDIA_CAMREF", "BOOKING_AFFILIATE_AID", "STAY22_AFFILIATE_ID", "HIPCAMP_AFFILIATE_BASE", "BOOKSHOP_LIST_URL"]) {
   const a = affJs.match(new RegExp(`window\\.${k}\\s*=\\s*"([^"]*)"`));
   const b = prerender.match(new RegExp(`const ${k}\\s*=\\s*"([^"]*)"`));
   if (!a || !b) errors.push(`${k}: not found in ${!a ? "affiliate.js" : "scripts/gen-prerender.mjs"}`);

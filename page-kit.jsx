@@ -63,7 +63,7 @@ function KitPage({ go }) {
     <div className="page hp-kit">
       <style>{`
         @media print {
-          header, footer, .hp-navigation, .hp-product, .hp-letter, .kit__tabs, .kit__count, .kit__photo { display: none !important; }
+          header, footer, .hp-navigation, .hp-product, .hp-letter, .hp-kit__books, .kit__tabs, .kit__count, .kit__photo { display: none !important; }
           body { background: #fff !important; color: #000 !important; }
           a { color: #000 !important; text-decoration: none !important; }
           .kit-group { page-break-inside: avoid; }
@@ -78,7 +78,7 @@ function KitPage({ go }) {
         intro="Three packing checklists for a Yosemite trip: a day pack, what an overnight adds to it, and the full car load. Tick items off as you plan and pack. Your progress is saved in this browser, so you can close the tab and come back to it. Press Cmd+P or Ctrl+P for a clean printable copy."
       >
         <p className="hp-byline kit__aff-note">
-          Some gear here links to Patagonia through an affiliate link, marked with a star. If you buy through it, the site may earn a small commission at no extra cost to you. See the <a className="hp-inline" href="/affiliate" onClick={(e) => { e.preventDefault(); go("affiliate"); }}>Affiliate Disclosure</a>.
+          Some gear here links to Patagonia through an affiliate link, marked with a star, and the book list at the end links to Bookshop.org the same way. If you buy through one, the site may earn a small commission at no extra cost to you. See the <a className="hp-inline" href="/affiliate" onClick={(e) => { e.preventDefault(); go("affiliate"); }}>Affiliate Disclosure</a>.
         </p>
       </HpPageHead>
 
@@ -217,6 +217,18 @@ function KitPage({ go }) {
           </section>
         );
       })}
+
+      {/* The one thing in the pack that is not gear. */}
+      <section className="hp-wrap hp-reading hp-kit__books">
+        <div className="hp-reading__column">
+          <window.BookshelfCard
+            list="kit_bookshelf"
+            slug="kit"
+            heading="And a field guide"
+            note="A field guide earns its place in the pack. The ones I recommend for Yosemite are kept as one list."
+          />
+        </div>
+      </section>
 
       {/* Pointer to the standalone Directory page */}
       <section className="hp-wrap hp-section hp-kit__dir">
