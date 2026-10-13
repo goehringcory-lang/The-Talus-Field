@@ -1,6 +1,7 @@
 import { useEffect, useMemo } from 'react'
 import { Link, useParams } from 'react-router-dom'
 import { REGION_SHORT, RegionEnum, getHiddenStops, getRegionMeta, getStopsByRegion } from '../content'
+import { KIND_LABEL } from '../content/labels'
 import NotFound from './NotFound'
 import CardDeck, { type DeckPanel } from '../components/CardDeck'
 import GatedChrome from '../components/GatedChrome'
@@ -99,7 +100,15 @@ export default function Region() {
       ...stops.map((stop, i) => ({
         key: stop.id,
         label: stop.title,
-        node: <StopDeckCard stop={stop} eager={i === 0} />,
+        node: (
+          <StopDeckCard
+            stop={stop}
+            // Region stops are in driving order, so the label says where in
+            // the drive this one falls.
+            tag={`Stop ${i + 1} of ${stops.length} · ${KIND_LABEL[stop.kind]}`}
+            eager={i === 0}
+          />
+        ),
       })),
       // Weather rides behind the stops, not ahead of them: as card two it was
       // a near-blank screen offline (the app's normal case) standing between

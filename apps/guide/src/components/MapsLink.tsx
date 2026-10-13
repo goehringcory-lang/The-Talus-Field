@@ -4,9 +4,11 @@ type Props = {
   coord: [number, number] | undefined
   label: string
   // 'chip' is the inline meta-row pill; 'spec' is the same link as one cell of
-  // the full read's spec strip. Both share the URL logic below, which is the
-  // part that must not be duplicated.
-  variant?: 'chip' | 'spec'
+  // the full read's spec strip; 'plate' is the same link set over the foot of
+  // a deck card's photo, the way the full read's plate prints its position.
+  // All share the URL logic below, which is the part that must not be
+  // duplicated.
+  variant?: 'chip' | 'spec' | 'plate'
 }
 
 export default function MapsLink({ coord, label, variant = 'chip' }: Props) {
@@ -36,6 +38,20 @@ export default function MapsLink({ coord, label, variant = 'chip' }: Props) {
           <br />
           {Math.abs(lng).toFixed(4)} W →
         </span>
+      </a>
+    )
+  }
+
+  if (variant === 'plate') {
+    return (
+      <a
+        className="deck-card__pin"
+        href={url}
+        target={preferAppleMaps ? undefined : '_blank'}
+        rel="noreferrer"
+        aria-label={`Open ${label} in Maps, ${lat.toFixed(4)} north, ${Math.abs(lng).toFixed(4)} west`}
+      >
+        {lat.toFixed(4)} N · {Math.abs(lng).toFixed(4)} W →
       </a>
     )
   }

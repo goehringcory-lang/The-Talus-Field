@@ -403,10 +403,15 @@
     ]
   },
   {
-    "file": "ostrander-lake.jpg",
+    "file": "ostrander-ski-hut.jpg",
     "slot": "stop:ostrander-lake",
     "tier": 3,
-    "subject": "Ostrander Lake or the stone ski hut on its shore",
+    "files": [
+      "Ostrander Hut.jpg",
+      "Ski Cabin Sunset.jpg",
+      "Ostrander Lake Cabin.jpg"
+    ],
+    "subject": "The stone Ostrander ski hut, or the lake under Horse Ridge with no swimmers or people on the rocks",
     "queries": [
       "Ostrander Lake",
       "Ostrander ski hut"

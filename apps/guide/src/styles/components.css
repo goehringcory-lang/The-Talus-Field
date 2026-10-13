@@ -1551,3 +1551,96 @@ a.masthead-offline:hover { color: var(--ink); }
 .row-wrap { position: relative; }
 .row-action-spacer { visibility: hidden; align-self: start; }
 .row-action { position: absolute; top: 14px; right: 2px; }
+
+/* ===== The stop page, read in the order a reader decides in =====
+   Name, photo, facts, actions, prose, then one panel of logistics. */
+
+/* The full read opens on its name; the plate follows it. */
+.stop-card--full .stop-card__head { margin-bottom: var(--s4); }
+.stop-card--full .stop-card__title {
+  font-size: clamp(28px, 7vw, 38px);
+  margin-top: 6px;
+  text-wrap: balance;
+}
+.stop-card--full .spec-strip { margin: 16px 0 0; }
+.stop-card--full .prose { margin-top: 26px; }
+
+/* The two actions a reader came for, as a pair of equal buttons, then the
+   rest on one quiet row with the save and visited toggles at its end. */
+.stop-actions { margin-top: 12px; }
+.stop-actions__primary {
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: 1fr;
+  gap: 8px;
+}
+.stop-actions__primary .btn {
+  padding-left: 10px;
+  padding-right: 10px;
+  white-space: nowrap;
+}
+.stop-actions__more {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 8px;
+}
+.stop-actions__more .btn { padding-left: 11px; padding-right: 11px; min-height: 40px; }
+.stop-actions__more .stop-card__actions { margin-left: auto; }
+/* The narrowest phones: tighten the quiet row so the toggles stay on it. */
+@media (max-width: 360px) {
+  .stop-actions__more { gap: 4px; }
+  .stop-actions__more .btn { padding-left: 8px; padding-right: 8px; letter-spacing: 0.08em; }
+  .stop-actions__primary .btn { letter-spacing: 0.1em; }
+}
+
+/* Getting there: forecast, hikes from here, parking and camping nearby, as
+   rows of one bordered panel instead of three loose lists. Each entry is a
+   link with its readings on their own line under it, so a long name never
+   leaves the numbers stranded mid-wrap. */
+.stop-logistics {
+  margin-top: var(--s6);
+  border: 1px solid var(--panel-edge);
+  background: var(--panel);
+}
+.stop-logistics__title {
+  display: block;
+  margin: 0;
+  padding: 11px 14px;
+  border-bottom: 1px solid var(--panel-edge);
+}
+.stop-logistics__row { padding: 12px 14px 13px; }
+.stop-logistics__row + .stop-logistics__row { border-top: 1px solid var(--panel-edge); }
+.stop-logistics__label {
+  display: block;
+  font-family: var(--mono);
+  font-size: 9.5px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+  margin-bottom: 6px;
+}
+.stop-logistics__reading {
+  margin: 0;
+  font-family: var(--mono);
+  font-size: 13px;
+  color: var(--ink);
+  font-variant-numeric: tabular-nums;
+}
+.stop-logistics__list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 10px;
+}
+.stop-logistics__list a { font-family: var(--display); font-size: 18px; }
+.stop-logistics__meta {
+  display: block;
+  margin-top: 2px;
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.04em;
+  color: var(--ink-3);
+  font-variant-numeric: tabular-nums;
+}

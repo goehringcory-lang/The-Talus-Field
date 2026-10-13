@@ -1189,7 +1189,7 @@ const seed: StopInput[] = [
     coord: [-119.6039, 37.6668], // verified 2026-07: Ostrander Lake trailhead, Glacier Point Rd mile 9 (Hiking Project/Modern Hiker); was ~1.7 km off
     elevationFt: 7000,
     timeBudgetMin: 420,
-    photos: [{ src: '/photos/ostrander-lake.jpg', caption: 'Ostrander Lake\'s granite shore below Horse Ridge, the hut a short walk from here.' }],
+    photos: [{ src: '/photos/ostrander-ski-hut.jpg', caption: 'The Ostrander Ski Hut in a March snowstorm. In summer the trail ends here, at the lake under Horse Ridge.' }],
     teaser:
       'Twelve miles round trip to a granite-shored lake under Horse Ridge, past the 1941 ski hut. Gentle first half, then a steep climb, 1,500 feet in all. A full day.',
     body:

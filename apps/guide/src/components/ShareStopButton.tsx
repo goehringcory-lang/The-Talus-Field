@@ -9,9 +9,10 @@ import Button from './ui/Button'
 type Props = {
   stopId: string
   title: string
+  size?: 'md' | 'sm'
 }
 
-export default function ShareStopButton({ stopId, title }: Props) {
+export default function ShareStopButton({ stopId, title, size }: Props) {
   const [copied, setCopied] = useState(false)
 
   useEffect(() => {
@@ -43,7 +44,7 @@ export default function ShareStopButton({ stopId, title }: Props) {
   }
 
   return (
-    <Button variant="ghost" onClick={() => void onShare()}>
+    <Button variant="ghost" size={size} onClick={() => void onShare()}>
       {copied ? 'Link copied' : 'Share'}
     </Button>
   )

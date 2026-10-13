@@ -17,6 +17,7 @@ import PrevNextNav from '../components/PrevNextNav'
 import SeasonalNotices from '../components/SeasonalNotices'
 import ShareStopButton from '../components/ShareStopButton'
 import SecretEntry from '../components/SecretEntry'
+import StopActions from '../components/StopActions'
 import StopCard from '../components/StopCard'
 import Button from '../components/ui/Button'
 import BackLink from '../components/ui/BackLink'
@@ -95,25 +96,20 @@ function StopNotes({ stopId }: { stopId: string }) {
 }
 
 // One-line forecast for the stop's region. Weather is garnish, never an
-// error: renders nothing while loading, past HIDE, or for region-less spots.
-function StopForecastLine({ region }: { region: string }) {
+// error: null while loading, past HIDE, or for region-less spots.
+function useStopForecastLine(region: string | undefined): string | null {
   const weather = useWeather()
-  if (weather.loading || weather.ageMs > HIDE_AFTER_MS) return null
+  if (!region || weather.loading || weather.ageMs > HIDE_AFTER_MS) return null
   const line = regionTodayLine(weather.spots.find((s) => s.id === region))
   if (!line) return null
-  const stale = weather.ageMs > WARN_AFTER_MS
-  return (
-    <p className="dateline" style={{ marginTop: 12 }}>
-      {line}
-      {stale ? ' · forecast is old, refresh online' : ''}
-    </p>
-  )
+  return weather.ageMs > WARN_AFTER_MS ? `${line} · forecast is old, refresh online` : line
 }
 
 export default function StopDetail() {
   const params = useParams<{ stopId: string }>()
   const stop = params.stopId ? getStopById(params.stopId) : undefined
   const { plan, addStop } = useTripPlan()
+  const forecastLine = useStopForecastLine(stop && 'region' in stop ? stop.region : undefined)
   useDocumentTitle(stop?.title)
   const parking = useParking()
   // Mount-time clock for the lot stamp; render stays pure.
@@ -162,27 +158,36 @@ export default function StopDetail() {
         .slice(0, NEARBY_AMENITY_MAX)
     : []
 
-  // The pin notice, the forecast line and the seasonal notices qualify the
-  // facts at the top; both layouts show them right under the actions.
-  const notices = (
+  // The pin notice and the seasonal notices qualify the facts at the top;
+  // both layouts show them right under the actions. The forecast line sits
+  // between them on a Secret Guide page and is the first row of the Getting
+  // there panel on a core stop's.
+  const pinNotice = UNVERIFIED_STOP_IDS.has(stop.id) && (
+    // A pin nobody has stood at yet. The companion mode skips these; the
+    // page names it and asks the reader who is there.
+    <p className="pin-unverified">
+      <span className="pin-unverified__label">Pin not yet checked on the ground</span>
+      Trust the turnout this entry describes over the exact pin.{' '}
+      <Link to={`/report?type=stop&id=${stop.id}&kind=pin`}>Standing at it? Send its position →</Link>
+    </p>
+  )
+  const seasonal = <SeasonalNotices stopIds={[stop.id]} />
+
+  // The reader's notes and the report link close both layouts.
+  const closing = (
     <>
-      {/* A pin nobody has stood at yet. The companion mode skips these;
-          the page names it and asks the reader who is there. */}
-      {UNVERIFIED_STOP_IDS.has(stop.id) && (
-        <p className="pin-unverified">
-          <span className="pin-unverified__label">Pin not yet checked on the ground</span>
-          Trust the turnout this entry describes over the exact pin.{' '}
-          <Link to={`/report?type=stop&id=${stop.id}&kind=pin`}>Standing at it? Send its position →</Link>
-        </p>
-      )}
+      {/* Keyed: paging prev/next keeps this route mounted, and the saved
+          line belongs to the note it confirmed. */}
+      <StopNotes key={stop.id} stopId={stop.id} />
 
-      {region && <StopForecastLine region={region} />}
-
-      <SeasonalNotices stopIds={[stop.id]} />
+      <p className="report-link">
+        Something here wrong or out of date?{' '}
+        <Link to={`/report?type=stop&id=${stop.id}`}>Tell us →</Link>
+      </p>
     </>
   )
 
-  // On-device joins, shared by both layouts.
+  // On-device joins as the Secret Guide page lists them.
   const joins = (
     <>
       {hikesHere.length > 0 && (
@@ -233,14 +238,7 @@ export default function StopDetail() {
         </section>
       )}
 
-      {/* Keyed: paging prev/next keeps this route mounted, and the saved
-          line belongs to the note it confirmed. */}
-      <StopNotes key={stop.id} stopId={stop.id} />
-
-      <p className="report-link">
-        Something here wrong or out of date?{' '}
-        <Link to={`/report?type=stop&id=${stop.id}`}>Tell us →</Link>
-      </p>
+      {closing}
     </>
   )
 
@@ -249,7 +247,23 @@ export default function StopDetail() {
   if (inSecretGuide) {
     return (
       <GatedChrome>
-        <SecretEntry key={stop.id} stop={stop} prev={prev} next={next} notices={notices}>
+        <SecretEntry
+          key={stop.id}
+          stop={stop}
+          prev={prev}
+          next={next}
+          notices={
+            <>
+              {pinNotice}
+              {forecastLine && (
+                <p className="dateline" style={{ marginTop: 12 }}>
+                  {forecastLine}
+                </p>
+              )}
+              {seasonal}
+            </>
+          }
+        >
           {joins}
         </SecretEntry>
       </GatedChrome>
@@ -261,45 +275,119 @@ export default function StopDetail() {
       <main className="wrap wrap--narrow page">
         <BackLink to={backTo} label={backLabel} placement="top" />
 
-        {/* The card is the page here, so its title is the page's h1. */}
-        <StopCard stop={stop} compact={false} titleAs="h1" />
+        {/* The card is the page here, so its title is the page's h1. The
+            actions ride inside it, under the facts: the two a reader came
+            for as a pair of full buttons, the rest as one quiet row. */}
+        <StopCard stop={stop} compact={false} titleAs="h1">
+          <div className="stop-actions">
+            <div className="stop-actions__primary">
+              {planned ? (
+                <Button variant="ghost" to="/trip">
+                  In your trip →
+                </Button>
+              ) : (
+                <Button
+                  onClick={() => {
+                    addStop(stop.id)
+                    announceTripAdd(stop.title)
+                  }}
+                >
+                  Add to trip
+                </Button>
+              )}
+              {stop.coord && (
+                <Button variant="ghost" href={directionsUrl(stop.coord)} external>
+                  Directions →
+                </Button>
+              )}
+            </div>
+            <div className="stop-actions__more">
+              {stop.coord && (
+                <Button variant="ghost" size="sm" to={`/map?stop=${stop.id}`}>
+                  Map
+                </Button>
+              )}
+              {stop.coord && (
+                <Button variant="ghost" size="sm" to={`/compass?to=${stop.id}`}>
+                  Bearing
+                </Button>
+              )}
+              <ShareStopButton stopId={stop.id} title={stop.title} size="sm" />
+              <StopActions stopId={stop.id} title={stop.title} trip={false} />
+            </div>
+          </div>
+        </StopCard>
 
-        <div className="action-row" style={{ marginTop: 20 }}>
-          {planned ? (
-            <Button variant="ghost" to="/trip">
-              In your trip plan →
-            </Button>
-          ) : (
-            <Button
-              onClick={() => {
-                addStop(stop.id)
-                announceTripAdd(stop.title)
-              }}
-            >
-              Add to trip
-            </Button>
-          )}
-          {stop.coord && (
-            <Button variant="ghost" href={directionsUrl(stop.coord)} external>
-              Directions →
-            </Button>
-          )}
-          {stop.coord && (
-            <Button variant="ghost" to={`/map?stop=${stop.id}`}>
-              On the map →
-            </Button>
-          )}
-          {stop.coord && (
-            <Button variant="ghost" to={`/compass?to=${stop.id}`}>
-              Bearing →
-            </Button>
-          )}
-          <ShareStopButton stopId={stop.id} title={stop.title} />
-        </div>
+        {pinNotice}
 
-        {notices}
+        {seasonal}
 
-        {joins}
+        {/* Everything about getting there, in one panel: today's forecast,
+            the hikes that start here, and where else to park or camp. They
+            were three loose lists trailing the page; a row is left out when
+            it has nothing to say, and the panel with it when none do. */}
+        {(forecastLine || hikesHere.length > 0 || nearbyAmenities.length > 0) && (
+          <section aria-labelledby="stop-logistics-title" className="stop-logistics">
+            <h2 id="stop-logistics-title" className="eyebrow stop-logistics__title">
+              Getting there
+            </h2>
+            {forecastLine && (
+              <div className="stop-logistics__row">
+                <span className="stop-logistics__label">Today</span>
+                <p className="stop-logistics__reading">{forecastLine}</p>
+              </div>
+            )}
+            {hikesHere.length > 0 && (
+              <div className="stop-logistics__row">
+                <span className="stop-logistics__label">Hikes from this trailhead</span>
+                <ul className="stop-logistics__list">
+                  {hikesHere.map((h) => (
+                    <li key={h.id}>
+                      <Link to={`/hike/${h.id}`}>{h.title} →</Link>
+                      <span className="stop-logistics__meta">
+                        {h.distanceMi} mi · {h.elevationGainFt.toLocaleString()} ft gain ·{' '}
+                        {DIFFICULTY_LABEL[h.difficulty]}
+                      </span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            )}
+            {nearbyAmenities.length > 0 && (
+              <div className="stop-logistics__row">
+                <span className="stop-logistics__label">Parking and camping nearby</span>
+                <ul className="stop-logistics__list">
+                  {nearbyAmenities.map(({ amenity, miles }) => {
+                    // The live lot word, under the waits posture: only while the
+                    // feed is fresh, and never a word for a pin with no NPS lot.
+                    const fresh =
+                      parking.fetchedAt !== null &&
+                      nowMs - Date.parse(parking.fetchedAt) <= PARKING_HIDE_MS
+                    const lot = fresh ? lotForAmenity(amenity, parking.lots) : null
+                    const lotWord =
+                      lot && lot.status !== 'unknown' ? LOT_STATUS_LABEL[lot.status] : null
+                    return (
+                      <li key={amenity.id}>
+                        <a href={directionsUrl(amenity.coord)} target="_blank" rel="noreferrer">
+                          {amenity.name} →
+                        </a>
+                        <span className="stop-logistics__meta">
+                          {amenity.kind === 'camping' ? 'campground' : 'parking'} ·{' '}
+                          {formatMiles(miles)} away
+                          {lotWord && parking.fetchedAt
+                            ? ` · ${lotWord} (NPS, ${compactStamp(parking.fetchedAt, nowMs) ?? 'just now'})`
+                            : ''}
+                        </span>
+                      </li>
+                    )
+                  })}
+                </ul>
+              </div>
+            )}
+          </section>
+        )}
+
+        {closing}
 
         <PrevNextNav
           sticky

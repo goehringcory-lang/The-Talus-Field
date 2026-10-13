@@ -469,7 +469,7 @@ const seed: HikeT[] = [
     stopId: 'ostrander-lake',
     coord: [-119.6039, 37.6668], // same pin as stop ostrander-lake
     season: 'Glacier Point Road season',
-    photo: { src: '/photos/ostrander-lake.jpg', alt: 'Ostrander Lake under a granite ridge.' },
+    photo: { src: '/photos/ostrander-ski-hut.jpg', alt: 'The stone Ostrander Ski Hut in falling snow.' },
     description:
       'A long walk through lodgepole and old burns, gentle for the first half and steep near the end, to a granite-bowled lake under Horse Ridge. Few other parties.',
   },

@@ -9,9 +9,12 @@ import AddToTripButton from './AddToTripButton'
 type Props = {
   stopId: string
   title: string
+  // The stop page carries Add to trip as a full button, so its row leaves the
+  // calendar toggle out rather than offering the same action twice.
+  trip?: boolean
 }
 
-export default function StopActions({ stopId, title }: Props) {
+export default function StopActions({ stopId, title, trip = true }: Props) {
   const { toggle, isFavorite } = useFavorites()
   const saved = isFavorite(stopId)
   const { toggle: toggleVisited, isVisited } = useVisited()
@@ -19,7 +22,7 @@ export default function StopActions({ stopId, title }: Props) {
 
   return (
     <div className="stop-card__actions">
-      <AddToTripButton stopId={stopId} title={title} />
+      {trip && <AddToTripButton stopId={stopId} title={title} />}
       <button
         type="button"
         className="fav-toggle"
