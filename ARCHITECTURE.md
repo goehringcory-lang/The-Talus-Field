@@ -53,6 +53,7 @@ All events fire through `window.track`. Names and where they fire:
 |---|---|
 | `newsletter_signup`, `newsletter_impression` | components.jsx helpers, called by every newsletter unit with a `location` param. Since October 2026 `newsletter_signup` fires only on a signup the Worker confirmed or a press of the Buttondown-tab fallback, not on every submit |
 | `newsletter_signup_result` | `subscribeNewsletter` / `NewsletterForm` (components.jsx): one per attempt, `{location, tag, result}` with `result` = `ok` / `invalid` / `rate` / `fallback` / `tab`. A run of `fallback` means `/api/subscribe` is failing (missing `BUTTONDOWN_API_KEY`, Buttondown down) |
+| `newsletter_sample_click` | `LatestLetter` (components.jsx, under every `NewsletterInline` form and in the exit-intent modal) and the /newsletter page's recent-letters list: a click through to a published letter in Buttondown's archive, `{location}`. The archive pages' form posts to `/api/subscribe` without JavaScript and is counted as `newsletter_signup` with location `archive_ask` when the Worker's redirect lands on `/newsletter?joined=1` |
 | `newsletter_gate_skip` | `SoftGate` (components.jsx): "No thanks, show me" on a letter gate, `{location, tag}`. Locations: `trip_plan_gate`, `dates_calendar_gate`, `article_bonus_gate` |
 | `itinerary_email` | `ItinEmailPlan` (page-itineraries.jsx): "Email me this plan", `{itinerary}` |
 | `checklist_print_link` | page-checklist.jsx: the page opened from the emailed `?print=1` link and raised the print dialog |

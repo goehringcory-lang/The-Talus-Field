@@ -856,6 +856,12 @@ main:focus { outline: none; }
 .nlbox__hp { position: absolute; left: -10000px; width: 1px; height: 1px; overflow: hidden; }
 .nlbox__note { margin: 8px 0 0; font: 13px/1.5 var(--sans); color: var(--hp-ink); }
 .nlbox__form button:disabled { opacity: .7; cursor: progress; }
+/* LatestLetter: the last Sunday letter's title under the form, a sample of
+   what the reader is signing up for. The line keeps its height while the
+   feed loads (or if it never does) so nothing under it moves. */
+.nlbox__latest { margin: 12px 0 0; min-height: 1.6em; font: 13px/1.6 var(--sans); color: var(--hp-muted); }
+.nlbox__latest a { color: var(--hp-ink); border-bottom: 1px solid var(--hp-accent); text-decoration: none; }
+.nlbox__latest a:hover { color: var(--hp-accent); }
 
 /* SoftGate (components.jsx): a faded, decorative preview of what the letter
    unlocks, then the ask, then "No thanks, show me". The preview is a
@@ -6865,6 +6871,7 @@ kbd {
 .hp-design .hp-newsletter { background: transparent; border: 0; padding: 0; margin: 0; }
 .hp-design .hp-newsletter h3 { position: absolute; width: 1px; height: 1px; padding: 0; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
 .hp-design .hp-newsletter > p { color: var(--hp-muted); font: 13px/1.85 var(--sans); margin: 15px 0 24px; }
+.hp-design .hp-newsletter > p.nlbox__latest { font: 13px/1.6 var(--sans); margin: 12px 0 0; }
 :is(.hp-design, .nlmodal) .nlbox__form { display: flex; gap: 8px; margin: 0; }
 :is(.hp-design, .nlmodal) .nlbox__form input[type=email] { min-width: 0; width: 100px; flex: 1; padding: 13px; background: #fffdf7; border: 1px solid #b8c0b3; border-radius: 3px; color: var(--hp-ink); font: 12px var(--sans); }
 :is(.hp-design, .nlmodal) .nlbox__form button { padding: 15px 17px; background: var(--hp-accent); border: 0; border-radius: 3px; color: var(--hp-on-accent); font: 600 12px var(--sans); white-space: nowrap; cursor: pointer; }
@@ -7704,6 +7711,15 @@ html[data-nav-mode="pinned"] { scroll-padding-top: 62px; }
 .hp-nlpage__terms h3 { font-size: 30px; border-top: 1px solid var(--hp-ink); padding-top: 18px; margin-bottom: 0; }
 .hp-nlpage__terms .hp-sub { margin-bottom: 0; }
 .hp-nlpage__privacy { grid-column: 1 / -1; margin: 24px 0 0; }
+/* Recent letters: the archive's last few, so a reader can read one first. */
+.hp-nlpage__recent h2 { font: 400 38px/1.05 var(--serif); letter-spacing: -1px; margin: 10px 0 24px; }
+.hp-nlpage__letters { list-style: none; margin: 0; padding: 0; max-width: 680px; }
+.hp-nlpage__letters li { padding: 18px 0; border-top: 1px solid var(--hp-rule); }
+.hp-nlpage__letters li:last-child { border-bottom: 1px solid var(--hp-rule); }
+.hp-nlpage__letters time { display: block; font: 600 10px var(--sans); letter-spacing: 1.4px; text-transform: uppercase; color: var(--hp-accent); margin-bottom: 6px; }
+.hp-nlpage__letters a { font: 400 24px/1.2 var(--serif); color: var(--hp-ink); text-decoration: none; }
+.hp-nlpage__letters a:hover { color: var(--hp-accent); }
+.hp-nlpage__letters p { margin: 8px 0 0; font: 14px/1.7 var(--sans); color: var(--hp-muted); }
 .hp-contact__grid { display: grid; grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr); gap: 64px; align-items: start; }
 .hp-contact__pair { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
 .hp-contact__error { color: var(--hp-accent-deep); font-size: 13px; margin-bottom: 16px; }

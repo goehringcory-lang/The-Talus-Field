@@ -1,5 +1,5 @@
-/* global React, HpPageHead, HpPostcard, NewsletterForm */
-const { useState } = React;
+/* global React, HpPageHead, HpPostcard, NewsletterForm, useRecentLetters */
+const { useState, useEffect, useRef } = React;
 
 // API base for the Worker. Override at runtime via window.GUIDE_API_BASE
 // (same convention as page-guide.jsx) to point at local dev.
@@ -7,8 +7,70 @@ const CONTACT_API_BASE =
   (typeof window !== "undefined" && window.GUIDE_API_BASE) ||
   "https://api.thetalusfieldjournal.com";
 
+// The archive pages (no JavaScript) post their form straight to the Worker,
+// which answers with a redirect here: ?joined=1 on the list, ?retry=<reason>
+// when this page's own form should take over.
+const NL_RETRY_COPY = {
+  invalid: "That address did not take. Check it and try again here.",
+  rate: "Too many tries from this connection. Try again in an hour.",
+  fallback: "Our signup did not answer that time. Try again here.",
+};
+
+function formatLetterDate(iso) {
+  if (!iso) return "";
+  const d = new Date(iso);
+  if (Number.isNaN(d.getTime())) return "";
+  return d.toLocaleDateString("en-US", { month: "long", day: "numeric", year: "numeric", timeZone: "America/Los_Angeles" });
+}
+
+// The last few letters as they went out, so a reader can read one before
+// deciding. Renders nothing until the feed answers, and nothing if it fails.
+function RecentLetters() {
+  const ref = useRef(null);
+  const letters = useRecentLetters(ref);
+  return (
+    <div ref={ref}>
+      {letters.length > 0 && (
+        <section className="hp-wrap hp-section hp-nlpage__recent" aria-labelledby="nl-recent-h">
+          <p className="hp-eyebrow">RECENT LETTERS</p>
+          <h2 id="nl-recent-h">Read one before you decide.</h2>
+          <ol className="hp-nlpage__letters">
+            {letters.map((l) => (
+              <li key={l.url}>
+                {l.date && <time dateTime={l.date}>{formatLetterDate(l.date)}</time>}
+                <a
+                  href={l.url}
+                  target="_blank"
+                  rel="noopener"
+                  onClick={() => { if (window.track) window.track("newsletter_sample_click", { location: "newsletter_page" }); }}
+                >{l.title} ↗</a>
+                {l.excerpt && <p>{l.excerpt}</p>}
+              </li>
+            ))}
+          </ol>
+        </section>
+      )}
+    </div>
+  );
+}
+
 function NewsletterPage({ go }) {
   const [done, setDone] = useState(null); // null | "api" | "tab"
+  const [retry, setRetry] = useState(null);
+  useEffect(() => {
+    const q = new URLSearchParams(window.location.search);
+    if (q.get("joined") === "1") {
+      // Counted here, the one place an archive signup can be seen client-side.
+      window.trackNewsletterSubmit("archive_ask", "archive");
+      setDone("api");
+    } else if (NL_RETRY_COPY[q.get("retry")]) {
+      setRetry(q.get("retry"));
+    }
+    if (q.has("joined") || q.has("retry")) {
+      // A reload must not count the signup twice.
+      try { window.history.replaceState(window.history.state, "", window.location.pathname); } catch (_e) { /* old browsers keep the query */ }
+    }
+  }, []);
   return (
     <div className="page hp-nlpage">
       <HpPageHead
@@ -16,7 +78,7 @@ function NewsletterPage({ go }) {
         crumbs={[{ label: "Home", route: "home" }, { label: "Newsletter" }]}
         eyebrow="NEWSLETTER"
         title="Sunday Field Notes."
-        intro="A short note on Sundays, when there is something to say. Subscribing is free."
+        intro="A letter from inside Yosemite on Sundays: what the park is doing this week and why, from the river gauges to the oaks, set beside what its naturalists wrote down in the same weeks a century ago. Free."
         aside={<HpPostcard />}
       >
         <div className="hp-nlpage__perk">
@@ -32,17 +94,20 @@ function NewsletterPage({ go }) {
           </p>
         ) : (
           <>
+            {retry && <p className="nlbox__note" role="status">{NL_RETRY_COPY[retry]}</p>}
             <label htmlFor="nl-page-email" className="fj-label">Your email address</label>
             <NewsletterForm location="newsletter_page" tag="newsletter-page" inputId="nl-page-email" inputLabel="Your email address" onDone={setDone} />
           </>
         )}
       </HpPageHead>
 
+      <RecentLetters />
+
       <section className="hp-wrap hp-section hp-nlpage__terms fj-notes">
         <div className="fj-note">
           <span className="fj-note__stamp" aria-hidden="true">Sun.</span>
           <h2>Cadence</h2>
-          <p className="hp-sub">Sundays, when there is something to say. Some weeks there is not.</p>
+          <p className="hp-sub">Sunday mornings, Pacific time. Most weeks; a week with nothing worth saying gets no letter.</p>
         </div>
         <div className="fj-note">
           <span className="fj-note__stamp" aria-hidden="true">@</span>

@@ -3166,6 +3166,68 @@ function useNewsletterImpression(location, tag, enabled, variant) {
   return ref;
 }
 window.useNewsletterImpression = useNewsletterImpression;
+var lettersPromise = null;
+function loadRecentLetters() {
+  if (!lettersPromise) {
+    lettersPromise = fetch(`${NL_API_BASE}/api/letters`).then(r => r.ok ? r.json() : null).then(j => j && Array.isArray(j.letters) ? j.letters.filter(l => l && l.title && /^https:\/\/buttondown\.com\//.test(l.url)) : []).catch(() => []);
+  }
+  return lettersPromise;
+}
+window.loadRecentLetters = loadRecentLetters;
+function useRecentLetters(ref) {
+  var [letters, setLetters] = useState([]);
+  useEffect(() => {
+    var live = true;
+    var load = () => loadRecentLetters().then(list => {
+      if (live) setLetters(list);
+    });
+    var node = ref && ref.current;
+    if (!node || typeof IntersectionObserver === "undefined") {
+      load();
+      return () => {
+        live = false;
+      };
+    }
+    var io = new IntersectionObserver(entries => {
+      if (entries.some(e => e.isIntersecting)) {
+        io.disconnect();
+        load();
+      }
+    }, {
+      rootMargin: "400px 0px"
+    });
+    io.observe(node);
+    return () => {
+      live = false;
+      io.disconnect();
+    };
+  }, []);
+  return letters;
+}
+window.useRecentLetters = useRecentLetters;
+function LatestLetter({
+  location
+}) {
+  var ref = useRef(null);
+  var letters = useRecentLetters(ref);
+  var latest = letters[0];
+  return React.createElement("p", {
+    className: "nlbox__latest",
+    ref: ref
+  }, latest && React.createElement(React.Fragment, null, React.createElement("span", {
+    className: "nlbox__latest-label"
+  }, "Last Sunday's letter: "), React.createElement("a", {
+    href: latest.url,
+    target: "_blank",
+    rel: "noopener",
+    onClick: () => {
+      if (window.track) window.track("newsletter_sample_click", {
+        location: location || "unknown"
+      });
+    }
+  }, latest.title, " ↗")));
+}
+window.LatestLetter = LatestLetter;
 function NewsletterInline({
   heading,
   blurb,
@@ -3193,7 +3255,7 @@ function NewsletterInline({
   return React.createElement("div", {
     className: ["nlbox", modifier].filter(Boolean).join(" "),
     ref: ref
-  }, React.createElement("h3", null, heading || "Sunday Field Notes"), React.createElement("p", null, blurb || "A short note on Sundays, when there is something to say."), inputLabel && !done && React.createElement("label", {
+  }, React.createElement("h3", null, heading || "Sunday Field Notes"), React.createElement("p", null, blurb || "A letter from inside Yosemite on Sundays: what the park is doing this week and why, set beside what its naturalists wrote down in the same weeks a century ago."), inputLabel && !done && React.createElement("label", {
     htmlFor: `${location}-email`
   }, inputLabel), done ? React.createElement("p", {
     className: "nlbox__done",
@@ -3209,6 +3271,8 @@ function NewsletterInline({
     inputId: inputLabel ? `${location}-email` : undefined,
     inputLabel: inputLabel,
     onDone: setDone
+  }), !done && React.createElement(LatestLetter, {
+    location: location
   }));
 }
 var EXIT_COOLDOWN_DAYS = 14;
@@ -3327,14 +3391,16 @@ function ExitIntentNewsletter({
     style: {
       marginBottom: 12
     }
-  }, "Before you go"), React.createElement("h3", null, "One letter a week. Sometimes none."), React.createElement("p", null, "Sunday Field Notes: what is open, what is blooming, and the occasional longer piece. Free, and you can leave anytime."), done ? React.createElement("p", {
+  }, "Before you go"), React.createElement("h3", null, "A letter from inside the park, on Sundays."), React.createElement("p", null, "Sunday Field Notes: what Yosemite is doing this week and why, from the river gauges to the oaks, set beside what the park's naturalists wrote down in the same weeks a century ago. Free, and you can leave anytime."), done ? React.createElement("p", {
     className: "nlbox__done",
     role: "status"
-  }, nlDoneLine(done)) : React.createElement(NewsletterForm, {
+  }, nlDoneLine(done)) : React.createElement(React.Fragment, null, React.createElement(NewsletterForm, {
     location: "article_exit_intent",
     tag: "exit-intent",
     onDone: setDone
-  })));
+  }), React.createElement(LatestLetter, {
+    location: "article_exit_intent"
+  }))));
 }
 function MapLightbox({
   src,
