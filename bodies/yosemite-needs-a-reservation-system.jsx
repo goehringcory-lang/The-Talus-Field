@@ -6,7 +6,7 @@ window.ARTICLE_BODIES["yosemite-needs-a-reservation-system"] = function Yosemite
   return (
     <>
       <p className="dropcap">
-        I built this guide so people can enjoy their national park. I want them to see the Valley at sunrise, hear a hermit thrush at dusk, watch a bear graze a meadow edge in October. I want them to have an experience good enough that they go home and care about public lands for the rest of their lives. That is the whole point.
+        I built this guide so people can enjoy their national park. I want them to see the Valley at sunrise, hear a hermit thrush at dusk, watch <a href="/articles/yosemite-wildlife-viewing-guide">a bear graze a meadow edge in October</a>. I want them to have an experience good enough that they go home and care about public lands for the rest of their lives. That is the whole point.
       </p>
 
       <p>
@@ -34,11 +34,11 @@ window.ARTICLE_BODIES["yosemite-needs-a-reservation-system"] = function Yosemite
       <h2>Failure one: people cannot enjoy their park</h2>
 
       <p>
-        On Sunday of Memorial Day weekend 2026, visitors received a text alert at 7:39 a.m. telling them that parking lots in Yosemite Valley were already full. By mid-morning, the entrance stations had wait times exceeding ninety minutes. By evening, as one visitor told ABC7, "the entire park, it was impossible to park there. There's nowhere to park for anybody."
+        On Sunday of Memorial Day weekend 2026, visitors received a text alert at 7:39 a.m. telling them that parking lots in Yosemite Valley were already full. Some reported waiting at least an hour and a half to get into the park. One visitor told ABC7 that by 7:30, "the entire park, it was impossible to park there. There's nowhere to park for anybody."
       </p>
 
       <p>
-        It was not an isolated incident. Since the reservation system was dropped for the 2026 season, Yosemite has recorded more than 836,000 visits through late May, roughly 100,000 more than the same period last year. March 2026 visitation jumped nearly 45 percent over the previous year. On peak days throughout the spring, Valley parking lots have been filling by 7 a.m.
+        It was not an isolated incident. Since the reservation system was dropped for the 2026 season, Yosemite has recorded more than 836,000 visits through late May, by the Park Service figures reported at the time, roughly 100,000 more than the same period last year. By the same count, March 2026 visitation jumped nearly 45 percent over the previous March. On peak days throughout the spring, Valley parking lots have been filling by 7 a.m.
       </p>
 
       <p>
@@ -60,7 +60,7 @@ window.ARTICLE_BODIES["yosemite-needs-a-reservation-system"] = function Yosemite
       </p>
 
       <p>
-        Videos from the holiday weekend showed dozens of cars parked illegally on meadow edges and road shoulders throughout the Valley. Visitors, unable to find legal parking, drove off pavement and onto the ground. Three tow trucks were deployed simultaneously to clear illegally parked vehicles from shuttle routes. Beth Pratt, a conservationist and author who has worked on Yosemite wildlife issues for years, described the scene plainly: people were "pulling onto meadows, pulling off pavement, going off-road."
+        Videos from the holiday weekend showed dozens of cars parked illegally on meadow edges and road shoulders throughout the Valley. Visitors, unable to find legal parking, drove off pavement and onto the ground. Beth Pratt, a conservationist and author who has worked on Yosemite wildlife issues for years, described the scene plainly: people were "pulling onto meadows, pulling off pavement, going off-road."
       </p>
 
       <p>
@@ -78,11 +78,11 @@ window.ARTICLE_BODIES["yosemite-needs-a-reservation-system"] = function Yosemite
       </p>
 
       <p>
-        At Arches National Park, a Utah State University survey of more than 500 visitors during the 2022 timed-entry pilot found that 84 percent of respondents wanted the reservation system to continue. Fifty-seven percent said timed entry made their experience "somewhat or much better." Eighty-nine percent of visitors were able to get a ticket, 98 percent entered on their desired day, and 86 percent received their preferred time slot. By any measure, the system worked for visitors and for the park.
+        At Arches National Park, a Utah State University survey of more than 500 visitors during the 2022 timed-entry pilot found that 84 percent of respondents would like a reservation system in place for future visits. Fifty-seven percent said timed entry made their experience "somewhat or much better." Eighty-nine percent of respondents were able to get a ticket, and of those, 98 percent entered on their desired day and 86 percent received their preferred time slot. By any measure, the system worked for visitors and for the park.
       </p>
 
       <p>
-        In Yosemite, a March 2026 survey by the employee union found that 85 percent of 135 verified staff responses did not approve of Superintendent Ray McPadden's decision to drop the reservation system. These are the people who work in the park every day. They saw the reservation system work across five seasons. They know what the alternative looks like.
+        In Yosemite, a survey by the park workers' union, run from late February through March 30, 2026, found that 115 of 135 respondents, 85 percent, gave Superintendent Ray McPadden's decision to drop the reservation system the lowest approval rating on its scale. The respondents were Park Service staff and the park's partner and concession employees. These are the people who work in the park every day. They saw the reservation system work across five seasons. They know what the alternative looks like.
       </p>
 
       <p>
@@ -104,7 +104,7 @@ window.ARTICLE_BODIES["yosemite-needs-a-reservation-system"] = function Yosemite
       </p>
 
       <p>
-        Superintendent McPadden said the park would rely on "real-time traffic monitoring" and promotion of areas outside the Valley. Those are useful supplements, but they do not substitute for managing the number of vehicles that enter the park on a given day. Monitoring does nothing for a parking lot that filled three hours ago.
+        Superintendent McPadden said the park would rely on "real-time traffic monitoring" and promotion of <a href="/articles/wawona-yosemite-guide">areas outside the Valley</a>. Those are useful supplements, but they do not substitute for managing the number of vehicles that enter the park on a given day. Monitoring does nothing for a parking lot that filled three hours ago.
       </p>
 
       <h2>Why this matters beyond Yosemite</h2>
@@ -118,7 +118,7 @@ window.ARTICLE_BODIES["yosemite-needs-a-reservation-system"] = function Yosemite
       </p>
 
       <p>
-        The reservation system was imperfect. It needed refinement. Dynamic pricing, better shoulder-season incentives, improved cancellation policies, expanded public transit: all of these were available paths forward. Dropping the system entirely was the wrong call.
+        The reservation system was imperfect. It needed refinement. Dynamic pricing, better shoulder-season incentives, improved cancellation policies, <a href="/articles/sustainable-yosemite-car-free-zero-waste">expanded public transit</a>: all of these were available paths forward. Dropping the system entirely was the wrong call.
       </p>
 
       <p>
