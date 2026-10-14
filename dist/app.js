@@ -30,13 +30,13 @@ function routeExists(route) {
   if (route.startsWith("cat:")) return !!(window.findCategory && window.findCategory(route.slice(4)));
   return STATIC_ROUTE_KEYS.has(route);
 }
-var ASSET_VERSION = (() => {
-  var tags = document.querySelectorAll("script[src]");
-  for (var t of tags) {
-    var m = (t.getAttribute("src") || "").match(/\/dist\/app\.js\?v=(\d+)/);
-    if (m) return m[1];
+var ASSET_HASHES = (() => {
+  try {
+    var el = document.getElementById("asset-hashes");
+    return el ? JSON.parse(el.textContent) : {};
+  } catch (e) {
+    return {};
   }
-  return "0";
 })();
 var PAGE_MODULES = {
   home: {
@@ -198,7 +198,7 @@ function loadScriptOnce(src) {
   if (!loadedScripts[src]) {
     loadedScripts[src] = new Promise((resolve, reject) => {
       var el = document.createElement("script");
-      el.src = `${src}?v=${ASSET_VERSION}`;
+      el.src = ASSET_HASHES[src] ? `${src}?v=${ASSET_HASHES[src]}` : src;
       el.onload = () => resolve();
       el.onerror = () => reject(new Error(`failed to load ${src}`));
       document.head.appendChild(el);

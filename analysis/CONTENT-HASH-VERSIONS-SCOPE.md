@@ -1,6 +1,7 @@
 # Scope: per-file content hashes instead of the shared `?v=` counter
 
-October 14, 2026. Status: **scoped, not built.** Branch `content-hash-versions`.
+October 14, 2026. Status: **phase 1 built** on branch `content-hash-versions`;
+phases 2 and 3 not started. See "Phase 1 as built" at the end.
 
 Prompted by Anthropic's "Redesigning source control" (engineering blog), whose
 central scaling lesson is that a piece of global state every change must update
@@ -168,3 +169,31 @@ mention the counter historically and are left as they are.
   bundles merge with no conflict.
 - `/verify` on `/`, an article (lazy body), `/map` (points.geojson), `/now`:
   every injected request carries a 10-hex `?v=` and returns 200.
+
+## Phase 1 as built
+
+One departure from the plan above: `check-asset-freshness.mjs` and
+`asset-versions.json` were **shrunk, not deleted**. Deleting them would have
+dropped the freshness guard on the four hand-kept counters phase 1 does not
+touch (article bodies, `points.geojson`, `bulletin.json`, the `/img/`
+counter). The manifest went from 139 entries to 91 (84 bodies, the two data
+counters, five images), and none of the remaining entries moves on an
+ordinary script or CSS PR. `assets:stamp` now runs `gen-asset-hashes.mjs`
+then the counter stamp, so every runbook's existing "run assets:stamp" step
+does both.
+
+Verified:
+- `npm --prefix scripts run check`: green.
+- Negative probes: a comment appended to `styles.css` with no stamp fails
+  `gen-asset-hashes.mjs --check`; a hand-typed `?v=457` fails
+  `check-cache-busters.sh`.
+- Merge test in a scratch clone: six branches, each changing one different
+  asset (two adjacent page bundles, `styles.css`, `components.jsx`, `data.js`,
+  `page-map.jsx`), each compiled and stamped on its own. Every pairing merged
+  without conflict, the six-way octopus merge was clean, and the merged
+  result passed `gen-asset-hashes --check` and `gen-compiled --check`.
+- Headless Chromium on `/`, `/articles/yosemite-falls-trail`, `/map`, `/now`
+  (direct loads behind an SPA-fallback server): every page rendered, no
+  console errors, the eight eager assets and all 40 lazy bundles requested
+  with `?v=` equal to their hash and answered 200; the body, pins and
+  bulletin still under their own counters.

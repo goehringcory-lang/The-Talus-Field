@@ -81,9 +81,9 @@ article:
    narrower than 1200px automatically get an upscaled
    `img/responsive/<slug>-og.jpg` social card so og:image stays ≥1200px wide.
 
-Then bump the shared `?v=N` cache-buster in `index.html` (and the article's
-`window.BODY_VERSIONS` entry in `data.js`), run
-`npm --prefix scripts run assets:stamp` to record the new bytes, and run
+Then bump the article's `window.BODY_VERSIONS` entry in `data.js`, run
+`npm --prefix scripts run assets:stamp` (it rewrites every script's content-hash
+`?v=` in `index.html` and records the body's new version), and run
 `npm --prefix scripts run check` before committing. `run check` covers the
 cache-busters, asset freshness, the SEO mirrors, the prerender fragments and the
 compiled dist in one command, and CI runs it on every PR.

@@ -119,9 +119,9 @@ npm --prefix scripts run check         # must pass entirely
 npm --prefix scripts run checks        # no NEW errors vs origin/main
 ```
 
-When `check-asset-freshness.mjs` fails because a versioned asset changed
-under the unchanged shared `?v=`, bump the shared `?v=` in `index.html`,
-run `npm --prefix scripts run assets:stamp`, and commit the manifest.
+When `gen-asset-hashes.mjs --check` fails because a script or the
+stylesheet changed, run `npm --prefix scripts run assets:stamp` and commit
+`index.html` (each `?v=` is the file's own content hash; never bump by hand).
 `edge/seo.js` needs no regeneration; it ships with the next Workers Build.
 
 Branch `claude/reference-refresh-<route-slug>-<YYYY-MM-DD>` from

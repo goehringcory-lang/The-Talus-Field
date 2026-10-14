@@ -116,7 +116,7 @@
   <link rel="preload" href="/fonts/eb-garamond.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="/fonts/inter.woff2" as="font" type="font/woff2" crossorigin>
 
-  <link rel="stylesheet" href="/styles.css?v=456" />
+  <link rel="stylesheet" href="/styles.css?v=7559a5d331" />
 
   <!--
     The home hero's AVIF used to be preloaded here. It no longer is: the static
@@ -419,8 +419,14 @@
     data files load on demand via ensureRoute() in app.jsx — the active route's
     bundle before first render, the rest prefetched on first user interaction.
     PAGE_MODULES in app.jsx is the registry; add new page scripts there, not
-    here. Dynamically injected scripts reuse the shared ?v= below (read from
-    the app.js tag at boot), so the cache-buster discipline is unchanged.
+    here.
+
+    Every ?v= below, and every hash in the asset-hashes block that the injected
+    bundles read, is the file's own content hash, written by
+    `npm --prefix scripts run assets:stamp` (scripts/gen-asset-hashes.mjs) and
+    never by hand. The blank lines between tags and between block entries are
+    deliberate: git merges two PRs cleanly when an unchanged line separates
+    the hashes they each touched.
 
     All eight are `defer` (September 2026). They sit at the end of <body>, so
     defer changes nothing about when they run (in order, once parsing ends),
@@ -435,12 +441,102 @@
     on every route: the page that is already on screen (shell or prerendered
     prose) gets its CSS, fonts and hero first; React boots after.
   -->
-  <script src="/vendor/react-18.3.1.production.min.js?v=456" defer></script>
-  <script src="/vendor/react-dom-18.3.1.production.min.js?v=456" defer></script>
-  <script src="/storage.js?v=456" defer></script>
-  <script src="/affiliate.js?v=456" defer></script>
-  <script src="/data.js?v=456" defer></script>
-  <script src="/dist/components.js?v=456" defer></script>
-  <script src="/dist/app.js?v=456" defer></script>
+  <!-- GENERATED:ASSET-HASHES (scripts/gen-asset-hashes.mjs; do not hand-edit) -->
+  <script type="application/json" id="asset-hashes">{
+"/dates-data.js": "7de577cea6",
+
+"/dist/intent.js": "2391de383d",
+
+"/dist/page-about.js": "a70a1d8663",
+
+"/dist/page-advertise.js": "0f6535d2d0",
+
+"/dist/page-article.js": "ba47579e34",
+
+"/dist/page-articles.js": "ffe2987084",
+
+"/dist/page-checklist.js": "839e73c017",
+
+"/dist/page-conditions.js": "284d0a3a09",
+
+"/dist/page-consult.js": "71780901cd",
+
+"/dist/page-dates.js": "9d3fdd5207",
+
+"/dist/page-distances.js": "21b831ef21",
+
+"/dist/page-explore.js": "a0f84bb8b5",
+
+"/dist/page-fall-color.js": "60d91ca7b4",
+
+"/dist/page-films.js": "9bb5a9a8e5",
+
+"/dist/page-firefall.js": "b51a72fc4d",
+
+"/dist/page-frazil-ice.js": "ddfad37183",
+
+"/dist/page-guide.js": "bfe3e6b865",
+
+"/dist/page-half-dome-lottery.js": "166b232f8f",
+
+"/dist/page-home.js": "4090327883",
+
+"/dist/page-international.js": "784ebd2b91",
+
+"/dist/page-itineraries.js": "ad6e90f165",
+
+"/dist/page-kit.js": "b4aee6a113",
+
+"/dist/page-legal.js": "cb6367399f",
+
+"/dist/page-map.js": "cad35f40ff",
+
+"/dist/page-moonbow.js": "e663f21d53",
+
+"/dist/page-newsletter-contact.js": "8c54bf313d",
+
+"/dist/page-now.js": "ef2d69e865",
+
+"/dist/page-partners.js": "eb494616cd",
+
+"/dist/page-places.js": "ba75661174",
+
+"/dist/page-planning-guide.js": "6e07d7e8a4",
+
+"/dist/page-search.js": "33ed79041f",
+
+"/dist/page-start-here.js": "965cf17faf",
+
+"/dist/page-stay.js": "761992e212",
+
+"/dist/page-tioga-opening.js": "d8d234a37a",
+
+"/dist/page-webcams.js": "ee7a22674e",
+
+"/dist/page-widget.js": "8256c8fa40",
+
+"/fees-data.js": "8e8b6b02b0",
+
+"/intent-data.js": "2f86c2a456",
+
+"/itineraries-data.js": "049bf21e3c",
+
+"/videos-data.js": "75e6d2b447"
+}</script>
+  <!-- /GENERATED:ASSET-HASHES -->
+
+  <script src="/vendor/react-18.3.1.production.min.js?v=d949f1c368" defer></script>
+
+  <script src="/vendor/react-dom-18.3.1.production.min.js?v=35f4f974f4" defer></script>
+
+  <script src="/storage.js?v=af9b7d4db2" defer></script>
+
+  <script src="/affiliate.js?v=1aac94a0f1" defer></script>
+
+  <script src="/data.js?v=fbebdb53cd" defer></script>
+
+  <script src="/dist/components.js?v=a0f8671230" defer></script>
+
+  <script src="/dist/app.js?v=e51568380c" defer></script>
 </body>
 </html>

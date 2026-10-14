@@ -115,10 +115,10 @@ Build it from the repo, never from memory:
    ```
 
    Mirror every changed row into `apps/guide/src/content/deadlines.ts`
-   before `check`. When `check-asset-freshness.mjs` fails because
-   `dates-data.js` or `fees-data.js` changed under the unchanged shared
-   `?v=`, bump the shared `?v=` in `index.html`, run `npm --prefix scripts
-   run assets:stamp`, and commit the manifest.
+   before `check`. When `gen-asset-hashes.mjs --check` fails because
+   `dates-data.js` or `fees-data.js` changed, run `npm --prefix scripts run
+   assets:stamp` and commit `index.html` (their `?v=` is a content hash in
+   its asset-hashes block; there is no number to bump).
 5. Branch `claude/season-preflight-dates-<YYYY-MM>` from `origin/main`; one
    commit with both tables, the mirror, the generated files, and any version
    bump; PR title `Dates: verified <date>` plus what changed. Body: the
