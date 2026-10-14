@@ -75,6 +75,11 @@
 .arc-pager__none { visibility: hidden; }
 
 /* The one ask: the design's letter card and form --------------------------- */
+/* The form posts to the API Worker, which subscribes through Buttondown's API
+   and redirects back to /newsletter. These pages load no JavaScript, and
+   Buttondown's own embed form now puts a Turnstile check in front of every
+   signup. The honeypot field stays out of sight and out of the tab order. */
+.arc-ask__hp { position: absolute; left: -10000px; width: 1px; height: 1px; overflow: hidden; }
 .arc-ask { max-width: 680px; margin: 48px 0 0; padding: 30px 32px; background: var(--hp-card); border: 1px solid var(--hp-rule); border-radius: 3px; }
 .arc-ask__h { font: 400 32px/1.04 var(--serif); letter-spacing: -.8px; margin: 0 0 12px; }
 .arc-ask__note { font-size: 13px; line-height: 1.85; color: var(--hp-muted); margin: 0 0 20px; }

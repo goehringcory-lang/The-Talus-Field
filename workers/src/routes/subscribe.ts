@@ -1,4 +1,4 @@
-import { Hono } from 'hono'
+import { Hono, type Context } from 'hono'
 import type { Env } from '../env'
 import { recordSubscribeAttempt } from '../lib/kv'
 import { PRINTABLES, sendPrintableLink, type PrintableKey } from '../lib/email'
@@ -88,8 +88,30 @@ async function createSubscriber(
   return { status: res.status, code }
 }
 
+// A plain HTML form (the Nature Notes archive pages, which load no
+// JavaScript) posts here url-encoded instead of JSON, and gets a 303 back to
+// the site rather than a JSON body it could not read: /newsletter?joined=1 on
+// the list, /newsletter?retry=<reason> otherwise, where the page's own form
+// (and its Buttondown fallback) takes over. The signup logic is the same.
+function isFormPost(contentType: string | undefined): boolean {
+  return /^(application\/x-www-form-urlencoded|multipart\/form-data)/i.test(contentType ?? '')
+}
+
 subscribe.post('/', async (c) => {
-  const body = await c.req.json<SubscribeBody>().catch(() => ({}) as SubscribeBody)
+  const form = isFormPost(c.req.header('Content-Type'))
+  const body: SubscribeBody = form
+    ? await c.req.parseBody().then((b) => ({ ...b, referrer: b.referrer ?? c.req.header('Referer') }) as SubscribeBody).catch(() => ({}) as SubscribeBody)
+    : await c.req.json<SubscribeBody>().catch(() => ({}) as SubscribeBody)
+  const res = await handleSubscribe(c, body)
+  if (!form) return res
+  const editorialBase = c.env.EDITORIAL_BASE_URL || 'https://thetalusfieldjournal.com'
+  const target = new URL('/newsletter', editorialBase)
+  if (res.status === 200) target.searchParams.set('joined', '1')
+  else target.searchParams.set('retry', res.status === 400 ? 'invalid' : res.status === 429 ? 'rate' : 'fallback')
+  return c.redirect(target.toString(), 303)
+})
+
+async function handleSubscribe(c: Context<{ Bindings: Env }>, body: SubscribeBody): Promise<Response> {
 
   if (typeof body.website === 'string' && body.website.trim() !== '') {
     // Pretend success so bots don't learn the honeypot exists.
@@ -161,4 +183,4 @@ subscribe.post('/', async (c) => {
     console.error('subscribe: buttondown unreachable', err)
     return c.json({ error: 'upstream', fallback: true }, 502)
   }
-})
+}

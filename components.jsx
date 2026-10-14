@@ -2652,6 +2652,65 @@ window.useNewsletterImpression = useNewsletterImpression;
 // `send` names a printable for the Worker to mail with the signup (see
 // PRINTABLES in workers/src/lib/email.ts); a subscribed device still sees the
 // soft state, so the caller keeps its own way to the printable on the page.
+// The recent Sunday letters, from the Worker's /api/letters (Buttondown's
+// public archive, read through its RSS). One request per page view at most,
+// shared by every unit that asks, and an empty list on any failure: the
+// signup never waits on it and a dead feed renders nothing.
+let lettersPromise = null;
+function loadRecentLetters() {
+  if (!lettersPromise) {
+    lettersPromise = fetch(`${NL_API_BASE}/api/letters`)
+      .then((r) => (r.ok ? r.json() : null))
+      .then((j) => (j && Array.isArray(j.letters) ? j.letters.filter((l) => l && l.title && /^https:\/\/buttondown\.com\//.test(l.url)) : []))
+      .catch(() => []);
+  }
+  return lettersPromise;
+}
+window.loadRecentLetters = loadRecentLetters;
+
+function useRecentLetters(ref) {
+  const [letters, setLetters] = useState([]);
+  useEffect(() => {
+    let live = true;
+    const load = () => loadRecentLetters().then((list) => { if (live) setLetters(list); });
+    const node = ref && ref.current;
+    // Units sit low on most pages: wait until one is near the screen.
+    if (!node || typeof IntersectionObserver === "undefined") { load(); return () => { live = false; }; }
+    const io = new IntersectionObserver((entries) => {
+      if (entries.some((e) => e.isIntersecting)) { io.disconnect(); load(); }
+    }, { rootMargin: "400px 0px" });
+    io.observe(node);
+    return () => { live = false; io.disconnect(); };
+  }, []);
+  return letters;
+}
+window.useRecentLetters = useRecentLetters;
+
+// A sample of the thing being asked for, under the form: the latest letter's
+// title, linked to the public archive. People sign up for a letter they have
+// read far more readily than for a description of one.
+function LatestLetter({ location }) {
+  const ref = useRef(null);
+  const letters = useRecentLetters(ref);
+  const latest = letters[0];
+  return (
+    <p className="nlbox__latest" ref={ref}>
+      {latest && (
+        <>
+          <span className="nlbox__latest-label">Last Sunday's letter: </span>
+          <a
+            href={latest.url}
+            target="_blank"
+            rel="noopener"
+            onClick={() => { if (window.track) window.track("newsletter_sample_click", { location: location || "unknown" }); }}
+          >{latest.title} ↗</a>
+        </>
+      )}
+    </p>
+  );
+}
+window.LatestLetter = LatestLetter;
+
 function NewsletterInline({ heading, blurb, location, tag, variant = "", cta, modifier, inputLabel, send }) {
   const [done, setDone] = useState(null); // null | "api" | "tab"
   const subscribed = isSubscribed();
@@ -2670,7 +2729,7 @@ function NewsletterInline({ heading, blurb, location, tag, variant = "", cta, mo
   return (
     <div className={["nlbox", modifier].filter(Boolean).join(" ")} ref={ref}>
       <h3>{heading || "Sunday Field Notes"}</h3>
-      <p>{blurb || "A short note on Sundays, when there is something to say."}</p>
+      <p>{blurb || "A letter from inside Yosemite on Sundays: what the park is doing this week and why, set beside what its naturalists wrote down in the same weeks a century ago."}</p>
       {inputLabel && !done && <label htmlFor={`${location}-email`}>{inputLabel}</label>}
       {done ? (
         <p className="nlbox__done" role="status">
@@ -2688,6 +2747,7 @@ function NewsletterInline({ heading, blurb, location, tag, variant = "", cta, mo
           onDone={setDone}
         />
       )}
+      {!done && <LatestLetter location={location} />}
     </div>
   );
 }
@@ -2807,12 +2867,15 @@ function ExitIntentNewsletter({ disabled }) {
       <div className="nlmodal__card" ref={dialogRef}>
         <button type="button" className="nlmodal__close" aria-label="Close" onClick={() => setOpen(false)}>✕</button>
         <div className="eyebrow eyebrow--moss" style={{ marginBottom: 12 }}>Before you go</div>
-        <h3>One letter a week. Sometimes none.</h3>
-        <p>Sunday Field Notes: what is open, what is blooming, and the occasional longer piece. Free, and you can leave anytime.</p>
+        <h3>A letter from inside the park, on Sundays.</h3>
+        <p>Sunday Field Notes: what Yosemite is doing this week and why, from the river gauges to the oaks, set beside what the park's naturalists wrote down in the same weeks a century ago. Free, and you can leave anytime.</p>
         {done ? (
           <p className="nlbox__done" role="status">{nlDoneLine(done)}</p>
         ) : (
-          <NewsletterForm location="article_exit_intent" tag="exit-intent" onDone={setDone} />
+          <>
+            <NewsletterForm location="article_exit_intent" tag="exit-intent" onDone={setDone} />
+            <LatestLetter location="article_exit_intent" />
+          </>
         )}
       </div>
     </div>

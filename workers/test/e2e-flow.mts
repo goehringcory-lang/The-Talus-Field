@@ -55,6 +55,15 @@ let npsAlertCalls = 0
 // Buttondown subscriber creates, and how the mock answers the next one.
 let buttondownCreates: { auth: string; collision: string; body: Record<string, unknown> }[] = []
 let buttondownMode: 'ok' | 'tag403' | 'invalid' | 'fail' = 'ok'
+// Buttondown's public RSS, as /api/letters reads it.
+let lettersFeedCalls = 0
+let lettersFeedMode: 'ok' | 'fail' = 'ok'
+const LETTERS_RSS = `<?xml version="1.0" encoding="utf-8"?>
+<rss version="2.0"><channel><title>Cory Goehring</title>
+<item><title>Why the dogwoods turn red &amp; the maples do not</title><link>https://buttondown.com/goehring/archive/why-the-dogwoods-turn-red/</link><description>&lt;p&gt;These are the weeks the broadleaved trees turn. The &lt;a href="https://thetalusfieldjournal.com/fall-color"&gt;fall color calendar&lt;/a&gt; has the dogwoods at 5,000 feet going first, in reds the Valley rarely shows, and the maples along the south wall creeks following a week or two after, in yellow, which is the whole of the story this letter tells.&lt;/p&gt;</description><pubDate>Sun, 11 Oct 2026 16:00:00 +0000</pubDate></item>
+<item><title>Off-site</title><link>https://evil.example/x</link><description>no</description><pubDate>Sun, 04 Oct 2026 16:00:00 +0000</pubDate></item>
+<item><title>The glaciers at the end of the melt</title><link>https://buttondown.com/goehring/archive/the-glaciers/</link><description>&lt;p&gt;Short one.&lt;/p&gt;</description><pubDate>Sun, 04 Oct 2026 16:00:00 +0000</pubDate></item>
+</channel></rss>`
 
 const realFetch = globalThis.fetch
 globalThis.fetch = (async (input: RequestInfo | URL, init?: RequestInit) => {
@@ -132,6 +141,11 @@ globalThis.fetch = (async (input: RequestInfo | URL, init?: RequestInit) => {
     if (buttondownMode === 'invalid') return json(400, { code: 'email_invalid' })
     if (buttondownMode === 'fail') return new Response('boom', { status: 500 })
     return json(201, { id: 'sub_1', email_address: body.email_address, type: body.type })
+  }
+  if (url.startsWith('https://buttondown.com/goehring/rss')) {
+    lettersFeedCalls++
+    if (lettersFeedMode === 'fail') return new Response('boom', { status: 500 })
+    return new Response(LETTERS_RSS, { status: 200, headers: { 'content-type': 'application/rss+xml' } })
   }
   if (url.startsWith('https://api.resend.com/emails')) {
     if (resendMode === 'fail') return new Response('boom', { status: 500 })
@@ -1107,6 +1121,56 @@ console.log('\nN. newsletter signup (/api/subscribe)')
   let last: Awaited<ReturnType<typeof call>> | null = null
   for (let i = 0; i < 11; i++) last = await sub({ email: `r${i}@example.com` }, '9.9.9.3')
   check('11th signup from one IP in an hour -> 429', last!.status === 429, last)
+
+  // A plain HTML form (the archive pages) posts url-encoded and is sent back
+  // to the site, never handed a JSON body.
+  const formSub = (fields: Record<string, string>, ip: string) =>
+    worker.fetch(new Request('https://api.thetalusfieldjournal.com/api/subscribe', {
+      method: 'POST',
+      body: new URLSearchParams(fields).toString(),
+      headers: { 'content-type': 'application/x-www-form-urlencoded', 'CF-Connecting-IP': ip, Referer: 'https://thetalusfieldjournal.com/archive/1923/' },
+    }), env as never, ctx)
+  buttondownCreates = []; buttondownMode = 'ok'
+  const formOk = await formSub({ email: 'archive@example.com', tag: 'archive-issue' }, '9.9.9.5')
+  check('form post -> 303 to /newsletter?joined=1', formOk.status === 303 &&
+    formOk.headers.get('Location') === 'https://thetalusfieldjournal.com/newsletter?joined=1', formOk.status)
+  check('form post subscribes with the tag and the page as referrer',
+    buttondownCreates[0]?.body.email_address === 'archive@example.com' && JSON.stringify(buttondownCreates[0]?.body.tags) === '["archive-issue"]' &&
+    buttondownCreates[0]?.body.referrer_url === 'https://thetalusfieldjournal.com/archive/1923/', buttondownCreates)
+  buttondownMode = 'fail'
+  const formFail = await formSub({ email: 'archive2@example.com' }, '9.9.9.5')
+  check('form post failure -> 303 to /newsletter?retry=fallback', formFail.status === 303 &&
+    formFail.headers.get('Location') === 'https://thetalusfieldjournal.com/newsletter?retry=fallback', formFail.status)
+  buttondownMode = 'ok'
+  const formBad = await formSub({ email: 'nope' }, '9.9.9.5')
+  check('form post bad address -> 303 to /newsletter?retry=invalid', formBad.headers.get('Location') === 'https://thetalusfieldjournal.com/newsletter?retry=invalid', formBad.status)
+  buttondownCreates = []
+  const formBot = await formSub({ email: 'bot2@example.com', website: 'x' }, '9.9.9.5')
+  check('form post honeypot -> joined redirect, no create', formBot.status === 303 && buttondownCreates.length === 0)
+}
+
+console.log('\nO. recent letters (/api/letters)')
+{
+  lettersFeedCalls = 0; lettersFeedMode = 'ok'
+  const first = await call('/api/letters')
+  const list = (first.json?.letters ?? []) as { title: string; url: string; date: string | null; excerpt: string }[]
+  check('letters -> 200 with archive-only items', first.status === 200 && list.length === 2 &&
+    list.every((l) => l.url.startsWith('https://buttondown.com/goehring/archive/')), first.json)
+  check('title entities decoded', list[0]?.title === 'Why the dogwoods turn red & the maples do not', list[0])
+  check('excerpt is plain text, cut at a word', !!list[0] && !list[0].excerpt.includes('<') && list[0].excerpt.endsWith('…') && list[0].excerpt.length <= 221, list[0]?.excerpt)
+  check('date is ISO', list[0]?.date === '2026-10-11T16:00:00.000Z', list[0]?.date)
+  await call('/api/letters')
+  check('second read within the hour is served from KV', lettersFeedCalls === 1, lettersFeedCalls)
+  const stored = JSON.parse(programsKv.store.get('letters:v1')!)
+  stored.fetchedAt = new Date(Date.now() - 2 * 3600_000).toISOString()
+  programsKv.store.set('letters:v1', JSON.stringify(stored))
+  lettersFeedMode = 'fail'
+  const stale = await call('/api/letters')
+  check('dead feed serves the stale copy', stale.status === 200 && (stale.json?.letters as unknown[]).length === 2, stale.json)
+  programsKv.store.delete('letters:v1')
+  const empty = await call('/api/letters')
+  check('dead feed with nothing cached -> 200 empty list', empty.status === 200 && (empty.json?.letters as unknown[]).length === 0, empty.json)
+  lettersFeedMode = 'ok'
 }
 
 globalThis.fetch = realFetch
