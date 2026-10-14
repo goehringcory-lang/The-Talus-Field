@@ -88,7 +88,7 @@ function AboutPage({ go }) {
         eyebrow="SUNDAY FIELD NOTES / FREE"
         title="Sunday Field Notes"
         heading="Sunday Field Notes"
-        blurb="A short note on Sundays, when there is something to say."
+        blurb="A letter from inside Yosemite on Sundays: what the park is doing this week and why, set beside what its naturalists wrote down in the same weeks a century ago."
       />
     </div>
   );

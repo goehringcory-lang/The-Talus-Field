@@ -1,11 +1,73 @@
 var {
-  useState
+  useState,
+  useEffect,
+  useRef
 } = React;
 var CONTACT_API_BASE = typeof window !== "undefined" && window.GUIDE_API_BASE || "https://api.thetalusfieldjournal.com";
+var NL_RETRY_COPY = {
+  invalid: "That address did not take. Check it and try again here.",
+  rate: "Too many tries from this connection. Try again in an hour.",
+  fallback: "Our signup did not answer that time. Try again here."
+};
+function formatLetterDate(iso) {
+  if (!iso) return "";
+  var d = new Date(iso);
+  if (Number.isNaN(d.getTime())) return "";
+  return d.toLocaleDateString("en-US", {
+    month: "long",
+    day: "numeric",
+    year: "numeric",
+    timeZone: "America/Los_Angeles"
+  });
+}
+function RecentLetters() {
+  var ref = useRef(null);
+  var letters = useRecentLetters(ref);
+  return React.createElement("div", {
+    ref: ref
+  }, letters.length > 0 && React.createElement("section", {
+    className: "hp-wrap hp-section hp-nlpage__recent",
+    "aria-labelledby": "nl-recent-h"
+  }, React.createElement("p", {
+    className: "hp-eyebrow"
+  }, "RECENT LETTERS"), React.createElement("h2", {
+    id: "nl-recent-h"
+  }, "Read one before you decide."), React.createElement("ol", {
+    className: "hp-nlpage__letters"
+  }, letters.map(l => React.createElement("li", {
+    key: l.url
+  }, l.date && React.createElement("time", {
+    dateTime: l.date
+  }, formatLetterDate(l.date)), React.createElement("a", {
+    href: l.url,
+    target: "_blank",
+    rel: "noopener",
+    onClick: () => {
+      if (window.track) window.track("newsletter_sample_click", {
+        location: "newsletter_page"
+      });
+    }
+  }, l.title, " ↗"), l.excerpt && React.createElement("p", null, l.excerpt))))));
+}
 function NewsletterPage({
   go
 }) {
   var [done, setDone] = useState(null);
+  var [retry, setRetry] = useState(null);
+  useEffect(() => {
+    var q = new URLSearchParams(window.location.search);
+    if (q.get("joined") === "1") {
+      window.trackNewsletterSubmit("archive_ask", "archive");
+      setDone("api");
+    } else if (NL_RETRY_COPY[q.get("retry")]) {
+      setRetry(q.get("retry"));
+    }
+    if (q.has("joined") || q.has("retry")) {
+      try {
+        window.history.replaceState(window.history.state, "", window.location.pathname);
+      } catch (_e) {}
+    }
+  }, []);
   return React.createElement("div", {
     className: "page hp-nlpage"
   }, React.createElement(HpPageHead, {
@@ -18,7 +80,7 @@ function NewsletterPage({
     }],
     eyebrow: "NEWSLETTER",
     title: "Sunday Field Notes.",
-    intro: "A short note on Sundays, when there is something to say. Subscribing is free.",
+    intro: "A letter from inside Yosemite on Sundays: what the park is doing this week and why, from the river gauges to the oaks, set beside what its naturalists wrote down in the same weeks a century ago. Free.",
     aside: React.createElement(HpPostcard, null)
   }, React.createElement("div", {
     className: "hp-nlpage__perk"
@@ -40,7 +102,10 @@ function NewsletterPage({
       e.preventDefault();
       go("map");
     }
-  }, "The map is already open to you →")) : React.createElement(React.Fragment, null, React.createElement("label", {
+  }, "The map is already open to you →")) : React.createElement(React.Fragment, null, retry && React.createElement("p", {
+    className: "nlbox__note",
+    role: "status"
+  }, NL_RETRY_COPY[retry]), React.createElement("label", {
     htmlFor: "nl-page-email",
     className: "fj-label"
   }, "Your email address"), React.createElement(NewsletterForm, {
@@ -49,7 +114,7 @@ function NewsletterPage({
     inputId: "nl-page-email",
     inputLabel: "Your email address",
     onDone: setDone
-  }))), React.createElement("section", {
+  }))), React.createElement(RecentLetters, null), React.createElement("section", {
     className: "hp-wrap hp-section hp-nlpage__terms fj-notes"
   }, React.createElement("div", {
     className: "fj-note"
@@ -58,7 +123,7 @@ function NewsletterPage({
     "aria-hidden": "true"
   }, "Sun."), React.createElement("h2", null, "Cadence"), React.createElement("p", {
     className: "hp-sub"
-  }, "Sundays, when there is something to say. Some weeks there is not.")), React.createElement("div", {
+  }, "Sunday mornings, Pacific time. Most weeks; a week with nothing worth saying gets no letter.")), React.createElement("div", {
     className: "fj-note"
   }, React.createElement("span", {
     className: "fj-note__stamp",
