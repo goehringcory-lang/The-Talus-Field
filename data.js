@@ -170,7 +170,7 @@ window.BODY_VERSIONS = {
   "yosemite-in-september-2026": 3,
   "yosemite-in-june": 7,
   "cathedral-lakes-day-hike": 4,
-  "yosemite-needs-a-reservation-system": 81,
+  "yosemite-needs-a-reservation-system": 82,
   "memorial-day-skip-the-valley-go-high-2026": 85,
   "four-mile-up-panorama-down": 81,
   "yosemite-with-kids-no-reservations-2026": 81,
@@ -1697,7 +1697,7 @@ window.ARTICLES = [
     seoDek: "Without a reservation system, Memorial Day 2026 left Yosemite Valley gridlocked and its meadows damaged. Why the park needs timed entry back.",
     date: "May 26, 2026",
     isoDate: "2026-05-26",
-    isoModified: "2026-05-26",
+    isoModified: "2026-10-14",
     read: "10 min",
     placeholder: "A split-rail fence along a Yosemite Valley meadow below Cathedral Rocks at dusk",
     image: "img/cathedral-rocks-meadow-fence.jpg",
@@ -2253,7 +2253,7 @@ window.RELATED = {
   "yosemite-ranger-programs": ["yosemite-with-kids-no-reservations-2026", "yosemite-wildlife-viewing-guide", "yosemite-for-non-hikers", "yosemite-accessibility-guide", "yosemite-facelift-volunteer-guide"],
   "where-to-propose-in-yosemite": ["yosemite-photography-spots", "yosemite-for-non-hikers", "where-to-eat-yosemite", "where-to-stay-in-yosemite", "yosemite-in-one-or-two-days"],
   "working-in-yosemite": ["yosemite-ranger-programs", "yosemite-gateway-towns-compared", "yosemite-connecting-to-traditions", "yosemite-needs-a-reservation-system", "yosemite-in-winter"],
-  "yosemite-needs-a-reservation-system": ["when-to-visit-yosemite", "yosemite-without-reservations-2026", "yosemite-valley-parking-guide", "working-in-yosemite", "yosemite-glaciers-climate"],
+  "yosemite-needs-a-reservation-system": ["when-to-visit-yosemite", "yosemite-without-reservations-2026", "yosemite-valley-parking-guide", "working-in-yosemite", "sustainable-yosemite-car-free-zero-waste"],
 
   // Natural history
   "is-bear-spray-allowed-in-yosemite": ["yosemite-bears-safety-guide", "yosemite-wildlife-viewing-guide", "camping-in-yosemite-first-time", "pack-your-car-for-yosemite"],

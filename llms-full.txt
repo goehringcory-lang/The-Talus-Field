@@ -7898,7 +7898,7 @@ Plan an early start, bring a real lunch, sit on the granite for an hour after yo
 ## Yosemite needs a reservation system
 
 URL: https://thetalusfieldjournal.com/articles/yosemite-needs-a-reservation-system
-Section: Planning. Published: 2026-05-26. Last updated: 2026-05-26.
+Section: Planning. Published: 2026-05-26. Last updated: 2026-10-14.
 Summary: Without a reservation system, Memorial Day 2026 left Yosemite Valley gridlocked and its meadows damaged. Why the park needs timed entry back.
 
 I built this guide so people can enjoy their national park. I want them to see the Valley at sunrise, hear a hermit thrush at dusk, watch a bear graze a meadow edge in October. I want them to have an experience good enough that they go home and care about public lands for the rest of their lives. That is the whole point.
@@ -7917,9 +7917,9 @@ Yosemite without a reservation system is currently failing on both counts.
 
 ### Failure one: people cannot enjoy their park
 
-On Sunday of Memorial Day weekend 2026, visitors received a text alert at 7:39 a.m. telling them that parking lots in Yosemite Valley were already full. By mid-morning, the entrance stations had wait times exceeding ninety minutes. By evening, as one visitor told ABC7, "the entire park, it was impossible to park there. There's nowhere to park for anybody."
+On Sunday of Memorial Day weekend 2026, visitors received a text alert at 7:39 a.m. telling them that parking lots in Yosemite Valley were already full. Some reported waiting at least an hour and a half to get into the park. One visitor told ABC7 that by 7:30, "the entire park, it was impossible to park there. There's nowhere to park for anybody."
 
-It was not an isolated incident. Since the reservation system was dropped for the 2026 season, Yosemite has recorded more than 836,000 visits through late May, roughly 100,000 more than the same period last year. March 2026 visitation jumped nearly 45 percent over the previous year. On peak days throughout the spring, Valley parking lots have been filling by 7 a.m.
+It was not an isolated incident. Since the reservation system was dropped for the 2026 season, Yosemite has recorded more than 836,000 visits through late May, by the Park Service figures reported at the time, roughly 100,000 more than the same period last year. By the same count, March 2026 visitation jumped nearly 45 percent over the previous March. On peak days throughout the spring, Valley parking lots have been filling by 7 a.m.
 
 When the lots fill, access to the eastern half of the Valley, including the Mist Trail, Happy Isles, Mirror Lake, and the Ahwahnee, becomes limited or effectively impossible for anyone arriving by car. The free shuttle system helps, but only if you can find a parking spot to begin with.
 
@@ -7931,7 +7931,7 @@ The reservation system, which Yosemite ran in various forms from 2020 through 20
 
 Memorial Day weekend 2026 was destructive.
 
-Videos from the holiday weekend showed dozens of cars parked illegally on meadow edges and road shoulders throughout the Valley. Visitors, unable to find legal parking, drove off pavement and onto the ground. Three tow trucks were deployed simultaneously to clear illegally parked vehicles from shuttle routes. Beth Pratt, a conservationist and author who has worked on Yosemite wildlife issues for years, described the scene plainly: people were "pulling onto meadows, pulling off pavement, going off-road."
+Videos from the holiday weekend showed dozens of cars parked illegally on meadow edges and road shoulders throughout the Valley. Visitors, unable to find legal parking, drove off pavement and onto the ground. Beth Pratt, a conservationist and author who has worked on Yosemite wildlife issues for years, described the scene plainly: people were "pulling onto meadows, pulling off pavement, going off-road."
 
 Yosemite's meadows are complex ecosystems, home to rare sedges, native grasses, and invertebrate communities that have evolved over millennia in the Sierra's specific hydrology. A car driven onto a wet meadow compresses the soil, destroys root systems, and creates channels that alter water flow. The damage from a single vehicle can take years to recover. Multiply that by dozens of cars across a holiday weekend, and the cost to the resource is visible.
 
@@ -7941,9 +7941,9 @@ This is the second failure. The Organic Act does not say "conserve the scenery u
 
 None of this is surprising. We have data that tells us exactly what happens when reservation systems work, and exactly what parks lose when they are removed.
 
-At Arches National Park, a Utah State University survey of more than 500 visitors during the 2022 timed-entry pilot found that 84 percent of respondents wanted the reservation system to continue. Fifty-seven percent said timed entry made their experience "somewhat or much better." Eighty-nine percent of visitors were able to get a ticket, 98 percent entered on their desired day, and 86 percent received their preferred time slot. By any measure, the system worked for visitors and for the park.
+At Arches National Park, a Utah State University survey of more than 500 visitors during the 2022 timed-entry pilot found that 84 percent of respondents would like a reservation system in place for future visits. Fifty-seven percent said timed entry made their experience "somewhat or much better." Eighty-nine percent of respondents were able to get a ticket, and of those, 98 percent entered on their desired day and 86 percent received their preferred time slot. By any measure, the system worked for visitors and for the park.
 
-In Yosemite, a March 2026 survey by the employee union found that 85 percent of 135 verified staff responses did not approve of Superintendent Ray McPadden's decision to drop the reservation system. These are the people who work in the park every day. They saw the reservation system work across five seasons. They know what the alternative looks like.
+In Yosemite, a survey by the park workers' union, run from late February through March 30, 2026, found that 115 of 135 respondents, 85 percent, gave Superintendent Ray McPadden's decision to drop the reservation system the lowest approval rating on its scale. The respondents were Park Service staff and the park's partner and concession employees. These are the people who work in the park every day. They saw the reservation system work across five seasons. They know what the alternative looks like.
 
 The alternative is what we saw this weekend.
 

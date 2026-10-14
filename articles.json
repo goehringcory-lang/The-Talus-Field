@@ -1576,19 +1576,19 @@
     "seoDek": "Without a reservation system, Memorial Day 2026 left Yosemite Valley gridlocked and its meadows damaged. Why the park needs timed entry back.",
     "date": "May 26, 2026",
     "isoDate": "2026-05-26",
-    "isoModified": "2026-05-26",
+    "isoModified": "2026-10-14",
     "read": "10 min",
     "image": "img/cathedral-rocks-meadow-fence.jpg",
     "ogImage": { "url": "img/responsive/cathedral-rocks-meadow-fence-1600.jpg", "width": 1600, "height": 1200 },
     "placeholder": "A split-rail fence along a Yosemite Valley meadow below Cathedral Rocks at dusk",
-    "wordCount": 1700,
+    "wordCount": 1580,
     "keywords": ["Yosemite reservation system", "Yosemite Memorial Day 2026", "Yosemite crowds", "Yosemite parking", "national park reservations", "Organic Act", "Ray McPadden", "timed entry"],
     "faq": [
       { "q": "Does Yosemite require a reservation in 2026?", "a": "No. Superintendent Ray McPadden announced on February 18, 2026 that Yosemite would not require vehicle reservations for the 2026 season. The park is relying on real-time traffic monitoring and promotion of areas outside the Valley instead." },
-      { "q": "What happened in Yosemite Valley on Memorial Day weekend 2026?", "a": "Parking lots filled before 8 a.m., entrance waits exceeded ninety minutes, and dozens of cars parked illegally on meadow edges and road shoulders. Three tow trucks were deployed to clear vehicles blocking shuttle routes." },
-      { "q": "Did the Yosemite reservation system actually work?", "a": "By the available data, yes. Surveys at parks with timed entry showed strong visitor approval, and 85 percent of verified Yosemite staff responses opposed dropping it. It spread demand across the day so visitors who arrived could actually use the park." }
+      { "q": "What happened in Yosemite Valley on Memorial Day weekend 2026?", "a": "Parking lots filled before 8 a.m., visitors reported waiting at least an hour and a half to get into the park, and dozens of cars parked illegally on meadow edges and road shoulders." },
+      { "q": "Did the Yosemite reservation system actually work?", "a": "By the available data, yes. Surveys at parks with timed entry showed strong visitor approval, and 85 percent of 135 respondents to a park workers' union survey gave the decision to drop it the lowest approval rating. It spread demand across the day so visitors who arrived could actually use the park." }
     ],
-    "related": ["when-to-visit-yosemite", "yosemite-without-reservations-2026", "yosemite-valley-parking-guide", "working-in-yosemite", "yosemite-glaciers-climate"]
+    "related": ["when-to-visit-yosemite", "yosemite-without-reservations-2026", "yosemite-valley-parking-guide", "working-in-yosemite", "sustainable-yosemite-car-free-zero-waste"]
   },
   {
     "slug": "memorial-day-skip-the-valley-go-high-2026",
