@@ -128,5 +128,5 @@ writeFileSync(SRC, out.join("\n"));
 console.log(
   `\nwrote ${found.size} date(s) to videos-data.js${failed.length ? `, ${failed.length} still unresolved` : ""}.` +
     `\nNext: npm --prefix scripts run seo   (carries them into videos.json)` +
-    `\nThen: bump the shared ?v= in index.html and npm --prefix scripts run assets:stamp`
+    `\nThen: npm --prefix scripts run assets:stamp (rewrites the content-hash ?v= in index.html)`
 );

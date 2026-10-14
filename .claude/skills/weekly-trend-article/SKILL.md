@@ -253,14 +253,11 @@ history). Edit four by hand; the rest are generated.
    ```
 
 7. **Cache-busters**: `BODY_VERSIONS` from step 2 is the body's counter.
-   The shared `?v=` is decided by the guard, not by this note: run
-   `npm --prefix scripts run check`, and when `check-asset-freshness.mjs`
-   fails because `data.js` / `intent-data.js` changed under the unchanged
-   shared number, bump the shared `?v=` in `index.html`, run
-   `npm --prefix scripts run assets:stamp`, and commit the regenerated
-   manifest with everything else. (An earlier version of this note said a
-   pure add needs no bump; that predates the asset-freshness guard, and
-   PR #341 hit it.)
+   Every other script's `?v=` is its own content hash: run
+   `npm --prefix scripts run assets:stamp` after `compile` (it rewrites
+   the hashes in `index.html` and records the new body version), then
+   `npm --prefix scripts run check`, and commit `index.html` and the
+   regenerated manifest with everything else. Never edit a hash by hand.
 
 ## Phase 7 — Verification gates
 

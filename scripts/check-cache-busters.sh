@@ -1,15 +1,15 @@
 #!/usr/bin/env bash
 # Reports any editorial-site script/stylesheet referenced from index.html
-# without a ?v=N cache-buster query. Run before committing changes to JSX
+# without a ?v= cache-buster query. Run before committing changes to JSX
 # or CSS — a missing version means Cloudflare and browsers will serve
 # stale bytes after deploy until the TTL expires.
 #
 # Exit 0 if every reference has a version; exit 1 otherwise.
 #
-# This guard checks PRESENCE, not freshness: it cannot tell whether a ?v= that
-# is there is still true for the bytes behind it. That question belongs to
-# check-asset-freshness.mjs, which hashes every versioned asset against
-# scripts/data/asset-versions.json. Both run in `npm run check`.
+# This guard checks PRESENCE and FORM, not freshness. Whether a script's or the
+# stylesheet's hash is current is gen-asset-hashes.mjs --check; whether a
+# hand-kept counter (BODY_VERSIONS, POINTS_URL, the bulletin, /img/) is current
+# is check-asset-freshness.mjs. All three run in `npm run check`.
 
 set -euo pipefail
 
@@ -29,24 +29,23 @@ missing=$(
 )
 
 if [[ -n "$missing" ]]; then
-  echo "Missing ?v=N cache-buster on these references in index.html:"
+  echo "Missing ?v= cache-buster on these references in index.html:"
   echo "$missing"
   exit 1
 fi
 
-# All local script/stylesheet references in index.html share ONE version
-# number, bumped together when shipping a batch. The leading ="/ anchor
-# limits the match to same-origin files, so external https:// URLs are
-# excluded. points.geojson (own counter inside page-map.jsx) and article
-# bodies (per-slug BODY_VERSIONS, checked below) are exempt because they
-# are not referenced from index.html.
-shared_versions=$(
-  grep -oE '(src|href)="/[^"]+\.(jsx|js|css)\?v=[0-9]+"' "$INDEX" \
-    | grep -oE '\?v=[0-9]+' | sort -u
+# The values themselves are per-file content hashes written by
+# gen-asset-hashes.mjs (October 2026; they replaced one shared number bumped by
+# hand). Its --check, in `npm run check`, proves each one current.
+hand_numbers=$(
+  grep -nE '(src|href)="/[^"]+\.(jsx|js|css)\?v=' "$INDEX" \
+    | grep -vE '\?v=[0-9a-f]{10}"' \
+    || true
 )
-if [[ $(echo "$shared_versions" | wc -l) -ne 1 ]]; then
-  echo "Shared ?v= values in index.html are not identical (one canonical number expected):"
-  grep -nE '(src|href)="/[^"]+\.(jsx|js|css)\?v=[0-9]+"' "$INDEX"
+if [[ -n "$hand_numbers" ]]; then
+  echo "These index.html references carry a ?v= that is not a 10-hex content hash."
+  echo "Do not bump by hand: run npm --prefix scripts run assets:stamp."
+  echo "$hand_numbers"
   exit 1
 fi
 
@@ -80,6 +79,5 @@ if [[ -f "$DATA" && -d "$BODIES_DIR" ]]; then
   fi
 fi
 
-echo "All editorial JSX/JS/CSS references in index.html carry a ?v= query,"
-echo "all sharing one canonical version number."
+echo "All editorial JSX/JS/CSS references in index.html carry a ?v= content hash."
 echo "window.BODY_VERSIONS is in sync with bodies/."

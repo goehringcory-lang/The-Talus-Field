@@ -156,8 +156,8 @@ first-class outcome, and a filler PR on the money path is worse than none.
 One branch `claude/revenue-pulse-<item>` cut from `origin/main`, one PR.
 The repo's discipline binds everything:
 
-- Editorial JSX → `npm --prefix scripts run compile`, the shared `?v=` bump,
-  `run assets:stamp`; mirrors via `run seo` when the catalog is touched;
+- Editorial JSX → `npm --prefix scripts run compile`, then
+  `run assets:stamp` (content-hash `?v=`s, nothing to bump); mirrors via `run seo` when the catalog is touched;
   `npm --prefix scripts run check` must pass entirely and
   `npm --prefix scripts run checks` must add no new errors (failures that
   reproduce on `origin/main` are pre-existing: note, do not chase).

@@ -133,10 +133,11 @@ npm --prefix scripts run check      # must pass entirely
 npm --prefix scripts run checks     # no NEW errors vs origin/main
 ```
 
-If `check-asset-freshness.mjs` fails because `data.js` / `intent-data.js`
-changed under the unchanged shared `?v=`, bump the shared `?v=` in
-`index.html`, run `npm --prefix scripts run assets:stamp`, and commit the
-manifest.
+If `gen-asset-hashes.mjs --check` fails because `data.js` / `intent-data.js`
+changed, run `npm --prefix scripts run assets:stamp` and commit `index.html`
+(each script's `?v=` is its own content hash; there is no number to bump). If
+`check-asset-freshness.mjs` fails, bump the body's `BODY_VERSIONS` entry, then
+stamp, and commit the manifest.
 
 Branch `claude/evergreen-refresh-<slug>` from `origin/main`; commit the
 hand-edited files and every regenerated mirror together; push with

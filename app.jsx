@@ -66,15 +66,17 @@ function routeExists(route) {
 // index.html.
 // ============================================================
 
-// Shared cache-buster: read from the app.js script tag so injected scripts
-// ride the same ?v=N as index.html (the bump discipline is unchanged).
-const ASSET_VERSION = (() => {
-  const tags = document.querySelectorAll("script[src]");
-  for (const t of tags) {
-    const m = (t.getAttribute("src") || "").match(/\/dist\/app\.js\?v=(\d+)/);
-    if (m) return m[1];
+// Per-file cache-busters: each injected script's ?v= is its own content hash,
+// read from the generated asset-hashes block in index.html
+// (scripts/gen-asset-hashes.mjs). A file missing from the block, or a missing
+// block, loads without a query, which the short /dist/ TTL still covers.
+const ASSET_HASHES = (() => {
+  try {
+    const el = document.getElementById("asset-hashes");
+    return el ? JSON.parse(el.textContent) : {};
+  } catch (e) {
+    return {};
   }
-  return "0";
 })();
 
 // Registry: route family -> the scripts it needs and the globals they
@@ -144,7 +146,7 @@ function loadScriptOnce(src) {
   if (!loadedScripts[src]) {
     loadedScripts[src] = new Promise((resolve, reject) => {
       const el = document.createElement("script");
-      el.src = `${src}?v=${ASSET_VERSION}`;
+      el.src = ASSET_HASHES[src] ? `${src}?v=${ASSET_HASHES[src]}` : src;
       el.onload = () => resolve();
       el.onerror = () => reject(new Error(`failed to load ${src}`));
       document.head.appendChild(el);
