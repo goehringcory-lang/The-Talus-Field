@@ -6,21 +6,21 @@ window.ARTICLE_BODIES["yosemite-in-october-2026"] = function YosemiteInOctober20
   return (
     <>
       <p className="dropcap">
-        October is usually the easy month to write about: the crowds are gone, Tioga Road is still open, the oaks turn, and the only real question is whether the first storm comes early. October 2026 starts with a different question. A wildfire is burning northeast of Wawona, Glacier Point Road has been closed since the evening of September 23, and the mornings in the Valley have been smoky. The month is still worth the trip, with a different plan than last year's.
+        October is usually the easy month to write about: the crowds are gone, Tioga Road is still open, the oaks turn, and the only real question is whether the first storm comes early. October 2026 starts with a different question. A wildfire has been burning northeast of Wawona since mid-September, it closed Glacier Point Road from the evening of September 23 to the morning of October 10, and the mornings in the Valley have been smoky. The month is still worth the trip, with a different plan than last year's.
       </p>
 
       <p>
         What follows is what is specific to this October: the fire and the road it closed, the high country's last weeks, the Half Dome dates, the Mist Trail's repair schedule, and the calendar of things that close. <a href="/articles/yosemite-in-fall">The fall guide</a> covers what every October is like, the color, the animals and the weather, and none of that is repeated here.
       </p>
 
-      <h2>Glacier Point Road is closed, and the fire decides for how long</h2>
+      <h2 id="sec-0-glacier-point-road-is-closed-and-the-fir">Glacier Point Road is open again, until winter closes it</h2>
 
       <p>
         The <strong>Dome Fire</strong> was reported on the morning of September 15, about a quarter mile north of Chilnualna Falls, and its cause is not settled. On September 30 the local press reported a Forest Service finding that an abandoned campfire started it; on October 6 the Forest Service withdrew that finding without giving a reason, and the federal incident page, InciWeb, lists the cause as undetermined. By the evening of September 24 it had burned <strong>4,133 acres at 16 percent containment</strong>. Two helicopter pilots were killed fighting it on September 20.
       </p>
 
       <p>
-        The park closed <strong>Glacier Point Road</strong> at 6 p.m. on September 23, for smoke that cut visibility along the road and to keep it clear for firefighting. It will reopen when conditions allow, and nobody has put a date on that. Until it does, Glacier Point, Sentinel Dome and Taft Point cannot be reached by car. The rest of the park is <a href="/articles/wildfire-in-yosemite-during-your-trip">open and operating normally</a>, Wawona Road and the Mariposa Grove included.
+        The park closed <strong>Glacier Point Road</strong> at 6 p.m. on September 23, for smoke that cut visibility along the road and to keep it clear for firefighting. It <strong>reopened on October 10 at 7 a.m.</strong>, and Glacier Point, Sentinel Dome and Taft Point can be reached by car again. Firefighters are still working along the road, and the park asks drivers to go carefully and watch for them. The rest of the park is <a href="/articles/wildfire-in-yosemite-during-your-trip">open and operating normally</a>, Wawona Road and the Mariposa Grove included.
       </p>
 
       <p>
@@ -28,11 +28,11 @@ window.ARTICLE_BODIES["yosemite-in-october-2026"] = function YosemiteInOctober20
       </p>
 
       <p>
-        Glacier Point itself is still reachable on foot. The park has said the <strong>Four Mile Trail and the Panorama Trail stay open to hikers</strong>, which makes the point a hike from the Valley floor rather than a drive: 9.6 miles round trip and 3,200 feet on the Four Mile Trail, six to eight hours. What the closure takes away is the easy version of that day. The Glacier Point tour bus, which carries hikers up to walk down, runs on the closed road, and its season was always going to end on <strong>October 11</strong>. Confirm it is running before building a day around it. <a href="/articles/four-mile-up-panorama-down">The Four Mile and Panorama guide</a> covers both trails in full.
+        Glacier Point is also a hike from the Valley floor: 9.6 miles round trip and 3,200 feet on the <strong>Four Mile Trail</strong>, six to eight hours. The Glacier Point tour bus, which carries hikers up to walk down, has ended its season, so from here on the hike is a round trip on foot. <a href="/articles/four-mile-up-panorama-down">The Four Mile and Panorama guide</a> covers both trails in full.
       </p>
 
       <p>
-        Even a quick reopening leaves a short window. <strong>Overnight parking on Glacier Point Road ends October 15</strong>, the gift shop at the point closes October 25, and the road closes for winter sometime in November. The last two seasons it closed on November 11 and November 12. If Glacier Point is the reason for the trip, keep the plan loose and check the road the week you go. <a href="/articles/glacier-point-how-to-visit">The Glacier Point guide</a> has the rest for when it opens again.
+        The reopening leaves a short window. <strong>Overnight parking on Glacier Point Road ends October 15</strong>, the gift shop at the point closes October 25, and the road closes for winter sometime in November. The last two seasons it closed on November 11 and November 12. If Glacier Point is the reason for the trip, go soon and check <a href="/now">the road</a> the week you go. <a href="/articles/glacier-point-how-to-visit">The Glacier Point guide</a> has the rest.
       </p>
 
       <h2>Smoke settles in the mornings, not the afternoons</h2>
@@ -188,7 +188,7 @@ window.ARTICLE_BODIES["yosemite-in-october-2026"] = function YosemiteInOctober20
       <h2>How to plan October 2026</h2>
 
       <p>
-        Build the trip around the parts the fire does not touch: the Valley midweek, Tioga Road while it lasts, and the Crane Flat sequoias. Hold Glacier Point as a maybe. If the road reopens, it is a bonus; if it does not, walk up the Four Mile Trail and see the same view with more earned. Check the air each morning and the road status before any drive to the high country.
+        Build the trip around the parts the fire does not touch: the Valley midweek, Tioga Road while it lasts, and the Crane Flat sequoias. Glacier Point Road is open again, so drive up while it lasts, or walk up the Four Mile Trail and see the same view with more earned. Check the air each morning and the road status before any drive to the high country.
       </p>
 
       <p>
