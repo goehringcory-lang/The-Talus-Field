@@ -56,7 +56,7 @@ export const DINING_AREAS: { id: DiningArea; title: string; note?: string }[] = 
     id: 'tuolumne',
     title: 'Tuolumne Meadows & the Highway 120 corridor',
     note:
-      'The Tuolumne store, grill, and lodge are closed for the season: the lodge dining tent shut September 13 and the grill September 20, 2026, and both reopen with Tioga Road the following summer. Tioga Road stays open until snow closes it, and between Crane Flat and Lee Vining the day is self-supported.',
+      'The Tuolumne store, grill, and lodge are closed for the season. The lodge dining tent shut September 13, and the grill shut September 20, 2026. Both reopen with Tioga Road the following summer. Tioga Road stays open until snow closes it. Between Crane Flat and Lee Vining, you supply your own food, water, and fuel.',
   },
   {
     id: 'hetch-hetchy',
@@ -95,7 +95,7 @@ const seed: DiningInput[] = [
     hoursNote: 'through October 25; from October 26, 6:30 a.m. to 11 a.m., coffee and a light breakfast',
     coord: [-119.5726, 37.7377], // shared Curry Village pin (stops.ts)
     description:
-      'Coffee, pastries, and oatmeal inside Seven Tents Pavilion, the earliest breakfast in the east Valley, on the way to the Mist Trail. Expect a line once the doors have been open an hour.',
+      'Coffee, pastries, and oatmeal inside Seven Tents Pavilion, the earliest breakfast in the east Valley, on the way to the Mist Trail. Expect a line an hour after the doors open.',
   },
   {
     id: 'lodge-starbucks',
@@ -123,7 +123,7 @@ const seed: DiningInput[] = [
     hoursNote: 'limited service 11 – 11:30 while the line switches to lunch',
     coord: [-119.5853, 37.7481],
     description:
-      'Deli sandwiches, breakfast items, and espresso in the old Degnan family store. Breakfast sandwiches from 7 a.m., cheaper and faster than the buffets; made-to-order sandwiches pack for a trail lunch.',
+      'Deli sandwiches, breakfast items, and espresso in the old Degnan family store. Breakfast sandwiches from 7 a.m., cheaper and faster than the buffets; made-to-order sandwiches travel well as a trail lunch.',
   },
   {
     id: 'loft-at-degnans',
@@ -279,7 +279,7 @@ const seed: DiningInput[] = [
     hoursNote:
       'Sunday brunch 7 a.m. to 3 p.m.; from October 25, lunch ends at 2 p.m. and Sunday brunch ends at 2 p.m.',
     reservations:
-      'Dinner is prix fixe, reserved ahead, with a dress expectation of roughly collared-shirt level. Breakfast and lunch are easier to get into and cost far less, in the same room.',
+      'Dinner is a set-price meal, reserved ahead, with a dress expectation of roughly collared-shirt level. Breakfast and lunch are easier to get into and cost far less, in the same room.',
     coord: [-119.5743, 37.7462], // shared Ahwahnee pin (stops.ts)
     stopId: 'ahwahnee-hotel',
     description:
@@ -325,7 +325,7 @@ const seed: DiningInput[] = [
     hoursNote: 'through September 29; from September 30, 8 a.m. to 8 p.m.',
     coord: [-119.5853, 37.7481], // shared Village pin
     description:
-      'The biggest grocery in the park: produce, cooler staples, beer, firewood, and a large souvenir floor. Prices run well above a supermarket; provision outside the park.',
+      'The biggest grocery in the park: produce, cooler staples, beer, firewood, and a large souvenir floor. Prices run well above a supermarket; stock up outside the park.',
   },
   {
     id: 'curry-grocery',
@@ -354,7 +354,7 @@ const seed: DiningInput[] = [
     season: 'Through October 12',
     coord: [-119.5792, 37.741], // moved 2026-09: OSM "Housekeeping Camp Store" and NPS Housekeeping Camp
     description:
-      'The small store on the river side of the camp: ice, firewood, s\'mores inventory, and enough grocery basics to save a trip to the Village. The laundry next door runs later.',
+      'The small store on the river side of the camp: ice, firewood, s\'mores supplies, and enough grocery basics to save a trip to the Village. The laundry next door runs later.',
   },
 
   // ---------------------------------------------------------------------------
@@ -422,7 +422,7 @@ const seed: DiningInput[] = [
     hoursNote: 'the store closes October 25; pumps take cards 24 hours, year-round',
     coord: [-119.7968, 37.753], // moved 2026-09: NPS places "Crane Flat Gas Station" (the amenities pin)
     description:
-      'The gas-station store at the foot of Tioga Road: snacks, drinks, ice, firewood, and coffee. Top off the tank and the cooler here. The Tuolumne store and grill are closed for the 2026 season, so the next food eastbound is Lee Vining.',
+      'The gas-station store at the foot of Tioga Road: snacks, drinks, ice, firewood, and coffee. Top off the tank and the cooler here. The Tuolumne store and grill are closed for the 2026 season, so the next food going east is in Lee Vining.',
   },
   {
     id: 'tuolumne-grill',
@@ -453,7 +453,7 @@ const seed: DiningInput[] = [
     season: 'Summer, with Tioga Road',
     coord: [-119.3590, 37.8741],
     description:
-      'When it is open, the canvas-sided general store that provisions the high country: groceries, camp fuel, beer, and a post office window where thru-hikers collect resupply boxes. It closes for the winter with the grill.',
+      'When it is open, the canvas-sided general store that supplies the high country: groceries, camp fuel, beer, and a post office window where thru-hikers collect resupply boxes. It closes for the winter with the grill.',
   },
   {
     id: 'tuolumne-lodge-dining',
@@ -569,7 +569,7 @@ const seed: DiningInput[] = [
     hoursNote: 'open early to evening, daily',
     coord: [-119.9703, 37.49], // moved 2026-09: OSM "Happy Burger Diner", Hwy 140 at 12th St
     description:
-      'A gold-rush-town diner claiming the largest menu in the Sierra, burgers through burritos through pie, with a patio and milkshakes.',
+      'A gold-rush-town diner claiming the largest menu in the Sierra, burgers, burritos, and pie, with a patio and milkshakes.',
   },
   {
     id: 'eighteen-fifty',
@@ -679,7 +679,7 @@ const seed: DiningInput[] = [
     price: '$$',
     order: 4,
     description:
-      'Roadhouse portions twenty minutes from the Big Oak Flat Entrance: burgers, steaks, and pie The last full menu before the gate.',
+      'Roadhouse portions twenty minutes from the Big Oak Flat Entrance: burgers, steaks, and pie. The last full menu before the gate.',
   },
   {
     id: 'rush-creek-dining',
@@ -778,7 +778,7 @@ const seed: DiningInput[] = [
     season: 'Late April into fall',
     coord: [-119.1136, 37.9474], // moved 2026-09: OSM, the Mobil at 22 Vista Point Rd, Hwy 120 and 395
     description:
-      'Fish tacos, buffalo meatloaf, and mango margaritas inside a gas station at the foot of Tioga Pass, with Mono Lake out the window. Open from late April into the fall, a season that runs close to the pass\'s but not in step with it.',
+      'Fish tacos, buffalo meatloaf, and mango margaritas inside a gas station at the foot of Tioga Pass, with Mono Lake out the window. It opens in late April and runs into the fall, close to the pass\'s season but not in step with it.',
   },
   {
     id: 'mono-cone',
