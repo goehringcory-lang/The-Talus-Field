@@ -75,9 +75,9 @@ const seed: WildlifeEntryT[] = [
     lookFor:
       'Large animal (100-350 lbs) with fur that ranges from black to brown or cinnamon, rounded ears, short curved claws visible on the front feet.',
     whereWhen:
-      'Forests and meadows from the Valley floor to the high country, present year-round though most visible spring through fall.',
+      'Forests and meadows from the Valley floor to the high country, present year-round, though you are most likely to see one from spring through fall.',
     note:
-      'Bears quickly learn to associate specific places and vehicles with food, returning repeatedly.',
+      'Bears learn quickly to link certain places and vehicles with food, and they keep coming back.',
     safety:
       'Food storage in bear-proof lockers or canisters is required by law throughout the park. Never approach a bear. If one approaches your food or campsite, make noise and act aggressively to drive it off. If you startle a bear at close range, back away slowly without running.',
   },
@@ -88,13 +88,13 @@ const seed: WildlifeEntryT[] = [
     photo: { src: '/photos/wildlife-mule-deer.jpg', alt: 'Mule deer looking straight at the camera from spring brush, its oversized ears standing up.' },
     kind: 'mammal',
     lookFor:
-      'Moderate ungulate (100-200 lbs), gray-brown or reddish coat, unusually large ears, white tail with black tip.',
+      'Moderate hoofed animal (100-200 lbs), gray-brown or reddish coat, unusually large ears, white tail with black tip.',
     whereWhen:
       'Meadows, forest edges, and shrubby areas from the Valley floor into the high country, most active dawn and dusk.',
     note:
-      'Mule deer injure more Yosemite visitors annually than any large predator, with habituated animals becoming especially unpredictable.',
+      'Mule deer injure more Yosemite visitors each year than any large predator, and deer that are used to people become especially unpredictable.',
     safety:
-      'Do not approach or hand-feed. Habituated deer have kicked and gored visitors, especially in developed areas. The park asks for at least 25 feet from deer and other wildlife, and 150 feet from bears and coyotes.',
+      'Do not approach or hand-feed. Deer that are used to people have kicked and gored visitors, especially in developed areas. The park asks for at least 25 feet from deer and other wildlife, and 150 feet from bears and coyotes.',
   },
   {
     id: 'coyote',
@@ -107,7 +107,7 @@ const seed: WildlifeEntryT[] = [
     whereWhen:
       'Meadows, forest edges, open brushy areas from valley to high country, most active dawn and dusk.',
     note:
-      'A single animal\'s diet spans mice, insects, berries, scavenged food, and occasionally young ungulates.',
+      'One animal\'s diet spans mice, insects, berries, food it finds already dead, and occasionally young hoofed animals.',
     safety:
       'Stay at least 150 feet away, the same distance the park sets for bears. Do not feed one.',
   },
@@ -122,7 +122,7 @@ const seed: WildlifeEntryT[] = [
     whereWhen:
       'Brushy areas, woodlands, and rocky terrain from the Valley floor to mid-elevations, active mainly at dawn, dusk, and night. Rarely observed.',
     note:
-      'Tracks show four toes in a tight, asymmetrical arc with no claw marks, since cats retract their claws when walking.',
+      'Tracks show four toes in a tight, uneven arc with no claw marks, because cats pull in their claws when they walk.',
   },
   {
     id: 'mountain-lion',
@@ -135,9 +135,9 @@ const seed: WildlifeEntryT[] = [
     whereWhen:
       'Forested canyons and remote backcountry at all elevations, primarily active at dawn, dusk, and night. Sightings are extremely rare.',
     note:
-      'They hunt alone by ambush, and encounters are so rare that thousands of visitors pass a lifetime in Yosemite without seeing one.',
+      'They hunt alone by ambush, and sightings are so rare that thousands of visitors never see one, even over a lifetime of trips.',
     safety:
-      'If encountered, stand tall to appear larger, maintain eye contact, and do not run or turn your back. Back away slowly, and fight back if attacked.',
+      'If you meet one, stand tall to look larger, keep eye contact, and do not run or turn your back. Back away slowly, and fight back if it attacks.',
   },
   {
     id: 'yellow-bellied-marmot',
@@ -148,7 +148,7 @@ const seed: WildlifeEntryT[] = [
     lookFor:
       'Large ground squirrel (5-11 lbs), brown-yellow mottled fur, distinctly yellow-orange underside, loud sharp alarm whistle.',
     whereWhen:
-      'Rocky meadows and talus slopes above 8,000 feet, active only during summer months, hibernating underground in winter.',
+      'Rocky meadows and talus slopes (fields of broken rock) above 8,000 feet, active only in summer and hibernating underground in winter.',
     note:
       'The alarm whistle warns other marmots in the colony of approaching predators such as coyotes and golden eagles.',
   },
@@ -161,9 +161,9 @@ const seed: WildlifeEntryT[] = [
     lookFor:
       'Tiny rabbit-like animal (4-6 oz), gray fur, rounded ears, short legs, high-pitched nasal call more often heard than the animal seen.',
     whereWhen:
-      'Rocky talus and boulder slopes above 8,000 feet, active during daylight and visible mainly in summer, since pikas remain active beneath the snow in winter rather than hibernating.',
+      'Rock fields and boulder slopes above 8,000 feet. Active in daylight and easiest to see in summer, since pikas do not hibernate. They stay active beneath the snow in winter.',
     note:
-      'Unlike marmots, pikas do not hibernate. They spend summer gathering dried vegetation into haypiles they eat under the snow.',
+      'Unlike marmots, pikas do not hibernate. They spend summer gathering dried plants into haypiles they eat under the snow.',
   },
   {
     id: 'california-ground-squirrel',
@@ -176,7 +176,7 @@ const seed: WildlifeEntryT[] = [
     whereWhen:
       'Open rocky areas and grasslands from valley elevations to mid-slopes, active during daylight.',
     note:
-      'They tail-flag rapidly when confronted with rattlesnakes, one of the few small mammals that actively challenge snakes rather than fleeing.',
+      'They flick their tails fast when they meet a rattlesnake, one of the few small mammals that challenge snakes instead of running away.',
   },
   {
     id: 'golden-mantled-ground-squirrel',
@@ -189,7 +189,7 @@ const seed: WildlifeEntryT[] = [
     whereWhen:
       'Forested clearings and campgrounds at mid to high elevations, active from spring through fall before hibernating for winter.',
     note:
-      'Cheek pouches let them carry seeds and other food back to the burrow, where caches are eaten after they wake from hibernation.',
+      'Cheek pouches let them carry seeds and other food back to the burrow, where stored food is eaten after they wake from hibernation.',
   },
   {
     id: 'gray-fox',
@@ -202,7 +202,7 @@ const seed: WildlifeEntryT[] = [
     whereWhen:
       'Oak woodlands and brushy foothills at lower elevations, active mainly at dawn and dusk.',
     note:
-      'The gray fox is the only canid in North America that regularly climbs trees, using semi-retractable claws and rotating wrists to grip branches.',
+      'The gray fox is the only dog-family animal in North America that regularly climbs trees, using claws that partly pull in and wrists that turn to grip branches.',
   },
   {
     id: 'stellers-jay',
@@ -241,7 +241,7 @@ const seed: WildlifeEntryT[] = [
     whereWhen:
       'Oak woodlands and mixed oak-conifer forest at lower to middle elevations throughout Yosemite, below the higher-elevation conifer forests. Year-round resident.',
     note:
-      'Drills rows of small holes into dead trees and wooden structures to create granaries, then wedges acorns into the holes as a food cache for winter.',
+      'Drills rows of small holes into dead trees and wooden structures to create granaries, then wedges acorns into the holes as winter food.',
   },
   {
     id: 'peregrine-falcon',
@@ -278,9 +278,9 @@ const seed: WildlifeEntryT[] = [
     lookFor:
       'Enormous facial disk with concentric gray rings, no ear tufts, and small yellow eyes visible at a distance. Much larger than a robin, with overall gray, mottled plumage.',
     whereWhen:
-      'Meadow edges and coniferous forest at mid to upper elevations, most reliably around Yosemite Valley, Wawona, and Crane Flat. Extremely rare: Yosemite is a stronghold for a small, genetically distinct Sierra Nevada population. More often seen hunting in daylight during winter, when energy demands push it to hunt during the day as well as at night.',
+      'Meadow edges and coniferous forest at mid to upper elevations, most reliably around Yosemite Valley, Wawona, and Crane Flat. Extremely rare: Yosemite is a stronghold for a small, genetically distinct Sierra Nevada population. More often seen hunting in daylight during winter, when the cold raises its energy needs and it hunts by day as well as at night.',
     note:
-      'Despite being one of the tallest owls in North America, it weighs less than the great horned owl, insulated by dense, fluffy plumage that traps heat.',
+      'Despite being one of the tallest owls in North America, it weighs less than the great horned owl, with dense, fluffy feathers that trap heat.',
   },
   {
     id: 'clarks-nutcracker',
@@ -293,7 +293,7 @@ const seed: WildlifeEntryT[] = [
     whereWhen:
       'High-elevation whitebark and lodgepole pine forests throughout Yosemite, year-round, especially conspicuous in late summer through fall when caching seeds.',
     note:
-      'Caches thousands of pine seeds each fall and remembers their locations through winter. Unretrieved seeds germinate, contributing to reforesting the high country.',
+      'Hides thousands of pine seeds each fall and remembers their locations through winter. Seeds it never digs up can sprout, which helps replant the high country.',
   },
   {
     id: 'mountain-chickadee',
@@ -306,7 +306,7 @@ const seed: WildlifeEntryT[] = [
     whereWhen:
       'Coniferous forests from lower elevations to timberline throughout Yosemite, year-round resident.',
     note:
-      'In Sierra winters, lowers its body temperature at night into a controlled torpor to conserve energy, an adaptation shared with other chickadee species for surviving cold nights.',
+      'In Sierra winters, it lowers its body temperature at night into a controlled torpor (a deep, energy-saving rest), an adaptation shared with other chickadee species for surviving cold nights.',
   },
   {
     id: 'western-tanager',
@@ -319,7 +319,7 @@ const seed: WildlifeEntryT[] = [
     whereWhen:
       'Open coniferous and mixed forests throughout Yosemite. Summer breeder, arriving in April or May and departing by September.',
     note:
-      'Unlike most tanagers, hunts flying insects on the wing like a flycatcher, and gathers at swarms of flying ants to feed.',
+      'Unlike most tanagers, it catches flying insects in the air like a flycatcher, and gathers at swarms of flying ants to feed.',
   },
   {
     id: 'red-tailed-hawk',
@@ -330,9 +330,9 @@ const seed: WildlifeEntryT[] = [
     lookFor:
       'Brown body with a rust-red tail visible when perched or soaring. Medium-sized hawk with a pale breast and a band of dark streaking across the belly.',
     whereWhen:
-      'Open meadows, cliff edges, and grasslands throughout Yosemite, year-round. Hunts from dead snags and by soaring on thermals.',
+      'Open meadows, cliff edges, and grasslands throughout Yosemite, year-round. Hunts from dead trees and by soaring on rising warm air.',
     note:
-      'Often perches on prominent dead snags overlooking open ground, dropping suddenly onto rodents or rabbits passing below.',
+      'Often perches on tall dead trees overlooking open ground, dropping suddenly onto rodents or rabbits passing below.',
   },
   {
     id: 'giant-sequoia',
@@ -341,7 +341,7 @@ const seed: WildlifeEntryT[] = [
     photo: { src: '/photos/wildlife-giant-sequoia.jpg', alt: 'Giant sequoia trunks in the Mariposa Grove, fluted cinnamon bark widening at the base.' },
     kind: 'tree',
     lookFor:
-      'The massive diameter (the largest trunks exceed 20 feet across at the base), reddish-brown fibrous bark, and small awl-shaped needles that spiral tightly around the branchlets identify the world\'s largest tree by volume.',
+      'The massive diameter (the largest trunks exceed 20 feet across at the base), reddish-brown fibrous bark, and small, sharp-pointed needles that wrap tightly around the twigs identify the world\'s largest tree by volume.',
     whereWhen:
       'All three of the park\'s groves, 5,500 to 7,000 feet: the Mariposa Grove near the south entrance is the biggest and busiest, the Tuolumne and Merced groves near Crane Flat the quiet ones.',
     note:
@@ -384,7 +384,7 @@ const seed: WildlifeEntryT[] = [
     whereWhen:
       'Mid-elevation open forests and oak woodlands, 2,000 to 6,000 feet in the valley and foothills, turning gold to rust brown in autumn.',
     note:
-      'California tribes harvested acorns as a staple carbohydrate, grinding them into flour after processing to remove tannins.',
+      'California tribes harvested acorns as a staple food, grinding them into flour after processing them to remove the bitter tannins.',
   },
   {
     id: 'lodgepole-pine',
@@ -397,7 +397,7 @@ const seed: WildlifeEntryT[] = [
     whereWhen:
       'Middle- to high-elevation forests, 6,000 to 9,500 feet, forming dense stands in Tuolumne Meadows and the high country.',
     note:
-      'Unlike the Rocky Mountain lodgepole pine, the Sierra Nevada variety\'s cones open at maturity rather than staying sealed by fire heat, but the tree\'s shade tolerance and fast growth still let it recolonize burned or disturbed ground quickly.',
+      'Unlike the Rocky Mountain lodgepole pine, the Sierra Nevada variety\'s cones open at maturity rather than staying sealed by fire heat, but its tolerance of shade and fast growth still let it move back onto burned or disturbed ground quickly.',
   },
   {
     id: 'quaking-aspen',
@@ -406,11 +406,11 @@ const seed: WildlifeEntryT[] = [
     photo: { src: '/photos/wildlife-quaking-aspen.jpg', alt: 'Quaking aspen in autumn, white trunk and branches under a canopy of gold leaves.' },
     kind: 'tree',
     lookFor:
-      'Smooth pale bark, round leaves on distinctly flattened petioles that quiver constantly in the breeze (a behavior that gives the tree its name), turning golden or orange in autumn.',
+      'Smooth pale bark, round leaves on flattened leaf stems that quiver constantly in the breeze (a behavior that gives the tree its name), turning golden or orange in autumn.',
     whereWhen:
       'Mountain meadows and moist streamsides, 6,000 to 9,000 feet, particularly around Tuolumne Meadows and the high country, from late spring through fall.',
     note:
-      'Aspen groves spread by root suckers, so a single grove is often one genetically identical clone, and the species includes some of the largest known clonal organisms on earth by biomass.',
+      'Aspen groves spread by new shoots that grow up from the roots, so a single grove is often one genetically identical clone, and the species includes some of the largest known clonal organisms on earth by weight of living matter.',
   },
   {
     id: 'pacific-dogwood',
@@ -423,7 +423,7 @@ const seed: WildlifeEntryT[] = [
     whereWhen:
       'Moist shaded mixed-conifer forests and meadow edges, 3,000 to 6,000 feet, blooming in spring and early summer.',
     note:
-      'The provincial flower of British Columbia, and it often reflowers lightly in autumn.',
+      'The provincial flower of British Columbia, and it often blooms a little again in autumn.',
   },
   {
     id: 'jeffrey-pine',
@@ -447,11 +447,11 @@ const seed: WildlifeEntryT[] = [
     lookFor:
       'Heavy-bodied snake with a broad triangular head, dark blotches down a gray-brown or olive back, and a segmented rattle at the tail tip. Young snakes carry a single small button and can rattle only faintly.',
     whereWhen:
-      'Sunny, rocky slopes and talus below about 8,000 feet: the Hetch Hetchy trails, the canyon around Poopenaut Valley, and dry south-facing slopes park-wide. Most active in warm months, mornings and evenings in high summer.',
+      'Sunny, rocky slopes and rock fields below about 8,000 feet: the Hetch Hetchy trails, the canyon around Poopenaut Valley, and dry south-facing slopes park-wide. Most active in warm months, mornings and evenings in high summer.',
     note:
       'The park\'s only venomous snake, and a shy one: it rattles to avoid a confrontation, not to start it. The gopher snake, which is common here, mimics the look and even vibrates its tail in dry leaves, so a quiet snake is not automatically a safe one.',
     safety:
-      'Give any rattlesnake at least a body length of room and walk around it; never handle one, living or dead. Watch where hands and feet land on rocky trails, keep children close in talus, and if a bite happens keep the limb still and get to medical care. Do not cut, suck, or ice a bite.',
+      'Give any rattlesnake at least a body length of room and walk around it; never handle one, living or dead. Watch where hands and feet land on rocky trails, keep children close in rock fields, and if a bite happens keep the bitten arm or leg still and get to medical care. Do not cut, suck, or ice a bite.',
   },
   {
     id: 'western-fence-lizard',
@@ -460,7 +460,7 @@ const seed: WildlifeEntryT[] = [
     photo: { src: '/photos/wildlife-western-fence-lizard.jpg', alt: 'Western fence lizard clinging to a wooden post, spiny keeled scales down the back.' },
     kind: 'other',
     lookFor:
-      'Gray or tan lizard smaller than your hand, with spiny, keeled scales down the back. Males show bright blue patches on the throat and belly, most visible when the lizard does a push-up display on a rock or log; the flash of blue during the display is the field mark.',
+      'Gray or tan lizard smaller than your hand, with spiny, keeled scales down the back. Males show bright blue patches on the throat and belly, most visible when the lizard does a push-up display on a rock or log; the flash of blue during the display is the surest clue.',
     whereWhen:
       'Sun-warmed rocks, logs, fence posts, and tree bark from the Valley floor up into mixed-conifer forest, less common at higher, colder elevations. Active on warm, sunny days; inactive in cold weather.',
     note:
@@ -477,7 +477,7 @@ const seed: WildlifeEntryT[] = [
     whereWhen:
       'Meadows, marshes, and seeps throughout Yosemite, from Valley wetlands to high-country tarns. Most vocal in late winter and spring, when males call from the water\'s edge at dusk and after dark.',
     note:
-      'This is the species behind the two-part \'ribbit\' call used as the stock movie and TV frog sound, dubbed in regardless of the on-screen setting.',
+      'This is the species behind the two-part \'ribbit\' call used as the stock movie and TV frog sound, added in no matter where the scene is set.',
   },
   {
     id: 'sierra-newt',

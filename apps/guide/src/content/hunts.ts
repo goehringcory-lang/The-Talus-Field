@@ -120,7 +120,7 @@ const seed: HuntT[] = [
         label:
           'Cracks in solid granite you can see through',
         note:
-          'At Taft Point, these joints in the granite have been widened by frost and weathering over thousands of years.',
+          'At Taft Point, these cracks in the granite have been widened by frost and weathering over thousands of years.',
       },
       {
         id: 'hunt-glacier-mariposa-tunnel-tree',
@@ -170,7 +170,7 @@ const seed: HuntT[] = [
     region: 'tuolumne',
     title: 'High Country Finds',
     intro:
-      'The high meadows and granite peaks of Tuolumne hold surprises for those who look carefully: ancient glacial marks, hardy alpine plants, and the wildlife that thrives at 8,600 feet.',
+      'The high meadows and granite peaks of Tuolumne hold surprises for those who look carefully: ancient glacial marks, hardy high-mountain plants, and the wildlife that thrives at 8,600 feet.',
     items: [
       {
         id: 'hunt-tuolumne-glacial-polish',
@@ -198,7 +198,7 @@ const seed: HuntT[] = [
         label:
           'A gray bird with black wings and white wing patches, working the pines',
         note:
-          'Clark\'s nutcracker caches thousands of pine seeds each fall and remembers where it put them.',
+          'Clark\'s nutcracker hides thousands of pine seeds each fall and remembers where it put them.',
       },
       {
         id: 'hunt-tuolumne-lodgepole-pines',
@@ -219,7 +219,7 @@ const seed: HuntT[] = [
         label:
           'A spring where water bubbles up from underground',
         note:
-          'This natural spring bubbles up from the meadow, carbonated by dissolved minerals in the rock below.',
+          'This natural spring bubbles up from the meadow, fizzy from minerals dissolved out of the rock below.',
       },
       {
         id: 'hunt-tuolumne-tenaya-reflection',
@@ -267,7 +267,7 @@ const seed: HuntT[] = [
       {
         id: 'hunt-hetch-hetchy-dam-seam',
         label:
-          'A line across the face of the dam where two different pours meet',
+          'A line across the face of the dam where two separate batches of concrete meet',
         note:
           'The dam went up in 1923 and was raised in 1938, and the seam between the two is visible from the upstream side.',
       },
