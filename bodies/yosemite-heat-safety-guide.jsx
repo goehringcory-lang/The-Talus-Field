@@ -31,7 +31,7 @@ window.ARTICLE_BODIES["yosemite-heat-safety-guide"] = function YosemiteHeatSafet
           </tr>
         </thead>
         <tbody>
-          <tr><td><strong>June</strong></td><td>~82&deg;F</td><td>~62&deg;F</td></tr>
+          <tr><td><strong>June</strong></td><td>~81&deg;F</td><td>~65&deg;F</td></tr>
           <tr><td><strong>July</strong></td><td>~90&deg;F</td><td>~72&deg;F</td></tr>
           <tr><td><strong>August</strong></td><td>~90&deg;F</td><td>~70&deg;F</td></tr>
           <tr><td><strong>September</strong></td><td>~83&deg;F</td><td>~65&deg;F</td></tr>
