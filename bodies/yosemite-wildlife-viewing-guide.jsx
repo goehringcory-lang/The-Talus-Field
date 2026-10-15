@@ -114,7 +114,7 @@ window.ARTICLE_BODIES["yosemite-wildlife-viewing-guide"] = function YosemiteWild
       <h2 id="sec-6-the-rules-are-also-the-technique">The rules are also the technique</h2>
 
       <p>
-        The regulations here are short: stay 50 yards from bears, give everything else at least 25, never feed any animal, and store food properly, in lockers and canisters, never in a car overnight. The fines are real, up to $5,000 for food-storage violations, but the fines are not the reason. A fed animal stops being wild in every way that matters, and the park ends up hauling it away or killing it. "A fed bear is a dead bear" is not a slogan. It is a case file, repeated annually.
+        The regulations here are short: stay 50 yards (150 feet) from bears and coyotes, give everything else at least 25 feet, never feed any animal, and store food properly, in lockers and canisters, never in a car overnight. The fines are real, up to $5,000 for food-storage violations, but the fines are not the reason. A fed animal stops being wild in every way that matters, and the park ends up hauling it away or killing it. "A fed bear is a dead bear" is not a slogan. It is a case file, repeated annually.
       </p>
 
       <p>
