@@ -26,7 +26,7 @@ window.ARTICLE_BODIES["cathedral-lakes-day-hike"] = function CathedralLakesDayHi
       <p>Current numbers, from the new trailhead:</p>
 
       <ul>
-        <li><strong>Total distance:</strong> roughly 9 to 10.5 miles round trip, depending on whether you visit Lower Cathedral Lake only, Upper Cathedral Lake only, or both.</li>
+        <li><strong>Total distance:</strong> the Park Service lists 7.6 miles round trip and about 1,000 feet of gain to Upper Cathedral Lake. The spur to Lower Cathedral Lake is 0.7 mile each way, so visiting both lakes comes to roughly 9 miles.</li>
         <li><strong>Elevation gain:</strong> about 1,000 to 1,400 feet of cumulative gain.</li>
         <li><strong>Trailhead elevation:</strong> about 8,500 feet.</li>
         <li><strong>Lower Cathedral Lake elevation:</strong> 9,288 feet.</li>
@@ -34,11 +34,11 @@ window.ARTICLE_BODIES["cathedral-lakes-day-hike"] = function CathedralLakesDayHi
       </ul>
 
       <p>
-        The trail begins flat through the meadow approach, then climbs steadily through lodgepole pine forest for about three miles, gaining most of its elevation in this stretch. It crests on a forested bench where a signed junction points right to the lakes and continues straight along the John Muir Trail toward Sunrise. The Lower Cathedral Lake spur descends about a half-mile through forest to the lake's outlet stream. Upper Cathedral Lake sits in a granite bowl a few hundred yards past the junction, directly below Cathedral Peak.
+        The trail begins flat through the meadow approach, then climbs steadily through lodgepole pine forest for about three miles, gaining most of its elevation in this stretch. It crests on a forested bench where a signed junction points right to the lakes and continues straight along the John Muir Trail toward Sunrise. The Lower Cathedral Lake spur descends about 0.7 mile through forest to the lake's outlet stream. Upper Cathedral Lake sits in a granite bowl a few hundred yards past the junction, directly below Cathedral Peak.
       </p>
 
       <p>
-        Plan five to seven hours for the round trip, including time at the lakes.
+        Plan six to seven hours for the round trip, including time at the lakes.
       </p>
 
       <h2>Best time to hike Cathedral Lakes</h2>

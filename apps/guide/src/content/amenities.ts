@@ -696,7 +696,7 @@ const seed: AmenityInput[] = [
     kind: 'services',
     region: 'glacier-mariposa',
     coord: [-119.65745, 37.537189], // NPS API places: Wawona Gas Station
-    note: 'Gas, diesel, and propane by the Wawona Store, pumps 24 hours by card and staffed 8 to 5. The EV charger is in the store lot.',
+    note: 'Gas, diesel, and propane by the Wawona Store, pumps 24 hours by card and staffed 9 to 5. The EV charger is in the store lot.',
     mark: 'fuel',
   },
   {

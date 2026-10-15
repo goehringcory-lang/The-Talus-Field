@@ -132,7 +132,7 @@ window.ARTICLE_BODIES["yosemite-stargazing-where-to-look-up"] = function Yosemit
       </p>
 
       <p>
-        <strong><a href="/articles/glacier-point-road-open-2026">Glacier Point</a>.</strong> The classic. At 7,200 feet, with an open western and southern horizon, almost no nearby light, and a paved walk of a few hundred feet from the parking lot, this is one of the best drive-to dark-sky spots in any National Park. The Park Service runs public <strong>Star Parties</strong> at Glacier Point most Saturdays in summer, when local astronomy clubs set up telescopes and rangers give talks. These are some of the best free educational events in the park. Roughly June through August, depending on the road being open and the schedule for any given year.
+        <strong><a href="/articles/glacier-point-road-open-2026">Glacier Point</a>.</strong> The classic. At 7,200 feet, with an open western and southern horizon, almost no nearby light, and a paved walk of a few hundred feet from the parking lot, this is one of the best drive-to dark-sky spots in any National Park. The Park Service runs public <strong>Star Parties</strong> at Glacier Point on Friday and Saturday nights in July and August, when local astronomy clubs set up telescopes and rangers give talks. These are some of the best free educational events in the park. In 2026 the park's list ran from July 3 to August 15, with the schedule set each year.
       </p>
 
       <p>The trade-off: Glacier Point Road closes with the first big winter storm, usually in November, and reopens in late May or early June, so this is a summer-only option.</p>
@@ -192,7 +192,7 @@ window.ARTICLE_BODIES["yosemite-stargazing-where-to-look-up"] = function Yosemit
       <p>Worth its own section.</p>
 
       <p>
-        The <strong>Yosemite Star Parties</strong> at Glacier Point are run by Bay Area amateur astronomy clubs in cooperation with the Park Service. They typically run on Friday and Saturday nights in June, July, and August (weather permitting), with local astronomers setting up telescopes for public viewing. The events are free. They draw a few hundred people on busy nights.
+        The <strong>Yosemite Star Parties</strong> at Glacier Point are run by Bay Area amateur astronomy clubs in cooperation with the Park Service. They typically run on Friday and Saturday nights in July and August (weather permitting; the 2026 list ran from July 3 to August 15), with local astronomers setting up telescopes for public viewing. The events are free. They draw a few hundred people on busy nights.
       </p>
 
       <p>
@@ -200,7 +200,7 @@ window.ARTICLE_BODIES["yosemite-stargazing-where-to-look-up"] = function Yosemit
       </p>
 
       <p>
-        The schedule for 2026 should be posted on the NPS Yosemite events calendar by late spring. Check there before planning a trip around a star party.
+        The schedule is posted each summer on the NPS Yosemite programs page. Check there before planning a trip around a star party.
       </p>
 
       <h2>A note on light, courtesy, and how not to ruin everyone's night</h2>

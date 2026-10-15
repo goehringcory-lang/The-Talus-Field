@@ -40,7 +40,7 @@ window.ARTICLE_BODIES["yosemite-in-september-2026"] = function YosemiteInSeptemb
       </p>
 
       <p>
-        Two longer closures run through the month and are not seasonal: the <strong>Wawona Hotel and its dining room are closed for renovation</strong>, and <strong>White Wolf</strong>, its lodge, store and dining room, is closed for the season. If either was in the plan, it needs replacing rather than rescheduling. Raft rentals on the Merced are finished for the year.
+        Two longer closures run through the month and are not seasonal: the <strong>Wawona Hotel and its dining room are closed while the Park Service assesses the building</strong>, and <strong>White Wolf</strong>, its lodge, store and dining room, is closed for the season. If either was in the plan, it needs replacing rather than rescheduling. Raft rentals on the Merced are finished for the year.
       </p>
 
       <p>

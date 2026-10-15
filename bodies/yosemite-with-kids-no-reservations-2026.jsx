@@ -64,7 +64,7 @@ window.ARTICLE_BODIES["yosemite-with-kids-no-reservations-2026"] = function Yose
       </p>
 
       <p>
-        <strong>The YARTS bus move.</strong> YARTS (the regional bus system) runs from Mariposa, El Portal, and other gateway towns directly into Yosemite Valley. Children under five ride free, and one child aged six to twelve rides free with each full-fare adult, so check the count against your group before assuming the whole back seat travels free. You skip the parking and get dropped off in the Village. Check the YARTS schedule the night before. Buses run several times a day in summer. Few families use it.
+        <strong>The YARTS bus move.</strong> YARTS (the regional bus system) runs from Mariposa, El Portal, and other gateway towns directly into Yosemite Valley. Children five and under ride free, and one child aged six to twelve rides free with each full-fare adult, so check the count against your group before assuming the whole back seat travels free. You skip the parking and get dropped off in the Village. Check the YARTS schedule the night before. Buses run several times a day in summer. Few families use it.
       </p>
 
       <h2>Your first two hours</h2>
@@ -117,7 +117,7 @@ window.ARTICLE_BODIES["yosemite-with-kids-no-reservations-2026"] = function Yose
       </p>
 
       <p>
-        <strong>If you have the whole day and older kids.</strong> Two hikes off the beaten path are worth the drive. <strong>McGurk Meadow</strong> (1.6 miles round trip, flat, off Glacier Point Road) is a wildflower meadow with a historic sheepherder's cabin that kids find fascinating. <strong>Lukens Lake</strong> (2.4 miles round trip, minimal elevation, off Tioga Road) is a shallow alpine lake warm enough to wade in by August, surrounded by wildflower meadows. Both are quiet and see a fraction of the Valley crowds. You'll need Glacier Point Road or Tioga Road to be open. Check conditions before driving up.
+        <strong>If you have the whole day and older kids.</strong> Two hikes off the beaten path are worth the drive. <strong>McGurk Meadow</strong> (1.6 miles round trip, flat, off Glacier Point Road) is a wildflower meadow with a historic sheepherder's cabin that kids find fascinating. <strong>Lukens Lake</strong> (1.6 miles round trip, about 200 feet of gain, off Tioga Road) is a shallow alpine lake warm enough to wade in by August, surrounded by wildflower meadows. Both are quiet and see a fraction of the Valley crowds. You'll need Glacier Point Road or Tioga Road to be open. Check conditions before driving up.
       </p>
 
       <h2>Water, rocks, and the stuff kids actually remember</h2>
@@ -186,7 +186,7 @@ window.ARTICLE_BODIES["yosemite-with-kids-no-reservations-2026"] = function Yose
       <ul>
         <li>Arrive before 9 AM (8 AM weekends)</li>
         <li>Leave gateway town by 7:15 AM from Mariposa, 7:00 from Oakhurst, 6:45 from Groveland</li>
-        <li>YARTS bus from Mariposa: free for children under five, plus one child aged six to twelve per full-fare adult</li>
+        <li>YARTS bus from Mariposa: free for children five and under, plus one child aged six to twelve per full-fare adult</li>
       </ul>
 
       <h3>Pack tonight</h3>
