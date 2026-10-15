@@ -31,7 +31,7 @@ const seed: SecretSpotInput[] = [
   },
   {
     id: 'happy-isles-ouzel-watch',
-    title: 'The ouzel watch, Merced riffles at Happy Isles',
+    title: 'The ouzel watch, fast water at Happy Isles',
     order: 2,
     category: 'vistas',
     kind: 'viewpoint',
@@ -39,9 +39,9 @@ const seed: SecretSpotInput[] = [
     elevationFt: 4035,
     timeBudgetMin: 30,
     teaser:
-      'A robin-sized bird that walks underwater works the Merced riffles here all year. Watch for the dip on midstream rocks.',
+      'A robin-sized bird that walks underwater works the fast water of the Merced here all year. Watch for the dip on midstream rocks.',
     body:
-      'The water ouzel, or American dipper, is a dark, robin-sized bird that walks underwater, gripping the stream bottom with oversized feet to forage for insect larvae. The fast, cold riffles of the Merced around Happy Isles are its habitat, and the bridges give you a stable place to scan. The footbridge below Vernal Fall, a short walk up the trail, is another reliable post.\n\nWatch the midstream rocks, not the banks. The giveaway is the dip: a constant knee-bend bob on wet rock. Then the bird steps into whitewater and surfaces 10 to 20 seconds later somewhere else.\n\nWinter is the best season. Ouzels do not migrate; they stay on open water all year and sing through the cold months, when few other birds do and few visitors are on the riverbank. Ouzels live only in cold, fast, clean water, so a sighting is a sign of a healthy stream.',
+      'The water ouzel, or American dipper, is a dark, robin-sized bird that walks underwater, gripping the stream bottom with oversized feet to forage for insect larvae. The fast, cold water of the Merced around Happy Isles is its habitat, and the bridges give you a stable place to scan. The footbridge below Vernal Fall, a short walk up the trail, is another reliable post.\n\nWatch the midstream rocks, not the banks. The giveaway is the dip: a constant knee-bend bob on wet rock. Then the bird steps into whitewater and surfaces 10 to 20 seconds later somewhere else.\n\nWinter is the best season. Ouzels do not migrate; they stay on open water all year and sing through the cold months, when few other birds do and few visitors are on the riverbank. Ouzels live only in cold, fast, clean water, so a sighting is a sign of a healthy stream.',
     photos: [{ src: '/photos/happy-isles-ouzel-watch.jpg' }],
   },
   {
@@ -54,7 +54,7 @@ const seed: SecretSpotInput[] = [
     elevationFt: 4000,
     timeBudgetMin: 30,
     teaser:
-      'After dark the wall is a dark shape scattered with headlamps: climbers on portaledges a thousand feet up.',
+      'After dark the wall is a dark shape scattered with headlamps: climbers on portaledges (hanging tents) a thousand feet up.',
     body:
       'Park at the same Northside Drive pullout as the daytime El Capitan Meadow stop, after full dark. Walk a few steps into the meadow, turn your headlamp off, and give your eyes ten minutes. Stay twenty to thirty minutes.\n\nThe wall shows as a dark shape against the stars, with points of light a thousand and two thousand feet up: headlamps of climbers on portaledges for the night. Standard routes take three to five days, so on any summer night parties are cooking and sleeping on the wall. Some lights hold steady; some move as a climber sorts gear.\n\nTwo courtesies. Sound carries at night and the climbers are trying to sleep, so keep voices down. Do not sweep the wall with a bright light; use a red lamp for your footing.',
     photos: [{ src: '/photos/el-cap-meadow-after-dark.jpg', caption: 'Yosemite Valley after dark from Tunnel View, El Capitan on the left. From the meadow you stand directly beneath that wall, watching headlamps on it.' }],
@@ -69,9 +69,9 @@ const seed: SecretSpotInput[] = [
     elevationFt: 8300,
     timeBudgetMin: 45,
     teaser:
-      'The best drive-to dark sky in the park: flat granite slabs at 8,300 feet, thirty feet from the car, with dark lanes visible in the Milky Way.',
+      'The easiest dark sky to reach by car in the park: flat granite slabs at 8,300 feet, thirty feet from the car, with dark lanes visible in the Milky Way.',
     body:
-      'The best drive-to dark sky in the park: 8,300 feet on Tioga Road, broad horizons, almost no nearby light, and flat granite slabs at the parking area to lie on. No tripod or walking required. Park, walk thirty feet, lamp off, and give your eyes ten minutes. The Milky Way shows visible dark lanes from here.\n\nThe galactic core is up roughly April through October, best mid-July through mid-August, overhead between about 11 p.m. and 3 a.m. A full moon washes it out, so aim for a new-moon week or a night before moonrise. Full-moon dates for your trip are in this guide\'s programs list.\n\nTioga Road is typically open to cars from late May or June until sometime in November, so this is a summer and fall spot. It is cold at 8,300 feet after dark even in August, colder when lying still; bring a real jacket and a hat. Use a red headlamp and keep phone screens down, for your night vision and for photographers already set up.',
+      'The easiest dark sky to reach by car in the park: 8,300 feet on Tioga Road, broad horizons, almost no nearby light, and flat granite slabs at the parking area to lie on. No tripod or walking required. Park, walk thirty feet, lamp off, and give your eyes ten minutes. The Milky Way shows visible dark lanes from here.\n\nThe galactic core is up roughly April through October, best mid-July through mid-August, overhead between about 11 p.m. and 3 a.m. A full moon washes it out, so aim for a new-moon week or a night before moonrise. Full-moon dates for your trip are in this guide\'s programs list.\n\nTioga Road is typically open to cars from late May or June until sometime in November, so this is a summer and fall spot. It is cold at 8,300 feet after dark even in August, colder when lying still; bring a real jacket and a hat. Use a red headlamp and keep phone screens down, for your night vision and for photographers already set up.',
     photos: [{ src: '/photos/olmsted-point-at-night.jpg' }],
     swap:
       'If Tioga Road is closed, [Glacier Point](/stop/glacier-point) is the drive-to alternative on the south side (summer Saturdays often have telescope star parties). [Tenaya Lake](/stop/tenaya-lake)\'s east beach, ten minutes further up Tioga, trades the granite slabs for the Milky Way reflected in still water.',
@@ -90,7 +90,7 @@ const seed: SecretSpotInput[] = [
     teaser:
       'Sequoias without the crowds: a mile down the 1874 wagon road to a couple dozen giants and the walk-through Dead Giant. The climb back is 500 feet.',
     body:
-      'Park at the lot on Tioga Road just east of Crane Flat and walk a mile down the old Big Oak Flat Road, the 1874 wagon grade, now closed to cars (its lower valley section is a separate entry in this guide). The pavement drops about 500 feet through fir forest to a couple dozen mature sequoias. Allow two hours round trip. No welcome plaza, no shuttle, and far fewer people than Mariposa Grove.\n\nThe landmark is the Dead Giant, a sequoia snag tunneled for stagecoaches in 1878; you can still walk through it. The black bark scars on the living trees are normal. Sequoias are built for fire, and the park runs restoration burns here because seedlings need bare soil and open light.\n\nThe walk out is 500 feet of steady climbing above 6,000 feet, and people underestimate it. Carry water and take it slow.',
+      'Park at the lot on Tioga Road just east of Crane Flat and walk a mile down the old Big Oak Flat Road, the 1874 wagon grade, now closed to cars (its lower valley section is a separate entry in this guide). The pavement drops about 500 feet through fir forest to a couple dozen mature sequoias. Allow two hours round trip. No welcome plaza, no shuttle, and far fewer people than Mariposa Grove.\n\nThe landmark is the Dead Giant, a sequoia snag (a dead standing tree) tunneled for stagecoaches in 1878; you can still walk through it. The black bark scars on the living trees are normal. Sequoias are built for fire, and the park runs restoration burns (planned, controlled fires) here because seedlings need bare soil and open light.\n\nThe walk out is 500 feet of steady climbing above 6,000 feet, and people underestimate it. Carry water and take it slow.',
     photos: [{ src: '/photos/tuolumne-grove-old-road.jpg' }],
     swap:
       'If the Tuolumne Grove lot is full, the [Merced Grove](/stop/merced-grove) trailhead is a few miles west on Big Oak Flat Road: a smaller grove, a similar down-then-up walk, and even fewer people. If you want the full sequoia day with the famous named trees, that is [Mariposa Grove](/stop/mariposa-grove), a different trip.',
@@ -105,9 +105,9 @@ const seed: SecretSpotInput[] = [
     elevationFt: 8760,
     timeBudgetMin: 45,
     teaser:
-      'The lowest-effort summit in the park: about a mile round trip, 200 feet up, and the whole Tuolumne basin turning gold at last light.',
+      'An easy summit: about a mile round trip, 200 feet up, and the whole Tuolumne basin turning gold at last light.',
     body:
-      'The lowest-effort summit in the park. A pullout sits at the base of Pothole Dome at the west end of Tuolumne Meadows. The round trip is about a mile with 200 feet of gain; the granite scramble up takes ten to fifteen minutes. Follow the established path around the meadow edge rather than cutting across: the meadow is wet and fragile most of the season, and the detour costs two minutes.\n\nGo for the last hour of daylight. From the top the meadow spreads east toward Lembert Dome and the Cathedral Range, and the sunset light runs lengthwise up the grass. The granite underfoot is polished by the glacier that ground over the dome and catches the low sun.\n\nBring a headlamp for the walk down; at 8,700 feet the light and the temperature drop fast. The car is a five-minute walk from the base.',
+      'An easy summit. A pullout sits at the base of Pothole Dome at the west end of Tuolumne Meadows. The round trip is about a mile with 200 feet of gain; the granite scramble up takes ten to fifteen minutes. Follow the established path around the meadow edge rather than cutting across: the meadow is wet and fragile most of the season, and the detour costs two minutes.\n\nGo for the last hour of daylight. From the top the meadow spreads east toward Lembert Dome and the Cathedral Range, and the sunset light runs lengthwise up the grass. The granite underfoot is polished by the glacier that ground over the dome and catches the low sun.\n\nBring a headlamp for the walk down; at 8,700 feet the light and the temperature drop fast. The car is a five-minute walk from the base.',
     photos: [{ src: '/photos/pothole-dome-sunset.jpg' }],
   },
   {
@@ -152,7 +152,7 @@ const seed: SecretSpotInput[] = [
     kind: 'parking',
     coord: [-119.6314, 37.7240], // verified 2026-07: El Capitan Bridge / crossover parking (OSM + Natural Atlas); prior user pin was ~840 m west at the meadow pullouts, not the bridge the body describes
     teaser:
-      'The east valley\'s parking dies by mid-morning; this lot holds out far longer. Park at the bridge, then bike or shuttle east with the Captain behind you.',
+      'The east valley\'s parking fills by mid-morning; this lot holds out far longer. Park at the bridge, then bike or shuttle east with the Captain behind you.',
     body:
       'East valley parking fills by mid-morning. Park at El Capitan instead, where the lot holds out far longer. From El Capitan Bridge, bike in or take the free shuttle to the east end. It replaces half an hour of circling with a short ride.',
     photos: [{ src: '/photos/el-cap-crossover-parking.jpg', caption: 'El Capitan from El Capitan Meadow, the view from the crossover.' }],
@@ -199,7 +199,7 @@ const seed: SecretSpotInput[] = [
     body:
       'Forest Service land just outside Yosemite Valley allows camping with views of El Capitan and Half Dome. No toilets, no amenities, no reservations, no fee. Confirm you are over the park boundary on a Stanislaus National Forest map before you pitch: on the park side, camping and sleeping in a vehicle are allowed only in a registered campsite. Any flame needs a California campfire permit. Pack out everything, and do not publish the pin.',
     hazard:
-      'Dispersed camping with no toilets, no water, and no services. Check current fire restrictions before lighting anything.',
+      'Camping outside a campground, with no toilets, no water, and no services. Check current fire restrictions before lighting anything.',
     photos: [{ src: '/photos/foresta-forest-service-camping.jpg', caption: 'A Stanislaus National Forest campsite: a table, a bear box, and no reservation.' }],
   },
   {
@@ -215,16 +215,16 @@ const seed: SecretSpotInput[] = [
     teaser:
       'Five and a half miles of the 1874 Coulterville wagon road, out and back from Foresta, to a fifteen-foot fall in Stanislaus National Forest with a picnic table at the bottom of it.',
     body:
-      'Little Nellie Falls is about 2.8 miles out on the Old Coulterville Road, 5.6 miles round trip with roughly 470 feet of gain: a fifteen-foot fall on Little Crane Creek, just over the park boundary in Stanislaus National Forest, with a picnic table at the bottom. Park where the road forks a few miles into the Foresta area, take the right fork on foot past the south side of Big Meadow, and follow the old grade uphill. The road, finished in 1874, was the first wagon road into Yosemite Valley.\n\nThe route forks four times: bear right at the first three, which come early, and left at the last. The 2009 Big Meadow fire and the 2013 Rim Fire both burned here, so the walk runs through regrowth and standing snags, with open views back toward the Valley rim and post-fire flowers in spring.\n\nGo in spring and early summer, when the creek carries snowmelt; by late summer it is a trickle. Overnight rules are the national forest\'s: no wilderness permit, a California campfire permit for any flame, and a check of current fire restrictions. Pack out everything.',
+      'Little Nellie Falls is about 2.8 miles out on the Old Coulterville Road, 5.6 miles round trip with roughly 470 feet of gain: a fifteen-foot fall on Little Crane Creek, just over the park boundary in Stanislaus National Forest, with a picnic table at the bottom. Park where the road forks a few miles into the Foresta area, take the right fork on foot past the south side of Big Meadow, and follow the old grade uphill. The road, finished in 1874, was the first wagon road into Yosemite Valley.\n\nThe route forks four times: bear right at the first three, which come early, and left at the last. The 2009 Big Meadow fire and the 2013 Rim Fire both burned here, so the walk runs through regrowth and standing snags (dead trees), with open views back toward the Valley rim and post-fire flowers in spring.\n\nGo in spring and early summer, when the creek carries snowmelt; by late summer it is a trickle. Overnight rules are the national forest\'s: no wilderness permit, a California campfire permit for any flame, and a check of current fire restrictions. Pack out everything.',
     hazard:
-      'The route crosses two burn scars: snags fall without wind and the shade is thin. Carry water; the creek is the only source and needs treating.',
+      'The route crosses two burn scars, where the forest burned. Dead trees can fall without wind, and the shade is thin. Carry water; the creek is the only source and must be treated before drinking.',
     photos: [{ src: '/photos/foresta-cascades.jpg', caption: 'A fall in the trees off the old road. Little Nellie is smaller, with a picnic table at the bottom of it.' }], // stand-in: not this entry, see guide-photo-manifest.json
   },
   // Inspiration Point lives in stops.ts with Artist Point (hidden collection,
   // valley): one trail from Tunnel View reaches both, so it is one entry.
   {
     id: 'hidden-lake',
-    title: 'Hidden Lake, the tarn behind Olmsted Point',
+    title: 'Hidden Lake, the small lake behind Olmsted Point',
     order: 16,
     category: 'camping',
     kind: 'camping',
@@ -233,11 +233,11 @@ const seed: SecretSpotInput[] = [
     timeBudgetMin: 120,
     season: 'Tioga Road season',
     teaser:
-      'A small granite tarn a short walk from Tioga Road with no official trail, and a wilderness permit that is actually attainable.',
+      'A small granite lake a short walk from Tioga Road, with no official trail and a wilderness permit that is actually attainable.',
     body:
-      'A small lake in the granite between Olmsted Point and the west end of Tenaya Lake, with no official trail and no sign. The approach from the road is under a mile of route-finding over slabs and through lodgepole: pick a line, note it, and expect to walk it back. The Tenaya Lake to Yosemite Valley trail passes north of the lake toward Mount Watkins and Snow Creek, and a ridge on that trail gives a glimpse of it.\n\nIt is a real lake with granite shores at 8,000 feet, reachable in an afternoon, with an attainable wilderness permit for a night. Any overnight needs the permit and a bear canister, and camps must be at least a mile from the road and out of sight of it, so the lake is a base for a camp beyond it, not a site on its shore. Check current trailhead rules before counting on it.',
+      'A small lake in the granite between Olmsted Point and the west end of Tenaya Lake, with no official trail and no sign. The approach from the road is under a mile of cross-country walking over granite slabs and through lodgepole: pick a line, note it, and expect to walk it back. The Tenaya Lake to Yosemite Valley trail passes north of the lake toward Mount Watkins and Snow Creek, and a ridge on that trail gives a glimpse of it.\n\nIt is a real lake with granite shores at 8,000 feet, reachable in an afternoon, with an attainable wilderness permit for a night. Any overnight needs the permit and a bear canister, and camps must be at least a mile from the road and out of sight of it, so the lake is a base for a camp beyond it, not a site on its shore. Check current trailhead rules before counting on it.',
     hazard:
-      'No trail. Route-finding over granite and through forest; carry a map and a fix of the car, and turn back if the line stops making sense. Mosquitoes are serious through July.',
+      'No trail. You find the way over granite and through forest: carry a map, mark where the car is on your phone, and turn back if the line stops making sense. Mosquitoes are serious through July.',
     photos: [{ src: '/photos/backcountry-camp-alpenglow.jpg', caption: 'A backcountry camp at first light, everything carried in. Hidden Lake asks for a short walk and a permit you can actually get.' }], // stand-in: not this entry, see guide-photo-manifest.json
   },
 
@@ -275,7 +275,7 @@ const seed: SecretSpotInput[] = [
     teaser:
       'A shallow spring-fed pond on the south side of Tioga Road, unsigned, a mile west of the White Wolf turnoff, that holds a still reflection of the firs at dawn and turns red around the edges in October.',
     body:
-      'A small spring-fed pond ringed by lodgepole and red fir on the south side of Tioga Road, about 13 miles east of Crane Flat and a mile short of the White Wolf turnoff. No sign and no lot, only a shoulder pullout. Fifteen minutes. The 1950s road engineers bent the alignment around it rather than fill it.\n\nIt is no more than five feet deep, which is why stocked fish winter-killed and were gone by the mid-1950s, and why it is glassy on still mornings. Come at dawn for the firs reflected in it, or in October, when the shoreline shrubs turn red and orange. The park\'s old auto-tour guide noted black-backed woodpeckers nesting here, a bird of burned and beetle-killed forest.',
+      'A small spring-fed pond ringed by lodgepole and red fir on the south side of Tioga Road, about 13 miles east of Crane Flat and a mile short of the White Wolf turnoff. No sign and no lot, only a shoulder pullout. Fifteen minutes. The 1950s road engineers bent Tioga Road around it rather than fill it in.\n\nIt is no more than five feet deep, which is why stocked fish died over winter (winterkill) and were gone by the mid-1950s, and why it is glassy on still mornings. Come at dawn for the firs reflected in it, or in October, when the shoreline shrubs turn red and orange. The park\'s old auto-tour guide noted black-backed woodpeckers nesting here, a bird of burned and beetle-killed forest.',
     hazard:
       'The pullout is on a curve. Get the car fully off the pavement and cross on foot with the road in view both ways.',
     photoTiming: { best: 'sunrise', note: 'Dead calm water at first light, before the road wakes up.' },
@@ -295,7 +295,7 @@ const seed: SecretSpotInput[] = [
     teaser:
       'Past the Grizzly Giant the crowd thins, and the trail climbs through the upper grove to a stone overlook at 6,810 feet looking down on Wawona.',
     body:
-      'From the Arrival Area the Mariposa Grove Trail passes the Grizzly Giant and the California Tunnel Tree, where most visitors turn around, then climbs through the upper grove past the Mariposa Grove Cabin and the Fallen Wawona Tunnel Tree to a short spur on the old road ending at Wawona Point. Seven miles round trip with 1,200 feet of gain; four to six hours. The last mile is usually empty.\n\nThe overlook faces south and west, not toward the Valley: over the Wawona meadow, Wawona Dome, the South Fork of the Merced and the old Chowchilla Mountain wagon road, 3,000 feet below. The stone parapet was rebuilt during the restoration that closed the grove from 2015 to 2018 and removed the tram, gift shop and asphalt. The Wawona Tunnel Tree, tunneled in 1881 for stagecoaches, fell under snow in February 1969 and was left where it lies.\n\nRide the free shuttle from the Welcome Plaza to the Arrival Area and start early; the plaza lot has about 300 spaces and fills by late morning in season. Outside shuttle season the grove is a two-mile walk from the plaza before the trail starts, which makes this a full day.',
+      'From the Arrival Area the Mariposa Grove Trail passes the Grizzly Giant and the California Tunnel Tree, where most visitors turn around, then climbs through the upper grove past the Mariposa Grove Cabin and the Fallen Wawona Tunnel Tree to a short spur on the old road ending at Wawona Point. Seven miles round trip with 1,200 feet of gain; four to six hours. The last mile is usually empty.\n\nThe overlook faces south and west, not toward the Valley: over the Wawona meadow, Wawona Dome, the South Fork of the Merced and the old Chowchilla Mountain wagon road, 3,000 feet below. The stone wall was rebuilt during the restoration that closed the grove from 2015 to 2018 and removed the tram, gift shop and asphalt. The Wawona Tunnel Tree, tunneled in 1881 for stagecoaches, fell under snow in February 1969 and was left where it lies.\n\nRide the free shuttle from the Welcome Plaza to the Arrival Area and start early; the plaza lot has about 300 spaces and fills by late morning in season. Outside shuttle season the grove is a two-mile walk from the plaza before the trail starts, which makes this a full day.',
     hazard:
       'Sun and sand on the upper road, and 6,800 feet of elevation. Carry more water than the grove\'s lower loop suggests.',
     photos: [{ src: '/photos/wawona-point.jpg', caption: 'The view from Wawona Point: Wawona and the South Fork country, 3,000 feet below.' }],
@@ -438,10 +438,10 @@ const seed: SecretSpotInput[] = [
     teaser:
       'Twenty-nine sites in a wildflower meadow on Big Creek at Fish Camp, a mile and a half south of the South Entrance on Highway 41, reservable six months out when Wawona and the Valley are long gone.',
     body:
-      'Twenty-nine sites in Sierra National Forest at Fish Camp, 5,011 feet, on the left on Highway 41 a mile and a half before the South Entrance. The meadow of firs, cottonwoods and cedars runs along Big Creek; each site has a paved spur, table, grill and fire ring, with vault toilets and water. The Mariposa Grove Welcome Plaza is a few minutes up the road, a good base for an early start in the grove.\n\nReserve on recreation.gov up to six months ahead, with a three-day lead time before arrival, a two-night minimum on weekends and three on holidays. That window makes a site realistic in spring for a summer trip, after the park\'s campgrounds on this side are gone.\n\nBig Creek holds rainbow trout. Fish Camp has a general store, and Tenaya Lodge across the road is the nearest hot meal and a pool that sells day use.',
+      'Twenty-nine sites in Sierra National Forest at Fish Camp, 5,011 feet, on the left on Highway 41 a mile and a half before the South Entrance. The meadow of firs, cottonwoods and cedars runs along Big Creek; each site has a paved spur, table, grill and fire ring, with vault toilets and water. The Mariposa Grove Welcome Plaza is a few minutes up the road, a good base for an early start in the grove.\n\nReserve on recreation.gov up to six months ahead, with a three-day lead time before arrival, a two-night minimum on weekends and three on holidays. That window makes a site realistic in spring for a summer trip, after the park\'s campgrounds on this side are sold out.\n\nBig Creek holds rainbow trout. Fish Camp has a general store, and Tenaya Lodge across the road is the nearest hot meal and a pool that sells day use.',
     hazard:
       'Bears use this corridor as much as the park; store food in the vehicle or a locker at all times.',
-    photos: [{ src: '/photos/valley-campground-tent.jpg', caption: 'A tent site under conifers, the shape of a night at Summerdale. Commons has no photo of the campground itself.' }], // stand-in: not this entry, see guide-photo-manifest.json
+    photos: [{ src: '/photos/valley-campground-tent.jpg', caption: 'A tent site under conifers, the shape of a night at Summerdale. No free-to-use photo of the campground itself is available yet.' }], // stand-in: not this entry, see guide-photo-manifest.json
     swap:
       'Inside the gate, [Wawona](/stop/wawona-hotel-history-center) has the park campground and the hotel. On the other side of the park, the same idea is Tioga Lake.',
   },
@@ -458,9 +458,9 @@ const seed: SecretSpotInput[] = [
     timeBudgetMin: 90,
     season: 'April to June, full moon',
     teaser:
-      'April to June, around the full moon, a moonbow forms in the mist at the footbridge below Lower Yosemite Fall. It looks white to the eye; a camera records color.',
+      'April to June, around the full moon, a moonbow (a rainbow made by moonlight) forms in the mist at the footbridge below Lower Yosemite Fall. It looks white to the eye; a camera records color.',
     body:
-      'April through June, on the nights around the full moon, a moonbow forms in the mist at the footbridge below Lower Yosemite Fall. Walk in from the shuttle stop with a red headlamp and a shell, and expect a line of tripods on the right night. See the night-sky page for your dates\' moon phase; late May and June full moons are most reliable, and cloud over the moon cancels it.\n\nThe moon must be full or nearly so and under about 42 degrees above the horizon, low over the south rim behind the footbridge; the fall must carry enough snowmelt to fill its base with mist. Texas State University astronomers publish the nights and hours each year. The arc forms high and to the left of the fall and sinks down and to the right over the creek. To the eye it is pale white, too dim for color vision; a phone on a long exposure records red through violet.\n\nStand where the spray is thickest, let your eyes adjust, and look for the bow between you and the fall. Upper Yosemite Fall has its own moonbow, seen from Cook\'s Meadow or Sentinel Bridge, with few people watching.',
+      'April through June, on the nights around the full moon, a moonbow forms in the mist at the footbridge below Lower Yosemite Fall. Walk in from the shuttle stop with a red headlamp and a windproof jacket, and expect a line of tripods on the right night. See the night-sky page for your dates\' moon phase; late May and June full moons are most reliable, and cloud over the moon cancels it.\n\nThe moon must be full or nearly so and under about 42 degrees above the horizon, low over the south rim behind the footbridge; the fall must carry enough snowmelt to fill its base with mist. Texas State University astronomers publish the nights and hours each year. The arc forms high and to the left of the fall and sinks down and to the right over the creek. To the eye it is pale white, too dim for color vision; a phone on a long exposure records red through violet.\n\nStand where the spray is thickest, let your eyes adjust, and look for the bow between you and the fall. Upper Yosemite Fall has its own moonbow, seen from Cook\'s Meadow or Sentinel Bridge, with few people watching.',
     hazard:
       'The footbridge and the rock beside it are wet and slick in the spray. Paths are paved but dark; keep to them.',
     photoTiming: { best: 'night', note: 'Around the spring full moons, in the hours the moon is low behind the bridge.' },
@@ -502,7 +502,7 @@ const seed: SecretSpotInput[] = [
     teaser:
       'The largest owl in North America hunts the meadow edges at Crane Flat in the last hour of light. Yosemite holds most of California\'s two or three hundred, and they are a subspecies found nowhere else.',
     body:
-      'Park at the Crane Flat meadow pullout an hour before sunset, walk the road edge to a long view down the meadow, and stand still. Scan the tops of low snags and the lower limbs at the meadow edge, not the sky; a great gray sits, listens, then drops on voles and gophers. McGurk Meadow, off Glacier Point Road, is the other good meadow at the same hour.\n\nThe great gray is the tallest owl on the continent, and Yosemite is the southern end of its range. The park\'s birds were shown in 2010 to be a distinct subspecies, Strix nebulosa yosemitensis. California holds perhaps 200 to 300, about two thirds in the park, in the mid-elevation belt where forest meets meadow, hunting mostly in the first and last hours of light.\n\nIt is state-endangered and loses birds to cars on park roads. No recorded calls, no approaching a perched bird, no flash, no walking into the meadow, and drive the meadow stretches slowly at dusk. Binoculars at a hundred yards are the right distance.',
+      'Park at the Crane Flat meadow pullout an hour before sunset, walk the road edge to a long view down the meadow, and stand still. Scan the tops of low dead trees (snags) and the lower limbs at the meadow edge, not the sky; a great gray sits, listens, then drops on voles and gophers. McGurk Meadow, off Glacier Point Road, is the other good meadow at the same hour.\n\nThe great gray is the tallest owl on the continent, and Yosemite is the southern end of its range. The park\'s birds were shown in 2010 to be a distinct subspecies, Strix nebulosa yosemitensis. California holds perhaps 200 to 300, about two thirds in the park, in the mid-elevation belt where forest meets meadow, hunting mostly in the first and last hours of light.\n\nIt is state-endangered and loses birds to cars on park roads. No recorded calls, no approaching a perched bird, no flash, no walking into the meadow, and drive the meadow stretches slowly at dusk. Binoculars at a hundred yards are the right distance.',
     hazard:
       'Roadside pullout on a highway at dusk: park fully off the pavement, wear something light, and cross with care. Mosquitoes in early summer.',
     photoTiming: { best: 'golden-pm', note: 'The hour before sunset, when the owls come to the meadow edge to hunt.' },
@@ -697,7 +697,7 @@ const seed: SecretSpotInput[] = [
     teaser:
       'A paved pullout at the tunnels on the 1940 Big Oak Flat Road, looking up the Merced gorge to El Capitan and Half Dome. The same Valley as Tunnel View, from the north wall, with a fraction of the people.',
     body:
-      'A paved pullout on the Big Oak Flat Road near its tunnels, above the Merced gorge. The view runs up the gorge: El Capitan in the middle left, Half Dome in the middle background, and the Wawona Road cut through the forest on the far wall. It is the same Valley as Tunnel View, seen from the north side, with far fewer people. One wayside exhibit, about forest fire.\n\nThe road you are standing on is the new one. The Big Oak Flat Road was dedicated in June 1940 at a cost of $1,200,000; the original road it replaced had cost $40,000, and its lower grade into the Valley is the Old Big Oak Flat Road walk in this guide.\n\nChains are often required on this road from November through March, and now and then as early as September or as late as May; it needs them more often than the roads on the Valley floor.',
+      'A paved pullout on the Big Oak Flat Road near its tunnels, above the Merced gorge. The view runs up the gorge: El Capitan in the middle left, Half Dome in the middle background, and the Wawona Road cut through the forest on the far wall. It is the same Valley as Tunnel View, seen from the north side, with far fewer people. One roadside exhibit, about forest fire.\n\nThe road you are standing on is the new one. The Big Oak Flat Road was dedicated in June 1940 at a cost of $1,200,000; the original road it replaced had cost $40,000, and its lower grade into the Valley is the Old Big Oak Flat Road walk in this guide.\n\nTire chains are often required on this road from November through March, and now and then as early as September or as late as May; it needs them more often than the roads on the Valley floor.',
     hazard: 'The pullout is on a two-lane highway. Stay inside the paved parking area.',
     photos: [{ src: '/photos/half-dome-view-big-oak-flat.jpg', caption: 'Half Dome up the Merced gorge from the Big Oak Flat Road overlook.' }],
     swap:
@@ -764,7 +764,7 @@ const seed: SecretSpotInput[] = [
   },
   {
     id: 'nunatak-tioga-tarns',
-    title: 'The Nunatak Trail, a half-mile of tarns outside Tioga Pass',
+    title: 'The Nunatak Trail, a half-mile of ponds outside Tioga Pass',
     order: 44,
     category: 'trails',
     kind: 'trailhead',
@@ -774,11 +774,11 @@ const seed: SecretSpotInput[] = [
     difficulty: 'easy',
     season: 'Tioga Road season',
     teaser:
-      'A signed half-mile loop among small tarns on the Inyo National Forest side of Tioga Pass, just east of Tioga Lake. The Forest Service calls it wheelchair and stroller friendly.',
+      'A signed half-mile loop among small ponds on the Inyo National Forest side of Tioga Pass, just east of Tioga Lake. The Forest Service calls it wheelchair and stroller friendly.',
     body:
-      'The Forest Service trail starts at a roadside pullout with a ramp on Highway 120, just east of Tioga Lake and a few minutes outside the Tioga Pass entrance. It is about half a mile, nearly level, at about 9,500 feet by the Forest Service\'s figure, with signs along the way on the area\'s natural history and geology. The Forest Service lists it as wheelchair and stroller friendly.\n\nThe name is glaciology: a nunatak is a rocky crag that stood above an ice sheet while the ice flowed around it. The tarns are what the ice left in the hollows.\n\nDay use only, sunrise to sunset, with no drinking water. Dogs on leash. It opens and closes with the road.',
+      'The Forest Service trail starts at a roadside pullout with a ramp on Highway 120, just east of Tioga Lake and a few minutes outside the Tioga Pass entrance. It is about half a mile, nearly level, at about 9,500 feet by the Forest Service\'s figure, with signs along the way on the area\'s natural history and geology. The Forest Service lists it as wheelchair and stroller friendly.\n\nThe name is glaciology: a nunatak is a rocky crag that stood above an ice sheet while the ice flowed around it. The ponds are what the ice left in the hollows. Geologists call them tarns.\n\nDay use only, sunrise to sunset, with no drinking water. Dogs on leash. It opens and closes with the road.',
     hazard: 'This is about 9,500 feet. Walk slowly on the first day up from the coast.',
-    photos: [{ src: '/photos/tioga-lake-campground.jpg', caption: 'Tioga Lake, beside the trailhead. The tarns on the loop are the same granite and water on a smaller scale.' }], // stand-in: not this entry, see guide-photo-manifest.json
+    photos: [{ src: '/photos/tioga-lake-campground.jpg', caption: 'Tioga Lake, beside the trailhead. The ponds on the loop are the same granite and water on a smaller scale.' }], // stand-in: not this entry, see guide-photo-manifest.json
     swap:
       'Down the road at Junction Campground, [Bennettville](/stop/bennettville) is the other short walk on this side of the pass.',
   },
@@ -821,7 +821,7 @@ const seed: SecretSpotInput[] = [
     teaser:
       'Yosemite Hospitality runs a free one-hour tour of The Ahwahnee every afternoon: the building disguised as timber, the Navy hospital, the rooms Jeannette Dyer Spencer painted. You do not need to be a guest.',
     body:
-      'The Ahwahnee looks like a lodge and reads like a museum, and the free Historic Ahwahnee Tour is the way in. Yosemite Hospitality runs it daily in the afternoon, an hour long, for up to 30 people, and it is wheelchair accessible. The current Yosemite Guide lists it as drop-in, while Travel Yosemite says most of its tours need a reservation; call 888-413-8869 to hold a place if the day matters. The concessioner\'s listing meets on the hotel\'s back lawn and the current Yosemite Guide gives the flagpole; ask at the front desk if the two disagree on the day.\n\nThe story is the building. Stephen Mather wanted a luxury hotel to bring wealthy visitors to the park. Gilbert Stanley Underwood, who had already designed the lodges at Zion and Bryce Canyon, built it to resist fire: steel, granite, and concrete stained to look like wood. It opened on July 14, 1927, after fourteen months of work. Jeannette Dyer Spencer designed the stenciling, the stained glass and the murals on Native basketry patterns. In 1943 the Navy leased the whole hotel as a convalescent hospital, and it stayed one until December 1945. From 2016 to 2019, during a trademark dispute with the departing concessioner, it was called The Majestic Yosemite Hotel, until a settlement returned the name.\n\nPark at Yosemite Village and walk fifteen minutes, or take the shuttle to stop 3; hotel parking is limited and valet fees may apply. Yosemite Hospitality\'s free guided nature walk leaves the same back lawn half an hour after the tour ends, first come, first served.',
+      'The Ahwahnee looks like a lodge and reads like a museum, and the free Historic Ahwahnee Tour is the way in. Yosemite Hospitality runs it daily in the afternoon, an hour long, for up to 30 people, and it is wheelchair accessible. The current Yosemite Guide lists it as drop-in, while Travel Yosemite says most of its tours need a reservation; call 888-413-8869 to hold a place if the day matters. Yosemite Hospitality\'s listing meets on the hotel\'s back lawn, and the current Yosemite Guide gives the flagpole; ask at the front desk if the two disagree on the day.\n\nThe story is the building. Stephen Mather wanted a luxury hotel to bring wealthy visitors to the park. Gilbert Stanley Underwood, who had already designed the lodges at Zion and Bryce Canyon, built it to resist fire: steel, granite, and concrete stained to look like wood. It opened on July 14, 1927, after fourteen months of work. Jeannette Dyer Spencer designed the stenciling, the stained glass and the murals on Native basketry patterns. In 1943 the Navy leased the whole hotel as a convalescent hospital, and it stayed one until December 1945. From 2016 to 2019, during a trademark dispute with the departing operator, it was called The Majestic Yosemite Hotel, until a settlement returned the name.\n\nPark at Yosemite Village and walk fifteen minutes, or take the shuttle to stop 3; hotel parking is limited and valet fees may apply. Yosemite Hospitality\'s free guided nature walk leaves the same back lawn half an hour after the tour ends, first come, first served.',
     booking: { verb: 'Schedule', source: 'Travel Yosemite', url: 'https://www.travelyosemite.com/things-to-do/naturalist-walks-programs' },
     photos: [{ src: '/photos/ahwahnee-hotel.jpg', caption: 'The Ahwahnee in snow: granite, and concrete that passes for timber.' }],
     swap:

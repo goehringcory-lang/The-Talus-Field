@@ -208,7 +208,7 @@ const seed: AmenityInput[] = [
     kind: 'camping',
     region: 'tuolumne',
     coord: [-119.7366, 37.7521], // verified 2026-07: campground at the road-end of the Tamarack Flat spur off Tioga Rd (same pin as the tamarack-to-cascade stop; latitude.to/CampingRoadTrip)
-    note: 'Primitive sites at the end of a rough 3-mile spur off Tioga Road. Creek water only, boiled before drinking; no RVs or trailers. Reservations open two weeks ahead on recreation.gov.',
+    note: 'Primitive sites at the end of a rough 3-mile spur off Tioga Road. Creek water only; boil it before drinking. No RVs or trailers. Reservations open two weeks ahead on recreation.gov.',
     season: 'Summer to mid-October (June 22 to October 12 in 2026)',
   },
   {
@@ -226,7 +226,7 @@ const seed: AmenityInput[] = [
     kind: 'camping',
     region: 'tuolumne',
     coord: [-119.5958, 37.8267], // verified 2026-07: campground on Yosemite Creek ~5 mi down the old Tioga Rd from the highway (campgroundviews; single source, matches access-road geometry)
-    note: 'Primitive creekside sites five slow miles down a rough single-lane road off Tioga Road. The access road is the filter; the campground is the reward.',
+    note: 'Primitive creekside sites five slow miles down a rough single-lane road off Tioga Road. The rough road keeps most people out; the campground is the reward.',
     season: 'Seasonal; roughly July through early September',
   },
   {
@@ -235,7 +235,7 @@ const seed: AmenityInput[] = [
     kind: 'camping',
     region: 'tuolumne',
     coord: [-119.5651, 37.8075], // verified 2026-07: campground on Tioga Rd at 8,100 ft (latitude.to/CampingRoadTrip)
-    note: 'Right on Tioga Road at 8,100 feet, primitive, creek water boiled before drinking. Reservations open two weeks ahead on recreation.gov. A practical base for Olmsted Point and May Lake.',
+    note: 'Right on Tioga Road at 8,100 feet, primitive. Boil creek water before drinking. Reservations open two weeks ahead on recreation.gov. A practical base for Olmsted Point and May Lake.',
     season: 'Summer to mid-October (June 23 to October 11 in 2026)',
   },
   {
@@ -363,7 +363,7 @@ const seed: AmenityInput[] = [
     kind: 'visitor-center',
     region: 'valley',
     coord: [-119.559463, 37.730692], // NPS API places: Happy Isles Art and Nature Center
-    note: 'The family stop at shuttle stop 16, a hundred metres from the Mist Trail trailhead: hands-on exhibits, the junior ranger desk, and art classes in season.',
+    note: 'The family stop at shuttle stop 16, a hundred meters from the Mist Trail trailhead: hands-on exhibits, the junior ranger desk, and art classes in season.',
     hours: 'Weekdays, 9 a.m. to 4 p.m., through October 16',
     season: 'Through October 16',
   },
@@ -490,7 +490,7 @@ const seed: AmenityInput[] = [
     region: 'valley',
     coord: [-119.630986, 37.723827], // NPS API places: Valley Shuttle Stop 9
     glyph: '9',
-    note: 'Valleywide route. Temporarily closed in the September 23 to November 24, 2026 Yosemite Guide. El Capitan Meadow is still reachable from the road.',
+    note: 'Valleywide route. The Yosemite Guide lists this stop closed from September 23 to November 24, 2026. El Capitan Meadow is still reachable from the road.',
   },
   {
     id: 'shuttle-stop-10',
@@ -848,7 +848,7 @@ const seed: AmenityInput[] = [
     kind: 'landmark',
     region: 'valley',
     coord: [-119.569, 37.7484], // Wikipedia: Royal Arches (Yosemite)
-    note: 'The curved exfoliation arches in the north wall behind The Ahwahnee, with North Dome above them.',
+    note: 'The curved arches in the north wall behind The Ahwahnee, made where sheets of granite peel away, with North Dome above them.',
   },
   {
     id: 'washington-column',
@@ -872,7 +872,7 @@ const seed: AmenityInput[] = [
     kind: 'landmark',
     region: 'valley',
     coord: [-119.533374, 37.724764], // Wikipedia: Nevada Fall
-    note: 'The 594-foot fall on the Merced above Vernal Fall, bent where it hits the apron. Reached on foot by the Mist Trail or the John Muir Trail.',
+    note: 'The 594-foot fall on the Merced above Vernal Fall, bent where it hits the sloped granite below. Reached on foot by the Mist Trail or the John Muir Trail.',
   },
   {
     id: 'grizzly-giant',
@@ -880,7 +880,7 @@ const seed: AmenityInput[] = [
     kind: 'landmark',
     region: 'glacier-mariposa',
     coord: [-119.600664, 37.503514], // Wikipedia: Grizzly Giant
-    note: 'The most visited tree in the park, about 209 feet tall and close to 3,000 years old, on the Grizzly Giant Loop from the grove arrival area. The California Tunnel Tree stands a hundred metres on.',
+    note: 'The most visited tree in the park, about 209 feet tall and close to 3,000 years old, on the Grizzly Giant Loop from the grove arrival area. The California Tunnel Tree stands a hundred meters on.',
   },
   {
     id: 'california-tunnel-tree',
