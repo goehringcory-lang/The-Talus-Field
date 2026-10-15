@@ -45,7 +45,7 @@ window.ARTICLE_BODIES["yosemite-during-smoke-season"] = function YosemiteDuringS
       <p>Three resources, in order of usefulness.</p>
 
       <p>
-        <strong>AirNow</strong> (<a href="https://www.airnow.gov" target="_blank" rel="noopener noreferrer">airnow.gov</a>) and the <strong>AirNow Fire and Smoke Map</strong> (<a href="https://fire.airnow.gov" target="_blank" rel="noopener noreferrer">fire.airnow.gov</a>) are the official EPA sources. They give you an Air Quality Index (AQI) reading for monitors in and near the park, updated multiple times a day. The Yosemite Valley monitor is at the Visitor Center. There are additional monitors in Wawona and Tuolumne when staffed and operating.
+        <strong>AirNow</strong> (<a href="https://www.airnow.gov" target="_blank" rel="noopener noreferrer">airnow.gov</a>) and the <strong>AirNow Fire and Smoke Map</strong> (<a href="https://fire.airnow.gov" target="_blank" rel="noopener noreferrer">fire.airnow.gov</a>) are the official EPA sources. They give you an Air Quality Index (AQI) reading for monitors in and near the park, updated multiple times a day. The Yosemite Valley monitor is in Yosemite Village. There are additional monitors in Wawona and Tuolumne when staffed and operating.
       </p>
 
       <p>The AQI scale you actually need to know:</p>
