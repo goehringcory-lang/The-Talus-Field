@@ -76,8 +76,8 @@ recent colon style, one of the four categories.
 
 ### Standing head-term list (September 2026; verify, then prune)
 
-- The evergreen month guides not yet written: January, February, April,
-  May, July, August, October (the catalog has March, November, December,
+- The evergreen month guides not yet written: February, April, May,
+  July, August, October (the catalog has January, March, November, December,
   fall, winter, the dated September and October editions, and June,
   whose `yosemite-in-june` the monthly edition refreshes in place each
   May: never write a second June guide).
