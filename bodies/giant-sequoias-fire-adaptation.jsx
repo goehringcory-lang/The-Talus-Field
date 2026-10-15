@@ -138,7 +138,7 @@ window.ARTICLE_BODIES["giant-sequoias-fire-adaptation"] = function GiantSequoias
       <h2>What changed, and why it matters</h2>
 
       <p>
-        For about a hundred and fifty years, the policy governing Yosemite National Park was clear: prevent fire at all costs. This made intuitive sense to early park managers. Fire was dangerous. Fire destroyed trees. And for a sequoia grove, which exists in the western imagination as a kind of cathedral, the idea of letting the cathedral burn was unthinkable.
+        For roughly a century, until the 1970s, the policy governing Yosemite National Park was clear: prevent fire at all costs. This made intuitive sense to early park managers. Fire was dangerous. Fire destroyed trees. And for a sequoia grove, which exists in the western imagination as a kind of cathedral, the idea of letting the cathedral burn was unthinkable.
       </p>
 
       <p>The policy did not account for the fact that the groves had been burning regularly for two thousand years.</p>
@@ -148,7 +148,7 @@ window.ARTICLE_BODIES["giant-sequoias-fire-adaptation"] = function GiantSequoias
       </p>
 
       <p>
-        The shift in understanding began slowly, with observations like those recorded in 1929, and has continued since. Today, land managers in Yosemite accept fire as a necessity. Restoration burns are now part of the standard practice in groves like Mariposa, Tuolumne, and Merced. These burns are carefully planned, timed for weather conditions that keep them low-intensity, and intended to mimic the fire regimes that shaped these forests before fire suppression began.
+        The shift in understanding began slowly, with observations like those recorded in 1929, and has continued since. Today, land managers in Yosemite accept fire as a necessity. Restoration burns are now part of the standard practice in groves like Mariposa and Merced. These burns are carefully planned, timed for weather conditions that keep them low-intensity, and intended to mimic the fire regimes that shaped these forests before fire suppression began.
       </p>
 
       <p>The burns return the conditions the sequoias evolved under.</p>
