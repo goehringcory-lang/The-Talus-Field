@@ -22,7 +22,7 @@ export default function Claim() {
   const [apiError, setApiError] = useState<string | null>(null)
   const sessionId = params.get('session_id')
   // Derive the "missing id" case during render rather than setState in effect.
-  const error = sessionId ? apiError : 'Missing checkout reference in URL.'
+  const error = sessionId ? apiError : 'This page is missing its checkout reference.'
   // One POST per session id per mount: StrictMode double-invokes the effect in
   // dev, and this ref (not effect cleanup) is what stops the redundant second
   // call — same pattern and reasoning as Open.tsx.

@@ -54,7 +54,7 @@ export default function WaitsLine() {
         <Fragment key={w.name}>
           {i > 0 && <span className="waits-line__muted"> · </span>}
           <span className="waits-line__entry">
-            {w.name} <strong>{w.minutes === null ? 'n/a' : `${w.minutes} min`}</strong>
+            {w.name} <strong>{w.minutes === null ? 'not reported' : `${w.minutes} min`}</strong>
           </span>
         </Fragment>
       ))}

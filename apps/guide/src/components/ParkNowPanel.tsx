@@ -484,7 +484,7 @@ export default function ParkNowPanel() {
                       <span className="glance-wait__hwy">{hwy ?? ' '}</span>
                       <span className="glance-wait__value">
                         {w.minutes === null ? (
-                          <span className="glance-wait__none">n/a</span>
+                          <span className="glance-wait__none" aria-hidden="true">—</span>
                         ) : (
                           <>
                             {w.minutes}

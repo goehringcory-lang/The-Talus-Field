@@ -159,7 +159,7 @@ export default function Near() {
         : fix && (geo.status === 'active' || geo.status === 'unavailable')
           ? 'GPS active'
           : acquiring
-            ? 'Waiting for a fix'
+            ? 'Waiting for a GPS reading'
             : 'Location off'
   const gpsTone =
     gpsLine === 'GPS active'
@@ -183,7 +183,7 @@ export default function Near() {
           <div className="near-start">
             <Button onClick={begin}>Start the companion</Button>
             <p className="card__note">
-              Starting asks for location. The fix stays on this device; nothing is sent
+              Starting asks for location. Your position stays on this device; nothing is sent
               anywhere.
             </p>
           </div>

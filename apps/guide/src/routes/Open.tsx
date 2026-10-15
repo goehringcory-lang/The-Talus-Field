@@ -17,7 +17,7 @@ export default function Open() {
   const [apiError, setApiError] = useState<string | null>(null)
   const token = params.get('token')
   // Derive the "missing token" case during render rather than setState in effect.
-  const error = token ? apiError : 'Missing token in URL.'
+  const error = token ? apiError : 'This link is missing its sign-in token. Open the full link from your email.'
   // One POST per token per mount. The Worker keeps the token valid until the
   // buyer's access expires (so the emailed link keeps working across devices),
   // but StrictMode double-invokes this effect in dev, and this ref (not effect

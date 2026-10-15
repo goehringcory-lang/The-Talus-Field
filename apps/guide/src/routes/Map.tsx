@@ -1518,7 +1518,7 @@ export default function Map() {
         // failed fix, not a settings problem, so they get their own note
         // rather than sending the reader off to check permissions.
         setGeoNote(
-          'Could not get a GPS fix here. Try again with a clearer view of the sky.',
+          'Could not get a GPS reading here. Try again with a clearer view of the sky.',
         )
       })
     }
@@ -3279,7 +3279,7 @@ function InfoPane({
         </li>
         <li>
           Where pins crowd each other, the most useful one draws and the rest
-          step down to small dots in their own colour: viewpoints and hikes
+          step down to small dots in their own color: viewpoints and hikes
           first, then trailheads and drives, lodging and camping, then meals,
           and parking and services last. Tap a dot, or zoom in, and it opens
           into its pin. In 3D the far pins also draw smaller, the way the
@@ -3352,7 +3352,7 @@ function InfoPane({
           them all in one popup.
         </li>
         <li>
-          Directions deep-links into the native Google Maps app, which routes
+          Directions opens the Google Maps app, which routes
           you to the turnout using the offline area you downloaded. The
           handoff works without signal if that area is on your phone.
         </li>
@@ -3360,7 +3360,7 @@ function InfoPane({
 
       <h3>Itineraries tab</h3>
       <p>
-        Filter the pin set to one ready-made plan: trip lengths, first
+        Show only the pins for one ready-made plan: trip lengths, first
         visit, young kids, easy pace, and the rest. Use the day-by-day
         list to walk through its stops in order; the map pans to each
         selection.

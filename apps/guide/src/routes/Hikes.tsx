@@ -186,7 +186,7 @@ export default function Hikes() {
           error:
             err.code === err.PERMISSION_DENIED
               ? 'Location is off for this site, so the list stays in region order.'
-              : 'No location fix yet, so the list stays in region order. Try again in the open.',
+              : 'No location reading yet, so the list stays in region order. Try again in the open.',
         }),
       { enableHighAccuracy: false, timeout: 15000, maximumAge: 5 * 60 * 1000 },
     )

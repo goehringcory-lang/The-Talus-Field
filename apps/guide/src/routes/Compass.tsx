@@ -310,7 +310,7 @@ export default function Compass() {
                 {distanceMi !== null
                   ? 'Straight line, not road'
                   : geo.status === 'active' || geo.status === 'requesting'
-                    ? 'Waiting for a fix'
+                    ? 'Waiting for a GPS reading'
                     : 'Needs location'}
               </span>
             </div>
@@ -322,7 +322,7 @@ export default function Compass() {
                   : '—'}
               </span>
               <span className="readout__note">
-                {bearingDeg !== null ? 'True north, declination applied' : target ? 'Needs a fix' : 'Choose a target'}
+                {bearingDeg !== null ? 'True north, declination applied' : target ? 'Needs a GPS reading' : 'Choose a target'}
               </span>
             </div>
             <div className="readout">
@@ -344,11 +344,11 @@ export default function Compass() {
                   : '—'}
               </span>
               <span className="readout__note">
-                {fix?.altitudeM != null ? 'GPS altitude' : 'No altitude in the fix'}
+                {fix?.altitudeM != null ? 'GPS altitude' : 'No altitude in this reading'}
               </span>
             </div>
             <div className="readout readout--wide">
-              <span className="readout__label">Your fix</span>
+              <span className="readout__label">Your position</span>
               <span className="readout__value">
                 {fix
                   ? `${fix.coord[1].toFixed(5)}, ${fix.coord[0].toFixed(5)}`
@@ -359,7 +359,7 @@ export default function Compass() {
                   ? `± ${Math.round(fix.accuracyM * M_TO_FT).toLocaleString()} ft`
                   : geo.status === 'requesting'
                     ? 'Acquiring'
-                    : 'Start the compass for a fix'}
+                    : 'Start the compass to get a GPS reading'}
               </span>
             </div>
             <div className="readout readout--wide">
@@ -401,7 +401,7 @@ export default function Compass() {
           recalibrate. For the drive, use <Link to="/map">the map</Link>: this instrument is
           for the last stretch on foot, and for knowing which wall of the valley the light
           will leave first. If the walk has gone wrong, <Link to="/help">the Help card</Link>{' '}
-          reads the same fix in the forms a dispatcher takes.
+          reads the same position in the forms a dispatcher takes.
         </p>
       </main>
     </GatedChrome>
