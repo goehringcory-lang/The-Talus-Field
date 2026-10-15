@@ -39,7 +39,7 @@
   </url>
   <url>
     <loc>https://thetalusfieldjournal.com/section/wildlife</loc>
-    <lastmod>2026-10-04</lastmod>
+    <lastmod>2026-10-14</lastmod>
   </url>
   <url>
     <loc>https://thetalusfieldjournal.com/section/seasonal</loc>
@@ -173,6 +173,14 @@
   </url>
 
   <!-- Articles -->
+  <url>
+    <loc>https://thetalusfieldjournal.com/articles/yosemite-rockfall</loc>
+    <lastmod>2026-10-14</lastmod>
+    <image:image>
+      <image:loc>https://thetalusfieldjournal.com/img/responsive/talus-slope-old-big-oak-flat-road-1600.jpg</image:loc>
+      <image:title>The old Big Oak Flat Road crossing a talus slope of fallen granite blocks above Yosemite Valley, with Cathedral Rocks and Bridalveil Fall beyond</image:title>
+    </image:image>
+  </url>
   <url>
     <loc>https://thetalusfieldjournal.com/articles/wawona-yosemite-guide</loc>
     <lastmod>2026-10-12</lastmod>

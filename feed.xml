@@ -9,13 +9,23 @@
     <copyright>© 2026 The Talus Field</copyright>
     <managingEditor>cory@thetalusfieldjournal.com (Cory Goehring)</managingEditor>
     <webMaster>cory@thetalusfieldjournal.com (Cory Goehring)</webMaster>
-    <lastBuildDate>Mon, 12 Oct 2026 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Wed, 14 Oct 2026 00:00:00 +0000</lastBuildDate>
     <image>
       <url>https://thetalusfieldjournal.com/img/talus-field-mark.png</url>
       <title>The Talus Field</title>
       <link>https://thetalusfieldjournal.com/</link>
     </image>
 
+    <item>
+      <title>Yosemite Rockfall: Where, When, and Why the Cliffs Fall</title>
+      <link>https://thetalusfieldjournal.com/articles/yosemite-rockfall</link>
+      <guid isPermaLink="true">https://thetalusfieldjournal.com/articles/yosemite-rockfall</guid>
+      <pubDate>Wed, 14 Oct 2026 00:00:00 +0000</pubDate>
+      <dc:creator>Cory Goehring</dc:creator>
+      <category>Wildlife and Nature</category>
+      <description>The park has recorded 1,760 rockfalls since 1857, and the full list is now public. We charted every one: the months with the most, the cliffs that drop the most, what sets them off, how big they get, and why the count keeps climbing even though the cliffs are not getting weaker. Written for readers of every age.</description>
+      <media:content url="https://thetalusfieldjournal.com/img/responsive/talus-slope-old-big-oak-flat-road-1600.jpg" medium="image" />
+    </item>
     <item>
       <title>Wawona: What Is at Yosemite's South End, and How to Spend a Day There</title>
       <link>https://thetalusfieldjournal.com/articles/wawona-yosemite-guide</link>

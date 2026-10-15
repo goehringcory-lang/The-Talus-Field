@@ -1,5 +1,31 @@
 [
   {
+    "slug": "yosemite-rockfall",
+    "cat": "wildlife",
+    "title": "Yosemite Rockfall: Where, When, and Why the Cliffs Fall",
+    "dek": "The park has recorded 1,760 rockfalls since 1857, and the full list is now public. We charted every one: the months with the most, the cliffs that drop the most, what sets them off, how big they get, and why the count keeps climbing even though the cliffs are not getting weaker. Written for readers of every age.",
+    "seoDek": "Yosemite rockfall explained with the park's own data: 1,760 rockfalls since 1857, when and where they happen, what triggers them, and what to do if you see one.",
+    "date": "October 14, 2026",
+    "isoDate": "2026-10-14",
+    "isoModified": "2026-10-14",
+    "read": "10 min",
+    "image": "img/talus-slope-old-big-oak-flat-road.jpg",
+    "ogImage": { "url": "img/responsive/talus-slope-old-big-oak-flat-road-1600.jpg", "width": 1600, "height": 998 },
+    "placeholder": "The old Big Oak Flat Road crossing a talus slope of fallen granite blocks above Yosemite Valley, with Cathedral Rocks and Bridalveil Fall beyond",
+    "wordCount": 2420,
+    "keywords": ["Yosemite rockfall", "rockfall in Yosemite", "how often do rockfalls happen in Yosemite", "Yosemite rockfall map", "what causes rockfalls", "Happy Isles rockfall 1996", "Curry Village rockfall", "El Capitan rockfall", "Yosemite rockfall safety", "Yosemite rockfall for kids"],
+    "faq": [
+      { "q": "How many rockfalls have happened in Yosemite?", "a": "The park's rockfall list, published on the Park Service's open data site, has 1,760 rockfalls and rock slides from 1857 to 2025. From 2006 to 2025 the park recorded about 55 a year on average, about one a week. 2025 was a quiet year, with 43." },
+      { "q": "When do most rockfalls happen in Yosemite?", "a": "Rockfalls happen in every month, but March has the most, with 201 on record, followed by October, January, February and December. August has the fewest, with 87. The stormy, freezing and melting part of the year is the busiest." },
+      { "q": "What causes rockfalls in Yosemite?", "a": "Yosemite's granite cracks into sheets parallel to the cliff face. Water, ice, heat, roots and earthquakes give a loose sheet its last push. Rain or melting snow was the likely trigger for 769 recorded rockfalls, more than any other cause, and for 738, about 4 in 10, nobody could tell what set them off." },
+      { "q": "Where do the most rockfalls happen in Yosemite?", "a": "The Merced River Gorge west of the Valley has the most on record, 405, mostly small rocks in rainy weather, more than half of them landing on a road. In the Valley, Glacier Point has the most, 223, followed by Yosemite Falls, Three Brothers, El Capitan, Half Dome, Indian Canyon and the Giant Staircase by Vernal Fall." },
+      { "q": "What was the biggest rockfall at Happy Isles?", "a": "On July 10, 1996, two blocks of about 30,000 cubic meters, weighing about 90,000 tons, broke off near Glacier Point and fell more than 2,000 feet near Happy Isles. The air blast reached up to 280 miles per hour and knocked down about 1,000 trees. One person was killed and several were badly hurt." },
+      { "q": "Are rockfalls in Yosemite getting more common?", "a": "No. The number of recorded rockfalls has grown because more people write them down: park reports after 1916, and U.S. Geological Survey scientists after 1980. In 2009 the Park Service's geologists said they could find no real increase in rockfall in Yosemite Valley." },
+      { "q": "What should you do if you see a rockfall in Yosemite?", "a": "On the Valley floor, move away from the cliff toward the middle of the Valley. Near the bottom of a cliff or a talus slope, get behind the biggest nearby boulder, then move quickly away once the rocks stop falling. Obey warning signs, stay off closed trails, and report any rockfall to a ranger or a visitor center." }
+    ],
+    "related": ["what-is-a-talus-field", "yosemite-glaciers-climate", "watching-climbers-el-capitan", "mist-trail-the-real-guide", "highway-140-closed-yosemite", "yosemite-place-names-meanings"]
+  },
+  {
     "slug": "wawona-yosemite-guide",
     "cat": "planning",
     "title": "Wawona: What Is at Yosemite's South End, and How to Spend a Day There",
@@ -1188,7 +1214,7 @@
       { "q": "Why are there lights on El Capitan at night?", "a": "Those are climbers' headlamps. Parties on multi-day routes sleep on the wall, on natural ledges or hanging portaledges, and at dusk their headlamps come on as they cook dinner and sort gear. Watching the wall light up from El Capitan Meadow is one of the best free evening shows in the park. Never shine a light at climbers from below; it ruins their night vision while they are managing ropes in the dark." },
       { "q": "Why is Camp 4 in Yosemite famous?", "a": "Camp 4, the walk-in campground below the Valley's north wall, was the base camp of Yosemite climbing through its golden age, where the techniques and gear of modern big-wall climbing were worked out. It was added to the National Register of Historic Places in 2003." }
     ],
-    "related": ["yosemite-for-non-hikers", "yosemite-photography-spots", "yosemite-valley-parking-guide", "where-to-propose-in-yosemite", "yosemite-ranger-programs"]
+    "related": ["yosemite-for-non-hikers", "yosemite-photography-spots", "yosemite-rockfall", "yosemite-valley-parking-guide", "where-to-propose-in-yosemite", "yosemite-ranger-programs"]
   },
   {
     "slug": "getting-to-yosemite",
@@ -1899,7 +1925,7 @@
       { "q": "What causes talus fields in Yosemite?", "a": "Mostly water and cold. Rain and snowmelt work into the joints in the granite, freeze, and act as a slow wedge until a block that was part of the cliff is only resting against it. The granite also sheds in curved sheets, the exfoliation that shaped Half Dome and Royal Arches. Rockfall in Yosemite is current, not historical: the talus below El Capitan and the Glacier Point Apron is still being added to." },
       { "q": "Is it safe to walk on talus?", "a": "Talus is stable until it is not, and the failure mode is a block rolling under your weight with a tonne of rock above it. Step on the tops of blocks rather than the gaps, move one at a time or spread out sideways so nothing dislodged is heading for someone below, and treat fresh pale unlichened rock as the least trustworthy surface on the slope. Nothing in Yosemite Valley requires crossing untracked talus." }
     ],
-    "related": ["yosemite-glaciers-climate", "giant-sequoias-fire-adaptation", "yosemite-wildlife-viewing-guide", "mist-trail-the-real-guide", "tuolumne-meadows-in-a-day", "yosemite-place-names-meanings"]
+    "related": ["yosemite-rockfall", "yosemite-glaciers-climate", "giant-sequoias-fire-adaptation", "yosemite-wildlife-viewing-guide", "mist-trail-the-real-guide", "tuolumne-meadows-in-a-day"]
   },
   {
     "slug": "yosemite-glaciers-climate",
@@ -1922,7 +1948,7 @@
       { "q": "Why are the glaciers shrinking?", "a": "The Sierra Nevada has warmed measurably over the past century, with the clearest signal in wintertime temperatures. A terminus retreating upslope points to either less snow accumulation or more summer melt, and either way to a warmed climate." },
       { "q": "Why do the glaciers matter for California's water?", "a": "About half of California's fresh water comes from the Sierra Nevada, much of it from snowmelt and glacier melt. Glaciers act as high-elevation reservoirs, storing winter snow as ice and releasing it gradually through summer melt to sustain streams like the Tenaya, Merced, and Tuolumne. As glaciers shrink, July and August streamflow will gradually decline and cold-water aquatic ecosystems will be stressed." }
     ],
-    "related": ["what-is-a-talus-field", "yosemite-waterfalls-guide", "giant-sequoias-fire-adaptation", "cathedral-lakes-day-hike", "tuolumne-meadows-in-a-day"]
+    "related": ["what-is-a-talus-field", "yosemite-rockfall", "yosemite-waterfalls-guide", "giant-sequoias-fire-adaptation", "cathedral-lakes-day-hike", "tuolumne-meadows-in-a-day"]
   },
   {
     "slug": "giant-sequoias-fire-adaptation",

@@ -110,6 +110,7 @@ window.planningSeriesFor = function (slug) {
 // verifies this map stays in sync with the files in bodies/.
 // ============================================================
 window.BODY_VERSIONS = {
+  "yosemite-rockfall": 1,
   "wawona-yosemite-guide": 1,
   "yosemite-in-november": 2,
   "thanksgiving-in-yosemite": 1,
@@ -186,7 +187,7 @@ window.BODY_VERSIONS = {
   "yosemite-for-non-hikers": 83,
   "yosemite-stargazing-where-to-look-up": 83,
   "hetch-hetchy-the-other-yosemite-valley": 79,
-  "what-is-a-talus-field": 4,
+  "what-is-a-talus-field": 5,
   "yosemite-glaciers-climate": 81,
   "giant-sequoias-fire-adaptation": 78,
   "water-ouzels-waterfalls": 78,
@@ -760,6 +761,20 @@ window.KIT.lists.forEach((l) => {
 // AffiliateDisclosure line under the byline, before the first link;
 // scripts/check-affiliate-links.mjs fails when the flag and the body disagree.
 window.ARTICLES = [
+  {
+    slug: "yosemite-rockfall",
+    cat: "wildlife",
+    title: "Yosemite Rockfall: Where, When, and Why the Cliffs Fall",
+    dek: "The park has recorded 1,760 rockfalls since 1857, and the full list is now public. We charted every one: the months with the most, the cliffs that drop the most, what sets them off, how big they get, and why the count keeps climbing even though the cliffs are not getting weaker. Written for readers of every age.",
+    seoDek: "Yosemite rockfall explained with the park's own data: 1,760 rockfalls since 1857, when and where they happen, what triggers them, and what to do if you see one.",
+    date: "October 14, 2026",
+    isoDate: "2026-10-14",
+    isoModified: "2026-10-14",
+    read: "10 min",
+    placeholder: "The old Big Oak Flat Road crossing a talus slope of fallen granite blocks above Yosemite Valley, with Cathedral Rocks and Bridalveil Fall beyond",
+    image: "img/talus-slope-old-big-oak-flat-road.jpg",
+    credit: "Photo: Brian Grogan, Historic American Engineering Record / Library of Congress (public domain)",
+  },
   {
     slug: "wawona-yosemite-guide",
     cat: "planning",
@@ -2132,6 +2147,7 @@ window.START_HERE = [
 // Curate a piece when it earns real search impressions, when it anchors a
 // cluster, or when it is the destination that needs the equity.
 window.RELATED = {
+  "yosemite-rockfall": ["what-is-a-talus-field", "yosemite-glaciers-climate", "watching-climbers-el-capitan", "mist-trail-the-real-guide", "highway-140-closed-yosemite", "yosemite-place-names-meanings"],
   // Wawona: what is at Yosemite's south end, and how to spend a day there
   "wawona-yosemite-guide": ["mariposa-grove-how-to-visit", "where-to-stay-in-yosemite", "where-to-eat-yosemite", "pets-in-yosemite", "wildfire-in-yosemite-during-your-trip", "yosemite-gateway-towns-compared"],
   // Yosemite in November: the evergreen month guide
@@ -2248,7 +2264,7 @@ window.RELATED = {
 
   // Doing and seeing
   "yosemite-photography-spots": ["yosemite-stargazing-where-to-look-up", "horsetail-fall-firefall", "four-mile-up-panorama-down", "yosemite-waterfalls-guide", "yosemite-in-fall", "watching-climbers-el-capitan"],
-  "watching-climbers-el-capitan": ["yosemite-for-non-hikers", "yosemite-photography-spots", "yosemite-valley-parking-guide", "where-to-propose-in-yosemite", "yosemite-ranger-programs"],
+  "watching-climbers-el-capitan": ["yosemite-for-non-hikers", "yosemite-photography-spots", "yosemite-rockfall", "yosemite-valley-parking-guide", "where-to-propose-in-yosemite", "yosemite-ranger-programs"],
   "mariposa-grove-how-to-visit": ["wawona-yosemite-guide", "giant-sequoias-fire-adaptation", "yosemite-accessibility-guide", "yosemite-gateway-towns-compared", "yosemite-for-non-hikers", "yosemite-tunnel-trees"],
   "yosemite-ranger-programs": ["yosemite-with-kids-no-reservations-2026", "yosemite-wildlife-viewing-guide", "yosemite-for-non-hikers", "yosemite-accessibility-guide", "yosemite-facelift-volunteer-guide"],
   "where-to-propose-in-yosemite": ["yosemite-photography-spots", "yosemite-for-non-hikers", "where-to-eat-yosemite", "where-to-stay-in-yosemite", "yosemite-in-one-or-two-days"],
@@ -2261,8 +2277,8 @@ window.RELATED = {
   "yosemite-wildlife-viewing-guide": ["yosemite-bears-safety-guide", "water-ouzels-waterfalls", "yosemite-ranger-programs", "yosemite-stargazing-where-to-look-up"],
   "yosemite-wildflowers-guide": ["showy-milkweed-yosemite-valley", "yosemite-wildlife-viewing-guide", "tuolumne-meadows-in-a-day", "yosemite-in-june", "giant-sequoias-fire-adaptation", "yosemite-trees-identification-guide"],
   "giant-sequoias-fire-adaptation": ["mariposa-grove-how-to-visit", "yosemite-tunnel-trees", "yosemite-during-smoke-season", "yosemite-fire-restrictions-explained", "yosemite-glaciers-climate", "yosemite-trees-identification-guide"],
-  "what-is-a-talus-field": ["yosemite-glaciers-climate", "giant-sequoias-fire-adaptation", "yosemite-wildlife-viewing-guide", "mist-trail-the-real-guide", "tuolumne-meadows-in-a-day", "yosemite-place-names-meanings"],
-  "yosemite-glaciers-climate": ["what-is-a-talus-field", "yosemite-waterfalls-guide", "giant-sequoias-fire-adaptation", "cathedral-lakes-day-hike", "tuolumne-meadows-in-a-day"],
+  "what-is-a-talus-field": ["yosemite-rockfall", "yosemite-glaciers-climate", "giant-sequoias-fire-adaptation", "yosemite-wildlife-viewing-guide", "mist-trail-the-real-guide", "tuolumne-meadows-in-a-day"],
+  "yosemite-glaciers-climate": ["what-is-a-talus-field", "yosemite-rockfall", "yosemite-waterfalls-guide", "giant-sequoias-fire-adaptation", "cathedral-lakes-day-hike", "tuolumne-meadows-in-a-day"],
   "water-ouzels-waterfalls": ["yosemite-waterfalls-guide", "yosemite-wildlife-viewing-guide", "mist-trail-the-real-guide", "swimming-in-the-merced", "showy-milkweed-yosemite-valley"],
   "yosemite-tunnel-trees": ["giant-sequoias-fire-adaptation", "mariposa-grove-how-to-visit", "yosemite-connecting-to-traditions", "what-is-a-talus-field", "yosemite-needs-a-reservation-system"],
   "showy-milkweed-yosemite-valley": ["yosemite-wildflowers-guide", "yosemite-wildlife-viewing-guide", "water-ouzels-waterfalls", "swimming-in-the-merced", "giant-sequoias-fire-adaptation"],
