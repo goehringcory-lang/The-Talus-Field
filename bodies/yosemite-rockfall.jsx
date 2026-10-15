@@ -94,59 +94,6 @@ window.ARTICLE_BODIES["yosemite-rockfall"] = function YosemiteRockfallBody() {
     );
   }
 
-  // ── How a cliff lets go ───────────────────────────────────────────────────
-  // A cross-section of a cliff with one sheeting joint, numbered to match the
-  // forces the NPS rockfall page and DS 746 name. The drawing and the list sit
-  // side by side, and stack on a phone.
-  function HowRockBreaks() {
-    const notes = [
-      { n: "1", t: "A crack runs along the cliff face", s: "The granite peels in sheets, like an onion." },
-      { n: "2", t: "Rain and snowmelt soak in", s: "Water pushes on the loose slab from behind." },
-      { n: "3", t: "Water freezes and grows", s: "Ice takes up about 9 percent more room." },
-      { n: "4", t: "The sun heats the slab", s: "It bends out a little each day, then back." },
-      { n: "5", t: "Roots and earthquakes", s: "Roots pry. Shaking knocks loose rock free." },
-    ];
-    const tag = { fontFamily: SANS, fontSize: 13, fill: "var(--ink-3)" };
-    return (
-      <div style={{ display: "flex", flexWrap: "wrap", gap: 20, alignItems: "center" }}>
-        <svg viewBox="0 0 300 360" style={{ flex: "1 1 220px", maxWidth: 300, height: "auto", display: "block" }} role="img"
-          aria-label="Diagram of a cliff. A thin slab of granite is separated from the cliff by a crack that runs parallel to the cliff face. Numbered marks show where water soaks into the crack, where ice wedges it, where the sun heats the slab, and where roots grow. Fallen blocks pile up as talus at the bottom.">
-          <path d="M0 10 L150 10 L176 120 L196 230 L206 330 L0 330 Z" fill="var(--rule-soft)" opacity="0.55" />
-          <path d="M150 10 L176 120 L196 230 L206 330" fill="none" stroke="var(--ink-3)" strokeWidth="1.5" />
-          <path d="M166 40 L186 130 L204 222 L212 285 L226 287 L216 220 L198 128 L178 38 Z" fill="var(--paper)" stroke={RUST} strokeWidth="2.2" />
-          <path d="M166 40 L186 130 L204 222 L212 285" fill="none" stroke={INK} strokeWidth="1.4" strokeDasharray="4 4" />
-          <circle cx={268} cy={226} r={11} fill="none" stroke={RUST} strokeWidth="2" />
-          {[0, 45, 90, 135, 180, 225, 270, 315].map((a) => (
-            <line key={a} x1={268 + 15 * Math.cos(a * Math.PI / 180)} y1={226 + 15 * Math.sin(a * Math.PI / 180)} x2={268 + 21 * Math.cos(a * Math.PI / 180)} y2={226 + 21 * Math.sin(a * Math.PI / 180)} stroke={RUST} strokeWidth="2" />
-          ))}
-          <path d="M160 296 Q170 300 176 312 M176 312 Q186 306 196 314" fill="none" stroke={INK} strokeWidth="1.4" />
-          {[[218, 318, 16], [240, 322, 12], [260, 326, 9], [232, 306, 10], [280, 328, 7]].map(([x, y, r], i) => (
-            <rect key={i} x={x - r} y={y - r * 0.7} width={r * 2} height={r * 1.4} rx="2" fill="var(--ink-3)" opacity="0.7" />
-          ))}
-          {[[148, 70, "1"], [166, 140, "2"], [226, 176, "3"], [240, 238, "4"], [146, 300, "5"]].map(([x, y, n]) => (
-            <g key={n}>
-              <circle cx={x} cy={y} r={11} fill={INK} stroke="var(--paper)" strokeWidth="2" />
-              <text x={x} y={y + 4.5} textAnchor="middle" style={{ fontFamily: SANS, fontSize: 13, fontWeight: 700, fill: "var(--paper)" }}>{n}</text>
-            </g>
-          ))}
-          <text x={4} y={352} style={{ ...tag, fill: RUST, fontWeight: 600, letterSpacing: "1.4px" }}>CLIFF</text>
-          <text x={180} y={352} style={tag}>Talus</text>
-        </svg>
-        <ol style={{ flex: "1 1 260px", listStyle: "none", padding: 0, margin: 0, fontFamily: SANS }}>
-          {notes.map((n) => (
-            <li key={n.n} style={{ display: "flex", alignItems: "flex-start", margin: "0 0 14px" }}>
-              <Pin n={n.n} />
-              <div>
-                <div style={{ fontSize: 14.5, color: INK, lineHeight: 1.3 }}>{n.t}</div>
-                <div style={{ fontSize: 12.5, color: GREY, lineHeight: 1.35 }}>{n.s}</div>
-              </div>
-            </li>
-          ))}
-        </ol>
-      </div>
-    );
-  }
-
   // ── What set them off ─────────────────────────────────────────────────────
   // Grouped from TRIGGERCON. "Water" is P, SM and R/S; "Ice" is F/T; "Heat"
   // is TS; "No clear cause" is UNR plus UKN; "Something else" is crack
@@ -330,10 +277,18 @@ window.ARTICLE_BODIES["yosemite-rockfall"] = function YosemiteRockfallBody() {
         <li><strong>Earthquakes.</strong> Shaking knocks loose rock free, as Muir saw in 1872.</li>
       </ul>
 
-      <figure style={{ margin: "28px 0 32px" }}>
-        <HowRockBreaks />
-        <figcaption style={capStyle}>
-          The five pushes, from the Park Service's rockfall page and the U.S. Geological Survey's rockfall report. The drawing is a diagram, not a real cliff.
+      <figure className="diagram-plate diagram-plate--narrow">
+        <Placeholder
+          caption="How Rockfalls Happen in Yosemite. Yosemite's granite cliffs break along natural fractures. Water, temperature changes, and earthquakes can loosen rock until gravity takes over. 1, exfoliation cracks form: granite peels away in sheets, like an onion. 2, rain and snowmelt seep in: water pushes on loose slabs from behind. 3, freeze-thaw widens fractures: ice expands and opens cracks. 4, sun and heat flex the rock: the slab bends outward a little, then back. 5, earthquakes and gravity release the rock: blocks detach, fall, bounce, and build talus below."
+          image="img/how-rockfalls-happen-yosemite.jpg"
+          style={{ aspectRatio: "1122 / 1402" }}
+          credit="Illustration: The Talus Field"
+          tag="FIG. 1"
+          natural
+          sizes="(max-width: 560px) calc(100vw - 32px), 520px"
+        />
+        <figcaption>
+          The five pushes, from the Park Service's rockfall page and the U.S. Geological Survey's rockfall report. The illustration is a diagram, not a real cliff. Select it to enlarge it.
         </figcaption>
       </figure>
 

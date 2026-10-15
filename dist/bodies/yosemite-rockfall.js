@@ -231,162 +231,6 @@ window.ARTICLE_BODIES["yosemite-rockfall"] = function YosemiteRockfallBody() {
       }
     }, t.t))));
   }
-  function HowRockBreaks() {
-    var notes = [{
-      n: "1",
-      t: "A crack runs along the cliff face",
-      s: "The granite peels in sheets, like an onion."
-    }, {
-      n: "2",
-      t: "Rain and snowmelt soak in",
-      s: "Water pushes on the loose slab from behind."
-    }, {
-      n: "3",
-      t: "Water freezes and grows",
-      s: "Ice takes up about 9 percent more room."
-    }, {
-      n: "4",
-      t: "The sun heats the slab",
-      s: "It bends out a little each day, then back."
-    }, {
-      n: "5",
-      t: "Roots and earthquakes",
-      s: "Roots pry. Shaking knocks loose rock free."
-    }];
-    var tag = {
-      fontFamily: SANS,
-      fontSize: 13,
-      fill: "var(--ink-3)"
-    };
-    return React.createElement("div", {
-      style: {
-        display: "flex",
-        flexWrap: "wrap",
-        gap: 20,
-        alignItems: "center"
-      }
-    }, React.createElement("svg", {
-      viewBox: "0 0 300 360",
-      style: {
-        flex: "1 1 220px",
-        maxWidth: 300,
-        height: "auto",
-        display: "block"
-      },
-      role: "img",
-      "aria-label": "Diagram of a cliff. A thin slab of granite is separated from the cliff by a crack that runs parallel to the cliff face. Numbered marks show where water soaks into the crack, where ice wedges it, where the sun heats the slab, and where roots grow. Fallen blocks pile up as talus at the bottom."
-    }, React.createElement("path", {
-      d: "M0 10 L150 10 L176 120 L196 230 L206 330 L0 330 Z",
-      fill: "var(--rule-soft)",
-      opacity: "0.55"
-    }), React.createElement("path", {
-      d: "M150 10 L176 120 L196 230 L206 330",
-      fill: "none",
-      stroke: "var(--ink-3)",
-      strokeWidth: "1.5"
-    }), React.createElement("path", {
-      d: "M166 40 L186 130 L204 222 L212 285 L226 287 L216 220 L198 128 L178 38 Z",
-      fill: "var(--paper)",
-      stroke: RUST,
-      strokeWidth: "2.2"
-    }), React.createElement("path", {
-      d: "M166 40 L186 130 L204 222 L212 285",
-      fill: "none",
-      stroke: INK,
-      strokeWidth: "1.4",
-      strokeDasharray: "4 4"
-    }), React.createElement("circle", {
-      cx: 268,
-      cy: 226,
-      r: 11,
-      fill: "none",
-      stroke: RUST,
-      strokeWidth: "2"
-    }), [0, 45, 90, 135, 180, 225, 270, 315].map(a => React.createElement("line", {
-      key: a,
-      x1: 268 + 15 * Math.cos(a * Math.PI / 180),
-      y1: 226 + 15 * Math.sin(a * Math.PI / 180),
-      x2: 268 + 21 * Math.cos(a * Math.PI / 180),
-      y2: 226 + 21 * Math.sin(a * Math.PI / 180),
-      stroke: RUST,
-      strokeWidth: "2"
-    })), React.createElement("path", {
-      d: "M160 296 Q170 300 176 312 M176 312 Q186 306 196 314",
-      fill: "none",
-      stroke: INK,
-      strokeWidth: "1.4"
-    }), [[218, 318, 16], [240, 322, 12], [260, 326, 9], [232, 306, 10], [280, 328, 7]].map(([x, y, r], i) => React.createElement("rect", {
-      key: i,
-      x: x - r,
-      y: y - r * 0.7,
-      width: r * 2,
-      height: r * 1.4,
-      rx: "2",
-      fill: "var(--ink-3)",
-      opacity: "0.7"
-    })), [[148, 70, "1"], [166, 140, "2"], [226, 176, "3"], [240, 238, "4"], [146, 300, "5"]].map(([x, y, n]) => React.createElement("g", {
-      key: n
-    }, React.createElement("circle", {
-      cx: x,
-      cy: y,
-      r: 11,
-      fill: INK,
-      stroke: "var(--paper)",
-      strokeWidth: "2"
-    }), React.createElement("text", {
-      x: x,
-      y: y + 4.5,
-      textAnchor: "middle",
-      style: {
-        fontFamily: SANS,
-        fontSize: 13,
-        fontWeight: 700,
-        fill: "var(--paper)"
-      }
-    }, n))), React.createElement("text", {
-      x: 4,
-      y: 352,
-      style: {
-        ...tag,
-        fill: RUST,
-        fontWeight: 600,
-        letterSpacing: "1.4px"
-      }
-    }, "CLIFF"), React.createElement("text", {
-      x: 180,
-      y: 352,
-      style: tag
-    }, "Talus")), React.createElement("ol", {
-      style: {
-        flex: "1 1 260px",
-        listStyle: "none",
-        padding: 0,
-        margin: 0,
-        fontFamily: SANS
-      }
-    }, notes.map(n => React.createElement("li", {
-      key: n.n,
-      style: {
-        display: "flex",
-        alignItems: "flex-start",
-        margin: "0 0 14px"
-      }
-    }, React.createElement(Pin, {
-      n: n.n
-    }), React.createElement("div", null, React.createElement("div", {
-      style: {
-        fontSize: 14.5,
-        color: INK,
-        lineHeight: 1.3
-      }
-    }, n.t), React.createElement("div", {
-      style: {
-        fontSize: 12.5,
-        color: GREY,
-        lineHeight: 1.35
-      }
-    }, n.s))))));
-  }
   function CauseBars() {
     var rows = [{
       label: "Rain or melting snow",
@@ -672,12 +516,18 @@ window.ARTICLE_BODIES["yosemite-rockfall"] = function YosemiteRockfallBody() {
   }, React.createElement(BigNumbers, null), React.createElement("figcaption", {
     style: capStyle
   }, "The park's rockfall list, as published on the Park Service's open data site. It includes rockfalls, rock slides and a few debris flows.")), React.createElement("h2", null, "Why the cliffs break"), React.createElement("p", null, "Yosemite's cliffs are made of ", React.createElement("strong", null, "granite"), ", a hard rock that cooled deep underground. Over time it cracked. Some of those cracks run side to side, parallel to the face of the cliff. They split the rock into thin sheets, a little like the layers of an onion. You can see the sheets on Half Dome and on the Royal Arches. Geologists call those cracks ", React.createElement("strong", null, "sheeting joints"), "."), React.createElement("p", null, "Once a sheet is loose, something has to give it the last push. Scientists have found five main pushes."), React.createElement("ul", null, React.createElement("li", null, React.createElement("strong", null, "Water."), " Rain and melting snow run into the cracks. The water presses on the loose rock from behind."), React.createElement("li", null, React.createElement("strong", null, "Ice."), " When water freezes, it takes up about 9 percent more space. Ice in a crack works like a wedge."), React.createElement("li", null, React.createElement("strong", null, "Heat."), " On hot days the sun warms a thin slab. It bends out a tiny bit by day and back at night. After enough days, it can snap."), React.createElement("li", null, React.createElement("strong", null, "Roots."), " Trees like firs, pines and canyon live oaks grow into the cracks. Their roots pry them wider."), React.createElement("li", null, React.createElement("strong", null, "Earthquakes."), " Shaking knocks loose rock free, as Muir saw in 1872.")), React.createElement("figure", {
+    className: "diagram-plate diagram-plate--narrow"
+  }, React.createElement(Placeholder, {
+    caption: "How Rockfalls Happen in Yosemite. Yosemite's granite cliffs break along natural fractures. Water, temperature changes, and earthquakes can loosen rock until gravity takes over. 1, exfoliation cracks form: granite peels away in sheets, like an onion. 2, rain and snowmelt seep in: water pushes on loose slabs from behind. 3, freeze-thaw widens fractures: ice expands and opens cracks. 4, sun and heat flex the rock: the slab bends outward a little, then back. 5, earthquakes and gravity release the rock: blocks detach, fall, bounce, and build talus below.",
+    image: "img/how-rockfalls-happen-yosemite.jpg",
     style: {
-      margin: "28px 0 32px"
-    }
-  }, React.createElement(HowRockBreaks, null), React.createElement("figcaption", {
-    style: capStyle
-  }, "The five pushes, from the Park Service's rockfall page and the U.S. Geological Survey's rockfall report. The drawing is a diagram, not a real cliff.")), React.createElement("h2", null, "What set them off"), React.createElement("p", null, "For each rockfall, scientists write down the most likely cause. They call it the ", React.createElement("strong", null, "trigger"), ". When they sort all 1,760, two answers are far ahead of the rest."), React.createElement("p", null, "The first is ", React.createElement("strong", null, "water"), ". Rain or melting snow was the likely trigger for ", React.createElement("strong", null, "769"), " rockfalls, more than any other cause. The second is a surprise: ", React.createElement("strong", null, "no clear cause at all"), ". For ", React.createElement("strong", null, "738"), " rockfalls, about 4 out of every 10, nobody could tell what set them off. Some of those were watched closely and still had no trigger anyone could spot. Others were found later, as fresh rock on a trail, with no one around to see them fall."), React.createElement("figure", {
+      aspectRatio: "1122 / 1402"
+    },
+    credit: "Illustration: The Talus Field",
+    tag: "FIG. 1",
+    natural: true,
+    sizes: "(max-width: 560px) calc(100vw - 32px), 520px"
+  }), React.createElement("figcaption", null, "The five pushes, from the Park Service's rockfall page and the U.S. Geological Survey's rockfall report. The illustration is a diagram, not a real cliff. Select it to enlarge it.")), React.createElement("h2", null, "What set them off"), React.createElement("p", null, "For each rockfall, scientists write down the most likely cause. They call it the ", React.createElement("strong", null, "trigger"), ". When they sort all 1,760, two answers are far ahead of the rest."), React.createElement("p", null, "The first is ", React.createElement("strong", null, "water"), ". Rain or melting snow was the likely trigger for ", React.createElement("strong", null, "769"), " rockfalls, more than any other cause. The second is a surprise: ", React.createElement("strong", null, "no clear cause at all"), ". For ", React.createElement("strong", null, "738"), " rockfalls, about 4 out of every 10, nobody could tell what set them off. Some of those were watched closely and still had no trigger anyone could spot. Others were found later, as fresh rock on a trail, with no one around to see them fall."), React.createElement("figure", {
     style: {
       margin: "28px 0 32px"
     }
