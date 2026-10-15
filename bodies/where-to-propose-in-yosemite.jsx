@@ -40,7 +40,7 @@ window.ARTICLE_BODIES["where-to-propose-in-yosemite"] = function WhereToProposeI
       </p>
 
       <p>
-        <strong>Glacier Point</strong> is the most popular proposal location in Yosemite, and it earns that reputation. The view is legitimate. Half Dome fills your sightline at eye level, Vernal and Nevada Falls thread silver down the canyon below, and the Valley floor sits 3,214 feet straight down. The overlook is ADA accessible once <a href="/articles/glacier-point-road-open-2026">Glacier Point Road</a> opens for the season, usually late May. The parking lot is paved and the walk to the railing is short. For people who want a <a href="/articles/yosemite-for-non-hikers">world-class view without a hike</a>, this is the answer.
+        <strong>Glacier Point</strong> is the most popular proposal location in Yosemite, and it earns that reputation. The view is legitimate. Half Dome fills your sightline at eye level, Vernal and Nevada Falls thread silver down the canyon below, and the Valley floor sits 3,214 feet straight down. The overlook is ADA accessible once <a href="/articles/glacier-point-road-open-2026">Glacier Point Road</a> opens for the season, usually late May. The parking lot is paved and the walk to the railing is short. For people who want a <a href="/articles/yosemite-for-non-hikers">big view without a hike</a>, this is the answer.
       </p>
 
       <p>

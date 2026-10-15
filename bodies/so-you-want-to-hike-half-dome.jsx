@@ -143,7 +143,7 @@ window.ARTICLE_BODIES["so-you-want-to-hike-half-dome"] = function SoYouWantToHik
       </p>
 
       <p>
-        But if what you're really after is an incredible full-day hike in Yosemite with a summit that makes your jaw drop and views that make you feel like you're standing on top of the Sierra Nevada, I want to tell you about <a href="/articles/clouds-rest-hike">Clouds Rest</a>.
+        But if what you're really after is a full-day hike in Yosemite with a summit that makes your jaw drop and views that make you feel like you're standing on top of the Sierra Nevada, I want to tell you about <a href="/articles/clouds-rest-hike">Clouds Rest</a>.
       </p>
 
       <p>Clouds Rest is the better hike.</p>
@@ -294,7 +294,7 @@ window.ARTICLE_BODIES["so-you-want-to-hike-half-dome"] = function SoYouWantToHik
           <tr><td><strong>Typical time</strong></td><td>10 to 12 hours</td><td>8 to 10 hours</td></tr>
           <tr><td><strong>Crowds on trail</strong></td><td>Heavy (Mist Trail, cables)</td><td>Light to moderate</td></tr>
           <tr><td><strong>The cables</strong></td><td>Unique, nothing like it</td><td>No cables, open granite ridge</td></tr>
-          <tr><td><strong>Summit views</strong></td><td>Spectacular, mostly south/west</td><td>360-degree, higher elevation</td></tr>
+          <tr><td><strong>Summit views</strong></td><td>Mostly south and west</td><td>360-degree, higher elevation</td></tr>
           <tr><td><strong>Available</strong></td><td>Cable season (late May to mid-October)</td><td>Whenever Tioga Road is open</td></tr>
           <tr><td><strong>Heat exposure</strong></td><td>Significant (Valley start, low elevation)</td><td>Minimal (high elevation start)</td></tr>
           <tr><td><strong>Biggest risk</strong></td><td>Wet cables, lightning, overcrowding</td><td>Lightning, exposure on spine</td></tr>

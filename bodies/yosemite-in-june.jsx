@@ -10,7 +10,7 @@ window.ARTICLE_BODIES["yosemite-in-june"] = function YosemiteInJune2026Body() {
       </p>
 
       <p>
-        June is the month when the Valley is at its most crowded and, in a good year, at its most spectacular. Waterfalls hit their peak. The high country opens. The days are the longest of the year. With historically low snowpack and no reservation system, planning matters more than usual this June.
+        June is the month when the Valley is at its most crowded and, in a good year, at its fullest. Waterfalls hit their peak. The high country opens. The days are the longest of the year. With historically low snowpack and no reservation system, planning matters more than usual this June.
       </p>
 
       <p>

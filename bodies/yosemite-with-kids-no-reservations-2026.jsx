@@ -105,7 +105,7 @@ window.ARTICLE_BODIES["yosemite-with-kids-no-reservations-2026"] = function Yose
       </p>
 
       <p>
-        <strong>Cook's Meadow Loop, the one with the views.</strong> Two miles, paved, flat as a parking lot. This is the walk through the heart of the Valley with postcard views of Half Dome, Yosemite Falls, and Sentinel Rock. It connects to Sentinel Bridge, where the famous Half Dome reflection photo is taken. The meadow is gorgeous, the trail is wide, and there's almost no crowd because everyone else went to the waterfalls. <em>(All ages. Strollers: yes. Best in morning or evening light.)</em>
+        <strong>Cook's Meadow Loop, the one with the views.</strong> Two miles, paved, flat as a parking lot. This is the walk through the heart of the Valley with postcard views of Half Dome, Yosemite Falls, and Sentinel Rock. It connects to Sentinel Bridge, where the famous Half Dome reflection photo is taken. The meadow is open and the trail is wide, and there's almost no crowd because everyone else went to the waterfalls. <em>(All ages. Strollers: yes. Best in morning or evening light.)</em>
       </p>
 
       <p>

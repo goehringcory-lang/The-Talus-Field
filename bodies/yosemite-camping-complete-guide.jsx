@@ -947,7 +947,7 @@ window.ARTICLE_BODIES["yosemite-camping-complete-guide"] = function YosemiteCamp
             <article>
               <p className="cg-seasons__when">September and early October</p>
               <h3>The golden weeks</h3>
-              <p>The black oaks turn yellow and the crowds drop. The Valley campgrounds are still running but easier to book. The high country campgrounds start closing, in 2026 from September 7 (Yosemite Creek) and September 14 (White Wolf) through October 12 (Crane Flat, Tamarack Flat), but the weather at elevation is often spectacular: clear, cool and dry. The best camping weather Yosemite offers.</p>
+              <p>The black oaks turn yellow and the crowds drop. The Valley campgrounds are still running but easier to book. The high country campgrounds start closing, in 2026 from September 7 (Yosemite Creek) and September 14 (White Wolf) through October 12 (Crane Flat, Tamarack Flat), but the weather at elevation is often clear, cool and dry. The best camping weather Yosemite offers.</p>
             </article>
             <article>
               <p className="cg-seasons__when">Late October through March</p>
