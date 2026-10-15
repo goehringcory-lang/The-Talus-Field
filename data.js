@@ -110,6 +110,7 @@ window.planningSeriesFor = function (slug) {
 // verifies this map stays in sync with the files in bodies/.
 // ============================================================
 window.BODY_VERSIONS = {
+  "yosemite-in-january": 1,
   "yosemite-rockfall": 2,
   "wawona-yosemite-guide": 1,
   "yosemite-in-november": 2,
@@ -120,7 +121,7 @@ window.BODY_VERSIONS = {
   "yosemite-place-names-meanings": 1,
   "best-airport-for-yosemite": 2,
   "sustainable-yosemite-car-free-zero-waste": 3,
-  "yosemite-in-december": 1,
+  "yosemite-in-december": 2,
   "wildfire-in-yosemite-during-your-trip": 4,
   "yosemite-in-october-2026": 8,
   "yosemite-falls-trail": 3,
@@ -761,6 +762,21 @@ window.KIT.lists.forEach((l) => {
 // AffiliateDisclosure line under the byline, before the first link;
 // scripts/check-affiliate-links.mjs fails when the flag and the body disagree.
 window.ARTICLES = [
+  {
+    slug: "yosemite-in-january",
+    aff: true,
+    cat: "seasonal",
+    title: "Yosemite in January: The Wettest Month, the Quietest Weeks, and What Is Actually Open",
+    dek: "January starts as the tail of the holiday week and turns, on the third, into the longest quiet stretch of the year. The weather in numbers, the roads and trails January closes, Badger Pass and the tubing hill, the chain rules, the winter rates, and how to build the trip around a storm.",
+    seoDek: "Yosemite in January: weather, closed roads and trails, Badger Pass and tubing, chain rules, winter lodging rates after January 2, and camping.",
+    date: "October 15, 2026",
+    isoDate: "2026-10-15",
+    isoModified: "2026-10-15",
+    read: "11 min",
+    placeholder: "El Capitan in last light above snow on the Yosemite Valley floor",
+    image: "img/el-capitan-snow-spring.jpg",
+    credit: "Photo: Anita Ritenour / Wikimedia Commons (CC BY 2.0)",
+  },
   {
     slug: "yosemite-rockfall",
     cat: "wildlife",
@@ -2147,6 +2163,7 @@ window.START_HERE = [
 // Curate a piece when it earns real search impressions, when it anchors a
 // cluster, or when it is the destination that needs the equity.
 window.RELATED = {
+  "yosemite-in-january": ["yosemite-in-winter", "yosemite-winter-hikes", "yosemite-in-december", "horsetail-fall-firefall", "mariposa-grove-how-to-visit", "where-to-stay-in-yosemite"],
   "yosemite-rockfall": ["what-is-a-talus-field", "yosemite-glaciers-climate", "watching-climbers-el-capitan", "mist-trail-the-real-guide", "highway-140-closed-yosemite", "yosemite-place-names-meanings"],
   // Wawona: what is at Yosemite's south end, and how to spend a day there
   "wawona-yosemite-guide": ["mariposa-grove-how-to-visit", "where-to-stay-in-yosemite", "where-to-eat-yosemite", "pets-in-yosemite", "wildfire-in-yosemite-during-your-trip", "yosemite-gateway-towns-compared"],
@@ -2169,7 +2186,7 @@ window.RELATED = {
   // Yosemite in December: the evergreen month guide. Onward to the season
   // piece, the winter trails, the holiday dinner, the lodging and entrance
   // guides, and the next month guide in the series.
-  "yosemite-in-december": ["yosemite-in-winter", "yosemite-winter-hikes", "bracebridge-dinner-and-vintners-holidays", "where-to-stay-in-yosemite", "thanksgiving-in-yosemite", "yosemite-in-november"],
+  "yosemite-in-december": ["yosemite-in-winter", "yosemite-winter-hikes", "bracebridge-dinner-and-vintners-holidays", "where-to-stay-in-yosemite", "yosemite-in-january", "yosemite-in-november"],
   // A wildfire in Yosemite during your trip: the evergreen decision guide the
   // Dome Fire week asked for. Onward to smoke, the restrictions, the road it
   // closed and its hike-in alternative, the other closure guide, and the towns.
@@ -2251,7 +2268,7 @@ window.RELATED = {
   "yosemite-in-september-2026": ["when-to-visit-yosemite", "yosemite-in-fall", "tuolumne-meadows-in-a-day", "yosemite-during-smoke-season", "cathedral-lakes-day-hike", "mist-trail-the-real-guide"],
   "yosemite-in-fall": ["yosemite-in-october-2026", "yosemite-in-september-2026", "clouds-rest-hike", "when-to-visit-yosemite", "thanksgiving-in-yosemite", "yosemite-in-november"],
   "yosemite-in-winter": ["yosemite-winter-hikes", "yosemite-in-december", "horsetail-fall-firefall", "when-to-visit-yosemite", "yosemite-in-march", "bracebridge-dinner-and-vintners-holidays"],
-  "yosemite-in-march": ["yosemite-in-winter", "yosemite-waterfalls-guide", "horsetail-fall-firefall", "when-to-visit-yosemite", "yosemite-in-december"],
+  "yosemite-in-march": ["yosemite-in-winter", "yosemite-waterfalls-guide", "horsetail-fall-firefall", "when-to-visit-yosemite", "yosemite-in-december", "yosemite-in-january"],
   "tioga-road-opening-weekend": ["cathedral-lakes-day-hike", "tuolumne-meadows-in-a-day", "yosemite-from-las-vegas", "memorial-day-skip-the-valley-go-high-2026", "yosemite-stargazing-where-to-look-up", "tioga-road-stop-by-stop"],
   "glacier-point-road-open-2026": ["four-mile-up-panorama-down", "glacier-point-how-to-visit", "yosemite-photography-spots", "yosemite-stargazing-where-to-look-up", "yosemite-for-non-hikers"],
   "yosemite-heat-safety-guide": ["swimming-in-the-merced", "mist-trail-the-real-guide", "when-to-visit-yosemite", "yosemite-during-smoke-season", "yosemite-waterfalls-guide", "yosemite-falls-trail"],

@@ -5,7 +5,7 @@
   <!-- Hub pages -->
   <url>
     <loc>https://thetalusfieldjournal.com/</loc>
-    <lastmod>2026-10-14</lastmod>
+    <lastmod>2026-10-15</lastmod>
     <image:image>
       <image:loc>https://thetalusfieldjournal.com/img/responsive/valley-view-sunset-rodrigo-soares-1600.jpg</image:loc>
       <image:title>El Capitan and Bridalveil Fall above the Merced River at sunset</image:title>
@@ -13,7 +13,7 @@
   </url>
   <url>
     <loc>https://thetalusfieldjournal.com/articles</loc>
-    <lastmod>2026-10-14</lastmod>
+    <lastmod>2026-10-15</lastmod>
   </url>
   <url>
     <loc>https://thetalusfieldjournal.com/planning</loc>
@@ -43,7 +43,7 @@
   </url>
   <url>
     <loc>https://thetalusfieldjournal.com/section/seasonal</loc>
-    <lastmod>2026-10-14</lastmod>
+    <lastmod>2026-10-15</lastmod>
   </url>
 
   <!-- Static pages -->
@@ -173,6 +173,14 @@
   </url>
 
   <!-- Articles -->
+  <url>
+    <loc>https://thetalusfieldjournal.com/articles/yosemite-in-january</loc>
+    <lastmod>2026-10-15</lastmod>
+    <image:image>
+      <image:loc>https://thetalusfieldjournal.com/img/responsive/el-capitan-snow-spring-1600.jpg</image:loc>
+      <image:title>El Capitan in last light above snow on the Yosemite Valley floor</image:title>
+    </image:image>
+  </url>
   <url>
     <loc>https://thetalusfieldjournal.com/articles/yosemite-rockfall</loc>
     <lastmod>2026-10-14</lastmod>
