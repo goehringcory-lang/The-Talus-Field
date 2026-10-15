@@ -1007,7 +1007,7 @@ const seed: HikeT[] = [
     trailhead: 'Hetch Hetchy Road, signed pullout 3.9 mi past the entrance',
     coord: [-119.8146, 37.9102], // TODO: verify on the ground — moved 2026-09 to the trailhead, same as the stop
     hazard:
-      'The climb out is relentless and largely shadeless and bakes by late morning; carry more water than three miles suggests. Rattlesnake country, and the river runs dam-released cold and fast. Stay out of the current.',
+      'The climb out is relentless and largely shadeless and bakes by late morning; carry more water than the short distance suggests. Rattlesnake country, and the river runs dam-released cold and fast. Stay out of the current.',
     photo: { src: '/photos/hike-poopenaut-valley.jpg', alt: 'Poopenaut Valley along the Tuolumne River below the dam.' },
     description:
       'One of the park’s steepest maintained miles, straight down to the Tuolumne River below the dam. Short, very steep on the way out, and rarely busy.',

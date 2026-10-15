@@ -264,7 +264,7 @@ const seed: StopInput[] = [
     teaser:
       'Climb the abandoned 1874 wagon road from a dirt pullout on Northside Drive: hand-stacked walls, stagecoach switchbacks, few people. Half a day, easy.',
     body:
-      'A small dirt pullout on Northside Drive, between the Pohono Bridge and El Capitan, is the start. From it you climb the original Big Oak Flat Road, the wagon grade completed in 1874, one of the three original roads to the valley floor. It carried traffic for nearly seventy years until a rockslide in 1943 closed it to cars. Most of the roadbed remains: hand-stacked retaining walls, cut blocks, switchbacks wide enough for a six-horse coach. Few people walk it.\n\nThe climb is rock-hopping and a little scrambly in places, nothing technical, doable with kids. About a mile and 800 feet of gain reach the first big preserved section. Half a day, easy; a full day if you keep going. Bring lunch; there is shade under incense cedars and a view across to Cathedral Rocks.\n\nIn spring, March through June depending on snowmelt, extend west to the base of Ribbon Fall. The traverse is unmarked and rough through talus. Ribbon Fall is a 1,612-foot single drop, often called the tallest single drop in North America, fed only by snowmelt off the rim. It peaks in May and is usually dry by July.',
+      'A small dirt pullout on Northside Drive, between the Pohono Bridge and El Capitan, is the start. From it you climb the original Big Oak Flat Road, the wagon grade completed in 1874, one of the three original roads to the valley floor. It carried traffic for nearly seventy years until a rockslide in 1945 closed it to cars. Most of the roadbed remains: hand-stacked retaining walls, cut blocks, switchbacks wide enough for a six-horse coach. Few people walk it.\n\nThe climb is rock-hopping and a little scrambly in places, nothing technical, doable with kids. About a mile and 800 feet of gain reach the first big preserved section. Half a day, easy; a full day if you keep going. Bring lunch; there is shade under incense cedars and a view across to Cathedral Rocks.\n\nIn spring, March through June depending on snowmelt, extend west to the base of Ribbon Fall. The traverse is unmarked and rough through talus. Ribbon Fall is a 1,612-foot single drop, often called the tallest single drop in North America, fed only by snowmelt off the rim. It peaks in May and is usually dry by July.',
     swap:
       'The dirt pullout holds maybe four or five cars. If it\'s full, the nearest parking is the roadside pullouts at El Capitan Meadow, about half a mile back east on the same one-way road; park there and walk west along Northside Drive. Adds ten to fifteen minutes each way and a touch of road noise, but you don\'t lose the day.',
     history: {
@@ -641,7 +641,7 @@ const seed: StopInput[] = [
     body:
       'Tent cabins or wood cabins. The tent cabins are the original 1899 camp; the wood cabins have insulation. The location is what you pay for: walking distance to the dining hall, the shuttle stop, and the Mist Trail trailhead. On a multi-night trip, stay all your nights here to avoid packing each morning. Reservations open 366 days out and the good months sell in minutes.',
     swap:
-      'If Curry is full: Yosemite Valley Lodge or [the Ahwahnee](/stop/ahwahnee-hotel) are the in-park alternates. Outside the park: El Portal (closest, 30 min), Mariposa (45 min, more options), or Groveland (Big Oak Flat entrance side, 1 hr to valley).',
+      'If Curry is full: Yosemite Valley Lodge or [the Ahwahnee](/stop/ahwahnee-hotel) are the in-park alternates. Outside the park: El Portal (closest, 30 min), Mariposa (45 min, more options), or Groveland (Big Oak Flat entrance side, about 1 hr 15 min to the Valley).',
     photos: [{ src: '/photos/curry-village.jpg' }],
     history: {
       note:
@@ -774,7 +774,7 @@ const seed: StopInput[] = [
     hazard:
       'The summit blocks end in open air with no railings anywhere past the falls overlook. No water on the upper mountain in summer; carry three liters.',
     teaser:
-      'A maintained trail to the highest of the Three Brothers, nearly seven miles one way, with El Capitan just to the west at eye level for once. Carry three liters.',
+      'A maintained trail to the highest of the Three Brothers, about six and a half miles one way, with El Capitan just to the west at eye level for once. Carry three liters.',
     body:
       'About 13 miles round trip with about 3,800 feet of gain; budget eight to nine hours and start early. Eagle Peak is the highest of the Three Brothers, west of Yosemite Falls, with a maintained trail to the top. From the Yosemite Falls Trailhead behind Camp 4 it is about six and a half miles one way: up the falls trail, past the top of the upper fall, then through Eagle Peak Meadows to the summit spur.\n\nThe summit looks down the full length of the valley: the Merced on the floor, Half Dome and Clouds Rest at the far end, El Capitan just west and level with you, its summit slabs rolling into the 3,000-foot face.\n\nThere is no reliable water past Yosemite Creek and the upper switchbacks bake in the afternoon. Hat, three liters, and a turnaround time.',
     history: {
@@ -805,9 +805,9 @@ const seed: StopInput[] = [
     hazard:
       'The switchbacks are shadeless by mid-morning and there is no water between Tenaya Creek and Snow Creek. Do not leave the trail toward Tenaya Canyon; the gorge below is technical terrain where hikers have died.',
     teaser:
-      'The steepest maintained way out of the valley: 2,600 feet in about two and a half miles up dozens of switchbacks, each one reframing Half Dome and Tenaya Canyon.',
+      'The steepest maintained way out of the valley: 2,700 feet in about two and a half miles up dozens of switchbacks, each one reframing Half Dome and Tenaya Canyon.',
     body:
-      'The steepest maintained trail out of the valley and the least used: 2,600 feet of gain in about two and a half miles of switchbacks up the wall of Tenaya Canyon, starting past Mirror Lake. The usual day is out-and-back to the rim from the Mirror Lake shuttle stop, about nine and a half miles round trip, six to seven hours. With two cars, strong parties go one way: up Snow Creek, across the rim past North Dome, out at the Porcupine Creek trailhead on Tioga Road.\n\nApril through October is the easy season; in winter the lower switchbacks can ice over. Carry more water than the mileage suggests. Every switchback gives a view of Half Dome, Clouds Rest, and the canyon.\n\nDo not attempt Tenaya Canyon itself. The gorge between Mirror Lake and Tenaya Lake is a technical canyoneering route with mandatory swims and rappels, the park map warns against it, and it has killed experienced people.',
+      'The steepest maintained trail out of the valley and the least used: 2,700 feet of gain in about two and a half miles of switchbacks up the wall of Tenaya Canyon, starting past Mirror Lake. The usual day is out-and-back to the rim from the Mirror Lake shuttle stop, about nine and a half miles round trip, six to seven hours. With two cars, strong parties go one way: up Snow Creek, across the rim past North Dome, out at the Porcupine Creek trailhead on Tioga Road.\n\nApril through October is the easy season; in winter the lower switchbacks can ice over. Carry more water than the mileage suggests. Every switchback gives a view of Half Dome, Clouds Rest, and the canyon.\n\nDo not attempt Tenaya Canyon itself. The gorge between Mirror Lake and Tenaya Lake is a technical canyoneering route with mandatory swims and rappels, the park map warns against it, and it has killed experienced people.',
     history: {
       note:
         'There was a lodge at the top of these switchbacks. A 1931 Nature Notes ' +
@@ -1248,7 +1248,7 @@ const seed: StopInput[] = [
     teaser:
       'Five major cascades and 8.4 miles round trip out of Wawona, practically deserted while the Mist Trail shuffles. The lower gorge pays off within half an hour.',
     body:
-      '8.4 miles round trip with over 2,000 feet of gain, from the end of Chilnualna Falls Road in Wawona, beside a chain of five major cascades. It sees far fewer people than the Mist Trail.\n\nThe lower cascades, in a rocky gorge within half an hour of the trailhead, make a complete short outing for families. The full climb is a real day: switchbacks through oak and manzanita, then pine, to the top falls pouring through bare granite above the Wawona basin.\n\nPeak flow is late spring into early summer; the trail is open year-round, and autumn is quiet. Carry water for the full climb. The lower gorge is dangerous; read the caution before anyone leaves the trail.',
+      '8.2 miles round trip with over 2,000 feet of gain, from the end of Chilnualna Falls Road in Wawona, beside a chain of five major cascades. It sees far fewer people than the Mist Trail.\n\nThe lower cascades, in a rocky gorge within half an hour of the trailhead, make a complete short outing for families. The full climb is a real day: switchbacks through oak and manzanita, then pine, to the top falls pouring through bare granite above the Wawona basin.\n\nPeak flow is late spring into early summer; the trail is open year-round, and autumn is quiet. Carry water for the full climb. The lower gorge is dangerous; read the caution before anyone leaves the trail.',
   },
 
   // ===========================================================================
