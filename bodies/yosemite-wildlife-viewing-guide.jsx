@@ -38,7 +38,7 @@ window.ARTICLE_BODIES["yosemite-wildlife-viewing-guide"] = function YosemiteWild
       <h2 id="sec-1-the-valley-floor-deer-coyote-bobcat">The Valley floor: deer, coyote, bobcat</h2>
 
       <p>
-        Mule deer (<em>Odocoileus hemionus</em>) are the animal you are guaranteed to see, and the one most likely to hurt you. That is not a rhetorical flourish. Deer injure more visitors in Yosemite than bears do, because people treat a 150-pound wild ungulate with antlers like a petting-zoo resident. They browse Cook's Meadow, El Capitan Meadow, and the Wawona meadow loop morning and evening, and they barely react to people anymore, which is exactly the problem. Photograph them from the trail. Twenty-five yards. A deer that flattens its ears and stamps has already asked you once.
+        Mule deer (<em>Odocoileus hemionus</em>) are the animal you are guaranteed to see, and the one most likely to hurt you. That is not a rhetorical flourish. Deer injure more visitors in Yosemite than bears do, because people treat a 150-pound wild ungulate with antlers like a petting-zoo resident. They browse Cook's Meadow, El Capitan Meadow, and the Wawona meadow loop morning and evening, and they barely react to people anymore, which is exactly the problem. Photograph them from the trail. Twenty-five feet is the minimum. A deer that flattens its ears and stamps has already asked you once.
       </p>
 
       <p>

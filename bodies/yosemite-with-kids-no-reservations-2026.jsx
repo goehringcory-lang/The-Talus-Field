@@ -105,11 +105,11 @@ window.ARTICLE_BODIES["yosemite-with-kids-no-reservations-2026"] = function Yose
       </p>
 
       <p>
-        <strong>Cook's Meadow Loop, the one with the views.</strong> Two miles, paved, flat as a parking lot. This is the walk through the heart of the Valley with postcard views of Half Dome, Yosemite Falls, and Sentinel Rock. It connects to Sentinel Bridge, where the famous Half Dome reflection photo is taken. The meadow is gorgeous, the trail is wide, and there's almost no crowd because everyone else went to the waterfalls. <em>(All ages. Strollers: yes. Best in morning or evening light.)</em>
+        <strong>Cook's Meadow Loop, the one with the views.</strong> One mile, paved and boardwalk, flat as a parking lot. This is the walk through the heart of the Valley with postcard views of Half Dome, Yosemite Falls, and Sentinel Rock. It connects to Sentinel Bridge, where the famous Half Dome reflection photo is taken. The meadow is gorgeous, the trail is wide, and there's almost no crowd because everyone else went to the waterfalls. <em>(All ages. Strollers: yes. Best in morning or evening light.)</em>
       </p>
 
       <p>
-        <strong>Mirror Lake, the adventure walk.</strong> Two miles to the lake on a packed-dirt road that's stroller-possible with real wheels (not an umbrella stroller). The lake itself is seasonal, full in spring, a sandy meadow by late summer. But the walk along Tenaya Creek is beautiful regardless, and at the "lake" site there are boulders to climb, creek edges to explore, and fewer people than elsewhere in the Valley. <em>(Ages 3+. Under-2s fine in a carrier. Over-8s will want to scramble on the rocks.)</em>
+        <strong>Mirror Lake, the adventure walk.</strong> Two miles round trip to the lake on a paved road that's stroller-possible with real wheels (not an umbrella stroller). The lake itself is seasonal, full in spring, a sandy meadow by late summer. But the walk along Tenaya Creek is beautiful regardless, and at the "lake" site there are boulders to climb, creek edges to explore, and fewer people than elsewhere in the Valley. <em>(Ages 3+. Under-2s fine in a carrier. Over-8s will want to scramble on the rocks.)</em>
       </p>
 
       <p>
@@ -211,8 +211,8 @@ window.ARTICLE_BODIES["yosemite-with-kids-no-reservations-2026"] = function Yose
       <h3>Best hikes with kids</h3>
       <ul>
         <li>Lower Yosemite Fall: 1 mile, paved, all ages</li>
-        <li>Cook's Meadow: 2 miles, paved, all ages</li>
-        <li>Mirror Lake: 2 miles, packed dirt, ages 3+</li>
+        <li>Cook's Meadow: 1 mile loop, paved, all ages</li>
+        <li>Mirror Lake: 2 miles round trip, paved road, ages 3+</li>
         <li>Bridalveil Fall: 0.5 miles, paved but steep, all ages</li>
       </ul>
 

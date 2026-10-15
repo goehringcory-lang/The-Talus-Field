@@ -542,7 +542,7 @@ window.ARTICLE_BODIES["yosemite-gateway-towns-compared"] = function YosemiteGate
       />
 
       <p>
-        Lee Vining is the only east-side gateway, and it makes for a different kind of trip. Tuolumne Meadows is 30 minutes away when Tioga Road is open, while the Valley is over an hour and a half each way. The road is typically open from late May or June through October or early November. The Park Service opened it on May 15 in 2026, the earliest in sixteen years, and the <a href="/conditions">road conditions page</a> lists current access. Lodging is a few small motels (the <strong>Yosemite Gateway Motel</strong>, the <strong>El Mono Motel</strong>, an inn or two). Dining is thin but includes the Whoa Nellie Deli at the Mobil station, some of the best food in the eastern Sierra.
+        Lee Vining is the only east-side gateway, and it makes for a different kind of trip. Tuolumne Meadows is 30 minutes away when Tioga Road is open, while the Valley is over an hour and a half each way. The road is typically open from late May or June through October or early November. The Park Service opened it on May 15 in 2026, the earliest since 2015 by the park's own table of opening dates, and the <a href="/conditions">road conditions page</a> lists current access. Lodging is a few small motels (the <strong>Yosemite Gateway Motel</strong>, the <strong>El Mono Motel</strong>, an inn or two). Dining is thin but includes the Whoa Nellie Deli at the Mobil station, some of the best food in the eastern Sierra.
       </p>
 
       <p>Why people pick it:</p>

@@ -126,7 +126,7 @@ function InternationalPage({ go }) {
           <h2>The 2026 non-resident fee</h2>
           <p>
             Every visitor pays the entrance fee: {money(F.vehicle)} per car for
-            seven days, {money(F.motorcycle)} for up to two motorcycles, {money(F.perPerson)} per
+            seven days, {money(F.motorcycle)} for up to two motorcycles carrying four people in all, {money(F.perPerson)} per
             person on foot, by bicycle or by bus, children under {F.perPersonFreeUnder} free.
             On top of that, since January 1, 2026, a visitor who is not a US
             citizen or resident pays a non-resident fee of {money(F.surcharge)} per
@@ -142,7 +142,7 @@ function InternationalPage({ go }) {
             </thead>
             <tbody>
               <tr><td>Entrance, private vehicle</td><td>{money(F.vehicle)}</td><td>The car and everyone in it, seven days</td></tr>
-              <tr><td>Entrance, motorcycle</td><td>{money(F.motorcycle)}</td><td>Up to two motorcycles, seven days</td></tr>
+              <tr><td>Entrance, motorcycle</td><td>{money(F.motorcycle)}</td><td>Up to two motorcycles and four people in total, seven days</td></tr>
               <tr><td>Entrance, per person</td><td>{money(F.perPerson)}</td><td>On foot, bicycle or bus; under {F.perPersonFreeUnder} free</td></tr>
               <tr><td>Non-resident fee</td><td>{money(F.surcharge)} per person</td><td>Age {F.surchargeAgeFrom} and older, each entry, unless holding a pass</td></tr>
               <tr><td>Non-resident annual pass</td><td>{money(F.nonResidentAnnual)}</td><td>The holder's vehicle and its occupants, twelve months, every federal fee site; no non-resident fee</td></tr>

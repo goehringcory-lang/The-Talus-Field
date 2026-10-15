@@ -16,12 +16,14 @@ window.ARTICLE_BODIES["pets-in-yosemite"] = function PetsInYosemiteBody() {
       </p>
 
       <p>
-        The Park Service names a short list of exceptions, most of them old roadbeds rather than trails, and they are both good walks:
+        The Park Service calls them "very obscure and unsigned" exceptions, and most are old roads rather than trails. Near Wawona and Hodgdon Meadow they are:
       </p>
 
       <ol>
         <li><strong>The Wawona Meadow Loop.</strong> A gentle lap around the big meadow near the Wawona Hotel grounds, shaded, flat, and quietly one of the best wildflower walks in the park in early summer.</li>
         <li><strong>Old Big Oak Flat Road</strong> from Hodgdon Meadow to the Tuolumne Grove parking lot, near the Big Oak Flat Entrance. An old roadbed through mixed conifer forest, more solitude than scenery, which some dogs would tell you is the correct priority.</li>
+        <li><strong>Chowchilla Mountain Road and the Four Mile and Eleven Mile fire roads</strong> at Wawona. The Park Service is explicit that this does not include the Four Mile Trail in Yosemite Valley.</li>
+        <li><strong>Carlon Road</strong> from the trailhead to Hodgdon Meadow, but not on to Carlon Falls, and the road (not the nature trail) within Tuolumne Grove.</li>
       </ol>
 
       <p>
@@ -29,7 +31,7 @@ window.ARTICLE_BODIES["pets-in-yosemite"] = function PetsInYosemiteBody() {
       </p>
 
       <Placeholder
-        caption="The Wawona Meadow. The Wawona Meadow Loop is one of only two trails where a leashed dog can join you"
+        caption="The Wawona Meadow. The Wawona Meadow Loop is the one hiking trail in the park where a leashed dog can join you"
         image="img/wawona-meadow-loop.jpg"
         credit="Photo: C.C. Pierce / Wikimedia Commons (public domain)"
         tag="PLATE I"

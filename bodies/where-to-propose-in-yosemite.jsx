@@ -100,7 +100,7 @@ window.ARTICLE_BODIES["where-to-propose-in-yosemite"] = function WhereToProposeI
       </p>
 
       <p>
-        <strong>Mirror Lake in spring</strong> is a mostly flat 2-mile walk from the shuttle stop, and in April and May, when snowmelt fills the lake bed, it creates a reflection of Half Dome so perfect it looks fabricated. By late summer the lake dries to a meadow, so timing matters. The spring window, roughly late April through early June depending on snowpack, is when this spot earns its name. The walk is easy, the crowds are lighter than you might expect for something this accessible, and the reflection of Half Dome in still water is one of the best views in the park.
+        <strong>Mirror Lake in spring</strong> is a mostly flat walk of 2 miles round trip from the shuttle stop, and in April and May, when snowmelt fills the lake bed, it creates a reflection of Half Dome so perfect it looks fabricated. By late summer the lake dries to a meadow, so timing matters. The spring window, roughly late April through early June depending on snowpack, is when this spot earns its name. The walk is easy, the crowds are lighter than you might expect for something this accessible, and the reflection of Half Dome in still water is one of the best views in the park.
       </p>
 
       <p>

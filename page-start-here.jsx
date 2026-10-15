@@ -174,8 +174,8 @@ const START_PLACES = [
     dos: [
       "Olmsted Point for the back of Half Dome, then the shore of Tenaya Lake",
       "Pothole Dome, a mile round trip at the meadow's west end",
-      "Soda Springs and Parsons Memorial Lodge, a flat mile and a half",
-      "Lembert Dome, 2.8 miles and 850 feet, for the earned view",
+      "Soda Springs and Parsons Memorial Lodge, a flat mile and four tenths",
+      "Lembert Dome with Dog Lake, 3.8 miles and 850 feet, for the earned view",
     ],
     facts: [
       ["From the Valley", "55 to 60 miles, 1.5 hours each way, closer to 2 in July"],

@@ -93,7 +93,7 @@ window.ARTICLE_BODIES["yosemite-in-fall"] = function YosemiteInFallBody() {
       </p>
 
       <p>
-        The mechanism of nearly every injury is the same and entirely preventable: someone approaches, often someone who has seen other people feeding deer, and the animal defends itself with antlers or with front hooves. In November 2021 a girl approached a buck that visitors had been feeding, and the animal's antlers opened a deep cut on her arm and wounded her chest badly enough that she was moved from the park clinic to a hospital. Fifty yards is the rule, it is the same rule as for bears, and in fall it is the rule that actually gets broken because deer look harmless in a way bears do not. <a href="/articles/yosemite-wildlife-viewing-guide">The wildlife guide</a> covers where to watch from.
+        The mechanism of nearly every injury is the same and entirely preventable: someone approaches, often someone who has seen other people feeding deer, and the animal defends itself with antlers or with front hooves. In November 2021 a girl approached a buck that visitors had been feeding, and the animal's antlers opened a deep cut on her arm and wounded her chest badly enough that she was moved from the park clinic to a hospital. The Park Service's rule for deer is at least 25 feet, and in fall it is the rule that actually gets broken because deer look harmless in a way bears do not. <a href="/articles/yosemite-wildlife-viewing-guide">The wildlife guide</a> covers where to watch from.
       </p>
 
       <h2>Smoke, but the other kind</h2>

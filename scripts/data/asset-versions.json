@@ -46,8 +46,8 @@
       "sha256": "de3127e9023de0bc"
     },
     "/dist/bodies/getting-to-yosemite.js": {
-      "v": 12,
-      "sha256": "949e73d374637baf"
+      "v": 13,
+      "sha256": "1193b5f2cfcb9b71"
     },
     "/dist/bodies/giant-sequoias-fire-adaptation.js": {
       "v": 79,
@@ -94,8 +94,8 @@
       "sha256": "45582a97446aee14"
     },
     "/dist/bodies/pets-in-yosemite.js": {
-      "v": 7,
-      "sha256": "115a1742e7e749c5"
+      "v": 8,
+      "sha256": "7af6e4054dbd9456"
     },
     "/dist/bodies/showy-milkweed-yosemite-valley.js": {
       "v": 5,
@@ -106,12 +106,12 @@
       "sha256": "ca99c47242ed0dc7"
     },
     "/dist/bodies/sustainable-yosemite-car-free-zero-waste.js": {
-      "v": 3,
-      "sha256": "d18a3c2ad139edd9"
+      "v": 4,
+      "sha256": "7e595875fce9e4ef"
     },
     "/dist/bodies/swimming-in-the-merced.js": {
-      "v": 4,
-      "sha256": "644454ba7bd05fa7"
+      "v": 5,
+      "sha256": "1cc7569925766c92"
     },
     "/dist/bodies/thanksgiving-in-yosemite.js": {
       "v": 1,
@@ -122,8 +122,8 @@
       "sha256": "a88017fc8195f578"
     },
     "/dist/bodies/tioga-road-stop-by-stop.js": {
-      "v": 1,
-      "sha256": "4c0ff3ee3e068f97"
+      "v": 2,
+      "sha256": "0c249f29f49569b3"
     },
     "/dist/bodies/tuolumne-meadows-in-a-day.js": {
       "v": 7,
@@ -154,8 +154,8 @@
       "sha256": "b3c4b96adb64649b"
     },
     "/dist/bodies/where-to-propose-in-yosemite.js": {
-      "v": 4,
-      "sha256": "6762ee2ca8657ef3"
+      "v": 5,
+      "sha256": "5beb161ef01e514f"
     },
     "/dist/bodies/where-to-stay-in-yosemite.js": {
       "v": 17,
@@ -178,12 +178,12 @@
       "sha256": "46e506c754d58408"
     },
     "/dist/bodies/yosemite-camping-complete-guide.js": {
-      "v": 15,
-      "sha256": "0ed1fb39adc29cf3"
+      "v": 16,
+      "sha256": "76c367f1e966c321"
     },
     "/dist/bodies/yosemite-connecting-to-traditions.js": {
-      "v": 3,
-      "sha256": "628f37169a09f119"
+      "v": 4,
+      "sha256": "3141e1acadb6d448"
     },
     "/dist/bodies/yosemite-day-trip-from-bay-area.js": {
       "v": 3,
@@ -194,8 +194,8 @@
       "sha256": "8cb058bb082bb70b"
     },
     "/dist/bodies/yosemite-facelift-volunteer-guide.js": {
-      "v": 4,
-      "sha256": "2802a36113e4138c"
+      "v": 5,
+      "sha256": "4d6ae150a1098220"
     },
     "/dist/bodies/yosemite-falls-trail.js": {
       "v": 3,
@@ -218,8 +218,8 @@
       "sha256": "95a991310e7d146a"
     },
     "/dist/bodies/yosemite-gateway-towns-compared.js": {
-      "v": 104,
-      "sha256": "ed8b6151aab8e075"
+      "v": 105,
+      "sha256": "2e2de302a065f162"
     },
     "/dist/bodies/yosemite-glaciers-climate.js": {
       "v": 82,
@@ -234,8 +234,8 @@
       "sha256": "f4ad09a4d298b4db"
     },
     "/dist/bodies/yosemite-in-fall.js": {
-      "v": 8,
-      "sha256": "abdb4ba38ec96a31"
+      "v": 9,
+      "sha256": "3de098c056b65191"
     },
     "/dist/bodies/yosemite-in-january.js": {
       "v": 1,
@@ -258,16 +258,16 @@
       "sha256": "207b85525559e260"
     },
     "/dist/bodies/yosemite-in-one-or-two-days.js": {
-      "v": 91,
-      "sha256": "3e39f89787f86221"
+      "v": 92,
+      "sha256": "47b10c87dbc7c31e"
     },
     "/dist/bodies/yosemite-in-september-2026.js": {
       "v": 4,
       "sha256": "1887c4b1e18872ba"
     },
     "/dist/bodies/yosemite-in-three-to-five-days.js": {
-      "v": 7,
-      "sha256": "215d7d128198597f"
+      "v": 8,
+      "sha256": "ce5b92eb293c4ff2"
     },
     "/dist/bodies/yosemite-in-winter.js": {
       "v": 11,
@@ -334,16 +334,16 @@
       "sha256": "2a89452f7a04a251"
     },
     "/dist/bodies/yosemite-wildlife-viewing-guide.js": {
-      "v": 7,
-      "sha256": "0f0e40886883fd39"
+      "v": 8,
+      "sha256": "b15c01fbeb912737"
     },
     "/dist/bodies/yosemite-winter-hikes.js": {
       "v": 5,
       "sha256": "cf65b7dabc6de87f"
     },
     "/dist/bodies/yosemite-with-kids-no-reservations-2026.js": {
-      "v": 82,
-      "sha256": "8bac89882c0fb55d"
+      "v": 83,
+      "sha256": "8121ba320a90d991"
     },
     "/dist/bodies/yosemite-without-reservations-2026.js": {
       "v": 87,

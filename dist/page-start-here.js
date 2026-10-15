@@ -87,7 +87,7 @@ var START_PLACES = [{
   alt: "Tuolumne Meadows with Lembert Dome behind",
   credit: "Pacific Southwest Region USFWS / Wikimedia Commons (public domain)",
   line: "The high country: open granite and meadow at 8,600 feet, and half the crowd.",
-  dos: ["Olmsted Point for the back of Half Dome, then the shore of Tenaya Lake", "Pothole Dome, a mile round trip at the meadow's west end", "Soda Springs and Parsons Memorial Lodge, a flat mile and a half", "Lembert Dome, 2.8 miles and 850 feet, for the earned view"],
+  dos: ["Olmsted Point for the back of Half Dome, then the shore of Tenaya Lake", "Pothole Dome, a mile round trip at the meadow's west end", "Soda Springs and Parsons Memorial Lodge, a flat mile and four tenths", "Lembert Dome with Dog Lake, 3.8 miles and 850 feet, for the earned view"],
   facts: [["From the Valley", "55 to 60 miles, 1.5 hours each way, closer to 2 in July"], ["Season", "Tioga Road opens late May or June, closes with the first serious snow"], ["Weather", "Off the open granite before the afternoon thunderheads"], ["Give it", "Its own day. It deserves more than a drive-through."]],
   link: {
     href: "/articles/tuolumne-meadows-in-a-day",
