@@ -48,7 +48,7 @@ window.ARTICLE_BODIES["hetch-hetchy-the-other-yosemite-valley"] = function Hetch
       </p>
 
       <p>
-        Muir was the public face of the resistance. He was 75 years old when the fight began. He wrote some of the most ferocious prose of his career on Hetch Hetchy, calling the proposed dam "a cult of ravaging commercialism" and describing the supporters of the project as "temple destroyers, devotees of ravaging commercialism, who seem to have a perfect contempt for Nature, and instead of lifting their eyes to the God of the mountains, lift them to the Almighty Dollar."
+        Muir was the public face of the resistance. He was 70 years old when the fight began in 1908. He wrote some of the most ferocious prose of his career on Hetch Hetchy, describing the supporters of the project as "temple destroyers, devotees of ravaging commercialism, who seem to have a perfect contempt for Nature, and instead of lifting their eyes to the God of the mountains, lift them to the Almighty Dollar."
       </p>
 
       <p>

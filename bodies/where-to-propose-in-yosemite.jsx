@@ -158,7 +158,7 @@ window.ARTICLE_BODIES["where-to-propose-in-yosemite"] = function WhereToProposeI
       </p>
 
       <p>
-        <strong>December through February</strong> offers true solitude. Visitor numbers drop by more than 80 percent from summer peaks. The Valley floor can be dusted with snow while the granite walls glow in low winter light. Yosemite Falls often resumes flowing with early winter storms. The Ahwahnee Hotel, now officially called The Majestic Yosemite Hotel but still The Ahwahnee to anyone who has been here longer than the trademark dispute, is warm and lit and serves as a basecamp for winter proposals that is hard to argue with. Ansel Adams married Virginia Best in the park in 1928, in the middle of a landscape he would spend the rest of his life photographing.
+        <strong>December through February</strong> offers true solitude. Visitor numbers drop by more than 80 percent from summer peaks. The Valley floor can be dusted with snow while the granite walls glow in low winter light. Yosemite Falls often resumes flowing with early winter storms. The Ahwahnee Hotel, which got its name back in 2019 after three years as the Majestic Yosemite Hotel during a trademark dispute, is warm and lit and serves as a basecamp for winter proposals that is hard to argue with. Ansel Adams married Virginia Best in the park in 1928, in the middle of a landscape he would spend the rest of his life photographing.
       </p>
 
       <p>

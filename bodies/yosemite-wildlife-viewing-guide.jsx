@@ -88,7 +88,7 @@ window.ARTICLE_BODIES["yosemite-wildlife-viewing-guide"] = function YosemiteWild
       </p>
 
       <p>
-        The rarest good news in the park is also up here. Sierra Nevada bighorn sheep, a federally endangered subspecies that vanished from Yosemite for a century, were reintroduced to the Cathedral Range in 2015. A few dozen animals now hold the crest near the park's eastern edge. You are unlikely to see one, but hikers on the high passes occasionally do, and the fact that it is possible at all is one of the great restoration stories in the Sierra.
+        The park's rarest restoration effort is also up here. Sierra Nevada bighorn sheep, a federally endangered subspecies that vanished from Yosemite for a century, were reintroduced to the Cathedral Range in 2015. The herd is small and fragile: the record snows of the 2022-23 winter killed its collared ewes, and the state's last update, in September 2023, found only rams alive. You are unlikely to see one, and the recovery is still an open question.
       </p>
 
       <h2 id="sec-5-the-ones-you-will-probably-never-see">The ones you will probably never see</h2>

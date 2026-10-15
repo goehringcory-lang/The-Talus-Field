@@ -66,7 +66,7 @@ window.ARTICLE_BODIES["tuolumne-meadows-in-a-day"] = function TuolumneMeadowsInA
       </p>
 
       <p>
-        <strong>Soda Springs and Parsons Memorial Lodge. A mile and a half, a hundred feet, an hour and a quarter.</strong> Flat, on an old road, from the Lembert Dome lot across the meadow. At the end there are springs bubbling up naturally carbonated out of the ground, which children tend not to believe, and a stone Sierra Club lodge from 1915 where a good deal of the argument about what national parks are for was thrashed out.
+        <strong>Soda Springs and Parsons Memorial Lodge. A mile and four tenths, a hundred feet, an hour and a quarter.</strong> Flat, on an old road, from the Lembert Dome lot across the meadow. At the end there are springs bubbling up naturally carbonated out of the ground, which children tend not to believe, and a stone Sierra Club lodge from 1915 where a good deal of the argument about what national parks are for was thrashed out.
       </p>
 
       <p>
@@ -92,7 +92,7 @@ window.ARTICLE_BODIES["tuolumne-meadows-in-a-day"] = function TuolumneMeadowsInA
       </p>
 
       <p>
-        <strong>Gaylor Lakes</strong>, right at the Tioga Pass entrance, is two and six tenths of a mile and 500 feet, and starts at almost 10,000 feet, so it feels harder than it reads. <strong>Elizabeth Lake</strong> is four and eight tenths of a mile and 1,000 feet from the campground. And <a href="/articles/cathedral-lakes-day-hike">Cathedral Lakes</a>, the high country's most famous day hike, is a genuine 11 miles: a full day on its own, not something to bolt onto this one.
+        <strong>Gaylor Lakes</strong>, right at the Tioga Pass entrance, is two and six tenths of a mile and 500 feet, and starts at almost 10,000 feet, so it feels harder than it reads. <strong>Elizabeth Lake</strong> is six and eight tenths of a mile and 1,000 feet from the visitor center. And <a href="/articles/cathedral-lakes-day-hike">Cathedral Lakes</a>, the high country's most famous day hike, is a genuine 7.6 miles and 1,000 feet of climbing: a full day on its own, not something to bolt onto this one.
       </p>
 
       <blockquote>The common mistake is choosing a hike when what the day needed was a meadow, a lunch, and three hours of not driving.</blockquote>
@@ -146,7 +146,7 @@ window.ARTICLE_BODIES["tuolumne-meadows-in-a-day"] = function TuolumneMeadowsInA
         <li>Budget three to four hours of driving around the day. Leave the Valley by seven.</li>
         <li>There is no gas at Tuolumne Meadows. Fill up at Crane Flat.</li>
         <li>Pack all food and water. Seasonal services up there cannot be assumed and several are still disrupted.</li>
-        <li>The best short walks are Olmsted Point (half a mile), Pothole Dome (one mile), and Soda Springs (a mile and a half). None require being a hiker.</li>
+        <li>The best short walks are Olmsted Point (half a mile), Pothole Dome (one mile), and Soda Springs (a mile and four tenths). None require being a hiker.</li>
         <li>Tenaya Lake is the family stop: sandy beach, flat loop, cold water.</li>
         <li>Do exposed granite in the morning. Afternoon thunderstorms are the season's normal behavior.</li>
         <li>The altitude is 8,600 feet. Drink more, eat more, go slower, and descend if a headache will not shift.</li>
