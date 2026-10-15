@@ -286,9 +286,9 @@ window.ARTICLE_BODIES["best-airport-for-yosemite"] = function BestAirportForYose
     className: "hp-eyebrow"
   }, "THE CAR-FREE WAY IN"), React.createElement("h2", null, "Train, then bus, from the Bay"), React.createElement("div", {
     className: "fly-prose"
-  }, React.createElement("p", null, "From San Francisco the route is three legs, and it runs every day of the year. The San Joaquins train does not reach the city itself, so you start on BART. Amtrak sells the train and the YARTS bus as one ticket to Yosemite, and the bus is timed to meet the trains at Merced. Allow four to four and a half hours from the Bay, which is no faster than driving and a good deal more restful."), React.createElement("p", null, "The bus drops you at Yosemite Valley Lodge, Yosemite Village or Curry Village, all on the free Valley shuttle. Whether the bus fare also covers your entrance fee is something the park's pages and YARTS' own currently answer differently, so budget for it; ", React.createElement("a", {
+  }, React.createElement("p", null, "From San Francisco the route is three legs, and it runs every day of the year. The San Joaquins train does not reach the city itself, so you start on BART. Amtrak sells the train and the YARTS bus as one ticket to Yosemite, and the bus is timed to meet the trains at Merced. Allow four to four and a half hours from the Bay, which is no faster than driving and a good deal more restful."), React.createElement("p", null, "The bus drops you at Yosemite Valley Lodge, Yosemite Village or Curry Village, all on the free Valley shuttle. The bus fare does not cover your entrance fee: YARTS' fares page says the park entrance and non-resident fees are not included, so budget for them. ", React.createElement("a", {
     href: "/articles/yosemite-shuttle-and-yarts"
-  }, "the shuttle and YARTS guide"), " sets out both positions and the timetable."))), React.createElement("figure", {
+  }, "The shuttle and YARTS guide"), " has the timetable."))), React.createElement("figure", {
     className: "fly-photo"
   }, React.createElement(ResponsiveImage, {
     image: "img/yarts-bus-merced-amtrak.jpg",

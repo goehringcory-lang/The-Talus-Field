@@ -398,7 +398,7 @@ function ConditionsPage({
     }
   }), React.createElement("p", {
     className: "hp-sub"
-  }, "The park spans 9,000 feet of elevation, so one forecast is never enough. These are National Weather Service point forecasts for the three places most trips actually go."), React.createElement(ConditionsElevation, null), React.createElement(CondSeasonKit, null)), React.createElement("div", {
+  }, "The park spans more than 11,000 feet of elevation, so one forecast is never enough. These are National Weather Service point forecasts for the three places most trips actually go."), React.createElement(ConditionsElevation, null), React.createElement(CondSeasonKit, null)), React.createElement("div", {
     className: "hp-wrap hp-section cond-section cond-split"
   }, React.createElement("section", null, React.createElement(HpHeading, {
     eyebrow: "04 / THE VALLEY LOTS",
