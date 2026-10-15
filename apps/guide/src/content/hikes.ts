@@ -156,7 +156,7 @@ const seed: HikeT[] = [
     coord: [-119.6021, 37.742], // web-derived: Camp 4 trailhead; TODO verify on the ground
     photo: { src: '/photos/hike-columbia-rock.jpg', alt: 'An early photograph of the head of the Valley from Columbia Rock, Half Dome at center.' },
     description:
-      'The first mile of switchbacks on the Yosemite Falls Trail, ending at a railed perch with Half Dome and Sentinel Rock across the valley. A sample of the full climb for a third of the effort.',
+      'The first mile of switchbacks on the Yosemite Falls Trail, ending at a perch with a railing, with Half Dome and Sentinel Rock across the valley. A sample of the full climb for a third of the effort.',
   },
   {
     id: 'vernal-fall-mist-trail',
@@ -175,7 +175,7 @@ const seed: HikeT[] = [
       'The granite staircase beside the fall is soaked and slick through early summer. Never enter the Emerald Pool above the fall.',
     photo: { src: '/photos/hike-vernal-fall-mist-trail.jpg', alt: 'The Mist Trail sign pointing to Vernal Fall, Nevada Fall, and the John Muir Trail.' },
     description:
-      'The stone steps up through Vernal Fall’s spray, the park’s most-hiked mile. Bring a shell in spring or plan on hiking wet.',
+      'The stone steps up through Vernal Fall’s spray, the park’s most-hiked mile. Bring a rain jacket in spring, or plan to get wet.',
   },
   {
     id: 'nevada-fall',
@@ -192,10 +192,10 @@ const seed: HikeT[] = [
     stopId: 'mist-trail',
     coord: [-119.558, 37.7322], // same pin as stop mist-trail
     hazard:
-      'The granite stairs are soaked and slick through early summer. Never enter the Emerald Pool or the river above either fall; the current above the brinks is far stronger than it looks.',
+      'The granite stairs are soaked and slick through early summer. Never enter the Emerald Pool or the river above either fall; the current above the edges is far stronger than it looks.',
     photo: { src: '/photos/hike-nevada-fall.jpg', alt: 'Nevada Fall beside the dome of Liberty Cap.' },
     description:
-      'Past Vernal Fall to the brink of its bigger sibling, then down the John Muir Trail for the Liberty Cap panorama. Two big waterfalls in one day.',
+      'Past Vernal Fall to the top of its bigger sibling, then down the John Muir Trail for the Liberty Cap panorama. Two big waterfalls in one day.',
   },
   {
     id: 'upper-yosemite-fall',
@@ -250,10 +250,10 @@ const seed: HikeT[] = [
     permit:
       'Permit required whenever the cables are up, by preseason lottery in March or the two-day-ahead daily lottery on recreation.gov.',
     hazard:
-      'The cable route climbs bare granite at a 45-degree pitch. Do not start up if the rock is wet or storms are forecast, and turn around if clouds build.',
+      'The cable route climbs bare granite at a 45-degree slope. Do not start up if the rock is wet or storms are forecast, and turn around if clouds build.',
     photo: { src: '/photos/hike-half-dome.jpg', alt: 'The Half Dome cables running up the dome’s bare shoulder.' },
     description:
-      'The park’s signature endurance day: past both falls, up Sub Dome’s stairs, then the cables to the summit plateau. Ten to twelve hours for most parties; train for it.',
+      'The park’s signature endurance day: past both falls, up Sub Dome’s stairs, then the cables to the summit plateau. Ten to twelve hours for most groups; train for it.',
   },
   {
     id: 'eagle-peak',
@@ -325,7 +325,7 @@ const seed: HikeT[] = [
     season: 'Glacier Point Road season',
     photo: { src: '/photos/hike-dewey-point.jpg', alt: 'The view east from Dewey Point toward Half Dome and the snowy high country.' },
     description:
-      'Through McGurk Meadow to an unrailed rim point 3,000 feet above the west Valley, looking straight across at El Capitan.',
+      'Through McGurk Meadow to a rim point with no railing, 3,000 feet above the west Valley, looking straight across at El Capitan.',
   },
   {
     id: 'taft-point',
@@ -345,7 +345,7 @@ const seed: HikeT[] = [
       'Past one short railing at the lookout, the point and the Fissures are open drops, the Fissures alone as deep as 2,000 feet. Keep children in hand.',
     photo: { src: '/photos/hike-taft-point.jpg', alt: 'The view from Taft Point: El Capitan and the Valley floor far below.' },
     description:
-      'An easy walk to the Fissures, deep slots in the rim, and a ledge over the Valley railed at one spot and open everywhere else. Watch children closely.',
+      'An easy walk to the Fissures, deep slots in the rim, and a ledge over the Valley with a railing at one spot and open everywhere else. Watch children closely.',
   },
   {
     id: 'sentinel-dome',
@@ -471,7 +471,7 @@ const seed: HikeT[] = [
     season: 'Glacier Point Road season',
     photo: { src: '/photos/ostrander-ski-hut.jpg', alt: 'The stone Ostrander Ski Hut in falling snow.' },
     description:
-      'A long walk through lodgepole and old burns, gentle for the first half and steep near the end, to a granite-bowled lake under Horse Ridge. Few other parties.',
+      'A long walk through lodgepole and old burned forest, gentle for the first half and steep near the end, to a granite-bowled lake under Horse Ridge. Few other hikers.',
   },
   {
     id: 'wawona-meadow-loop',
@@ -488,7 +488,7 @@ const seed: HikeT[] = [
     coord: [-119.6576, 37.5351], // moved 2026-09 to NPS places, same as the stop
     photo: { src: '/photos/wawona-meadow-loop.jpg', alt: 'An early photograph of Wawona Meadow, a stage road along its edge.' },
     description:
-      'A flat lap of the meadow across the road from the Wawona Hotel on an old road grade. Spring wildflowers, big pines, and almost never another party.',
+      'A flat lap of the meadow across the road from the Wawona Hotel on an old road grade. Spring wildflowers, big pines, and almost never another hiker.',
   },
   {
     id: 'wawona-swinging-bridge',
@@ -627,7 +627,7 @@ const seed: HikeT[] = [
     season: 'Tioga Road season',
     photo: { src: '/photos/hike-may-lake.jpg', alt: 'May Lake’s clear water against granite and pines.' },
     description:
-      'A short granite-benched climb to a High Sierra Camp lake sitting under Mount Hoffmann’s wall. Easy enough for children.',
+      'A short climb over granite ledges to a High Sierra Camp lake sitting under Mount Hoffmann’s wall. Easy enough for children.',
   },
   {
     id: 'mount-hoffmann',
@@ -645,7 +645,7 @@ const seed: HikeT[] = [
     season: 'Tioga Road season',
     photo: { src: '/photos/hike-mount-hoffmann.jpg', alt: 'An early photograph of Mount Hoffmann’s northeast spur above granite slabs.' },
     description:
-      'Past May Lake and up scree to the park’s geographic center, with a summit view across most of the park. The last stretch is a hands-on scramble.',
+      'Past May Lake and up scree (loose rock) to the park’s geographic center, with a summit view across most of the park. The last stretch is a hands-on scramble.',
   },
   {
     id: 'olmsted-point',
@@ -681,7 +681,7 @@ const seed: HikeT[] = [
     season: 'Tioga Road season',
     photo: { src: '/photos/hike-tenaya-lake-loop.jpg', alt: 'Tenaya Lake’s shore beneath a granite dome.' },
     description:
-      'A flat shoreline circuit of the largest lake in Yosemite’s frontcountry, granite domes on every side. The east-end beach is the picnic spot.',
+      'A flat shoreline circuit of the largest lake near the road in Yosemite, granite domes on every side. The east-end beach is the picnic spot.',
   },
   {
     id: 'sunrise-lakes',
@@ -825,7 +825,7 @@ const seed: HikeT[] = [
     season: 'Tioga Road season',
     photo: { src: '/photos/hike-elizabeth-lake.jpg', alt: 'Unicorn Peak above the meadows near Elizabeth Lake, in a 1968 park photograph.' },
     description:
-      'A steady forest climb from the campground to a cirque lake under Unicorn Peak’s horn. Arrive by mid-morning for a still reflection.',
+      'A steady forest climb from the campground to a lake in a glacier-carved bowl under Unicorn Peak’s horn. Arrive by mid-morning for a still reflection.',
   },
   {
     id: 'cathedral-lakes',
@@ -881,7 +881,7 @@ const seed: HikeT[] = [
     season: 'Tioga Road season',
     photo: { src: '/photos/hike-lyell-canyon.jpg', alt: 'The Lyell Fork meandering through Lyell Canyon below granite slopes.' },
     description:
-      'The John Muir Trail up a dead-flat subalpine canyon, the river meandering alongside for miles. Long mileage with little climbing.',
+      'The John Muir Trail up a dead-flat canyon in the subalpine zone (the high forest just below treeline), the river meandering alongside for miles. Long mileage with little climbing.',
   },
   {
     id: 'mono-pass',
@@ -933,10 +933,10 @@ const seed: HikeT[] = [
     coord: [-119.2577, 37.9109], // web-derived: unsigned start at the Tioga Pass entrance; TODO verify on the ground
     season: 'Tioga Road season',
     hazard:
-      'The summit is 13,061 feet and the route above the meadows is an unsigned use path, not a maintained trail: altitude sickness, route-finding, and afternoon lightning are the real risks. Start early and turn around if weather builds.',
+      'The summit is 13,061 feet and the route above the meadows is an unsigned use path, not a maintained trail: altitude sickness, finding the way, and afternoon lightning are the real risks. Start early and turn around if weather builds.',
     photo: { src: '/photos/hike-mount-dana.jpg', alt: 'Mount Dana under snow, in a park ranger’s winter photograph.' },
     description:
-      'The park’s second-highest summit by its relentless west shoulder, with Mono Lake filling the view east. No trail junctions and no let-up.',
+      'The park’s second-highest summit, reached by a west shoulder that never lets up. Mono Lake fills the view east. No trail junctions.',
   },
 
   // --- Hetch Hetchy & Evergreen Road ---------------------------------------
@@ -954,7 +954,7 @@ const seed: HikeT[] = [
     stopId: 'lookout-point',
     coord: [-119.8414, 37.8933], // same pin as stop lookout-point
     description:
-      'A short climb to a rocky knob that overlooks the Hetch Hetchy Valley from a distance, Wapama Falls in the view. Best in spring when the falls run hard.',
+      'A short climb to a rocky knob that overlooks the Hetch Hetchy Valley from a distance, with Wapama Falls in view. Best in spring when the falls run hard.',
   },
   {
     id: 'wapama-falls',

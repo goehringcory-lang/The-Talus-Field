@@ -21,15 +21,15 @@ const seed: ChangelogEntryT[] = [
   {
     date: '2026-10-13',
     lines: [
-      'Better with a screen reader or a keyboard: every button and chip is named by what it shows, the "+ Add" buttons on hikes and programs no longer sit inside the row toggle, and the map and the printable plan have proper page structure.',
-      'Quieter text that was hard to read (past deadlines, the map\'s pin counts, the Secret Guide pager) is now legible.',
+      'Easier to use with a screen reader or a keyboard: every button and chip is named by what it shows, the "+ Add" buttons on hikes and programs no longer sit inside the row’s own button, and the map and the printable plan have proper page structure.',
+      'Faint text that was hard to read (past deadlines, the map\'s pin counts, the Secret Guide pager) is now easier to see.',
       'Two pairs of Secret Guide entries that covered the same ground are now one each. Inspiration Point is part of the Artist Point entry, since one trail from Tunnel View reaches both, and Silver Strand and Widow\'s Tears have joined the other spring-only falls in The waterfalls nobody sees. Nothing was cut; the section now numbers 70.',
     ],
   },
   {
     date: '2026-10-12',
     lines: [
-      'On smaller phones nothing scrolls sideways any more: the plan tabs, the map tabs and filters, and long season notes on hike pages all fit the screen, and the masthead no longer runs under the offline count.',
+      'On smaller phones nothing scrolls sideways any more: the plan tabs, the map tabs and filters, and long season notes on hike pages all fit the screen, and the top bar no longer runs under the offline count.',
       'Dates read in full ("Verified October 10, 2026"), download sizes stay on one line, and the night-before checklist counts what is done rather than packed.',
     ],
   },
@@ -44,14 +44,14 @@ const seed: ChangelogEntryT[] = [
     date: '2026-09-30',
     lines: [
       'The 3D map pans, turns and tilts far more smoothly, and opens with the mountains already standing instead of rising a moment after the first view.',
-      'Switching between 2D and 3D now eases the relief down as the map levels, and back up as it tilts.',
+      'Switching between 2D and 3D now eases the terrain down as the map levels, and back up as it tilts.',
     ],
   },
   {
     date: '2026-09-28',
     lines: [
       'The front page opens on Yosemite right now: the weather, the light (a sun over the horizon, with sunrise, sunset and when the alpenglow begins) and the wait at each entrance, all on one card.',
-      'Your trip is one row per day, the four regions are photo cards, and the Secret Guide has a plate of its own with its five sections a tap away.',
+      'Your trip is one row per day, the four regions are photo cards, and the Secret Guide has its own panel with its five sections a tap away.',
       'New colours throughout: cream paper, deep green ink and one rust accent, with a green-black dark mode.',
     ],
   },
@@ -69,7 +69,7 @@ const seed: ChangelogEntryT[] = [
     lines: [
       'Plan a day in any region: pick which of your days it is, then add the park’s programs for that date, the hikes that start there with their elevation profiles, and the stops. Everything lands on your trip board.',
       'A day can be half one region and half another. The planner says when to leave, how long the drive is, and when you arrive.',
-      'The trip board flags a program you cannot reach in time from the thing before it, and no longer fills a morning in a way that strands one.',
+      'The trip board flags a program you cannot reach in time from the thing before it, and no longer fills a morning so that it leaves a program out of reach.',
       'The front page asks for your dates first, then lists each day with the regions on it.',
     ],
   },
@@ -79,7 +79,7 @@ const seed: ChangelogEntryT[] = [
       'The trip board prices drives from the park’s published driving times: Glacier Point is an hour from the Valley, not fifteen minutes.',
       'Presets and the board know when Tioga Road and Glacier Point Road are usually closed, and say so; stop, hike and region pages read the park’s live road status.',
       'Search finds the Help card, gas, showers, campgrounds, every map place, and the permit and booking dates.',
-      'A Saved page for stops, hikes, and places to eat, with the entries you opened last.',
+      'A Saved page for stops, hikes and places to eat, with the ones you opened last.',
       'Report a wrong hour or a moved turnout from any entry; reports written with no signal send later.',
       'Map pins moved to the points the park and OpenStreetMap agree on, five more live parking lots, and campground seasons for 2026.',
       'Thirty hike corrections from a fact check against the park’s trail pages.',
