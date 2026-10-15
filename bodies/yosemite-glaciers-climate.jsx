@@ -20,12 +20,11 @@ window.ARTICLE_BODIES["yosemite-glaciers-climate"] = function YosemiteGlaciersBo
       { who: "Maclure, 1872", v: 1, lab: "about 1 inch a day (Muir)" },
       { who: "Maclure, 2012", v: 1, lab: "about 1 inch a day" },
       { who: "Maclure, 2022", v: 0.75, lab: "three quarters of an inch" },
-      { who: "Lyell, 1872", v: null, lab: "flowing: Muir's stakes moved" },
       { who: "Lyell, 2012", v: 0, lab: "the stakes did not move at all" },
     ];
     return (
-      <svg viewBox={`0 0 ${W} 470`} style={SVG_STYLE} role="img"
-        aria-label="Two measurements of Yosemite's glaciers. Lyell Glacier's area: about 60 percent lost since 1900, leaving about 40 percent, and roughly 120 vertical feet of thinning. Flow, measured with stakes: the Maclure Glacier moved about an inch a day when John Muir measured it in 1872 and at the same rate in 2012, then about three quarters of an inch a day by 2022. The Lyell Glacier was flowing when Muir staked it in 1872; in 2012 its stakes did not move at all.">
+      <svg viewBox={`0 0 ${W} 420`} style={SVG_STYLE} role="img"
+        aria-label="Two measurements of Yosemite's glaciers. Lyell Glacier's area: about 60 percent lost since 1900, leaving about 40 percent, and roughly 120 vertical feet of thinning. Flow, measured with stakes: the Maclure Glacier moved about an inch a day when John Muir measured it in 1872 and at the same rate in 2012, then about three quarters of an inch a day by 2022. The Lyell Glacier's stakes did not move at all in 2012.">
         <text x="0" y="18" style={T_HEAD}>LYELL GLACIER · AREA SINCE 1900</text>
         <text x="0" y="62" style={{ ...T_BODY, fontWeight: 600 }}>1900</text>
         <rect x={LX} y="44" width={BW} height="26" fill="var(--paper-2)" stroke="var(--moss)" strokeWidth="1.5" />
@@ -53,7 +52,7 @@ window.ARTICLE_BODIES["yosemite-glaciers-climate"] = function YosemiteGlaciersBo
             </g>
           );
         })}
-        <line x1={LX} y1="222" x2={LX} y2="452" stroke="var(--ink-3)" strokeWidth="1" />
+        <line x1={LX} y1="222" x2={LX} y2="408" stroke="var(--ink-3)" strokeWidth="1" />
       </svg>
     );
   }
@@ -61,7 +60,7 @@ window.ARTICLE_BODIES["yosemite-glaciers-climate"] = function YosemiteGlaciersBo
   return (
     <>
       <p className="dropcap">
-        In 1872, John Muir drove a line of stakes into the Lyell Glacier and came back to see how far they had moved. They had moved: the ice was flowing, which was the point he was trying to prove. In 2012 a research team repeated his measurement on the same glacier, in the same part of the melt season, with the same method. The stakes did not move at all.
+        In 1872, John Muir drove a line of stakes into the Maclure Glacier and came back to see how far they had moved. They had moved: the ice was flowing, which was the point he was trying to prove. In 2012 a research team repeated his measurement in the same part of the melt season, with the same method. On the neighboring Lyell Glacier the stakes did not move at all.
       </p>
 
       <p>
@@ -110,7 +109,7 @@ window.ARTICLE_BODIES["yosemite-glaciers-climate"] = function YosemiteGlaciersBo
 
       <figure>
         <GlacierLedger />
-        <figcaption>Lyell's shrinking area and the stake surveys of both glaciers, drawn from the figures in this article. Lyell's 1872 rate is not given here, only that the stakes moved.</figcaption>
+        <figcaption>Lyell's shrinking area and the stake surveys of both glaciers, drawn from the figures in this article.</figcaption>
       </figure>
 
 

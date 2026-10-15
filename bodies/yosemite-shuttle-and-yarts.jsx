@@ -64,15 +64,15 @@ window.ARTICLE_BODIES["yosemite-shuttle-and-yarts"] = function YosemiteShuttleAn
       </p>
 
       <p>
-        <strong>The Valleywide Shuttle</strong> is the full loop: roughly nineteen stops covering the visitor center, the lodges, the campgrounds, Yosemite Falls, Curry Village, the El Capitan end of the Valley, and the eastern trailheads. Expect a bus about every 22 to 32 minutes. It is the one to take if you are going somewhere west of Yosemite Village or you do not know exactly where you are going yet.
+        <strong>The Valleywide Shuttle</strong> is the full loop: roughly nineteen stops covering the visitor center, the lodges, the campgrounds, Yosemite Falls, Curry Village, the El Capitan end of the Valley, and the eastern trailheads. Expect a bus about every 12 to 22 minutes. It is the one to take if you are going somewhere west of Yosemite Village or you do not know exactly where you are going yet.
       </p>
 
       <p>
-        <strong>The East Valley Shuttle</strong> is the short loop: Yosemite Village, Curry Village, the Pines campgrounds, and the east-Valley trailheads. Fewer stops, so it comes more often, about every 18 to 22 minutes. This is the workhorse for anyone hiking the Mist Trail, walking to Mirror Lake, or camped in the Pines, and it is the bus most visitors actually need.
+        <strong>The East Valley Shuttle</strong> is the short loop: Yosemite Village, Curry Village, the Pines campgrounds, and the east-Valley trailheads. Fewer stops, so it comes more often, about every 8 to 12 minutes. This is the workhorse for anyone hiking the Mist Trail, walking to Mirror Lake, or camped in the Pines, and it is the bus most visitors actually need.
       </p>
 
       <p>
-        The practical read on those headways: the shuttle is excellent transportation and mediocre timekeeping. Half an hour is a long time to stand at a stop with a hungry child, and the buses bunch in midsummer when traffic slows them down. Build the wait into the plan rather than treating it as a delay, and check the posted schedule at the stop rather than assuming a bus is two minutes out.
+        The practical read on those headways: the shuttle is excellent transportation and mediocre timekeeping. Twenty minutes is a long time to stand at a stop with a hungry child, and the buses bunch in midsummer when traffic slows them down. Build the wait into the plan rather than treating it as a delay, and check the posted schedule at the stop rather than assuming a bus is two minutes out.
       </p>
 
       <p>
@@ -135,14 +135,14 @@ window.ARTICLE_BODIES["yosemite-shuttle-and-yarts"] = function YosemiteShuttleAn
           {CORRIDORS.map((c) => (
             <span key={c.n}><b>{c.n}</b><span>{c.head}, through the {c.entrance}: {c.stops.join(", ")}. <em>{c.season}.</em></span></span>
           ))}
-          <span><b>V</b><span>Yosemite Valley: YARTS sets down at Yosemite Valley Lodge, Yosemite Village, Curry Village and the visitor center stop, all on the free Valley shuttle, 7 a.m. to 10 p.m.: Valleywide about every 22 to 32 minutes, East Valley about every 18 to 22 minutes.</span></span>
+          <span><b>V</b><span>Yosemite Valley: YARTS sets down at Yosemite Valley Lodge, Yosemite Village, Curry Village and the visitor center stop, all on the free Valley shuttle, 7 a.m. to 10 p.m.: Valleywide about every 12 to 22 minutes, East Valley about every 8 to 12 minutes.</span></span>
           <span>Most of the towns lie off the edge of the map, farther down their highways; the stops are listed in order, not at distance. Seasons are approximate. Map: National Park Service (public domain).</span>
         </figcaption>
       </figure>
 
 
       <p>
-        In the Valley, YARTS sets down at Yosemite Valley Lodge, Yosemite Village, Curry Village, and the visitor center stop, all of which are on the free shuttle, so the handoff between the two systems is seamless. You can pay onboard with a card or exact cash, or reserve ahead at the YARTS ticketing site; walk-ons are accepted as space allows, but a reservation a day out is cheap insurance on a summer weekend. Buses are air-conditioned, have a restroom on board, are wheelchair accessible, and will take a bike in the underfloor compartment if there is room and it is bagged. Children under five ride free, one child aged six to twelve rides free with each full-fare adult, and there are reduced fares for seniors, riders with disabilities, and veterans.
+        In the Valley, YARTS sets down at Yosemite Valley Lodge, Yosemite Village, Curry Village, and the visitor center stop, all of which are on the free shuttle, so the handoff between the two systems is seamless. You can pay onboard with a card or exact cash, or reserve ahead at the YARTS ticketing site; walk-ons are accepted as space allows, but a reservation a day out is cheap insurance on a summer weekend. Buses are air-conditioned, have a restroom on board, are wheelchair accessible, and will take a bike in the underfloor compartment if there is room and it is bagged. Children five and under ride free, one child aged six to twelve rides free with each full-fare adult, and there are reduced fares for seniors, riders with disabilities, and veterans.
       </p>
 
       <h2>The entrance fee question, which is unresolved</h2>
@@ -186,7 +186,7 @@ window.ARTICLE_BODIES["yosemite-shuttle-and-yarts"] = function YosemiteShuttleAn
       <h2>The short version</h2>
 
       <ol>
-        <li>The Valley shuttle is free, runs 7 a.m. to 10 p.m., and comes every 18 to 32 minutes depending on route. No ticket, no reservation.</li>
+        <li>The Valley shuttle is free, runs 7 a.m. to 10 p.m., and comes every 8 to 22 minutes depending on route. No ticket, no reservation.</li>
         <li>Take the East Valley Shuttle for the Mist Trail, Mirror Lake, and the Pines. Take the Valleywide for everything else.</li>
         <li>The Mariposa Grove shuttle is effectively required in season, unless you have a disability placard.</li>
         <li>Confirm the Tuolumne buses are actually running before planning a day around them.</li>

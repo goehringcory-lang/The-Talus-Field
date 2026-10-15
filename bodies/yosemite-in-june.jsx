@@ -82,7 +82,7 @@ window.ARTICLE_BODIES["yosemite-in-june"] = function YosemiteInJune2026Body() {
       </p>
 
       <p>
-        <strong>Park once and use the shuttle.</strong> The free Valley shuttle runs two routes, the Valleywide about every 22 to 32 minutes and the shorter East Valley about every 18 to 22, and between them they stop at every major trailhead, the Visitor Center, Curry Village, and the Ahwahnee.
+        <strong>Park once and use the shuttle.</strong> The free Valley shuttle runs two routes, the Valleywide about every 12 to 22 minutes and the shorter East Valley about every 8 to 12, and between them they stop at every major trailhead, the Visitor Center, Curry Village, and the Ahwahnee.
       </p>
 
       <p>
