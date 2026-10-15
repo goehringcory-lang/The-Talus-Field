@@ -110,7 +110,7 @@ window.planningSeriesFor = function (slug) {
 // verifies this map stays in sync with the files in bodies/.
 // ============================================================
 window.BODY_VERSIONS = {
-  "yosemite-rockfall": 1,
+  "yosemite-rockfall": 2,
   "wawona-yosemite-guide": 1,
   "yosemite-in-november": 2,
   "thanksgiving-in-yosemite": 1,

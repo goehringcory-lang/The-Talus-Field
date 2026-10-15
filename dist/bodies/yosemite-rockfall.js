@@ -253,89 +253,401 @@ window.ARTICLE_BODIES["yosemite-rockfall"] = function YosemiteRockfallBody() {
       t: "Roots and earthquakes",
       s: "Roots pry. Shaking knocks loose rock free."
     }];
-    var tag = {
+    var WATER = "#4f7387",
+      ICE = "#e4edf0",
+      STONE = "#b9b6aa";
+    var TOP = 52,
+      GROUND = 380,
+      Y0 = 84,
+      Y1 = 316,
+      T = 17;
+    var fx = y => 134 + 0.165 * (y - TOP);
+    var gap = y => 6 - 4.2 * (y - Y0) / (Y1 - Y0);
+    var xi = y => fx(y) + gap(y);
+    var xo = y => xi(y) + T;
+    var bow = y => 9 * Math.sin(Math.PI * (y - Y0) / (Y1 - Y0));
+    var steps = (a, b, n = 12) => Array.from({
+      length: n + 1
+    }, (_, i) => a + (b - a) * i / n);
+    var pts = (ys, f) => ys.map(y => `${f(y).toFixed(1)},${y.toFixed(1)}`).join(" ");
+    var down = steps(Y0, Y1),
+      up = [...down].reverse();
+    var slab = `M${pts(down, xi)} L${xo(Y1).toFixed(1)},${Y1 + 2} L${pts(up.slice(1), xo)} Z`;
+    var crack = `M${pts(down, fx)} L${pts(up, xi)} Z`;
+    var band = (a, b) => {
+      var d = steps(a, b, 6);
+      return `M${pts(d, fx)} L${pts([...d].reverse(), xi)} Z`;
+    };
+    var ghost = `M${pts(down, y => xo(y) + bow(y))}`;
+    var sheet = (d, from) => `M${pts(steps(from, GROUND, 8), y => fx(y) - d)}`;
+    var blocks = [[194, 374, 9, 8, -8], [206, 366, 8, 7, 12], [214, 377, 11, 8, 4], [229, 370, 9, 8, -14], [242, 377, 13, 9, 6], [258, 371, 10, 8, 18], [272, 376, 15, 10, -6], [292, 374, 12, 9, 10], [312, 376, 17, 11, -4], [200, 356, 6, 6, 20], [222, 360, 7, 6, -10], [244, 362, 7, 6, 8]];
+    var pins = [{
+      n: "1",
+      x: 100,
+      y: 236,
+      to: [fx(236) + 1.5, 236]
+    }, {
+      n: "2",
+      x: 196,
+      y: 66,
+      to: [xi(Y0) - 1, Y0 + 4]
+    }, {
+      n: "3",
+      x: 210,
+      y: 150,
+      to: [xo(150) + 2, 150]
+    }, {
+      n: "4",
+      x: 268,
+      y: 270,
+      to: [xo(254) + bow(254), 254]
+    }, {
+      n: "5",
+      x: 66,
+      y: 30,
+      to: [100, 58]
+    }, {
+      n: "5",
+      x: 24,
+      y: 402,
+      to: null
+    }];
+    var label = {
       fontFamily: SANS,
-      fontSize: 13,
+      fontSize: 12,
       fill: "var(--ink-3)"
+    };
+    var caps = {
+      ...label,
+      fontWeight: 600,
+      letterSpacing: "1.3px"
     };
     return React.createElement("div", {
       style: {
         display: "flex",
         flexWrap: "wrap",
-        gap: 20,
+        gap: 22,
         alignItems: "center"
       }
     }, React.createElement("svg", {
-      viewBox: "0 0 300 360",
+      viewBox: "0 0 360 420",
       style: {
-        flex: "1 1 220px",
-        maxWidth: 300,
+        flex: "1 1 260px",
+        maxWidth: 380,
         height: "auto",
         display: "block"
       },
       role: "img",
-      "aria-label": "Diagram of a cliff. A thin slab of granite is separated from the cliff by a crack that runs parallel to the cliff face. Numbered marks show where water soaks into the crack, where ice wedges it, where the sun heats the slab, and where roots grow. Fallen blocks pile up as talus at the bottom."
+      "aria-label": "Cross-section of a granite cliff. A thin slab of rock is separated from the cliff by a crack that runs parallel to the cliff face, and older cracks run parallel to it deeper in the rock. Snowmelt drips into the top of the crack, ice fills it partway down and pushes the slab outward, the sun heats the outer face so the slab bows out, and a tree on the rim grows its roots into the crack. A seismic trace runs along the valley floor. A block has broken from the bottom of the slab and is falling onto a pile of talus at the foot of the cliff."
+    }, React.createElement("defs", null, React.createElement("linearGradient", {
+      id: "rf-granite",
+      x1: "0",
+      y1: "0",
+      x2: "1",
+      y2: "1"
+    }, React.createElement("stop", {
+      offset: "0",
+      stopColor: "#e2dfd4"
+    }), React.createElement("stop", {
+      offset: "1",
+      stopColor: "#cdc9bc"
+    })), React.createElement("linearGradient", {
+      id: "rf-slab",
+      x1: "0",
+      y1: "0",
+      x2: "1",
+      y2: "0"
+    }, React.createElement("stop", {
+      offset: "0",
+      stopColor: "#d8d4c7"
+    }), React.createElement("stop", {
+      offset: "1",
+      stopColor: "#ebe8de"
+    })), React.createElement("linearGradient", {
+      id: "rf-sky",
+      x1: "0",
+      y1: "0",
+      x2: "0",
+      y2: "1"
+    }, React.createElement("stop", {
+      offset: "0",
+      stopColor: "var(--paper-2)"
+    }), React.createElement("stop", {
+      offset: "1",
+      stopColor: "var(--paper)"
+    })), React.createElement("pattern", {
+      id: "rf-grain",
+      width: "14",
+      height: "14",
+      patternUnits: "userSpaceOnUse"
+    }, React.createElement("circle", {
+      cx: "2",
+      cy: "3",
+      r: "0.9",
+      fill: "#3d4440",
+      opacity: "0.35"
+    }), React.createElement("circle", {
+      cx: "9",
+      cy: "8",
+      r: "0.7",
+      fill: "#3d4440",
+      opacity: "0.28"
+    }), React.createElement("circle", {
+      cx: "5",
+      cy: "11",
+      r: "1.1",
+      fill: "#fffdf6",
+      opacity: "0.7"
+    }), React.createElement("circle", {
+      cx: "12",
+      cy: "2",
+      r: "0.8",
+      fill: "#9c8f78",
+      opacity: "0.4"
+    })), React.createElement("marker", {
+      id: "rf-arrow",
+      viewBox: "0 0 10 10",
+      refX: "8",
+      refY: "5",
+      markerWidth: "5",
+      markerHeight: "5",
+      orient: "auto"
     }, React.createElement("path", {
-      d: "M0 10 L150 10 L176 120 L196 230 L206 330 L0 330 Z",
-      fill: "var(--rule-soft)",
-      opacity: "0.55"
+      d: "M0 0 L10 5 L0 10 Z",
+      fill: RUST
+    }))), React.createElement("clipPath", {
+      id: "rf-plate"
+    }, React.createElement("rect", {
+      x: "0",
+      y: "0",
+      width: "360",
+      height: "420",
+      rx: "4"
+    })), React.createElement("g", {
+      clipPath: "url(#rf-plate)"
+    }, React.createElement("rect", {
+      x: "0",
+      y: "0",
+      width: "360",
+      height: GROUND,
+      fill: "url(#rf-sky)"
+    }), React.createElement("rect", {
+      x: "0",
+      y: GROUND,
+      width: "360",
+      height: 420 - GROUND,
+      fill: "var(--paper-3)"
+    }), React.createElement("line", {
+      x1: "0",
+      y1: GROUND,
+      x2: "360",
+      y2: GROUND,
+      stroke: "var(--ink-3)",
+      strokeWidth: "1"
     }), React.createElement("path", {
-      d: "M150 10 L176 120 L196 230 L206 330",
+      d: `M0 ${TOP + 4} Q0 ${TOP} 6 ${TOP} L${fx(TOP) - 8} ${TOP} Q${fx(TOP)} ${TOP} ${fx(TOP + 6)} ${TOP + 6} L${pts(steps(TOP + 6, GROUND, 8), fx)} L0 ${GROUND} Z`,
+      fill: "url(#rf-granite)"
+    }), React.createElement("path", {
+      d: `M0 ${TOP} L${fx(TOP)} ${TOP} L${fx(GROUND)} ${GROUND} L0 ${GROUND} Z`,
+      fill: "url(#rf-grain)"
+    }), [[24, 70], [50, 98], [82, 132]].map(([d, from]) => React.createElement("path", {
+      key: d,
+      d: sheet(d, from),
       fill: "none",
       stroke: "var(--ink-3)",
-      strokeWidth: "1.5"
-    }), React.createElement("path", {
-      d: "M166 40 L186 130 L204 222 L212 285 L226 287 L216 220 L198 128 L178 38 Z",
-      fill: "var(--paper)",
-      stroke: RUST,
-      strokeWidth: "2.2"
-    }), React.createElement("path", {
-      d: "M166 40 L186 130 L204 222 L212 285",
-      fill: "none",
-      stroke: INK,
-      strokeWidth: "1.4",
-      strokeDasharray: "4 4"
-    }), React.createElement("circle", {
-      cx: 268,
-      cy: 226,
-      r: 11,
-      fill: "none",
-      stroke: RUST,
-      strokeWidth: "2"
-    }), [0, 45, 90, 135, 180, 225, 270, 315].map(a => React.createElement("line", {
-      key: a,
-      x1: 268 + 15 * Math.cos(a * Math.PI / 180),
-      y1: 226 + 15 * Math.sin(a * Math.PI / 180),
-      x2: 268 + 21 * Math.cos(a * Math.PI / 180),
-      y2: 226 + 21 * Math.sin(a * Math.PI / 180),
-      stroke: RUST,
-      strokeWidth: "2"
+      strokeWidth: "1",
+      strokeDasharray: "7 5",
+      opacity: "0.45"
     })), React.createElement("path", {
-      d: "M160 296 Q170 300 176 312 M176 312 Q186 306 196 314",
+      d: `M${fx(TOP + 6)} ${TOP + 6} L${pts(steps(TOP + 6, GROUND, 8), fx)}`,
+      fill: "none",
+      stroke: "var(--ink-2)",
+      strokeWidth: "1.6"
+    }), React.createElement("path", {
+      d: `M0 ${TOP + 1} L0 ${TOP - 4} C20 ${TOP - 10} 44 ${TOP - 7} 64 ${TOP - 6} C90 ${TOP - 9} 112 ${TOP - 7} ${fx(TOP) - 2} ${TOP + 1} Z`,
+      fill: "#fdfcf8",
+      stroke: "var(--rule)",
+      strokeWidth: "1"
+    }), [[xi(Y0) - 3, Y0 - 20, 3], [xi(Y0) - 2, Y0 - 10, 2.4]].map(([x, y, r], i) => React.createElement("path", {
+      key: i,
+      d: `M${x} ${y - r * 2.2} Q${x + r} ${y - r * 0.4} ${x + r} ${y} A${r} ${r} 0 1 1 ${x - r} ${y} Q${x - r} ${y - r * 0.4} ${x} ${y - r * 2.2} Z`,
+      fill: WATER
+    })), React.createElement("path", {
+      d: `M100 ${TOP - 2} L100 ${TOP - 12}`,
+      stroke: "#4a3b2c",
+      strokeWidth: "2.4"
+    }), React.createElement("path", {
+      d: `M100 ${TOP - 46} L88 ${TOP - 24} L94 ${TOP - 24} L84 ${TOP - 10} L116 ${TOP - 10} L106 ${TOP - 24} L112 ${TOP - 24} Z`,
+      fill: INK
+    }), React.createElement("path", {
+      d: `M100 ${TOP} C104 ${TOP + 10} ${fx(TOP + 20) - 6} ${TOP + 14} ${fx(TOP + 28)} ${TOP + 30} M100 ${TOP} C98 ${TOP + 12} 108 ${TOP + 22} ${fx(TOP + 40) - 24} ${TOP + 44} M100 ${TOP} C92 ${TOP + 8} 86 ${TOP + 14} 80 ${TOP + 24}`,
+      fill: "none",
+      stroke: "#5a4633",
+      strokeWidth: "1.3",
+      strokeLinecap: "round"
+    }), React.createElement("path", {
+      d: crack,
+      fill: "#2c3430"
+    }), React.createElement("path", {
+      d: band(Y0, Y0 + 52),
+      fill: WATER
+    }), React.createElement("path", {
+      d: band(Y0 + 52, Y0 + 104),
+      fill: ICE,
+      stroke: WATER,
+      strokeWidth: "0.8"
+    }), [Y0 + 62, Y0 + 76, Y0 + 90].map(y => React.createElement("path", {
+      key: y,
+      d: `M${fx(y) + 0.8} ${y - 3} L${xi(y) - 0.8} ${y + 3} M${xi(y) - 0.8} ${y - 3} L${fx(y) + 0.8} ${y + 3}`,
+      stroke: WATER,
+      strokeWidth: "0.7"
+    })), React.createElement("path", {
+      d: ghost,
+      fill: "none",
+      stroke: RUST,
+      strokeWidth: "1.3",
+      strokeDasharray: "3 4"
+    }), React.createElement("path", {
+      d: slab,
+      fill: "url(#rf-slab)",
+      stroke: RUST,
+      strokeWidth: "2",
+      strokeLinejoin: "round"
+    }), React.createElement("path", {
+      d: slab,
+      fill: "url(#rf-grain)"
+    }), [Y0 + 66, Y0 + 92].map(y => React.createElement("line", {
+      key: y,
+      x1: xo(y) + 4,
+      y1: y,
+      x2: xo(y) + 18,
+      y2: y - 1,
+      stroke: RUST,
+      strokeWidth: "1.8",
+      markerEnd: "url(#rf-arrow)"
+    })), React.createElement("circle", {
+      cx: "316",
+      cy: "198",
+      r: "13",
+      fill: "#f3e2c2",
+      stroke: RUST,
+      strokeWidth: "2"
+    }), [0, 45, 90, 135, 180, 225, 270, 315].map(a => {
+      var c = Math.cos(a * Math.PI / 180),
+        s = Math.sin(a * Math.PI / 180);
+      return React.createElement("line", {
+        key: a,
+        x1: 316 + 18 * c,
+        y1: 198 + 18 * s,
+        x2: 316 + 25 * c,
+        y2: 198 + 25 * s,
+        stroke: RUST,
+        strokeWidth: "2",
+        strokeLinecap: "round"
+      });
+    }), [186, 206, 226].map(y => React.createElement("path", {
+      key: y,
+      d: `M288 ${y + 4} q-6 -4 -12 0 t-12 0 t-12 0 t-12 0 t-12 0 t-12 0 t-12 0`,
+      fill: "none",
+      stroke: RUST,
+      strokeWidth: "1.4",
+      opacity: "0.8",
+      markerEnd: "url(#rf-arrow)"
+    })), React.createElement("path", {
+      d: `M${xo(Y1) + 2} ${Y1 + 4} Q${xo(Y1) + 30} ${Y1 + 8} 262 ${GROUND - 26}`,
+      fill: "none",
+      stroke: "var(--ink-3)",
+      strokeWidth: "1.2",
+      strokeDasharray: "2 4"
+    }), React.createElement("rect", {
+      x: "226",
+      y: Y1 + 12,
+      width: "15",
+      height: "11",
+      rx: "1.5",
+      transform: `rotate(24 233 ${Y1 + 17})`,
+      fill: "url(#rf-slab)",
+      stroke: RUST,
+      strokeWidth: "1.6"
+    }), React.createElement("path", {
+      d: `M${fx(GROUND)} ${GROUND} L${fx(350) + 1} 350 Q262 362 342 ${GROUND} Z`,
+      fill: "#cfcbbf"
+    }), React.createElement("path", {
+      d: `M${fx(GROUND)} ${GROUND} L${fx(350) + 1} 350 Q262 362 342 ${GROUND} Z`,
+      fill: "url(#rf-grain)"
+    }), blocks.map(([x, y, w, h, r], i) => React.createElement("g", {
+      key: i,
+      transform: `rotate(${r} ${x} ${y})`
+    }, React.createElement("path", {
+      d: `M${x - w} ${y + h * 0.6} L${x - w * 0.7} ${y - h * 0.6} L${x + w * 0.4} ${y - h * 0.75} L${x + w} ${y - h * 0.1} L${x + w * 0.8} ${y + h * 0.6} Z`,
+      fill: STONE,
+      stroke: "var(--ink-3)",
+      strokeWidth: "0.9",
+      strokeLinejoin: "round"
+    }), React.createElement("path", {
+      d: `M${x - w * 0.7} ${y - h * 0.6} L${x + w * 0.4} ${y - h * 0.75} L${x + w * 0.1} ${y - h * 0.15} Z`,
+      fill: "#fffdf6",
+      opacity: "0.45"
+    }))), React.createElement("path", {
+      d: `M42 402 ${Array.from({
+        length: 30
+      }, (_, i) => `L${46 + i * 4} ${402 + (i % 2 ? -1 : 1) * [2, 3, 5, 8, 6, 9, 5, 7, 4, 3, 2, 2, 1.5, 1][Math.min(13, Math.floor(i / 2))]}`).join(" ")} L172 402`,
       fill: "none",
       stroke: INK,
-      strokeWidth: "1.4"
-    }), [[218, 318, 16], [240, 322, 12], [260, 326, 9], [232, 306, 10], [280, 328, 7]].map(([x, y, r], i) => React.createElement("rect", {
-      key: i,
-      x: x - r,
-      y: y - r * 0.7,
-      width: r * 2,
-      height: r * 1.4,
-      rx: "2",
-      fill: "var(--ink-3)",
-      opacity: "0.7"
-    })), [[148, 70, "1"], [166, 140, "2"], [226, 176, "3"], [240, 238, "4"], [146, 300, "5"]].map(([x, y, n]) => React.createElement("g", {
-      key: n
-    }, React.createElement("circle", {
-      cx: x,
-      cy: y,
-      r: 11,
+      strokeWidth: "1.3",
+      strokeLinejoin: "round"
+    })), React.createElement("rect", {
+      x: "0.5",
+      y: "0.5",
+      width: "359",
+      height: "419",
+      rx: "4",
+      fill: "none",
+      stroke: "var(--rule-soft)"
+    }), React.createElement("text", {
+      x: "16",
+      y: "330",
+      style: {
+        ...caps,
+        fill: RUST
+      }
+    }, "GRANITE CLIFF"), React.createElement("text", {
+      x: "236",
+      y: "102",
+      style: label
+    }, "Loose slab"), React.createElement("path", {
+      d: `M234 98 L${xo(110) + 3} 110`,
+      stroke: "var(--ink-3)",
+      strokeWidth: "0.8",
+      fill: "none"
+    }), React.createElement("text", {
+      x: "270",
+      y: "400",
+      style: caps
+    }, "TALUS"), pins.map((p, i) => React.createElement("g", {
+      key: i
+    }, p.to && React.createElement("line", {
+      x1: p.x,
+      y1: p.y,
+      x2: p.to[0],
+      y2: p.to[1],
+      stroke: INK,
+      strokeWidth: "1"
+    }), p.to && React.createElement("circle", {
+      cx: p.to[0],
+      cy: p.to[1],
+      r: "2",
+      fill: INK
+    }), React.createElement("circle", {
+      cx: p.x,
+      cy: p.y,
+      r: "11",
       fill: INK,
       stroke: "var(--paper)",
       strokeWidth: "2"
     }), React.createElement("text", {
-      x: x,
-      y: y + 4.5,
+      x: p.x,
+      y: p.y + 4.5,
       textAnchor: "middle",
       style: {
         fontFamily: SANS,
@@ -343,22 +655,9 @@ window.ARTICLE_BODIES["yosemite-rockfall"] = function YosemiteRockfallBody() {
         fontWeight: 700,
         fill: "var(--paper)"
       }
-    }, n))), React.createElement("text", {
-      x: 4,
-      y: 352,
+    }, p.n)))), React.createElement("ol", {
       style: {
-        ...tag,
-        fill: RUST,
-        fontWeight: 600,
-        letterSpacing: "1.4px"
-      }
-    }, "CLIFF"), React.createElement("text", {
-      x: 180,
-      y: 352,
-      style: tag
-    }, "Talus")), React.createElement("ol", {
-      style: {
-        flex: "1 1 260px",
+        flex: "1 1 240px",
         listStyle: "none",
         padding: 0,
         margin: 0,
