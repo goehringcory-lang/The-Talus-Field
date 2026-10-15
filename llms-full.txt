@@ -8,11 +8,391 @@
 Publisher: The Talus Field (https://thetalusfieldjournal.com). Editor: Cory Goehring.
 Citation guidance and the annotated page index: https://thetalusfieldjournal.com/llms.txt
 Canonical article URL pattern: https://thetalusfieldjournal.com/articles/<slug>
-Contents: 84 articles. Most recent update: 2026-10-14.
+Contents: 85 articles. Most recent update: 2026-10-14.
 
 Not in this file: the Yosemite Nature Notes archive, all 512 issues of the
 National Park Service's Yosemite bulletin (1922-2003), transcribed in full
 as plain static HTML at https://thetalusfieldjournal.com/archive/.
+
+---
+
+## Yosemite Rockfall: Where, When, and Why the Cliffs Fall
+
+URL: https://thetalusfieldjournal.com/articles/yosemite-rockfall
+Section: Wildlife and Nature. Published: 2026-10-14. Last updated: 2026-10-14.
+Summary: Yosemite rockfall explained with the park's own data: 1,760 rockfalls since 1857, when and where they happen, what triggers them, and what to do if you see one.
+
+At 2:25 in the morning on March 26, 1872, John Muir woke up because the ground was shaking. He was sleeping in a cabin on the floor of Yosemite Valley. A huge earthquake had struck east of the Sierra Nevada, near the town of Lone Pine. Muir ran outside, "both glad and frightened," and shouted, "A noble earthquake." Then he watched a piece of cliff called Eagle Rock break away and fall "in thousands of the great boulders" to the Valley floor. He was watching a rockfall. The park's records list at least seven of them that morning.
+
+Rockfalls are still happening. Rock comes down in Yosemite about once a week, on average. Most of it is small, and most of it falls where nobody is standing. But the park keeps a careful list of every one it can confirm, and that list is now public. We read all 1,760 entries, from 1857 to 2025, and turned them into the charts below. They show where the rock falls, when it falls, what sets it off, and how big it gets.
+
+Photo: Brian Grogan, Historic American Engineering Record / Library of Congress (public domain)
+
+### What a rockfall is
+
+A rockfall is just what it sounds like. A piece of rock breaks off a cliff and drops, bounces or slides down. It can be a single stone the size of a fist. It can also be a slab as big as a building.
+
+Look at the bottom of almost any cliff in Yosemite Valley and you will see a slope of broken rock. That slope is called talus. Every block in it fell from the cliff above, one rockfall at a time, over thousands of years. The photo at the top of this page shows an old road crossing one of those slopes. This journal is named after them, and our guide to what a talus field is explains how they grow and where to see a good one.
+
+The Park Service says rockfall is the most powerful force changing Yosemite today. Glaciers carved the Valley long ago. Since the ice melted, falling rock has done most of the work.
+
+1,760
+
+rockfalls and rock slides on record
+
+1857
+
+the first one written down
+
+About 55
+
+a year, on average, from 2006 to 2025
+
+43
+
+in 2025, a quiet year
+
+The park's rockfall list, as published on the Park Service's open data site. It includes rockfalls, rock slides and a few debris flows.
+
+### Why the cliffs break
+
+Yosemite's cliffs are made of granite, a hard rock that cooled deep underground. Over time it cracked. Some of those cracks run side to side, parallel to the face of the cliff. They split the rock into thin sheets, a little like the layers of an onion. You can see the sheets on Half Dome and on the Royal Arches. Geologists call those cracks sheeting joints.
+
+Once a sheet is loose, something has to give it the last push. Scientists have found five main pushes.
+
+- Water. Rain and melting snow run into the cracks. The water presses on the loose rock from behind.
+- Ice. When water freezes, it takes up about 9 percent more space. Ice in a crack works like a wedge.
+- Heat. On hot days the sun warms a thin slab. It bends out a tiny bit by day and back at night. After enough days, it can snap.
+- Roots. Trees like firs, pines and canyon live oaks grow into the cracks. Their roots pry them wider.
+- Earthquakes. Shaking knocks loose rock free, as Muir saw in 1872.
+
+- 1
+
+A crack runs along the cliff face
+
+The granite peels in sheets, like an onion.
+
+- 2
+
+Rain and snowmelt soak in
+
+Water pushes on the loose slab from behind.
+
+- 3
+
+Water freezes and grows
+
+Ice takes up about 9 percent more room.
+
+- 4
+
+The sun heats the slab
+
+It bends out a little each day, then back.
+
+- 5
+
+Roots and earthquakes
+
+Roots pry. Shaking knocks loose rock free.
+
+The five pushes, from the Park Service's rockfall page and the U.S. Geological Survey's rockfall report. The drawing is a diagram, not a real cliff.
+
+### What set them off
+
+For each rockfall, scientists write down the most likely cause. They call it the trigger. When they sort all 1,760, two answers are far ahead of the rest.
+
+The first is water. Rain or melting snow was the likely trigger for 769 rockfalls, more than any other cause. The second is a surprise: no clear cause at all. For 738 rockfalls, about 4 out of every 10, nobody could tell what set them off. Some of those were watched closely and still had no trigger anyone could spot. Others were found later, as fresh rock on a trail, with no one around to see them fall.
+
+What set them off, 1857 to 2025
+
+Rain or melting snow
+
+769
+
+No clear cause
+
+738
+
+Something else
+
+87
+
+Hot days (heat)
+
+69
+
+Freezing and thawing
+
+66
+
+Earthquakes
+
+31
+
+"Something else" includes cracks spreading after an earlier rockfall, snow avalanches, blasting and road work, lightning, wind, and roots. The scientists call every trigger "probable," because a cause can only be guessed from timing.
+
+That second bar matters. It means a rockfall can happen on a calm, sunny day, with no storm and no earthquake. Some of the biggest ones have.
+
+### When they happen
+
+Rockfalls happen in every month of the year. But they are not spread out evenly. March has the most, with 201. Then come October, January, February and December. That is the stormy, freezing, melting part of the year. August, usually dry and steady, has the fewest, with 87.
+
+Rockfalls by month
+
+162
+
+154
+
+201
+
+117
+
+133
+
+101
+
+150
+
+87
+
+118
+
+166
+
+122
+
+153
+
+JanFebMarAprMayJunJulAugSepOctNovDec
+
+Rockfalls by month, for the 1,664 records with a known month. The rest are dated only by season or by year.
+
+Park rangers noticed this pattern long before anyone made a chart. In February 1933, ranger-naturalist C.C. Jensen wrote in the park's Nature Notes that "the greatest number of rock falls occur in the early spring when the ice and snow begin to melt." The year before, he had heard "a thunderlike roar" from Indian Canyon and watched a cloud of dust hang over the trees for several minutes. Ninety years of records later, his guess still holds.
+
+Summer has its own kind of rockfall. On hot afternoons the sun heats the thin sheets of granite. Scientists who study Yosemite's cliffs think that daily heating can help crack them loose, which is why some large rockfalls happen in warm, clear weather.
+
+### Where they fall
+
+Rock falls from almost every cliff in the park, but some cliffs drop far more than others. The map below uses the Park Service's own Valley map. The numbers mark the seven Valley cliffs with the most rockfalls on record. The letters mark two famous ones, which we come back to below.
+
+1 Glacier Point, 223 rockfalls. The cliff rises right behind Curry Village.2 Yosemite Falls, 123. 3 Three Brothers, 98. 4 El Capitan, 93.5 Half Dome, 88. 6 Indian Canyon, 74. 7 Giant Staircase, by Vernal Fall, 61.A Happy Isles, July 1996. B Curry Village, October 2008.Pins mark the general area, not the exact spot. Map: National Park Service (public domain), cropped.
+
+One place beats all of them, and it is not on the map. The Merced River Gorge, the steep canyon west of the Valley, has 405 rockfalls on record. Two of the main roads into the park run along it. Most of those 405 were small, most came down in rainy weather, and more than half of them landed on a road. Rock on a road gets noticed and cleared, so it gets written down. Our guide to Highway 140 closures explains what a slide in that canyon does to a trip.
+
+Where they fall most
+
+Merced River Gorge
+
+The roads below the Valley
+
+405
+
+1
+
+Glacier Point
+
+223
+
+2
+
+Yosemite Falls
+
+123
+
+3
+
+Three Brothers
+
+98
+
+4
+
+El Capitan
+
+93
+
+5
+
+Half Dome
+
+88
+
+6
+
+Indian Canyon
+
+74
+
+7
+
+Giant Staircase
+
+61
+
+The eight places with the most rockfalls on record. Hetch Hetchy (58) and Sentinel Rock (54) are next.
+
+### How big they get
+
+Scientists measure a rockfall by how much rock came down, in cubic meters. Picture a box about 3.3 feet long, 3.3 feet wide and 3.3 feet tall, filled with solid granite. That is one cubic meter, and it weighs about 3 tons.
+
+Most rockfalls are small. About 3 out of every 4 were less than 50 cubic meters. Only three in the whole record made the top size group, which we call "giant." Two of them came down in the 1850s, at Taft Point and at Yosemite Falls, and their sizes are rough guesses from old written accounts. The third fell in the Merced River Gorge in 1982.
+
+How big, in cubic meters (m³) of rock
+
+Tiny
+
+under 0.5 m³
+
+114
+
+Very small
+
+0.5 to 5 m³
+
+437
+
+Small
+
+5 to 50 m³
+
+779
+
+Medium
+
+50 to 500 m³
+
+287
+
+Large
+
+500 to 5,000 m³
+
+104
+
+Very large
+
+5,000 to 50,000 m³
+
+35
+
+Giant
+
+the top group
+
+3
+
+Size groups from the U.S. Geological Survey's rockfall report. We renamed "extremely small" and "extremely large" as "tiny" and "giant."
+
+Big ones are hard to picture, so here is a ladder. Its bars use a stretched scale: each step along it is ten times bigger than the last. An Olympic swimming pool holds at least 2,500 cubic meters. The 1996 Happy Isles rockfall was about 12 pools of solid rock. The 2009 rockfall at Ahwiyah Point, near Half Dome, was about 17.
+
+A size ladder: each step is 10 times bigger
+
+Mist Trail, March 2025
+
+about 446 tons
+
+150 m³
+
+Porcelain Wall, June 2020
+
+about 3,100 tons
+
+1,040 m³
+
+One Olympic pool
+
+for scale
+
+2,500 m³
+
+Happy Isles, July 1996
+
+about 90,000 tons
+
+12 pools
+
+Ahwiyah Point, March 2009
+
+about 115,000 tons
+
+17 pools
+
+El Capitan, 3,600 years ago
+
+about 8 million tons
+
+1,000+ pools
+
+Sizes are the Park Service's published figures, and 1 m³ is one cubic meter. Bar lengths use the stretched scale, so a bar twice as long means far more than twice as much rock. Pool counts are rounded. The El Capitan rock avalanche fell before anyone was keeping records; its size comes from the boulders still lying in the Valley.
+
+### Four rockfalls people remember
+
+Happy Isles, July 10, 1996. Two huge blocks broke off near Glacier Point, about 30,000 cubic meters of rock weighing about 90,000 tons. They fell more than 2,000 feet and hit the ground near Happy Isles. The crash pushed out a blast of air with winds up to 280 miles per hour, faster than most tornadoes. It knocked down about 1,000 trees and covered the area in rock dust. One person was killed and several others were badly hurt. The photo below, from the U.S. Geological Survey, shows the bright scar the blocks left on the cliff.
+
+Photo: U.S. Geological Survey / Wikimedia Commons (public domain)
+
+Curry Village, October 2008. On October 7 and 8, rock fell from the cliffs below Glacier Point onto Curry Village, where visitors sleep in cabins and tents. On the second day, three people were hurt. One boulder crashed through a cabin roof, as the Park Service photo below shows. Look at its color: the fresh rock is bright and pale, while older boulders nearby are dark. After a careful study of the danger, finished in 2014, the park removed some buildings in the riskiest spots and changed how others are used. The Park Service says that cut the rockfall risk in the Valley by 95 percent.
+
+Photo: National Park Service / Wikimedia Commons (public domain)
+
+Ahwiyah Point, March 28, 2009. Rock fell about 1,800 feet from Ahwiyah Point, next to Half Dome. It was about 43,000 cubic meters, bigger than Happy Isles. The ground shook as hard as a magnitude 2.4 earthquake. It knocked down hundreds of trees and buried part of the trail around Mirror Lake. Nobody was hurt.
+
+El Capitan, September 2017. On September 27, rock fell from the east side of El Capitan, near Horsetail Fall. A visitor was killed and another was hurt. The next day a much bigger piece fell from the same area. El Capitan is also where people watch climbers, and our guide to watching climbers on El Capitan covers the meadow below it.
+
+In the whole record, back to 1857, rockfalls and rock slides have killed 19 people and hurt at least 108. That is out of many millions of visits. The danger is real, but it is small, and the park works hard to keep it that way.
+
+Watch the film: Rock FallYosemite Nature Notes · Episode 10Rock FallThe Park Service's short film on how geologists study Yosemite's rockfalls, and how the cliffs have changed since the glaciers left.Film: National Park Service. Nothing loads from YouTube until you press play.
+
+### Is it getting worse?
+
+The chart below looks scary at first. There are hundreds more rockfalls in recent decades than in the old days. But the rock is not falling faster. More people are writing it down.
+
+In the 1800s, a rockfall made the record only if a famous visitor wrote about it in a letter or a book. After 1916, park leaders started listing rockfalls in their monthly reports, because damaged trails and roads had to be fixed. After a deadly rockfall on the Yosemite Falls Trail in 1980, scientists from the U.S. Geological Survey joined the park to study every event in detail. Now even small ones get counted.
+
+Recorded rockfalls, by decade
+
+1850s1900s1950s2000s
+
+Green bars: 1850s to 1970s. Rust bars: 1980 and after, when scientists joined the count. The last bar covers 2020 to 2025 only; the tallest is the 2010s, with 615.
+
+Recorded rockfalls by decade. The bars grow because the counting got better, not because the cliffs got weaker.
+
+The cliffs are not falling faster. We are just better at counting.
+
+In 2009, after several big rockfalls close together, the Park Service looked at this question directly. Its geologists said they could find no real increase in rockfall in Yosemite Valley. And 2025 was a quiet year: 43 rockfalls, below the average for the last 20 years.
+
+### Rockfalls older than any record
+
+Some of the Valley's biggest rockfalls happened long before anyone wrote anything down. Geologists find them by reading the land.
+
+Below El Capitan, a giant tongue of boulders stretches about 2,200 feet out into the Valley. It is so big that it pushes the Merced River, and Northside Drive, into a sharp bend. Scientists dated it in a clever way. Rays from space slowly change the surface of any rock left out in the open. By measuring that change in five boulders, they found that four had been lying there for about 3,600 years. The whole pile weighs about 8 million tons.
+
+Mirror Lake has a rockfall story too. Long ago, a huge piece of cliff in Tenaya Canyon fell and piled up more than 100 feet deep. The rubble dammed Tenaya Creek, and water backed up behind it into a lake more than a mile long. Sand and mud have filled most of it in. The little lake left today is Mirror Lake.
+
+### What to do if you see one
+
+You will probably never be near a rockfall. If you are, the Park Service gives simple advice.
+
+- On the Valley floor: move away from the cliff, toward the middle of the Valley.
+- Near the bottom of a cliff or a talus slope: get behind the biggest boulder close to you. When the rocks stop falling, move quickly away from the cliff.
+- On the trail: obey warning signs, and stay off closed trails. Rangers close a trail after a rockfall for a reason.
+- Tell someone: report any rockfall you see or hear to a ranger or a visitor center. Every report goes into the park's list.
+
+Trail closures after a rockfall can last for weeks. In March 2025, about 150 cubic meters of rock fell from Grizzly Peak at night and blocked the Mist Trail near the Vernal Fall footbridge. Crews blasted and cleared the boulders before the trail reopened. Before a hike, check the park's current trail closures, which our conditions page links to.
+
+### How to see the story for yourself
+
+Next time you are in the Valley, look at the bottom of a cliff. Find the pale boulders on the talus. They fell recently, maybe in your lifetime. The dark, lichen-covered ones fell long ago. Then look up and find the bright patch on the cliff where a slab came off. You are looking at the newest page in a story that has been written one rock at a time for thousands of years.
+
+#### Sources
+
+- Yosemite National Park - Rockfalls - Open Data, NPS Yosemite Geoportal (1,760 records, 1857 to 2025, read October 14, 2026)
+- Historical Rock Falls in Yosemite National Park, California (1857–2011), Stock and others, USGS Data Series 746
+- Rockfall, NPS Yosemite, including the 2025 year in review
+- Ahwiyah Point Rockfall Size Estimated, NPS news release, April 8, 2009
+- Investigating the El Capitan Rock Avalanche, Greg Stock, Yosemite Association, 2008
+- Rock Slides in Yosemite, C.C. Jensen, Yosemite Nature Notes, February 1933
 
 ---
 

@@ -142,8 +142,8 @@
       "sha256": "4b6c37d4f166749c"
     },
     "/dist/bodies/what-is-a-talus-field.js": {
-      "v": 4,
-      "sha256": "9cc24c978b1754b3"
+      "v": 5,
+      "sha256": "f2ae536f984d2daa"
     },
     "/dist/bodies/when-to-visit-yosemite.js": {
       "v": 8,
@@ -284,6 +284,10 @@
     "/dist/bodies/yosemite-ranger-programs.js": {
       "v": 5,
       "sha256": "86028c1f89a6ae00"
+    },
+    "/dist/bodies/yosemite-rockfall.js": {
+      "v": 1,
+      "sha256": "aaf13397ecf394ae"
     },
     "/dist/bodies/yosemite-shuttle-and-yarts.js": {
       "v": 9,
