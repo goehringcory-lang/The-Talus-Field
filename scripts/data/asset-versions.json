@@ -230,12 +230,16 @@
       "sha256": "75fb1135d5413415"
     },
     "/dist/bodies/yosemite-in-december.js": {
-      "v": 1,
-      "sha256": "7107d7a810d3db34"
+      "v": 2,
+      "sha256": "f4ad09a4d298b4db"
     },
     "/dist/bodies/yosemite-in-fall.js": {
       "v": 8,
       "sha256": "abdb4ba38ec96a31"
+    },
+    "/dist/bodies/yosemite-in-january.js": {
+      "v": 1,
+      "sha256": "6155289550f3f53f"
     },
     "/dist/bodies/yosemite-in-june.js": {
       "v": 7,

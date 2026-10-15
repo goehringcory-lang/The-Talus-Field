@@ -80,6 +80,7 @@ window.INTENT_FACETS = [
 
 // Per-article tags. Keyed by the slug in window.ARTICLES.
 window.ARTICLE_INTENT = {
+  "yosemite-in-january": { stage: ["before-booking", "dates-set"], who: [], topic: ["conditions", "transportation", "lodging", "camping"] },
   "yosemite-rockfall": { stage: ["in-park"], who: ["families"], topic: [] },
   "yosemite-trees-identification-guide": { stage: ["in-park"], who: ["families", "non-hikers"], topic: [] },
   "tioga-road-stop-by-stop": { stage: ["dates-set", "week-before", "in-park"], who: ["first-trip", "non-hikers"], topic: ["transportation", "trails"] },
@@ -327,6 +328,7 @@ window.ARTICLE_MONTHS = {
   "yosemite-in-march": ["mar"],
   "yosemite-in-november": ["nov"],
   "yosemite-in-december": ["dec"],
+  "yosemite-in-january": ["jan"],
   "horsetail-fall-firefall": ["feb"],
   "memorial-day-skip-the-valley-go-high-2026": ["may"],
   "tioga-road-opening-weekend": ["may", "jun"],

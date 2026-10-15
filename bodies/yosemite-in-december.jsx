@@ -87,7 +87,7 @@ window.ARTICLE_BODIES["yosemite-in-december"] = function YosemiteInDecemberBody(
       </p>
 
       <p>
-        Three things follow. First, holiday-week lodging in the Valley is a book-early problem in a season that otherwise rewards booking late; if the week between Christmas and New Year's is your only window, reserve the room before anything else. Second, the Valley's parking behaves more like a summer weekend than a winter weekday, so arrive early and use the free shuttle once you are parked; <a href="/articles/yosemite-valley-parking-guide">the parking guide</a> covers which lots fill first. Third, the evenings have one marquee event: the Ahwahnee's New Year's Eve Dinner Dance, which the concessioner lists for December 31 from 8:30 p.m. to 12:30 a.m. Everything else on the holiday week is the same park as the rest of the month, with more people standing at Tunnel View.
+        Three things follow. First, holiday-week lodging in the Valley is a book-early problem in <a href="/articles/yosemite-in-january">a season that otherwise rewards booking late</a>; if the week between Christmas and New Year's is your only window, reserve the room before anything else. Second, the Valley's parking behaves more like a summer weekend than a winter weekday, so arrive early and use the free shuttle once you are parked; <a href="/articles/yosemite-valley-parking-guide">the parking guide</a> covers which lots fill first. Third, the evenings have one marquee event: the Ahwahnee's New Year's Eve Dinner Dance, which the concessioner lists for December 31 from 8:30 p.m. to 12:30 a.m. Everything else on the holiday week is the same park as the rest of the month, with more people standing at Tunnel View.
       </p>
 
       <p>
