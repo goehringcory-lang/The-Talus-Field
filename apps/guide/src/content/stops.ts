@@ -1044,7 +1044,7 @@ const seed: StopInput[] = [
     body:
       'Park at the Welcome Plaza and ride the free shuttle two miles up to the grove. The shuttle runs about every 15 minutes from spring (never before mid-April) through November; first run at 8 a.m., and in summer the last ride up is around 7 p.m., with a final bus down at 8. The service day shortens from late September, so check current hours.\n\nWalk the Grizzly Giant Loop (2 miles, 300 ft of gain): the Fallen Monarch, the Bachelor and Three Graces, the Grizzly Giant (around 3,000 years old), and the California Tunnel Tree just past it. Late afternoon is less crowded. These are giant sequoias, not redwoods: the largest trees on earth by volume, growing only in this strip of the Sierra.\n\nThe black scars on the trunks are from fire the trees survived. Mature sequoia bark runs up to two feet thick, fibrous and rich in tannin, and barely conducts heat, so a ground fire chars the surface while thinner-barked white fir and incense cedar die. The seeds, no bigger than an oat seed, need the bare, ash-enriched soil and sunlight a burn opens up. After a century and a half of suppression left the groves crowded, the park now sets low-intensity burns in Mariposa.',
     swap:
-      'If you have stamina, the [Guardians Loop](/hike/mariposa-grove-guardians-loop) (6.5 miles, 1,200 ft) takes you up to the upper grove. Most visitors don\'t make it that far, which is the point.',
+      'If you have stamina, the [Guardians Loop](/hike/mariposa-grove-guardians-loop) (6.5 miles, 1,000 ft) takes you up to the upper grove. Most visitors don\'t make it that far, which is the point.',
     photos: [{ src: '/photos/mariposa-grove.jpg' }],
     history: {
       note:
@@ -1246,7 +1246,7 @@ const seed: StopInput[] = [
     hazard:
       'The granite beside the cascades is water-polished and slick, and the current above the drops is faster than it looks. People have died sliding here. Watch the falls from the trail, not from the rocks beside the water.',
     teaser:
-      'Five major cascades and 8.4 miles round trip out of Wawona, practically deserted while the Mist Trail shuffles. The lower gorge pays off within half an hour.',
+      'Five major cascades and 8.2 miles round trip out of Wawona, practically deserted while the Mist Trail shuffles. The lower gorge pays off within half an hour.',
     body:
       '8.2 miles round trip with over 2,000 feet of gain, from the end of Chilnualna Falls Road in Wawona, beside a chain of five major cascades. It sees far fewer people than the Mist Trail.\n\nThe lower cascades, in a rocky gorge within half an hour of the trailhead, make a complete short outing for families. The full climb is a real day: switchbacks through oak and manzanita, then pine, to the top falls pouring through bare granite above the Wawona basin.\n\nPeak flow is late spring into early summer; the trail is open year-round, and autumn is quiet. Carry water for the full climb. The lower gorge is dangerous; read the caution before anyone leaves the trail.',
   },
@@ -1705,9 +1705,9 @@ const seed: StopInput[] = [
     hazard:
       'A very long day with no reliable water after early season; carry four liters. The summit rolls toward the face with no railing and no warning, and gusts on the rim are real. Stay well back from the edge.',
     teaser:
-      'Stand on top of El Capitan without touching a rope: sixteen-plus miles round trip from Tamarack Flat, ten to twelve hours, and almost no one attempts it.',
+      'Stand on top of El Capitan without touching a rope: a very long day, 21.6 miles out and back by the Park Service\'s count from Tioga Road, and almost no one attempts it.',
     body:
-      'Sixteen to seventeen miles round trip, ten to twelve hours, no permit needed for the day hike. Start before sunrise. From Tamarack Flat Campground off Tioga Road, follow an easy 2.5 miles down the abandoned Big Oak Flat Road grade to the Tamarack Creek footbridge, then climb about six miles, with exposed granite crossings and one meadow, until the rim opens and the summit slabs roll toward the edge of the 3,000-foot face. June through October, Tioga Road permitting.\n\nThe summit is a broad granite back, not a point. The valley is directly below and the Cathedral Rocks across. You may meet climbers topping out after days on the wall; give them room.\n\nThe old road is the same 1874 wagon grade you can climb from the valley floor at the [Old Big Oak Flat Road](/stop/old-big-oak-flat-road) stop, closed to cars by a rock slide in 1943. Few people attempt this hike.',
+      'The Park Service lists El Capitan from the Tamarack Creek trailhead on Tioga Road at 21.6 miles out and back, with about 1,700 feet of gain; hikers\' accounts of the route from Tamarack Flat Campground run 15 to 17 miles, so plan for a full day either way and start before sunrise. No permit is needed for the day hike. From Tamarack Flat Campground off Tioga Road, follow an easy 2.5 miles down the abandoned Big Oak Flat Road grade to the Tamarack Creek footbridge, then climb about six miles, with exposed granite crossings and one meadow, until the rim opens and the summit slabs roll toward the edge of the 3,000-foot face. June through October, Tioga Road permitting.\n\nThe summit is a broad granite back, not a point. The valley is directly below and the Cathedral Rocks across. You may meet climbers topping out after days on the wall; give them room.\n\nThe old road is the same 1874 wagon grade you can climb from the valley floor at the [Old Big Oak Flat Road](/stop/old-big-oak-flat-road) stop, closed to cars by a rock slide in 1943. Few people attempt this hike.',
   },
 
   // ===========================================================================

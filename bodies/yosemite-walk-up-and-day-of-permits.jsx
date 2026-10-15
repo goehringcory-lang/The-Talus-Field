@@ -51,7 +51,7 @@ window.ARTICLE_BODIES["yosemite-walk-up-and-day-of-permits"] = function Yosemite
             </g>
           );
         })}
-        <text x="0" y={H - 8} style={{ ...T_SOFT, fontStyle: "italic" }}>November through April: wilderness permits are free and self-issued at the trailhead.</text>
+        <text x="0" y={H - 8} style={{ ...T_SOFT, fontStyle: "italic" }}>Late October to mid-April: no reservation, permits issued the day before or day of.</text>
       </svg>
     );
   }
@@ -139,7 +139,7 @@ window.ARTICLE_BODIES["yosemite-walk-up-and-day-of-permits"] = function Yosemite
       <h2>Off-season, the whole system relaxes</h2>
 
       <p>
-        Roughly November through April, the quota season ends and Yosemite wilderness permits become free, unlimited, and self-issued at trailhead registers. No lottery, no Recreation.gov, no counter. It is the largest gap between how hard this park looks to get into and how easy it is at the right time of year, and almost nobody takes it, because the same weather that opens the door makes the walking serious. <a href="/articles/yosemite-in-winter">Winter in Yosemite</a> covers what you are signing up for.
+        From late October to mid-April, reservations are not required: you pick up a permit from the issuing station nearest your trailhead the day before or the day you start. Trailhead quotas still apply, but most trailheads do not fill. No lottery, no Recreation.gov. It is the largest gap between how hard this park looks to get into and how easy it is at the right time of year, and almost nobody takes it, because the same weather that opens the door makes the walking serious. <a href="/articles/yosemite-in-winter">Winter in Yosemite</a> covers what you are signing up for.
       </p>
 
       <h2>Half Dome: the daily lottery is the day-of answer</h2>
@@ -194,7 +194,7 @@ window.ARTICLE_BODIES["yosemite-walk-up-and-day-of-permits"] = function Yosemite
         <li>Entry, day hiking, ranger programs, Mariposa Grove, Glacier Point, and day climbing need no permit today.</li>
         <li>Wilderness permits: forty percent releases at 7 a.m. Pacific seven days out, and online booking closes a few days before your entry date, not on it.</li>
         <li>Past that cutoff it is in-person unclaimed quota only, and the Park Service warns there will be few if any. Ask what exists, not what you wanted.</li>
-        <li>November through April, wilderness permits are free and self-issued at the trailhead.</li>
+        <li>Late October to mid-April, no reservation is needed: permits are issued the day before or day of at the station nearest the trailhead.</li>
         <li>Half Dome has a daily lottery: apply two days ahead, midnight to 4 p.m. Pacific. There is no walk-up and the checkpoint is staffed.</li>
         <li>Same-day camping means Recreation.gov cancellations, Camp 4's short-notice allocation, or a national forest campground outside the park.</li>
       </ol>

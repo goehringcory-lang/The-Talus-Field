@@ -3672,7 +3672,7 @@ Quiet hours are 10 PM to 6 AM. Enforcement varies with the host and with the loo
 
 Wood fires in Yosemite Valley are restricted to the evening in the summer months. The reason is air quality: the Valley is a granite box with cold air sinking into it, smoke settles and stays, and a hundred and fifty morning campfires make a haze that the whole floor has to breathe. In the cooler months the restriction lifts. Check the current hours when you check in, because the window and the season it applies to both get adjusted.
 
-And a fifth thing that is not a time but belongs with them: do not bring firewood from home. Moving firewood is how insect pests get moved into new forests, and the standing advice statewide is to buy it where you burn it. Gathering downed wood is prohibited in the Valley and in the sequoia groves outright. Buy a bundle at the store on your way in.
+And a fifth thing that is not a time but belongs with them: do not bring firewood from home. Moving firewood is how insect pests get moved into new forests, and the standing advice statewide is to buy it where you burn it. Gathering is limited to dead and downed wood under six inches across, below 9,600 feet, and in Yosemite Valley only inside campground boundaries. Buy a bundle at the store on your way in.
 
 ### Set up in daylight. All of it.
 
@@ -4563,7 +4563,7 @@ Photo: Cam DiCecca / Wikimedia Commons (CC0)
 
 ### Off-season, the whole system relaxes
 
-Roughly November through April, the quota season ends and Yosemite wilderness permits become free, unlimited, and self-issued at trailhead registers. No lottery, no Recreation.gov, no counter. It is the largest gap between how hard this park looks to get into and how easy it is at the right time of year, and almost nobody takes it, because the same weather that opens the door makes the walking serious. Winter in Yosemite covers what you are signing up for.
+From late October to mid-April, reservations are not required: you pick up a permit from the issuing station nearest your trailhead the day before or the day you start. Trailhead quotas still apply, but most trailheads do not fill. No lottery, no Recreation.gov. It is the largest gap between how hard this park looks to get into and how easy it is at the right time of year, and almost nobody takes it, because the same weather that opens the door makes the walking serious. Winter in Yosemite covers what you are signing up for.
 
 ### Half Dome: the daily lottery is the day-of answer
 
@@ -4598,7 +4598,7 @@ Outside the park is not a failure. National forest campgrounds line every approa
 - Entry, day hiking, ranger programs, Mariposa Grove, Glacier Point, and day climbing need no permit today.
 - Wilderness permits: forty percent releases at 7 a.m. Pacific seven days out, and online booking closes a few days before your entry date, not on it.
 - Past that cutoff it is in-person unclaimed quota only, and the Park Service warns there will be few if any. Ask what exists, not what you wanted.
-- November through April, wilderness permits are free and self-issued at the trailhead.
+- Late October to mid-April, no reservation is needed: permits are issued the day before or day of at the station nearest the trailhead.
 - Half Dome has a daily lottery: apply two days ahead, midnight to 4 p.m. Pacific. There is no walk-up and the checkpoint is staffed.
 - Same-day camping means Recreation.gov cancellations, Camp 4's short-notice allocation, or a national forest campground outside the park.
 
@@ -5187,7 +5187,7 @@ That is the firefall. It is real, the photographs do not exaggerate it, and it i
 
 ### What is actually happening
 
-Horsetail Fall is a small, seasonal waterfall that drops off the eastern edge of El Capitan. Its main plunge is roughly 1,500 feet, which would make it a headline attraction anywhere else. In Yosemite it barely rates a mention for most of the year, partly because it usually is not there. The fall has a tiny drainage on El Capitan's summit slopes, no lake or glacier feeding it, and it flows only when recent rain or melting snow is running off the top of the cliff. In a dry winter it can be a damp streak. By late spring it is usually gone. If waterfalls are what you came for, the big reliable ones are covered in the waterfalls guide; Horsetail is a different kind of event.
+Horsetail Fall is a small, seasonal waterfall that drops off the eastern edge of El Capitan. It drops about 1,000 feet, which would make it a headline attraction anywhere else. In Yosemite it barely rates a mention for most of the year, partly because it usually is not there. The fall has a tiny drainage on El Capitan's summit slopes, no lake or glacier feeding it, and it flows only when recent rain or melting snow is running off the top of the cliff. In a dry winter it can be a damp streak. By late spring it is usually gone. If waterfalls are what you came for, the big reliable ones are covered in the waterfalls guide; Horsetail is a different kind of event.
 
 The firefall effect is an alignment problem. For a stretch of roughly two weeks in mid-to-late February, the setting sun lines up with the Valley's east-west axis in a way that puts direct, low-angle light on the strip of cliff Horsetail runs down, while the surrounding rock has already fallen into shadow. Sunset light is red-orange to begin with, because it is passing through the maximum thickness of atmosphere. Backlit and sidelit at that angle, the falling water and its mist pick up that color and glow against a dark wall. The physics is the same as any alpenglow. What makes it striking is the contrast: one orange ribbon against a wall already in shadow.
 
@@ -6288,9 +6288,9 @@ Photo: Richard Frear / NPS, via Wikimedia Commons (public domain)
 
 ### The Junior Ranger program, which is not just for the kids
 
-The mechanics: pick up the Junior Ranger handbook at a visitor center (available in English and Spanish, free at any visitor center, or downloadable from the park's website), complete the age-appropriate activities inside, attend a ranger program, and bring the finished work back to a ranger, who will look it over with complete seriousness, administer the pledge, and hand over the badge. The ceremony is performed straight, every time, and I have watched rangers do it for a five-year-old and a forty-five-year-old in the same afternoon with the same gravity. Adults are allowed. Adults are, frankly, encouraged.
+The mechanics: pick up the Junior Ranger handbook at a visitor center (available in English and Spanish, free at any visitor center, or downloadable from the park's website), complete the activities that suit you best, and bring the finished booklet to a ranger at any visitor center during operating hours, who will look it over with complete seriousness, administer the pledge, and hand over the badge. The ceremony is performed straight, every time, and I have watched rangers do it for a five-year-old and a forty-five-year-old in the same afternoon with the same gravity. Adults are allowed. Adults are, frankly, encouraged.
 
-What the handbook is actually doing is teaching a way of moving through the park: slower, closer to the ground, with questions. For families it quietly solves the pacing problem that wrecks most kid itineraries, because the activities give a six-year-old a job to do at every stop. Our guide to Yosemite with kids builds on exactly this logic. The park runs hundreds of Junior Ranger programs and activities across the year, so there is nearly always a ranger-led session that counts toward the badge within a day or two of whenever you arrive.
+What the handbook is actually doing is teaching a way of moving through the park: slower, closer to the ground, with questions. For families it quietly solves the pacing problem that wrecks most kid itineraries, because the activities give a six-year-old a job to do at every stop. Our guide to Yosemite with kids builds on exactly this logic. The park runs hundreds of Junior Ranger programs and activities across the year, so there is nearly always a ranger-led session within a day or two of whenever you arrive; the Park Service does not make attending one a requirement for the badge.
 
 ### How to choose, if you only attend one
 
@@ -10959,7 +10959,7 @@ Tuolumne Meadows. Multiple pullouts along the road with broad meadow views. The 
 
 These spots take a short hike, which gets you away from any remaining road glare and into more comfortable solitude.
 
-Sentinel Dome. A 2.2-mile round-trip hike from the Sentinel Dome and Taft Point trailhead on Glacier Point Road. The summit at 8,122 feet has a 360-degree view, no nearby light, and a flat granite surface to set up on. This is one of the great Sierra dark-sky spots accessible via short trail. Doable as a sunset-into-dark hike with headlamps for the descent.
+Sentinel Dome. A 2-mile round-trip hike from the Sentinel Dome and Taft Point trailhead on Glacier Point Road. The summit at 8,122 feet has a 360-degree view, no nearby light, and a flat granite surface to set up on. This is one of the great Sierra dark-sky spots accessible via short trail. Doable as a sunset-into-dark hike with headlamps for the descent.
 
 Taft Point. Same trailhead. Different direction. The cliff edge offers a dramatic foreground for night-sky photography (the Valley below, Cathedral Rocks on the far wall). Bring a friend; the cliff at night is dangerous if you're not paying attention.
 

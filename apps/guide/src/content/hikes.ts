@@ -1042,7 +1042,7 @@ const seed: HikeT[] = [
     coord: [-119.8422, 37.763], // moved 2026-09 to the trailhead lot (OSM, Recreation.gov), same as the stop
     photo: { src: '/photos/hike-merced-grove.jpg', alt: 'Giant sequoias along the trail in the Merced Grove.' },
     description:
-      'A downhill road-grade walk to the park’s smallest sequoia grove, about twenty big trees with no shuttle. The climb is on the return.',
+      'A downhill road-grade walk to the park’s smallest sequoia grove, about two dozen mature giants with no shuttle. The climb is on the return.',
   },
 ]
 

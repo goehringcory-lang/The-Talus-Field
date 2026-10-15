@@ -158,7 +158,7 @@ window.ARTICLE_BODIES["yosemite-stargazing-where-to-look-up"] = function Yosemit
       <p>These spots take a short hike, which gets you away from any remaining road glare and into more comfortable solitude.</p>
 
       <p>
-        <strong>Sentinel Dome.</strong> A 2.2-mile round-trip hike from the Sentinel Dome and Taft Point trailhead on Glacier Point Road. The summit at 8,122 feet has a 360-degree view, no nearby light, and a flat granite surface to set up on. This is one of the great Sierra dark-sky spots accessible via short trail. Doable as a sunset-into-dark hike with headlamps for the descent.
+        <strong>Sentinel Dome.</strong> A 2-mile round-trip hike from the Sentinel Dome and Taft Point trailhead on Glacier Point Road. The summit at 8,122 feet has a 360-degree view, no nearby light, and a flat granite surface to set up on. This is one of the great Sierra dark-sky spots accessible via short trail. Doable as a sunset-into-dark hike with headlamps for the descent.
       </p>
 
       <p>

@@ -86,7 +86,7 @@ window.calcEntryFees = function (input) {
   // Option A: pay at the gate every entry.
   var gate = [];
   if (mode === "car") gate.push({ label: plural(vehicles, "vehicle pass", "vehicle passes") + " at $" + F.vehicle, amount: vehicles * F.vehicle * entries });
-  if (mode === "motorcycle") gate.push({ label: plural(vehicles, "motorcycle pass", "motorcycle passes") + " at $" + F.motorcycle, amount: vehicles * F.motorcycle * entries });
+  if (mode === "motorcycle") { var mp = Math.ceil(vehicles / 2); gate.push({ label: plural(mp, "motorcycle pass", "motorcycle passes") + " at $" + F.motorcycle + " (each covers up to two motorcycles)", amount: mp * F.motorcycle * entries }); }
   if (mode === "foot") gate.push({ label: plural(adults, "person", "people") + " at $" + F.perPerson + " (under 16 free)", amount: adults * F.perPerson * entries });
   gate.push({ label: "Non-resident fee, $" + F.surcharge + " × " + plural(adults, "person", "people") + " 16 and older", amount: adults * F.surcharge * entries });
   options.push({
