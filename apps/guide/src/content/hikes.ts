@@ -238,7 +238,7 @@ const seed: HikeT[] = [
     region: 'valley',
     order: 13,
     distanceMi: 14.2,
-    distanceNote: 'via the Mist Trail; 16.4 mi via the John Muir Trail',
+    distanceNote: 'via the Mist Trail; 16.2 mi via the John Muir Trail',
     elevationGainFt: 4800,
     difficulty: 'strenuous',
     route: 'out-and-back',

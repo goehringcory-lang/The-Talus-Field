@@ -301,7 +301,7 @@ window.ARTICLE_BODIES["best-airport-for-yosemite"] = function BestAirportForYose
                   From San Francisco the route is three legs, and it runs every day of the year. The San Joaquins train does not reach the city itself, so you start on BART. Amtrak sells the train and the YARTS bus as one ticket to Yosemite, and the bus is timed to meet the trains at Merced. Allow four to four and a half hours from the Bay, which is no faster than driving and a good deal more restful.
                 </p>
                 <p>
-                  The bus drops you at Yosemite Valley Lodge, Yosemite Village or Curry Village, all on the free Valley shuttle. Whether the bus fare also covers your entrance fee is something the park's pages and YARTS' own currently answer differently, so budget for it; <a href="/articles/yosemite-shuttle-and-yarts">the shuttle and YARTS guide</a> sets out both positions and the timetable.
+                  The bus drops you at Yosemite Valley Lodge, Yosemite Village or Curry Village, all on the free Valley shuttle. The bus fare does not cover your entrance fee: YARTS' fares page says the park entrance and non-resident fees are not included, so budget for them. <a href="/articles/yosemite-shuttle-and-yarts">The shuttle and YARTS guide</a> has the timetable.
                 </p>
               </div>
             </div>

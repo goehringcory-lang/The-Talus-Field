@@ -30,7 +30,7 @@ window.ARTICLE_BODIES["water-ouzels-waterfalls"] = function WaterOuzelsBody() {
       </p>
 
       <p>
-        The first documented observation of this behavior in Yosemite was recorded in <em>Nature Notes</em> Vol. 1, No. 1 (1922) in an entry titled "Many Visitors See Water Ouzel's Nest." The naturalist observer describes finding an ouzel nest positioned directly adjacent to a stream cascade, with the bird moving in and out of the falling water during feeding. The account conveys wonder at the bird's capability, but also precise observation of where the nest was located and how the bird moved.
+        The very first issue of <em>Nature Notes</em>, Vol. 1, No. 1 (July 10, 1922), carried an entry titled "Many Visitors See Water Ouzel's Nest." It reports that the nature guides were leading crowds every Monday morning to a nest on Tenaya Creek, about forty yards beyond the Iron Spring, where visitors watched the parents feed four young birds. It adds that ouzels were often seen above Happy Isles and at the foot of Yosemite and Bridal Veil Falls. The account is short, but it records where the nest was and what the birds were doing.
       </p>
 
       <h2>Why the waterfall matters: food web in the mist</h2>
@@ -121,7 +121,7 @@ window.ARTICLE_BODIES["water-ouzels-waterfalls"] = function WaterOuzelsBody() {
 
       <h3>Further reading</h3>
       <ul style={{ fontSize: 14 }}>
-        <li><em>Nature Notes</em> Vol. 1, No. 1 (1922). "Many Visitors See Water Ouzel's Nest," early documentation of ouzel behavior and nesting in Yosemite waterfalls.</li>
+        <li><em>Nature Notes</em> Vol. 1, No. 1 (1922). "Many Visitors See Water Ouzel's Nest," an ouzel nest on Tenaya Creek, with the parents feeding four young.</li>
         <li><em>Nature Notes</em> Vol. 12, No. 4 (1933). High-altitude ouzel observations at 8,400 feet, with nesting and foraging documentation.</li>
         <li>Ornithological literature on <em>Cinclus mexicanus</em> (American dipper) ecology, behavior, and adaptation to aquatic environments, available through UC Berkeley's Museum of Vertebrate Zoology.</li>
         <li>Stream ecology literature documenting aquatic insect communities and their dependence on cold, fast-moving, well-oxygenated water conditions.</li>

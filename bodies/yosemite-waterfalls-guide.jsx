@@ -44,7 +44,7 @@ window.ARTICLE_BODIES["yosemite-waterfalls-guide"] = function YosemiteWaterfalls
       <h2>Bridalveil: the one that never quits</h2>
 
       <p>
-        <strong>Bridalveil Fall</strong>, 620 feet, is the first waterfall nearly every visitor sees, hanging on the south wall as you come out of the Wawona Tunnel or up Highway 140 into the Valley. It is also the most dependable: the only major Valley fall that flows <strong>year-round</strong>, heavy in spring, a drifting ribbon by October, but always present.
+        <strong>Bridalveil Fall</strong>, 620 feet, is the first waterfall nearly every visitor sees, hanging on the south wall as you come out of the Wawona Tunnel or up Highway 140 into the Valley. It is also the most dependable: the only fall pouring straight off the Valley wall that flows <strong>year-round</strong>, heavy in spring, a drifting ribbon by October, but always present.
       </p>
 
       <p>
@@ -68,7 +68,7 @@ window.ARTICLE_BODIES["yosemite-waterfalls-guide"] = function YosemiteWaterfalls
       </p>
 
       <p>
-        <strong>Horsetail Fall</strong>, on El Capitan's east face, is a modest seasonal ribbon that would be a footnote except for two weeks in <strong>February</strong>, when the setting sun can light the falling water orange and produce the natural firefall. That event now has reservations, road closures, and a culture of its own, and it gets <a href="/articles/horsetail-fall-firefall">its own article</a>. The short version: it needs water in the fall and a clear western horizon at sunset, and neither is guaranteed.
+        <strong>Horsetail Fall</strong>, on El Capitan's east face, is a modest seasonal ribbon that would be a footnote except for two weeks in <strong>February</strong>, when the setting sun can light the falling water orange and produce the natural firefall. That event comes with road closures, parking restrictions, and a culture of its own, and it gets <a href="/articles/horsetail-fall-firefall">its own article</a>. The short version: it needs water in the fall and a clear western horizon at sunset, and neither is guaranteed.
       </p>
 
       <p>

@@ -21,7 +21,7 @@ window.ARTICLE_BODIES["pets-in-yosemite"] = function PetsInYosemiteBody() {
 
       <ol>
         <li><strong>The Wawona Meadow Loop.</strong> A gentle lap around the big meadow near the Wawona Hotel grounds, shaded, flat, and quietly one of the best wildflower walks in the park in early summer.</li>
-        <li><strong>Old Big Oak Flat Road</strong> between Hodgdon Meadow and Hazel Green Creek, near the Big Oak Flat Entrance. An old roadbed through mixed conifer forest, more solitude than scenery, which some dogs would tell you is the correct priority.</li>
+        <li><strong>Old Big Oak Flat Road</strong> from Hodgdon Meadow to the Tuolumne Grove parking lot, near the Big Oak Flat Entrance. An old roadbed through mixed conifer forest, more solitude than scenery, which some dogs would tell you is the correct priority.</li>
       </ol>
 
       <p>

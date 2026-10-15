@@ -102,7 +102,7 @@ window.ARTICLE_BODIES["swimming-in-the-merced"] = function SwimmingInTheMercedBo
       </p>
 
       <p>
-        If you bring your own inflatable, the rules that matter are these. Boating is restricted above Little Yosemite Valley and below El Capitan Bridge. Children under thirteen must wear a life jacket on the water at all times. And when the Pohono Bridge gauge is above four feet at eight in the morning, everybody wears one, regardless of age or competence. The Merced has tipped plenty of people off pool inflatables and into the water.
+        If you bring your own inflatable, the rules that matter are these. Boating is restricted above Little Yosemite Valley and below El Capitan Bridge. Children aged thirteen and younger must wear a life jacket on the water at all times. And when the Pohono Bridge gauge is above four feet at eight in the morning, everybody wears one, regardless of age or competence. The Merced has tipped plenty of people off pool inflatables and into the water.
       </p>
 
       <h2>The hazards that are not the cold</h2>
