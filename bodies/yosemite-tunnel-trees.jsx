@@ -104,11 +104,11 @@ window.ARTICLE_BODIES["yosemite-tunnel-trees"] = function YosemiteTunnelTreesBod
       </p>
 
       <p>
-        <strong>The Dead Giant, Tuolumne Grove.</strong> The trailhead is on Tioga Road a short distance east of the Crane Flat junction. The route in is the old Big Oak Flat Road, about a mile down and roughly five hundred feet of descent, which means the walk back is five hundred feet of climb at 6,000 feet of elevation. The tunnel is still cut through the stump, and you can still walk the road grade through it, the same surface the 1878 coach used. Carry water for the climb out.
+        <strong>The Dead Giant, Tuolumne Grove.</strong> The trailhead is on Tioga Road a short distance east of the Crane Flat junction. The route in is the old Big Oak Flat Road, about a mile long with roughly five hundred feet of descent. The walk back is the same five hundred feet of climb, at 6,000 feet of elevation. The tunnel is still cut through the stump, and you can still walk the road grade through it, the same surface the 1878 coach used. Carry water for the climb out.
       </p>
 
       <p>
-        <strong>The California Tree, Mariposa Grove.</strong> Continue past the Grizzly Giant on the main grove trail and it is a short distance further along. The Mariposa Grove has a seasonal shuttle from the welcome plaza near the South Entrance; <a href="/articles/mariposa-grove-how-to-visit">the guide to visiting the grove</a> covers how that works, and <a href="/now">the Park Bulletin</a> has whether it is running this week.
+        <strong>The California Tree, Mariposa Grove.</strong> Continue past the Grizzly Giant on the main grove trail and it is a short distance farther along. The Mariposa Grove has a seasonal shuttle from the welcome plaza near the South Entrance; <a href="/articles/mariposa-grove-how-to-visit">the guide to visiting the grove</a> covers how that works, and <a href="/now">the Park Bulletin</a> has whether it is running this week.
       </p>
 
       <p>

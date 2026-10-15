@@ -90,7 +90,7 @@ window.ARTICLE_BODIES["what-is-a-talus-field"] = function WhatIsATalusFieldBody(
       </p>
 
       <p>
-        The blocks are angular rather than rounded because they have not travelled far or been worked by water. A river cobble is smooth because it has been tumbled for miles. A talus block fell, hit, and stopped. The sharp edges show the rock has not moved far from where it broke off.
+        The blocks are angular rather than rounded because they have not traveled far or been worked by water. A river cobble is smooth because it has been tumbled for miles. A talus block fell, hit, and stopped. The sharp edges show the rock has not moved far from where it broke off.
       </p>
 
       <h2>How Yosemite builds them</h2>
@@ -104,7 +104,7 @@ window.ARTICLE_BODIES["what-is-a-talus-field"] = function WhatIsATalusFieldBody(
       </p>
 
       <p>
-        The other mechanism is the granite's own habit of shedding in curved sheets, exfoliation, which is why Half Dome and Royal Arches look the way they do. A sheet lets go, and what lands below is a fresh apron of pale rock that has not weathered yet. You can date a rockfall roughly by colour: bright white scars and light blocks are recent, and the grey-green of lichen takes decades to arrive.
+        The other mechanism is the granite's own habit of shedding in curved sheets, exfoliation, which is why Half Dome and Royal Arches look the way they do. A sheet lets go, and what lands below is a fresh apron of pale rock that has not weathered yet. You can date a rockfall roughly by color: bright white scars and light blocks are recent, and the grey-green of lichen takes decades to arrive.
       </p>
 
       <figure>
@@ -144,7 +144,7 @@ window.ARTICLE_BODIES["what-is-a-talus-field"] = function WhatIsATalusFieldBody(
       <h2>Walking on talus</h2>
 
       <p>
-        Talus is stable until it is not, and the failure mode is a block rolling under your weight with a tonne of rock stacked above it. Three rules from people who spend time on it. Step on the tops of blocks rather than the gaps, because a foot wedged between two rocks is how ankles break. Move one at a time in a group, or spread out sideways rather than climbing in a line, so nothing anyone dislodges is heading for a friend. And treat fresh, pale, unlichened rock as the least trustworthy surface on the slope: it is there because that part of the mountain moved recently.
+        Talus is stable until it is not, and the failure mode is a block rolling under your weight with tons of rock stacked above it. Three rules from people who spend time on it. Step on the tops of blocks rather than the gaps, because a foot wedged between two rocks is how ankles break. Move one at a time in a group, or spread out sideways rather than climbing in a line, so nothing anyone dislodges is heading for a friend. And treat fresh, pale, unlichened rock as the least trustworthy surface on the slope: it is there because that part of the mountain moved recently.
       </p>
 
       <p>
@@ -158,7 +158,7 @@ window.ARTICLE_BODIES["what-is-a-talus-field"] = function WhatIsATalusFieldBody(
       </p>
 
       <p>
-        That is what a field journal is for. One entry is a note about a road opening or a bear in a parking lot or the week the dogwoods came out. None of them is the park. Enough of them, kept honestly over enough seasons, start to describe a place that is changing faster than it looks like it is.
+        That is what a field journal is for. One entry is a note about a road opening or a bear in a parking lot or the week the dogwoods came out. None of them is the park. Enough of them, kept honestly over enough seasons, start to describe a place that changes faster than it looks.
       </p>
 
       <p>

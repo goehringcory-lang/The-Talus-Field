@@ -135,7 +135,7 @@ window.ARTICLE_BODIES["yosemite-with-kids-no-reservations-2026"] = function Yose
       </p>
 
       <p>
-        <strong>Picnic spots.</strong> Skip the Village Store bench. The <a href="/map?stop=cascade-picnic-area">Cascade Picnic Area</a> is shaded, has tables, has a bathroom, and sits on the river. El Capitan Meadow has no tables but has the best views in the Valley. Bring a blanket and eat lunch with 3,000 feet of granite in front of you. Sentinel Bridge has a spot on the south bank of the Merced with river access and shade.
+        <strong>Picnic spots.</strong> Skip the Village Store bench. The <a href="/map?stop=cascade-picnic-area">Cascade Picnic Area</a> is shaded, has tables, has a bathroom, and sits on the river. El Capitan Meadow has no tables but has as good a view as any in the Valley. Bring a blanket and eat lunch with 3,000 feet of granite in front of you. Sentinel Bridge has a spot on the south bank of the Merced with river access and shade.
       </p>
 
       <h2>The stuff that will ruin your day</h2>
@@ -167,7 +167,7 @@ window.ARTICLE_BODIES["yosemite-with-kids-no-reservations-2026"] = function Yose
       <p>Three options, depending on what's open and what your kids can handle.</p>
 
       <p>
-        <strong>Glacier Point by car.</strong> <a href="/articles/glacier-point-road-open-2026">Glacier Point Road opened May 9</a> this year. The drive takes about an hour from the Valley. The viewpoint at the end is fenced and safe for kids, and the view, Half Dome at eye level, the Valley 3,200 feet below, the entire Clark Range spread out to the south, is arguably the best in the park. No hiking required. Drive up, get out, look, eat lunch at the picnic area, drive back. On the way, stop at the Sentinel Dome trailhead for an easy 2.2-mile round trip to a bald granite dome with 360-degree views. Kids love the scramble to the top.
+        <strong>Glacier Point by car.</strong> <a href="/articles/glacier-point-road-open-2026">Glacier Point Road opened May 9</a> this year. The drive takes about an hour from the Valley. The viewpoint at the end is fenced and safe for kids, and the view, Half Dome at eye level, the Valley 3,200 feet below, the entire Clark Range spread out to the south, is one of the park's best views. No hiking required. Drive up, get out, look, eat lunch at the picnic area, drive back. On the way, stop at the Sentinel Dome trailhead for an easy 2.2-mile round trip to a bald granite dome with 360-degree views. Kids love the scramble to the top.
       </p>
 
       <p>
@@ -175,7 +175,7 @@ window.ARTICLE_BODIES["yosemite-with-kids-no-reservations-2026"] = function Yose
       </p>
 
       <p>
-        <strong>Tioga Road and Tuolumne Meadows.</strong> If <a href="/articles/tioga-road-opening-weekend">Tioga Road is open</a> (it typically opens late May to early June, and is open this year as of May 15), the drive from the Valley up to Tuolumne Meadows is one of the great road trips in the American West. The meadow at 8,600 feet is cool, wide, and crisscrossed with easy walking paths. Soda Springs, a natural carbonated spring bubbling out of the ground, is a short walk from the road and kids like tasting the fizzy water. No reservation needed to drive Tioga Road.
+        <strong>Tioga Road and Tuolumne Meadows.</strong> If <a href="/articles/tioga-road-opening-weekend">Tioga Road is open</a> (it typically opens late May to early June, and is open this year as of May 15), the drive from the Valley up to Tuolumne Meadows is a long, memorable one. The meadow at 8,600 feet is cool, wide, and crisscrossed with easy walking paths. Soda Springs, a natural carbonated spring bubbling out of the ground, is a short walk from the road and kids like tasting the fizzy water. No reservation needed to drive Tioga Road.
       </p>
 
       <h2>The naturalist's cheat sheet</h2>

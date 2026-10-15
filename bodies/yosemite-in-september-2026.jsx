@@ -10,7 +10,7 @@ window.ARTICLE_BODIES["yosemite-in-september-2026"] = function YosemiteInSeptemb
       </p>
 
       <p>
-        On paper, September looks like the month the park runs out. The waterfalls are low. The concessions start closing in the first two weeks. The shuttles stop. And underneath all of that, the high country is in the finest condition it reaches all year, and the crowds thin out after Labor Day.
+        On paper, September looks like the month the park runs out. The waterfalls are low. The concessions start closing in the first two weeks. The shuttles stop. And underneath all of that, the high country is in the best condition it reaches all year, and the crowds thin out after Labor Day.
       </p>
 
       <h2>The waterfalls are done, and that is not a reason to skip it</h2>

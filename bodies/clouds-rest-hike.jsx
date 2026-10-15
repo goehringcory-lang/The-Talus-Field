@@ -74,7 +74,7 @@ window.ARTICLE_BODIES["clouds-rest-hike"] = function CloudsRestHikeBody() {
       </p>
 
       <p>
-        <strong>Lightning.</strong> This is the hazard the ridge was built for. The Park Service's guidance for Yosemite is that thunderstorms are most common June through September, that hikers above the treeline or along a rim should plan to be there in the morning and to <strong>summit before noon</strong>, and that after a storm you should stay in a safe place until 30 minutes after the last thunder. On Clouds Rest, that means a trailhead start at or before first light in summer and a firm turnaround rule: if cloud is building over the crest by late morning, the summit waits for another day. There is no shelter on the spine and no fast way off it.
+        <strong>Lightning.</strong> This is the hazard the ridge makes worst. The Park Service's guidance for Yosemite is that thunderstorms are most common June through September, that hikers above the treeline or along a rim should plan to be there in the morning and to <strong>summit before noon</strong>, and that after a storm you should stay in a safe place until 30 minutes after the last thunder. On Clouds Rest, that means a trailhead start at or before first light in summer and a firm turnaround rule: if cloud is building over the crest by late morning, the summit waits for another day. There is no shelter on the spine and no fast way off it.
       </p>
 
       <p>

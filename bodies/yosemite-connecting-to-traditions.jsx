@@ -35,7 +35,7 @@ window.ARTICLE_BODIES["yosemite-connecting-to-traditions"] = function YosemiteCo
       </p>
 
       <p>
-        That is a rare thing, and a generous one on the part of the artists. It is easy to treat a national park as scenery. These demonstrations are the reminder that it is also a homeland, tended by living cultures who are still here, still practicing, and willing to share an hour with whoever shows up. If your trip overlaps with any of these dates, put the Museum on your list. It is the best free hour in the park this summer, and it does something a viewpoint cannot.
+        That is a rare thing, and a generous one on the part of the artists. It is easy to treat a national park as scenery. These demonstrations are the reminder that it is also a homeland, tended by living cultures who are still here, still practicing, and willing to share an hour with whoever shows up. If your trip overlaps with any of these dates, put the Museum on your list. It is one of the best free hours in the park this summer, and it does something a viewpoint cannot.
       </p>
 
       <p>

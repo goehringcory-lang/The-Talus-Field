@@ -59,7 +59,7 @@ function AboutPage({ go }) {
           <h2>Reader</h2>
 
           <p>
-            The reader I have in mind is someone planning a first trip and feeling slightly buried by the logistics. If you are a fortieth-time visitor looking for trail beta, you may still find something here, but most of the writing is pitched a little earlier than that.
+            The reader I have in mind is someone planning a first trip and feeling slightly buried by the logistics. If you are a fortieth-time visitor looking for trail advice, you may still find something here, but most of the writing is aimed a little earlier than that.
           </p>
 
           <h2 id="practice">Practice</h2>

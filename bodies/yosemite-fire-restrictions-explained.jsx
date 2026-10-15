@@ -52,7 +52,7 @@ window.ARTICLE_BODIES["yosemite-fire-restrictions-explained"] = function Yosemit
   return (
     <>
       <p className="dropcap">
-        You bought a bundle of firewood at the gas station in Mariposa, because that is what you do before a Yosemite camping trip. You get to the site, unload the cooler, and find a ranger notice zip-tied to the fire ring: no wood fires until further notice. The bundle rides home unopened. Yosemite is under Stage 1 fire restrictions right now, and every summer a fresh set of visitors arrives not knowing that the rules changed since the last time they camped here, or that they ever change at all.
+        You bought a bundle of firewood at the gas station in Mariposa, because that is what you do before a Yosemite camping trip. You get to the site, unload the cooler, and find a ranger notice zip-tied to the fire ring: no wood fires until further notice. The bundle rides home unopened. Yosemite is under Stage 1 fire restrictions right now. Every summer a fresh set of visitors arrives not knowing the rules changed since they last camped here, or that rules ever change at all.
       </p>
 
       <p>
@@ -158,7 +158,7 @@ window.ARTICLE_BODIES["yosemite-fire-restrictions-explained"] = function Yosemit
       </p>
 
       <p>
-        <strong>Smoking anywhere in the park below 8,000 feet.</strong> Car, permitted campground, or posted smoking area. Nowhere else, restrictions or not, and the fine-print addition during restrictions is that "permitted campground" now specifically means one where fires are still allowed under the current rules, which narrows the list.
+        <strong>Smoking anywhere in the park below 8,000 feet.</strong> Car, permitted campground, or posted smoking area. Nowhere else, restrictions or not, and during restrictions, "permitted campground" means only one where fires are still allowed under the current rules, which narrows the list.
       </p>
 
       <h2>This is a different question from whether your trip will be smoky</h2>
@@ -190,7 +190,7 @@ window.ARTICLE_BODIES["yosemite-fire-restrictions-explained"] = function Yosemit
       <h2>The practical version</h2>
 
       <p>
-        Check the fire restrictions page in the days before you leave, not when you booked. Pack a camp stove regardless of what the restrictions say on the day you check, because conditions can tighten between booking and arrival. If a wood fire at 9 p.m. under the stars was the whole point of the trip for you, that experience is currently available only above 8,000 feet, in an existing ring, and it comes back everywhere else the week the park says the conditions allow it. Until then, cook on a stove.
+        Check the fire restrictions page in the days before you leave, not when you booked. Pack a camp stove regardless of what the restrictions say on the day you check, because conditions can tighten between booking and arrival. If a wood fire at 9 p.m. under the stars was the whole point of the trip for you, that experience is currently available only above 8,000 feet, in an existing ring, and it returns everywhere else when the park lifts the restrictions. Until then, cook on a stove.
       </p>
 
       <h3>Sources</h3>

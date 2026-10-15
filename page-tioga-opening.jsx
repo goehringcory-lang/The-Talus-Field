@@ -304,7 +304,7 @@ function TiogaOpeningPage({ go }) {
           <div className="tg-stops">
             <div className="tg-stops__go">
               <h3>What the first weeks are for</h3>
-              <p className="ff-note tg-stops__lede">The reliable early stops are the roadside ones. The early season rewards drivers, photographers and modest walkers, not peak-baggers.</p>
+              <p className="ff-note tg-stops__lede">The reliable early stops are the roadside ones. The early season rewards drivers, photographers and modest walkers, not people chasing summits.</p>
               <ul>
                 <li><EventIcon name="eye" size={24} /><div><strong>Olmsted Point</strong><p>The back side of Half Dome. The half-mile slickrock trail usually dries fast, even with snow in the shaded hollows.</p></div></li>
                 <li><EventIcon name="lake" size={24} /><div><strong>Tenaya Lake, the east beach</strong><p>Ice-rimmed, with open water in the middle. A short, easy walk to the sand; an hour is enough.</p></div></li>

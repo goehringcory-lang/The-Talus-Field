@@ -89,7 +89,7 @@ window.ARTICLE_BODIES["yosemite-walk-up-and-day-of-permits"] = function Yosemite
       </p>
 
       <p>
-        <strong>Day climbing.</strong> A climb you start and finish the same day needs no permit. Overnight big-wall climbs need a wilderness climbing permit, but that one is free, unlimited, and self-issued at a kiosk near the food lockers by El Capitan Bridge, twenty-four hours a day, either the day before or the day you start. It is the least bureaucratic permit in the National Park System.
+        <strong>Day climbing.</strong> A climb you start and finish the same day needs no permit. Overnight big-wall climbs need a wilderness climbing permit, but that one is free, unlimited, and self-issued at a kiosk near the food lockers by El Capitan Bridge, twenty-four hours a day, either the day before or the day you start. It is about as simple as a permit gets.
       </p>
 
       <p>

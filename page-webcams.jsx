@@ -80,7 +80,7 @@ function WebcamsPage({ go }) {
           <h2>What each camera shows</h2>
           <p>
             All four are still-image cameras rather than video streams. They
-            refresh on the order of minutes rather than seconds, which is why a
+            refresh every few minutes, not every second, which is why a
             page reload does not always change the picture and why nothing here
             is going to show you a bear walking past.
           </p>

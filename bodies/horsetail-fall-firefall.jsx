@@ -63,7 +63,7 @@ window.ARTICLE_BODIES["horsetail-fall-firefall"] = function HorsetailFallFirefal
       </p>
 
       <p>
-        The firefall effect is an alignment problem. For a stretch of roughly two weeks in mid-to-late February, the setting sun lines up with the Valley's east-west axis in a way that puts direct, low-angle light on the strip of cliff Horsetail runs down, while the surrounding rock has already fallen into shadow. Sunset light is red-orange to begin with, because it is passing through the maximum thickness of atmosphere. Backlit and sidelit at that angle, the falling water and its mist pick up that color and glow against a dark wall. The physics is the same as any alpenglow. What makes it striking is the contrast: one orange ribbon against a wall already in shadow.
+        The firefall effect is an alignment problem. For a stretch of roughly two weeks in mid-to-late February, the setting sun lines up with the Valley's east-west axis in a way that puts direct, low-angle light on the strip of cliff Horsetail runs down, while the surrounding rock has already fallen into shadow. Sunset light is red-orange to begin with, because it crosses more air than at any other hour. Backlit and sidelit at that angle, the falling water and its mist pick up that color and glow against a dark wall. The physics is the same as alpenglow, the pink light on high peaks at dusk. What makes it striking is the contrast: one orange ribbon against a wall already in shadow.
       </p>
 
       <p>

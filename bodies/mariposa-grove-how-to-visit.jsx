@@ -78,7 +78,7 @@ window.ARTICLE_BODIES["mariposa-grove-how-to-visit"] = function MariposaGroveHow
       </p>
 
       <p>
-        Once you are through the entrance station you reach a roundabout almost at once, and the <strong>Mariposa Grove Welcome Plaza</strong> is the first right, less than a quarter mile in. That is where you park. The grove itself, what the Park Service calls the Arrival Area, is another two miles up Mariposa Grove Road, and in season that road is closed to private vehicles. A free shuttle covers the two miles. It is not relaxed on quiet days. It is the permanent arrangement the 2018 restoration created, for reasons covered below.
+        Once you are through the entrance station you reach a roundabout almost at once, and the <strong>Mariposa Grove Welcome Plaza</strong> is the first right, less than a quarter mile in. That is where you park. The grove itself, what the Park Service calls the Arrival Area, is another two miles up Mariposa Grove Road, and in season that road is closed to private vehicles. A free shuttle covers the two miles. The rule is not relaxed on quiet days. It is the permanent arrangement the 2018 restoration created, for reasons covered below.
       </p>
 
       <figure className="npsmap" style={{ margin: "30px 0 34px" }}>
@@ -201,7 +201,7 @@ window.ARTICLE_BODIES["mariposa-grove-how-to-visit"] = function MariposaGroveHow
       </p>
 
       <p>
-        <strong>Food stays within arm's reach.</strong> The picnic area at the plaza is a well-known bear spot. A daypack left on a table for three minutes is a daypack a bear has learned to check. <a href="/articles/yosemite-bears-safety-guide">The bear guide</a> explains why a food-conditioned bear is usually a dead bear, which is the part that should change behavior.
+        <strong>Food stays within arm's reach.</strong> The picnic area at the plaza is a well-known bear spot. A daypack left on a table for three minutes is a daypack a bear has learned to check. <a href="/articles/yosemite-bears-safety-guide">The bear guide</a> explains why a food-conditioned bear is usually a dead bear, and that is the part that should change how you act.
       </p>
 
       <p>
@@ -213,7 +213,7 @@ window.ARTICLE_BODIES["mariposa-grove-how-to-visit"] = function MariposaGroveHow
       </p>
 
       <p>
-        <strong>Buses and vehicles over about twenty-one feet need their own reservation.</strong> They book Mariposa Grove parking separately through recreation.gov; private cars do not. There is no separate fee for the grove beyond park entrance, and there is <a href="/articles/yosemite-without-reservations-2026">no park-wide vehicle reservation in effect for 2026</a>.
+        <strong>Buses and vehicles over about twenty-one feet need their own reservation.</strong> They book Mariposa Grove parking separately through recreation.gov; private cars do not. There is no separate fee for the grove beyond the park entrance fee, and there is <a href="/articles/yosemite-without-reservations-2026">no park-wide vehicle reservation in effect for 2026</a>.
       </p>
 
       <h2>Timing, and the parking lot</h2>

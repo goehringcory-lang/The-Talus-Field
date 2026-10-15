@@ -110,7 +110,7 @@ window.ARTICLE_BODIES["pack-your-car-for-yosemite"] = function PackYourCarForYos
       </p>
 
       <p>
-        The key insight: a tarp makes your campsite a place you want to be during the hours between hikes. Without one, a lot of people end up sitting in their car with the engine running for the air conditioning. With one, you're sitting outside in the shade, reading a book, watching Steller's jays steal crumbs.
+        A tarp makes your campsite a place you want to be during the hours between hikes. Without one, a lot of people end up sitting in their car with the engine running for the air conditioning. With one, you're sitting outside in the shade, reading a book, watching Steller's jays steal crumbs.
       </p>
 
       <h2>Navigation when your phone dies</h2>
@@ -160,7 +160,7 @@ window.ARTICLE_BODIES["pack-your-car-for-yosemite"] = function PackYourCarForYos
       </p>
 
       <p>
-        <strong>A windshield sunshade.</strong> A car sitting in a Yosemite parking lot in July in direct sun reaches oven temperatures inside. A reflective sunshade keeps the steering wheel touchable and the car interior tolerable when you get back from a six-hour hike. This is a three-dollar item that makes a thirty-dollar difference in comfort. I don't know why anyone doesn't carry one.
+        <strong>A windshield sunshade.</strong> A car sitting in a Yosemite parking lot in July in direct sun reaches oven temperatures inside. A reflective sunshade keeps the steering wheel touchable and the car interior tolerable when you get back from a six-hour hike. This is a three-dollar item that makes a thirty-dollar difference in comfort. I don't know why more people don't carry one.
       </p>
 
       <p>
@@ -168,7 +168,7 @@ window.ARTICLE_BODIES["pack-your-car-for-yosemite"] = function PackYourCarForYos
       </p>
 
       <p>
-        <strong>Cash.</strong> Twenty dollars in small bills. Most Valley food locations take cards, but some campground transactions, the occasional roadside produce stand between home and the park, and the rare vending machine still run on cash.
+        <strong>Cash.</strong> Twenty dollars in small bills. Most Valley food locations take cards, but some campground transactions, the occasional roadside produce stand between home and the park, and the rare vending machine still take cash.
       </p>
 
       <p>

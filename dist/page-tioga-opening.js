@@ -301,7 +301,7 @@ function TiogaOpeningPage({
     className: "tg-stops__go"
   }, React.createElement("h3", null, "What the first weeks are for"), React.createElement("p", {
     className: "ff-note tg-stops__lede"
-  }, "The reliable early stops are the roadside ones. The early season rewards drivers, photographers and modest walkers, not peak-baggers."), React.createElement("ul", null, React.createElement("li", null, React.createElement(EventIcon, {
+  }, "The reliable early stops are the roadside ones. The early season rewards drivers, photographers and modest walkers, not people chasing summits."), React.createElement("ul", null, React.createElement("li", null, React.createElement(EventIcon, {
     name: "eye",
     size: 24
   }), React.createElement("div", null, React.createElement("strong", null, "Olmsted Point"), React.createElement("p", null, "The back side of Half Dome. The half-mile slickrock trail usually dries fast, even with snow in the shaded hollows."))), React.createElement("li", null, React.createElement(EventIcon, {

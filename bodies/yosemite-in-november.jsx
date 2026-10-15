@@ -95,7 +95,7 @@ window.ARTICLE_BODIES["yosemite-in-november"] = function YosemiteInNovemberBody(
       <h2>The trails: what is down, what is closing</h2>
 
       <p>
-        <strong>The Half Dome cables are down.</strong> In every season of the park's record from 2014 through 2025 they came down in October, on dates from October 9 to October 22. No November itinerary includes the summit by the cables.
+        <strong>The Half Dome cables are down.</strong> In every season of the park's record from 2014 through 2025 they came down in October, on dates from October 9 to October 22. No November trip can reach the summit by the cables.
       </p>
 
       <p>
@@ -131,7 +131,7 @@ window.ARTICLE_BODIES["yosemite-in-november"] = function YosemiteInNovemberBody(
       </p>
 
       <p>
-        <strong>The end of the month.</strong> Several things stop together. The Mariposa Grove shuttle ends by November 30. In 2026 the concessioner lists Curry Village as not open from November 29 through December 10, so the Saturday night of Thanksgiving weekend is its last until December 11. The ice rink at Curry Village opens for the season on a date the concessioner sets; as of this writing it lists the coming season's as to be determined. The free shuttle to Badger Pass runs only when the ski area is open, which the park says is typically mid-December through March, so November has no ski season.
+        <strong>The end of the month.</strong> Several things stop together. The Mariposa Grove shuttle ends by November 30. In 2026 the concessioner lists Curry Village as not open from November 29 through December 10, so the Saturday night of Thanksgiving weekend is its last until December 11. The ice rink at Curry Village opens for the season on a date the concessioner sets; as of this writing its date is still to be determined. The free shuttle to Badger Pass runs only when the ski area is open, which the park says is typically mid-December through March, so November has no ski season.
       </p>
 
       <h2>Driving in: assume chains</h2>

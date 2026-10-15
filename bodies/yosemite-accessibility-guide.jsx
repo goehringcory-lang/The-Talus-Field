@@ -72,7 +72,7 @@ window.ARTICLE_BODIES["yosemite-accessibility-guide"] = function YosemiteAccessi
       <h2>Planning honestly</h2>
 
       <p>
-        Some arithmetic the brochures soften: the Valley floor is at 4,000 feet and the air is thinner than home; distances between shuttle stops are longer than they look on the cartoon map; and summer afternoon heat radiating off granite is real (our <a href="/articles/yosemite-heat-safety-guide">heat guide</a> applies double at a slower pace of travel). Mornings are cooler and less crowded. The general strategy this site recommends for everyone (arrive early, do less, do it properly) applies here with more force.
+        Some arithmetic the brochures soften: the Valley floor is at 4,000 feet and the air is thinner than home; distances between shuttle stops are longer than they look on the cartoon map; and summer afternoon heat radiating off granite is real (our <a href="/articles/yosemite-heat-safety-guide">heat guide</a> matters more at a slower pace of travel). Mornings are cooler and less crowded. The general strategy this site recommends for everyone (arrive early, do less, do it properly) applies here with more force.
       </p>
 
       <p>

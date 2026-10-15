@@ -38,11 +38,11 @@ window.ARTICLE_BODIES["first-yosemite-backpacking-trip"] = function FirstYosemit
       </p>
 
       <p>
-        Aspect matters as much as elevation, and it catches people who have only read the map. Two slopes at the same altitude a mile apart can be bare granite and waist-deep rotten snow, depending on which way they face and how much afternoon sun they take. A trip that reads as an easy 3,000 feet of gain on the topo becomes a route-finding exercise across a snowfield with a runout, which is a different trip requiring different equipment and a different set of skills.
+        Aspect matters as much as elevation, and it catches people who have only read the map. Two slopes at the same altitude a mile apart can be bare granite and waist-deep rotten snow, depending on which way they face and how much afternoon sun they take. A trip that reads as an easy 3,000 feet of gain on the topographic map can turn into a route-finding exercise across a snowfield with a runout, a slope below you that a fall would not stop on. That is a different trip, needing different equipment and skills.
       </p>
 
       <p>
-        The honest early-season rule: in a normal year, if your route holds you above about 9,500 feet for any length of time, June is a gamble and early July is when it stops being one. In a heavy year, add weeks. In a lean year, subtract them. Snowpack in California swings wildly, from single digits as a percentage of average in the driest years to well over 200 percent in the wettest, so nothing about last year predicts this one. Read the current conditions report for your specific trailhead before you finalize, and be willing to move down a drainage.
+        The honest early-season rule: in a normal year, if your route holds you above about 9,500 feet for any length of time, June is a gamble and early July is when it stops being one. In a heavy year, add weeks. In a lean year, subtract them. Snowpack in California swings wildly, from single digits as a percentage of average in the driest years to well over 200 percent in the wettest, so nothing about last year predicts this one. Read the current conditions report for your specific trailhead before you finalize, and be willing to move down to another drainage, the valley a creek runs through.
       </p>
 
       <blockquote>The road opening tells you the plows finished. It tells you nothing about the pass on day two.</blockquote>
@@ -60,11 +60,11 @@ window.ARTICLE_BODIES["first-yosemite-backpacking-trip"] = function FirstYosemit
       <h2>The creek is the most dangerous thing on your itinerary</h2>
 
       <p>
-        Water-related accidents are one of the leading causes of death in this park, and they are not concentrated in the dramatic places. They happen at crossings, on the days the crossing looked fine. In 2017, after one of the biggest winters on record, a thru-hiker drowned fording Rancheria Creek in Kerrick Canyon in the park's northern backcountry, in July, weeks after anyone would have called it spring. The hazard is a route that is trivial in September and lethal in June, at the same place, with no sign to mark the difference.
+        Water-related accidents are one of the leading causes of death in this park, and they are not concentrated in the dramatic places. They happen at crossings, on the days the crossing looked fine. In 2017, after one of the biggest winters on record, a thru-hiker drowned crossing Rancheria Creek in Kerrick Canyon in the park's northern backcountry, in July, weeks after anyone would have called it spring. The hazard is a route that is trivial in September and lethal in June, at the same place, with no sign to mark the difference.
       </p>
 
       <p>
-        Peak runoff generally arrives from late May into June, but that window shifts earlier in a low-snow year and later in a big one, and it moves through the day as well as through the season. Snowmelt-fed creeks run lowest in the early morning, before the day's sun has worked on the snowfields upstream, and highest in the late afternoon and evening. A crossing you would not attempt at four in the afternoon is often unremarkable at seven the next morning. Building your day around that single fact is the cheapest safety measure in backpacking.
+        Peak runoff generally arrives from late May into June, but that window shifts earlier in a low-snow year and later in a big one, and it moves through the day as well as through the season. Snowmelt-fed creeks run lowest in the early morning, before the day's sun has worked on the snowfields upstream, and highest in the late afternoon and evening. A crossing you would not attempt at four in the afternoon is often unremarkable at seven the next morning. Building your day around that single fact is one of the cheapest safety measures in backpacking.
       </p>
 
       <p>
@@ -92,11 +92,11 @@ window.ARTICLE_BODIES["first-yosemite-backpacking-trip"] = function FirstYosemit
       <h2>You are about to sleep higher than you ever have</h2>
 
       <p>
-        Tioga Road allows something unusual in American mountains, and slightly dangerous. You can leave sea level in the morning, park at a trailhead near 8,500 feet in the afternoon, and be asleep at 9,300 by dark. That is a very fast ascent profile, and it is close to the exact pattern altitude guidance tells people to avoid.
+        Tioga Road allows something unusual in American mountains, and slightly dangerous. You can leave sea level in the morning, park at a trailhead near 8,500 feet in the afternoon, and be asleep at 9,300 by dark. That is a very fast climb, and it is close to the pattern altitude guidance tells people to avoid.
       </p>
 
       <p>
-        The numbers to hold: acute mountain sickness becomes possible for some people somewhere around 8,000 feet, symptoms typically show up six to ten hours after arriving at altitude rather than immediately, and they usually resolve within a day or two provided you do not keep climbing. Standard guidance suggests spending a night or two around 8,000 to 9,000 feet before going higher, and above roughly 9,800 feet, not raising your sleeping elevation more than about 1,600 feet per night.
+        The numbers to hold: acute mountain sickness, or altitude sickness, becomes possible for some people somewhere around 8,000 feet, symptoms typically show up six to ten hours after arriving at altitude rather than immediately, and they usually resolve within a day or two provided you do not keep climbing. Standard guidance suggests spending a night or two around 8,000 to 9,000 feet before going higher, and above roughly 9,800 feet, not raising your sleeping elevation more than about 1,600 feet per night.
       </p>
 
       <p>
@@ -118,7 +118,7 @@ window.ARTICLE_BODIES["first-yosemite-backpacking-trip"] = function FirstYosemit
       </p>
 
       <p>
-        Alpine starts in the Sierra are standard practice.
+        An alpine start, leaving before dawn to be off high ground by midday, is standard practice in the Sierra.
       </p>
 
       <h2>The cold nobody packs for</h2>
@@ -128,11 +128,11 @@ window.ARTICLE_BODIES["first-yosemite-backpacking-trip"] = function FirstYosemit
       </p>
 
       <p>
-        Practically: a 20-degree bag is the honest choice for a Yosemite high-country summer trip, a 30-degree bag works if you sleep warm and layer, and a 40-degree bag is a bad night waiting to happen. Insulation under you matters as much as over you, and it is the thing beginners skimp on; a pad with a decent R-value fixes more cold nights than a heavier bag does. Sleep in a hat. Eat something before you get in the bag, because your body needs fuel to make heat all night.
+        Practically: a 20-degree bag is the honest choice for a Yosemite high-country summer trip, a 30-degree bag works if you sleep warm and layer, and a 40-degree bag is a bad night waiting to happen. Insulation under you matters as much as over you, and it is the thing beginners skimp on; a pad with a decent R-value (its insulation rating) fixes more cold nights than a heavier bag does. Sleep in a hat. Eat something before you get in the bag, because your body needs fuel to make heat all night.
       </p>
 
       <p>
-        And an early-season or late-season trip should assume snow is possible. The first dusting in the high country can arrive in September, and it usually melts within a day, and it is still a miserable night if your kit assumed August.
+        And an early-season or late-season trip should assume snow is possible. The first dusting in the high country can arrive in September, It usually melts within a day, but it is still a miserable night if your kit assumed August.
       </p>
 
       <h2>The canister, and Yosemite's stricter list</h2>
@@ -156,7 +156,7 @@ window.ARTICLE_BODIES["first-yosemite-backpacking-trip"] = function FirstYosemit
       </p>
 
       <p>
-        But the received wisdom about Giardia in the Sierra is worth a more accurate framing, because it has been studied. A long series of surveys of high Sierra water led by researchers at UC Davis, sampling roughly a hundred sites across Yosemite and the parks to the south, found that a majority of them had no detectable water-quality problem at all, and that contamination correlated overwhelmingly with cattle and pack-stock use rather than with backpackers. Coliform bacteria showed up in nearly every grazed site sampled and were rare in the backpacker-only ones. Measured Giardia cyst concentrations in the alpine sites were extremely low, low enough that the authors described the risk to humans as minimal. A separate study of backcountry travelers in the Tahoe-area wilderness found actual cyst acquisition in a small single-digit percentage.
+        But the received wisdom about Giardia in the Sierra is worth a more accurate framing, because it has been studied. A long series of surveys of high Sierra water led by researchers at UC Davis, sampling roughly a hundred sites across Yosemite and the parks to the south, found that a majority of them had no detectable water-quality problem at all, and that contamination correlated overwhelmingly with cattle and pack-stock use rather than with backpackers. Coliform bacteria showed up in nearly every grazed site sampled and were rare in the backpacker-only ones. Measured Giardia cyst concentrations in the alpine sites were extremely low, low enough that the authors described the risk to humans as minimal. A separate study of backcountry travelers in the Tahoe-area wilderness found that a small single-digit percentage actually picked up Giardia cysts.
       </p>
 
       <p>
@@ -170,7 +170,7 @@ window.ARTICLE_BODIES["first-yosemite-backpacking-trip"] = function FirstYosemit
       </p>
 
       <p>
-        <strong>Camp at least 100 feet from water and from the trail.</strong> Call it forty paces. This is the most-violated rule in the wilderness and the one with the most visible consequences, since lakeshore camping is what turns a shoreline into a network of bare social trails.
+        <strong>Camp at least 100 feet from water and from the trail.</strong> Call it forty paces. This is the most-violated rule in the wilderness and the one with the most visible consequences, since lakeshore camping is what turns a shoreline into a web of bare paths worn by campers.
       </p>
 
       <p>
@@ -224,7 +224,7 @@ window.ARTICLE_BODIES["first-yosemite-backpacking-trip"] = function FirstYosemit
       <h2>What actually goes wrong</h2>
 
       <p>
-        Yosemite runs on the order of a couple of hundred search-and-rescue operations a year, and the number has been climbing, partly because satellite messengers now let people call for help from places where previously they would have walked out. The distribution is instructive: the modal patient is not a lost mountaineer, it is somebody with a lower-body injury on a maintained trail. Extremity injuries dominate the backcountry medical calls. Falls are the mechanism most likely to be fatal.
+        Yosemite runs on the order of a couple of hundred search-and-rescue operations a year, and the number has been climbing, partly because satellite messengers now let people call for help from places where previously they would have walked out. The distribution is instructive: the modal patient is not a lost mountaineer, it is somebody with a lower-body injury on a maintained trail. Injuries to arms and legs dominate the backcountry medical calls. Falls are the mechanism most likely to be fatal.
       </p>
 
       <p>

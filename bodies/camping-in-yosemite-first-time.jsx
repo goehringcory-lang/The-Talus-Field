@@ -50,7 +50,7 @@ window.ARTICLE_BODIES["camping-in-yosemite-first-time"] = function CampingInYose
       </p>
 
       <p>
-        <strong>No showers. Not at any campground in the park.</strong> Not the Valley ones, not Wawona, not Tuolumne. The nearest public showers are at Curry Village, they cost about five dollars, and in peak season the line reaches the point where you have to decide how much you actually mind. Baby wipes and a gallon jug do most of the work. Plan for three days of not being clean and it stops being a problem; plan for a shower and it ruins an evening.
+        <strong>No showers. Not at any campground in the park.</strong> Not the Valley ones, not Wawona, not Tuolumne. The nearest public showers are at Curry Village. They cost about five dollars, and in peak season the line reaches the point where you have to decide how much you actually mind. Baby wipes and a gallon jug do most of the work. Plan for three days of not being clean and it stops being a problem; plan for a shower and it ruins an evening.
       </p>
 
       <p>
@@ -76,7 +76,7 @@ window.ARTICLE_BODIES["camping-in-yosemite-first-time"] = function CampingInYose
       </p>
 
       <p>
-        The failure mode is almost never ignorance. Nobody arrives here unaware that Yosemite has bears. The failure is the latch. You unload dinner, you cook, you carry the plates back, your hands are full, and you swing the door shut without dropping the latch pin. A closed unlatched box is an open box to a bear that has opened four hundred of them. A recurring share of the park's incidents trace to exactly that gesture, and they cluster in the busiest lodging areas in early summer, when the greatest number of people are doing it for the first time.
+        The failure mode is almost never ignorance. Nobody arrives here unaware that Yosemite has bears. The failure is the latch. You unload dinner, you cook, you carry the plates back, your hands are full, and you swing the door shut without dropping the latch pin. A closed unlatched box is an open box to a bear that has opened four hundred of them. A recurring share of the park's incidents trace to exactly that gesture, and they cluster in the busiest lodging areas in early summer, when the most first-timers are in camp.
       </p>
 
       <p>
@@ -158,7 +158,7 @@ window.ARTICLE_BODIES["camping-in-yosemite-first-time"] = function CampingInYose
       </p>
 
       <p>
-        On which: raccoons are the animal you will actually meet. Bears are the famous problem and the well-managed one. Raccoons are relentless, dexterous, and entirely unafraid, and they will work a tent zipper for a tube of toothpaste. Every bear rule doubles as a raccoon rule. Anything scented in the box means anything, including the thing in the tent pocket you forgot about.
+        On which: raccoons are the animal you will actually meet. Bears are the famous problem and the well-managed one. Raccoons are relentless, dexterous, and entirely unafraid, and they will work a tent zipper for a tube of toothpaste. Every bear rule doubles as a raccoon rule. Anything scented belongs in the box, including the thing in the tent pocket you forgot about.
       </p>
 
       <p>
@@ -172,7 +172,7 @@ window.ARTICLE_BODIES["camping-in-yosemite-first-time"] = function CampingInYose
       </p>
 
       <p>
-        California black oaks, the big spreading ones that shade the best sites on the Valley floor, shed limbs in still, hot weather. The phenomenon has a name, summer branch drop, and the unnerving part is that it happens on calm days rather than windy ones, and the break tends to occur some feet out along the limb rather than at the trunk, which is exactly where the visual cues you would look for are absent. The tree looks fine. The limb looks fine. It comes down anyway.
+        California black oaks, the big spreading ones that shade the best sites on the Valley floor, shed limbs in still, hot weather. The phenomenon has a name, summer branch drop, and the unnerving part is that it happens on calm days rather than windy ones. The break tends to come some feet out along the limb, not at the trunk, which is exactly where the visual cues you would look for are absent. The tree looks fine. The limb looks fine. It comes down anyway.
       </p>
 
       <p>
@@ -196,7 +196,7 @@ window.ARTICLE_BODIES["camping-in-yosemite-first-time"] = function CampingInYose
       </p>
 
       <p>
-        <strong>Assuming the camping reservation gets you into the park.</strong> It does not. The entrance fee is separate, it is $35 per vehicle for seven days, and the gate is cashless. <a href="/articles/getting-to-yosemite">Getting in</a> is a separate problem from the reservation.
+        <strong>Assuming the camping reservation gets you into the park.</strong> It does not. The entrance fee is separate: $35 per vehicle for seven days, and the gate is cashless. <a href="/articles/getting-to-yosemite">Getting in</a> is a separate problem from the reservation.
       </p>
 
       <p>

@@ -63,7 +63,7 @@ window.ARTICLE_BODIES["yosemite-in-december"] = function YosemiteInDecemberBody(
       </p>
 
       <p>
-        The <strong>Curry Village ice rink</strong>, which the concessioner says has been operating since 1928, is the winter activity that needs no snow and no skill. Its published schedule runs three sessions a day, at noon, 3:30, and 7 p.m., with an extra 8:30 a.m. session on weekends and holidays, and tickets can be bought online in advance or at the Curry Village tour desk. The opening date for each season is set by the concessioner; as of this writing it lists the coming season's as to be determined, so confirm it before you promise a skate to anyone.
+        The <strong>Curry Village ice rink</strong>, which the concessioner says has been operating since 1928, is the winter activity that needs no snow and no skill. Its published schedule runs three sessions a day, at noon, 3:30, and 7 p.m., with an extra 8:30 a.m. session on weekends and holidays, and tickets can be bought online in advance or at the Curry Village tour desk. The opening date for each season is set by the concessioner; as of this writing its date is still to be determined, so confirm it before you promise a skate to anyone.
       </p>
 
       <p>
@@ -121,7 +121,7 @@ window.ARTICLE_BODIES["yosemite-in-december"] = function YosemiteInDecemberBody(
       <h2>A naturalist's December</h2>
 
       <p>
-        The waterfalls are low going into the month. The park's description of the winter is that water levels tend to be low, but once some snow and rain have fallen, Yosemite Falls begins flowing again, though not at springtime levels. A wet December brings the falls back from the autumn stains; a dry one leaves them quiet until the new year. Either way the river is low and clear, and the Valley's sound is mostly the absence of crowds.
+        The waterfalls are low going into the month. The park's description of the winter is that water levels tend to be low, but once some snow and rain have fallen, Yosemite Falls begins flowing again, though not at springtime levels. A wet December brings the falls back; a dry one leaves them quiet until the new year. Either way the river is low and clear, and the Valley's sound is mostly the absence of crowds.
       </p>
 
       <p>

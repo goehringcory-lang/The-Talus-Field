@@ -469,7 +469,7 @@ window.ARTICLE_BODIES["yosemite-rockfall"] = function YosemiteRockfallBody() {
       </p>
 
       <p>
-        Below El Capitan, a giant tongue of boulders stretches about <strong>2,200 feet</strong> out into the Valley. It is so big that it pushes the Merced River, and Northside Drive, into a sharp bend. Scientists dated it in a clever way. Rays from space slowly change the surface of any rock left out in the open. By measuring that change in five boulders, they found that four had been lying there for about <strong>3,600 years</strong>. The whole pile weighs about 8 million tons.
+        Below El Capitan, a giant tongue of boulders stretches about <strong>2,200 feet</strong> out into the Valley. It is so big that it pushes the Merced River, and Northside Drive, into a sharp bend. Scientists dated it with an unusual method. Rays from space slowly change the surface of any rock left out in the open. By measuring that change in five boulders, they found that four had been lying there for about <strong>3,600 years</strong>. The whole pile weighs about 8 million tons.
       </p>
 
       <p>

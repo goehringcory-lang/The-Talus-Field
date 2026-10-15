@@ -301,7 +301,7 @@ window.ARTICLE_BODIES["best-airport-for-yosemite"] = function BestAirportForYose
                   From San Francisco the route is three legs, and it runs every day of the year. The San Joaquins train does not reach the city itself, so you start on BART. Amtrak sells the train and the YARTS bus as one ticket to Yosemite, and the bus is timed to meet the trains at Merced. Allow four to four and a half hours from the Bay, which is no faster than driving and a good deal more restful.
                 </p>
                 <p>
-                  The bus drops you at Yosemite Valley Lodge, Yosemite Village or Curry Village, all on the free Valley shuttle. Whether the bus fare also covers your entrance fee is something the park's pages and YARTS' own currently answer differently, so budget for it; <a href="/articles/yosemite-shuttle-and-yarts">the shuttle and YARTS guide</a> sets out both positions and the timetable.
+                  The bus drops you at Yosemite Valley Lodge, Yosemite Village or Curry Village, all on the free Valley shuttle. The park's pages and YARTS currently give different answers on whether a bus fare also covers the entrance fee, so budget for the fee anyway; <a href="/articles/yosemite-shuttle-and-yarts">the shuttle and YARTS guide</a> sets out both positions and the timetable.
                 </p>
               </div>
             </div>
@@ -420,7 +420,7 @@ window.ARTICLE_BODIES["best-airport-for-yosemite"] = function BestAirportForYose
             <div className="fly-loop__way">
               <p className="fly-loop__season">Summer only</p>
               <h3>Over Tioga Pass</h3>
-              <p>East over the pass, then south down US 395 past Mammoth Lakes and Lone Pine. Longer and slower, and superb. The road is typically open from late May or June into November; check <a href="/tioga-opening">the Tioga Road page</a> before you book a route that needs it.</p>
+              <p>East over the pass, then south down US 395 past Mammoth Lakes and Lone Pine. Longer and slower, and the views are worth the time. The road is typically open from late May or June into November; check <a href="/tioga-opening">the Tioga Road page</a> before you book a route that needs it.</p>
             </div>
           </div>
         </div>
@@ -435,7 +435,7 @@ window.ARTICLE_BODIES["best-airport-for-yosemite"] = function BestAirportForYose
             <div className="ff-closing">
               <p className="hp-eyebrow">LANDING AT LAX?</p>
               <h3>Sleep in Oakhurst</h3>
-              <p>An Oakhurst or Fish Camp bed turns the push from Los Angeles into an afternoon drive and a morning at the gate before the line forms.</p>
+              <p>An Oakhurst or Fish Camp bed splits the drive from Los Angeles into an afternoon leg and a morning at the gate, before the line forms.</p>
               <TownBook town={TOWNS[2]}>Search Oakhurst lodging ↗</TownBook>
             </div>
           </div>

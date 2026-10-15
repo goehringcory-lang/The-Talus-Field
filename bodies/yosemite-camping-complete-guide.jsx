@@ -394,7 +394,7 @@ window.ARTICLE_BODIES["yosemite-camping-complete-guide"] = function YosemiteCamp
             </li>
             <li>
               <span>If you miss</span>
-              <p>Stay on the page ten more minutes. Sites that go into a cart and never get paid for return to the pool, so a campground that reads sold out at 7:03 is not always sold out at 7:12. After that, the cancellation game is the whole strategy.</p>
+              <p>Stay on the page ten more minutes. A site that goes into a cart and is never paid for goes back into the pool, so a campground that reads sold out at 7:03 may not be sold out at 7:12. After that, the cancellation game is the whole strategy.</p>
             </li>
           </ol>
         </div>
@@ -688,7 +688,7 @@ window.ARTICLE_BODIES["yosemite-camping-complete-guide"] = function YosemiteCamp
         <div className="cg-camps cg-camps--three">
           <Camp id="tuolumne" name="Tuolumne Meadows" pick="The crown jewel" chips={["289 sites", "$36", "2-month and 2-week windows", "Jul 1 to Sep 27 in 2026"]}>
             <p>The largest campground in the park, at 8,600 feet. It reopened on August 1, 2025, after a three-year, $26 million rehabilitation that closed it from 2022, with rebuilt restrooms and new water and sewer systems. Twenty-nine of the sites are new hike-in sites, the closest thing to backcountry camping you can do with a car in the lot. The meadows stretch wide and golden, the Tuolumne River winds through them, and the granite domes are smoother and rounder than the Valley's cliffs.</p>
-            <p>Half the sites book on the two-month window, released on the 15th, and half on the two-week rolling window. Expect more competition than the site count suggests: several years of people who wanted Tuolumne and could not have it are pointed at the same inventory. The two-month window is a smaller crowd than the Valley's five-month scramble, but not an empty one. The Tuolumne Meadows store and grill are nearby in season.</p>
+            <p>Half the sites book on the two-month window, released on the 15th, and half on the two-week rolling window. Expect more competition than the site count suggests. Several years of people who could not get Tuolumne are all aiming at the same sites. The two-month window draws a smaller crowd than the Valley's five-month scramble, but not an empty one. The Tuolumne Meadows store and grill are nearby in season.</p>
             <p>It is the staging area for the park's best backcountry: Cathedral Lakes, Lyell Canyon, the Pacific Crest Trail. <a href="/articles/hetch-hetchy-the-other-yosemite-valley">Hetch Hetchy</a> is also reachable from the Tioga corridor.</p>
           </Camp>
           <Camp id="white-wolf" name="White Wolf" chips={["68 sites", "$28", "2-week window", "Jul 2 to Sep 14 in 2026"]}>
@@ -707,7 +707,7 @@ window.ARTICLE_BODIES["yosemite-camping-complete-guide"] = function YosemiteCamp
         <div className="hp-wrap hp-section">
           <p className="hp-eyebrow">THE PRIMITIVE ONES</p>
           <h2>Twenty-four dollars, a vault toilet, and room</h2>
-          <p className="ff-lede">No flush toilets. No drinking water: creek water has to be boiled or treated. Access roads that most RVs should skip. They are the best-kept camping secret in Yosemite, and the people who know them tend not to advertise.</p>
+          <p className="ff-lede">No flush toilets. No drinking water: creek water has to be boiled or treated. Access roads that most RVs should skip. They are easy to overlook, and the people who know them tend not to advertise.</p>
           <div className="cg-camps cg-camps--three">
             <Camp id="tamarack-flat" name="Tamarack Flat" pick="Rarely full" chips={["52 sites", "$24", "2-week window", "6,300 ft", "No RVs"]}>
               <p>Reached by a 3-mile narrow, single-lane road with many hairpin turns off the Tioga Road. No RVs or trailers, vault toilets, food lockers and no cell reception. The road filters out most casual campers, and what remains is a quiet campground in a pine-and-fir forest.</p>
@@ -739,7 +739,7 @@ window.ARTICLE_BODIES["yosemite-camping-complete-guide"] = function YosemiteCamp
                 Every campground has food lockers, and you must store all your food in them, 24 hours a day. "Food" means any scented item, whatever the packaging: canned goods, drinks, soap, cosmetics, toiletries, trash, ice chests and unwashed cooking utensils. Rangers enforce it. Failure to store food properly can mean impounded food or car, removal from your campsite and a fine of up to $5,000. More importantly, bears that get human food often lose their fear of people and end up being killed to protect people. Lazy food storage can kill a bear.
               </p>
               <p>
-                At camp the protocol is simple. Cook and eat at your picnic table. Clean up right away. Put everything back in the locker and latch it before you walk away, every time, even if you are only going to the bathroom. Bears may come into a campsite while you are standing in it, and they need minutes, not hours.
+                At camp the protocol is simple. Cook and eat at your picnic table. Clean up right away. Put everything back in the locker and latch it before you walk away, every time, even if you are only going to the bathroom. Bears may walk into a campsite while you are standing in it. They need only minutes.
               </p>
             </div>
           </div>
@@ -900,7 +900,7 @@ window.ARTICLE_BODIES["yosemite-camping-complete-guide"] = function YosemiteCamp
             <span className="cg-ladder__n">5</span>
             <div>
               <strong>National forest land</strong>
-              <p>Yosemite is ringed by Sierra National Forest to the south and Stanislaus National Forest to the north, where the competition is a fraction and some camping is free. Dispersed camping means no services at all: no water, toilets, tables or trash pickup, and a California campfire permit if you want a fire.</p>
+              <p>Yosemite is ringed by Sierra National Forest to the south and Stanislaus National Forest to the north, where there is far less competition and some camping is free. Dispersed camping means no services at all: no water, toilets, tables or trash pickup, and a California campfire permit if you want a fire.</p>
               <p><strong>Hardin Flat Road</strong>, off Highway 120 west of the Big Oak Flat entrance, is a dispersed area on the Stanislaus's Highway 120 corridor, just outside the park. <strong>Goat Meadow</strong>, off Mt. Raymond Road near Fish Camp, is the southern equivalent, rough and without amenities. There are no lockers, so plan your food storage before you go.</p>
               <p className="cg-ladder__meta"><span className="cg-chip">Outside</span><span className="cg-chip">Free</span><span className="cg-chip">No services</span></p>
             </div>

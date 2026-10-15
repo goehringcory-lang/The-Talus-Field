@@ -84,7 +84,7 @@ window.ARTICLE_BODIES["wildfire-in-yosemite-during-your-trip"] = function Wildfi
       </p>
 
       <p>
-        Two lessons follow. First, the worst of the smoke in the lower park tends to be in the morning, so a smoky dawn is not a verdict on the day; check again at noon. Second, which part of the park has the clean air changes from day to day and is not always the high country. The rule of thumb that Tuolumne sits above the Valley's smoke is often right, and <a href="/articles/yosemite-during-smoke-season">the smoke-season guide</a> lays out when it is and the AQI thresholds for changing plans, but the Dome Fire's forecasts had Tuolumne under the same rating as the Valley on some days. Read the day's forecast and the monitors, not the rule.
+        Two lessons follow. First, the worst of the smoke in the lower park tends to be in the morning, so a smoky dawn is not a verdict on the day; check again at noon. Second, the cleanest air moves from day to day, and the high country does not always win. The rule of thumb that Tuolumne sits above the Valley's smoke is often right, and <a href="/articles/yosemite-during-smoke-season">the smoke-season guide</a> lays out when it is and the AQI thresholds for changing plans, but the Dome Fire's forecasts had Tuolumne under the same rating as the Valley on some days. Read the day's forecast and the monitors, not the rule.
       </p>
 
       <Placeholder
@@ -148,11 +148,11 @@ window.ARTICLE_BODIES["wildfire-in-yosemite-during-your-trip"] = function Wildfi
       </p>
 
       <p>
-        <strong>Reshape the days</strong> when one piece of the plan is behind a closure. This is the usual case. Swap the closed road for the open one: if Glacier Point is shut, the Tioga Road day is the obvious trade while that road is open, and <a href="/articles/tuolumne-meadows-in-a-day">the Tuolumne day guide</a> is built for it. Move the long hikes to the afternoons if the smoke is a morning problem, or to the part of the park the day's forecast favors. Keep the Valley walks, which are short enough to take on a hazy morning and drop without regret.
+        <strong>Reshape the days</strong> when one piece of the plan is behind a closure. This is the usual case. Swap the closed road for the open one: if Glacier Point is shut, the Tioga Road day is the obvious trade while that road is open, and <a href="/articles/tuolumne-meadows-in-a-day">the Tuolumne day guide</a> is built for it. Move the long hikes to the afternoons if the smoke is a morning problem, or to the part of the park the day's forecast favors. Keep the Valley walks, which are short enough to take on a hazy morning and easy to skip without regret.
       </p>
 
       <p>
-        <strong>Move the base</strong> when the smoke is settling on your bed every night, or a closure has cut your lodging off from the rest of your plan. The same question <a href="/articles/highway-140-closed-yosemite">the Highway 140 closure guide</a> asks applies here: which side of the line is your bed on? A fire in the southern park puts Groveland and the Big Oak Flat side at the far end of the drive from it, and <a href="/articles/yosemite-gateway-towns-compared">the gateway-town comparison</a> covers the trade-offs of each town. Whether a move is possible depends on your current booking's terms and on what is open on your dates on the other side,.
+        <strong>Move the base</strong> when the smoke is settling on your bed every night, or a closure has cut your lodging off from the rest of your plan. The same question <a href="/articles/highway-140-closed-yosemite">the Highway 140 closure guide</a> asks applies here: which side of the line is your bed on? A fire in the southern park puts Groveland and the Big Oak Flat side at the far end of the drive from it, and <a href="/articles/yosemite-gateway-towns-compared">the gateway-town comparison</a> covers the trade-offs of each town. Whether a move is possible depends on your current booking's terms and on what is open on your dates on the other side.
       </p>
 
       <LodgingCta

@@ -1533,7 +1533,7 @@ function StayPage({ go }) {
 
         <aside className="stay-plate stay-fallback" aria-label="If the picks are booked">
           <div className="stay-fallback__main">
-            <div className="stay-plate__eyebrow">In-park inventory gone for your dates? For summer it usually is.</div>
+            <div className="stay-plate__eyebrow">Rooms in the park gone for your dates? For summer it usually is.</div>
             <h2 className="stay-fallback__title">
               Hold a room outside. Then watch for one <em>inside.</em>
             </h2>
@@ -1705,7 +1705,7 @@ function StayPage({ go }) {
           </li>
           <li>
             <a href="/articles/yosemite-trip-cost-budget">What a Yosemite trip costs</a>
-            <span className="relrail__dek">The arithmetic of each lodging approach across a whole trip.</span>
+            <span className="relrail__dek">What each lodging approach costs across a whole trip.</span>
           </li>
           <li>
             <a href="/articles/getting-to-yosemite">Getting to Yosemite</a>
@@ -1717,7 +1717,7 @@ function StayPage({ go }) {
           </li>
           <li>
             <a href="/itineraries" onClick={(e) => goRoute(e, "itineraries")}>Itineraries</a>
-            <span className="relrail__dek">One, two, and three-day plans to hang the nights on.</span>
+            <span className="relrail__dek">One-, two- and three-day plans to build your nights around.</span>
           </li>
         </ul>
 

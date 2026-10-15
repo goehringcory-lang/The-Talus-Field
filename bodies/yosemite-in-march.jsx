@@ -46,7 +46,7 @@ window.ARTICLE_BODIES["yosemite-in-march"] = function YosemiteInMarchBody() {
       </p>
 
       <p>
-        The two winter amenities are the fine print of a March trip, because both of them end as the month begins. The <strong>Curry Village ice rink</strong> skates its final sessions in the first days of March; in 2026 the season ended on March 2. <strong>Badger Pass</strong> traditionally runs into late March or early April, but that tradition is wobbling: in 2026 it closed for the season on March 18, and the winter before that it never opened at all. If skiing or the Dewey Point snowshoe is the point of your trip, come early in the month and check the operating status before you drive up, because when Badger is done, so is your trailhead.
+        The two winter amenities are the fine print of a March trip, and both can close before the month is over. The <strong>Curry Village ice rink</strong> skates its final sessions in the first days of March; in 2026 the season ended on March 2. <strong>Badger Pass</strong> traditionally runs into late March or early April, but that tradition is wobbling: in 2026 it closed for the season on March 18, and the winter before that it never opened at all. If skiing or the Dewey Point snowshoe is the point of your trip, come early in the month and check the operating status before you drive up, because when Badger is done, so is your trailhead.
       </p>
 
       <h2>Driving in: assume chains until the forecast proves otherwise</h2>
@@ -102,7 +102,7 @@ window.ARTICLE_BODIES["yosemite-in-march"] = function YosemiteInMarchBody() {
       </p>
 
       <p>
-        <strong>If you get the winter March</strong>, you have won something, whatever it does to your plans. A clearing storm is the best photographic condition this park offers, and March delivers the last reliable ones of the season: fog tearing off the walls, fresh snow outlining every ledge on El Capitan, and viewpoints that in summer hold a hundred people holding six. Be at Tunnel View when the storm breaks, then walk the Valley loop while the snow is still on the oaks; it rarely survives the next warm afternoon. <a href="/articles/yosemite-photography-spots">The photography guide</a> covers where to stand.
+        <strong>If you get the winter March</strong>, you have won something, whatever it does to your plans. A clearing storm is among the best photographic conditions this park offers, and March delivers the last reliable ones of the season: fog tearing off the walls, fresh snow outlining every ledge on El Capitan, and viewpoints that in summer hold a hundred people holding six. Be at Tunnel View when the storm breaks, then walk the Valley loop while the snow is still on the oaks; it rarely survives the next warm afternoon. <a href="/articles/yosemite-photography-spots">The photography guide</a> covers where to stand.
       </p>
 
       <p>

@@ -6,13 +6,13 @@ window.ARTICLE_BODIES["tuolumne-meadows-in-a-day"] = function TuolumneMeadowsInA
   return (
     <>
       <p className="dropcap">
-        Most people meet Tuolumne Meadows through a windshield at forty miles an hour on their way to Mono Lake, and come away thinking it was scenery, not a destination. That is a failure of itinerary design. Yosemite Valley is a canyon: you stand at the bottom and look up. Tuolumne is the opposite country, a broad open meadow at around 8,600 feet with the river running through it and granite domes standing loose around the edges, and you are on top of it rather than under it. It is worth a day. This is how to spend one, no climbing required.
+        Most people meet Tuolumne Meadows through a windshield at forty miles an hour on their way to Mono Lake, and come away thinking it was scenery, not a destination. That is a planning mistake. Yosemite Valley is a canyon: you stand at the bottom and look up. Tuolumne is the opposite country, a broad open meadow at around 8,600 feet with the river running through it and granite domes standing loose around the edges, and you are on top of it rather than under it. It is worth a day. This is how to spend one, no climbing required.
       </p>
 
       <h2>The drive, and the two hours nobody budgets</h2>
 
       <p>
-        Tuolumne Meadows sits on Tioga Road, Highway 120 through the park, roughly 55 to 60 miles from Yosemite Valley. Call it an hour and a half each way in no traffic, and closer to two in July. That is three to four hours of driving bracketing your day, and that is what ruins Tuolumne itineraries: people leave the Valley at ten, arrive at noon, eat, walk for an hour, and drive home having seen a meadow through a window.
+        Tuolumne Meadows sits on Tioga Road, Highway 120 through the park, roughly 55 to 60 miles from Yosemite Valley. Call it an hour and a half each way in no traffic, and closer to two in July. That is three to four hours of driving bookending your day, and that is what ruins Tuolumne itineraries: people leave the Valley at ten, arrive at noon, eat, walk for an hour, and drive home having seen a meadow through a window.
       </p>
 
       <p>
@@ -66,7 +66,7 @@ window.ARTICLE_BODIES["tuolumne-meadows-in-a-day"] = function TuolumneMeadowsInA
       </p>
 
       <p>
-        <strong>Soda Springs and Parsons Memorial Lodge. A mile and a half, a hundred feet, an hour and a quarter.</strong> Flat, on an old road, from the Lembert Dome lot across the meadow. At the end there are springs bubbling up naturally carbonated out of the ground, which children tend not to believe, and a stone Sierra Club lodge from 1915 where a good deal of the argument about what national parks are for was thrashed out.
+        <strong>Soda Springs and Parsons Memorial Lodge. A mile and a half, a hundred feet, an hour and a quarter.</strong> Flat, on an old road, from the Lembert Dome lot across the meadow. At the end there are springs bubbling up naturally carbonated out of the ground, which children tend not to believe, and a stone Sierra Club lodge from 1915 where much of the argument about what national parks are for took place.
       </p>
 
       <p>
@@ -84,7 +84,7 @@ window.ARTICLE_BODIES["tuolumne-meadows-in-a-day"] = function TuolumneMeadowsInA
       <h2>If you want one real hike</h2>
 
       <p>
-        <strong>Lembert Dome</strong> is the classic: two and eight tenths of a mile with 850 feet of climb, up the back of the dome that stands over the east end of the meadow, finishing on bare granite with the whole basin underneath you. Allow two and a half hours. It is a walk-up rather than a scramble, but the last stretch is open rock with real exposure at the edges, so it is a poor choice with a child who runs.
+        <strong>Lembert Dome</strong> is the classic: two and eight tenths of a mile with 850 feet of climb, up the back of the dome that stands over the east end of the meadow, finishing on bare granite with the whole basin underneath you. Allow two and a half hours. It is a walk-up rather than a scramble, but the last stretch is open rock with real exposure at the edges, so it is a poor choice for a child who runs off.
       </p>
 
       <p>
@@ -104,13 +104,13 @@ window.ARTICLE_BODIES["tuolumne-meadows-in-a-day"] = function TuolumneMeadowsInA
       </p>
 
       <p>
-        The mitigations are simple: drink considerably more water than you want to, eat more than you planned, go slower than feels natural on the first walk of the day, and treat the first hour up there as an adjustment rather than an achievement. If a headache does not respond to water, food, and rest, the treatment is elevation loss, and you have a car and a road that descends 4,000 feet. Use it rather than pushing on.
+        The mitigations are simple: drink considerably more water than you want to, eat more than you planned, go slower than feels natural on the first walk of the day, and treat the first hour up there as an adjustment rather than an achievement. If a headache does not respond to water, food, and rest, the treatment is to go down, and you have a car and a road that descends 4,000 feet. Use it rather than pushing on.
       </p>
 
       <h2>The afternoon storm, which ends the day earlier than you want</h2>
 
       <p>
-        In July and August the Sierra high country builds thunderstorms out of a clear morning with startling speed. The pattern is reliable enough to plan around: clear at dawn, cumulus stacking by late morning, and the possibility of lightning from early afternoon on.
+        In July and August the Sierra high country builds thunderstorms out of a clear morning with startling speed. The pattern is reliable enough to plan around: clear at dawn, cumulus clouds building by late morning, and the possibility of lightning from early afternoon on.
       </p>
 
       <p>
@@ -148,7 +148,7 @@ window.ARTICLE_BODIES["tuolumne-meadows-in-a-day"] = function TuolumneMeadowsInA
         <li>Pack all food and water. Seasonal services up there cannot be assumed and several are still disrupted.</li>
         <li>The best short walks are Olmsted Point (half a mile), Pothole Dome (one mile), and Soda Springs (a mile and a half). None require being a hiker.</li>
         <li>Tenaya Lake is the family stop: sandy beach, flat loop, cold water.</li>
-        <li>Do exposed granite in the morning. Afternoon thunderstorms are the season's normal behavior.</li>
+        <li>Do exposed granite in the morning. Afternoon thunderstorms are normal for the season.</li>
         <li>The altitude is 8,600 feet. Drink more, eat more, go slower, and descend if a headache will not shift.</li>
         <li>Cathedral Lakes is a separate day. Do not staple it onto this one.</li>
       </ol>

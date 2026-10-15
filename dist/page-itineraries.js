@@ -357,7 +357,7 @@ function ItinEmailPlan({
     onDone: mail
   }), React.createElement("p", {
     className: "ff-note"
-  }, "One link that opens these stops in order on the map, on any device. It comes with Sunday Field Notes, one short letter a week. Free, leave anytime.")) : React.createElement("p", {
+  }, "One link that opens these stops in order on the map, on any device. It comes with Sunday Field Notes, one short letter a week. Free, and you can unsubscribe at any time.")) : React.createElement("p", {
     className: "ff-note",
     role: "status"
   }, state === "sending" ? "Sending…" : state === "sent" ? "Sent. The plan is in your inbox." : "The plan did not send just now. The map button above opens the same stops.", state !== "sending" && mode === "tab" ? ` ${window.nlDoneLine("tab")}` : ""));

@@ -20,7 +20,7 @@ window.ARTICLE_BODIES["glacier-point-how-to-visit"] = function GlacierPointHowTo
       </p>
 
       <p>
-        From the parking area a <strong>paved, wheelchair-accessible trail of about 300 yards</strong> leads to the point, a ten- or fifteen-minute walk on a gentle grade. There are restrooms, a stone amphitheater, a snack bar and gift shop in season, and on the terrace below the shop a bronze relief model of the country you are looking at, worth two minutes so the peaks have names. Drinking water is a bottle-filling station that the park describes as available from late spring to early fall, which means it may not be running in the first weeks of the season or the last; carry your own. This is the highest-return view per step in Yosemite, and <a href="/articles/yosemite-for-non-hikers">the non-hiker's guide</a> treats it as the anchor of a day for exactly that reason.
+        From the parking area a <strong>paved, wheelchair-accessible trail of about 300 yards</strong> leads to the point, a ten- or fifteen-minute walk on a gentle grade. There are restrooms, a stone amphitheater, a snack bar and gift shop in season, and on the terrace below the shop a bronze relief model of the country you are looking at, worth two minutes so the peaks have names. Drinking water is a bottle-filling station that the park describes as available from late spring to early fall, which means it may not be running in the first weeks of the season or the last; carry your own. This is the most view per step in Yosemite, and <a href="/articles/yosemite-for-non-hikers">the non-hiker's guide</a> treats it as the anchor of a day for exactly that reason.
       </p>
 
       <p>
@@ -73,7 +73,7 @@ window.ARTICLE_BODIES["glacier-point-how-to-visit"] = function GlacierPointHowTo
       </p>
 
       <p>
-        In practice, a summer visit to Glacier Point has two good hours, early and late, and a shuttle in between. Arrive before ten and the day is yours, including the hikes. Arrive at noon on a July Saturday and plan on Badger Pass, a twenty-minute wait and a ride, and a last bus down at half past five that ends any idea of staying for the light. Arrive after 4:30 and you drive again, into the evening the lot was built for. The park frames the rule as mid-May to September. In October the same lot can fill for sunset with nobody managing it, and that is the case the next section is about.
+        In practice, a summer visit to Glacier Point has two good hours, early and late, and a shuttle in between. Arrive before ten and the day is yours, including the hikes. Arrive at noon on a July Saturday and plan on Badger Pass, a twenty-minute wait and a ride, and a last bus down at half past five that ends any idea of staying for the light. Arrive after 4:30 and you drive in yourself, with no shuttle to wait for. The park frames the rule as mid-May to September. In October the same lot can fill for sunset with nobody managing it, and that is the case the next section is about.
       </p>
 
       <h2>The hour decides the rest</h2>
@@ -83,7 +83,7 @@ window.ARTICLE_BODIES["glacier-point-how-to-visit"] = function GlacierPointHowTo
       </p>
 
       <p>
-        <strong>Sunset</strong> is the answer people want, and it has a catch the summer rule does not solve. After 4:30 pm you can drive up, but the lot at the end of the road is finite and a sunset crowd can fill it in any month the road is open, with no shuttle to fall back on after 5:30 pm. So arrive with an hour to spare, and if the Glacier Point lot is full, take the Washburn Point lot a short way back and walk: the sunset on Half Dome is the same, the falls are more in view, and the crowd at the railing is a fraction. Then remember the drive down is an hour in the dark, on a road with deer on it.
+        <strong>Sunset</strong> is the answer people want, and it has a catch the summer rule does not solve. After 4:30 pm you can drive up, but the lot at the end of the road is finite and a sunset crowd can fill it in any month the road is open, with no shuttle to fall back on after 5:30 pm. So arrive with an hour to spare, and if the Glacier Point lot is full, take the Washburn Point lot a short way back and walk: the sunset on Half Dome is the same, the falls are more in view, and the crowd at the railing is a fraction of the size. Then remember the drive down is an hour in the dark, on a road with deer on it.
       </p>
 
       <p>

@@ -64,7 +64,7 @@ window.ARTICLE_BODIES["yosemite-in-june"] = function YosemiteInJune2026Body() {
       </p>
 
       <p>
-        It also opens the option I recommend to almost every June visitor: hike <a href="/articles/four-mile-up-panorama-down">Four Mile Trail up and Panorama Trail down</a>. This is the single best day hike in Yosemite, and in June you get waterfalls at every turn. Vernal and Nevada Falls are both visible from the Panorama Trail, and Illilouette Fall, which most visitors never see, is at its best in early June. Start by 7 a.m. to beat the heat on the Four Mile ascent.
+        It also opens the option I recommend to almost every June visitor: hike <a href="/articles/four-mile-up-panorama-down">Four Mile Trail up and Panorama Trail down</a>. This is one of the best day hikes in Yosemite, and in June you get waterfalls at every turn. Vernal and Nevada Falls are both visible from the Panorama Trail, and Illilouette Fall, which most visitors never see, is at its best in early June. Start by 7 a.m. to beat the heat on the Four Mile ascent.
       </p>
 
       <h2>Crowds in June 2026</h2>

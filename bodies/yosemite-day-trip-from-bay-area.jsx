@@ -90,7 +90,7 @@ window.ARTICLE_BODIES["yosemite-day-trip-from-bay-area"] = function YosemiteDayT
       </p>
 
       <p>
-        <strong>Stop at Tunnel View on the way in</strong> if you came up Highway 41 or over from 120 via Wawona Road. It is twenty minutes including the photograph, it is the single best orientation to the Valley's geography that exists, and it costs nothing. If you came in on 140 it is a detour and worth taking on the way out instead, in better light.
+        <strong>Stop at Tunnel View on the way in</strong> if you came up Highway 41 or over from 120 via Wawona Road. It is twenty minutes including the photograph, it is the quickest orientation to the Valley's geography there is, and it costs nothing. If you came in on 140 it is a detour and worth taking on the way out instead, in better light.
       </p>
 
       <p>
@@ -102,7 +102,7 @@ window.ARTICLE_BODIES["yosemite-day-trip-from-bay-area"] = function YosemiteDayT
       </p>
 
       <p>
-        <strong>Cook's Meadow Loop,</strong> a mile on boardwalk and flat path, with Yosemite Falls behind you and Half Dome ahead. Half an hour, entirely level, and the best half hour in the Valley for the effort. This is the one I send people to when they have an hour and no other information.
+        <strong>Cook's Meadow Loop,</strong> a mile on boardwalk and flat path, with Yosemite Falls behind you and Half Dome ahead. Half an hour, entirely level, and a lot of view for the effort. This is the one I send people to when they have an hour and no other information.
       </p>
 
       <p>
@@ -214,7 +214,7 @@ window.ARTICLE_BODIES["yosemite-day-trip-from-bay-area"] = function YosemiteDayT
       </p>
 
       <p>
-        And know what you are buying. You are not seeing Yosemite in a day, You are seeing a mile of the Valley floor in the middle of the day, which is the least interesting mile at the least interesting hour, and it is still going to be one of the more startling things you have looked at. 
+        And know what you are buying. You are not seeing Yosemite in a day. You are seeing a mile of the Valley floor in the middle of the day, which is the least interesting mile at the least interesting hour, and it is still going to be one of the more startling things you have looked at. 
       </p>
 
       <LodgingCta

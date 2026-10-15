@@ -378,7 +378,7 @@ function ConditionsPage({ go }) {
         <section>
           <HpHeading eyebrow="04 / THE VALLEY LOTS" title="Parking lots" />
           <p className="hp-sub">
-            With no entry reservation in 2026, the Valley's lots are what ration a summer day: on the first busy Saturday of the season all Valley parking was full before noon. Be through the gate before 8 a.m. or after 4 p.m. on a summer weekend. Live lot status from the National Park Service appears here when the park publishes it.
+            With no entry reservation in 2026, the Valley's lots limit a summer day: on the first busy Saturday of the season all Valley parking was full before noon. Be through the gate before 8 a.m. or after 4 p.m. on a summer weekend. Live lot status from the National Park Service appears here when the park publishes it.
           </p>
           <ParkingNow variant="board" onData={onLots} />
         </section>
@@ -391,7 +391,7 @@ function ConditionsPage({ go }) {
           <ul className="conditions__list">
             <li className="conditions__row">
               <a href="/now" onClick={(e) => { e.preventDefault(); go("now"); }}>The Park Bulletin</a>
-              <span>Our own board: road and area status, alerts, and the free-program clock, rewritten each time the park publishes a new Yosemite Guide.</span>
+              <span>Our own board: road and area status, alerts, and the free-program schedule, rewritten each time the park publishes a new Yosemite Guide.</span>
             </li>
             <li className="conditions__row">
               <a href="https://www.nps.gov/yose/planyourvisit/conditions.htm" target="_blank" rel="noopener noreferrer">NPS current conditions ↗</a>

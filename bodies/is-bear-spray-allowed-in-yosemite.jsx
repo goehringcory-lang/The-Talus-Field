@@ -26,7 +26,7 @@ window.ARTICLE_BODIES["is-bear-spray-allowed-in-yosemite"] = function IsBearSpra
       <h2>Why: there are no grizzly bears here</h2>
 
       <p>
-        Bear spray is highly effective against grizzly bears. The landmark study, Smith and Herrero in the <em>Journal of Wildlife Management</em> in 2008, looked at 83 bear spray incidents in Alaska involving 175 people and found it stopped aggressive behaviour 92% of the time, a better record than firearms. That finding is widely repeated, including in advice for parks where it does not apply.
+        Bear spray is highly effective against grizzly bears. The landmark study, Smith and Herrero in the <em>Journal of Wildlife Management</em> in 2008, looked at 83 bear spray incidents in Alaska involving 175 people and found it stopped aggressive behavior 92% of the time, a better record than firearms. That finding is widely repeated, including in advice for parks where it does not apply.
       </p>
 
       <p>
@@ -34,13 +34,13 @@ window.ARTICLE_BODIES["is-bear-spray-allowed-in-yosemite"] = function IsBearSpra
       </p>
 
       <p>
-        They are a different animal. An adult male black bear here runs 250 to 350 pounds against a grizzly's potential 700-plus, but the behavioural profile matters more than the mass. Grizzlies are territorial and defensive. Black bears are opportunistic and, overwhelmingly, avoidant. Bear spray is designed for a defensive charge. In Yosemite the usual encounter is a bear that wants your food and would rather avoid you.
+        They are a different animal. An adult male black bear here runs 250 to 350 pounds against a grizzly's potential 700-plus, but the behavioral profile matters more than the mass. Grizzlies are territorial and defensive. Black bears are opportunistic and, overwhelmingly, avoidant. Bear spray is designed for a defensive charge. In Yosemite the usual encounter is a bear that wants your food and would rather avoid you.
       </p>
 
       <h2>Why: it does not repel bears here, it recruits them</h2>
 
       <p>
-        A USGS study found that capsaicin residue left on surfaces actually <em>attracts</em> bears. Spray a picnic table, a tent, a car door, and what you have created is a scented object in a park where bears are already conditioned to investigate scented objects.
+        A USGS study found that capsaicin, the hot compound in the spray, left as residue on surfaces actually <em>attracts</em> bears. Spray a picnic table, a tent, a car door, and what you have created is a scented object in a park where bears are already conditioned to investigate scented objects.
       </p>
 
       <p>

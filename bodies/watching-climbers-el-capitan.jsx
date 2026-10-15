@@ -394,7 +394,7 @@ window.ARTICLE_BODIES["watching-climbers-el-capitan"] = function WatchingClimber
             <span className="ec-ascents__year">1958</span>
             <span className="ec-ascents__time">47 days</span>
             <p>
-              Warren Harding's team makes the first ascent of The Nose, an effort totaling <strong>47 days</strong> of climbing, spread across a year and a half of sieging the wall with fixed ropes. At the time, the idea that the face could be climbed at all was not widely accepted. The final push ended with Harding drilling bolts through the night to top out. Everything that follows starts here.
+              Warren Harding's team makes the first ascent of The Nose, an effort totaling <strong>47 days</strong> of climbing, spread across a year and a half of working the wall in stages, with fixed ropes. At the time, the idea that the face could be climbed at all was not widely accepted. The final push ended with Harding drilling bolts through the night to top out. Everything that follows starts here.
             </p>
           </li>
           <li>
@@ -408,7 +408,7 @@ window.ARTICLE_BODIES["watching-climbers-el-capitan"] = function WatchingClimber
             <span className="ec-ascents__year">2017</span>
             <span className="ec-ascents__time">Under 4 hours</span>
             <p>
-              Alex Honnold free solos <strong>Freerider</strong>: no rope, no partner, no protection, roughly 3,000 feet of granite in under four hours. The ascent was filmed and released as <strong>Free Solo</strong>, which won the Academy Award for Best Documentary Feature. It remains the most widely seen piece of media ever made about this wall, and it is why a meaningful fraction of the people standing in the meadow now know what a crimp is.
+              Alex Honnold free solos <strong>Freerider</strong>: no rope, no partner, no protection, roughly 3,000 feet of granite in under four hours. The ascent was filmed and released as <strong>Free Solo</strong>, which won the Academy Award for Best Documentary Feature. It remains the most widely seen piece of media ever made about this wall, and it is why a meaningful fraction of the people standing in the meadow now know what a crimp (a tiny edge held with the fingertips) is.
             </p>
           </li>
           <li>

@@ -76,7 +76,7 @@ window.ARTICLE_BODIES["first-time-yosemite-overwhelm"] = function FirstTimeYosem
       "One in the afternoon in July. The lot is full, the overlook is three-deep, and the photo goes over a stranger's shoulder.",
       "First light, the first stop of the day. At the right hour in the right month you can have it nearly to yourself."],
     ["Glacier Point", "mountain",
-      "Driven during a smoke event, with Half Dome seen through gauze.",
+      "Driven on a smoky day, with Half Dome seen through gauze.",
       "Late afternoon on a second day, when the light is on Half Dome rather than behind it. In smoke, drive Tioga Road instead."],
     ["The Mist Trail", "walk",
       "Hiked in a conga line, as a first-morning warm-up.",
@@ -218,7 +218,7 @@ window.ARTICLE_BODIES["first-time-yosemite-overwhelm"] = function FirstTimeYosem
               <h2>The list is right. The hour is wrong.</h2>
               <div className="ft-prose">
                 <p>
-                  Most people visit these places the worst way they could. They arrive at Tunnel View at one in the afternoon in July, find the lot full and the overlook three-deep, take a photo over a stranger's shoulder, and leave. They drive Glacier Point Road during a smoke event and see Half Dome through gauze. They hike the Mist Trail in a conga line. They walk through the Mariposa Grove at the busiest hour of the busiest day and never once stand alone next to a 2,500-year-old tree.
+                  Most people visit these places the worst way they could. They arrive at Tunnel View at one in the afternoon in July, find the lot full and the overlook three-deep, take a photo over a stranger's shoulder, and leave. They drive Glacier Point Road on a smoky day and see Half Dome through gauze. They hike the Mist Trail in a conga line. They walk through the Mariposa Grove at the busiest hour of the busiest day and never once stand alone next to a 2,500-year-old tree.
                 </p>
                 <p>
                   Then they go home and tell their friends Yosemite was beautiful, but crowded. And it was. They visited the busiest version of the busiest places at the busiest time.
@@ -480,7 +480,7 @@ window.ARTICLE_BODIES["first-time-yosemite-overwhelm"] = function FirstTimeYosem
             In 2026 the two high roads opened early, Glacier Point Road on May 9 and Tioga Road on May 15. September and October are the second-best answer: crowds thin, the light goes low and gold, every road is still open, and the only thing missing is water in the falls. July and August are hot and the most crowded, and the relief is elevation. April has the falls and fewer people, but the high roads are usually still closed, so a first trip in April is a Valley trip. Winter is its own park, quiet and lovely, but the Valley, Wawona, and Hetch Hetchy are all of it.
           </p>
           <p>
-            <a href="/articles/when-to-visit-yosemite">The crowd forecast</a> ranks every month, and the <a href="/planning">trip selector</a> will cap an itinerary to the roads your month allows.
+            <a href="/articles/when-to-visit-yosemite">The crowd forecast</a> ranks every month, and the <a href="/planning">trip selector</a> will limit an itinerary to the roads your month allows.
           </p>
         </div>
       </section>

@@ -257,7 +257,7 @@ function ItinEmailPlan({ it }) {
       {state === "idle" ? (
         <>
           <NewsletterForm location="itineraries_email" tag="itineraries" cta="Send it →" onDone={mail} />
-          <p className="ff-note">One link that opens these stops in order on the map, on any device. It comes with Sunday Field Notes, one short letter a week. Free, leave anytime.</p>
+          <p className="ff-note">One link that opens these stops in order on the map, on any device. It comes with Sunday Field Notes, one short letter a week. Free, and you can unsubscribe at any time.</p>
         </>
       ) : (
         <p className="ff-note" role="status">

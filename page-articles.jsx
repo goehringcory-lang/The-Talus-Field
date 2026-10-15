@@ -421,12 +421,12 @@ function PlanningSectionPage({ go }) {
           <div className="ps-tip">
             <p className="ps-tip__n">8,600<small>feet</small></p>
             <h3>Pack for your campground's elevation</h3>
-            <p>The Valley sits near 4,000 feet, Tuolumne near 8,600, and a July night there can drop into the high thirties. Look up your campground, not the park, and read the forecast low as optimistic. A 20-degree bag is never wrong here.</p>
+            <p>The Valley sits near 4,000 feet, Tuolumne near 8,600, and a July night there can drop into the high thirties. Look up your campground, not the park, and treat the forecast low as a best case. A 20-degree bag is never wrong here.</p>
           </div>
           <div className="ps-tip">
             <p className="ps-tip__n">2<small>pads</small></p>
             <h3>The cold comes from underneath</h3>
-            <p>Most people who are cold at night are losing heat to the ground, not through the bag. A cheap closed-cell foam pad under an air pad fixes more cold nights than a warmer bag. Sleep in a warm hat. Bring earplugs.</p>
+            <p>Most people who are cold at night are losing heat to the ground, not through the bag. A cheap closed-cell foam pad under an air pad stops more cold nights than a warmer bag. Sleep in a warm hat. Bring earplugs.</p>
           </div>
         </div>
         <p className="ff-note">Bears and what to do when you meet one: {L("section_planning", "/articles/yosemite-bears-safety-guide", "Yosemite bear safety")}. When the campfire is allowed: {L("section_planning", "/articles/yosemite-fire-restrictions-explained", "fire restrictions, explained")}.</p>
@@ -458,7 +458,7 @@ function PlanningSectionPage({ go }) {
             <li><span className="ps-steps__when">24 weeks out</span><strong>Enter the weekly lottery</strong><p>Applications for a Sunday-to-Saturday week of start dates open on a Sunday, close Saturday, and run the next day. $10 to apply, $5 a person if you win. List alternate trailheads and dates: that is where most of the winning happens.</p></li>
             <li><span className="ps-steps__when">7 days out, 7 a.m.</span><strong>Or take the release</strong><p>The other 40 percent goes online first come, first served. Famous trailheads go in minutes; the ones two drainages over linger for days. Have second and third choices written down.</p></li>
             <li><span className="ps-steps__when">Start day, 8 to 11 a.m.</span><strong>Collect it in person</strong><p>A reservation isn't the permit. Pick it up at a wilderness center: Yosemite Valley, Tuolumne Meadows, Big Oak Flat, Wawona or Hetch Hetchy, seasonally. Ask for a late-arrival hold and pickup runs to 5 p.m.</p></li>
-            <li><span className="ps-steps__when">At the counter</span><strong>Ask the ranger everything</strong><p>Water sources, snow on the passes, which bear is working which drainage, and where to park overnight. It is the best trail beta in the park, and it's free.</p></li>
+            <li><span className="ps-steps__when">At the counter</span><strong>Ask the ranger everything</strong><p>Water sources, snow on the passes, which bear is working which drainage, and where to park overnight. It is the best trail advice in the park, and it's free.</p></li>
           </ol>
 
           <div className="ps-riders">

@@ -6,7 +6,7 @@ window.ARTICLE_BODIES["yosemite-facelift-volunteer-guide"] = function YosemiteFa
   return (
     <>
       <p className="dropcap">
-        The current Park Bulletin edition ends with a line easy to skim past: looking just past this edition, the Yosemite Facelift, the park's biggest volunteer cleanup, runs the last week of September, free with registration. It reads like a footnote, but the event has grown into the largest volunteer stewardship event held in any national park. No experience is required, no gear is required, and you do not need to be a climber, despite the event's roots. This guide covers the schedule, registration, camping, and what a first-timer should expect.
+        The current Park Bulletin edition ends with a line easy to skim past. The Yosemite Facelift, the park's biggest volunteer cleanup, runs the last week of September, free with registration. It reads like a footnote, but the event has grown into the largest volunteer stewardship event held in any national park. No experience is required, no gear is required, and you do not need to be a climber, despite the event's roots. This guide covers the schedule, registration, camping, and what a first-timer should expect.
       </p>
 
       <h2>What the Facelift actually is</h2>
@@ -44,7 +44,7 @@ window.ARTICLE_BODIES["yosemite-facelift-volunteer-guide"] = function YosemiteFa
       <h2>What volunteers actually do</h2>
 
       <p>
-        Most projects are straightforward: litter pickup and roadside cleanup along the park's trails, campgrounds, meadows, and waterways, using pickers, bags, and safety vests supplied by the National Park Service's volunteer office at check-in. You show up, get assigned an area, and spend the day walking it. Registration staff sort volunteers into projects each morning, and the areas rotate through the week so the same stretch of road or trail isn't worked twice while another goes untouched. For everyone with no rope training or climbing background, and that is most people who show up, the trailside and roadside projects are the bulk of the week, and they need no prior experience: a pair of gloves, closed-toe shoes, and a willingness to bend over repeatedly for a few hours.
+        Most projects are straightforward: litter pickup and roadside cleanup along the park's trails, campgrounds, meadows, and waterways, using pickers, bags, and safety vests supplied by the National Park Service's volunteer office at check-in. You show up, get assigned an area, and spend the day walking it. Registration staff sort volunteers into projects each morning, and the areas rotate through the week so the same stretch of road or trail isn't worked twice while another goes untouched. Most people who show up have no rope training or climbing background. For them, the trailside and roadside projects are the bulk of the week. They need no prior experience, only a pair of gloves, closed-toe shoes, and a willingness to bend over repeatedly for a few hours.
       </p>
 
       <h2>Inside the specialized cleanup: what comes off the walls</h2>

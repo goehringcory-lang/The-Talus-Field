@@ -62,7 +62,7 @@ window.ARTICLE_BODIES["wawona-yosemite-guide"] = function WawonaYosemiteGuideBod
       <h2>The hotel, which is closed</h2>
 
       <p>
-        The white, verandaed <strong>Wawona Hotel</strong> is the building most people picture when they hear the name, and it grew from Clark's Station, the stopping place Galen Clark built on the old route into the Valley. The Park Service dates the establishment of the hotel to 1856.
+        The white <strong>Wawona Hotel</strong> is the building most people picture when they hear the name, and it grew from Clark's Station, the stopping place Galen Clark built on the old route into the Valley. The Park Service dates the establishment of the hotel to 1856.
       </p>
 
       <p>
@@ -90,7 +90,7 @@ window.ARTICLE_BODIES["wawona-yosemite-guide"] = function WawonaYosemiteGuideBod
       <h2>Three walks and one long climb</h2>
 
       <p>
-        Wawona's trails are the opposite of the Valley's in the way that matters most in a busy season: they are uncrowded. The Park Service lists four from the district, and they cover every length from a half hour to a full day.
+        Wawona's trails are the opposite of the Valley's in a busy season: they are uncrowded. The Park Service lists four from the district, and they cover every length from a half hour to a full day.
       </p>
 
       <p>
@@ -136,7 +136,7 @@ window.ARTICLE_BODIES["wawona-yosemite-guide"] = function WawonaYosemiteGuideBod
       <h2>Gas, groceries, mail and a charger</h2>
 
       <p>
-        Wawona's services matter more than its size suggests, because the Valley has none of one of them. <strong>There is no gas in Yosemite Valley.</strong> The <strong>Wawona Gas Station</strong>, 28 miles from the Valley on Wawona Road, is one of the three stations the park's Guide lists for Valley visitors, with gas and diesel <strong>24 hours a day at the pump with a card</strong>. It is staffed 9 a.m. to 5 p.m., and propane is sold only when it is staffed.
+        Wawona's services matter more than its size suggests, because the Valley has no gas at all. <strong>There is no gas in Yosemite Valley.</strong> The <strong>Wawona Gas Station</strong>, 28 miles from the Valley on Wawona Road, is one of the three stations the park's Guide lists for Valley visitors, with gas and diesel <strong>24 hours a day at the pump with a card</strong>. It is staffed 9 a.m. to 5 p.m., and propane is sold only when it is staffed.
       </p>
 
       <ul>

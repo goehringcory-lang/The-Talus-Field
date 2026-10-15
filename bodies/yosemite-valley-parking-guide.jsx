@@ -24,7 +24,7 @@ window.ARTICLE_BODIES["yosemite-valley-parking-guide"] = function YosemiteValley
       </p>
 
       <p>
-        <strong>Curry Village parking.</strong> The east-Valley lot, closest to the Mist Trail corridor, Mirror Lake, and the Pines campgrounds. Some Park Service pages and a certain amount of surviving signage still call this Half Dome Village, a name the concessioner used for a few years in the middle of the last decade; it is the same place. Two practical notes: there are no restrooms in the lot itself, and sleeping in a vehicle or camper there is not allowed, which people regularly discover at two in the morning.
+        <strong>Curry Village parking.</strong> The east-Valley lot, closest to the Mist Trail corridor, Mirror Lake, and the Pines campgrounds. Some Park Service pages and some older signs still call this Half Dome Village, a name the concessioner used for a few years in the middle of the last decade; it is the same place. Two practical notes: there are no restrooms in the lot itself, and sleeping in a vehicle or camper there is not allowed, which people regularly discover at two in the morning.
       </p>
 
       <p>
@@ -34,7 +34,7 @@ window.ARTICLE_BODIES["yosemite-valley-parking-guide"] = function YosemiteValley
       <h2>The trailheads, and why most of them have no parking</h2>
 
       <p>
-        The single most common parking mistake in the Valley is driving to a trailhead. Most of the famous ones have no lot at all. Happy Isles, where the Mist Trail begins, is a shuttle stop, not a parking area; there is no drive-up spot at the footbridge and there never was. Mirror Lake is the same. The Valley's trailhead parking is a small, specific inventory documented on the Park Service's trailhead parking page, and a good part of it exists to serve wilderness permit holders leaving a car for several days rather than day hikers arriving at ten.
+        The single most common parking mistake in the Valley is driving to a trailhead. Most of the famous ones have no lot at all. Happy Isles, where the Mist Trail begins, is a shuttle stop, not a parking area; there is no drive-up spot at the footbridge and there never was. Mirror Lake is the same. The Valley's trailhead parking is limited and listed on the Park Service's trailhead parking page, and a good part of it exists to serve wilderness permit holders leaving a car for several days rather than day hikers arriving at ten.
       </p>
 
       <p>
@@ -58,7 +58,7 @@ window.ARTICLE_BODIES["yosemite-valley-parking-guide"] = function YosemiteValley
       </p>
 
       <p>
-        Treat that as the outer bound rather than the target. The advice on this site is an hour stricter in both directions, because on a busy day the lots fill before the congestion window opens, so nine o'clock is already a gamble. Be through the gate by eight, and before seven on a summer weekend. Coming in the other way, four in the afternoon works as well as five. <a href="/articles/when-to-visit-yosemite">The crowd forecast</a> makes the same case from a decade of visitation data.
+        Treat that as the latest you can go, not as the target. The advice on this site is an hour stricter in both directions, because on a busy day the lots fill before the congestion window opens, so nine o'clock is already a gamble. Be through the gate by eight, and before seven on a summer weekend. Coming in the other way, four in the afternoon works as well as five. <a href="/articles/when-to-visit-yosemite">The crowd forecast</a> makes the same case from a decade of visitation data.
       </p>
 
       <p>
@@ -66,7 +66,7 @@ window.ARTICLE_BODIES["yosemite-valley-parking-guide"] = function YosemiteValley
       </p>
 
       <p>
-        You do not have to guess on the day. Text YNPTRAFFIC to 333111 to get park traffic alerts on your phone, and check <a href="/conditions">the conditions page</a> before you leave your room, which is where the live entrance-station waits live. Spring through fall, the park's own typical figures run to an hour or two at the South Entrance on Highway 41 and about half an hour at Arch Rock, Big Oak Flat, and Tioga Pass. Those are ordinary days, not the worst ones; a summer holiday weekend can put a queue miles back from the gate. All of it comes before you park.
+        You do not have to guess on the day. Text YNPTRAFFIC to 333111 to get park traffic alerts on your phone, and check <a href="/conditions">the conditions page</a> before you leave your room, which is where the live entrance-station waits are posted. Spring through fall, the park's own typical figures run to an hour or two at the South Entrance on Highway 41 and about half an hour at Arch Rock, Big Oak Flat, and Tioga Pass. Those are ordinary days, not the worst ones; a summer holiday weekend can put a queue miles back from the gate. All of it comes before you park.
       </p>
 
       <h2>What to do at eleven o'clock</h2>

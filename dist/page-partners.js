@@ -81,7 +81,7 @@ function PartnersPage({
     onClick: () => trackContact("partners_tiers")
   }, "Contact for pricing →"), React.createElement("p", {
     className: "places-pitch__fineprint"
-  }, "Tell me the property, the town, and roughly how many bookings a year you would cover, and a quote comes back. The first properties are onboarded by hand, which is deliberate: it is how the terms get to be sensible for both sides."))), React.createElement("section", {
+  }, "Tell me the property, the town, and roughly how many bookings a year you would cover, and a quote comes back. The first properties are onboarded by hand, which is deliberate: it is how the terms get to be fair to both sides."))), React.createElement("section", {
     className: "prose"
   }, React.createElement("h2", null, "How it works"), React.createElement(FjSteps, {
     steps: [{

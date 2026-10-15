@@ -368,7 +368,7 @@ window.ARTICLE_BODIES["when-to-visit-yosemite"] = function WhenToVisitYosemiteBo
       style: {
         left: ((h - AX0) / span * 100).toFixed(2) + "%"
       }
-    }, hr(h)))))), React.createElement("figcaption", null, "The grey bars are the hours the Park Service itself treated as over capacity when it ran reservations: 2022, 2024 and 2025. The green bars are this article's advice, not a Park Service rule. Hourly entrance counts are not published, so none are drawn."));
+    }, hr(h)))))), React.createElement("figcaption", null, "The gray bars are the hours the Park Service itself treated as over capacity when it ran reservations: 2022, 2024 and 2025. The green bars are this article's advice, not a Park Service rule. Hourly entrance counts are not published, so none are drawn."));
   }
   return React.createElement("div", {
     className: "wv-feature"
@@ -433,7 +433,7 @@ window.ARTICLE_BODIES["when-to-visit-yosemite"] = function WhenToVisitYosemiteBo
     className: "ff-lede"
   }, "Through July the park logged 2,657,602 visits against 2,460,675 in the same months of 2025. The growth was not even. Spring jumped, and the peak months rose more modestly."), React.createElement("div", {
     className: "wv-prose"
-  }, React.createElement("p", null, "March, the first full month after the no-reservation news, was up 45 percent, although the comparison flatters 2026 a little because storms held March 2025 down. February was up 12 percent and April up 2 percent. Headlines move visitation, and this year's headline was that Yosemite is open with no ticket required."), React.createElement("p", null, "June came in at 634,508 visits, the second-busiest June on record behind only 2016. July was 654,356 by the August reports, up 6.1 percent on July 2025. A Park Service summary published September 1 quotes July as 665,877, up 8 percent, and the first seven months as about 2.59 million, up 9.5 percent. The counts do not agree to the visit, so read them as eight to ten percent ahead, not as a decimal."))), React.createElement("div", {
+  }, React.createElement("p", null, "March, the first full month after the no-reservation news, was up 45 percent, although the comparison flatters 2026 a little because storms held March 2025 down. February was up 12 percent and April up 2 percent. Headlines move visitation, and this year's headline was that Yosemite is open with no ticket required."), React.createElement("p", null, "June came in at 634,508 visits, the second-busiest June on record behind only 2016. July was 654,356 by the August reports, up 6.1 percent on July 2025. A Park Service summary published September 1 quotes July as 665,877, up 8 percent, and the first seven months as about 2.59 million, up 9.5 percent. The counts do not match to the visit, so read them as eight to ten percent ahead, not as a precise figure."))), React.createElement("div", {
     className: "wv-stack"
   }, React.createElement("div", {
     className: "wv-tablewrap"
@@ -477,7 +477,7 @@ window.ARTICLE_BODIES["when-to-visit-yosemite"] = function WhenToVisitYosemiteBo
     className: "hp-eyebrow"
   }, "THE PROJECTION"), React.createElement("h2", null, "How I built it, and what it says"), React.createElement("p", {
     className: "ff-lede"
-  }, "This is the site's projection, not a Park Service number. It rests on one count and one assumption, and it holds up across a wide range of the assumption."), React.createElement("ol", {
+  }, "This is the site's projection, not a Park Service number. It rests on one count and one assumption, and the answer holds across a wide range of that assumption."), React.createElement("ol", {
     className: "wv-steps"
   }, React.createElement("li", null, React.createElement("strong", null, "Start with what is counted."), " January to July 2026: ", fmt(YTD26), " visits."), React.createElement("li", null, React.createElement("strong", null, "Add the rest of 2025."), " The 2025 total (4,278,413) minus January to July 2025 (2,460,675) is ", fmt(REST25), " visits for August to December."), React.createElement("li", null, React.createElement("strong", null, "Scale it."), " Multiply that remainder by how much busier August to December 2026 runs than 2025. I show zero, four and eight percent; eight is the year-to-date pace.")), React.createElement("p", {
     className: "ff-note"

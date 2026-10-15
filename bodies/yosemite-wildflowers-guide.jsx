@@ -149,7 +149,7 @@ window.ARTICLE_BODIES["yosemite-wildflowers-guide"] = function YosemiteWildflowe
       <h2>Honest expectations</h2>
 
       <p>
-        Yosemite is not a superbloom park. If you have seen photographs of desert valleys carpeted horizon to horizon in orange, leave that image at home. The Sierra bloom is longer, quieter, and more dispersed: a canyon wall of poppies in March, a white tree over a green river in May, a meadow gone purple for two weeks in July. It is also hard to miss. Because the bloom climbs, there is no month between March and August without one, and a single long day in early summer can drive through three of them: azaleas on the Valley floor in the morning, lupine at McGurk at midday, the first shooting stars at Lukens Lake before dinner. Build the elevation into the plan, the way you would build in the <a href="/map">driving</a>, and the mountain will meet you with something open.
+        Yosemite is not a superbloom park. If you have seen photographs of desert valleys carpeted horizon to horizon in orange, leave that image at home. The Sierra bloom is longer, quieter, and more dispersed: a canyon wall of poppies in March, a white tree over a green river in May, a meadow gone purple for two weeks in July. It is also hard to miss. Because the bloom climbs, there is no month between March and August without one, and a single long day in early summer can drive through three of them: azaleas on the Valley floor in the morning, lupine at McGurk at midday, the first shooting stars at Lukens Lake before dinner. Build the elevation into the plan, the way you would plan the drive on the <a href="/map">trip-planner map</a>, and the mountain will meet you with something open.
       </p>
 
       <h3>Sources</h3>

@@ -337,7 +337,7 @@ function HalfDomeLotteryPage({ go }) {
             <HdTries rate={season.dailyWeekday} />
           </div>
           <ol className="hd-steps">
-            <li><strong>Use all seven date choices</strong><p>In the preseason application, front-load the unpopular ones: a Tuesday in September as your first choice beats a Saturday in July. One fixed date means you get the published odds and nothing better; seven spread across the season is seven rolls inside one application.</p></li>
+            <li><strong>Use all seven date choices</strong><p>In the preseason application, put the unpopular dates first: a Tuesday in September as your first choice beats a Saturday in July. One fixed date means you get the published odds and nothing better; seven spread across the season is seven rolls inside one application.</p></li>
             <li><strong>Enter both lotteries</strong><p>Plan the trip so the hike falls mid-visit rather than on day one, then run the daily lottery every eligible day. Each draw is independent, so five weekday attempts at roughly one-in-five odds work out to about a two in three chance of winning at least once.</p></li>
             <li><strong>Avoid Saturday</strong><p>Sunday is second worst. Monday through Thursday draw the fewest preseason applications, 12 to 13% each in 2024, and weekdays draw better odds in the daily lottery.</p></li>
             <li><strong>Split groups larger than six</strong><p>Across two applications with two different permit holders; they are entered independently. Name an alternate on every preseason application, and have them accept the role before the window closes, or a sick permit holder on hike day ends the trip for everyone.</p></li>

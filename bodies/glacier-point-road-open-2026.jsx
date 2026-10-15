@@ -28,7 +28,7 @@ window.ARTICLE_BODIES["glacier-point-road-open-2026"] = function GlacierPointRoa
       </p>
 
       <p>
-        The trailheads accessible from the road include Sentinel Dome and <a href="/map?stop=taft-point">Taft Point</a> (the two most-walked short hikes off Glacier Point Road), Pohono (the long rim trail), the top of the Panorama Trail, the top of the Four Mile Trail, Mono Meadow, and the Bridalveil Creek area. Most of these will have snow on the shaded north faces and patchy slush in the trees through May. Trekking poles are not optional this time of year if you are going beyond the immediate viewpoint. Microspikes are useful on the first half mile of any trail off the road that climbs.
+        The trailheads accessible from the road include Sentinel Dome and <a href="/map?stop=taft-point">Taft Point</a> (the two most-walked short hikes off Glacier Point Road), Pohono (the long rim trail), the top of the Panorama Trail, the top of the Four Mile Trail, Mono Meadow, and the Bridalveil Creek area. Most of these will have snow on the shaded north faces and patchy slush in the trees through May. Trekking poles are not optional this time of year if you are going beyond the immediate viewpoint. Microspikes (traction cleats that strap onto boots) are useful on the first half mile of any trail off the road that climbs.
       </p>
 
       <p>
@@ -42,7 +42,7 @@ window.ARTICLE_BODIES["glacier-point-road-open-2026"] = function GlacierPointRoa
       </p>
 
       <p>
-        The road is paved, and the Park Service plows it well, but the corners are tight, the sun and shadow alternate quickly, and the asphalt at 6,000 feet on a sunny May morning is doing things differently than the asphalt in the Valley. Drive it like you have all day.
+        The road is paved, and the Park Service plows it well, but the corners are tight, the sun and shadow alternate quickly, and the asphalt at 6,000 feet on a sunny May morning behaves differently than asphalt in the Valley. Drive it like you have all day.
       </p>
 
       <p>
@@ -58,11 +58,11 @@ window.ARTICLE_BODIES["glacier-point-road-open-2026"] = function GlacierPointRoa
       </p>
 
       <p>
-        <strong>The hike plan.</strong> Drive up after breakfast, park at the Sentinel Dome and Taft Point trailhead (the shared lot on the road, short of Glacier Point itself). Hike Sentinel first, Taft second, eat lunch on the rim somewhere quiet, then drive the last bit of road and walk out to Glacier Point with your legs already loose. The total walking is about four and a half miles with modest elevation gain, and the experience of standing on Sentinel's bare granite cap (which is exfoliated granodiorite, not bare granite the way most people use the word) and then standing inches from the void at Taft is a study in what 2,500 feet of vertical can mean. The <a href="/articles/glacier-point-how-to-visit">full guide to Glacier Point</a> carries the Park Service's own distances and times for every walk off the road, which is how to choose between those two hikes if you only have time for one.
+        <strong>The hike plan.</strong> Drive up after breakfast, park at the Sentinel Dome and Taft Point trailhead (the shared lot on the road, short of Glacier Point itself). Hike Sentinel first, Taft second, eat lunch on the rim somewhere quiet, then drive the last bit of road and walk out to Glacier Point with your legs already loose. The total walking is about four and a half miles with modest elevation gain, and the experience of standing on Sentinel's bare granite cap (granodiorite, a close relative of granite whose surface peels off in sheets, not bare granite the way most people use the word) and then standing inches from the void at Taft is a study in what 2,500 feet of vertical can mean. The <a href="/articles/glacier-point-how-to-visit">full guide to Glacier Point</a> carries the Park Service's own distances and times for every walk off the road, which is how to choose between those two hikes if you only have time for one.
       </p>
 
       <p>
-        If you are bringing kids, or <a href="/articles/yosemite-for-non-hikers">visitors who can't hike</a>, there is a third plan: Glacier Point itself only. The walk to the overlook is paved, short, and stroller-friendly, and the park lists it as <a href="/articles/yosemite-accessibility-guide">wheelchair-accessible</a>. The view is the highest-bang-per-step view in the park. Eat your sandwiches on the wall, count peregrines, and drive back down. That is a complete day.
+        If you are bringing kids, or <a href="/articles/yosemite-for-non-hikers">visitors who can't hike</a>, there is a third plan: Glacier Point itself only. The walk to the overlook is paved, short, and stroller-friendly, and the park lists it as <a href="/articles/yosemite-accessibility-guide">wheelchair-accessible</a>. The view takes the fewest steps of any in the park. Eat your sandwiches on the wall, count peregrines, and drive back down. That is a complete day.
       </p>
 
       <h2>What you will probably notice first</h2>
@@ -72,7 +72,7 @@ window.ARTICLE_BODIES["glacier-point-road-open-2026"] = function GlacierPointRoa
       </p>
 
       <p>
-        The second is the snow. Looking east from Glacier Point you see the Cathedral Range, Mount Hoffman, Mount Clark, and behind them the high peaks of the Clark Range. Even in this thin snowpack year (the Tuolumne Meadows snow courses measured 37 percent of the April 1 average), the high country still looks like winter from up here. <a href="/articles/tioga-road-opening-weekend">Tioga Road</a> was still closed when this was written; it opened on May 15. The high lakes are still frozen. The Sentinel Range above Tenaya Canyon will hold snow for another six weeks. You are looking at country that is two months behind the Valley you just drove out of.
+        The second is the snow. Looking east from Glacier Point you see the Cathedral Range, Mount Hoffman, Mount Clark, and behind them the high peaks of the Clark Range. Even in this thin snowpack year (the snow survey sites at Tuolumne Meadows measured 37 percent of the April 1 average), the high country still looks like winter from up here. <a href="/articles/tioga-road-opening-weekend">Tioga Road</a> was still closed when this was written; it opened on May 15. The high lakes are still frozen. The Sentinel Range above Tenaya Canyon will hold snow for another six weeks. You are looking at country that is two months behind the Valley you just drove out of.
       </p>
 
       <p>

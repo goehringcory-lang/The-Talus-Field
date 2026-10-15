@@ -26,7 +26,7 @@ window.ARTICLE_BODIES["yosemite-trees-identification-guide"] = function Yosemite
       </figure>
 
       <p>
-        The belts below run in the order a visitor drives them from the west. The elevation bands are the Park Service's; older measurements are credited to the three books, published between 1932 and 1948, they come from.
+        The belts below run in the order a visitor drives them from the west. The elevation bands are the Park Service's. Older measurements come from three books published between 1932 and 1948.
       </p>
 
       <figure className="diagram-plate diagram-plate--narrow">
@@ -102,7 +102,7 @@ window.ARTICLE_BODIES["yosemite-trees-identification-guide"] = function Yosemite
       />
 
       <p>
-        <strong>Gray pine</strong> is the conifer of this belt, and it does not look like a pine. The trunk usually forks into two or more stems, the crown is open and rounded like an oak's, and the long gray-green needles, three to a bundle, are so thin a cover that John Muir wrote the sunbeams sift through it with scarcely any interruption. The cones are among the heaviest of any American pine, with scale tips drawn into stout hooks. Cole recorded it in the Merced canyon from the western boundary up to about 3,000 feet at Arch Rock, and more abundantly around Hetch Hetchy. Cole used an older common name; the Park Service now says gray pine.
+        <strong>Gray pine</strong> is the conifer of this belt, and it does not look like a pine. The trunk usually forks into two or more stems, the crown is open and rounded like an oak's, and the long gray-green needles, three to a bundle, make a cover so thin that John Muir wrote the sunbeams sift through it with scarcely any interruption. The cones are among the heaviest of any American pine, with scale tips drawn into stout hooks. Cole recorded it in the Merced canyon from the western boundary up to about 3,000 feet at Arch Rock, and more abundantly around Hetch Hetchy. Cole used an older common name; the Park Service now says gray pine.
       </p>
 
       <p>
@@ -128,11 +128,11 @@ window.ARTICLE_BODIES["yosemite-trees-identification-guide"] = function Yosemite
       </p>
 
       <p>
-        <strong>California black oak</strong> is the Valley's defining broadleaf. The leaves are deeply cut into about seven lobes, each tipped with bristles; they unfold pink and velvety in spring and turn tawny yellow to golden brown in fall, the color that sets the Valley's <a href="/articles/yosemite-in-fall">autumn</a> apart from its summer. The acorns run one to one and a half inches and take two seasons to ripen. Brockman placed the tree from 3,000 to 5,000 feet and called it one of the most common on the Valley floor. The 1939 booklet put black oak acorns at four-fifths of the Valley people's yearly food. The Park Service says today black oak acorns were a major part of American Indian diets, that traditional gathering still goes on, and that the acorns feed bears, deer, woodpeckers and squirrels as well. Brockman noted the mortar holes worn into rock across the Valley by the work of pounding acorns into flour.
+        <strong>California black oak</strong> is the Valley's defining broadleaf. The leaves are deeply cut into about seven lobes, each tipped with bristles; they unfold pink and velvety in spring and turn tawny yellow to golden brown in fall, the color that sets the Valley's <a href="/articles/yosemite-in-fall">autumn</a> apart from its summer. The acorns run one to one and a half inches and take two seasons to ripen. Brockman placed the tree from 3,000 to 5,000 feet and called it one of the most common on the Valley floor. The 1939 booklet put black oak acorns at four-fifths of the Valley people's yearly food. The Park Service says today black oak acorns were a major part of American Indian diets, that traditional gathering still goes on, and that the acorns feed bears, deer, woodpeckers and squirrels as well. Brockman noted the mortar holes worn into rock across the Valley, made by pounding acorns into flour.
       </p>
 
       <p>
-        The open oak groves were tended. Cole wrote in 1939 that the Valley's people set spring ground fires along the edges of the pine thickets to kill pine seedlings that would otherwise crowd out the oaks, and that once the burning stopped, a Valley he described as three-quarters open land had become nearly three-quarters forest. The Park Service's current account agrees in outline: early settlers described an open oak woodland with few conifers, the result of centuries of burning by American Indians to favor the oaks. The park's own studies found that the Valley's oak canopy held steady between 1944 and 2005 because fewer, larger trees filled it, and that today's groves have seedlings but few saplings, a population tree cores show was healthy until about 1920.
+        The open oak groves were tended. Cole wrote in 1939 that the Valley's people set spring ground fires along the edges of the pine thickets to kill pine seedlings that would otherwise crowd out the oaks, and that once the burning stopped, a Valley he described as three-quarters open land had become nearly three-quarters forest. The Park Service's current account agrees in outline: early settlers described an open oak woodland with few conifers, the result of centuries of burning by American Indians to favor the oaks. The park's own studies found that the Valley's oak canopy held steady between 1944 and 2005 because fewer, larger trees filled it, and that today's groves have seedlings but few saplings. Tree cores show the population was healthy until about 1920.
       </p>
 
       <p>
@@ -192,7 +192,7 @@ window.ARTICLE_BODIES["yosemite-trees-identification-guide"] = function Yosemite
       </p>
 
       <p>
-        <strong>Jeffrey pine</strong> takes the open granite: the rim around Glacier Point and Sentinel Dome, the floor of Little Yosemite Valley above Nevada Fall, and the dry sides of the Valley itself, where it mixes with ponderosa. The two intergrade where they meet; Tresidder, in 1948, treated the Jeffrey as a variety of ponderosa. Three things help. The Jeffrey's foliage is darker blue-green and denser, because Cole recorded its needles staying on the branch five to nine years against about three for ponderosa. Its bark has a smell, which the Park Service's Yosemite page describes as vanilla and Cole as vanilla or pineapple, strongest in the crevices on a warm day. A Park Service conifer guide from Lassen Volcanic adds butterscotch and says ponderosas smell similar, so the nose gives a hint, not a verdict. The cone decides it. Ponderosa scale tips stick straight out and prick the hand that grips the cone; the Jeffrey's larger cone has its prickles turned in. The Lassen guide's version: roll the cone between your hands, and a ponderosa feels prickly, a Jeffrey smooth.
+        <strong>Jeffrey pine</strong> takes the open granite: the rim around Glacier Point and Sentinel Dome, the floor of Little Yosemite Valley above Nevada Fall, and the dry sides of the Valley itself, where it mixes with ponderosa. The two blend into each other where they meet; Tresidder, in 1948, treated the Jeffrey as a variety of ponderosa. Three things help. The Jeffrey's foliage is darker blue-green and denser. Cole recorded its needles staying on the branch five to nine years, against about three for ponderosa. Its bark has a smell, which the Park Service's Yosemite page describes as vanilla and Cole as vanilla or pineapple, strongest in the crevices on a warm day. A Park Service conifer guide from Lassen Volcanic adds butterscotch and says ponderosas smell similar, so the nose gives a hint, not a verdict. The cone decides it. Ponderosa scale tips stick straight out and prick the hand that grips the cone; the Jeffrey's larger cone has its prickles turned in. The Lassen guide's version: roll the cone between your hands, and a ponderosa feels prickly, a Jeffrey smooth.
       </p>
 
       <p>
@@ -220,7 +220,7 @@ window.ARTICLE_BODIES["yosemite-trees-identification-guide"] = function Yosemite
       </p>
 
       <p>
-        <strong>Whitebark pine</strong> is the last tree. Its bark is smooth and nearly white on young stems and upper branches, its five stiff needles are crowded at the branch tips, and its purple cones break apart on the tree; Cole noted that Clark's nutcrackers and chipmunks tear them open so quickly that an intact one is seldom found. Lower down it is a small upright tree; higher, wind and snow press it into a mat. The Park Service starts the treeless alpine zone near 9,500 feet, where a hiker may still meet whitebarks stunted into krummholz. At <strong>Tioga Pass, 9,945 feet</strong>, Cole sent readers to the upright whitebarks a few yards from the ranger station of his day and the matted ones on the ridge behind it. The stops on the way up are in <a href="/articles/tuolumne-meadows-in-a-day">the Tuolumne Meadows day plan</a>.
+        <strong>Whitebark pine</strong> is the last tree. Its bark is smooth and nearly white on young stems and upper branches, its five stiff needles are crowded at the branch tips, and its purple cones break apart on the tree; Cole noted that Clark's nutcrackers and chipmunks tear them open so quickly that an intact one is seldom found. Lower down it is a small upright tree; higher, wind and snow press it into a mat. The Park Service starts the treeless alpine zone near 9,500 feet, where a hiker may still meet whitebarks stunted into krummholz, the wind-bent, shrub-like growth that trees form at the edge of timberline. At <strong>Tioga Pass, 9,945 feet</strong>, Cole sent readers to the upright whitebarks a few yards from the ranger station of his day and the matted ones on the ridge behind it. The stops on the way up are in <a href="/articles/tuolumne-meadows-in-a-day">the Tuolumne Meadows day plan</a>.
       </p>
 
       <h2>Reading the forest honestly</h2>

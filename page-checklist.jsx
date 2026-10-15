@@ -100,7 +100,7 @@ function ChecklistPage({ go }) {
           <label className="fj-check"><input type="checkbox" />2026 note: <A r="a:yosemite-without-reservations-2026">no entrance reservation is required</A>. A standard pass is all you need.</label>
         </CheckSheet>
 
-        <CheckSheet label="II · What to book in advance" title="The non-flexible reservations">
+        <CheckSheet label="II · What to book in advance" title="Reservations you cannot move">
           <label className="fj-check"><input type="checkbox" />In-park lodging: 6 to 12 months ahead (Ahwahnee, Valley Lodge, Curry Village). <A r="stay">Every option compared</A>.</label>
           <label className="fj-check"><input type="checkbox" /><A r="a:yosemite-gateway-towns-compared">Gateway-town lodging</A>: 1 to 3 months ahead for summer dates.</label>
           <label className="fj-check"><input type="checkbox" /><A r="half-dome-lottery">Half Dome preseason lottery</A>: apply March 1 to 31 on Recreation.gov.</label>

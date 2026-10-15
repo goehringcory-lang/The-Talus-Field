@@ -81,15 +81,15 @@ window.ARTICLE_BODIES["giant-sequoias-fire-adaptation"] = function GiantSequoias
       </p>
 
       <p>
-        Compare this to a white fir or sugar pine. Those trees have thinner, tighter bark, poor insulation, and less tannin. When a ground fire passes through (and it will pass through; fire is a recurring event in this forest), it only takes ten or twenty minutes of sustained heat to kill the cambium layer under the bark. The tree dies.
+        Compare this to a white fir or sugar pine. Those trees have thinner, tighter bark, poor insulation, and less tannin. When a ground fire passes through (and it will pass through; fire is a recurring event in this forest), it only takes ten or twenty minutes of sustained heat to kill the cambium, the thin living layer under the bark. The tree dies.
       </p>
 
       <p>
-        The sequoia, meanwhile, experiences those same twenty minutes of heat and sustains a scar. The wood chars, yes. The bark darkens. But the living tissue survives. A year later, the tree will have compartmentalized the wound and resumed growth. By the time that same sequoia has lived for a thousand years, it may carry the scars of five or six separate burns across its trunk.
+        The sequoia, meanwhile, experiences those same twenty minutes of heat and sustains a scar. The wood chars, yes. The bark darkens. But the living tissue survives. A year later, the tree will have walled off the wound and resumed growth. By the time that same sequoia has lived for a thousand years, it may carry the scars of five or six separate burns across its trunk.
       </p>
 
       <p>
-        This is the result of selection. The trees that couldn't survive fire didn't become dominant in the mixed forest of the Sierra Nevada high country. The ones that could did.
+        This is the result of natural selection. The trees that couldn't survive fire didn't become dominant in the mixed forest of the Sierra Nevada high country. The ones that could did.
       </p>
 
       <h2>How fire kills what sequoias escape</h2>

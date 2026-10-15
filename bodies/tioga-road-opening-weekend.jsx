@@ -10,7 +10,7 @@ window.ARTICLE_BODIES["tioga-road-opening-weekend"] = function TiogaRoadOpeningW
       </p>
 
       <p>
-        <strong>Tioga Pass status (September 9, 2026):</strong> open, and it has been since May 15. The Park Service's standing line is that the road stays open until sometime in November; the last five seasons closed between October 21 and November 15. For live updates, call 209/372-0200 (press 1, then 1) or check <a href="https://www.nps.gov/yose/planyourvisit/conditions.htm" target="_blank" rel="noopener noreferrer">nps.gov/yose/planyourvisit/conditions.htm</a>. If you just need the standing version, the window, what is actually open in week one, and what to bring, <a href="/tioga-opening">the Tioga opening page</a> is the short version, kept current each season.
+        <strong>Tioga Pass status (September 9, 2026):</strong> open, and it has been since May 15. The Park Service's standing line is that the road stays open until sometime in November; the last five seasons closed between October 21 and November 15. For live updates, call 209/372-0200 (press 1, then 1) or check <a href="https://www.nps.gov/yose/planyourvisit/conditions.htm" target="_blank" rel="noopener noreferrer">nps.gov/yose/planyourvisit/conditions.htm</a>. For the short version, with the window, what is open in week one, and what to bring, read <a href="/tioga-opening">the Tioga opening page</a>, which is updated each season.
       </p>
 
       <h2>What's open on Tioga Road opening weekend</h2>
@@ -46,7 +46,7 @@ window.ARTICLE_BODIES["tioga-road-opening-weekend"] = function TiogaRoadOpeningW
         <li>Tuolumne Meadows Campground: closed on opening weekend. The campground reopened in August 2025 after a three-year rehabilitation, and its 2026 season runs July 1 through September 27, reservable on Recreation.gov</li>
         <li>Tuolumne Meadows Grill: closed on opening weekend. Yosemite Hospitality lists a June 13 opening, and the current Yosemite Guide has it running 8 a.m. to 6 p.m. until September 20</li>
         <li>Tuolumne Meadows Lodge and dining room: June 5 through September 13</li>
-        <li>Tuolumne Meadows Store and Post Office: closed until later in the summer. Both are running now, the store 8 a.m. to 8 p.m. until September 20, the post office weekdays 9 a.m. to 5 p.m. and Saturdays 9 a.m. to 1 p.m.</li>
+        <li>Tuolumne Meadows Store and Post Office: closed on opening weekend. Both are running now, the store 8 a.m. to 8 p.m. until September 20, the post office weekdays 9 a.m. to 5 p.m. and Saturdays 9 a.m. to 1 p.m.</li>
         <li>Tuolumne Meadows Visitor Center and Wilderness Center: limited or no staffing until late May. In season the visitor center runs 9 a.m. to 5 p.m. and the wilderness center 8 a.m. to 5 p.m.</li>
         <li>White Wolf Lodge, with its store and dining room: closed for all of 2026 due to sewer line damage. The campground did open, July 2 through September 14, with no drinking water</li>
         <li>Gas at Tuolumne Meadows: not in operation (offline for several years now)</li>
@@ -155,7 +155,7 @@ window.ARTICLE_BODIES["tioga-road-opening-weekend"] = function TiogaRoadOpeningW
         <li>Microspikes (Kahtoola or equivalent) in the pack for any shaded snow patch.</li>
         <li>Trekking poles for slush, mud, and slick granite.</li>
         <li>Layers: a <AffLink q="insulated jacket" list="article_inline" slug="tioga-road-opening-weekend" name="Insulated jacket">puffy jacket</AffLink> and a <AffLink q="rain jacket" list="article_inline" slug="tioga-road-opening-weekend" name="Rain shell">shell</AffLink>, even if the forecast looks mild. Temperatures swing 30 to 40 degrees between dawn and afternoon.</li>
-        <li>Sunglasses and sunscreen. Snow glare and 9,000-foot UV are a combination.</li>
+        <li>Sunglasses and sunscreen. Snow glare and the sun at 9,000 feet are a hard combination.</li>
         <li>Plenty of water and food. There is no source for either on Tioga Road yet.</li>
         <li>A bear-aware approach to food even on a day hike. Black bears are out of dens, hungry, and <a href="/articles/yosemite-wildlife-viewing-guide">active in the meadows at first and last light</a>. Use the lockers at trailheads.</li>
       </ul>

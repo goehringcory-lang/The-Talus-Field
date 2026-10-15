@@ -159,7 +159,7 @@ function InternationalPage({ go }) {
 
           <h2>The cheapest way in</h2>
           <p>
-            The arithmetic turns on one comparison: the non-resident fee is
+            The math turns on one comparison: the non-resident fee is
             charged per person and per entry, and the non-resident annual pass
             is charged once per car. One adult in one car for one week pays
             {" "}{money(F.vehicle + F.surcharge)} at the gate and should. Three adults in

@@ -60,13 +60,13 @@ window.ARTICLE_BODIES["yosemite-stargazing-where-to-look-up"] = function Yosemit
   return (
     <>
       <p className="dropcap">
-        The first time I sat at the top of <strong>Olmsted Point</strong> at one in the morning in late July with no headlamp and let my eyes adjust for ten minutes, I realized I'd been doing the night sky wrong for most of my adult life. I had assumed, as most people raised in cities or suburbs assume, that stars were small bright points scattered against a black background. They are not. The actual sky over the Yosemite high country in late July, with no moon, on a moonless night with no smoke, is so densely packed with stars that the famous constellations are buried inside thousands of others, and the Milky Way is not a thin line of light. It is a textured, layered river running across the sky from horizon to horizon, with dark lanes of dust visible in the brighter sections and individual star clouds resolvable to the naked eye.
+        The first time I sat at the top of <strong>Olmsted Point</strong> at one in the morning in late July with no headlamp and let my eyes adjust for ten minutes, I realized I'd been doing the night sky wrong for most of my adult life. I had assumed, as most people raised in cities or suburbs assume, that stars were small bright points scattered against a black background. They are not. The actual sky over the Yosemite high country in late July, on a moonless night with no smoke, is so densely packed with stars that the famous constellations are buried inside thousands of others, and the Milky Way is not a thin line of light. It is a textured, layered river running across the sky from horizon to horizon, with dark lanes of dust visible in the brighter sections and individual star clouds you can pick out by eye.
       </p>
 
       <p>This is what most of human history saw every night. We have, in the past hundred years or so, mostly stopped seeing it.</p>
 
       <p>
-        Yosemite is one of the few places on the West Coast where the version of the sky our ancestors saw is still available. Not every night. Not in every season. Not from every spot. But often enough, in the right places, and with enough magnitude that the experience is in a different category from a dark-sky park designation or a "let's go look at the stars" parking-lot stop.
+        Yosemite is one of the few places on the West Coast where the version of the sky our ancestors saw is still available. Not every night. Not in every season. Not from every spot. But often enough, in the right places, and with enough darkness that the experience is in a different category from a dark-sky park designation or a "let's go look at the stars" parking-lot stop.
       </p>
 
       <NatureNotesFilm id="night-skies" title="Night Skies" youtubeId="ZhgR3zVfo-0" episode={19}
@@ -118,7 +118,7 @@ window.ARTICLE_BODIES["yosemite-stargazing-where-to-look-up"] = function Yosemit
       </p>
 
       <p>
-        If your goal is the core, plan for <strong>mid-July through mid-August on a new moon week</strong>. Plan for any other dark sky, and almost any clear, moonless Yosemite night will show far more than a city sky.
+        If your goal is the core, plan for <strong>mid-July through mid-August on a new moon week</strong>. For anything less, almost any clear, moonless Yosemite night will show far more than a city sky.
       </p>
 
       <h2>Where to go: by accessibility</h2>
@@ -158,7 +158,7 @@ window.ARTICLE_BODIES["yosemite-stargazing-where-to-look-up"] = function Yosemit
       <p>These spots take a short hike, which gets you away from any remaining road glare and into more comfortable solitude.</p>
 
       <p>
-        <strong>Sentinel Dome.</strong> A 2.2-mile round-trip hike from the Sentinel Dome and Taft Point trailhead on Glacier Point Road. The summit at 8,122 feet has a 360-degree view, no nearby light, and a flat granite surface to set up on. This is one of the great Sierra dark-sky spots accessible via short trail. Doable as a sunset-into-dark hike with headlamps for the descent.
+        <strong>Sentinel Dome.</strong> A 2.2-mile round-trip hike from the Sentinel Dome and Taft Point trailhead on Glacier Point Road. The summit at 8,122 feet has a 360-degree view, no nearby light, and a flat granite surface to set up on. This is one of the great Sierra dark-sky spots reached by a short trail. Doable as a sunset-into-dark hike with headlamps for the descent.
       </p>
 
       <p>
@@ -171,7 +171,7 @@ window.ARTICLE_BODIES["yosemite-stargazing-where-to-look-up"] = function Yosemit
 
       <h3>Tier three: backpack to it</h3>
 
-      <p>For the most committed stargazers, the wilderness lakes and high passes deliver the absolute darkest, quietest skies available in the park.</p>
+      <p>For the most committed stargazers, the wilderness lakes and high passes deliver the darkest, quietest skies in the park.</p>
 
       <p>
         <strong>Cathedral Lakes.</strong> The granite shelf at the south end of Lower Cathedral Lake gives you a clear southern horizon, near-total isolation, and the Milky Way reflecting in the lake on still nights. Possible as a long day hike with a midnight return, but more reasonably done as a wilderness camp.
@@ -264,14 +264,14 @@ window.ARTICLE_BODIES["yosemite-stargazing-where-to-look-up"] = function Yosemit
       </p>
 
       <p>
-        <strong>The International Space Station.</strong> Visible as a very bright, fast-moving "star" in many predictable evening passes. NASA's Spot The Station website tells you exactly when and where. The ISS at Yosemite, with the Milky Way as a backdrop, is one of the better human-and-cosmos pairings you can witness.
+        <strong>The International Space Station.</strong> Visible as a very bright, fast-moving "star" in many predictable evening passes. NASA's Spot The Station website tells you exactly when and where. With the Milky Way as a backdrop, the ISS is a sight worth staying up for.
       </p>
 
       <h2>What about photography</h2>
 
       <p>A short note for those interested.</p>
 
-      <p>The Milky Way over Yosemite landscape is one of the best landscape-astrophotography combinations in the world. The basic setup:</p>
+      <p>The Milky Way over a Yosemite landscape is a classic pairing for astrophotography. The basic setup:</p>
 
       <ul>
         <li>Tripod. Mandatory.</li>

@@ -62,7 +62,7 @@ window.ARTICLE_BODIES["working-in-yosemite"] = function WorkingInYosemiteBody() 
       <p>That number is correct. It comes at a cost.</p>
 
       <p>
-        What you trade for it is privacy. The walls are canvas. Your roommate's schedule is your schedule's neighbor. The kitchen is a shared room with shared fridges and the occasional shared theft. The bathrooms are cleaned every day by the housing team, which is wonderful, and they sometimes get cleaned at the exact moment you wanted to use them, which is less wonderful. You learn to plan around it.
+        What you trade for it is privacy. The walls are canvas. Your roommate's schedule runs right alongside yours. The kitchen is a shared room with shared fridges and the occasional shared theft. The bathrooms are cleaned every day by the housing team, which is wonderful, and they sometimes get cleaned at the exact moment you wanted to use them, which is less wonderful. You learn to plan around it.
       </p>
 
       <p>
@@ -96,7 +96,7 @@ window.ARTICLE_BODIES["working-in-yosemite"] = function WorkingInYosemiteBody() 
       </p>
 
       <p>
-        It also means closures. I've watched the park close more times than I can count quickly: floods, fires, snow, wind, rockfall. The wild here is wild. Mother Nature is not accommodating. You have to be the kind of person who can pivot when a road slides out, who can give a calm answer to a worried visitor when there's smoke on the horizon, who can roll with a week where the weather changes the plan three times.
+        It also means closures. I've watched the park close more times than I can count: floods, fires, snow, wind, rockfall. The wild here is wild. Mother Nature is not accommodating. You have to be the kind of person who can pivot when a road slides out, who can give a calm answer to a worried visitor when there's smoke on the horizon, who can roll with a week where the weather changes the plan three times.
       </p>
 
       <p>

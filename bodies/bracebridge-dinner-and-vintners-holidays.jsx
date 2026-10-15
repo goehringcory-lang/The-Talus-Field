@@ -68,7 +68,7 @@ window.ARTICLE_BODIES["bracebridge-dinner-and-vintners-holidays"] = function Bra
       <h2>What books out first</h2>
 
       <p>
-        The two events sell out on different schedules. <strong>Bracebridge Dinner tickets typically go on sale eight to nine months before the December performances</strong>, which for a given year lands around March or April, and they have sold out every year since the dinner's return. If you are reading this in late summer hoping to walk into a December seat, expect the good dates, and often all of them, to be gone by the time the leaves turn. The dinner also runs on a fixed schedule of specific performance nights across the month, roughly every other day from early to late December, so there is no such thing as "just show up on a slow Tuesday": every night is its own sold ticket allotment.
+        The two events sell out on different schedules. <strong>Bracebridge Dinner tickets typically go on sale eight to nine months before the December performances</strong>, which for a given year lands around March or April, and they have sold out every year since the dinner's return. If you are reading this in late summer hoping to walk into a December seat, expect the good dates, and often all of them, to be gone by the time the leaves turn. The dinner also runs on a fixed schedule of specific performance nights across the month, roughly every other day from early to late December, so there is no "just show up on a slow Tuesday": every night has its own allotment of tickets.
       </p>
 
       <p>

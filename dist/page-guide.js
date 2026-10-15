@@ -1388,7 +1388,7 @@ function GuideAfterPurchase({
       e.preventDefault();
       go("terms");
     }
-  }, "terms"), ". The same address is the fix for a lost email or a sign-in that will not take. There is no ticket system and no bot: it is the author's inbox."));
+  }, "terms"), ". The same address helps with a lost email or a sign-in that will not work. There is no ticket system and no bot: it is the author's inbox."));
 }
 var GUIDE_FAQ = [{
   q: "Does it really work with no cell service?",
@@ -1672,7 +1672,7 @@ function GuidePage({
     className: "guide-more"
   }, React.createElement("summary", null, "Every screen, unedited: nineteen captures and what changed lately"), React.createElement("h3", null, "Every screen, unedited"), React.createElement("p", null, "The full set: ten screens from the current build, captured on a phone. What you see here is the product, not a mockup."), React.createElement(AppShots, null), React.createElement("h3", null, "New in the September 2026 build"), React.createElement("p", null, "The guide keeps changing after you buy it, and this is what the last month added. Nine more screens, captured the same way, from the same build."), React.createElement(AppShots, {
     shots: NEW_SHOTS
-  }), React.createElement("p", null, "Also new, and not pictured here: the 3D map now carries the park's infrastructure, the five entrances, the visitor and wilderness centers with their hours, the eighteen Valley shuttle stops numbered as the park numbers them, picnic areas, gas, EV charging, showers, laundry, stores and the clinic, every kind of pin drawn with its own mark, and a \"Go to\" menu that flies the map to a region. The map itself has its own section further down this page. The front page's conditions panel gained live parking-lot status, and the same status prints on the map's parking pins. The Secret Guide grew by thirteen entries, and every one of them, along with the ten new photographs, arrived as a silent update. Nothing here cost an existing buyer anything, and that is the arrangement for the rest of the 18 months."))), GUIDE_ON_SALE ? React.createElement(GuideBuyBox, {
+  }), React.createElement("p", null, "Also new, and not pictured here: the 3D map now carries the park's facilities, the five entrances, the visitor and wilderness centers with their hours, the eighteen Valley shuttle stops numbered as the park numbers them, picnic areas, gas, EV charging, showers, laundry, stores and the clinic, every kind of pin drawn with its own mark, and a \"Go to\" menu that flies the map to a region. The map itself has its own section further down this page. The front page's conditions panel gained live parking-lot status, and the same status prints on the map's parking pins. The Secret Guide grew by thirteen entries, and every one of them, along with the ten new photographs, arrived as a silent update. Nothing here cost an existing buyer anything, and that is the arrangement for the rest of the 18 months."))), GUIDE_ON_SALE ? React.createElement(GuideBuyBox, {
     go: go
   }) : React.createElement(GuideWaitlistBox, null))), React.createElement(GuideDayOne, null), React.createElement(GuideMap3D, null), React.createElement(HpLetter, {
     eyebrow: "FOR BUYERS AND READERS",

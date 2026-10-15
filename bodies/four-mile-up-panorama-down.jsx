@@ -136,7 +136,7 @@ window.ARTICLE_BODIES["four-mile-up-panorama-down"] = function FourMileUpPanoram
       </p>
 
       <p>
-        <strong>The Mist Trail</strong> is shorter (about 2.5 miles to Happy Isles), steeper and more dramatic. It runs down beside Nevada Fall and then Vernal Fall, and in places the spray soaks you through. The granite steps along Vernal Fall are the most photographed stretch of trail in Yosemite. It is also steep, the uneven stone steps are brutal on tired knees, and wet rock can be slippery. If your legs feel solid and you want the waterfalls up close, take the Mist Trail.
+        <strong>The Mist Trail</strong> is shorter (about 2.5 miles to Happy Isles), steeper and more dramatic. It runs down beside Nevada Fall and then Vernal Fall, and in places the spray soaks you through. The granite steps along Vernal Fall are the most photographed stretch of trail in Yosemite. It is also steep. The uneven stone steps are brutal on tired knees, and wet rock can be slippery. If your legs feel solid and you want the waterfalls up close, take the Mist Trail.
       </p>
 
       <p>
@@ -162,7 +162,7 @@ window.ARTICLE_BODIES["four-mile-up-panorama-down"] = function FourMileUpPanoram
       <p><strong>Time:</strong> Plan a full day. NPS segment estimates total 9 to 12 hours, before a shuttle wait or a walk back to the start.</p>
 
       <p>
-        <strong>Water plan:</strong> This is the logistic that matters most on this hike. Carry at least three liters from the trailhead. The Four Mile Trail is completely dry. Glacier Point <em>may</em> have water (check conditions). Check creek flow before relying on Illilouette Creek for a refill, and bring a filter or treatment. There's water again at Happy Isles at the bottom.
+        <strong>Water plan:</strong> This is the most important part of the logistics on this hike. Carry at least three liters from the trailhead. The Four Mile Trail is completely dry. Glacier Point <em>may</em> have water (check conditions). Check creek flow before relying on Illilouette Creek for a refill, and bring a filter or treatment. There's water again at Happy Isles at the bottom.
       </p>
 
       <p><strong>Water sources in order:</strong></p>

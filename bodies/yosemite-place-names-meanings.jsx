@@ -6,7 +6,7 @@ window.ARTICLE_BODIES["yosemite-place-names-meanings"] = function YosemitePlaceN
   return (
     <>
       <p className="dropcap">
-        Stand at Tunnel View with the park map open and you can read most of the Valley off it in a minute: El Capitan on the left, Bridalveil Fall on the right, Half Dome at the far end, Cathedral Rocks along the south wall. The names feel as permanent as the granite. Most of the landmark names on that map date from 1851 or later, and many were chosen by men who had come into the Valley that year to remove the people who lived there, and several of the translations that still circulate were guesses when they were first printed. The word on the park entrance sign is the clearest case. For most of a century it was said to mean "grizzly bear." It almost certainly does not.
+        Stand at Tunnel View with the park map open and you can read most of the Valley off it in a minute: El Capitan on the left, Bridalveil Fall on the right, Half Dome at the far end, Cathedral Rocks along the south wall. The names feel as permanent as the granite. Most of the landmark names on that map date from 1851 or later. Many were chosen by men who had come into the Valley that year to remove the people who lived there. Several of the translations that still circulate were guesses when they were first printed. The word on the park entrance sign is the clearest case. For most of a century it was said to mean "grizzly bear." It almost certainly does not.
       </p>
 
       <p>

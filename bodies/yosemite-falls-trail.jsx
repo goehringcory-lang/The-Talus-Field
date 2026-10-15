@@ -126,7 +126,7 @@ window.ARTICLE_BODIES["yosemite-falls-trail"] = function YosemiteFallsTrailBody(
       </ul>
 
       <p>
-        Read the second line carefully. Seven miles sounds like an easy day to anyone who hikes at home, and it is the gain that decides it: 2,700 feet in 3.6 miles averages 750 feet of climbing per mile, and it comes with no shade on the upper half and nothing to drink. The time estimate is for a fit hiker moving steadily. A family that turns a 2,000-foot day into an afternoon at home should plan on the long end of the range, or on Columbia Rock.
+        Read the second line carefully. Seven miles sounds like an easy day to anyone who hikes at home, and it is the gain that decides it: 2,700 feet in 3.6 miles averages 750 feet of climbing per mile, and it comes with no shade on the upper half and nothing to drink. The time estimate is for a fit hiker moving steadily. A family that has not climbed 2,700 feet before should plan on the long end of the range, or on Columbia Rock.
       </p>
 
       <figure style={{ margin: "32px 0" }}>
@@ -147,7 +147,7 @@ window.ARTICLE_BODIES["yosemite-falls-trail"] = function YosemiteFallsTrailBody(
       </p>
 
       <p>
-        Past Columbia Rock, the Park Service suggests going on another <strong>half mile</strong>, some of it downhill, to a view of Upper Yosemite Fall itself. This is the best value on the trail: the Park Service calls it a stunning view of the upper fall, and in spring, depending on the flow, you may feel its mist. For most visitors, that viewpoint is the right place to turn around: about three miles round trip, the Valley view and the upper fall both, and none of the upper half. Remember that the downhill stretch out is uphill on the way back.
+        Past Columbia Rock, the Park Service suggests going on another <strong>half mile</strong>, some of it downhill, to a view of Upper Yosemite Fall itself. This is the best value on the trail: the Park Service describes the view of the upper fall as a striking one, and in spring, depending on the flow, you may feel its mist. For most visitors, that viewpoint is the right place to turn around: about three miles round trip, the Valley view and the upper fall both, and none of the upper half. Remember that the downhill stretch out is uphill on the way back.
       </p>
 
       <p>
@@ -225,7 +225,7 @@ window.ARTICLE_BODIES["yosemite-falls-trail"] = function YosemiteFallsTrailBody(
       <h2>Which one is yours</h2>
 
       <p>
-        If you have one morning in the Valley, walk the lower loop clockwise and stand on the footbridge. If you have a morning and some energy, climb to Columbia Rock and go on the extra half mile to the upper fall view, then come back down for lunch; it is the best short climb in the Valley and the one most visitors should do. If you have a full day, 4 liters of water, a first-light start, and legs that have climbed 2,700 feet before, go to the top and add Yosemite Point. And if it is August, the water will not be there and the sun will, so start early or take the view from Columbia Rock and save the top for the cool months.
+        If you have one morning in the Valley, walk the lower loop clockwise and stand on the footbridge. If you have a morning and some energy, climb to Columbia Rock and go on the extra half mile to the upper fall view, then come back down for lunch; it is the short climb most visitors should do. If you have a full day, 4 liters of water, a first-light start, and legs that have climbed 2,700 feet before, go to the top and add Yosemite Point. And if it is August, the water will not be there and the sun will, so start early or take the view from Columbia Rock and save the top for the cool months.
       </p>
 
       <p>

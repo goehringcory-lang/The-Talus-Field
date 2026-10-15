@@ -411,7 +411,7 @@ function MoonbowPage({ go }) {
       <section className="ff-band" id="moonbow-stay" tabIndex={-1}>
         <div className="hp-wrap hp-section">
           <HpHeading eyebrow="WHERE TO STAY" title="Sleep close enough to walk home" />
-          <p className="ff-lede ff-lede--intro">The bow often outlasts the last shuttle, and the drive out of the Valley at midnight is long and dark. Yosemite Valley Lodge sits across the road from the Lower Yosemite Fall trailhead, which is the best-placed bed for a moonbow night; it books through the park concessioner about a year ahead.</p>
+          <p className="ff-lede ff-lede--intro">The bow often outlasts the last shuttle, and the drive out of the Valley at midnight is long and dark. Yosemite Valley Lodge sits across the road from the Lower Yosemite Fall trailhead, which is the closest bed for a moonbow night; it books through the park concessioner about a year ahead.</p>
           <div className="ff-towns">
             {MB_TOWNS.map((t) => (
               <div className="ff-town" key={t.id}>

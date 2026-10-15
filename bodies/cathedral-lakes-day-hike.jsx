@@ -10,7 +10,7 @@ window.ARTICLE_BODIES["cathedral-lakes-day-hike"] = function CathedralLakesDayHi
       </p>
 
       <p>
-        Cathedral Lakes has been one of Yosemite's standard high-country day hikes since John Muir camped on the shoulder of Cathedral Peak in 1869 and described it in <em>My First Summer in the Sierra</em> as "one of Nature's cathedrals, hewn from the living rock." It is on every best hikes in Yosemite list. It still earns the listing.
+        Cathedral Lakes has been one of Yosemite's standard high-country day hikes since John Muir camped on the shoulder of Cathedral Peak in 1869 and described it in <em>My First Summer in the Sierra</em> as "one of Nature's cathedrals, hewn from the living rock." It is on every list of the best hikes in Yosemite. It still earns the spot.
       </p>
 
       <p>
@@ -20,7 +20,7 @@ window.ARTICLE_BODIES["cathedral-lakes-day-hike"] = function CathedralLakesDayHi
       <h2>Cathedral Lakes trail distance, elevation, and trailhead</h2>
 
       <p>
-        The Cathedral Lakes trail starts at the new <strong>Cathedral Lakes trailhead</strong> parking adjacent to the Tuolumne Meadows Visitor Center. The old trailhead at the side of Tioga Road was retired during the Tuolumne Meadows redevelopment, so the trail distances in older guidebooks read about three-quarters of a mile shorter than the current reality. For a broader look at the trailheads and routes in this area, and for the shorter walks that suit a day when this hike is too much, see <a href="/articles/tuolumne-meadows-in-a-day">Tuolumne Meadows in a day</a>.
+        The Cathedral Lakes trail starts at the new <strong>Cathedral Lakes trailhead</strong> parking adjacent to the Tuolumne Meadows Visitor Center. The old trailhead at the side of Tioga Road was retired during the Tuolumne Meadows redevelopment, so older guidebooks list distances about three-quarters of a mile shorter than the hike you will walk now. For a broader look at the trailheads and routes in this area, and for the shorter walks that suit a day when this hike is too much, see <a href="/articles/tuolumne-meadows-in-a-day">Tuolumne Meadows in a day</a>.
       </p>
 
       <p>Current numbers, from the new trailhead:</p>
@@ -56,7 +56,7 @@ window.ARTICLE_BODIES["cathedral-lakes-day-hike"] = function CathedralLakesDayHi
       </p>
 
       <p>
-        This is one of the busier high-country day hikes. On summer weekends the trail is crowded at peak hours. The lakes themselves are large enough to absorb the crowd, and you can almost always find a granite shelf to yourself along the shore. But if you want solitude, weekday hikes or early starts (trailhead by 7 a.m.) are dramatically better. If you're basing yourself in the Valley or a <a href="/articles/yosemite-gateway-towns-compared">gateway town</a>, the drive to the trailhead takes roughly 90 minutes from Yosemite Village via Tioga Road.
+        This is one of the busier high-country day hikes. On summer weekends the trail is crowded at peak hours. The lakes themselves are large enough to absorb the crowd, and you can almost always find a granite shelf to yourself along the shore. But if you want solitude, weekday hikes or early starts (trailhead by 7 a.m.) are much better. If you're basing yourself in the Valley or a <a href="/articles/yosemite-gateway-towns-compared">gateway town</a>, the drive to the trailhead takes roughly 90 minutes from Yosemite Village via Tioga Road.
       </p>
 
       <h2>What to see on the Cathedral Lakes trail</h2>
@@ -102,7 +102,7 @@ window.ARTICLE_BODIES["cathedral-lakes-day-hike"] = function CathedralLakesDayHi
       </p>
 
       <p>
-        The peak is climbable. The standard route is a fifth-class climb of about 700 vertical feet from the base, often done as a long day from Tuolumne. Muir made the first recorded ascent in 1869 in work boots, alone. The Park Service does not encourage casual visitors to attempt it. If you have climbing experience and want to try, get current beta from the Yosemite climber community before going.
+        The peak is climbable. The standard route is a fifth-class climb (the grade for technical rock climbing, which calls for a rope and protection) of about 700 vertical feet from the base, often done as a long day from Tuolumne. Muir made the first recorded ascent in 1869 in work boots, alone. The Park Service does not encourage casual visitors to attempt it. If you have climbing experience and want to try, get current route information, or "beta," from the Yosemite climbing community before going.
       </p>
 
       <h2>The Muir connection</h2>
@@ -144,7 +144,7 @@ window.ARTICLE_BODIES["cathedral-lakes-day-hike"] = function CathedralLakesDayHi
       </p>
 
       <p>
-        Don't swim before July. The water is too cold and snow patches around the lake make the shore slippery and unstable. The lake does not fully ice out in many years until late June. And don't rely on the trail being clear of snow before mid-July. I've seen the upper switchbacks buried into early July in heavy-snow years. Bring traction devices if you're hiking before mid-July, and be willing to turn around at the snowline.
+        Don't swim before July. The water is too cold and snow patches around the lake make the shore slippery and unstable. In many years the lake is not fully free of ice until late June. And don't rely on the trail being clear of snow before mid-July. I've seen the upper switchbacks buried into early July in heavy-snow years. Bring traction devices if you're hiking before mid-July, and be willing to turn around at the snowline.
       </p>
 
       <h2>Cathedral Pass to Sunrise: the through-hike option</h2>
