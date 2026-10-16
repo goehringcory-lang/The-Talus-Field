@@ -40,7 +40,7 @@ window.ARTICLE_BODIES["first-time-yosemite-overwhelm"] = function FirstTimeYosem
     left: x / MAP_W * 100 + "%",
     top: y / MAP_H * 100 + "%"
   });
-  var TOWNS = [["1", "El Portal", 25, 35, "Highway 140", "Closer, and priced like it", "good"], ["2", "Mariposa", 45, 60, "Highway 140, the year-round road", "The default for a first trip", "best"], ["3", "Oakhurst", 75, 90, "Highway 41", "Right for the Mariposa Grove, wrong for a Valley trip", "warn"], ["4", "Lee Vining", 90, null, "Tioga Road, closed in winter", "A high-country base, not a Valley base", "bad"]];
+  var TOWNS = [["1", "El Portal", 25, 35, "Highway 140", "Closer, and priced like it", "good"], ["2", "Mariposa", 60, 75, "Highway 140, the year-round road", "The default for a first trip", "best"], ["3", "Oakhurst", 75, 90, "Highway 41", "Right for the Mariposa Grove, wrong for a Valley trip", "warn"], ["4", "Lee Vining", 120, null, "Tioga Road, closed in winter", "A high-country base, not a Valley base", "bad"]];
   var SCALE = 120;
   function StayMap() {
     return React.createElement("figure", {
@@ -306,7 +306,7 @@ window.ARTICLE_BODIES["first-time-yosemite-overwhelm"] = function FirstTimeYosem
     className: "ft-days__chip is-good"
   }, "Better"))), React.createElement("div", {
     className: "ft-prose ft-prose--wide ft-after"
-  }, React.createElement("p", null, "Is one day enough? Yes, if you are in the park by 8 a.m. and willing to do less than the lists say. The one-day trips people regret are the ones that arrive at noon, circle the lots, and try to add Glacier Point. A day trip from San Francisco is possible, but the drive is four hours each way. Run ", React.createElement("a", {
+  }, React.createElement("p", null, "Is one day enough? Yes, if you are in the park by 8 a.m. and willing to do less than the lists say. The one-day trips people regret are the ones that arrive at noon, circle the lots, and try to add Glacier Point. A day trip from San Francisco is possible, but the drive is four to five hours each way. Run ", React.createElement("a", {
     href: "/articles/yosemite-day-trip-from-bay-area"
   }, "the daylight arithmetic"), " before you commit to it."), React.createElement("p", null, React.createElement("a", {
     href: "/articles/yosemite-in-one-or-two-days"

@@ -22,7 +22,7 @@ window.ARTICLE_BODIES["hetch-hetchy-the-other-yosemite-valley"] = function Hetch
       <h2>The geography</h2>
 
       <p>
-        Hetch Hetchy sits in the northwestern corner of Yosemite National Park, accessed via <a href="/articles/getting-to-yosemite">Highway 120</a> to the <strong>Big Oak Flat Entrance</strong> and then a separate road that branches north before you reach the Valley. The drive from the Big Oak Flat Entrance to the <strong>O'Shaughnessy Dam</strong> (the trailhead for almost everything you'll do here) is about 16 miles, with significant winding mountain road. From Yosemite Valley, the park's own figures are an hour and a quarter to an hour and a half of driving each way.
+        Hetch Hetchy sits in the northwestern corner of Yosemite National Park, reached by Hetch Hetchy Road, which begins just outside the park on <a href="/articles/getting-to-yosemite">Highway 120</a> near the <strong>Big Oak Flat Entrance Station</strong>. The drive from Highway 120 to the <strong>O'Shaughnessy Dam</strong> (the trailhead for almost everything you'll do here) is about 16 miles, with significant winding mountain road. From Yosemite Valley, the park's own figure is 38 miles, or about an hour and a quarter of driving each way.
       </p>
 
       <p>
@@ -106,7 +106,7 @@ window.ARTICLE_BODIES["hetch-hetchy-the-other-yosemite-valley"] = function Hetch
       </p>
 
       <p>
-        <strong>Kayaking.</strong> It is technically not allowed on the reservoir itself. Hetch Hetchy is a domestic water supply, and recreational use of the water is restricted by SFPUC regulations. Boating, swimming, and fishing in the reservoir are not permitted, except in narrow circumstances with specific permits.
+        <strong>Kayaking.</strong> It is not allowed on the reservoir. Hetch Hetchy is a domestic water supply, and the Park Service prohibits swimming and boating in it to keep the drinking water clean. Public access is also closed below the reservoir's high-water mark.
       </p>
 
       <h2>A note on the access road</h2>

@@ -76,7 +76,7 @@ const seed: AmenityInput[] = [
     kind: 'camping',
     region: 'valley',
     coord: [-119.6021, 37.7421], // verified 2026-07: Camp 4 walk-in lot, Northside Dr below the Yosemite Falls wall (NPS/Hikespeak)
-    note: "The historic climbers' campground, walk-in tent sites below the Yosemite Falls wall. From mid-April through October sites are reserved on recreation.gov one week ahead of arrival; in winter they go first-come, first-served.",
+    note: "The historic climbers' campground, walk-in tent sites below the Yosemite Falls wall. From April 15 through the night of November 28 sites are reserved on recreation.gov one week ahead of arrival; after that they go first-come, first-served.",
   },
   {
     id: 'yosemite-village-day-use-lot',

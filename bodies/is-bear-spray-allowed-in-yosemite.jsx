@@ -30,7 +30,7 @@ window.ARTICLE_BODIES["is-bear-spray-allowed-in-yosemite"] = function IsBearSpra
       </p>
 
       <p>
-        Yosemite is one of those parks. There have been no grizzlies here since about 1895, when the last one was shot near Crescent Lake; the California grizzly has been extinct for more than a century, and the bear on the state flag is a memorial. What Yosemite has is American black bears, <em>Ursus americanus</em>, somewhere between 300 and 500 of them.
+        Yosemite is one of those parks. Grizzlies are gone from the Sierra: one of the last in the Yosemite country was shot near Crescent Lake in 1887, the last in California was killed in 1922, and the bear on the state flag is a memorial. What Yosemite has is American black bears, <em>Ursus americanus</em>, somewhere between 300 and 500 of them.
       </p>
 
       <p>
@@ -74,7 +74,7 @@ window.ARTICLE_BODIES["is-bear-spray-allowed-in-yosemite"] = function IsBearSpra
       <h2>The short version</h2>
 
       <p>
-        Bear spray is prohibited in Yosemite, classified among the park's prohibited weapons: the Park Service bars possessing or using pepper spray, bear spray included. There are no grizzlies here and have not been since the 1890s; the black bears the park does have are food-motivated rather than defensive. Use your voice, store your food properly, and leave the spray for the parks that need it.
+        Bear spray is prohibited in Yosemite, classified among the park's prohibited weapons: the Park Service bars possessing or using pepper spray, bear spray included. There are no grizzlies here and have not been for about a century; the black bears the park does have are food-motivated rather than defensive. Use your voice, store your food properly, and leave the spray for the parks that need it.
       </p>
 
       <h3>Sources</h3>

@@ -257,7 +257,7 @@ window.ARTICLE_BODIES["yosemite-bears-safety-guide"] = function YosemiteBearsSaf
       </p>
 
       <p>
-        For backcountry trips, bear canisters are required for all overnights. You can rent approved models at wilderness centers throughout the park. BearVault and Garcia are the two brands most commonly available and NPS-approved. Place the canister 25 to 50 feet from your campsite, away from cliffs and water, and do not try to secure it with rocks or rope. That just gives the bear something to grip. The smooth container on open ground is the design. Trust it. And pack your canister efficiently. Put dense, calorie-rich food in first. Crush packaging to save space. A well-packed BV500 holds about five days of food for one person if you are not bringing a week's worth of luxury items. If you are <a href="/articles/first-time-yosemite-overwhelm">planning your first trip</a>, factor canister space into your meal planning from the start.
+        For backcountry trips, bear canisters are required for all overnights. The park rents the Garcia Backpackers' Cache at its staffed wilderness permit stations; BearVault and several other models are NPS-approved if you bring your own. Place the canister at least 100 feet from your campsite, away from cliffs and water, and do not try to secure it with rocks or rope. That just gives the bear something to grip. The smooth container on open ground is the design. Trust it. And pack your canister efficiently. Put dense, calorie-rich food in first. Crush packaging to save space. A well-packed BV500 holds about five days of food for one person if you are not bringing a week's worth of luxury items. If you are <a href="/articles/first-time-yosemite-overwhelm">planning your first trip</a>, factor canister space into your meal planning from the start.
       </p>
 
       <h2>Yosemite bear incidents: the data from 1998 to 2026</h2>
@@ -269,7 +269,7 @@ window.ARTICLE_BODIES["yosemite-bears-safety-guide"] = function YosemiteBearsSaf
       </p>
 
       <p>
-        The response was systematic and expensive. The park installed over 2,000 metal bear boxes at campsites and trailheads. In 2004, bear canisters became mandatory for all overnight wilderness trips. A massive education campaign reshaped how visitors understood food storage. Open garbage containers were replaced with bear-proof models throughout the park. The "Keep Bears Wild" messaging became pervasive, and rangers began writing citations with real teeth.
+        The response was systematic and expensive. The park installed over 2,000 metal bear boxes at campsites and trailheads. Bear canisters became mandatory for all overnight wilderness trips. A massive education campaign reshaped how visitors understood food storage. Open garbage containers were replaced with bear-proof models throughout the park. The "Keep Bears Wild" messaging became pervasive, and rangers began writing citations with real teeth.
       </p>
 
       <p>

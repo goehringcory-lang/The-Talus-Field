@@ -231,7 +231,7 @@ const START_ANSWERS = [
 const START_MISTAKES = [
   { title: "Arriving at ten", text: "Valley lots fill by late morning, and by 8 a.m. on summer weekends." },
   { title: "Trusting the phone", text: "Service is mostly gone past the gates. Download offline maps in town." },
-  { title: "A quarter tank", text: "No gas in the Valley. The pumps are at Crane Flat and Wawona." },
+  { title: "A quarter tank", text: "No gas in the Valley. The pumps are at Crane Flat, Wawona and El Portal." },
   { title: "Food in the car", text: "Bears open cars. Daylight only, out of sight, never overnight." },
   { title: "Doing too much", text: "Three things well beats seven from the driver's seat." },
 ];

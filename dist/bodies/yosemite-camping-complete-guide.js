@@ -371,7 +371,7 @@ window.ARTICLE_BODIES["yosemite-camping-complete-guide"] = function YosemiteCamp
     className: "hp-eyebrow"
   }, "WHAT IT COSTS"), React.createElement("h2", null, "$36, $28, $24, or $10 a head"), React.createElement("p", {
     className: "ff-lede"
-  }, "There are no hookups anywhere in the park, not electric, water or sewer. Sewage goes to a dump station, and the park has three: the Valley, Wawona and Tuolumne Meadows."), React.createElement("ul", {
+  }, "There are no hookups anywhere in the park, not electric, water or sewer. Sewage goes to a dump station, and the park has three: the Valley (all year), Wawona and Tuolumne Meadows (both summer only, and Tuolumne's is closed until further notice)."), React.createElement("ul", {
     className: "cg-fees"
   }, React.createElement("li", {
     className: "cg-fee"
@@ -389,7 +389,7 @@ window.ARTICLE_BODIES["yosemite-camping-complete-guide"] = function YosemiteCamp
     className: "cg-fee"
   }, React.createElement("span", {
     className: "cg-fee__price"
-  }, "$10"), React.createElement("strong", null, "a night, per person"), React.createElement("p", null, "Camp 4, in the reservation season and the first-come season alike."))), React.createElement("h3", {
+  }, "$10"), React.createElement("strong", null, "a night, per person"), React.createElement("p", null, "Camp 4, in the reservation season. The Park Service words the first-come fee as $10 a night."))), React.createElement("h3", {
     className: "cg-subhead"
   }, "And to get in"), React.createElement("dl", {
     className: "cg-gate"

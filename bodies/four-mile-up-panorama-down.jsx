@@ -144,7 +144,7 @@ window.ARTICLE_BODIES["four-mile-up-panorama-down"] = function FourMileUpPanoram
       </p>
 
       <p>
-        <strong>The John Muir Trail</strong> is longer (about 4 miles to Happy Isles), gentler and easier on the knees. It switchbacks down through forest with the occasional distant look at Nevada Fall. It's less dramatic, but a lot more comfortable at the end of a long day. After 13 miles and 4,000 feet of total climbing, your knees may decide for you.
+        <strong>The John Muir Trail</strong> is longer (about 3.3 miles from the junction to Happy Isles), gentler and easier on the knees. It switchbacks down through forest with the occasional distant look at Nevada Fall. It's less dramatic, but a lot more comfortable at the end of a long day. After 13 miles and 4,000 feet of total climbing, your knees may decide for you.
       </p>
 
       <p>

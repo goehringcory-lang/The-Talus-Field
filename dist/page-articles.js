@@ -462,7 +462,7 @@ function PlanningSectionPage({
     className: "hp-eyebrow"
   }, "YOUR FIRST NIGHT IN A CAMPGROUND"), React.createElement("h2", null, "It's a village with trees in it. Plan for that."), React.createElement("p", {
     className: "ff-lede"
-  }, "The three Valley campgrounds hold roughly 380 sites on a floor a mile wide. You will hear your neighbors. What catches first-timers isn't the reservation. It's arriving at four o'clock with three hours of daylight and a list nobody handed you."), React.createElement("p", {
+  }, "The three Valley campgrounds hold roughly 390 sites on a floor a mile wide. You will hear your neighbors. What catches first-timers isn't the reservation. It's arriving at four o'clock with three hours of daylight and a list nobody handed you."), React.createElement("p", {
     className: "ff-note"
   }, "The whole first night, from someone who has watched twenty years of them: ", L("section_planning", "/articles/camping-in-yosemite-first-time", "camping in Yosemite for the first time"), ".")), React.createElement("div", {
     className: "ps-inv"

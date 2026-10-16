@@ -171,7 +171,7 @@ window.ARTICLE_BODIES["yosemite-with-kids-no-reservations-2026"] = function Yose
       </p>
 
       <p>
-        <strong>Mariposa Grove.</strong> The giant sequoias. A free shuttle runs from a parking area to the grove (the road to the grove is closed to private vehicles). The Big Trees Loop is a flat 0.3 mile, and the Grizzly Giant Loop is 2 miles round trip with about 300 feet of climbing. The Grizzly Giant is estimated at 2,900 years old and 96 feet around. The shuttle ride is part of the fun for small children.
+        <strong>Mariposa Grove.</strong> The giant sequoias. A free shuttle runs from a parking area to the grove (the road to the grove is closed to private vehicles). The Big Trees Loop is a flat 0.3 mile, and the Grizzly Giant Loop is 2 miles round trip with about 300 feet of climbing. The Grizzly Giant is about 3,000 years old and 96 feet around. The shuttle ride is part of the fun for small children.
       </p>
 
       <p>

@@ -258,7 +258,7 @@ function DatesPage({
     })
   }, React.createElement(AffiliateDisclosure, null)), React.createElement(FjLayout, null, React.createElement("section", {
     className: "prose"
-  }, React.createElement("h2", null, "Measured from your trip"), React.createElement("p", null, "Most of what has to happen before a Yosemite trip is measured backwards from the day you arrive: a Half Dome day permit two days before, a wilderness permit twenty-four weeks before, a Pines campsite five months before. Put in your first and last day in the park and the table below turns those rules into dates."), React.createElement("div", {
+  }, React.createElement("h2", null, "Measured from your trip"), React.createElement("p", null, "Most of what has to happen before a Yosemite trip is measured backwards from the day you arrive: a Half Dome day permit two days before, a wilderness permit twenty-four weeks before, a Pines campsite four to five months before. Put in your first and last day in the park and the table below turns those rules into dates."), React.createElement("div", {
     className: "dates__form",
     role: "group",
     "aria-label": "Your trip dates"

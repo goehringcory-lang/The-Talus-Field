@@ -91,7 +91,7 @@ window.ARTICLE_BODIES["mist-trail-the-real-guide"] = function MistTrailBody() {
       </p>
 
       <p>
-        <strong>The return via the John Muir Trail.</strong> From Nevada Fall, the JMT provides a longer descent with gentler grades than the Mist Trail stairs. Allow roughly 7 miles for the combined hike from Happy Isles, plus the walk to your parking space. Check closures before relying on either route.
+        <strong>The return via the John Muir Trail.</strong> From Nevada Fall, the JMT provides a longer descent with gentler grades than the Mist Trail stairs. Allow roughly 5.8 miles for the loop from Happy Isles, by the printed Yosemite Guide's count, plus the walk to your parking space. Check closures before relying on either route.
       </p>
 
       <figure style={{ margin: "28px 0 32px" }}>

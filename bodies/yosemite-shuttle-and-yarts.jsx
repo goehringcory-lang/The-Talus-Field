@@ -76,7 +76,7 @@ window.ARTICLE_BODIES["yosemite-shuttle-and-yarts"] = function YosemiteShuttleAn
       </p>
 
       <p>
-        Every bus in the fleet carries a wheelchair lift and tie-downs. Service animals meeting the legal definition ride; pets do not, which is the constraint that shapes a <a href="/articles/pets-in-yosemite">dog-owner's day</a> in the Valley more than any other. Bikes do not go on board either. There are racks at the stops instead, and in season Yosemite Conservancy underwrites a bike share that is free for short trips, which pairs well with the twelve-plus miles of paved bike path on the Valley floor. On a warm afternoon the bike is faster than the bus.
+        Every bus in the fleet carries a wheelchair lift and tie-downs. Service animals meeting the legal definition ride; pets do not, which is the constraint that shapes a <a href="/articles/pets-in-yosemite">dog-owner's day</a> in the Valley more than any other. Bikes do not go on board either. There are racks at the stops instead, and in season Yosemite Conservancy underwrites a bike share that is free for short trips, which pairs well with the eleven-plus miles of paved bike path on the Valley floor. On a warm afternoon the bike is faster than the bus.
       </p>
 
       <Placeholder
@@ -96,7 +96,7 @@ window.ARTICLE_BODIES["yosemite-shuttle-and-yarts"] = function YosemiteShuttleAn
       </p>
 
       <p>
-        <strong>The Glacier Point tour bus</strong> is not free and not a shuttle. It is a narrated round trip of about four hours from Yosemite Valley Lodge, generally running from late May into September, and it is bookable through the park concessioner. It is also the standard trick for hiking down the Four Mile or Panorama trails without arranging a car shuttle: ride up, walk down. <a href="/articles/four-mile-up-panorama-down">The loop piece</a> explains why most people should do that in the other direction.
+        <strong>The Glacier Point tour bus</strong> is not free and not a shuttle. It is a narrated round trip of about four hours from Yosemite Valley Lodge, generally running from late May into October, and it is bookable through the park concessioner. It is also the standard trick for hiking down the Four Mile or Panorama trails without arranging a car shuttle: ride up, walk down. <a href="/articles/four-mile-up-panorama-down">The loop piece</a> explains why most people should do that in the other direction.
       </p>
 
       <p>
@@ -114,7 +114,7 @@ window.ARTICLE_BODIES["yosemite-shuttle-and-yarts"] = function YosemiteShuttleAn
       </p>
 
       <p>
-        <strong>Highway 140, from Merced.</strong> The backbone, and the only route that runs year-round, seven days a week. It leaves from the Amtrak station in Merced and calls at Mariposa, Midpines, and El Portal on its way up the Merced canyon. Figure three to three and a half hours end to end. Because it connects to a train, this is the route that makes a car-free Yosemite trip possible from San Francisco, Sacramento, or Los Angeles.
+        <strong>Highway 140, from Merced.</strong> The backbone, and the only route that runs year-round, seven days a week. It leaves from the Amtrak station in Merced and calls at Mariposa, Midpines, and El Portal on its way up the Merced canyon. Figure about three hours end to end. Because it connects to a train, this is the route that makes a car-free Yosemite trip possible from San Francisco, Sacramento, or Los Angeles.
       </p>
 
       <p>

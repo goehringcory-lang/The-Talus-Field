@@ -114,14 +114,14 @@ var TIOGA_STOPS = [{
 }, {
   name: "Tioga Pass",
   ft: 9945,
-  mi: 47,
+  mi: 46,
   note: "The park's east gate",
   x: 1295,
   y: 192
 }, {
   name: "Lee Vining",
   ft: 6800,
-  mi: 59,
+  mi: 58,
   note: "Next gas",
   x: 1540,
   y: 95
@@ -285,7 +285,7 @@ function TiogaOpeningPage({
     className: "is-tight"
   }, React.createElement("span", null, "Late May"), React.createElement("strong", null, "Visitor centers staffed"), React.createElement("p", null, "The Tuolumne Meadows Visitor Center and Wilderness Center have limited or no staffing until late May.")), React.createElement("li", {
     className: "is-tight"
-  }, React.createElement("span", null, "June and July"), React.createElement("strong", null, "Lodge, grill, campground"), React.createElement("p", null, "In a recent season the lodge opened in early June, the grill in mid-June, and the campground on July 1, reservable on Recreation.gov.")), React.createElement("li", {
+  }, React.createElement("span", null, "June and July"), React.createElement("strong", null, "Lodge, grill, campground"), React.createElement("p", null, "In a recent season the grill opened in late May, the lodge in early June, and the campground on July 1, reservable on Recreation.gov.")), React.createElement("li", {
     className: "is-gone"
   }, React.createElement("span", null, "Later in summer"), React.createElement("strong", null, "Store and post office"), React.createElement("p", null, "The last of Tuolumne to come online. Until then there is nothing to buy anywhere along the road."))), React.createElement("ul", {
     className: "tg-never"
@@ -334,7 +334,7 @@ function TiogaOpeningPage({
     title: "From 6,200 feet to 9,945, then down to the desert"
   }), React.createElement("p", {
     className: "ff-lede ff-lede--intro"
-  }, "Tioga Road climbs from Crane Flat to the pass over roughly 46 miles, then drops more than 3,000 feet in twelve miles into the Mono Basin, where granite gives way to sagebrush. Allow about 90 minutes one way without stops. With the stops, it is a full day."), React.createElement("figure", {
+  }, "Tioga Road climbs from Crane Flat to the pass over roughly 46 miles, then drops more than 3,000 feet in twelve miles into the Mono Basin, where granite gives way to sagebrush. Allow about 75 minutes one way to the pass without stops. With the stops, it is a full day."), React.createElement("figure", {
     className: "npsmap tg-map"
   }, React.createElement(TiogaRoadMap, null), React.createElement("figcaption", null, TIOGA_STOPS.map((t, i) => React.createElement("span", {
     key: t.name

@@ -10,7 +10,7 @@ window.ARTICLE_BODIES["yosemite-tunnel-trees"] = function YosemiteTunnelTreesBod
       </p>
 
       <p>
-        The park explained how it was done in its own magazine. In April 1929, <em>Yosemite Nature Notes</em> ran a piece called "Tunneled Trees of Mariposa and Other Groves." It consists of measurements, some history, and a note about how well the photographs were selling.
+        The park explained how it was done in its own magazine. In April 1929, <em>Yosemite Nature Notes</em> ran a piece called "Tunneled Trees of Mariposa and Other Groves." It consists of measurements, some history, and a note about how widely the photographs had travelled.
       </p>
 
       <p>
@@ -84,7 +84,7 @@ window.ARTICLE_BODIES["yosemite-tunnel-trees"] = function YosemiteTunnelTreesBod
       </p>
 
       <p>
-        The archive records the loss almost in passing. In <a href="/archive/1971/vol-41-no-4/">the 1971 volume</a>, an editor prints the reflections of a longtime visitor who had come by the office to talk about how the park had changed. Her list runs:
+        The archive records the loss almost in passing. In <a href="/archive/1971/vol-41-no-4/">the 1971 volume</a>, an editor prints the reflections of an interested visitor who had dropped by the office to talk about how the park had changed. Her list runs:
       </p>
 
       <blockquote>
@@ -104,7 +104,7 @@ window.ARTICLE_BODIES["yosemite-tunnel-trees"] = function YosemiteTunnelTreesBod
       </p>
 
       <p>
-        <strong>The Dead Giant, Tuolumne Grove.</strong> The trailhead is on Tioga Road a short distance east of the Crane Flat junction. The route in is the old Big Oak Flat Road, about a mile down and roughly five hundred feet of descent, which means the walk back is five hundred feet of climb. The tunnel is still cut through the stump, and you can still walk the road grade through it, the same surface the 1878 coach used. Carry water for the climb out.
+        <strong>The Dead Giant, Tuolumne Grove.</strong> The trailhead is on Tioga Road just north of Crane Flat. The route in is the old Big Oak Flat Road, about a mile down and roughly five hundred feet of descent, which means the walk back is five hundred feet of climb. The tunnel is still cut through the stump, and you can still walk the road grade through it, the same surface the 1878 coach used. Carry water for the climb out.
       </p>
 
       <p>

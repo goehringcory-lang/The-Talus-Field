@@ -492,7 +492,7 @@ const seed: DiningInput[] = [
     id: 'evergreen-lodge-dining',
     name: 'Evergreen Lodge Restaurant & Tavern',
     area: 'hetch-hetchy',
-    place: 'Evergreen Road, a mile before Camp Mather',
+    place: 'Evergreen Road, about a mile outside the Hetch Hetchy entrance',
     kind: 'sit-down',
     price: '$$$',
     order: 1,
@@ -555,7 +555,7 @@ const seed: DiningInput[] = [
     order: 3,
     coord: [-119.9331, 37.5757],
     description:
-      'The hostel kitchen: scratch-made, hiker-sized plates at communal tables, with vegetarian options. Ten minutes off 140.',
+      'The hostel kitchen: scratch-made, hiker-sized plates at communal tables, with vegetarian options. A quarter mile up the driveway from Highway 140.',
   },
   {
     id: 'happy-burger',
@@ -580,7 +580,7 @@ const seed: DiningInput[] = [
     kind: 'sit-down',
     price: '$$$',
     order: 2,
-    hoursNote: 'closed Mondays',
+    hoursNote: 'open daily, lunch and dinner; call ahead for dinner reservations',
     coord: [-119.97, 37.4897], // moved 2026-09: OSM "1850", 5114 Hwy 140
     description:
       'Mariposa\'s brewery restaurant, named for the county\'s founding year: house beers, smoked meats, and burgers.',
@@ -651,7 +651,7 @@ const seed: DiningInput[] = [
     price: '$',
     order: 2,
     closed:
-      'Directory listings have shown it closed since 2025, and it no longer answers online. Do not count on coffee here; Priest Station Cafe serves breakfast daily until 11 a.m.',
+      'Directory listings have shown it closed since 2025, and it no longer answers online. Do not count on coffee here; Priest Station Cafe, on Old Priest Grade, serves breakfast; call ahead for its hours.',
     coord: [-120.2325, 37.8386],
     description:
       'The local roaster on Main Street: espresso, pastries, and light breakfast from 7 a.m.',
@@ -717,7 +717,7 @@ const seed: DiningInput[] = [
     kind: 'sit-down',
     price: '$$$$',
     order: 2,
-    hoursNote: 'dinner Wednesday through Sunday',
+    hoursNote: 'dinner only; the days have varied, so call ahead',
     reservations: 'Reservations essentially required; the room is formal.',
     coord: [-119.661, 37.3272], // moved 2026-09: OSM Chateau du Sureau and the Census geocoder for 48688 Victoria Ln
     description:

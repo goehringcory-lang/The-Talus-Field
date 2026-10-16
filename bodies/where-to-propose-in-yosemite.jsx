@@ -6,7 +6,7 @@ window.ARTICLE_BODIES["where-to-propose-in-yosemite"] = function WhereToProposeI
   return (
     <>
       <p className="dropcap">
-        I have seen the ring come out of jacket pockets, backpack hip belts, socks, water bottles, and once, memorably, a bear canister. The bear canister proposal was at Cathedral Lakes. The man could not get the lid open. His partner stood there watching him wrestle with bear-proof plastic at 9,500 feet while the alpine lake reflected Cathedral Peak behind them. He got it open. She said yes. The lid had left a red mark on his palm. When she told me the story afterward, that mark was the detail she mentioned.
+        I have seen the ring come out of jacket pockets, backpack hip belts, socks, water bottles, and once, memorably, a bear canister. The bear canister proposal was at Cathedral Lakes. The man could not get the lid open. His partner stood there watching him wrestle with bear-proof plastic above 9,000 feet while the alpine lake reflected Cathedral Peak behind them. He got it open. She said yes. The lid had left a red mark on his palm. When she told me the story afterward, that mark was the detail she mentioned.
       </p>
 
       <p>
@@ -20,7 +20,7 @@ window.ARTICLE_BODIES["where-to-propose-in-yosemite"] = function WhereToProposeI
       <h2>The Rules of the Granite</h2>
 
       <p>
-        Before you plan anything, know what the National Park Service does not allow. No decorations. No rose petals. No candles. No balloon arches. No drones, and this one carries a fine up to $5,000. No confetti, no streamers, no signs staked into meadow grass. If you are imagining a Pinterest board come to life against a granite backdrop, Yosemite is not the place for it.
+        Before you plan anything, know what the National Park Service does not allow. No decorations. No rose petals. No candles. No balloon arches. No drones. No confetti, no streamers, no signs staked into meadow grass. If you are imagining a Pinterest board come to life against a granite backdrop, Yosemite is not the place for it.
       </p>
 
       <p>Good.</p>
@@ -30,7 +30,7 @@ window.ARTICLE_BODIES["where-to-propose-in-yosemite"] = function WhereToProposeI
       </p>
 
       <p>
-        One practical note that surprises people: you do not need a permit to propose. The park draws a clear line between proposals and weddings. A proposal is a personal moment between two people. No permit, no fee, no paperwork. Weddings are a different matter entirely, hundreds happen in the park each year, and those require a Special Use Permit. But the question itself is free. The EXPLORE Act of 2025 also clarified photography rules: groups of eight or fewer do not need a photography permit. So you and your photographer, assuming you want one, are covered.
+        One practical note that surprises people: you do not need a permit to propose. The park draws a clear line between proposals and weddings. A proposal is a personal moment between two people. No permit, no fee, no paperwork. Weddings are a different matter entirely, and those require a Special Use Permit. But the question itself is free. The EXPLORE Act of 2025 also clarified photography rules: groups of eight or fewer do not need a photography permit. So you and your photographer, assuming you want one, are covered.
       </p>
 
       <h2>The Famous Walls</h2>
@@ -96,7 +96,7 @@ window.ARTICLE_BODIES["where-to-propose-in-yosemite"] = function WhereToProposeI
       </p>
 
       <p>
-        <strong>Cathedral Lakes</strong>, where our bear canister story began, is a 7.6-mile round trip from the trailhead on Tioga Road in <a href="/articles/first-time-yosemite-overwhelm">Tuolumne Meadows</a>. The trail climbs through lodgepole forest and breaks out into subalpine meadows before reaching the lower lake at about 9,500 feet. Cathedral Peak, a sharp granite spire, rises directly above the lake. The water is cold and clear and reflects the peak like a mirror on calm mornings. It requires Tioga Road to be open, typically from late spring into November. The hike is moderate but the elevation gain and altitude make it feel harder than the mileage suggests. Bring water. Bring sunscreen. Bring the ring somewhere you can actually reach it.
+        <strong>Cathedral Lakes</strong>, where our bear canister story began, is a 7.6-mile round trip to Upper Cathedral Lake from the visitor center in <a href="/articles/first-time-yosemite-overwhelm">Tuolumne Meadows</a>, with a spur trail to the lower lake near the top of the climb. The trail climbs through lodgepole forest and breaks out into subalpine meadows before reaching the lakes above 9,000 feet. Cathedral Peak, a sharp granite spire, rises directly above them. The water is cold and clear and reflects the peak like a mirror on calm mornings. It requires Tioga Road to be open, typically from late spring into November. The hike is moderate but the elevation gain and altitude make it feel harder than the mileage suggests. Bring water. Bring sunscreen. Bring the ring somewhere you can actually reach it.
       </p>
 
       <p>
@@ -108,7 +108,7 @@ window.ARTICLE_BODIES["where-to-propose-in-yosemite"] = function WhereToProposeI
       </p>
 
       <p>
-        <strong>North Dome</strong> is the proposal location I would choose if someone asked me, and almost nobody knows about it. The trail is about 10 miles round trip from the Porcupine Creek trailhead off Tioga Road, mostly flat through forest with a final descent to the dome itself. From the dome, Half Dome sits directly across the Valley, closer than from any other vantage point, at eye level, filling your entire field of vision. Glacier Point is visible below and across the gap. The Valley floor is a green ribbon far below. You are looking at the <a href="/articles/so-you-want-to-hike-half-dome">most famous rock face in North America</a> from a place where, on a Tuesday in June, you might be completely alone. There is no railing. The hike back out is uphill and longer than you expect, so plan accordingly.
+        <strong>North Dome</strong> is the proposal location I would choose if someone asked me, and almost nobody knows about it. The trail is roughly 9 to 10 miles round trip from the Porcupine Creek trailhead off Tioga Road, mostly flat through forest with a final descent to the dome itself. From the dome, Half Dome sits directly across the Valley, closer than from any other vantage point, at eye level, filling your entire field of vision. Glacier Point is visible below and across the gap. The Valley floor is a green ribbon far below. You are looking at the <a href="/articles/so-you-want-to-hike-half-dome">most famous rock face in North America</a> from a place where, on a Tuesday in June, you might be completely alone. There is no railing. The hike back out is uphill and longer than you expect, so plan accordingly.
       </p>
 
       <h2>The Dark Ones</h2>
@@ -174,7 +174,7 @@ window.ARTICLE_BODIES["where-to-propose-in-yosemite"] = function WhereToProposeI
       </p>
 
       <p>
-        <strong>Photography.</strong> The EXPLORE Act of 2025 eliminated the photography permit requirement for groups of eight or fewer on public lands. This means you and a hired photographer can shoot without a permit, as long as your total group (couple plus photographer plus any assistants) stays at eight or under and you are not using props, sets, or models. If you hire a Yosemite proposal photographer, find one who knows the park. Light angles, crowd timing, and trail conditions make a difference that generic portrait photographers often miss. Yosemite has a small community of permitted photographers who specialize in engagement photos and elopements. They are worth the investment.
+        <strong>Photography.</strong> The EXPLORE Act of 2025 eliminated the photography permit requirement for groups of eight or fewer on public lands. This means you and a hired photographer can shoot without a permit, as long as your total group (couple plus photographer plus any assistants) stays at eight or under, uses only hand-held gear, and does not need exclusive use of a site. If you hire a Yosemite proposal photographer, find one who knows the park. Light angles, crowd timing, and trail conditions make a difference that generic portrait photographers often miss. Yosemite has a small community of permitted photographers who specialize in engagement photos and elopements. They are worth the investment.
       </p>
 
       <p>
@@ -182,7 +182,7 @@ window.ARTICLE_BODIES["where-to-propose-in-yosemite"] = function WhereToProposeI
       </p>
 
       <p>
-        <strong>Champagne.</strong> Technically, alcohol is permitted in picnic areas and developed campgrounds. Glass bottles are allowed in most locations except sandy beaches along the Merced River, where the NPS requests aluminum or plastic to protect bare feet. Do not pop a champagne cork into the wilderness. Pack out every piece of foil and wire cage. If you want to celebrate with a bottle, Cathedral Beach picnic area or one of the Valley pullouts with a picnic table works well.
+        <strong>Champagne.</strong> Rangers strictly enforce the park's laws on excessive drinking, so keep the celebration modest. Do not pop a champagne cork into the wilderness. Pack out every piece of foil and wire cage. If you want to celebrate with a bottle, Cathedral Beach picnic area or one of the Valley pullouts with a picnic table works well.
       </p>
 
       <p>

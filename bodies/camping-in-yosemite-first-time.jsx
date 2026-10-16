@@ -126,7 +126,7 @@ window.ARTICLE_BODIES["camping-in-yosemite-first-time"] = function CampingInYose
       </p>
 
       <p>
-        And a fifth thing that is not a time but belongs with them: do not bring firewood from home. Moving firewood is how insect pests get moved into new forests, and the standing advice statewide is to buy it where you burn it. Gathering is limited to dead and downed wood under six inches across, below 9,600 feet, and in Yosemite Valley only inside campground boundaries. Buy a bundle at the store on your way in.
+        And a fifth thing that is not a time but belongs with them: do not bring firewood from far away. Moving firewood is how insect pests get moved into new forests, and the park asks that none come from more than 50 miles away; the simplest way to comply is to buy it where you burn it. Gathering is limited to dead and downed wood under six inches across, below 9,600 feet, and in Yosemite Valley only inside campground boundaries. Buy a bundle at the store on your way in.
       </p>
 
       <h2>Set up in daylight. All of it.</h2>

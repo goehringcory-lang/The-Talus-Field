@@ -16,7 +16,7 @@ window.ARTICLE_BODIES["bracebridge-dinner-and-vintners-holidays"] = function Bra
       </p>
 
       <p>
-        <strong>The Bracebridge Dinner</strong> runs in December: a single, several-hours-long dinner theater pageant, staged repeatedly through the month in the Ahwahnee's dining room, with a reception in the Great Lounge beforehand. It is Tudor-costumed, live-sung, built around a seven-course feast, and involves a cast and crew that runs past a hundred people. Unlike Vintners' Holidays, a Bracebridge ticket buys the performance and the meal only. A room at the Ahwahnee is a separate booking, and plenty of guests drive in for the evening and drive home after. The rest of the month, the roads, the chain rules and the holiday-week crowd, is in <a href="/articles/yosemite-in-december">the December guide</a>.
+        <strong>The Bracebridge Dinner</strong> runs in December: a single, several-hours-long dinner theater pageant, staged repeatedly through the month in the Ahwahnee's dining room, with a reception in the Great Lounge beforehand. It is Tudor-costumed, live-sung, built around a seven-course feast, and involves a cast of dozens. Unlike Vintners' Holidays, a Bracebridge ticket buys the performance and the meal only. A room at the Ahwahnee is a separate booking, and plenty of guests drive in for the evening and drive home after. The rest of the month, the roads, the chain rules and the holiday-week crowd, is in <a href="/articles/yosemite-in-december">the December guide</a>.
       </p>
 
       <p>
@@ -24,17 +24,17 @@ window.ARTICLE_BODIES["bracebridge-dinner-and-vintners-holidays"] = function Bra
       </p>
 
       <p>
-        What the Bracebridge Dinner actually contains, if the name means nothing to you: a cast of characters (a pious parson, a French chef, a wild Scottish cousin, a lusty widow of several husbands, and a Lord of Misrule who runs the room) leads guests through a procession of courses, including a boar's head and a baron of beef carried in by costumed servants, some of the props original to the 1920s production. A professional chorale sings carols between courses, there's a wassail bowl, and the Park Service puts the dinner itself at about three hours. It is closer to theater than to dinner: a play that serves you seven courses.
+        What the Bracebridge Dinner actually contains, if the name means nothing to you: a cast of characters (a pious parson, a French chef, a wild Scottish cousin, a lusty widow of several husbands, and a Lord of Misrule who runs the room) leads guests through a procession of courses, including a boar's head and a baron of beef carried in by costumed servants. A professional chorale sings carols between courses, there's a wassail bowl, and the Park Service puts the dinner itself at about three hours. It is closer to theater than to dinner: a play that serves you seven courses.
       </p>
 
       <h2>Where both of these came from</h2>
 
       <p>
-        The Bracebridge Dinner is nearly a century old. The Ahwahnee opened in 1927, and the Yosemite Park and Curry Company's president, Donald Tresidder, wanted an opening-season holiday spectacle to match it. He hired pageant director Garnet Holme to build one around Washington Irving's <em>Old Christmas at Bracebridge Hall</em>, and the first dinner ran that December. Holme died in 1929; the hotel handed the rewrite to a young photographer who had been playing the production's "Lord of Misrule," and Ansel Adams's version of the script is substantially the one still performed. For decades the dinner was one of the hardest tickets in California: in the early 1990s, roughly 1,650 seats a year were allotted by lottery against as many as 60,000 applicants. The lottery is gone, performances have multiplied, and tickets now sell first come, first served, which makes tickets easier to get but not cheaper.
+        The Bracebridge Dinner is nearly a century old. The Ahwahnee opened in 1927, and the Yosemite Park and Curry Company's president, Donald Tresidder, wanted an opening-season holiday spectacle to match it. He hired pageant director Garnet Holme to build one around Washington Irving's <em>Old Christmas at Bracebridge Hall</em>, and the first dinner ran that December. Holme died in 1929; the hotel handed the rewrite to a young photographer who had been playing the production's "Lord of Misrule," and Ansel Adams's version of the script is substantially the one still performed. For decades the dinner was one of the hardest tickets in California: seats were allotted by lottery, and by some accounts the applicants numbered in the tens of thousands. The lottery is gone, performances have multiplied, and tickets now sell first come, first served, which makes tickets easier to get but not cheaper.
       </p>
 
       <p>
-        Vintners' Holidays is younger and started smaller: a 1982 idea from the Ahwahnee's then-beverage manager to fill the hotel's slow weeks between the fall shoulder season and the December rush, built around a handful of visiting winemakers. It grew into a recurring, sponsor-driven program that now runs four sessions every November.
+        Vintners' Holidays is younger and started smaller: a 1982 gathering of winemakers and hotel guests, meant to fill the hotel's slow weeks between the fall shoulder season and the December rush, built around a handful of visiting winemakers. It grew into a recurring, sponsor-driven program that now runs four sessions every November.
       </p>
 
       <p>

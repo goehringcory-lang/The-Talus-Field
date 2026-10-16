@@ -59,7 +59,7 @@ window.ARTICLE_BODIES["yosemite-wildflowers-guide"] = function YosemiteWildflowe
       </p>
 
       <p>
-        This is the most useful thing to know about Yosemite wildflowers, and few visitors arrive knowing it. Visitors ask when the flowers bloom, expecting a date. The answer depends on elevation. The park runs from about 2,000 feet at the Arch Rock entrance to over 13,000 feet at its highest peaks, and spring moves uphill at a rate of very roughly a thousand feet a month. There is a bloom happening somewhere in or near the park from February through August. You just have to drive to the right altitude.
+        This is the most useful thing to know about Yosemite wildflowers, and few visitors arrive knowing it. Visitors ask when the flowers bloom, expecting a date. The answer depends on elevation. The park runs from under 2,000 feet at its western boundary to over 13,000 feet at its highest peaks, and spring moves uphill at a rate of very roughly a thousand feet a month. There is a bloom happening somewhere in or near the park from February through August. You just have to drive to the right altitude.
       </p>
 
       <blockquote>In Yosemite, the bloom is not a date. It is an elevation.</blockquote>
@@ -108,7 +108,7 @@ window.ARTICLE_BODIES["yosemite-wildflowers-guide"] = function YosemiteWildflowe
       <h2>May to July: the middle elevations, 6,000 to 8,000 feet</h2>
 
       <p>
-        As the Valley dries out, the wave climbs into the forest belt, and here the geography matters: at these elevations the bloom concentrates almost entirely in meadows, because the forest itself blooms sparsely. A mature conifer stand is a dark place. Very little sunlight reaches the ground, and the trees take most of the water. A meadow is the opposite: full sun all day and soil that stays wet into midsummer, often because a creek runs through it or the water table sits just under the sod. Light plus water is the whole formula. Yosemite's meadows cover about 36,000 acres, a small fraction of the park and hold a wildly disproportionate share of its flowering plants, which number more than 1,400 species parkwide.
+        As the Valley dries out, the wave climbs into the forest belt, and here the geography matters: at these elevations the bloom concentrates almost entirely in meadows, because the forest itself blooms sparsely. A mature conifer stand is a dark place. Very little sunlight reaches the ground, and the trees take most of the water. A meadow is the opposite: full sun all day and soil that stays wet into midsummer, often because a creek runs through it or the water table sits just under the sod. Light plus water is the whole formula. Yosemite's meadows cover only about 3 percent of the park, a little more than 21,000 acres, and hold a wildly disproportionate share of its plants, which number over a thousand species parkwide.
       </p>
 
       <NatureNotesFilm id="wildflowers" title="Wildflowers" youtubeId="HFpvV7ZjvYA" episode={1}

@@ -68,7 +68,7 @@ window.ARTICLE_BODIES["where-to-eat-yosemite"] = function WhereToEatYosemiteBody
     ["Where can I book a sit-down dinner in Yosemite Valley?", "The Mountain Room at Yosemite Valley Lodge and The Ahwahnee Dining Room are options. Both take reservations on OpenTable, and the Ahwahnee also by phone at 209/372-1489. A room at the hotel does not hold you a table, so book dinner separately."],
     ["Is there a dress code at the Ahwahnee Dining Room?", "At dinner, yes. The hotel asks for long pants and a collared shirt, or a dress, skirt, or long pants with a blouse, and no hiking clothes, shorts, T-shirts, tank tops, flip-flops or baseball caps. Breakfast, lunch and Sunday brunch are casual."],
     ["Where can I buy groceries in Yosemite?", "The Village Store in Yosemite Village has the park's largest selection, including meat, produce, ice and firewood. Curry Village has a grocery that stays open in winter, and there are smaller stores at Housekeeping Camp, Wawona, Crane Flat and, in summer, Tuolumne Meadows."],
-    ["Are there restaurants in Yosemite West?", "No. Yosemite West, a private enclave just outside the park's southern boundary, has no restaurant, store, gas station, or shuttle. Shop before arriving. Yosemite Valley is roughly half an hour each way, or Wawona is about fifteen minutes south."],
+    ["Are there restaurants in Yosemite West?", "No. Yosemite West, a private enclave just outside the park's southern boundary, has no restaurant, store, gas station, or shuttle. Shop before arriving. Yosemite Valley is roughly half an hour each way, or Wawona is about half an hour south."],
     ["Is there food at Tuolumne Meadows in fall?", "Service is seasonal. The concessioner's 2026 schedule lists September 13 as the lodge dining room's last day and September 20 for the grill. Pack lunch for a Tioga Road day; an open road does not mean an open kitchen."],
     ["Is the Wawona Hotel dining room open?", "The Wawona Hotel and its dining room are closed for a condition assessment. Check the NPS hotel notice for reopening updates. The Wawona General Store is a grocery and picnic-supply option."],
     ["Where should I eat near Yosemite?", "Choose restaurants near your route or lodging. The guide recommends 1850, Smokin Oak BBQ, and Tacos Sonora in Mariposa; South Gate Brewing Company and The Elderberry House in Oakhurst; and Latte Da Cafe in Lee Vining. On Highway 120, Rush Creek Lodge and Evergreen Lodge have full restaurants a few miles from the Big Oak Flat entrance. Check current hours before making a special trip."],
@@ -208,7 +208,7 @@ window.ARTICLE_BODIES["where-to-eat-yosemite"] = function WhereToEatYosemiteBody
   // [where, area, group, meal, price, season, reservations]. `group` drives
   // the filter chips only.
   const TABLE = [
-    ["Curry Village Pizza Deck", "Yosemite Valley", "valley", "Lunch, dinner", 2, "January to November", "No"],
+    ["Curry Village Pizza Deck", "Yosemite Valley", "valley", "Lunch, dinner", 2, "Seasonal; check the Guide", "No"],
     ["Seven Tents Pavilion", "Yosemite Valley", "valley", "Breakfast, dinner", 2, "Year-round", "No"],
     ["Base Camp Eatery", "Yosemite Valley", "valley", "All three", 2, "Year-round", "No"],
     ["Degnan's Kitchen", "Yosemite Valley", "valley", "Breakfast, lunch", 1, "Year-round", "No"],
@@ -406,7 +406,7 @@ window.ARTICLE_BODIES["where-to-eat-yosemite"] = function WhereToEatYosemiteBody
             alt="Wooden cabins at Curry Village among pines and granite boulders"
             credit="Curry Village cabins. Photo: US National Park Service / Wikimedia Commons (public domain)">
             <Kitchen name="Pizza Deck" meal="Lunch, dinner" price={2} res="No" pick="My first pick">
-              Pizza on an outdoor deck facing Glacier Point Apron, and my first stop after a hike. Expect a line on summer evenings. The menu changes, so check it when you arrive; the Half Dome pizza is my pick when they have it. The deck runs January through November and over the holidays; in winter, order the same pizza inside at Seven Tents.
+              Pizza on an outdoor deck facing Glacier Point Apron, and my first stop after a hike. Expect a line on summer evenings. The menu changes, so check it when you arrive; the Half Dome pizza is my pick when they have it. The deck is seasonal, and in winter the Yosemite Guide sends you to order pizza inside at the Seven Tents Pavilion.
             </Kitchen>
             <Kitchen name="Meadow Grill Taqueria" meal="Lunch, dinner" price={1} res="No">
               Tacos and burritos at the counter by the Village Store, beside the deck, with outdoor seating. It is the shortest path from a trailhead to a hot meal on the Valley floor, and usually the first Valley kitchen to close when summer ends.
@@ -590,7 +590,7 @@ window.ARTICLE_BODIES["where-to-eat-yosemite"] = function WhereToEatYosemiteBody
               <li><EventIcon name="no" size={28} />No shuttle</li>
             </ul>
             <dl className="eat-none__drive">
-              <div><dt>Nearest food</dt><dd>Yosemite Valley</dd><dd className="eat-none__note">Roughly 40 minutes each way</dd></div>
+              <div><dt>Nearest food</dt><dd>Yosemite Valley</dd><dd className="eat-none__note">Roughly half an hour each way</dd></div>
               <div><dt>Or</dt><dd>Wawona</dd><dd className="eat-none__note">About half an hour south</dd></div>
             </dl>
           </div>
@@ -654,7 +654,7 @@ window.ARTICLE_BODIES["where-to-eat-yosemite"] = function WhereToEatYosemiteBody
             <div className="eat-town__body">
               <p className="eat-town__road">Highway 140 · at the park line</p>
               <h3>El Portal</h3>
-              <p className="eat-town__line">More than its size suggests, and 25 minutes closer than Mariposa on a night the Valley kitchens have shut.</p>
+              <p className="eat-town__line">More than its size suggests, and half an hour closer than Mariposa on a night the Valley kitchens have shut.</p>
               <div className="eat-picks">
                 <TownPick name="Four restaurants, open to everyone" meta="Dinner · $$">
                   The <strong>Cedar House Restaurant</strong> and the <strong>Canyon Bar</strong> at the Yosemite View Lodge, the <strong>River Restaurant</strong> at the Cedar Lodge, and <strong>Parkside Pizza</strong>. None is worth driving out of the park for, which is the only reason none made the list above. All four serve the public, not just lodge guests.
@@ -714,10 +714,10 @@ window.ARTICLE_BODIES["where-to-eat-yosemite"] = function WhereToEatYosemiteBody
               <p className="eat-town__line">A historic main street with enough places to eat for a two-night stay, and two lodge kitchens close enough to the park to eat at after a day in it.</p>
               <div className="eat-picks">
                 <TownPick name="Yosemite Restaurant, Rush Creek Lodge" meta="All three · $$$ · reservations on OpenTable">
-                  1.7 miles from the Big Oak Flat entrance, about five minutes. The restaurant and the tavern beside it serve the same menu, and the lodge's general store does lattes, breakfast and trail food.
+                  Half a mile from the park's Highway 120 west entrance. The restaurant and the tavern beside it serve the same menu, and the lodge's general store does lattes, breakfast and trail food.
                 </TownPick>
                 <TownPick name="Evergreen Lodge" meta="All three · $$$ · reservations on OpenTable">
-                  Off Evergreen Road, seven miles from the Big Oak Flat entrance and one from the Hetch Hetchy entrance, which makes it the meal for a Hetch Hetchy day. The tavern serves the restaurant's menu under a covered patio.
+                  Off Evergreen Road, a mile from the Hetch Hetchy entrance, which makes it the meal for a Hetch Hetchy day. The tavern serves the restaurant's menu under a covered patio.
                 </TownPick>
                 <TownPick name="Iron Door Saloon" meta="Lunch, dinner · $$ · Main Street, Groveland">
                   A building that went up before 1852 and became a saloon in 1896, with food, live music most weekends and karaoke on Thursdays. Groveland is a long half hour from the gate, so this is a dinner for people staying in town.

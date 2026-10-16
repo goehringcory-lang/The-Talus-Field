@@ -18,11 +18,11 @@ window.ARTICLE_BODIES["yosemite-wilderness-permits-guide"] = function YosemiteWi
     const steps = [
       { y: 150, head: "24 WEEKS BEFORE THE START DATE", lines: ["The weekly lottery on Recreation.gov: 60 percent", "Applications open Sunday, close Saturday, process the day after", "$10 to apply, plus $5 per person if you win"] },
       { y: 270, head: "7 DAYS BEFORE, AT 7 A.M. PACIFIC", lines: ["The other 40 percent goes online", "First come, first served", "Famous trailheads go in minutes; others linger for days"] },
-      { y: 390, head: "THE START DATE", lines: ["Collect the permit at a wilderness center, 8 to 11 a.m.", "A late-arrival hold extends pickup to 5 p.m.", "Uncollected, it can go to the next person in line"] },
+      { y: 390, head: "BY THE START DATE", lines: ["Collect it in person the day before or the day of, 8 a.m. to 5 p.m.", "Arriving after 11 a.m. needs a late-arrival hold", "Without one, the reservation is cancelled"] },
     ];
     return (
       <svg viewBox={`0 0 ${W} ${H}`} style={SVG_STYLE} role="img"
-        aria-label="How a Yosemite wilderness permit is allocated. Each trailhead's daily quota is split: 60 percent by weekly lottery, 40 percent released seven days out. Twenty-four weeks before the start date, the lottery runs on Recreation.gov; applications for a weekly window open on a Sunday, close the following Saturday and process the day after; it costs $10 to apply plus $5 per person if you win. Seven days before the start date, at 7 a.m. Pacific, the remaining 40 percent goes online first come, first served. On the start date the permit is collected at a wilderness center between 8 and 11 a.m., or by 5 p.m. with a late-arrival hold, or it can be released to the next person in line.">
+        aria-label="How a Yosemite wilderness permit is allocated. Each trailhead's daily quota is split: 60 percent by weekly lottery, 40 percent released seven days out. Twenty-four weeks before the start date, the lottery runs on Recreation.gov; applications for a weekly window open on a Sunday, close the following Saturday and process the day after; it costs $10 to apply plus $5 per person if you win. Seven days before the start date, at 7 a.m. Pacific, the remaining 40 percent goes online first come, first served. On the start date the permit is collected in person at a wilderness center the day before or the day of, 8 a.m. to 5 p.m.; arriving after 11 a.m. needs a late-arrival hold, or the reservation is cancelled.">
         <text x="0" y="18" style={T_HEAD}>ONE TRAILHEAD'S DAILY QUOTA</text>
         <rect x="0" y="32" width="360" height="48" fill="var(--moss)" />
         <rect x="360" y="32" width="240" height="48" fill="var(--paper-2)" stroke="var(--moss)" strokeWidth="1.5" />
@@ -120,7 +120,7 @@ window.ARTICLE_BODIES["yosemite-wilderness-permits-guide"] = function YosemiteWi
       <h2>Picking up the permit</h2>
 
       <p>
-        A reservation is not the permit itself. You collect the physical permit at a wilderness center (Yosemite Valley, Tuolumne Meadows, Big Oak Flat, Wawona, or Hetch Hetchy, seasonally) on the same day between 8 and 11 a.m., unless you have asked Recreation.gov to hold it for a late arrival, which extends the pickup to 5 p.m., or it can be released to the next person in line. The pickup conversation with the ranger is short and worth having: current water sources, snow lingering on passes, which bear has been working which drainage, <a href="/articles/first-yosemite-backpacking-trip">the exact conditions a first trip needs to plan around</a>. It is the best trail beta in the park and it costs nothing.
+        A reservation is not the permit itself. You collect the physical permit in person at a wilderness center or permit station (Yosemite Valley, Tuolumne Meadows, Big Oak Flat, Wawona, or Hetch Hetchy, seasonally) the day before or the day of your start date, during open hours (8 a.m. to 5 p.m.). If you will arrive after 11 a.m. on the start date, you must ask Recreation.gov to hold the permit for a late arrival, or the reservation is cancelled. The pickup conversation with the ranger is short and worth having: current water sources, snow lingering on passes, which bear has been working which drainage, <a href="/articles/first-yosemite-backpacking-trip">the exact conditions a first trip needs to plan around</a>. It is the best trail beta in the park and it costs nothing.
       </p>
 
       <h2>An honest strategy, in order</h2>

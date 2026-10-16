@@ -113,7 +113,7 @@ window.ARTICLE_BODIES["yosemite-walk-up-and-day-of-permits"] = function Yosemite
       <h2>Where to stand, and by when</h2>
 
       <p>
-        Permits are issued at the wilderness centers: Yosemite Valley, Tuolumne Meadows, Wawona, Big Oak Flat, and the Hetch Hetchy entrance station. Most run roughly 8 a.m. to 5 p.m. in season, and the outlying ones close for the season, with self-registration outside the nearest station in the off-season, so the Valley center is the reliable year-round door. Two rules ride along with them. A reservation is not a permit; someone in your party has to collect the paper, either the day before, 8 a.m. to 5 p.m., or between 8 and 11 a.m. on the start date, and an uncollected permit is cancelled and given away. And if you are hoping to catch released quota, be at the counter when it opens, not at lunchtime.
+        Permits are issued at the wilderness centers: Yosemite Valley, Tuolumne Meadows, Wawona, Big Oak Flat, and the Hetch Hetchy entrance station. All run 8 a.m. to 5 p.m. in season and close in mid-October (this year the Valley center on October 18, Tuolumne Meadows and Wawona on October 14), after which you self-register at a kiosk or porch for the trailheads served by that station, and the Valley Welcome Center is the one place that still rents bear canisters. Two rules ride along with them. A reservation is not a permit; someone in your party has to collect the paper, either the day before, 8 a.m. to 5 p.m., or between 8 and 11 a.m. on the start date, and an uncollected permit is cancelled and given away. And if you are hoping to catch released quota, be at the counter when it opens, not at lunchtime.
       </p>
 
       <p>

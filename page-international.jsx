@@ -201,7 +201,7 @@ function InternationalPage({ go }) {
               <a href="/distances" onClick={(e) => goR(e, "distances")}>the drive-time table</a> has the rest.
             </li>
             <li>
-              <strong>Two of the three mountain roads close for half the year.</strong>{" "}
+              <strong>The two high roads close for half the year.</strong>{" "}
               Tioga Road and Glacier Point Road are shut by snow from roughly
               November to late May, and the dates move every year. Plan a winter
               or spring trip around the Valley, and check{" "}
@@ -228,7 +228,7 @@ function InternationalPage({ go }) {
             </li>
             <li>
               <strong>Bears are real and the rules carry fines.</strong> No food
-              or anything scented left in a car after dark, anywhere in the park.{" "}
+              or anything scented left in a car overnight, anywhere in the park.{" "}
               <a href="/articles/yosemite-bears-safety-guide" onClick={(e) => goA(e, "yosemite-bears-safety-guide")}>The bears guide</a> covers what that means in practice.
             </li>
             <li>

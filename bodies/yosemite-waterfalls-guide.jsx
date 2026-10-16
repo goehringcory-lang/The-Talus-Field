@@ -30,7 +30,7 @@ window.ARTICLE_BODIES["yosemite-waterfalls-guide"] = function YosemiteWaterfalls
       <h2>Yosemite Falls: the headliner with a short run</h2>
 
       <p>
-        At <strong>2,425 feet</strong> top to bottom, Yosemite Falls is the tallest waterfall in North America and among the tallest in the world. It comes in three acts: the Upper Fall's 1,430-foot free leap, 675 feet of middle cascades hidden in a corner of the cliff, and the 320-foot Lower Fall that most visitors actually stand in front of. In <strong>May</strong>, at peak melt, you can hear it from across the Valley, feel spray on the footbridge a quarter mile from the base, and watch the entire column shudder in wind.
+        At <strong>2,425 feet</strong> top to bottom, Yosemite Falls is one of the tallest waterfalls in the world. It comes in three acts: the Upper Fall's 1,430-foot free leap, 675 feet of middle cascades hidden in a corner of the cliff, and the 320-foot Lower Fall that most visitors actually stand in front of. In <strong>May</strong>, at peak melt, you can hear it from across the Valley, feel spray on the footbridge a quarter mile from the base, and watch the entire column shudder in wind.
       </p>
 
       <p>
@@ -64,7 +64,7 @@ window.ARTICLE_BODIES["yosemite-waterfalls-guide"] = function YosemiteWaterfalls
       <h2>The ephemeral giants</h2>
 
       <p>
-        <strong>Ribbon Fall</strong>, on the west shoulder of El Capitan, is the tallest single uninterrupted drop in North America at <strong>1,612 feet</strong>, higher than any one tier of Yosemite Falls. Few visitors have heard of it. Its watershed is tiny, and the fall exists for roughly <strong>April through June</strong> and then vanishes so completely that summer visitors stare at the cliff and see nothing at all. In May, look for it from the Valley loop road pullouts west of El Capitan Meadow.
+        <strong>Ribbon Fall</strong>, on the west shoulder of El Capitan, is the tallest single drop in the Valley at <strong>1,612 feet</strong>, higher than any one tier of Yosemite Falls. Few visitors have heard of it. Its watershed is tiny, and the fall exists for roughly <strong>April through June</strong> and then vanishes so completely that summer visitors stare at the cliff and see nothing at all. In May, look for it from the Valley loop road pullouts west of El Capitan Meadow.
       </p>
 
       <p>

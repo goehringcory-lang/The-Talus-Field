@@ -365,7 +365,7 @@ function PlanningSectionPage({ go }) {
           <div>
             <p className="hp-eyebrow">YOUR FIRST NIGHT IN A CAMPGROUND</p>
             <h2>It's a village with trees in it. Plan for that.</h2>
-            <p className="ff-lede">The three Valley campgrounds hold roughly 380 sites on a floor a mile wide. You will hear your neighbors. What catches first-timers isn't the reservation. It's arriving at four o'clock with three hours of daylight and a list nobody handed you.</p>
+            <p className="ff-lede">The three Valley campgrounds hold roughly 390 sites on a floor a mile wide. You will hear your neighbors. What catches first-timers isn't the reservation. It's arriving at four o'clock with three hours of daylight and a list nobody handed you.</p>
             <p className="ff-note">The whole first night, from someone who has watched twenty years of them: {L("section_planning", "/articles/camping-in-yosemite-first-time", "camping in Yosemite for the first time")}.</p>
           </div>
           <div className="ps-inv">

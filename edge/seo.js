@@ -288,7 +288,7 @@ const HUB_PROSE = {
   "/conditions": () =>
     hubProse(
       "Yosemite conditions: webcams, waits, and weather",
-      "The morning-of page: live Yosemite webcams, current entrance wait times, and elevation-aware National Weather Service point forecasts for the Valley, the rim, and the high country, all on one page. Bookmark it and check it the morning you drive in."
+      "The morning-of page: live Yosemite webcams, current entrance wait times, and elevation-aware National Weather Service point forecasts for Wawona, the Valley, and the high country, all on one page. Bookmark it and check it the morning you drive in."
     ) +
     `<p>For what the conditions mean for a plan, see <a href="/itineraries">the itineraries</a> and <a href="/planning">the Planning Guide</a>.</p>`,
   "/now": () => {
@@ -473,7 +473,7 @@ const HUB_PROSE = {
   "/webcams": () =>
     hubProse(
       "Yosemite Webcams",
-      "The live cameras worth checking before you drive in. Four Yosemite Conservancy cameras run on this page: Half Dome from Ahwahnee Meadow looking east, Upper Yosemite Fall from the Valley floor, El Capitan and the western Valley from Turtleback Dome, and Wawona at the park's south end. All four are still-image cameras that refresh on the order of minutes rather than video streams.",
+      "The live cameras worth checking before you drive in. Four Yosemite Conservancy cameras run on this page: Half Dome from Ahwahnee Meadow looking east, Upper Yosemite Fall from the Valley floor, El Capitan and the western Valley from Turtleback Dome, and Wawona at the park's south end. The four tiles are still images that refresh on the order of minutes rather than video streams.",
       "<p>How to read them: check two rather than one, because a single camera describes one wall while Half Dome plus El Capitan tells you whether the whole Valley is clear, socked in or hazy. Elevation matters more than the pictures suggest, since the Valley floor is at 4,000 feet and Tuolumne Meadows at 8,600, so a clear Valley camera says nothing about whether it is snowing on Tioga Road. And a dry waterfall on the Yosemite Falls camera in August is the season, not a broken camera.</p>" +
         "<p>There is no Conservancy camera at Tuolumne Meadows or Tioga Pass, which is the most requested view missing from the list. Yosemite Hospitality runs a summer-only camera at the Tuolumne Meadows Store, linked from the <a href=\"https://www.nps.gov/yose/learn/photosmultimedia/webcams.htm\">NPS webcams page</a>. Full camera list: <a href=\"https://yosemite.org/webcams/\">Yosemite Conservancy</a>. Road status and closures: <a href=\"/now\">the Park Bulletin</a>. Forecasts and live entrance waits: <a href=\"/conditions\">the conditions page</a>. Which waterfalls are running on your dates: <a href=\"/articles/yosemite-waterfalls-guide\">the flow-by-month table</a>.</p>"
     ),
@@ -499,7 +499,7 @@ const HUB_PROSE = {
   "/start-here": () =>
     hubProse(
       "Planning Your First Trip to Yosemite? Start Here",
-      "The questions every first-time visitor asks, answered plainly. There is no entry reservation in 2026: you pay at the gate and drive in, and what rations a visit now is parking and entrance lines, solved by arriving early. International visitors pay a $100 per-person surcharge as of January 1, 2026. The best remaining window this year is midweek September 8 to 30, with midweek October nearly as good; in summer, come midweek and be through the gate before 7:30 a.m. One deliberate day is enough, two adds room to breathe, and the third day is the first one that does not need defending.",
+      "The questions every first-time visitor asks, answered plainly. There is no entry reservation in 2026: you pay at the gate and drive in, and what rations a visit now is parking and entrance lines, solved by arriving early. International visitors pay a $100 per-person surcharge as of January 1, 2026. The best remaining window this year is midweek in October, with early-November weekdays quieter still; on any summer day, be through the gate before 8 a.m. or arrive after 4 p.m. One deliberate day is enough, two adds room to breathe, and the third day is the first one that does not need defending.",
       `<p>The four places that earned their fame, each its own day: Yosemite Valley, the canyon floor, open all year (Tunnel View at first light, Bridalveil Fall, the Lower Yosemite Fall loop and Cook's Meadow before the lots fill at mid-morning; <a href="/articles/yosemite-in-one-or-two-days">one day in Yosemite</a>); Glacier Point, about 30 miles and an hour from the Valley at 7,200 feet, eye level with Half Dome, on a road that closes for winter (<a href="/articles/glacier-point-how-to-visit">how to visit Glacier Point</a>); the Mariposa Grove of giant sequoias, about an hour from the Valley, parked at the Welcome Plaza with a free shuttle for the last two miles in season (<a href="/articles/mariposa-grove-how-to-visit">how to visit the Mariposa Grove</a>); and Tuolumne Meadows, 8,600 feet on Tioga Road, 55 miles and about an hour and a half from the Valley while the road is open (<a href="/articles/tuolumne-meadows-in-a-day">Tuolumne Meadows in a day</a>). The one-, two- and three-day plans in drive order are on <a href="/itineraries">the itineraries page</a>.</p>` +
         `<p>Where to stay: inside the park if you can get a bed (one operator, one inventory, opening 366 days ahead), otherwise a gateway town. El Portal is closest at 25 to 35 minutes from the Valley; Mariposa, at 60 to 75 minutes, is the safest first-timer's pick. The full comparison: <a href="/articles/yosemite-gateway-towns-compared">the gateway towns guide</a>, <a href="/stay">the where-to-stay page</a>, and <a href="/distances">every drive time in one table</a>.</p>` +
         `<p>Permits: day hiking needs none, with one exception covered by <a href="/half-dome-lottery">the Half Dome lottery</a>; what you can still get holding nothing is in <a href="/articles/yosemite-walk-up-and-day-of-permits">the walk-up permits guide</a>. The strategy for the trip itself: <a href="/articles/first-time-yosemite-overwhelm">the first-timer's guide</a>, <a href="/articles/yosemite-in-one-or-two-days">one or two days</a>, <a href="/articles/yosemite-in-three-to-five-days">three to five days</a>, <a href="/articles/when-to-visit-yosemite">the 2026 crowd forecast</a>, and <a href="/articles/getting-to-yosemite">which of the five entrances to use</a>. When the dates are set, the trip selector on <a href="/planning">the Planning Guide</a> turns your answers into a plan.</p>`
@@ -1184,7 +1184,7 @@ function seoForPath(pathname, searchParams) {
         },
         {
           q: "When does Tioga Road open?",
-          a: "There is no fixed date. Tioga Road has opened between late April and late July over the record; late May to mid-June is the usual range, and 2026 opened May 15. The park posts plowing progress weekly and announces the opening a day or two ahead.",
+          a: "There is no fixed date. Tioga Road has opened between April and late July over the record; late May to mid-June is the usual range, and 2026 opened May 15. The park posts plowing progress weekly and announces the opening a day or two ahead.",
         },
       ],
     },
@@ -1257,7 +1257,7 @@ function seoForPath(pathname, searchParams) {
         },
         {
           q: "When is the best time for a first trip to Yosemite?",
-          a: "Tuesday through Thursday, September 8 to 30, is the best all-around window left in 2026: summer conditions, the full park open, and crowd pressure down a third from July. Midweek October is nearly as good, with fall color in the Valley by the back half of the month. If summer is what you have, come midweek and be through the gate before 7:30 a.m. Avoid July 3 to 5, summer Saturdays arriving after 8:30 a.m., and Labor Day weekend.",
+          a: "Midweek in October is the best window left in 2026: the Park Service's 15-year average for October is about 38 percent below July, and Tioga Road is usually open for most of the month. Early-November weekdays are quieter still, with short days. If summer is what you have, be through the gate before 8 a.m. or arrive after 4 p.m. Plan around summer Saturdays arriving after 8:30 a.m., Labor Day weekend and the holiday week in late December.",
         },
         {
           q: "How many days do you need in Yosemite?",

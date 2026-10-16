@@ -79,7 +79,7 @@ window.ARTICLE_BODIES["best-yosemite-backpacking-trips"] = function BestYosemite
 
   const LADDER = [
     { name: "1 · May Lake", mi: 2.4, note: "2.4 mi round trip, 485 ft of gain" },
-    { name: "2 · Glen Aulin", mi: 11, note: "11 mi round trip, 800 ft, climbed on the way out" },
+    { name: "2 · Glen Aulin", mi: 12.6, note: "12.6 mi round trip, 750 ft, climbed on the way out" },
     { name: "3 · High Sierra Camps", mi: 49, note: "49 mi loop in legs of 8 to 9.5 mi" },
     { name: "4 · Vogelsang", mi: 14.4, note: "14.4 mi round trip, 1,600 ft" },
     { name: "5 · Young Lakes", mi: 13.6, note: "13.6 mi round trip, 1,300 ft" },
@@ -94,7 +94,7 @@ window.ARTICLE_BODIES["best-yosemite-backpacking-trips"] = function BestYosemite
     const mx = (mi) => scaleL + (Math.min(mi, max) / max) * scaleW;
     return (
       <svg viewBox={`0 0 ${W} ${H}`} style={svgStyle} role="img"
-        aria-label="The five trips by round-trip distance. May Lake, 2.4 miles with 485 feet of gain. Glen Aulin, 11 miles with 800 feet, climbed on the way out. The High Sierra Camps loop, 49 miles in legs of 8 to 9.5 miles, drawn past the end of the scale. Vogelsang, 14.4 miles with 1,600 feet. Young Lakes, 13.6 miles with 1,300 feet.">
+        aria-label="The five trips by round-trip distance. May Lake, 2.4 miles with 485 feet of gain. Glen Aulin, 12.6 miles with 750 feet, climbed on the way out. The High Sierra Camps loop, 49 miles in legs of 8 to 9.5 miles, drawn past the end of the scale. Vogelsang, 14.4 miles with 1,600 feet. Young Lakes, 13.6 miles with 1,300 feet.">
         <text x="0" y={18} style={HEAD}>THE LADDER, BY ROUND-TRIP DISTANCE</text>
         {[0, 4, 8, 12, 16].map((m) => (
           <g key={m}>
@@ -223,10 +223,10 @@ window.ARTICLE_BODIES["best-yosemite-backpacking-trips"] = function BestYosemite
         <TripMap />
         <figcaption>
           <span><b>1</b> May Lake, below Mount Hoffmann. 1.2 mi from the trailhead.</span>
-          <span><b>2</b> Glen Aulin, down the Tuolumne River. 5.5 mi from the Lembert Dome parking area.</span>
+          <span><b>2</b> Glen Aulin, down the Tuolumne River, from the Lembert Dome parking area.</span>
           <span><b>3</b> Sunrise, one camp on the High Sierra Camps loop, which links 1, 2, 3 and 4 with Merced Lake, south of this map.</span>
           <span><b>4</b> Vogelsang, in the Cathedral Range. 6.9 mi up Rafferty Creek.</span>
-          <span><b>5</b> Young Lakes, under Ragged Peak. 6 mi from the Lembert Dome parking area.</span>
+          <span><b>5</b> Young Lakes, under Ragged Peak, from the Lembert Dome parking area.</span>
           <span>The Tuolumne Meadows Wilderness Center is the green W symbol on the map, beside the visitor center.</span>
           <span>Map: National Park Service (public domain), cropped and enlarged.</span>
         </figcaption>
@@ -264,7 +264,7 @@ window.ARTICLE_BODIES["best-yosemite-backpacking-trips"] = function BestYosemite
       <h2>2. Glen Aulin: the second trip, with a river</h2>
 
       <p>
-        Glen Aulin is the trip after May Lake: long enough to feel like a backpacking trip, gentle enough that the miles do not punish a newer pack carrier. It starts at the Lembert Dome parking area, at the Glen Aulin and Soda Springs trailhead, and runs <strong>about 5.5 miles down the Tuolumne River</strong> past Tuolumne Fall and the White Cascade, roughly four miles in, to the camp. The park lists it at 11 miles round trip and about 800 feet of elevation change. Note the direction: the trail loses height on the way in, so the climbing waits for the walk out, on tired legs.
+        Glen Aulin is the trip after May Lake: long enough to feel like a backpacking trip, gentle enough that the miles do not punish a newer pack carrier. It starts at the Lembert Dome parking area, at the Glen Aulin and Soda Springs trailhead, and runs <strong>down the Tuolumne River</strong> past Tuolumne Fall and the White Cascade to the camp. The park lists it at 12.6 miles round trip and about 750 feet of elevation gain. Note the direction: the trail loses height on the way in, so the climbing waits for the walk out, on tired legs.
       </p>
 
       <Placeholder
@@ -278,7 +278,7 @@ window.ARTICLE_BODIES["best-yosemite-backpacking-trips"] = function BestYosemite
       />
 
       <p>
-        Like May Lake, Glen Aulin is a High Sierra Camp, so you sleep in the designated backpackers' campground beside it, with food lockers, and fires only in the communal ring. The river is the main event, and it is also the hazard. The trailhead notes several unbridged stream crossings, which are trivial in late summer and serious in a big runoff year; <a href="/articles/first-yosemite-backpacking-trip">the first-trip field notes</a> cover how to read a crossing. From camp, a layover day continues down the canyon to Waterwheel Falls, about 9.5 miles from the trailhead. Permit demand is high, which is the cost of a trail this good.
+        Like May Lake, Glen Aulin is a High Sierra Camp, so you sleep in the designated backpackers' campground beside it, with food lockers, and fires only in the communal ring. The river is the main event, and it is also the hazard. The trailhead notes several unbridged stream crossings, which are trivial in late summer and serious in a big runoff year; <a href="/articles/first-yosemite-backpacking-trip">the first-trip field notes</a> cover how to read a crossing. From camp, a layover day continues down the canyon to Waterwheel Falls, which the park lists at 20.6 miles round trip from the same trailhead. Permit demand is high, which is the cost of a trail this good.
       </p>
 
       <h2>3. The High Sierra Camps: camp to camp, carrying your own</h2>
@@ -332,7 +332,7 @@ window.ARTICLE_BODIES["best-yosemite-backpacking-trips"] = function BestYosemite
       <h2>5. Young Lakes: my favorite</h2>
 
       <p>
-        Young Lakes is the trip I return to. Three lakes in a chain under <strong>Ragged Peak</strong>, a little under 10,000 feet, with the Cathedral Range across the basin to the south. The trail leaves from the Lembert Dome parking area and reaches the lakes in <strong>about six miles by either of two routes</strong>: past Dog Lake, 1.5 miles in, or by the Glen Aulin trail and then north toward Ragged Peak. The park lists the trip at 13.6 miles round trip and 1,300 feet of gain. Going in by one route and out by the other makes a loop of about twelve miles.
+        Young Lakes is the trip I return to. Three lakes in a chain under <strong>Ragged Peak</strong>, a little under 10,000 feet, with the Cathedral Range across the basin to the south. The trail leaves from the Lembert Dome parking area and reaches the lakes <strong>by either of two routes</strong>: past Dog Lake, 1.5 miles in, or by the Glen Aulin trail and then north toward Ragged Peak. The park lists the trip at 13.6 miles round trip and 1,300 feet of gain. Going in by one route and out by the other makes a loop.
       </p>
 
       <Placeholder

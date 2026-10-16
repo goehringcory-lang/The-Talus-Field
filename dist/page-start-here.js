@@ -164,7 +164,7 @@ var START_MISTAKES = [{
   text: "Service is mostly gone past the gates. Download offline maps in town."
 }, {
   title: "A quarter tank",
-  text: "No gas in the Valley. The pumps are at Crane Flat and Wawona."
+  text: "No gas in the Valley. The pumps are at Crane Flat, Wawona and El Portal."
 }, {
   title: "Food in the car",
   text: "Bears open cars. Daylight only, out of sight, never overnight."

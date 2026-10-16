@@ -128,7 +128,7 @@ var GATEWAYS = [{
   dest: "Mariposa, California",
   drive: "an hour and a quarter to the Valley",
   driveShort: "60 to 75 min",
-  range: [45, 60],
+  range: [60, 75],
   road: "Highway 140, year-round",
   photo: "img/mariposa-county-courthouse.jpg",
   caption: "The 1854 Mariposa County Courthouse, in the town's historic district.",
@@ -197,7 +197,7 @@ var GATEWAYS = [{
   dest: "Lee Vining, California",
   drive: "two hours minimum to the Valley, 30 to Tuolumne Meadows",
   driveShort: "120 min minimum",
-  range: [90, null],
+  range: [120, null],
   road: "Highway 120 East over Tioga Pass, seasonal",
   flag: "Seasonal",
   photo: "img/tenaya-lake.jpg",
@@ -221,7 +221,7 @@ var CORRIDORS = [{
   id: "corridor-120",
   name: "Highway 120 west · Big Oak Flat",
   kicker: "Big Oak Flat entrance · open year-round, chains common in winter",
-  verdict: "The summer answer, and the only base that reaches all three parks",
+  verdict: "The summer answer, and the only base that reaches the Valley, Hetch Hetchy and Tuolumne",
   towns: ["groveland"],
   props: ["rush-creek-lodge", "evergreen-lodge", "firefall-ranch", "groveland-hotel"]
 }, {
@@ -251,7 +251,7 @@ var PROPERTIES = {
   "cedar-lodge": {
     name: "Cedar Lodge",
     badge: "The fallback when the closer one is gone",
-    where: "El Portal · seven miles further west",
+    where: "El Portal · about eight miles from the Arch Rock entrance",
     dest: "El Portal, California",
     town: "El Portal",
     body: "The other large motel on Highway 140, a few miles down the canyon from Yosemite View. Further out, generally cheaper, and the fallback when the closer one is gone."
@@ -274,8 +274,8 @@ var PROPERTIES = {
   },
   "rush-creek-lodge": {
     name: "Rush Creek Lodge",
-    badge: "Half a mile from the gate",
-    where: "Highway 120 · half a mile from the entrance",
+    badge: "Under a mile from the gate",
+    where: "Highway 120 · under a mile from the entrance",
     dest: "Groveland, California",
     town: "Groveland",
     body: "Twenty wooded acres essentially at the Big Oak Flat gate, which is as close as this corridor gets without being inside the park. A resort rather than a motel, with the prices that implies."

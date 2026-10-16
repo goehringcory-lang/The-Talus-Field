@@ -56,7 +56,7 @@ window.ARTICLE_BODIES["thanksgiving-in-yosemite"] = function ThanksgivingInYosem
       </p>
 
       <p>
-        In 2026 the road had a second reason to be closed. As of the park's October 4 update, the <strong>Dome Fire</strong>, burning northeast of Wawona, covered 6,736 acres and was 40 percent contained, and Glacier Point Road was closed for smoke and firefighting operations. That is seven weeks before the holiday and says little about late November, but if a fire is still active when you go, <a href="/articles/wildfire-in-yosemite-during-your-trip">what a wildfire closes, and what stays open</a> covers the bookings question.
+        In 2026 the road had a second reason to be closed. As of the park's October 4 update, the <strong>Dome Fire</strong>, burning northeast of Wawona, covered 6,736 acres and was 40 percent contained, and Glacier Point Road was closed for smoke and firefighting operations; it reopened on October 10. That is seven weeks before the holiday and says little about late November, but if a fire is still active when you go, <a href="/articles/wildfire-in-yosemite-during-your-trip">what a wildfire closes, and what stays open</a> covers the bookings question.
       </p>
 
       <p>

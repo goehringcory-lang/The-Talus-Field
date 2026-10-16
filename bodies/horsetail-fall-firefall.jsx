@@ -111,7 +111,7 @@ window.ARTICLE_BODIES["horsetail-fall-firefall"] = function HorsetailFallFirefal
       <h2>Two firefalls, one natural</h2>
 
       <p>
-        The name causes confusion, because Yosemite had another firefall, and that one was man-made. From the 1870s until 1968, a bonfire was built on the rim at Glacier Point and, on summer evenings, its burning embers were pushed over the edge, creating a glowing cascade of fire down the cliff toward Curry Village. It was a beloved spectacle, called for each night from the Valley floor, and it was also exactly the kind of manufactured entertainment the Park Service spent the twentieth century deciding parks should not be. The NPS ended the Glacier Point firefall in January 1968, citing the crowds it drew and the trampling of meadows, and the incompatibility of a nightly ember show with the idea of a national park.
+        The name causes confusion, because Yosemite had another firefall, and that one was man-made. From the 1870s until 1968, a bonfire was built on the rim at Glacier Point and, on summer evenings, its burning embers were pushed over the edge, creating a glowing cascade of fire down the cliff toward Curry Village. It was a beloved spectacle, called for each night from the Valley floor, and it was also exactly the kind of manufactured entertainment the Park Service spent the twentieth century deciding parks should not be. The NPS ended the Glacier Point firefall in January 1968, citing the congestion it caused in the Valley and the incompatibility of a nightly ember show with the idea of a national park.
       </p>
 
       <p>

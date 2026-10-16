@@ -70,7 +70,7 @@ window.ARTICLE_BODIES["yosemite-in-october-2026"] = function YosemiteInOctober20
       </p>
 
       <p>
-        Construction adds a few minutes. Monday through Thursday from 8 a.m. to 3:30 p.m., expect delays of about 10 minutes through Tuolumne Meadows and 15 minutes between Olmsted Point and Tioga Pass. The trail between the wilderness center and Lembert Dome is closed for construction, with an alternate signed.
+        Construction adds a few minutes. Monday through Thursday, expect delays of about 10 minutes through Tuolumne Meadows. The trail between the wilderness center and Lembert Dome is closed for construction, with an alternate signed.
       </p>
 
       <p>

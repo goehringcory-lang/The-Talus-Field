@@ -90,7 +90,7 @@ window.ARTICLE_BODIES["memorial-day-skip-the-valley-go-high-2026"] = function Me
       <ul>
         <li><strong>Olmsted Point</strong>. The moment the high country opens up in front of you, and the only place you'll see the <em>back</em> of Half Dome, with <a href="/articles/clouds-rest-hike">Clouds Rest</a> and Tenaya Canyon spread out below. Watch your footing; there can still be snow and ice near the point in late May.</li>
         <li><strong>Tenaya Lake</strong>. An alpine lake right off the road. It will likely still be ice-rimmed this early. The east-end beach is a flat, easy stroll to the water, no real hike required.</li>
-        <li><strong>Tuolumne Meadows</strong> (8,600 feet). The vast subalpine heart of the high country at the foot of the Cathedral Range. Two short legs are reliable this early: <strong>Pothole Dome</strong> at the west end (a one-mile scramble up polished granite to a meadow panorama) and the flat walk to <strong>Soda Springs and Parsons Lodge</strong> (1.4 miles round trip, naturally carbonated springs the kids will love). Stay on the paths. The meadow is soaked and fragile this time of year.</li>
+        <li><strong>Tuolumne Meadows</strong> (8,600 feet). The vast subalpine heart of the high country at the foot of the Cathedral Range. Two short legs are reliable this early: <strong>Pothole Dome</strong> at the west end (a one-mile round-trip scramble up polished granite to a meadow panorama) and the flat walk to <strong>Soda Springs and Parsons Lodge</strong> (1.4 miles round trip, naturally carbonated springs the kids will love). Stay on the paths. The meadow is soaked and fragile this time of year.</li>
       </ul>
 
       <p>
@@ -108,7 +108,7 @@ window.ARTICLE_BODIES["memorial-day-skip-the-valley-go-high-2026"] = function Me
       <h2>A few practical things</h2>
 
       <p>
-        No day-use reservations are required to enter Yosemite in 2026. That's exactly why the Valley will be slammed, and exactly why a card-in-the-glovebox high-country plan beats the crowd. Your entrance pass is <strong>$35 per vehicle</strong>, good for seven days, and the park is cashless. Bring a card. One bonus: <strong>Memorial Day Monday, May 25, is a fee-free day</strong>, so if you can swing a Monday visit, it's both the cheapest and the lightest of the three days.
+        No day-use reservations are required to enter Yosemite in 2026. That's exactly why the Valley will be slammed, and exactly why a card-in-the-glovebox high-country plan beats the crowd. Your entrance pass is <strong>$35 per vehicle</strong>, good for seven days, and the park is cashless. Bring a card. One bonus: <strong>Memorial Day Monday, May 25, is a fee-free day</strong> for US citizens and residents, so if you can swing a Monday visit, it's both the cheapest and the lightest of the three days.
       </p>
 
       <p>

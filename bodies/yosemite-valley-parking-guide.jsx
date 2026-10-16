@@ -110,11 +110,11 @@ window.ARTICLE_BODIES["yosemite-valley-parking-guide"] = function YosemiteValley
       <h2>RVs, trailers, and the vehicles that do not fit</h2>
 
       <p>
-        Length limits are enforced by geometry, not by policy, which is why they are absolute. Vehicles over 45 feet are not permitted on the roads into Yosemite Valley at all. Highway 140 through the Merced canyon is the forgiving approach, with no tunnels and roughly 60 feet of combined length allowed; the tunnels on Highways 41 and 120 drop to about 10 feet 2 inches of clearance at the curb, which is where the roof damage happens. Beyond the Sentinel Dome and Taft Point trailhead, Glacier Point Road caps single vehicles at 30 feet and bans trailers outright.
+        Length limits are enforced by geometry, not by policy, which is why they are absolute. Vehicles over 45 feet are not permitted on the roads into Yosemite Valley at all. Highway 140 through the Merced canyon is the forgiving approach, with no tunnels and, inside the park, up to 60 feet for a combination vehicle (45 feet for the stretch between El Portal and Mariposa); the tunnels on Highways 41 and 120 drop to about 10 feet of clearance at the curb on the way into the Valley, which is where the roof damage happens. Beyond the Sentinel Dome and Taft Point trailhead, Glacier Point Road caps single vehicles at 30 feet and bans trailers outright.
       </p>
 
       <p>
-        In the Valley itself, the practical answer for a large rig is Curry Village, which has RV parking near its eastbound shuttle stop. The better answer is to leave the rig at the campground and take the shuttle, because a 32-foot motorhome looking for a space in a full lot at noon wastes everyone's time, including its driver's.
+        In the Valley itself, the Park Service points large class A and B rigs to Curry Village or the Yosemite Falls lot west of the Lodge, and smaller class C RVs to Yosemite Village or that same lot. The better answer is to leave the rig at the campground and take the shuttle, because a 32-foot motorhome looking for a space in a full lot at noon wastes everyone's time, including its driver's.
       </p>
 
       <h2>One more thing about the loop</h2>

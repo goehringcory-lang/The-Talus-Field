@@ -74,7 +74,7 @@ window.ARTICLE_BODIES["mariposa-grove-how-to-visit"] = function MariposaGroveHow
       <h2>The geography, which is the whole problem</h2>
 
       <p>
-        The grove sits in the park's southern corner, immediately inside the South Entrance on Highway 41. It is not near Yosemite Valley. From the Valley floor it is about an hour of driving each way, which is the single most underestimated number in this article.
+        The grove sits in the park's southern corner, immediately inside the South Entrance on Highway 41. It is not near Yosemite Valley. From the Valley floor it is about an hour and a quarter of driving each way, which is the single most underestimated number in this article.
       </p>
 
       <p>
@@ -104,11 +104,11 @@ window.ARTICLE_BODIES["mariposa-grove-how-to-visit"] = function MariposaGroveHow
       </p>
 
       <p>
-        The Park Service does not publish a hard date for the season. Its standing language is that the shuttle begins no earlier than April 15 and ends on or before November 30. That is a commitment to a window, not a promise about a day, and it exists because the opening depends on when the road is clear of snow.
+        The Park Service's standing language is that the shuttle begins no earlier than April 15 and ends on or before November 30, and it posts the hours year by year. For 2026 they run 8 a.m. to 7 p.m. from May 3 through September 23 (last bus leaves the grove at 8 p.m.), 8 a.m. to 5 p.m. from September 24 through October 31, weather permitting (last bus at 5:30 p.m.), and 8 a.m. to 3:30 p.m. in November, weather permitting (last bus at 5 p.m.). There is no shuttle from December 1 until at least April 15.
       </p>
 
       <p>
-        There is one firm 2026 date, though it applies to other vehicles. Buses and vehicles over about twenty-one feet must reserve grove parking through recreation.gov, and that reservation window this year runs May 3 through November 30. It is a reasonable proxy for the operating season, because the reservations exist to manage a road the shuttle is running on. Treat it as an inference, not a timetable. Secondary sites publish hour-by-hour tables that disagree with each other, and none of them is a Park Service figure. Check the posted hours at the plaza when you arrive, and note the last downhill departure before you walk away from the stop. People miss it, and the walk down is two miles.
+        Buses and vehicles over about twenty-one feet must reserve grove parking through recreation.gov, and that reservation window this year runs May 3 through November 30. Check the posted hours at the plaza when you arrive, and note the last downhill departure before you walk away from the stop. People miss it, and the walk down is two miles.
       </p>
 
       <Placeholder
@@ -130,7 +130,7 @@ window.ARTICLE_BODIES["mariposa-grove-how-to-visit"] = function MariposaGroveHow
       <h2>Walking up instead</h2>
 
       <p>
-        You can also walk from the plaza to the grove on the Washburn Trail, which climbs roughly two miles and a few hundred feet through mixed conifer forest before the first sequoias appear. There are two reasons to do it. First, the shuttle queue on an August afternoon can be long enough that walking is competitive. Second, on foot you watch the forest change as the sequoias appear.
+        You can also walk from the plaza to the grove on the Washburn Trail, which climbs roughly two miles and about 500 feet through mixed conifer forest before the first sequoias appear. There are two reasons to do it. First, the shuttle queue on an August afternoon can be long enough that walking is competitive. Second, on foot you watch the forest change as the sequoias appear.
       </p>
 
       <h2>The four walks, in order of ambition</h2>
@@ -144,11 +144,11 @@ window.ARTICLE_BODIES["mariposa-grove-how-to-visit"] = function MariposaGroveHow
       </p>
 
       <p>
-        <strong>The Guardians Loop.</strong> Six and a half miles or so into the upper grove, with something over a thousand feet of gain. This is where the crowds thin to almost nothing, and where the Faithful Couple, the Clothespin Tree, and the Telescope Tree are. Give it however long you would normally give a six-mile hike, then add an hour.
+        <strong>The Guardians Loop.</strong> Six and a half miles or so into the upper grove, with about a thousand feet of gain. This is where the crowds thin to almost nothing, and where the Telescope Tree, the fallen Wawona Tunnel Tree and the Mariposa Grove Cabin are. Give it however long you would normally give a six-mile hike, then add an hour.
       </p>
 
       <p>
-        <strong>The Mariposa Grove Trail to Wawona Point.</strong> About 7.75 miles round trip from the Arrival Area with about 1,200 feet of climbing, ending at an overlook above the Wawona basin. It is the full day, and the only one of the four that ends with a view instead of a tree.
+        <strong>The Mariposa Grove Trail to Wawona Point.</strong> About 7.75 miles round trip from the Arrival Area with about 1,200 feet of climbing, past the Faithful Couple and the Clothespin Tree and ending at an overlook above the Wawona basin. It is the full day, and the only one of the four that ends with a view instead of a tree.
       </p>
 
       <p>
@@ -158,7 +158,7 @@ window.ARTICLE_BODIES["mariposa-grove-how-to-visit"] = function MariposaGroveHow
       <h2>The trees worth knowing by name</h2>
 
       <p>
-        <strong>The Grizzly Giant</strong> is the one people come for. The Park Service calls it the largest sequoia in Yosemite and puts its age at roughly 2,900 years. Other published estimates run a little higher, which is the normal state of affairs for a tree nobody is going to cut down and count. Look at the first big limb rather than the trunk: it is thicker than the whole of most mature trees you have ever stood under, and it shows the scale better than the trunk does.
+        <strong>The Grizzly Giant</strong> is the one people come for. The Park Service calls it the 3,000-year-old Grizzly Giant, an age that is an estimate, which is the normal state of affairs for a tree nobody is going to cut down and count. Look at the first big limb rather than the trunk: it is thicker than the whole of most mature trees you have ever stood under, and it shows the scale better than the trunk does.
       </p>
 
       <p>
@@ -189,7 +189,7 @@ window.ARTICLE_BODIES["mariposa-grove-how-to-visit"] = function MariposaGroveHow
       </p>
 
       <p>
-        The reason is a single finding from the park's own survey work. The overwhelming majority of young sequoias in this grove, juveniles and saplings both, were growing within about a hundred feet of wetlands. The seeds need bare, wet mineral soil to take. Paving the wet ground and routing traffic across it did not kill the big trees, which is why the damage went unnoticed for a century. It quietly removed the next generation. <a href="/articles/giant-sequoias-fire-adaptation">The piece on sequoias and fire</a> is the natural history behind that, and the two failures are related: a grove can look healthy and produce no new trees.
+        The reason is a single finding from the park's own survey work. Young sequoias in this grove were found mostly in and beside its wet ground. The seeds need bare, wet mineral soil to take. Paving the wet ground and routing traffic across it did not kill the big trees, which is why the damage went unnoticed for a century. It quietly removed the next generation. <a href="/articles/giant-sequoias-fire-adaptation">The piece on sequoias and fire</a> is the natural history behind that, and the two failures are related: a grove can look healthy and produce no new trees.
       </p>
 
       <blockquote>The trams are not coming back. That is not a scheduling problem or a budget problem. It is the point of the project.</blockquote>
@@ -219,7 +219,7 @@ window.ARTICLE_BODIES["mariposa-grove-how-to-visit"] = function MariposaGroveHow
       <h2>Timing, and the parking lot</h2>
 
       <p>
-        The Welcome Plaza lot holds a few hundred vehicles and fills on busy days. It is a smaller number than it sounds, because grove visits are long and the turnover is slow: a lot that holds three hundred cars and empties every three hours serves far fewer people than one that turns over every forty minutes. Various sites will tell you it fills by eight, or by nine, or that you must be there by seven thirty. None of those are Park Service figures. Early morning and late afternoon work. Midday on a summer weekend does not.
+        The Welcome Plaza has about 300 parking spaces, and the Park Service says it may fill by late morning. It is a smaller number than it sounds, because grove visits are long and the turnover is slow: a lot that holds three hundred cars and empties every three hours serves far fewer people than one that turns over every forty minutes. The park's advice is to arrive by mid-morning at the latest. Early morning and late afternoon work. Midday on a summer weekend does not.
       </p>
 
       <p>
@@ -230,7 +230,7 @@ window.ARTICLE_BODIES["mariposa-grove-how-to-visit"] = function MariposaGroveHow
 
       <ol>
         <li>You cannot drive to the trees in season. Park at the Welcome Plaza by the South Entrance and take the free shuttle two miles up.</li>
-        <li>The shuttle needs no reservation, runs about every fifteen minutes, and is wheelchair accessible. Its season runs roughly mid-April to the end of November, with no fixed dates published.</li>
+        <li>The shuttle needs no reservation, runs about every fifteen minutes, and is wheelchair accessible. Its season runs from no earlier than April 15 to no later than November 30, and the hours shrink after September 23.</li>
         <li>A disability placard lets you drive the road. Accessible parking at the top is very limited.</li>
         <li>Big Trees Loop, three tenths of a mile and wheelchair accessible, is the everyone-can-do-it option. The Grizzly Giant Loop, about two miles, is the one to do if you do one.</li>
         <li>No dogs on any grove trail, paved included. This is an exception to the park's usual rule.</li>

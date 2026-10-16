@@ -392,7 +392,7 @@ window.ARTICLE_BODIES["yosemite-gateway-towns-compared"] = function YosemiteGate
       ]} />
 
       <p>
-        Mariposa is the most complete of the western gateways. It has a real downtown with restaurants, bars, coffee, a couple of bookstores, and the Mariposa Museum and History Center (worth a visit). It has the 1854 Mariposa County Courthouse, the oldest continuously operating courthouse west of the Rockies. Its lodging runs from chain hotels on the highway to historic bed-and-breakfasts in town. It's also where a lot of <a href="/articles/working-in-yosemite">people who work in the park</a> end up when they age out of in-park staff housing.
+        Mariposa is the most complete of the western gateways. It has a real downtown with restaurants, bars, coffee, a couple of bookstores, and the Mariposa Museum and History Center (worth a visit). It has the 1854 Mariposa County Courthouse, the oldest courthouse in California and still in use. Its lodging runs from chain hotels on the highway to historic bed-and-breakfasts in town. It's also where a lot of <a href="/articles/working-in-yosemite">people who work in the park</a> end up when they age out of in-park staff housing.
       </p>
 
       <p>Why people pick it:</p>
@@ -554,7 +554,7 @@ window.ARTICLE_BODIES["yosemite-gateway-towns-compared"] = function YosemiteGate
 
       <p>Why they regret it:</p>
       <ul>
-        <li>When Tioga Pass is closed there is no crossing at all: the drive around the south end of the Sierra turns two hours into most of a day. The Park Service publishes the detour, and it is the first thing to read if your dates are anywhere near the shoulders.</li>
+        <li>When Tioga Pass is closed there is no crossing at all: the Park Service's published detour runs 276 miles north over Highways 88 and 395 and takes about six and a quarter hours, which turns two hours into most of a day. It is the first thing to read if your dates are anywhere near the shoulders.</li>
         <li>Limited rooms and food, so you book early and pay a summer premium.</li>
         <li>The Valley run crosses a near-10,000-foot pass, punishing in bad weather.</li>
       </ul>

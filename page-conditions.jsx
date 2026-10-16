@@ -366,7 +366,7 @@ function ConditionsPage({ go }) {
       <section className="hp-wrap hp-section cond-section">
         <HpHeading go={go} location="conditions" eyebrow="03 / THREE ELEVATIONS" title="Forecasts" link={{ href: "https://www.weather.gov/hnx/", label: "National Weather Service ↗" }} />
         <p className="hp-sub">
-          The park spans more than 11,000 feet of elevation, so one forecast is never enough. These are National Weather Service point forecasts for the three places most trips actually go.
+          The park spans nearly 11,000 feet of elevation, so one forecast is never enough. These are National Weather Service point forecasts for the three places most trips actually go.
         </p>
 
         <ConditionsElevation />

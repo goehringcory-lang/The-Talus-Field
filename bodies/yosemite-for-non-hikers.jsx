@@ -640,7 +640,7 @@ window.ARTICLE_BODIES["yosemite-for-non-hikers"] = function YosemiteForNonHikers
               <dl>
                 <div><dt>Length</dt><dd>Two hours</dd></div>
                 <div><dt>Vehicle</dt><dd>Open-air tram, with a naturalist</dd></div>
-                <div><dt>Departs</dt><dd>9 to 9:30 p.m., varies by month</dd></div>
+                <div><dt>Departs</dt><dd>8:30 or 9 p.m., varies by night</dd></div>
                 <div><dt>Fare</dt><dd>$41.25 adult, $28.25 child</dd></div>
               </dl>
               <p>Runs the nights before the full moon, typically June through September.</p>

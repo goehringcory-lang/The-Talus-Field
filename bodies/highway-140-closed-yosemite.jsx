@@ -50,10 +50,10 @@ window.ARTICLE_BODIES["highway-140-closed-yosemite"] = function Highway140Closed
         <li><strong>January 2017.</strong> Rockfalls after heavy rain and snow close 140 at the park entrance and 120 at Big Oak Flat on the same morning. Highway 41 is the only way into the Valley; the park runs ranger-led convoys through the closed roads that afternoon.</li>
         <li><strong>February 2017.</strong> The reverse case. Storm damage shuts Big Oak Flat Road between Crane Flat and Foresta and blocks Highway 41 at Fish Camp, and 140 is the only vehicle access to Yosemite Valley and Wawona.</li>
         <li><strong>July 2018.</strong> The Ferguson Fire closes 140 from the Bug hostel to just west of Cedar Lodge in El Portal.</li>
-        <li><strong>October 2019.</strong> The Briceburg Fire, 5,563 acres, starts at 140 and Briceburg Bridge Road and closes the highway for about a week.</li>
+        <li><strong>October 2019.</strong> The Briceburg Fire, 5,563 acres, starts at 140 and Briceburg Bridge Road on October 6 and closes the highway until it reopens on the evening of October 20.</li>
         <li><strong>July 2022.</strong> The Oak Fire, 19,244 acres, closes 140 between Triangle Road and Briceburg and two stretches of Highway 49 south of Mariposa.</li>
         <li><strong>March 2025.</strong> A debris slide across both lanes at about ten at night on March 17 closes the road from Savage Trading Post at Briceburg to Cedar Lodge in El Portal. One-way traffic control resumes March 26.</li>
-        <li><strong>September 2026.</strong> The Colorado Fire closes 140 from Briceburg to the Bug hostel on September 1. One lane reopens under traffic control on September 4 and both lanes on September 5.</li>
+        <li><strong>September 2026.</strong> The Colorado Fire, which starts September 1, closes 140 from Briceburg to the Bug hostel. One lane reopens under traffic control on September 4 and both lanes on September 5.</li>
       </ul>
 
       <p>

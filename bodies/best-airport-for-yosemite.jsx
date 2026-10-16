@@ -74,7 +74,7 @@ window.ARTICLE_BODIES["best-airport-for-yosemite"] = function BestAirportForYose
     },
     {
       code: "SMF", name: "Sacramento", full: "Sacramento International Airport",
-      miles: "160 mi", time: "About 4 hours", hours: [4, 4], chart: "4 h",
+      miles: "176 mi", time: "About 4 hours", hours: [4, 4], chart: "4 h",
       road: "South through the Central Valley to Highway 120 or 140",
       flights: "Mostly domestic. Worth pricing against SFO.",
       transit: "The San Joaquins train runs from Sacramento to Merced, where YARTS takes over.",
@@ -90,8 +90,8 @@ window.ARTICLE_BODIES["best-airport-for-yosemite"] = function BestAirportForYose
     },
     {
       code: "RNO", name: "Reno", full: "Reno-Tahoe International Airport",
-      miles: "218 mi", time: "About 4 hours, June to October", hours: [4, 4], chart: "4 h",
-      road: "US 395 and Tioga Pass when the pass is open; 322 miles and 6 hours around it when it is not",
+      miles: "218 mi", time: "About 5 hours, June to October", hours: [5, 5], chart: "5 h",
+      road: "US 395 and Tioga Pass when the pass is open; 315 miles and 5.5 hours around it when it is not",
       flights: "Mostly domestic connections.",
       transit: "No practical connection.",
       verdict: "Only for a summer trip that starts on the east side.",
@@ -134,7 +134,7 @@ window.ARTICLE_BODIES["best-airport-for-yosemite"] = function BestAirportForYose
     const x = (h) => L + (h / max) * (W - L - R);
     return (
       <svg className="fly-chart__svg" viewBox={`0 0 ${W} ${H}`} role="img"
-        aria-label="Driving time to Yosemite Valley by airport, from the National Park Service's figures: Merced about 2 hours, Fresno about 2 hours 15 minutes, Sacramento about 4 hours, San Francisco 4 to 5 hours, Reno about 4 hours in summer, Los Angeles about 6 hours, 7 in practice.">
+        aria-label="Driving time to Yosemite Valley by airport, from the National Park Service's figures: Merced about 2 hours, Fresno about 2 hours 15 minutes, Sacramento about 4 hours, San Francisco 4 to 5 hours, Reno about 5 hours in summer, Los Angeles about 6 hours, 7 in practice.">
         {[0, 2, 4, 6].map((h) => (
           <g key={h}>
             <line x1={x(h)} x2={x(h)} y1={top - 6} y2={H - 26} className="fly-chart__grid" />

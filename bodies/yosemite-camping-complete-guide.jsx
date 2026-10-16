@@ -405,7 +405,7 @@ window.ARTICLE_BODIES["yosemite-camping-complete-guide"] = function YosemiteCamp
         <div className="hp-wrap hp-section">
           <p className="hp-eyebrow">WHAT IT COSTS</p>
           <h2>$36, $28, $24, or $10 a head</h2>
-          <p className="ff-lede">There are no hookups anywhere in the park, not electric, water or sewer. Sewage goes to a dump station, and the park has three: the Valley, Wawona and Tuolumne Meadows.</p>
+          <p className="ff-lede">There are no hookups anywhere in the park, not electric, water or sewer. Sewage goes to a dump station, and the park has three: the Valley (all year), Wawona and Tuolumne Meadows (both summer only, and Tuolumne's is closed until further notice).</p>
           <ul className="cg-fees">
             <li className="cg-fee">
               <span className="cg-fee__price">$36</span>
@@ -425,7 +425,7 @@ window.ARTICLE_BODIES["yosemite-camping-complete-guide"] = function YosemiteCamp
             <li className="cg-fee">
               <span className="cg-fee__price">$10</span>
               <strong>a night, per person</strong>
-              <p>Camp 4, in the reservation season and the first-come season alike.</p>
+              <p>Camp 4, in the reservation season. The Park Service words the first-come fee as $10 a night.</p>
             </li>
           </ul>
           <h3 className="cg-subhead">And to get in</h3>

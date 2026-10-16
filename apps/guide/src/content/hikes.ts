@@ -79,7 +79,7 @@ const seed: HikeT[] = [
     region: 'valley',
     order: 4,
     distanceMi: 2.0,
-    distanceNote: '5 mi loop option around the lake and back along Tenaya Creek',
+    distanceNote: '4.5 mi loop option around the lake and back along Tenaya Creek',
     elevationGainFt: 100,
     difficulty: 'easy',
     route: 'out-and-back',
@@ -175,7 +175,7 @@ const seed: HikeT[] = [
       'The granite staircase beside the fall is soaked and slick through early summer. Never enter the Emerald Pool above the fall.',
     photo: { src: '/photos/hike-vernal-fall-mist-trail.jpg', alt: 'The Mist Trail sign pointing to Vernal Fall, Nevada Fall, and the John Muir Trail.' },
     description:
-      'The stone steps up through Vernal Fall’s spray, the park’s most-hiked mile. Bring a shell in spring or plan on hiking wet.',
+      'The stone steps up through Vernal Fall’s spray. Bring a shell in spring or plan on hiking wet.',
   },
   {
     id: 'nevada-fall',
@@ -973,7 +973,7 @@ const seed: HikeT[] = [
       'In big spring flow the falls flood their own footbridges. If water is running over the planks, do not cross.',
     photo: { src: '/photos/hike-wapama-falls.jpg', alt: 'The stone steps and footbridge below Wapama Falls.' },
     description:
-      'Across the dam, through the tunnel, and along the reservoir to the footbridges under Wapama’s thousand-foot drop, passing wispy Tueeulala Fall on the way.',
+      'Across the dam, through the tunnel, and along the reservoir to the footbridges under Wapama Falls, passing wispy Tueeulala Fall on the way.',
   },
   {
     id: 'rancheria-falls',
@@ -1004,13 +1004,13 @@ const seed: HikeT[] = [
     difficulty: 'strenuous',
     route: 'out-and-back',
     durationMin: 180,
-    trailhead: 'Hetch Hetchy Road, signed pullout 3.9 mi past the entrance',
+    trailhead: 'Hetch Hetchy Road, signed pullout 4 mi past the entrance',
     coord: [-119.8146, 37.9102], // TODO: verify on the ground — moved 2026-09 to the trailhead, same as the stop
     hazard:
       'The climb out is relentless and largely shadeless and bakes by late morning; carry more water than the short distance suggests. Rattlesnake country, and the river runs dam-released cold and fast. Stay out of the current.',
     photo: { src: '/photos/hike-poopenaut-valley.jpg', alt: 'Poopenaut Valley along the Tuolumne River below the dam.' },
     description:
-      'One of the park’s steepest maintained miles, straight down to the Tuolumne River below the dam. Short, very steep on the way out, and rarely busy.',
+      'A steep trail straight down to the Tuolumne River below the dam. Short, very steep on the way out, and rarely busy.',
   },
   {
     id: 'carlon-falls',
@@ -1042,7 +1042,7 @@ const seed: HikeT[] = [
     coord: [-119.8422, 37.763], // moved 2026-09 to the trailhead lot (OSM, Recreation.gov), same as the stop
     photo: { src: '/photos/hike-merced-grove.jpg', alt: 'Giant sequoias along the trail in the Merced Grove.' },
     description:
-      'A downhill road-grade walk to the park’s smallest sequoia grove, about two dozen mature giants with no shuttle. The climb is on the return.',
+      'A downhill road-grade walk to a very small, quiet sequoia grove, about twenty large giants with no shuttle. The climb is on the return.',
   },
 ]
 

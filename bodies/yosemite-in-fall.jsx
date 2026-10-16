@@ -81,7 +81,7 @@ window.ARTICLE_BODIES["yosemite-in-fall"] = function YosemiteInFallBody() {
       </p>
 
       <p>
-        <strong>The bears are in hyperphagia.</strong> Starting in September, black bears shift into a physiological state of near-continuous eating to build the fat they will overwinter on. The numbers are hard to believe: a bear in hyperphagia can take in up to 20,000 calories a day, forage as much as 20 hours out of 24, and put on two to three pounds daily. The park's own bear team has described the daily target in acorn terms, roughly eleven pounds of acorns, which is a useful image for understanding what a bear is doing in a black oak grove in October.
+        <strong>The bears are in hyperphagia.</strong> Starting in September, black bears shift into a physiological state of near-continuous eating to build the fat they will overwinter on. The numbers are hard to believe: a bear in hyperphagia can take in up to 20,000 calories a day. The park's own bear team has described the daily target in acorn terms, roughly eleven pounds of acorns, which is a useful image for understanding what a bear is doing in a black oak grove in October.
       </p>
 
       <p>

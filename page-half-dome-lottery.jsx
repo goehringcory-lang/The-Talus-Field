@@ -284,7 +284,7 @@ function HalfDomeLotteryPage({ go }) {
         <ul className="ff-rules hd-fields">
           <li><EventIcon name="users" size={26} /><strong>Group size</strong><p>Up to six people on one application. Everyone hikes together, and the permit holder or the alternate has to be at the checkpoint with the whole group.</p></li>
           <li><EventIcon name="calendar" size={26} /><strong>Date choices</strong><p>Up to seven dates or date ranges, ranked. The system tries your highest-preference date first and works down the list, so the order matters.</p></li>
-          <li><EventIcon name="id" size={26} /><strong>Permit holder and alternate</strong><p>Name both. One of the two must be physically present with a photo ID matching the permit. An alternate can only be added during the application window, and they have to hold a Recreation.gov account and accept the role within 72 hours of being added. Miss that and they are not on the permit. Once the window closes, neither name can be changed.</p></li>
+          <li><EventIcon name="id" size={26} /><strong>Permit holder and alternate</strong><p>Name both. One of the two must be physically present with a photo ID matching the permit. An alternate can only be added during the application window, and they have to hold a Recreation.gov account and accept the role within the time the application sets. Miss that and they are not on the permit. Once the window closes, neither name can be changed.</p></li>
           <li className="is-warn"><EventIcon name="alert" size={26} /><strong>One application per person</strong><p>Each person can appear as holder or alternate on exactly one preseason application. Show up on two and all of them are cancelled without a refund.</p></li>
         </ul>
       </section>

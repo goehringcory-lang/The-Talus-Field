@@ -131,7 +131,7 @@ window.ARTICLE_BODIES["yosemite-from-los-angeles"] = function YosemiteFromLosAng
       </p>
 
       <p>
-        Then there is the season. The Park Service's standing description is that Tioga Road is typically open to vehicles from late May or June until sometime in November; in 2026 it opened on May 15, unusually early. Outside that window the road does not exist as far as your itinerary is concerned, and the Park Service's own detour from Lee Vining to the Valley with the pass closed runs to 276 miles and about six and a quarter hours, north to Minden, Nevada, then over the Carson Range and back down the west slope. Nobody should discover that at Lee Vining in April.
+        Then there is the season. The Park Service's standing description is that Tioga Road is typically open to vehicles from late May or June until sometime in November; in 2026 it opened on May 15, unusually early. Outside that window the road does not exist as far as your itinerary is concerned, and the Park Service's own detour from Lee Vining to the Valley with the pass closed runs to 276 miles and about six and a quarter hours, north to Minden, Nevada, then over Carson Pass on Highway 88 and back down the west slope. Nobody should discover that at Lee Vining in April.
       </p>
 
       <p>

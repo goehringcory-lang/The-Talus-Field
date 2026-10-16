@@ -20,7 +20,7 @@ window.ARTICLE_BODIES["yosemite-in-june"] = function YosemiteInJune2026Body() {
       <h2>The waterfalls</h2>
 
       <p>
-        The Sierra Nevada snowpack on April 1, 2026 was measured at roughly 18 percent of average, the second-lowest figure in recorded history. I covered what low snowpack means for the park this year in detail. Snowmelt feeds Yosemite's waterfalls, and this year there is little of it.
+        The park's April 1, 2026 snow survey at Tuolumne Meadows came in at 37 percent of average, down from about 65 percent a month earlier after a hot, dry March. I covered what low snowpack means for the park this year in detail. Snowmelt feeds Yosemite's waterfalls, and this year there is little of it.
       </p>
 
       <p>
@@ -46,7 +46,7 @@ window.ARTICLE_BODIES["yosemite-in-june"] = function YosemiteInJune2026Body() {
       </p>
 
       <p>
-        <a href="/articles/cathedral-lakes-day-hike">Cathedral Lakes</a> is the signature Tuolumne day hike and one of the best in the park. The trail to Lower Cathedral Lake is about 3.5 miles one way with roughly 1,000 feet of gain, ending at a granite-rimmed alpine lake beneath Cathedral Peak. In early June it may still have snow patches on the upper trail. Bring traction devices if you are hiking before mid-month.
+        <a href="/articles/cathedral-lakes-day-hike">Cathedral Lakes</a> is the signature Tuolumne day hike and one of the best in the park. The trail to Lower Cathedral Lake is about 3.8 miles one way (7.6 round trip) with roughly 1,000 feet of gain, ending at a granite-rimmed alpine lake beneath Cathedral Peak. In early June it may still have snow patches on the upper trail. Bring traction devices if you are hiking before mid-month.
       </p>
 
       <p>
@@ -100,7 +100,7 @@ window.ARTICLE_BODIES["yosemite-in-june"] = function YosemiteInJune2026Body() {
       <h2>Bears in June 2026</h2>
 
       <p>
-        Bear-related property damage in Yosemite increased 316 percent year over year according to recent park reporting. Drought years make wild food scarcer. When natural berry and nut crops are thin, bears look for alternatives, including coolers left in cars.
+        By early July the park's count of bear incidents was up 26 percent from the same point in 2025, and bears had obtained human food from improperly latched or open food lockers in Valley campgrounds. A bear incident is one that costs someone money, from a damaged car to a stolen cooler.
       </p>
 
       <p>

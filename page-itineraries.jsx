@@ -363,7 +363,7 @@ function ItinerariesPage({ go }) {
           <div>
             <p className="hp-eyebrow">WHICH MONTH WORKS</p>
             <h2>The roads decide how many days you get</h2>
-            <p className="ff-lede">The Valley is open all year, so the half-day and one-day plans work in any month. Day two needs Glacier Point Road and day three needs Tioga Road, and both close for winter. Tioga Road, Highway 120 across the middle of the park, is the one to doubt: it has opened anywhere from late April to early July, and in a heavy snow year it is still closed for much of June. Treat day three as a plan you confirm the week you go. The grid reads the same month table the trip selector uses, so the two cannot disagree.</p>
+            <p className="ff-lede">The Valley is open all year, so the half-day and one-day plans work in any month. Day two needs Glacier Point Road and day three needs Tioga Road, and both close for winter. Tioga Road, Highway 120 across the middle of the park, is the one to doubt: since 1980 it has opened anywhere from late April to late July, and in a heavy snow year it is still closed for much of June. Treat day three as a plan you confirm the week you go. The grid reads the same month table the trip selector uses, so the two cannot disagree.</p>
             <ul className="itin-legend">
               <li className="is-open"><span />Works</li>
               <li className="is-unsettled"><span />A road may not be open yet; check first</li>

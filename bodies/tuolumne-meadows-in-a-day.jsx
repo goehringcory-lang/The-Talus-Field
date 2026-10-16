@@ -78,7 +78,7 @@ window.ARTICLE_BODIES["tuolumne-meadows-in-a-day"] = function TuolumneMeadowsInA
       </p>
 
       <p>
-        <strong>May Lake. Two and four tenths of a mile, five hundred feet.</strong> Steeper than the others but short, ending at a lake directly under Mount Hoffmann in the geographic center of the park.
+        <strong>May Lake. Two and four tenths of a mile, five hundred feet.</strong> That is from the trailhead at the end of May Lake Road; the park counts 5 miles and 1,100 feet from the Tioga Road shuttle stop. Steeper than the others but short, ending at a lake directly under Mount Hoffmann in the geographic center of the park.
       </p>
 
       <h2>If you want one real hike</h2>
@@ -131,7 +131,7 @@ window.ARTICLE_BODIES["tuolumne-meadows-in-a-day"] = function TuolumneMeadowsInA
 
       <ol>
         <li><strong>Leave the Valley by seven.</strong> Fill the tank at Crane Flat as you turn onto Tioga Road.</li>
-        <li><strong>Tuolumne Grove on the way, if you have the appetite.</strong> Two miles round trip (2.5 with the nature loop) and 500 feet down among the giant sequoias, with the entire climb on the return. Skip it if the day is already full; it is a real hike despite the roadside trailhead.</li>
+        <li><strong>Tuolumne Grove on the way, if you have the appetite.</strong> Two and a half miles round trip, including the nature trail, and 500 feet down among the giant sequoias, with the entire climb on the return. Skip it if the day is already full; it is a real hike despite the roadside trailhead.</li>
         <li><strong>Olmsted Point, mid-morning.</strong> Half a mile, and the moment the scale of the place lands.</li>
         <li><strong>Pothole Dome, late morning.</strong> Exposed granite, done before the weather thinks about it.</li>
         <li><strong>Lunch in the meadow or at Tenaya Lake.</strong> Yours, from the car, because the alternative may not be open.</li>

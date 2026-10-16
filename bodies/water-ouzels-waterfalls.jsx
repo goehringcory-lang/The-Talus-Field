@@ -22,7 +22,7 @@ window.ARTICLE_BODIES["water-ouzels-waterfalls"] = function WaterOuzelsBody() {
       </p>
 
       <p>
-        More importantly, an ouzel can see underwater. Most birds have vision that is optimized for air, not water. Water has different refractive properties than air, and most birds underwater would see a blurred world. Ouzels, through evolutionary adaptation, have eyes that can focus underwater nearly as effectively as they focus in air. This allows the ouzel to see its food (aquatic insects and their larvae) on the stream bottom, even in fast-moving water.
+        More importantly, an ouzel can see underwater. Most birds have vision that is optimized for air, not water. Water has different refractive properties than air, and most birds underwater would see a blurred world. Ouzels, through evolutionary adaptation, have eyes that work underwater as well as in air. This allows the ouzel to see its food (aquatic insects and their larvae) on the stream bottom, even in fast-moving water.
       </p>
 
       <p>
@@ -54,7 +54,7 @@ window.ARTICLE_BODIES["water-ouzels-waterfalls"] = function WaterOuzelsBody() {
       <h2>The nesting ecology of a specialist</h2>
 
       <p>
-        An ouzel's nest is one of the most precisely engineered bird nests in North America. The nest is a dome, built by the female from streamside moss and plant fibre, with the entrance in the side: a green ball of living moss with a doorway, kept watered by the spray. But the nest location is what's remarkable. Ouzels build their nests in places that most other birds would never consider: in rock crevices directly adjacent to or even slightly behind a stream cascade, where the mist from the falling water regularly soaks the nest.
+        An ouzel's nest is one of the most precisely engineered bird nests in North America. The nest is a dome, built from streamside moss and plant fibre, with the entrance in the side: a green ball of living moss with a doorway, kept watered by the spray. But the nest location is what's remarkable. Ouzels build their nests in places that most other birds would never consider: in rock crevices directly adjacent to or even slightly behind a stream cascade, where the mist from the falling water regularly soaks the nest.
       </p>
 
       <p>
@@ -80,7 +80,7 @@ window.ARTICLE_BODIES["water-ouzels-waterfalls"] = function WaterOuzelsBody() {
       </p>
 
       <p>
-        Ouzels are not random. They don't establish themselves in streams randomly. They're found in specific locations, predictably: in cascade environments, in cold, fast-moving water, at high elevations where the water remains cold year-round. Knowing this, you can predict where ouzels might be found, and when their absence indicates something about how the landscape has changed.
+        Ouzels are not random. They don't establish themselves in streams randomly. They're found in specific locations, predictably: in cascade environments, in cold, fast-moving water, from the Valley floor (the 1922 and 1930s Nature Notes place them at Happy Isles and El Portal) to the high country. Knowing this, you can predict where ouzels might be found, and when their absence indicates something about how the landscape has changed.
       </p>
 
       <p>
@@ -108,7 +108,7 @@ window.ARTICLE_BODIES["water-ouzels-waterfalls"] = function WaterOuzelsBody() {
       <h2>The practical observation</h2>
 
       <p>
-        The next time you're at a Yosemite waterfall, pause and look for ouzels. The bridge below Vernal Fall on <a href="/articles/mist-trail-the-real-guide">the Mist Trail</a> is one of the most reliable spots. They're small and often in motion, so you might miss them. But if you see one, watch it move in the water. Watch how it grips the rock. Notice how it forages directly in the fast current. Understand that you're observing an animal that has specialized so completely to this specific environment that it seems almost impossible that such an animal could exist.
+        The next time you're at a Yosemite waterfall, pause and look for ouzels. The bridge below Vernal Fall on <a href="/articles/mist-trail-the-real-guide">the Mist Trail</a> is a good place to look. They're small and often in motion, so you might miss them. But if you see one, watch it move in the water. Watch how it grips the rock. Notice how it forages directly in the fast current. Understand that you're observing an animal that has specialized so completely to this specific environment that it seems almost impossible that such an animal could exist.
       </p>
 
       <p>

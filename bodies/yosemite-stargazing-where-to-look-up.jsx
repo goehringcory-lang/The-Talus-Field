@@ -192,7 +192,7 @@ window.ARTICLE_BODIES["yosemite-stargazing-where-to-look-up"] = function Yosemit
       <p>Worth its own section.</p>
 
       <p>
-        The <strong>Yosemite Star Parties</strong> at Glacier Point are run by Bay Area amateur astronomy clubs in cooperation with the Park Service. They typically run on Friday and Saturday nights in July and August (weather permitting; the 2026 list ran from July 3 to August 15), with local astronomers setting up telescopes for public viewing. The events are free. They draw a few hundred people on busy nights.
+        The <strong>Yosemite Star Parties</strong> at Glacier Point are hosted by amateur astronomy clubs from the Bay Area and Monterey in cooperation with the Park Service. They typically run on Friday and Saturday nights in July and August (weather permitting; the 2026 list ran from July 3 to August 15), with local astronomers setting up telescopes for public viewing. The events are free. They draw a few hundred people on busy nights.
       </p>
 
       <p>

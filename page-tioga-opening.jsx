@@ -152,7 +152,7 @@ function TiogaStrip() {
 // img/nps-yosemite-park-map.jpg at +100+560), so each pin shares its pixel
 // space and sits on the map's own label for that place. Elevations and the
 // three published distances (Crane Flat to Tuolumne Meadows 39 miles, to the
-// pass about 47, and a drop of more than 3,000 feet in twelve miles to the
+// pass about 46, and a drop of more than 3,000 feet in twelve miles to the
 // Mono Basin) come from the opening-weekend article and the site's published
 // elevations (Olmsted Point is given as 8,300 to 8,500 feet across the site;
 // the list uses the middle). `mi` is printed only where the site publishes it.
@@ -162,8 +162,8 @@ const TIOGA_STOPS = [
   { name: "Olmsted Point", ft: 8400, x: 786, y: 488 },
   { name: "Tenaya Lake", ft: 8150, x: 835, y: 425 },
   { name: "Tuolumne Meadows", ft: 8600, mi: 39, x: 1090, y: 320 },
-  { name: "Tioga Pass", ft: 9945, mi: 47, note: "The park's east gate", x: 1295, y: 192 },
-  { name: "Lee Vining", ft: 6800, mi: 59, note: "Next gas", x: 1540, y: 95 },
+  { name: "Tioga Pass", ft: 9945, mi: 46, note: "The park's east gate", x: 1295, y: 192 },
+  { name: "Lee Vining", ft: 6800, mi: 58, note: "Next gas", x: 1540, y: 95 },
 ];
 
 function TiogaRoadMap() {
@@ -292,7 +292,7 @@ function TiogaOpeningPage({ go }) {
           <ol className="ff-timeline tg-ladder">
             <li className="is-open"><span>Opening day</span><strong>The road</strong><p>Tioga Road and the Tioga Pass entrance station, Olmsted Point and the major pullouts, Tenaya Lake parking, the Tuolumne Meadows pullouts, vault toilets, and Crane Flat gas, 24 hours, pay at the pump.</p></li>
             <li className="is-tight"><span>Late May</span><strong>Visitor centers staffed</strong><p>The Tuolumne Meadows Visitor Center and Wilderness Center have limited or no staffing until late May.</p></li>
-            <li className="is-tight"><span>June and July</span><strong>Lodge, grill, campground</strong><p>In a recent season the lodge opened in early June, the grill in mid-June, and the campground on July 1, reservable on Recreation.gov.</p></li>
+            <li className="is-tight"><span>June and July</span><strong>Lodge, grill, campground</strong><p>In a recent season the grill opened in late May, the lodge in early June, and the campground on July 1, reservable on Recreation.gov.</p></li>
             <li className="is-gone"><span>Later in summer</span><strong>Store and post office</strong><p>The last of Tuolumne to come online. Until then there is nothing to buy anywhere along the road.</p></li>
           </ol>
           <ul className="tg-never">
@@ -328,7 +328,7 @@ function TiogaOpeningPage({ go }) {
 
       <section className="hp-wrap hp-section" id="tioga-road" tabIndex={-1}>
         <HpHeading eyebrow="THE ROAD, WEST TO EAST" title="From 6,200 feet to 9,945, then down to the desert" />
-        <p className="ff-lede ff-lede--intro">Tioga Road climbs from Crane Flat to the pass over roughly 46 miles, then drops more than 3,000 feet in twelve miles into the Mono Basin, where granite gives way to sagebrush. Allow about 90 minutes one way without stops. With the stops, it is a full day.</p>
+        <p className="ff-lede ff-lede--intro">Tioga Road climbs from Crane Flat to the pass over roughly 46 miles, then drops more than 3,000 feet in twelve miles into the Mono Basin, where granite gives way to sagebrush. Allow about 75 minutes one way to the pass without stops. With the stops, it is a full day.</p>
         <figure className="npsmap tg-map">
           <TiogaRoadMap />
           <figcaption>

@@ -143,7 +143,7 @@ function InternationalPage({
   }, "the no-reservations strategy"), "."), React.createElement("li", null, React.createElement("strong", null, "The park is the size of a small country and most of it has no mobile signal."), " Download maps before the gate. The drive from the Valley to Tuolumne Meadows is an hour and a half; Glacier Point is an hour;", " ", React.createElement("a", {
     href: "/distances",
     onClick: e => goR(e, "distances")
-  }, "the drive-time table"), " has the rest."), React.createElement("li", null, React.createElement("strong", null, "Two of the three mountain roads close for half the year."), " ", "Tioga Road and Glacier Point Road are shut by snow from roughly November to late May, and the dates move every year. Plan a winter or spring trip around the Valley, and check", " ", React.createElement("a", {
+  }, "the drive-time table"), " has the rest."), React.createElement("li", null, React.createElement("strong", null, "The two high roads close for half the year."), " ", "Tioga Road and Glacier Point Road are shut by snow from roughly November to late May, and the dates move every year. Plan a winter or spring trip around the Valley, and check", " ", React.createElement("a", {
     href: "/tioga-opening",
     onClick: e => goR(e, "tioga-opening")
   }, "the Tioga Road page"), " before counting on the high country."), React.createElement("li", null, React.createElement("strong", null, "Chains are the law, including in a rental car."), " From autumn to spring, every vehicle must carry tire chains when chain controls are posted, and rental agreements often forbid fitting them. Read the winter section of", " ", React.createElement("a", {
@@ -155,7 +155,7 @@ function InternationalPage({
   }, "The shuttle and YARTS guide"), " explains the timetable, and whether the fare covers the entrance fee, which two official sources disagree on."), React.createElement("li", null, React.createElement("strong", null, "Beds inside the park sell out a year ahead."), " The gateway towns are the realistic base for a trip planned months out rather than a year out;", " ", React.createElement("a", {
     href: "/stay",
     onClick: e => goR(e, "stay")
-  }, "where to stay"), " compares them by road corridor."), React.createElement("li", null, React.createElement("strong", null, "Bears are real and the rules carry fines."), " No food or anything scented left in a car after dark, anywhere in the park.", " ", React.createElement("a", {
+  }, "where to stay"), " compares them by road corridor."), React.createElement("li", null, React.createElement("strong", null, "Bears are real and the rules carry fines."), " No food or anything scented left in a car overnight, anywhere in the park.", " ", React.createElement("a", {
     href: "/articles/yosemite-bears-safety-guide",
     onClick: e => goA(e, "yosemite-bears-safety-guide")
   }, "The bears guide"), " covers what that means in practice."), React.createElement("li", null, React.createElement("strong", null, "Half Dome needs a permit won by lottery, and it fills."), " ", "Everything else on the trail network needs nothing.", " ", React.createElement("a", {
