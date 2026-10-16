@@ -50,7 +50,7 @@ const seed: AmenityInput[] = [
     kind: 'camping',
     region: 'valley',
     coord: [-119.5635, 37.736], // verified 2026-07: Upper Pines loops east of Curry Village (parkrangerjohn/distancesto; sources spread ~90 m, lot-scale)
-    note: 'The biggest Valley campground and the only one open all year. Reservations only, and they vanish minutes after release.',
+    note: 'The biggest Valley campground, open all year. Reservations only, and they vanish minutes after release.',
   },
   {
     id: 'lower-pines-campground',
@@ -76,7 +76,7 @@ const seed: AmenityInput[] = [
     kind: 'camping',
     region: 'valley',
     coord: [-119.6021, 37.7421], // verified 2026-07: Camp 4 walk-in lot, Northside Dr below the Yosemite Falls wall (NPS/Hikespeak)
-    note: "The historic climbers' campground, walk-in tent sites below the Yosemite Falls wall. Sites go by same-week lottery on recreation.gov in peak season.",
+    note: "The historic climbers' campground, walk-in tent sites below the Yosemite Falls wall. From April 15 through the night of November 28 sites are reserved on recreation.gov one week ahead of arrival; after that they go first-come, first-served.",
   },
   {
     id: 'yosemite-village-day-use-lot',
@@ -162,7 +162,7 @@ const seed: AmenityInput[] = [
     region: 'glacier-mariposa',
     coord: [-119.6243, 37.6637], // moved 2026-09 to the NPS campgrounds record (-119.624293, 37.663658), on Loop A road inside the OSM campground polygon; the July pin was 407 m outside it
     note: 'The only campground on Glacier Point Road, at 7,200 feet halfway to the point. Cold nights even in July.',
-    season: 'Summer only, roughly July through early September',
+    season: 'Summer only, roughly July through early September (closed early on August 14 in 2026)',
   },
   {
     id: 'wawona-campground',
@@ -170,7 +170,7 @@ const seed: AmenityInput[] = [
     kind: 'camping',
     region: 'glacier-mariposa',
     coord: [-119.6729, 37.5447], // verified 2026-07: campground loops along the South Fork Merced, Hwy 41 NW of Wawona (recreation.gov via campgroundviews)
-    note: 'On the South Fork of the Merced a mile north of Wawona, the closest campground to the Mariposa Grove. One loop stays open through winter.',
+    note: 'On the South Fork of the Merced a mile north of Wawona, the closest in-park campground to the Mariposa Grove. One loop stays open through winter.',
   },
   {
     id: 'glacier-point-lot',
@@ -325,7 +325,7 @@ const seed: AmenityInput[] = [
     kind: 'entrance',
     region: 'hetch-hetchy',
     coord: [-119.841696, 37.893591], // NPS API places: Hetch Hetchy Entrance
-    note: 'The gate at Camp Mather on Hetch Hetchy Road, 38 miles and about an hour and a quarter from the Valley. Vehicles over 25 feet long or 8 feet wide are not permitted on the road beyond.',
+    note: 'The gate at Camp Mather on Hetch Hetchy Road, 38 miles and an hour and a quarter to an hour and a half from the Valley, by the park\'s own two figures. Vehicles over 25 feet long or 8 feet wide are not permitted on the road beyond.',
     hours: 'Sunrise to sunset; the road closes overnight',
   },
 
@@ -337,7 +337,7 @@ const seed: AmenityInput[] = [
     region: 'valley',
     coord: [-119.58445, 37.746508], // NPS API visitorcenters: Yosemite Valley Welcome Center
     note: 'The first-stop desk in Yosemite Village, next to the Village day-use lot at shuttle stops 1 and 2. Maps, the Yosemite Guide, and a ranger to ask.',
-    hours: '9 a.m. to 5 p.m. daily, year-round',
+    hours: '9 a.m. to 5 p.m. daily',
   },
   {
     id: 'yosemite-exploration-center',
@@ -391,7 +391,7 @@ const seed: AmenityInput[] = [
     kind: 'visitor-center',
     region: 'tuolumne',
     coord: [-119.374178, 37.871567], // NPS API visitorcenters: Tuolumne Meadows Visitor Center
-    note: 'The high country desk on Tioga Road at the west end of the meadow, with exhibits on the alpine year. Wilderness permits are at the separate Wilderness Center a mile east.',
+    note: 'The high country desk on Tioga Road at the west end of the meadow, with exhibits on the alpine year. Wilderness permits are at the separate Wilderness Center about a mile and a half east.',
     hours: '9 a.m. to 5 p.m. through September 27',
     season: 'Tioga Road season only',
   },
@@ -445,7 +445,7 @@ const seed: AmenityInput[] = [
     region: 'valley',
     coord: [-119.585554, 37.747658], // NPS API places: Valley Shuttle Stop 4
     glyph: '4',
-    note: "Valleywide route. Degnan's Kitchen and the Loft, the Village's counter food.",
+    note: "Valleywide route. Degnan's Kitchen, the Village's counter food.",
   },
   {
     id: 'shuttle-stop-5',
@@ -642,7 +642,7 @@ const seed: AmenityInput[] = [
     kind: 'picnic',
     region: 'glacier-mariposa',
     coord: [-119.621418, 37.501336], // NPS API places: Mariposa Grove Picnic Area
-    note: 'On Mariposa Grove Road between the Welcome Plaza and the grove. Tables and grills.',
+    note: 'On Mariposa Grove Road between the Welcome Plaza and the grove. Tables and grills; the road is limited to vehicles displaying a disability placard.',
   },
   {
     id: 'wawona-picnic',
@@ -696,7 +696,7 @@ const seed: AmenityInput[] = [
     kind: 'services',
     region: 'glacier-mariposa',
     coord: [-119.65745, 37.537189], // NPS API places: Wawona Gas Station
-    note: 'Gas, diesel, and propane by the Wawona Store, pumps 24 hours by card and staffed 8 to 5. The EV charger is in the store lot.',
+    note: 'Gas, diesel, and propane by the Wawona Store, pumps 24 hours by card and staffed 9 to 5. The Guide lists 24 EV chargers at the Wawona Store.',
     mark: 'fuel',
   },
   {
@@ -777,7 +777,7 @@ const seed: AmenityInput[] = [
     kind: 'lodging',
     region: 'valley',
     coord: [-119.598294, 37.74349], // NPS API places: Yosemite Valley Lodge
-    note: 'The largest lodging in the Valley, a short walk from Lower Yosemite Fall, with the Mountain Room, Base Camp Eatery, and a Starbucks. Shuttle stop 7 and the YARTS stop are at the door.',
+    note: 'One of the Valley\'s larger lodgings, a short walk from Lower Yosemite Fall, with the Mountain Room, Base Camp Eatery, and a Starbucks. Shuttle stop 7 and the YARTS stop are at the door.',
   },
   {
     id: 'housekeeping-camp',
@@ -832,7 +832,7 @@ const seed: AmenityInput[] = [
     kind: 'landmark',
     region: 'valley',
     coord: [-119.614712, 37.746013], // Wikipedia: Three Brothers (Yosemite)
-    note: 'The three stacked gables on the north wall east of El Capitan; Eagle Peak, at 7,783 feet, is the top one.',
+    note: 'The three stacked gables on the north wall east of El Capitan; Eagle Peak, at 7,779 feet, is the top one.',
   },
   {
     id: 'sentinel-rock',

@@ -51,7 +51,7 @@ window.ARTICLE_BODIES["yosemite-walk-up-and-day-of-permits"] = function Yosemite
             </g>
           );
         })}
-        <text x="0" y={H - 8} style={{ ...T_SOFT, fontStyle: "italic" }}>November through April: wilderness permits are free and self-issued at the trailhead.</text>
+        <text x="0" y={H - 8} style={{ ...T_SOFT, fontStyle: "italic" }}>Late October to mid-April: no reservation, permits issued the day before or day of.</text>
       </svg>
     );
   }
@@ -107,13 +107,13 @@ window.ARTICLE_BODIES["yosemite-walk-up-and-day-of-permits"] = function Yosemite
       </p>
 
       <p>
-        Whatever quota went unclaimed can be issued in person at a wilderness center on the start date of the trip. The Park Service's own language about this is worth quoting almost exactly, because it is unusually blunt for a government website: while unreserved permits will be available in person on the start date, few, if any, unused permits will be available. In July, at Happy Isles or Cathedral Lakes, the number is zero. Two drainages over, on a Tuesday, at a trailhead nobody has heard of, it is sometimes not zero, and the rangers behind the desk know exactly which ones those are. Ask the question that way. Do not ask whether they have anything for the John Muir Trail; ask what they have at all, and then decide whether you want it.
+        Whatever quota went unclaimed can be issued in person at a wilderness center on the start date of the trip. The Park Service's own language about this is worth quoting almost exactly, because it is unusually blunt for a government website: while unreserved permits will be available in person on the start date, few, if any, unused permits will be available. At the famous trailheads in summer, expect none. At a trailhead nobody has heard of, on a weekday, the number may not be zero, and the rangers behind the desk know which ones those are. Ask the question that way. Do not ask whether they have anything for the John Muir Trail; ask what they have at all, and then decide whether you want it.
       </p>
 
       <h2>Where to stand, and by when</h2>
 
       <p>
-        Permits are issued at the wilderness centers: Yosemite Valley, Tuolumne Meadows, Wawona, Big Oak Flat, and the Hetch Hetchy entrance station. Most run roughly 8 a.m. to 5 p.m. in season, and the outlying ones close for the winter entirely, so the Valley center is the reliable year-round door. Two rules ride along with them. A reservation is not a permit; someone in your party has to collect the paper, either the day before, 8 a.m. to 5 p.m., or between 8 and 11 a.m. on the start date, and an uncollected permit is cancelled and given away. And if you are hoping to catch released quota, be at the counter when it opens, not at lunchtime.
+        Permits are issued at the wilderness centers: Yosemite Valley, Tuolumne Meadows, Wawona, Big Oak Flat, and the Hetch Hetchy entrance station. All run 8 a.m. to 5 p.m. in season and close in mid-October (this year the Valley center on October 18, Tuolumne Meadows and Wawona on October 14), after which you self-register at a kiosk or porch for the trailheads served by that station, and the Valley Welcome Center is the one place that still rents bear canisters. Two rules ride along with them. A reservation is not a permit; someone in your party has to collect the paper, either the day before, 8 a.m. to 5 p.m., or between 8 and 11 a.m. on the start date, and an uncollected permit is cancelled and given away. And if you are hoping to catch released quota, be at the counter when it opens, not at lunchtime.
       </p>
 
       <p>
@@ -139,7 +139,7 @@ window.ARTICLE_BODIES["yosemite-walk-up-and-day-of-permits"] = function Yosemite
       <h2>Off-season, the whole system relaxes</h2>
 
       <p>
-        Roughly November through April, the quota season ends and Yosemite wilderness permits become free, unlimited, and self-issued at trailhead registers. No lottery, no Recreation.gov, no counter. It is the largest gap between how hard this park looks to get into and how easy it is at the right time of year, and almost nobody takes it, because the same weather that opens the door makes the walking serious. <a href="/articles/yosemite-in-winter">Winter in Yosemite</a> covers what you are signing up for.
+        From late October to mid-April, reservations are not required: you pick up a permit from the issuing station nearest your trailhead the day before or the day you start. Trailhead quotas still apply, but most trailheads do not fill. No lottery, no Recreation.gov. It is the largest gap between how hard this park looks to get into and how easy it is at the right time of year, and almost nobody takes it, because the same weather that opens the door makes the walking serious. <a href="/articles/yosemite-in-winter">Winter in Yosemite</a> covers what you are signing up for.
       </p>
 
       <h2>Half Dome: the daily lottery is the day-of answer</h2>
@@ -194,7 +194,7 @@ window.ARTICLE_BODIES["yosemite-walk-up-and-day-of-permits"] = function Yosemite
         <li>Entry, day hiking, ranger programs, Mariposa Grove, Glacier Point, and day climbing need no permit today.</li>
         <li>Wilderness permits: forty percent releases at 7 a.m. Pacific seven days out, and online booking closes a few days before your entry date, not on it.</li>
         <li>Past that cutoff it is in-person unclaimed quota only, and the Park Service warns there will be few if any. Ask what exists, not what you wanted.</li>
-        <li>November through April, wilderness permits are free and self-issued at the trailhead.</li>
+        <li>Late October to mid-April, no reservation is needed: permits are issued the day before or day of at the station nearest the trailhead.</li>
         <li>Half Dome has a daily lottery: apply two days ahead, midnight to 4 p.m. Pacific. There is no walk-up and the checkpoint is staffed.</li>
         <li>Same-day camping means Recreation.gov cancellations, Camp 4's short-notice allocation, or a national forest campground outside the park.</li>
       </ol>

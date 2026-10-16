@@ -110,7 +110,7 @@ window.ARTICLE_BODIES["yosemite-stargazing-where-to-look-up"] = function Yosemit
       </p>
 
       <p>
-        The core rises in the southeast in late spring (rises in the early morning hours), is highest in the sky in midsummer (rises mid-evening), and is sinking in the west in early fall (visible early evening, sets mid-evening). For the densest, most dramatic Milky Way views, late June through early August on a moonless night gets you the core arching nearly overhead between roughly 11 p.m. and 3 a.m.
+        The core rises in the southeast in late spring (rises in the early morning hours), is highest in the sky in midsummer (rises mid-evening), and is sinking in the west in early fall (visible early evening, sets mid-evening). For the densest, most dramatic Milky Way views, late June through early August on a moonless night gets you the core standing in the south and the band of the Milky Way arching overhead between roughly 11 p.m. and 3 a.m.
       </p>
 
       <p>
@@ -132,17 +132,17 @@ window.ARTICLE_BODIES["yosemite-stargazing-where-to-look-up"] = function Yosemit
       </p>
 
       <p>
-        <strong><a href="/articles/glacier-point-road-open-2026">Glacier Point</a>.</strong> The classic. At 7,200 feet, with an open western and southern horizon, almost no nearby light, and a paved walk of a few hundred feet from the parking lot, this is one of the best drive-to dark-sky spots in any National Park. The Park Service runs public <strong>Star Parties</strong> at Glacier Point most Saturdays in summer, when local astronomy clubs set up telescopes and rangers give talks. These are some of the best free educational events in the park. Roughly June through August, depending on the road being open and the schedule for any given year.
+        <strong><a href="/articles/glacier-point-road-open-2026">Glacier Point</a>.</strong> The classic. At 7,200 feet, with an open western and southern horizon, almost no nearby light, and a paved walk of a few hundred feet from the parking lot, this is one of the best drive-to dark-sky spots in any National Park. The Park Service runs public <strong>Star Parties</strong> at Glacier Point on Friday and Saturday nights in July and August, when local astronomy clubs set up telescopes and rangers give talks. These are some of the best free educational events in the park. In 2026 the park's list ran from July 3 to August 15, with the schedule set each year.
       </p>
 
-      <p>The trade-off: Glacier Point Road closes with the first big winter storm, usually in November, and reopens in late May or early June, so this is a summer-only option.</p>
+      <p>The trade-off: Glacier Point Road closes with the first big winter storm, usually in November, and reopens in May or June, so this is a summer-only option.</p>
 
       <p>
         <strong>Tunnel View.</strong> Lower in elevation (4,400 feet) and more affected by Valley light, but a real dark-sky spot in winter when the in-park lights are dimmer and atmospheric haze is at its lowest. The view of the Milky Way arching over Half Dome, with El Capitan on the left and Bridalveil Fall on the right, is one of the most-photographed night-sky compositions in any park. Best in summer for the core, but also worth visiting on cold winter nights for Orion and the winter Milky Way.
       </p>
 
       <p>
-        <strong>Olmsted Point.</strong> On <a href="/articles/tioga-road-opening-weekend">Tioga Road</a>, at 8,000 feet, with broad views in all directions and very little nearby light. The granite slabs in the parking area give you a flat, comfortable surface to lay on or set up a tripod on. One of the better drive-to spots in the park during the Tioga Road season (late May through October).
+        <strong>Olmsted Point.</strong> On <a href="/articles/tioga-road-opening-weekend">Tioga Road</a>, at about 8,400 feet, with broad views in all directions and very little nearby light. The granite slabs in the parking area give you a flat, comfortable surface to lay on or set up a tripod on. One of the better drive-to spots in the park during the Tioga Road season (late May through October).
       </p>
 
       <p>
@@ -158,7 +158,7 @@ window.ARTICLE_BODIES["yosemite-stargazing-where-to-look-up"] = function Yosemit
       <p>These spots take a short hike, which gets you away from any remaining road glare and into more comfortable solitude.</p>
 
       <p>
-        <strong>Sentinel Dome.</strong> A 2.2-mile round-trip hike from the Sentinel Dome and Taft Point trailhead on Glacier Point Road. The summit at 8,122 feet has a 360-degree view, no nearby light, and a flat granite surface to set up on. This is one of the great Sierra dark-sky spots accessible via short trail. Doable as a sunset-into-dark hike with headlamps for the descent.
+        <strong>Sentinel Dome.</strong> A 2-mile round-trip hike from the Sentinel Dome and Taft Point trailhead on Glacier Point Road. The summit at 8,122 feet has a 360-degree view, no nearby light, and a flat granite surface to set up on. This is one of the great Sierra dark-sky spots accessible via short trail. Doable as a sunset-into-dark hike with headlamps for the descent.
       </p>
 
       <p>
@@ -192,7 +192,7 @@ window.ARTICLE_BODIES["yosemite-stargazing-where-to-look-up"] = function Yosemit
       <p>Worth its own section.</p>
 
       <p>
-        The <strong>Yosemite Star Parties</strong> at Glacier Point are run by Bay Area amateur astronomy clubs in cooperation with the Park Service. They typically run on Friday and Saturday nights in June, July, and August (weather permitting), with local astronomers setting up telescopes for public viewing. The events are free. They draw a few hundred people on busy nights.
+        The <strong>Yosemite Star Parties</strong> at Glacier Point are hosted by amateur astronomy clubs from the Bay Area and Monterey in cooperation with the Park Service. They typically run on Friday and Saturday nights in July and August (weather permitting; the 2026 list ran from July 3 to August 15), with local astronomers setting up telescopes for public viewing. The events are free. They draw a few hundred people on busy nights.
       </p>
 
       <p>
@@ -200,7 +200,7 @@ window.ARTICLE_BODIES["yosemite-stargazing-where-to-look-up"] = function Yosemit
       </p>
 
       <p>
-        The schedule for 2026 should be posted on the NPS Yosemite events calendar by late spring. Check there before planning a trip around a star party.
+        The schedule is posted each summer on the NPS Yosemite programs page. Check there before planning a trip around a star party.
       </p>
 
       <h2>A note on light, courtesy, and how not to ruin everyone's night</h2>

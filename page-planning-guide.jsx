@@ -218,7 +218,7 @@ const PG_TOWNS = [
   { id: "el-portal", name: "El Portal", dest: "El Portal, California", road: "Highway 140 · year-round", drive: "25 to 35 min", bar: 29,
     photo: "img/el-portal-yosemite-valley-railroad-cars.jpg", alt: "Yosemite Valley Railroad cars at El Portal", credit: "Yosemite Park & Curry Co. / Wikimedia Commons (public domain)",
     line: "The closest beds outside the gate, on the river road that stays low all winter." },
-  { id: "mariposa", name: "Mariposa", dest: "Mariposa, California", road: "Highway 140 · year-round", drive: "45 to 60 min", bar: 50,
+  { id: "mariposa", name: "Mariposa", dest: "Mariposa, California", road: "Highway 140 · year-round", drive: "60 to 75 min", bar: 50,
     photo: "img/mariposa-county-courthouse.jpg", alt: "The 1854 Mariposa County Courthouse", credit: "Guywelch2000 / Wikimedia Commons (CC0)",
     line: "A real town with restaurants and the most rooms, on the corridor that rarely takes chains." },
   { id: "groveland", name: "Groveland", dest: "Groveland, California", road: "Highway 120 · chains common in winter", drive: "65 to 80 min", bar: 67,
@@ -637,7 +637,7 @@ function PlanningGuide({ go }) {
               </div>
             ))}
             <div className="pg-inpark__foot">
-              <p>Gone for your dates? Mariposa and El Portal hold the most rooms within an hour. <AvailabilityLink destination="Mariposa, California" list="planning_in_park" slug="mariposa" name="Mariposa lodging search">Search them ↗</AvailabilityLink></p>
+              <p>Gone for your dates? Mariposa and El Portal hold the most rooms within about an hour and a quarter. <AvailabilityLink destination="Mariposa, California" list="planning_in_park" slug="mariposa" name="Mariposa lodging search">Search them ↗</AvailabilityLink></p>
               <a href="/stay" onClick={(e) => { if (e.button !== 0 || e.metaKey || e.ctrlKey) return; e.preventDefault(); go("stay"); }}>The full lodging board →</a>
             </div>
           </div>

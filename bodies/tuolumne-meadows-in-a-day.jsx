@@ -12,7 +12,7 @@ window.ARTICLE_BODIES["tuolumne-meadows-in-a-day"] = function TuolumneMeadowsInA
       <h2>The drive, and the two hours nobody budgets</h2>
 
       <p>
-        Tuolumne Meadows sits on Tioga Road, Highway 120 through the park, roughly 55 to 60 miles from Yosemite Valley. Call it an hour and a half each way in no traffic, and closer to two in July. That is three to four hours of driving bracketing your day, and that is what ruins Tuolumne itineraries: people leave the Valley at ten, arrive at noon, eat, walk for an hour, and drive home having seen a meadow through a window.
+        Tuolumne Meadows sits on Tioga Road, Highway 120 through the park, about 55 miles from Yosemite Valley. Call it an hour and a half each way in no traffic, and closer to two in July. That is three to four hours of driving bracketing your day, and that is what ruins Tuolumne itineraries: people leave the Valley at ten, arrive at noon, eat, walk for an hour, and drive home having seen a meadow through a window.
       </p>
 
       <p>
@@ -30,11 +30,11 @@ window.ARTICLE_BODIES["tuolumne-meadows-in-a-day"] = function TuolumneMeadowsInA
       </p>
 
       <p>
-        <strong>There is no gas at Tuolumne Meadows.</strong> Start here, because it is the one that strands people. The old station has been out of operation for years and travel sites still list it. Inside the park on the west side, Crane Flat is the only fuel, pay-at-pump around the clock, and the point where Tioga Road begins. On the east side your next fuel is Lee Vining, about forty-five minutes past the meadows. Fill up at Crane Flat on the way in whether or not you think you need to.
+        <strong>There is no gas at Tuolumne Meadows.</strong> Start here, because it is the one that strands people. The old station has been out of operation for years and travel sites still list it. Inside the park on the west side, Crane Flat is the only fuel, pay-at-pump around the clock, and the point where Tioga Road begins. On the east side your next fuel is Lee Vining, about thirty minutes past the meadows. Fill up at Crane Flat on the way in whether or not you think you need to.
       </p>
 
       <p>
-        <strong>The store, grill, and post office</strong> run a short summer season out of a temporary structure, and have for several years. <strong>Tuolumne Meadows Lodge</strong> runs roughly early June to mid-September in tent cabins. <strong>The campground</strong> came back in 2025 from a three-year, twenty-six-million-dollar rehabilitation as a 336-site campground, reservable through recreation.gov. <strong>White Wolf Lodge</strong>, down the road toward Crane Flat, has been closed by sewer line damage, with its campground running at reduced capacity and no potable water. The visitor center and wilderness center operate in season.
+        <strong>The store, grill, and post office</strong> run a short summer season out of a temporary structure, and have for several years. <strong>Tuolumne Meadows Lodge</strong> runs roughly early June to mid-September in tent cabins. <strong>The campground</strong> came back in 2025 from a three-year, twenty-six-million-dollar rehabilitation as a 336-site campground, reservable through recreation.gov. <strong>White Wolf Lodge</strong>, down the road toward Crane Flat, has been closed by sewer line damage, with its campground on a short season and no water this year. The visitor center and wilderness center operate in season.
       </p>
 
       <p>
@@ -66,11 +66,11 @@ window.ARTICLE_BODIES["tuolumne-meadows-in-a-day"] = function TuolumneMeadowsInA
       </p>
 
       <p>
-        <strong>Soda Springs and Parsons Memorial Lodge. A mile and a half, a hundred feet, an hour and a quarter.</strong> Flat, on an old road, from the Lembert Dome lot across the meadow. At the end there are springs bubbling up naturally carbonated out of the ground, which children tend not to believe, and a stone Sierra Club lodge from 1915 where a good deal of the argument about what national parks are for was thrashed out.
+        <strong>Soda Springs and Parsons Memorial Lodge. A mile and four tenths, a hundred feet, an hour and a quarter.</strong> Flat, on an old road, from the Lembert Dome lot across the meadow. At the end there are springs bubbling up naturally carbonated out of the ground, which children tend not to believe, and a stone Sierra Club lodge from 1915 where a good deal of the argument about what national parks are for was thrashed out.
       </p>
 
       <p>
-        <strong>Tenaya Lake loop. Two and a half miles, flat.</strong> A big subalpine lake at 8,150 feet with a real sandy beach at the east end, ringed by a level trail. This is the family stop: the beach works for people who want to do nothing at all, and the loop works for people who want to move.
+        <strong>Tenaya Lake shore. Flat.</strong> A big subalpine lake at 8,150 feet with a real sandy beach at the east end, right off Tioga Road. This is the family stop: the beach works for people who want to do nothing at all, and the shoreline works for people who want to move.
       </p>
 
       <p>
@@ -78,21 +78,21 @@ window.ARTICLE_BODIES["tuolumne-meadows-in-a-day"] = function TuolumneMeadowsInA
       </p>
 
       <p>
-        <strong>May Lake. Two and four tenths of a mile, five hundred feet.</strong> Steeper than the others but short, ending at a lake directly under Mount Hoffmann in the geographic center of the park.
+        <strong>May Lake. Two and four tenths of a mile, five hundred feet.</strong> That is from the trailhead at the end of May Lake Road; the park counts 5 miles and 1,100 feet from the Tioga Road shuttle stop. Steeper than the others but short, ending at a lake directly under Mount Hoffmann in the geographic center of the park.
       </p>
 
       <h2>If you want one real hike</h2>
 
       <p>
-        <strong>Lembert Dome</strong> is the classic: two and eight tenths of a mile with 850 feet of climb, up the back of the dome that stands over the east end of the meadow, finishing on bare granite with the whole basin underneath you. Allow two and a half hours. It is a walk-up rather than a scramble, but the last stretch is open rock with real exposure at the edges, so it is a poor choice with a child who runs.
+        <strong>Lembert Dome</strong> is the classic: a short, steep climb up the back of the dome that stands over the east end of the meadow, finishing on bare granite with the whole basin underneath you. The Park Service lists the dome and Dog Lake together at 3.8 miles round trip with 850 feet of gain, three to four hours. It is a walk-up rather than a scramble, but the last stretch is open rock with real exposure at the edges, so it is a poor choice with a child who runs.
       </p>
 
       <p>
-        <strong>Dog Lake</strong> shares its trailhead: also two and eight tenths of a mile, 650 feet, one steady climb and then a shallow, unusually warm lake with Mount Dana and Mount Gibbs on the skyline. It is the most swimmable water in the high country.
+        <strong>Dog Lake</strong> shares its trailhead: one steady climb and then a shallow, unusually warm lake with Mount Dana and Mount Gibbs on the skyline. It is the most swimmable water in the high country.
       </p>
 
       <p>
-        <strong>Gaylor Lakes</strong>, right at the Tioga Pass entrance, is two and six tenths of a mile and 500 feet, and starts at almost 10,000 feet, so it feels harder than it reads. <strong>Elizabeth Lake</strong> is four and eight tenths of a mile and 1,000 feet from the campground. And <a href="/articles/cathedral-lakes-day-hike">Cathedral Lakes</a>, the high country's most famous day hike, is a genuine 11 miles: a full day on its own, not something to bolt onto this one.
+        <strong>Gaylor Lakes</strong>, right at the Tioga Pass entrance, is two and six tenths of a mile and 500 feet, and starts at almost 10,000 feet, so it feels harder than it reads. <strong>Elizabeth Lake</strong> is six and eight tenths of a mile and 1,000 feet from the visitor center. And <a href="/articles/cathedral-lakes-day-hike">Cathedral Lakes</a>, the high country's most famous day hike, is a genuine 7.6 miles and 1,000 feet of climbing: a full day on its own, not something to bolt onto this one.
       </p>
 
       <blockquote>The common mistake is choosing a hike when what the day needed was a meadow, a lunch, and three hours of not driving.</blockquote>
@@ -104,7 +104,7 @@ window.ARTICLE_BODIES["tuolumne-meadows-in-a-day"] = function TuolumneMeadowsInA
       </p>
 
       <p>
-        The mitigations are simple: drink considerably more water than you want to, eat more than you planned, go slower than feels natural on the first walk of the day, and treat the first hour up there as an adjustment rather than an achievement. If a headache does not respond to water, food, and rest, the treatment is elevation loss, and you have a car and a road that descends 4,000 feet. Use it rather than pushing on.
+        The mitigations are simple: drink considerably more water than you want to, eat more than you planned, go slower than feels natural on the first walk of the day, and treat the first hour up there as an adjustment rather than an achievement. If a headache does not respond to water, food, and rest, the treatment is elevation loss, and you have a car and a road that descends more than 4,500 feet. Use it rather than pushing on.
       </p>
 
       <h2>The afternoon storm, which ends the day earlier than you want</h2>
@@ -131,7 +131,7 @@ window.ARTICLE_BODIES["tuolumne-meadows-in-a-day"] = function TuolumneMeadowsInA
 
       <ol>
         <li><strong>Leave the Valley by seven.</strong> Fill the tank at Crane Flat as you turn onto Tioga Road.</li>
-        <li><strong>Tuolumne Grove on the way, if you have the appetite.</strong> Two and a half miles and 500 feet down among two dozen giant sequoias, with the entire climb on the return. Skip it if the day is already full; it is a real hike despite the roadside trailhead.</li>
+        <li><strong>Tuolumne Grove on the way, if you have the appetite.</strong> Two and a half miles round trip, including the nature trail, and 500 feet down among the giant sequoias, with the entire climb on the return. Skip it if the day is already full; it is a real hike despite the roadside trailhead.</li>
         <li><strong>Olmsted Point, mid-morning.</strong> Half a mile, and the moment the scale of the place lands.</li>
         <li><strong>Pothole Dome, late morning.</strong> Exposed granite, done before the weather thinks about it.</li>
         <li><strong>Lunch in the meadow or at Tenaya Lake.</strong> Yours, from the car, because the alternative may not be open.</li>
@@ -146,8 +146,8 @@ window.ARTICLE_BODIES["tuolumne-meadows-in-a-day"] = function TuolumneMeadowsInA
         <li>Budget three to four hours of driving around the day. Leave the Valley by seven.</li>
         <li>There is no gas at Tuolumne Meadows. Fill up at Crane Flat.</li>
         <li>Pack all food and water. Seasonal services up there cannot be assumed and several are still disrupted.</li>
-        <li>The best short walks are Olmsted Point (half a mile), Pothole Dome (one mile), and Soda Springs (a mile and a half). None require being a hiker.</li>
-        <li>Tenaya Lake is the family stop: sandy beach, flat loop, cold water.</li>
+        <li>The best short walks are Olmsted Point (half a mile), Pothole Dome (one mile), and Soda Springs (a mile and four tenths). None require being a hiker.</li>
+        <li>Tenaya Lake is the family stop: sandy beach, flat shoreline, cold water.</li>
         <li>Do exposed granite in the morning. Afternoon thunderstorms are the season's normal behavior.</li>
         <li>The altitude is 8,600 feet. Drink more, eat more, go slower, and descend if a headache will not shift.</li>
         <li>Cathedral Lakes is a separate day. Do not staple it onto this one.</li>

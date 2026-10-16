@@ -28,16 +28,16 @@
 // per-town stat blocks.
 const TO_VALLEY = [
   { town: "El Portal", miles: "about 14", time: "25 to 35 min", highway: "140", season: "Year-round", elevation: "about 1,900 ft" },
-  { town: "Mariposa", miles: "about 45", time: "45 to 60 min", highway: "140", season: "Year-round", elevation: "about 2,000 ft" },
-  { town: "Groveland", miles: "about 41", time: "65 to 80 min", highway: "120", season: "Chain controls common in winter", elevation: "about 3,100 ft" },
-  { town: "Oakhurst", miles: "about 50", time: "75 to 90 min", highway: "41", season: "Year-round", elevation: "about 2,300 ft" },
-  { town: "Lee Vining", miles: "about 75", time: "90 min minimum", highway: "120 East over Tioga Pass", season: "Only while Tioga Pass is open", elevation: "about 6,800 ft" },
+  { town: "Mariposa", miles: "about 45", time: "60 to 75 min", highway: "140", season: "Year-round", elevation: "about 2,000 ft" },
+  { town: "Groveland", miles: "about 49", time: "65 to 80 min", highway: "120", season: "Chain controls common in winter", elevation: "about 3,100 ft" },
+  { town: "Oakhurst", miles: "about 55", time: "75 to 90 min", highway: "41", season: "Year-round", elevation: "about 2,300 ft" },
+  { town: "Lee Vining", miles: "about 75", time: "120 min minimum", highway: "120 East over Tioga Pass", season: "Only while Tioga Pass is open", elevation: "about 6,800 ft" },
 ];
 
 // The pairings the article states outright. A town with no published figure for
 // a destination gets an honest blank rather than an estimate.
 const OTHER_LEGS = [
-  { from: "Oakhurst", to: "South Entrance", detail: "about 14 miles, 20 to 25 minutes. The Mariposa Grove welcome plaza is immediately inside the gate; Wawona itself is another six miles on." },
+  { from: "Oakhurst", to: "South Entrance", detail: "about 14 miles, 20 to 25 minutes. The Mariposa Grove welcome plaza is immediately inside the gate; Wawona itself is another eight miles on." },
   { from: "Groveland", to: "Big Oak Flat Entrance", detail: "about 24 miles, 30 to 40 minutes on a winding road." },
   { from: "Lee Vining", to: "Tuolumne Meadows", detail: "about 20 miles, 30 minutes, while Tioga Pass is open." },
   { from: "Lee Vining", to: "Mono Lake", detail: "about 5 minutes to the visitor center, 15 to the South Tufa boardwalk." },
@@ -47,7 +47,7 @@ const OTHER_LEGS = [
 // The table's drive times drawn on one scale: each town a bar from the short
 // end of its range to the long end, so the comparison the page exists for is
 // visible at a glance. Parsed from TO_VALLEY's own strings ("25 to 35 min",
-// "90 min minimum"), so it cannot drift from the table, which stays the
+// "120 min minimum"), so it cannot drift from the table, which stays the
 // accessible record; this figure is hidden from assistive tech.
 const DRIVE_SCALE_MAX = 120; // minutes
 function driveRange(time) {

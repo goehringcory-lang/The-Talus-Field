@@ -510,7 +510,7 @@ window.ARTICLE_BODIES["yosemite-for-non-hikers"] = function YosemiteForNonHikers
               </header>
               <dl className="nh-drive__facts">
                 <div><dt>Season</dt><dd>Open to cars about late May through October or November, depending on snow</dd></div>
-                <div><dt>The drive</dt><dd>About an hour from the Valley: 9 miles south on Wawona Road, then 16 on Glacier Point Road</dd></div>
+                <div><dt>The drive</dt><dd>About an hour from the Valley: 14 miles south on Wawona Road, then 16 on Glacier Point Road</dd></div>
                 <div><dt>The walk</dt><dd>A short paved path, about 300 yards each way</dd></div>
                 <div><dt>Height</dt><dd>About 3,200 feet above the Valley floor</dd></div>
               </dl>
@@ -525,7 +525,7 @@ window.ARTICLE_BODIES["yosemite-for-non-hikers"] = function YosemiteForNonHikers
               </header>
               <dl className="nh-drive__facts">
                 <div><dt>Season</dt><dd>Open about May or June to November, depending on snow</dd></div>
-                <div><dt>The drive</dt><dd>39 miles across the park, climbing from 6,200 feet to nearly 10,000</dd></div>
+                <div><dt>The drive</dt><dd>46 miles across the park, climbing from 6,200 feet to nearly 10,000</dd></div>
                 <div><dt>The high point</dt><dd>Tioga Pass, at 9,945 feet</dd></div>
                 <div><dt>Services</dt><dd>Very few or none in the fall</dd></div>
               </dl>
@@ -585,7 +585,7 @@ window.ARTICLE_BODIES["yosemite-for-non-hikers"] = function YosemiteForNonHikers
                 <strong>If you have a placard.</strong> Vehicles with a disability placard may drive the Mariposa Grove Road past the shuttle to the Grizzly Giant parking area, from which a short trail, 0.1 mile one way over compressed dirt, reaches the Grizzly Giant, the largest tree in the grove. This is the single biggest practical benefit of the placard anywhere in Yosemite. Only placard vehicles may use that road while it is open.
               </p>
               <p>
-                <strong>In winter,</strong> the Mariposa Grove Road closes to cars from the end of November until at least April 1, and the shuttle stops with it. You can still get in on foot, by a two-mile hike each way on the road or the Washburn Trail, with about 500 feet of climb. For most non-hikers, winter is the season to skip the grove. <a href="/articles/mariposa-grove-how-to-visit">The grove guide</a> has the rest.
+                <strong>In winter,</strong> the Mariposa Grove Road closes to cars from the end of November until at least April 15, and the shuttle stops with it. You can still get in on foot, by a two-mile hike each way on the road or the Washburn Trail, with about 500 feet of climb. For most non-hikers, winter is the season to skip the grove. <a href="/articles/mariposa-grove-how-to-visit">The grove guide</a> has the rest.
               </p>
             </div>
           </div>
@@ -640,7 +640,7 @@ window.ARTICLE_BODIES["yosemite-for-non-hikers"] = function YosemiteForNonHikers
               <dl>
                 <div><dt>Length</dt><dd>Two hours</dd></div>
                 <div><dt>Vehicle</dt><dd>Open-air tram, with a naturalist</dd></div>
-                <div><dt>Departs</dt><dd>9 to 9:30 p.m., varies by month</dd></div>
+                <div><dt>Departs</dt><dd>8:30 or 9 p.m., varies by night</dd></div>
                 <div><dt>Fare</dt><dd>$41.25 adult, $28.25 child</dd></div>
               </dl>
               <p>Runs the nights before the full moon, typically June through September.</p>
@@ -717,7 +717,7 @@ window.ARTICLE_BODIES["yosemite-for-non-hikers"] = function YosemiteForNonHikers
           </div>
           <div className="nh-callout nh-callout--stack">
             <EventIcon name="calendar" size={26} />
-            <p><strong>Easy to attend.</strong> An evening program is a seat and about 30 minutes. From November 1 the fall Guide lists a free naturalist program nightly at 8 p.m. in the Valley Lodge Cliff Room. Until October 30 it lists a free, leisurely guided walk from the Lodge amphitheater, Monday through Saturday at 9:30 a.m., 1 to 1.5 hours.</p>
+            <p><strong>Easy to attend.</strong> An evening program is a seat and about 30 minutes. From November 1 the fall Guide lists a free evening program at 7 p.m. in the Valley Lodge Cliff Room (Sunday and Wednesday through Saturday, none on November 11). Until October 30 it lists a free, leisurely guided walk from the Lodge amphitheater, Monday through Saturday at 9:30 a.m., 1 to 1.5 hours.</p>
             <a className="ff-ghost" href="/now">This edition's times, on the Park Bulletin</a>
           </div>
         </div>

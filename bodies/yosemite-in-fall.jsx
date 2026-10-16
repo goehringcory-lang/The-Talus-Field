@@ -66,7 +66,7 @@ window.ARTICLE_BODIES["yosemite-in-fall"] = function YosemiteInFallBody() {
       </p>
 
       <p>
-        Timing: the show generally starts in early October and runs until the first serious snowstorm ends it. On the Valley floor at 4,000 feet, peak is usually late October into mid-November. That is later than most visitors assume, and it creates a scheduling problem. <strong>The best fall color in Yosemite Valley arrives after the high country has already closed.</strong> Mid-October is the compromise date: decent color starting, Tioga usually still open. Late October and early November trade the high country away for the better color. There is no week that gives you both at their best.
+        Timing: the show generally starts in early October and runs until the first serious snowstorm ends it. The Park Service calls bigleaf maples, black oaks and Pacific dogwoods showiest around mid-October, and on the Valley floor at 4,000 feet the color can run later, into November. That is later than most visitors assume, and it creates a scheduling problem. <strong>The best fall color in Yosemite Valley arrives after the high country has already closed.</strong> Mid-October is the compromise date: decent color starting, Tioga usually still open. Late October and early November trade the high country away for the better color. There is no week that gives you both at their best.
       </p>
 
       <p>
@@ -81,7 +81,7 @@ window.ARTICLE_BODIES["yosemite-in-fall"] = function YosemiteInFallBody() {
       </p>
 
       <p>
-        <strong>The bears are in hyperphagia.</strong> Starting in September, black bears shift into a physiological state of near-continuous eating to build the fat they will overwinter on. The numbers are hard to believe: a bear in hyperphagia can take in up to 20,000 calories a day, forage as much as 20 hours out of 24, and put on two to three pounds daily. The park's own bear team has described the daily target in acorn terms, roughly eleven pounds of acorns, which is a useful image for understanding what a bear is doing in a black oak grove in October.
+        <strong>The bears are in hyperphagia.</strong> Starting in September, black bears shift into a physiological state of near-continuous eating to build the fat they will overwinter on. The numbers are hard to believe: a bear in hyperphagia can take in up to 20,000 calories a day. The park's own bear team has described the daily target in acorn terms, roughly eleven pounds of acorns, which is a useful image for understanding what a bear is doing in a black oak grove in October.
       </p>
 
       <p>
@@ -93,7 +93,7 @@ window.ARTICLE_BODIES["yosemite-in-fall"] = function YosemiteInFallBody() {
       </p>
 
       <p>
-        The mechanism of nearly every injury is the same and entirely preventable: someone approaches, often someone who has seen other people feeding deer, and the animal defends itself with antlers or with front hooves. In November 2021 a girl approached a buck that visitors had been feeding, and the animal's antlers opened a deep cut on her arm and wounded her chest badly enough that she was moved from the park clinic to a hospital. Fifty yards is the rule, it is the same rule as for bears, and in fall it is the rule that actually gets broken because deer look harmless in a way bears do not. <a href="/articles/yosemite-wildlife-viewing-guide">The wildlife guide</a> covers where to watch from.
+        The mechanism of nearly every injury is the same and entirely preventable: someone approaches, often someone who has seen other people feeding deer, and the animal defends itself with antlers or with front hooves. In November 2021 a girl approached a buck that visitors had been feeding, and the animal's antlers opened a deep cut on her arm and wounded her chest badly enough that she was treated at the park and then taken to a hospital. The Park Service's rule for deer is at least 25 feet, and in fall it is the rule that actually gets broken because deer look harmless in a way bears do not. <a href="/articles/yosemite-wildlife-viewing-guide">The wildlife guide</a> covers where to watch from.
       </p>
 
       <h2>Smoke, but the other kind</h2>

@@ -12,7 +12,7 @@ window.ARTICLE_BODIES["yosemite-ranger-programs"] = function YosemiteRangerProgr
       <h2>What is actually on offer</h2>
 
       <p>
-        The menu changes with the season, but in summer a typical day in the Valley includes guided morning walks (geology, black bears, the ravens, the fire history, whatever that ranger loves most), talks at the visitor center and museum, photography and art programs, and evening programs several nights a week, usually starting around 8 p.m. at the campground amphitheaters and lodge venues. After dark there are night-sky programs when conditions and staffing allow; pair one with <a href="/articles/yosemite-stargazing-where-to-look-up">our stargazing guide</a> and you have a complete evening that cost exactly nothing. Winter thins the calendar but never empties it; the snowshoe walks, when offered, are some of the best programs of the year.
+        The menu changes with the season, but in summer a typical day in the Valley includes guided morning walks (geology, black bears, the ravens, the fire history, whatever that ranger loves most), talks at the visitor center and museum, photography and art programs, and evening programs several nights a week, starting between 6:30 and 8 p.m., depending on the venue and the season, at the campground amphitheaters and lodge venues. After dark there are night-sky programs when conditions and staffing allow; pair one with <a href="/articles/yosemite-stargazing-where-to-look-up">our stargazing guide</a> and you have a complete evening that cost exactly nothing. Winter thins the calendar but never empties it; the snowshoe walks, when offered, are some of the best programs of the year.
       </p>
 
       <p>
@@ -42,17 +42,17 @@ window.ARTICLE_BODIES["yosemite-ranger-programs"] = function YosemiteRangerProgr
       <h2>The Junior Ranger program, which is not just for the kids</h2>
 
       <p>
-        The mechanics: pick up the Junior Ranger handbook at a visitor center (available in English and Spanish, free at any visitor center, or downloadable from the park's website), complete the age-appropriate activities inside, attend a ranger program, and bring the finished work back to a ranger, who will look it over with complete seriousness, administer the pledge, and hand over the badge. The ceremony is performed straight, every time, and I have watched rangers do it for a five-year-old and a forty-five-year-old in the same afternoon with the same gravity. Adults are allowed. Adults are, frankly, encouraged.
+        The mechanics: pick up the Junior Ranger handbook at a visitor center (free at any visitor center, or downloadable from the park's website), complete the activities that suit you best, and bring the finished booklet to a ranger at any visitor center during operating hours, who will look it over with complete seriousness, and hand over the badge. The ceremony is performed straight, every time, and I have watched rangers do it for a five-year-old and a forty-five-year-old in the same afternoon with the same gravity. Adults are allowed. Adults are, frankly, encouraged.
       </p>
 
       <p>
-        What the handbook is actually doing is teaching a way of moving through the park: slower, closer to the ground, with questions. For families it quietly solves the pacing problem that wrecks most kid itineraries, because the activities give a six-year-old a job to do at every stop. <a href="/articles/yosemite-with-kids-no-reservations-2026">Our guide to Yosemite with kids</a> builds on exactly this logic. The park runs hundreds of Junior Ranger programs and activities across the year, so there is nearly always a ranger-led session that counts toward the badge within a day or two of whenever you arrive.
+        What the handbook is actually doing is teaching a way of moving through the park: slower, closer to the ground, with questions. For families it quietly solves the pacing problem that wrecks most kid itineraries, because the activities give a six-year-old a job to do at every stop. <a href="/articles/yosemite-with-kids-no-reservations-2026">Our guide to Yosemite with kids</a> builds on exactly this logic.
       </p>
 
       <h2>How to choose, if you only attend one</h2>
 
       <ol>
-        <li><strong>With kids:</strong> any morning walk labeled family-friendly, then the badge ceremony before you leave. The walk counts toward the handbook requirement.</li>
+        <li><strong>With kids:</strong> any morning walk labeled family-friendly, then the badge ceremony before you leave.</li>
         <li><strong>Without kids:</strong> an evening amphitheater program. Arriving as the light goes amber, sitting under the granite while someone who knows the park explains one thing well, is the closed loop of what these parks are for.</li>
         <li><strong>In winter:</strong> whatever is running. The ranger-to-visitor ratio is the best of the year, and a program that draws two hundred people in July draws nine in January, all of whom get their questions answered.</li>
       </ol>

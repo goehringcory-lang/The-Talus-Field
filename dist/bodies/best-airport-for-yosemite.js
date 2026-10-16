@@ -57,7 +57,7 @@ window.ARTICLE_BODIES["best-airport-for-yosemite"] = function BestAirportForYose
     time: "About 5 hours, June to October",
     hours: [5, 5],
     chart: "5 h",
-    road: "US 395 and Tioga Pass when the pass is open; 315 miles and 5½ hours around it when it is not",
+    road: "US 395 and Tioga Pass when the pass is open; 315 miles and 5.5 hours around it when it is not",
     flights: "Mostly domestic connections.",
     transit: "No practical connection.",
     verdict: "Only for a summer trip that starts on the east side."
@@ -78,7 +78,7 @@ window.ARTICLE_BODIES["best-airport-for-yosemite"] = function BestAirportForYose
     id: "mariposa",
     name: "Mariposa and Midpines",
     dest: "Mariposa, California",
-    drive: "45 to 60 min",
+    drive: "60 to 75 min",
     from: "From SFO in winter, or off the Merced flight",
     road: "Highway 140, the road that stays open"
   }, {
@@ -286,9 +286,9 @@ window.ARTICLE_BODIES["best-airport-for-yosemite"] = function BestAirportForYose
     className: "hp-eyebrow"
   }, "THE CAR-FREE WAY IN"), React.createElement("h2", null, "Train, then bus, from the Bay"), React.createElement("div", {
     className: "fly-prose"
-  }, React.createElement("p", null, "From San Francisco the route is three legs, and it runs every day of the year. The San Joaquins train does not reach the city itself, so you start on BART. Amtrak sells the train and the YARTS bus as one ticket to Yosemite, and the bus is timed to meet the trains at Merced. Allow four to four and a half hours from the Bay, which is no faster than driving and a good deal more restful."), React.createElement("p", null, "The bus drops you at Yosemite Valley Lodge, Yosemite Village or Curry Village, all on the free Valley shuttle. Whether the bus fare also covers your entrance fee is something the park's pages and YARTS' own currently answer differently, so budget for it; ", React.createElement("a", {
+  }, React.createElement("p", null, "From San Francisco the route is three legs, and it runs every day of the year. The San Joaquins train does not reach the city itself, so you start on BART. Amtrak sells the train and the YARTS bus as one ticket to Yosemite, and the bus is timed to meet the trains at Merced. Allow four to four and a half hours from the Bay, which is no faster than driving and a good deal more restful."), React.createElement("p", null, "The bus drops you at Yosemite Valley Lodge, Yosemite Village or Curry Village, all on the free Valley shuttle. Whether the bus fare covers your entrance fee is unsettled: the Park Service says YARTS riders do not pay it, while YARTS' fares page says the park entrance and non-resident fees are not included, so budget for them. ", React.createElement("a", {
     href: "/articles/yosemite-shuttle-and-yarts"
-  }, "the shuttle and YARTS guide"), " sets out both positions and the timetable."))), React.createElement("figure", {
+  }, "The shuttle and YARTS guide"), " has the timetable."))), React.createElement("figure", {
     className: "fly-photo"
   }, React.createElement(ResponsiveImage, {
     image: "img/yarts-bus-merced-amtrak.jpg",

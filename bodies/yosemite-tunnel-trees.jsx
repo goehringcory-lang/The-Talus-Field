@@ -10,7 +10,7 @@ window.ARTICLE_BODIES["yosemite-tunnel-trees"] = function YosemiteTunnelTreesBod
       </p>
 
       <p>
-        The park explained how it was done in its own magazine. In April 1929, <em>Yosemite Nature Notes</em> ran a piece called "Tunneled Trees of Mariposa and Other Groves." It consists of measurements, some history, and a note about how well the photographs were selling.
+        The park explained how it was done in its own magazine. In April 1929, <em>Yosemite Nature Notes</em> ran a piece called "Tunneled Trees of Mariposa and Other Groves." It consists of measurements, some history, and a note about how widely the photographs had travelled.
       </p>
 
       <p>
@@ -52,7 +52,7 @@ window.ARTICLE_BODIES["yosemite-tunnel-trees"] = function YosemiteTunnelTreesBod
       </p>
 
       <p>
-        On when it was cut, the archive does not agree with itself. The 1929 article prints a letter from a Frank Strausser of San Diego, who claimed to have entered the grove in August 1880 with a party of Knights Templar from Philadelphia, and to have sat up with the driver while workmen cleared the blocks of freshly chopped heartwood off the roadway so that his stage could be the first vehicle through. He claimed, on that basis, to have been the first passenger ever carried through the Wawona tree. Fifty-five years later, <a href="/archive/1984/vol-47-no-17/">the same magazine dated the cutting to 1881</a>, in a note about early photographs the park had just acquired. Both are in the record; the 1880 date rests on one man's recollection.
+        On when it was cut, the archive does not agree with itself. The 1929 article prints a letter from a Frank Strausser of San Diego, who claimed to have entered the grove in August 1880 with a party of Knights Templar from Philadelphia, and to have sat up with the driver while workmen cleared the blocks of freshly chopped heartwood off the roadway so that his stage could be the first vehicle through. He claimed, on that basis, to have been the first passenger ever carried through the Wawona tree. Fifty-five years later, <a href="/archive/1984/vol-47-no-17/">the same magazine gave 1881 for the cutting</a>, in a note about early photographs the park had just acquired. Both are in the record; the 1880 date rests on one man's recollection.
       </p>
 
       <p>
@@ -84,7 +84,7 @@ window.ARTICLE_BODIES["yosemite-tunnel-trees"] = function YosemiteTunnelTreesBod
       </p>
 
       <p>
-        The archive records the loss almost in passing. In <a href="/archive/1971/vol-41-no-4/">the 1971 volume</a>, an editor prints the reflections of a longtime visitor who had come by the office to talk about how the park had changed. Her list runs:
+        The archive records the loss almost in passing. In <a href="/archive/1971/vol-41-no-4/">the 1971 volume</a>, an editor prints the reflections of an interested visitor who had dropped by the office to talk about how the park had changed. Her list runs:
       </p>
 
       <blockquote>
@@ -104,7 +104,7 @@ window.ARTICLE_BODIES["yosemite-tunnel-trees"] = function YosemiteTunnelTreesBod
       </p>
 
       <p>
-        <strong>The Dead Giant, Tuolumne Grove.</strong> The trailhead is on Tioga Road a short distance east of the Crane Flat junction. The route in is the old Big Oak Flat Road, about a mile down and roughly five hundred feet of descent, which means the walk back is five hundred feet of climb at 6,000 feet of elevation. The tunnel is still cut through the stump, and you can still walk the road grade through it, the same surface the 1878 coach used. Carry water for the climb out.
+        <strong>The Dead Giant, Tuolumne Grove.</strong> The trailhead is on Tioga Road just north of Crane Flat. The route in is the old Big Oak Flat Road, about a mile down and roughly five hundred feet of descent, which means the walk back is five hundred feet of climb. The tunnel is still cut through the stump, and you can still walk the road grade through it, the same surface the 1878 coach used. Carry water for the climb out.
       </p>
 
       <p>
@@ -112,7 +112,7 @@ window.ARTICLE_BODIES["yosemite-tunnel-trees"] = function YosemiteTunnelTreesBod
       </p>
 
       <p>
-        The Wawona Tunnel Tree is also still there, lying down. It is well up in the upper grove, a couple of miles and a good deal of climbing past the California Tree, and it is a log now. People walk past it.
+        The Wawona Tunnel Tree is also still there, lying down. It is well up in the upper grove, a good deal of climbing past the California Tree, and it is a log now. People walk past it.
       </p>
 
       <h2>Why the archive is worth reading</h2>
@@ -132,13 +132,13 @@ window.ARTICLE_BODIES["yosemite-tunnel-trees"] = function YosemiteTunnelTreesBod
       <h3>In the archive</h3>
       <ul style={{ fontSize: 14 }}>
         <li><a href="/archive/1929/vol-8-no-4/"><em>Yosemite Nature Notes</em>, April 1929 (Vol. 8, No. 4)</a>. "Tunneled Trees of Mariposa and Other Groves," with the Marshall quotation, the Scribner brothers, and the measurements quoted above.</li>
-        <li><a href="/archive/1984/vol-47-no-17/"><em>Yosemite Nature Notes</em>, 1984 (Vol. 47, No. 17)</a>. The park museum's acquisition note on early albumen prints, dating the Wawona tunnel to 1881.</li>
+        <li><a href="/archive/1984/vol-47-no-17/"><em>Yosemite Nature Notes</em>, 1984 (Vol. 47, No. 17)</a>. The park museum's acquisition note on early albumen prints, giving 1881 for the Wawona tunnel.</li>
         <li><a href="/archive/1971/vol-41-no-4/"><em>Yosemite Nature Notes</em>, 1971 (Vol. 41, No. 4)</a>. A visitor's account of what the park had lost, tunnel tree included.</li>
         <li><a href="/archive/1937/vol-16-no-4/"><em>Yosemite Nature Notes</em>, April 1937 (Vol. 16, No. 4)</a>. "Our Changing Bears," the park naturalist on <a href="/articles/yosemite-bears-safety-guide">the bear-feeding show</a>. The subject of the next one of these.</li>
       </ul>
 
       <p style={{ fontSize: 14 }}>
-        <em>From the Archive</em> is an occasional series reading the 512 issues of <em>Yosemite Nature Notes</em>, the National Park Service bulletin published in the park from 1922 onward. The full run is transcribed and searchable at <a href="/archive/">the archive</a>.
+        <em>From the Archive</em> is an occasional series reading the 511 issues of <em>Yosemite Nature Notes</em>, the National Park Service bulletin published in the park from 1922 onward. The full run is transcribed and searchable at <a href="/archive/">the archive</a>.
       </p>
     </>
   );

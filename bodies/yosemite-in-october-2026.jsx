@@ -16,7 +16,7 @@ window.ARTICLE_BODIES["yosemite-in-october-2026"] = function YosemiteInOctober20
       <h2 id="sec-0-glacier-point-road-is-closed-and-the-fir">Glacier Point Road is open again, until winter closes it</h2>
 
       <p>
-        The <strong>Dome Fire</strong> was reported on the morning of September 15, about a quarter mile north of Chilnualna Falls, and its cause is not settled. On September 30 the local press reported a Forest Service finding that an abandoned campfire started it; on October 6 the Forest Service withdrew that finding without giving a reason, and the federal incident page, InciWeb, lists the cause as undetermined. By the evening of September 24 it had burned <strong>4,133 acres at 16 percent containment</strong>. Two helicopter pilots were killed fighting it on September 20.
+        The <strong>Dome Fire</strong> was reported on the morning of September 15, about a quarter mile north of Chilnualna Falls, and its cause is not settled. On September 30 the local press reported a Forest Service finding that an abandoned campfire started it; on October 6 the Forest Service withdrew that finding without giving a reason, and the federal incident page, InciWeb, lists the cause as undetermined. By the morning of September 25 it had burned <strong>4,258 acres at 17 percent containment</strong>. Two helicopter pilots were killed fighting it on September 20.
       </p>
 
       <p>
@@ -70,7 +70,7 @@ window.ARTICLE_BODIES["yosemite-in-october-2026"] = function YosemiteInOctober20
       </p>
 
       <p>
-        Construction adds a few minutes. Monday through Thursday from 8 a.m. to 3:30 p.m., expect delays of about 10 minutes through Tuolumne Meadows and 15 minutes between Olmsted Point and Tioga Pass. The trail between the wilderness center and Lembert Dome is closed for construction, with an alternate signed.
+        Construction adds a few minutes. Monday through Thursday, expect delays of about 10 minutes through Tuolumne Meadows. The trail between the wilderness center and Lembert Dome is closed for construction, with an alternate signed.
       </p>
 
       <p>

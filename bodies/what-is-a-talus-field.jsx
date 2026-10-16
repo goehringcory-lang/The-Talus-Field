@@ -130,7 +130,7 @@ window.ARTICLE_BODIES["what-is-a-talus-field"] = function WhatIsATalusFieldBody(
       <h2>Where to see one</h2>
 
       <p>
-        You will not have to look. From the Valley floor the talus is the skirt at the bottom of every wall, most obviously below the Rhombus Wall east of Camp 4, below the Glacier Point Apron behind Half Dome Village, and along the base of the north wall between the Three Brothers and Yosemite Falls. The road and the bike paths run across old talus in several places without announcing it.
+        You will not have to look. From the Valley floor the talus is the skirt at the bottom of every wall, most obviously below the Rhombus Wall east of Camp 4, below the Glacier Point Apron behind Curry Village, and along the base of the north wall between the Three Brothers and Yosemite Falls. The road and the bike paths run across old talus in several places without announcing it.
       </p>
 
       <p>

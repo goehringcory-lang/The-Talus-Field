@@ -22,15 +22,15 @@ window.ARTICLE_BODIES["hetch-hetchy-the-other-yosemite-valley"] = function Hetch
       <h2>The geography</h2>
 
       <p>
-        Hetch Hetchy sits in the northwestern corner of Yosemite National Park, accessed via <a href="/articles/getting-to-yosemite">Highway 120</a> to the <strong>Big Oak Flat Entrance</strong> and then a separate road that branches north before you reach the Valley. The drive from the Big Oak Flat Entrance to the <strong>O'Shaughnessy Dam</strong> (the trailhead for almost everything you'll do here) is about 16 miles, with significant winding mountain road. From Yosemite Valley, you're looking at roughly an hour and forty-five minutes of driving each way.
+        Hetch Hetchy sits in the northwestern corner of Yosemite National Park, reached by Hetch Hetchy Road, which begins just outside the park on <a href="/articles/getting-to-yosemite">Highway 120</a> near the <strong>Big Oak Flat Entrance Station</strong>. The drive from Highway 120 to the <strong>O'Shaughnessy Dam</strong> (the trailhead for almost everything you'll do here) is about 16 miles, with significant winding mountain road. From Yosemite Valley, the park's own figure is 38 miles, or about an hour and a quarter of driving each way.
       </p>
 
       <p>
-        The valley itself is about 8 miles long and a half-mile wide on average. Before the dam, it had a meadow floor at about 3,800 feet, two major waterfalls (Wapama and Tueeulala, the latter only running in spring snowmelt) on its north wall, and a forested rim with significant stands of black oak, ponderosa pine, and incense cedar. Today, the lower portion of the valley is filled with the <strong>Hetch Hetchy Reservoir</strong>, which holds 117 billion gallons of water at full capacity.
+        The reservoir that now fills the valley is about 8 miles long. Before the dam, the valley had a meadow floor, two major waterfalls (Wapama and Tueeulala, the latter only running in spring snowmelt) on its north wall, and a forested rim with significant stands of black oak, ponderosa pine, and incense cedar. Today, the lower portion of the valley is filled with the <strong>Hetch Hetchy Reservoir</strong>, which holds 117 billion gallons of water at full capacity.
       </p>
 
       <p>
-        The dam was completed in 1923. The reservoir filled in the years after. The valley floor that John Muir walked is, depending on the water level in any given year, somewhere between 200 and 350 feet underwater.
+        The dam was completed in 1923. The reservoir filled in the years after. The valley floor that John Muir walked is, depending on the water level in any given year, hundreds of feet underwater.
       </p>
 
       <h2>How it happened</h2>
@@ -48,11 +48,11 @@ window.ARTICLE_BODIES["hetch-hetchy-the-other-yosemite-valley"] = function Hetch
       </p>
 
       <p>
-        Muir was the public face of the resistance. He was 75 years old when the fight began. He wrote some of the most ferocious prose of his career on Hetch Hetchy, calling the proposed dam "a cult of ravaging commercialism" and describing the supporters of the project as "temple destroyers, devotees of ravaging commercialism, who seem to have a perfect contempt for Nature, and instead of lifting their eyes to the God of the mountains, lift them to the Almighty Dollar."
+        Muir was the public face of the resistance. He was 70 years old when the fight began in 1908. He wrote some of the most ferocious prose of his career on Hetch Hetchy, describing the supporters of the project as "temple destroyers, devotees of ravaging commercialism, who seem to have a perfect contempt for Nature, and instead of lifting their eyes to the God of the mountains, lift them to the Almighty Dollar."
       </p>
 
       <p>
-        He lost. The Raker Act passed Congress in 1913. President Wilson signed it. Construction on the dam began in 1914. Muir died in late 1914, partly of pneumonia and, his biographers and his friends both said, partly of the heartbreak of losing this fight.
+        He lost. The Raker Act passed Congress in 1913. President Wilson signed it. Construction on the O'Shaughnessy Dam began in 1919. Muir died in late 1914, partly of pneumonia and, his biographers and his friends both said, partly of the heartbreak of losing this fight.
       </p>
 
       <p>The Sierra Club, which Muir co-founded in 1892, has not stopped trying to get the dam removed in the century since.</p>
@@ -106,13 +106,13 @@ window.ARTICLE_BODIES["hetch-hetchy-the-other-yosemite-valley"] = function Hetch
       </p>
 
       <p>
-        <strong>Kayaking.</strong> It is technically not allowed on the reservoir itself. Hetch Hetchy is a domestic water supply, and recreational use of the water is restricted by SFPUC regulations. Boating, swimming, and fishing in the reservoir are not permitted, except in narrow circumstances with specific permits.
+        <strong>Kayaking.</strong> It is not allowed on the reservoir. Hetch Hetchy is a domestic water supply, and the Park Service prohibits swimming and boating in it to keep the drinking water clean. Public access is also closed below the reservoir's high-water mark.
       </p>
 
       <h2>A note on the access road</h2>
 
       <p>
-        The road into Hetch Hetchy is open from sunrise to sunset most days, with the exact hours posted at the entrance station. This is a real constraint. If you arrive at 7 p.m. in July expecting to see the dam at sunset, you'll be denied entry. Plan your day around the gate hours. The hours change seasonally and are posted on the NPS Hetch Hetchy page.
+        The road into Hetch Hetchy is open from sunrise to sunset most days, with the exact hours posted at the entrance station. This is a real constraint. If you arrive after sunset expecting to see the dam in the dusk light, you will be turned away. Plan your day around the gate hours. The hours change seasonally and are posted on the NPS Hetch Hetchy page.
       </p>
 
       <p>
@@ -172,7 +172,7 @@ window.ARTICLE_BODIES["hetch-hetchy-the-other-yosemite-valley"] = function Hetch
       </p>
 
       <p>
-        <strong>The valley below the waterline is still there.</strong> The granite floor, the meadows that were once flooded, the old trail systems, the original riverbed of the Tuolumne River. None of that was removed. It is preserved underwater, in a kind of geological cold storage, and if the dam were ever removed (a long-running advocacy goal of the Sierra Club and others), the valley would emerge. The U.S. Department of the Interior's 2006 study concluded that draining and restoring Hetch Hetchy was technically feasible. The political and infrastructural obstacles are significant. Whether it will happen in the next century is unknown.
+        <strong>The valley below the waterline is still there.</strong> The granite floor, the meadows that were once flooded, the old trail systems, the original riverbed of the Tuolumne River. None of that was removed. It is preserved underwater, in a kind of geological cold storage, and if the dam were ever removed (a long-running advocacy goal of the Sierra Club and others), the valley would emerge. The State of California's 2006 restoration study found the existing engineering work too thin to say whether draining and restoring Hetch Hetchy is feasible, and called for more. The political and infrastructural obstacles are significant. Whether it will happen in the next century is unknown.
       </p>
 
       <p>

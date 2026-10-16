@@ -79,7 +79,7 @@ const seed: HikeT[] = [
     region: 'valley',
     order: 4,
     distanceMi: 2.0,
-    distanceNote: '5 mi loop option around the lake and back along Tenaya Creek',
+    distanceNote: '4.5 mi loop option around the lake and back along Tenaya Creek',
     elevationGainFt: 100,
     difficulty: 'easy',
     route: 'out-and-back',
@@ -175,7 +175,7 @@ const seed: HikeT[] = [
       'The granite staircase beside the fall is soaked and slick through early summer. Never enter the Emerald Pool above the fall.',
     photo: { src: '/photos/hike-vernal-fall-mist-trail.jpg', alt: 'The Mist Trail sign pointing to Vernal Fall, Nevada Fall, and the John Muir Trail.' },
     description:
-      'The stone steps up through Vernal Fall’s spray, the park’s most-hiked mile. Bring a shell in spring or plan on hiking wet.',
+      'The stone steps up through Vernal Fall’s spray. Bring a shell in spring or plan on hiking wet.',
   },
   {
     id: 'nevada-fall',
@@ -238,7 +238,7 @@ const seed: HikeT[] = [
     region: 'valley',
     order: 13,
     distanceMi: 14.2,
-    distanceNote: 'via the Mist Trail; 16.4 mi via the John Muir Trail',
+    distanceNote: 'via the Mist Trail; 16.2 mi via the John Muir Trail',
     elevationGainFt: 4800,
     difficulty: 'strenuous',
     route: 'out-and-back',
@@ -307,7 +307,7 @@ const seed: HikeT[] = [
     season: 'Glacier Point Road season',
     photo: { src: '/photos/hike-mcgurk-meadow.jpg', alt: 'McGurk Meadow, wet grass and a stepping-stone path under lodgepole pines.' },
     description:
-      'A gentle forest walk to a wildflower meadow and a collapsing sheepherder’s cabin. Flowers peak in July.',
+      'A gentle forest walk to a wildflower meadow and a historic cabin. Flowers peak in early summer.',
   },
   {
     id: 'dewey-point',
@@ -593,7 +593,7 @@ const seed: HikeT[] = [
     coord: [-119.6152, 37.8505], // TODO: verify on the ground — moved 2026-09 ~600 m to the trailhead: NPS places, Recreation.gov and the OSM lot agree
     season: 'Tioga Road season',
     description:
-      'A short hop over a forested rise to a shallow lake rimmed by a meadow that flowers in July. An easy first high-country walk.',
+      'A short hop over a forested rise to a shallow lake rimmed by a meadow that flowers in early summer. An easy first high-country walk.',
   },
   {
     id: 'harden-lake',
@@ -621,7 +621,7 @@ const seed: HikeT[] = [
     difficulty: 'easy',
     route: 'out-and-back',
     durationMin: 100,
-    trailhead: 'May Lake trailhead, end of the Old Tioga Road spur',
+    trailhead: 'May Lake trailhead, end of May Lake Road',
     stopId: 'may-lake',
     coord: [-119.4912341, 37.8324607], // same pin as stop may-lake
     season: 'Tioga Road season',
@@ -639,7 +639,7 @@ const seed: HikeT[] = [
     difficulty: 'strenuous',
     route: 'out-and-back',
     durationMin: 330,
-    trailhead: 'May Lake trailhead, end of the Old Tioga Road spur',
+    trailhead: 'May Lake trailhead, end of May Lake Road',
     stopId: 'may-lake',
     coord: [-119.4912341, 37.8324607], // same pin as stop may-lake
     season: 'Tioga Road season',
@@ -917,7 +917,7 @@ const seed: HikeT[] = [
     season: 'Tioga Road season',
     photo: { src: '/photos/hike-gaylor-lakes.jpg', alt: 'A Gaylor Lake half-thawed in its alpine basin.' },
     description:
-      'A steep ridge climb from the entrance station, then alpine lake basins and a silver-mine site above 10,000 feet. The shortest route to alpine terrain in the park.',
+      'A steep ridge climb from the entrance station, then alpine lake basins and a silver-mine site above 10,000 feet. One of the shortest routes to alpine terrain in the park.',
   },
   {
     id: 'mount-dana',
@@ -973,7 +973,7 @@ const seed: HikeT[] = [
       'In big spring flow the falls flood their own footbridges. If water is running over the planks, do not cross.',
     photo: { src: '/photos/hike-wapama-falls.jpg', alt: 'The stone steps and footbridge below Wapama Falls.' },
     description:
-      'Across the dam, through the tunnel, and along the reservoir to the footbridges under Wapama’s thousand-foot drop, passing wispy Tueeulala Fall on the way.',
+      'Across the dam, through the tunnel, and along the reservoir to the footbridges under Wapama Falls, passing wispy Tueeulala Fall on the way.',
   },
   {
     id: 'rancheria-falls',
@@ -1004,13 +1004,13 @@ const seed: HikeT[] = [
     difficulty: 'strenuous',
     route: 'out-and-back',
     durationMin: 180,
-    trailhead: 'Hetch Hetchy Road, signed pullout 3.9 mi past the entrance',
+    trailhead: 'Hetch Hetchy Road, signed pullout 4 mi past the entrance',
     coord: [-119.8146, 37.9102], // TODO: verify on the ground — moved 2026-09 to the trailhead, same as the stop
     hazard:
-      'The climb out is relentless and largely shadeless and bakes by late morning; carry more water than three miles suggests. Rattlesnake country, and the river runs dam-released cold and fast. Stay out of the current.',
+      'The climb out is relentless and largely shadeless and bakes by late morning; carry more water than the short distance suggests. Rattlesnake country, and the river runs dam-released cold and fast. Stay out of the current.',
     photo: { src: '/photos/hike-poopenaut-valley.jpg', alt: 'Poopenaut Valley along the Tuolumne River below the dam.' },
     description:
-      'One of the park’s steepest maintained miles, straight down to the Tuolumne River below the dam. Short, very steep on the way out, and rarely busy.',
+      'A steep trail straight down to the Tuolumne River below the dam. Short, very steep on the way out, and rarely busy.',
   },
   {
     id: 'carlon-falls',
@@ -1042,7 +1042,7 @@ const seed: HikeT[] = [
     coord: [-119.8422, 37.763], // moved 2026-09 to the trailhead lot (OSM, Recreation.gov), same as the stop
     photo: { src: '/photos/hike-merced-grove.jpg', alt: 'Giant sequoias along the trail in the Merced Grove.' },
     description:
-      'A downhill road-grade walk to the park’s smallest sequoia grove, about twenty big trees with no shuttle. The climb is on the return.',
+      'A downhill road-grade walk to a very small, quiet sequoia grove, about twenty large giants with no shuttle. The climb is on the return.',
   },
 ]
 

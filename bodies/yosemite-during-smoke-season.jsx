@@ -10,7 +10,7 @@ window.ARTICLE_BODIES["yosemite-during-smoke-season"] = function YosemiteDuringS
       </p>
 
       <p>
-        Smoke is now routine. Smoke season in California now runs from roughly July through October most years, and parts of June in dry years. Yosemite is in the middle of one of the most fire-prone regions in the West. Plan for your trip to overlap with it. Smoke and closures are separate problems, and when the fire itself comes near your dates, <a href="/articles/wildfire-in-yosemite-during-your-trip">what closes and what to do with the bookings</a> is its own question.
+        Smoke is now routine. Fire season in Yosemite runs from roughly July through November, according to the Park Service, and parts of June in dry years. Yosemite is in the middle of one of the most fire-prone regions in the West. Plan for your trip to overlap with it. Smoke and closures are separate problems, and when the fire itself comes near your dates, <a href="/articles/wildfire-in-yosemite-during-your-trip">what closes and what to do with the bookings</a> is its own question.
       </p>
 
       <p>
@@ -25,7 +25,7 @@ window.ARTICLE_BODIES["yosemite-during-smoke-season"] = function YosemiteDuringS
       </p>
 
       <p>
-        Yosemite Valley is a 4,000-foot-deep granite trough oriented roughly east-west. When smoke is pushed in by westerly or southwesterly winds (the most common direction in summer), it pours into the Valley and settles. Cold air drainage at night pulls smoke down from the surrounding ridges into the Valley floor. The result is that the Valley is often the worst air in the park during a smoke event, sometimes by a wide margin.
+        Yosemite Valley is a granite trough, floor at about 4,000 feet and walls rising 3,000 feet or more, oriented roughly east-west. When smoke is pushed in by westerly or southwesterly winds (the most common direction in summer), it pours into the Valley and settles. Cold air drainage at night pulls smoke down from the surrounding ridges into the Valley floor. The result is that the Valley is often the worst air in the park during a smoke event, sometimes by a wide margin.
       </p>
 
       <p>
@@ -45,7 +45,7 @@ window.ARTICLE_BODIES["yosemite-during-smoke-season"] = function YosemiteDuringS
       <p>Three resources, in order of usefulness.</p>
 
       <p>
-        <strong>AirNow</strong> (<a href="https://www.airnow.gov" target="_blank" rel="noopener noreferrer">airnow.gov</a>) and the <strong>AirNow Fire and Smoke Map</strong> (<a href="https://fire.airnow.gov" target="_blank" rel="noopener noreferrer">fire.airnow.gov</a>) are the official EPA sources. They give you an Air Quality Index (AQI) reading for monitors in and near the park, updated multiple times a day. The Yosemite Valley monitor is at the Visitor Center. There are additional monitors in Wawona and Tuolumne when staffed and operating.
+        <strong>AirNow</strong> (<a href="https://www.airnow.gov" target="_blank" rel="noopener noreferrer">airnow.gov</a>) and the <strong>AirNow Fire and Smoke Map</strong> (<a href="https://fire.airnow.gov" target="_blank" rel="noopener noreferrer">fire.airnow.gov</a>) are the official EPA sources. They give you an Air Quality Index (AQI) reading for monitors in and near the park, updated multiple times a day. The Yosemite Valley monitor is in Yosemite Village. There are additional monitors in Wawona and Tuolumne when staffed and operating.
       </p>
 
       <p>The AQI scale you actually need to know:</p>

@@ -59,7 +59,7 @@ window.ARTICLE_BODIES["horsetail-fall-firefall"] = function HorsetailFallFirefal
       <h2>What is actually happening</h2>
 
       <p>
-        Horsetail Fall is a small, seasonal waterfall that drops off the eastern edge of El Capitan. Its main plunge is roughly 1,500 feet, which would make it a headline attraction anywhere else. In Yosemite it barely rates a mention for most of the year, partly because it usually is not there. The fall has a tiny drainage on El Capitan's summit slopes, no lake or glacier feeding it, and it flows only when recent rain or melting snow is running off the top of the cliff. In a dry winter it can be a damp streak. By late spring it is usually gone. If waterfalls are what you came for, the big reliable ones are covered in the <a href="/articles/yosemite-waterfalls-guide">waterfalls guide</a>; Horsetail is a different kind of event.
+        Horsetail Fall is a small, seasonal waterfall that drops off the eastern edge of El Capitan. It drops somewhere between 1,000 feet (the Park Service's own waterfall list) and about 1,500 (longer measurements of the full drop), which would make it a headline attraction anywhere else. In Yosemite it barely rates a mention for most of the year, partly because it usually is not there. The fall has a tiny drainage on El Capitan's summit slopes, no lake or glacier feeding it, and it flows only when recent rain or melting snow is running off the top of the cliff. In a dry winter it can be a damp streak. By late spring it is usually gone. If waterfalls are what you came for, the big reliable ones are covered in the <a href="/articles/yosemite-waterfalls-guide">waterfalls guide</a>; Horsetail is a different kind of event.
       </p>
 
       <p>
@@ -111,7 +111,7 @@ window.ARTICLE_BODIES["horsetail-fall-firefall"] = function HorsetailFallFirefal
       <h2>Two firefalls, one natural</h2>
 
       <p>
-        The name causes confusion, because Yosemite had another firefall, and that one was man-made. From the 1870s until 1968, a bonfire was built on the rim at Glacier Point and, on summer evenings, its burning embers were pushed over the edge, creating a glowing cascade of fire down the cliff toward Curry Village. It was a beloved spectacle, called for each night from the Valley floor, and it was also exactly the kind of manufactured entertainment the Park Service spent the twentieth century deciding parks should not be. The NPS ended the Glacier Point firefall in January 1968, citing the crowds it drew and the trampling of meadows, and the incompatibility of a nightly ember show with the idea of a national park.
+        The name causes confusion, because Yosemite had another firefall, and that one was man-made. From the 1870s until 1968, a bonfire was built on the rim at Glacier Point and, on summer evenings, its burning embers were pushed over the edge, creating a glowing cascade of fire down the cliff toward Curry Village. It was a beloved spectacle, called for each night from the Valley floor, and it was also exactly the kind of manufactured entertainment the Park Service spent the twentieth century deciding parks should not be. The NPS ended the Glacier Point firefall in January 1968, citing the congestion it caused in the Valley and the incompatibility of a nightly ember show with the idea of a national park.
       </p>
 
       <p>

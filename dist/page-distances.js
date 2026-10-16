@@ -8,20 +8,20 @@ var TO_VALLEY = [{
 }, {
   town: "Mariposa",
   miles: "about 45",
-  time: "45 to 60 min",
+  time: "60 to 75 min",
   highway: "140",
   season: "Year-round",
   elevation: "about 2,000 ft"
 }, {
   town: "Groveland",
-  miles: "about 41",
+  miles: "about 49",
   time: "65 to 80 min",
   highway: "120",
   season: "Chain controls common in winter",
   elevation: "about 3,100 ft"
 }, {
   town: "Oakhurst",
-  miles: "about 50",
+  miles: "about 55",
   time: "75 to 90 min",
   highway: "41",
   season: "Year-round",
@@ -29,7 +29,7 @@ var TO_VALLEY = [{
 }, {
   town: "Lee Vining",
   miles: "about 75",
-  time: "90 min minimum",
+  time: "120 min minimum",
   highway: "120 East over Tioga Pass",
   season: "Only while Tioga Pass is open",
   elevation: "about 6,800 ft"
@@ -37,7 +37,7 @@ var TO_VALLEY = [{
 var OTHER_LEGS = [{
   from: "Oakhurst",
   to: "South Entrance",
-  detail: "about 14 miles, 20 to 25 minutes. The Mariposa Grove welcome plaza is immediately inside the gate; Wawona itself is another six miles on."
+  detail: "about 14 miles, 20 to 25 minutes. The Mariposa Grove welcome plaza is immediately inside the gate; Wawona itself is another eight miles on."
 }, {
   from: "Groveland",
   to: "Big Oak Flat Entrance",

@@ -76,7 +76,7 @@ window.ARTICLE_BODIES["yosemite-shuttle-and-yarts"] = function YosemiteShuttleAn
       </p>
 
       <p>
-        Every bus in the fleet carries a wheelchair lift and tie-downs. Service animals meeting the legal definition ride; pets do not, which is the constraint that shapes a <a href="/articles/pets-in-yosemite">dog-owner's day</a> in the Valley more than any other. Bikes do not go on board either. There are racks at the stops instead, and in season Yosemite Conservancy underwrites a bike share that is free for short trips, which pairs well with the twelve-plus miles of paved bike path on the Valley floor. On a warm afternoon the bike is faster than the bus.
+        Every bus in the fleet carries a wheelchair lift and tie-downs. Service animals meeting the legal definition ride; pets do not, which is the constraint that shapes a <a href="/articles/pets-in-yosemite">dog-owner's day</a> in the Valley more than any other. Bikes do not go on board either. There are racks at the stops instead, and in season Yosemite Conservancy underwrites a bike share that is free for short trips, which pairs well with the eleven-plus miles of paved bike path on the Valley floor. On a warm afternoon the bike is faster than the bus.
       </p>
 
       <Placeholder
@@ -92,15 +92,15 @@ window.ARTICLE_BODIES["yosemite-shuttle-and-yarts"] = function YosemiteShuttleAn
       <h2>The other in-park buses</h2>
 
       <p>
-        <strong>The Mariposa Grove shuttle</strong> is free and, for most visitors, mandatory. When it is running, the grove road above the Welcome Plaza near the South Entrance is closed to private cars, so you park at the plaza and ride about two miles up to the arrival area. Buses come roughly every fifteen minutes, and the season runs roughly mid-April into late November depending on snow. The exception is the one worth knowing: a vehicle displaying a disability placard may drive the grove road, which turns a shuttle-dependent visit into a drive-up one.
+        <strong>The Mariposa Grove shuttle</strong> is free and, for most visitors, mandatory. When it is running, the grove road above the Welcome Plaza near the South Entrance is closed to private cars, so you park at the plaza and ride about two miles up to the arrival area. Buses come roughly every fifteen minutes, and the season can start no earlier than April 15 and end no later than November 30, depending on snow. The exception is the one worth knowing: a vehicle displaying a disability placard may drive the grove road, which turns a shuttle-dependent visit into a drive-up one.
       </p>
 
       <p>
-        <strong>The Glacier Point tour bus</strong> is not free and not a shuttle. It is a narrated round trip of about four hours from Yosemite Valley Lodge, generally running from early summer into September, and it is bookable through the park concessioner. It is also the standard trick for hiking down the Four Mile or Panorama trails without arranging a car shuttle: ride up, walk down. <a href="/articles/four-mile-up-panorama-down">The loop piece</a> explains why most people should do that in the other direction.
+        <strong>The Glacier Point tour bus</strong> is not free and not a shuttle. It is a narrated round trip of about four hours from Yosemite Valley Lodge, generally running from late May into October, and it is bookable through the park concessioner. It is also the standard trick for hiking down the Four Mile or Panorama trails without arranging a car shuttle: ride up, walk down. <a href="/articles/four-mile-up-panorama-down">The loop piece</a> explains why most people should do that in the other direction.
       </p>
 
       <p>
-        <strong>The Badger Pass shuttle</strong> runs twice a day between the Valley and the ski area, free, and only while the ski area is open, so roughly mid-December through March.
+        <strong>The Badger Pass shuttle</strong> runs between the Valley and the ski area, free, and only while the ski area is open, so typically mid-December through March.
       </p>
 
       <p>
@@ -114,7 +114,7 @@ window.ARTICLE_BODIES["yosemite-shuttle-and-yarts"] = function YosemiteShuttleAn
       </p>
 
       <p>
-        <strong>Highway 140, from Merced.</strong> The backbone, and the only route that runs year-round, seven days a week. It leaves from the Amtrak station in Merced and calls at Mariposa, Midpines, and El Portal on its way up the Merced canyon. Figure about two and a half hours end to end. Because it connects to a train, this is the route that makes a car-free Yosemite trip possible from San Francisco, Sacramento, or Los Angeles.
+        <strong>Highway 140, from Merced.</strong> The backbone, and the only route that runs year-round, seven days a week. It leaves from the Amtrak station in Merced and calls at Mariposa, Midpines, and El Portal on its way up the Merced canyon. Figure about three hours end to end. Because it connects to a train, this is the route that makes a car-free Yosemite trip possible from San Francisco, Sacramento, or Los Angeles.
       </p>
 
       <p>
@@ -142,7 +142,7 @@ window.ARTICLE_BODIES["yosemite-shuttle-and-yarts"] = function YosemiteShuttleAn
 
 
       <p>
-        In the Valley, YARTS sets down at Yosemite Valley Lodge, Yosemite Village, Curry Village, and the visitor center stop, all of which are on the free shuttle, so the handoff between the two systems is seamless. You can pay onboard with a card or exact cash, or reserve ahead at the YARTS ticketing site; walk-ons are accepted as space allows, but a reservation a day out is cheap insurance on a summer weekend. Buses are air-conditioned, have a restroom on board, are wheelchair accessible, and will take a bike in the underfloor compartment if there is room and it is bagged. Children under five ride free, one child aged six to twelve rides free with each full-fare adult, and there are reduced fares for seniors, riders with disabilities, and veterans.
+        In the Valley, YARTS sets down at Yosemite Valley Lodge, Yosemite Village, Curry Village, and the visitor center stop, all of which are on the free shuttle, so the handoff between the two systems is seamless. You can pay onboard with a card or exact cash, or reserve ahead at the YARTS ticketing site; walk-ons are accepted as space allows, but a reservation a day out is cheap insurance on a summer weekend. Buses are air-conditioned, are wheelchair accessible, and will take a bike in the underfloor compartment if there is room and it has been disassembled. Children five and under ride free, one child aged six to twelve rides free with each full-fare adult, and there are reduced fares for seniors, riders with disabilities, and veterans.
       </p>
 
       <h2>The entrance fee question, which is unresolved</h2>
@@ -164,7 +164,7 @@ window.ARTICLE_BODIES["yosemite-shuttle-and-yarts"] = function YosemiteShuttleAn
       </p>
 
       <p>
-        <strong>YARTS wins outright if you are one or two people on a Valley-focused trip.</strong> A Merced round trip runs in the mid-forties for an adult at current summer rates, with one-way fares starting at eight dollars from El Portal depending on where you board. Against that, a car costs you fuel, the entrance fee, and the eleven o'clock parking problem. Two people ride, arrive rested, and skip the part of the day everyone else spends circling.
+        <strong>YARTS wins outright if you are one or two people on a Valley-focused trip.</strong> A Merced round trip runs $44 for an adult at current fares, before a small booking fee, and a one-way ride from El Portal to the Valley is $8. Against that, a car costs you fuel, the entrance fee, and the eleven o'clock parking problem. Two people ride, arrive rested, and skip the part of the day everyone else spends circling.
       </p>
 
       <p>

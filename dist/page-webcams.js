@@ -16,7 +16,7 @@ var CAM_NOTES = [{
 }, {
   name: "Wawona",
   from: "Wawona, the park's south end",
-  shows: "Conditions an hour south of the Valley and twenty minutes from the Mariposa Grove, at about 4,000 feet. Worth checking separately in winter, when Wawona and the Valley genuinely differ.",
+  shows: "Conditions an hour south of the Valley and about thirty minutes from the Mariposa Grove, at about 4,000 feet. Worth checking separately in winter, when Wawona and the Valley genuinely differ.",
   best: "Midday in winter, to see whether snow is lying."
 }];
 function WebcamsPage({
@@ -52,7 +52,7 @@ function WebcamsPage({
     className: "hp-reading__column"
   }, React.createElement("section", {
     className: "prose"
-  }, React.createElement("h2", null, "What each camera shows"), React.createElement("p", null, "All four are still-image cameras rather than video streams. They refresh on the order of minutes rather than seconds, which is why a page reload does not always change the picture and why nothing here is going to show you a bear walking past."), CAM_NOTES.map(c => React.createElement("p", {
+  }, React.createElement("h2", null, "What each camera shows"), React.createElement("p", null, "The four tiles here are still images rather than video streams. They refresh on the order of minutes rather than seconds, which is why a page reload does not always change the picture and why nothing here is going to show you a bear walking past."), CAM_NOTES.map(c => React.createElement("p", {
     key: c.name
   }, React.createElement("strong", null, c.name, "."), " ", c.from, ". ", c.shows, " Best hour: ", c.best.toLowerCase())), React.createElement("h2", null, "How to actually read them"), React.createElement("p", null, React.createElement("strong", null, "Check two, not one."), " A single camera tells you about one wall. Half Dome plus El Capitan tells you whether the whole Valley is clear, socked in, or hazy, and those are three different days."), React.createElement("p", null, React.createElement("strong", null, "Elevation lies to you."), " The Valley floor sits at 4,000 feet and Tuolumne Meadows at 8,600. A clear Valley camera says nothing about whether it is snowing on", " ", React.createElement("a", {
     href: "/tioga-opening"
@@ -89,7 +89,11 @@ function WebcamsPage({
     href: "https://www.nps.gov/yose/planyourvisit/conditions.htm",
     target: "_blank",
     rel: "noopener noreferrer"
-  }, "nps.gov current conditions"), "."), React.createElement("p", null, React.createElement("strong", null, "For the high country and the east side"), ", there is no Conservancy camera at Tuolumne Meadows or Tioga Pass, which is the single most requested view the park does not have on this list. Until the road opens, the honest substitutes are the NPS Tioga Road page for plowing status and", " ", React.createElement("a", {
+  }, "nps.gov current conditions"), "."), React.createElement("p", null, React.createElement("strong", null, "For the high country and the east side"), ", there is no Conservancy camera at Tuolumne Meadows or Tioga Pass, which is the single most requested view missing from this list. Yosemite Hospitality runs a summer-only camera at the Tuolumne Meadows Store, which the", " ", React.createElement("a", {
+    href: "https://www.nps.gov/yose/learn/photosmultimedia/webcams.htm",
+    target: "_blank",
+    rel: "noopener noreferrer"
+  }, "NPS webcams page"), " ", "links. Until the road opens, the honest substitutes are the NPS Tioga Road page for plowing status and", " ", React.createElement("a", {
     href: "/tioga-opening"
   }, "the opening page"), " for how the season works."), React.createElement("p", {
     style: {

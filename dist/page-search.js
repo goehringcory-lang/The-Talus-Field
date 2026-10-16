@@ -68,7 +68,7 @@ var SEARCH_PAGES = [{
 }, {
   path: "/archive/",
   title: "The Nature Notes archive",
-  dek: "The park's own bulletin, Yosemite Nature Notes: 512 issues transcribed from the scans, with year indexes.",
+  dek: "The park's own bulletin, Yosemite Nature Notes: 511 issues transcribed from the scans, with year indexes.",
   kind: "Archive"
 }, {
   route: "tioga-opening",

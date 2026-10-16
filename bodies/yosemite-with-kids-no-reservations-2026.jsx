@@ -32,15 +32,15 @@ window.ARTICLE_BODIES["yosemite-with-kids-no-reservations-2026"] = function Yose
       </p>
 
       <p>
-        <strong>Book a room in Mariposa.</strong> It's the best gateway town for families. About 45 minutes from the Valley, with more lodging options than any other gateway, a real grocery store, gas stations, and restaurants that aren't terrible. Our <a href="/articles/yosemite-gateway-towns-compared">gateway towns guide</a> has the full comparison, but if you're booking tonight: Mariposa. Call around. Last-minute rooms exist, especially midweek.
+        <strong>Book a room in Mariposa.</strong> It's the best gateway town for families. About an hour and a quarter from the Valley, with more lodging options than any other gateway, a real grocery store, gas stations, and restaurants that aren't terrible. Our <a href="/articles/yosemite-gateway-towns-compared">gateway towns guide</a> has the full comparison, but if you're booking tonight: Mariposa. Call around. Last-minute rooms exist, especially midweek.
       </p>
 
       <p>
-        If you're camping, the campgrounds inside the park are almost certainly full. But there are first-come-first-served options in the Sierra National Forest just outside the park boundary, and the Mariposa Fairgrounds campground runs about $35 a night with no reservation needed. It's not glamorous, but it's a place to sleep, and your kids won't care.
+        If you're camping, the campgrounds inside the park are almost certainly full. But there are first-come-first-served options in the Sierra National Forest just outside the park boundary, and the Mariposa Fairgrounds campground runs about $35 a night for a tent with no reservation needed. It's not glamorous, but it's a place to sleep, and your kids won't care.
       </p>
 
       <p>
-        <strong>Pack the car tonight, not tomorrow morning.</strong> The <a href="/articles/pack-your-car-for-yosemite">car packing guide</a> has the full list, but grab these five things you'll forget: sunscreen (the UV at elevation is brutal), a refillable water bottle for every person (including the toddler), a headlamp (if you stay for sunset, which you should, you'll walk back in the dark), layers (the Valley can be 95 degrees at noon and 55 degrees at sunset), and a credit or debit card for the entrance fee if you don't have an America the Beautiful pass (the gate is cashless).
+        <strong>Pack the car tonight, not tomorrow morning.</strong> The <a href="/articles/pack-your-car-for-yosemite">car packing guide</a> has the full list, but grab these five things you'll forget: sunscreen (the UV at elevation is brutal), a refillable water bottle for every person (including the toddler), a headlamp (if you stay for sunset, which you should, you'll walk back in the dark), layers (the Valley can be 95 degrees at noon and 55 degrees at sunset), and a credit or debit card for the entrance fee if you don't have an America the Beautiful pass (the gate does not take cash).
       </p>
 
       <p>
@@ -56,7 +56,7 @@ window.ARTICLE_BODIES["yosemite-with-kids-no-reservations-2026"] = function Yose
       </p>
 
       <p>
-        From Mariposa, it's about 45 minutes to the Valley via Highway 140 through El Portal. Leave by 7:15 and you'll be parked by 8. From Oakhurst, add 15 minutes. From Groveland, it's more like 75 minutes. Leave by 6:45.
+        From Mariposa, it's about an hour and a quarter to the Valley via Highway 140 through El Portal. Leave by 7:15 and you'll be there by 8:30. From Oakhurst, add 15 minutes. From Groveland, it's also about 75 minutes. Leave by 6:45.
       </p>
 
       <p>
@@ -64,7 +64,7 @@ window.ARTICLE_BODIES["yosemite-with-kids-no-reservations-2026"] = function Yose
       </p>
 
       <p>
-        <strong>The YARTS bus move.</strong> YARTS (the regional bus system) runs from Mariposa, El Portal, and other gateway towns directly into Yosemite Valley. Children under five ride free, and one child aged six to twelve rides free with each full-fare adult, so check the count against your group before assuming the whole back seat travels free. You skip the parking and get dropped off in the Village. Check the YARTS schedule the night before. Buses run several times a day in summer. Few families use it.
+        <strong>The YARTS bus move.</strong> YARTS (the regional bus system) runs from Mariposa, El Portal, and other gateway towns directly into Yosemite Valley. Children five and under ride free, and one child aged six to twelve rides free with each full-fare adult, so check the count against your group before assuming the whole back seat travels free. You skip the parking and get dropped off in the Village. Check the YARTS schedule the night before. Buses run several times a day in summer. Few families use it.
       </p>
 
       <h2>Your first two hours</h2>
@@ -78,7 +78,7 @@ window.ARTICLE_BODIES["yosemite-with-kids-no-reservations-2026"] = function Yose
       </p>
 
       <p>
-        The booklet has activities keyed to different spots in the park, things to find, questions to answer, sketches to make. It gives your entire day a structure without you having to create one. Your kids have missions now. At every stop, they're looking for something specific. When they finish enough activities, they bring the booklet back to a ranger, take the Junior Ranger oath, and get a badge. They will care about that badge more than any souvenir in the gift shop.
+        The booklet has activities keyed to different spots in the park, things to find, questions to answer, sketches to make. It gives your entire day a structure without you having to create one. Your kids have missions now. At every stop, they're looking for something specific. When they finish enough activities, they bring the booklet back to a ranger, and get a badge. They will care about that badge more than any souvenir in the gift shop.
       </p>
 
       <p>
@@ -105,11 +105,11 @@ window.ARTICLE_BODIES["yosemite-with-kids-no-reservations-2026"] = function Yose
       </p>
 
       <p>
-        <strong>Cook's Meadow Loop, the one with the views.</strong> Two miles, paved, flat as a parking lot. This is the walk through the heart of the Valley with postcard views of Half Dome, Yosemite Falls, and Sentinel Rock. It connects to Sentinel Bridge, where the famous Half Dome reflection photo is taken. The meadow is gorgeous, the trail is wide, and there's almost no crowd because everyone else went to the waterfalls. <em>(All ages. Strollers: yes. Best in morning or evening light.)</em>
+        <strong>Cook's Meadow Loop, the one with the views.</strong> One mile, paved and boardwalk, flat as a parking lot. This is the walk through the heart of the Valley with postcard views of Half Dome, Yosemite Falls, and Sentinel Rock. It connects to Sentinel Bridge, where the famous Half Dome reflection photo is taken. The meadow is gorgeous, the trail is wide, and there's almost no crowd because everyone else went to the waterfalls. <em>(All ages. Strollers: yes. Best in morning or evening light.)</em>
       </p>
 
       <p>
-        <strong>Mirror Lake, the adventure walk.</strong> Two miles to the lake on a packed-dirt road that's stroller-possible with real wheels (not an umbrella stroller). The lake itself is seasonal, full in spring, a sandy meadow by late summer. But the walk along Tenaya Creek is beautiful regardless, and at the "lake" site there are boulders to climb, creek edges to explore, and fewer people than elsewhere in the Valley. <em>(Ages 3+. Under-2s fine in a carrier. Over-8s will want to scramble on the rocks.)</em>
+        <strong>Mirror Lake, the adventure walk.</strong> Two miles round trip to the lake on a paved road that's stroller-possible with real wheels (not an umbrella stroller). The lake itself is seasonal, full in spring, a sandy meadow by late summer. But the walk along Tenaya Creek is beautiful regardless, and at the "lake" site there are boulders to climb, creek edges to explore, and fewer people than elsewhere in the Valley. <em>(Ages 3+. Under-2s fine in a carrier. Over-8s will want to scramble on the rocks.)</em>
       </p>
 
       <p>
@@ -117,7 +117,7 @@ window.ARTICLE_BODIES["yosemite-with-kids-no-reservations-2026"] = function Yose
       </p>
 
       <p>
-        <strong>If you have the whole day and older kids.</strong> Two hikes off the beaten path are worth the drive. <strong>McGurk Meadow</strong> (1.6 miles round trip, flat, off Glacier Point Road) is a wildflower meadow with a historic sheepherder's cabin that kids find fascinating. <strong>Lukens Lake</strong> (2.4 miles round trip, minimal elevation, off Tioga Road) is a shallow alpine lake warm enough to wade in by August, surrounded by wildflower meadows. Both are quiet and see a fraction of the Valley crowds. You'll need Glacier Point Road or Tioga Road to be open. Check conditions before driving up.
+        <strong>If you have the whole day and older kids.</strong> Two hikes off the beaten path are worth the drive. <strong>McGurk Meadow</strong> (1.6 miles round trip, flat, off Glacier Point Road) is a wildflower meadow with a historic sheepherder's cabin that kids find fascinating. <strong>Lukens Lake</strong> (1.6 miles round trip, about 200 feet of gain, off Tioga Road) is a shallow alpine lake warm enough to wade in by August, surrounded by wildflower meadows. Both are quiet and see a fraction of the Valley crowds. You'll need Glacier Point Road or Tioga Road to be open. Check conditions before driving up.
       </p>
 
       <h2>Water, rocks, and the stuff kids actually remember</h2>
@@ -147,7 +147,7 @@ window.ARTICLE_BODIES["yosemite-with-kids-no-reservations-2026"] = function Yose
       </p>
 
       <p>
-        <strong>Not bringing enough water.</strong> The Valley floor can hit 95°F in July. Kids dehydrate faster than adults and complain about it louder. One liter per person is the minimum for a half-day. Two is better. Bring a water bottle for every person, including the toddler. The only water refill on most Valley trails is the drinking fountain at the Vernal Fall footbridge, a mile from the trailhead.
+        <strong>Not bringing enough water.</strong> The Valley floor can hit 95°F in July. Kids dehydrate faster than adults and complain about it louder. One liter per person is the minimum for a half-day. Two is better. Bring a water bottle for every person, including the toddler. The only water refill on most Valley trails is the drinking fountain at the Vernal Fall footbridge, about 0.8 mile from the trailhead.
       </p>
 
       <p>
@@ -167,11 +167,11 @@ window.ARTICLE_BODIES["yosemite-with-kids-no-reservations-2026"] = function Yose
       <p>Three options, depending on what's open and what your kids can handle.</p>
 
       <p>
-        <strong>Glacier Point by car.</strong> <a href="/articles/glacier-point-road-open-2026">Glacier Point Road opened May 9</a> this year. The drive takes about an hour from the Valley. The viewpoint at the end is fenced and safe for kids, and the view, Half Dome at eye level, the Valley 3,200 feet below, the entire Clark Range spread out to the south, is arguably the best in the park. No hiking required. Drive up, get out, look, eat lunch at the picnic area, drive back. On the way, stop at the Sentinel Dome trailhead for an easy 2.2-mile round trip to a bald granite dome with 360-degree views. Kids love the scramble to the top.
+        <strong>Glacier Point by car.</strong> <a href="/articles/glacier-point-road-open-2026">Glacier Point Road opened May 9</a> this year. The drive takes about an hour from the Valley. The viewpoint at the end is fenced and safe for kids, and the view, Half Dome at eye level, the Valley 3,200 feet below, the entire Clark Range spread out to the south, is arguably the best in the park. No hiking required. Drive up, get out, look, eat lunch at the picnic area, drive back. On the way, stop at the Sentinel Dome trailhead for an 2-mile round trip to a bald granite dome with 360-degree views. Kids love the scramble to the top.
       </p>
 
       <p>
-        <strong>Mariposa Grove.</strong> The giant sequoias. A free shuttle runs from a parking area to the grove (the road to the grove is closed to private vehicles). The lower grove loop is about 2 miles on a paved trail, stroller-accessible and flat enough for all ages. The Grizzly Giant is 2,700 years old and 96 feet around. The shuttle ride is part of the fun for small children.
+        <strong>Mariposa Grove.</strong> The giant sequoias. A free shuttle runs from a parking area to the grove (the road to the grove is closed to private vehicles). The Big Trees Loop is a flat 0.3 mile, and the Grizzly Giant Loop is 2 miles round trip with about 300 feet of climbing. The Grizzly Giant is about 3,000 years old and 96 feet around. The shuttle ride is part of the fun for small children.
       </p>
 
       <p>
@@ -186,7 +186,7 @@ window.ARTICLE_BODIES["yosemite-with-kids-no-reservations-2026"] = function Yose
       <ul>
         <li>Arrive before 9 AM (8 AM weekends)</li>
         <li>Leave gateway town by 7:15 AM from Mariposa, 7:00 from Oakhurst, 6:45 from Groveland</li>
-        <li>YARTS bus from Mariposa: free for children under five, plus one child aged six to twelve per full-fare adult</li>
+        <li>YARTS bus from Mariposa: free for children five and under, plus one child aged six to twelve per full-fare adult</li>
       </ul>
 
       <h3>Pack tonight</h3>
@@ -196,7 +196,7 @@ window.ARTICLE_BODIES["yosemite-with-kids-no-reservations-2026"] = function Yose
         <li>Layers: it's hot at noon, cold at sunset</li>
         <li>Headlamp or flashlight</li>
         <li>Snacks, lunch, and a cooler with ice</li>
-        <li>Cash or pass for entrance fee ($35/vehicle or America the Beautiful pass)</li>
+        <li>Card or pass for entrance fee ($35/vehicle or America the Beautiful pass; no cash)</li>
         <li><a href="/articles/pack-your-car-for-yosemite">Full car packing list</a></li>
       </ul>
 
@@ -211,8 +211,8 @@ window.ARTICLE_BODIES["yosemite-with-kids-no-reservations-2026"] = function Yose
       <h3>Best hikes with kids</h3>
       <ul>
         <li>Lower Yosemite Fall: 1 mile, paved, all ages</li>
-        <li>Cook's Meadow: 2 miles, paved, all ages</li>
-        <li>Mirror Lake: 2 miles, packed dirt, ages 3+</li>
+        <li>Cook's Meadow: 1 mile loop, paved, all ages</li>
+        <li>Mirror Lake: 2 miles round trip, paved road, ages 3+</li>
         <li>Bridalveil Fall: 0.5 miles, paved but steep, all ages</li>
       </ul>
 

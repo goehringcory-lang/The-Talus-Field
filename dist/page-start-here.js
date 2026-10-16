@@ -37,7 +37,7 @@ var START_PLACES = [{
   credit: "Cory Goehring",
   line: "The canyon floor. You stand at the bottom and look up.",
   dos: ["Tunnel View at first light, then Bridalveil Fall", "The Lower Yosemite Fall loop and Cook's Meadow before the lots fill at mid-morning", "A slow hour on a rock by the Merced", "Back to Valley View or Tunnel View for last light"],
-  facts: [["Getting in", "Arch Rock on Hwy 140, the all-weather route"], ["Best hour", "Through the gate before 8 a.m., or after 4 p.m."], ["Waterfalls", "Peak in May, mostly dry by August"], ["Closest accommodations", "El Portal, 25 to 35 minutes. Mariposa, 45 to 60."]],
+  facts: [["Getting in", "Arch Rock on Hwy 140, the all-weather route"], ["Best hour", "Through the gate before 8 a.m., or after 4 p.m."], ["Waterfalls", "Peak in May, mostly dry by August"], ["Closest accommodations", "El Portal, 25 to 35 minutes. Mariposa, 60 to 75."]],
   link: {
     href: "/articles/yosemite-in-one-or-two-days",
     label: "One day in Yosemite: the Valley sequence"
@@ -53,7 +53,7 @@ var START_PLACES = [{
   alt: "Half Dome at sunset from Glacier Point",
   credit: "Joshua Earle / Unsplash",
   line: "The same canyon from the top edge, at eye level with Half Dome.",
-  dos: ["Washburn Point first, for Vernal and Nevada Falls stacked in their staircase", "Glacier Point itself: a 0.3-mile paved walk to the 7,200-foot overlook", "Sentinel Dome and Taft Point from one trailhead, about 2.2 miles round trip each", "Late afternoon puts the light on Half Dome rather than behind it"],
+  dos: ["Washburn Point first, for Vernal and Nevada Falls stacked in their staircase", "Glacier Point itself: a 300-yard paved walk to the 7,200-foot overlook", "Sentinel Dome and Taft Point from one trailhead, about 2 and 2.2 miles round trip", "Late afternoon puts the light on Half Dome rather than behind it"],
   facts: [["From the Valley", "About 30 miles, an hour each way"], ["Season", "Most openings fall in May; closes after the first big snow"], ["Parking", "The lot fills by mid-morning in summer"], ["In winter", "Skis or snowshoes from Badger Pass only"]],
   link: {
     href: "/articles/glacier-point-how-to-visit",
@@ -64,14 +64,14 @@ var START_PLACES = [{
   n: "3",
   name: "Mariposa Grove",
   pin: [31.1, 94.5],
-  drive: "About an hour from the Valley",
+  drive: "A little over an hour from the Valley",
   season: "Open all year; the grove road closes to cars in winter",
   image: "img/mariposa-grove-grizzly-giant-nieves.jpg",
   alt: "The Grizzly Giant in the Mariposa Grove",
   credit: "Nieves / Pexels",
   line: "Giant sequoias that have been growing since before the Roman Empire.",
   dos: ["Park at the Welcome Plaza by the South Entrance; the free shuttle covers the last two miles", "The Grizzly Giant Loop, about two miles among the oldest trees", "Take the first shuttle of the morning or the last hour before it stops, never noon", "In winter, walk the closed grove road two quiet miles up"],
-  facts: [["From the Valley", "About an hour each way"], ["Shuttle", "Free, no ticket, about every 15 minutes"], ["Pair it with", "The Wawona Meadow Loop, a flat 3.5 miles"], ["Closest accommodations", "Oakhurst: right for the grove, wrong for the Valley"]],
+  facts: [["From the Valley", "A little over an hour each way"], ["Shuttle", "Free, no ticket, about every 15 minutes"], ["Pair it with", "The Wawona Meadow Loop, a flat 3.5 miles"], ["Closest accommodations", "Oakhurst: right for the grove, wrong for the Valley"]],
   link: {
     href: "/articles/mariposa-grove-how-to-visit",
     label: "Mariposa Grove: how to visit"
@@ -87,8 +87,8 @@ var START_PLACES = [{
   alt: "Tuolumne Meadows with Lembert Dome behind",
   credit: "Pacific Southwest Region USFWS / Wikimedia Commons (public domain)",
   line: "The high country: open granite and meadow at 8,600 feet, and half the crowd.",
-  dos: ["Olmsted Point for the back of Half Dome, then the shore of Tenaya Lake", "Pothole Dome, a mile round trip at the meadow's west end", "Soda Springs and Parsons Memorial Lodge, a flat mile and a half", "Lembert Dome, 2.8 miles and 850 feet, for the earned view"],
-  facts: [["From the Valley", "55 to 60 miles, 1.5 hours each way, closer to 2 in July"], ["Season", "Tioga Road opens late May or June, closes with the first serious snow"], ["Weather", "Off the open granite before the afternoon thunderheads"], ["Give it", "Its own day. It deserves more than a drive-through."]],
+  dos: ["Olmsted Point for the back of Half Dome, then the shore of Tenaya Lake", "Pothole Dome, a mile round trip at the meadow's west end", "Soda Springs and Parsons Memorial Lodge, a flat mile and four tenths", "Lembert Dome with Dog Lake, 3.8 miles and 850 feet, for the earned view"],
+  facts: [["From the Valley", "55 miles, 1.5 hours each way, closer to 2 in July"], ["Season", "Tioga Road opens late May or June, closes with the first serious snow"], ["Weather", "Off the open granite before the afternoon thunderheads"], ["Give it", "Its own day. It deserves more than a drive-through."]],
   link: {
     href: "/articles/tuolumne-meadows-in-a-day",
     label: "Tuolumne Meadows in a day"
@@ -136,7 +136,7 @@ var START_ANSWERS = [{
   }
 }, {
   q: "Where should I stay?",
-  lines: ["In the park if you can: beds open 366 days ahead.", "Otherwise Mariposa, the safest first-timer's town, 45 to 60 minutes out."],
+  lines: ["In the park if you can: beds open 366 days ahead.", "Otherwise Mariposa, the safest first-timer's town, 60 to 75 minutes out."],
   link: {
     href: "/articles/yosemite-gateway-towns-compared",
     label: "The gateway towns compared"
@@ -164,7 +164,7 @@ var START_MISTAKES = [{
   text: "Service is mostly gone past the gates. Download offline maps in town."
 }, {
   title: "A quarter tank",
-  text: "No gas in the Valley. The pumps are at Crane Flat and Wawona."
+  text: "No gas in the Valley. The pumps are at Crane Flat, Wawona and El Portal."
 }, {
   title: "Food in the car",
   text: "Bears open cars. Daylight only, out of sight, never overnight."

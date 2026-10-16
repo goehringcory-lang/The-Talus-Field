@@ -106,7 +106,7 @@ window.ARTICLE_BODIES["yosemite-day-trip-from-bay-area"] = function YosemiteDayT
       </p>
 
       <p>
-        <strong>Bridalveil Fall,</strong> at the west end, reopened in 2023 after a long rehabilitation with a rebuilt trail, new viewing platforms, and proper parking. Short, paved, and it runs year-round rather than drying up in late summer.
+        <strong>Bridalveil Fall,</strong> at the west end, came out of a rehabilitation the Park Service completed in fall 2024, with a rebuilt trail, new viewing platforms, and proper parking. Short, paved, and it runs year-round rather than drying up in late summer.
       </p>
 
       <p>
@@ -160,7 +160,7 @@ window.ARTICLE_BODIES["yosemite-day-trip-from-bay-area"] = function YosemiteDayT
       <h2>What it costs</h2>
 
       <p>
-        A round trip from San Francisco is close to four hundred miles. At the sort of gas prices California has been carrying through 2026, and they have been at or near record highs, the fuel alone runs roughly seventy to a hundred dollars depending on the vehicle, and buying it in El Portal or Mariposa rather than before you leave the Central Valley costs meaningfully more. Add the $35 entrance fee, which you pay in full for one day's use of a seven-day pass.
+        A round trip from San Francisco is close to four hundred miles. At California gas prices the fuel alone runs on the order of seventy to a hundred dollars depending on the vehicle, and buying it in El Portal or Mariposa rather than before you leave the Central Valley usually costs more. Add the $35 entrance fee, which you pay in full for one day's use of a seven-day pass.
       </p>
 
       <p>

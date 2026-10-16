@@ -30,7 +30,7 @@ window.ARTICLE_BODIES["yosemite-waterfalls-guide"] = function YosemiteWaterfalls
       <h2>Yosemite Falls: the headliner with a short run</h2>
 
       <p>
-        At <strong>2,425 feet</strong> top to bottom, Yosemite Falls is the tallest waterfall in North America and among the tallest in the world. It comes in three acts: the Upper Fall's 1,430-foot free leap, 675 feet of middle cascades hidden in a corner of the cliff, and the 320-foot Lower Fall that most visitors actually stand in front of. In <strong>May</strong>, at peak melt, you can hear it from across the Valley, feel spray on the footbridge a quarter mile from the base, and watch the entire column shudder in wind.
+        At <strong>2,425 feet</strong> top to bottom, Yosemite Falls is one of the tallest waterfalls in the world. It comes in three acts: the Upper Fall's 1,430-foot free leap, 675 feet of middle cascades hidden in a corner of the cliff, and the 320-foot Lower Fall that most visitors actually stand in front of. In <strong>May</strong>, at peak melt, you can hear it from across the Valley, feel spray on the footbridge a quarter mile from the base, and watch the entire column shudder in wind.
       </p>
 
       <p>
@@ -44,11 +44,11 @@ window.ARTICLE_BODIES["yosemite-waterfalls-guide"] = function YosemiteWaterfalls
       <h2>Bridalveil: the one that never quits</h2>
 
       <p>
-        <strong>Bridalveil Fall</strong>, 620 feet, is the first waterfall nearly every visitor sees, hanging on the south wall as you come out of the Wawona Tunnel or up Highway 140 into the Valley. It is also the most dependable: the only major Valley fall that flows <strong>year-round</strong>, heavy in spring, a drifting ribbon by October, but always present.
+        <strong>Bridalveil Fall</strong>, 620 feet, is the first waterfall nearly every visitor sees, hanging on the south wall as you come out of the Wawona Tunnel or up Highway 140 into the Valley. It is also the most dependable: the only fall pouring straight off the Valley wall that flows <strong>year-round</strong>, heavy in spring, a drifting ribbon by October, but always present.
       </p>
 
       <p>
-        The Ahwahneechee called it <strong>Pohono</strong>, often translated as spirit of the puffing wind (how far the old translations can be trusted is the subject of <a href="/articles/yosemite-place-names-meanings">what Yosemite's names mean</a>), and the name is a field observation. Bridalveil rarely falls straight. Afternoon breezes catch the column and swing it sideways across the cliff face, sometimes lifting the lower half into pure mist before it reaches the ground. The approach trail and viewing area were rebuilt in a multi-year restoration finished in 2023, and the short paved walk to the base is an easy add to any Valley day. Expect to get wet at the viewpoint in May.
+        The Ahwahneechee called it <strong>Pohono</strong>, often translated as spirit of the puffing wind (how far the old translations can be trusted is the subject of <a href="/articles/yosemite-place-names-meanings">what Yosemite's names mean</a>), and the name is a field observation. Bridalveil rarely falls straight. Afternoon breezes catch the column and swing it sideways across the cliff face, sometimes lifting the lower half into pure mist before it reaches the ground. The approach trail and viewing area were rebuilt in a multi-year rehabilitation that the Park Service reports finished in fall 2024, and the short paved walk to the base is an easy add to any Valley day. Expect to get wet at the viewpoint in May.
       </p>
 
       <h2>The Mist Trail corridor: Vernal and Nevada</h2>
@@ -64,11 +64,11 @@ window.ARTICLE_BODIES["yosemite-waterfalls-guide"] = function YosemiteWaterfalls
       <h2>The ephemeral giants</h2>
 
       <p>
-        <strong>Ribbon Fall</strong>, on the west shoulder of El Capitan, is the tallest single uninterrupted drop in North America at <strong>1,612 feet</strong>, higher than any one tier of Yosemite Falls. Few visitors have heard of it. Its watershed is tiny, and the fall exists for roughly <strong>April through June</strong> and then vanishes so completely that summer visitors stare at the cliff and see nothing at all. In May, look for it from the Valley loop road pullouts west of El Capitan Meadow.
+        <strong>Ribbon Fall</strong>, on the west shoulder of El Capitan, is the tallest single drop in the Valley at <strong>1,612 feet</strong>, higher than any one tier of Yosemite Falls. Few visitors have heard of it. Its watershed is tiny, and the fall exists for roughly <strong>April through June</strong> and then vanishes so completely that summer visitors stare at the cliff and see nothing at all. In May, look for it from the Valley loop road pullouts west of El Capitan Meadow.
       </p>
 
       <p>
-        <strong>Horsetail Fall</strong>, on El Capitan's east face, is a modest seasonal ribbon that would be a footnote except for two weeks in <strong>February</strong>, when the setting sun can light the falling water orange and produce the natural firefall. That event now has reservations, road closures, and a culture of its own, and it gets <a href="/articles/horsetail-fall-firefall">its own article</a>. The short version: it needs water in the fall and a clear western horizon at sunset, and neither is guaranteed.
+        <strong>Horsetail Fall</strong>, on El Capitan's east face, is a modest seasonal ribbon that would be a footnote except for two weeks in <strong>February</strong>, when the setting sun can light the falling water orange and produce the natural firefall. That event comes with road closures, parking restrictions, and a culture of its own, and it gets <a href="/articles/horsetail-fall-firefall">its own article</a>. The short version: it needs water in the fall and a clear western horizon at sunset, and neither is guaranteed.
       </p>
 
       <p>

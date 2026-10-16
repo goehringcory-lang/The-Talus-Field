@@ -4,7 +4,7 @@ var OPENING_HISTORY = [{
   date: "May 15",
   note: "The earliest opening since 2015."
 }];
-var LONG_TERM_AVERAGE = "May 28";
+var LONG_TERM_AVERAGE = "May 31";
 function TiogaStatus() {
   var [row, setRow] = React.useState(null);
   var [edition, setEdition] = React.useState(null);
@@ -114,14 +114,14 @@ var TIOGA_STOPS = [{
 }, {
   name: "Tioga Pass",
   ft: 9945,
-  mi: 47,
+  mi: 46,
   note: "The park's east gate",
   x: 1295,
   y: 192
 }, {
   name: "Lee Vining",
   ft: 6800,
-  mi: 59,
+  mi: 58,
   note: "Next gas",
   x: 1540,
   y: 95
@@ -139,7 +139,7 @@ function TiogaRoadMap() {
   }), React.createElement("svg", {
     viewBox: "0 0 1600 760",
     role: "img",
-    "aria-label": "Numbered pins on the map, west to east: Crane Flat at 6,200 feet, the last gas; White Wolf at about 8,000 feet; Olmsted Point at about 8,400 feet; Tenaya Lake at 8,150 feet; Tuolumne Meadows at 8,600 feet, 39 miles from Crane Flat; Tioga Pass at 9,945 feet, about 47 miles from Crane Flat; then a drop of more than 3,000 feet in twelve miles to Lee Vining, about 6,800 feet, the next gas."
+    "aria-label": "Numbered pins on the map, west to east: Crane Flat at 6,200 feet, the last gas; White Wolf at about 8,000 feet; Olmsted Point at about 8,400 feet; Tenaya Lake at 8,150 feet; Tuolumne Meadows at 8,600 feet, 39 miles from Crane Flat; Tioga Pass at 9,945 feet, about 46 miles from Crane Flat; then a drop of more than 3,000 feet in twelve miles to Lee Vining, about 6,800 feet, the next gas."
   }, TIOGA_STOPS.map((t, i) => React.createElement("g", {
     key: t.name
   }, React.createElement("circle", {
@@ -158,7 +158,7 @@ function TiogaRoadMap() {
     }
   }, i + 1)))));
 }
-var TIOGA_FAQ = [["When does Tioga Road open?", "There is no fixed date: the road opens when plow crews finish, and the park announces it only days ahead. The long-term average opening is the end of May; light snow years have opened in mid-May, and heavy years push the opening into June or later. It closes with the first lasting snow, typically in November."], ["Is there gas, food, or water on Tioga Road?", "Crane Flat, at the road's west end, has pay-at-pump gas; the next fuel is Lee Vining on the east side of the pass. In the early season there is no potable water and nothing to buy along the road, and services at Tuolumne Meadows come online weeks after the road opens. Bring everything."], ["How long does it take to drive Tioga Road?", "About 39 miles from Crane Flat to Tuolumne Meadows and about 47 to the Tioga Pass entrance station, roughly 90 minutes one way without stops. With Olmsted Point, Tenaya Lake, and Tuolumne Meadows it is a full day, and adding Lee Vining and Mono Lake makes it a long one."], ["Do I need a reservation to drive Tioga Road?", "A standard park entrance pass is required. Whether a day-use reservation system also applies changes year to year; check the NPS Yosemite site for the current season's rules before you commit."]];
+var TIOGA_FAQ = [["When does Tioga Road open?", "There is no fixed date: the road opens when plow crews finish, and the park announces it only days ahead. The long-term average opening is the end of May; light snow years have opened in mid-May, and heavy years push the opening into June or later. It closes with the first lasting snow, typically in November."], ["Is there gas, food, or water on Tioga Road?", "Crane Flat, at the road's west end, has pay-at-pump gas; the next fuel is Lee Vining on the east side of the pass. In the early season there is no potable water and nothing to buy along the road, and services at Tuolumne Meadows come online weeks after the road opens. Bring everything."], ["How long does it take to drive Tioga Road?", "About 39 miles from Crane Flat to Tuolumne Meadows and about 46 to the Tioga Pass entrance station, roughly 75 minutes one way without stops. With Olmsted Point, Tenaya Lake, and Tuolumne Meadows it is a full day, and adding Lee Vining and Mono Lake makes it a long one."], ["Do I need a reservation to drive Tioga Road?", "A standard park entrance pass is required. Whether a day-use reservation system also applies changes year to year; check the NPS Yosemite site for the current season's rules before you commit."]];
 var TIOGA_TOWNS = [{
   id: "lee-vining",
   name: "Lee Vining",
@@ -285,7 +285,7 @@ function TiogaOpeningPage({
     className: "is-tight"
   }, React.createElement("span", null, "Late May"), React.createElement("strong", null, "Visitor centers staffed"), React.createElement("p", null, "The Tuolumne Meadows Visitor Center and Wilderness Center have limited or no staffing until late May.")), React.createElement("li", {
     className: "is-tight"
-  }, React.createElement("span", null, "June and July"), React.createElement("strong", null, "Lodge, grill, campground"), React.createElement("p", null, "In a recent season the lodge opened in early June, the grill in mid-June, and the campground on July 1, reservable on Recreation.gov.")), React.createElement("li", {
+  }, React.createElement("span", null, "June and July"), React.createElement("strong", null, "Lodge, grill, campground"), React.createElement("p", null, "In a recent season the grill opened in late May, the lodge in early June, and the campground on July 1, reservable on Recreation.gov.")), React.createElement("li", {
     className: "is-gone"
   }, React.createElement("span", null, "Later in summer"), React.createElement("strong", null, "Store and post office"), React.createElement("p", null, "The last of Tuolumne to come online. Until then there is nothing to buy anywhere along the road."))), React.createElement("ul", {
     className: "tg-never"
@@ -334,7 +334,7 @@ function TiogaOpeningPage({
     title: "From 6,200 feet to 9,945, then down to the desert"
   }), React.createElement("p", {
     className: "ff-lede ff-lede--intro"
-  }, "Tioga Road climbs from Crane Flat to the pass over roughly 47 miles, then drops more than 3,000 feet in twelve miles into the Mono Basin, where granite gives way to sagebrush. Allow about 90 minutes one way without stops. With the stops, it is a full day."), React.createElement("figure", {
+  }, "Tioga Road climbs from Crane Flat to the pass over roughly 46 miles, then drops more than 3,000 feet in twelve miles into the Mono Basin, where granite gives way to sagebrush. Allow about 75 minutes one way to the pass without stops. With the stops, it is a full day."), React.createElement("figure", {
     className: "npsmap tg-map"
   }, React.createElement(TiogaRoadMap, null), React.createElement("figcaption", null, TIOGA_STOPS.map((t, i) => React.createElement("span", {
     key: t.name

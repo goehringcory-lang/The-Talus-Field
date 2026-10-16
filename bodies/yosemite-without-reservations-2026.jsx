@@ -54,7 +54,7 @@ window.ARTICLE_BODIES["yosemite-without-reservations-2026"] = function YosemiteW
         <li><strong>Tunnel View parking</strong>. Has always been the first to fill. In 2026, expect it to be full by 7:30 a.m. on weekends in May, June, and July.</li>
         <li><strong>The Glacier Point Road parking lot</strong>. Fills early. Expect waits.</li>
         <li><strong>Tioga Road's high-use turnouts</strong> (Olmsted Point, Tenaya Lake, Tuolumne Meadows day-use). Fewer people drive Tioga, but the ones who do all stop at the same five places.</li>
-        <li><strong>Mariposa Grove shuttle line</strong>. The shuttle from the Welcome Plaza to the grove can run a 30-to-60-minute wait at peak.</li>
+        <li><strong>Mariposa Grove Welcome Plaza</strong>. The lot has about 300 spaces, fills by late morning, and closes periodically for 30 to 60 minutes when full; the free shuttle to the grove leaves from there.</li>
       </ul>
       <p>The places that will feel it less:</p>
       <ul>

@@ -60,7 +60,7 @@ window.ARTICLE_BODIES["first-yosemite-backpacking-trip"] = function FirstYosemit
       <h2>The creek is the most dangerous thing on your itinerary</h2>
 
       <p>
-        Water-related accidents are one of the leading causes of death in this park, and they are not concentrated in the dramatic places. They happen at crossings, on the days the crossing looked fine. In 2017, after one of the biggest winters on record, a thru-hiker drowned fording Rancheria Creek in Kerrick Canyon in the park's northern backcountry, in July, weeks after anyone would have called it spring. The hazard is a route that is trivial in September and lethal in June, at the same place, with no sign to mark the difference.
+        Water-related accidents are one of the leading causes of death in this park, and they are not concentrated in the dramatic places. They happen at crossings, on the days the crossing looked fine. In 2017, after one of the biggest winters on record, a thru-hiker drowned crossing a creek in Kerrick Canyon in the park's northern backcountry, in July, weeks after anyone would have called it spring. The hazard is a route that is trivial in September and lethal in June, at the same place, with no sign to mark the difference.
       </p>
 
       <p>
@@ -174,19 +174,19 @@ window.ARTICLE_BODIES["first-yosemite-backpacking-trip"] = function FirstYosemit
       </p>
 
       <p>
-        <strong>No campfires above 9,600 feet, ever.</strong> The trees up there grow slowly enough that a season of campfires undoes a century. Between 6,000 and 9,600 feet, existing rings only. And below that, seasonal fire restrictions come and go with conditions, so check the current status for your dates rather than assuming, particularly late in a dry summer.
+        <strong>No campfires above 9,600 feet, ever.</strong> The trees up there grow slowly enough that a season of campfires undoes a century. Below 9,600 feet, existing rings only, at least 100 feet from water and trail. Seasonal fire restrictions also come and go with conditions, so check the current status for your dates rather than assuming, particularly late in a dry summer.
       </p>
 
       <p>
-        <strong>Group size caps at 15 on trail, and 8 for cross-country travel.</strong>
+        <strong>Group size caps at 15, and 8 for cross-country travel more than a quarter mile off trail.</strong>
       </p>
 
       <p>
-        <strong>Human waste: a cathole six inches deep, 100 feet from water, trail, and camp, and toilet paper comes out with you.</strong> Not buried. Out.
+        <strong>Human waste: a cathole four to six inches deep, 100 feet from water, trail, and camp, and toilet paper comes out with you.</strong> Not buried. Out.
       </p>
 
       <p>
-        <strong>Little Yosemite Valley has its own rules</strong> because of its volume: parties starting at Happy Isles or Glacier Point on an LYV itinerary camp there the first night, in a designated area with lockers and a composting toilet.
+        <strong>Little Yosemite Valley has its own rules</strong> because of its volume: parties starting at Happy Isles on an LYV itinerary camp there the first night, in a designated area with lockers and a composting toilet.
       </p>
 
       <Placeholder
@@ -206,15 +206,15 @@ window.ARTICLE_BODIES["first-yosemite-backpacking-trip"] = function FirstYosemit
       </p>
 
       <p>
-        <strong>Cathedral Lakes,</strong> from Tioga Road at Tuolumne Meadows. Roughly four and a half miles in, and nine or so round trip, with somewhere between a thousand and 1,400 feet of cumulative gain depending on which lakes you visit, to a pair of them sitting under one of the most photographed spires in the range. It is the standard first Yosemite overnight for good reason, and consequently one of the harder permits to draw. <a href="/articles/cathedral-lakes-day-hike">The day-hike version</a> is the same trail if the permit does not come through, and it has the full breakdown of the walk.
+        <strong>Cathedral Lakes,</strong> from Tioga Road at Tuolumne Meadows. About 7.6 miles round trip by the Park Service's count, with about 1,000 feet of gain, to a pair of lakes sitting under one of the most photographed spires in the range. It is the standard first Yosemite overnight for good reason, and consequently one of the harder permits to draw. <a href="/articles/cathedral-lakes-day-hike">The day-hike version</a> is the same trail if the permit does not come through, and it has the full breakdown of the walk.
       </p>
 
       <p>
-        <strong>Sunrise Lakes,</strong> from Tenaya Lake. About ten and a half miles round trip with roughly 1,300 feet of gain, most of it in one steep block of switchbacks after a flat opening, and three lakes at the top so you have options on where to put the tent.
+        <strong>Sunrise Lakes,</strong> from Tenaya Lake. About 6.8 miles round trip with roughly 1,100 feet of gain by the Park Service's count, most of it in one steep block of switchbacks after a flat opening, and several lakes at the top so you have options on where to put the tent.
       </p>
 
       <p>
-        <strong>Glen Aulin,</strong> down the Tuolumne from the meadows. Longer on paper at about eleven miles round trip, but only around 800 feet of elevation change, which makes it gentler than its mileage suggests and an unusually good pick for somebody who is fit but new to a loaded pack. Check bridge status before you go, since this route crosses the river.
+        <strong>Glen Aulin,</strong> down the Tuolumne from the meadows. Longer on paper at about 11 miles round trip by the Park Service's count, but only around 800 feet of elevation gain, which makes it gentler than its mileage suggests and an unusually good pick for somebody who is fit but new to a loaded pack. Check bridge status before you go, since this route crosses the river.
       </p>
 
       <p>

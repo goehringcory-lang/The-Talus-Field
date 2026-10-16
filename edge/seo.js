@@ -288,7 +288,7 @@ const HUB_PROSE = {
   "/conditions": () =>
     hubProse(
       "Yosemite conditions: webcams, waits, and weather",
-      "The morning-of page: live Yosemite webcams, current entrance wait times, and elevation-aware National Weather Service point forecasts for the Valley, the rim, and the high country, all on one page. Bookmark it and check it the morning you drive in."
+      "The morning-of page: live Yosemite webcams, current entrance wait times, and elevation-aware National Weather Service point forecasts for Wawona, the Valley, and the high country, all on one page. Bookmark it and check it the morning you drive in."
     ) +
     `<p>For what the conditions mean for a plan, see <a href="/itineraries">the itineraries</a> and <a href="/planning">the Planning Guide</a>.</p>`,
   "/now": () => {
@@ -453,7 +453,7 @@ const HUB_PROSE = {
       "Every place to sleep in and around the park, sorted by what it is and who it fits. Inside the boundary there is one operator: every hotel, lodge, and tent cabin is run by a single park concessioner and books through travelyosemite.com, with reservations opening 366 days ahead and peak Valley dates gone in minutes. Outside the boundary there is a real market, and the decision is which road you approach on: four corridors reach Yosemite, their drive times differ by more than an hour, and which one fits depends on the season."
     ) +
     `<p>Inside the park: <strong>Yosemite Valley Lodge</strong>, the correct answer for most first-time visitors, across the road from Lower Yosemite Fall. <strong>The Ahwahnee</strong>, a 1927 National Historic Landmark, for the occasion that justifies it. <strong>Curry Village</strong>, canvas tent cabins at the base of Glacier Point since 1899 and the cheapest roofed beds in the Valley. <strong>Housekeeping Camp</strong>, three-walled river units where you can cook over a fire. <strong>Tuolumne Meadows Lodge</strong> at 8,700 feet, summer-only tent cabins for high-country trips; <strong>White Wolf Lodge</strong> at 8,000 feet is closed for the 2026 season. The historic <strong>Wawona Hotel</strong> has been closed for a condition assessment since December 2024.</p>` +
-    `<p>Outside the park, by corridor. <strong>Highway 140</strong>, the Merced canyon to the Arch Rock entrance, open year-round and the winter base because it runs low and takes rain when the other roads take snow: <strong>El Portal</strong> (25 to 35 minutes to Yosemite Valley, where the Yosemite View Lodge and the Cedar Lodge are) and <strong>Mariposa</strong> (45 to 60 minutes, the most full-service and the safest first-timer's pick), with AutoCamp Yosemite and the Yosemite Bug at Midpines between them. <strong>Highway 120 west</strong> to the Big Oak Flat entrance, the summer base and the only corridor within reach of Yosemite Valley, Hetch Hetchy, and Tuolumne Meadows at once: <strong>Groveland</strong> (65 to 80 minutes, the character pick), plus Rush Creek Lodge near the gate, the Evergreen Lodge toward Hetch Hetchy, and Firefall Ranch. <strong>Highway 41</strong> to the South Entrance, the sequoia corridor: <strong>Oakhurst</strong> (75 to 90 minutes, the largest gateway) and <strong>Fish Camp</strong> (two miles from the gate, essentially Tenaya Lodge at Yosemite). <strong>Tioga Road east and US 395</strong>, seasonal and open only while Tioga Pass is: <strong>Lee Vining</strong> (90 minutes to the Valley, 30 to Tuolumne Meadows, the east-side base for the high country and Mono Lake).</p>` +
+    `<p>Outside the park, by corridor. <strong>Highway 140</strong>, the Merced canyon to the Arch Rock entrance, open year-round and the winter base because it runs low and takes rain when the other roads take snow: <strong>El Portal</strong> (25 to 35 minutes to Yosemite Valley, where the Yosemite View Lodge and the Cedar Lodge are) and <strong>Mariposa</strong> (60 to 75 minutes, the most full-service and the safest first-timer's pick), with AutoCamp Yosemite and the Yosemite Bug at Midpines between them. <strong>Highway 120 west</strong> to the Big Oak Flat entrance, the summer base and the only corridor within reach of Yosemite Valley, Hetch Hetchy, and Tuolumne Meadows at once: <strong>Groveland</strong> (65 to 80 minutes, the character pick), plus Rush Creek Lodge near the gate, the Evergreen Lodge toward Hetch Hetchy, and Firefall Ranch. <strong>Highway 41</strong> to the South Entrance, the sequoia corridor: <strong>Oakhurst</strong> (75 to 90 minutes, the largest gateway) and <strong>Fish Camp</strong> (two miles from the gate, essentially Tenaya Lodge at Yosemite). <strong>Tioga Road east and US 395</strong>, seasonal and open only while Tioga Pass is: <strong>Lee Vining</strong> (two hours to the Valley, 30 to Tuolumne Meadows, the east-side base for the high country and Mono Lake).</p>` +
     `<p>The longer versions: <a href="/articles/where-to-stay-in-yosemite">the in-park lodging guide</a>, <a href="/articles/yosemite-gateway-towns-compared">the gateway towns compared</a>, <a href="/articles/yosemite-camping-complete-guide">the complete camping guide</a>, <a href="/articles/yosemite-trip-cost-budget">what a Yosemite trip costs</a>, <a href="/articles/getting-to-yosemite">getting to Yosemite</a>, and <a href="/articles/where-to-eat-yosemite">where to eat</a>.</p>`,
   "/firefall": () =>
     hubProse(
@@ -473,15 +473,15 @@ const HUB_PROSE = {
   "/webcams": () =>
     hubProse(
       "Yosemite Webcams",
-      "The live cameras worth checking before you drive in. Four Yosemite Conservancy cameras run on this page: Half Dome from Ahwahnee Meadow looking east, Upper Yosemite Fall from the Valley floor, El Capitan and the western Valley from Turtleback Dome, and Wawona at the park's south end. All four are still-image cameras that refresh on the order of minutes rather than video streams.",
+      "The live cameras worth checking before you drive in. Four Yosemite Conservancy cameras run on this page: Half Dome from Ahwahnee Meadow looking east, Upper Yosemite Fall from the Valley floor, El Capitan and the western Valley from Turtleback Dome, and Wawona at the park's south end. The four tiles are still images that refresh on the order of minutes rather than video streams.",
       "<p>How to read them: check two rather than one, because a single camera describes one wall while Half Dome plus El Capitan tells you whether the whole Valley is clear, socked in or hazy. Elevation matters more than the pictures suggest, since the Valley floor is at 4,000 feet and Tuolumne Meadows at 8,600, so a clear Valley camera says nothing about whether it is snowing on Tioga Road. And a dry waterfall on the Yosemite Falls camera in August is the season, not a broken camera.</p>" +
-        "<p>There is no Conservancy camera at Tuolumne Meadows or Tioga Pass, which is the most requested view the park does not have. Full camera list: <a href=\"https://yosemite.org/webcams/\">Yosemite Conservancy</a>. Road status and closures: <a href=\"/now\">the Park Bulletin</a>. Forecasts and live entrance waits: <a href=\"/conditions\">the conditions page</a>. Which waterfalls are running on your dates: <a href=\"/articles/yosemite-waterfalls-guide\">the flow-by-month table</a>.</p>"
+        "<p>There is no Conservancy camera at Tuolumne Meadows or Tioga Pass, which is the most requested view missing from the list. Yosemite Hospitality runs a summer-only camera at the Tuolumne Meadows Store, linked from the <a href=\"https://www.nps.gov/yose/learn/photosmultimedia/webcams.htm\">NPS webcams page</a>. Full camera list: <a href=\"https://yosemite.org/webcams/\">Yosemite Conservancy</a>. Road status and closures: <a href=\"/now\">the Park Bulletin</a>. Forecasts and live entrance waits: <a href=\"/conditions\">the conditions page</a>. Which waterfalls are running on your dates: <a href=\"/articles/yosemite-waterfalls-guide\">the flow-by-month table</a>.</p>"
     ),
   "/distances": () =>
     hubProse(
       "Yosemite Drive Times",
-      "How far Yosemite Valley is from each gateway town, in one table. El Portal is about 14 miles and 25 to 35 minutes on Highway 140; Mariposa about 45 miles and 45 to 60 minutes on the same road; Groveland about 41 miles and 65 to 80 minutes on Highway 120, where chain controls are common in winter; Oakhurst about 50 miles and 75 to 90 minutes on Highway 41; and Lee Vining about 75 miles and 90 minutes minimum over Tioga Pass, only while the pass is open.",
-      "<p>Other legs the Valley table does not answer: Oakhurst to the South Entrance is about 14 miles and 20 to 25 minutes, with the Mariposa Grove welcome plaza immediately inside the gate and Wawona six miles further on; Groveland to the Big Oak Flat Entrance is about 24 miles and 30 to 40 minutes on a winding road; Lee Vining to Tuolumne Meadows is about 20 miles and 30 minutes while Tioga Pass is open. Oakhurst is the longest drive to the Valley of the four year-round towns and the shortest to the sequoias by a wide margin.</p>" +
+      "How far Yosemite Valley is from each gateway town, in one table. El Portal is about 14 miles and 25 to 35 minutes on Highway 140; Mariposa about 45 miles and 60 to 75 minutes on the same road; Groveland about 49 miles and 65 to 80 minutes on Highway 120, where chain controls are common in winter; Oakhurst about 55 miles and 75 to 90 minutes on Highway 41; and Lee Vining about 75 miles and two hours over Tioga Pass, only while the pass is open.",
+      "<p>Other legs the Valley table does not answer: Oakhurst to the South Entrance is about 14 miles and 20 to 25 minutes, with the Mariposa Grove welcome plaza immediately inside the gate and Wawona eight miles further on; Groveland to the Big Oak Flat Entrance is about 24 miles and 30 to 40 minutes on a winding road; Lee Vining to Tuolumne Meadows is about 20 miles and 30 minutes while Tioga Pass is open. Oakhurst is the longest drive to the Valley of the four year-round towns and the shortest to the sequoias by a wide margin.</p>" +
         "<p>Times are to the west end of Yosemite Valley in ordinary conditions; add 15 to 20 minutes for Curry Village at the east end, and more for summer afternoons. Season changes the answer more than distance does, and entrance queues on a peak morning can add half an hour no mileage predicts. Full comparison: <a href=\"/articles/yosemite-gateway-towns-compared\">the gateway towns guide</a>. Live waits: <a href=\"/conditions\">the conditions page</a>.</p>"
     ),
   "/dates": () =>
@@ -499,9 +499,9 @@ const HUB_PROSE = {
   "/start-here": () =>
     hubProse(
       "Planning Your First Trip to Yosemite? Start Here",
-      "The questions every first-time visitor asks, answered plainly. There is no entry reservation in 2026: you pay at the gate and drive in, and what rations a visit now is parking and entrance lines, solved by arriving early. International visitors pay a $100 per-person surcharge as of January 1, 2026. The best remaining window this year is midweek September 8 to 30, with midweek October nearly as good; in summer, come midweek and be through the gate before 7:30 a.m. One deliberate day is enough, two adds room to breathe, and the third day is the first one that does not need defending.",
-      `<p>The four places that earned their fame, each its own day: Yosemite Valley, the canyon floor, open all year (Tunnel View at first light, Bridalveil Fall, the Lower Yosemite Fall loop and Cook's Meadow before the lots fill at mid-morning; <a href="/articles/yosemite-in-one-or-two-days">one day in Yosemite</a>); Glacier Point, about 30 miles and an hour from the Valley at 7,200 feet, eye level with Half Dome, on a road that closes for winter (<a href="/articles/glacier-point-how-to-visit">how to visit Glacier Point</a>); the Mariposa Grove of giant sequoias, about an hour from the Valley, parked at the Welcome Plaza with a free shuttle for the last two miles in season (<a href="/articles/mariposa-grove-how-to-visit">how to visit the Mariposa Grove</a>); and Tuolumne Meadows, 8,600 feet on Tioga Road, 55 to 60 miles and about an hour and a half from the Valley while the road is open (<a href="/articles/tuolumne-meadows-in-a-day">Tuolumne Meadows in a day</a>). The one-, two- and three-day plans in drive order are on <a href="/itineraries">the itineraries page</a>.</p>` +
-        `<p>Where to stay: inside the park if you can get a bed (one operator, one inventory, opening 366 days ahead), otherwise a gateway town. El Portal is closest at 25 to 35 minutes from the Valley; Mariposa, at 45 to 60 minutes, is the safest first-timer's pick. The full comparison: <a href="/articles/yosemite-gateway-towns-compared">the gateway towns guide</a>, <a href="/stay">the where-to-stay page</a>, and <a href="/distances">every drive time in one table</a>.</p>` +
+      "The questions every first-time visitor asks, answered plainly. There is no entry reservation in 2026: you pay at the gate and drive in, and what rations a visit now is parking and entrance lines, solved by arriving early. International visitors pay a $100 per-person surcharge as of January 1, 2026. The best remaining window this year is midweek in October, with early-November weekdays quieter still; on any summer day, be through the gate before 8 a.m. or arrive after 4 p.m. One deliberate day is enough, two adds room to breathe, and the third day is the first one that does not need defending.",
+      `<p>The four places that earned their fame, each its own day: Yosemite Valley, the canyon floor, open all year (Tunnel View at first light, Bridalveil Fall, the Lower Yosemite Fall loop and Cook's Meadow before the lots fill at mid-morning; <a href="/articles/yosemite-in-one-or-two-days">one day in Yosemite</a>); Glacier Point, about 30 miles and an hour from the Valley at 7,200 feet, eye level with Half Dome, on a road that closes for winter (<a href="/articles/glacier-point-how-to-visit">how to visit Glacier Point</a>); the Mariposa Grove of giant sequoias, about an hour from the Valley, parked at the Welcome Plaza with a free shuttle for the last two miles in season (<a href="/articles/mariposa-grove-how-to-visit">how to visit the Mariposa Grove</a>); and Tuolumne Meadows, 8,600 feet on Tioga Road, 55 miles and about an hour and a half from the Valley while the road is open (<a href="/articles/tuolumne-meadows-in-a-day">Tuolumne Meadows in a day</a>). The one-, two- and three-day plans in drive order are on <a href="/itineraries">the itineraries page</a>.</p>` +
+        `<p>Where to stay: inside the park if you can get a bed (one operator, one inventory, opening 366 days ahead), otherwise a gateway town. El Portal is closest at 25 to 35 minutes from the Valley; Mariposa, at 60 to 75 minutes, is the safest first-timer's pick. The full comparison: <a href="/articles/yosemite-gateway-towns-compared">the gateway towns guide</a>, <a href="/stay">the where-to-stay page</a>, and <a href="/distances">every drive time in one table</a>.</p>` +
         `<p>Permits: day hiking needs none, with one exception covered by <a href="/half-dome-lottery">the Half Dome lottery</a>; what you can still get holding nothing is in <a href="/articles/yosemite-walk-up-and-day-of-permits">the walk-up permits guide</a>. The strategy for the trip itself: <a href="/articles/first-time-yosemite-overwhelm">the first-timer's guide</a>, <a href="/articles/yosemite-in-one-or-two-days">one or two days</a>, <a href="/articles/yosemite-in-three-to-five-days">three to five days</a>, <a href="/articles/when-to-visit-yosemite">the 2026 crowd forecast</a>, and <a href="/articles/getting-to-yosemite">which of the five entrances to use</a>. When the dates are set, the trip selector on <a href="/planning">the Planning Guide</a> turns your answers into a plan.</p>`
     ),
   "/half-dome-lottery": () =>
@@ -1037,7 +1037,7 @@ function seoForPath(pathname, searchParams) {
         },
         {
           q: "Which gateway town is best for Yosemite?",
-          a: "Pick the road before the town, because the road decides the drive and the season decides the road. In winter that is Highway 140: it follows the Merced canyon at low elevation and takes rain on the days Highway 41 and Highway 120 take snow, and it is the only corridor with year-round bus service into the park. In summer, with Tioga Road open, Highway 120 is the strongest base, since it is the only corridor that puts Yosemite Valley, Hetch Hetchy, and Tuolumne Meadows all within reach. Town by town: El Portal is 25 to 35 minutes from Yosemite Valley and the strongest choice if you can get a room; Mariposa, 45 minutes to an hour out on Highway 140, is the safest first-timer's pick and the most full-service; Groveland is the character pick on Highway 120; Oakhurst and Fish Camp suit trips centered on Wawona and the Mariposa Grove; and Lee Vining is the east-side base while Tioga Pass is open.",
+          a: "Pick the road before the town, because the road decides the drive and the season decides the road. In winter that is Highway 140: it follows the Merced canyon at low elevation and takes rain on the days Highway 41 and Highway 120 take snow, and it is the only corridor with year-round bus service into the park. In summer, with Tioga Road open, Highway 120 is the strongest base, since it is the only corridor that puts Yosemite Valley, Hetch Hetchy, and Tuolumne Meadows all within reach. Town by town: El Portal is 25 to 35 minutes from Yosemite Valley and the strongest choice if you can get a room; Mariposa, 60 to 75 minutes out on Highway 140, is the safest first-timer's pick and the most full-service; Groveland is the character pick on Highway 120; Oakhurst and Fish Camp suit trips centered on Wawona and the Mariposa Grove; and Lee Vining is the east-side base while Tioga Pass is open.",
         },
       ],
     },
@@ -1134,7 +1134,7 @@ function seoForPath(pathname, searchParams) {
         },
         {
           q: "How long does it take to drive Tioga Road?",
-          a: "About 39 miles from Crane Flat to Tuolumne Meadows and about 47 to the Tioga Pass entrance station, roughly 90 minutes one way without stops. With Olmsted Point, Tenaya Lake, and Tuolumne Meadows it is a full day, and adding Lee Vining and Mono Lake makes it a long one.",
+          a: "About 39 miles from Crane Flat to Tuolumne Meadows and about 46 to the Tioga Pass entrance station, roughly 75 minutes one way without stops. With Olmsted Point, Tenaya Lake, and Tuolumne Meadows it is a full day, and adding Lee Vining and Mono Lake makes it a long one.",
         },
         {
           q: "Do I need a reservation to drive Tioga Road?",
@@ -1154,7 +1154,7 @@ function seoForPath(pathname, searchParams) {
         },
         {
           q: "Is there a webcam at Tuolumne Meadows or Tioga Pass?",
-          a: "Not among the public Yosemite Conservancy cameras, and it is the most requested view the park does not have. For the high country the substitutes are the NPS Tioga Road page for plowing and opening status in spring, and the park's current conditions page once the road is open.",
+          a: "Not among the public Yosemite Conservancy cameras, and it is the most requested view missing from the list. Yosemite Hospitality runs a summer-only camera at the Tuolumne Meadows Store, linked from the NPS webcams page. For the high country the substitutes are the NPS Tioga Road page for plowing and opening status in spring, and the park's current conditions page once the road is open.",
         },
         {
           q: "Why does the Yosemite Falls webcam show no waterfall?",
@@ -1172,7 +1172,7 @@ function seoForPath(pathname, searchParams) {
       faq: [
         {
           q: "When is the Half Dome permit lottery?",
-          a: "The preseason lottery runs March 1 to 31 on Recreation.gov, with results emailed in mid-April. A daily lottery for about 50 permits runs two days before each hiking date, midnight to 4 p.m. Pacific. Each costs $10 per application plus $10 per person if you win.",
+          a: "The preseason lottery runs March 1 to 31 on Recreation.gov, with results emailed in mid-April. A daily lottery for the permits freed by under-use and cancellations runs two days before each hiking date, midnight to 4 p.m. Pacific. Each costs $10 per application plus $10 per person if you win.",
         },
         {
           q: "When do Yosemite campground reservations open?",
@@ -1184,7 +1184,7 @@ function seoForPath(pathname, searchParams) {
         },
         {
           q: "When does Tioga Road open?",
-          a: "There is no fixed date. Tioga Road has opened between late April and early July over the record; late May to mid-June is the usual range, and 2026 opened May 15. The park posts plowing progress weekly and announces the opening a day or two ahead.",
+          a: "There is no fixed date. Tioga Road has opened between April and late July over the record; late May to mid-June is the usual range, and 2026 opened May 15. The park posts plowing progress weekly and announces the opening a day or two ahead.",
         },
       ],
     },
@@ -1224,11 +1224,11 @@ function seoForPath(pathname, searchParams) {
       faq: [
         {
           q: "How far is Groveland from Yosemite Valley?",
-          a: "About 41 miles and 65 to 80 minutes on Highway 120, entering the park at the Big Oak Flat Entrance, which is about 24 miles and 30 to 40 minutes from town on a winding road. Groveland sits at about 3,100 feet, the highest of the western gateways, and gets chain controls in winter that the Highway 140 towns do not.",
+          a: "About 49 miles and 65 to 80 minutes on Highway 120, entering the park at the Big Oak Flat Entrance, which is about 24 miles and 30 to 40 minutes from town on a winding road. Groveland sits at about 3,100 feet, the highest of the western gateways, and gets chain controls in winter that the Highway 140 towns do not.",
         },
         {
           q: "How far is Oakhurst from Yosemite Valley?",
-          a: "About 50 miles and 75 to 90 minutes on Highway 41, which is the longest drive to the Valley of the four year-round gateway towns. Oakhurst is much closer to the park's south end: about 14 miles and 20 to 25 minutes to the South Entrance, with the Mariposa Grove welcome plaza immediately inside the gate.",
+          a: "About 55 miles and 75 to 90 minutes on Highway 41, which is the longest drive to the Valley of the four year-round gateway towns. Oakhurst is much closer to the park's south end: about 14 miles and 20 to 25 minutes to the South Entrance, with the Mariposa Grove welcome plaza immediately inside the gate.",
         },
         {
           q: "What is the closest town to Yosemite Valley?",
@@ -1257,7 +1257,7 @@ function seoForPath(pathname, searchParams) {
         },
         {
           q: "When is the best time for a first trip to Yosemite?",
-          a: "Tuesday through Thursday, September 8 to 30, is the best all-around window left in 2026: summer conditions, the full park open, and crowd pressure down a third from July. Midweek October is nearly as good, with fall color in the Valley by the back half of the month. If summer is what you have, come midweek and be through the gate before 7:30 a.m. Avoid July 3 to 5, summer Saturdays arriving after 8:30 a.m., and Labor Day weekend.",
+          a: "Midweek in October is the best window left in 2026: the Park Service's 15-year average for October is about 38 percent below July, and Tioga Road is usually open for most of the month. Early-November weekdays are quieter still, with short days. If summer is what you have, be through the gate before 8 a.m. or arrive after 4 p.m. Plan around summer Saturdays arriving after 8:30 a.m., Labor Day weekend and the holiday week in late December.",
         },
         {
           q: "How many days do you need in Yosemite?",
@@ -1265,7 +1265,7 @@ function seoForPath(pathname, searchParams) {
         },
         {
           q: "Where should a first-time visitor stay?",
-          a: "Inside the park if you can get a bed, because the park is at its best in the first two hours and last two hours of the day; in-park lodging opens 366 days ahead. Outside it, El Portal is the closest gateway town at 25 to 35 minutes from the Valley, and Mariposa, at 45 to 60 minutes, is the safest first-timer's pick and the most full-service.",
+          a: "Inside the park if you can get a bed, because the park is at its best in the first two hours and last two hours of the day; in-park lodging opens 366 days ahead. Outside it, El Portal is the closest gateway town at 25 to 35 minutes from the Valley, and Mariposa, at 60 to 75 minutes, is the safest first-timer's pick and the most full-service.",
         },
         {
           q: "Do you need permits to hike in Yosemite?",

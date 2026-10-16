@@ -462,7 +462,7 @@ function PlanningSectionPage({
     className: "hp-eyebrow"
   }, "YOUR FIRST NIGHT IN A CAMPGROUND"), React.createElement("h2", null, "It's a village with trees in it. Plan for that."), React.createElement("p", {
     className: "ff-lede"
-  }, "The three Valley campgrounds hold roughly 380 sites on a floor a mile wide. You will hear your neighbors. What catches first-timers isn't the reservation. It's arriving at four o'clock with three hours of daylight and a list nobody handed you."), React.createElement("p", {
+  }, "The three Valley campgrounds hold roughly 390 sites on a floor a mile wide. You will hear your neighbors. What catches first-timers isn't the reservation. It's arriving at four o'clock with three hours of daylight and a list nobody handed you."), React.createElement("p", {
     className: "ff-note"
   }, "The whole first night, from someone who has watched twenty years of them: ", L("section_planning", "/articles/camping-in-yosemite-first-time", "camping in Yosemite for the first time"), ".")), React.createElement("div", {
     className: "ps-inv"
@@ -716,7 +716,7 @@ function PlanningSectionPage({
     className: "hp-eyebrow"
   }, "THE LONG DRIVES"), React.createElement("div", {
     className: "ps-drives"
-  }, [["From Los Angeles", "313 miles, six hours", "The Park Service's number, and the Oakhurst overnight that makes the trip work.", "Where to break it →", "/articles/yosemite-from-los-angeles"], ["From Las Vegas", "400 miles over Tioga Pass", "Or 495 miles and up to ten hours when the pass is shut. The calendar picks the road.", "The pass that decides →", "/articles/yosemite-from-las-vegas"], ["From San Francisco, for the day", "Nine hours of driving", "Buys seven hours in the park in June and five in December.", "The honest math →", "/articles/yosemite-day-trip-from-bay-area"]].map(([from, num, d, cta, href]) => React.createElement(HomeLink, {
+  }, [["From Los Angeles", "313 miles, six hours", "The Park Service's number, and the Oakhurst overnight that makes the trip work.", "Where to break it →", "/articles/yosemite-from-los-angeles"], ["From Las Vegas", "400 miles over Tioga Pass", "Or 475 miles and up to ten hours when the pass is shut. The calendar picks the road.", "The pass that decides →", "/articles/yosemite-from-las-vegas"], ["From San Francisco, for the day", "Nine hours of driving", "Buys seven hours in the park in June and five in December.", "The honest math →", "/articles/yosemite-day-trip-from-bay-area"]].map(([from, num, d, cta, href]) => React.createElement(HomeLink, {
     key: from,
     go: go,
     location: "section_planning",

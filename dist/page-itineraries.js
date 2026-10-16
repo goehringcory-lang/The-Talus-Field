@@ -8,7 +8,7 @@ var ITIN_NEEDS = {
   "2day": ["glacier"],
   "3day": ["glacier", "tioga"]
 };
-var ITIN_DAY_NOTES = [[/Glacier Point Road/i, "Glacier Point is about 30 miles and an hour from Yosemite Valley."], [/Tioga Road/i, "Tuolumne Meadows is roughly 55 to 60 miles from the Valley, about an hour and a half each way. This day only exists once Tioga Road is open, which in some years is not until late June or early July."]];
+var ITIN_DAY_NOTES = [[/Glacier Point Road/i, "Glacier Point is about 30 miles and an hour from Yosemite Valley."], [/Tioga Road/i, "Tuolumne Meadows is about 55 miles from the Valley, about an hour and a half each way. This day only exists once Tioga Road is open, which in some years is not until late June or early July."]];
 var ITIN_CAT_ICON = {
   vista: "eye",
   hike: "walk",
@@ -483,7 +483,7 @@ function ItinerariesPage({
     className: "hp-eyebrow"
   }, "WHICH MONTH WORKS"), React.createElement("h2", null, "The roads decide how many days you get"), React.createElement("p", {
     className: "ff-lede"
-  }, "The Valley is open all year, so the half-day and one-day plans work in any month. Day two needs Glacier Point Road and day three needs Tioga Road, and both close for winter. Tioga Road, Highway 120 across the middle of the park, is the one to doubt: it has opened anywhere from late April to early July, and in a heavy snow year it is still closed for much of June. Treat day three as a plan you confirm the week you go. The grid reads the same month table the trip selector uses, so the two cannot disagree."), React.createElement("ul", {
+  }, "The Valley is open all year, so the half-day and one-day plans work in any month. Day two needs Glacier Point Road and day three needs Tioga Road, and both close for winter. Tioga Road, Highway 120 across the middle of the park, is the one to doubt: since 1980 it has opened anywhere from late April to late July, and in a heavy snow year it is still closed for much of June. Treat day three as a plan you confirm the week you go. The grid reads the same month table the trip selector uses, so the two cannot disagree."), React.createElement("ul", {
     className: "itin-legend"
   }, React.createElement("li", {
     className: "is-open"

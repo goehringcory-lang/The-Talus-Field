@@ -295,7 +295,7 @@ function DatesPage({ go }) {
             Most of what has to happen before a Yosemite trip is measured
             backwards from the day you arrive: a Half Dome day permit two days
             before, a wilderness permit twenty-four weeks before, a Pines
-            campsite five months before. Put in your first and last day in the
+            campsite four to five months before. Put in your first and last day in the
             park and the table below turns those rules into dates.
           </p>
           <div className="dates__form" role="group" aria-label="Your trip dates">

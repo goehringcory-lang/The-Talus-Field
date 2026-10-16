@@ -186,7 +186,7 @@ window.DEADLINES = {
         "day": 30
       },
       "time": "no fixed date",
-      "detail": "Tioga Road has opened between late April and early July over the record; late May to mid-June is the usual range, and 2026 opened May 15. The park posts plowing progress weekly and announces the opening a day or two ahead.",
+      "detail": "Tioga Road has opened between early April and late July over the record; late May to mid-June is the usual range, and 2026 opened May 15. The park posts plowing progress weekly and announces the opening a day or two ahead.",
       "confidence": "typical",
       "source": "https://www.nps.gov/yose/planyourvisit/tiogaopen.htm",
       "tag": "date-roads",

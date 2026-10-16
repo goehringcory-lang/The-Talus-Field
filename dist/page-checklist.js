@@ -205,13 +205,13 @@ function ChecklistPage({
     type: "checkbox"
   }), React.createElement("strong", null, React.createElement(A, {
     r: "a:yosemite-gateway-towns-compared"
-  }, "El Portal")), ": closest to the Valley (25-30 min). Limited dining, year-round access."), React.createElement("label", {
+  }, "El Portal")), ": closest to the Valley (25 to 35 min). Limited dining, year-round access."), React.createElement("label", {
     className: "fj-check"
   }, React.createElement("input", {
     type: "checkbox"
   }), React.createElement("strong", null, React.createElement(A, {
     r: "a:yosemite-gateway-towns-compared"
-  }, "Mariposa")), ": 45 min from the Valley. Full service, best first-timer pick."), React.createElement("label", {
+  }, "Mariposa")), ": 60 to 75 min from the Valley. Full service, best first-timer pick."), React.createElement("label", {
     className: "fj-check"
   }, React.createElement("input", {
     type: "checkbox"

@@ -108,7 +108,7 @@ window.ARTICLE_BODIES["clouds-rest-hike"] = function CloudsRestHikeBody() {
       </p>
 
       <p>
-        <strong>Do not plan on a bus.</strong> The free Tuolumne Meadows shuttle and the hikers bus from the Valley are summer services that end in mid-September; in 2026 both stopped on September 13. The YARTS Highway 395/120 East route runs from July 1 through September 30 in 2026 and stops at the Tuolumne Meadows store and visitor center, White Wolf, Crane Flat and Yosemite Village, but <strong>not at Tenaya Lake</strong>. For most of the season, and for all of the autumn window below, the Sunrise Lakes trailhead is a place you drive to.
+        <strong>Do not plan on a bus.</strong> The free Tuolumne Meadows shuttle and the hikers bus from the Valley are summer services that end in mid-September; the fall 2026 Yosemite Guide, which begins September 23, lists both as ended. The YARTS Highway 395/120 East route runs from July 1 through September 30 in 2026 and stops at the Tuolumne Meadows store and visitor center, White Wolf, Crane Flat and Yosemite Village, but <strong>not at Tenaya Lake</strong>. For most of the season, and for all of the autumn window below, the Sunrise Lakes trailhead is a place you drive to.
       </p>
 
       <p>
@@ -122,7 +122,7 @@ window.ARTICLE_BODIES["clouds-rest-hike"] = function CloudsRestHikeBody() {
       </p>
 
       <p>
-        The park's own historical dates say how wide the gap has been. The cables have come down between October 10 and October 16 in nine of the last ten seasons the park's table records, and as late as <strong>October 22</strong> in 2025. Tioga Road closed for the season on November 1 in 2015, November 16 in 2016, November 14 in 2017, November 20 in 2018, November 19 in 2019, November 5 in 2020, <strong>October 21</strong> in 2021, October 31 in 2022, November 15 in 2023, November 11 in 2024, and November 12 in 2025. In every one of those years but one the road outlasted the cables by at least 19 days, and in seven of the ten seasons the park lists both dates the gap was three weeks or more. The exception was 2021, when the road shut nine days after the cables came down. The window is real and it is not guaranteed, which is exactly the kind of plan this site exists to make honestly.
+        The park's own historical dates say how wide the gap has been. The cables have come down between October 9 and October 16 in nine of the last ten seasons the park's table records, and as late as <strong>October 22</strong> in 2025. Tioga Road closed for the season on November 1 in 2015, November 16 in 2016, November 14 in 2017, November 20 in 2018, November 19 in 2019, November 5 in 2020, <strong>October 21</strong> in 2021, October 31 in 2022, November 15 in 2023, November 11 in 2024, and November 12 in 2025. In every one of those years but one the road outlasted the cables by at least 19 days, and in eight of the ten seasons the gap was three weeks or more. The exception was 2021, when the road shut nine days after the cables came down. The window is real and it is not guaranteed, which is exactly the kind of plan this site exists to make honestly.
       </p>
 
       <Placeholder
@@ -164,7 +164,7 @@ window.ARTICLE_BODIES["clouds-rest-hike"] = function CloudsRestHikeBody() {
       <h2>From the Valley, and the through-hike</h2>
 
       <p>
-        There is a longer Clouds Rest, and it is the one the strong parties post about. The mountain can be approached from below, up the Half Dome corridor from Happy Isles through Little Yosemite Valley and then on to the summit, and the Park Service's own guided version, run with the Yosemite Conservancy, is a three-day, <strong>17-mile through-hike from Tenaya Lake to Yosemite Valley</strong> over the top. Do the arithmetic against the seven-mile approach from Tenaya and the Valley side comes out at roughly ten miles one way, which puts a Valley round trip at about twenty miles with all of Half Dome's climbing and then some. A fit party with a very early start does it as a day; a few add the Half Dome summit on the way back, with a permit, and turn it into an all-day epic. Neither is the Clouds Rest this article recommends to someone deciding what to do with a Tuesday.
+        There is a longer Clouds Rest, and it is the one the strong parties post about. The mountain can be approached from below, up the Half Dome corridor from Happy Isles through Little Yosemite Valley and then on to the summit, and the Park Service has listed a guided version, run with the Yosemite Conservancy, as a three-day, <strong>17-mile through-hike from Tenaya Lake to Yosemite Valley</strong> over the top. Do the arithmetic against the seven-mile approach from Tenaya and the Valley side comes out at roughly ten miles one way, which puts a Valley round trip at about twenty miles with all of Half Dome's climbing and then some. A fit party with a very early start does it as a day; a few add the Half Dome summit on the way back, with a permit, and turn it into an all-day epic. Neither is the Clouds Rest this article recommends to someone deciding what to do with a Tuesday.
       </p>
 
       <p>

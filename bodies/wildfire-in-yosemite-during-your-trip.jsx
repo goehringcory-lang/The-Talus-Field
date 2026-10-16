@@ -24,7 +24,7 @@ window.ARTICLE_BODIES["wildfire-in-yosemite-during-your-trip"] = function Wildfi
       </p>
 
       <p>
-        The list also moves, in both directions and without much notice. Nine days separated a single closed trail from a closed road to the park's most visited overlook. The park's own line on when that road comes back is that it "will reopen when conditions allow," which is honest and not a date. Plan as though any closure on the list will still be there on your day, and treat a reopening as good luck rather than a schedule.
+        The list also moves, in both directions and without much notice. A little over a week separated a single closed trail from a closed road to the park's most visited overlook. The park's own line on when that road comes back is that it "will reopen when conditions allow," which is honest and not a date. Plan as though any closure on the list will still be there on your day, and treat a reopening as good luck rather than a schedule.
       </p>
 
       <Placeholder

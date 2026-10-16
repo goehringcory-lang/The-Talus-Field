@@ -34,7 +34,7 @@ window.ARTICLE_BODIES["yosemite-needs-a-reservation-system"] = function Yosemite
       <h2>Failure one: people cannot enjoy their park</h2>
 
       <p>
-        On Sunday of Memorial Day weekend 2026, visitors received a text alert at 7:39 a.m. telling them that parking lots in Yosemite Valley were already full. Some reported waiting at least an hour and a half to get into the park. One visitor told ABC7 that by 7:30, "the entire park, it was impossible to park there. There's nowhere to park for anybody."
+        On Sunday of Memorial Day weekend 2026, visitors received a text alert at 7:39 a.m. telling them that parking lots in Yosemite Valley were already full. Some reported waiting at least an hour and a half to get into the park. One visitor told ABC7 there was no parking.
       </p>
 
       <p>
@@ -60,7 +60,7 @@ window.ARTICLE_BODIES["yosemite-needs-a-reservation-system"] = function Yosemite
       </p>
 
       <p>
-        Videos from the holiday weekend showed dozens of cars parked illegally on meadow edges and road shoulders throughout the Valley. Visitors, unable to find legal parking, drove off pavement and onto the ground. Beth Pratt, a conservationist and author who has worked on Yosemite wildlife issues for years, described the scene plainly: people were "pulling onto meadows, pulling off pavement, going off-road."
+        Reports from the holiday weekend described cars parked illegally on meadow edges and road shoulders in the Valley, visitors unable to find legal parking.
       </p>
 
       <p>
@@ -82,7 +82,7 @@ window.ARTICLE_BODIES["yosemite-needs-a-reservation-system"] = function Yosemite
       </p>
 
       <p>
-        In Yosemite, a survey by the park workers' union, run from late February through March 30, 2026, found that 115 of 135 respondents, 85 percent, gave Superintendent Ray McPadden's decision to drop the reservation system the lowest approval rating on its scale. The respondents were Park Service staff and the park's partner and concession employees. These are the people who work in the park every day. They saw the reservation system work across five seasons. They know what the alternative looks like.
+        In Yosemite, a survey by the park workers' union found, in the National Parks Conservation Association's account, nearly unanimous opposition among staff to dropping the reservation system. These are the people who work in the park every day. They saw the reservation system work across five seasons. They know what the alternative looks like.
       </p>
 
       <p>

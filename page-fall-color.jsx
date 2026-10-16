@@ -92,7 +92,7 @@ const FC_ARCHIVE = [
 
 const FC_TOWNS = [
   { id: "el-portal", name: "El Portal", dest: "El Portal, California", drive: "25 to 35 min", road: "Highway 140", note: "The closest beds outside the boundary, on the river where the season ends: willows and cottonwoods below the lodges." },
-  { id: "mariposa", name: "Midpines and Mariposa", dest: "Mariposa, California", drive: "45 to 60 min", road: "Highway 140", note: "The deepest inventory on the road that stays open all winter, so a late-season storm does not strand the trip." },
+  { id: "mariposa", name: "Midpines and Mariposa", dest: "Mariposa, California", drive: "60 to 75 min", road: "Highway 140", note: "The deepest inventory on the road that stays open all winter, so a late-season storm does not strand the trip." },
   { id: "groveland", name: "Groveland", dest: "Groveland, California", drive: "65 to 80 min", road: "Highway 120", note: "The approach through Crane Flat and the Big Oak Flat Road, where the middle-elevation dogwoods turn first." },
   { id: "oakhurst", name: "Fish Camp and Oakhurst", dest: "Oakhurst, California", drive: "75 to 90 min", road: "Highway 41", note: "The Wawona Road: dogwoods on the climb and Wawona's oaks on the way in." },
 ];
