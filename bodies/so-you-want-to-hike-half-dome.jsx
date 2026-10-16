@@ -1,4 +1,4 @@
-/* global React, NatureNotesFilm */
+/* global React, NatureNotesFilm, AffLink, AffiliateNote */
 
 window.ARTICLE_BODIES = window.ARTICLE_BODIES || {};
 
@@ -246,7 +246,7 @@ window.ARTICLE_BODIES["so-you-want-to-hike-half-dome"] = function SoYouWantToHik
       </p>
 
       <p>
-        <strong>What to wear:</strong> Trail runners or hiking boots with good traction. The granite on the spine is grippy when dry but slick when wet, same as Half Dome's cables. Pack layers for the summit. At nearly 10,000 feet it can be 15 to 20 degrees cooler than the Valley, and it can be windy up top on a day that feels calm below. Sun protection is critical at this elevation.
+        <strong>What to wear:</strong> Trail runners or hiking boots with good traction. The granite on the spine is grippy when dry but slick when wet, same as Half Dome's cables. Pack <AffLink q="insulated jacket" list="article_inline" slug="so-you-want-to-hike-half-dome" name="Insulated jacket">layers</AffLink> for the summit. At nearly 10,000 feet it can be 15 to 20 degrees cooler than the Valley, and it can be windy up top on a day that feels calm below. Sun protection is critical at this elevation.
       </p>
 
       <p>
@@ -320,6 +320,8 @@ window.ARTICLE_BODIES["so-you-want-to-hike-half-dome"] = function SoYouWantToHik
       </p>
 
       <p>You won't feel like you missed anything.</p>
+
+      <AffiliateNote />
     </>
   );
 };

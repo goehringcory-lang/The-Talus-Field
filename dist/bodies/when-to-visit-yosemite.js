@@ -600,7 +600,14 @@ window.ARTICLE_BODIES["when-to-visit-yosemite"] = function WhenToVisitYosemiteBo
     className: "ff-alert wv-avoid"
   }, React.createElement(EventIcon, {
     name: "alert"
-  }), React.createElement("p", null, React.createElement("strong", null, "Days to plan around."), " Memorial Day weekend, the one weekend that backed up in 2026. Any summer Saturday arriving after 8:30 a.m. Labor Day weekend. The holiday week in late December if you are not staying in the park. The park says July 4 ran without significant delays this year, but a holiday Saturday is the day to leave the margin on."))), React.createElement("section", {
+  }), React.createElement("p", null, React.createElement("strong", null, "Days to plan around."), " Memorial Day weekend, the one weekend that backed up in 2026. Any summer Saturday arriving after 8:30 a.m. Labor Day weekend. The holiday week in late December if you are not staying in the park. The park says July 4 ran without significant delays this year, but a holiday Saturday is the day to leave the margin on.")), React.createElement(LodgingCta, {
+    destination: "Yosemite National Park",
+    heading: "Once the dates are chosen, the bed is next",
+    note: "Every pick above assumes you reach the gate early, and that depends on where you slept. Rooms inside the park open about a year ahead and go first; the gateway towns hold space longer. The full comparison of every option is one page over.",
+    list: "article_cta",
+    slug: "when-to-visit-yosemite",
+    cta: "Search Yosemite-area lodging →"
+  })), React.createElement("section", {
     className: "ff-band",
     id: "sec-7-what-could-bend-the-curve",
     tabIndex: -1
@@ -699,5 +706,7 @@ window.ARTICLE_BODIES["when-to-visit-yosemite"] = function WhenToVisitYosemiteBo
   }, FAQ.map(([q, a], i) => React.createElement("details", {
     key: q,
     open: i < 2
-  }, React.createElement("summary", null, q), React.createElement("p", null, a)))))));
+  }, React.createElement("summary", null, q), React.createElement("p", null, a)))))), React.createElement("div", {
+    className: "hp-wrap fly-end"
+  }, React.createElement(AffiliateNote, null)));
 };

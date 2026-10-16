@@ -1,4 +1,4 @@
-/* global React */
+/* global React, AffLink, AffiliateNote */
 
 window.ARTICLE_BODIES = window.ARTICLE_BODIES || {};
 
@@ -122,7 +122,7 @@ window.ARTICLE_BODIES["cathedral-lakes-day-hike"] = function CathedralLakesDayHi
       <h2>What to bring on a Cathedral Lakes day hike</h2>
 
       <p>
-        The <a href="/kit">day pack basics</a> are covered elsewhere. The Cathedral-specific version: carry three liters of water minimum, because there's no reliable potable water between the trailhead and the basin. Bring layers. Late July at 9,500 feet can be 75 degrees and clear or 50 degrees with a thunderstorm building in the same afternoon, and the wind off the lake at midday can be sharp. A rain shell is not optional in July and August; afternoon thunderstorms are common and develop fast, so plan to be off exposed granite by early afternoon if storms are in the forecast. Sun protection matters at this altitude. UV at 9,500 feet is intense and the lake basins are exposed.
+        The <a href="/kit">day pack basics</a> are covered elsewhere. The Cathedral-specific version: carry three liters of water minimum, because there's no reliable potable water between the trailhead and the basin. Bring <AffLink q="fleece" list="article_inline" slug="cathedral-lakes-day-hike" name="Fleece layer">layers</AffLink>. Late July at 9,500 feet can be 75 degrees and clear or 50 degrees with a thunderstorm building in the same afternoon, and the wind off the lake at midday can be sharp. A <AffLink q="rain jacket" list="article_inline" slug="cathedral-lakes-day-hike" name="Rain shell">rain shell</AffLink> is not optional in July and August; afternoon thunderstorms are common and develop fast, so plan to be off exposed granite by early afternoon if storms are in the forecast. Sun protection matters at this altitude. UV at 9,500 feet is intense and the lake basins are exposed.
       </p>
 
       <p>
@@ -171,6 +171,8 @@ window.ARTICLE_BODIES["cathedral-lakes-day-hike"] = function CathedralLakesDayHi
         <li><a href="https://www.usgs.gov/geology-and-ecology-of-national-parks/geology-yosemite-national-park" target="_blank" rel="noopener noreferrer">Geology of the Yosemite Area, USGS</a></li>
         <li><a href="https://vault.sierraclub.org/john_muir_exhibit/writings/my_first_summer_in_the_sierra/" target="_blank" rel="noopener noreferrer">My First Summer in the Sierra, by John Muir (1911)</a></li>
       </ul>
+
+      <AffiliateNote />
     </>
   );
 };
