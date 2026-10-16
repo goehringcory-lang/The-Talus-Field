@@ -777,7 +777,7 @@ const seed: AmenityInput[] = [
     kind: 'lodging',
     region: 'valley',
     coord: [-119.598294, 37.74349], // NPS API places: Yosemite Valley Lodge
-    note: 'The largest lodging in the Valley, a short walk from Lower Yosemite Fall, with the Mountain Room, Base Camp Eatery, and a Starbucks. Shuttle stop 7 and the YARTS stop are at the door.',
+    note: 'One of the Valley\'s larger lodgings, a short walk from Lower Yosemite Fall, with the Mountain Room, Base Camp Eatery, and a Starbucks. Shuttle stop 7 and the YARTS stop are at the door.',
   },
   {
     id: 'housekeeping-camp',

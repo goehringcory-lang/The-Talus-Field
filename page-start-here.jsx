@@ -106,7 +106,7 @@ const START_PLACES = [
       ["Getting in", "Arch Rock on Hwy 140, the all-weather route"],
       ["Best hour", "Through the gate before 8 a.m., or after 4 p.m."],
       ["Waterfalls", "Peak in May, mostly dry by August"],
-      ["Closest accommodations", "El Portal, 25 to 35 minutes. Mariposa, 45 to 60."],
+      ["Closest accommodations", "El Portal, 25 to 35 minutes. Mariposa, 60 to 75."],
     ],
     link: { href: "/articles/yosemite-in-one-or-two-days", label: "One day in Yosemite: the Valley sequence" },
   },
@@ -213,7 +213,7 @@ const START_ANSWERS = [
   },
   {
     q: "Where should I stay?",
-    lines: ["In the park if you can: beds open 366 days ahead.", "Otherwise Mariposa, the safest first-timer's town, 45 to 60 minutes out."],
+    lines: ["In the park if you can: beds open 366 days ahead.", "Otherwise Mariposa, the safest first-timer's town, 60 to 75 minutes out."],
     link: { href: "/articles/yosemite-gateway-towns-compared", label: "The gateway towns compared" },
   },
   {

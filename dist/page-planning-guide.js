@@ -194,7 +194,7 @@ var PG_TOWNS = [{
   name: "Mariposa",
   dest: "Mariposa, California",
   road: "Highway 140 · year-round",
-  drive: "45 to 60 min",
+  drive: "60 to 75 min",
   bar: 50,
   photo: "img/mariposa-county-courthouse.jpg",
   alt: "The 1854 Mariposa County Courthouse",

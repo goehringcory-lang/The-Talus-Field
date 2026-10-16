@@ -16,7 +16,7 @@ var CAM_NOTES = [{
 }, {
   name: "Wawona",
   from: "Wawona, the park's south end",
-  shows: "Conditions an hour south of the Valley and twenty minutes from the Mariposa Grove, at about 4,000 feet. Worth checking separately in winter, when Wawona and the Valley genuinely differ.",
+  shows: "Conditions an hour south of the Valley and about thirty minutes from the Mariposa Grove, at about 4,000 feet. Worth checking separately in winter, when Wawona and the Valley genuinely differ.",
   best: "Midday in winter, to see whether snow is lying."
 }];
 function WebcamsPage({

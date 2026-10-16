@@ -37,7 +37,7 @@ var START_PLACES = [{
   credit: "Cory Goehring",
   line: "The canyon floor. You stand at the bottom and look up.",
   dos: ["Tunnel View at first light, then Bridalveil Fall", "The Lower Yosemite Fall loop and Cook's Meadow before the lots fill at mid-morning", "A slow hour on a rock by the Merced", "Back to Valley View or Tunnel View for last light"],
-  facts: [["Getting in", "Arch Rock on Hwy 140, the all-weather route"], ["Best hour", "Through the gate before 8 a.m., or after 4 p.m."], ["Waterfalls", "Peak in May, mostly dry by August"], ["Closest accommodations", "El Portal, 25 to 35 minutes. Mariposa, 45 to 60."]],
+  facts: [["Getting in", "Arch Rock on Hwy 140, the all-weather route"], ["Best hour", "Through the gate before 8 a.m., or after 4 p.m."], ["Waterfalls", "Peak in May, mostly dry by August"], ["Closest accommodations", "El Portal, 25 to 35 minutes. Mariposa, 60 to 75."]],
   link: {
     href: "/articles/yosemite-in-one-or-two-days",
     label: "One day in Yosemite: the Valley sequence"
@@ -136,7 +136,7 @@ var START_ANSWERS = [{
   }
 }, {
   q: "Where should I stay?",
-  lines: ["In the park if you can: beds open 366 days ahead.", "Otherwise Mariposa, the safest first-timer's town, 45 to 60 minutes out."],
+  lines: ["In the park if you can: beds open 366 days ahead.", "Otherwise Mariposa, the safest first-timer's town, 60 to 75 minutes out."],
   link: {
     href: "/articles/yosemite-gateway-towns-compared",
     label: "The gateway towns compared"

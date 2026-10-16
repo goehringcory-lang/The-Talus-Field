@@ -31,7 +31,7 @@ const TO_VALLEY = [
   { town: "Mariposa", miles: "about 45", time: "60 to 75 min", highway: "140", season: "Year-round", elevation: "about 2,000 ft" },
   { town: "Groveland", miles: "about 49", time: "65 to 80 min", highway: "120", season: "Chain controls common in winter", elevation: "about 3,100 ft" },
   { town: "Oakhurst", miles: "about 55", time: "75 to 90 min", highway: "41", season: "Year-round", elevation: "about 2,300 ft" },
-  { town: "Lee Vining", miles: "about 75", time: "90 min minimum", highway: "120 East over Tioga Pass", season: "Only while Tioga Pass is open", elevation: "about 6,800 ft" },
+  { town: "Lee Vining", miles: "about 75", time: "120 min minimum", highway: "120 East over Tioga Pass", season: "Only while Tioga Pass is open", elevation: "about 6,800 ft" },
 ];
 
 // The pairings the article states outright. A town with no published figure for
@@ -47,7 +47,7 @@ const OTHER_LEGS = [
 // The table's drive times drawn on one scale: each town a bar from the short
 // end of its range to the long end, so the comparison the page exists for is
 // visible at a glance. Parsed from TO_VALLEY's own strings ("25 to 35 min",
-// "90 min minimum"), so it cannot drift from the table, which stays the
+// "120 min minimum"), so it cannot drift from the table, which stays the
 // accessible record; this figure is hidden from assistive tech.
 const DRIVE_SCALE_MAX = 120; // minutes
 function driveRange(time) {

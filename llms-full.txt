@@ -843,7 +843,7 @@ Pack for the normals, not the forecast: an average low of 33°F means nights bel
 
 ### Getting there without a car
 
-YARTS runs its Highway 140 route year-round between Merced and the Valley, and its winter schedule runs from October 1, 2026, to May 28, 2027. The first run from Merced arrives at Yosemite Valley Lodge at 7:13 a.m. But YARTS lists Thanksgiving Day among the holidays on which it does not operate, and its Highway 140 page prints the date as "November 27, 2026," which is the Friday. Until the agency clears that up, do not plan to ride on either day without calling first. Inside the Valley, the free shuttle operates year-round.
+YARTS runs its Highway 140 route year-round between Merced and the Valley, and its winter schedule runs from October 1, 2026, to May 28, 2027. The first run from Merced arrives at Yosemite Valley Lodge at 7:13 a.m. But YARTS lists Thanksgiving Day among the holidays on which it does not operate, and its Highway 140 page lists the date as November 26, 2026. Do not plan to ride that day. Inside the Valley, the free shuttle operates year-round.
 
 ### Four short days, planned
 
@@ -4183,7 +4183,7 @@ The common mistake is choosing a hike when what the day needed was a meadow, a l
 
 Tuolumne Meadows is more than 4,500 feet above the Valley floor. If you slept in the Valley, or flew into California two days ago, you are arriving at an elevation your body has no preparation for. It does not usually present as dramatic mountain sickness. It presents as a headache after lunch, a shorter temper than usual, a child who is suddenly done, and a walk that felt much harder than a mile ought to feel.
 
-The mitigations are simple: drink considerably more water than you want to, eat more than you planned, go slower than feels natural on the first walk of the day, and treat the first hour up there as an adjustment rather than an achievement. If a headache does not respond to water, food, and rest, the treatment is elevation loss, and you have a car and a road that descends 4,000 feet. Use it rather than pushing on.
+The mitigations are simple: drink considerably more water than you want to, eat more than you planned, go slower than feels natural on the first walk of the day, and treat the first hour up there as an adjustment rather than an achievement. If a headache does not respond to water, food, and rest, the treatment is elevation loss, and you have a car and a road that descends more than 4,500 feet. Use it rather than pushing on.
 
 ### The afternoon storm, which ends the day earlier than you want
 
@@ -12057,7 +12057,7 @@ Current rates and availability: Groveland lodging →
 
 ### Lee Vining
 
-Valley driveabout 75 miles over Tioga Pass, 90 minutes minimum, summer onlyTuolumne Meadowsabout 20 miles, 30 minutesMono Lake5 minutes to the visitor center, 15 to South TufaRoadHighway 120 East over Tioga Pass, seasonal; US 395 year-roundElevationabout 6,800 feet, and the pass above town just under 10,000The towna tiny eastern Sierra outpost between Mono Lake and the pass
+Valley driveabout 75 miles over Tioga Pass, two hours minimum, summer onlyTuolumne Meadowsabout 20 miles, 30 minutesMono Lake5 minutes to the visitor center, 15 to South TufaRoadHighway 120 East over Tioga Pass, seasonal; US 395 year-roundElevationabout 6,800 feet, and the pass above town just under 10,000The towna tiny eastern Sierra outpost between Mono Lake and the pass
 
 Photo: Michael Hogarth / Wikimedia Commons (public domain)
 
@@ -12071,7 +12071,7 @@ Why people pick it:
 
 Why they regret it:
 
-- When Tioga Pass is closed there is no crossing at all: the drive around the south end of the Sierra turns 90 minutes into most of a day. The Park Service publishes the detour, and it is the first thing to read if your dates are anywhere near the shoulders.
+- When Tioga Pass is closed there is no crossing at all: the drive around the south end of the Sierra turns two hours into most of a day. The Park Service publishes the detour, and it is the first thing to read if your dates are anywhere near the shoulders.
 - Limited rooms and food, so you book early and pay a summer premium.
 - The Valley run crosses a near-10,000-foot pass, punishing in bad weather.
 

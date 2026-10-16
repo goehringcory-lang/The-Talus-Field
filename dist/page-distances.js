@@ -29,7 +29,7 @@ var TO_VALLEY = [{
 }, {
   town: "Lee Vining",
   miles: "about 75",
-  time: "90 min minimum",
+  time: "120 min minimum",
   highway: "120 East over Tioga Pass",
   season: "Only while Tioga Pass is open",
   elevation: "about 6,800 ft"

@@ -137,7 +137,7 @@ function pickTown(trip, when, priority) {
     }
     return {
       key: "lee-vining",
-      why: "Tuolumne Meadows is 30 minutes up Tioga Road and Mono Lake is next door. This is a high-country base, not a Valley base: the Valley is 90 minutes each way over a near-10,000-foot pass.",
+      why: "Tuolumne Meadows is 30 minutes up Tioga Road and Mono Lake is next door. This is a high-country base, not a Valley base: the Valley is two hours each way over a near-10,000-foot pass.",
       note: priority === "chain"
         ? "One expectation to manage: the motels here are small, independent, and booked early. There are no chains."
         : null,
@@ -523,7 +523,7 @@ window.ARTICLE_BODIES["yosemite-gateway-towns-compared"] = function YosemiteGate
       <h2 id="sec-5-lee-vining">Lee Vining</h2>
 
       <TownFacts rows={[
-        ["Valley drive", "about 75 miles over Tioga Pass, 90 minutes minimum, summer only"],
+        ["Valley drive", "about 75 miles over Tioga Pass, two hours minimum, summer only"],
         ["Tuolumne Meadows", "about 20 miles, 30 minutes"],
         ["Mono Lake", "5 minutes to the visitor center, 15 to South Tufa"],
         ["Road", "Highway 120 East over Tioga Pass, seasonal; US 395 year-round"],
@@ -554,7 +554,7 @@ window.ARTICLE_BODIES["yosemite-gateway-towns-compared"] = function YosemiteGate
 
       <p>Why they regret it:</p>
       <ul>
-        <li>When Tioga Pass is closed there is no crossing at all: the drive around the south end of the Sierra turns 90 minutes into most of a day. The Park Service publishes the detour, and it is the first thing to read if your dates are anywhere near the shoulders.</li>
+        <li>When Tioga Pass is closed there is no crossing at all: the drive around the south end of the Sierra turns two hours into most of a day. The Park Service publishes the detour, and it is the first thing to read if your dates are anywhere near the shoulders.</li>
         <li>Limited rooms and food, so you book early and pay a summer premium.</li>
         <li>The Valley run crosses a near-10,000-foot pass, punishing in bad weather.</li>
       </ul>

@@ -104,7 +104,7 @@ window.ARTICLE_BODIES["tuolumne-meadows-in-a-day"] = function TuolumneMeadowsInA
       </p>
 
       <p>
-        The mitigations are simple: drink considerably more water than you want to, eat more than you planned, go slower than feels natural on the first walk of the day, and treat the first hour up there as an adjustment rather than an achievement. If a headache does not respond to water, food, and rest, the treatment is elevation loss, and you have a car and a road that descends 4,000 feet. Use it rather than pushing on.
+        The mitigations are simple: drink considerably more water than you want to, eat more than you planned, go slower than feels natural on the first walk of the day, and treat the first hour up there as an adjustment rather than an achievement. If a headache does not respond to water, food, and rest, the treatment is elevation loss, and you have a car and a road that descends more than 4,500 feet. Use it rather than pushing on.
       </p>
 
       <h2>The afternoon storm, which ends the day earlier than you want</h2>

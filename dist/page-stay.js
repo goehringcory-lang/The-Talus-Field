@@ -127,7 +127,7 @@ var GATEWAYS = [{
   name: "Mariposa",
   dest: "Mariposa, California",
   drive: "45 minutes to an hour to the Valley",
-  driveShort: "45 to 60 min",
+  driveShort: "60 to 75 min",
   range: [45, 60],
   road: "Highway 140, year-round",
   photo: "img/mariposa-county-courthouse.jpg",
@@ -195,8 +195,8 @@ var GATEWAYS = [{
   article: "/articles/yosemite-gateway-towns-compared#sec-5-lee-vining",
   name: "Lee Vining",
   dest: "Lee Vining, California",
-  drive: "90 minutes minimum to the Valley, 30 to Tuolumne Meadows",
-  driveShort: "90 min minimum",
+  drive: "two hours minimum to the Valley, 30 to Tuolumne Meadows",
+  driveShort: "120 min minimum",
   range: [90, null],
   road: "Highway 120 East over Tioga Pass, seasonal",
   flag: "Seasonal",
@@ -476,7 +476,7 @@ var STAY_PICKS = [{
   road: "Tioga Pass · seasonal",
   drive: "30 minutes to Tuolumne Meadows",
   why: "The only east-side gateway, and a base for the high country, Mono Lake, and the eastern Sierra rather than a substitute for the western towns.",
-  cost: "Reachable from the park only while Tioga Pass is open, and ninety minutes minimum to the Valley.",
+  cost: "Reachable from the park only while Tioga Pass is open, and two hours minimum to the Valley.",
   dest: "Lee Vining, California",
   cta: "See what Lee Vining has on your dates"
 }, {
@@ -650,7 +650,7 @@ var STAY_MAP_TOWNS = {
     at: [16, 905],
     side: "r",
     name: "Mariposa",
-    note: "45 to 60 min",
+    note: "60 to 75 min",
     off: "Highway 140, off the map"
   },
   "groveland": {
@@ -677,7 +677,7 @@ var STAY_MAP_TOWNS = {
     at: [1648, 95],
     side: "l",
     name: "Lee Vining",
-    note: "90 min minimum"
+    note: "120 min minimum"
   }
 };
 var STAY_SCALE_MAX = 120;
@@ -1329,7 +1329,7 @@ var CORRIDOR_INTROS = {
   "corridor-41": () => React.createElement("p", null, "The sequoia side. From here the Mariposa Grove and Wawona are close and the Valley is not: seventy-five to ninety minutes each way, which is three hours of driving on a Valley day and the single thing people underestimate about this corridor. In winter it is the Badger Pass side of the park, the road to the only downhill ski area in Yosemite. With the Wawona Hotel closed there is no in-park alternative on this road, so summer rooms carry more pressure than they used to.", " ", React.createElement("a", {
     href: GATEWAY_ARTICLE + "#sec-3-oakhurst"
   }, "The Oakhurst chapter"), " ", "covers the tradeoff in full."),
-  "corridor-395": () => React.createElement("p", null, "The east side is a different trip rather than a substitute for the western towns. Tuolumne Meadows is half an hour away and the Valley is ninety minutes over a pass just under 10,000 feet, so this is a base for the high country, Mono Lake, and the eastern Sierra. It also exists seasonally: when Tioga Pass closes there is no crossing at all, and the detour around the south end of the range turns that ninety minutes into most of a day.", " ", React.createElement("a", {
+  "corridor-395": () => React.createElement("p", null, "The east side is a different trip rather than a substitute for the western towns. Tuolumne Meadows is half an hour away and the Valley is two hours over a pass just under 10,000 feet, so this is a base for the high country, Mono Lake, and the eastern Sierra. It also exists seasonally: when Tioga Pass closes there is no crossing at all, and the detour around the south end of the range turns that two hours into most of a day.", " ", React.createElement("a", {
     href: GATEWAY_ARTICLE + "#sec-5-lee-vining"
   }, "The Lee Vining chapter"), " ", "says who should pick it, and", " ", React.createElement("a", {
     href: "/tioga-opening"
