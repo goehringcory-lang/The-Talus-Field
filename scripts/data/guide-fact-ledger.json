@@ -26,14 +26,14 @@
     "old-road-trailhead-pullout": "2026-09-25",
     "rainbow-view-old-road": "2026-09-25",
     "ribbon-fall-base": "2026-09-25",
-    "foresta-cascades": "2026-09-24",
-    "el-capitan-meadow": "2026-09-24",
-    "camp-4": "2026-09-24",
-    "mirror-lake": "2026-09-24",
-    "mist-trail": "2026-09-24",
-    "four-mile-trailhead": "2026-09-24",
-    "yosemite-village": "2026-09-24",
-    "ahwahnee-hotel": "2026-09-24",
+    "foresta-cascades": "2026-10-16",
+    "el-capitan-meadow": "2026-10-16",
+    "camp-4": "2026-10-16",
+    "mirror-lake": "2026-10-16",
+    "mist-trail": "2026-10-16",
+    "four-mile-trailhead": "2026-10-16",
+    "yosemite-village": "2026-10-16",
+    "ahwahnee-hotel": "2026-10-16",
     "sentinel-bridge-sunset": "2026-09-24",
     "curry-village": "2026-09-24",
     "curry-village-pizza": "2026-09-24",
@@ -152,7 +152,9 @@
     "ahwahnee-history-tour": "2026-10-09",
     "curry-village-evening-program": "2026-10-09",
     "conservation-heritage-center": "2026-10-09",
-    "ranger-programs-to-pick": "2026-10-09"
+    "ranger-programs-to-pick": "2026-10-09",
+    "ansel-adams-camera-walk": "2026-10-16",
+    "happy-isles-art-class": "2026-10-16"
   },
   "queue": []
 }
