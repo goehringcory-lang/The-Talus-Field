@@ -106,7 +106,7 @@ window.ARTICLE_BODIES["yosemite-trip-cost-budget"] = function YosemiteTripCostBu
       </p>
 
       <p>
-        <strong>From Sacramento / Central Valley:</strong> About 176 miles, $35–$40 each way.
+        <strong>From Sacramento / Central Valley:</strong> About 160 miles by Highway 120, roughly $35 each way.
       </p>
 
       <p>

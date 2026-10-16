@@ -718,7 +718,7 @@ window.ARTICLE_BODIES["yosemite-camping-complete-guide"] = function YosemiteCamp
               <p>The road is slow. The payoff is a campground that feels like backcountry without the backpack, with real distance between sites. It is reservation-only, with no first-come sites.</p>
             </Camp>
             <Camp id="porcupine-flat" name="Porcupine Flat" pick="When all else is full" chips={["55 sites", "$24", "2-week window", "8,100 ft", "No cell service"]}>
-              <p>Right on the Tioga Road, about 30 minutes west of Tuolumne Meadows and more than an hour from the Valley. Vault toilets, no drinking water, and Porcupine Creek as the only water source. Only four sites take a 24-foot RV.</p>
+              <p>Right on the Tioga Road, about 20 minutes west of Tuolumne Meadows and about an hour and ten minutes from the Valley. Vault toilets, no drinking water, and Porcupine Creek as the only water source. Only four sites take a 24-foot RV.</p>
               <p>It is one of the last campgrounds to fill on any given night. It is functional more than beautiful, but it is a campsite in Yosemite, and when everything else is taken, that counts for a great deal.</p>
             </Camp>
           </div>

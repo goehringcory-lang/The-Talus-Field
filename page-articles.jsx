@@ -547,7 +547,7 @@ function PlanningSectionPage({ go }) {
               <div className="ps-drives">
                 {[
                   ["From Los Angeles", "313 miles, six hours", "The Park Service's number, and the Oakhurst overnight that makes the trip work.", "Where to break it →", "/articles/yosemite-from-los-angeles"],
-                  ["From Las Vegas", "400 miles over Tioga Pass", "Or 495 miles and up to ten hours when the pass is shut. The calendar picks the road.", "The pass that decides →", "/articles/yosemite-from-las-vegas"],
+                  ["From Las Vegas", "400 miles over Tioga Pass", "Or 475 miles and up to ten hours when the pass is shut. The calendar picks the road.", "The pass that decides →", "/articles/yosemite-from-las-vegas"],
                   ["From San Francisco, for the day", "Nine hours of driving", "Buys seven hours in the park in June and five in December.", "The honest math →", "/articles/yosemite-day-trip-from-bay-area"],
                 ].map(([from, num, d, cta, href]) => (
                   <HomeLink key={from} go={go} location="section_planning" href={href} className="ps-drive">

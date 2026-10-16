@@ -58,7 +58,7 @@ window.ARTICLE_BODIES["tioga-road-opening-weekend"] = function TiogaRoadOpeningW
       <h2>Tioga Road conditions and what to bring before you go</h2>
 
       <p>
-        Gas up before you start climbing. Crane Flat is the only fuel inside the park on the western side, and it is pay-at-pump only. On the east side, your next gas is in Lee Vining, about 45 minutes past Tuolumne. Bring all your water (two liters per person minimum if you are walking anywhere), bring all your food (sandwiches, snacks, a thermos of coffee), and plan for vault toilets. There is nothing to buy along Tioga Road on opening weekend, and there is no potable water. Cell service is essentially zero from Crane Flat to Lee Vining, so download offline maps before you leave the Valley.
+        Gas up before you start climbing. Crane Flat is the only fuel inside the park on the western side, and it is pay-at-pump only. On the east side, your next gas is in Lee Vining, about 30 minutes past Tuolumne. Bring all your water (two liters per person minimum if you are walking anywhere), bring all your food (sandwiches, snacks, a thermos of coffee), and plan for vault toilets. There is nothing to buy along Tioga Road on opening weekend, and there is no potable water. Cell service is essentially zero from Crane Flat to Lee Vining, so download offline maps before you leave the Valley.
       </p>
 
       <p>
@@ -195,7 +195,7 @@ window.ARTICLE_BODIES["tioga-road-opening-weekend"] = function TiogaRoadOpeningW
 
       <h3>What is the elevation of Tioga Pass?</h3>
       <p>
-        Tioga Pass sits at 9,945 feet (3,031 meters), the highest state highway pass in California. Tioga Road climbs from 6,200 feet at Crane Flat to the pass over roughly 47 miles.
+        Tioga Pass sits at 9,945 feet (3,031 meters), the highest state highway pass in California. Tioga Road climbs from 6,200 feet at Crane Flat to the pass over roughly 46 miles.
       </p>
 
       <h3>Do I need a reservation to enter Yosemite in 2026?</h3>
@@ -211,7 +211,7 @@ window.ARTICLE_BODIES["tioga-road-opening-weekend"] = function TiogaRoadOpeningW
 
       <h3>How long does it take to drive Tioga Road?</h3>
       <p>
-        Tioga Road runs 39 miles from Crane Flat to Tuolumne Meadows and about 47 to the Tioga Pass entrance station. Allow roughly 90 minutes one-way without stops, or a full day with Olmsted Point, Tenaya Lake, and Tuolumne Meadows. With Lee Vining and Mono Lake added on, plan a long day.
+        Tioga Road runs 39 miles from Crane Flat to Tuolumne Meadows and about 46 to the Tioga Pass entrance station. Allow roughly 75 minutes one-way without stops, or a full day with Olmsted Point, Tenaya Lake, and Tuolumne Meadows. With Lee Vining and Mono Lake added on, plan a long day.
       </p>
 
       <p style={{ marginTop: 32, fontStyle: "italic", color: "var(--ink-3)" }}>

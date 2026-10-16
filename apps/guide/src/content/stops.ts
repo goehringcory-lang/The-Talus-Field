@@ -641,7 +641,7 @@ const seed: StopInput[] = [
     body:
       'Tent cabins or wood cabins. The tent cabins are the original 1899 camp; the wood cabins have insulation. The location is what you pay for: walking distance to the dining hall, the shuttle stop, and the Mist Trail trailhead. On a multi-night trip, stay all your nights here to avoid packing each morning. Reservations open 366 days out and the good months sell in minutes.',
     swap:
-      'If Curry is full: Yosemite Valley Lodge or [the Ahwahnee](/stop/ahwahnee-hotel) are the in-park alternates. Outside the park: El Portal (closest, 30 min), Mariposa (45 min, more options), or Groveland (Big Oak Flat entrance side, about 1 hr 15 min to the Valley).',
+      'If Curry is full: Yosemite Valley Lodge or [the Ahwahnee](/stop/ahwahnee-hotel) are the in-park alternates. Outside the park: El Portal (closest, 30 min), Mariposa (60 to 75 min, more options), or Groveland (Big Oak Flat entrance side, about 1 hr 15 min to the Valley).',
     photos: [{ src: '/photos/curry-village.jpg' }],
     history: {
       note:
@@ -807,7 +807,7 @@ const seed: StopInput[] = [
     teaser:
       'The steepest maintained way out of the valley: 2,700 feet in about two and a half miles up dozens of switchbacks, each one reframing Half Dome and Tenaya Canyon.',
     body:
-      'The steepest maintained trail out of the valley and the least used: 2,700 feet of gain in about two and a half miles of switchbacks up the wall of Tenaya Canyon, starting past Mirror Lake. The usual day is out-and-back to the rim from the Mirror Lake shuttle stop, about nine and a half miles round trip, six to seven hours. With two cars, strong parties go one way: up Snow Creek, across the rim past North Dome, out at the Porcupine Creek trailhead on Tioga Road.\n\nApril through October is the easy season; in winter the lower switchbacks can ice over. Carry more water than the mileage suggests. Every switchback gives a view of Half Dome, Clouds Rest, and the canyon.\n\nDo not attempt Tenaya Canyon itself. The gorge between Mirror Lake and Tenaya Lake is a technical canyoneering route with mandatory swims and rappels, the park map warns against it, and it has killed experienced people.',
+      'The steepest maintained trail out of the valley and the least used: 2,700 feet of gain in about two and a half miles of switchbacks up the wall of Tenaya Canyon, starting past Mirror Lake. The usual day is out-and-back to the rim from the Mirror Lake shuttle stop, 9.4 miles round trip, six to seven hours. With two cars, strong parties go one way: up Snow Creek, across the rim past North Dome, out at the Porcupine Creek trailhead on Tioga Road.\n\nApril through October is the easy season; in winter the lower switchbacks can ice over. Carry more water than the mileage suggests. Every switchback gives a view of Half Dome, Clouds Rest, and the canyon.\n\nDo not attempt Tenaya Canyon itself. The gorge between Mirror Lake and Tenaya Lake is a technical canyoneering route with mandatory swims and rappels, the park map warns against it, and it has killed experienced people.',
     history: {
       note:
         'There was a lodge at the top of these switchbacks. A 1931 Nature Notes ' +
@@ -909,7 +909,7 @@ const seed: StopInput[] = [
       'The Sentinel Dome to Taft Point loop: 5 miles, about 1,000 ft of gain, both viewpoints in one walk, in either order. Sentinel is the 360-degree panorama: Half Dome, El Capitan, the Clark Range, the high country to the north. Taft is the cliff edge over the valley. Bring lunch and allow thirty minutes on top of Sentinel.\n\nThe connector, a stretch of the Pohono Trail through rim forest with Yosemite Falls in and out of view, sees far less traffic than either point, because most visitors do the two as separate out-and-backs from the shared lot.',
     photos: [{ src: '/photos/milky-way-sentinel-dome.jpg', caption: 'Sentinel Dome at night, Milky Way over the panorama.' }],
     swap:
-      'If you only have time for one, Sentinel Dome alone is 2.2 miles round trip with about 450 feet of gain, easier than it looks, and the better introduction. [Taft Point](/stop/taft-point) alone is the same 2.2 miles with even less climbing (~250 ft), but the cliff edge is the whole point: go if heights don\'t bother you.',
+      'If you only have time for one, Sentinel Dome alone is a short walk of about two miles round trip with a few hundred feet of gain, easier than it looks, and the better introduction. [Taft Point](/stop/taft-point) alone is about the same distance with even less climbing, but the cliff edge is the whole point: go if heights don\'t bother you.',
     history: {
       note:
         'The Jeffrey pine on the summit was already the point of the walk when ' +

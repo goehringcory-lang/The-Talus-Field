@@ -47,8 +47,8 @@ window.ARTICLE_BODIES["mariposa-grove-how-to-visit"] = function MariposaGroveHow
     note: "about 6.5 mi, 1,000+ ft of gain"
   }, {
     name: "Wawona Point",
-    mi: 7,
-    note: "about 7 mi round trip, ends at a view"
+    mi: 7.75,
+    note: "about 7.75 mi round trip, ends at a view"
   }];
   function GroveMap() {
     return React.createElement("div", {
@@ -92,17 +92,17 @@ window.ARTICLE_BODIES["mariposa-grove-how-to-visit"] = function MariposaGroveHow
       x0 = 40;
     var scaleL = 170,
       scaleW = 470,
-      mx = mi => scaleL + mi / 7 * scaleW;
+      mx = mi => scaleL + mi / 8 * scaleW;
     return React.createElement("svg", {
       viewBox: `0 0 ${W} ${H}`,
       style: svgStyle,
       role: "img",
-      "aria-label": "The four walks from the Arrival Area, by length: the Big Trees Loop, 0.3 miles; the Grizzly Giant Loop, about 2 miles; the Guardians Loop, about 6.5 miles; and the trail to Wawona Point, about 7 miles round trip."
+      "aria-label": "The four walks from the Arrival Area, by length: the Big Trees Loop, 0.3 miles; the Grizzly Giant Loop, about 2 miles; the Guardians Loop, about 6.5 miles; and the trail to Wawona Point, about 7.75 miles round trip."
     }, React.createElement("text", {
       x: x0,
       y: 20,
       style: HEAD
-    }, "THE FOUR WALKS FROM THE ARRIVAL AREA, BY LENGTH"), [0, 1, 2, 3, 4, 5, 6, 7].map(m => React.createElement("g", {
+    }, "THE FOUR WALKS FROM THE ARRIVAL AREA, BY LENGTH"), [0, 1, 2, 3, 4, 5, 6, 7, 8].map(m => React.createElement("g", {
       key: m
     }, React.createElement("line", {
       x1: mx(m),
@@ -115,7 +115,7 @@ window.ARTICLE_BODIES["mariposa-grove-how-to-visit"] = function MariposaGroveHow
       y: H - 12,
       textAnchor: "middle",
       style: SMALL
-    }, m === 7 ? "7 mi" : m))), WALKS.map((w, i) => {
+    }, m === 8 ? "8 mi" : m))), WALKS.map((w, i) => {
       var wy = 44 + i * 58;
       return React.createElement("g", {
         key: w.name

@@ -273,7 +273,7 @@ window.ARTICLE_BODIES["yosemite-gateway-towns-compared"] = function YosemiteGate
             <tr><td>Mariposa</td><td>60 to 75 min</td><td>Arch Rock, via El Portal</td><td>140, year-round</td><td>about 2,000 ft</td><td>Most first-timers, families, winter</td></tr>
             <tr><td>Groveland</td><td>65 to 80 min</td><td>Big Oak Flat, 30 to 40 min</td><td>120, chains common in winter</td><td>about 3,100 ft</td><td>Character, Hetch Hetchy, Bay Area route</td></tr>
             <tr><td>Oakhurst</td><td>75 to 90 min</td><td>South, 20 to 25 min</td><td>41, year-round</td><td>about 2,300 ft</td><td>Wawona and the Mariposa Grove</td></tr>
-            <tr><td>Lee Vining</td><td>90+ min, summer only</td><td>Tioga Pass, about 12 miles</td><td>120 East over Tioga Pass</td><td>about 6,800 ft</td><td>The high country and Mono Lake</td></tr>
+            <tr><td>Lee Vining</td><td>About 2 hours, summer only</td><td>Tioga Pass, about 12 miles</td><td>120 East over Tioga Pass</td><td>about 6,800 ft</td><td>The high country and Mono Lake</td></tr>
           </tbody>
         </table>
       </div>
@@ -313,7 +313,7 @@ window.ARTICLE_BODIES["yosemite-gateway-towns-compared"] = function YosemiteGate
 
       <ul>
         <li><strong>Closest town to Yosemite Valley:</strong> El Portal, about 14 miles and 25 to 35 minutes on Highway 140, through the Arch Rock entrance. Mariposa is next at about 45 miles. Foresta, inside the boundary, has a handful of rental cabins and nothing else.</li>
-        <li><strong>Closest town to the South Entrance:</strong> Fish Camp, two miles from the gate, with Tenaya Lodge and a few inns; Oakhurst, about 14 miles and 20 to 25 minutes, is the closest full town. The Mariposa Grove is just inside this gate and Wawona six miles beyond it.</li>
+        <li><strong>Closest town to the South Entrance:</strong> Fish Camp, two miles from the gate, with Tenaya Lodge and a few inns; Oakhurst, about 14 miles and 20 to 25 minutes, is the closest full town. The Mariposa Grove is just inside this gate and Wawona eight miles beyond it.</li>
         <li><strong>Closest town to the Big Oak Flat Entrance (the west, from the Bay Area):</strong> Buck Meadows and the Highway 120 lodges, a few minutes from the gate; Groveland, about 24 miles and 30 to 40 minutes, is the closest town with a main street.</li>
         <li><strong>Closest town to Tioga Pass (the east):</strong> Lee Vining, about a dozen miles down Highway 120 East, summer only. When the pass is closed there is no town near this entrance because there is no entrance.</li>
         <li><strong>Closest city with an airport:</strong> Fresno, about 60 miles from the South Entrance and 94 from the Valley by the Park Service's count, with summer YARTS service up Highway 41. Merced, on Highway 140, is the year-round YARTS hub for the Valley.</li>
@@ -384,7 +384,7 @@ window.ARTICLE_BODIES["yosemite-gateway-towns-compared"] = function YosemiteGate
       <h2 id="sec-2-mariposa">Mariposa</h2>
 
       <TownFacts rows={[
-        ["Valley drive", "about 45 miles, 45 minutes to an hour"],
+        ["Valley drive", "about 45 miles, 60 to 75 minutes"],
         ["Entrance", "Arch Rock, via El Portal"],
         ["Road", "Highway 140, open year-round"],
         ["Elevation", "about 2,000 feet"],
@@ -404,7 +404,7 @@ window.ARTICLE_BODIES["yosemite-gateway-towns-compared"] = function YosemiteGate
 
       <p>Why they regret it:</p>
       <ul>
-        <li>At least 90 minutes of round-trip driving a day. That means earlier alarms for sunrise and tighter evenings getting back.</li>
+        <li>Two to two and a half hours of round-trip driving a day. That means earlier alarms for sunrise and tighter evenings getting back.</li>
         <li>In summer traffic the drive can stretch well past the hour.</li>
       </ul>
 
@@ -426,7 +426,7 @@ window.ARTICLE_BODIES["yosemite-gateway-towns-compared"] = function YosemiteGate
 
       <TownFacts rows={[
         ["Valley drive", "about 55 miles, 75 to 90 minutes"],
-        ["South Entrance", "about 14 miles, 20 to 25 minutes; the Mariposa Grove is immediately inside the gate, Wawona six miles on"],
+        ["South Entrance", "about 14 miles, 20 to 25 minutes; the Mariposa Grove is immediately inside the gate, Wawona eight miles on"],
         ["Road", "Highway 41, open year-round"],
         ["Elevation", "about 2,300 feet"],
         ["The town", "a regional commercial hub: chain hotels, chain dining, big-box services"],
@@ -542,7 +542,7 @@ window.ARTICLE_BODIES["yosemite-gateway-towns-compared"] = function YosemiteGate
       />
 
       <p>
-        Lee Vining is the only east-side gateway, and it makes for a different kind of trip. Tuolumne Meadows is 30 minutes away when Tioga Road is open, while the Valley is over an hour and a half each way. The road is typically open from late May or June through October or early November. The Park Service opened it on May 15 in 2026, the earliest since 2015 by the park's own table of opening dates, and the <a href="/conditions">road conditions page</a> lists current access. Lodging is a few small motels (the <strong>Yosemite Gateway Motel</strong>, the <strong>El Mono Motel</strong>, an inn or two). Dining is thin but includes the Whoa Nellie Deli at the Mobil station, some of the best food in the eastern Sierra.
+        Lee Vining is the only east-side gateway, and it makes for a different kind of trip. Tuolumne Meadows is 30 minutes away when Tioga Road is open, while the Valley is about two hours each way. The road is typically open from late May or June through October or early November. The Park Service opened it on May 15 in 2026, the earliest since 2015 by the park's own table of opening dates, and the <a href="/conditions">road conditions page</a> lists current access. Lodging is a few small motels (the <strong>Yosemite Gateway Motel</strong>, the <strong>El Mono Motel</strong>, an inn or two). Dining is thin but includes the Whoa Nellie Deli at the Mobil station, some of the best food in the eastern Sierra.
       </p>
 
       <p>Why people pick it:</p>

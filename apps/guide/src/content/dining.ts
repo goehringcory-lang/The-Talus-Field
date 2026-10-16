@@ -72,7 +72,7 @@ export const GATEWAY_TOWNS: { name: string; route: string }[] = [
   { name: 'El Portal & Midpines', route: 'Highway 140, outside the Arch Rock Entrance' },
   { name: 'Mariposa', route: 'Highway 140, about an hour and a quarter from the Valley' },
   { name: 'Groveland & Buck Meadows', route: 'Highway 120 west, outside the Big Oak Flat Entrance' },
-  { name: 'Oakhurst', route: 'Highway 41, about 30 minutes south of the South Entrance' },
+  { name: 'Oakhurst', route: 'Highway 41, 20 to 25 minutes south of the South Entrance' },
   { name: 'Fish Camp', route: 'Highway 41, two miles from the South Entrance' },
   { name: 'Lee Vining', route: 'Highway 120 east at US 395, below Tioga Pass' },
 ]

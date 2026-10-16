@@ -568,7 +568,7 @@ window.ARTICLE_BODIES["when-to-visit-yosemite"] = function WhenToVisitYosemiteBo
               </p>
               <div className="wv-prose">
                 <p>
-                  Every reservation system covered the same stretch of the day, from 5 or 6 in the morning to 2 or 4 in the afternoon. With no system in 2026, you enforce it on yourself. Valley parking fills early on peak days: reports put it as soon as 8 a.m. over Memorial Day weekend, and typically between 10 and 11 a.m. on summer Saturdays and holidays.
+                  The 2022 through 2025 reservation systems covered the same stretch of the day, from 5 or 6 in the morning to 2 or 4 in the afternoon. With no system in 2026, you enforce it on yourself. Valley parking fills early on peak days: reports put it as soon as 8 a.m. over Memorial Day weekend, and typically between 10 and 11 a.m. on summer Saturdays and holidays.
                 </p>
               </div>
             </div>

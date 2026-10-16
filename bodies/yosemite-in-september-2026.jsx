@@ -26,7 +26,7 @@ window.ARTICLE_BODIES["yosemite-in-september-2026"] = function YosemiteInSeptemb
       <h2>The high country is the reason to come</h2>
 
       <p>
-        Tioga Road is open, the whole 39 miles of it, and the high country in September is better than the high country in July: the mosquitoes are gone, the afternoon thunderstorms are less reliable, the meadows have turned, and the crowds are smaller. Tuolumne Meadows, Olmsted Point, Tenaya Lake and the Cathedral Lakes trail are all at their best.
+        Tioga Road is open, all 46 miles of it from Crane Flat to the pass, and the high country in September is better than the high country in July: the mosquitoes are gone, the afternoon thunderstorms are less reliable, the meadows have turned, and the crowds are smaller. Tuolumne Meadows, Olmsted Point, Tenaya Lake and the Cathedral Lakes trail are all at their best.
       </p>
 
       <p>

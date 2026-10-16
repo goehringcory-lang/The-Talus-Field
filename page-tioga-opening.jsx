@@ -45,7 +45,7 @@ const TIOGA_BULLETIN_URL = "/bulletin.json?v=21";
 const OPENING_HISTORY = [
   { year: "2026", date: "May 15", note: "The earliest opening since 2015." },
 ];
-const LONG_TERM_AVERAGE = "May 28";
+const LONG_TERM_AVERAGE = "May 31";
 
 // The status band: the park's own current word on Tioga Road, lifted from the
 // edition condensed in bulletin.json. Renders nothing at all until the fetch

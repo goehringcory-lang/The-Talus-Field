@@ -16,7 +16,7 @@ window.ARTICLE_BODIES["yosemite-from-las-vegas"] = function YosemiteFromLasVegas
       <h2>The number that decides everything</h2>
 
       <p>
-        The Park Service's own directions page gives two figures for Las Vegas, and this article is about the difference between them. In season, by US 95 and Highway 120 over Tioga Pass, it is <strong>400 miles and about eight hours to Yosemite Valley</strong>, and the page dates that road June through October. In winter, by I-15 and Highway 41 through Bakersfield and Fresno, it is <strong>495 miles and eight to ten hours</strong>. Both figures are to the Valley floor in clear conditions, with no stops that matter. Both are longer than the routing app will admit, because the app does not know that the last stretch of either road, seventy-odd miles from Lee Vining or ninety-odd from Fresno, is slow mountain highway with a fee station and a line at the end of it.
+        The Park Service's own directions page gives two figures for Las Vegas, and this article is about the difference between them. In season, by US 95 and Highway 120 over Tioga Pass, it is <strong>400 miles and about eight hours to Yosemite Valley</strong>, and the page dates that road June through October. In winter, by I-15 and Highway 41 through Bakersfield and Fresno, it is <strong>475 miles and eight and a half to ten hours</strong>. Both figures are to the Valley floor in clear conditions, with no stops that matter. Both are longer than the routing app will admit, because the app does not know that the last stretch of either road, seventy-odd miles from Lee Vining or ninety-odd from Fresno, is slow mountain highway with a fee station and a line at the end of it.
       </p>
 
       <p>
@@ -115,7 +115,7 @@ window.ARTICLE_BODIES["yosemite-from-las-vegas"] = function YosemiteFromLasVegas
       <h2>The winter road: around the bottom of the mountains</h2>
 
       <p>
-        When the pass is closed, the Park Service's published detour from Las Vegas is <strong>I-15 south to Barstow, Highway 58 west to Bakersfield, Highway 99 north to Fresno, and Highway 41 north into the park: 495 miles and eight to ten hours</strong>. There is no shortcut. The other high passes north of Tioga close for the winter as well, and the alternative the Park Service publishes for the Eastern Sierra towns, north through Minden and over US 50, is the wrong direction from Nevada's south end. From Bakersfield on, this is the Los Angeles drive, and everything in <a href="/articles/yosemite-from-los-angeles">that piece</a> from Highway 99 north applies: the tule fog on the Valley floor in the wet months, the climb through Oakhurst and Fish Camp, and the arrival at Tunnel View that the southern approach alone delivers.
+        When the pass is closed, the Park Service's published detour from Las Vegas is <strong>I-15 south to Barstow, Highway 58 west to Bakersfield, Highway 99 north to Fresno, and Highway 41 north into the park: 475 miles and eight and a half to ten hours</strong>. There is no shortcut. The other high passes north of Tioga close for the winter as well, and the alternative the Park Service publishes for the Eastern Sierra towns, north through Minden and over US 50, is the wrong direction from Nevada's south end. From Bakersfield on, this is the Los Angeles drive, and everything in <a href="/articles/yosemite-from-los-angeles">that piece</a> from Highway 99 north applies: the tule fog on the Valley floor in the wet months, the climb through Oakhurst and Fish Camp, and the arrival at Tunnel View that the southern approach alone delivers.
       </p>
 
       <p>
@@ -123,7 +123,7 @@ window.ARTICLE_BODIES["yosemite-from-las-vegas"] = function YosemiteFromLasVegas
       </p>
 
       <p>
-        There is a better winter shape than the straight run, and the Park Service's own detour table contains it. Its Death Valley detour, <strong>Highway 190 west to US 395, south to Highway 14, Highway 58 to Bakersfield, then 99 and 41: 450 miles and about nine hours</strong>, is the route from the middle of Death Valley, not from Las Vegas, and that is the point. Winter is Death Valley's season. Drive from Las Vegas into the desert the first day, sleep there, and take the detour road to Oakhurst or Fish Camp the second, and the winter trip stops being a penalty and becomes a two-park drive in the months when the desert is at its best. The pass you cannot cross is the price; the desert in January is what it buys.
+        There is a better winter shape than the straight run, and the Park Service's own detour table contains it. Its Death Valley detour, <strong>Highway 190 west to US 395, south to Highway 14, Highway 58 to Bakersfield, then 99 and 41: 447 miles and about eight and a half hours</strong>, is the route from the middle of Death Valley, not from Las Vegas, and that is the point. Winter is Death Valley's season. Drive from Las Vegas into the desert the first day, sleep there, and take the detour road to Oakhurst or Fish Camp the second, and the winter trip stops being a penalty and becomes a two-park drive in the months when the desert is at its best. The pass you cannot cross is the price; the desert in January is what it buys.
       </p>
 
       <Placeholder

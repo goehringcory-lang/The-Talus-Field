@@ -8,7 +8,7 @@ var ITIN_NEEDS = {
   "2day": ["glacier"],
   "3day": ["glacier", "tioga"]
 };
-var ITIN_DAY_NOTES = [[/Glacier Point Road/i, "Glacier Point is about 30 miles and an hour from Yosemite Valley."], [/Tioga Road/i, "Tuolumne Meadows is roughly 55 to 60 miles from the Valley, about an hour and a half each way. This day only exists once Tioga Road is open, which in some years is not until late June or early July."]];
+var ITIN_DAY_NOTES = [[/Glacier Point Road/i, "Glacier Point is about 30 miles and an hour from Yosemite Valley."], [/Tioga Road/i, "Tuolumne Meadows is about 55 miles from the Valley, about an hour and a half each way. This day only exists once Tioga Road is open, which in some years is not until late June or early July."]];
 var ITIN_CAT_ICON = {
   vista: "eye",
   hike: "walk",

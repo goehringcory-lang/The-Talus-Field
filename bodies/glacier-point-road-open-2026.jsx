@@ -32,7 +32,7 @@ window.ARTICLE_BODIES["glacier-point-road-open-2026"] = function GlacierPointRoa
       </p>
 
       <p>
-        A note worth saying plainly: if your plan was to descend the Panorama Trail to the Mist Trail, check the conditions page before you start down. It listed no Panorama Trail closure in late September, and it is where the park posts one. The Mist Trail has its own restriction: through October it is closed between the Vernal Fall footbridge and the top of Vernal Fall on Monday through Thursday, 7 a.m. to 3:30 p.m., and open Fridays, weekends and holidays. <a href="/articles/mist-trail-the-real-guide">The Mist Trail guide</a> covers the detour.
+        A note worth saying plainly: if your plan was to descend the Panorama Trail to the Mist Trail, check the conditions page before you start down. It listed no Panorama Trail closure in late September, and it is where the park posts one. The Mist Trail has its own restriction: through October it is closed between its John Muir Trail junction, just above the Vernal Fall footbridge, and the top of Vernal Fall on Monday through Thursday, 7 a.m. to 3:30 p.m., and open Fridays, weekends and holidays. <a href="/articles/mist-trail-the-real-guide">The Mist Trail guide</a> covers the detour.
       </p>
 
       <h2>What the road actually feels like early in the season</h2>
@@ -92,7 +92,7 @@ window.ARTICLE_BODIES["glacier-point-road-open-2026"] = function GlacierPointRoa
       <h2>The honest takeaway</h2>
 
       <p>
-        The first weeks of the season are one of the few times in the year when Glacier Point feels like a place you discovered rather than a place everyone has already been to. The road will be dirty. The amenities will be skeletal. You may not be able to buy water. The Mist Trail, if you were planning to combine, is closed Monday through Thursday, 7 a.m. to 3:30 p.m., through October between the footbridge and the top of Vernal Fall.
+        The first weeks of the season are one of the few times in the year when Glacier Point feels like a place you discovered rather than a place everyone has already been to. The road will be dirty. The amenities will be skeletal. You may not be able to buy water. The Mist Trail, if you were planning to combine, is closed Monday through Thursday, 7 a.m. to 3:30 p.m., through October between its John Muir Trail junction, just above the footbridge, and the top of Vernal Fall.
       </p>
 
       <p>

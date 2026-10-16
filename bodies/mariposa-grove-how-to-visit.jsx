@@ -21,7 +21,7 @@ window.ARTICLE_BODIES["mariposa-grove-how-to-visit"] = function MariposaGroveHow
     { name: "Big Trees Loop", mi: 0.3, note: "0.3 mi, paved, flat, wheelchair accessible" },
     { name: "Grizzly Giant Loop", mi: 2, note: "about 2 mi, the one to do if you do one" },
     { name: "Guardians Loop", mi: 6.5, note: "about 6.5 mi, 1,000+ ft of gain" },
-    { name: "Wawona Point", mi: 7, note: "about 7 mi round trip, ends at a view" },
+    { name: "Wawona Point", mi: 7.75, note: "about 7.75 mi round trip, ends at a view" },
   ];
 
   function GroveMap() {
@@ -41,15 +41,15 @@ window.ARTICLE_BODIES["mariposa-grove-how-to-visit"] = function MariposaGroveHow
   }
   function GroveWalks() {
     const W = 680, H = 300, x0 = 40;
-    const scaleL = 170, scaleW = 470, mx = (mi) => scaleL + (mi / 7) * scaleW;
+    const scaleL = 170, scaleW = 470, mx = (mi) => scaleL + (mi / 8) * scaleW;
     return (
       <svg viewBox={`0 0 ${W} ${H}`} style={svgStyle} role="img"
-        aria-label="The four walks from the Arrival Area, by length: the Big Trees Loop, 0.3 miles; the Grizzly Giant Loop, about 2 miles; the Guardians Loop, about 6.5 miles; and the trail to Wawona Point, about 7 miles round trip.">
+        aria-label="The four walks from the Arrival Area, by length: the Big Trees Loop, 0.3 miles; the Grizzly Giant Loop, about 2 miles; the Guardians Loop, about 6.5 miles; and the trail to Wawona Point, about 7.75 miles round trip.">
         <text x={x0} y={20} style={HEAD}>THE FOUR WALKS FROM THE ARRIVAL AREA, BY LENGTH</text>
-        {[0, 1, 2, 3, 4, 5, 6, 7].map((m) => (
+        {[0, 1, 2, 3, 4, 5, 6, 7, 8].map((m) => (
           <g key={m}>
             <line x1={mx(m)} x2={mx(m)} y1={34} y2={H - 30} stroke="var(--rule-soft)" />
-            <text x={mx(m)} y={H - 12} textAnchor="middle" style={SMALL}>{m === 7 ? "7 mi" : m}</text>
+            <text x={mx(m)} y={H - 12} textAnchor="middle" style={SMALL}>{m === 8 ? "8 mi" : m}</text>
           </g>
         ))}
         {WALKS.map((w, i) => {

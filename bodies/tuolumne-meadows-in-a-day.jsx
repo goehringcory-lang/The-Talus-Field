@@ -12,7 +12,7 @@ window.ARTICLE_BODIES["tuolumne-meadows-in-a-day"] = function TuolumneMeadowsInA
       <h2>The drive, and the two hours nobody budgets</h2>
 
       <p>
-        Tuolumne Meadows sits on Tioga Road, Highway 120 through the park, roughly 55 to 60 miles from Yosemite Valley. Call it an hour and a half each way in no traffic, and closer to two in July. That is three to four hours of driving bracketing your day, and that is what ruins Tuolumne itineraries: people leave the Valley at ten, arrive at noon, eat, walk for an hour, and drive home having seen a meadow through a window.
+        Tuolumne Meadows sits on Tioga Road, Highway 120 through the park, about 55 miles from Yosemite Valley. Call it an hour and a half each way in no traffic, and closer to two in July. That is three to four hours of driving bracketing your day, and that is what ruins Tuolumne itineraries: people leave the Valley at ten, arrive at noon, eat, walk for an hour, and drive home having seen a meadow through a window.
       </p>
 
       <p>
@@ -30,7 +30,7 @@ window.ARTICLE_BODIES["tuolumne-meadows-in-a-day"] = function TuolumneMeadowsInA
       </p>
 
       <p>
-        <strong>There is no gas at Tuolumne Meadows.</strong> Start here, because it is the one that strands people. The old station has been out of operation for years and travel sites still list it. Inside the park on the west side, Crane Flat is the only fuel, pay-at-pump around the clock, and the point where Tioga Road begins. On the east side your next fuel is Lee Vining, about forty-five minutes past the meadows. Fill up at Crane Flat on the way in whether or not you think you need to.
+        <strong>There is no gas at Tuolumne Meadows.</strong> Start here, because it is the one that strands people. The old station has been out of operation for years and travel sites still list it. Inside the park on the west side, Crane Flat is the only fuel, pay-at-pump around the clock, and the point where Tioga Road begins. On the east side your next fuel is Lee Vining, about thirty minutes past the meadows. Fill up at Crane Flat on the way in whether or not you think you need to.
       </p>
 
       <p>

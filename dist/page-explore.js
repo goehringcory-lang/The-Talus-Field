@@ -61,7 +61,7 @@ function ExplorePage({
   }, {
     href: "/archive/",
     name: "The Nature Notes archive",
-    count: "512 issues",
+    count: "511 issues",
     note: "The park's own bulletin, Yosemite Nature Notes, transcribed from the scans: every issue from 1922 to 2003, roughly 1.87 million words, with year indexes and its own search-engine sitemap."
   }, {
     route: "search",

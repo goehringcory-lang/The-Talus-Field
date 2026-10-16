@@ -61,7 +61,7 @@ window.ARTICLE_BODIES["first-time-yosemite-overwhelm"] = function FirstTimeYosem
     ["Do I need a reservation to enter Yosemite in 2026?",
       "No. There is no day-use or timed-entry reservation in 2026. You need a standard entrance pass, $35 per vehicle for seven days."],
     ["Where should I stay in Yosemite for the first time?",
-      "Mariposa is the most practical first-timer choice: 45 minutes to an hour from the Valley, a real downtown, and the year-round Highway 140 road. El Portal is closer but smaller and more expensive. In-park lodging books 366 days ahead and fills fast for summer."],
+      "Mariposa is the most practical first-timer choice: 60 to 75 minutes from the Valley, a real downtown, and the year-round Highway 140 road. El Portal is closer but smaller and more expensive. In-park lodging books 366 days ahead and fills fast for summer."],
     ["How much driving is involved in a Yosemite trip?",
       "More than most people expect. A gateway town to the Valley is 25 to 90 minutes each way, and Glacier Point Road or Tioga Road each add an hour or more inside the park."],
     ["Is there an extra fee for international visitors in 2026?",
@@ -543,7 +543,7 @@ window.ARTICLE_BODIES["first-time-yosemite-overwhelm"] = function FirstTimeYosem
           <div className="ff-split ft-stay-end">
             <div className="ft-prose">
               <p>
-                The short version: <strong>Mariposa</strong> is the default for a first trip, a real town on Highway 140, the year-round road, 45 minutes to an hour from the Valley. <strong>El Portal</strong> is closer, about 25 to 35 minutes, and priced like it. <strong>Oakhurst</strong> is right for the Mariposa Grove and wrong for a Valley trip, at 75 to 90 minutes each way. <strong>Lee Vining</strong> is a high-country base, not a Valley base, and picking it for a Valley trip is the most common mistake I see.
+                The short version: <strong>Mariposa</strong> is the default for a first trip, a real town on Highway 140, the year-round road, 60 to 75 minutes from the Valley. <strong>El Portal</strong> is closer, about 25 to 35 minutes, and priced like it. <strong>Oakhurst</strong> is right for the Mariposa Grove and wrong for a Valley trip, at 75 to 90 minutes each way. <strong>Lee Vining</strong> is a high-country base, not a Valley base, and picking it for a Valley trip is the most common mistake I see.
               </p>
               <p>
                 <a href="/articles/yosemite-gateway-towns-compared">Where to stay near Yosemite</a> compares all five, and <a href="/articles/where-to-stay-in-yosemite">the in-park lodging guide</a> covers the other side of the boundary.

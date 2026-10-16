@@ -37,7 +37,7 @@ var TO_VALLEY = [{
 var OTHER_LEGS = [{
   from: "Oakhurst",
   to: "South Entrance",
-  detail: "about 14 miles, 20 to 25 minutes. The Mariposa Grove welcome plaza is immediately inside the gate; Wawona itself is another six miles on."
+  detail: "about 14 miles, 20 to 25 minutes. The Mariposa Grove welcome plaza is immediately inside the gate; Wawona itself is another eight miles on."
 }, {
   from: "Groveland",
   to: "Big Oak Flat Entrance",

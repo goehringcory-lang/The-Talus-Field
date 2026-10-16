@@ -37,7 +37,7 @@ const TO_VALLEY = [
 // The pairings the article states outright. A town with no published figure for
 // a destination gets an honest blank rather than an estimate.
 const OTHER_LEGS = [
-  { from: "Oakhurst", to: "South Entrance", detail: "about 14 miles, 20 to 25 minutes. The Mariposa Grove welcome plaza is immediately inside the gate; Wawona itself is another six miles on." },
+  { from: "Oakhurst", to: "South Entrance", detail: "about 14 miles, 20 to 25 minutes. The Mariposa Grove welcome plaza is immediately inside the gate; Wawona itself is another eight miles on." },
   { from: "Groveland", to: "Big Oak Flat Entrance", detail: "about 24 miles, 30 to 40 minutes on a winding road." },
   { from: "Lee Vining", to: "Tuolumne Meadows", detail: "about 20 miles, 30 minutes, while Tioga Pass is open." },
   { from: "Lee Vining", to: "Mono Lake", detail: "about 5 minutes to the visitor center, 15 to the South Tufa boardwalk." },

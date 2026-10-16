@@ -510,7 +510,7 @@ window.ARTICLE_BODIES["yosemite-for-non-hikers"] = function YosemiteForNonHikers
               </header>
               <dl className="nh-drive__facts">
                 <div><dt>Season</dt><dd>Open to cars about late May through October or November, depending on snow</dd></div>
-                <div><dt>The drive</dt><dd>About an hour from the Valley: 13 miles south on Wawona Road, then 16 on Glacier Point Road</dd></div>
+                <div><dt>The drive</dt><dd>About an hour from the Valley: 14 miles south on Wawona Road, then 16 on Glacier Point Road</dd></div>
                 <div><dt>The walk</dt><dd>A short paved path, about 300 yards each way</dd></div>
                 <div><dt>Height</dt><dd>About 3,200 feet above the Valley floor</dd></div>
               </dl>
@@ -525,7 +525,7 @@ window.ARTICLE_BODIES["yosemite-for-non-hikers"] = function YosemiteForNonHikers
               </header>
               <dl className="nh-drive__facts">
                 <div><dt>Season</dt><dd>Open about May or June to November, depending on snow</dd></div>
-                <div><dt>The drive</dt><dd>39 miles across the park, climbing from 6,200 feet to nearly 10,000</dd></div>
+                <div><dt>The drive</dt><dd>46 miles across the park, climbing from 6,200 feet to nearly 10,000</dd></div>
                 <div><dt>The high point</dt><dd>Tioga Pass, at 9,945 feet</dd></div>
                 <div><dt>Services</dt><dd>Very few or none in the fall</dd></div>
               </dl>

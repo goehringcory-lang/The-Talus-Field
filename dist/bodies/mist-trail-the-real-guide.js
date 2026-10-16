@@ -169,7 +169,7 @@ window.ARTICLE_BODIES["mist-trail-the-real-guide"] = function MistTrailBody() {
     style: {
       margin: "28px 0 32px"
     }
-  }, React.createElement(Turnarounds, null), React.createElement("figcaption", null, "The four turnarounds, from the figures above: straight lines between the published points, not a surveyed profile. The crowd notes are from the crowd section below. Coming down the John Muir Trail from the top of Nevada Fall makes a hike of roughly 7 miles from Happy Isles, plus the walk to your parking space.")), React.createElement("p", null, "Keep going past Nevada Fall and you're on the standard approach to Half Dome. If that's the plan, read the ", React.createElement("a", {
+  }, React.createElement(Turnarounds, null), React.createElement("figcaption", null, "The four turnarounds, from the figures above: straight lines between the published points, not a surveyed profile. The crowd notes are from the crowd section below. Coming down the John Muir Trail from the top of Nevada Fall makes a loop of about 5.8 miles from Happy Isles, by the printed Yosemite Guide's count, plus the walk to your parking space.")), React.createElement("p", null, "Keep going past Nevada Fall and you're on the standard approach to Half Dome. If that's the plan, read the ", React.createElement("a", {
     href: "/half-dome-lottery"
   }, "permit lottery guide"), " first, and ", React.createElement("a", {
     href: "/articles/so-you-want-to-hike-half-dome"

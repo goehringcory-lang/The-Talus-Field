@@ -22,11 +22,11 @@ window.ARTICLE_BODIES["hetch-hetchy-the-other-yosemite-valley"] = function Hetch
       <h2>The geography</h2>
 
       <p>
-        Hetch Hetchy sits in the northwestern corner of Yosemite National Park, accessed via <a href="/articles/getting-to-yosemite">Highway 120</a> to the <strong>Big Oak Flat Entrance</strong> and then a separate road that branches north before you reach the Valley. The drive from the Big Oak Flat Entrance to the <strong>O'Shaughnessy Dam</strong> (the trailhead for almost everything you'll do here) is about 16 miles, with significant winding mountain road. From Yosemite Valley, you're looking at about an hour and fifteen minutes of driving each way.
+        Hetch Hetchy sits in the northwestern corner of Yosemite National Park, accessed via <a href="/articles/getting-to-yosemite">Highway 120</a> to the <strong>Big Oak Flat Entrance</strong> and then a separate road that branches north before you reach the Valley. The drive from the Big Oak Flat Entrance to the <strong>O'Shaughnessy Dam</strong> (the trailhead for almost everything you'll do here) is about 16 miles, with significant winding mountain road. From Yosemite Valley, the park's own figures are an hour and a quarter to an hour and a half of driving each way.
       </p>
 
       <p>
-        The valley itself is about 8 miles long and a half-mile wide on average. Before the dam, it had a meadow floor, two major waterfalls (Wapama and Tueeulala, the latter only running in spring snowmelt) on its north wall, and a forested rim with significant stands of black oak, ponderosa pine, and incense cedar. Today, the lower portion of the valley is filled with the <strong>Hetch Hetchy Reservoir</strong>, which holds 117 billion gallons of water at full capacity.
+        The reservoir that now fills the valley is about 8 miles long. Before the dam, the valley had a meadow floor, two major waterfalls (Wapama and Tueeulala, the latter only running in spring snowmelt) on its north wall, and a forested rim with significant stands of black oak, ponderosa pine, and incense cedar. Today, the lower portion of the valley is filled with the <strong>Hetch Hetchy Reservoir</strong>, which holds 117 billion gallons of water at full capacity.
       </p>
 
       <p>
@@ -52,7 +52,7 @@ window.ARTICLE_BODIES["hetch-hetchy-the-other-yosemite-valley"] = function Hetch
       </p>
 
       <p>
-        He lost. The Raker Act passed Congress in 1913. President Wilson signed it. Construction on the dam began in 1914. Muir died in late 1914, partly of pneumonia and, his biographers and his friends both said, partly of the heartbreak of losing this fight.
+        He lost. The Raker Act passed Congress in 1913. President Wilson signed it. Construction on the O'Shaughnessy Dam began in 1919. Muir died in late 1914, partly of pneumonia and, his biographers and his friends both said, partly of the heartbreak of losing this fight.
       </p>
 
       <p>The Sierra Club, which Muir co-founded in 1892, has not stopped trying to get the dam removed in the century since.</p>
@@ -112,7 +112,7 @@ window.ARTICLE_BODIES["hetch-hetchy-the-other-yosemite-valley"] = function Hetch
       <h2>A note on the access road</h2>
 
       <p>
-        The road into Hetch Hetchy is open from sunrise to sunset most days, with the exact hours posted at the entrance station. This is a real constraint. If you arrive at 7 p.m. in July expecting to see the dam at sunset, you'll be denied entry. Plan your day around the gate hours. The hours change seasonally and are posted on the NPS Hetch Hetchy page.
+        The road into Hetch Hetchy is open from sunrise to sunset most days, with the exact hours posted at the entrance station. This is a real constraint. If you arrive after sunset expecting to see the dam in the dusk light, you will be turned away. Plan your day around the gate hours. The hours change seasonally and are posted on the NPS Hetch Hetchy page.
       </p>
 
       <p>

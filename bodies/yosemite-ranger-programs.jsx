@@ -12,7 +12,7 @@ window.ARTICLE_BODIES["yosemite-ranger-programs"] = function YosemiteRangerProgr
       <h2>What is actually on offer</h2>
 
       <p>
-        The menu changes with the season, but in summer a typical day in the Valley includes guided morning walks (geology, black bears, the ravens, the fire history, whatever that ranger loves most), talks at the visitor center and museum, photography and art programs, and evening programs several nights a week, usually starting around 8 p.m. at the campground amphitheaters and lodge venues. After dark there are night-sky programs when conditions and staffing allow; pair one with <a href="/articles/yosemite-stargazing-where-to-look-up">our stargazing guide</a> and you have a complete evening that cost exactly nothing. Winter thins the calendar but never empties it; the snowshoe walks, when offered, are some of the best programs of the year.
+        The menu changes with the season, but in summer a typical day in the Valley includes guided morning walks (geology, black bears, the ravens, the fire history, whatever that ranger loves most), talks at the visitor center and museum, photography and art programs, and evening programs several nights a week, starting between 6:30 and 8 p.m., depending on the venue and the season, at the campground amphitheaters and lodge venues. After dark there are night-sky programs when conditions and staffing allow; pair one with <a href="/articles/yosemite-stargazing-where-to-look-up">our stargazing guide</a> and you have a complete evening that cost exactly nothing. Winter thins the calendar but never empties it; the snowshoe walks, when offered, are some of the best programs of the year.
       </p>
 
       <p>

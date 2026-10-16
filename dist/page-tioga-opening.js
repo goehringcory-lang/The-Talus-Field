@@ -4,7 +4,7 @@ var OPENING_HISTORY = [{
   date: "May 15",
   note: "The earliest opening since 2015."
 }];
-var LONG_TERM_AVERAGE = "May 28";
+var LONG_TERM_AVERAGE = "May 31";
 function TiogaStatus() {
   var [row, setRow] = React.useState(null);
   var [edition, setEdition] = React.useState(null);

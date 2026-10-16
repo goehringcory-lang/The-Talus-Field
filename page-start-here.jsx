@@ -178,7 +178,7 @@ const START_PLACES = [
       "Lembert Dome with Dog Lake, 3.8 miles and 850 feet, for the earned view",
     ],
     facts: [
-      ["From the Valley", "55 to 60 miles, 1.5 hours each way, closer to 2 in July"],
+      ["From the Valley", "55 miles, 1.5 hours each way, closer to 2 in July"],
       ["Season", "Tioga Road opens late May or June, closes with the first serious snow"],
       ["Weather", "Off the open granite before the afternoon thunderheads"],
       ["Give it", "Its own day. It deserves more than a drive-through."],

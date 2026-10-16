@@ -42,7 +42,7 @@ window.ARTICLE_BODIES["yosemite-in-june"] = function YosemiteInJune2026Body() {
       </p>
 
       <p>
-        This matters more than usual in 2026. With no reservation system managing Valley crowds, the high country is the best way around them. Tuolumne Meadows, Cathedral Lakes, Tenaya Lake, the Dana Fork, Lembert Dome: these places are two hours from the Valley floor and far less crowded. I drove up on the opening weekend and counted eight cars at the Cathedral Lakes trailhead at 9 a.m. on a Saturday. That same morning, the Valley had been full since 7:30. If your trip overlaps with a <a href="/articles/yosemite-without-reservations-2026">Valley gridlock day</a>, Tuolumne is the answer.
+        This matters more than usual in 2026. With no reservation system managing Valley crowds, the high country is the best way around them. Tuolumne Meadows, Cathedral Lakes, Tenaya Lake, the Dana Fork, Lembert Dome: these places are an hour and a half from the Valley floor and far less crowded. I drove up on the opening weekend and counted eight cars at the Cathedral Lakes trailhead at 9 a.m. on a Saturday. That same morning, the Valley had been full since 7:30. If your trip overlaps with a <a href="/articles/yosemite-without-reservations-2026">Valley gridlock day</a>, Tuolumne is the answer.
       </p>
 
       <p>
