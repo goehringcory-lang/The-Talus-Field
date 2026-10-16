@@ -52,3 +52,6 @@ scripts/data/.trailcache/
 
 # 3D map pipeline: pmtiles CLI, Terrarium tile cache, built archives (uploaded to R2, never committed)
 apps/guide/scripts/.mapcache/
+
+# Python wheels (a stray one was committed in #577)
+*.whl
