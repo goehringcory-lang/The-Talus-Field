@@ -116,8 +116,8 @@ function ChecklistPage({ go }) {
         </CheckSheet>
 
         <CheckSheet label="IV · Gateway choice" title="Pick your base">
-          <label className="fj-check"><input type="checkbox" /><strong><A r="a:yosemite-gateway-towns-compared">El Portal</A></strong>: closest to the Valley (25-30 min). Limited dining, year-round access.</label>
-          <label className="fj-check"><input type="checkbox" /><strong><A r="a:yosemite-gateway-towns-compared">Mariposa</A></strong>: 45 min from the Valley. Full service, best first-timer pick.</label>
+          <label className="fj-check"><input type="checkbox" /><strong><A r="a:yosemite-gateway-towns-compared">El Portal</A></strong>: closest to the Valley (25 to 35 min). Limited dining, year-round access.</label>
+          <label className="fj-check"><input type="checkbox" /><strong><A r="a:yosemite-gateway-towns-compared">Mariposa</A></strong>: 60 to 75 min from the Valley. Full service, best first-timer pick.</label>
           <label className="fj-check"><input type="checkbox" /><strong><A r="a:yosemite-gateway-towns-compared">Oakhurst</A></strong>: closest to Mariposa Grove. Long drive to the Valley.</label>
           <label className="fj-check"><input type="checkbox" /><strong><A r="a:yosemite-gateway-towns-compared">Groveland</A></strong>: Bay Area approach, near <A r="a:hetch-hetchy-the-other-yosemite-valley">Hetch Hetchy</A>.</label>
           <label className="fj-check"><input type="checkbox" /><strong><A r="a:yosemite-gateway-towns-compared">Lee Vining</A></strong>: east side; <A r="a:tioga-road-opening-weekend">Tuolumne and Mono Lake</A>. Summer only.</label>

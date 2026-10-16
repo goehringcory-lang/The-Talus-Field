@@ -52,7 +52,7 @@ const CAM_NOTES = [
     name: "Wawona",
     from: "Wawona, the park's south end",
     shows:
-      "Conditions an hour south of the Valley and twenty minutes from the Mariposa Grove, at about 4,000 feet. Worth checking separately in winter, when Wawona and the Valley genuinely differ.",
+      "Conditions an hour south of the Valley and about thirty minutes from the Mariposa Grove, at about 4,000 feet. Worth checking separately in winter, when Wawona and the Valley genuinely differ.",
     best: "Midday in winter, to see whether snow is lying.",
   },
 ];
@@ -79,8 +79,8 @@ function WebcamsPage({ go }) {
         <section className="prose">
           <h2>What each camera shows</h2>
           <p>
-            All four are still-image cameras rather than video streams. They
-            refresh every few minutes, not every second, which is why a
+            All four are still images rather than video streams. They
+            refresh on the order of minutes rather than seconds, which is why a
             page reload does not always change the picture and why nothing here
             is going to show you a bear walking past.
           </p>
@@ -143,8 +143,11 @@ function WebcamsPage({ go }) {
           <p>
             <strong>For the high country and the east side</strong>, there is no
             Conservancy camera at Tuolumne Meadows or Tioga Pass, which is the
-            single most requested view the park does not have on this list.
-            Until the road opens, the honest substitutes are the NPS Tioga Road
+            single most requested view missing from this list.
+            Yosemite Hospitality runs a summer-only camera at the Tuolumne
+            Meadows Store, which the{" "}
+            <a href="https://www.nps.gov/yose/learn/photosmultimedia/webcams.htm" target="_blank" rel="noopener noreferrer">NPS webcams page</a>{" "}
+            links. Until the road opens, the honest substitutes are the NPS Tioga Road
             page for plowing status and{" "}
             <a href="/tioga-opening">the opening page</a> for how the season
             works.

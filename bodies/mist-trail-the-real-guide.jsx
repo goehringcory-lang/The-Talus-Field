@@ -91,13 +91,13 @@ window.ARTICLE_BODIES["mist-trail-the-real-guide"] = function MistTrailBody() {
       </p>
 
       <p>
-        <strong>The return via the John Muir Trail.</strong> From Nevada Fall, the JMT provides a longer descent with gentler grades than the Mist Trail stairs. Allow roughly 7 miles for the combined hike from Happy Isles, plus the walk to your parking space. Check closures before relying on either route.
+        <strong>The return via the John Muir Trail.</strong> From Nevada Fall, the JMT provides a longer descent with gentler grades than the Mist Trail stairs. Allow roughly 5.8 miles for the loop from Happy Isles, by the printed Yosemite Guide's count, plus the walk to your parking space. Check closures before relying on either route.
       </p>
 
       <figure style={{ margin: "28px 0 32px" }}>
         <Turnarounds />
         <figcaption>
-          The four turnarounds, from the figures above: straight lines between the published points, not a surveyed profile. The crowd notes are from the crowd section below. Coming down the John Muir Trail from the top of Nevada Fall makes a hike of roughly 7 miles from Happy Isles, plus the walk to your parking space.
+          The four turnarounds, from the figures above: straight lines between the published points, not a surveyed profile. The crowd notes are from the crowd section below. Coming down the John Muir Trail from the top of Nevada Fall makes a loop of about 5.8 miles from Happy Isles, by the printed Yosemite Guide's count, plus the walk to your parking space.
         </figcaption>
       </figure>
 
@@ -108,7 +108,7 @@ window.ARTICLE_BODIES["mist-trail-the-real-guide"] = function MistTrailBody() {
       <h2>The wet granite reality</h2>
 
       <p>
-        From mid-April to late June, the granite staircase below Vernal Fall is basically a waterfall of its own. Spray hits the trail the whole time. The steps, hundreds of them, carved and placed by the Civilian Conservation Corps in the 1930s, are wet, mossy in places, and uneven. Some are a foot tall. Some are two feet tall. Some are angled in ways that make your feet slide.
+        From mid-April to late June, the granite staircase below Vernal Fall is basically a waterfall of its own. Spray hits the trail the whole time. The steps, over 600 of them on the stretch to the top of Vernal Fall by the Park Service's count, are wet, mossy in places, and uneven. Some are a foot tall. Some are two feet tall. Some are angled in ways that make your feet slide.
       </p>
 
       <p>

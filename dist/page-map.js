@@ -125,7 +125,7 @@ var ORIENT_GATES = [{
     lat: 37.5049,
     lng: -119.6318
   },
-  hint: "From Oakhurst. The Mariposa Grove welcome plaza is immediately inside the gate; Wawona is six miles on, the Valley about an hour past that."
+  hint: "From Oakhurst. The Mariposa Grove welcome plaza is immediately inside the gate; Wawona is eight miles on, the Valley about 45 minutes past that."
 }, {
   id: "bof",
   label: "Big Oak Flat",

@@ -145,7 +145,7 @@ window.ARTICLE_BODIES["tioga-road-stop-by-stop"] = function TiogaRoadStopByStopB
       <h2>Lembert Dome and Dog Lake</h2>
 
       <p>
-        Lembert Dome stands over the east end of the meadow, and its trailhead is the parking area just past the river. The walk up the back of the dome is <strong>about 2.8 miles round trip with 850 feet of climb</strong>, and Dog Lake is about 2.8 miles with 650 feet; the Park Service lists the two together as a 3.8-mile outing from the Dog Lake parking area. The summit is open granite. Go up before noon in thunderstorm season.
+        Lembert Dome stands over the east end of the meadow, and its trailhead is the parking area just past the river. The Park Service lists Dog Lake with a side trip up the dome as a <strong>3.8-mile round trip with 850 feet of climb</strong> from the Dog Lake parking area, and a 5-mile loop if you come back by the Lembert Dome lot. The summit is open granite. Go up before noon in thunderstorm season.
       </p>
 
       <h2>Dana Meadows: the last climb</h2>

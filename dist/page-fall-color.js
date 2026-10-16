@@ -92,7 +92,7 @@ var FC_TOWNS = [{
   id: "mariposa",
   name: "Midpines and Mariposa",
   dest: "Mariposa, California",
-  drive: "45 to 60 min",
+  drive: "60 to 75 min",
   road: "Highway 140",
   note: "The deepest inventory on the road that stays open all winter, so a late-season storm does not strand the trip."
 }, {

@@ -20,7 +20,7 @@ window.ARTICLE_BODIES["camping-in-yosemite-first-time"] = function CampingInYose
       </p>
 
       <p>
-        If the picture in your head is a tent alone in trees, quiet, the nearest human a mile off, that is backpacking, and it is a real thing you can do here with <a href="/articles/yosemite-wilderness-permits-guide">a wilderness permit</a>. It is not what a Yosemite campground is. The three Valley campgrounds hold roughly 380 sites between them, packed into a floor that is a mile wide, and Upper Pines alone holds well over half of those. You will see your neighbors. You will hear your neighbors. On a July Saturday the Pines complex has the population of a small town and the density of a parking lot with trees in it.
+        If the picture in your head is a tent alone in trees, quiet, the nearest human a mile off, that is backpacking, and it is a real thing you can do here with <a href="/articles/yosemite-wilderness-permits-guide">a wilderness permit</a>. It is not what a Yosemite campground is. The three Valley campgrounds hold roughly 390 sites between them, packed into a floor that is a mile wide, and Upper Pines alone holds well over half of those. You will see your neighbors. You will hear your neighbors. On a July Saturday the Pines complex has the population of a small town and the density of a parking lot with trees in it.
       </p>
 
       <p>
@@ -50,7 +50,7 @@ window.ARTICLE_BODIES["camping-in-yosemite-first-time"] = function CampingInYose
       </p>
 
       <p>
-        <strong>No showers. Not at any campground in the park.</strong> Not the Valley ones, not Wawona, not Tuolumne. The nearest public showers are at Curry Village. They cost about five dollars, and in peak season the line reaches the point where you have to decide how much you actually mind. Baby wipes and a gallon jug do most of the work. Plan for three days of not being clean and it stops being a problem; plan for a shower and it ruins an evening.
+        <strong>No showers. Not at any campground in the park.</strong> Not the Valley ones, not Wawona, not Tuolumne. The nearest public showers are at Curry Village, they cost a fee, and in peak season the line reaches the point where you have to decide how much you actually mind. Baby wipes and a gallon jug do most of the work. Plan for three days of not being clean and it stops being a problem; plan for a shower and it ruins an evening.
       </p>
 
       <p>
@@ -126,7 +126,7 @@ window.ARTICLE_BODIES["camping-in-yosemite-first-time"] = function CampingInYose
       </p>
 
       <p>
-        And a fifth thing that is not a time but belongs with them: do not bring firewood from home. Moving firewood is how insect pests get moved into new forests, and the standing advice statewide is to buy it where you burn it. Gathering downed wood is prohibited in the Valley and in the sequoia groves outright. Buy a bundle at the store on your way in.
+        And a fifth thing that is not a time but belongs with them: do not bring firewood from far away. Moving firewood is how insect pests get moved into new forests, and the park asks that none come from more than 50 miles away; the simplest way to comply is to buy it where you burn it. Gathering is limited to dead and downed wood under six inches across, below 9,600 feet, and in Yosemite Valley only inside campground boundaries. Buy a bundle at the store on your way in.
       </p>
 
       <h2>Set up in daylight. All of it.</h2>

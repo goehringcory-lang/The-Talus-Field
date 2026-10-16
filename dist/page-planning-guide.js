@@ -194,7 +194,7 @@ var PG_TOWNS = [{
   name: "Mariposa",
   dest: "Mariposa, California",
   road: "Highway 140 · year-round",
-  drive: "45 to 60 min",
+  drive: "60 to 75 min",
   bar: 50,
   photo: "img/mariposa-county-courthouse.jpg",
   alt: "The 1854 Mariposa County Courthouse",
@@ -850,7 +850,7 @@ function PlanningGuide({
     rel: "noopener noreferrer"
   }, "Check dates\xA0↗"))), React.createElement("div", {
     className: "pg-inpark__foot"
-  }, React.createElement("p", null, "Gone for your dates? Mariposa and El Portal hold the most rooms within an hour. ", React.createElement(AvailabilityLink, {
+  }, React.createElement("p", null, "Gone for your dates? Mariposa and El Portal hold the most rooms within about an hour and a quarter. ", React.createElement(AvailabilityLink, {
     destination: "Mariposa, California",
     list: "planning_in_park",
     slug: "mariposa",

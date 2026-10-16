@@ -91,7 +91,7 @@ window.ARTICLE_BODIES["best-airport-for-yosemite"] = function BestAirportForYose
     {
       code: "RNO", name: "Reno", full: "Reno-Tahoe International Airport",
       miles: "218 mi", time: "About 5 hours, June to October", hours: [5, 5], chart: "5 h",
-      road: "US 395 and Tioga Pass when the pass is open; 315 miles and 5½ hours around it when it is not",
+      road: "US 395 and Tioga Pass when the pass is open; 315 miles and 5.5 hours around it when it is not",
       flights: "Mostly domestic connections.",
       transit: "No practical connection.",
       verdict: "Only for a summer trip that starts on the east side.",
@@ -110,7 +110,7 @@ window.ARTICLE_BODIES["best-airport-for-yosemite"] = function BestAirportForYose
   // times are GATEWAYS in page-stay.jsx, the published table in
   // yosemite-gateway-towns-compared.
   const TOWNS = [
-    { id: "mariposa", name: "Mariposa and Midpines", dest: "Mariposa, California", drive: "45 to 60 min", from: "From SFO in winter, or off the Merced flight", road: "Highway 140, the road that stays open" },
+    { id: "mariposa", name: "Mariposa and Midpines", dest: "Mariposa, California", drive: "60 to 75 min", from: "From SFO in winter, or off the Merced flight", road: "Highway 140, the road that stays open" },
     { id: "groveland", name: "Groveland", dest: "Groveland, California", drive: "65 to 80 min", from: "From SFO, Oakland, San Jose or Sacramento, spring to autumn", road: "Highway 120, the shorter line from the Bay" },
     { id: "oakhurst", name: "Oakhurst and Fish Camp", dest: "Oakhurst, California", drive: "75 to 90 min", from: "From LAX or Fresno", road: "Highway 41, the South Entrance and the Mariposa Grove" },
   ];
@@ -301,7 +301,7 @@ window.ARTICLE_BODIES["best-airport-for-yosemite"] = function BestAirportForYose
                   From San Francisco the route is three legs, and it runs every day of the year. The San Joaquins train does not reach the city itself, so you start on BART. Amtrak sells the train and the YARTS bus as one ticket to Yosemite, and the bus is timed to meet the trains at Merced. Allow four to four and a half hours from the Bay, which is no faster than driving and a good deal more restful.
                 </p>
                 <p>
-                  The bus drops you at Yosemite Valley Lodge, Yosemite Village or Curry Village, all on the free Valley shuttle. The park's pages and YARTS currently give different answers on whether a bus fare also covers the entrance fee, so budget for the fee anyway; <a href="/articles/yosemite-shuttle-and-yarts">the shuttle and YARTS guide</a> sets out both positions and the timetable.
+                  The bus drops you at Yosemite Valley Lodge, Yosemite Village or Curry Village, all on the free Valley shuttle. Whether the bus fare covers your entrance fee is unsettled: the Park Service says YARTS riders do not pay it, while YARTS' fares page says the park entrance and non-resident fees are not included, so budget for them. <a href="/articles/yosemite-shuttle-and-yarts">The shuttle and YARTS guide</a> has the timetable.
                 </p>
               </div>
             </div>

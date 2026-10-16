@@ -226,7 +226,7 @@ function FilmsPage({
       className: "hp-films__intro"
     }, "The National Park Service spent the better part of two decades producing a film series about this park, released it to the public, and barely told anyone. The complete run of Yosemite Nature Notes is below: ", count, " films, grouped by subject. Most run under ten minutes."), React.createElement("p", {
       className: "hp-films__intro hp-films__intro--quiet"
-    }, "The films borrowed their name from something older. From 1922 the park's naturalists mailed out a bulletin by the same name, and all 512 issues are transcribed in", " ", React.createElement("a", {
+    }, "The films borrowed their name from something older. From 1922 the park's naturalists mailed out a bulletin by the same name, and all 511 issues are transcribed in", " ", React.createElement("a", {
       className: "hp-inline",
       href: "/archive/"
     }, "the print archive"), "."), React.createElement("a", {
@@ -353,7 +353,7 @@ function FilmsPage({
     className: "hp-films__archivetitle"
   }, "Before the films, a bulletin"), React.createElement("span", {
     className: "hp-films__archivebody"
-  }, "From 1922 into the 1980s the park's naturalists mailed out a bulletin called Yosemite Nature Notes. All 512 issues are transcribed here, about 1.87 million words.")), React.createElement("b", null, "Read the archive ", React.createElement("span", null, "→"))))), React.createElement(HpGuideBand, {
+  }, "From 1922 into the 1980s the park's naturalists mailed out a bulletin called Yosemite Nature Notes. All 511 issues are transcribed here, about 1.87 million words.")), React.createElement("b", null, "Read the archive ", React.createElement("span", null, "→"))))), React.createElement(HpGuideBand, {
     go: go,
     location: "films",
     title: React.createElement(React.Fragment, null, "The bulletins, ", React.createElement("em", null, "at the stop they describe")),

@@ -73,7 +73,7 @@ const seed: WildlifeEntryT[] = [
     photo: { src: '/photos/black-bear-roadside.jpg', alt: 'A cinnamon-brown black bear at a road edge beside autumn brush.' },
     kind: 'mammal',
     lookFor:
-      'Large animal (100-350 lbs) with fur that ranges from black to brown or cinnamon, rounded ears, short curved claws visible on the front feet.',
+      'Large animal (adult males average about 250 lbs, females about 150) with fur that ranges from black to brown, blond, or cinnamon (most are brown), rounded ears, short curved claws visible on the front feet.',
     whereWhen:
       'Forests and meadows from the Valley floor to the high country, present year-round, though you are most likely to see one from spring through fall.',
     note:
@@ -131,7 +131,7 @@ const seed: WildlifeEntryT[] = [
     photo: { src: '/photos/wildlife-mountain-lion.jpg', alt: 'Mountain lion standing on a rock ledge against a blue sky, uniformly tan with a pale muzzle.' },
     kind: 'mammal',
     lookFor:
-      'Large, uniformly tan cat (65-180 lbs), long tail tipped in black, small rounded ears, lean facial profile.',
+      'Large, uniformly tan cat (65-150 lbs), long tail tipped in black, small rounded ears, lean facial profile.',
     whereWhen:
       'Forested canyons and remote backcountry at all elevations, primarily active at dawn, dusk, and night. Sightings are extremely rare.',
     note:

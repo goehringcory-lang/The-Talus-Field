@@ -10,7 +10,7 @@ window.ARTICLE_BODIES["yosemite-wildlife-viewing-guide"] = function YosemiteWild
       </p>
 
       <p>
-        <strong>What animals live in Yosemite?</strong> About 400 vertebrate species: roughly 90 mammals, over 260 birds, and the rest reptiles, amphibians and fish, spread across an elevation range that runs from 2,000 feet in the foothills to over 13,000 on the Sierra crest. The ones a visitor realistically sees are a much shorter list, and it is mostly mule deer, coyote, black bear, Steller's jay, acorn woodpecker, Douglas squirrel, and at altitude the yellow-bellied marmot and the pika. The famous absentee is the grizzly, which has been gone from California for more than a century.
+        <strong>What animals live in Yosemite?</strong> About 400 vertebrate species: roughly 90 mammals, over 260 birds, and the rest reptiles, amphibians and fish, spread across an elevation range that runs from 2,000 feet in the foothills to over 13,000 on the Sierra crest. The ones a visitor realistically sees are a much shorter list, and it is mostly mule deer, coyote, black bear, Steller's jay, acorn woodpecker, Douglas squirrel, and at altitude the yellow-bellied marmot and the pika. The famous absentee is the grizzly, which has been gone from California for about a century.
       </p>
 
       <p>
@@ -38,7 +38,7 @@ window.ARTICLE_BODIES["yosemite-wildlife-viewing-guide"] = function YosemiteWild
       <h2 id="sec-1-the-valley-floor-deer-coyote-bobcat">The Valley floor: deer, coyote, bobcat</h2>
 
       <p>
-        Mule deer (<em>Odocoileus hemionus</em>) are the animal you are guaranteed to see, and the one most likely to hurt you. That is not a rhetorical flourish. Deer injure more visitors in Yosemite than bears do, because people treat a 150-pound wild ungulate with antlers like a petting-zoo resident. They browse Cook's Meadow, El Capitan Meadow, and the Wawona meadow loop morning and evening, and they barely react to people anymore, which is exactly the problem. Photograph them from the trail. Twenty-five yards. A deer that flattens its ears and stamps has already asked you once.
+        Mule deer (<em>Odocoileus hemionus</em>) are the animal you are guaranteed to see, and the one most likely to hurt you. That is not a rhetorical flourish. Deer injure more visitors in Yosemite than bears do, because people treat a 150-pound wild ungulate with antlers like a petting-zoo resident. They browse Cook's Meadow, El Capitan Meadow, and the Wawona meadow loop morning and evening, and they barely react to people anymore, which is exactly the problem. Photograph them from the trail. Twenty-five feet is the minimum. A deer that flattens its ears and stamps has already asked you once.
       </p>
 
       <p>
@@ -56,7 +56,7 @@ window.ARTICLE_BODIES["yosemite-wildlife-viewing-guide"] = function YosemiteWild
       </p>
 
       <p>
-        I have written about bears at length elsewhere, including <a href="/articles/yosemite-bears-safety-guide">the myths that follow them around</a> and <a href="/articles/yosemite-bears-safety-guide#spring-bears-hungriest">why a spring bear is a different animal than an August one</a>, so here is only the viewing protocol. Fifty yards, minimum; that is the park requirement, and it is measured from the bear, not from your comfort. If a bear changes its behavior because of you, you are too close, whatever the distance. And drive slowly at dawn and dusk. The red bear signs along the park roads each mark a spot where a car killed a bear. Speeding is the leading way visitors kill Yosemite wildlife, and it is the one that is entirely optional.
+        I have written about bears at length elsewhere, including <a href="/articles/yosemite-bears-safety-guide">the myths that follow them around</a> and <a href="/articles/yosemite-bears-safety-guide#spring-bears-hungriest">why a spring bear is a different animal than an August one</a>, so here is only the viewing protocol. Fifty yards, minimum; that is the park requirement, and it is measured from the bear, not from your comfort. If a bear changes its behavior because of you, you are too close, whatever the distance. And drive slowly at dawn and dusk. The red bear signs along the park roads each mark a spot where a car killed a bear. Vehicles are one of the ways visitors kill Yosemite wildlife, and it is the one that is entirely optional.
       </p>
 
       <h2 id="sec-3-the-birds-worth-learning-first">The birds worth learning first</h2>
@@ -66,7 +66,7 @@ window.ARTICLE_BODIES["yosemite-wildlife-viewing-guide"] = function YosemiteWild
       </p>
 
       <p>
-        The Steller's jay is the crested blue heckler of every picnic area, and it is worth a longer look than it usually gets: an intelligent corvid that mimics red-tailed hawk screams to scatter smaller birds from food. The acorn woodpecker runs the oak economy. Find a dead pine drilled with hundreds of neat holes, each fitted with an acorn, and you have found a granary tree, a communal food bank maintained by a family group for generations. The peregrine falcon nests on the Valley's cliffs, including El Capitan, and a bird that was nearly extinct in California in the 1970s now stoops past climbers at 200 miles an hour; the park closes a few climbing routes each spring to protect the eyries, which is why those closures exist. And the water ouzel, the drab gray songbird that walks into waterfalls, is the only bird John Muir thought worth a whole essay. I agree with him, and <a href="/articles/water-ouzels-waterfalls">wrote one too</a>.
+        The Steller's jay is the crested blue heckler of every picnic area, and it is worth a longer look than it usually gets: an intelligent corvid that mimics red-tailed hawk screams to scatter smaller birds from food. The acorn woodpecker runs the oak economy. Find a dead pine drilled with hundreds of neat holes, each fitted with an acorn, and you have found a granary tree, a communal food bank maintained by a family group for generations. The peregrine falcon nests on the Valley's cliffs, including El Capitan, and a bird that was nearly extinct in California in the 1970s now stoops past climbers at 200 miles an hour; the park closes a few climbing routes each spring to protect the eyries, which is why those closures exist. And the water ouzel, the drab gray songbird that walks into waterfalls, was John Muir's favorite bird, and the subject of an essay in <em>The Mountains of California</em>. I agree with him, and <a href="/articles/water-ouzels-waterfalls">wrote one too</a>.
       </p>
 
       <p>
@@ -80,7 +80,7 @@ window.ARTICLE_BODIES["yosemite-wildlife-viewing-guide"] = function YosemiteWild
       </p>
 
       <p>
-        Olmsted Point is the most reliable mammal-watching pullout in the park. The yellow-bellied marmots there den under the glacial erratics and haul out on the warm granite all day, twenty feet from the parking lot. In Tuolumne Meadows, Belding's ground squirrels stand bolt upright in the grass like pickets, whistling alarm calls at every shadow. Overhead, the Clark's nutcracker harvests whitebark pine seeds and buries tens of thousands of them across the high country each fall, remembering most of the locations for months; the ones it forgets become the next generation of trees. The bird is planting the treeline it depends on.
+        Olmsted Point is a dependable mammal-watching pullout. The yellow-bellied marmots there den under the glacial erratics and haul out on the warm granite all day, twenty feet from the parking lot. In Tuolumne Meadows, Belding's ground squirrels stand bolt upright in the grass like pickets, whistling alarm calls at every shadow. Overhead, the Clark's nutcracker harvests whitebark pine seeds and buries tens of thousands of them across the high country each fall, remembering most of the locations for months; the ones it forgets become the next generation of trees. The bird is planting the treeline it depends on.
       </p>
 
       <p>
@@ -88,7 +88,7 @@ window.ARTICLE_BODIES["yosemite-wildlife-viewing-guide"] = function YosemiteWild
       </p>
 
       <p>
-        The rarest good news in the park is also up here. Sierra Nevada bighorn sheep, a federally endangered subspecies that vanished from Yosemite for a century, were reintroduced to the Cathedral Range in 2015. A few dozen animals now hold the crest near the park's eastern edge. You are unlikely to see one, but hikers on the high passes occasionally do, and the fact that it is possible at all is one of the great restoration stories in the Sierra.
+        The park's rarest restoration effort is also up here. Sierra Nevada bighorn sheep, a federally endangered subspecies that vanished from Yosemite for a century, were reintroduced to the Cathedral Range in 2015. The herd is small and fragile: the record snows of the 2022-23 winter killed its collared ewes, and the state's last update, in September 2023, found only rams alive. You are unlikely to see one, and the recovery is still an open question.
       </p>
 
       <h2 id="sec-5-the-ones-you-will-probably-never-see">The ones you will probably never see</h2>
@@ -98,7 +98,7 @@ window.ARTICLE_BODIES["yosemite-wildlife-viewing-guide"] = function YosemiteWild
       </p>
 
       <p>
-        The great gray owl is the harder case, because people do try to see it. Yosemite holds the southernmost breeding population of the largest owl in North America, a relict group of perhaps a couple hundred birds isolated in these meadows since the ice ages. They hunt the edges of mid-elevation meadows, Crane Flat and the Glacier Point Road meadows among them, at dawn and dusk. If you are lucky enough to find one, stay back, keep quiet, and do not play recorded calls to draw it in. Call playback harasses a state-endangered bird and is prohibited, and a bird that responds to a phone burns hunting time it needs. The owl is working. Let it work.
+        The great gray owl is the harder case, because people do try to see it. Yosemite holds the southernmost breeding population of the largest owl in North America, a relict group, about 200 to 300 birds in all of California, roughly two-thirds of them in Yosemite, isolated in the Sierra for a very long time. They hunt the edges of mid-elevation meadows, Crane Flat and the Glacier Point Road meadows among them, at dawn and dusk. If you are lucky enough to find one, stay back, keep quiet, and do not play recorded calls to draw it in. Call playback harasses a state-endangered bird and is prohibited, and a bird that responds to a phone burns hunting time it needs. The owl is working. Let it work.
       </p>
 
       <h2 id="bats">Bats, and the one rule that goes with them</h2>
@@ -114,7 +114,7 @@ window.ARTICLE_BODIES["yosemite-wildlife-viewing-guide"] = function YosemiteWild
       <h2 id="sec-6-the-rules-are-also-the-technique">The rules are also the technique</h2>
 
       <p>
-        The regulations here are short: stay 50 yards from bears, give everything else at least 25, never feed any animal, and store food properly, in lockers and canisters, never in a car overnight. The fines are real, up to $5,000 for food-storage violations, but the fines are not the reason. A fed animal stops being wild in every way that matters, and the park ends up hauling it away or killing it. "A fed bear is a dead bear" is not a slogan. It is a case file, repeated annually.
+        The regulations here are short: stay 50 yards (150 feet) from bears and coyotes, give everything else at least 25 feet, never feed any animal, and store food properly, in lockers and canisters, never in a car overnight. The fines are real, up to $5,000 for food-storage violations, but the fines are not the reason. A fed animal stops being wild in every way that matters, and the park ends up hauling it away or killing it. "A fed bear is a dead bear" is not a slogan. It is a case file, repeated annually.
       </p>
 
       <p>
@@ -147,7 +147,7 @@ window.ARTICLE_BODIES["yosemite-wildlife-viewing-guide"] = function YosemiteWild
         <tbody>
           <tr><td>2,000 to 4,000 ft</td><td>Highway 140 corridor, El Portal, the Merced canyon</td><td>Mule deer, coyote, acorn woodpecker, gray squirrel, rattlesnake on warm rock</td><td>Dawn and dusk</td></tr>
           <tr><td>4,000 ft</td><td>Yosemite Valley floor and its meadows</td><td>Mule deer, coyote, bobcat, black bear, Steller's jay, water ouzel on the river</td><td>First and last light</td></tr>
-          <tr><td>5,000 to 7,000 ft</td><td>Wawona, Crane Flat, the Glacier Point Road meadows</td><td>Black bear, great gray owl at meadow edges, Douglas squirrel, black oak woodland birds</td><td>Dawn and dusk</td></tr>
+          <tr><td>4,000 to 7,000 ft</td><td>Wawona, Crane Flat, the Glacier Point Road meadows</td><td>Black bear, great gray owl at meadow edges, Douglas squirrel, black oak woodland birds</td><td>Dawn and dusk</td></tr>
           <tr><td>8,000 to 10,000 ft</td><td>Tuolumne Meadows and Tioga Road, summer only</td><td>Yellow-bellied marmot, pika in the talus, Clark's nutcracker, Belding's ground squirrel</td><td>Mid-morning, when they sun themselves</td></tr>
           <tr><td>Above 10,000 ft</td><td>The Cathedral Range and the Sierra crest</td><td>Sierra Nevada bighorn sheep, rosy-finch, very little else</td><td>Any, with binoculars and patience</td></tr>
         </tbody>
@@ -164,7 +164,7 @@ window.ARTICLE_BODIES["yosemite-wildlife-viewing-guide"] = function YosemiteWild
       </p>
 
       <p>
-        Yosemite has American black bears, <em>Ursus americanus</em>, and only those: somewhere between 300 and 500 of them. There have been no grizzlies in the park since about 1895, when the last one was shot near Crescent Lake, and the California grizzly has been extinct for over a century. The bear on the state flag is a memorial.
+        Yosemite has American black bears, <em>Ursus americanus</em>, and only those: somewhere between 300 and 500 of them. The Park Service lists the grizzly as gone from the park, and the last known grizzly in California was shot in the early 1920s, outside the Yosemite region. The bear on the state flag is a memorial.
       </p>
 
       <p>
@@ -172,7 +172,7 @@ window.ARTICLE_BODIES["yosemite-wildlife-viewing-guide"] = function YosemiteWild
       </p>
 
       <p>
-        Why it matters in practice: playing dead is grizzly advice and it is wrong here, as is carrying bear spray, which is <a href="/articles/is-bear-spray-allowed-in-yosemite">prohibited in this park</a> and attracts bears rather than deterring them. In black bear country you make noise, stand tall and back away. <a href="/articles/yosemite-bears-safety-guide">The bear safety guide</a> has the rest.
+        Why it matters in practice: playing dead is grizzly advice and it is wrong here, as is carrying bear spray, which is <a href="/articles/is-bear-spray-allowed-in-yosemite">prohibited in this park</a>. In black bear country you make noise, stand tall and back away. <a href="/articles/yosemite-bears-safety-guide">The bear safety guide</a> has the rest.
       </p>
 
       <h3>Further reading</h3>

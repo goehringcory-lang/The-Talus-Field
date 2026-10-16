@@ -6,13 +6,13 @@ window.ARTICLE_BODIES["yosemite-connecting-to-traditions"] = function YosemiteCo
   return (
     <>
       <p className="dropcap">
-        The Park Service runs a summer and fall series at the Yosemite Museum called Connecting to Traditions, and it is one of the few places in the park to learn from Indigenous practitioners directly. Indigenous artists demonstrate basket weaving, beadwork, acorn preparation, and stone tool knapping, the living practices of the peoples who have tended this valley for thousands of years, long before it was a park. The demonstrations are free, open to all, and this is the season to go.
+        The Park Service runs a summer and fall series at the Yosemite Museum called Connecting to Traditions, and it is one of the few places in the park to learn from Indigenous practitioners directly. Indigenous artists demonstrate basket weaving, beadwork, acorn preparation, and stone tool knapping, the living practices of the peoples who have tended this valley for thousands of years, long before it was a park. The demonstrations are free and open to all. The 2026 series ended with its October 14 to 15 session, and the 2027 dates had not been published as of mid-October 2026.
       </p>
 
-      <h2>The schedule</h2>
+      <h2>The 2026 schedule</h2>
 
       <p>
-        Demonstrations take place at or just outside the Yosemite Museum in Yosemite Village, next to the visitor center, <a href="/articles/yosemite-shuttle-and-yarts">shuttle stop 5</a>. Times are posted at the Museum rather than fixed in advance, so check the day you visit. Everything here is free.
+        Demonstrations take place at or just outside the Yosemite Museum in Yosemite Village, next to the visitor center, <a href="/articles/yosemite-shuttle-and-yarts">shuttle stop 5</a>. Times were posted at the Museum rather than fixed in advance. Everything here was free.
       </p>
 
       <ul>
@@ -25,7 +25,7 @@ window.ARTICLE_BODIES["yosemite-connecting-to-traditions"] = function YosemiteCo
       </ul>
 
       <p>
-        The schedule is subject to change, which is another reason to ask at the Museum when you arrive.
+        These were the 2026 dates. For next season's schedule, ask at the Museum or check the Park Service's Yosemite site.
       </p>
 
       <h2>Why this is worth your afternoon</h2>
@@ -35,7 +35,7 @@ window.ARTICLE_BODIES["yosemite-connecting-to-traditions"] = function YosemiteCo
       </p>
 
       <p>
-        That is a rare thing, and a generous one on the part of the artists. It is easy to treat a national park as scenery. These demonstrations are the reminder that it is also a homeland, tended by living cultures who are still here, still practicing, and willing to share an hour with whoever shows up. If your trip overlaps with any of these dates, put the Museum on your list. It is one of the best free hours in the park this summer, and it does something a viewpoint cannot.
+        That is a rare thing, and a generous one on the part of the artists. It is easy to treat a national park as scenery. These demonstrations are the reminder that it is also a homeland, tended by living cultures who are still here, still practicing, and willing to share an hour with whoever shows up. When the series returns, put the Museum on your list. It is among the best free hours in the park, and it does something a viewpoint cannot.
       </p>
 
       <p>

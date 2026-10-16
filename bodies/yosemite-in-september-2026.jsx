@@ -26,7 +26,7 @@ window.ARTICLE_BODIES["yosemite-in-september-2026"] = function YosemiteInSeptemb
       <h2>The high country is the reason to come</h2>
 
       <p>
-        Tioga Road is open, the whole 39 miles of it, and the high country in September is better than the high country in July: the mosquitoes are gone, the afternoon thunderstorms are less reliable, the meadows have turned, and the crowds are smaller. Tuolumne Meadows, Olmsted Point, Tenaya Lake and the Cathedral Lakes trail are all at their best.
+        Tioga Road is open, all 46 miles of it from Crane Flat to the pass, and the high country in September is better than the high country in July: the mosquitoes are gone, the afternoon thunderstorms are less reliable, the meadows have turned, and the crowds are smaller. Tuolumne Meadows, Olmsted Point, Tenaya Lake and the Cathedral Lakes trail are all at their best.
       </p>
 
       <p>
@@ -40,7 +40,7 @@ window.ARTICLE_BODIES["yosemite-in-september-2026"] = function YosemiteInSeptemb
       </p>
 
       <p>
-        Two longer closures run through the month and are not seasonal: the <strong>Wawona Hotel and its dining room are closed for renovation</strong>, and <strong>White Wolf</strong>, its lodge, store and dining room, is closed for the season. If either was in the plan, it needs replacing rather than rescheduling. Raft rentals on the Merced are finished for the year.
+        Two longer closures run through the month and are not seasonal: the <strong>Wawona Hotel and its dining room are closed while the Park Service assesses the building</strong>, and <strong>White Wolf</strong>, its lodge, store and dining room, is closed for the season. If either was in the plan, it needs replacing rather than rescheduling. Raft rentals on the Merced are finished for the year.
       </p>
 
       <p>
@@ -90,7 +90,7 @@ window.ARTICLE_BODIES["yosemite-in-september-2026"] = function YosemiteInSeptemb
       <h2>What is on in the evenings</h2>
 
       <p>
-        The Conservation Heritage Center runs a free evening series through the month: poetry from Tahoe to Yosemite on the 11th, the legacy of the old Yosemite Village on the 12th, the park's mountain lions on the 18th and its bats on the 19th, all at 7:30 p.m. The Moonlight Tour runs its last trip of the season on September 22, ticketed through the concessioner. Tom Killion's woodblocks are up at the Ansel Adams Gallery through September 26, free to walk through.
+        The Conservation Heritage Center runs a free evening series through the month: poetry from Tahoe to Yosemite on the 11th, the legacy of the old Yosemite Village on the 12th, the park's mountain lions on the 18th and its bats on the 19th, all at 7:30 p.m. The Moonlight Tour runs its last trips of the season September 22 through 26, ticketed through the concessioner. Tom Killion's woodblocks are up at the Ansel Adams Gallery through September 26, free to walk through.
       </p>
 
       <p>

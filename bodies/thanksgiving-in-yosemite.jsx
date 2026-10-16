@@ -56,7 +56,7 @@ window.ARTICLE_BODIES["thanksgiving-in-yosemite"] = function ThanksgivingInYosem
       </p>
 
       <p>
-        In 2026 the road had a second reason to be closed. As of the park's October 4 update, the <strong>Dome Fire</strong>, burning northeast of Wawona, covered 6,736 acres and was 40 percent contained, and Glacier Point Road was closed for smoke and firefighting operations. That is seven weeks before the holiday and says little about late November, but if a fire is still active when you go, <a href="/articles/wildfire-in-yosemite-during-your-trip">what a wildfire closes, and what stays open</a> covers the bookings question.
+        In 2026 the road had a second reason to be closed. As of the park's October 4 update, the <strong>Dome Fire</strong>, burning northeast of Wawona, covered 6,736 acres and was 40 percent contained, and Glacier Point Road was closed for smoke and firefighting operations; it reopened on October 10. That is seven weeks before the holiday and says little about late November, but if a fire is still active when you go, <a href="/articles/wildfire-in-yosemite-during-your-trip">what a wildfire closes, and what stays open</a> covers the bookings question.
       </p>
 
       <p>
@@ -163,7 +163,7 @@ window.ARTICLE_BODIES["thanksgiving-in-yosemite"] = function ThanksgivingInYosem
       <h2>Getting there without a car</h2>
 
       <p>
-        YARTS runs its Highway 140 route year-round between Merced and the Valley, and its winter schedule runs from October 1, 2026, to May 28, 2027. The first run from Merced arrives at Yosemite Valley Lodge at 7:13 a.m. But YARTS lists Thanksgiving Day among the holidays on which it <strong>does not operate</strong>, and its Highway 140 page prints the date as "November 27, 2026," which is the Friday. Until the agency clears that up, do not plan to ride on either day without calling first. Inside the Valley, the free shuttle operates year-round.
+        YARTS runs its Highway 140 route year-round between Merced and the Valley, and its winter schedule runs from October 1, 2026, to May 28, 2027. The first run from Merced arrives at Yosemite Valley Lodge at 7:13 a.m. But YARTS lists Thanksgiving Day among the holidays on which it <strong>does not operate</strong>, and its Highway 140 page lists the date as November 26, 2026. Do not plan to ride that day. Inside the Valley, the free shuttle operates year-round.
       </p>
 
       <h2>Four short days, planned</h2>

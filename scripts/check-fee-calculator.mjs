@@ -58,7 +58,7 @@ for (let adults = 1; adults <= 12; adults++) {
           else if (r.options.some((o) => o.total < best.total)) problems.push(`${tag}: best ${best.id} ($${best.total}) is not the cheapest`);
           // Independent recomputation of the gate arithmetic.
           const v = mode === "foot" ? 0 : vehicles;
-          const entry = mode === "car" ? v * F.vehicle : mode === "motorcycle" ? v * F.motorcycle : adults * F.perPerson;
+          const entry = mode === "car" ? v * F.vehicle : mode === "motorcycle" ? Math.ceil(v / 2) * F.motorcycle : adults * F.perPerson;
           const expected = (entry + adults * F.surcharge) * entries;
           const gate = r.options.find((o) => o.id === "gate");
           if (!gate || gate.total !== expected) problems.push(`${tag}: gate total ${gate && gate.total}, expected ${expected}`);

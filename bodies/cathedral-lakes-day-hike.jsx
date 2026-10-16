@@ -10,7 +10,7 @@ window.ARTICLE_BODIES["cathedral-lakes-day-hike"] = function CathedralLakesDayHi
       </p>
 
       <p>
-        Cathedral Lakes has been one of Yosemite's standard high-country day hikes since John Muir camped on the shoulder of Cathedral Peak in 1869 and described it in <em>My First Summer in the Sierra</em> as "one of Nature's cathedrals, hewn from the living rock." It is on every list of the best hikes in Yosemite. It still earns the spot.
+        Cathedral Lakes has been one of Yosemite's standard high-country day hikes since John Muir, tending sheep in the high country in 1869, described the peak in <em>My First Summer in the Sierra</em> as "one of Nature's cathedrals, hewn from the living rock." It is on every list of the best hikes in Yosemite. It still earns the spot.
       </p>
 
       <p>
@@ -20,13 +20,13 @@ window.ARTICLE_BODIES["cathedral-lakes-day-hike"] = function CathedralLakesDayHi
       <h2>Cathedral Lakes trail distance, elevation, and trailhead</h2>
 
       <p>
-        The Cathedral Lakes trail starts at the new <strong>Cathedral Lakes trailhead</strong> parking adjacent to the Tuolumne Meadows Visitor Center. The old trailhead at the side of Tioga Road was retired during the Tuolumne Meadows redevelopment, so older guidebooks list distances about three-quarters of a mile shorter than the hike you will walk now. For a broader look at the trailheads and routes in this area, and for the shorter walks that suit a day when this hike is too much, see <a href="/articles/tuolumne-meadows-in-a-day">Tuolumne Meadows in a day</a>.
+        The Cathedral Lakes trail starts at the new <strong>Cathedral Lakes trailhead</strong> parking adjacent to the Tuolumne Meadows Visitor Center. The old trailhead at the side of Tioga Road was retired during the Tuolumne Meadows redevelopment, so the trail distances in older guidebooks read a little shorter than the current reality. For a broader look at the trailheads and routes in this area, and for the shorter walks that suit a day when this hike is too much, see <a href="/articles/tuolumne-meadows-in-a-day">Tuolumne Meadows in a day</a>.
       </p>
 
       <p>Current numbers, from the new trailhead:</p>
 
       <ul>
-        <li><strong>Total distance:</strong> roughly 9 to 10.5 miles round trip, depending on whether you visit Lower Cathedral Lake only, Upper Cathedral Lake only, or both.</li>
+        <li><strong>Total distance:</strong> the Park Service lists 7.6 miles round trip and about 1,000 feet of gain to Upper Cathedral Lake. The spur to Lower Cathedral Lake is 0.7 mile each way, so visiting both lakes comes to roughly 9 miles.</li>
         <li><strong>Elevation gain:</strong> about 1,000 to 1,400 feet of cumulative gain.</li>
         <li><strong>Trailhead elevation:</strong> about 8,500 feet.</li>
         <li><strong>Lower Cathedral Lake elevation:</strong> 9,288 feet.</li>
@@ -34,11 +34,11 @@ window.ARTICLE_BODIES["cathedral-lakes-day-hike"] = function CathedralLakesDayHi
       </ul>
 
       <p>
-        The trail begins flat through the meadow approach, then climbs steadily through lodgepole pine forest for about three miles, gaining most of its elevation in this stretch. It crests on a forested bench where a signed junction points right to the lakes and continues straight along the John Muir Trail toward Sunrise. The Lower Cathedral Lake spur descends about a half-mile through forest to the lake's outlet stream. Upper Cathedral Lake sits in a granite bowl a few hundred yards past the junction, directly below Cathedral Peak.
+        The trail begins flat through the meadow approach, then climbs steadily through lodgepole pine forest for about three miles, gaining most of its elevation in this stretch. It crests on a forested bench where a signed junction points right to the lakes and continues straight along the John Muir Trail toward Sunrise. The Lower Cathedral Lake spur descends about 0.7 mile through forest to the lake's outlet stream. Upper Cathedral Lake sits in a granite bowl a few hundred yards past the junction, directly below Cathedral Peak.
       </p>
 
       <p>
-        Plan five to seven hours for the round trip, including time at the lakes.
+        Plan six to seven hours for the round trip, including time at the lakes.
       </p>
 
       <h2>Best time to hike Cathedral Lakes</h2>
@@ -98,17 +98,17 @@ window.ARTICLE_BODIES["cathedral-lakes-day-hike"] = function CathedralLakesDayHi
       </p>
 
       <p>
-        <strong>Cathedral Peak itself.</strong> The rock you're looking at is a particular granodiorite called Cathedral Peak Granodiorite, named for this peak. Geologists know it for having unusually large potassium feldspar crystals, commonly 2 to 3 inches long, embedded throughout the rock. Walk up to the slabs and look closely. The feldspar phenocrysts show up as off-white blocky crystals studding the gray-pink groundmass. The same rock makes up much of Tuolumne's high country, including most of the trail.
+        <strong>Cathedral Peak itself.</strong> The rock you're looking at is a particular granodiorite called Cathedral Peak Granodiorite, named for this peak. Geologists know it for having unusually large potassium feldspar crystals, some several inches long, embedded throughout the rock. Walk up to the slabs and look closely. The feldspar phenocrysts show up as off-white blocky crystals studding the gray-pink groundmass. The same rock makes up much of Tuolumne's high country, including most of the trail.
       </p>
 
       <p>
-        The peak is climbable. The standard route is a fifth-class climb (the grade for technical rock climbing, which calls for a rope and protection) of about 700 vertical feet from the base, often done as a long day from Tuolumne. Muir made the first recorded ascent in 1869 in work boots, alone. The Park Service does not encourage casual visitors to attempt it. If you have climbing experience and want to try, get current route information, or "beta," from the Yosemite climbing community before going.
+        The peak is climbable. The standard route is a fifth-class climb (the grade for technical rock climbing, which calls for a rope and protection) of about 700 vertical feet from the base, often done as a long day from Tuolumne. Muir is generally credited with the first ascent, in 1869. The Park Service does not encourage casual visitors to attempt it. If you have climbing experience and want to try, get current route information, or "beta," from the Yosemite climber community before going.
       </p>
 
       <h2>The Muir connection</h2>
 
       <p>
-        John Muir camped here in late summer 1869 during his first season as a sheep tender in the high country. His journal entries from those weeks became the basis of <em>My First Summer in the Sierra</em>, published forty-two years later. The book includes the description of Cathedral Peak as "one of Nature's cathedrals, hewn from the living rock," and his solitary first ascent. He climbed it in work boots, carrying nothing.
+        John Muir spent the summer of 1869 in the high country as a sheep tender, his first season there. His journal entries from those weeks became the basis of <em>My First Summer in the Sierra</em>, published forty-two years later. The book includes the description of Cathedral Peak as "one of Nature's cathedrals, hewn from the living rock."
       </p>
 
       <p>
@@ -116,7 +116,7 @@ window.ARTICLE_BODIES["cathedral-lakes-day-hike"] = function CathedralLakesDayHi
       </p>
 
       <p>
-        Sitting on the granite at Lower Cathedral Lake, you are sitting in roughly the same place Muir sat in 1869. The basin has not been logged. The lake has not been dammed. The peak has not been turned into a tourist attraction.
+        Sitting on the granite at Lower Cathedral Lake, you are looking at the peak Muir described in 1869. The basin has not been logged. The lake has not been dammed. The peak has not been turned into a tourist attraction.
       </p>
 
       <h2>What to bring on a Cathedral Lakes day hike</h2>
@@ -140,7 +140,7 @@ window.ARTICLE_BODIES["cathedral-lakes-day-hike"] = function CathedralLakesDayHi
       </p>
 
       <p>
-        If you're camping, know the rules: campfires are prohibited at Lower Cathedral Lake, all camping must be at least 100 feet from water and trails, and you need to be at least four trail miles from Tuolumne Meadows. A wilderness permit is required for any overnight stay. If you're planning an overnight, see <a href="/kit">packing for a Yosemite backpack</a>.
+        If you're camping, know the rules: campfires are prohibited in the Upper and Lower Cathedral Lake basins, all camping must be at least 100 feet from water and trails, and you need to be at least four trail miles from Tuolumne Meadows. A wilderness permit is required for any overnight stay. If you're planning an overnight, see <a href="/kit">packing for a Yosemite backpack</a>.
       </p>
 
       <p>
@@ -160,7 +160,7 @@ window.ARTICLE_BODIES["cathedral-lakes-day-hike"] = function CathedralLakesDayHi
       </p>
 
       <p>
-        Plan an early start, bring a real lunch, sit on the granite for an hour after you arrive, and look closely at the rock under your hands. The crystals you're sitting on were cooling underground when this part of California was still under shallow seas. The peak above you was first described to a wider readership by a Scotsman with a notebook in 1869.
+        Plan an early start, bring a real lunch, sit on the granite for an hour after you arrive, and look closely at the rock under your hands. The crystals you're sitting on were cooling underground some 85 to 89 million years ago. The peak above you was first described to a wider readership by a Scotsman with a notebook in 1869.
       </p>
 
       <h2>Sources</h2>

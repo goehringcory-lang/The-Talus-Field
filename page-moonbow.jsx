@@ -189,7 +189,7 @@ const MB_ARCHIVE = [
 
 const MB_TOWNS = [
   { id: "el-portal", name: "El Portal", dest: "El Portal, California", drive: "25 to 35 min", road: "Highway 140", note: "The closest beds outside the park, which matters when the bow is still on after the last shuttle." },
-  { id: "mariposa", name: "Midpines and Mariposa", dest: "Mariposa, California", drive: "45 to 60 min", road: "Highway 140", note: "The deepest inventory, and an hour's drive home in the dark." },
+  { id: "mariposa", name: "Midpines and Mariposa", dest: "Mariposa, California", drive: "60 to 75 min", road: "Highway 140", note: "The deepest inventory, and an hour's drive home in the dark." },
   { id: "groveland", name: "Groveland", dest: "Groveland, California", drive: "65 to 80 min", road: "Highway 120", note: "Further, with a mountain road after midnight. Pick it for the rest of the trip, not the moonbow." },
 ];
 

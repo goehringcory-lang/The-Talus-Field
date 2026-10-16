@@ -68,7 +68,7 @@ window.ARTICLE_BODIES["showy-milkweed-yosemite-valley"] = function ShowyMilkweed
   return (
     <>
       <p className="dropcap">
-        Across the meadows of Yosemite Valley right now, in mid-July, a stout gray-green plant is bearing clusters of dusty pink flowers the size of a fist. This is showy milkweed, <em>Asclepias speciosa</em>, and it is having its best two weeks of the year. Walk out into Cook's Meadow, one of the best places to find it, or <a href="/articles/watching-climbers-el-capitan">El Capitan Meadow</a>, and you will find it standing two to five feet tall, its stems furred, its broad leaves felted like a rabbit's ear. The flower heads are busy with bees, wasps, and, if the summer is kind, monarch butterflies. It is one of the most quietly important plants in the park, and for the next few weeks it is impossible to miss.
+        Across the meadows of Yosemite Valley right now, in mid-July, a stout gray-green plant is bearing clusters of dusty pink flowers the size of a fist. This is showy milkweed, <em>Asclepias speciosa</em>, and it is having its best two weeks of the year. Walk out into Cook's Meadow, one of the best places to find it, or <a href="/articles/watching-climbers-el-capitan">El Capitan Meadow</a>, and you will find it standing two to four feet tall, its stems furred, its broad leaves felted like a rabbit's ear. The flower heads are busy with bees, wasps, and, if the summer is kind, monarch butterflies. It is one of the most quietly important plants in the park, and for the next few weeks it is impossible to miss.
       </p>
 
       <p>

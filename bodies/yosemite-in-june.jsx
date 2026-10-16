@@ -20,7 +20,7 @@ window.ARTICLE_BODIES["yosemite-in-june"] = function YosemiteInJune2026Body() {
       <h2>The waterfalls</h2>
 
       <p>
-        The Sierra Nevada snowpack on April 1, 2026 was measured at roughly 18 percent of average, the second-lowest figure in recorded history. I covered what low snowpack means for the park this year in detail. Snowmelt feeds Yosemite's waterfalls, and this year there is little of it.
+        The park's April 1, 2026 snow survey at Tuolumne Meadows came in at 37 percent of average, down from about 65 percent a month earlier after a hot, dry March. I covered what low snowpack means for the park this year in detail. Snowmelt feeds Yosemite's waterfalls, and this year there is little of it.
       </p>
 
       <p>
@@ -42,15 +42,15 @@ window.ARTICLE_BODIES["yosemite-in-june"] = function YosemiteInJune2026Body() {
       </p>
 
       <p>
-        This matters more than usual in 2026. With no reservation system managing Valley crowds, the high country is the best way around them. Tuolumne Meadows, Cathedral Lakes, Tenaya Lake, the Dana Fork, Lembert Dome: these places are two hours from the Valley floor and far less crowded. I drove up on the opening weekend and counted eight cars at the Cathedral Lakes trailhead at 9 a.m. on a Saturday. That same morning, the Valley had been full since 7:30. If your trip overlaps with a <a href="/articles/yosemite-without-reservations-2026">Valley gridlock day</a>, Tuolumne is the answer.
+        This matters more than usual in 2026. With no reservation system managing Valley crowds, the high country is the best way around them. Tuolumne Meadows, Cathedral Lakes, Tenaya Lake, the Dana Fork, Lembert Dome: these places are an hour and a half from the Valley floor and far less crowded. I drove up on the opening weekend and counted eight cars at the Cathedral Lakes trailhead at 9 a.m. on a Saturday. That same morning, the Valley had been full since 7:30. If your trip overlaps with a <a href="/articles/yosemite-without-reservations-2026">Valley gridlock day</a>, Tuolumne is the answer.
       </p>
 
       <p>
-        <a href="/articles/cathedral-lakes-day-hike">Cathedral Lakes</a> is the signature Tuolumne day hike and one of the best in the park. The trail to Lower Cathedral Lake is about 3.5 miles one way with roughly 1,000 feet of gain, ending at a granite-rimmed alpine lake beneath Cathedral Peak. In early June it may still have snow patches on the upper trail. Bring traction devices if you are hiking before mid-month.
+        <a href="/articles/cathedral-lakes-day-hike">Cathedral Lakes</a> is the signature Tuolumne day hike and one of the best in the park. The trail to Lower Cathedral Lake is about 3.8 miles one way (7.6 round trip) with roughly 1,000 feet of gain, ending at a granite-rimmed alpine lake beneath Cathedral Peak. In early June it may still have snow patches on the upper trail. Bring traction devices if you are hiking before mid-month.
       </p>
 
       <p>
-        Tuolumne Meadows Lodge opens June 5. The Tuolumne Meadows Store and Grill opens on the same timeline. This is also prime wildflower season: the meadows should be blooming by mid-June, though the compressed snowmelt may push the peak earlier and shorter than usual.
+        Tuolumne Meadows Lodge opens June 5. The Tuolumne Meadows Store and Grill were due to open May 30, conditions allowing. This is also prime wildflower season: the meadows should be blooming by mid-June, though the compressed snowmelt may push the peak earlier and shorter than usual.
       </p>
 
       <p>
@@ -90,7 +90,7 @@ window.ARTICLE_BODIES["yosemite-in-june"] = function YosemiteInJune2026Body() {
       </p>
 
       <p>
-        <strong>Go outside the Valley.</strong> The Valley floor absorbs roughly 90 percent of Yosemite's visitors. <a href="/articles/hetch-hetchy-the-other-yosemite-valley">Hetch Hetchy</a> is fifteen minutes from the Big Oak Flat entrance and rarely crowded. Wawona and the <a href="/articles/giant-sequoias-fire-adaptation">Mariposa Grove</a> are on the south end. The Merced Grove has almost no one in it. And with Tioga open, the <a href="/articles/cathedral-lakes-day-hike">entire high country</a> is available. Plan at least one full day outside the Valley.
+        <strong>Go outside the Valley.</strong> The Valley floor absorbs roughly 90 percent of Yosemite's visitors. <a href="/articles/hetch-hetchy-the-other-yosemite-valley">Hetch Hetchy</a> is a turn onto Evergreen Road just outside the Big Oak Flat entrance, and rarely crowded. Wawona and the <a href="/articles/giant-sequoias-fire-adaptation">Mariposa Grove</a> are on the south end. The Merced Grove has almost no one in it. And with Tioga open, the <a href="/articles/cathedral-lakes-day-hike">entire high country</a> is available. Plan at least one full day outside the Valley.
       </p>
 
       <p>
@@ -100,7 +100,7 @@ window.ARTICLE_BODIES["yosemite-in-june"] = function YosemiteInJune2026Body() {
       <h2>Bears in June 2026</h2>
 
       <p>
-        Bear-related property damage in Yosemite increased 316 percent year over year according to recent park reporting. Drought years make wild food scarcer. When natural berry and nut crops are thin, bears look for alternatives, including coolers left in cars.
+        By early July the park's count of bear incidents was up 26 percent from the same point in 2025, and bears had obtained human food from improperly latched or open food lockers in Valley campgrounds. A bear incident is one that costs someone money, from a damaged car to a stolen cooler.
       </p>
 
       <p>

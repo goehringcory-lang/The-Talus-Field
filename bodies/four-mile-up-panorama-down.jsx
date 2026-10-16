@@ -34,7 +34,7 @@ window.ARTICLE_BODIES["four-mile-up-panorama-down"] = function FourMileUpPanoram
       <p>There are three reasons.</p>
 
       <p>
-        First, the Four Mile Trail is a steady uphill grind: 3,200 feet of gain in 4.8 miles, over roughly 58 switchbacks. It's the hardest part of the day, so do it while your legs are fresh and the morning is cool.
+        First, the Four Mile Trail is a steady uphill grind: 3,200 feet of gain in 4.8 miles. It's the hardest part of the day, so do it while your legs are fresh and the morning is cool.
       </p>
 
       <p>
@@ -58,7 +58,7 @@ window.ARTICLE_BODIES["four-mile-up-panorama-down"] = function FourMileUpPanoram
       <h2>The Four Mile Trail, what to expect</h2>
 
       <p>
-        Stonemason John Conway built the original trail in 1872 for entrepreneur James McCauley, who charged a one-dollar toll. It was exactly four miles long. In the late 1920s the Park Service rebuilt it with gentler switchbacks, and the new route came out to 4.8 miles. The name stuck anyway.
+        Trail builder John Conway laid out the original trail, completed in 1872 for entrepreneur James McCauley, who charged a one-dollar toll. It was four miles long. The route has changed since, and it now runs 4.8 miles. The name stuck anyway.
       </p>
 
       <p>
@@ -144,7 +144,7 @@ window.ARTICLE_BODIES["four-mile-up-panorama-down"] = function FourMileUpPanoram
       </p>
 
       <p>
-        <strong>The John Muir Trail</strong> is longer (about 4 miles to Happy Isles), gentler and easier on the knees. It switchbacks down through forest with the occasional distant look at Nevada Fall. It's less dramatic, but a lot more comfortable at the end of a long day. After 13 miles and 4,000 feet of total climbing, your knees may decide for you.
+        <strong>The John Muir Trail</strong> is longer (about 3.3 miles from the junction to Happy Isles), gentler and easier on the knees. It switchbacks down through forest with the occasional distant look at Nevada Fall. It's less dramatic, but a lot more comfortable at the end of a long day. After 13 miles and 4,000 feet of total climbing, your knees may decide for you.
       </p>
 
       <p>

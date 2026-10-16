@@ -94,12 +94,12 @@ window.ARTICLE_BODIES["yosemite-in-winter"] = function YosemiteInWinterBody() {
       </p>
 
       <p>
-        The detail that catches people: whenever chain control is in effect inside the park, <strong>you must carry chains even if your vehicle is exempt from putting them on</strong>. A 4WD truck with snow tires can drive through R2 without chains mounted, but the driver still needs a set in the vehicle, and rangers do check at the checkpoints. Rental-car agreements almost universally prohibit chains, which is a problem between you and the rental company, not one the checkpoint will solve for you. Chains can be bought or rented in the gateway towns, Mariposa, Oakhurst, Groveland, and shops along 140 will often rent a set and take it back on your way out. Practice putting them on once in a dry parking lot, not for the first time in a snowbank at night. The <a href="/articles/pack-your-car-for-yosemite">winter car kit</a> covers the rest of what should be in the trunk.
+        The detail that catches people: whenever chain control is in effect inside the park, <strong>you must carry chains even if your vehicle is exempt from putting them on</strong>. A 4WD truck with snow tires can drive through R2 without chains mounted, but the driver still needs a set in the vehicle, and rangers do check at the checkpoints. Rental car companies generally do not supply chains, and a rental is not exempt, so that problem is between you and the rental company, not one the checkpoint will solve for you. Chains can be bought at auto parts stores and gas stations in the gateway towns, Mariposa, Oakhurst, and Groveland; the park says businesses that rent them are hard to find. Practice putting them on once in a dry parking lot, not for the first time in a snowbank at night. The <a href="/articles/pack-your-car-for-yosemite">winter car kit</a> covers the rest of what should be in the trunk.
       </p>
 
       <figure>
         <ChainGrid />
-        <figcaption>Chain control by level and vehicle, drawn from the rules in this article. Rental agreements almost universally prohibit chains, which is between you and the rental company.</figcaption>
+        <figcaption>Chain control by level and vehicle, drawn from the rules in this article. Rental car companies generally do not supply chains, and rentals are not exempt.</figcaption>
       </figure>
 
 
@@ -118,11 +118,11 @@ window.ARTICLE_BODIES["yosemite-in-winter"] = function YosemiteInWinterBody() {
       <h2>Snowshoeing: Dewey Point and the ranger walks</h2>
 
       <p>
-        The signature winter day trip in Yosemite is <strong>Dewey Point</strong>. From Badger Pass you follow the groomed road, then a marked snow route through the forest to the Valley rim, and the trees open onto a view straight down into the Valley with El Capitan across it. It runs about seven miles round trip depending on the route variant, an honest half-day on snowshoes for a reasonably fit party. In July, Dewey Point is a viewpoint. In February it is a snowbound one few people reach.
+        The signature winter day trip in Yosemite is <strong>Dewey Point</strong>. From Badger Pass you follow the groomed road, then a marked snow route through the forest to the Valley rim, and the trees open onto a straight-down view of the Valley with El Capitan across it. It runs seven to eight miles round trip depending on the route variant, an honest half-day on snowshoes for a reasonably fit party. In July, Dewey Point is a viewpoint. In February it is a snowbound one few people reach.
       </p>
 
       <p>
-        For a gentler entry, the park offers <strong>ranger-led snowshoe walks</strong> from Badger Pass through the winter season, typically two hours through the woods near the ski area, with snowshoes provided for a small fee. They are good value. The ranger stops to point out marten tracks and explains how a fir survives under ten feet of snow. Check the current Yosemite Guide or the <a href="/conditions">conditions page</a> for schedules before you drive up.
+        For a gentler entry, the park offers <strong>ranger-led snowshoe walks</strong> from Badger Pass through the winter season, typically two hours through the woods near the ski area, with snowshoes provided. They are free. The ranger stops to point out marten tracks and explains how a fir survives under ten feet of snow. Check the current Yosemite Guide or the <a href="/conditions">conditions page</a> for schedules before you drive up.
       </p>
 
       <h2>The rink under Half Dome</h2>
@@ -138,13 +138,13 @@ window.ARTICLE_BODIES["yosemite-in-winter"] = function YosemiteInWinterBody() {
       </p>
 
       <p>
-        And February brings the park's oddest scheduled event. For about two weeks in the middle of the month, when the sun sets at the right angle, the fall has enough water, and the sky is clear, <strong>Horsetail Fall</strong> on the east shoulder of El Capitan lights up orange at the last minute of the day and appears, briefly, to be on fire. The firefall draws real crowds, and drew a February weekend reservation requirement for four straight years before the park dropped it for 2026, which makes it the exception to everything else in this article; the full logistics are in <a href="/articles/horsetail-fall-firefall">the Horsetail Fall guide</a>, and <a href="/firefall">the firefall page</a> carries whatever rules the park sets for the current season.
+        And February brings the park's oddest scheduled event. For about two weeks in the middle of the month, when the sun sets at the right angle, the fall has enough water, and the sky is clear, <strong>Horsetail Fall</strong> on the east shoulder of El Capitan lights up orange at the last minute of the day and appears, briefly, to be on fire. The firefall draws real crowds, and drew a February weekend reservation requirement in recent years, though the park requires none for February 2026, which makes it the exception to everything else in this article; the full logistics are in <a href="/articles/horsetail-fall-firefall">the Horsetail Fall guide</a>, and <a href="/firefall">the firefall page</a> carries whatever rules the park sets for the current season.
       </p>
 
       <h2>The honest part</h2>
 
       <p>
-        The days are short: the sun clears the Valley rim late and drops behind it early. The deep sections of the floor stay in shade all day, and that shade holds <strong>black ice</strong>. The paths around Curry Village and the base of the falls glaze over and stay glazed. Traction cleats for your boots cost little and prevent the most common winter injury in the park, a fall on a paved path. Valley <strong>inversions</strong>, where cold air sits under warmer air and traps fog on the floor for days at a time, mean that a gray, raw morning in the Valley is often a blue one at Badger Pass, a thousand-plus feet higher.
+        The days are short: the sun clears the Valley rim late and drops behind it early. The deep sections of the floor stay in shade all day, and that shade holds <strong>black ice</strong>. The paths around Curry Village and the base of the falls glaze over and stay glazed. Traction cleats for your boots cost little and prevent the most common winter injury in the park, a fall on a paved path. Valley <strong>inversions</strong>, where cold air sits under warmer air and traps fog on the floor for days at a time, mean that a gray, raw morning in the Valley is often a blue one at Badger Pass, more than three thousand feet higher.
       </p>
 
       <p>
@@ -152,7 +152,7 @@ window.ARTICLE_BODIES["yosemite-in-winter"] = function YosemiteInWinterBody() {
       </p>
 
       <p>
-        For once, the numbers. The concessioner's own winter promotions, as published on its specials page this September, show the low end of the season: <strong>the Ahwahnee from $389</strong> on select two-night stays (code WINTER2027, suites excluded), <strong>Yosemite Valley Lodge as low as $172</strong> on stays of two nights or more (code WNTRYVL), and <strong>Curry Village as low as $95 a night</strong> (code WNTR26). All three run on select dates from late November through March 25, Curry Village from December 13, and all three carry the same two blackout windows, which tell you exactly when the park expects a crowd: <a href="/articles/yosemite-in-december">the December holiday week</a>, December 23 through January 2, and February 12 through 20, the firefall's peak and Presidents' Day weekend. The first night is due at booking and refundable up to seven days out. Rates move with the date, so treat these as the low end rather than a promise, and check <a href="https://www.travelyosemite.com/special-offers/specials-packages" target="_blank" rel="noopener noreferrer">the specials page</a> for what is actually on offer when you book.
+        For once, the numbers. The concessioner's own winter promotions, as published on its specials page this September, show the low end of the season: <strong>the Ahwahnee from $389</strong> on select two-night stays (code WINTER2027, suites excluded), <strong>Yosemite Valley Lodge as low as $172</strong> on stays of two nights or more (code WNTRYVL), and <strong>Curry Village as low as $95 a night</strong> (code WNTR26). The Ahwahnee runs on select dates from November 29 through March 25, Yosemite Valley Lodge from November 29 through March 13, Curry Village from December 13 through March 25, and all three carry the same two blackout windows, which tell you exactly when the park expects a crowd: <a href="/articles/yosemite-in-december">the December holiday week</a>, December 23 through January 2, and February 12 through 20, the firefall's peak and Presidents' Day weekend. The first night is due at booking and refundable up to seven days out. Rates move with the date, so treat these as the low end rather than a promise, and check <a href="https://www.travelyosemite.com/special-offers/specials-packages" target="_blank" rel="noopener noreferrer">the specials page</a> for what is actually on offer when you book.
       </p>
 
       <p>

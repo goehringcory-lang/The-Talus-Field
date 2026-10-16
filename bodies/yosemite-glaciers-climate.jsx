@@ -11,7 +11,7 @@ window.ARTICLE_BODIES["yosemite-glaciers-climate"] = function YosemiteGlaciersBo
   const T_SOFT = { fontFamily: "var(--sans)", fontSize: 13, fill: "var(--ink-2)" };
   const T_BIG = { fontFamily: "var(--serif)", fontSize: 19, fill: "var(--ink)" };
 
-  // Two measurements that define the loss: Lyell's area since 1900, and
+  // Two measurements that define the loss: the glaciers' area since 1883, and
   // whether the ice still flows, from the stake surveys of 1872, 2012 and
   // 2022. Rows, so the labels stay legible on a phone.
   function GlacierLedger() {
@@ -20,21 +20,20 @@ window.ARTICLE_BODIES["yosemite-glaciers-climate"] = function YosemiteGlaciersBo
       { who: "Maclure, 1872", v: 1, lab: "about 1 inch a day (Muir)" },
       { who: "Maclure, 2012", v: 1, lab: "about 1 inch a day" },
       { who: "Maclure, 2022", v: 0.75, lab: "three quarters of an inch" },
-      { who: "Lyell, 1872", v: null, lab: "flowing: Muir's stakes moved" },
       { who: "Lyell, 2012", v: 0, lab: "the stakes did not move at all" },
     ];
     return (
-      <svg viewBox={`0 0 ${W} 470`} style={SVG_STYLE} role="img"
-        aria-label="Two measurements of Yosemite's glaciers. Lyell Glacier's area: about 60 percent lost since 1900, leaving about 40 percent, and roughly 120 vertical feet of thinning. Flow, measured with stakes: the Maclure Glacier moved about an inch a day when John Muir measured it in 1872 and at the same rate in 2012, then about three quarters of an inch a day by 2022. The Lyell Glacier was flowing when Muir staked it in 1872; in 2012 its stakes did not move at all.">
-        <text x="0" y="18" style={T_HEAD}>LYELL GLACIER · AREA SINCE 1900</text>
-        <text x="0" y="62" style={{ ...T_BODY, fontWeight: 600 }}>1900</text>
+      <svg viewBox={`0 0 ${W} 420`} style={SVG_STYLE} role="img"
+        aria-label="Two measurements of Yosemite's glaciers. Area of the park's two glaciers: 67 to 78 percent lost between 1883 and 2017, and 80 to 115 feet of thinning since 1933. Flow, measured with stakes: the Maclure Glacier moved about an inch a day when John Muir measured it in 1872 and at the same rate in 2012, then about three quarters of an inch a day by 2022. The Lyell Glacier's stakes did not move at all in 2012.">
+        <text x="0" y="18" style={T_HEAD}>BOTH GLACIERS · AREA SINCE 1883</text>
+        <text x="0" y="62" style={{ ...T_BODY, fontWeight: 600 }}>1883</text>
         <rect x={LX} y="44" width={BW} height="26" fill="var(--paper-2)" stroke="var(--moss)" strokeWidth="1.5" />
         <text x={LX + BW - 10} y="62" textAnchor="end" style={T_SOFT}>100%</text>
         <text x="0" y="104" style={{ ...T_BODY, fontWeight: 600 }}>Today</text>
-        <rect x={LX} y="86" width={BW * 0.4} height="26" fill="var(--moss)" />
-        <rect x={LX + BW * 0.4} y="86" width={BW * 0.6} height="26" fill="none" stroke="var(--ink-3)" strokeWidth="1" strokeDasharray="4 4" />
-        <text x={LX + BW * 0.4 + 12} y="104" style={{ ...T_SOFT, fontStyle: "italic" }}>about 60 percent gone</text>
-        <text x="0" y="140" style={T_SOFT}>And about 120 vertical feet thinner: thin enough to stop flowing.</text>
+        <rect x={LX} y="86" width={BW * 0.3} height="26" fill="var(--moss)" />
+        <rect x={LX + BW * 0.3} y="86" width={BW * 0.7} height="26" fill="none" stroke="var(--ink-3)" strokeWidth="1" strokeDasharray="4 4" />
+        <text x={LX + BW * 0.3 + 12} y="104" style={{ ...T_SOFT, fontStyle: "italic" }}>67 to 78 percent gone by 2017</text>
+        <text x="0" y="140" style={T_SOFT}>And 80 to 115 feet thinner since 1933.</text>
 
         <line x1="0" y1="164" x2={W} y2="164" stroke="var(--rule-soft)" strokeWidth="1.5" />
         <text x="0" y="192" style={T_HEAD}>DOES THE ICE STILL MOVE? STAKE SURVEYS</text>
@@ -53,7 +52,7 @@ window.ARTICLE_BODIES["yosemite-glaciers-climate"] = function YosemiteGlaciersBo
             </g>
           );
         })}
-        <line x1={LX} y1="222" x2={LX} y2="452" stroke="var(--ink-3)" strokeWidth="1" />
+        <line x1={LX} y1="222" x2={LX} y2="408" stroke="var(--ink-3)" strokeWidth="1" />
       </svg>
     );
   }
@@ -61,11 +60,11 @@ window.ARTICLE_BODIES["yosemite-glaciers-climate"] = function YosemiteGlaciersBo
   return (
     <>
       <p className="dropcap">
-        In 1872, John Muir drove a line of stakes into the Lyell Glacier and came back to see how far they had moved. They had moved: the ice was flowing, which was the point he was trying to prove. In 2012 a research team repeated his measurement on the same glacier, in the same part of the melt season, with the same method. The stakes did not move at all.
+        In 1872, John Muir drove a line of stakes into the Maclure Glacier and came back to see how far they had moved. They had moved: the ice was flowing, which was the point he was trying to prove. In 2012 a research team repeated his measurement in the same part of the melt season, with the same method. On the neighboring Lyell Glacier the stakes did not move at all.
       </p>
 
       <p>
-        The Park Service's reading of that result is blunt: "the lack of movement suggests that the term 'glacier' no longer accurately describes this feature." Lyell has lost about 60 percent of its size since 1900 and thinned by roughly 120 vertical feet. On the next ridge, the Maclure Glacier was still flowing in 2012 at about an inch a day, the same rate Muir measured 140 years earlier, and by 2022 it had slowed to three quarters of an inch.
+        The Park Service's reading of that result is blunt: the Lyell Glacier "no longer moves downhill, meaning that it no longer formally meets the definition of 'glacier.'" From 1883 to 2017 the surface area of the park's two glaciers shrank by 67 to 78 percent, and since 1933 both have lost 80 to 115 feet of depth. On the next ridge, the Maclure Glacier was still flowing in 2012 at about an inch a day, the same rate Muir measured 140 years earlier, and by 2022 it had slowed to three quarters of an inch.
       </p>
 
       <p>
@@ -87,7 +86,7 @@ window.ARTICLE_BODIES["yosemite-glaciers-climate"] = function YosemiteGlaciersBo
       </p>
 
       <p>
-        Two glaciers remain in Yosemite: the <strong>Lyell</strong> and the <strong>Maclure</strong>. Both sit at the headwaters of the Tuolumne River beneath the park's highest peaks, and neither is a roadside stop. The usual approach is a multi-day walk from Tuolumne Meadows, which puts them behind <a href="/articles/tioga-road-opening-weekend">Tioga Road</a>'s season: late June through October in most years. The Dana Glacier, which is often named alongside them, lies east of the Mount Dana ridgeline and outside the park, in the Ansel Adams Wilderness.
+        Two glaciers remain in Yosemite: the <strong>Lyell</strong> and the <strong>Maclure</strong>. Both sit at the headwaters of the Tuolumne River beneath the park's highest peaks, and neither is a roadside stop. The usual approach is a multi-day walk from Tuolumne Meadows, which puts them behind <a href="/articles/tioga-road-opening-weekend">Tioga Road</a>'s season: late May to mid-November in most years. The Dana Glacier, which is often named alongside them, lies east of the Mount Dana ridgeline and outside the park, in the Ansel Adams Wilderness.
       </p>
 
       <p>Both glaciers have retreated and thinned, and one of them has stopped moving.</p>
@@ -105,12 +104,12 @@ window.ARTICLE_BODIES["yosemite-glaciers-climate"] = function YosemiteGlaciersBo
       <h2>The recession timeline</h2>
 
       <p>
-        Lyell's decline is the one that has been measured most closely, and the numbers are specific: about 60 percent of its area gone since 1900, and about 120 vertical feet of thinning. Thinning determines what it is. A glacier moves because it is thick enough that its own weight deforms the ice at the bottom. Below that threshold it is a snowfield that happens to be old, which is what the stationary stakes of 2012 were recording. Park scientists have said Lyell could disappear within a decade or so, depending on the droughts ahead.
+        Lyell's decline is the one that has been measured most closely, and the numbers are specific: from 1883 to 2017 the surface area of the park's two glaciers fell by 67 to 78 percent, and since 1933 both have lost 80 to 115 feet of depth. Thinning determines what it is. A glacier moves because it is thick enough that its own weight deforms the ice at the bottom. Below that threshold it is a snowfield that happens to be old, which is what the stationary stakes of 2012 were recording. Park scientists have said Lyell could disappear within a decade or so, depending on the droughts ahead.
       </p>
 
       <figure>
         <GlacierLedger />
-        <figcaption>Lyell's shrinking area and the stake surveys of both glaciers, drawn from the figures in this article. Lyell's 1872 rate is not given here, only that the stakes moved.</figcaption>
+        <figcaption>The glaciers' shrinking area and the stake surveys of both, drawn from the figures in this article.</figcaption>
       </figure>
 
 
@@ -141,7 +140,7 @@ window.ARTICLE_BODIES["yosemite-glaciers-climate"] = function YosemiteGlaciersBo
       </p>
 
       <p>
-        The glaciers themselves now contribute very little. Both sit in the Tuolumne headwaters, so neither the Merced nor Tenaya Creek has any glacial ice in its watershed at all, and the surviving remnants are far too small to be a meaningful share of even the Tuolumne's late-summer flow. The thing that keeps the high streams running into August is the snowpack, and the glaciers matter chiefly as the most legible gauge of what is happening to it.
+        The glaciers themselves now contribute very little. Both sit in the Tuolumne headwaters, so neither the Merced nor Tenaya Creek has any glacial ice in its watershed at all, and in spring the glacial trickle barely registers in the snowmelt-fed Lyell Fork. The Park Service notes that the ice matters most in September and October of dry years, when its steady runoff sustains high-elevation streams after the snow is gone. The thing that keeps those streams running through the summer is the snowpack, and the glaciers matter chiefly as the most legible gauge of what is happening to it.
       </p>
 
       <p>

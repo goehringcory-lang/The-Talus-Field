@@ -16,41 +16,41 @@ window.ARTICLE_BODIES["is-bear-spray-allowed-in-yosemite"] = function IsBearSpra
       <h2>The rule</h2>
 
       <p>
-        The ban is written into the Superintendent's Compendium, the document that carries each park's local regulations. Yosemite's classifies bear spray alongside "pellet guns, BB guns, bows and arrows, crossbows, blowguns, spearguns, spear-fishing equipment, and nets." The category is weapons, and weapons are not permitted in the park.
+        The Park Service's weapons page says it plainly: within Yosemite it is prohibited to possess or use pepper spray, including bear spray and other irritant gas devices, and the same sentence lists pellet guns, BB guns, bows and arrows, crossbows, blowguns, spearguns, hand-thrown spears and slingshots. The category is weapons, and bear spray sits in it.
       </p>
 
       <p>
-        A compendium is revised, so the wording and the list can change between seasons. The current version is published on the park's own site, and it is the only authority worth quoting on this.
+        Park rules are revised, so the wording and the list can change between seasons. The current version is published on the park's own site, and it is the only authority worth quoting on this.
       </p>
 
       <h2>Why: there are no grizzly bears here</h2>
 
       <p>
-        Bear spray is highly effective against grizzly bears. The landmark study, Smith and Herrero in the <em>Journal of Wildlife Management</em> in 2008, looked at 83 bear spray incidents in Alaska involving 175 people and found it stopped aggressive behavior 92% of the time, a better record than firearms. That finding is widely repeated, including in advice for parks where it does not apply.
+        Bear spray is highly effective against grizzly bears. The landmark study, Smith, Herrero and colleagues in the <em>Journal of Wildlife Management</em> in 2008, looked at 83 bear spray incidents in Alaska involving 175 people and found it stopped brown bears' undesirable behavior 92% of the time, a better record than firearms. That finding is widely repeated, including in advice for parks where it does not apply.
       </p>
 
       <p>
-        Yosemite is one of those parks. There have been no grizzlies here since about 1895, when the last one was shot near Crescent Lake; the California grizzly has been extinct for more than a century, and the bear on the state flag is a memorial. What Yosemite has is American black bears, <em>Ursus americanus</em>, somewhere between 300 and 500 of them.
+        Yosemite is one of those parks. Grizzlies are gone from the Sierra: one of the last in the Yosemite country was shot near Crescent Lake in 1887, the last in California was killed in 1922, and the bear on the state flag is a memorial. What Yosemite has is American black bears, <em>Ursus americanus</em>, somewhere between 300 and 500 of them.
       </p>
 
       <p>
-        They are a different animal. An adult male black bear here runs 250 to 350 pounds against a grizzly's potential 700-plus, but the behavioral profile matters more than the mass. Grizzlies are territorial and defensive. Black bears are opportunistic and, overwhelmingly, avoidant. Bear spray is designed for a defensive charge. In Yosemite the usual encounter is a bear that wants your food and would rather avoid you.
+        They are a different animal. The Park Service puts the typical adult male black bear here at around 250 pounds, against a grizzly's potential 700-plus, but the behavioral profile matters more than the mass. Grizzlies are territorial and defensive. Black bears are opportunistic and, overwhelmingly, avoidant. Bear spray is designed for a defensive charge. In Yosemite the usual encounter is a bear that wants your food and would rather avoid you.
       </p>
 
       <h2>Why: it does not repel bears here, it recruits them</h2>
 
       <p>
-        A USGS study found that capsaicin, the hot compound in the spray, left as residue on surfaces actually <em>attracts</em> bears. Spray a picnic table, a tent, a car door, and what you have created is a scented object in a park where bears are already conditioned to investigate scented objects.
+        A 1998 U.S. Geological Survey pilot study on brown bears in Alaska found that red pepper spray residue left at a site actually <em>attracted</em> them. Spray a picnic table, a tent, a car door, and what you have created is a scented object in a park where bears are already conditioned to investigate scented objects.
       </p>
 
       <p>
-        The second problem is people. In a park taking over 3.5 million visitors a year, the odds of bear spray being deployed against a human, by accident or otherwise, are real. And the park's Bear Team reports the more common failure: visitors mis-deploying spray at bears that were doing nothing threatening, which harms and stresses an animal that was behaving normally.
+        The second problem is people. In a park taking over 3.5 million visitors a year, the odds of bear spray being deployed against a human, by accident or otherwise, are real. And the more likely failure is spray aimed at a bear that was doing nothing threatening, which harms and stresses an animal that was behaving normally.
       </p>
 
       <h2>What to carry instead</h2>
 
       <p>
-        Your voice. The Bear Team puts it plainly: it is the most effective tool you have. A black bear that has noticed a loud, upright, unambiguous human usually leaves. Shout, clap, stand tall, make yourself obviously present, and do not run and do not play dead, which is grizzly advice and actively wrong here.
+        Your voice. The Park Service's instruction for a bear that approaches you or comes into a developed area is to yell aggressively and as loudly as possible until it leaves. A black bear that has noticed a loud, upright, unambiguous human usually leaves. Shout, clap, stand tall, make yourself obviously present, and do not run and do not play dead, which is grizzly advice and actively wrong here.
       </p>
 
       <p>
@@ -74,14 +74,14 @@ window.ARTICLE_BODIES["is-bear-spray-allowed-in-yosemite"] = function IsBearSpra
       <h2>The short version</h2>
 
       <p>
-        Bear spray is prohibited in Yosemite, classified as a weapon in the Superintendent's Compendium. There are no grizzlies here and have not been since the 1890s; the black bears the park does have are food-motivated rather than defensive, and capsaicin residue attracts them rather than deterring them. Use your voice, store your food properly, and leave the spray for the parks that need it.
+        Bear spray is prohibited in Yosemite, classified among the park's prohibited weapons: the Park Service bars possessing or using pepper spray, bear spray included. There are no grizzlies here and have not been for about a century; the black bears the park does have are food-motivated rather than defensive. Use your voice, store your food properly, and leave the spray for the parks that need it.
       </p>
 
       <h3>Sources</h3>
       <ul style={{ fontSize: 14 }}>
-        <li>Yosemite National Park Superintendent's Compendium, National Park Service.</li>
-        <li>Smith, T. and Herrero, S., "Efficacy of Bear Deterrent Spray in Alaska", <em>Journal of Wildlife Management</em>, 2008.</li>
-        <li>U.S. Geological Survey research on capsaicin residue and bear attraction.</li>
+        <li>Weapons/Firearms, Yosemite National Park, National Park Service.</li>
+        <li>Smith, T., Herrero, S., DeBruyn, T., and Wilder, J., "Efficacy of Bear Deterrent Spray in Alaska", <em>Journal of Wildlife Management</em> 72(3), 2008.</li>
+        <li>Smith, T.S., "Attraction of brown bears to red pepper spray deterrent: Caveats for use", <em>Wildlife Society Bulletin</em> 26(1), 1998.</li>
         <li>Yosemite Bear Team guidance, National Park Service.</li>
       </ul>
     </>

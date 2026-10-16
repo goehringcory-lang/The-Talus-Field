@@ -70,7 +70,7 @@ window.ARTICLE_BODIES["yosemite-fire-restrictions-explained"] = function Yosemit
       </p>
 
       <p>
-        The restrictions were in force when this fall's fire began. The <strong>Dome Fire</strong> was reported on the morning of September 15, about a quarter mile north of Chilnualna Falls above Wawona. What started it is not established: on September 30 the local press reported a Forest Service finding of an abandoned campfire, on October 6 the Forest Service withdrew that finding without giving a reason, and the federal incident page, InciWeb, lists the cause as undetermined. The fire closed Glacier Point Road from September 23 to October 10, and it has closed the Ostrander Lake Trail and everything south of it, and two helicopter pilots were killed fighting it on September 20. <a href="/now">The Park Bulletin</a> carries the closures as they stand, and <a href="/articles/yosemite-in-october-2026">Yosemite in October 2026</a> covers what the fire means for a trip this month.
+        The restrictions were in force when this fall's fire began. The <strong>Dome Fire</strong> was reported on the morning of September 15, about a quarter mile north of Chilnualna Falls above Wawona. What started it is not established: on September 30 the local press reported a Forest Service finding of an abandoned campfire, on October 6 the Forest Service withdrew that finding without giving a reason, and the federal incident page, InciWeb, lists the cause as undetermined. The fire closed Glacier Point Road in late September, until it reopened on October 10, and it has closed the Ostrander Lake Trail and everything south of it, and two helicopter pilots were killed fighting it on September 20. <a href="/now">The Park Bulletin</a> carries the closures as they stand, and <a href="/articles/yosemite-in-october-2026">Yosemite in October 2026</a> covers what the fire means for a trip this month.
       </p>
 
       <h2>What is actually banned</h2>
@@ -80,7 +80,7 @@ window.ARTICLE_BODIES["yosemite-fire-restrictions-explained"] = function Yosemit
       </p>
 
       <p>
-        <strong>Smoking is restricted too.</strong> Below 8,000 feet, smoking is prohibited except inside an enclosed vehicle, inside a campground or picnic area where wood and charcoal fires are otherwise permitted, or in a posted designated smoking area. That is a real change from ordinary conditions, and it catches people who assume the fire rules and the smoking rules are the same thing. They are related, but the smoking rule is broader.
+        <strong>Smoking is restricted too.</strong> Anywhere in the park, smoking is prohibited except inside an enclosed vehicle, inside a campground or picnic area where wood and charcoal fires are otherwise permitted, in a posted designated smoking area, or while stopped in a barren or cleared spot at least three feet across. That is a real change from ordinary conditions, and it catches people who assume the fire rules and the smoking rules are the same thing. They are related, but the smoking rule is broader.
       </p>
 
       <h2>What still works</h2>
@@ -90,7 +90,7 @@ window.ARTICLE_BODIES["yosemite-fire-restrictions-explained"] = function Yosemit
       </p>
 
       <p>
-        <strong>Established fire rings in developed areas keep working, with one exception.</strong> Designated frontcountry campgrounds and picnic areas below 8,000 feet are exempt from the wood and charcoal ban, so a ring at Upper Pines or Wawona Campground can still hold a fire. Residential areas in the park's developed communities are exempt too, with one carve-out: in El Portal and Foresta, only charcoal fires are allowed, not wood, because those two communities carry the highest structure-fire exposure in the park. Everywhere else the exemption for residential and developed areas covers both.
+        <strong>Established fire rings in developed areas keep working, with one exception.</strong> Designated frontcountry campgrounds and picnic areas below 8,000 feet are exempt from the wood and charcoal ban, so a ring at Upper Pines or Wawona Campground can still hold a fire. Residential areas in the park's developed communities are exempt too, with one carve-out: in El Portal and Foresta, only charcoal fires are allowed, not wood. Everywhere else the exemption for residential and developed areas covers both.
       </p>
 
       <p>
@@ -116,11 +116,11 @@ window.ARTICLE_BODIES["yosemite-fire-restrictions-explained"] = function Yosemit
       <h2>Two rules, not one, and they are not the same rule</h2>
 
       <p>
-        Even outside fire restrictions, Yosemite Valley and Hodgdon Meadow run a standing seasonal rule: from May through September, wood fires there are allowed only in the evening, roughly 5 to 10 p.m. That rule exists for air quality, not fire danger. The Valley is a granite trough that traps cold air and smoke overnight, and a hundred and fifty morning campfires produce a haze the whole floor has to breathe. <a href="/articles/camping-in-yosemite-first-time">The campground guide</a> covers that rule for a normal summer.
+        Even outside fire restrictions, the park runs a standing hours rule: fires are allowed only between 5 and 10 p.m. at Yosemite Valley campgrounds, picnic areas and Housekeeping Camp, and at Hodgdon Meadow Campground. It is a rule about when, not about fire danger. <a href="/articles/camping-in-yosemite-first-time">The campground guide</a> covers that rule for a normal summer.
       </p>
 
       <p>
-        Stage 1 restrictions cancel that evening window. Right now, in the Valley and at Hodgdon Meadow, there is no evening exception, because the wood-fire ban is total below 8,000 feet regardless of the hour. When the restrictions lift, the standing evening-only rule comes back into force for whatever remains of the summer season.
+        The two stack. Designated frontcountry campgrounds are exempt from the Stage 1 wood and charcoal ban, so a Valley or Hodgdon Meadow ring can still hold a fire right now, but only inside the 5 to 10 p.m. window. A Valley picnic area follows the same hours if its fire grates are open to wood or charcoal.
       </p>
 
       <h2>Why the line sits at 8,000 feet, and why it moves</h2>
@@ -150,7 +150,7 @@ window.ARTICLE_BODIES["yosemite-fire-restrictions-explained"] = function Yosemit
       </p>
 
       <p>
-        <strong>Backpacking above 8,000 feet.</strong> You can build a fire in an existing ring, below 9,600 feet, if your route takes you that high. Most first and second nights out of trailheads at Tuolumne, Glacier Point Road, or the Valley rim start below that line, so plan on your stove for at least the early part of most routes. <a href="/articles/first-yosemite-backpacking-trip">The backpacking guide</a> covers permits, bear canisters, and the rest of what the paperwork does not tell you.
+        <strong>Backpacking above 8,000 feet.</strong> You can build a fire in an existing ring, below 9,600 feet, if your route takes you that high. Most first and second nights out of trailheads at Hetch Hetchy, the Valley or Wawona start below that line, so plan on your stove for at least the early part of most routes. <a href="/articles/first-yosemite-backpacking-trip">The backpacking guide</a> covers permits, bear canisters, and the rest of what the paperwork does not tell you.
       </p>
 
       <p>
@@ -158,7 +158,7 @@ window.ARTICLE_BODIES["yosemite-fire-restrictions-explained"] = function Yosemit
       </p>
 
       <p>
-        <strong>Smoking anywhere in the park below 8,000 feet.</strong> Car, permitted campground, or posted smoking area. Nowhere else, restrictions or not, and during restrictions, "permitted campground" means only one where fires are still allowed under the current rules, which narrows the list.
+        <strong>Smoking anywhere in the park.</strong> Car, permitted campground, posted smoking area, or a stopped-and-cleared spot at least three feet across. Nowhere else. During restrictions, "permitted campground" now specifically means one where fires are still allowed under the current rules, which narrows the list.
       </p>
 
       <h2>This is a different question from whether your trip will be smoky</h2>
@@ -180,7 +180,7 @@ window.ARTICLE_BODIES["yosemite-fire-restrictions-explained"] = function Yosemit
       <h2>When restrictions usually lift</h2>
 
       <p>
-        Restrictions like this one typically go into effect in July, after a stretch of hot, dry weather has pushed fuel moisture down, and they come off when temperatures drop and real rain falls, not on a schedule. Historically, Yosemite has close to a 90 percent chance of a season-ending precipitation event, defined as two or more inches of rain, by October 31. Recent examples: fire restrictions were rescinded in September 2022 after a cooling, wetter pattern moved in, and again in late October 2021 after a combination of rain, snow, and cooler temperatures reduced the danger enough for the park to lift them. Most years land somewhere in that window: sometime after Labor Day, before Halloween, tied to whichever storm actually delivers.
+        Restrictions like this one typically go into effect in July, after a stretch of hot, dry weather has pushed fuel moisture down, and they come off when temperatures drop and real rain falls, not on a schedule. Recent examples: fire restrictions were rescinded on September 21, 2022 after a cooling, wetter pattern moved in, and on October 20, 2021 after a combination of rain, snow, and cooler temperatures reduced the danger enough for the park to lift them. Most years land somewhere in that window: sometime after Labor Day, before Halloween, tied to whichever storm actually delivers.
       </p>
 
       <p>

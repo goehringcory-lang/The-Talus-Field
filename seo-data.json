@@ -219,7 +219,7 @@
       },
       {
         "q": "Does YARTS run on Thanksgiving?",
-        "a": "YARTS lists Thanksgiving Day among the holidays on which it does not operate, but its Highway 140 page prints the date as November 27, 2026, which is the Friday, so call before planning to ride on either day."
+        "a": "YARTS lists Thanksgiving Day among the holidays on which it does not operate, but its Highway 140 page lists Thanksgiving Day as November 26, 2026."
       }
     ]
   },
@@ -638,7 +638,7 @@
     "faq": [
       {
         "q": "How far is Glacier Point from Yosemite Valley?",
-        "a": "About 30 miles and an hour of driving, and the same hour from Wawona. From the Valley you take the Wawona Road (Highway 41) south about 13 miles to the Chinquapin junction, then follow Glacier Point Road about 16 miles to the end. There is no regular shuttle between the Valley and the point: you drive, ride the paid tour bus, or walk up."
+        "a": "About 30 miles and an hour of driving, and about 45 minutes from Wawona. From the Valley you take the Wawona Road (Highway 41) south about 14 miles to the Chinquapin junction, then follow Glacier Point Road about 16 miles to the end. There is no regular shuttle between the Valley and the point: you drive, ride the paid tour bus, or walk up."
       },
       {
         "q": "When is Glacier Point Road open?",
@@ -735,7 +735,7 @@
     "faq": [
       {
         "q": "How long does it take to drive from Las Vegas to Yosemite?",
-        "a": "The Park Service's directions page gives two figures. In season, by US 95 and Highway 120 over Tioga Pass, it is 400 miles and about eight hours to Yosemite Valley, and the page dates that road June through October. In winter, by I-15 and Highway 41 through Bakersfield and Fresno, it is 495 miles and eight to ten hours. Both are to the Valley floor in clear conditions, so treat eight hours as the floor, not the estimate."
+        "a": "The Park Service's directions page gives two figures. In season, by US 95 and Highway 120 over Tioga Pass, it is 400 miles and about eight hours to Yosemite Valley, and the page dates that road June through October. In winter, by I-15 and Highway 41 through Bakersfield and Fresno, it is 475 miles and eight and a half to ten hours. Both are to the Valley floor in clear conditions, so treat eight hours as the floor, not the estimate."
       },
       {
         "q": "Can you do Yosemite as a day trip from Las Vegas?",
@@ -751,7 +751,7 @@
       },
       {
         "q": "What is the winter route from Las Vegas to Yosemite when Tioga Pass is closed?",
-        "a": "The Park Service's published detour is I-15 south to Barstow, Highway 58 west to Bakersfield, Highway 99 north to Fresno, and Highway 41 north into the park: 495 miles and eight to ten hours. Chains are most often required from November through March, all vehicles must carry them when controls are posted, rental cars and four-wheel drives included. A better winter shape is to sleep in Death Valley the first night, while it is mild, and take the park's Death Valley detour, Highway 190 west to US 395, south to Highway 14, Highway 58 to Bakersfield, then 99 and 41, to Oakhurst or Fish Camp the second day."
+        "a": "The Park Service's published detour is I-15 south to Barstow, Highway 58 west to Bakersfield, Highway 99 north to Fresno, and Highway 41 north into the park: 475 miles and eight and a half to ten hours. Chains are most often required from November through March, all vehicles must carry them when controls are posted, rental cars and four-wheel drives included. A better winter shape is to sleep in Death Valley the first night, while it is mild, and take the park's Death Valley detour, Highway 190 west to US 395, south to Highway 14, Highway 58 to Bakersfield, then 99 and 41, to Oakhurst or Fish Camp the second day."
       },
       {
         "q": "Where should you stop overnight between Las Vegas and Yosemite?",
@@ -845,7 +845,7 @@
       },
       {
         "q": "Is the Highway 395 route over Tioga Pass a good way to reach Yosemite from Los Angeles?",
-        "a": "Only in the summer window and only if the high country is the point. Tioga Road is typically open to vehicles from late May or June until sometime in November, and the eastern road is longer on the odometer and slower per mile than Highway 41. From Lee Vining, Yosemite Valley is about 75 miles and at least ninety minutes over the Tioga Road, with no gas between Lee Vining and Crane Flat. When the pass is closed, the Park Service's own detour from Lee Vining to the Valley runs to 390 or 410 miles and eight hours."
+        "a": "Only in the summer window and only if the high country is the point. Tioga Road is typically open to vehicles from late May or June until sometime in November, and the eastern road is longer on the odometer and slower per mile than Highway 41. From Lee Vining, Yosemite Valley is about 75 miles and about two hours over the Tioga Road, with no gas between Lee Vining and Crane Flat. When the pass is closed, the Park Service's own detour from Lee Vining to the Valley runs to 276 miles and about six and a quarter hours."
       },
       {
         "q": "How do I get from Los Angeles to Yosemite without a car?",
@@ -1251,11 +1251,11 @@
     "faq": [
       {
         "q": "How long does it take to drive from Yosemite Valley to Tuolumne Meadows?",
-        "a": "Roughly 55 to 60 miles on Tioga Road, which is about an hour and a half each way in no traffic and closer to two hours in July. That is three to four hours of driving bracketing your day, and it is the number that quietly ruins Tuolumne itineraries. Leave the Valley early rather than mid-morning."
+        "a": "About 55 miles on Tioga Road, which is about an hour and a half each way in no traffic and closer to two hours in July. That is three to four hours of driving bracketing your day, and it is the number that quietly ruins Tuolumne itineraries. Leave the Valley early rather than mid-morning."
       },
       {
         "q": "Is there gas at Tuolumne Meadows?",
-        "a": "No. The old station has been out of operation for years and travel sites still list it. Inside the park on the west side, Crane Flat is the only fuel and is pay-at-pump around the clock. On the east side your next fuel is Lee Vining, about forty-five minutes past the meadows. Fill up at Crane Flat on the way in whether or not you think you need to."
+        "a": "No. The old station has been out of operation for years and travel sites still list it. Inside the park on the west side, Crane Flat is the only fuel and is pay-at-pump around the clock. On the east side your next fuel is Lee Vining, about thirty minutes past the meadows. Fill up at Crane Flat on the way in whether or not you think you need to."
       },
       {
         "q": "What can you do at Tuolumne Meadows if you are not a hiker?",
@@ -1430,8 +1430,8 @@
         "a": "Alongside the March preseason lottery, Yosemite runs a daily lottery every day the cables are up. You apply on Recreation.gov two days before you want to hike, in a window running from midnight to 4 p.m. Pacific, and results arrive by email that evening. It costs $10 per application plus $10 per person if you win, and each day's application is an independent shot, so a week-long trip is several attempts."
       },
       {
-        "q": "Are Yosemite wilderness permits free in winter?",
-        "a": "Roughly November through April the quota season ends and wilderness permits become free, unlimited, and self-issued at trailhead registers. No lottery, no Recreation.gov, no counter. It is the largest gap between how hard the park looks to get into and how easy it actually is, though the weather that opens the door also makes the walking serious."
+        "q": "Do you still need a wilderness permit in winter?",
+        "a": "From late October to mid-April the reservation season ends. A wilderness permit is still required, but you collect it in person the day before or the day you start, at the permit station nearest the trailhead, with no lottery and no Recreation.gov booking. Trailhead quotas technically remain, but most trailheads do not fill. It is the largest gap between how hard the park looks to get into and how easy it actually is, though the weather that opens the door also makes the walking serious."
       },
       {
         "q": "Can you camp in Yosemite without a reservation?",
@@ -2180,7 +2180,7 @@
       },
       {
         "q": "Which Yosemite campground is best?",
-        "a": "It depends on what you want. Crane Flat is the all-round pick: 17 miles and about 30 minutes from the Valley, cooler and quieter, with flush toilets and drinking water. For the classic Valley trip, book Upper Pines or North Pines and look for sites near the Merced River. For solitude, Tamarack Flat and Yosemite Creek trade amenities for room."
+        "a": "It depends on what you want. Crane Flat is the all-round pick: 16 miles and about 30 minutes from the Valley, cooler and quieter, with flush toilets and drinking water. For the classic Valley trip, book Upper Pines or North Pines and look for sites near the Merced River. For solitude, Tamarack Flat and Yosemite Creek trade amenities for room."
       },
       {
         "q": "When can you camp in the Yosemite high country?",
@@ -2574,7 +2574,7 @@
       },
       {
         "q": "Are there restaurants in Yosemite West?",
-        "a": "No. Yosemite West, a private enclave just outside the park's southern boundary, has no restaurant, store, gas station, or shuttle. Shop before arriving. Yosemite Valley is roughly forty minutes each way, or Wawona is about half an hour south."
+        "a": "No. Yosemite West, a private enclave just outside the park's southern boundary, has no restaurant, store, gas station, or shuttle. Shop before arriving. Yosemite Valley is roughly half an hour each way, or Wawona is about fifteen minutes south."
       },
       {
         "q": "Is there food at Tuolumne Meadows in fall?",
@@ -2693,7 +2693,7 @@
     "faq": [
       {
         "q": "When does Tioga Road open in 2026?",
-        "a": "Tioga Road in Yosemite National Park opened Friday, May 15, 2026, at 8 am, well ahead of the long-term average of May 28."
+        "a": "Tioga Road in Yosemite National Park opened Friday, May 15, 2026, at 8 am, well ahead of the long-term average of May 31."
       },
       {
         "q": "Is Tioga Pass open right now?",
@@ -2721,7 +2721,7 @@
       },
       {
         "q": "How long does it take to drive Tioga Road?",
-        "a": "Tioga Road runs 39 miles from Crane Flat to Tuolumne Meadows and about 47 to the Tioga Pass entrance station. Allow about 90 minutes one-way without stops, or a full day with Olmsted Point, Tenaya Lake, and Tuolumne Meadows."
+        "a": "Tioga Road runs 39 miles from Crane Flat to Tuolumne Meadows and about 46 to the Tioga Pass entrance station. Allow about 75 minutes one-way without stops, or a full day with Olmsted Point, Tenaya Lake, and Tuolumne Meadows."
       }
     ]
   },
@@ -3126,11 +3126,11 @@
       },
       {
         "q": "What is the best town to stay in near Yosemite?",
-        "a": "For most first-time visitors, Mariposa: a real town, several price points, full supermarkets, and the year-round Highway 140 road at 45 to 60 minutes from the Valley. El Portal if the drive is the thing to shorten, Oakhurst for the sequoias, Groveland for character and the Bay Area route, Lee Vining for the high country."
+        "a": "For most first-time visitors, Mariposa: a real town, several price points, full supermarkets, and the year-round Highway 140 road at 60 to 75 minutes from the Valley. El Portal if the drive is the thing to shorten, Oakhurst for the sequoias, Groveland for character and the Bay Area route, Lee Vining for the high country."
       },
       {
         "q": "Is Oakhurst or Mariposa closer to Yosemite Valley?",
-        "a": "Mariposa, by 30 minutes or more: 45 to 60 minutes on Highway 140 against 75 to 90 on Highway 41. Oakhurst is closer to the South Entrance and the Mariposa Grove, 20 to 25 minutes."
+        "a": "Mariposa, by 15 minutes or more: 60 to 75 minutes on Highway 140 against 75 to 90 on Highway 41. Oakhurst is closer to the South Entrance and the Mariposa Grove, 20 to 25 minutes."
       },
       {
         "q": "Where should I stay near the Yosemite south entrance?",
@@ -3284,7 +3284,7 @@
       },
       {
         "q": "Where should I stay in Yosemite for the first time?",
-        "a": "Mariposa is the most practical first-timer choice: 45 minutes to an hour from the Valley, a real downtown, and the year-round Highway 140 road. El Portal is closer but smaller and more expensive. In-park lodging books 366 days ahead and fills fast for summer."
+        "a": "Mariposa is the most practical first-timer choice: 60 to 75 minutes from the Valley, a real downtown, and the year-round Highway 140 road. El Portal is closer but smaller and more expensive. In-park lodging books 366 days ahead and fills fast for summer."
       },
       {
         "q": "How much driving is involved in a Yosemite trip?",

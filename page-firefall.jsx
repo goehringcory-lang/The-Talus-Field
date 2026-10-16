@@ -52,7 +52,7 @@ const FF_TOWNS = [
     id: "mariposa",
     name: "Midpines and Mariposa",
     dest: "Mariposa, California",
-    drive: "45 to 60 min",
+    drive: "60 to 75 min",
     road: "Highway 140, rain when others get snow",
     tier: "Fills next",
     note: "The deepest inventory on the road that stays open all winter, which is why most firefall visitors end up here. Book it when you book the dates.",
@@ -105,16 +105,16 @@ const FF_KIT = [
 // The history ledger. Sources: NPS Horsetail Fall page and the park's news
 // releases (the pedestrian lane, the no-stopping zones, the after-sunset
 // closure, no reservation in 2026); the 2025 weekend dates from the park's
-// reservation announcement (Feb 8–9, 15–17, 22–23); the 2022 crowd figure as
-// reported by SFGate; the February 2026 snow closure as reported by the
+// reservation announcement (Feb 8–9, 15–17, 22–23); the 2022 crowd figure from
+// the NPS Horsetail Fall page; the February 2026 snow closure as reported by the
 // Deseret News. The 1968 and 1973 entries follow the article body.
 const FF_HISTORY = [
   ["1968", "The other firefall ends", "The Park Service stops the man-made ember fall from Glacier Point, a summer tradition since the 1870s. The name stays with the park."],
   ["1973", "Galen Rowell's photograph", "Rowell scrambles into position and shoots the lit fall on film. It becomes the reference image, and for decades February stays an appointment for photographers only."],
   ["Mid-2010s", "The crowd arrives", "Social media carries the photographs. The dates are predictable and the viewing area is a flat walk from a road."],
-  ["2022", "About 2,500 in one spot", "Nearly 2,500 people pack a single viewing area. Trampled vegetation, overwhelmed restrooms, and a road that cannot move."],
-  ["2024 and 2025", "Reservations on the peak weekends", "An entry reservation on the three weekends around Presidents' Day, weekdays free. One lane of Northside Drive becomes a footpath, and no stopping from Lower Yosemite Fall to El Capitan Crossover."],
-  ["2026", "No reservation, more rangers", "The park drops the reservation and manages the road instead: the pedestrian lane, the no-stopping zone, and a full Northside closure for about half an hour after sunset on busy weekends. A storm leaves about four feet of snow and a closure from February 19 to 21, in the middle of the window."],
+  ["2022", "2,433 in one evening", "On February 19, 2022, 2,433 visitors gathered in areas mostly lacking parking and other facilities, the park reports. Riverbanks eroded, vegetation was trampled, trash piled up, and there were not enough restrooms."],
+  ["2024 and 2025", "Reservations on the peak weekends", "An entry reservation on the three weekends around Presidents' Day, most weekdays free. One lane of Northside Drive becomes a footpath, and no stopping from Lower Yosemite Fall to El Capitan Crossover."],
+  ["2026", "No reservation, a managed road", "The park drops the reservation and manages the road instead: the pedestrian lane, the no-stopping zone, and a full Northside closure for about half an hour after sunset on busy weekends. A storm leaves three to four feet of snow at the viewing areas and a closure from February 19 to 21, in the middle of the window."],
 ];
 
 const FF_WEATHER = [

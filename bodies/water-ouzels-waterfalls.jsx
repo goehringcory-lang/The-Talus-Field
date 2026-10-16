@@ -6,7 +6,7 @@ window.ARTICLE_BODIES["water-ouzels-waterfalls"] = function WaterOuzelsBody() {
   return (
     <>
       <p className="dropcap">
-        If you stand at the base of Yosemite Falls in June when the cascade is at its most thunderous, water falling thousands of feet and hitting rock with the sound of a freight train, you might notice something remarkable: a dark, robin-sized bird walking directly into the falling water. The bird doesn't fly away. It doesn't land above the water line or in some protected eddy. It walks (literally walks) against the flow of water pouring down from Yosemite Falls at perhaps a thousand gallons per second.
+        If you stand at the base of Yosemite Falls in June when the cascade is at its most thunderous, water falling 2,425 feet and hitting rock with the sound of a freight train, you might notice something remarkable: a dark, plump gray bird walking directly into the falling water. The bird doesn't fly away. It doesn't land above the water line or in some protected eddy. It walks (literally walks) against the flow of water pouring down from Yosemite Falls.
       </p>
 
       <p>
@@ -22,7 +22,7 @@ window.ARTICLE_BODIES["water-ouzels-waterfalls"] = function WaterOuzelsBody() {
       </p>
 
       <p>
-        More importantly, an ouzel can see underwater. Most birds have vision that is optimized for air, not water. Water has different refractive properties than air, and most birds underwater would see a blurred world. Ouzels, through evolutionary adaptation, have eyes that can focus underwater nearly as effectively as they focus in air. This allows the ouzel to see its food (aquatic insects and their larvae) on the stream bottom, even in fast-moving water.
+        More importantly, an ouzel can see underwater. Most birds have vision that is optimized for air, not water. Water has different refractive properties than air, and most birds underwater would see a blurred world. Ouzels, through evolutionary adaptation, have eyes that work underwater as well as in air. This allows the ouzel to see its food (aquatic insects and their larvae) on the stream bottom, even in fast-moving water.
       </p>
 
       <p>
@@ -30,7 +30,7 @@ window.ARTICLE_BODIES["water-ouzels-waterfalls"] = function WaterOuzelsBody() {
       </p>
 
       <p>
-        The first documented observation of this behavior in Yosemite was recorded in <em>Nature Notes</em> Vol. 1, No. 1 (1922) in an entry titled "Many Visitors See Water Ouzel's Nest." The naturalist observer describes finding an ouzel nest positioned directly adjacent to a stream cascade, with the bird moving in and out of the falling water during feeding. The account conveys wonder at the bird's capability, but also precise observation of where the nest was located and how the bird moved.
+        The very first issue of <em>Nature Notes</em>, Vol. 1, No. 1 (July 10, 1922), carried an entry titled "Many Visitors See Water Ouzel's Nest." It reports that the nature guides were leading crowds every Monday morning to a nest on Tenaya Creek, about forty yards beyond the Iron Spring, where visitors watched the parents feed four young birds. It adds that ouzels were often seen above Happy Isles and at the foot of Yosemite and Bridal Veil Falls. The account is short, but it records where the nest was and what the birds were doing.
       </p>
 
       <h2>Why the waterfall matters: food web in the mist</h2>
@@ -54,7 +54,7 @@ window.ARTICLE_BODIES["water-ouzels-waterfalls"] = function WaterOuzelsBody() {
       <h2>The nesting ecology of a specialist</h2>
 
       <p>
-        An ouzel's nest is one of the most precisely engineered bird nests in North America. The nest is a dome, built by the female from streamside moss and plant fiber, with the entrance in the side: a green ball of living moss with a doorway, kept watered by the spray. But the nest location is what's remarkable. Ouzels build their nests in places that most other birds would never consider: in rock crevices directly adjacent to or even slightly behind a stream cascade, where the mist from the falling water regularly soaks the nest.
+        An ouzel's nest is one of the most precisely engineered bird nests in North America. The nest is a dome, built from streamside moss and plant fiber, with the entrance in the side: a green ball of living moss with a doorway, kept watered by the spray. But the nest location is what's remarkable. Ouzels build their nests in places that most other birds would never consider: in rock crevices directly adjacent to or even slightly behind a stream cascade, where the mist from the falling water regularly soaks the nest.
       </p>
 
       <p>
@@ -80,7 +80,7 @@ window.ARTICLE_BODIES["water-ouzels-waterfalls"] = function WaterOuzelsBody() {
       </p>
 
       <p>
-        Ouzels are not random. They do not settle in streams at random. They're found in specific locations, predictably: in cascade environments, in cold, fast-moving water, at high elevations where the water remains cold year-round. Knowing this, you can predict where ouzels might be found, and when their absence indicates something about how the landscape has changed.
+        Ouzels are not random. They do not settle in streams at random. They're found in specific locations, predictably: in cascade environments, in cold, fast-moving water, from the Valley floor (the 1922 and 1930s Nature Notes place them at Happy Isles and El Portal) to the high country. Knowing this, you can predict where ouzels might be found, and when their absence indicates something about how the landscape has changed.
       </p>
 
       <p>
@@ -108,7 +108,7 @@ window.ARTICLE_BODIES["water-ouzels-waterfalls"] = function WaterOuzelsBody() {
       <h2>The practical observation</h2>
 
       <p>
-        The next time you're at a Yosemite waterfall, pause and look for ouzels. The bridge below Vernal Fall on <a href="/articles/mist-trail-the-real-guide">the Mist Trail</a> is one of the most reliable spots. They're small and often in motion, so you might miss them. But if you see one, watch it move in the water. Watch how it grips the rock. Notice how it forages directly in the fast current. Understand that you're observing an animal that has specialized so completely to this specific environment that it seems almost impossible that such an animal could exist.
+        The next time you're at a Yosemite waterfall, pause and look for ouzels. The bridge below Vernal Fall on <a href="/articles/mist-trail-the-real-guide">the Mist Trail</a> is a good place to look. They're small and often in motion, so you might miss them. But if you see one, watch it move in the water. Watch how it grips the rock. Notice how it forages directly in the fast current. Understand that you're observing an animal that has specialized so completely to this specific environment that it seems almost impossible that such an animal could exist.
       </p>
 
       <p>
@@ -121,7 +121,7 @@ window.ARTICLE_BODIES["water-ouzels-waterfalls"] = function WaterOuzelsBody() {
 
       <h3>Further reading</h3>
       <ul style={{ fontSize: 14 }}>
-        <li><em>Nature Notes</em> Vol. 1, No. 1 (1922). "Many Visitors See Water Ouzel's Nest," early documentation of ouzel behavior and nesting in Yosemite waterfalls.</li>
+        <li><em>Nature Notes</em> Vol. 1, No. 1 (1922). "Many Visitors See Water Ouzel's Nest," an ouzel nest on Tenaya Creek, with the parents feeding four young.</li>
         <li><em>Nature Notes</em> Vol. 12, No. 4 (1933). High-altitude ouzel observations at 8,400 feet, with nesting and foraging documentation.</li>
         <li>Ornithological literature on <em>Cinclus mexicanus</em> (American dipper) ecology, behavior, and adaptation to aquatic environments, available through UC Berkeley's Museum of Vertebrate Zoology.</li>
         <li>Stream ecology literature documenting aquatic insect communities and their dependence on cold, fast-moving, well-oxygenated water conditions.</li>

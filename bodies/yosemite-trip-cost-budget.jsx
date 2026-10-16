@@ -72,11 +72,11 @@ window.ARTICLE_BODIES["yosemite-trip-cost-budget"] = function YosemiteTripCostBu
       </p>
 
       <p>
-        <strong>Casual dining in the park:</strong> A deli sandwich and a drink at Degnan's, or a hot plate at Base Camp Eatery in the Valley Lodge, typically runs $18–$25 per person. Pizza from the Pizza Deck at Curry Village is $15–$38 for a pie (medium to large), depending on the toppings. A decent sit-down dinner at the Mountain Room at Yosemite Valley Lodge is typically $35–$55 per person.
+        <strong>Casual dining in the park:</strong> A deli sandwich and a drink at Degnan's, or a hot plate at Base Camp Eatery in the Valley Lodge, typically runs $12–$25 per person. Pizza from the Pizza Deck at Curry Village is roughly $18–$41 for a medium or large pie, depending on the toppings. A decent sit-down dinner at the Mountain Room at Yosemite Valley Lodge is typically $35–$55 per person.
       </p>
 
       <p>
-        <strong>The Ahwahnee Dining Room:</strong> Breakfast is a self-serve buffet or an à la carte menu. As of April 2026, dinner is prix fixe only: $95 for five courses or $125 for seven, and the wine pairing on the five-course menu adds $40. Book dinner ahead: the concessioner takes reservations on OpenTable, and a room at the hotel does not guarantee a table. It is worth doing once if the budget allows.
+        <strong>The Ahwahnee Dining Room:</strong> Breakfast is a self-serve buffet or an à la carte menu. As of April 2026, dinner is prix fixe only: $95 for five courses or $125 for seven, and a wine pairing adds $40. Book dinner ahead: the concessioner takes reservations on OpenTable, and a room at the hotel does not guarantee a table. It is worth doing once if the budget allows.
       </p>
 
       <p>
@@ -106,7 +106,7 @@ window.ARTICLE_BODIES["yosemite-trip-cost-budget"] = function YosemiteTripCostBu
       </p>
 
       <p>
-        <strong>From Sacramento / Central Valley:</strong> About 176 miles, $35–$40 each way.
+        <strong>From Sacramento / Central Valley:</strong> About 160 miles by Highway 120, roughly $35 each way.
       </p>
 
       <p>

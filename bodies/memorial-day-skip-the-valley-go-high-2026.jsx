@@ -74,7 +74,7 @@ window.ARTICLE_BODIES["memorial-day-skip-the-valley-go-high-2026"] = function Me
       </p>
 
       <p>
-        Two notes: there was <strong>no drinking water</strong> at Glacier Point when the road opened and the snack stand runs on the road's schedule, so bring a full water bottle and a sandwich. The Glacier Point tour bus, on the other hand, has run from Yosemite Valley Lodge since the road opened on May 9, twice a day, so you can ride up and walk down if you would rather not drive.
+        Two notes: there was <strong>no drinking water</strong> at Glacier Point when the road opened and the snack stand runs on the road's schedule, so bring a full water bottle and a sandwich. The Glacier Point tour bus, on the other hand, leaves from Yosemite Valley Lodge once its season starts (the Park Service gives approximately late May through September), so you can ride up and walk down if you would rather not drive.
       </p>
 
       <p style={{ fontStyle: "italic", color: "var(--ink-3)" }}>
@@ -90,7 +90,7 @@ window.ARTICLE_BODIES["memorial-day-skip-the-valley-go-high-2026"] = function Me
       <ul>
         <li><strong>Olmsted Point</strong>. The moment the high country opens up in front of you, and the only place you'll see the <em>back</em> of Half Dome, with <a href="/articles/clouds-rest-hike">Clouds Rest</a> and Tenaya Canyon spread out below. Watch your footing; there can still be snow and ice near the point in late May.</li>
         <li><strong>Tenaya Lake</strong>. An alpine lake right off the road. It will likely still be ice-rimmed this early. The east-end beach is a flat, easy stroll to the water, no real hike required.</li>
-        <li><strong>Tuolumne Meadows</strong> (8,600 feet). The vast subalpine heart of the high country at the foot of the Cathedral Range. Two short legs are reliable this early: <strong>Pothole Dome</strong> at the west end (a one-mile scramble up polished granite to a meadow panorama) and the flat walk to <strong>Soda Springs and Parsons Lodge</strong> (1.4 miles round trip, naturally carbonated springs the kids will love). Stay on the paths. The meadow is soaked and fragile this time of year.</li>
+        <li><strong>Tuolumne Meadows</strong> (8,600 feet). The vast subalpine heart of the high country at the foot of the Cathedral Range. Two short legs are reliable this early: <strong>Pothole Dome</strong> at the west end (a one-mile round-trip scramble up polished granite to a meadow panorama) and the flat walk to <strong>Soda Springs and Parsons Lodge</strong> (1.4 miles round trip, naturally carbonated springs the kids will love). Stay on the paths. The meadow is soaked and fragile this time of year.</li>
       </ul>
 
       <p>
@@ -98,7 +98,7 @@ window.ARTICLE_BODIES["memorial-day-skip-the-valley-go-high-2026"] = function Me
       </p>
 
       <p>
-        The catch up here is self-sufficiency. The road is open, but Tuolumne Meadows itself is barely awake: the store, grill, and campground are weeks from opening (this year the grill's season began June 13 and the campground's July 1), there's <strong>no gas anywhere past Crane Flat</strong>, and no reliable drinking water along Tioga Road this early. Fill the tank, pack all your own food and water, and store it in a bear locker. Bring layers, including <a className="aff-link" href={window.buildPatagoniaAffiliateLink("https://www.patagonia.com/search/?q=nano+puff")} target="_blank" rel="sponsored noopener" data-aff-network="patagonia" data-aff-list="article_inline" data-aff-item-slug="memorial-day-skip-the-valley-go-high-2026" data-aff-name="Packable insulated jacket">a packable insulated jacket</a>. Sunny afternoons hit the low 60s, but nights drop to near freezing at this elevation, and an afternoon thunderstorm is possible.
+        The catch up here is self-sufficiency. The road is open, but Tuolumne Meadows itself is barely awake: the store, grill, and campground are weeks from opening (this year the grill was due to open May 30 and the campground July 1), there's <strong>no gas anywhere past Crane Flat</strong>, and no reliable drinking water along Tioga Road this early. Fill the tank, pack all your own food and water, and store it in a bear locker. Bring layers, including <a className="aff-link" href={window.buildPatagoniaAffiliateLink("https://www.patagonia.com/search/?q=nano+puff")} target="_blank" rel="sponsored noopener" data-aff-network="patagonia" data-aff-list="article_inline" data-aff-item-slug="memorial-day-skip-the-valley-go-high-2026" data-aff-name="Packable insulated jacket">a packable insulated jacket</a>. Sunny afternoons hit the low 60s, but nights drop to near freezing at this elevation, and an afternoon thunderstorm is possible.
       </p>
 
       <p style={{ fontStyle: "italic", color: "var(--ink-3)" }}>
@@ -108,11 +108,11 @@ window.ARTICLE_BODIES["memorial-day-skip-the-valley-go-high-2026"] = function Me
       <h2>A few practical things</h2>
 
       <p>
-        No day-use reservations are required to enter Yosemite in 2026. That's exactly why the Valley will be slammed, and exactly why a high-country plan beats the crowd. Your entrance pass is <strong>$35 per vehicle</strong>, good for seven days, and the park is cashless. Bring a card. One bonus: <strong>Memorial Day Monday, May 25, is a fee-free day</strong>, so if you can swing a Monday visit, it's both the cheapest and the lightest of the three days.
+        No day-use reservations are required to enter Yosemite in 2026. That's exactly why the Valley will be slammed, and exactly why a card-in-the-glovebox high-country plan beats the crowd. Your entrance pass is <strong>$35 per vehicle</strong>, good for seven days, and the park is cashless. Bring a card. One bonus: <strong>Memorial Day Monday, May 25, is a fee-free day</strong> for US citizens and residents, so if you can swing a Monday visit, it's both the cheapest and the lightest of the three days.
       </p>
 
       <p>
-        And if your plans go sideways anyway (lots full, weather turns, a road closes), don't fight the park. There is almost always an option the crowd hasn't thought of. (The Valley's marquee hike, the Mist Trail, goes under weekday closures for repair work later in the summer, Monday through Thursday from 7 a.m. to 3:30 p.m. from July 27 through October, but over Memorial Day weekend it is fully open and will be mobbed.)
+        And if your plans go sideways anyway (lots full, weather turns, a road closes), don't fight the park. There is almost always an option the crowd hasn't thought of. (The Valley's marquee hike, the Mist Trail, goes under weekday closures for repair work later in the summer, Monday through Thursday from 7 a.m. to 3:30 p.m. through October, but over Memorial Day weekend it is fully open and will be mobbed.)
       </p>
 
       <h2>What I'd tell a friend</h2>

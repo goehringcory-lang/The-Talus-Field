@@ -70,9 +70,9 @@ export const DINING_AREAS: { id: DiningArea; title: string; note?: string }[] = 
 // renders as the small line under the town header.
 export const GATEWAY_TOWNS: { name: string; route: string }[] = [
   { name: 'El Portal & Midpines', route: 'Highway 140, outside the Arch Rock Entrance' },
-  { name: 'Mariposa', route: 'Highway 140, 45 minutes to an hour from the Valley' },
+  { name: 'Mariposa', route: 'Highway 140, about an hour and a quarter from the Valley' },
   { name: 'Groveland & Buck Meadows', route: 'Highway 120 west, outside the Big Oak Flat Entrance' },
-  { name: 'Oakhurst', route: 'Highway 41, 40 minutes south of the South Entrance' },
+  { name: 'Oakhurst', route: 'Highway 41, 20 to 25 minutes south of the South Entrance' },
   { name: 'Fish Camp', route: 'Highway 41, two miles from the South Entrance' },
   { name: 'Lee Vining', route: 'Highway 120 east at US 395, below Tioga Pass' },
 ]
@@ -109,7 +109,7 @@ const seed: DiningInput[] = [
     hoursNote: 'through October 14; from October 15, 7 a.m. to 3 p.m.',
     coord: [-119.599, 37.7433], // moved 2026-09: OSM Yosemite Valley Lodge food court and NPS "Yosemite Valley Lodge"
     description:
-      'A full Starbucks next to Base Camp Eatery, the only chain in the park.',
+      'A full Starbucks next to Base Camp Eatery.',
   },
   {
     id: 'degnans-kitchen',
@@ -123,7 +123,7 @@ const seed: DiningInput[] = [
     hoursNote: 'limited service 11 – 11:30 while the line switches to lunch',
     coord: [-119.5853, 37.7481],
     description:
-      'Deli sandwiches, breakfast items, and espresso in the old Degnan family store. Breakfast sandwiches from 7 a.m., cheaper and faster than the buffets; made-to-order sandwiches travel well as a trail lunch.',
+      'Deli sandwiches, breakfast items, and espresso in the old Degnan family store. Breakfast sandwiches from 7 a.m., cheaper and faster than a sit-down breakfast; made-to-order sandwiches pack for a trail lunch.',
   },
   {
     id: 'loft-at-degnans',
@@ -222,7 +222,7 @@ const seed: DiningInput[] = [
     hours: '7 – 10, 5:30 – 8:30',
     coord: [-119.5726, 37.7377],
     description:
-      'The big rebuilt Curry Village dining hall, named for the camp\'s original seven tents: all-you-can-eat breakfast and dinner buffets.',
+      'The big rebuilt Curry Village dining hall, named for the camp\'s original seven tents: hearty homestyle breakfast and dinner, with indoor seating.',
   },
   {
     id: 'jennies-ice-cream',
@@ -279,7 +279,7 @@ const seed: DiningInput[] = [
     hoursNote:
       'Sunday brunch 7 a.m. to 3 p.m.; from October 25, lunch ends at 2 p.m. and Sunday brunch ends at 2 p.m.',
     reservations:
-      'Dinner is a set-price meal, reserved ahead, with a dress expectation of roughly collared-shirt level. Breakfast and lunch are easier to get into and cost far less, in the same room.',
+      'Dinner is prix fixe (a choice of five or seven courses) and reserved ahead, with proper attire requested: no hiking clothes, shorts, T-shirts, tank tops, flip-flops, or baseball caps. Breakfast and lunch are easier to get into, in the same room.',
     coord: [-119.5743, 37.7462], // shared Ahwahnee pin (stops.ts)
     stopId: 'ahwahnee-hotel',
     description:
@@ -390,7 +390,7 @@ const seed: DiningInput[] = [
     hours: '8 – 8',
     coord: [-119.6556, 37.5384],
     description:
-      'Groceries, grab-and-go food, ice, and firewood at the south end of the park, still open through the hotel closure. The stop for Mariposa Grove supplies and the last food until Oakhurst going south.',
+      'Groceries, grab-and-go food, ice, and firewood at the south end of the park, still open through the hotel closure. The stop for Mariposa Grove supplies and the last food until Fish Camp going south.',
   },
   {
     id: 'pine-tree-market',
@@ -492,7 +492,7 @@ const seed: DiningInput[] = [
     id: 'evergreen-lodge-dining',
     name: 'Evergreen Lodge Restaurant & Tavern',
     area: 'hetch-hetchy',
-    place: 'Evergreen Road, a mile before Camp Mather',
+    place: 'Evergreen Road, about a mile outside the Hetch Hetchy entrance',
     kind: 'sit-down',
     price: '$$$',
     order: 1,
@@ -530,19 +530,19 @@ const seed: DiningInput[] = [
     order: 1,
     hours: '9 – 7',
     description:
-      'The closest grocery to the Arch Rock Entrance, fifteen minutes from the Valley floor, with gas next door. Small: cooler staples, beer, and ice at prices gentler than the Village Store.',
+      'The closest grocery to the Arch Rock Entrance, about half an hour from the Valley floor, with gas next door. Small: cooler staples, beer, and ice at prices gentler than the Village Store.',
   },
   {
     id: 'yosemite-view-dining',
     name: 'Yosemite View Lodge Restaurant & Pizza Bar',
     area: 'gateway',
     town: 'El Portal & Midpines',
-    place: 'Highway 140, two miles from the Arch Rock Entrance',
+    place: 'Highway 140, El Portal, outside the Arch Rock Entrance',
     kind: 'sit-down',
     price: '$$$',
     order: 2,
     description:
-      'The riverside hotel\'s two options: a sit-down dining room over the Merced and a casual pizza and beer bar. Open fairly late, five minutes from the gate.',
+      'The riverside hotel\'s two options: a sit-down dining room over the Merced and a casual pizza and beer bar. Open fairly late, about ten minutes from the gate.',
   },
   {
     id: 'june-bug-cafe',
@@ -555,7 +555,7 @@ const seed: DiningInput[] = [
     order: 3,
     coord: [-119.9331, 37.5757],
     description:
-      'The hostel kitchen: scratch-made, hiker-sized plates at communal tables, with vegetarian options. Ten minutes off 140.',
+      'The hostel kitchen: scratch-made, hiker-sized plates at communal tables, with vegetarian options. A quarter mile up the driveway from Highway 140.',
   },
   {
     id: 'happy-burger',
@@ -580,7 +580,7 @@ const seed: DiningInput[] = [
     kind: 'sit-down',
     price: '$$$',
     order: 2,
-    hoursNote: 'closed Mondays',
+    hoursNote: 'open daily, lunch and dinner; call ahead for dinner reservations',
     coord: [-119.97, 37.4897], // moved 2026-09: OSM "1850", 5114 Hwy 140
     description:
       'Mariposa\'s brewery restaurant, named for the county\'s founding year: house beers, smoked meats, and burgers.',
@@ -651,7 +651,7 @@ const seed: DiningInput[] = [
     price: '$',
     order: 2,
     closed:
-      'Directory listings have shown it closed since 2025, and it no longer answers online. Do not count on coffee here; Priest Station Cafe serves breakfast daily until 11 a.m.',
+      'Directory listings have shown it closed since 2025, and it no longer answers online. Do not count on coffee here; Priest Station Cafe, on Old Priest Grade, serves breakfast; call ahead for its hours.',
     coord: [-120.2325, 37.8386],
     description:
       'The local roaster on Main Street: espresso, pastries, and light breakfast from 7 a.m.',
@@ -717,7 +717,7 @@ const seed: DiningInput[] = [
     kind: 'sit-down',
     price: '$$$$',
     order: 2,
-    hoursNote: 'dinner Wednesday through Sunday',
+    hoursNote: 'dinner only; the days have varied, so call ahead',
     reservations: 'Reservations essentially required; the room is formal.',
     coord: [-119.661, 37.3272], // moved 2026-09: OSM Chateau du Sureau and the Census geocoder for 48688 Victoria Ln
     description:

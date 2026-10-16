@@ -126,18 +126,18 @@ var GATEWAYS = [{
   article: "/articles/yosemite-gateway-towns-compared#sec-2-mariposa",
   name: "Mariposa",
   dest: "Mariposa, California",
-  drive: "45 minutes to an hour to the Valley",
-  driveShort: "45 to 60 min",
-  range: [45, 60],
+  drive: "an hour and a quarter to the Valley",
+  driveShort: "60 to 75 min",
+  range: [60, 75],
   road: "Highway 140, year-round",
   photo: "img/mariposa-county-courthouse.jpg",
   caption: "The 1854 Mariposa County Courthouse, in the town's historic district.",
   credit: "Photo: Guywelch2000 / Wikimedia Commons (CC0)",
   body: "The most full-service of the western gateways: a real downtown with restaurants, coffee, bookstores, the county museum, the 1854 courthouse, and lodging from highway chains to historic bed-and-breakfasts.",
   who: "The largest share of first-time visitors, families, anyone on a budget, and anyone visiting in shoulder season or winter when closer inventory disappears.",
-  against: "Ninety minutes of round-trip driving a day that you would not be doing closer in, and earlier alarms for sunrise.",
+  against: "Two and a half hours of round-trip driving a day that you would not be doing closer in, and earlier alarms for sunrise.",
   best: "First trips, families, budgets, and winter",
-  catch: "Ninety minutes of round-trip driving a day",
+  catch: "Two and a half hours of round-trip driving a day",
   rooms: "Highway chains to historic bed-and-breakfasts"
 }, {
   id: "groveland",
@@ -169,9 +169,9 @@ var GATEWAYS = [{
   flag: "Tighter in summer",
   body: "The largest gateway by population and amenities, with more chain lodging and chain dining than the other gateways combined. It feels like a Central California town that happens to be near a national park rather than one that exists because of it.",
   who: "Trips centered on Wawona and the giant sequoias, and anyone driving up from Los Angeles or the southern Central Valley.",
-  against: "The longest drive to the Valley of any gateway. Three hours of driving on a Valley day is significant. With the Wawona Hotel closed, summer rooms here are under more pressure than usual.",
+  against: "The longest drive to the Valley of any year-round gateway. Three hours of driving on a Valley day is significant. With the Wawona Hotel closed, summer rooms here are under more pressure than usual.",
   best: "Wawona, the sequoias, and arrivals from Los Angeles",
-  catch: "The longest drive to the Valley of any gateway",
+  catch: "The longest drive to the Valley of any year-round gateway",
   rooms: "More chain lodging than the other gateways combined"
 }, {
   id: "fish-camp",
@@ -195,9 +195,9 @@ var GATEWAYS = [{
   article: "/articles/yosemite-gateway-towns-compared#sec-5-lee-vining",
   name: "Lee Vining",
   dest: "Lee Vining, California",
-  drive: "90 minutes minimum to the Valley, 30 to Tuolumne Meadows",
-  driveShort: "90 min minimum",
-  range: [90, null],
+  drive: "two hours minimum to the Valley, 30 to Tuolumne Meadows",
+  driveShort: "120 min minimum",
+  range: [120, null],
   road: "Highway 120 East over Tioga Pass, seasonal",
   flag: "Seasonal",
   photo: "img/tenaya-lake.jpg",
@@ -205,7 +205,7 @@ var GATEWAYS = [{
   credit: "Photo: Michael Hogarth / Wikimedia Commons (public domain)",
   body: "The only east-side gateway, and a different kind of trip rather than a substitute for the western towns. A tiny Highway 395 town next to Mono Lake, with limited lodging, limited dining, and the famously good deli at the Mobil station.",
   who: "The high country, Mono Lake, and anyone combining Yosemite with the eastern Sierra, Mammoth, or Death Valley.",
-  against: "Reachable from the park only while Tioga Pass is open. In winter the detour around the south end of the Sierra is roughly six hours.",
+  against: "Reachable from the park only while Tioga Pass is open. In winter the detour by Highways 88 and 395 is a little over six hours.",
   best: "The high country, Mono Lake, the eastern Sierra",
   catch: "Reachable from the park only while Tioga Pass is open",
   rooms: "Small motels, few rooms, a summer premium"
@@ -221,7 +221,7 @@ var CORRIDORS = [{
   id: "corridor-120",
   name: "Highway 120 west · Big Oak Flat",
   kicker: "Big Oak Flat entrance · open year-round, chains common in winter",
-  verdict: "The summer answer, and the only base that reaches all three parks",
+  verdict: "The summer answer, and the only base that reaches the Valley, Hetch Hetchy and Tuolumne",
   towns: ["groveland"],
   props: ["rush-creek-lodge", "evergreen-lodge", "firefall-ranch", "groveland-hotel"]
 }, {
@@ -251,7 +251,7 @@ var PROPERTIES = {
   "cedar-lodge": {
     name: "Cedar Lodge",
     badge: "The fallback when the closer one is gone",
-    where: "El Portal · seven miles further west",
+    where: "El Portal · about eight miles from the Arch Rock entrance",
     dest: "El Portal, California",
     town: "El Portal",
     body: "The other large motel on Highway 140, a few miles down the canyon from Yosemite View. Further out, generally cheaper, and the fallback when the closer one is gone."
@@ -274,8 +274,8 @@ var PROPERTIES = {
   },
   "rush-creek-lodge": {
     name: "Rush Creek Lodge",
-    badge: "Half a mile from the gate",
-    where: "Highway 120 · half a mile from the entrance",
+    badge: "Under a mile from the gate",
+    where: "Highway 120 · under a mile from the entrance",
     dest: "Groveland, California",
     town: "Groveland",
     body: "Twenty wooded acres essentially at the Big Oak Flat gate, which is as close as this corridor gets without being inside the park. A resort rather than a motel, with the prices that implies."
@@ -441,9 +441,9 @@ var STAY_PICKS = [{
   match: ["mariposa"],
   town: "Mariposa",
   road: "Highway 140 · open year-round",
-  drive: "45 minutes to an hour to the Valley",
+  drive: "an hour and a quarter to the Valley",
   why: "The most full-service of the western gateways: a real downtown, and lodging from highway chains to historic bed-and-breakfasts.",
-  cost: "Ninety minutes of round-trip driving a day that you would not be doing closer in, and earlier alarms for sunrise.",
+  cost: "Two and a half hours of round-trip driving a day that you would not be doing closer in, and earlier alarms for sunrise.",
   dest: "Mariposa, California",
   cta: "See what Mariposa has on your dates"
 }, {
@@ -476,7 +476,7 @@ var STAY_PICKS = [{
   road: "Tioga Pass · seasonal",
   drive: "30 minutes to Tuolumne Meadows",
   why: "The only east-side gateway, and a base for the high country, Mono Lake, and the eastern Sierra rather than a substitute for the western towns.",
-  cost: "Reachable from the park only while Tioga Pass is open, and ninety minutes minimum to the Valley.",
+  cost: "Reachable from the park only while Tioga Pass is open, and two hours minimum to the Valley.",
   dest: "Lee Vining, California",
   cta: "See what Lee Vining has on your dates"
 }, {
@@ -511,7 +511,7 @@ var STAY_TOP_PICKS = [{
   badge: "Best value · a real town",
   kicker: "Highway 140 · open year-round",
   why: "The most full-service of the western gateways: a real downtown, and lodging from highway chains to historic bed-and-breakfasts. Also the winter base.",
-  facts: [["Drive", "45 minutes to an hour to the Valley"], ["The catch", "Ninety minutes of round-trip driving a day"]]
+  facts: [["Drive", "an hour and a quarter to the Valley"], ["The catch", "Two and a half hours of round-trip driving a day"]]
 }, {
   from: "town",
   ref: "groveland",
@@ -650,7 +650,7 @@ var STAY_MAP_TOWNS = {
     at: [16, 905],
     side: "r",
     name: "Mariposa",
-    note: "45 to 60 min",
+    note: "60 to 75 min",
     off: "Highway 140, off the map"
   },
   "groveland": {
@@ -677,7 +677,7 @@ var STAY_MAP_TOWNS = {
     at: [1648, 95],
     side: "l",
     name: "Lee Vining",
-    note: "90 min minimum"
+    note: "120 min minimum"
   }
 };
 var STAY_SCALE_MAX = 120;
@@ -1329,7 +1329,7 @@ var CORRIDOR_INTROS = {
   "corridor-41": () => React.createElement("p", null, "The sequoia side. From here the Mariposa Grove and Wawona are close and the Valley is not: seventy-five to ninety minutes each way, which is three hours of driving on a Valley day and the single thing people underestimate about this corridor. In winter it is the Badger Pass side of the park, the road to the only downhill ski area in Yosemite. With the Wawona Hotel closed there is no in-park alternative on this road, so summer rooms carry more pressure than they used to.", " ", React.createElement("a", {
     href: GATEWAY_ARTICLE + "#sec-3-oakhurst"
   }, "The Oakhurst chapter"), " ", "covers the tradeoff in full."),
-  "corridor-395": () => React.createElement("p", null, "The east side is a different trip rather than a substitute for the western towns. Tuolumne Meadows is half an hour away and the Valley is ninety minutes over a pass just under 10,000 feet, so this is a base for the high country, Mono Lake, and the eastern Sierra. It also exists seasonally: when Tioga Pass closes there is no crossing at all, and the detour around the south end of the range turns that ninety minutes into most of a day.", " ", React.createElement("a", {
+  "corridor-395": () => React.createElement("p", null, "The east side is a different trip rather than a substitute for the western towns. Tuolumne Meadows is half an hour away and the Valley is two hours over a pass just under 10,000 feet, so this is a base for the high country, Mono Lake, and the eastern Sierra. It also exists seasonally: when Tioga Pass closes there is no crossing at all, and the detour around the south end of the range turns that two hours into most of a day.", " ", React.createElement("a", {
     href: GATEWAY_ARTICLE + "#sec-5-lee-vining"
   }, "The Lee Vining chapter"), " ", "says who should pick it, and", " ", React.createElement("a", {
     href: "/tioga-opening"

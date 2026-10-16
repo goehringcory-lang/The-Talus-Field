@@ -126,7 +126,7 @@ function InternationalPage({ go }) {
           <h2>The 2026 non-resident fee</h2>
           <p>
             Every visitor pays the entrance fee: {money(F.vehicle)} per car for
-            seven days, {money(F.motorcycle)} for up to two motorcycles, {money(F.perPerson)} per
+            seven days, {money(F.motorcycle)} for up to two motorcycles carrying four people in all, {money(F.perPerson)} per
             person on foot, by bicycle or by bus, children under {F.perPersonFreeUnder} free.
             On top of that, since January 1, 2026, a visitor who is not a US
             citizen or resident pays a non-resident fee of {money(F.surcharge)} per
@@ -142,7 +142,7 @@ function InternationalPage({ go }) {
             </thead>
             <tbody>
               <tr><td>Entrance, private vehicle</td><td>{money(F.vehicle)}</td><td>The car and everyone in it, seven days</td></tr>
-              <tr><td>Entrance, motorcycle</td><td>{money(F.motorcycle)}</td><td>Up to two motorcycles, seven days</td></tr>
+              <tr><td>Entrance, motorcycle</td><td>{money(F.motorcycle)}</td><td>Up to two motorcycles and four people in total, seven days</td></tr>
               <tr><td>Entrance, per person</td><td>{money(F.perPerson)}</td><td>On foot, bicycle or bus; under {F.perPersonFreeUnder} free</td></tr>
               <tr><td>Non-resident fee</td><td>{money(F.surcharge)} per person</td><td>Age {F.surchargeAgeFrom} and older, each entry, unless holding a pass</td></tr>
               <tr><td>Non-resident annual pass</td><td>{money(F.nonResidentAnnual)}</td><td>The holder's vehicle and its occupants, twelve months, every federal fee site; no non-resident fee</td></tr>
@@ -182,7 +182,7 @@ function InternationalPage({ go }) {
             <li>
               <strong>The nearest big airports are hours away.</strong> San
               Francisco is four to five hours from the Valley by car and Los
-              Angeles six to seven; Fresno, two and a quarter, takes
+              Angeles about six; Fresno, two and a quarter, takes
               connections from both.{" "}
               <a href="/articles/best-airport-for-yosemite" onClick={(e) => goA(e, "best-airport-for-yosemite")}>Which airport to fly into</a> compares them, with when a rental car beats the train and bus, and what a license from home needs.
             </li>
@@ -201,7 +201,7 @@ function InternationalPage({ go }) {
               <a href="/distances" onClick={(e) => goR(e, "distances")}>the drive-time table</a> has the rest.
             </li>
             <li>
-              <strong>Two of the three mountain roads close for half the year.</strong>{" "}
+              <strong>The two high roads close for half the year.</strong>{" "}
               Tioga Road and Glacier Point Road are shut by snow from roughly
               November to late May, and the dates move every year. Plan a winter
               or spring trip around the Valley, and check{" "}
@@ -228,7 +228,7 @@ function InternationalPage({ go }) {
             </li>
             <li>
               <strong>Bears are real and the rules carry fines.</strong> No food
-              or anything scented left in a car after dark, anywhere in the park.{" "}
+              or anything scented left in a car overnight, anywhere in the park.{" "}
               <a href="/articles/yosemite-bears-safety-guide" onClick={(e) => goA(e, "yosemite-bears-safety-guide")}>The bears guide</a> covers what that means in practice.
             </li>
             <li>

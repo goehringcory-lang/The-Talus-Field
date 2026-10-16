@@ -173,7 +173,7 @@ const ORIENT_GATES = [
   { id: "arch", label: "Arch Rock", hwy: "Hwy 140", pos: { lat: 37.6878, lng: -119.7297 },
     hint: "From Mariposa and El Portal, open year-round. El Portal to the Valley is 25 to 35 minutes." },
   { id: "south", label: "South", hwy: "Hwy 41", pos: { lat: 37.5049, lng: -119.6318 },
-    hint: "From Oakhurst. The Mariposa Grove welcome plaza is immediately inside the gate; Wawona is six miles on, the Valley about an hour past that." },
+    hint: "From Oakhurst. The Mariposa Grove welcome plaza is immediately inside the gate; Wawona is eight miles on, the Valley about 45 minutes past that." },
   { id: "bof", label: "Big Oak Flat", hwy: "Hwy 120 W", pos: { lat: 37.7996, lng: -119.8739 },
     hint: "From Groveland and the Bay Area. Crane Flat, just inside, has the only gas on the west side and is where Tioga Road begins." },
   { id: "hh", label: "Hetch Hetchy", hwy: "Evergreen Rd", pos: { lat: 37.892, lng: -119.841 },

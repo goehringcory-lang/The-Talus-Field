@@ -332,7 +332,7 @@ function HalfDomeLotteryPage({
   }), React.createElement("strong", null, "Date choices"), React.createElement("p", null, "Up to seven dates or date ranges, ranked. The system tries your highest-preference date first and works down the list, so the order matters.")), React.createElement("li", null, React.createElement(EventIcon, {
     name: "id",
     size: 26
-  }), React.createElement("strong", null, "Permit holder and alternate"), React.createElement("p", null, "Name both. One of the two must be physically present with a photo ID matching the permit. An alternate can only be added during the application window, and they have to hold a Recreation.gov account and accept the role within 72 hours of being added. Miss that and they are not on the permit. Once the window closes, neither name can be changed.")), React.createElement("li", {
+  }), React.createElement("strong", null, "Permit holder and alternate"), React.createElement("p", null, "Name both. One of the two must be physically present with a photo ID matching the permit. An alternate can only be added during the application window, and they have to hold a Recreation.gov account and accept the role within the time the application sets. Miss that and they are not on the permit. Once the window closes, neither name can be changed.")), React.createElement("li", {
     className: "is-warn"
   }, React.createElement(EventIcon, {
     name: "alert",
@@ -474,7 +474,7 @@ function HalfDomeLotteryPage({
     "aria-label": "Lodging availability"
   }, React.createElement("p", {
     className: "hp-eyebrow"
-  }, "THE NIGHT BEFORE, AND THE NIGHT AFTER"), React.createElement("p", null, "The hike wants a pre-dawn start and gives back a fourteen-to-sixteen-hour day. Driving in from Oakhurst at 3 a.m. and back out at 10 p.m. is how a permit gets wasted. A bed in the Valley or in El Portal is the difference, and the permit date is known far enough ahead to book one."), React.createElement(AvailabilityLink, {
+  }, "THE NIGHT BEFORE, AND THE NIGHT AFTER"), React.createElement("p", null, "The hike wants a pre-dawn start and gives back a ten-to-twelve-hour day. Driving in from Oakhurst at 3 a.m. and back out at 10 p.m. is how a permit gets wasted. A bed in the Valley or in El Portal is the difference, and the permit date is known far enough ahead to book one."), React.createElement(AvailabilityLink, {
     destination: "Yosemite National Park",
     list: "page_half_dome",
     slug: "half-dome-lottery",

@@ -112,7 +112,7 @@ window.ARTICLE_BODIES["when-to-visit-yosemite"] = function WhenToVisitYosemiteBo
   var NEED_2019 = 4422861 - YTD26;
   var ROADS = [{
     name: "Tioga Road",
-    note: "2026: opened May 15, the earliest in 16 years",
+    note: "2026: opened May 15, earlier than any year since 2015",
     s: "ccccvvoooowc"
   }, {
     name: "Glacier Point Road",
@@ -562,7 +562,7 @@ window.ARTICLE_BODIES["when-to-visit-yosemite"] = function WhenToVisitYosemiteBo
     className: "ff-lede"
   }, "The difference between a miserable Yosemite day and a great one is mostly when you reach the gate. The Park Service has published its own definition of over capacity three times, in the hours it gated."), React.createElement("div", {
     className: "wv-prose"
-  }, React.createElement("p", null, "Every reservation system covered the same stretch of the day, from 5 or 6 in the morning to 2 or 4 in the afternoon. With no system in 2026, you enforce it on yourself. Valley parking fills early on peak days: reports put it as soon as 8 a.m. over Memorial Day weekend, and typically between 10 and 11 a.m. on summer Saturdays and holidays."))), React.createElement("ul", {
+  }, React.createElement("p", null, "The 2022 through 2025 reservation systems covered the same stretch of the day, from 5 or 6 in the morning to 2 or 4 in the afternoon. With no system in 2026, you enforce it on yourself. Valley parking fills early on peak days: reports put it as soon as 8 a.m. over Memorial Day weekend, and typically between 10 and 11 a.m. on summer Saturdays and holidays."))), React.createElement("ul", {
     className: "ff-rules wv-rules"
   }, React.createElement("li", null, React.createElement(EventIcon, {
     name: "sun"

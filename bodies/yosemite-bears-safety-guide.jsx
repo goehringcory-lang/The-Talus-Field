@@ -75,7 +75,7 @@ window.ARTICLE_BODIES["yosemite-bears-safety-guide"] = function YosemiteBearsSaf
       <p>Is bear spray legal in Yosemite? No. Not in any form, not under any circumstances. <a href="/articles/is-bear-spray-allowed-in-yosemite">Why bear spray is illegal in Yosemite</a>, including the California-wide question, is its own piece.</p>
 
       <p>
-        Yosemite has only American black bears, <em>Ursus americanus</em>, somewhere between 300 and 500 of them. They are a fundamentally different animal in temperament, size, and behavior. An adult male black bear in Yosemite weighs between 250 and 350 pounds. An adult male grizzly can top 700. More importantly, the behavioral profile is different. Grizzlies are territorial and defensive. Black bears are opportunistic and, overwhelmingly, avoidant. The tools you need for each species are not the same.
+        Yosemite has only American black bears, <em>Ursus americanus</em>, somewhere between 300 and 500 of them. They are a fundamentally different animal in temperament, size, and behavior. The average adult male black bear in Yosemite weighs about 250 pounds. An adult male grizzly can top 700. More importantly, the behavioral profile is different. Grizzlies are territorial and defensive. Black bears are opportunistic and, overwhelmingly, avoidant. The tools you need for each species are not the same.
       </p>
 
       <p>
@@ -257,7 +257,7 @@ window.ARTICLE_BODIES["yosemite-bears-safety-guide"] = function YosemiteBearsSaf
       </p>
 
       <p>
-        For backcountry trips, bear canisters are required for all overnights. You can rent approved models at wilderness centers throughout the park. BearVault and Garcia are the two brands most commonly available and NPS-approved. Pack the canister at least 100 feet from your campsite, on flat ground, and do not try to secure it with rocks or rope. That just gives the bear something to grip. The smooth container on open ground is the design. Trust it. And pack your canister efficiently. Put dense, calorie-rich food in first. Crush packaging to save space. A well-packed BV500 holds about five days of food for one person if you are not bringing a week's worth of luxury items. If you are <a href="/articles/first-time-yosemite-overwhelm">planning your first trip</a>, factor canister space into your meal planning from the start.
+        For backcountry trips, bear canisters are required for all overnights. The park rents the Garcia Backpackers' Cache at its staffed wilderness permit stations; BearVault and several other models are NPS-approved if you bring your own. Place the canister at least 100 feet from your campsite, away from cliffs and water, and do not try to secure it with rocks or rope. That just gives the bear something to grip. The smooth container on open ground is the design. Trust it. And pack your canister efficiently. Put dense, calorie-rich food in first. Crush packaging to save space. A well-packed BV500 holds about five days of food for one person if you are not bringing a week's worth of luxury items. If you are <a href="/articles/first-time-yosemite-overwhelm">planning your first trip</a>, factor canister space into your meal planning from the start.
       </p>
 
       <h2>Yosemite bear incidents: the data from 1998 to 2026</h2>
@@ -269,7 +269,7 @@ window.ARTICLE_BODIES["yosemite-bears-safety-guide"] = function YosemiteBearsSaf
       </p>
 
       <p>
-        The response was systematic and expensive. The park installed over 2,000 metal bear boxes at campsites and trailheads. In 2004, bear canisters became mandatory for all overnight wilderness trips. A massive education campaign reshaped how visitors understood food storage. Open garbage containers were replaced with bear-proof models throughout the park. The "Keep Bears Wild" messaging became pervasive, and rangers began writing citations with real teeth.
+        The response was systematic and expensive. The park installed over 2,000 metal bear boxes at campsites and trailheads. Bear canisters became mandatory for all overnight wilderness trips. A massive education campaign reshaped how visitors understood food storage. Open garbage containers were replaced with bear-proof models throughout the park. The "Keep Bears Wild" messaging became pervasive, and rangers began writing citations with real teeth.
       </p>
 
       <p>
@@ -279,7 +279,7 @@ window.ARTICLE_BODIES["yosemite-bears-safety-guide"] = function YosemiteBearsSaf
       <p>But then there is the road.</p>
 
       <p>
-        In 2025, 28 bears were hit by cars in Yosemite. Six were killed. Beth Pratt's 11-year analysis of the data showed an 85.7% rise in vehicle-bear collisions correlating with a 44.9% increase in visitation after the park's reservation system was removed. More visitors meant more cars, more cars meant more miles driven on park roads, and more miles meant more dead bears. Through early July 2026 the park logged 34 incidents and $14,947 in property damage, up 26 percent on the same point in 2025, down 91 percent on 1998 and up 286 percent on 2019.
+        In 2025, 28 bears were hit by cars in Yosemite. Six were killed. Beth Pratt's analysis of the 2014 to 2025 data found vehicle-bear collisions up 85.7% in 2021, the year visitation rose 44.9% over 2020. More visitors meant more cars, more cars meant more miles driven on park roads, and more miles meant more dead bears. Through early July 2026 the park logged 34 incidents and $14,947 in property damage, up 26 percent on the same point in 2025, down 91 percent on 1998 and up 286 percent on 2019.
       </p>
 
       <p>

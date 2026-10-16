@@ -197,7 +197,7 @@ function FilmsPage({ go }) {
             </p>
             <p className="hp-films__intro hp-films__intro--quiet">
               The films borrowed their name from something older. From 1922 the park's naturalists
-              mailed out a bulletin by the same name, and all 512 issues are transcribed in{" "}
+              mailed out a bulletin by the same name, and all 511 issues are transcribed in{" "}
               {/* Static pages under /archive, outside the SPA: a plain link, no go(). */}
               <a className="hp-inline" href="/archive/">the print archive</a>.
             </p>
@@ -326,7 +326,7 @@ function FilmsPage({ go }) {
               <span className="hp-films__archivetitle">Before the films, a bulletin</span>
               <span className="hp-films__archivebody">
                 From 1922 into the 1980s the park's naturalists mailed out a bulletin called Yosemite
-                Nature Notes. All 512 issues are transcribed here, about 1.87 million words.
+                Nature Notes. All 511 issues are transcribed here, about 1.87 million words.
               </span>
             </span>
             <b>Read the archive <span>→</span></b>
