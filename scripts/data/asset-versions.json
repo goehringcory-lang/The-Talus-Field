@@ -6,8 +6,8 @@
       "sha256": "fb7924ceabb3b928"
     },
     "/dist/bodies/best-airport-for-yosemite.js": {
-      "v": 3,
-      "sha256": "db15a9d178f7a6ea"
+      "v": 4,
+      "sha256": "e3a52f9841886bd6"
     },
     "/dist/bodies/best-yosemite-backpacking-trips.js": {
       "v": 2,
@@ -218,8 +218,8 @@
       "sha256": "c62a3e46ea170323"
     },
     "/dist/bodies/yosemite-gateway-towns-compared.js": {
-      "v": 106,
-      "sha256": "8650acbc41857b98"
+      "v": 107,
+      "sha256": "4f797dc3743e1d00"
     },
     "/dist/bodies/yosemite-glaciers-climate.js": {
       "v": 83,

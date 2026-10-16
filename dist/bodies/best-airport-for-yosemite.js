@@ -78,7 +78,7 @@ window.ARTICLE_BODIES["best-airport-for-yosemite"] = function BestAirportForYose
     id: "mariposa",
     name: "Mariposa and Midpines",
     dest: "Mariposa, California",
-    drive: "45 to 60 min",
+    drive: "60 to 75 min",
     from: "From SFO in winter, or off the Merced flight",
     road: "Highway 140, the road that stays open"
   }, {

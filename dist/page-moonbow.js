@@ -243,7 +243,7 @@ var MB_TOWNS = [{
   id: "mariposa",
   name: "Midpines and Mariposa",
   dest: "Mariposa, California",
-  drive: "45 to 60 min",
+  drive: "60 to 75 min",
   road: "Highway 140",
   note: "The deepest inventory, and an hour's drive home in the dark."
 }, {

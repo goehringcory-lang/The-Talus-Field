@@ -190,7 +190,7 @@ function pickTown(trip, when, priority) {
   }
   return {
     key: "mariposa",
-    why: "A real downtown, several price points, full supermarkets, and the year-round Highway 140 approach at 45 to 60 minutes. The default answer for a first Yosemite trip." + (when === "winter" ? " It is also the only gateway with year-round YARTS bus service into the park." : ""),
+    why: "A real downtown, several price points, full supermarkets, and the year-round Highway 140 approach at 60 to 75 minutes. The default answer for a first Yosemite trip." + (when === "winter" ? " It is also the only gateway with year-round YARTS bus service into the park." : ""),
   };
 }
 
@@ -260,7 +260,7 @@ window.ARTICLE_BODIES["yosemite-gateway-towns-compared"] = function YosemiteGate
       </p>
 
       <p>
-        <strong>Mariposa or Oakhurst?</strong> For Yosemite Valley, Mariposa, closer by 30 minutes or more. For the South Entrance and the Mariposa Grove, Oakhurst. The five towns side by side:
+        <strong>Mariposa or Oakhurst?</strong> For Yosemite Valley, Mariposa, closer by 15 minutes or more. For the South Entrance and the Mariposa Grove, Oakhurst. The five towns side by side:
       </p>
 
       <div className="table-scroll">
@@ -270,7 +270,7 @@ window.ARTICLE_BODIES["yosemite-gateway-towns-compared"] = function YosemiteGate
           </thead>
           <tbody>
             <tr><td>El Portal</td><td>25 to 35 min</td><td>Arch Rock, a few miles</td><td>140, year-round</td><td>about 1,900 ft</td><td>Sunrise starts, the shortest drive</td></tr>
-            <tr><td>Mariposa</td><td>45 to 60 min</td><td>Arch Rock, via El Portal</td><td>140, year-round</td><td>about 2,000 ft</td><td>Most first-timers, families, winter</td></tr>
+            <tr><td>Mariposa</td><td>60 to 75 min</td><td>Arch Rock, via El Portal</td><td>140, year-round</td><td>about 2,000 ft</td><td>Most first-timers, families, winter</td></tr>
             <tr><td>Groveland</td><td>65 to 80 min</td><td>Big Oak Flat, 30 to 40 min</td><td>120, chains common in winter</td><td>about 3,100 ft</td><td>Character, Hetch Hetchy, Bay Area route</td></tr>
             <tr><td>Oakhurst</td><td>75 to 90 min</td><td>South, 20 to 25 min</td><td>41, year-round</td><td>about 2,300 ft</td><td>Wawona and the Mariposa Grove</td></tr>
             <tr><td>Lee Vining</td><td>90+ min, summer only</td><td>Tioga Pass, about 12 miles</td><td>120 East over Tioga Pass</td><td>about 6,800 ft</td><td>The high country and Mono Lake</td></tr>
@@ -477,7 +477,7 @@ window.ARTICLE_BODIES["yosemite-gateway-towns-compared"] = function YosemiteGate
       <h2 id="sec-4-groveland">Groveland</h2>
 
       <TownFacts rows={[
-        ["Valley drive", "about 48 miles, 65 to 80 minutes"],
+        ["Valley drive", "about 49 miles, 65 to 80 minutes"],
         ["Entrance", "Big Oak Flat, about 24 miles, 30 to 40 winding minutes"],
         ["Road", "Highway 120, chain controls common in winter"],
         ["Elevation", "about 3,100 feet, the highest of the western gateways"],
@@ -648,8 +648,8 @@ window.ARTICLE_BODIES["yosemite-gateway-towns-compared"] = function YosemiteGate
       <h2 id="sec-common-questions">Common questions</h2>
 
       <p><strong>What is the closest town to Yosemite?</strong> El Portal, about 14 miles and 25 to 35 minutes from Yosemite Valley on Highway 140. For the South Entrance and the Mariposa Grove it is Fish Camp, then Oakhurst; for the Big Oak Flat Entrance it is Groveland; for Tioga Pass, in summer, Lee Vining.</p>
-      <p><strong>What is the best town to stay in near Yosemite?</strong> For most first-time visitors, Mariposa: a real town, several price points, full supermarkets, and the year-round Highway 140 road at 45 to 60 minutes from the Valley. El Portal if the drive is the thing to shorten, Oakhurst for the sequoias, Groveland for character and the Bay Area route, Lee Vining for the high country.</p>
-      <p><strong>Is Oakhurst or Mariposa closer to Yosemite Valley?</strong> Mariposa, by 30 minutes or more: 45 to 60 minutes on Highway 140 against 75 to 90 on Highway 41. Oakhurst is closer to the South Entrance and the Mariposa Grove, 20 to 25 minutes.</p>
+      <p><strong>What is the best town to stay in near Yosemite?</strong> For most first-time visitors, Mariposa: a real town, several price points, full supermarkets, and the year-round Highway 140 road at 60 to 75 minutes from the Valley. El Portal if the drive is the thing to shorten, Oakhurst for the sequoias, Groveland for character and the Bay Area route, Lee Vining for the high country.</p>
+      <p><strong>Is Oakhurst or Mariposa closer to Yosemite Valley?</strong> Mariposa, by 15 minutes or more: 60 to 75 minutes on Highway 140 against 75 to 90 on Highway 41. Oakhurst is closer to the South Entrance and the Mariposa Grove, 20 to 25 minutes.</p>
       <p><strong>Where should I stay near the Yosemite south entrance?</strong> Fish Camp, two miles from the gate, if you want to be closest; Oakhurst, 14 miles, if you want a full town. The Wawona Hotel, the in-park option on this side, has been closed since December 2024.</p>
       <p><strong>Where should I stay near Yosemite with kids?</strong> Mariposa for a Valley trip, Oakhurst for a sequoia trip. Both have full supermarkets, pharmacies, several restaurants, and rooms that can be booked later than El Portal or the in-park lodges.</p>
       <p><strong>Which gateway town is cheapest?</strong> Groveland and Mariposa typically have the widest range and the most budget rooms. El Portal is priced like in-park lodging. Oakhurst has predictable chain prices. Lee Vining has little inventory and prices accordingly.</p>

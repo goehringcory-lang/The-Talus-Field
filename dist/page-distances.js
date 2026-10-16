@@ -8,20 +8,20 @@ var TO_VALLEY = [{
 }, {
   town: "Mariposa",
   miles: "about 45",
-  time: "45 to 60 min",
+  time: "60 to 75 min",
   highway: "140",
   season: "Year-round",
   elevation: "about 2,000 ft"
 }, {
   town: "Groveland",
-  miles: "about 41",
+  miles: "about 49",
   time: "65 to 80 min",
   highway: "120",
   season: "Chain controls common in winter",
   elevation: "about 3,100 ft"
 }, {
   town: "Oakhurst",
-  miles: "about 50",
+  miles: "about 55",
   time: "75 to 90 min",
   highway: "41",
   season: "Year-round",

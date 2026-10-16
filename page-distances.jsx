@@ -28,9 +28,9 @@
 // per-town stat blocks.
 const TO_VALLEY = [
   { town: "El Portal", miles: "about 14", time: "25 to 35 min", highway: "140", season: "Year-round", elevation: "about 1,900 ft" },
-  { town: "Mariposa", miles: "about 45", time: "45 to 60 min", highway: "140", season: "Year-round", elevation: "about 2,000 ft" },
-  { town: "Groveland", miles: "about 41", time: "65 to 80 min", highway: "120", season: "Chain controls common in winter", elevation: "about 3,100 ft" },
-  { town: "Oakhurst", miles: "about 50", time: "75 to 90 min", highway: "41", season: "Year-round", elevation: "about 2,300 ft" },
+  { town: "Mariposa", miles: "about 45", time: "60 to 75 min", highway: "140", season: "Year-round", elevation: "about 2,000 ft" },
+  { town: "Groveland", miles: "about 49", time: "65 to 80 min", highway: "120", season: "Chain controls common in winter", elevation: "about 3,100 ft" },
+  { town: "Oakhurst", miles: "about 55", time: "75 to 90 min", highway: "41", season: "Year-round", elevation: "about 2,300 ft" },
   { town: "Lee Vining", miles: "about 75", time: "90 min minimum", highway: "120 East over Tioga Pass", season: "Only while Tioga Pass is open", elevation: "about 6,800 ft" },
 ];
 
