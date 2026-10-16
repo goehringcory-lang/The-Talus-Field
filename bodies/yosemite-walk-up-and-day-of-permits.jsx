@@ -107,13 +107,13 @@ window.ARTICLE_BODIES["yosemite-walk-up-and-day-of-permits"] = function Yosemite
       </p>
 
       <p>
-        Whatever quota went unclaimed can be issued in person at a wilderness center on the start date of the trip. The Park Service's own language about this is worth quoting almost exactly, because it is unusually blunt for a government website: while unreserved permits will be available in person on the start date, few, if any, unused permits will be available. In July, at Happy Isles or Cathedral Lakes, the number is zero. Two drainages over, on a Tuesday, at a trailhead nobody has heard of, it is sometimes not zero, and the rangers behind the desk know exactly which ones those are. Ask the question that way. Do not ask whether they have anything for the John Muir Trail; ask what they have at all, and then decide whether you want it.
+        Whatever quota went unclaimed can be issued in person at a wilderness center on the start date of the trip. The Park Service's own language about this is worth quoting almost exactly, because it is unusually blunt for a government website: while unreserved permits will be available in person on the start date, few, if any, unused permits will be available. At the famous trailheads in summer, expect none. At a trailhead nobody has heard of, on a weekday, the number may not be zero, and the rangers behind the desk know which ones those are. Ask the question that way. Do not ask whether they have anything for the John Muir Trail; ask what they have at all, and then decide whether you want it.
       </p>
 
       <h2>Where to stand, and by when</h2>
 
       <p>
-        Permits are issued at the wilderness centers: Yosemite Valley, Tuolumne Meadows, Wawona, Big Oak Flat, and the Hetch Hetchy entrance station. Most run roughly 8 a.m. to 5 p.m. in season, and the outlying ones close for the winter entirely, so the Valley center is the reliable year-round door. Two rules ride along with them. A reservation is not a permit; someone in your party has to collect the paper, either the day before, 8 a.m. to 5 p.m., or between 8 and 11 a.m. on the start date, and an uncollected permit is cancelled and given away. And if you are hoping to catch released quota, be at the counter when it opens, not at lunchtime.
+        Permits are issued at the wilderness centers: Yosemite Valley, Tuolumne Meadows, Wawona, Big Oak Flat, and the Hetch Hetchy entrance station. Most run roughly 8 a.m. to 5 p.m. in season, and the outlying ones close for the season, with self-registration outside the nearest station in the off-season, so the Valley center is the reliable year-round door. Two rules ride along with them. A reservation is not a permit; someone in your party has to collect the paper, either the day before, 8 a.m. to 5 p.m., or between 8 and 11 a.m. on the start date, and an uncollected permit is cancelled and given away. And if you are hoping to catch released quota, be at the counter when it opens, not at lunchtime.
       </p>
 
       <p>

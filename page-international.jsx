@@ -182,7 +182,7 @@ function InternationalPage({ go }) {
             <li>
               <strong>The nearest big airports are hours away.</strong> San
               Francisco is four to five hours from the Valley by car and Los
-              Angeles six to seven; Fresno, two and a quarter, takes
+              Angeles about six; Fresno, two and a quarter, takes
               connections from both.{" "}
               <a href="/articles/best-airport-for-yosemite" onClick={(e) => goA(e, "best-airport-for-yosemite")}>Which airport to fly into</a> compares them, with when a rental car beats the train and bus, and what a license from home needs.
             </li>

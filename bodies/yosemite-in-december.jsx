@@ -39,7 +39,7 @@ window.ARTICLE_BODIES["yosemite-in-december"] = function YosemiteInDecemberBody(
       </p>
 
       <p>
-        <strong>The Mariposa Grove is open, but on foot.</strong> The grove road closed on November 30 in each of the three seasons from 2023 through 2025, and the free shuttle from the Welcome Plaza near the South Entrance runs no later than November 30 in any year. In December you walk in: the park describes the Washburn Trail as a two-mile route to the grove with 500 feet of gain, and warns that it may be snowy or icy enough for skis or snowshoes. The full walk-in plan is in <a href="/articles/mariposa-grove-how-to-visit">the Mariposa Grove guide</a>.
+        <strong>The Mariposa Grove is open, but on foot.</strong> The grove road closed on November 30 in each of the three seasons from 2023 through 2025, and the free shuttle from the Welcome Plaza near the South Entrance runs from April through mid-October, conditions permitting. In December you walk in: the park describes the Washburn Trail as a two-mile route to the grove with 500 feet of gain, and warns that it may be snowy or icy enough for skis or snowshoes. The full walk-in plan is in <a href="/articles/mariposa-grove-how-to-visit">the Mariposa Grove guide</a>.
       </p>
 
       <h2>The first half of the month: quiet, with a gap in the rooms</h2>
@@ -67,7 +67,7 @@ window.ARTICLE_BODIES["yosemite-in-december"] = function YosemiteInDecemberBody(
       </p>
 
       <p>
-        Mid-December also belongs to the <strong>Bracebridge Dinner</strong>, the Ahwahnee's four-hour Tudor dinner pageant, staged on a run of evenings before Christmas. The concessioner's current schedule lists performances on alternating nights from December 8 through December 22, and a ticket covers the dinner and the performance only; the room is a separate booking. What it is, what it costs, and whether it is worth building a trip around are all in <a href="/articles/bracebridge-dinner-and-vintners-holidays">the Bracebridge and Vintners' Holidays guide</a>. The practical December note is simpler: on performance nights the Ahwahnee is busy, and its rooms on those dates go first.
+        Mid-December also belongs to the <strong>Bracebridge Dinner</strong>, the Ahwahnee's Old English dinner pageant, staged on a run of evenings before Christmas. The concessioner's current schedule lists performances on alternating nights from December 8 through December 22, and a ticket covers the dinner and the performance only; the room is a separate booking. What it is, what it costs, and whether it is worth building a trip around are all in <a href="/articles/bracebridge-dinner-and-vintners-holidays">the Bracebridge and Vintners' Holidays guide</a>. The practical December note is simpler: on performance nights the Ahwahnee is busy, and its rooms on those dates go first.
       </p>
 
       <Placeholder

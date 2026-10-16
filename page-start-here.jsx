@@ -123,8 +123,8 @@ const START_PLACES = [
     line: "The same canyon from the top edge, at eye level with Half Dome.",
     dos: [
       "Washburn Point first, for Vernal and Nevada Falls stacked in their staircase",
-      "Glacier Point itself: a 0.3-mile paved walk to the 7,200-foot overlook",
-      "Sentinel Dome and Taft Point from one trailhead, about 2.2 miles round trip each",
+      "Glacier Point itself: a 300-yard paved walk to the 7,200-foot overlook",
+      "Sentinel Dome and Taft Point from one trailhead, about 2 and 2.2 miles round trip",
       "Late afternoon puts the light on Half Dome rather than behind it",
     ],
     facts: [

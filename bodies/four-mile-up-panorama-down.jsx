@@ -34,7 +34,7 @@ window.ARTICLE_BODIES["four-mile-up-panorama-down"] = function FourMileUpPanoram
       <p>There are three reasons.</p>
 
       <p>
-        First, the Four Mile Trail is a steady uphill grind: 3,200 feet of gain in 4.8 miles, over roughly 58 switchbacks. It's the hardest part of the day, so do it while your legs are fresh and the morning is cool.
+        First, the Four Mile Trail is a steady uphill grind: 3,200 feet of gain in 4.8 miles. It's the hardest part of the day, so do it while your legs are fresh and the morning is cool.
       </p>
 
       <p>
@@ -58,7 +58,7 @@ window.ARTICLE_BODIES["four-mile-up-panorama-down"] = function FourMileUpPanoram
       <h2>The Four Mile Trail, what to expect</h2>
 
       <p>
-        Stonemason John Conway built the original trail in 1872 for entrepreneur James McCauley, who charged a one-dollar toll. It was exactly four miles long. In the late 1920s the Park Service rebuilt it with gentler switchbacks, and the new route came out to 4.8 miles. The name stuck anyway.
+        Trail builder John Conway laid out the original trail, completed in 1872 for entrepreneur James McCauley, who charged a one-dollar toll. It was four miles long. The route has changed since, and it now runs 4.8 miles. The name stuck anyway.
       </p>
 
       <p>

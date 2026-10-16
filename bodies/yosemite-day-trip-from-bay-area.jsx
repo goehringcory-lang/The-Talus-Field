@@ -106,7 +106,7 @@ window.ARTICLE_BODIES["yosemite-day-trip-from-bay-area"] = function YosemiteDayT
       </p>
 
       <p>
-        <strong>Bridalveil Fall,</strong> at the west end, reopened in 2023 after a long rehabilitation with a rebuilt trail, new viewing platforms, and proper parking. Short, paved, and it runs year-round rather than drying up in late summer.
+        <strong>Bridalveil Fall,</strong> at the west end, came out of a rehabilitation the Park Service completed in fall 2024, with a rebuilt trail, new viewing platforms, and proper parking. Short, paved, and it runs year-round rather than drying up in late summer.
       </p>
 
       <p>

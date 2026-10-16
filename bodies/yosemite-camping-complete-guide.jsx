@@ -63,7 +63,7 @@ window.ARTICLE_BODIES["yosemite-camping-complete-guide"] = function YosemiteCamp
     ["How do I get a Yosemite campsite when everything is sold out?", "Check Recreation.gov each morning at 7 for the two-week campgrounds, set cancellation alerts (Campflare and Outdoorithm have free plans, Campnab is paid), and stay flexible on dates. In the author's experience cancellations cluster in the two weeks before arrival; that pattern is not a Park Service figure. If you can take any three nights in a two-week range, your odds improve a great deal. Other doors: Camp 4's one-week window, first-come camping from late October to early April, a wilderness permit, national forest land outside the park, and private campgrounds."],
     ["What are the food storage rules at Yosemite campgrounds?", "Every campground has food lockers, and all food goes in them: food, drinks, coolers, toiletries, trash and unwashed cooking gear. Keep the locker latched even while you are at your site. By day food may ride in a car with the windows closed; after dark it goes in the locker, and never in a pickup bed. Poor storage can mean impounded food or car, removal from the campsite and a fine of up to $5,000, and bears that get human food often end up being killed."],
     ["Are there showers at Yosemite campgrounds?", "No. None of the campgrounds has showers. Curry Village has pay showers that are open 24 hours and do not require a room there; the Park Service lists the fee only as small and says to ask at the front desk. Housekeeping Camp, which is not a campground, has shower houses for its own guests."],
-    ["Which Yosemite campground is best?", "It depends on what you want. Crane Flat is the all-round pick: 17 miles and about 30 minutes from the Valley, cooler and quieter, with flush toilets and drinking water. For the classic Valley trip, book Upper Pines or North Pines and look for sites near the Merced River. For solitude, Tamarack Flat and Yosemite Creek trade amenities for room."],
+    ["Which Yosemite campground is best?", "It depends on what you want. Crane Flat is the all-round pick: 16 miles and about 30 minutes from the Valley, cooler and quieter, with flush toilets and drinking water. For the classic Valley trip, book Upper Pines or North Pines and look for sites near the Merced River. For solitude, Tamarack Flat and Yosemite Creek trade amenities for room."],
     ["When can you camp in the Yosemite high country?", "After the Tioga Road opens, and then on each campground's own schedule. In 2026 the road opened May 15, the earliest since 2015 by the park's own table of opening dates, and the campgrounds opened between May 21 (Crane Flat) and July 2 (White Wolf), with Tuolumne Meadows on July 1. Dates move every year. Average lows at Tuolumne Meadows run 32 to 39 degrees from June through September, so bring a sleeping bag rated to 20 degrees."],
     ["Can I camp in Yosemite without a reservation?", "Only in the off-season. Camp 4, Hodgdon Meadow and Wawona run first-come, first-served from late October to early April (Camp 4 usually until sometime in April), and they can fill on holidays and weekends. In peak season the Park Service says not to arrive without a reservation. You may not sleep in a car or RV anywhere except a campsite you are registered for. Call 209/372-0266 for current status."],
   ];
@@ -216,7 +216,7 @@ window.ARTICLE_BODIES["yosemite-camping-complete-guide"] = function YosemiteCamp
   const LOCKERS = [
     { w: 43, h: 28, d: 35, name: "Most campgrounds", note: "35 deep, 43 wide, 28 high" },
     { w: 45, h: 18, d: 33, name: "Yosemite Creek, Porcupine Flat", note: "33 deep, 45 wide, 18 high" },
-    { w: 49, h: 17, d: 17, name: "White Wolf (shared)", note: "17 deep, 49 wide, 17 high" },
+    { w: 49, h: 17, d: 17, name: "White Wolf Lodge (shared)", note: "17 deep, 49 wide, 17 high" },
   ];
 
   // One campground card. `chips` are short facts, `pick` a badge.
@@ -638,7 +638,7 @@ window.ARTICLE_BODIES["yosemite-camping-complete-guide"] = function YosemiteCamp
               <p>One hundred sites at about 4,900 feet, half a mile inside the Big Oak Flat entrance on the park's west side. Flush toilets, drinking water, paved parking spurs and a locker at every site. Reservations run through October 26 in 2026, then it goes first-come, first-served until early April.</p>
               <p>It is the first campground you reach coming from the Bay Area on Highway 120, which makes it a strong option if you arrive late and do not want to drive another hour into the Valley in the dark. The caveat is the road: it sits close to Highway 120, so choose sites farther from it.</p>
             </Camp>
-            <Camp id="crane-flat" name="Crane Flat" pick="The Swiss Army knife" chips={["148 sites", "$36", "2-week window", "17 miles, about 30 min to the Valley"]}>
+            <Camp id="crane-flat" name="Crane Flat" pick="The Swiss Army knife" chips={["148 sites", "$36", "2-week window", "16 miles, about 30 min to the Valley"]}>
               <p>One hundred and forty-eight sites at about 6,200 feet, near the junction of Big Oak Flat Road and the Tioga Road. It is cooler and quieter than the Valley and sits at the crossroads of the park. The best campground in Yosemite depends on what you value, but Crane Flat is the all-round answer.</p>
               <p>It books on the two-week rolling window, so the competition is less frantic. Flush toilets and drinking water, with a small gas station and store at the junction. The forest is thick, the sites are separated, and on a clear night the sky is noticeably better than from the Valley floor. For <a href="/articles/yosemite-stargazing-where-to-look-up">stargazing conditions</a>, elevation and distance from the Valley's light make a real difference. In 2026 it ran May 21 to October 12.</p>
             </Camp>
@@ -687,13 +687,13 @@ window.ARTICLE_BODIES["yosemite-camping-complete-guide"] = function YosemiteCamp
 
         <div className="cg-camps cg-camps--three">
           <Camp id="tuolumne" name="Tuolumne Meadows" pick="The crown jewel" chips={["289 sites", "$36", "2-month and 2-week windows", "Jul 1 to Sep 27 in 2026"]}>
-            <p>The largest campground in the park, at 8,600 feet. It reopened on August 1, 2025, after a three-year, $26 million rehabilitation that closed it from 2022, with rebuilt restrooms and new water and sewer systems. Twenty-nine of the sites are new hike-in sites, the closest thing to backcountry camping you can do with a car in the lot. The meadows stretch wide and golden, the Tuolumne River winds through them, and the granite domes are smoother and rounder than the Valley's cliffs.</p>
+            <p>The largest campground in the park, at 8,600 feet. It reopened on August 1, 2025, after a three-year, $26 million rehabilitation that closed it from 2022, with rebuilt restrooms and new water and sewer systems. Its sites now include hike-in sites, the closest thing to backcountry camping you can do with a car in the lot. The meadows stretch wide and golden, the Tuolumne River winds through them, and the granite domes are smoother and rounder than the Valley's cliffs.</p>
             <p>Half the sites book on the two-month window, released on the 15th, and half on the two-week rolling window. Expect more competition than the site count suggests: several years of people who wanted Tuolumne and could not have it are pointed at the same inventory. The two-month window is a smaller crowd than the Valley's five-month scramble, but not an empty one. The Tuolumne Meadows store and grill are nearby in season.</p>
             <p>It is the staging area for the park's best backcountry: Cathedral Lakes, Lyell Canyon, the Pacific Crest Trail. <a href="/articles/hetch-hetchy-the-other-yosemite-valley">Hetch Hetchy</a> is also reachable from the Tioga corridor.</p>
           </Camp>
           <Camp id="white-wolf" name="White Wolf" chips={["68 sites", "$28", "2-week window", "Jul 2 to Sep 14 in 2026"]}>
             <p>Sixty-eight sites at 8,000 feet, reached by a spur road off the Tioga Road. It has long been one of the park's quieter campgrounds, in dense lodgepole pine where the light comes through in long golden shafts in the evening.</p>
-            <p>For 2026, White Wolf has portable toilets and no drinking water, because of sewer system problems. Bring your own water or a reliable filter, and expect shared food lockers. It changes the character of the place, and it also keeps the crowds thinner. The season is short and the dates move, and the park treats them as tentative until the road is open and the facilities are ready. Do not book flights around them.</p>
+            <p>For 2026, White Wolf has portable toilets and no drinking water, because of sewer system problems. Bring your own water or a reliable filter. It changes the character of the place, and it also keeps the crowds thinner. The season is short and the dates move, and the park treats them as tentative until the road is open and the facilities are ready. Do not book flights around them.</p>
           </Camp>
           <Camp id="bridalveil-creek" name="Bridalveil Creek" chips={["110 sites", "$36", "2-week window", "Jul 3 to Aug 14 in 2026"]}>
             <p>One hundred and ten sites at 7,200 feet on Glacier Point Road. It is named for Bridalveil Creek, which runs nearby, not for Bridalveil Fall, which is in the Valley, thousands of feet below. The confusion is common.</p>
@@ -773,7 +773,7 @@ window.ARTICLE_BODIES["yosemite-camping-complete-guide"] = function YosemiteCamp
         <div className="ff-split cg-lockers-wrap">
           <div>
             <h3 className="cg-subhead">How big is the locker?</h3>
-            <p className="cg-prose-p">Most campground lockers are 35 inches deep, 43 wide and 28 high. Two campgrounds have shorter ones, and White Wolf's are shared. Drawn to scale, front openings only:</p>
+            <p className="cg-prose-p">Most campground lockers are 35 inches deep, 43 wide and 28 high. Yosemite Creek and Porcupine Flat have shorter ones, and the shared lockers at White Wolf Lodge are smaller still. Drawn to scale, front openings only:</p>
             <ul className="cg-lockers" aria-label="Food locker sizes in inches">
               {LOCKERS.map((l) => (
                 <li key={l.name}>

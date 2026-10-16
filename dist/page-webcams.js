@@ -89,7 +89,11 @@ function WebcamsPage({
     href: "https://www.nps.gov/yose/planyourvisit/conditions.htm",
     target: "_blank",
     rel: "noopener noreferrer"
-  }, "nps.gov current conditions"), "."), React.createElement("p", null, React.createElement("strong", null, "For the high country and the east side"), ", there is no Conservancy camera at Tuolumne Meadows or Tioga Pass, which is the single most requested view the park does not have on this list. Until the road opens, the honest substitutes are the NPS Tioga Road page for plowing status and", " ", React.createElement("a", {
+  }, "nps.gov current conditions"), "."), React.createElement("p", null, React.createElement("strong", null, "For the high country and the east side"), ", there is no Conservancy camera at Tuolumne Meadows or Tioga Pass, which is the single most requested view missing from this list. Yosemite Hospitality runs a summer-only camera at the Tuolumne Meadows Store, which the", " ", React.createElement("a", {
+    href: "https://www.nps.gov/yose/learn/photosmultimedia/webcams.htm",
+    target: "_blank",
+    rel: "noopener noreferrer"
+  }, "NPS webcams page"), " ", "links. Until the road opens, the honest substitutes are the NPS Tioga Road page for plowing status and", " ", React.createElement("a", {
     href: "/tioga-opening"
   }, "the opening page"), " for how the season works."), React.createElement("p", {
     style: {

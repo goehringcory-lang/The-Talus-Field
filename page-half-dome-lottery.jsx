@@ -396,13 +396,13 @@ function HalfDomeLotteryPage({ go }) {
                 <li><a href="https://www.nps.gov/yose/planyourvisit/hdpermitsapps.htm" target="_blank" rel="noopener noreferrer">Half Dome Permit Lottery Statistics, NPS ↗</a></li>
               </ul>
             </aside>
-            {/* A permit day is a pre-dawn start after a 14-to-16-hour day, which
+            {/* A permit day is a pre-dawn start after a 10-to-12-hour day, which
                 makes the night before and the night after a real planning
                 problem, not an afterthought. The filled button is only ever an
                 Expedia search, as on /firefall. */}
             <aside className="ff-closing hd-stay" aria-label="Lodging availability">
               <p className="hp-eyebrow">THE NIGHT BEFORE, AND THE NIGHT AFTER</p>
-              <p>The hike wants a pre-dawn start and gives back a fourteen-to-sixteen-hour day. Driving in from Oakhurst at 3 a.m. and back out at 10 p.m. is how a permit gets wasted. A bed in the Valley or in El Portal is the difference, and the permit date is known far enough ahead to book one.</p>
+              <p>The hike wants a pre-dawn start and gives back a ten-to-twelve-hour day. Driving in from Oakhurst at 3 a.m. and back out at 10 p.m. is how a permit gets wasted. A bed in the Valley or in El Portal is the difference, and the permit date is known far enough ahead to book one.</p>
               <AvailabilityLink destination="Yosemite National Park" list="page_half_dome" slug="half-dome-lottery" className="ff-book">Search lodging near the trailhead ↗</AvailabilityLink>
               <p className="ff-note">Availability search on Expedia; we may earn a commission, and the advice is the same either way. <a href="/affiliate">Disclosure.</a> Every option compared: <HomeLink go={go} location="half_dome_stay" href="/stay">where to stay</HomeLink>.</p>
             </aside>

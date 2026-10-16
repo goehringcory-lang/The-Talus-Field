@@ -510,7 +510,7 @@ window.ARTICLE_BODIES["yosemite-for-non-hikers"] = function YosemiteForNonHikers
               </header>
               <dl className="nh-drive__facts">
                 <div><dt>Season</dt><dd>Open to cars about late May through October or November, depending on snow</dd></div>
-                <div><dt>The drive</dt><dd>About an hour from the Valley: 9 miles south on Wawona Road, then 16 on Glacier Point Road</dd></div>
+                <div><dt>The drive</dt><dd>About an hour from the Valley: 13 miles south on Wawona Road, then 16 on Glacier Point Road</dd></div>
                 <div><dt>The walk</dt><dd>A short paved path, about 300 yards each way</dd></div>
                 <div><dt>Height</dt><dd>About 3,200 feet above the Valley floor</dd></div>
               </dl>
@@ -585,7 +585,7 @@ window.ARTICLE_BODIES["yosemite-for-non-hikers"] = function YosemiteForNonHikers
                 <strong>If you have a placard.</strong> Vehicles with a disability placard may drive the Mariposa Grove Road past the shuttle to the Grizzly Giant parking area, from which a short trail, 0.1 mile one way over compressed dirt, reaches the Grizzly Giant, the largest tree in the grove. This is the single biggest practical benefit of the placard anywhere in Yosemite. Only placard vehicles may use that road while it is open.
               </p>
               <p>
-                <strong>In winter,</strong> the Mariposa Grove Road closes to cars from the end of November until at least April 1, and the shuttle stops with it. You can still get in on foot, by a two-mile hike each way on the road or the Washburn Trail, with about 500 feet of climb. For most non-hikers, winter is the season to skip the grove. <a href="/articles/mariposa-grove-how-to-visit">The grove guide</a> has the rest.
+                <strong>In winter,</strong> the Mariposa Grove Road closes to cars from the end of November until at least April 15, and the shuttle stops with it. You can still get in on foot, by a two-mile hike each way on the road or the Washburn Trail, with about 500 feet of climb. For most non-hikers, winter is the season to skip the grove. <a href="/articles/mariposa-grove-how-to-visit">The grove guide</a> has the rest.
               </p>
             </div>
           </div>

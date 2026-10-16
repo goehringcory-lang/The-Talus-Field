@@ -59,7 +59,7 @@ window.ARTICLE_BODIES["horsetail-fall-firefall"] = function HorsetailFallFirefal
       <h2>What is actually happening</h2>
 
       <p>
-        Horsetail Fall is a small, seasonal waterfall that drops off the eastern edge of El Capitan. It drops about 1,000 feet, which would make it a headline attraction anywhere else. In Yosemite it barely rates a mention for most of the year, partly because it usually is not there. The fall has a tiny drainage on El Capitan's summit slopes, no lake or glacier feeding it, and it flows only when recent rain or melting snow is running off the top of the cliff. In a dry winter it can be a damp streak. By late spring it is usually gone. If waterfalls are what you came for, the big reliable ones are covered in the <a href="/articles/yosemite-waterfalls-guide">waterfalls guide</a>; Horsetail is a different kind of event.
+        Horsetail Fall is a small, seasonal waterfall that drops off the eastern edge of El Capitan. It drops somewhere between 1,000 feet (the Park Service's own waterfall list) and about 1,500 (longer measurements of the full drop), which would make it a headline attraction anywhere else. In Yosemite it barely rates a mention for most of the year, partly because it usually is not there. The fall has a tiny drainage on El Capitan's summit slopes, no lake or glacier feeding it, and it flows only when recent rain or melting snow is running off the top of the cliff. In a dry winter it can be a damp streak. By late spring it is usually gone. If waterfalls are what you came for, the big reliable ones are covered in the <a href="/articles/yosemite-waterfalls-guide">waterfalls guide</a>; Horsetail is a different kind of event.
       </p>
 
       <p>

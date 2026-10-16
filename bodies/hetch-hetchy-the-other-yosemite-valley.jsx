@@ -22,15 +22,15 @@ window.ARTICLE_BODIES["hetch-hetchy-the-other-yosemite-valley"] = function Hetch
       <h2>The geography</h2>
 
       <p>
-        Hetch Hetchy sits in the northwestern corner of Yosemite National Park, accessed via <a href="/articles/getting-to-yosemite">Highway 120</a> to the <strong>Big Oak Flat Entrance</strong> and then a separate road that branches north before you reach the Valley. The drive from the Big Oak Flat Entrance to the <strong>O'Shaughnessy Dam</strong> (the trailhead for almost everything you'll do here) is about 16 miles, with significant winding mountain road. From Yosemite Valley, you're looking at roughly an hour and forty-five minutes of driving each way.
+        Hetch Hetchy sits in the northwestern corner of Yosemite National Park, accessed via <a href="/articles/getting-to-yosemite">Highway 120</a> to the <strong>Big Oak Flat Entrance</strong> and then a separate road that branches north before you reach the Valley. The drive from the Big Oak Flat Entrance to the <strong>O'Shaughnessy Dam</strong> (the trailhead for almost everything you'll do here) is about 16 miles, with significant winding mountain road. From Yosemite Valley, you're looking at about an hour and fifteen minutes of driving each way.
       </p>
 
       <p>
-        The valley itself is about 8 miles long and a half-mile wide on average. Before the dam, it had a meadow floor at about 3,800 feet, two major waterfalls (Wapama and Tueeulala, the latter only running in spring snowmelt) on its north wall, and a forested rim with significant stands of black oak, ponderosa pine, and incense cedar. Today, the lower portion of the valley is filled with the <strong>Hetch Hetchy Reservoir</strong>, which holds 117 billion gallons of water at full capacity.
+        The valley itself is about 8 miles long and a half-mile wide on average. Before the dam, it had a meadow floor, two major waterfalls (Wapama and Tueeulala, the latter only running in spring snowmelt) on its north wall, and a forested rim with significant stands of black oak, ponderosa pine, and incense cedar. Today, the lower portion of the valley is filled with the <strong>Hetch Hetchy Reservoir</strong>, which holds 117 billion gallons of water at full capacity.
       </p>
 
       <p>
-        The dam was completed in 1923. The reservoir filled in the years after. The valley floor that John Muir walked is, depending on the water level in any given year, somewhere between 200 and 350 feet underwater.
+        The dam was completed in 1923. The reservoir filled in the years after. The valley floor that John Muir walked is, depending on the water level in any given year, hundreds of feet underwater.
       </p>
 
       <h2>How it happened</h2>
@@ -172,7 +172,7 @@ window.ARTICLE_BODIES["hetch-hetchy-the-other-yosemite-valley"] = function Hetch
       </p>
 
       <p>
-        <strong>The valley below the waterline is still there.</strong> The granite floor, the meadows that were once flooded, the old trail systems, the original riverbed of the Tuolumne River. None of that was removed. It is preserved underwater, in a kind of geological cold storage, and if the dam were ever removed (a long-running advocacy goal of the Sierra Club and others), the valley would emerge. The U.S. Department of the Interior's 2006 study concluded that draining and restoring Hetch Hetchy was technically feasible. The political and infrastructural obstacles are significant. Whether it will happen in the next century is unknown.
+        <strong>The valley below the waterline is still there.</strong> The granite floor, the meadows that were once flooded, the old trail systems, the original riverbed of the Tuolumne River. None of that was removed. It is preserved underwater, in a kind of geological cold storage, and if the dam were ever removed (a long-running advocacy goal of the Sierra Club and others), the valley would emerge. The State of California's 2006 restoration study found the existing engineering work too thin to say whether draining and restoring Hetch Hetchy is feasible, and called for more. The political and infrastructural obstacles are significant. Whether it will happen in the next century is unknown.
       </p>
 
       <p>

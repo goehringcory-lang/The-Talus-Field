@@ -199,7 +199,7 @@ const windowEntries: SeasonalInput[] = [
     location: 'Yosemite Valley, Wawona, Crane Flat, and Glacier Point',
     url: 'https://www.nps.gov/yose/planyourvisit/guide.htm',
     description:
-      'Most seasonal services close October 25: bike rentals, the Village Grill, the Mountaineering School, the Glacier Point gift shop, the Crane Flat store (its pumps stay open), and the Wawona golf course. Before that: the Glacier Point Tour, its one-way hiker drop-off, and the full-day Grand Tour run through October 11. The Housekeeping Camp store closes after October 12; the laundry stays open. The Happy Isles Art & Nature Center and its art classes close after October 16. The Valley Wilderness Center and the Big Oak Flat permit desk close after October 18; then overnight permits are self-registered outside the Valley Welcome Center or on the Big Oak Flat porch, and rental bear canisters are only at the Valley Welcome Center. After: the Wawona Visitor Center closes after October 31. Campgrounds need a reservation through October 26; after that Wawona and Hodgdon Meadow are first-come, first-served, Camp 4 needs a reservation until November 9, and Upper Pines year-round.',
+      'Most seasonal services close October 25: bike rentals, the Village Grill, the Mountaineering School, the Glacier Point gift shop, the Crane Flat store (its pumps stay open), and the Wawona golf course. Before that: the Glacier Point Tour, its one-way hiker drop-off, and the full-day Grand Tour run through October 11. The Housekeeping Camp store closes after October 12; the laundry stays open. The Happy Isles Art & Nature Center and its art classes close after October 16. The Valley Wilderness Center and the Big Oak Flat permit desk close after October 18; then overnight permits are self-registered outside the Valley Welcome Center or on the Big Oak Flat porch, and rental bear canisters are only at the Valley Welcome Center. After: the Wawona Visitor Center closes after October 31. Campgrounds need a reservation through October 26; after that Wawona and Hodgdon Meadow are first-come, first-served, Camp 4 needs a reservation into November (the Guide prints November 9; the park\'s Camp 4 page says November 29), and Upper Pines year-round.',
     stopIds: ['curry-village', 'glacier-point', 'wawona-hotel-history-center'],
   },
   {
@@ -318,7 +318,7 @@ const windowEntries: SeasonalInput[] = [
     dateEnd: '2027-03-15',
     location: 'Badger Pass, Glacier Point Road',
     description:
-      'California\'s oldest ski area typically runs from mid-December into March, snow permitting. In winter Glacier Point Road is plowed exactly this far: downhill and tubing at the area, and the groomed cross-country track toward Glacier Point starts here. Opening depends on early-season snow, and the concessioner confirms each year.',
+      'California\'s oldest ski area typically opens in December or January, depending on snow, and runs into March. In winter Glacier Point Road is plowed exactly this far: downhill and tubing at the area, and the groomed cross-country track toward Glacier Point starts here. Opening depends on early-season snow, and the concessioner confirms each year.',
   },
   {
     id: 'bracebridge-dinner-2026',
@@ -354,7 +354,7 @@ const windowEntries: SeasonalInput[] = [
     dateEnd: '2027-03-31',
     url: 'https://www.recreation.gov/permits/234652',
     description:
-      'The preseason lottery for Half Dome permits has run through March on recreation.gov in recent years, with results in mid-April. One application, up to six ranked dates. Miss it and the daily lottery runs two days ahead all season. Confirm the 2027 dates on recreation.gov before counting on the pattern.',
+      'The preseason lottery for Half Dome permits has run through March on recreation.gov in recent years, with results in mid-April. One application covers up to six people. Miss it and the daily lottery runs two days ahead all season. Confirm the 2027 dates on recreation.gov before counting on the pattern.',
   },
   {
     id: 'glacier-point-open-2027',
@@ -477,7 +477,7 @@ const windowEntries: SeasonalInput[] = [
     dateEnd: '2028-03-31',
     url: 'https://www.recreation.gov/permits/234652',
     description:
-      'The preseason lottery for Half Dome permits has run through March on recreation.gov in recent years, with results in mid-April. One application, up to six ranked dates. Miss it and the daily lottery runs two days ahead all season. Confirm the 2028 dates on recreation.gov before counting on the pattern.',
+      'The preseason lottery for Half Dome permits has run through March on recreation.gov in recent years, with results in mid-April. One application covers up to six people. Miss it and the daily lottery runs two days ahead all season. Confirm the 2028 dates on recreation.gov before counting on the pattern.',
   },
   {
     id: 'glacier-point-open-2028',
@@ -745,7 +745,7 @@ const meteorEntries: SeasonalInput[] = [
     location: PERSEIDS_LOCATION,
     url: 'https://www.imo.net/resources/calendar/',
     description:
-      'The Perseids peak on the night of August 12 into the 13th. The moon is a slim waning crescent in 2028 and does not rise until well after midnight, so the evening hours run dark, a good year for it if the sky stays clear. Glacier Point\'s open horizon, or the Olmsted Point and Tenaya Lake pullouts on Tioga Road, are the darkest sky within a drive. Best after 11 p.m., once the radiant is higher and before moonrise starts to compete.',
+      'The Perseids peak on the night of August 12 into the 13th. The moon is a waning half moon in 2028 and does not rise until around midnight, so the evening hours run dark, a good year for it if the sky stays clear. Glacier Point\'s open horizon, or the Olmsted Point and Tenaya Lake pullouts on Tioga Road, are the darkest sky within a drive. Best after 11 p.m., once the radiant is higher and before moonrise starts to compete.',
     stopIds: RIM_STOP_IDS,
   },
   // Geminids 2028: IMO peak Dec 13/14. Nearest full moons: 2028-12-01
@@ -800,13 +800,13 @@ const meteorEntries: SeasonalInput[] = [
 // date; only the high-country window is still ahead and included for 2026.
 
 const WILDFLOWERS_VALLEY_DESC =
-  'The lowest-elevation bloom typically runs mid-April through May, and it starts outside the park entirely. The Merced River Canyon along Highway 140 is snow-free earliest of any approach road, and redbud and California poppies typically color the roadside for miles before the entrance station. Valley meadows follow a few weeks behind. The high country is still under snow through this window.'
+  'The lowest-elevation bloom typically starts in March and runs into May, and it begins outside the park entirely. The Merced River Canyon along Highway 140 is snow-free earliest of any approach road, and redbud and tufted poppies typically color the canyon in March, well before the entrance station. Valley meadows follow a few weeks behind. The high country is still under snow through this window.'
 const DOGWOOD_DESC =
-  'The valley\'s understory dogwoods typically flower in the first three weeks of May, white blossoms against dark conifer trunks along Southside Drive and near Pohono Bridge. The window is short, usually gone within a couple of weeks of opening. Overcast light suits it better than midday sun, so a slow drive on a cloudy morning suits it.'
+  'The valley\'s understory dogwoods typically flower around mid-May, white blossoms against dark conifer trunks along Southside Drive and near Pohono Bridge. The window is short. Overcast light suits it better than midday sun, so a slow drive on a cloudy morning suits it.'
 const WILDFLOWERS_MEADOWS_DESC =
   'Mid-elevation meadows typically peak from mid-June into mid-July, later at McGurk Meadow on Glacier Point Road, where July is peak, than at lower, earlier-blooming Wawona Meadow. Both are easy, flat walks. Glacier Point Road has to be open to reach McGurk; it usually is well before this window closes.'
 const WILDFLOWERS_HIGH_DESC =
-  'High-country meadows typically bloom from mid-July into mid-August, once the snowmelt clears and the ground warms at 8,600 feet. Lupine and paintbrush color the meadow edges around Tuolumne, later and shorter-lived than anything at valley elevation. Timing tracks the snowpack: a big winter pushes the bloom toward August, a light one brings it forward. The Soda Springs walk from the Lembert Dome lot is an easy way to see it up close.'
+  'High-country meadows typically bloom from late June into August, once the snowmelt clears and the ground warms at 8,600 feet. Shooting stars, meadow penstemon, and cinquefoil color the meadows around Tuolumne, later and shorter-lived than anything at valley elevation. Timing tracks the snowpack: a big winter pushes the bloom toward August, a light one brings it forward. The Soda Springs walk from the Lembert Dome lot is an easy way to see it up close.'
 const WILDFLOWERS_SOURCE_URL = 'https://www.nps.gov/yose/learn/nature/wildflowerviewing.htm'
 
 const wildflowerEntries: SeasonalInput[] = [

@@ -110,7 +110,7 @@ window.ARTICLE_BODIES["yosemite-stargazing-where-to-look-up"] = function Yosemit
       </p>
 
       <p>
-        The core rises in the southeast in late spring (rises in the early morning hours), is highest in the sky in midsummer (rises mid-evening), and is sinking in the west in early fall (visible early evening, sets mid-evening). For the densest, most dramatic Milky Way views, late June through early August on a moonless night gets you the core arching nearly overhead between roughly 11 p.m. and 3 a.m.
+        The core rises in the southeast in late spring (rises in the early morning hours), is highest in the sky in midsummer (rises mid-evening), and is sinking in the west in early fall (visible early evening, sets mid-evening). For the densest, most dramatic Milky Way views, late June through early August on a moonless night gets you the core standing in the south and the band of the Milky Way arching overhead between roughly 11 p.m. and 3 a.m.
       </p>
 
       <p>
@@ -135,14 +135,14 @@ window.ARTICLE_BODIES["yosemite-stargazing-where-to-look-up"] = function Yosemit
         <strong><a href="/articles/glacier-point-road-open-2026">Glacier Point</a>.</strong> The classic. At 7,200 feet, with an open western and southern horizon, almost no nearby light, and a paved walk of a few hundred feet from the parking lot, this is one of the best drive-to dark-sky spots in any National Park. The Park Service runs public <strong>Star Parties</strong> at Glacier Point on Friday and Saturday nights in July and August, when local astronomy clubs set up telescopes and rangers give talks. These are some of the best free educational events in the park. In 2026 the park's list ran from July 3 to August 15, with the schedule set each year.
       </p>
 
-      <p>The trade-off: Glacier Point Road closes with the first big winter storm, usually in November, and reopens in late May or early June, so this is a summer-only option.</p>
+      <p>The trade-off: Glacier Point Road closes with the first big winter storm, usually in November, and reopens in May or June, so this is a summer-only option.</p>
 
       <p>
         <strong>Tunnel View.</strong> Lower in elevation (4,400 feet) and more affected by Valley light, but a real dark-sky spot in winter when the in-park lights are dimmer and atmospheric haze is at its lowest. The view of the Milky Way arching over Half Dome, with El Capitan on the left and Bridalveil Fall on the right, is one of the most-photographed night-sky compositions in any park. Best in summer for the core, but also worth visiting on cold winter nights for Orion and the winter Milky Way.
       </p>
 
       <p>
-        <strong>Olmsted Point.</strong> On <a href="/articles/tioga-road-opening-weekend">Tioga Road</a>, at 8,000 feet, with broad views in all directions and very little nearby light. The granite slabs in the parking area give you a flat, comfortable surface to lay on or set up a tripod on. One of the better drive-to spots in the park during the Tioga Road season (late May through October).
+        <strong>Olmsted Point.</strong> On <a href="/articles/tioga-road-opening-weekend">Tioga Road</a>, at about 8,400 feet, with broad views in all directions and very little nearby light. The granite slabs in the parking area give you a flat, comfortable surface to lay on or set up a tripod on. One of the better drive-to spots in the park during the Tioga Road season (late May through October).
       </p>
 
       <p>

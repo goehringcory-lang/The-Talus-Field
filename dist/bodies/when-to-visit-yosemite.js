@@ -112,7 +112,7 @@ window.ARTICLE_BODIES["when-to-visit-yosemite"] = function WhenToVisitYosemiteBo
   var NEED_2019 = 4422861 - YTD26;
   var ROADS = [{
     name: "Tioga Road",
-    note: "2026: opened May 15, the earliest in 16 years",
+    note: "2026: opened May 15, earlier than any year since 2015",
     s: "ccccvvoooowc"
   }, {
     name: "Glacier Point Road",

@@ -114,7 +114,7 @@ window.ARTICLE_BODIES["yosemite-wilderness-permits-guide"] = function YosemiteWi
       <h2>The rules that ride along</h2>
 
       <p>
-        An approved bear-resistant food canister is required for overnight trips in the Yosemite Wilderness, full stop. Not a hang, not a locked trunk at the trailhead: a canister, carrying everything with a scent, from the food to the toothpaste. Rentals are cheap at wilderness centers if you do not own one. Camp at least one mile from any road, at least four trail miles from Yosemite Valley, Glacier Point, Wawona, Hetch Hetchy and Tuolumne Meadows, and at least 100 feet from water and trails; fires are banned above 9,600 feet; and the group-size caps (15 on trail, 8 for cross-country travel more than a quarter mile off trail) are enforced. None of this is bureaucratic decoration. The canister rule in particular is a large part of why <a href="/articles/yosemite-bears-safety-guide">Yosemite's bears</a> have been steadily unlearning humans-as-food-source for two decades.
+        An approved bear-resistant food canister is required for overnight trips in the Yosemite Wilderness, full stop. Not a hang, not a locked trunk at the trailhead: a canister, carrying everything with a scent, from the food to the toothpaste. Rentals are available at the Valley Welcome Center if you do not own one. Camp at least one mile from any road, at least four trail miles from Yosemite Valley, Glacier Point, Wawona, Hetch Hetchy and Tuolumne Meadows, and at least 100 feet from water and trails; fires are banned above 9,600 feet; and the group-size caps (15 on trail, 8 for cross-country travel more than a quarter mile off trail) are enforced. None of this is bureaucratic decoration. The canister rule in particular is a large part of why <a href="/articles/yosemite-bears-safety-guide">Yosemite's bears</a> have been steadily unlearning humans-as-food-source for two decades.
       </p>
 
       <h2>Picking up the permit</h2>
@@ -130,7 +130,7 @@ window.ARTICLE_BODIES["yosemite-wilderness-permits-guide"] = function YosemiteWi
         <li>Set the 7 a.m. alarm for seven days before your ideal start, with second and third trailhead choices already written down.</li>
         <li>Consider starting from Tuolumne or Hetch Hetchy rather than the Valley. The quotas are friendlier, the trailheads are higher or quieter, and the first day is better walking.</li>
         <li>Book midweek starts. A Tuesday quota is a different universe from a Saturday quota.</li>
-        <li>If everything fails, remember the walk-in truth: unclaimed quota exists most days at less famous trailheads, and the rangers at the wilderness centers know where it is.</li>
+        <li>If everything fails, remember the walk-in truth: from late April through mid-October few or no unreserved permits are usually left, but the rangers at the wilderness centers can tell you which trailheads still have room that morning.</li>
       </ol>
 
       <p>

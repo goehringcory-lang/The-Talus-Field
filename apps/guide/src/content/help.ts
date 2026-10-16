@@ -61,7 +61,7 @@ export const HELP_NUMBERS: HelpNumber[] = [
     label: 'Save-a-Bear hotline',
     tel: '+12093720322',
     display: '209/372-0322',
-    note: 'A bear in a campsite, a lot, or a building.',
+    note: 'Report a bear anywhere in the park.',
     tier: 'urgent',
   },
   {

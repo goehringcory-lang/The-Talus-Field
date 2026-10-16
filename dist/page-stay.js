@@ -169,9 +169,9 @@ var GATEWAYS = [{
   flag: "Tighter in summer",
   body: "The largest gateway by population and amenities, with more chain lodging and chain dining than the other gateways combined. It feels like a Central California town that happens to be near a national park rather than one that exists because of it.",
   who: "Trips centered on Wawona and the giant sequoias, and anyone driving up from Los Angeles or the southern Central Valley.",
-  against: "The longest drive to the Valley of any gateway. Three hours of driving on a Valley day is significant. With the Wawona Hotel closed, summer rooms here are under more pressure than usual.",
+  against: "The longest drive to the Valley of any year-round gateway. Three hours of driving on a Valley day is significant. With the Wawona Hotel closed, summer rooms here are under more pressure than usual.",
   best: "Wawona, the sequoias, and arrivals from Los Angeles",
-  catch: "The longest drive to the Valley of any gateway",
+  catch: "The longest drive to the Valley of any year-round gateway",
   rooms: "More chain lodging than the other gateways combined"
 }, {
   id: "fish-camp",
@@ -205,7 +205,7 @@ var GATEWAYS = [{
   credit: "Photo: Michael Hogarth / Wikimedia Commons (public domain)",
   body: "The only east-side gateway, and a different kind of trip rather than a substitute for the western towns. A tiny Highway 395 town next to Mono Lake, with limited lodging, limited dining, and the famously good deli at the Mobil station.",
   who: "The high country, Mono Lake, and anyone combining Yosemite with the eastern Sierra, Mammoth, or Death Valley.",
-  against: "Reachable from the park only while Tioga Pass is open. In winter the detour around the south end of the Sierra is roughly six hours.",
+  against: "Reachable from the park only while Tioga Pass is open. In winter the detour by Highways 88 and 395 is a little over six hours.",
   best: "The high country, Mono Lake, the eastern Sierra",
   catch: "Reachable from the park only while Tioga Pass is open",
   rooms: "Small motels, few rooms, a summer premium"

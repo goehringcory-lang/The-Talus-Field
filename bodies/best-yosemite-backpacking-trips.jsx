@@ -223,7 +223,7 @@ window.ARTICLE_BODIES["best-yosemite-backpacking-trips"] = function BestYosemite
         <TripMap />
         <figcaption>
           <span><b>1</b> May Lake, below Mount Hoffmann. 1.2 mi from the trailhead.</span>
-          <span><b>2</b> Glen Aulin, down the Tuolumne River. 5.3 mi from the Lembert Dome parking area.</span>
+          <span><b>2</b> Glen Aulin, down the Tuolumne River. 5.5 mi from the Lembert Dome parking area.</span>
           <span><b>3</b> Sunrise, one camp on the High Sierra Camps loop, which links 1, 2, 3 and 4 with Merced Lake, south of this map.</span>
           <span><b>4</b> Vogelsang, in the Cathedral Range. 6.9 mi up Rafferty Creek.</span>
           <span><b>5</b> Young Lakes, under Ragged Peak. 6 mi from the Lembert Dome parking area.</span>
@@ -264,7 +264,7 @@ window.ARTICLE_BODIES["best-yosemite-backpacking-trips"] = function BestYosemite
       <h2>2. Glen Aulin: the second trip, with a river</h2>
 
       <p>
-        Glen Aulin is the trip after May Lake: long enough to feel like a backpacking trip, gentle enough that the miles do not punish a newer pack carrier. It starts at the Lembert Dome parking area, at the Glen Aulin and Soda Springs trailhead, and runs <strong>about 5.3 miles down the Tuolumne River</strong> past Tuolumne Fall and the White Cascade, roughly four miles in, to the camp. The park lists it at 11 miles round trip and about 800 feet of elevation change. Note the direction: the trail loses height on the way in, so the climbing waits for the walk out, on tired legs.
+        Glen Aulin is the trip after May Lake: long enough to feel like a backpacking trip, gentle enough that the miles do not punish a newer pack carrier. It starts at the Lembert Dome parking area, at the Glen Aulin and Soda Springs trailhead, and runs <strong>about 5.5 miles down the Tuolumne River</strong> past Tuolumne Fall and the White Cascade, roughly four miles in, to the camp. The park lists it at 11 miles round trip and about 800 feet of elevation change. Note the direction: the trail loses height on the way in, so the climbing waits for the walk out, on tired legs.
       </p>
 
       <Placeholder
@@ -278,7 +278,7 @@ window.ARTICLE_BODIES["best-yosemite-backpacking-trips"] = function BestYosemite
       />
 
       <p>
-        Like May Lake, Glen Aulin is a High Sierra Camp, so you sleep in the designated backpackers' campground beside it, with food lockers, and fires only in the communal ring. The river is the main event, and it is also the hazard. The trailhead notes several unbridged stream crossings, which are trivial in late summer and serious in a big runoff year; <a href="/articles/first-yosemite-backpacking-trip">the first-trip field notes</a> cover how to read a crossing. From camp, a layover day continues down the canyon to Waterwheel Falls, 8.2 miles from the trailhead. Permit demand is high, which is the cost of a trail this good.
+        Like May Lake, Glen Aulin is a High Sierra Camp, so you sleep in the designated backpackers' campground beside it, with food lockers, and fires only in the communal ring. The river is the main event, and it is also the hazard. The trailhead notes several unbridged stream crossings, which are trivial in late summer and serious in a big runoff year; <a href="/articles/first-yosemite-backpacking-trip">the first-trip field notes</a> cover how to read a crossing. From camp, a layover day continues down the canyon to Waterwheel Falls, about 9.5 miles from the trailhead. Permit demand is high, which is the cost of a trail this good.
       </p>
 
       <h2>3. The High Sierra Camps: camp to camp, carrying your own</h2>

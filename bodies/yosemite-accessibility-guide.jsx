@@ -12,11 +12,11 @@ window.ARTICLE_BODIES["yosemite-accessibility-guide"] = function YosemiteAccessi
       <h2>The trails that actually work</h2>
 
       <p>
-        <strong>Lower Yosemite Fall loop.</strong> The eastern portion of the loop, from shuttle stop 6 to the footbridge below the fall, is paved and wheelchair accessible. In May the spray reaches the bridge. A manual chair may want a push on a couple of grades, but this is the best accessible destination in the park: free, flat, and a mile round trip.
+        <strong>Lower Yosemite Fall loop.</strong> The eastern portion of the loop, from shuttle stop 6 to the footbridge below the fall, is paved and wheelchair accessible. In May the spray reaches the bridge. A manual chair may want a push on a couple of grades, but this is the best accessible destination in the park: free, flat, and 0.6 mile each way from the shuttle stop.
       </p>
 
       <p>
-        <strong>Bridalveil Fall.</strong> The western trail from the parking area to the viewing area is paved. The rebuilt plaza and paths from the 2023 rehabilitation made the whole approach smoother than it has been in decades. It is loud and wet in spring and quiet by late summer.
+        <strong>Bridalveil Fall.</strong> The western trail from the parking area to the base of the fall is paved and wheelchair accessible. The rehabilitation the park finished in 2024 rebuilt the approach. It is loud and wet in spring and quiet by late summer.
       </p>
 
       <p>
@@ -24,7 +24,7 @@ window.ARTICLE_BODIES["yosemite-accessibility-guide"] = function YosemiteAccessi
       </p>
 
       <p>
-        <strong>Glacier Point.</strong> When the road is open (May through October or so), a short paved path leads from the parking area to the railing, 3,200 feet directly above the Valley floor with Half Dome at eye level. No view in the park asks less of the visitor.
+        <strong>Glacier Point.</strong> When the road is open (May through October or so), a short paved path (steeper than an accessible grade in places) leads from the parking area to the railing, about 3,200 feet directly above the Valley floor with Half Dome at eye level. No view in the park asks less of the visitor.
       </p>
 
       <p>
@@ -48,13 +48,13 @@ window.ARTICLE_BODIES["yosemite-accessibility-guide"] = function YosemiteAccessi
       </p>
 
       <p>
-        Seasonally, manual wheelchairs can be rented in the Valley (ask at the bike rental stands at Yosemite Valley Lodge and Curry Village). Supplies are small; bringing your own equipment is safer in peak season.
+        Seasonally, manual wheelchairs can be rented in the Valley (ask at the Yosemite Valley Lodge front desk, where wheelchairs are available year-round). Supplies are small, only two manual chairs; bringing your own equipment is safer in peak season.
       </p>
 
       <h2>Deaf services</h2>
 
       <p>
-        Yosemite has run a dedicated Deaf Services program for decades, one of the oldest in the Park Service. American Sign Language interpretation is available for <a href="/articles/yosemite-ranger-programs">ranger programs</a>; in the off-season, request an interpreter at least two weeks ahead so the park can contract one (yose_deaf_services@nps.gov, or 209-379-5250 by voice or text). A public videophone for Deaf visitors sits in the lobby of Yosemite Valley Lodge, and the park's films run captioned.
+        Yosemite has run a dedicated Deaf Services program for decades, one of the oldest in the Park Service. American Sign Language interpretation is available for <a href="/articles/yosemite-ranger-programs">ranger programs</a>; requests are filled first come, first served, so ask about two weeks ahead (yose_deaf_services@nps.gov, or 209-379-5250 by voice or text). A public videophone for Deaf visitors sits in the lobby of Yosemite Valley Lodge, and the park's films run captioned.
       </p>
 
       <h2>Low vision and blindness</h2>

@@ -589,7 +589,7 @@ window.ARTICLE_BODIES["first-time-yosemite-overwhelm"] = function FirstTimeYosem
           <div>
             <p className="ft-order__day">A day of its own, if Tioga is open</p>
             <ol className="ff-hours">
-              <li><span>Two hours from the Valley</span><p>Tuolumne Meadows, which deserves more than a drive-through.</p></li>
+              <li><span>About 1.5 hours from the Valley</span><p>Tuolumne Meadows, which deserves more than a drive-through.</p></li>
             </ol>
           </div>
         </div>

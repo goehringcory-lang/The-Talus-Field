@@ -6,7 +6,7 @@ window.ARTICLE_BODIES["tioga-road-opening-weekend"] = function TiogaRoadOpeningW
   return (
     <>
       <p className="dropcap">
-        Tioga Road (Highway 120) in Yosemite National Park opened Friday, May 15, 2026, at 8 a.m. That was well ahead of the long-term average opening of May 28. <a href="/articles/glacier-point-road-open-2026">Glacier Point Road had already opened on May 9</a>. <a href="/articles/yosemite-without-reservations-2026">No day-use reservations are required to enter Yosemite this year</a>, just a standard entrance pass.
+        Tioga Road (Highway 120) in Yosemite National Park opened Friday, May 15, 2026, at 8 a.m. That was well ahead of the Park Service's 2004 through 2023 average opening of May 31. <a href="/articles/glacier-point-road-open-2026">Glacier Point Road had already opened on May 9</a>. <a href="/articles/yosemite-without-reservations-2026">No day-use reservations are required to enter Yosemite this year</a>, just a standard entrance pass.
       </p>
 
       <p>
@@ -45,7 +45,7 @@ window.ARTICLE_BODIES["tioga-road-opening-weekend"] = function TiogaRoadOpeningW
       <ul>
         <li>Tuolumne Meadows Campground: closed on opening weekend. The campground reopened in August 2025 after a three-year rehabilitation, and its 2026 season runs July 1 through September 27, reservable on Recreation.gov</li>
         <li>Tuolumne Meadows Grill: closed on opening weekend. Yosemite Hospitality lists a June 13 opening, and the current Yosemite Guide has it running 8 a.m. to 6 p.m. until September 20</li>
-        <li>Tuolumne Meadows Lodge and dining room: June 5 through September 13</li>
+        <li>Tuolumne Meadows Lodge: June 5 through September 13, with its dining room June 13 through September 14</li>
         <li>Tuolumne Meadows Store and Post Office: closed until later in the summer. Both are running now, the store 8 a.m. to 8 p.m. until September 20, the post office weekdays 9 a.m. to 5 p.m. and Saturdays 9 a.m. to 1 p.m.</li>
         <li>Tuolumne Meadows Visitor Center and Wilderness Center: limited or no staffing until late May. In season the visitor center runs 9 a.m. to 5 p.m. and the wilderness center 8 a.m. to 5 p.m.</li>
         <li>White Wolf Lodge, with its store and dining room: closed for all of 2026 due to sewer line damage. The campground did open, July 2 through September 14, with no drinking water</li>
@@ -181,7 +181,7 @@ window.ARTICLE_BODIES["tioga-road-opening-weekend"] = function TiogaRoadOpeningW
       <h2>Tioga Road 2026: frequently asked questions</h2>
 
       <h3>When does Tioga Road open in 2026?</h3>
-      <p>It opened Friday, May 15, 2026, well ahead of Tioga's long-term average opening date of May 28.</p>
+      <p>It opened Friday, May 15, 2026, well ahead of the Park Service's 2004 through 2023 average opening date of May 31.</p>
 
       <h3>Is Tioga Pass open right now?</h3>
       <p>

@@ -50,7 +50,7 @@ window.ARTICLE_BODIES["yosemite-in-june"] = function YosemiteInJune2026Body() {
       </p>
 
       <p>
-        Tuolumne Meadows Lodge opens June 5. The Tuolumne Meadows Store and Grill opens on the same timeline. This is also prime wildflower season: the meadows should be blooming by mid-June, though the compressed snowmelt may push the peak earlier and shorter than usual.
+        Tuolumne Meadows Lodge opens June 5. The Tuolumne Meadows Store and Grill were due to open May 30, conditions allowing. This is also prime wildflower season: the meadows should be blooming by mid-June, though the compressed snowmelt may push the peak earlier and shorter than usual.
       </p>
 
       <p>
@@ -82,7 +82,7 @@ window.ARTICLE_BODIES["yosemite-in-june"] = function YosemiteInJune2026Body() {
       </p>
 
       <p>
-        <strong>Park once and use the shuttle.</strong> The free Valley shuttle runs two routes, the Valleywide about every 12 to 22 minutes and the shorter East Valley about every 8 to 12, and between them they stop at every major trailhead, the Visitor Center, Curry Village, and the Ahwahnee.
+        <strong>Park once and use the shuttle.</strong> The free Valley shuttle runs two routes, the Valleywide about every 22 to 32 minutes and the shorter East Valley about every 18 to 22, and between them they stop at every major trailhead, the Visitor Center, Curry Village, and the Ahwahnee.
       </p>
 
       <p>
@@ -90,7 +90,7 @@ window.ARTICLE_BODIES["yosemite-in-june"] = function YosemiteInJune2026Body() {
       </p>
 
       <p>
-        <strong>Go outside the Valley.</strong> The Valley floor absorbs roughly 90 percent of Yosemite's visitors. <a href="/articles/hetch-hetchy-the-other-yosemite-valley">Hetch Hetchy</a> is fifteen minutes from the Big Oak Flat entrance and rarely crowded. Wawona and the <a href="/articles/giant-sequoias-fire-adaptation">Mariposa Grove</a> are on the south end. The Merced Grove has almost no one in it. And with Tioga open, the <a href="/articles/cathedral-lakes-day-hike">entire high country</a> is available. Plan at least one full day outside the Valley.
+        <strong>Go outside the Valley.</strong> The Valley floor absorbs roughly 90 percent of Yosemite's visitors. <a href="/articles/hetch-hetchy-the-other-yosemite-valley">Hetch Hetchy</a> is a turn onto Evergreen Road just outside the Big Oak Flat entrance, and rarely crowded. Wawona and the <a href="/articles/giant-sequoias-fire-adaptation">Mariposa Grove</a> are on the south end. The Merced Grove has almost no one in it. And with Tioga open, the <a href="/articles/cathedral-lakes-day-hike">entire high country</a> is available. Plan at least one full day outside the Valley.
       </p>
 
       <p>

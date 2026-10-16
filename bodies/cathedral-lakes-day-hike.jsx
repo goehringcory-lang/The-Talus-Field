@@ -10,7 +10,7 @@ window.ARTICLE_BODIES["cathedral-lakes-day-hike"] = function CathedralLakesDayHi
       </p>
 
       <p>
-        Cathedral Lakes has been one of Yosemite's standard high-country day hikes since John Muir camped on the shoulder of Cathedral Peak in 1869 and described it in <em>My First Summer in the Sierra</em> as "one of Nature's cathedrals, hewn from the living rock." It is on every best hikes in Yosemite list. It still earns the listing.
+        Cathedral Lakes has been one of Yosemite's standard high-country day hikes since John Muir, tending sheep in the high country in 1869, described the peak in <em>My First Summer in the Sierra</em> as "one of Nature's cathedrals, hewn from the living rock." It is on every best hikes in Yosemite list. It still earns the listing.
       </p>
 
       <p>
@@ -98,17 +98,17 @@ window.ARTICLE_BODIES["cathedral-lakes-day-hike"] = function CathedralLakesDayHi
       </p>
 
       <p>
-        <strong>Cathedral Peak itself.</strong> The rock you're looking at is a particular granodiorite called Cathedral Peak Granodiorite, named for this peak. Geologists know it for having unusually large potassium feldspar crystals, commonly 2 to 3 inches long, embedded throughout the rock. Walk up to the slabs and look closely. The feldspar phenocrysts show up as off-white blocky crystals studding the gray-pink groundmass. The same rock makes up much of Tuolumne's high country, including most of the trail.
+        <strong>Cathedral Peak itself.</strong> The rock you're looking at is a particular granodiorite called Cathedral Peak Granodiorite, named for this peak. Geologists know it for having unusually large potassium feldspar crystals, some several inches long, embedded throughout the rock. Walk up to the slabs and look closely. The feldspar phenocrysts show up as off-white blocky crystals studding the gray-pink groundmass. The same rock makes up much of Tuolumne's high country, including most of the trail.
       </p>
 
       <p>
-        The peak is climbable. The standard route is a fifth-class climb of about 700 vertical feet from the base, often done as a long day from Tuolumne. Muir made the first recorded ascent in 1869 in work boots, alone. The Park Service does not encourage casual visitors to attempt it. If you have climbing experience and want to try, get current beta from the Yosemite climber community before going.
+        The peak is climbable. The standard route is a fifth-class climb of about 700 vertical feet from the base, often done as a long day from Tuolumne. Muir is generally credited with the first ascent, in 1869. The Park Service does not encourage casual visitors to attempt it. If you have climbing experience and want to try, get current beta from the Yosemite climber community before going.
       </p>
 
       <h2>The Muir connection</h2>
 
       <p>
-        John Muir camped here in late summer 1869 during his first season as a sheep tender in the high country. His journal entries from those weeks became the basis of <em>My First Summer in the Sierra</em>, published forty-two years later. The book includes the description of Cathedral Peak as "one of Nature's cathedrals, hewn from the living rock," and his solitary first ascent. He climbed it in work boots, carrying nothing.
+        John Muir spent the summer of 1869 in the high country as a sheep tender, his first season there. His journal entries from those weeks became the basis of <em>My First Summer in the Sierra</em>, published forty-two years later. The book includes the description of Cathedral Peak as "one of Nature's cathedrals, hewn from the living rock."
       </p>
 
       <p>
@@ -116,7 +116,7 @@ window.ARTICLE_BODIES["cathedral-lakes-day-hike"] = function CathedralLakesDayHi
       </p>
 
       <p>
-        Sitting on the granite at Lower Cathedral Lake, you are sitting in roughly the same place Muir sat in 1869. The basin has not been logged. The lake has not been dammed. The peak has not been turned into a tourist attraction.
+        Sitting on the granite at Lower Cathedral Lake, you are looking at the peak Muir described in 1869. The basin has not been logged. The lake has not been dammed. The peak has not been turned into a tourist attraction.
       </p>
 
       <h2>What to bring on a Cathedral Lakes day hike</h2>
@@ -140,7 +140,7 @@ window.ARTICLE_BODIES["cathedral-lakes-day-hike"] = function CathedralLakesDayHi
       </p>
 
       <p>
-        If you're camping, know the rules: campfires are prohibited at Lower Cathedral Lake, all camping must be at least 100 feet from water and trails, and you need to be at least four trail miles from Tuolumne Meadows. A wilderness permit is required for any overnight stay. If you're planning an overnight, see <a href="/kit">packing for a Yosemite backpack</a>.
+        If you're camping, know the rules: campfires are prohibited in the Upper and Lower Cathedral Lake basins, all camping must be at least 100 feet from water and trails, and you need to be at least four trail miles from Tuolumne Meadows. A wilderness permit is required for any overnight stay. If you're planning an overnight, see <a href="/kit">packing for a Yosemite backpack</a>.
       </p>
 
       <p>
@@ -160,7 +160,7 @@ window.ARTICLE_BODIES["cathedral-lakes-day-hike"] = function CathedralLakesDayHi
       </p>
 
       <p>
-        Plan an early start, bring a real lunch, sit on the granite for an hour after you arrive, and look closely at the rock under your hands. The crystals you're sitting on were cooling underground when this part of California was still under shallow seas. The peak above you was first described to a wider readership by a Scotsman with a notebook in 1869.
+        Plan an early start, bring a real lunch, sit on the granite for an hour after you arrive, and look closely at the rock under your hands. The crystals you're sitting on were cooling underground some 85 to 89 million years ago. The peak above you was first described to a wider readership by a Scotsman with a notebook in 1869.
       </p>
 
       <h2>Sources</h2>

@@ -474,7 +474,7 @@ function HalfDomeLotteryPage({
     "aria-label": "Lodging availability"
   }, React.createElement("p", {
     className: "hp-eyebrow"
-  }, "THE NIGHT BEFORE, AND THE NIGHT AFTER"), React.createElement("p", null, "The hike wants a pre-dawn start and gives back a fourteen-to-sixteen-hour day. Driving in from Oakhurst at 3 a.m. and back out at 10 p.m. is how a permit gets wasted. A bed in the Valley or in El Portal is the difference, and the permit date is known far enough ahead to book one."), React.createElement(AvailabilityLink, {
+  }, "THE NIGHT BEFORE, AND THE NIGHT AFTER"), React.createElement("p", null, "The hike wants a pre-dawn start and gives back a ten-to-twelve-hour day. Driving in from Oakhurst at 3 a.m. and back out at 10 p.m. is how a permit gets wasted. A bed in the Valley or in El Portal is the difference, and the permit date is known far enough ahead to book one."), React.createElement(AvailabilityLink, {
     destination: "Yosemite National Park",
     list: "page_half_dome",
     slug: "half-dome-lottery",

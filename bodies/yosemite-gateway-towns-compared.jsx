@@ -316,7 +316,7 @@ window.ARTICLE_BODIES["yosemite-gateway-towns-compared"] = function YosemiteGate
         <li><strong>Closest town to the South Entrance:</strong> Fish Camp, two miles from the gate, with Tenaya Lodge and a few inns; Oakhurst, about 14 miles and 20 to 25 minutes, is the closest full town. The Mariposa Grove is just inside this gate and Wawona six miles beyond it.</li>
         <li><strong>Closest town to the Big Oak Flat Entrance (the west, from the Bay Area):</strong> Buck Meadows and the Highway 120 lodges, a few minutes from the gate; Groveland, about 24 miles and 30 to 40 minutes, is the closest town with a main street.</li>
         <li><strong>Closest town to Tioga Pass (the east):</strong> Lee Vining, about a dozen miles down Highway 120 East, summer only. When the pass is closed there is no town near this entrance because there is no entrance.</li>
-        <li><strong>Closest city with an airport:</strong> Fresno, about 65 miles from the South Entrance and 94 from the Valley by the Park Service's count, with summer YARTS service up Highway 41. Merced, on Highway 140, is the year-round YARTS hub for the Valley.</li>
+        <li><strong>Closest city with an airport:</strong> Fresno, about 60 miles from the South Entrance and 94 from the Valley by the Park Service's count, with summer YARTS service up Highway 41. Merced, on Highway 140, is the year-round YARTS hub for the Valley.</li>
       </ul>
 
       <p>If you'd rather have the answer before the detail, it's one of these five:</p>
@@ -425,7 +425,7 @@ window.ARTICLE_BODIES["yosemite-gateway-towns-compared"] = function YosemiteGate
       <h2 id="sec-3-oakhurst">Oakhurst</h2>
 
       <TownFacts rows={[
-        ["Valley drive", "about 50 miles, 75 to 90 minutes"],
+        ["Valley drive", "about 55 miles, 75 to 90 minutes"],
         ["South Entrance", "about 14 miles, 20 to 25 minutes; the Mariposa Grove is immediately inside the gate, Wawona six miles on"],
         ["Road", "Highway 41, open year-round"],
         ["Elevation", "about 2,300 feet"],
@@ -461,7 +461,7 @@ window.ARTICLE_BODIES["yosemite-gateway-towns-compared"] = function YosemiteGate
       </ul>
 
       <p>
-        <strong>The closer option on this corridor:</strong> Fish Camp, twelve miles up the road at the park line, puts you four minutes from the South Entrance. It is <strong>Tenaya Lodge at Yosemite</strong>, a full resort on 75 acres two miles from the gate, plus a few small inns, all at resort prices, trading Oakhurst's services for the setting.
+        <strong>The closer option on this corridor:</strong> Fish Camp, twelve miles up the road at the park line, puts you four minutes from the South Entrance. It is <strong>Tenaya Lodge at Yosemite</strong>, a full resort two miles from the gate, plus a few small inns, all at resort prices, trading Oakhurst's services for the setting.
       </p>
 
       <p>

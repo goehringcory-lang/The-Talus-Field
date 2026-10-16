@@ -178,15 +178,15 @@ window.ARTICLE_BODIES["first-yosemite-backpacking-trip"] = function FirstYosemit
       </p>
 
       <p>
-        <strong>Group size caps at 15 on trail, and 8 for cross-country travel.</strong>
+        <strong>Group size caps at 15, and 8 for cross-country travel more than a quarter mile off trail.</strong>
       </p>
 
       <p>
-        <strong>Human waste: a cathole six inches deep, 100 feet from water, trail, and camp, and toilet paper comes out with you.</strong> Not buried. Out.
+        <strong>Human waste: a cathole four to six inches deep, 100 feet from water, trail, and camp, and toilet paper comes out with you.</strong> Not buried. Out.
       </p>
 
       <p>
-        <strong>Little Yosemite Valley has its own rules</strong> because of its volume: parties starting at Happy Isles or Glacier Point on an LYV itinerary camp there the first night, in a designated area with lockers and a composting toilet.
+        <strong>Little Yosemite Valley has its own rules</strong> because of its volume: parties starting at Happy Isles on an LYV itinerary camp there the first night, in a designated area with lockers and a composting toilet.
       </p>
 
       <Placeholder
@@ -206,15 +206,15 @@ window.ARTICLE_BODIES["first-yosemite-backpacking-trip"] = function FirstYosemit
       </p>
 
       <p>
-        <strong>Cathedral Lakes,</strong> from Tioga Road at Tuolumne Meadows. Roughly four and a half miles in, and nine or so round trip, with somewhere between a thousand and 1,400 feet of cumulative gain depending on which lakes you visit, to a pair of them sitting under one of the most photographed spires in the range. It is the standard first Yosemite overnight for good reason, and consequently one of the harder permits to draw. <a href="/articles/cathedral-lakes-day-hike">The day-hike version</a> is the same trail if the permit does not come through, and it has the full breakdown of the walk.
+        <strong>Cathedral Lakes,</strong> from Tioga Road at Tuolumne Meadows. About 7 miles round trip by the Park Service's count, with about 1,000 feet of gain, to a pair of lakes sitting under one of the most photographed spires in the range. It is the standard first Yosemite overnight for good reason, and consequently one of the harder permits to draw. <a href="/articles/cathedral-lakes-day-hike">The day-hike version</a> is the same trail if the permit does not come through, and it has the full breakdown of the walk.
       </p>
 
       <p>
-        <strong>Sunrise Lakes,</strong> from Tenaya Lake. About ten and a half miles round trip with roughly 1,300 feet of gain, most of it in one steep block of switchbacks after a flat opening, and three lakes at the top so you have options on where to put the tent.
+        <strong>Sunrise Lakes,</strong> from Tenaya Lake. About 6.8 miles round trip with roughly 1,100 feet of gain by the Park Service's count, most of it in one steep block of switchbacks after a flat opening, and several lakes at the top so you have options on where to put the tent.
       </p>
 
       <p>
-        <strong>Glen Aulin,</strong> down the Tuolumne from the meadows. Longer on paper at about eleven miles round trip, but only around 800 feet of elevation change, which makes it gentler than its mileage suggests and an unusually good pick for somebody who is fit but new to a loaded pack. Check bridge status before you go, since this route crosses the river.
+        <strong>Glen Aulin,</strong> down the Tuolumne from the meadows. Longer on paper at about 12.6 miles round trip, but only around 750 feet of elevation gain, which makes it gentler than its mileage suggests and an unusually good pick for somebody who is fit but new to a loaded pack. Check bridge status before you go, since this route crosses the river.
       </p>
 
       <p>

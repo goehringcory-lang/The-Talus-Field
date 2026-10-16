@@ -6,7 +6,7 @@ window.ARTICLE_BODIES["water-ouzels-waterfalls"] = function WaterOuzelsBody() {
   return (
     <>
       <p className="dropcap">
-        If you stand at the base of Yosemite Falls in June when the cascade is at its most thunderous, water falling thousands of feet and hitting rock with the sound of a freight train, you might notice something remarkable: a dark, robin-sized bird walking directly into the falling water. The bird doesn't fly away. It doesn't land above the water line or in some protected eddy. It walks (literally walks) against the flow of water pouring down from Yosemite Falls at perhaps a thousand gallons per second.
+        If you stand at the base of Yosemite Falls in June when the cascade is at its most thunderous, water falling 2,425 feet and hitting rock with the sound of a freight train, you might notice something remarkable: a dark, plump gray bird walking directly into the falling water. The bird doesn't fly away. It doesn't land above the water line or in some protected eddy. It walks (literally walks) against the flow of water pouring down from Yosemite Falls.
       </p>
 
       <p>

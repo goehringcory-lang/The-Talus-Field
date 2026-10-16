@@ -143,8 +143,11 @@ function WebcamsPage({ go }) {
           <p>
             <strong>For the high country and the east side</strong>, there is no
             Conservancy camera at Tuolumne Meadows or Tioga Pass, which is the
-            single most requested view the park does not have on this list.
-            Until the road opens, the honest substitutes are the NPS Tioga Road
+            single most requested view missing from this list.
+            Yosemite Hospitality runs a summer-only camera at the Tuolumne
+            Meadows Store, which the{" "}
+            <a href="https://www.nps.gov/yose/learn/photosmultimedia/webcams.htm" target="_blank" rel="noopener noreferrer">NPS webcams page</a>{" "}
+            links. Until the road opens, the honest substitutes are the NPS Tioga Road
             page for plowing status and{" "}
             <a href="/tioga-opening">the opening page</a> for how the season
             works.

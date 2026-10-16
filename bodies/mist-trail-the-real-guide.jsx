@@ -108,7 +108,7 @@ window.ARTICLE_BODIES["mist-trail-the-real-guide"] = function MistTrailBody() {
       <h2>The wet granite reality</h2>
 
       <p>
-        From mid-April to late June, the granite staircase below Vernal Fall is basically a waterfall of its own. Spray hits the trail the whole time. The steps, hundreds of them, carved and placed by the Civilian Conservation Corps in the 1930s, are wet, mossy in places, and uneven. Some are a foot tall. Some are two feet tall. Some are angled in ways that make your feet slide.
+        From mid-April to late June, the granite staircase below Vernal Fall is basically a waterfall of its own. Spray hits the trail the whole time. The steps, over 600 of them on the stretch to the top of Vernal Fall by the Park Service's count, are wet, mossy in places, and uneven. Some are a foot tall. Some are two feet tall. Some are angled in ways that make your feet slide.
       </p>
 
       <p>

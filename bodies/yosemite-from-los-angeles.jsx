@@ -32,7 +32,7 @@ window.ARTICLE_BODIES["yosemite-from-los-angeles"] = function YosemiteFromLosAng
       <h2>The road, in four pieces</h2>
 
       <p>
-        <strong>The Grapevine.</strong> I-5 leaves the basin over Tejon Pass, a little above four thousand feet, and this is the one part of the drive that behaves like mountain road in the wrong season. In a winter storm the pass closes outright rather than going to chain control, sometimes for hours, and the closure holds every northbound car in Los Angeles County until the ice is gone. From roughly November into March, check the pass before you leave, not at the bottom of it. The rest of the year it is some forty miles of grade and truck traffic and nothing more.
+        <strong>The Grapevine.</strong> I-5 leaves the basin over Tejon Pass, a little above four thousand feet, and this is the one part of the drive that behaves like mountain road in the wrong season. In a winter storm the pass can go to chain control or close outright, sometimes for hours, and a closure holds every northbound car in Los Angeles County until the ice is gone. From roughly November into March, check the pass before you leave, not at the bottom of it. The rest of the year it is some forty miles of grade and truck traffic and nothing more.
       </p>
 
       <p>
@@ -40,11 +40,11 @@ window.ARTICLE_BODIES["yosemite-from-los-angeles"] = function YosemiteFromLosAng
       </p>
 
       <p>
-        <strong>Highway 41.</strong> Off 99 at Fresno, this is the road that does the climbing. It leaves the flat of the Valley floor, crosses the foothills through Coarsegold, reaches <a href="/articles/yosemite-gateway-towns-compared">Oakhurst</a> at about 2,300 feet, and then climbs in earnest through Fish Camp to the South Entrance. Oakhurst is the last full town: the last full-size supermarket, the last real choice of fuel. Fish Camp, twelve miles on at the park line, is a resort and a handful of inns. Inside the park, gas is available at Wawona, Crane Flat, and El Portal 24 hours a day by credit card, and nowhere in Yosemite Valley, so fill the tank in Oakhurst regardless of what the gauge says.
+        <strong>Highway 41.</strong> Off 99 at Fresno, this is the road that does the climbing. It leaves the flat of the Valley floor, crosses the foothills through Coarsegold, reaches <a href="/articles/yosemite-gateway-towns-compared">Oakhurst</a> at about 2,300 feet, and then climbs in earnest through Fish Camp to the South Entrance. Oakhurst is the last full town: the last full-size supermarket, the last real choice of fuel. Fish Camp, sixteen miles on and just outside the park line, is a resort and a handful of inns. Inside the park, gas is available at Wawona, Crane Flat, and El Portal 24 hours a day by credit card, and nowhere in Yosemite Valley, so fill the tank in Oakhurst regardless of what the gauge says.
       </p>
 
       <p>
-        <strong>The Wawona Road.</strong> The Park Service's name for Highway 41 inside the boundary. The <a href="/articles/mariposa-grove-how-to-visit">Mariposa Grove</a> welcome plaza is the first right after the entrance station, less than a quarter mile in; Wawona itself, with its store, its gas pump, and its closed hotel, is six miles on; and then the road runs another hour of curves north through forest with almost nothing to see, until it enters the Wawona Tunnel, built in 1933 and close to a mile long. The tunnel's east portal is <strong>Tunnel View</strong>. El Capitan on the left, Bridalveil Fall on the right, Half Dome at the back of the frame, and parking on both sides of the road. It is the best orientation to the Valley's geography that exists, it is free, and it belongs to the southern approach alone: the 140 and 120 routes reach the Valley floor without it. Whatever else the six hours cost, they buy you this arrival.
+        <strong>The Wawona Road.</strong> The Park Service's name for Highway 41 inside the boundary. The <a href="/articles/mariposa-grove-how-to-visit">Mariposa Grove</a> welcome plaza is just inside the South Entrance; Wawona itself, with its store, its gas pump, and its closed hotel, is about eight miles on; and then the road runs another hour of curves north through forest with almost nothing to see, until it enters the Wawona Tunnel, built in 1933 and close to a mile long. The tunnel's east portal is <strong>Tunnel View</strong>. El Capitan on the left, Bridalveil Fall on the right, Half Dome at the back of the frame, and parking on both sides of the road. It is the best orientation to the Valley's geography that exists, it is free, and it belongs to the southern approach alone: the 140 and 120 routes reach the Valley floor without it. Whatever else the six hours cost, they buy you this arrival.
       </p>
 
       <Placeholder
@@ -60,7 +60,7 @@ window.ARTICLE_BODIES["yosemite-from-los-angeles"] = function YosemiteFromLosAng
       <h2>When to leave</h2>
 
       <p>
-        The constraint at the far end is parking, not daylight. In 2026 there is no day-use reservation to hold, and the park manages the season with staffed intersections and monitoring rather than a gate count. What that has produced on the busiest summer weekends is Valley day-use lots full somewhere between seven and eight in the morning, which is an hour that no car leaving Los Angeles the same day can reach. <a href="/articles/yosemite-valley-parking-guide">The parking guide</a> covers what to do once you are in; the point here is that the arrival hour is decided before you leave home.
+        The constraint at the far end is parking, not daylight. In 2026 there is no day-use reservation to hold, and the park manages the season with staffed intersections and monitoring rather than a gate count. What that has produced on the busiest summer weekends is Valley day-use lots that the Park Service says are usually full after 8 a.m., which is an hour that no car leaving Los Angeles the same day can reach. <a href="/articles/yosemite-valley-parking-guide">The parking guide</a> covers what to do once you are in; the point here is that the arrival hour is decided before you leave home.
       </p>
 
       <p>
@@ -84,7 +84,7 @@ window.ARTICLE_BODIES["yosemite-from-los-angeles"] = function YosemiteFromLosAng
       </p>
 
       <p>
-        <strong>Fish Camp</strong>, at the park line, is the closer option on this corridor: Tenaya Lodge at Yosemite, a full resort two miles from the gate, plus a few small inns. It trades Oakhurst's services for setting and puts you four minutes from the entrance station. <strong>Wawona</strong>, six miles inside the park, would be the obvious third choice, and its historic hotel is closed. It shut on December 2, 2024, for a comprehensive condition assessment after a roof project turned up problems, and as of this writing the concessioner lists no reopening date. The Wawona store and gas pump are open; the hotel is not, and any listing that suggests otherwise is stale.
+        <strong>Fish Camp</strong>, at the park line, is the closer option on this corridor: Tenaya Lodge at Yosemite, a full resort two miles from the gate, plus a few small inns. It trades Oakhurst's services for setting and puts you four minutes from the entrance station. <strong>Wawona</strong>, about eight miles inside the park, would be the obvious third choice, and its historic hotel is closed. It shut on December 2, 2024, for a comprehensive condition assessment after a roof project turned up problems, and as of this writing the concessioner lists no reopening date. The Wawona store and gas pump are open; the hotel is not, and any listing that suggests otherwise is stale.
       </p>
 
       <p>
@@ -127,7 +127,7 @@ window.ARTICLE_BODIES["yosemite-from-los-angeles"] = function YosemiteFromLosAng
       <h2>The eastern road, and when it is worth it</h2>
 
       <p>
-        There is a second way to Yosemite from Los Angeles, and every summer someone recommends it as the scenic route without mentioning what it asks. Highway 14 north through Mojave to <strong>US 395</strong>, then up the east side of the Sierra past Lone Pine, Bishop, and Mammoth Lakes to Lee Vining, and finally Highway 120 west over <strong>Tioga Pass</strong>, at 9,945 feet the highest highway pass in California. It is a superb drive. It is also longer than Highway 41 on the odometer, slower per mile, and it delivers you to the wrong end of the park: from Lee Vining the Valley is about 75 miles and ninety minutes at a minimum over the Tioga Road, with no gas between Lee Vining and Crane Flat, and the stops that make the road famous, Tuolumne Meadows, Tenaya Lake, Olmsted Point, each add half an hour you will not resist.
+        There is a second way to Yosemite from Los Angeles, and every summer someone recommends it as the scenic route without mentioning what it asks. Highway 14 north through Mojave to <strong>US 395</strong>, then up the east side of the Sierra past Lone Pine, Bishop, and Mammoth Lakes to Lee Vining, and finally Highway 120 west over <strong>Tioga Pass</strong>, at 9,945 feet the highest highway pass in California. It is a superb drive. It is also longer than Highway 41 on the odometer, slower per mile, and it delivers you to the wrong end of the park: from Lee Vining the Valley is 74 miles and about two hours over the Tioga Road by the Park Service's figures, with no gas between Lee Vining and Crane Flat, and the stops that make the road famous, Tuolumne Meadows, Tenaya Lake, Olmsted Point, each add half an hour you will not resist.
       </p>
 
       <p>

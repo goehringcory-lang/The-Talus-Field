@@ -307,7 +307,7 @@ const seed: HikeT[] = [
     season: 'Glacier Point Road season',
     photo: { src: '/photos/hike-mcgurk-meadow.jpg', alt: 'McGurk Meadow, wet grass and a stepping-stone path under lodgepole pines.' },
     description:
-      'A gentle forest walk to a wildflower meadow and a collapsing sheepherder’s cabin. Flowers peak in July.',
+      'A gentle forest walk to a wildflower meadow and a historic cabin. Flowers peak in early summer.',
   },
   {
     id: 'dewey-point',
@@ -593,7 +593,7 @@ const seed: HikeT[] = [
     coord: [-119.6152, 37.8505], // TODO: verify on the ground — moved 2026-09 ~600 m to the trailhead: NPS places, Recreation.gov and the OSM lot agree
     season: 'Tioga Road season',
     description:
-      'A short hop over a forested rise to a shallow lake rimmed by a meadow that flowers in July. An easy first high-country walk.',
+      'A short hop over a forested rise to a shallow lake rimmed by a meadow that flowers in early summer. An easy first high-country walk.',
   },
   {
     id: 'harden-lake',
@@ -621,7 +621,7 @@ const seed: HikeT[] = [
     difficulty: 'easy',
     route: 'out-and-back',
     durationMin: 100,
-    trailhead: 'May Lake trailhead, end of the Old Tioga Road spur',
+    trailhead: 'May Lake trailhead, end of May Lake Road',
     stopId: 'may-lake',
     coord: [-119.4912341, 37.8324607], // same pin as stop may-lake
     season: 'Tioga Road season',
@@ -639,7 +639,7 @@ const seed: HikeT[] = [
     difficulty: 'strenuous',
     route: 'out-and-back',
     durationMin: 330,
-    trailhead: 'May Lake trailhead, end of the Old Tioga Road spur',
+    trailhead: 'May Lake trailhead, end of May Lake Road',
     stopId: 'may-lake',
     coord: [-119.4912341, 37.8324607], // same pin as stop may-lake
     season: 'Tioga Road season',
@@ -917,7 +917,7 @@ const seed: HikeT[] = [
     season: 'Tioga Road season',
     photo: { src: '/photos/hike-gaylor-lakes.jpg', alt: 'A Gaylor Lake half-thawed in its alpine basin.' },
     description:
-      'A steep ridge climb from the entrance station, then alpine lake basins and a silver-mine site above 10,000 feet. The shortest route to alpine terrain in the park.',
+      'A steep ridge climb from the entrance station, then alpine lake basins and a silver-mine site above 10,000 feet. One of the shortest routes to alpine terrain in the park.',
   },
   {
     id: 'mount-dana',

@@ -65,7 +65,7 @@ window.ARTICLE_BODIES["yosemite-in-november"] = function YosemiteInNovemberBody(
       </table>
 
       <p>
-        Two cautions on reading it. First, a road that is open is not necessarily open all day: the first storms of the season can close either road for a day or two before the winter closure, and the park's fall page warns that short-term closures for snow may occur. Second, snow is not the only thing that closes these roads. In early October 2026 Glacier Point Road was closed for smoke and firefighting operations on the Dome Fire, before any snow. The park's own guidance for the Tioga Road also changes ahead of the closure: overnight parking along it ends on October 15, and services along it are not available after September.
+        Two cautions on reading it. First, a road that is open is not necessarily open all day: the first storms of the season can close either road for a day or two before the winter closure, and the park's fall page warns that short-term closures for snow may occur. Second, snow is not the only thing that closes these roads. From September 23 to October 10, 2026, Glacier Point Road was closed for the Dome Fire, before any snow. The park's own guidance for the Tioga Road also changes ahead of the closure: overnight parking along it is not permitted after October 14, and services along it are not available after September.
       </p>
 
       <p>
@@ -131,7 +131,7 @@ window.ARTICLE_BODIES["yosemite-in-november"] = function YosemiteInNovemberBody(
       </p>
 
       <p>
-        <strong>The end of the month.</strong> Several things stop together. The Mariposa Grove shuttle ends by November 30. In 2026 the concessioner lists Curry Village as not open from November 29 through December 10, so the Saturday night of Thanksgiving weekend is its last until December 11. The ice rink at Curry Village opens for the season on a date the concessioner sets; as of this writing it lists the coming season's as to be determined. The free shuttle to Badger Pass runs only when the ski area is open, which the park says is typically mid-December through March, so November has no ski season.
+        <strong>The end of the month.</strong> Several things stop together. The Mariposa Grove shuttle ends by November 30. In 2026 the concessioner lists Curry Village as not open from November 29 through December 10, so the Saturday night of Thanksgiving weekend is its last until December 11. The ice rink at Curry Village is listed in the printed Yosemite Guide as opening November 13, if conditions allow. The free shuttle to Badger Pass runs only when the ski area is open, which the park says is typically mid-December through March, so November has no ski season.
       </p>
 
       <h2>Driving in: assume chains</h2>

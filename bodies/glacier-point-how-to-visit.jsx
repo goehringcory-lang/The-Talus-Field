@@ -7,7 +7,7 @@ window.ARTICLE_BODIES["glacier-point-how-to-visit"] = function GlacierPointHowTo
     <>
       <p className="dropcap">
         <em style={{ display: "block", marginBottom: "1rem", fontSize: 14 }}>
-          As of October 14, 2026, Glacier Point Road is open again after its Dome Fire closure, which ran from September 23 to October 10. Overnight parking on the road ends October 15, the trails south of the road toward Ostrander Lake, Mono Meadow and Buena Vista stay closed for the fire, and the road closes for winter in November. Check
+          As of October 14, 2026, Glacier Point Road is open again after its Dome Fire closure, which ran from late September to October 10. Overnight parking on the road ends October 15, the trails south of the road toward Ostrander Lake, Mono Meadow and Buena Vista stay closed for the fire, and the road closes for winter in November. Check
           <a href="/now">the Park Bulletin</a> for the road's status on the day you are going.
         </em>
         Glacier Point is on every first visitor's list, and more of those visits go wrong here than anywhere else in the park. The view is as advertised; the problem is the plan. The road is closed for roughly half the year. In summer the parking lot at the end of it fills by mid-morning, and the Park Service now turns the overflow around and sends it to a shuttle eleven miles back down the road. And the drive is about an hour each way from Yosemite Valley, a number most people learn in the car. This is the standing guide: what is at the top, how the road works and when it is open, the shuttle rule that governs a summer visit, the walks that start from the road, the bus up, and the ski route that is the only way in from December to spring.
@@ -135,7 +135,7 @@ window.ARTICLE_BODIES["glacier-point-how-to-visit"] = function GlacierPointHowTo
       <h2>Sleeping on the road</h2>
 
       <p>
-        <strong>Bridalveil Creek Campground</strong> is the one place to spend the night on Glacier Point Road with a car. Sites have a fire ring, a picnic table, and a food locker, and sit near a bathroom with drinking water and flush toilets; reservations are through recreation.gov, and the park asks you to read a site's details there before booking because length limits vary. The reason to sleep here rather than in the Valley is the summer rule above: a Bridalveil Creek camper drives the road at any hour, sunrise and sunset included, without a shuttle in the way. The site's campground guide ranks it against the park's other twelve.
+        <strong>Bridalveil Creek Campground</strong> is the one place to spend the night on Glacier Point Road with a car. Sites have a fire ring, a picnic table, and a food locker, and sit near a bathroom with drinking water and flush toilets; reservations are through recreation.gov, and the park asks you to read a site's details there before booking because length limits vary. In 2026 it closed for the season on August 14, after a lightning strike damaged its water and restrooms. The reason to sleep here rather than in the Valley is the summer rule above: a Bridalveil Creek camper drives the road at any hour, sunrise and sunset included, without a shuttle in the way. The site's campground guide ranks it against the park's other twelve.
       </p>
 
       <h2>What used to be here</h2>

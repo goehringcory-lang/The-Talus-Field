@@ -54,7 +54,7 @@ window.ARTICLE_BODIES["yosemite-valley-parking-guide"] = function YosemiteValley
       <h2>When they fill</h2>
 
       <p>
-        The Park Service's language is careful and worth reading literally: during the busy summer season, especially on weekends, parking fills early and heavy traffic is common in Yosemite Valley. It does not name an hour, because the hour moves. What it does name is a window. Most vehicle congestion happens between ten in the morning and six in the evening, and the official recommendation is to be inside the park before nine, or to wait and come in after five.
+        The Park Service's language is careful and worth reading literally: during the busy summer season, especially on weekends, parking fills early and heavy traffic is common in Yosemite Valley. It does not name an hour, because the hour moves. What it does name is a window. Most vehicle congestion happens between ten in the morning and six in the evening, and the official recommendation is to be inside the park before nine (the Park Service's traffic page now says before eight), or to wait and come in after five.
       </p>
 
       <p>
@@ -66,7 +66,7 @@ window.ARTICLE_BODIES["yosemite-valley-parking-guide"] = function YosemiteValley
       </p>
 
       <p>
-        You do not have to guess on the day. Text YNPTRAFFIC to 333111 to get park traffic alerts on your phone, and check <a href="/conditions">the conditions page</a> before you leave your room, which is where the live entrance-station waits live. Spring through fall, the park's own typical figures run to an hour or two at the South Entrance on Highway 41 and about half an hour at Arch Rock, Big Oak Flat, and Tioga Pass. Those are ordinary days, not the worst ones; a summer holiday weekend can put a queue miles back from the gate. All of it comes before you park.
+        You do not have to guess on the day. Text YNPTRAFFIC to 333111 to get park traffic alerts on your phone, and check <a href="/conditions">the conditions page</a> before you leave your room, which is where the live entrance-station waits live. The park's traffic page puts the Tioga Pass Entrance at about half an hour and says to expect delays of an hour or more at entrance stations in summer, and two to three hours in the Valley itself. Hetch Hetchy can run longer when its lot is full. All of it comes before you park.
       </p>
 
       <h2>What to do at eleven o'clock</h2>

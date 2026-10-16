@@ -70,7 +70,7 @@ window.ARTICLE_BODIES["yosemite-fire-restrictions-explained"] = function Yosemit
       </p>
 
       <p>
-        The restrictions were in force when this fall's fire began. The <strong>Dome Fire</strong> was reported on the morning of September 15, about a quarter mile north of Chilnualna Falls above Wawona. What started it is not established: on September 30 the local press reported a Forest Service finding of an abandoned campfire, on October 6 the Forest Service withdrew that finding without giving a reason, and the federal incident page, InciWeb, lists the cause as undetermined. The fire closed Glacier Point Road from September 23 to October 10, and it has closed the Ostrander Lake Trail and everything south of it, and two helicopter pilots were killed fighting it on September 20. <a href="/now">The Park Bulletin</a> carries the closures as they stand, and <a href="/articles/yosemite-in-october-2026">Yosemite in October 2026</a> covers what the fire means for a trip this month.
+        The restrictions were in force when this fall's fire began. The <strong>Dome Fire</strong> was reported on the morning of September 15, about a quarter mile north of Chilnualna Falls above Wawona. What started it is not established: on September 30 the local press reported a Forest Service finding of an abandoned campfire, on October 6 the Forest Service withdrew that finding without giving a reason, and the federal incident page, InciWeb, lists the cause as undetermined. The fire closed Glacier Point Road in late September, until it reopened on October 10, and it has closed the Ostrander Lake Trail and everything south of it, and two helicopter pilots were killed fighting it on September 20. <a href="/now">The Park Bulletin</a> carries the closures as they stand, and <a href="/articles/yosemite-in-october-2026">Yosemite in October 2026</a> covers what the fire means for a trip this month.
       </p>
 
       <h2>What is actually banned</h2>
@@ -80,7 +80,7 @@ window.ARTICLE_BODIES["yosemite-fire-restrictions-explained"] = function Yosemit
       </p>
 
       <p>
-        <strong>Smoking is restricted too.</strong> Below 8,000 feet, smoking is prohibited except inside an enclosed vehicle, inside a campground or picnic area where wood and charcoal fires are otherwise permitted, or in a posted designated smoking area. That is a real change from ordinary conditions, and it catches people who assume the fire rules and the smoking rules are the same thing. They are related, but the smoking rule is broader.
+        <strong>Smoking is restricted too.</strong> Below 8,000 feet, smoking is prohibited except inside an enclosed vehicle, inside a campground or picnic area where wood and charcoal fires are otherwise permitted, in a posted designated smoking area, or while stopped in a barren or cleared spot at least three feet across. That is a real change from ordinary conditions, and it catches people who assume the fire rules and the smoking rules are the same thing. They are related, but the smoking rule is broader.
       </p>
 
       <h2>What still works</h2>
@@ -158,7 +158,7 @@ window.ARTICLE_BODIES["yosemite-fire-restrictions-explained"] = function Yosemit
       </p>
 
       <p>
-        <strong>Smoking anywhere in the park below 8,000 feet.</strong> Car, permitted campground, or posted smoking area. Nowhere else, restrictions or not, and the fine-print addition during restrictions is that "permitted campground" now specifically means one where fires are still allowed under the current rules, which narrows the list.
+        <strong>Smoking anywhere in the park below 8,000 feet.</strong> Car, permitted campground, posted smoking area, or a stopped-and-cleared spot at least three feet across. Nowhere else, and the fine-print addition during restrictions is that "permitted campground" now specifically means one where fires are still allowed under the current rules, which narrows the list.
       </p>
 
       <h2>This is a different question from whether your trip will be smoky</h2>

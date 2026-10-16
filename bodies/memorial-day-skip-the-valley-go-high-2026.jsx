@@ -74,7 +74,7 @@ window.ARTICLE_BODIES["memorial-day-skip-the-valley-go-high-2026"] = function Me
       </p>
 
       <p>
-        Two notes: there was <strong>no drinking water</strong> at Glacier Point when the road opened and the snack stand runs on the road's schedule, so bring a full water bottle and a sandwich. The Glacier Point tour bus, on the other hand, has run from Yosemite Valley Lodge since the road opened on May 9, twice a day, so you can ride up and walk down if you would rather not drive.
+        Two notes: there was <strong>no drinking water</strong> at Glacier Point when the road opened and the snack stand runs on the road's schedule, so bring a full water bottle and a sandwich. The Glacier Point tour bus, on the other hand, leaves from Yosemite Valley Lodge once its season starts (the Park Service gives approximately late May through September), so you can ride up and walk down if you would rather not drive.
       </p>
 
       <p style={{ fontStyle: "italic", color: "var(--ink-3)" }}>
@@ -112,7 +112,7 @@ window.ARTICLE_BODIES["memorial-day-skip-the-valley-go-high-2026"] = function Me
       </p>
 
       <p>
-        And if your plans go sideways anyway (lots full, weather turns, a road closes), don't fight the park. There is almost always an option the crowd hasn't thought of. (The Valley's marquee hike, the Mist Trail, goes under weekday closures for repair work later in the summer, Monday through Thursday from 7 a.m. to 3:30 p.m. from July 27 through October, but over Memorial Day weekend it is fully open and will be mobbed.)
+        And if your plans go sideways anyway (lots full, weather turns, a road closes), don't fight the park. There is almost always an option the crowd hasn't thought of. (The Valley's marquee hike, the Mist Trail, goes under weekday closures for repair work later in the summer, Monday through Thursday from 7 a.m. to 3:30 p.m. through October, but over Memorial Day weekend it is fully open and will be mobbed.)
       </p>
 
       <h2>What I'd tell a friend</h2>

@@ -98,7 +98,7 @@ window.ARTICLE_BODIES["yosemite-wildlife-viewing-guide"] = function YosemiteWild
       </p>
 
       <p>
-        The great gray owl is the harder case, because people do try to see it. Yosemite holds the southernmost breeding population of the largest owl in North America, a relict group of perhaps a couple hundred birds isolated in these meadows since the ice ages. They hunt the edges of mid-elevation meadows, Crane Flat and the Glacier Point Road meadows among them, at dawn and dusk. If you are lucky enough to find one, stay back, keep quiet, and do not play recorded calls to draw it in. Call playback is harassment of a state-endangered bird, it is prohibited, and a bird that responds to a phone is burning hunting time it needs. The owl is not content. Let it work.
+        The great gray owl is the harder case, because people do try to see it. Yosemite holds the southernmost breeding population of the largest owl in North America, a relict group, about 200 to 300 birds in all of California, roughly two-thirds of them in Yosemite, isolated in the Sierra for a very long time. They hunt the edges of mid-elevation meadows, Crane Flat and the Glacier Point Road meadows among them, at dawn and dusk. If you are lucky enough to find one, stay back, keep quiet, and do not play recorded calls to draw it in. Call playback is harassment of a state-endangered bird, it is prohibited, and a bird that responds to a phone is burning hunting time it needs. The owl is not content. Let it work.
       </p>
 
       <h2 id="bats">Bats, and the one rule that goes with them</h2>
@@ -164,7 +164,7 @@ window.ARTICLE_BODIES["yosemite-wildlife-viewing-guide"] = function YosemiteWild
       </p>
 
       <p>
-        Yosemite has American black bears, <em>Ursus americanus</em>, and only those: somewhere between 300 and 500 of them. There have been no grizzlies in the park since about 1895, when the last one was shot near Crescent Lake, and the California grizzly has been extinct for over a century. The bear on the state flag is a memorial.
+        Yosemite has American black bears, <em>Ursus americanus</em>, and only those: somewhere between 300 and 500 of them. There have been no grizzlies in the park since the 1800s, when one of the last was shot near Crescent Lake in 1887, and the California grizzly has been extinct for about a century. The bear on the state flag is a memorial.
       </p>
 
       <p>

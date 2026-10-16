@@ -90,7 +90,7 @@ window.ARTICLE_BODIES["yosemite-in-september-2026"] = function YosemiteInSeptemb
       <h2>What is on in the evenings</h2>
 
       <p>
-        The Conservation Heritage Center runs a free evening series through the month: poetry from Tahoe to Yosemite on the 11th, the legacy of the old Yosemite Village on the 12th, the park's mountain lions on the 18th and its bats on the 19th, all at 7:30 p.m. The Moonlight Tour runs its last trip of the season on September 22, ticketed through the concessioner. Tom Killion's woodblocks are up at the Ansel Adams Gallery through September 26, free to walk through.
+        The Conservation Heritage Center runs a free evening series through the month: poetry from Tahoe to Yosemite on the 11th, the legacy of the old Yosemite Village on the 12th, the park's mountain lions on the 18th and its bats on the 19th, all at 7:30 p.m. The Moonlight Tour runs its last trips of the season September 22 through 26, ticketed through the concessioner. Tom Killion's woodblocks are up at the Ansel Adams Gallery through September 26, free to walk through.
       </p>
 
       <p>

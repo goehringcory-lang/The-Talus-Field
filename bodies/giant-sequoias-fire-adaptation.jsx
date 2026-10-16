@@ -13,7 +13,7 @@ window.ARTICLE_BODIES["giant-sequoias-fire-adaptation"] = function GiantSequoias
   const svgStyle = { width: "100%", height: "auto", display: "block" };
   const COLS = [
     {
-      head: "WITH FIRE", sub: "a ground fire every 10 to 30 years", tone: "var(--moss)",
+      head: "WITH FIRE", sub: "a ground fire every 6 to 35 years", tone: "var(--moss)",
       steps: [
         ["A low fire creeps through", "brush, fallen logs, lower branches"],
         ["Competitors die or weaken", "white fir, incense cedar"],
@@ -36,7 +36,7 @@ window.ARTICLE_BODIES["giant-sequoias-fire-adaptation"] = function GiantSequoias
     const W = 680, H = 440, colW = 316, gap = W - colW * 2, T = 64, boxH = 62, step = 82;
     return (
       <svg viewBox={`0 0 ${W} ${H}`} style={svgStyle} role="img"
-        aria-label="Two forests side by side. With fire, a ground fire every ten to thirty years: a low fire creeps through brush and fallen logs; competitors such as white fir and incense cedar die or weaken; the fire leaves bare mineral soil and light, which a sequoia seed needs; the sequoia takes a scar and seedlings fill the opening. Without fire, after a century of suppression: shade-tolerant white fir fills the understory; fuel piles up; the canopy closes and seedlings starve for light; the next fire burns hotter, and the grove is in slow decline. Restoration burns, planned for weather that keeps them low-intensity, turn the second forest back toward the first.">
+        aria-label="Two forests side by side. With fire, a ground fire every six to thirty-five years: a low fire creeps through brush and fallen logs; competitors such as white fir and incense cedar die or weaken; the fire leaves bare mineral soil and light, which a sequoia seed needs; the sequoia takes a scar and seedlings fill the opening. Without fire, after a century of suppression: shade-tolerant white fir fills the understory; fuel piles up; the canopy closes and seedlings starve for light; the next fire burns hotter, and the grove is in slow decline. Restoration burns, planned for weather that keeps them low-intensity, turn the second forest back toward the first.">
         {COLS.map((c, ci) => {
           const x = ci * (colW + gap);
           return (
@@ -77,7 +77,7 @@ window.ARTICLE_BODIES["giant-sequoias-fire-adaptation"] = function GiantSequoias
       <h2>The chemistry of survival</h2>
 
       <p>
-        Giant sequoia bark contains a substance called tannin, present in concentrations high enough to make the wood itself quite resistant to flame. More important, the bark is thick. By the time a sequoia has grown to what we might call mature (three centuries, give or take), its bark can be two feet deep. It's so loose and fibrous that it barely conducts heat inward. A fire roars across the surface, chars the outer layer, and that charring actually insulates the living wood beneath it from the heat of the blaze.
+        Giant sequoia bark contains a substance called tannin, present in concentrations high enough to make the wood itself quite resistant to flame. More important, the bark is thick. By the time a sequoia has grown to what we might call mature (three centuries, give or take), its bark can be up to 18 inches thick. It's so loose and fibrous that it barely conducts heat inward. A fire roars across the surface, chars the outer layer, and that charring actually insulates the living wood beneath it from the heat of the blaze.
       </p>
 
       <p>
@@ -132,7 +132,7 @@ window.ARTICLE_BODIES["giant-sequoias-fire-adaptation"] = function GiantSequoias
       </p>
 
       <p>
-        This is how we know that fire frequency in Yosemite has changed. Trees that germinated in the 1600s grew in a forest that burned roughly every ten to thirty years. Trees that germinated in the 1900s grew in a forest where fire suppression had become official policy. The ring patterns shift. The scar patterns shift. The composition of the forest itself shifts.
+        This is how we know that fire frequency in Yosemite has changed. Trees that germinated in the 1600s grew in a forest that burned at intervals of roughly six to thirty-five years. Trees that germinated in the 1900s grew in a forest where fire suppression had become official policy. The ring patterns shift. The scar patterns shift. The composition of the forest itself shifts.
       </p>
 
       <h2>What changed, and why it matters</h2>

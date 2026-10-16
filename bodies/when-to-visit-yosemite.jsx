@@ -129,7 +129,7 @@ window.ARTICLE_BODIES["when-to-visit-yosemite"] = function WhenToVisitYosemiteBo
 
   // Road seasons. State per month: o open, v varies, w closing, c closed.
   const ROADS = [
-    { name: "Tioga Road", note: "2026: opened May 15, the earliest in 16 years", s: "ccccvvoooowc" },
+    { name: "Tioga Road", note: "2026: opened May 15, earlier than any year since 2015", s: "ccccvvoooowc" },
     { name: "Glacier Point Road", note: "2026: opened May 9", s: "ccccvooooowc" },
     { name: "Mariposa Grove Road and shuttle", note: "Closes about November 30; opens no earlier than April 15", s: "cccvoooooooc" },
     { name: "Hetch Hetchy Road", note: "Open all year, sunrise to sunset", s: "oooooooooooo" },

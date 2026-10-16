@@ -76,7 +76,7 @@ window.ARTICLE_BODIES["yosemite-trees-identification-guide"] = function Yosemite
           <tr><td>Ponderosa</td><td>3</td><td>4 to 11 in, yellow-green</td><td>3 to 5 in, prickly to hold</td><td>Valley floor and lower montane forest</td></tr>
           <tr><td>Jeffrey</td><td>3</td><td>long, blue-green, denser</td><td>5 to 10 in, prickles turned in</td><td>Valley edges up to about 10,000 ft</td></tr>
           <tr><td>Sugar</td><td>5</td><td>2 to 3.5 in</td><td>14 to 24 in, hangs from branch tips</td><td>About 4,000 to 7,500 ft</td></tr>
-          <tr><td>Western white</td><td>5</td><td>2 to 3.5 in</td><td>6 to 8 in, curved</td><td>7,000 to 8,000 ft up to near timberline</td></tr>
+          <tr><td>Western white</td><td>5</td><td>2 to 3.5 in</td><td>6 to 8 in, curved</td><td>About 7,000 ft to near timberline</td></tr>
           <tr><td>Whitebark</td><td>5</td><td>1.5 to 2.75 in, stiff, crowded at tips</td><td>1.5 to 3 in, purple, breaks apart on the tree</td><td>Timberline, Tioga Pass</td></tr>
         </tbody>
       </table>

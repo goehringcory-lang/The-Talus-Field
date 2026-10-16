@@ -438,7 +438,7 @@ window.ARTICLE_BODIES["first-time-yosemite-overwhelm"] = function FirstTimeYosem
     className: "ft-order__day"
   }, "A day of its own, if Tioga is open"), React.createElement("ol", {
     className: "ff-hours"
-  }, React.createElement("li", null, React.createElement("span", null, "Two hours from the Valley"), React.createElement("p", null, "Tuolumne Meadows, which deserves more than a drive-through."))))), React.createElement("p", {
+  }, React.createElement("li", null, React.createElement("span", null, "About 1.5 hours from the Valley"), React.createElement("p", null, "Tuolumne Meadows, which deserves more than a drive-through."))))), React.createElement("p", {
     className: "ft-small ft-after"
   }, "That sequence is the backbone of the ", React.createElement("a", {
     href: "/itineraries"

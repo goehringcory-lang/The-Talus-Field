@@ -108,7 +108,7 @@ window.ARTICLE_BODIES["clouds-rest-hike"] = function CloudsRestHikeBody() {
       </p>
 
       <p>
-        <strong>Do not plan on a bus.</strong> The free Tuolumne Meadows shuttle and the hikers bus from the Valley are summer services that end in mid-September; in 2026 both stopped on September 13. The YARTS Highway 395/120 East route runs from July 1 through September 30 in 2026 and stops at the Tuolumne Meadows store and visitor center, White Wolf, Crane Flat and Yosemite Village, but <strong>not at Tenaya Lake</strong>. For most of the season, and for all of the autumn window below, the Sunrise Lakes trailhead is a place you drive to.
+        <strong>Do not plan on a bus.</strong> The free Tuolumne Meadows shuttle and the hikers bus from the Valley are summer services that end in mid-September; the fall 2026 Yosemite Guide, which begins September 23, lists both as ended. The YARTS Highway 395/120 East route runs from July 1 through September 30 in 2026 and stops at the Tuolumne Meadows store and visitor center, White Wolf, Crane Flat and Yosemite Village, but <strong>not at Tenaya Lake</strong>. For most of the season, and for all of the autumn window below, the Sunrise Lakes trailhead is a place you drive to.
       </p>
 
       <p>

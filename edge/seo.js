@@ -475,7 +475,7 @@ const HUB_PROSE = {
       "Yosemite Webcams",
       "The live cameras worth checking before you drive in. Four Yosemite Conservancy cameras run on this page: Half Dome from Ahwahnee Meadow looking east, Upper Yosemite Fall from the Valley floor, El Capitan and the western Valley from Turtleback Dome, and Wawona at the park's south end. All four are still-image cameras that refresh on the order of minutes rather than video streams.",
       "<p>How to read them: check two rather than one, because a single camera describes one wall while Half Dome plus El Capitan tells you whether the whole Valley is clear, socked in or hazy. Elevation matters more than the pictures suggest, since the Valley floor is at 4,000 feet and Tuolumne Meadows at 8,600, so a clear Valley camera says nothing about whether it is snowing on Tioga Road. And a dry waterfall on the Yosemite Falls camera in August is the season, not a broken camera.</p>" +
-        "<p>There is no Conservancy camera at Tuolumne Meadows or Tioga Pass, which is the most requested view the park does not have. Full camera list: <a href=\"https://yosemite.org/webcams/\">Yosemite Conservancy</a>. Road status and closures: <a href=\"/now\">the Park Bulletin</a>. Forecasts and live entrance waits: <a href=\"/conditions\">the conditions page</a>. Which waterfalls are running on your dates: <a href=\"/articles/yosemite-waterfalls-guide\">the flow-by-month table</a>.</p>"
+        "<p>There is no Conservancy camera at Tuolumne Meadows or Tioga Pass, which is the most requested view missing from the list. Yosemite Hospitality runs a summer-only camera at the Tuolumne Meadows Store, linked from the <a href=\"https://www.nps.gov/yose/learn/photosmultimedia/webcams.htm\">NPS webcams page</a>. Full camera list: <a href=\"https://yosemite.org/webcams/\">Yosemite Conservancy</a>. Road status and closures: <a href=\"/now\">the Park Bulletin</a>. Forecasts and live entrance waits: <a href=\"/conditions\">the conditions page</a>. Which waterfalls are running on your dates: <a href=\"/articles/yosemite-waterfalls-guide\">the flow-by-month table</a>.</p>"
     ),
   "/distances": () =>
     hubProse(
@@ -1154,7 +1154,7 @@ function seoForPath(pathname, searchParams) {
         },
         {
           q: "Is there a webcam at Tuolumne Meadows or Tioga Pass?",
-          a: "Not among the public Yosemite Conservancy cameras, and it is the most requested view the park does not have. For the high country the substitutes are the NPS Tioga Road page for plowing and opening status in spring, and the park's current conditions page once the road is open.",
+          a: "Not among the public Yosemite Conservancy cameras, and it is the most requested view missing from the list. Yosemite Hospitality runs a summer-only camera at the Tuolumne Meadows Store, linked from the NPS webcams page. For the high country the substitutes are the NPS Tioga Road page for plowing and opening status in spring, and the park's current conditions page once the road is open.",
         },
         {
           q: "Why does the Yosemite Falls webcam show no waterfall?",
@@ -1184,7 +1184,7 @@ function seoForPath(pathname, searchParams) {
         },
         {
           q: "When does Tioga Road open?",
-          a: "There is no fixed date. Tioga Road has opened between late April and early July over the record; late May to mid-June is the usual range, and 2026 opened May 15. The park posts plowing progress weekly and announces the opening a day or two ahead.",
+          a: "There is no fixed date. Tioga Road has opened between late April and late July over the record; late May to mid-June is the usual range, and 2026 opened May 15. The park posts plowing progress weekly and announces the opening a day or two ahead.",
         },
       ],
     },
