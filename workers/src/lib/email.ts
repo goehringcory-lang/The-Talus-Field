@@ -2,7 +2,7 @@ import type { Env } from '../env'
 
 const FROM = 'The Field Guide <cory@thetalusfieldjournal.com>'
 const CONTACT_FROM = 'The Talus Field <cory@thetalusfieldjournal.com>'
-const CONTACT_TO = 'Goehring.cory@gmail.com'
+const CONTACT_TO = 'cory@thetalusfieldjournal.com'
 
 type ResendBody = {
   from: string
