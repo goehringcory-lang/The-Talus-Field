@@ -43,6 +43,16 @@ window.STAY22_AFFILIATE_ID = "";
 // different template.
 window.HIPCAMP_AFFILIATE_BASE = "";
 
+// REI Co-op (AvantLink). Application 1667769 submitted October 16, 2026;
+// pending network approval, then REI's own program approval. When both are
+// through, open AvantLink's link builder for REI, make a link to
+// https://www.rei.com/, and paste the whole link here. Everything from
+// "&url=" on is dropped and rebuilt per destination, so pasting the full
+// link is fine. While this is empty the kit's "Shop REI" buttons do not
+// render at all (page-kit.jsx), so no untracked link ever ships marked
+// sponsored, and /affiliate keeps listing three programs.
+window.REI_AFFILIATE_BASE = "";
+
 // Bookshop.org. The owner's affiliate list of recommended field guides and
 // natural-history books ("Yosemite Field Guides: A Naturalist's Bookshelf").
 // A list on an affiliate account credits that account for what is bought
@@ -133,6 +143,15 @@ window.AFFILIATES = {
     hostRe: /(^|\.)bookshop\.org$/i,
     build: (targetUrl) => targetUrl || window.BOOKSHOP_LIST_URL,
   },
+  rei: {
+    hostRe: /(^|\.)rei\.com$/i,
+    build: (targetUrl) => {
+      const url = targetUrl || "https://www.rei.com/";
+      const base = (window.REI_AFFILIATE_BASE || "").replace(/&url=.*$/, "");
+      if (!base) return url;
+      return base + "&url=" + encodeURIComponent(url);
+    },
+  },
   hipcamp: {
     hostRe: /(^|\.)hipcamp\.com$/i,
     build: (targetUrl) => {
@@ -172,9 +191,11 @@ window.buildPatagoniaAffiliateLink = function buildPatagoniaAffiliateLink(target
 // dashboard (CLAUDE.md, affiliate rules: never invent an ID). Joining one is
 // a registry entry above, a line on /affiliate, and flipping the dormant
 // items that name it. Ranked by likely revenue in the September 2026 PR.
-//   - REI (AvantLink): traction for the winter hikes, bear canisters,
-//     headlamps, water filters, trekking poles, the overnight checklist's
-//     55 to 65L pack. The kit's largest block of dormant "#" items.
+//   - REI (AvantLink): applied October 2026, registered above as `rei`
+//     with an empty REI_AFFILIATE_BASE. The kit's hardgoods are mapped in
+//     window.KIT_REI (data.js) and light up when the base is pasted. Still
+//     linkless after that: the article bodies (traction, canisters,
+//     headlamps), a follow-up once the program is live.
 //   - Booking.com / Stay22 / Hipcamp: already registered above with empty
 //     IDs; the applications are pending (MONETIZATION-IDEAS.md 3.1).
 //   - GetYourGuide or Viator: the guided Valley tours and Glacier Point

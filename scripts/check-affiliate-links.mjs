@@ -104,7 +104,7 @@ for (const m of prerender.matchAll(/rel:\s*"([^"]*sponsored[^"]*)"/g)) {
 }
 
 // 3: body markup and the catalog flag agree.
-const { articles, kit } = loadDataJs();
+const { articles, kit, kitRei } = loadDataJs();
 const bySlug = new Map(articles.map((a) => [a.slug, a]));
 let flagged = 0;
 for (const [file, src] of sources) {
@@ -150,9 +150,24 @@ for (const list of (kit && kit.lists) || []) {
   }
 }
 
+// 7: the REI map names only dormant kit items, so a Patagonia item never
+// grows a second store and a renamed item never leaves a dead key behind.
+const kitById = new Map();
+for (const list of (kit && kit.lists) || []) for (const it of list.allItems || []) kitById.set(it.id, it);
+const rei = kitRei;
+let reiItems = 0;
+if (!rei) errors.push("window.KIT_REI not found in data.js");
+else for (const [id, q] of Object.entries(rei)) {
+  reiItems++;
+  const it = kitById.get(id);
+  if (!it) errors.push(`KIT_REI: "${id}" is not a kit item`);
+  else if (it.aff && it.aff !== "#") errors.push(`KIT_REI: "${id}" already links to Patagonia`);
+  if (!q || typeof q !== "string") errors.push(`KIT_REI: "${id}" has no search query`);
+}
+
 if (errors.length) {
   for (const e of errors) console.error(`✗ ${e}`);
   console.error(`\n${errors.length} affiliate-link problem(s). The rules are the affiliate bullet in CLAUDE.md.`);
   process.exit(1);
 }
-console.log(`check-affiliate-links: ${jsxFiles.length} sources, ${flagged} flagged articles, ${kitLinks} kit links; markup and disclosures consistent`);
+console.log(`check-affiliate-links: ${jsxFiles.length} sources, ${flagged} flagged articles, ${kitLinks} kit links, ${reiItems} REI-mapped kit items; markup and disclosures consistent`);
