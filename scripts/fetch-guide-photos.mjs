@@ -93,7 +93,7 @@ const CREDITS_TS = path.join(ROOT, 'apps/guide/src/content/photoCredits.ts')
 
 // Wikimedia rejects requests with a blank/default UA.
 const USER_AGENT =
-  'TalusFieldGuide-photos/1.0 (https://thetalusfieldjournal.com; goehring.cory@gmail.com)'
+  'TalusFieldGuide-photos/1.0 (https://thetalusfieldjournal.com; cory@thetalusfieldjournal.com)'
 
 const COMMONS_API = 'https://commons.wikimedia.org/w/api.php'
 const PEXELS_API = 'https://api.pexels.com/v1/search'

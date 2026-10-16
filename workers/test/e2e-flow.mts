@@ -1000,7 +1000,7 @@ console.log('\nS. Field Guide survey (/api/feedback)')
   const ok = await post(good, opJwt)
   const mail = sentEmails[0]
   check('operator survey -> 200, one email to the owner', ok.status === 200 && sentEmails.length === 1 &&
-    mail.to.toLowerCase() === 'goehring.cory@gmail.com', { ok, sentEmails })
+    mail.to.toLowerCase() === 'cory@thetalusfieldjournal.com', { ok, sentEmails })
   check('email ranks features in order, by label', mail?.text.includes('1. Recorded naturalist audio tours') &&
     mail?.text.includes('2. Live shuttle tracking') && mail?.text.includes('Operator login'), mail?.text)
   check('operator survey has no reply_to; html is escaped', mail?.reply_to === undefined &&
