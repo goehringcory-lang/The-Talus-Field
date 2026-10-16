@@ -140,7 +140,7 @@ const START_PLACES = [
     n: "3",
     name: "Mariposa Grove",
     pin: [31.1, 94.5],
-    drive: "About an hour from the Valley",
+    drive: "A little over an hour from the Valley",
     season: "Open all year; the grove road closes to cars in winter",
     image: "img/mariposa-grove-grizzly-giant-nieves.jpg",
     alt: "The Grizzly Giant in the Mariposa Grove",
@@ -153,7 +153,7 @@ const START_PLACES = [
       "In winter, walk the closed grove road two quiet miles up",
     ],
     facts: [
-      ["From the Valley", "About an hour each way"],
+      ["From the Valley", "A little over an hour each way"],
       ["Shuttle", "Free, no ticket, about every 15 minutes"],
       ["Pair it with", "The Wawona Meadow Loop, a flat 3.5 miles"],
       ["Closest accommodations", "Oakhurst: right for the grove, wrong for the Valley"],

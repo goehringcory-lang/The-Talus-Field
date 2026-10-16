@@ -148,7 +148,7 @@ window.ARTICLE_BODIES["mariposa-grove-how-to-visit"] = function MariposaGroveHow
       </p>
 
       <p>
-        <strong>The Mariposa Grove Trail to Wawona Point.</strong> Roughly seven miles round trip from the Arrival Area with a similar amount of climbing, ending at an overlook above the Wawona basin. It is the full day, and the only one of the four that ends with a view instead of a tree.
+        <strong>The Mariposa Grove Trail to Wawona Point.</strong> About 7.75 miles round trip from the Arrival Area with about 1,200 feet of climbing, ending at an overlook above the Wawona basin. It is the full day, and the only one of the four that ends with a view instead of a tree.
       </p>
 
       <p>

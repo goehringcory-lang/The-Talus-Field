@@ -1134,7 +1134,7 @@ function seoForPath(pathname, searchParams) {
         },
         {
           q: "How long does it take to drive Tioga Road?",
-          a: "About 39 miles from Crane Flat to Tuolumne Meadows and about 47 to the Tioga Pass entrance station, roughly 75 minutes one way without stops. With Olmsted Point, Tenaya Lake, and Tuolumne Meadows it is a full day, and adding Lee Vining and Mono Lake makes it a long one.",
+          a: "About 39 miles from Crane Flat to Tuolumne Meadows and about 46 to the Tioga Pass entrance station, roughly 75 minutes one way without stops. With Olmsted Point, Tenaya Lake, and Tuolumne Meadows it is a full day, and adding Lee Vining and Mono Lake makes it a long one.",
         },
         {
           q: "Do I need a reservation to drive Tioga Road?",

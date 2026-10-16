@@ -637,7 +637,7 @@ function PlanningGuide({ go }) {
               </div>
             ))}
             <div className="pg-inpark__foot">
-              <p>Gone for your dates? Mariposa and El Portal hold the most rooms within an hour. <AvailabilityLink destination="Mariposa, California" list="planning_in_park" slug="mariposa" name="Mariposa lodging search">Search them ↗</AvailabilityLink></p>
+              <p>Gone for your dates? Mariposa and El Portal hold the most rooms within about an hour and a quarter. <AvailabilityLink destination="Mariposa, California" list="planning_in_park" slug="mariposa" name="Mariposa lodging search">Search them ↗</AvailabilityLink></p>
               <a href="/stay" onClick={(e) => { if (e.button !== 0 || e.metaKey || e.ctrlKey) return; e.preventDefault(); go("stay"); }}>The full lodging board →</a>
             </div>
           </div>

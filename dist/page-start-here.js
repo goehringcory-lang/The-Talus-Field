@@ -64,14 +64,14 @@ var START_PLACES = [{
   n: "3",
   name: "Mariposa Grove",
   pin: [31.1, 94.5],
-  drive: "About an hour from the Valley",
+  drive: "A little over an hour from the Valley",
   season: "Open all year; the grove road closes to cars in winter",
   image: "img/mariposa-grove-grizzly-giant-nieves.jpg",
   alt: "The Grizzly Giant in the Mariposa Grove",
   credit: "Nieves / Pexels",
   line: "Giant sequoias that have been growing since before the Roman Empire.",
   dos: ["Park at the Welcome Plaza by the South Entrance; the free shuttle covers the last two miles", "The Grizzly Giant Loop, about two miles among the oldest trees", "Take the first shuttle of the morning or the last hour before it stops, never noon", "In winter, walk the closed grove road two quiet miles up"],
-  facts: [["From the Valley", "About an hour each way"], ["Shuttle", "Free, no ticket, about every 15 minutes"], ["Pair it with", "The Wawona Meadow Loop, a flat 3.5 miles"], ["Closest accommodations", "Oakhurst: right for the grove, wrong for the Valley"]],
+  facts: [["From the Valley", "A little over an hour each way"], ["Shuttle", "Free, no ticket, about every 15 minutes"], ["Pair it with", "The Wawona Meadow Loop, a flat 3.5 miles"], ["Closest accommodations", "Oakhurst: right for the grove, wrong for the Valley"]],
   link: {
     href: "/articles/mariposa-grove-how-to-visit",
     label: "Mariposa Grove: how to visit"

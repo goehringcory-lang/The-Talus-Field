@@ -126,7 +126,7 @@ var GATEWAYS = [{
   article: "/articles/yosemite-gateway-towns-compared#sec-2-mariposa",
   name: "Mariposa",
   dest: "Mariposa, California",
-  drive: "45 minutes to an hour to the Valley",
+  drive: "an hour and a quarter to the Valley",
   driveShort: "60 to 75 min",
   range: [45, 60],
   road: "Highway 140, year-round",
@@ -135,9 +135,9 @@ var GATEWAYS = [{
   credit: "Photo: Guywelch2000 / Wikimedia Commons (CC0)",
   body: "The most full-service of the western gateways: a real downtown with restaurants, coffee, bookstores, the county museum, the 1854 courthouse, and lodging from highway chains to historic bed-and-breakfasts.",
   who: "The largest share of first-time visitors, families, anyone on a budget, and anyone visiting in shoulder season or winter when closer inventory disappears.",
-  against: "Ninety minutes of round-trip driving a day that you would not be doing closer in, and earlier alarms for sunrise.",
+  against: "Two and a half hours of round-trip driving a day that you would not be doing closer in, and earlier alarms for sunrise.",
   best: "First trips, families, budgets, and winter",
-  catch: "Ninety minutes of round-trip driving a day",
+  catch: "Two and a half hours of round-trip driving a day",
   rooms: "Highway chains to historic bed-and-breakfasts"
 }, {
   id: "groveland",
@@ -441,9 +441,9 @@ var STAY_PICKS = [{
   match: ["mariposa"],
   town: "Mariposa",
   road: "Highway 140 · open year-round",
-  drive: "45 minutes to an hour to the Valley",
+  drive: "an hour and a quarter to the Valley",
   why: "The most full-service of the western gateways: a real downtown, and lodging from highway chains to historic bed-and-breakfasts.",
-  cost: "Ninety minutes of round-trip driving a day that you would not be doing closer in, and earlier alarms for sunrise.",
+  cost: "Two and a half hours of round-trip driving a day that you would not be doing closer in, and earlier alarms for sunrise.",
   dest: "Mariposa, California",
   cta: "See what Mariposa has on your dates"
 }, {
@@ -511,7 +511,7 @@ var STAY_TOP_PICKS = [{
   badge: "Best value · a real town",
   kicker: "Highway 140 · open year-round",
   why: "The most full-service of the western gateways: a real downtown, and lodging from highway chains to historic bed-and-breakfasts. Also the winter base.",
-  facts: [["Drive", "45 minutes to an hour to the Valley"], ["The catch", "Ninety minutes of round-trip driving a day"]]
+  facts: [["Drive", "an hour and a quarter to the Valley"], ["The catch", "Two and a half hours of round-trip driving a day"]]
 }, {
   from: "town",
   ref: "groveland",

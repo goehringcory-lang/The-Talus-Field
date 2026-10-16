@@ -1121,7 +1121,7 @@ const seed: StopInput[] = [
     teaser:
       'The Pohono Trail past Dewey Point: 9 to 10.5 miles round trip for the west valley from above, Bridalveil straight below its rim, and very few people.',
     body:
-      'From the Dewey Point trailhead on Glacier Point Road: 9.2 miles round trip for Dewey and Crocker Points, about 10.5 for Dewey, Crocker, and Stanford. Crocker is half a mile past Dewey, Stanford another six tenths past that, along the Pohono Trail through rim forest with open granite at each point. Dewey sees a handful of hikers a day; the other two see fewer.\n\nThe views: Bridalveil Fall from directly over its rim, Ribbon Fall\'s full 1,612 feet in spring, El Capitan in profile. Turn around at whichever point suits the group.\n\nJune through October, whenever Glacier Point Road is open. Carry water for the full distance; there is none on the rim.',
+      'From the McGurk Meadow trailhead on Glacier Point Road, Dewey Point is 7.6 miles round trip by the Park Service\'s count, and Crocker and Stanford add more along the rim. Crocker is half a mile past Dewey, Stanford another six tenths past that, along the Pohono Trail through rim forest with open granite at each point. Dewey sees a handful of hikers a day; the other two see fewer.\n\nThe views: Bridalveil Fall from directly over its rim, Ribbon Fall\'s full 1,612 feet in spring, El Capitan in profile. Turn around at whichever point suits the group.\n\nJune through October, whenever Glacier Point Road is open. Carry water for the full distance; there is none on the rim.',
   },
   {
     id: 'mcgurk-meadow',

@@ -536,7 +536,7 @@ window.ARTICLE_BODIES["yosemite-for-non-hikers"] = function YosemiteForNonHikers
   }, React.createElement(EventIcon, {
     name: "calendar",
     size: 26
-  }), React.createElement("p", null, React.createElement("strong", null, "Easy to attend."), " An evening program is a seat and about 30 minutes. From November 1 the fall Guide lists a free naturalist program nightly at 8 p.m. in the Valley Lodge Cliff Room. Until October 30 it lists a free, leisurely guided walk from the Lodge amphitheater, Monday through Saturday at 9:30 a.m., 1 to 1.5 hours."), React.createElement("a", {
+  }), React.createElement("p", null, React.createElement("strong", null, "Easy to attend."), " An evening program is a seat and about 30 minutes. From November 1 the fall Guide lists a free evening program at 7 p.m. in the Valley Lodge Cliff Room (Sunday and Wednesday through Saturday, none on November 11). Until October 30 it lists a free, leisurely guided walk from the Lodge amphitheater, Monday through Saturday at 9:30 a.m., 1 to 1.5 hours."), React.createElement("a", {
     className: "ff-ghost",
     href: "/now"
   }, "This edition's times, on the Park Bulletin")))), React.createElement("section", {
