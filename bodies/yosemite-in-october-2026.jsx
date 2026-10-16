@@ -74,7 +74,7 @@ window.ARTICLE_BODIES["yosemite-in-october-2026"] = function YosemiteInOctober20
       </p>
 
       <p>
-        Fill the tank below, carry lunch and <AffLink q="fleece" list="article_inline" slug="yosemite-in-october-2026" name="Fleece">warm layers</AffLink>, and call the road line before you set out: <strong>209/372-0200, press 1 then 1</strong>. <a href="/articles/tuolumne-meadows-in-a-day">The Tuolumne day</a> covers the drive, and <a href="/articles/clouds-rest-hike">Clouds Rest</a> is the big hike to take off the road while it is still open.
+        Fill the tank before you climb, carry lunch and <AffLink q="fleece" list="article_inline" slug="yosemite-in-october-2026" name="Fleece">warm layers</AffLink>, and call the road line before you set out: <strong>209/372-0200, press 1 then 1</strong>. <a href="/articles/tuolumne-meadows-in-a-day">The Tuolumne day</a> covers the drive, and <a href="/articles/clouds-rest-hike">Clouds Rest</a> is the big hike to take off the road while it is still open.
       </p>
 
       <h2>Half Dome: the last days of the cables</h2>
@@ -188,7 +188,7 @@ window.ARTICLE_BODIES["yosemite-in-october-2026"] = function YosemiteInOctober20
       <h2>How to plan October 2026</h2>
 
       <p>
-        Build the trip around the parts the fire does not touch: the Valley midweek, Tioga Road while it lasts, and the Crane Flat sequoias. Glacier Point Road is open again, so drive up while it lasts, or walk up the Four Mile Trail and see the same view with more earned. Check the air each morning and the road status before any drive to the high country.
+        Build the trip around the parts the fire does not touch: the Valley midweek, Tioga Road while it lasts, and the Crane Flat sequoias. Glacier Point Road is open again, so drive up while it lasts, or walk up the Four Mile Trail and earn the same view. Check the air each morning and the road status before any drive to the high country.
       </p>
 
       <p>

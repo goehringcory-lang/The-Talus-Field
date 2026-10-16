@@ -405,7 +405,7 @@ function ConditionsPage({
     title: "Parking lots"
   }), React.createElement("p", {
     className: "hp-sub"
-  }, "With no entry reservation in 2026, the Valley's lots are what ration a summer day: on the first busy Saturday of the season all Valley parking was full before noon. Be through the gate before 8 a.m. or after 4 p.m. on a summer weekend. Live lot status from the National Park Service appears here when the park publishes it."), React.createElement(ParkingNow, {
+  }, "With no entry reservation in 2026, the Valley's lots limit a summer day: on the first busy Saturday of the season all Valley parking was full before noon. Be through the gate before 8 a.m. or after 4 p.m. on a summer weekend. Live lot status from the National Park Service appears here when the park publishes it."), React.createElement(ParkingNow, {
     variant: "board",
     onData: onLots
   })), React.createElement("section", {
@@ -426,7 +426,7 @@ function ConditionsPage({
       e.preventDefault();
       go("now");
     }
-  }, "The Park Bulletin"), React.createElement("span", null, "Our own board: road and area status, alerts, and the free-program clock, rewritten each time the park publishes a new Yosemite Guide.")), React.createElement("li", {
+  }, "The Park Bulletin"), React.createElement("span", null, "Our own board: road and area status, alerts, and the free-program schedule, rewritten each time the park publishes a new Yosemite Guide.")), React.createElement("li", {
     className: "conditions__row"
   }, React.createElement("a", {
     href: "https://www.nps.gov/yose/planyourvisit/conditions.htm",

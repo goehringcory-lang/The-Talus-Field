@@ -121,7 +121,7 @@ window.ARTICLE_BODIES["so-you-want-to-hike-half-dome"] = function SoYouWantToHik
       </p>
 
       <p>
-        <strong>The daily lottery</strong> is a second chance. During cable season, <a href="/articles/yosemite-walk-up-and-day-of-permits">additional permits are released two days before each hiking date</a>. You apply by 4 PM Pacific time, and results come late that evening. In 2024, 35,561 daily lottery applications were submitted with a 19% success rate. Weekday odds run around 22%. Weekend odds drop to about 14%.
+        <strong>The daily lottery</strong> is a second chance. During cable season, <a href="/articles/yosemite-walk-up-and-day-of-permits">additional permits are released two days before each hiking date</a>. You apply by 4 p.m. Pacific time, and results come late that evening. In 2024, 35,561 daily lottery applications were submitted with a 19% success rate. Weekday odds run around 22%. Weekend odds drop to about 14%.
       </p>
 
       <p>
@@ -133,7 +133,7 @@ window.ARTICLE_BODIES["so-you-want-to-hike-half-dome"] = function SoYouWantToHik
       </p>
 
       <p>
-        If you're planning a Yosemite trip around specific dates, there's roughly a one-in-five chance you'll get a Half Dome permit. If your entire trip hinges on that permit, you're building a vacation on a coin flip. And if you don't get the permit, you might spend your best hiking day in Yosemite feeling like the trip was incomplete.
+        If you're planning a Yosemite trip around specific dates, there's roughly a one-in-five chance you'll get a Half Dome permit. If your entire trip hinges on that permit, you're building a vacation on long odds. And if you don't get the permit, you might spend your best hiking day in Yosemite feeling like the trip was incomplete.
       </p>
 
       <h2>Here's what I actually want to tell you</h2>
@@ -143,7 +143,7 @@ window.ARTICLE_BODIES["so-you-want-to-hike-half-dome"] = function SoYouWantToHik
       </p>
 
       <p>
-        But if what you're really after is an incredible full-day hike in Yosemite with a summit that makes your jaw drop and views that make you feel like you're standing on top of the Sierra Nevada, I want to tell you about <a href="/articles/clouds-rest-hike">Clouds Rest</a>.
+        But if what you're really after is a full-day hike in Yosemite with a summit that makes your jaw drop and views that make you feel like you're standing on top of the Sierra Nevada, I want to tell you about <a href="/articles/clouds-rest-hike">Clouds Rest</a>.
       </p>
 
       <p>Clouds Rest is the better hike.</p>
@@ -174,7 +174,7 @@ window.ARTICLE_BODIES["so-you-want-to-hike-half-dome"] = function SoYouWantToHik
       <h2>Why this is better than Half Dome in July and August</h2>
 
       <p>
-        Half Dome's cable season peaks in July and August. Those are also the hottest months in Yosemite Valley, where the trailhead sits at 4,000 feet. You wake up at 4 AM to beat the heat. You climb 4,800 feet on a trail that has no shade for long stretches. You share the Mist Trail with what feels like the entire state of California, and the <a href="/articles/mist-trail-the-real-guide">Mist Trail can be genuinely dangerous</a> when it's that crowded. By the time you reach the subdome, you've been hiking for five or six hours in <a href="/articles/yosemite-heat-safety-guide">conditions that punish anyone who didn't bring enough water</a> or didn't train enough.
+        Half Dome's cable season peaks in July and August. Those are also the hottest months in Yosemite Valley, where the trailhead sits at 4,000 feet. You wake up at 4 a.m. to beat the heat. You climb 4,800 feet on a trail that has no shade for long stretches. You share the Mist Trail with what feels like the entire state of California, and the <a href="/articles/mist-trail-the-real-guide">Mist Trail can be genuinely dangerous</a> when it's that crowded. By the time you reach the subdome, you've been hiking for five or six hours in <a href="/articles/yosemite-heat-safety-guide">conditions that punish anyone who didn't bring enough water</a> or didn't train enough.
       </p>
 
       <p>
@@ -238,15 +238,15 @@ window.ARTICLE_BODIES["so-you-want-to-hike-half-dome"] = function SoYouWantToHik
       </p>
 
       <p>
-        <strong>Start time:</strong> Leave the trailhead by 7 AM at the latest in summer. Earlier is better. The Park Service puts the round trip at 8 to 10 hours, and you want to be off the summit before afternoon thunderstorms build. Lightning on the spine of Clouds Rest is not a theoretical risk. It's the primary safety concern of this hike. If you see clouds building, turn around. The summit will be there tomorrow.
+        <strong>Start time:</strong> Leave the trailhead by 7 a.m. at the latest in summer. Earlier is better. The Park Service puts the round trip at 8 to 10 hours, and you want to be off the summit before afternoon thunderstorms build. Lightning on the spine of Clouds Rest is not a theoretical risk. It's the primary safety concern of this hike. If you see clouds building, turn around. The summit will be there tomorrow.
       </p>
 
       <p>
-        <strong>Parking:</strong> The Sunrise Lakes trailhead parking lot is small, and on summer weekends it can fill early. Additional parking is available along the shoulder of Tioga Road nearby, but check for "no parking" signs. On weekdays, parking is rarely an issue before 8 AM.
+        <strong>Parking:</strong> The Sunrise Lakes trailhead parking lot is small, and on summer weekends it can fill early. Additional parking is available along the shoulder of Tioga Road nearby, but check for "no parking" signs. On weekdays, parking is rarely an issue before 8 a.m.
       </p>
 
       <p>
-        <strong>What to wear:</strong> Trail runners or hiking boots with good traction. The granite on the spine is grippy when dry but slick when wet, same as Half Dome's cables. Layers for the summit: at nearly 10,000 feet, it can be 15 to 20 degrees cooler than the Valley and windy even on a calm day below. Sun protection is critical at this elevation.
+        <strong>What to wear:</strong> Trail runners or hiking boots with good traction. The granite on the spine is grippy when dry but slick when wet, same as Half Dome's cables. Pack layers for the summit. At nearly 10,000 feet it can be 15 to 20 degrees cooler than the Valley, and it can be windy up top on a day that feels calm below. Sun protection is critical at this elevation.
       </p>
 
       <p>
@@ -272,7 +272,7 @@ window.ARTICLE_BODIES["so-you-want-to-hike-half-dome"] = function SoYouWantToHik
       </p>
 
       <p>
-        <strong>Early season hazards.</strong> Snow patches on the trail can linger into late June, especially on north-facing slopes. Post-holing through soft snow is exhausting and disorienting. If you're hiking in the first two weeks after Tioga opens, check current conditions and be prepared to turn around if snow coverage is too heavy.
+        <strong>Early season hazards.</strong> Snow patches on the trail can linger into late June, especially on north-facing slopes. Post-holing (breaking through the snow crust with every step) is exhausting and disorienting. If you're hiking in the first two weeks after Tioga opens, check current conditions and be prepared to turn around if snow coverage is too heavy.
       </p>
 
       <h2>Half Dome vs. Clouds Rest: the honest comparison</h2>
@@ -294,7 +294,7 @@ window.ARTICLE_BODIES["so-you-want-to-hike-half-dome"] = function SoYouWantToHik
           <tr><td><strong>Typical time</strong></td><td>10 to 12 hours</td><td>8 to 10 hours</td></tr>
           <tr><td><strong>Crowds on trail</strong></td><td>Heavy (Mist Trail, cables)</td><td>Light to moderate</td></tr>
           <tr><td><strong>The cables</strong></td><td>Unique, nothing like it</td><td>No cables, open granite ridge</td></tr>
-          <tr><td><strong>Summit views</strong></td><td>Spectacular, mostly south/west</td><td>360-degree, higher elevation</td></tr>
+          <tr><td><strong>Summit views</strong></td><td>Mostly south and west</td><td>360-degree, higher elevation</td></tr>
           <tr><td><strong>Available</strong></td><td>Cable season (late May to mid-October)</td><td>Whenever Tioga Road is open</td></tr>
           <tr><td><strong>Heat exposure</strong></td><td>Significant (Valley start, low elevation)</td><td>Minimal (high elevation start)</td></tr>
           <tr><td><strong>Biggest risk</strong></td><td>Wet cables, lightning, overcrowding</td><td>Lightning, exposure on spine</td></tr>

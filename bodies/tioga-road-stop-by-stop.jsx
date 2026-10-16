@@ -94,7 +94,7 @@ window.ARTICLE_BODIES["tioga-road-stop-by-stop"] = function TiogaRoadStopByStopB
       <h2>Tenaya Lake: the shore the 1883 crews blasted</h2>
 
       <p>
-        Tenaya Lake, at about 8,150 feet, is the largest lake in Yosemite's frontcountry, with several parking areas along the lake, a sandy beach at the east end, and a flat loop of about 2.5 miles around it. It carries the name of Tenaya, whose band the Mariposa Battalion captured on its shore in 1851; <a href="/articles/yosemite-place-names-meanings">how the lake and the Valley got their names</a> is a story of its own. The Sunrise Lakes trailhead at the west end of the lake is where the <a href="/articles/clouds-rest-hike">Clouds Rest hike</a> begins.
+        Tenaya Lake, at about 8,150 feet, is the largest lake in Yosemite's frontcountry (the part of the park reached by car), with several parking areas along the lake, a sandy beach at the east end, and a flat loop of about 2.5 miles around it. It carries the name of Tenaya, whose band the Mariposa Battalion captured on its shore in 1851; <a href="/articles/yosemite-place-names-meanings">how the lake and the Valley got their names</a> is a story of its own. The Sunrise Lakes trailhead at the west end of the lake is where the <a href="/articles/clouds-rest-hike">Clouds Rest hike</a> begins.
       </p>
 
       <p>
@@ -174,7 +174,7 @@ window.ARTICLE_BODIES["tioga-road-stop-by-stop"] = function TiogaRoadStopByStopB
       </p>
 
       <p>
-        This is where the road became public. By 1915 the wagon road had been largely neglected for three decades, owned by the heirs of the Swift family of New Bedford, who had bought the failed mining company's property at a sheriff's sale in 1888. Stephen Mather, then assistant to the Secretary of the Interior and soon the first director of the National Park Service, decided to buy it. Trexler records the price as <strong>$15,500</strong>, raised partly from friends, the Modesto Chamber of Commerce and the Sierra Club, with Mather paying the balance himself. Because a government employee could not donate the road, his friend William Colby of the Sierra Club bought it from the Swift estate, and title passed to the United States on <strong>April 10, 1915</strong>.
+        This is where the road became public property. By 1915 the wagon road had been largely neglected for three decades, owned by the heirs of the Swift family of New Bedford, who had bought the failed mining company's property at a sheriff's sale in 1888. Stephen Mather, then assistant to the Secretary of the Interior and soon the first director of the National Park Service, decided to buy it. Trexler records the price as <strong>$15,500</strong>, raised partly from friends, the Modesto Chamber of Commerce and the Sierra Club, with Mather paying the balance himself. Because a government employee could not donate the road, his friend William Colby of the Sierra Club bought it from the Swift estate, and title passed to the United States on <strong>April 10, 1915</strong>.
       </p>
 
       <p>
@@ -188,7 +188,7 @@ window.ARTICLE_BODIES["tioga-road-stop-by-stop"] = function TiogaRoadStopByStopB
       <h2>Bennettville: the mine the road was built for</h2>
 
       <p>
-        Just east of the park boundary, outside Yosemite in the Inyo National Forest, is the reason any of this exists. Trexler records that a dentist named George Chase scratched a claim notice on a flattened tin can on Tioga Hill in 1860 and never returned, and that a sheepherder, William Brusky, found the can years later; an 1877 assay found the ore rich in silver. The Tioga Mining District was organized in 1878, and in 1881 the Great Sierra Consolidated Silver Company, financed by eastern investors, bought up the claims on Tioga Hill.
+        Just east of the park boundary, outside Yosemite in the Inyo National Forest, is the reason any of this exists. Trexler records that a dentist named George Chase scratched a claim notice on a flattened tin can on Tioga Hill in 1860 and never returned, and that a sheepherder, William Brusky, found the can years later; an 1877 assay (a lab test of the ore's metal) found it rich in silver. The Tioga Mining District was organized in 1878, and in 1881 the Great Sierra Consolidated Silver Company, financed by eastern investors, bought up the claims on Tioga Hill.
       </p>
 
       <p>
@@ -196,7 +196,7 @@ window.ARTICLE_BODIES["tioga-road-stop-by-stop"] = function TiogaRoadStopByStopB
       </p>
 
       <p>
-        The mine did not last a year after the road was finished. On <strong>July 3, 1884</strong>, with the tunnel at 1,784 feet and the company out of money, the executive committee suspended all operations. More than $300,000 had been spent, and as far as Trexler could find, no ore ever left the mine for milling. Hubbard records a second attempt from 1933 that drove the tunnel several hundred feet farther without striking the lode.
+        The mine did not last a year after the road was finished. On <strong>July 3, 1884</strong>, with the tunnel at 1,784 feet and the company out of money, the executive committee suspended all operations. More than $300,000 had been spent, and as far as Trexler could find, no ore ever left the mine for milling. Hubbard records a second attempt from 1933 that drove the tunnel several hundred feet farther without striking the lode, the vein of ore.
       </p>
 
       <p>

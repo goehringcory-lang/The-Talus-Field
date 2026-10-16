@@ -10,7 +10,7 @@ window.ARTICLE_BODIES["yosemite-during-smoke-season"] = function YosemiteDuringS
       </p>
 
       <p>
-        Smoke is now routine. Fire season in Yosemite runs from roughly July through November, according to the Park Service, and parts of June in dry years. Yosemite is in the middle of one of the most fire-prone regions in the West. Plan for your trip to overlap with it. Smoke and closures are separate problems, and when the fire itself comes near your dates, <a href="/articles/wildfire-in-yosemite-during-your-trip">what closes and what to do with the bookings</a> is its own question.
+        Smoke is now routine. Fire season in Yosemite runs from roughly July through November, according to the Park Service, and parts of June in dry years. Yosemite is in the middle of one of the most fire-prone regions in the West. Assume your trip may overlap with it. Smoke and closures are separate problems, and when the fire itself comes near your dates, <a href="/articles/wildfire-in-yosemite-during-your-trip">what closes and what to do with the bookings</a> is its own question.
       </p>
 
       <p>

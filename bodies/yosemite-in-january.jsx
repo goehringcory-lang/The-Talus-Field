@@ -80,7 +80,7 @@ window.ARTICLE_BODIES["yosemite-in-january"] = function YosemiteInJanuaryBody() 
       </p>
 
       <p>
-        Down on the Valley floor, the <strong>Curry Village ice rink</strong> needs neither snow nor skill. The concessioner says families have skated there since 1928, and it sells tickets online for the full season and at the Curry Village tour and activity desk. As of this writing, it lists the coming season's opening date as to be determined, so confirm the rink is open before you promise a skate to anyone.
+        Down on the Valley floor, the <strong>Curry Village ice rink</strong> needs neither snow nor skill. The concessioner says families have skated there since 1928, and it sells tickets online for the full season and at the Curry Village tour and activity desk. As of this writing, its opening date is still to be determined, so confirm the rink is open before you promise a skate to anyone.
       </p>
 
       <h2>The holiday tail, then the quiet</h2>

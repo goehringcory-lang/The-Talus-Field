@@ -339,7 +339,7 @@ function TripDays({
     location: "trip_plan_gate",
     tag: "trip-plan",
     heading: "The rest of your plan, and a copy in your inbox",
-    blurb: "Every stop in drive order, plus a link that opens the whole plan on the map. Sunday Field Notes comes with it: one short letter a week. Free, leave anytime.",
+    blurb: "Every stop in drive order, plus a link that opens the whole plan on the map. Sunday Field Notes comes with it: one short letter a week. Free, and you can unsubscribe at any time.",
     cta: "Show my plan →",
     teaser: teaser,
     onUnlock: mailPlan,
@@ -558,7 +558,7 @@ function TripSelector({
     className: "tripsel__title"
   }, "Five questions, then a plan."), React.createElement("p", {
     className: "tripsel__dek"
-  }, "Answer these five and you get the handful of entries that apply to your trip, the day plan the season actually allows, and an honest read on whether you need anything paid.")), React.createElement("div", {
+  }, "Answer these five and you get the short list of entries that fit your trip, the day plan the season actually allows, and a straight answer on whether you need anything paid.")), React.createElement("div", {
     className: "tripsel__meter"
   }, React.createElement("span", {
     className: "tripsel__count"

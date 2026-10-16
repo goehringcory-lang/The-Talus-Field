@@ -40,7 +40,7 @@ window.ARTICLE_BODIES["where-to-propose-in-yosemite"] = function WhereToProposeI
       </p>
 
       <p>
-        <strong>Glacier Point</strong> is the most popular proposal location in Yosemite, and it earns that reputation. The view is legitimate. Half Dome fills your sightline at eye level, Vernal and Nevada Falls thread silver down the canyon below, and the Valley floor sits 3,214 feet straight down. The overlook is ADA accessible once <a href="/articles/glacier-point-road-open-2026">Glacier Point Road</a> opens for the season, usually late May. The parking lot is paved and the walk to the railing is short. For people who want a <a href="/articles/yosemite-for-non-hikers">world-class view without a hike</a>, this is the answer.
+        <strong>Glacier Point</strong> is the most popular proposal location in Yosemite, and it earns that reputation. The view is legitimate. Half Dome fills your sightline at eye level, Vernal and Nevada Falls thread silver down the canyon below, and the Valley floor sits 3,214 feet straight down. The overlook is ADA accessible once <a href="/articles/glacier-point-road-open-2026">Glacier Point Road</a> opens for the season, usually late May. The parking lot is paved and the walk to the railing is short. For people who want a <a href="/articles/yosemite-for-non-hikers">big view without a hike</a>, this is the answer.
       </p>
 
       <p>
@@ -88,7 +88,7 @@ window.ARTICLE_BODIES["where-to-propose-in-yosemite"] = function WhereToProposeI
       <h2>Proposals You Walk To</h2>
 
       <p>
-        There is something to be said for earning the moment. At the end of a hike, the effort becomes part of the story.
+        Some couples want the view to cost them a few miles. At the end of a hike, the effort becomes part of the story.
       </p>
 
       <p>
@@ -136,7 +136,7 @@ window.ARTICLE_BODIES["where-to-propose-in-yosemite"] = function WhereToProposeI
       <p>If timing is flexible, spring changes everything.</p>
 
       <p>
-        Yosemite's waterfalls peak between late April and early June, fed by Sierra snowmelt, and during that window the park operates on a different frequency. Yosemite Falls, at 2,425 feet one of the tallest waterfalls in North America, throws so much water that the mist plume rises hundreds of feet above the base and drifts across the meadow like weather. You hear the falls before you see them.
+        Yosemite's waterfalls peak between late April and early June, fed by Sierra snowmelt, and during that window the park has a different rhythm. Yosemite Falls, at 2,425 feet one of the tallest waterfalls in North America, throws so much water that the mist plume rises hundreds of feet above the base and drifts across the meadow like weather. You hear the falls before you see them.
       </p>
 
       <p>
@@ -190,7 +190,7 @@ window.ARTICLE_BODIES["where-to-propose-in-yosemite"] = function WhereToProposeI
       </p>
 
       <p>
-        <strong>Timing.</strong> Early morning and late afternoon are different parks than midday. The light is better, the crowds thinner, the air cooler. If your plan involves any of the popular viewpoints, sunrise is the difference between a private moment and a public performance. Set the alarm.
+        <strong>Timing.</strong> Early morning and late afternoon are a different park from midday. The light is better, the crowds thinner, the air cooler. If your plan involves any of the popular viewpoints, sunrise is the difference between a private moment and a public performance. Set the alarm.
       </p>
 
       <p>

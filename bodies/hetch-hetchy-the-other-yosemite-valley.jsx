@@ -86,7 +86,7 @@ window.ARTICLE_BODIES["hetch-hetchy-the-other-yosemite-valley"] = function Hetch
       <p>Hetch Hetchy works as a single full-day trip from anywhere in the park. It does not work as a half-day add-on, because of the drive in and out.</p>
 
       <p>
-        <strong>The dam itself.</strong> O'Shaughnessy Dam is open to foot traffic. The walk across the dam is a quarter mile and takes you through a hand-cut tunnel into the valley proper. It's flat, paved, and one of the few <a href="/articles/yosemite-for-non-hikers">non-hiker-accessible</a> ways to stand inside a Sierra granite valley. From the middle of the dam, you can see the reservoir extending east toward Wapama Falls and the upper valley. The dam was built in two phases (1923 and 1938), and the seam between the two construction periods is visible from the upstream side. There are interpretive signs at the eastern end of the dam.
+        <strong>The dam itself.</strong> O'Shaughnessy Dam is open to foot traffic. The walk across the dam is a quarter mile and takes you through a hand-cut tunnel into the valley proper. It's flat, paved, and one of the few ways for non-hikers to stand inside a Sierra granite valley, <a href="/articles/yosemite-for-non-hikers">a route built for visitors who don't hike</a>. From the middle of the dam, you can see the reservoir extending east toward Wapama Falls and the upper valley. The dam was built in two phases (1923 and 1938), and the seam between the two construction periods is visible from the upstream side. There are interpretive signs at the eastern end of the dam.
       </p>
 
       <p>
@@ -102,7 +102,7 @@ window.ARTICLE_BODIES["hetch-hetchy-the-other-yosemite-valley"] = function Hetch
       </p>
 
       <p>
-        <strong>Lake Eleanor and Smith Peak.</strong> Longer trips into the higher country above Hetch Hetchy. Lake Eleanor, north of the reservoir, is reachable by a multi-mile trail that gets very little traffic. Smith Peak, at over 7,700 feet, is a non-trivial climb but offers a unique view down into Hetch Hetchy from above. These are full-day or backpacking trips, not casual day hikes.
+        <strong>Lake Eleanor and Smith Peak.</strong> Longer trips into the higher country above Hetch Hetchy. Lake Eleanor, north of the reservoir, is reachable by a multi-mile trail that gets very little traffic. Smith Peak, at over 7,700 feet, is a real climb but offers a unique view down into Hetch Hetchy from above. These are full-day or backpacking trips, not casual day hikes.
       </p>
 
       <p>
@@ -156,7 +156,7 @@ window.ARTICLE_BODIES["hetch-hetchy-the-other-yosemite-valley"] = function Hetch
       </p>
 
       <p>
-        <strong>It has fewer amenities.</strong> No food. No lodging in the immediate area. Limited bathrooms. The road has hours. Visitors used to the convenience of Yosemite Valley find Hetch Hetchy a different mode.
+        <strong>It has fewer amenities.</strong> No food. No lodging in the immediate area. Limited bathrooms. The road has hours. Visitors used to the convenience of Yosemite Valley find Hetch Hetchy a different kind of trip.
       </p>
 
       <p>

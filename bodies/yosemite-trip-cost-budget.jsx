@@ -98,7 +98,7 @@ window.ARTICLE_BODIES["yosemite-trip-cost-budget"] = function YosemiteTripCostBu
       </p>
 
       <p>
-        <strong>From San Francisco / Bay Area:</strong> About 195 miles each way. At late-September 2026 gas prices (about $6.19 a gallon for regular in California, by the U.S. Energy Information Administration's weekly count) and average fuel economy (28 mpg), that's roughly $40–$45 each way, or $80–$90 round trip. If you're making a <a href="/articles/yosemite-in-one-or-two-days">day trip from the city</a>, that's your floor just for fuel.
+        <strong>From San Francisco / Bay Area:</strong> About 195 miles each way. At late-September 2026 gas prices (about $6.19 a gallon for regular in California, by the U.S. Energy Information Administration's weekly count) and average fuel economy (28 mpg), that's roughly $40–$45 each way, or $80–$90 round trip. If you're making a <a href="/articles/yosemite-in-one-or-two-days">day trip from the city</a>, that's the least you will spend on fuel.
       </p>
 
       <p>
@@ -114,7 +114,7 @@ window.ARTICLE_BODIES["yosemite-trip-cost-budget"] = function YosemiteTripCostBu
       </p>
 
       <p>
-        <strong>Don't forget parking:</strong> Parking in Yosemite is free but competitive. There's no paid parking anywhere in the park. The cost is time.
+        <strong>Don't forget parking:</strong> Parking in Yosemite is free but hard to get. There's no paid parking anywhere in the park. The cost is time.
       </p>
 
       <h2>Gear: what you actually need</h2>

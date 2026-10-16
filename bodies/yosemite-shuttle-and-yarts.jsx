@@ -50,7 +50,7 @@ window.ARTICLE_BODIES["yosemite-shuttle-and-yarts"] = function YosemiteShuttleAn
   return (
     <>
       <p className="dropcap">
-        Yosemite runs two completely different bus systems and most visitors confuse them, which is a shame, because they solve two completely different problems. One is free, green, and only exists inside Yosemite Valley: it moves you between the places you would otherwise drive between, and it is the reason "park once" is sound advice rather than a slogan. The other is a regional coach service that will carry you from a train platform in Merced or a hotel in Mammoth Lakes to a curb in front of Yosemite Valley Lodge, and it is the only way to visit this park without solving <a href="/articles/yosemite-valley-parking-guide">the parking problem</a> at all. Here is what each one is, what it costs, and the honest case for when it beats driving.
+        Yosemite runs two completely different bus systems and most visitors confuse them, which is a shame, because they solve two different problems. One is free, green, and only exists inside Yosemite Valley: it moves you between the places you would otherwise drive between, and it is the reason "park once" is sound advice rather than a slogan. The other is a regional coach service that will carry you from a train platform in Merced or a hotel in Mammoth Lakes to a curb in front of Yosemite Valley Lodge, and it is the only way to visit this park without solving <a href="/articles/yosemite-valley-parking-guide">the parking problem</a> at all. Here is what each one is, what it costs, and the honest case for when it beats driving.
       </p>
 
       <h2>The free Valley shuttle</h2>
@@ -142,7 +142,7 @@ window.ARTICLE_BODIES["yosemite-shuttle-and-yarts"] = function YosemiteShuttleAn
 
 
       <p>
-        In the Valley, YARTS sets down at Yosemite Valley Lodge, Yosemite Village, Curry Village, and the visitor center stop, all of which are on the free shuttle, so the handoff between the two systems is seamless. You can pay onboard with a card or exact cash, or reserve ahead at the YARTS ticketing site; walk-ons are accepted as space allows, but a reservation a day out is cheap insurance on a summer weekend. Buses are air-conditioned, are wheelchair accessible, and will take a bike in the underfloor compartment if there is room and it has been disassembled. Children five and under ride free, one child aged six to twelve rides free with each full-fare adult, and there are reduced fares for seniors, riders with disabilities, and veterans.
+        In the Valley, YARTS sets down at Yosemite Valley Lodge, Yosemite Village, Curry Village, and the visitor center stop, all of which are on the free shuttle, so the handoff between the two systems is easy. You can pay onboard with a card or exact cash, or reserve ahead at the YARTS ticketing site; walk-ons are accepted as space allows, but a reservation a day out is cheap insurance on a summer weekend. Buses are air-conditioned, are wheelchair accessible, and will take a bike in the underfloor compartment if there is room and it has been disassembled. Children five and under ride free, one child aged six to twelve rides free with each full-fare adult, and there are reduced fares for seniors, riders with disabilities, and veterans.
       </p>
 
       <h2>The entrance fee question, which is unresolved</h2>
@@ -196,7 +196,7 @@ window.ARTICLE_BODIES["yosemite-shuttle-and-yarts"] = function YosemiteShuttleAn
       </ol>
 
       <p>
-        The park's transportation problem is not that there are too many visitors. It is that there are too many vehicles carrying too few people each, into a valley with a fixed amount of floor. Both of these buses are the response to that, and one of them is free. Using them well is the cheapest upgrade available to a Yosemite trip, and the core of <a href="/articles/sustainable-yosemite-car-free-zero-waste">a car-free, zero-waste visit</a>.
+        The park's transportation problem is not that there are too many visitors. It is that there are too many vehicles carrying too few people each, into a valley floor that cannot grow. Both of these buses are the response to that, and one of them is free. Using them well is the cheapest upgrade available to a Yosemite trip, and the core of <a href="/articles/sustainable-yosemite-car-free-zero-waste">a car-free, zero-waste visit</a>.
       </p>
     </>
   );

@@ -138,9 +138,9 @@ export default function Help() {
 
   const acquiring = geo.status === 'requesting' || (geo.status === 'active' && !fix)
   const stamp = fix
-    ? `Fix ${fixAgeLabel(now - fix.atMs)}`
+    ? `Reading ${fixAgeLabel(now - fix.atMs)}`
     : acquiring
-      ? 'Acquiring'
+      ? 'Getting a reading'
       : geo.status === 'denied'
         ? 'Location declined'
         : geo.status === 'unavailable'
@@ -190,21 +190,21 @@ export default function Help() {
                 {fix ? decimalDegrees(fix.coord) : '—'}
               </span>
               <span className="readout__note">
-                {fix ? 'Latitude, then longitude' : acquiring ? 'Waiting for the first fix' : 'Needs location'}
+                {fix ? 'Latitude, then longitude' : acquiring ? 'Waiting for the first reading' : 'Needs location'}
               </span>
             </div>
             <div className="readout readout--wide">
               <span className="readout__label">Degrees and minutes</span>
               <span className="readout__value">{fix ? degreesMinutes(fix.coord) : '—'}</span>
               <span className="readout__note">
-                {fix ? 'The rescue-radio and handheld-GPS form' : 'Same fix, other dialect'}
+                {fix ? 'The rescue-radio and handheld-GPS form' : 'Same position, other format'}
               </span>
             </div>
             <div className="readout">
               <span className="readout__label">Accuracy</span>
               <span className="readout__value">{fix ? `± ${feetLabel(fix.accuracyM)}` : '—'}</span>
               <span className="readout__note">
-                {fix && fix.accuracyM > 100 ? 'Poor fix · step clear of walls or trees' : 'GPS radius'}
+                {fix && fix.accuracyM > 100 ? 'Low accuracy · step clear of walls or trees' : 'GPS radius'}
               </span>
             </div>
             <div className="readout">
@@ -213,7 +213,7 @@ export default function Help() {
                 {fix?.altitudeM != null ? feetLabel(fix.altitudeM) : '—'}
               </span>
               <span className="readout__note">
-                {fix?.altitudeM != null ? 'GPS altitude, approximate' : 'No altitude in the fix'}
+                {fix?.altitudeM != null ? 'GPS altitude, approximate' : 'No altitude in this reading'}
               </span>
             </div>
             <div className="readout readout--wide">
@@ -234,7 +234,7 @@ export default function Help() {
           {!fix && geo.status !== 'denied' && geo.status !== 'unavailable' && (
             <div className="help-start">
               <Button onClick={start} disabled={acquiring}>
-                {acquiring ? 'Acquiring a fix…' : 'Get my position'}
+                {acquiring ? 'Getting a reading…' : 'Get my position'}
               </Button>
               <p className="card__note">
                 Asks for location once. GPS works in airplane mode; the reading stays on this

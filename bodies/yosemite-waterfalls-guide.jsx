@@ -68,7 +68,7 @@ window.ARTICLE_BODIES["yosemite-waterfalls-guide"] = function YosemiteWaterfalls
       </p>
 
       <p>
-        <strong>Horsetail Fall</strong>, on El Capitan's east face, is a modest seasonal ribbon that would be a footnote except for two weeks in <strong>February</strong>, when the setting sun can light the falling water orange and produce the natural firefall. That event comes with road closures, parking restrictions, and a culture of its own, and it gets <a href="/articles/horsetail-fall-firefall">its own article</a>. The short version: it needs water in the fall and a clear western horizon at sunset, and neither is guaranteed.
+        <strong>Horsetail Fall</strong>, on El Capitan's east face, is a modest seasonal ribbon that would be a footnote except for two weeks in <strong>February</strong>, when the setting sun can light the falling water orange and produce the natural firefall. That event comes with road closures, parking restrictions, and a culture of its own, and it gets <a href="/articles/horsetail-fall-firefall">its own article</a>. The short version: it needs water flowing over the edge and a clear western horizon at sunset, and neither is guaranteed.
       </p>
 
       <p>
@@ -117,7 +117,7 @@ window.ARTICLE_BODIES["yosemite-waterfalls-guide"] = function YosemiteWaterfalls
           <tr><td><strong>July</strong></td><td>Thinning fast</td><td>Moderate</td><td>Strong</td><td>Gone</td><td>Go to the Mist Trail, not the rim</td></tr>
           <tr><td><strong>August</strong></td><td>Often dry by late month</td><td>Thin</td><td>Moderate</td><td>Gone</td><td>Come for other reasons</td></tr>
           <tr><td><strong>September</strong></td><td>Dry</td><td>Thin</td><td>Thin</td><td>Gone</td><td>No. Come for the high country</td></tr>
-          <tr><td><strong>October</strong></td><td>Dry</td><td>Thin</td><td>Thin</td><td>Gone</td><td>No. Come for the colour</td></tr>
+          <tr><td><strong>October</strong></td><td>Dry</td><td>Thin</td><td>Thin</td><td>Gone</td><td>No. Come for the color</td></tr>
           <tr><td><strong>November</strong></td><td>Storm resurrections</td><td>Thin, rising</td><td>Flowing</td><td>Storm only</td><td>Watch the forecast, not the calendar</td></tr>
           <tr><td><strong>December</strong></td><td>Storm resurrections</td><td>Thin, rising</td><td>Flowing</td><td>Storm only</td><td>Watch the forecast, not the calendar</td></tr>
         </tbody>
@@ -160,7 +160,7 @@ window.ARTICLE_BODIES["yosemite-waterfalls-guide"] = function YosemiteWaterfalls
       <h2>Moonbows, briefly</h2>
 
       <p>
-        On clear nights around the <strong>full moons of April, May, and June</strong>, the spray at the base of Lower Yosemite Fall can throw a <strong>moonbow</strong>, a lunar rainbow arcing through the mist. To the naked eye it reads as a pale silver band; a camera on a tripod pulls the colors out. You need heavy spray, a bright moon low enough to hit it, and dark-adjusted patience. Spring full-moon nights at the Lower Fall bridge draw a small crowd of tripods for exactly this reason,
+        On clear nights around the <strong>full moons of April, May, and June</strong>, the spray at the base of Lower Yosemite Fall can throw a <strong>moonbow</strong>, a lunar rainbow arcing through the mist. To the naked eye it reads as a pale silver band; a camera on a tripod pulls the colors out. You need heavy spray, a bright moon low enough to hit it, and dark-adjusted patience. Spring full-moon nights at the Lower Fall bridge draw a small crowd of tripods for exactly this reason.
       </p>
 
       <h2>The takeaway</h2>

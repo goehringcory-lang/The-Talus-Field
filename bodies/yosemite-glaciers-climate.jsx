@@ -122,7 +122,7 @@ window.ARTICLE_BODIES["yosemite-glaciers-climate"] = function YosemiteGlaciersBo
       </p>
 
       <p>
-        The Maclure is on the same path, further back. It still moves, and it is expected to outlast its neighbour. The 1928 <em>Nature Notes</em> Vol. 7, No. 9 entry titled "A Nature Guide Party Conquers Mt. Lyell" offers direct observations from that era of the ice's extent and appearance, and set beside repeat photography from the same vantages, the retreat is obvious.
+        The Maclure is on the same path, further back. It still moves, and it is expected to outlast its neighbor. The 1928 <em>Nature Notes</em> Vol. 7, No. 9 entry titled "A Nature Guide Party Conquers Mt. Lyell" offers direct observations from that era of the ice's extent and appearance, and set beside repeat photography from the same vantages, the retreat is obvious.
       </p>
 
       <p>

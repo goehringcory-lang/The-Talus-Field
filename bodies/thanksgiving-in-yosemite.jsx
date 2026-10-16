@@ -52,7 +52,7 @@ window.ARTICLE_BODIES["thanksgiving-in-yosemite"] = function ThanksgivingInYosem
       </p>
 
       <p>
-        <strong>Glacier Point Road will very probably be closed, too.</strong> In the nine seasons from 2016 through 2025 in which the road opened at all (it stayed shut in 2022 for a rehabilitation project), it had closed for the winter before Thanksgiving in all but one. The exception was 2021, when it held until December 7. And on Thanksgiving there is no winter version of the road yet: the park plows it as far as the Badger Pass Ski Area from mid-December through early April, so the plowing, the ski area and its shuttle all start weeks after the holiday.
+        <strong>Glacier Point Road will very probably be closed, too.</strong> In the nine seasons from 2016 through 2025 in which the road opened at all (it stayed shut in 2022 for a rehabilitation project), it had closed for the winter before Thanksgiving in all but one. The exception was 2021, when it held until December 7. And on Thanksgiving the road is not plowed yet. The park plows it as far as the Badger Pass Ski Area from mid-December through early April, so the plowing, the ski area and its shuttle all start weeks after the holiday.
       </p>
 
       <p>
@@ -98,7 +98,7 @@ window.ARTICLE_BODIES["thanksgiving-in-yosemite"] = function ThanksgivingInYosem
       </p>
 
       <p>
-        <strong>The Ahwahnee Dining Room</strong> serves Thanksgiving dinner on November 26 from <strong>noon to 8 p.m.</strong>, at <strong>$165 for an adult and $82.50 for a child</strong>, tax and gratuity included. The published menu centers on carved prime rib, roasted turkey and carved ham, with sides and desserts, and wine can be pre-ordered. Reservations are by phone at 888-413-8869. The room's ordinary dinner dress code asks for long pants and a collared shirt, or a dress, skirt, or long pants with a blouse, and no hiking clothes, shorts, T-shirts, tank tops, flip-flops or baseball caps. The holiday page does not address attire, so ask when you book, and pack one outfit that would pass.
+        <strong>The Ahwahnee Dining Room</strong> serves Thanksgiving dinner on November 26 from <strong>noon to 8 p.m.</strong>, at <strong>$165 for an adult and $82.50 for a child</strong>, tax and gratuity included. The published menu centers on carved prime rib, roasted turkey and carved ham, with sides and desserts, and wine can be pre-ordered. Reservations are by phone at 888-413-8869. The room's ordinary dinner dress code asks for long pants and a collared shirt, or a dress, skirt, or long pants with a blouse, and no hiking clothes, shorts, T-shirts, tank tops, flip-flops or baseball caps. The holiday page does not address attire, so ask when you book, and pack one outfit that meets it.
       </p>
 
       <Placeholder
@@ -126,7 +126,7 @@ window.ARTICLE_BODIES["thanksgiving-in-yosemite"] = function ThanksgivingInYosem
       </p>
 
       <p>
-        <strong>Curry Village's closing date matters for this weekend in particular.</strong> The concessioner's Curry Village page says it will not be open from November 29 through December 10, 2026, so a Curry stay over Thanksgiving ends on the 29th at the latest. Confirm your departure date when you book. The concessioner's winter offers, which put the Ahwahnee from $389 on select two-night stays and Curry Village from $95 a night, are for select dates, and the offer pages do not say whether Thanksgiving is among them. Price the weekend at the ordinary rate and treat any discount as luck.
+        <strong>Curry Village's closing date matters for this weekend in particular.</strong> The concessioner's Curry Village page says it will not be open from November 29 through December 10, 2026, so a Curry stay over Thanksgiving ends on the 29th at the latest. Confirm your departure date when you book. The concessioner's winter offers, which put the Ahwahnee from $389 on select two-night stays and Curry Village from $95 a night, are for select dates, and the offer pages do not say whether Thanksgiving is among them. Price the weekend at the ordinary rate, and count any discount as a bonus.
       </p>
 
       <p>
@@ -173,7 +173,7 @@ window.ARTICLE_BODIES["thanksgiving-in-yosemite"] = function ThanksgivingInYosem
       </p>
 
       <p>
-        <strong>Give Thursday to the Valley.</strong> A morning walk on the floor, the meadows and the river while the light is low, then dinner. If you booked the Ahwahnee, the noon-to-8 window lets you take a late lunch slot and still have the afternoon light outside, or an early evening one after a full day out.
+        <strong>Give Thursday to the Valley.</strong> A morning walk on the floor, the meadows and the river while the light is low, then dinner. If you booked the Ahwahnee, its noon-to-8 window fits a late lunch, with the afternoon still ahead of you, or an early evening slot after a full day out.
       </p>
 
       <p>
@@ -181,7 +181,7 @@ window.ARTICLE_BODIES["thanksgiving-in-yosemite"] = function ThanksgivingInYosem
       </p>
 
       <p>
-        <strong>Leave Sunday, with chains in the car.</strong> If you are in Curry Village, Sunday is checkout regardless. Read the <a href="/conditions">conditions page</a> the morning you drive in and the morning you leave: roads, chain controls, trail closures and the fire alerts all change by the day in late November, and it collects the park's live feeds and phone numbers in one place.
+        <strong>Leave Sunday, with chains in the car.</strong> If you are in Curry Village, Sunday is checkout regardless. Read the <a href="/conditions">conditions page</a> the morning you drive in and the morning you leave: roads, chain controls, trail closures and the fire alerts all change by the day in late November. The page collects the park's live feeds and phone numbers in one place.
       </p>
 
       <p>

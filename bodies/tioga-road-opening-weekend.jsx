@@ -10,7 +10,7 @@ window.ARTICLE_BODIES["tioga-road-opening-weekend"] = function TiogaRoadOpeningW
       </p>
 
       <p>
-        <strong>Tioga Pass status (September 9, 2026):</strong> open, and it has been since May 15. The Park Service's standing line is that the road stays open until sometime in November; the last five seasons closed between October 21 and November 15. For live updates, call 209/372-0200 (press 1, then 1) or check <a href="https://www.nps.gov/yose/planyourvisit/conditions.htm" target="_blank" rel="noopener noreferrer">nps.gov/yose/planyourvisit/conditions.htm</a>. If you just need the standing version, the window, what is actually open in week one, and what to bring, <a href="/tioga-opening">the Tioga opening page</a> is the short version, kept current each season.
+        <strong>Tioga Pass status (September 9, 2026):</strong> open, and it has been since May 15. The Park Service's standing line is that the road stays open until sometime in November; the last five seasons closed between October 21 and November 15. For live updates, call 209/372-0200 (press 1, then 1) or check <a href="https://www.nps.gov/yose/planyourvisit/conditions.htm" target="_blank" rel="noopener noreferrer">nps.gov/yose/planyourvisit/conditions.htm</a>. For the short version, with the window, what is open in week one, and what to bring, read <a href="/tioga-opening">the Tioga opening page</a>, which is updated each season.
       </p>
 
       <h2>What's open on Tioga Road opening weekend</h2>
@@ -155,7 +155,7 @@ window.ARTICLE_BODIES["tioga-road-opening-weekend"] = function TiogaRoadOpeningW
         <li>Microspikes (Kahtoola or equivalent) in the pack for any shaded snow patch.</li>
         <li>Trekking poles for slush, mud, and slick granite.</li>
         <li>Layers: a <AffLink q="insulated jacket" list="article_inline" slug="tioga-road-opening-weekend" name="Insulated jacket">puffy jacket</AffLink> and a <AffLink q="rain jacket" list="article_inline" slug="tioga-road-opening-weekend" name="Rain shell">shell</AffLink>, even if the forecast looks mild. Temperatures swing 30 to 40 degrees between dawn and afternoon.</li>
-        <li>Sunglasses and sunscreen. Snow glare and 9,000-foot UV are a combination.</li>
+        <li>Sunglasses and sunscreen. Snow glare and the sun at 9,000 feet are a hard combination.</li>
         <li>Plenty of water and food. There is no source for either on Tioga Road yet.</li>
         <li>A bear-aware approach to food even on a day hike. Black bears are out of dens, hungry, and <a href="/articles/yosemite-wildlife-viewing-guide">active in the meadows at first and last light</a>. Use the lockers at trailheads.</li>
       </ul>

@@ -499,7 +499,7 @@ window.ARTICLE_BODIES["watching-climbers-el-capitan"] = function WatchingClimber
     className: "ec-ascents__year"
   }, "1958"), React.createElement("span", {
     className: "ec-ascents__time"
-  }, "47 days"), React.createElement("p", null, "Warren Harding's team makes the first ascent of The Nose, an effort totaling ", React.createElement("strong", null, "47 days"), " of climbing, spread across a year and a half of sieging the wall with fixed ropes. At the time, the idea that the face could be climbed at all was not widely accepted. The final push ended with Harding drilling bolts through the night to top out. Everything that follows starts here.")), React.createElement("li", null, React.createElement("span", {
+  }, "47 days"), React.createElement("p", null, "Warren Harding's team makes the first ascent of The Nose, an effort totaling ", React.createElement("strong", null, "47 days"), " of climbing, spread across a year and a half of working the wall in stages, with fixed ropes. At the time, the idea that the face could be climbed at all was not widely accepted. The final push ended with Harding drilling bolts through the night to top out. Everything that follows starts here.")), React.createElement("li", null, React.createElement("span", {
     className: "ec-ascents__year"
   }, "2015"), React.createElement("span", {
     className: "ec-ascents__time"
@@ -507,7 +507,7 @@ window.ARTICLE_BODIES["watching-climbers-el-capitan"] = function WatchingClimber
     className: "ec-ascents__year"
   }, "2017"), React.createElement("span", {
     className: "ec-ascents__time"
-  }, "Under 4 hours"), React.createElement("p", null, "Alex Honnold free solos ", React.createElement("strong", null, "Freerider"), ": no rope, no partner, no protection, roughly 3,000 feet of granite in under four hours. The ascent was filmed and released as ", React.createElement("strong", null, "Free Solo"), ", which won the Academy Award for Best Documentary Feature. It remains the most widely seen piece of media ever made about this wall, and it is why a meaningful fraction of the people standing in the meadow now know what a crimp is.")), React.createElement("li", null, React.createElement("span", {
+  }, "Under 4 hours"), React.createElement("p", null, "Alex Honnold free solos ", React.createElement("strong", null, "Freerider"), ": no rope, no partner, no protection, roughly 3,000 feet of granite in under four hours. The ascent was filmed and released as ", React.createElement("strong", null, "Free Solo"), ", which won the Academy Award for Best Documentary Feature. It remains the most widely seen piece of media ever made about this wall, and it is why a meaningful fraction of the people standing in the meadow now know what a crimp (a tiny edge held with the fingertips) is.")), React.createElement("li", null, React.createElement("span", {
     className: "ec-ascents__year"
   }, "2018"), React.createElement("span", {
     className: "ec-ascents__time"

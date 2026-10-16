@@ -26,7 +26,7 @@ window.ARTICLE_BODIES["swimming-in-the-merced"] = function SwimmingInTheMercedBo
       <h2>How to check before you get in</h2>
 
       <p>
-        There is a gauge on the Merced at Pohono Bridge, at the west end of Yosemite Valley, and it is the number the park itself regulates against. The park's own boating rule keys off it: when the Pohono Bridge gauge reads above four feet at eight in the morning, flotation is mandatory for everyone on the water. That threshold is a useful signal even if you have no intention of getting into a boat. If the river is high enough that the Park Service has made life jackets compulsory for rafters, it is not a swimming day, and no amount of the water looking calm at your particular beach changes that.
+        There is a gauge on the Merced at Pohono Bridge, at the west end of Yosemite Valley, and it is the number the park itself regulates against. The park's own boating rule keys off it: when the Pohono Bridge gauge reads above four feet at eight in the morning, flotation is mandatory for everyone on the water. That threshold is a useful signal even if you have no intention of getting into a boat. If the river is high enough that the Park Service has made life jackets compulsory for rafters, it is not a swimming day, and calm water at your particular beach does not change that.
       </p>
 
       <p>
@@ -36,7 +36,7 @@ window.ARTICLE_BODIES["swimming-in-the-merced"] = function SwimmingInTheMercedBo
       <h2>Cold water is what actually gets people</h2>
 
       <p>
-        The mental model most visitors carry is hypothermia: cold water is dangerous because you slowly get too cold. That model kills strong swimmers, because the dangerous part happens in the first minute.
+        Most visitors think of hypothermia first: cold water is dangerous because you slowly get too cold. That model kills strong swimmers, because the dangerous part happens in the first minute.
       </p>
 
       <p>
@@ -76,7 +76,7 @@ window.ARTICLE_BODIES["swimming-in-the-merced"] = function SwimmingInTheMercedBo
       </p>
 
       <p>
-        <strong>Wawona</strong>, on the South Fork of the Merced at 4,000 feet with a much smaller drainage above it, has the warmest swimming in the park and is worth the drive on a heat-wave afternoon. <strong>Tenaya Lake</strong>, at 8,150 feet on Tioga Road, is the opposite proposition: a real sand beach and cold water, covered in <a href="/articles/tuolumne-meadows-in-a-day">the Tuolumne day guide</a>.
+        <strong>Wawona</strong>, on the South Fork of the Merced at 4,000 feet with a much smaller drainage above it, has the warmest swimming in the park and is worth the drive on a heat-wave afternoon. <strong>Tenaya Lake</strong>, at 8,150 feet on Tioga Road, is the opposite: a real sand beach and cold water, covered in <a href="/articles/tuolumne-meadows-in-a-day">the Tuolumne day guide</a>.
       </p>
 
       <h2>Where you must not, which is not a matter of judgment</h2>

@@ -199,7 +199,7 @@ export default function TripReview({ slotted, windowDays, filenameDate, dayForec
           full-basis paragraph still fits beside the button and crowds it. */}
       <div className="trip-review__export-notes">
         <p className="trip-review__note">
-          Saves a .ics file with every event. It works offline, and Apple Calendar, Google
+          Saves a calendar file (.ics) with every event. It works offline, and Apple Calendar, Google
           Calendar, and Outlook all import it. Events carry GPS coordinates and a directions
           link wherever the exact spot is known, plus a 30-minute reminder where your calendar
           honors imported alerts. It is a one-time copy: change the plan here and save the file
@@ -213,12 +213,12 @@ export default function TripReview({ slotted, windowDays, filenameDate, dayForec
         )}
         {exportResult === 'downloaded' && (
           <p className="trip-review__note trip-review__note--result">
-            Downloaded. Open the .ics file and your calendar imports the whole trip.
+            Downloaded. Open the calendar file and your calendar imports the whole trip.
           </p>
         )}
         {exportResult === 'cancelled' && (
           <p className="trip-review__note trip-review__note--result">
-            Share sheet closed, nothing was created. Tap again to retry.
+            The share menu closed, nothing was created. Tap again to retry.
           </p>
         )}
         {exportResult === 'failed' && (

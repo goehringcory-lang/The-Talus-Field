@@ -228,7 +228,7 @@ function FallColorPage({
     className: "ff-lede"
   }, "Color starts at the top of the park and walks down it. The aspens along the Tioga Road go first, in late September. The dogwoods at middle elevations follow. The Valley floor, at 4,000 feet, comes last of the park proper, and the canyon at El Portal after that."), React.createElement("p", {
     className: "ff-lede"
-  }, "The park puts the Valley's maples and black oaks at their showiest from about mid-October, with color usually arriving in late October and lingering until the first heavy winter storm or hard frost. A trip in the last week of October or the first of November catches the most of it in a typical year.")), React.createElement("aside", {
+  }, "The park puts the Valley's maples and black oaks at their showiest from about mid-October, with color usually arriving in late October and lingering until the first heavy winter storm or hard frost. A trip in the last week of October or the first of November catches most of it in a typical year.")), React.createElement("aside", {
     className: "ff-short",
     "aria-label": "The short version"
   }, React.createElement("p", {

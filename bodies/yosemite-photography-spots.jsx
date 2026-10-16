@@ -6,7 +6,7 @@ window.ARTICLE_BODIES["yosemite-photography-spots"] = function YosemitePhotograp
   return (
     <>
       <p className="dropcap">
-        I have stood at <strong>Tunnel View</strong> a few hundred times over twenty seasons, and I have never once had it to myself. There is always somebody with a camera, at dawn in January, at midnight in August, in a whiteout in March. For years I treated this as a reason to go elsewhere, the way locals everywhere treat their postcard views. I was wrong. The famous spots are famous because they work: the geology, the light angles, and the sightlines converge in a handful of places, and generations of photographers have already run the experiment for you. Ansel Adams did not shoot from secret locations. He shot from turnouts.
+        I have stood at <strong>Tunnel View</strong> a few hundred times over twenty seasons, and I have never once had it to myself. There is always somebody with a camera, at dawn in January, at midnight in August, in a whiteout in March. For years I treated this as a reason to go elsewhere, the way locals everywhere treat their postcard views. I was wrong. The famous spots are famous because they work: the geology, the light angles, and the sightlines converge in a handful of places, and generations of photographers have already tested them for you. Ansel Adams did not shoot from secret locations. He shot from turnouts.
       </p>
 
       <p>
@@ -20,7 +20,7 @@ window.ARTICLE_BODIES["yosemite-photography-spots"] = function YosemitePhotograp
       </p>
 
       <p>
-        The most valuable condition in Yosemite photography is a <strong>clearing storm</strong>, not a clear day. When a weather front breaks up over the Valley, fog tears off the walls, clouds snag on the summits, and shafts of light break through. Adams' <strong>"Clearing Winter Storm,"</strong> made from the Tunnel View area, is the reference point for the entire genre. If the forecast shows a storm ending in daylight hours, that is the day to be in the park, not the day to stay home. I wrote more about that calculus in <a href="/articles/yosemite-in-winter">the winter guide</a>.
+        The most valuable condition in Yosemite photography is a <strong>clearing storm</strong>, not a clear day. When a weather front breaks up over the Valley, fog tears off the walls, clouds snag on the summits, and shafts of light break through. Adams' <strong>"Clearing Winter Storm,"</strong> made from the Tunnel View area, is the reference point for the entire genre. If the forecast shows a storm ending in daylight hours, that is the day to be in the park, not the day to stay home. I wrote more about that decision in <a href="/articles/yosemite-in-winter">the winter guide</a>.
       </p>
 
       <blockquote>The picture you drove here for happens in the hour the weather breaks, not the day after.</blockquote>
@@ -52,11 +52,11 @@ window.ARTICLE_BODIES["yosemite-photography-spots"] = function YosemitePhotograp
       </p>
 
       <p>
-        <strong>Swinging Bridge.</strong> A footbridge over the Merced west of Sentinel Bridge, and the standard reflection shot of <strong>Yosemite Falls</strong>, the full upper and lower fall doubled in the river. Morning is the right call here, when light reaches the fall and the water is stillest, and spring is the right season, because by August the fall is often a stain on the rock rather than a waterfall. The seasonal arithmetic of which falls run when is covered in <a href="/articles/yosemite-waterfalls-guide">the waterfalls guide</a>.
+        <strong>Swinging Bridge.</strong> A footbridge over the Merced west of Sentinel Bridge, and the standard reflection shot of <strong>Yosemite Falls</strong>, the full upper and lower fall doubled in the river. Morning is the right call here, when light reaches the fall and the water is stillest, and spring is the right season, because by August the fall is often a stain on the rock rather than a waterfall. Which falls run in which months is covered in <a href="/articles/yosemite-waterfalls-guide">the waterfalls guide</a>.
       </p>
 
       <p>
-        <strong>Olmsted Point.</strong> On <a href="/articles/tioga-road-opening-weekend">Tioga Road</a>, and only reachable while the road is open, roughly late May through October or the first big snow. This is Half Dome from behind, seen up the length of Tenaya Canyon, with glacial erratics scattered across bare granite slabs in the foreground. Late afternoon light rakes the slabs and picks out every boulder; sunset can be excellent when clouds cooperate. Walk a few minutes off the parking lot onto the granite for more compositions.
+        <strong>Olmsted Point.</strong> On <a href="/articles/tioga-road-opening-weekend">Tioga Road</a>, and only reachable while the road is open, roughly late May through October or the first big snow. This is Half Dome from behind, seen up the length of Tenaya Canyon, with glacial erratics (boulders the ice carried in and left behind) scattered across bare granite slabs in the foreground. Late afternoon light rakes the slabs and picks out every boulder; sunset can be excellent when clouds cooperate. Walk a few minutes off the parking lot onto the granite for more compositions.
       </p>
 
       <p>

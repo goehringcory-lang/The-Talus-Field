@@ -46,7 +46,7 @@ window.ARTICLE_BODIES["yosemite-needs-a-reservation-system"] = function Yosemite
       </p>
 
       <p>
-        Think about what that means for the family that drove three hours from the Central Valley on their one day off. They arrive at 10 a.m. because they didn't know the lots fill by seven. They circle for an hour looking for parking. They give up and drive home, or they park illegally and get towed. Either way, they did not recreate in their national park. The Organic Act's promise of enjoyment was a dead letter for them.
+        Think about what that means for the family that drove three hours from the Central Valley on their one day off. They arrive at 10 a.m. because they didn't know the lots fill by seven. They circle for an hour looking for parking. They give up and drive home, or they park illegally and get towed. Either way, they did not get to enjoy their national park. The Organic Act's promise of enjoyment meant nothing to them.
       </p>
 
       <p>
@@ -64,7 +64,7 @@ window.ARTICLE_BODIES["yosemite-needs-a-reservation-system"] = function Yosemite
       </p>
 
       <p>
-        Yosemite's meadows are complex ecosystems, home to rare sedges, native grasses, and invertebrate communities that have evolved over millennia in the Sierra's specific hydrology. A car driven onto a wet meadow compresses the soil, destroys root systems, and creates channels that alter water flow. The damage from a single vehicle can take years to recover. Multiply that by dozens of cars across a holiday weekend, and the cost to the resource is visible.
+        Yosemite's meadows are complex ecosystems, home to rare sedges, native grasses, and invertebrate communities that have evolved over millennia around the way the Sierra's water moves through the ground. A car driven onto a wet meadow compresses the soil, destroys root systems, and creates channels that alter water flow. The damage from a single vehicle can take years to recover. Multiply that by dozens of cars across a holiday weekend, and the cost to the resource is visible.
       </p>
 
       <p>
@@ -96,11 +96,11 @@ window.ARTICLE_BODIES["yosemite-needs-a-reservation-system"] = function Yosemite
       </p>
 
       <p>
-        That analysis is accurate and beside the point. Nobody was arguing that Tuesday mornings in April needed reservations. The problem has always been weekends from May through September, and especially holiday weekends. A season-wide evaluation that averages peak and off-peak days together will always dilute the severity of the peaks. It is an analytical choice that obscures the very problem it should be addressing.
+        That analysis is accurate and beside the point. Nobody was arguing that Tuesday mornings in April needed reservations. The problem has always been weekends from May through September, and especially holiday weekends. A season-wide evaluation that averages peak and off-peak days together will always dilute the severity of the peaks. It hides the very problem it should address.
       </p>
 
       <p>
-        The decision also did not happen in a vacuum. Interior Secretary Doug Burgum's Secretarial Order 3426, issued in April 2025, directed the National Park Service to keep parks "open and accessible" and required superintendent-level closures or service reductions to be reviewed by the NPS Director and the Assistant Secretary. The National Parks Conservation Association called the order "ill-conceived," warning that it "flies in the face of responsible management of national parks, risking both visitor safety and the very resources the Park Service was created and is mandated to protect." Four major parks dropped their reservation systems for 2026: Yosemite, Arches, Glacier, and Mount Rainier. Rocky Mountain National Park, notably, kept its timed entry in place.
+        The decision also has a wider context. Interior Secretary Doug Burgum's Secretarial Order 3426, issued in April 2025, directed the National Park Service to keep parks "open and accessible" and required superintendent-level closures or service reductions to be reviewed by the NPS Director and the Assistant Secretary. The National Parks Conservation Association called the order "ill-conceived," warning that it "flies in the face of responsible management of national parks, risking both visitor safety and the very resources the Park Service was created and is mandated to protect." Four major parks dropped their reservation systems for 2026: Yosemite, Arches, Glacier, and Mount Rainier. Rocky Mountain National Park, notably, kept its timed entry in place.
       </p>
 
       <p>

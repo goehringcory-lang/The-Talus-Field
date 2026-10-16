@@ -189,7 +189,7 @@ function AccessStatusCard() {
                 </Button>
               </div>
               <p className="card__note" style={{ marginTop: 8 }}>
-                Renewing early stacks on your current time. Trips, favorites,
+                Renewing early adds 18 months to the end of your current access. Trips, favorites,
                 downloads, and sign-in all carry over.
               </p>
               {renewError && (
@@ -439,9 +439,9 @@ function SchemeCard() {
   return (
     <div className="card">
       <span className="eyebrow" style={{ display: 'block', marginBottom: 8 }}>
-        Colour scheme
+        Color scheme
       </span>
-      <div className="theme-picker" role="group" aria-label="Colour scheme">
+      <div className="theme-picker" role="group" aria-label="Color scheme">
         {THEME_OPTIONS.map((option) => (
           <button
             key={option}

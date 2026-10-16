@@ -460,7 +460,7 @@ function waitForGoogleMaps(timeoutMs = 8000) {
         clearInterval(interval);
         reject(
           new Error(
-            "Google Maps API didn't load. Check the API key in index.html and that the Maps JavaScript API is enabled in the Cloud console."
+            "The map did not load. Reload the page to try again."
           )
         );
       }
@@ -1803,7 +1803,7 @@ function TripEmailBox({ tripStopIds, onFallbackCopy, onSubscribed }) {
       <p className="map-sidebar__email-fine">
         {state === "failed"
           ? "Could not send just now. The share link was copied instead."
-          : "The link opens your stops on this map. Sending also signs you up for Sunday Field Notes, one short letter a week. Free, leave anytime."}
+          : "The link opens your stops on this map. Sending also signs you up for Sunday Field Notes, one short letter a week. Free, and you can unsubscribe at any time."}
       </p>
     </div>
   );

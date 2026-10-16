@@ -376,7 +376,7 @@ window.ARTICLE_BODIES["yosemite-gateway-towns-compared"] = function YosemiteGate
       </p>
 
       <p>
-        <strong>Pick El Portal</strong> if being inside the park as much as possible is the top priority: sunrise photography, beating the peak-season crowds, a short Valley trip, or any winter trip where road reliability matters. <strong>Skip it</strong> if you want a choice of dinner, you're booking late in summer, or you're travelling with people who'll be back at the room by mid-afternoon. There's very little to do in El Portal that isn't the park.
+        <strong>Pick El Portal</strong> if being inside the park as much as possible is the top priority: sunrise photography, beating the peak-season crowds, a short Valley trip, or any winter trip where road reliability matters. <strong>Skip it</strong> if you want a choice of dinner, you're booking late in summer, or you're traveling with people who'll be back at the room by mid-afternoon. There's very little to do in El Portal that isn't the park.
       </p>
 
       {townAvailability("El Portal", "El Portal, California")}
@@ -581,7 +581,7 @@ window.ARTICLE_BODIES["yosemite-gateway-towns-compared"] = function YosemiteGate
       <p><strong>You're visiting in winter.</strong> El Portal or Mariposa offer the lowest-elevation approach. Check road conditions and chain requirements on every route.</p>
       <p><strong>You have one day and you want the Valley.</strong> El Portal, and swallow the price. The drive you save is a real chunk of the only day you've got.</p>
       <p><strong>You would rather not drive at all.</strong> Mariposa or Merced, and take YARTS. It is the only corridor with year-round service.</p>
-      <p><strong>You're travelling with a large RV or a trailer.</strong> Mariposa or Oakhurst, on the wider approaches. Rule out Hetch Hetchy Road, which bans anything over 25 feet.</p>
+      <p><strong>You're traveling with a large RV or a trailer.</strong> Mariposa or Oakhurst, on the wider approaches. Rule out Hetch Hetchy Road, which bans anything over 25 feet.</p>
       <p><strong>You're flying into San Francisco.</strong> Groveland or Mariposa is on the way.</p>
       <p><strong>You're flying into Fresno.</strong> Oakhurst or Mariposa is on the way.</p>
       <p><strong>You're flying into Reno or driving from Las Vegas.</strong> Consider Lee Vining only if Tioga Road is open for your dates. Otherwise plan a route to a western entrance.</p>

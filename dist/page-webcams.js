@@ -52,7 +52,7 @@ function WebcamsPage({
     className: "hp-reading__column"
   }, React.createElement("section", {
     className: "prose"
-  }, React.createElement("h2", null, "What each camera shows"), React.createElement("p", null, "The four tiles here are still images rather than video streams. They refresh on the order of minutes rather than seconds, which is why a page reload does not always change the picture and why nothing here is going to show you a bear walking past."), CAM_NOTES.map(c => React.createElement("p", {
+  }, React.createElement("h2", null, "What each camera shows"), React.createElement("p", null, "All four are still images rather than video streams. They refresh on the order of minutes rather than seconds, which is why a page reload does not always change the picture and why nothing here is going to show you a bear walking past."), CAM_NOTES.map(c => React.createElement("p", {
     key: c.name
   }, React.createElement("strong", null, c.name, "."), " ", c.from, ". ", c.shows, " Best hour: ", c.best.toLowerCase())), React.createElement("h2", null, "How to actually read them"), React.createElement("p", null, React.createElement("strong", null, "Check two, not one."), " A single camera tells you about one wall. Half Dome plus El Capitan tells you whether the whole Valley is clear, socked in, or hazy, and those are three different days."), React.createElement("p", null, React.createElement("strong", null, "Elevation lies to you."), " The Valley floor sits at 4,000 feet and Tuolumne Meadows at 8,600. A clear Valley camera says nothing about whether it is snowing on", " ", React.createElement("a", {
     href: "/tioga-opening"

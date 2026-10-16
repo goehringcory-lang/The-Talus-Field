@@ -81,7 +81,7 @@ function AdvertisePage({ go }) {
           {/* The first paragraph's comparison, set as a ledger. It restates
               the copy beside it, so assistive tech skips it. */}
           <div className="fj-ledger" aria-hidden="true">
-            <div><span>A search-engine ad</span><b>A colder audience, at a multiple of the cost</b></div>
+            <div><span>A search-engine ad</span><b>A colder audience, at many times the cost</b></div>
             <div><span>A social post</span><b>Larger, and less qualified</b></div>
             <div className="is-ours"><span>The directory</span><b>A moment of decision</b></div>
           </div>

@@ -170,7 +170,7 @@ function PartnersPage({ go }) {
             Tell me the property, the town, and roughly how many bookings a year
             you would cover, and a quote comes back. The first properties are
             onboarded by hand, which is deliberate: it is how the terms get to
-            be sensible for both sides.
+            be fair to both sides.
           </p>
         </div>
       </section>

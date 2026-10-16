@@ -482,7 +482,7 @@ export const BACKUP_PLANS: BackupPlan[] = [
   {
     trigger: 'smoke',
     title: 'The smoke day',
-    note: 'Check the morning AQI and drive to the clear end of the park, usually uphill: smoke pools by elevation and drainage, and Tuolumne at 8,600 feet often sits above the valley\'s smoke. If the whole park reads unhealthy, make it a short day: the smoke-season essentials page covers the thresholds.',
+    note: 'Check the morning air quality index (AQI), then drive to the clear end of the park, usually uphill. Smoke settles low, in valleys and canyons, and Tuolumne at 8,600 feet often sits above the valley\'s smoke. If the whole park reads unhealthy, make it a short day: the smoke-season essentials page covers the thresholds.',
     stops: [
       'olmsted-point',
       'tenaya-lake',

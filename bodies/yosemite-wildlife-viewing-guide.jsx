@@ -24,7 +24,7 @@ window.ARTICLE_BODIES["yosemite-wildlife-viewing-guide"] = function YosemiteWild
       </p>
 
       <p>
-        The first is time. Most of Yosemite's mammals are crepuscular, active in the low light around sunrise and sunset. A meadow that holds twenty grazing mule deer at 6:30 am is empty gravel-bar-flat by 10, when the tour buses arrive to photograph it. The middle of the day, when the Valley is fullest of people, is when it is emptiest of animals. If you do one thing differently because of this article, let it be this: get to a meadow at first light, or stay at one through the last hour before dark.
+        The first is time. Most of Yosemite's mammals are crepuscular, active in the low light around sunrise and sunset. A meadow that holds twenty grazing mule deer at 6:30 am is empty by 10, when the tour buses arrive to photograph it. The middle of the day, when the Valley is fullest of people, is when it is emptiest of animals. If you do one thing differently because of this article, let it be this: get to a meadow at first light, or stay at one through the last hour before dark.
       </p>
 
       <p>
@@ -98,7 +98,7 @@ window.ARTICLE_BODIES["yosemite-wildlife-viewing-guide"] = function YosemiteWild
       </p>
 
       <p>
-        The great gray owl is the harder case, because people do try to see it. Yosemite holds the southernmost breeding population of the largest owl in North America, a relict group, about 200 to 300 birds in all of California, roughly two-thirds of them in Yosemite, isolated in the Sierra for a very long time. They hunt the edges of mid-elevation meadows, Crane Flat and the Glacier Point Road meadows among them, at dawn and dusk. If you are lucky enough to find one, stay back, keep quiet, and do not play recorded calls to draw it in. Call playback is harassment of a state-endangered bird, it is prohibited, and a bird that responds to a phone is burning hunting time it needs. The owl is not content. Let it work.
+        The great gray owl is the harder case, because people do try to see it. Yosemite holds the southernmost breeding population of the largest owl in North America, a relict group, about 200 to 300 birds in all of California, roughly two-thirds of them in Yosemite, isolated in the Sierra for a very long time. They hunt the edges of mid-elevation meadows, Crane Flat and the Glacier Point Road meadows among them, at dawn and dusk. If you are lucky enough to find one, stay back, keep quiet, and do not play recorded calls to draw it in. Call playback harasses a state-endangered bird and is prohibited, and a bird that responds to a phone burns hunting time it needs. The owl is working. Let it work.
       </p>
 
       <h2 id="bats">Bats, and the one rule that goes with them</h2>
@@ -108,7 +108,7 @@ window.ARTICLE_BODIES["yosemite-wildlife-viewing-guide"] = function YosemiteWild
       </p>
 
       <p>
-        Then the rule, which matters more than the watching. The park collects dead bats as a matter of routine and tests them for rabies, and on September 2 it <a href="https://www.nps.gov/yose/learn/news/dead-bat-tests-positive-for-rabies-at-curry-village-in-yosemite-national-park.htm" target="_blank" rel="noopener noreferrer">announced</a> that a big brown bat found dead outside the Curry Village showerhouse on May 18 had tested positive. Nobody is known to have touched it; the previous positive was in July 2025. The park says a very small share of the bats it tests each year come back positive, and the Park Service's own bat page puts the figure in the wild at under one in a hundred, but a bat lying on the ground, flying at people, or making contact with them is up to ten times more likely to be the one, and a bat's bite or scratch can be too small to see or feel. So: never touch or handle a bat, alive or dead. If you find one, keep your distance and tell park staff. Direct contact counts even through clothing or a wing brushing your hair, and so does waking up with a bat in the room or the tent; if any of that happens, wash the spot with soap and water, tell a ranger so the animal can be collected and tested, and contact a healthcare provider as soon as possible. Rabies is preventable with prompt care and fatal without it, which is the whole reason the rule is short.
+        Then the rule, which matters more than the watching. The park collects dead bats as a matter of routine and tests them for rabies, and on September 2 it <a href="https://www.nps.gov/yose/learn/news/dead-bat-tests-positive-for-rabies-at-curry-village-in-yosemite-national-park.htm" target="_blank" rel="noopener noreferrer">announced</a> that a big brown bat found dead outside the Curry Village showerhouse on May 18 had tested positive. Nobody is known to have touched it; the previous positive was in July 2025. The park says a very small share of the bats it tests each year come back positive, and the Park Service's own bat page puts the figure in the wild at under one in a hundred, but a bat lying on the ground, flying at people, or making contact with them is up to ten times more likely to carry rabies, and a bat's bite or scratch can be too small to see or feel. So: never touch or handle a bat, alive or dead. If you find one, keep your distance and tell park staff. Direct contact counts even through clothing or a wing brushing your hair, and so does waking up with a bat in the room or the tent; if any of that happens, wash the spot with soap and water, tell a ranger so the animal can be collected and tested, and contact a healthcare provider as soon as possible. Rabies is preventable with prompt care and fatal without it, which is the whole reason the rule is short.
       </p>
 
       <h2 id="sec-6-the-rules-are-also-the-technique">The rules are also the technique</h2>
@@ -145,7 +145,7 @@ window.ARTICLE_BODIES["yosemite-wildlife-viewing-guide"] = function YosemiteWild
           </tr>
         </thead>
         <tbody>
-          <tr><td>2,000 to 4,000 ft</td><td>Highway 140 corridor, El Portal, the Merced canyon</td><td>Mule deer, coyote, acorn woodpecker, grey squirrel, rattlesnake on warm rock</td><td>Dawn and dusk</td></tr>
+          <tr><td>2,000 to 4,000 ft</td><td>Highway 140 corridor, El Portal, the Merced canyon</td><td>Mule deer, coyote, acorn woodpecker, gray squirrel, rattlesnake on warm rock</td><td>Dawn and dusk</td></tr>
           <tr><td>4,000 ft</td><td>Yosemite Valley floor and its meadows</td><td>Mule deer, coyote, bobcat, black bear, Steller's jay, water ouzel on the river</td><td>First and last light</td></tr>
           <tr><td>4,000 to 7,000 ft</td><td>Wawona, Crane Flat, the Glacier Point Road meadows</td><td>Black bear, great gray owl at meadow edges, Douglas squirrel, black oak woodland birds</td><td>Dawn and dusk</td></tr>
           <tr><td>8,000 to 10,000 ft</td><td>Tuolumne Meadows and Tioga Road, summer only</td><td>Yellow-bellied marmot, pika in the talus, Clark's nutcracker, Belding's ground squirrel</td><td>Mid-morning, when they sun themselves</td></tr>
@@ -168,7 +168,7 @@ window.ARTICLE_BODIES["yosemite-wildlife-viewing-guide"] = function YosemiteWild
       </p>
 
       <p>
-        The confusion is understandable, because a good number of Yosemite's black bears are not black. Brown, cinnamon and blonde colour phases are common here, and a large brown-phase black bear at a roadside looks exactly like what a visitor expects a grizzly to look like. The tells are shape rather than colour: a grizzly has a pronounced shoulder hump, a dished face and long front claws; a black bear has a straight facial profile, no hump, and shorter curved claws.
+        The confusion is understandable, because a good number of Yosemite's black bears are not black. Brown, cinnamon and blonde color phases are common here, and a large brown-phase black bear at a roadside looks exactly like what a visitor expects a grizzly to look like. The tells are shape rather than color: a grizzly has a pronounced shoulder hump, a dished face and long front claws; a black bear has a straight facial profile, no hump, and shorter curved claws.
       </p>
 
       <p>

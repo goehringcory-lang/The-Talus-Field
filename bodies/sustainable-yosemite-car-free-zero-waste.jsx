@@ -405,10 +405,10 @@ window.ARTICLE_BODIES["sustainable-yosemite-car-free-zero-waste"] = function Sus
             <h2>Park once, fill the seats, plug in</h2>
             <div className="sv-prose">
               <p>
-                A car is still the right tool for some trips: a family of four, where per-person bus fares add up against one vehicle pass; a dawn start before the first bus arrives; a trip that spreads from Glacier Point to Tuolumne. If you drive, drive less inside the park. Park once in the Valley and use the shuttle and the bike paths, fill every seat, and stay inside the park or close to it rather than commuting from a distant town each day.
+                A car is still the right tool for some trips: a family of four, where per-person bus fares add up faster than one vehicle pass; a dawn start before the first bus arrives; a trip that spreads from Glacier Point to Tuolumne. If you drive, drive less inside the park. Park once in the Valley and use the shuttle and the bike paths, fill every seat, and stay inside the park or close to it rather than commuting from a distant town each day.
               </p>
               <p>
-                An electric car has more options than most drivers expect. The Park Service lists <strong>chargers in Yosemite Valley, Wawona, El Portal and Tuolumne Meadows</strong>, all with J1772 connectors and all level 2. Among the Valley's chargers are 20 at Curry Village, 10 at the Yosemite Falls parking area, 8 at Yosemite Valley Lodge and 6 at The Ahwahnee; the Wawona Store has 24 and the El Portal Market 2. A level 2 charger is slow, so plug in where you plan to spend the day. The Conservancy is working with the Park Service on more chargers in the Valley and Wawona.
+                An electric car has more options than most drivers expect. The Park Service lists <strong>chargers in Yosemite Valley, Wawona, El Portal and Tuolumne Meadows</strong>, all with J1772 connectors and all level 2. Among the Valley's chargers are 20 at Curry Village, 10 at the Yosemite Falls parking area, 8 at Yosemite Valley Lodge and 6 at The Ahwahnee; the Wawona Store has 24 and the El Portal Market 2. A level 2 charger, the common public kind, is slow, so plug in where you plan to spend the day. The Conservancy is working with the Park Service on more chargers in the Valley and Wawona.
               </p>
             </div>
           </div>
@@ -467,7 +467,7 @@ window.ARTICLE_BODIES["sustainable-yosemite-car-free-zero-waste"] = function Sus
       <section className="hp-wrap hp-section sv-close">
         <div className="sv-prose">
           <p>
-            None of this is a sacrifice. The bus from Merced spares you the drive and the hunt for a parking space. On a busy afternoon a bike often beats the car across the Valley. The work behind the scenes, the bins and the compost and the zero-landfill effort that began in 2015 and that the Park Service, the concessioner and the Conservancy now run together, only works if visitors put things in the right place. That part is yours. For a first trip built around the shuttle line, start with the <a href="/articles/yosemite-in-one-or-two-days">one or two day plan</a> and leave the car at the station.
+            None of this is a sacrifice. The bus from Merced spares you the drive and the hunt for a parking space. On a busy afternoon a bike often beats the car across the Valley. The work behind the scenes, the bins and the compost and the zero-landfill effort that began in 2015, is run jointly by the Park Service, the concessioner and the Conservancy. It only works if visitors put things in the right place. That part is yours. For a first trip built around the shuttle line, start with the <a href="/articles/yosemite-in-one-or-two-days">one or two day plan</a> and leave the car at the station.
           </p>
         </div>
       </section>

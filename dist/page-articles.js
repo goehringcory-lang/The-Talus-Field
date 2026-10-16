@@ -576,11 +576,11 @@ function PlanningSectionPage({
     className: "ps-tip"
   }, React.createElement("p", {
     className: "ps-tip__n"
-  }, "8,600", React.createElement("small", null, "feet")), React.createElement("h3", null, "Pack for your campground's elevation"), React.createElement("p", null, "The Valley sits near 4,000 feet, Tuolumne near 8,600, and a July night there can drop into the high thirties. Look up your campground, not the park, and read the forecast low as optimistic. A 20-degree bag is never wrong here.")), React.createElement("div", {
+  }, "8,600", React.createElement("small", null, "feet")), React.createElement("h3", null, "Pack for your campground's elevation"), React.createElement("p", null, "The Valley sits near 4,000 feet, Tuolumne near 8,600, and a July night there can drop into the high thirties. Look up your campground, not the park, and treat the forecast low as a best case. A 20-degree bag is never wrong here.")), React.createElement("div", {
     className: "ps-tip"
   }, React.createElement("p", {
     className: "ps-tip__n"
-  }, "2", React.createElement("small", null, "pads")), React.createElement("h3", null, "The cold comes from underneath"), React.createElement("p", null, "Most people who are cold at night are losing heat to the ground, not through the bag. A cheap closed-cell foam pad under an air pad fixes more cold nights than a warmer bag. Sleep in a warm hat. Bring earplugs."))), React.createElement("p", {
+  }, "2", React.createElement("small", null, "pads")), React.createElement("h3", null, "The cold comes from underneath"), React.createElement("p", null, "Most people who are cold at night are losing heat to the ground, not through the bag. A cheap closed-cell foam pad under an air pad stops more cold nights than a warmer bag. Sleep in a warm hat. Bring earplugs."))), React.createElement("p", {
     className: "ff-note"
   }, "Bears and what to do when you meet one: ", L("section_planning", "/articles/yosemite-bears-safety-guide", "Yosemite bear safety"), ". When the campfire is allowed: ", L("section_planning", "/articles/yosemite-fire-restrictions-explained", "fire restrictions, explained"), ".")), React.createElement("section", {
     className: "ff-band",
@@ -623,7 +623,7 @@ function PlanningSectionPage({
     className: "ps-steps__when"
   }, "Start day, 8 to 11 a.m."), React.createElement("strong", null, "Collect it in person"), React.createElement("p", null, "A reservation isn't the permit. Pick it up at a wilderness center: Yosemite Valley, Tuolumne Meadows, Big Oak Flat, Wawona or Hetch Hetchy, seasonally. Ask for a late-arrival hold and pickup runs to 5 p.m.")), React.createElement("li", null, React.createElement("span", {
     className: "ps-steps__when"
-  }, "At the counter"), React.createElement("strong", null, "Ask the ranger everything"), React.createElement("p", null, "Water sources, snow on the passes, which bear is working which drainage, and where to park overnight. It is the best trail beta in the park, and it's free."))), React.createElement("div", {
+  }, "At the counter"), React.createElement("strong", null, "Ask the ranger everything"), React.createElement("p", null, "Water sources, snow on the passes, which bear is working which drainage, and where to park overnight. It is the best trail advice in the park, and it's free."))), React.createElement("div", {
     className: "ps-riders"
   }, React.createElement("div", null, React.createElement("h3", null, "Half Dome, as an add-on"), React.createElement("p", null, "If your route passes it, request Half Dome on the permit for $10 a person, under its own daily cap. A two-night Little Yosemite Valley trip is the sane way onto the cables.")), React.createElement("div", null, React.createElement("h3", null, "A bed the night before"), React.createElement("p", null, "The permit lets you sleep in a backpackers' campground the night before you start and the night you come out, no reservation. It solves the dawn start.")), React.createElement("div", null, React.createElement("h3", null, "Better odds, off the Valley"), React.createElement("p", null, "Start from Tuolumne or Hetch Hetchy, where quotas are friendlier, and start midweek. A Tuesday quota is a different universe from a Saturday one."))), React.createElement("ul", {
     className: "ps-rules",

@@ -138,7 +138,7 @@ window.ARTICLE_BODIES["best-yosemite-backpacking-trips"] = function BestYosemite
       </p>
 
       <p>
-        Two exceptions to the camp-anywhere rule matter here. Only at the five High Sierra Camps (Glen Aulin, May Lake, Sunrise, Merced Lake and Vogelsang) and in Little Yosemite Valley must you sleep in a designated campground, and within a mile of a High Sierra Camp that campground is the only legal place to camp. Everywhere else, camp at least four trail miles from Tuolumne Meadows and the other developed areas, at least a mile from any road, and 100 feet from water and trail.
+        Two exceptions to the camp-anywhere rule matter here. Only at the five High Sierra Camps (Glen Aulin, May Lake, Sunrise, Merced Lake and Vogelsang) and in Little Yosemite Valley must you sleep in a designated campground. Within a mile of a High Sierra Camp, that campground is the only legal place to camp. Everywhere else, camp at least four trail miles from Tuolumne Meadows and the other developed areas, at least a mile from any road, and 100 feet from water and trail.
       </p>
 
       <h2>Step two: the application</h2>
@@ -200,7 +200,7 @@ window.ARTICLE_BODIES["best-yosemite-backpacking-trips"] = function BestYosemite
       </p>
 
       <p>
-        A wilderness permit also buys a place to sleep before the trip. Backpackers' campgrounds take permit holders for the night before and the night after, at $8 per person, with no reservation. The one in Tuolumne runs from mid-July to late September; the Valley's, behind North Pines, from mid-April to early October. A night at 8,600 feet before you walk is the cheapest altitude acclimatization there is.
+        A wilderness permit also buys a place to sleep before the trip. Backpackers' campgrounds take permit holders for the night before and the night after, at $8 per person, with no reservation. The one in Tuolumne runs from mid-July to late September; the Valley's, behind North Pines, from mid-April to early October. A night at 8,600 feet before you walk is a cheap way to acclimatize.
       </p>
 
       <Placeholder
@@ -254,7 +254,7 @@ window.ARTICLE_BODIES["best-yosemite-backpacking-trips"] = function BestYosemite
       </p>
 
       <p>
-        Camping at May Lake is in the designated backpackers' campground beside the High Sierra Camp, with shared food lockers. Fires go only in the communal ring, when fire restrictions allow. The trailhead itself is 1.75 miles up an unpaved road off Tioga Road, and early in the summer that road can still be closed, adding 1.75 miles each way on foot. The catch is demand: the park rates May Lake's permit demand as very high, so it is a seven-day-release and midweek trip for most people.
+        Camping at May Lake is in the designated backpackers' campground beside the High Sierra Camp, with shared food lockers. Fires go only in the communal ring, when fire restrictions allow. The trailhead itself is 1.75 miles up an unpaved road off Tioga Road, and early in the summer that road can still be closed, adding 1.75 miles each way on foot. The catch is demand. The park rates May Lake's permit demand as very high, so most people get it through the seven-day release, on a midweek date.
       </p>
 
       <p>
@@ -322,7 +322,7 @@ window.ARTICLE_BODIES["best-yosemite-backpacking-trips"] = function BestYosemite
       />
 
       <p>
-        That is why it comes fourth. Sleeping above 10,000 feet the night after leaving the coast is close to the exact profile altitude guidance warns against, and the first-trip notes on altitude apply in full here. Spend the night before in the Tuolumne backpackers' campground at 8,600 feet and walk in the next morning. Two rules change at this height: <strong>no fires at all</strong>, since fires are banned above 9,600 feet and specifically at the Vogelsang campground, and a warmer sleeping bag than the calendar suggests.
+        That is why it comes fourth. Sleeping above 10,000 feet the night after leaving the coast is close to the pattern altitude guidance warns against, and the first-trip notes on altitude apply in full here. Spend the night before in the Tuolumne backpackers' campground at 8,600 feet and walk in the next morning. Two rules change at this height: <strong>no fires at all</strong>, since fires are banned above 9,600 feet and specifically at the Vogelsang campground, and a warmer sleeping bag than the calendar suggests.
       </p>
 
       <p>
@@ -346,7 +346,7 @@ window.ARTICLE_BODIES["best-yosemite-backpacking-trips"] = function BestYosemite
       />
 
       <p>
-        The official trail ends at the first lake. A well-used informal path continues to the second and third, and the farther you go the fewer people you share the basin with. That is the quiet reason it is my favorite: the park rates its permit demand as medium, where Glen Aulin and Vogelsang run high and May Lake very high. It is a full high-country trip, with the granite, the lakes and the peak at sunset, that a seven-day-release alarm usually wins.
+        The official trail ends at the first lake. A well-used informal path continues to the second and third, and the farther you go the fewer people you share the basin with. That is the quiet reason it is my favorite: the park rates its permit demand as medium, where Glen Aulin and Vogelsang run high and May Lake very high. It is a full high-country trip, with granite, lakes and a peak at sunset, and a seven-day-release alarm often wins it.
       </p>
 
       <p>

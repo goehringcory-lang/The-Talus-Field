@@ -332,7 +332,7 @@ window.ARTICLE_BODIES["when-to-visit-yosemite"] = function WhenToVisitYosemiteBo
           </div>
         </div>
         <figcaption>
-          The grey bars are the hours the Park Service itself treated as over capacity when it ran reservations: 2022, 2024 and 2025. The green bars are this article's advice, not a Park Service rule. Hourly entrance counts are not published, so none are drawn.
+          The gray bars are the hours the Park Service itself treated as over capacity when it ran reservations: 2022, 2024 and 2025. The green bars are this article's advice, not a Park Service rule. Hourly entrance counts are not published, so none are drawn.
         </figcaption>
       </figure>
     );
@@ -419,7 +419,7 @@ window.ARTICLE_BODIES["when-to-visit-yosemite"] = function WhenToVisitYosemiteBo
                 March, the first full month after the no-reservation news, was up 45 percent, although the comparison flatters 2026 a little because storms held March 2025 down. February was up 12 percent and April up 2 percent. Headlines move visitation, and this year's headline was that Yosemite is open with no ticket required.
               </p>
               <p>
-                June came in at 634,508 visits, the second-busiest June on record behind only 2016. July was 654,356 by the August reports, up 6.1 percent on July 2025. A Park Service summary published September 1 quotes July as 665,877, up 8 percent, and the first seven months as about 2.59 million, up 9.5 percent. The counts do not agree to the visit, so read them as eight to ten percent ahead, not as a decimal.
+                June came in at 634,508 visits, the second-busiest June on record behind only 2016. July was 654,356 by the August reports, up 6.1 percent on July 2025. A Park Service summary published September 1 quotes July as 665,877, up 8 percent, and the first seven months as about 2.59 million, up 9.5 percent. The counts do not match to the visit, so read them as eight to ten percent ahead, not as a precise figure.
               </p>
             </div>
           </div>
@@ -477,7 +477,7 @@ window.ARTICLE_BODIES["when-to-visit-yosemite"] = function WhenToVisitYosemiteBo
             <p className="hp-eyebrow">THE PROJECTION</p>
             <h2>How I built it, and what it says</h2>
             <p className="ff-lede">
-              This is the site's projection, not a Park Service number. It rests on one count and one assumption, and it holds up across a wide range of the assumption.
+              This is the site's projection, not a Park Service number. It rests on one count and one assumption, and the answer holds across a wide range of that assumption.
             </p>
             <ol className="wv-steps">
               <li><strong>Start with what is counted.</strong> January to July 2026: {fmt(YTD26)} visits.</li>

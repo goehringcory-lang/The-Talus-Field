@@ -362,7 +362,7 @@ function waitForGoogleMaps(timeoutMs = 8000) {
         resolve(window.google.maps);
       } else if (Date.now() - start > timeoutMs) {
         clearInterval(interval);
-        reject(new Error("Google Maps API didn't load. Check the API key in index.html and that the Maps JavaScript API is enabled in the Cloud console."));
+        reject(new Error("The map did not load. Reload the page to try again."));
       }
     }, 100);
   });
@@ -1500,7 +1500,7 @@ function TripEmailBox({
     disabled: state === "sending"
   }, state === "sending" ? "Sending…" : "Send the trip →")), React.createElement("p", {
     className: "map-sidebar__email-fine"
-  }, state === "failed" ? "Could not send just now. The share link was copied instead." : "The link opens your stops on this map. Sending also signs you up for Sunday Field Notes, one short letter a week. Free, leave anytime."));
+  }, state === "failed" ? "Could not send just now. The share link was copied instead." : "The link opens your stops on this map. Sending also signs you up for Sunday Field Notes, one short letter a week. Free, and you can unsubscribe at any time."));
 }
 function TripNextSteps({
   tripFeatures,

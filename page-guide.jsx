@@ -1525,7 +1525,7 @@ function GuideAfterPurchase({ go }) {
         >
           terms
         </a>
-        . The same address is the fix for a lost email or a sign-in that will not take. There is no ticket system and no bot: it is the author's inbox.
+        . The same address helps with a lost email or a sign-in that will not work. There is no ticket system and no bot: it is the author's inbox.
       </p>
     </div>
   );
@@ -1964,7 +1964,7 @@ function GuidePage({ go }) {
               <AppShots shots={NEW_SHOTS} />
 
               <p>
-                Also new, and not pictured here: the 3D map now carries the park's infrastructure, the five entrances, the visitor and wilderness centers with their hours, the eighteen Valley shuttle stops numbered as the park numbers them, picnic areas, gas, EV charging, showers, laundry, stores and the clinic, every kind of pin drawn with its own mark, and a "Go to" menu that flies the map to a region. The map itself has its own section further down this page. The front page's conditions panel gained live parking-lot status, and the same status prints on the map's parking pins. The Secret Guide grew by thirteen entries, and every one of them, along with the ten new photographs, arrived as a silent update. Nothing here cost an existing buyer anything, and that is the arrangement for the rest of the 18 months.
+                Also new, and not pictured here: the 3D map now carries the park's facilities, the five entrances, the visitor and wilderness centers with their hours, the eighteen Valley shuttle stops numbered as the park numbers them, picnic areas, gas, EV charging, showers, laundry, stores and the clinic, every kind of pin drawn with its own mark, and a "Go to" menu that flies the map to a region. The map itself has its own section further down this page. The front page's conditions panel gained live parking-lot status, and the same status prints on the map's parking pins. The Secret Guide grew by thirteen entries, and every one of them, along with the ten new photographs, arrived as a silent update. Nothing here cost an existing buyer anything, and that is the arrangement for the rest of the 18 months.
               </p>
             </details>
           </div>

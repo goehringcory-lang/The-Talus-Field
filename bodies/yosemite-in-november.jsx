@@ -95,7 +95,7 @@ window.ARTICLE_BODIES["yosemite-in-november"] = function YosemiteInNovemberBody(
       <h2>The trails: what is down, what is closing</h2>
 
       <p>
-        <strong>The Half Dome cables are down.</strong> In every season of the park's record from 2014 through 2025 they came down in October, on dates from October 9 to October 22. No November itinerary includes the summit by the cables.
+        <strong>The Half Dome cables are down.</strong> In every season of the park's record from 2014 through 2025 they came down in October, on dates from October 9 to October 22. No November trip can reach the summit by the cables.
       </p>
 
       <p>

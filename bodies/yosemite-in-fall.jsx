@@ -62,7 +62,7 @@ window.ARTICLE_BODIES["yosemite-in-fall"] = function YosemiteInFallBody() {
       </p>
 
       <p>
-        Four species do the work. <strong>California black oak</strong> is the backbone, turning gold and then a deep bronze across the Valley meadows, and it is the tree that makes an October photograph of Cook's Meadow look nothing like a July one. <strong>Bigleaf maple</strong> goes clear yellow and stands out hard against the dark conifers behind it. <strong>Pacific dogwood</strong>, the same tree that produces the white flowers people drive up for in May, turns red and pink in October, and it is best where its branch structure frames something: El Capitan Meadow and the Cook's Meadow loop are the reliable spots. <strong>Black cottonwood</strong> lights up yellow along the Merced River, which is why the river corridor is the single best fall drive in the park.
+        Four species do the work. <strong>California black oak</strong> is the backbone, turning gold and then a deep bronze across the Valley meadows, and it is the tree that makes an October photograph of Cook's Meadow look nothing like a July one. <strong>Bigleaf maple</strong> goes clear yellow and stands out hard against the dark conifers behind it. <strong>Pacific dogwood</strong>, the same tree that produces the white flowers people drive up for in May, turns red and pink in October, and it is best where its branch structure frames something: El Capitan Meadow and the Cook's Meadow loop are the reliable spots. <strong>Black cottonwood</strong> lights up yellow along the Merced River, which makes the river corridor the fall drive to take.
       </p>
 
       <p>
@@ -103,7 +103,7 @@ window.ARTICLE_BODIES["yosemite-in-fall"] = function YosemiteInFallBody() {
       </p>
 
       <p>
-        This is good work, and it is the reason a fire in these units later will not be catastrophic. It also means your October photographs may have haze in them and your throat may be scratchy for a day, and it is not something you can forecast months out, because the burns are scheduled against weather windows and get postponed constantly. The practical move is to check conditions when you arrive rather than planning around it. Note that this is a different phenomenon from summer wildfire smoke, which behaves differently and is worth understanding separately: <a href="/articles/yosemite-during-smoke-season">the smoke season guide</a> covers the geography of how smoke sits in these canyons and the real-time tools for reading it.
+        This is good work. It is meant to keep a fire in these units from becoming catastrophic later. It also means your October photographs may have haze in them and your throat may be scratchy for a day, and it is not something you can forecast months out, because the burns are scheduled against weather windows and get postponed constantly. The practical move is to check conditions when you arrive rather than planning around it. Note that this is a different phenomenon from summer wildfire smoke, which behaves differently and is worth understanding separately: <a href="/articles/yosemite-during-smoke-season">the smoke season guide</a> covers the geography of how smoke sits in these canyons and the real-time tools for reading it.
       </p>
 
       <h2>Weather, and the thing that catches people</h2>

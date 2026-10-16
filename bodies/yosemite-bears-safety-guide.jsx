@@ -145,7 +145,7 @@ window.ARTICLE_BODIES["yosemite-bears-safety-guide"] = function YosemiteBearsSaf
       </p>
 
       <p>
-        What I tell visitors, and I tell them this constantly, is that the river is more dangerous than the bears. The granite is more dangerous than the bears. Your own car, driving tired on <a href="/articles/yosemite-gateway-towns-compared">Highway 140</a> at 10 PM after a long day of hiking, is more dangerous than the bears. Yosemite's bears are not trying to hurt you. They are trying to eat acorns and berries and occasionally whatever you left in your cooler. The fear is disproportionate to the risk by orders of magnitude. If you want to worry about something in this park, worry about the heat.
+        What I tell visitors, and I tell them this constantly, is that the river is more dangerous than the bears. The granite is more dangerous than the bears. Your own car, driving tired on <a href="/articles/yosemite-gateway-towns-compared">Highway 140</a> at 10 p.m. after a long day of hiking, is more dangerous than the bears. Yosemite's bears are not trying to hurt you. They are trying to eat acorns and berries and occasionally whatever you left in your cooler. The fear is disproportionate to the risk by orders of magnitude. If you want to worry about something in this park, worry about the heat.
       </p>
 
       <NatureNotesFilm id="black-bears" title="Black Bears" youtubeId="ijIePq9gGfo" episode={26}
@@ -241,7 +241,7 @@ window.ARTICLE_BODIES["yosemite-bears-safety-guide"] = function YosemiteBearsSaf
       </figure>
 
       <p>
-        The empty cooler provision is the one that trips everyone up. Bears recognize the shape. A cooler under a blanket in your trunk is still a cooler to a bear that has learned, through years of operant conditioning, that cooler shapes contain food. It does not matter that this particular cooler is empty. The bear doesn't know that, and the regulation doesn't care.
+        The empty cooler provision is the one that trips everyone up. Bears recognize the shape. A cooler under a blanket in your trunk is still a cooler to a bear that has learned, through years of trial and reward (what scientists call operant conditioning), that cooler shapes contain food. It does not matter that this particular cooler is empty. The bear doesn't know that, and the regulation doesn't care.
       </p>
 
       <p>
@@ -293,7 +293,7 @@ window.ARTICLE_BODIES["yosemite-bears-safety-guide"] = function YosemiteBearsSaf
       </p>
 
       <p>
-        I have watched people form a semicircle around a sow and two cubs in Cook's Meadow while she stress-huffed and jaw-popped and tried to find an exit. I have watched people sprint toward a bear in Upper Pines Campground with their phones out. I have watched a man chase a bear into the tree line for a better angle. Behavior like this is the reason bears become habituated, then food-conditioned, then "problem bears," and then dead bears. That escalation is well-documented and entirely preventable.
+        I have watched people form a semicircle around a sow and two cubs in Cook's Meadow while she stress-huffed and jaw-popped and tried to find an exit. I have watched people sprint toward a bear in Upper Pines Campground with their phones out. I have watched a man chase a bear into the tree line for a better angle. Behavior like this is how bears become habituated (used to people and no longer wary of them), then food-conditioned, then "problem bears," and then dead bears. That escalation is well-documented and entirely preventable.
       </p>
 
       <p>

@@ -61,7 +61,7 @@ window.ARTICLE_BODIES["pets-in-yosemite"] = function PetsInYosemiteBody() {
       <h2>The honest recommendation</h2>
 
       <p>
-        Should you bring the dog to Yosemite? If your trip is a campground-based, meadow-strolling, scenery-and-picnics sort of visit: yes, cheerfully. The dog gets pavement miles with world-class views, and you get a warm alarm clock. If your trip is built around trails, no. Summer boarding options exist in <a href="/articles/yosemite-gateway-towns-compared">the gateway towns</a> (Oakhurst and Mariposa both have kennels; book ahead in peak season), and a dog waiting comfortably in air conditioning beats a dog waiting illegally in a hot car by every measure, including the citation. Plan the trip first, then decide which kind of trip it is.
+        Should you bring the dog to Yosemite? If your trip is a campground-based, meadow-strolling, scenery-and-picnics sort of visit: yes, cheerfully. The dog gets pavement miles with long views, and you get a warm alarm clock. If your trip is built around trails, no. Summer boarding options exist in <a href="/articles/yosemite-gateway-towns-compared">the gateway towns</a> (Oakhurst and Mariposa both have kennels; book ahead in peak season), and a dog waiting comfortably in air conditioning beats a dog waiting illegally in a hot car by every measure, including the citation. Plan the trip first, then decide which kind of trip it is.
       </p>
 
       <LodgingCta

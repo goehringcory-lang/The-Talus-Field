@@ -140,7 +140,7 @@ export default function DownloadManager({
       <div className="eyebrow" style={{ marginBottom: 6 }}>Offline</div>
       {intro ?? (
         <p style={{ color: 'var(--ink-2)', fontSize: 14, lineHeight: 1.55, margin: '0 0 8px' }}>
-          Download the guide before you leave wifi. Everything below together is
+          Download the guide while you still have wifi. Everything below together is
           about {formatBytes(totalBytes)}; once it's on the device, the whole app
           works offline.
         </p>

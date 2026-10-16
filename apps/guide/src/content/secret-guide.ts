@@ -56,7 +56,7 @@ export const SECRET_GUIDE_CATEGORIES: {
     id: 'parking',
     title: 'Parking',
     tagline:
-      'Where to put the car when the lot you wanted is full: the small pullouts, the lots that hold out, and the rules that come with them.',
+      'Where to put the car when the lot you wanted is full: the small pullouts, the lots that still have room, and the rules that come with them.',
     photo: 'tenaya-lake-lots',
   },
   {
@@ -120,7 +120,7 @@ export const SECRET_ROUTES: SecretRoute[] = [
     id: 'quiet-valley-day',
     label: 'A day',
     title: 'The Valley, quietly',
-    dek: 'The Valley floor at the hours and places the crowd is not, from a foot-high waterfall at dawn to headlamps on El Capitan after dark.',
+    dek: 'The Valley floor at the hours and in the places the crowds are not, from a foot-high waterfall at dawn to headlamps on El Capitan after dark.',
     season: 'Works all year. The reflection is best in May and early June; the tour runs on the hotel\'s own calendar.',
     stops: [
       { id: 'fern-spring', when: 'First light', note: 'The smallest waterfall in the park, its ferns backlit by the low morning light.' },
@@ -134,10 +134,10 @@ export const SECRET_ROUTES: SecretRoute[] = [
     id: 'tioga-into-the-night',
     label: 'An afternoon',
     title: 'Tioga Road, into the night',
-    dek: 'West to east across the high country as the day empties out, then back to the best drive-to dark sky in the park.',
+    dek: 'West to east across the high country as the day empties out, then ends at the best dark sky in the park you can drive to.',
     season: 'Tioga Road season only, roughly June to October. Pick a new-moon week for the last stop.',
     stops: [
-      { id: 'siesta-lake', when: 'Afternoon', note: 'The unsigned pond the road bends around, a shoulder pullout and fifteen minutes.' },
+      { id: 'siesta-lake', when: 'Afternoon', note: 'The unsigned pond the road bends around, a roadside pullout and fifteen minutes.' },
       { id: 'tenaya-lake-lots', when: 'Late afternoon', note: 'Park at the Sunrise trailhead lot at the west end, usually the last of the three to fill.' },
       { id: 'pothole-dome-sunset', when: 'Last hour of light', note: 'Ten or fifteen minutes up the granite to the whole Tuolumne basin turning gold.' },
       { id: 'olmsted-point-at-night', when: 'After dark', note: 'Flat slabs thirty feet from the car at 8,300 feet, and the Milky Way.' },
@@ -165,7 +165,7 @@ export const SECRET_ROUTES: SecretRoute[] = [
     stops: [
       { id: 'foresta-barns-loop', when: 'Afternoon', note: 'The neighborhood loop past the old barns and bridge, with El Capitan and Half Dome from new angles.' },
       { id: 'tuolumne-grove-old-road', when: 'Late afternoon', note: 'A mile down the 1874 wagon road to the sequoias and the walk-through Dead Giant.' },
-      { id: 'great-gray-owl-dusk', when: 'The hour before sunset', note: 'Stand still at the Crane Flat meadow edge and scan the low snags.' },
+      { id: 'great-gray-owl-dusk', when: 'The hour before sunset', note: 'Stand still at the Crane Flat meadow edge and scan the low dead trees (snags).' },
     ],
   },
 ]

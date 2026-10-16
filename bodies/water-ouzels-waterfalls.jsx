@@ -13,7 +13,7 @@ window.ARTICLE_BODIES["water-ouzels-waterfalls"] = function WaterOuzelsBody() {
         This is the water ouzel, also called the American dipper (<em>Cinclus mexicanus</em>). It's the most specialized bird in the Yosemite high country, and it has engineered its entire life around the specific conditions that make <a href="/articles/yosemite-waterfalls-guide">peak-season waterfalls</a> possible.
       </p>
 
-      <p>To understand how an ouzel survives in that torrent is to understand a fundamental principle of ecological specialization: extreme adaptation to a specific environment creates extraordinary capabilities that seem impossible to anyone unfamiliar with that environment.</p>
+      <p>How does an ouzel survive in that torrent? The answer is specialization. A bird that adapts fully to one environment can do things that look impossible to anyone who has never been there.</p>
 
       <h2>The ouzel's impossible anatomy</h2>
 
@@ -26,7 +26,7 @@ window.ARTICLE_BODIES["water-ouzels-waterfalls"] = function WaterOuzelsBody() {
       </p>
 
       <p>
-        The ouzel also has a peculiar way of getting about underwater, which is that it has two of them. It swims, using its short wings to fly through the water after prey. And it walks, gripping the rock with its feet and keeping contact with the bottom against a current that would carry off anything else its size. The walking is what produces the apparently impossible image of a bird stepping directly into a waterfall and not being swept away.
+        The ouzel has two ways of getting about underwater. It swims, using its short wings to fly through the water after prey. And it walks, gripping the rock with its feet and keeping contact with the bottom against a current that would carry off anything else its size. The walking is what produces the apparently impossible image of a bird stepping directly into a waterfall and not being swept away.
       </p>
 
       <p>
@@ -48,13 +48,13 @@ window.ARTICLE_BODIES["water-ouzels-waterfalls"] = function WaterOuzelsBody() {
       </p>
 
       <p>
-        This is why the presence of ouzels in a stream is a positive indicator of stream health. An ouzel population indicates that the stream still has the cold, fast-moving water and rich population of specialized aquatic insects that the bird needs. The absence of ouzels (if they historically were present) might indicate water quality degradation, temperature changes, or other modifications that have made the stream less suitable for the bird's specialized diet.
+        This is why ouzels are a good sign of stream health. An ouzel population indicates that the stream still has the cold, fast-moving water and rich population of specialized aquatic insects that the bird needs. The absence of ouzels (if they historically were present) might indicate water quality degradation, temperature changes, or other modifications that have made the stream less suitable for the bird's specialized diet.
       </p>
 
       <h2>The nesting ecology of a specialist</h2>
 
       <p>
-        An ouzel's nest is one of the most precisely engineered bird nests in North America. The nest is a dome, built from streamside moss and plant fibre, with the entrance in the side: a green ball of living moss with a doorway, kept watered by the spray. But the nest location is what's remarkable. Ouzels build their nests in places that most other birds would never consider: in rock crevices directly adjacent to or even slightly behind a stream cascade, where the mist from the falling water regularly soaks the nest.
+        An ouzel's nest is one of the most precisely engineered bird nests in North America. The nest is a dome, built from streamside moss and plant fiber, with the entrance in the side: a green ball of living moss with a doorway, kept watered by the spray. But the nest location is what's remarkable. Ouzels build their nests in places that most other birds would never consider: in rock crevices directly adjacent to or even slightly behind a stream cascade, where the mist from the falling water regularly soaks the nest.
       </p>
 
       <p>
@@ -80,7 +80,7 @@ window.ARTICLE_BODIES["water-ouzels-waterfalls"] = function WaterOuzelsBody() {
       </p>
 
       <p>
-        Ouzels are not random. They don't establish themselves in streams randomly. They're found in specific locations, predictably: in cascade environments, in cold, fast-moving water, from the Valley floor (the 1922 and 1930s Nature Notes place them at Happy Isles and El Portal) to the high country. Knowing this, you can predict where ouzels might be found, and when their absence indicates something about how the landscape has changed.
+        Ouzels are not random. They do not settle in streams at random. They're found in specific locations, predictably: in cascade environments, in cold, fast-moving water, from the Valley floor (the 1922 and 1930s Nature Notes place them at Happy Isles and El Portal) to the high country. Knowing this, you can predict where ouzels might be found, and when their absence indicates something about how the landscape has changed.
       </p>
 
       <p>

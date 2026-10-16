@@ -138,7 +138,7 @@ function ChecklistPage({
     r: "a:yosemite-without-reservations-2026"
   }, "no entrance reservation is required"), ". A standard pass is all you need.")), React.createElement(CheckSheet, {
     label: "II · What to book in advance",
-    title: "The non-flexible reservations"
+    title: "Reservations you cannot move"
   }, React.createElement("label", {
     className: "fj-check"
   }, React.createElement("input", {

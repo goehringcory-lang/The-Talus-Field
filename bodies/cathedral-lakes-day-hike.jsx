@@ -10,7 +10,7 @@ window.ARTICLE_BODIES["cathedral-lakes-day-hike"] = function CathedralLakesDayHi
       </p>
 
       <p>
-        Cathedral Lakes has been one of Yosemite's standard high-country day hikes since John Muir, tending sheep in the high country in 1869, described the peak in <em>My First Summer in the Sierra</em> as "one of Nature's cathedrals, hewn from the living rock." It is on every best hikes in Yosemite list. It still earns the listing.
+        Cathedral Lakes has been one of Yosemite's standard high-country day hikes since John Muir, tending sheep in the high country in 1869, described the peak in <em>My First Summer in the Sierra</em> as "one of Nature's cathedrals, hewn from the living rock." It is on every list of the best hikes in Yosemite. It still earns the spot.
       </p>
 
       <p>
@@ -56,7 +56,7 @@ window.ARTICLE_BODIES["cathedral-lakes-day-hike"] = function CathedralLakesDayHi
       </p>
 
       <p>
-        This is one of the busier high-country day hikes. On summer weekends the trail is crowded at peak hours. The lakes themselves are large enough to absorb the crowd, and you can almost always find a granite shelf to yourself along the shore. But if you want solitude, weekday hikes or early starts (trailhead by 7 a.m.) are dramatically better. If you're basing yourself in the Valley or a <a href="/articles/yosemite-gateway-towns-compared">gateway town</a>, the drive to the trailhead takes roughly 90 minutes from Yosemite Village via Tioga Road.
+        This is one of the busier high-country day hikes. On summer weekends the trail is crowded at peak hours. The lakes themselves are large enough to absorb the crowd, and you can almost always find a granite shelf to yourself along the shore. But if you want solitude, weekday hikes or early starts (trailhead by 7 a.m.) are much better. If you're basing yourself in the Valley or a <a href="/articles/yosemite-gateway-towns-compared">gateway town</a>, the drive to the trailhead takes roughly 90 minutes from Yosemite Village via Tioga Road.
       </p>
 
       <h2>What to see on the Cathedral Lakes trail</h2>
@@ -102,7 +102,7 @@ window.ARTICLE_BODIES["cathedral-lakes-day-hike"] = function CathedralLakesDayHi
       </p>
 
       <p>
-        The peak is climbable. The standard route is a fifth-class climb of about 700 vertical feet from the base, often done as a long day from Tuolumne. Muir is generally credited with the first ascent, in 1869. The Park Service does not encourage casual visitors to attempt it. If you have climbing experience and want to try, get current beta from the Yosemite climber community before going.
+        The peak is climbable. The standard route is a fifth-class climb (the grade for technical rock climbing, which calls for a rope and protection) of about 700 vertical feet from the base, often done as a long day from Tuolumne. Muir is generally credited with the first ascent, in 1869. The Park Service does not encourage casual visitors to attempt it. If you have climbing experience and want to try, get current route information, or "beta," from the Yosemite climber community before going.
       </p>
 
       <h2>The Muir connection</h2>
@@ -144,7 +144,7 @@ window.ARTICLE_BODIES["cathedral-lakes-day-hike"] = function CathedralLakesDayHi
       </p>
 
       <p>
-        Don't swim before July. The water is too cold and snow patches around the lake make the shore slippery and unstable. The lake does not fully ice out in many years until late June. And don't rely on the trail being clear of snow before mid-July. I've seen the upper switchbacks buried into early July in heavy-snow years. Bring traction devices if you're hiking before mid-July, and be willing to turn around at the snowline.
+        Don't swim before July. The water is too cold and snow patches around the lake make the shore slippery and unstable. In many years the lake is not fully free of ice until late June. And don't rely on the trail being clear of snow before mid-July. I've seen the upper switchbacks buried into early July in heavy-snow years. Bring traction devices if you're hiking before mid-July, and be willing to turn around at the snowline.
       </p>
 
       <h2>Cathedral Pass to Sunrise: the through-hike option</h2>

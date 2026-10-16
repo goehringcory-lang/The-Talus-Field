@@ -235,7 +235,7 @@ function DatesCalendarGate({ children }) {
       location="dates_calendar_gate"
       tag="dates-calendar"
       heading="Every date, in one calendar file"
-      blurb="The whole set in one download. It comes with Sunday Field Notes, which carries a dated line the week a window opens. Free, leave anytime."
+      blurb="The whole set in one download. It comes with Sunday Field Notes, which carries a dated line the week a window opens. Free, and you can unsubscribe at any time."
       cta="Get the calendar →"
       skipLabel="No thanks, just the file"
       className="dates__gate"

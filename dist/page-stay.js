@@ -1570,7 +1570,7 @@ function StayPage({
     className: "stay-fallback__main"
   }, React.createElement("div", {
     className: "stay-plate__eyebrow"
-  }, "In-park inventory gone for your dates? For summer it usually is."), React.createElement("h2", {
+  }, "Rooms in the park gone for your dates? For summer it usually is."), React.createElement("h2", {
     className: "stay-fallback__title"
   }, "Hold a room outside. Then watch for one ", React.createElement("em", null, "inside.")), React.createElement("ol", {
     className: "stay-fallback__steps"
@@ -1718,7 +1718,7 @@ function StayPage({
     href: "/articles/yosemite-trip-cost-budget"
   }, "What a Yosemite trip costs"), React.createElement("span", {
     className: "relrail__dek"
-  }, "The arithmetic of each lodging approach across a whole trip.")), React.createElement("li", null, React.createElement("a", {
+  }, "What each lodging approach costs across a whole trip.")), React.createElement("li", null, React.createElement("a", {
     href: "/articles/getting-to-yosemite"
   }, "Getting to Yosemite"), React.createElement("span", {
     className: "relrail__dek"
@@ -1731,7 +1731,7 @@ function StayPage({
     onClick: e => goRoute(e, "itineraries")
   }, "Itineraries"), React.createElement("span", {
     className: "relrail__dek"
-  }, "One, two, and three-day plans to hang the nights on."))), React.createElement("p", {
+  }, "One-, two- and three-day plans to build your nights around."))), React.createElement("p", {
     className: "article-aff-note hp-stay__disclosure"
   }, "The availability links on this page are affiliate links. If you book through one, The Talus Field may earn a small commission at no extra cost to you. Which property is recommended, and in what order, does not change for it: the Ahwahnee and the Wawona Hotel are here on their merits and the closed one carries no link at all, the in-park cards send you to the concessioner and earn nothing, and the line under some of them, for when the park is sold out, searches the nearest gateway town and says so. The named lodges in the corridor lists are described because the gateway reporting already covers them, and those links search the town rather than the property, which is the search that answers what is left on your dates.", " ", React.createElement("a", {
     href: "/affiliate"

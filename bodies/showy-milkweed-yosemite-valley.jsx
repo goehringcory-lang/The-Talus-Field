@@ -102,7 +102,7 @@ window.ARTICLE_BODIES["showy-milkweed-yosemite-valley"] = function ShowyMilkweed
       <h2>Why monarchs depend on milkweed</h2>
 
       <p>
-        The reason milkweed matters out of all proportion to its looks is the monarch butterfly. Monarchs are what biologists call an obligate specialist: the adult will drink nectar from many flowers, but the female lays her eggs only on milkweed, and the caterpillars eat only milkweed leaves. No milkweed, no monarchs. It is that direct.
+        The reason milkweed matters out of all proportion to its looks is the monarch butterfly. Biologists call monarchs obligate specialists, meaning they depend on one kind of plant. The adult will drink nectar from many flowers, but the female lays her eggs only on milkweed, and the caterpillars eat only milkweed leaves. No milkweed, no monarchs.
       </p>
 
       <p>
@@ -117,7 +117,7 @@ window.ARTICLE_BODIES["showy-milkweed-yosemite-valley"] = function ShowyMilkweed
       </figure>
 
       <p>
-        The western monarch, the population that breeds across the Sierra in summer and clusters on the California coast to overwinter, has fallen hard. Overwintering numbers, estimated in the low millions in the 1980s, have dropped to a small fraction of that, and in some recent winters the coastal count has come in below ten thousand butterflies. The reasons are tangled: climate, pesticides, and the disappearance of the coastal groves among them, but the vanishing of breeding milkweed across the West is high on every biologist's list. Which is the plain case for the plant on the Valley roadside: a stand of blooming milkweed in July is breeding habitat for an animal that is running out of it.
+        The western monarch, the population that breeds across the Sierra in summer and clusters on the California coast to overwinter, has fallen hard. Overwintering numbers, estimated in the low millions in the 1980s, have dropped to a small fraction of that, and in some recent winters the coastal count has come in below ten thousand butterflies. The reasons are tangled: climate, pesticides, and the disappearance of the coastal groves among them, but the vanishing of breeding milkweed across the West is high on every biologist's list. That is the plain case for the plant on the Valley roadside: a stand of blooming milkweed in July is breeding habitat for an animal that is running out of it.
       </p>
 
       <NatureNotesFilm id="monarchs-milkweed" title="Monarchs & Milkweed" youtubeId="V3jpu2th34o" episode={24}
@@ -156,7 +156,7 @@ window.ARTICLE_BODIES["showy-milkweed-yosemite-valley"] = function ShowyMilkweed
       <h3>Further reading</h3>
       <ul style={{ fontSize: 14 }}>
         <li><a href="/articles/yosemite-wildflowers-guide">Yosemite Wildflowers: A Bloom Calendar That Climbs the Mountain</a>. The month-by-month, elevation-by-elevation guide to the park's bloom.</li>
-        <li><a href="/articles/water-ouzels-waterfalls">How water ouzels live inside a waterfall</a>. Another Yosemite specialist whose presence reads the health of its habitat.</li>
+        <li><a href="/articles/water-ouzels-waterfalls">How water ouzels live inside a waterfall</a>. Another Yosemite specialist whose presence tells you how healthy its habitat is.</li>
         <li>Xerces Society for Invertebrate Conservation: Western Monarch Count and milkweed planting guidance for California.</li>
         <li>National Park Service, Yosemite: plants and pollinators resources, and the park's leave-what-you-find regulations.</li>
       </ul>

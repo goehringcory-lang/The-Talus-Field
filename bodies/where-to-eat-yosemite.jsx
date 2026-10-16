@@ -428,7 +428,7 @@ window.ARTICLE_BODIES["where-to-eat-yosemite"] = function WhereToEatYosemiteBody
               Counter service for breakfast, lunch or dinner, with seating inside and out. Useful when your group wants different meals from one stop. Check <a href="https://www.travelyosemite.com/dining/yosemite-valley-lodge">the lodge's dining hours</a> before you count on an early breakfast or a late dinner.
             </Kitchen>
             <Kitchen name="The Mountain Room" meal="Dinner" price={3} res="Advised" pick="The view">
-              The Valley's sit-down dinner short of The Ahwahnee: an upscale casual steakhouse with a wall of glass facing Yosemite Falls. Book on OpenTable in summer, and time it for the falls, because the view is the reason to go. The lounge next door, with a fireplace and a patio, pours beer and cocktails with light plates and needs no booking.
+              The Valley's sit-down dinner, one step below The Ahwahnee: an upscale casual steakhouse with a wall of glass facing Yosemite Falls. Book on OpenTable in summer, and time it for the falls, because the view is the reason to go. The lounge next door, with a fireplace and a patio, pours beer and cocktails with light plates and needs no booking.
             </Kitchen>
             <Kitchen name="Starbucks">
               Inside Base Camp Eatery since 2018, and no food decision the park has made drew more letters. It's a Starbucks. When the Degnan's counter is twenty deep, it has the shortest line in the Valley, and that's the whole case for it.
@@ -697,7 +697,7 @@ window.ARTICLE_BODIES["where-to-eat-yosemite"] = function WhereToEatYosemiteBody
                   The east-side breakfast and coffee stop, whether you're crossing Tioga Pass from Mammoth or Bishop or coming down from Lake Tahoe. Pastries are baked in house and the drip coffee is good. Park behind the building, walk in, eat outside.
                 </TownPick>
                 <TownPick name="Whoa Nellie Deli" meta="All day · $$ · seasonal · at the Mobil, Highway 120 and US 395">
-                  A full kitchen inside the Tioga Gas Mart, at the bottom of the pass, cooking since 1996 and known for its fish tacos. It is the first real meal off Tioga Road coming east and the last one going west. Like most of Lee Vining, it keeps the pass's season.
+                  A full kitchen inside the Tioga Gas Mart, at the bottom of the pass, cooking since 1996 and known for its fish tacos. It is the first real meal off Tioga Road coming east and the last one going west. Like most of Lee Vining, it follows the pass's season.
                 </TownPick>
               </div>
             </div>

@@ -406,7 +406,7 @@ window.ARTICLE_BODIES["best-airport-for-yosemite"] = function BestAirportForYose
     className: "fly-loop__way"
   }, React.createElement("p", {
     className: "fly-loop__season"
-  }, "Summer only"), React.createElement("h3", null, "Over Tioga Pass"), React.createElement("p", null, "East over the pass, then south down US 395 past Mammoth Lakes and Lone Pine. Longer and slower, and superb. The road is typically open from late May or June into November; check ", React.createElement("a", {
+  }, "Summer only"), React.createElement("h3", null, "Over Tioga Pass"), React.createElement("p", null, "East over the pass, then south down US 395 past Mammoth Lakes and Lone Pine. Longer and slower, and the views are worth the time. The road is typically open from late May or June into November; check ", React.createElement("a", {
     href: "/tioga-opening"
   }, "the Tioga Road page"), " before you book a route that needs it."))))), React.createElement("section", {
     className: "ff-band",
@@ -426,7 +426,7 @@ window.ARTICLE_BODIES["best-airport-for-yosemite"] = function BestAirportForYose
     className: "ff-closing"
   }, React.createElement("p", {
     className: "hp-eyebrow"
-  }, "LANDING AT LAX?"), React.createElement("h3", null, "Sleep in Oakhurst"), React.createElement("p", null, "An Oakhurst or Fish Camp bed turns the push from Los Angeles into an afternoon drive and a morning at the gate before the line forms."), React.createElement(TownBook, {
+  }, "LANDING AT LAX?"), React.createElement("h3", null, "Sleep in Oakhurst"), React.createElement("p", null, "An Oakhurst or Fish Camp bed splits the drive from Los Angeles into an afternoon leg and a morning at the gate, before the line forms."), React.createElement(TownBook, {
     town: TOWNS[2]
   }, "Search Oakhurst lodging\xA0↗"))), React.createElement("div", {
     className: "ff-faq"

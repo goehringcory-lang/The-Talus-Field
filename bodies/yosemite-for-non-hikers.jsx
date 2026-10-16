@@ -409,10 +409,10 @@ window.ARTICLE_BODIES["yosemite-for-non-hikers"] = function YosemiteForNonHikers
               The parking area is at the west end of Southside Drive, just past the Wawona Road junction. The trail was rebuilt and reopened in June 2023 with new parking, boardwalk and a much larger viewing area. You walk about half a mile round trip on pavement, with roughly 80 feet of climb, in about 20 minutes. The Park Service says the western trail to the base is wheelchair accessible, and the Guide describes a gentle incline to an accessible viewing area, with a steeper path to a closer view. Take the viewing area and skip the steep spur. There is no drinking water and no shuttle. Best in May and June, when the fall is loud and the spray reaches the trail. By late summer it can be a trickle.
             </Stop>
             <Stop n="3" name="Cathedral Beach and Sentinel Beach picnic areas" effort="Car to a table" tone="plain">
-              Both are on Southside Drive, both riverside, both with parking near the tables. You walk from the car to a table, or a short sandy path to the water. These are the best lunch stops in the Valley for a group that does not want to queue in Yosemite Village, and the upstream view of Half Dome from the riverbank is one of the quiet pleasures of the park. The Park Service's older accessibility guide notes that much of the Sentinel Beach parking is uneven and has no designated accessible spaces.
+              Both are on Southside Drive, both riverside, both with parking near the tables. You walk from the car to a table, or a short sandy path to the water. These are good lunch stops in the Valley for a group that does not want to queue in Yosemite Village, and the upstream view of Half Dome from the riverbank is one of the quiet pleasures of the park. The Park Service's older accessibility guide notes that much of the Sentinel Beach parking is uneven and has no designated accessible spaces.
             </Stop>
             <Stop n="4" name="Sentinel Bridge" effort="A short level walk" tone="plain">
-              This is where Sentinel Drive crosses the Merced, between Southside Drive and the Village. The Park Service calls it famous for Half Dome reflected in the river. You walk a short level stretch onto the bridge, which has railings the whole way. The view east from the middle, Half Dome standing over the water, is one of the most photographed compositions in Yosemite and the highest reward for the least effort in the Valley.
+              This is where Sentinel Drive crosses the Merced, between Southside Drive and the Village. The Park Service calls it famous for Half Dome reflected in the river. You walk a short level stretch onto the bridge, which has railings the whole way. The view east from the middle, Half Dome standing over the water, is one of the most photographed compositions in Yosemite and a large view for very little effort in the Valley.
             </Stop>
             <Stop n="5" name="Cook's Meadow" effort="1 mile loop, flat" tone="plain">
               The Yosemite Guide describes the loop as a relaxing stroll of one mile on flat pavement and boardwalk, with views of Yosemite Falls, Half Dome and the Merced, and early morning and dusk the best times for birds. Walk as much or as little as you like. The reflected Yosemite Falls view that people come for does not need the whole loop. This is the stop I send people to when they have one hour and one working knee.
@@ -515,7 +515,7 @@ window.ARTICLE_BODIES["yosemite-for-non-hikers"] = function YosemiteForNonHikers
                 <div><dt>Height</dt><dd>About 3,200 feet above the Valley floor</dd></div>
               </dl>
               <p>
-                The path is a descent going out and a climb coming back, so budget more time for the return than the distance suggests. The Park Service lists the path as wheelchair accessible. The point stands about 3,200 feet directly above Curry Village, with Half Dome across the gap at eye level and the high country behind it. The Guide lists a gift shop with snacks, and the Park Service's older guide lists accessible restrooms and a bronze tactile relief model of the park's geology on the terrace below the gift shop. Sunset from the railing is the best hour a non-hiker can spend in Yosemite. Vehicles over 30 feet are not allowed past the Sentinel Dome trailhead. See <a href="/articles/glacier-point-how-to-visit">the Glacier Point guide</a> for the details.
+                The path is a descent going out and a climb coming back, so budget more time for the return than the distance suggests. The Park Service lists the path as wheelchair accessible. The point stands about 3,200 feet directly above Curry Village, with Half Dome across the gap at eye level and the high country behind it. The Guide lists a gift shop with snacks, and the Park Service's older guide lists accessible restrooms and a bronze tactile relief model of the park's geology on the terrace below the gift shop. Sunset from the railing is an hour a non-hiker should not miss. Vehicles over 30 feet are not allowed past the Sentinel Dome trailhead. See <a href="/articles/glacier-point-how-to-visit">the Glacier Point guide</a> for the details.
               </p>
             </article>
             <article className="nh-drive">
@@ -540,12 +540,12 @@ window.ARTICLE_BODIES["yosemite-for-non-hikers"] = function YosemiteForNonHikers
             <li>
               <strong>Olmsted Point</strong>
               <span>8,400 feet</span>
-              <p>A parking lot view back into the head of Tenaya Canyon, including the back side of Half Dome. The paved walkways by the lot are wheelchair accessible, and a bronze tactile model of Half Dome stands there. The short, hilly 0.25-mile walk out to the point is not accessible. At night it is also the best <a href="/articles/yosemite-stargazing-where-to-look-up">stargazing pullout</a> in the park.</p>
+              <p>A parking lot view back into the head of Tenaya Canyon, including the back side of Half Dome. The paved walkways by the lot are wheelchair accessible, and a bronze tactile model of Half Dome stands there. The short, hilly 0.25-mile walk out to the point is not accessible. At night it is also a<a href="/articles/yosemite-stargazing-where-to-look-up">stargazing pullout</a> in the park.</p>
             </li>
             <li>
               <strong>Tenaya Lake</strong>
               <span>About 8,150 feet</span>
-              <p>A glacier-carved lake with a granite shoreline and several parking areas. The east end has accessible parking, an accessible vault toilet and a paved path to open views. The route to the beach is a soil trail and is not wheelchair accessible. It is the easiest place in the high country to sit by water.</p>
+              <p>A glacier-carved lake with a granite shoreline and several parking areas. The east end has accessible parking, an accessible vault toilet and a paved path to open views. The route to the beach is a soil trail and is not wheelchair accessible. It is an easy place in the high country to sit by water.</p>
             </li>
             <li>
               <strong>Tuolumne Meadows</strong>
@@ -569,10 +569,10 @@ window.ARTICLE_BODIES["yosemite-for-non-hikers"] = function YosemiteForNonHikers
           </figure>
           <div>
             <p className="hp-eyebrow">MARIPOSA GROVE</p>
-            <h2>The best accessible walk in the park</h2>
+            <h2>A level walk among the giant sequoias</h2>
             <div className="nh-prose">
               <p>
-                For a non-hiker, the grove of giant sequoias near the south entrance is the most rewarding place in Yosemite that is not a viewpoint. It reopened in June 2018 after a restoration that moved parking away from the trees and put visitors on good surfaces.
+                For a non-hiker, the grove of giant sequoias near the south entrance is one of the more rewarding places in Yosemite that is not a viewpoint. It reopened in June 2018 after a restoration that moved parking away from the trees and put visitors on good surfaces.
               </p>
             </div>
             <ol className="nh-steps">
@@ -632,7 +632,7 @@ window.ARTICLE_BODIES["yosemite-for-non-hikers"] = function YosemiteForNonHikers
                 <div><dt>Departs</dt><dd>Yosemite Valley Lodge, 8 a.m. daily</dd></div>
                 <div><dt>Fare</dt><dd>$141 adult, $71 child 2 to 12</dd></div>
               </dl>
-              <p>For a visitor with one day and no interest in driving, the most park you can see from a seat.</p>
+              <p>For a visitor with one day and no interest in driving, as much of the park as you can see from a seat.</p>
             </li>
             <li>
               <p className="nh-tours__kind">Summer, a few nights a month</p>
@@ -688,7 +688,7 @@ window.ARTICLE_BODIES["yosemite-for-non-hikers"] = function YosemiteForNonHikers
               <li>
                 <strong>The Ahwahnee</strong>
                 <span>A National Historic Landmark</span>
-                <p>The ground floor has an accessible dining room, bar, gift shop and patio. The hotel's page does not say who may sit in the Great Lounge, so ask at the front desk. The dining room asks for appropriate attire at dinner, and <a href="/articles/where-to-eat-yosemite">the dining guide</a> covers it. The bar is casual. The building is a destination in its own right and the best place in the park to spend an hour doing nothing.</p>
+                <p>The ground floor has an accessible dining room, bar, gift shop and patio. The hotel's page does not say who may sit in the Great Lounge, so ask at the front desk. The dining room asks for appropriate attire at dinner, and <a href="/articles/where-to-eat-yosemite">the dining guide</a> covers it. The bar is casual. The building is a destination in its own right and a good place to spend an hour doing nothing.</p>
               </li>
             </ul>
           </div>
@@ -833,7 +833,7 @@ window.ARTICLE_BODIES["yosemite-for-non-hikers"] = function YosemiteForNonHikers
             </div>
             <ol className="nh-rules5">
               <li><strong>Stay in or near the Valley.</strong> Do not base in Wawona or Oakhurst if anyone has limited mobility. The drive adds friction, and the friction compounds across a week. Yosemite Valley Lodge is the best of the in-park options for this trip: flat ground between the rooms, the shuttle stop and the food. It books through the concessioner at travelyosemite.com, not through anybody's search. When the in-park inventory is gone, <AvailabilityLink destination="El Portal, California" list="article_inline" slug="yosemite-for-non-hikers" name="El Portal lodging search">El Portal is the closest place outside the boundary</AvailabilityLink>, about a half hour of flat highway from the Valley floor.</li>
-              <li><strong>Build in low-energy mornings and big-vista afternoons.</strong> Late starts are fine. Sunset is the best part of the day for everyone.</li>
+              <li><strong>Build in low-energy mornings and big-vista afternoons.</strong> Late starts are fine, and sunset suits everyone.</li>
               <li><strong>Plan one or two short walks a day, separated by a long break.</strong> A morning at Cook's Meadow, lunch sitting down, an afternoon drive to Glacier Point, dinner. Don't pack the day.</li>
               <li><strong>Pick one big "view day."</strong> Glacier Point if the road is open. The Mariposa Grove if you are staying at the south end. Tunnel View at sunset if neither is available. Make it the highlight everyone shares.</li>
               <li><strong>Let the hikers take a half day to themselves.</strong> Drop them at the Mist Trail trailhead early and pick them up at noon, or put them on the shuttle and let them find their own way back. Everyone gets what they want, and nobody spends the day being quietly resented.</li>

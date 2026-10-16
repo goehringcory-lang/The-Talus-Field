@@ -104,8 +104,8 @@ export default function Welcome() {
             Secret Guide, search, and your trip plan all keep working. Only the live
             layers need a connection to refresh: program listings, the forecast, road
             alerts, entrance waits, parking lots, air quality, river flow, and the webcams.
-            Most fall back to the last copy they synced; waits and lots, which change by the
-            quarter hour, simply hide until there is signal again.
+            Most fall back to the last copy they saved; waits and lots, which change by the
+            quarter hour, hide until there is signal again.
           </p>
         </section>
 

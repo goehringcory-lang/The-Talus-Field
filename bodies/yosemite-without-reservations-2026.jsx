@@ -114,7 +114,7 @@ window.ARTICLE_BODIES["yosemite-without-reservations-2026"] = function YosemiteW
       <h3>A single weekend day</h3>
       <p>This is the hardest mode. You have one day, the park is at peak, and you need everything to line up. For the full single-day sequence, see <a href="/articles/yosemite-in-one-or-two-days">one or two days in Yosemite</a>. The strategy:</p>
       <ul>
-        <li>Sleep in or near the park the night before. <a href="/articles/yosemite-gateway-towns-compared">El Portal or Mariposa</a> is the strongest base for an early-Saturday start, and El Portal is the better of the two if you can get it. Driving in from the Bay Area on the morning of a peak Saturday is a recipe for arriving at 11 a.m. with no parking. <AvailabilityLink destination="El Portal, California" list="article_inline" slug="yosemite-without-reservations-2026" name="El Portal lodging search">Check what El Portal has on your dates →</AvailabilityLink></li>
+        <li>Sleep in or near the park the night before. <a href="/articles/yosemite-gateway-towns-compared">El Portal or Mariposa</a> is the strongest base for an early-Saturday start, and El Portal is the better of the two if you can get it. Driving in from the Bay Area on the morning of a peak Saturday usually means arriving at 11 a.m. with no parking. <AvailabilityLink destination="El Portal, California" list="article_inline" slug="yosemite-without-reservations-2026" name="El Portal lodging search">Check what El Portal has on your dates →</AvailabilityLink></li>
         <li>Be inside the gate by 6 a.m. Do Tunnel View, the Cook's Meadow loop, and Lower Yosemite Falls before 9 a.m.</li>
         <li>Eat an early lunch (10:30 to 11 a.m.) at Degnan's or pack from outside.</li>
         <li>Use the midday hours for something that needs no new parking space. The Valley museum, a slow walk on the south-side path along the Merced, the Ansel Adams Gallery.</li>
@@ -175,7 +175,7 @@ window.ARTICLE_BODIES["yosemite-without-reservations-2026"] = function YosemiteW
 
       <h2 id="sec-8-common-questions">Common questions</h2>
       <p><strong>Do I need a reservation to enter Yosemite in 2026?</strong> No. There is no day-use, timed-entry, or peak-hours reservation in 2026, on any date. You need a standard entrance pass, $35 per vehicle for seven days.</p>
-      <p><strong>Do I need a reservation for Yosemite in September or October?</strong> No. The fall shoulder is one of the best windows of the year and there is no entrance reservation for it. Camping and in-park lodging still need booking.</p>
+      <p><strong>Do I need a reservation for Yosemite in September or October?</strong> No. The fall shoulder is a good time to visit, and there is no entrance reservation for it. Camping and in-park lodging still need booking.</p>
       <p><strong>Do I need a reservation for the Firefall in February?</strong> Not for 2026, when no entrance reservation was required. February 2027 has not been announced. Watch for it in the winter.</p>
       <p><strong>Will Yosemite require reservations in 2027?</strong> Unknown. The park has said nothing about 2027, and the 2026 decision was based on 2025 data, so a change for 2027 would most likely be announced in the winter, as the last two were.</p>
       <p><strong>When does Yosemite Valley fill up?</strong> Day-use parking fills by late morning on ordinary days and by 8 a.m. or earlier on summer weekends. The park's standing advice is to arrive before 8 a.m. or after 4 p.m.</p>

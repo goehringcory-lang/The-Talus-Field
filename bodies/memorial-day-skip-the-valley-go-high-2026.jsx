@@ -57,7 +57,7 @@ window.ARTICLE_BODIES["memorial-day-skip-the-valley-go-high-2026"] = function Me
       <h2>Option 1: Glacier Point Road, the biggest view for the least effort</h2>
 
       <p>
-        Turn off Highway 41 at Chinquapin and drive the road to its end. <strong>Glacier Point</strong> itself sits 3,200 feet directly above Curry Village. A paved, stroller-friendly path leads to an overlook with Half Dome at eye level, the whole Valley floor below you, and Vernal and Nevada Falls stair-stepping up the Merced canyon. It is the highest reward-per-step view in the entire park, and on an early-season weekend you may have the rail nearly to yourself.
+        Turn off Highway 41 at Chinquapin and drive the road to its end. <strong>Glacier Point</strong> itself sits 3,200 feet directly above Curry Village. A paved, stroller-friendly path leads to an overlook with Half Dome at eye level, the whole Valley floor below you, and Vernal and Nevada Falls stair-stepping up the Merced canyon. It gives the most view for the fewest steps in the entire park, and on an early-season weekend you may have the rail nearly to yourself.
       </p>
 
       <p>

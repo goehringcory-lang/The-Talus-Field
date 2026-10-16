@@ -420,7 +420,7 @@ window.ARTICLE_BODIES["best-airport-for-yosemite"] = function BestAirportForYose
             <div className="fly-loop__way">
               <p className="fly-loop__season">Summer only</p>
               <h3>Over Tioga Pass</h3>
-              <p>East over the pass, then south down US 395 past Mammoth Lakes and Lone Pine. Longer and slower, and superb. The road is typically open from late May or June into November; check <a href="/tioga-opening">the Tioga Road page</a> before you book a route that needs it.</p>
+              <p>East over the pass, then south down US 395 past Mammoth Lakes and Lone Pine. Longer and slower, and the views are worth the time. The road is typically open from late May or June into November; check <a href="/tioga-opening">the Tioga Road page</a> before you book a route that needs it.</p>
             </div>
           </div>
         </div>
@@ -435,7 +435,7 @@ window.ARTICLE_BODIES["best-airport-for-yosemite"] = function BestAirportForYose
             <div className="ff-closing">
               <p className="hp-eyebrow">LANDING AT LAX?</p>
               <h3>Sleep in Oakhurst</h3>
-              <p>An Oakhurst or Fish Camp bed turns the push from Los Angeles into an afternoon drive and a morning at the gate before the line forms.</p>
+              <p>An Oakhurst or Fish Camp bed splits the drive from Los Angeles into an afternoon leg and a morning at the gate, before the line forms.</p>
               <TownBook town={TOWNS[2]}>Search Oakhurst lodging ↗</TownBook>
             </div>
           </div>

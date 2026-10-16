@@ -305,7 +305,7 @@ export default function Programs() {
         <PageHeader
           eyebrow="What's on in the park"
           title="Programs during your trip"
-          intro="Ranger walks, Junior Ranger tables, Conservancy programs, tours, and star parties, day by day for the dates you pick. Sync with signal. The list works offline."
+          intro="Ranger walks, Junior Ranger tables, Conservancy programs, tours, and star parties, day by day for the dates you pick. Refresh with signal. The list works offline."
         />
 
         <div className="programs-dates">
@@ -330,29 +330,29 @@ export default function Programs() {
             />
           </label>
           <Button onClick={sync} disabled={loading || !spanOk}>
-            {loading ? 'Syncing…' : 'Sync now'}
+            {loading ? 'Refreshing…' : 'Refresh now'}
           </Button>
         </div>
 
         <div className="programs-sync" aria-live="polite">
           {syncedAt ? (
             <span>
-              Listings synced {relativeTime(syncedAt)}
+              Listings updated {relativeTime(syncedAt)}
               {offline
                 ? failure === 'server'
-                  ? ' · sync failed, showing listings saved earlier'
+                  ? ' · refresh failed, showing listings saved earlier'
                   : ' · showing the copy saved on this device'
                 : ''}
             </span>
           ) : (
-            <span>Not synced yet. Pick your dates and sync while you have signal.</span>
+            <span>Not loaded yet. Pick your dates and refresh while you have signal.</span>
           )}
         </div>
 
         {showStaleWarning && (
           <Callout tone="warn">
             {coverage === 'partial'
-              ? 'The saved listings only cover part of these dates. Sync again when you have signal.'
+              ? 'The saved listings only cover part of these dates. Refresh again when you have signal.'
               : 'Listings were saved earlier and programs do change. Cross-check the Yosemite Guide or a visitor center bulletin board for cancellations.'}
           </Callout>
         )}
@@ -362,7 +362,7 @@ export default function Programs() {
         {error && (allEvents.length > 0 || seasonalWindows.length > 0) && (
           <Callout tone="warn">
             Live listings did not load. The seasonal almanac below ships with the guide and works
-            without signal; sync again for ranger programs and operator events.
+            without signal; refresh again for ranger programs and operator events.
           </Callout>
         )}
 
@@ -451,7 +451,7 @@ export default function Programs() {
         {loading && allEvents.length === 0 && <ProgramsSkeleton />}
 
         {byDay.length === 0 && !loading && allEvents.length === 0 && !error && (
-          <EmptyState note="No programs listed for these dates yet. Sync closer to your trip, or check the printed Yosemite Guide." />
+          <EmptyState note="No programs listed for these dates yet. Try again closer to your trip, or check the printed Yosemite Guide." />
         )}
         {byDay.length === 0 && allEvents.length > 0 && (
           <EmptyState note="Nothing matches the current filters." />

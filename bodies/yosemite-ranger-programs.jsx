@@ -22,7 +22,7 @@ window.ARTICLE_BODIES["yosemite-ranger-programs"] = function YosemiteRangerProgr
       <h2>How to find the schedule</h2>
 
       <p>
-        This is the part that confuses people, because there is no single poster. The authoritative sources are the <em>Yosemite Guide</em>, the park's free seasonal newspaper (handed out at entrance stations, stacked at every visitor center, and downloadable as a PDF from the park website before your trip), and the events calendar in the free NPS app, which is worth installing while you still have cell service, along with the offline Yosemite content. Program listings also hang on bulletin boards at visitor centers and campgrounds. My advice is the analog version: get the paper at the gate, and while you wait out the entrance line, have your least car-sick passenger circle everything with a time that fits your days. That circled newspaper becomes the trip's spine.
+        This is the part that confuses people, because there is no single poster. The authoritative sources are the <em>Yosemite Guide</em>, the park's free seasonal newspaper (handed out at entrance stations, stacked at every visitor center, and downloadable as a PDF from the park website before your trip), and the events calendar in the free NPS app, which is worth installing while you still have cell service, along with the offline Yosemite content. Program listings also hang on bulletin boards at visitor centers and campgrounds. My advice is the paper version: get the paper at the gate, and while you wait out the entrance line, have your least car-sick passenger circle everything with a time that fits your days. That circled newspaper becomes the trip's spine.
       </p>
 
       <p>
@@ -53,12 +53,12 @@ window.ARTICLE_BODIES["yosemite-ranger-programs"] = function YosemiteRangerProgr
 
       <ol>
         <li><strong>With kids:</strong> any morning walk labeled family-friendly, then the badge ceremony before you leave.</li>
-        <li><strong>Without kids:</strong> an evening amphitheater program. Arriving as the light goes amber, sitting under the granite while someone who knows the park explains one thing well, is the closed loop of what these parks are for.</li>
+        <li><strong>Without kids:</strong> an evening amphitheater program. Arriving as the light goes amber, sitting under the granite while someone who knows the park explains one thing well, is what these parks are for.</li>
         <li><strong>In winter:</strong> whatever is running. The ranger-to-visitor ratio is the best of the year, and a program that draws two hundred people in July draws nine in January, all of whom get their questions answered.</li>
       </ol>
 
       <p>
-        A closing word about the people. The rangers and volunteers who lead these programs are doing the least lucrative version of expertise that exists in this country, in a park where <a href="/articles/working-in-yosemite">housing is a tent cabin and the commute is a bear crossing</a>. Showing up to their programs is the visitor's half of a bargain the Park Service has been keeping since 1916.
+        A closing word about the people. The rangers and volunteers who lead these programs do expert work for very little money, in a park where <a href="/articles/working-in-yosemite">housing is a tent cabin and the commute is a bear crossing</a>. Showing up to their programs is the visitor's half of a bargain the Park Service has been keeping since 1916.
       </p>
     </>
   );

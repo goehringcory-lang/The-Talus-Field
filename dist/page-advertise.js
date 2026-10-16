@@ -78,7 +78,7 @@ function AdvertisePage({
   }), React.createElement("div", {
     className: "fj-ledger",
     "aria-hidden": "true"
-  }, React.createElement("div", null, React.createElement("span", null, "A search-engine ad"), React.createElement("b", null, "A colder audience, at a multiple of the cost")), React.createElement("div", null, React.createElement("span", null, "A social post"), React.createElement("b", null, "Larger, and less qualified")), React.createElement("div", {
+  }, React.createElement("div", null, React.createElement("span", null, "A search-engine ad"), React.createElement("b", null, "A colder audience, at many times the cost")), React.createElement("div", null, React.createElement("span", null, "A social post"), React.createElement("b", null, "Larger, and less qualified")), React.createElement("div", {
     className: "is-ours"
   }, React.createElement("span", null, "The directory"), React.createElement("b", null, "A moment of decision")))), React.createElement("div", {
     className: "hp-advertise__copy"

@@ -180,7 +180,7 @@ window.ARTICLE_BODIES["mist-trail-the-real-guide"] = function MistTrailBody() {
       </p>
 
       <p>
-        The pools above Vernal Fall and Nevada Fall look calm and inviting. They aren't. The current is powerful, the granite is frictionless when wet, and the lip of the fall is just downstream. A slip beyond the railing can be fatal. The NPS signs are accurate.
+        The pools above Vernal Fall and Nevada Fall look calm and inviting. They aren't. The current is powerful, the granite is slick when wet, and the lip of the fall is just downstream. A slip beyond the railing can be fatal. The NPS signs are accurate.
       </p>
 
       <p>
