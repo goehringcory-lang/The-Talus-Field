@@ -41,3 +41,6 @@ package-lock.json
 
 # Repo documentation
 *.md
+
+# Python wheels: never site content
+*.whl
