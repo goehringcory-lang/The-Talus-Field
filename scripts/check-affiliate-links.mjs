@@ -23,6 +23,8 @@
 //      the prerendered fragment would carry a different tracking link than
 //      the SPA renders ("mirror any ID change", CLAUDE.md).
 //   6. A kit item whose aff is neither the dormant "#" nor a Patagonia link.
+//   7. A window.KIT_REI key that is not a dormant kit item, or a value that
+//      is neither a search query nor an https://www.rei.com/ URL.
 import fs from "node:fs";
 import path from "node:path";
 import { parse } from "@babel/parser";
@@ -31,6 +33,8 @@ import { ROOT, loadDataJs } from "./lib/catalog.mjs";
 
 const traverse = traverseMod.default || traverseMod;
 const REL = "sponsored noopener";
+// The kit's store CTAs also carry nofollow (October 2026, ahead of REI).
+const REL_OK = new Set([REL, "sponsored nofollow noopener"]);
 const AFF_HREF_RE = /buildAffiliateLink|buildPatagoniaAffiliateLink|stay22SearchUrl|stay22\.com|pxf\.io|prf\.hn|bookshop\.org|BOOKSHOP_LIST_URL|search\.href|\.aff\b|EXPEDIA_BANNER|\bb\.href/;
 const BODY_AFF_RE = /<LodgingCta\b|<AvailabilityLink\b|<AffLink\b|<RecommendedCard\b|data-aff-network/;
 
@@ -78,7 +82,7 @@ function checkJsx(file) {
       const hrefSrc = attrs.href ? src.slice(attrs.href.start, attrs.href.end) : "";
       if (attrs["data-aff-network"]) {
         if (attrValue(attrs.target) !== "_blank") errors.push(`${where}: affiliate link without target="_blank"`);
-        if (attrValue(attrs.rel) !== REL) errors.push(`${where}: affiliate link rel must be "${REL}"`);
+        if (!REL_OK.has(attrValue(attrs.rel))) errors.push(`${where}: affiliate link rel must be "${REL}" (or "sponsored nofollow noopener")`);
         if (!attrs["data-aff-list"]) errors.push(`${where}: affiliate link without data-aff-list (GA4 placement)`);
       } else if (AFF_HREF_RE.test(hrefSrc)) {
         errors.push(`${where}: href is an affiliate link but the anchor has no data-aff-network`);
@@ -163,6 +167,11 @@ else for (const [id, q] of Object.entries(rei)) {
   if (!it) errors.push(`KIT_REI: "${id}" is not a kit item`);
   else if (it.aff && it.aff !== "#") errors.push(`KIT_REI: "${id}" already links to Patagonia`);
   if (!q || typeof q !== "string") errors.push(`KIT_REI: "${id}" has no search query`);
+  // A URL value is the destination as-is (page-kit.jsx tests this exact
+  // prefix); anything else URL-shaped would be searched for as text.
+  else if (/^[a-z][a-z0-9+.-]*:|^\/\/|^www\.|rei\.com/i.test(q) && !q.startsWith("https://www.rei.com/")) {
+    errors.push(`KIT_REI: "${id}" looks like a URL but is not https://www.rei.com/...: ${q}`);
+  }
 }
 
 if (errors.length) {

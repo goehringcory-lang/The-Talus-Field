@@ -110,7 +110,8 @@ export function loadDataJs() {
     articles: w.ARTICLES,
     categories: w.CATEGORIES,
     kit: w.KIT,
-    // REI search queries for the kit's hardgoods (affiliate.js `rei`).
+    // REI destinations for the kit's hardgoods (affiliate.js `rei`): a
+    // search query or an https://www.rei.com/ URL, passed through as-is.
     kitRei: w.KIT_REI && typeof w.KIT_REI === "object" ? w.KIT_REI : null,
     // The Planning Guide's five-part series (window.PLANNING_SERIES): the
     // /planning page renders these members, not just cat === "planning", so
