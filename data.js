@@ -182,7 +182,7 @@ window.BODY_VERSIONS = {
   "tioga-road-opening-weekend": 85,
   "so-you-want-to-hike-half-dome": 85,
   "glacier-point-road-open-2026": 88,
-  "mist-trail-the-real-guide": 95,
+  "mist-trail-the-real-guide": 96,
   "first-time-yosemite-overwhelm": 95,
   "yosemite-without-reservations-2026": 89,
   "yosemite-during-smoke-season": 82,
@@ -2118,11 +2118,20 @@ window.ARTICLES = [
     seoDek: "Mist Trail distances from Happy Isles: 1.6 miles round trip to the Vernal Fall footbridge, 2.4 to the top of Vernal, 5.4 to Nevada Fall. Times, water, parking.",
     date: "May 11, 2026",
     isoDate: "2026-05-11",
-    isoModified: "2026-09-27",
+    isoModified: "2026-10-17",
     read: "12 min",
     placeholder: "Nevada Fall and Liberty Cap from the John Muir Trail",
     image: "img/nevada-fall-liberty-cap-ryan-oconnor.jpg",
     credit: "Photo: Ryan O'Connor / Unsplash",
+    // The /firefall layout for an article (page-article.jsx), as on the El
+    // Capitan piece. The photo is portrait; `focus` holds the band with the
+    // fall and the foot of Liberty Cap. The two buttons jump to the
+    // turnarounds and the safety talk.
+    feature: {
+      eyebrow: "HAPPY ISLES · VERNAL FALL · NEVADA FALL · THE JOHN MUIR TRAIL",
+      focus: "50% 62%",
+      actions: [["#sec-0-what-the-mist-trail-actually-is", "Choose your turnaround"], ["#sec-4-the-safety-talk", "The safety talk"]],
+    },
   },
   {
     slug: "working-in-yosemite",

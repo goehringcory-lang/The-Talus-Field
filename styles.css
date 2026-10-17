@@ -12929,6 +12929,116 @@ html[data-nav-mode="pinned"] { scroll-padding-top: 62px; }
 /* The crawler fragment is not laid out as a grid. */
 #prerender-prose .fly-feature :is(.ff-split, .ff-facts, .fly-airports, .fly-choose, .fly-routes, .fly-loop, .ff-timeline, .ff-rules) { display: block; }
 
+/* ── /articles/mist-trail-the-real-guide: the `.mt-*` pieces ──────────────
+   A feature article on the `.hp-event` tokens and the `.ff-*` kit (see the
+   feature-article layer above). Its own pieces: the NPS map crop (the shared
+   `.npsmap`, five pins and the weekday repair section), the three turnaround
+   cards numbered to match the map, the climb profile, the shoe list, the
+   four wet-weather cards, the season strip, the water bars, the safety rules
+   (the shared `.ff-rules`) and the crowd ladder (the shared `.ff-hours`). */
+.mt-feature .ff-split > * { min-width: 0; }
+.mt-prose { font: 17px/1.75 var(--sans); color: var(--hp-ink); max-width: 640px; }
+.mt-prose p { margin: 0 0 1.1em; }
+.mt-prose p:last-child { margin-bottom: 0; }
+.mt-prose strong { font-weight: 600; }
+.mt-prose a, .mt-wet a, .mt-water a, .mt-feature .ff-inpark a, .mt-feature .ff-alert a { color: inherit; text-decoration: underline; text-decoration-color: var(--hp-accent); text-decoration-thickness: 1px; text-underline-offset: 3px; }
+.mt-prose a:hover, .mt-wet a:hover, .mt-feature .ff-inpark a:hover, .mt-feature .ff-alert a:hover { color: var(--hp-accent); }
+.mt-prose .dropcap::first-letter { font-family: var(--serif); font-weight: 400; font-size: 4.1em; float: left; line-height: 0.82; margin: 0.08em 0.1em 0 -0.03em; color: var(--hp-accent); }
+.mt-open .mt-prose { font: 19px/1.6 var(--serif); color: var(--ink-2); }
+.mt-open .mt-prose p:first-child { color: var(--hp-ink); }
+.mt-open .ff-short { position: sticky; top: 88px; }
+.hp-design a.mt-short__link { display: flex; align-items: center; justify-content: center; min-height: 48px; padding: 12px 18px; border: 1.5px solid rgba(247, 241, 225, 0.7); border-radius: 3px; font: 600 13px var(--sans); color: var(--hp-paper); text-align: center; }
+.hp-design a.mt-short__link:hover { background: var(--hp-paper); color: var(--hp-ink); }
+.mt-signoff { font: 400 24px/1.3 var(--serif); }
+.mt-end { padding-block: 28px 0; }
+
+/* The turnarounds: the map, the cards, the profile. */
+.mt-map { margin: 0; }
+.mt-turns { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 20px; margin-top: 44px; }
+.mt-turn { background: var(--hp-card); border: 1px solid var(--hp-rule); border-radius: 4px; padding: 24px; display: grid; gap: 10px; align-content: start; }
+.mt-turn__num { display: grid; place-items: center; width: 32px; height: 32px; margin: 0; border-radius: 50%; background: var(--hp-accent); color: #fff; font: 700 14px var(--sans); }
+.mt-turn__line { margin: 0; font: 18px/1.4 var(--serif); color: var(--ink-2); }
+.mt-turn dl { margin: 6px 0 0; border-top: 1px solid var(--hp-rule); }
+.mt-turn dl div { display: flex; justify-content: space-between; gap: 16px; padding-block: 9px; border-bottom: 1px solid var(--hp-rule); }
+.mt-turn dt { font: 600 10px var(--sans); letter-spacing: 1.4px; text-transform: uppercase; color: var(--hp-muted); padding-top: 3px; }
+.mt-turn dd { margin: 0; font: 14px/1.5 var(--sans); color: var(--hp-ink); text-align: right; }
+.mt-turns__prose { margin-top: 48px; }
+.mt-profile { margin: 0; background: var(--hp-card); border: 1px solid var(--hp-rule); border-radius: 4px; padding: 20px; }
+.mt-profile figcaption { font: 600 10px var(--sans); letter-spacing: 1.6px; text-transform: uppercase; color: var(--hp-muted); margin-bottom: 12px; }
+.mt-profile__svg { display: block; width: 100%; height: auto; }
+.mt-profile__grid { stroke: var(--rule-soft); stroke-width: 1; }
+.mt-profile__axis { font: 12.5px var(--sans); fill: var(--ink-3); }
+.mt-profile__label { font: 13px var(--sans); fill: var(--ink-2); }
+.mt-profile__place { font: 16px var(--serif); fill: var(--ink); }
+.mt-profile__crowd { font: italic 12px var(--sans); fill: var(--rust); }
+.mt-profile__mist { fill: var(--moss); opacity: 0.1; }
+.mt-profile__area { fill: var(--moss); opacity: 0.12; }
+.mt-profile__line { fill: none; stroke: var(--moss); stroke-width: 2.6; stroke-linejoin: round; }
+.mt-profile__dot { fill: var(--paper); stroke: var(--ink); stroke-width: 2; }
+.mt-halfdome { margin-top: 20px; }
+
+/* The granite: the photo and the shoe list. */
+.mt-photo { margin: 0; }
+.mt-photo img { display: block; width: 100%; height: auto; border-radius: 4px; }
+.mt-photo figcaption { margin-top: 10px; font: 12px/1.5 var(--sans); color: var(--hp-muted); }
+.mt-shoes { list-style: none; margin: 28px 0 0; padding: 0; border-top: 2px solid var(--hp-ink); max-width: 640px; }
+.mt-shoes li { display: flex; gap: 12px; align-items: flex-start; padding-block: 12px; border-bottom: 1px solid var(--hp-rule); font: 15px/1.5 var(--sans); color: var(--ink-2); }
+.mt-shoes strong { color: var(--hp-ink); }
+.mt-shoes .is-yes .ff-icon { color: var(--bt-open); }
+.mt-shoes .is-no .ff-icon { color: var(--bt-closed); }
+
+/* Getting wet: four cards. */
+.mt-wet { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
+.mt-wet > div { background: var(--hp-card); border: 1px solid var(--hp-rule); border-radius: 4px; padding: 20px; display: grid; gap: 8px; align-content: start; }
+.mt-wet .ff-icon { color: var(--hp-accent); }
+.mt-wet strong { font: 400 22px var(--serif); color: var(--hp-ink); }
+.mt-wet p { margin: 0; font: 14px/1.6 var(--sans); color: var(--ink-2); }
+
+/* When to go: the season strip, the trailhead card, the repair notice. */
+.mt-seasons { list-style: none; margin: 8px 0 0; padding: 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; }
+.mt-seasons li { background: var(--hp-card); border: 1px solid var(--hp-rule); border-top: 6px solid var(--hp-accent); border-radius: 4px; padding: 20px; display: grid; gap: 8px; align-content: start; }
+.mt-seasons li.is-mid { border-top-color: #c98a5a; }
+.mt-seasons li.is-late { border-top-color: var(--rule); }
+.mt-seasons span { font: 700 11px var(--sans); letter-spacing: 1.2px; text-transform: uppercase; color: var(--hp-muted); }
+.mt-seasons strong { font: 400 24px/1.15 var(--serif); color: var(--hp-ink); }
+.mt-seasons p { margin: 0; font: 14px/1.6 var(--sans); color: var(--ink-2); }
+.mt-when { margin-top: 48px; }
+.mt-getting { display: grid; gap: 0; }
+.mt-getting .ff-alert p { margin: 0; }
+
+/* The safety talk: the water bars and the rules. */
+.mt-water { background: var(--hp-card); border: 1px solid var(--hp-rule); border-radius: 4px; padding: 24px; }
+.mt-water .hp-eyebrow { margin: 0 0 14px; }
+.mt-water__list { list-style: none; margin: 0; padding: 0; display: grid; gap: 14px; }
+.mt-water__list li { display: grid; grid-template-columns: 1fr auto; gap: 6px 12px; align-items: baseline; }
+.mt-water__list span { font: 14px var(--sans); color: var(--ink-2); }
+.mt-water__list strong { font: 400 22px var(--serif); color: var(--hp-ink); }
+.mt-water__list i { grid-column: 1 / -1; display: block; height: 10px; width: calc(var(--l) * 25%); border-radius: 2px; background: #6d8aa3; }
+.mt-water__text { margin: 20px 0 0; padding-top: 16px; border-top: 1px solid var(--hp-rule); font: 14px/1.6 var(--sans); color: var(--ink-2); }
+.mt-rules { margin-top: 48px; }
+
+/* The crowd ladder, and the sources beside the questions. */
+.hp-event .mt-crowd__head { margin: 0 0 22px; }
+.mt-sources { margin-top: 28px; }
+.hp-event .mt-sources h3 { font-size: 20px; margin-bottom: 8px; }
+.mt-sources ul { list-style: none; margin: 0; padding: 0; }
+.mt-sources li { padding-block: 8px; border-top: 1px solid var(--hp-rule); font: 13px var(--sans); }
+.mt-sources a { color: var(--hp-accent); }
+
+@media (max-width: 1100px) {
+  .mt-turns { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (max-width: 880px) {
+  .mt-seasons { grid-template-columns: 1fr; }
+  .mt-open .ff-short { position: static; }
+}
+@media (max-width: 640px) {
+  .mt-turns, .mt-wet { grid-template-columns: 1fr; }
+  .mt-turn, .mt-water { padding: 20px; }
+}
+/* The crawler fragment is not laid out as a grid. */
+#prerender-prose .mt-feature :is(.ff-split, .ff-facts, .mt-turns, .mt-wet, .mt-seasons, .ff-rules) { display: block; }
+
 /* ===== UX and sales audit (October 2026) =====
    The shared checkout error under every /guide buy button, the walkthrough's
    pause control, the offline toggle's illustration note, the band's
@@ -13402,8 +13512,8 @@ html[data-nav-mode="pinned"] { scroll-padding-top: 62px; }
 /* Every article's sources list underlines its links at rest, as .nh-sources,
    .cg-sources and .wv-sources already do: a rust link alone in a muted list
    is told apart by colour only (axe link-in-text-block). */
-:is(.ec-sources, .eat-sources, .sv-sources, .ft-sources) a { text-decoration: underline; text-decoration-color: #d9b6a8; text-underline-offset: 3px; }
-:is(.ec-sources, .eat-sources, .sv-sources, .ft-sources) a:hover { text-decoration-color: currentColor; }
+:is(.ec-sources, .eat-sources, .sv-sources, .ft-sources, .mt-sources) a { text-decoration: underline; text-decoration-color: #d9b6a8; text-underline-offset: 3px; }
+:is(.ec-sources, .eat-sources, .sv-sources, .ft-sources, .mt-sources) a:hover { text-decoration-color: currentColor; }
 
 /* ===== Newsletter growth hooks (October 2026): the scroll bar and the
    mid-article banner. The exit-intent modal keeps its .nlmodal styles. ===== */
