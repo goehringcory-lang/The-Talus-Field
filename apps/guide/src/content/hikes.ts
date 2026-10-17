@@ -832,15 +832,15 @@ const seed: HikeT[] = [
     title: 'Cathedral Lakes',
     region: 'tuolumne',
     order: 16,
-    distanceMi: 8.0,
-    distanceNote: 'about the same distance to the lower lake, on a short spur',
+    distanceMi: 7.6, // NPS: 7.6 mi RT to Upper Cathedral Lake (nps.gov/places/000/cathedral-lakes-trailhead.htm)
+    distanceNote: 'to Upper Cathedral Lake by the park\'s count; about the same to the lower lake, on a short spur',
     elevationGainFt: 1000,
     difficulty: 'moderate',
     route: 'out-and-back',
     durationMin: 300,
-    trailhead: 'Cathedral Lakes trailhead, west end of Tuolumne Meadows',
+    trailhead: 'Tuolumne Meadows Visitor Center lot (Cathedral Lakes trailhead, relocated 2022)',
     stopId: 'cathedral-lakes',
-    coord: [-119.374706, 37.872634], // same pin as stop cathedral-lakes
+    coord: [-119.374706, 37.872634], // same pin as stop cathedral-lakes (NPS "Cathedral Lakes Trailhead", re-checked 2026-10-16)
     season: 'Tioga Road season',
     photo: { src: '/photos/hike-cathedral-lakes.jpg', alt: 'Cathedral Peak above a Cathedral Lake.' },
     description:
