@@ -8,11 +8,342 @@
 Publisher: The Talus Field (https://thetalusfieldjournal.com). Editor: Cory Goehring.
 Citation guidance and the annotated page index: https://thetalusfieldjournal.com/llms.txt
 Canonical article URL pattern: https://thetalusfieldjournal.com/articles/<slug>
-Contents: 86 articles. Most recent update: 2026-10-17.
+Contents: 89 articles. Most recent update: 2026-10-17.
 
 Not in this file: the Yosemite Nature Notes archive, all 512 issues of the
 National Park Service's Yosemite bulletin (1922-2003), transcribed in full
 as plain static HTML at https://thetalusfieldjournal.com/archive/.
+
+---
+
+## Badger Pass Ski Area: Is It Open, What It Costs, and How the Season Really Works
+
+URL: https://thetalusfieldjournal.com/articles/badger-pass-ski-area
+Section: Seasonal Guides. Published: 2026-10-17. Last updated: 2026-10-17.
+Summary: Badger Pass Ski Area in Yosemite: season dates and how to check if it's open, tickets, lessons, tubing, cross-country, the free shuttle, and huts.
+
+Badger Pass is a small ski hill inside a national park, and it is small on purpose: ten runs, five lifts, an 800-foot vertical drop, and a third of the terrain rated for beginners. Nobody flies in for it. People come because it is a gentle place to put a child on skis for the first time, inside a national park, because the tubing hill needs no skill at all, and because the parking lot is the trailhead for the winter rim of Yosemite Valley. The question that matters more than any of that is the first one people search: is it open. The honest answer is that it depends on the snow more than the calendar, and the last two winters prove it.
+
+This is the operating guide: the season and how to check it, the drive and the shuttle, the downhill area, lessons, tubing, the Nordic center and the ski track to Glacier Point, and the huts. The season-wide picture, including Dewey Point and the chain-control explainer, is in the winter guide.
+
+### The name, briefly
+
+The ski area is the Badger Pass Ski Area, which is what the concessioner and the Park Service both call it. Some maps, apps, and older articles still use Yosemite Ski & Snowboard Area, the name the park gave it in 2016 during a trademark dispute with Delaware North, a former concessioner that claimed the rights to Badger Pass and other historic names in the park. The dispute was settled in July 2019 and the original names came back. It is one place under two names; search for either.
+
+It is also an old place. The Park Service calls Badger Pass the oldest downhill skiing area in California, and says the West's first ski lift, an "Upski," was built there in 1933 and the historic lodge opened in 1935. The concessioner dates its ski school to 1928.
+
+### Is Badger Pass open? The season, and how to check
+
+The published season is mid-December to mid-March, conditions permitting, with the lifts running daily from 9 a.m. to 4 p.m. The Park Service gives the downhill season as mid-December through March, conditions permitting, and plows Glacier Point Road as far as the ski area from mid-December through early April.
+
+"Conditions permitting" is the load-bearing phrase. In February 2025 the concessioner and the Park Service announced that Badger Pass would not open at all for the 2024 to 2025 season: the snow had come too late, they said, to make a short season worthwhile, and season passes were refunded. The next winter it opened late and closed early. The Nordic center, which runs the cross-country and snowshoe trails, opened on Friday, January 9, 2026, the lifts followed on January 16, and the concessioner closed the area for the season on March 18, 2026, after a week of unseasonable warmth melted the snow. Neither winter came close to mid-December.
+
+The 2026 to 2027 opening date has not been announced as of this writing, and the concessioner's pages still carry last season's notices. The tubing hill in particular is built only from natural snow, so for much of what Badger offers, the date is set by the storms, not by a schedule. Three ways to check, in order:
+
+- The Snow Phone, 209/372-1000, the concessioner's line for conditions, weather, and ski area information.
+- The concessioner's Badger Pass pages at travelyosemite.com, which post the opening and closing notices.
+- The park's road recording, 209/372-0200, then 1, then 1, for whether Badger Pass Road is open and under chain control that morning. The conditions page collects the park's live feeds in one place.
+
+### Getting there: the road, the chains, the shuttle
+
+Badger Pass sits on Glacier Point Road, which the park calls Badger Pass Road in winter, five miles east of its junction with the Wawona Road (Highway 41), at a base elevation of 7,200 feet. The concessioner puts it about 45 minutes' drive from Yosemite Valley. The road is one of the three the park says need chains more often than the rest, along with the Wawona Road and the Big Oak Flat Road. Whenever a chain control is in effect, every vehicle must carry chains or cables, four-wheel drives and rentals included, and failing to put them on when required carries a citation of up to $5,000.
+
+The alternative is the free Badger Pass shuttle from the Valley, which the park says runs whenever the ski area's facilities are open, typically mid-December through March. The concessioner says it runs daily, subject to weather and road conditions, and links a printed schedule; the version it posts at this writing is dated January 2024, so confirm the times in the Valley before you count on them. One detail the concessioner does spell out: the morning shuttle reaches Badger Pass at about 9:30 a.m., and the guides on its 9 a.m. snowshoe hikes will not wait for it. For the drive in from outside the park, the entrances guide compares the routes.
+
+Photo: Justin Johnsen / Wikimedia Commons (CC BY-SA 4.0)
+
+### Downhill: the hill, the tickets
+
+The concessioner's figures: 7,200 to 8,000 feet, an 800-foot vertical drop, ten runs rated 35 percent beginner, 50 percent intermediate, and 15 percent advanced, served by five lifts: one triple chair, three double chairs, and a handle tow. There is a terrain park. If you measure a ski area by steepness, this is not one to travel for. If you measure it by how gently it introduces a seven-year-old to a chairlift, it is close to ideal.
+
+The ticket prices below are the ones the concessioner posts at this writing. It has not published a 2026 to 2027 price list, so treat these as last season's figures and the floor of what to budget.
+
+- All day, all lifts: $79 adult, $59.50 child (7 to 12).
+- Half day, all lifts: $72 adult, $46.50 child.
+- Lower lifts only (the Turtle handle tow and the Bruin chair): $35 adult, $17.50 child.
+- Children 6 and under ski free with a paying adult, and skiers 70 and older get one free lift ticket with ID.
+- A one-ride ticket, $6.50, is sold for access to the cross-country trails, for riders carrying skis or snowshoes.
+
+All-day tickets are sold online; half-day and lower-lift tickets are sold at the ski area. Residents within 50 miles of the park get 25 percent off Monday through Friday, sold at the day lodge. Rentals run $44.50 for an adult all-day ski package (skis, boots, and poles), $42 for an adult snowboard, and $10.50 for a helmet.
+
+### Lessons: where Badger earns its reputation
+
+The ski school is the reason most families come, and its packages are built for people who have never been on snow.
+
+- Guaranteed Learn to Ski or Snowboard: $154 adult, $140 child (7 to 12). Rental, helmet, a beginner lift ticket for the Turtle handle tow and Bruin chair, and two group lessons, morning and afternoon. The concessioner's guarantee is that you ride the beginner run on your first day, or the return lesson is free. Arrive an hour and a half early for rentals.
+- Introduction to Downhill Skiing or Snowboarding: $130 adult, $110 child, with one group lesson at 9 a.m., 11:15 a.m., or 2:15 p.m., first come, first served. The 2:15 lesson is $110 adult and $95 child.
+- Badger Pups, ages 4 to 6: $100 for one lesson or $130 for two, with rental, helmet, and a beginner lift ticket.
+- Private lessons: $140 an hour for one person, rising to $440 an hour for seven. Adaptive lessons are arranged by phone at 209/372-8430.
+
+The minimum age for the group packages is 7. As with the tickets, these are the prices posted at this writing, not a published 2026 to 2027 list.
+
+### Tubing: natural snow only
+
+Sledding is not allowed at Badger Pass. What there is instead is a tubing hill, and it is the most snow-dependent thing on the mountain: the concessioner gives its anticipated operating dates as January through March, weather permitting, because the hill is built entirely from natural snow and no snowmaking can open it early. Two sessions run a day, 11 a.m. to 1 p.m. and 1:30 to 3:30 p.m., at $30 per person for two hours. Riders must be at least 42 inches tall. There is no conveyor belt, so you carry the tube back up. Tickets are nonrefundable within seven days of the session, and tubes not claimed before a session starts are resold.
+
+For free sledding, the park's snow play area is at Crane Flat, on the Big Oak Flat Road, open in winter when conditions allow. Take broken sleds home with you; the park asks.
+
+### Cross-country: the Nordic center and the road to Glacier Point
+
+The other half of Badger Pass is flat, quiet, and much larger. The concessioner lists 90 miles of marked trails and 25 miles of groomed track from its Nordic center, which is open daily from 8:30 a.m. to 4 p.m. in season. Beyond the ski area, the Park Service closes Glacier Point Road to cars and grooms it, in part, for skiing and snowshoeing, along with a short semi-loop to Old Badger summit. Restrooms are at Badger Pass, and a pit toilet stands at Summit Meadow, about a mile out. The park's etiquette is simple: snowshoers walk outside the parallel ski tracks, and the center lane is for skate skiers and beginners.
+
+The marquee route is the road itself: 10.5 miles one way to Glacier Point, a 21-mile round trip that is a long day for a strong skier and an overnight for most people. The Glacier Point guide covers the summer version of the same road. Shorter, ungroomed routes lead to Dewey Point on the Valley rim, and the snowshoe routes from the same lot are in the snowshoeing guide.
+
+Rentals and lessons come from the Nordic center. An adult classic package (skis, boots, and poles) is $36.50 all day or $29.50 half day; a two-hour introductory group lesson is $86 and runs daily at 10:15 a.m. and 1 p.m. with three or more students; a one-hour private lesson is $75 for one person plus $25 for each additional person. Guided custom tours start at $250 for a half day for one person and fall per head with group size. The Nordic center's number is 209/372-4996.
+
+### Sleeping out: the two huts
+
+Two huts sit at the far end of the Badger Pass trail network, and neither is a casual plan.
+
+The Glacier Point Ski Hut, run by the concessioner at the end of the 10.5-mile ski in, sleeps up to 20 and takes guests 14 and older with an adult. It did not open for the 2025 to 2026 season, which the concessioner attributed to a lack of power, and as of this writing it has posted nothing about 2026 to 2027.
+
+The Ostrander Ski Hut, run by Yosemite Conservancy, is a stone hut at 8,500 feet, about 10 miles from Badger Pass with more than 2,500 feet of climbing, and the Conservancy describes it as for experienced skiers only. Its 2026 to 2027 season is listed as December 23, 2026, through April 4, 2027, subject to change. Space is awarded by a fall lottery: for 2026 to 2027, applications ran from October 12 through 11:59 p.m. on October 18, 2026, with winners notified by October 23, and beds left over are released first come, first served from 9 a.m. on December 1, 2026, and most Tuesdays after that. As of mid-October 2026 the trails south of Glacier Point Road toward Ostrander Lake were still closed for the Dome Fire, during which crews protected the hut; check the park's closures before you apply and again before you go. A free wilderness permit from the Badger Pass Ranger Station, the A-frame building at the ski area, is required.
+
+Camping in the snow is the third option, also on a wilderness permit. The park requires winter campers to sit at least a mile from any plowed road and a mile and a half from the ski area boundary, and does not allow camping at Summit Meadow, Dewey Point, or Glacier Point themselves.
+
+### Where to stay for a Badger Pass trip
+
+The in-park beds for a Badger Pass trip are in Yosemite Valley, about 45 minutes' drive or a shuttle ride away, because the Wawona Hotel is closed while the Park Service assesses the building's condition, with no reopening date posted. Valley lodging in winter runs at the concessioner's winter rates outside the holiday and firefall blackouts, and the trade-offs among the Ahwahnee, Yosemite Valley Lodge, and Curry Village are in the lodging guide. Outside the park, the gateway towns on Highway 41 sit on the road Badger Pass Road leaves from; the town-by-town comparison is on the lodging board.
+
+### The short version
+
+Badger Pass is a beginner's hill and a cross-country trailhead with a lodge between them, and in a year with snow it is one of the best winter days in the park. The season is set by the storms: assume nothing before January, check the Snow Phone the night before, and carry chains even if you plan to take the shuttle. If the snow is late, the Valley still has the rink, Columbia Rock, and the walk into the Mariposa Grove. If the snow is good, come midweek in January or February, book the learn-to-ski package for the first-timer, and give the rest of the party the road to Glacier Point. By March the season can end in a week.
+
+#### A room within reach of the first lift
+
+The in-park beds for a Badger Pass trip are in Yosemite Valley, about 45 minutes' drive from the lifts, and midweek in January and February, outside the firefall weeks, they are at the concessioner's winter rates. A search on your dates shows what is open in the park and in the gateway towns.
+
+Search lodging near Badger Pass →
+Where to stay: every option compared
+
+Availability links are affiliate links. The recommendations do not change for them. Disclosure.
+
+Some links in this piece are affiliate links. If you buy or book through one, The Talus Field may earn a small commission at no extra cost to you. The recommendations do not change for it. Full disclosure.
+
+#### Sources
+
+- Winter Activities, NPS Yosemite
+- Visiting in Winter, NPS Yosemite
+- Wilderness in Winter, NPS Yosemite
+- Tire Chain Requirements, NPS Yosemite
+- Public Transportation, NPS Yosemite
+- Badger Pass Ski Area, Yosemite Hospitality
+- Downhill Skiing and Snowboarding, Yosemite Hospitality
+- Ski School and Lessons, Yosemite Hospitality
+- Snow Tubing, Yosemite Hospitality
+- Cross-Country Skiing, Yosemite Hospitality
+- Snowshoeing, Yosemite Hospitality
+- Glacier Point Ski Hut, Yosemite Hospitality
+- Ostrander Ski Hut, Yosemite Conservancy
+- Badger Pass Ski Area in Yosemite Closes for Season, myMotherLode.com
+- Badger Pass, Yosemite's Ski Resort, Won't Open This Winter, National Parks Traveler
+- Yosemite Settles Lawsuit, Gets Historic Names Back, KQED
+
+---
+
+## Snowshoeing in Yosemite: Badger Pass, Crane Flat, the Mariposa Grove, and the Ranger Walks
+
+URL: https://thetalusfieldjournal.com/articles/snowshoeing-in-yosemite
+Section: Trails and Hikes. Published: 2026-10-17. Last updated: 2026-10-17.
+Summary: Snowshoeing in Yosemite: Badger Pass and Dewey Point, Crane Flat, the Mariposa Grove, free ranger walks, guided hikes, rentals, and safety rules.
+
+Snowshoeing in Yosemite happens in three places, and none of them is the Valley floor. The park marks winter routes at Badger Pass on Glacier Point Road, at Crane Flat on the Big Oak Flat Road, and in the Mariposa Grove, and those three, at 7,200, 6,200, and about 5,100 feet, are where the snow lasts long enough to walk on. Down at 4,000 feet the Valley's snow melts off the flat ground within days of a storm, and what it leaves behind is ice, which is a job for traction cleats, not snowshoes. So the first decision is not which trail. It is which of the three, and that depends on how much snow has fallen, how far you want to walk, and whether you want company.
+
+This is the guide to all three: the routes the Park Service names, the ranger-led and guided walks, the rentals, and the rules that keep a snowshoe day from turning into a search. The rest of the season, Badger's lifts and the chain rules included, is in the winter guide.
+
+### When there is snow to walk on
+
+The park's estimate is that its marked winter routes generally have enough snow from mid to late December through mid-March, and it adds that this varies from year to year. The last two winters show how much. The Badger Pass Nordic center, which rents the snowshoes and grooms the trails, did not open at all in the 2024 to 2025 season and opened on January 9 in 2025 to 2026; the lifts closed for the season on March 18. A snowshoe trip planned for Christmas week is a bet; one planned for late January or February is a better one.
+
+The routes are marked, but not the way a summer trail is. The park says winter routes carry metal signs and tree markers, colored triangles or rectangles, that can fall or be buried by new snow, and that the tracks already in the snow may not lead where you want to go. Few trails in the park are marked for winter use at all. On a clear day after a week of traffic the way is obvious. In a storm, or the morning after one, it is not.
+
+### Badger Pass and the Glacier Point Road
+
+Badger Pass has the park's largest marked network, and it is the place to start. The ski area sits five miles up Glacier Point Road from the Wawona Road, at a base of 7,200 feet; beyond it the park closes the road to cars and grooms it, in part, for skiing and snowshoeing. Restrooms are at the ski area, and there is a pit toilet at Summit Meadow, about a mile out. One rule of the road: snowshoers stay outside the parallel ski tracks, and the center lane belongs to skate skiers and beginners. Walking in the classic track ruins it for everyone behind you.
+
+The destination most people have heard of is Dewey Point, a granite overlook on the Valley rim with El Capitan across the gap. The park lists two routes to it, the Meadow route and the Ridge route, both ungroomed, both starting from the Badger Pass area. The round trip runs seven to eight miles depending on the route; the concessioner describes its guided version as about eight miles and a full day. Budget the whole day, start by mid-morning, and turn around by the hour you set, not the hour you reach the rim. The view from Dewey Point in summer, and the road it hangs off, are in the Glacier Point guide.
+
+Shorter days are easy to build from the same lot. The groomed road and the semi-loop to Old Badger summit are the gentlest walking in the network, and Summit Meadow, a mile out with a toilet waiting, makes a turnaround a first-timer can trust.
+
+Photo: Justin Johnsen / Wikimedia Commons (CC BY-SA 4.0)
+
+### Crane Flat: the quiet one
+
+Crane Flat sits on the Big Oak Flat Road (Highway 120 from the west), at about 6,200 feet, near where Tioga Road closes for the winter. The park's routes there start near the Tuolumne Grove and Merced Grove parking areas, and they are not groomed. Two are named:
+
+- Crane Flat Lookout, 1.5 miles one way, out and back.
+- The Gin Flat Loop, 6.25 miles round trip.
+
+Vault toilets are at both grove trailheads. The park lists no rentals here, so bring your own snowshoes; what you get in exchange is a trailhead without a ski area's traffic. Crane Flat is also where the park's snow play area is, near the cross-country routes and open in winter when conditions allow, so expect sleds by the road and quiet once you are out on the routes. The Big Oak Flat Road is one of the roads the park says needs chains more often than the rest, so carry them. One rule specific to the area: the park does not allow camping in the Tuolumne Grove. The groves themselves, and why the sequoias grow where they do, are the subject of the sequoia guide.
+
+### The Mariposa Grove: sequoias in snow
+
+The grove road closes to cars in winter, and the grove stays open to anyone on foot. The park's winter route is the Washburn Trail, a two-mile route from the Welcome Plaza near the South Entrance to the grove's Arrival Area, with 500 feet of elevation gain; skiers and snowshoers can also use the closed road. The park says the trail suits snowshoers better than inexperienced skiers, and that at about 5,100 feet the snow here is less reliable than at Badger or Crane Flat. There is a restroom at the parking area and a vault toilet partway up the trail.
+
+That lower elevation cuts both ways. In a lean month the trail may be bare or icy, and boots with cleats will serve better than snowshoes. After a fresh storm, it is one of the best snowshoe walks in the park, and the reward for the climb is the Grizzly Giant under snow with almost no one around it. The full grove plan, including the walk to the Grizzly Giant, is in the Mariposa Grove guide.
+
+Photo: Justin Vidamo / Wikimedia Commons (CC BY 2.0)
+
+### The ranger walks, and the guided ones
+
+Ranger-led snowshoe walks are free. The Park Service says rangers may lead them from Badger Pass from mid-December through March, conditions and staffing permitting, and lists them on the park calendar when they run. It does not publish a season schedule in advance, so look at the calendar for the days of your trip, and read "conditions and staffing permitting" as a real condition. In a thin winter, check the calendar the day before you drive up.
+
+The park also names two organizations that lead guided snowshoe walks, Yosemite Conservancy and the Yosemite Mountaineering School. The Conservancy had not posted a 2026 to 2027 winter program as of this writing. The Mountaineering School's guides run two walks from the Badger Pass Nordic center, at the prices the concessioner currently posts:
+
+- Discovery snowshoe hike: three hours and about three to four miles, Mondays, Tuesdays, and Saturdays at 9 a.m. and 1 p.m., $85 including rentals, ages 10 and up with an adult.
+- Dewey Point snowshoe hike: all day and about eight miles round trip, Sundays, Wednesdays, and Fridays at 9 a.m., $125 including rentals, a group limit of seven, ages 14 and up with an adult.
+
+One logistics note from the concessioner: the free Badger Pass shuttle from the Valley arrives at about 9:30 a.m., and the guides will not hold a 9 a.m. hike for it. Families with children under 10 can arrange a private hike through the Nordic center at 209/372-4996 or the Mountaineering School at 209/372-8344.
+
+### Rentals and what to carry
+
+Snowshoes rent at the Badger Pass Nordic center, first come, first served, open daily from 8:30 a.m. to 4 p.m. in season. The concessioner's two pages disagree on the all-day price, $26.50 on its snowshoeing page and $30 on its cross-country page; both list $24 for a half day. Rentals are due back by 4 p.m. or you may be charged another day. If your plan is Crane Flat or the Mariposa Grove, rent at Badger the day before or bring your own; the park lists no rentals at either.
+
+The park's winter safety page sets the rest of the kit. Dress in wool or synthetic layers, not cotton, and adjust them before you overheat or chill. Carry a map and a compass and know how to use them, even if you have a GPS, because the routes are under snow and so are their markers. Bring water and food for longer than you plan to be out; the days are short, and the cold makes everything slower. Poles help on every route. Traction cleats belong in the pack too, for the icy stretch between the car and the snow.
+
+### Safety: the four things that go wrong
+
+Getting lost. The park's own words are that trails and markers are covered with snow and that finding the way requires advanced navigation skills. Tell someone responsible where you are going and when you will be back, and turn around if the tracks you are following stop matching the map.
+
+Avalanches. Some areas of the park are prone to them. The park's rule for anyone without avalanche training is plain: do not go on or beneath slopes steeper than 20 degrees. Dewey Point is also the edge of a cliff, and snow hides where the rock ends. Stay well back from the lip.
+
+Cold and wet. The park warns that weather can change rapidly and dramatically, that winter conditions generally run from November through April, though early and late storms can come at any time, and that warm, wet storms add the risk of hypothermia. It asks you to watch for hypothermia, exhaustion, and dehydration in your companions as well as yourself.
+
+The short day. Winter light quits early, and a snowshoe mile is slower than a summer one. Start by mid-morning, set a turnaround time, and keep it.
+
+### Staying out overnight
+
+An overnight trip on snowshoes needs a free wilderness permit, picked up in person at the station closest to your starting point; the Badger Pass Ranger Station covers the Glacier Point Road routes, and the Big Oak Flat Information Station and Wawona Visitor Center are among the others. Reservations are not available from November through April. The park caps winter departures by trailhead: 25 a day on the Dewey Point Meadow route and 10 on the Ridge route, for example, with 10 at Crane Flat and 8 at the Mariposa Grove.
+
+The winter camping rules are specific. Camp at least a mile from any plowed road and a mile and a half from the Badger Pass Ski Area boundary, out of sight of trails and water. Camping is not allowed at Summit Meadow, or on Dewey Point or Glacier Point themselves, though it is allowed near the two points, and it is not allowed in the Tuolumne Grove. Cook on a stove; the park allows open fires for emergencies only. Pets are not allowed. For a roof instead of a tent, the Ostrander Ski Hut, run by Yosemite Conservancy about 10 miles from Badger Pass, is open from late December to early April, booked by a fall lottery and then first come, first served, and the Conservancy describes the route in as for experienced skiers only. As of mid-October 2026 the trails south of Glacier Point Road toward Ostrander Lake were still closed for the Dome Fire; the Dewey Point routes, north of the road, were not in the closure. Check the park's closures before you plan either.
+
+### Reading the snow, the old way
+
+The park's naturalists have been taking people out on snowshoes for nearly a century, and they always came back talking about tracks. In the March 1933 Yosemite Nature Notes, the junior park naturalist C. C. Presnall described a snowshoe trip he made with the assistant park naturalist M. E. Beatty to Big Meadows, under six miles round trip and, he wrote, one of the easiest winter trips out of the Valley. Deer tracks were the most numerous, concentrated on the warm north side of the canyon where the chaparral offered browse. They found one coyote track, two of fox, and two of a wildcat, and the surprise of the day was a mink track two-tenths of a mile from the river. Around the old ranch buildings, where they had expected mouse tracks, there were none, and the dainty prints of a ring-tailed cat suggested why.
+
+That is still the best reason to go slowly. A snowshoe walk is the one time of year the forest writes down who passed through it overnight, and the morning after a light snow is the clearest page you will get.
+
+### Which one, then
+
+For a first time, go to Badger Pass, rent at the Nordic center, and either join a ranger walk if the calendar has one or walk the groomed road to Summit Meadow and back, staying outside the ski tracks. For the big day, snowshoe to Dewey Point, with a guide or with a map, a turnaround time, and the whole of a short winter day. For solitude, bring your own snowshoes to Crane Flat and walk out to the lookout. For the sequoias, wait for a fresh storm and climb the Washburn Trail into the Mariposa Grove. And if the snow is thin, leave the snowshoes in the car: the Valley floor's open trails, in the winter hiking guide, want cleats, not webbing. Check the conditions page and the park calendar the morning you go.
+
+#### Sources
+
+- Winter Activities, NPS Yosemite
+- Wilderness in Winter, NPS Yosemite
+- Visiting in Winter, NPS Yosemite
+- Tire Chain Requirements, NPS Yosemite
+- Snowshoeing, Yosemite Hospitality
+- Cross-Country Skiing, Yosemite Hospitality
+- Ostrander Ski Hut, Yosemite Conservancy
+- Badger Pass Ski Area in Yosemite Closes for Season, myMotherLode.com
+- Badger Pass, Yosemite's Ski Resort, Won't Open This Winter, National Parks Traveler
+
+---
+
+## Yosemite in February: The Firefall Weeks, the Quiet Weeks, and What Is Actually Open
+
+URL: https://thetalusfieldjournal.com/articles/yosemite-in-february
+Section: Seasonal Guides. Published: 2026-10-17. Last updated: 2026-10-17.
+Summary: Yosemite in February: weather, what's open, firefall-week crowds and Presidents' Day, Badger Pass odds, chain rules, winter rates, and camping.
+
+February in Yosemite is two trips with a fence between them. For most of the month the park keeps January's habits: short days, wet storms, the winter hotel rates in force, and a Valley floor with room on it. Then, for about a week and a half in the middle, the firefall and Presidents' Day weekend arrive together, the hotels stop discounting, and the road along El Capitan fills with people waiting for sunset. Which half you book decides the crowd, the price, and whether the evenings are yours. Start there.
+
+What follows is the month as the park's own records describe it: the weather normals, what is open, the ski area's recent seasons, the campground calendar, and the dates the concessioner publishes. How Horsetail Fall works, and how good the odds are on any given evening, is in the Horsetail Fall guide, and this piece does not repeat it. It is about the rest of the trip.
+
+### The weather, in numbers
+
+The Park Service's 1991 to 2020 normals for Yosemite Valley, at about 4,000 feet, give February an average high of 51°F and an average low of 30°F, with 6.5 inches of precipitation. That makes February the second wettest month of the year in the Valley, behind January's 7.0 inches, and three degrees warmer by day. The nights still sit at freezing on average. The park says it receives more than 75 percent of its precipitation between November and March, so a February trip is still a trip into the storm season.
+
+Whether a Valley storm arrives as rain or snow is decided storm by storm; the park's phrase is that the Valley "can be rainy or snowy in any given winter storm." Up high there is no question. Tuolumne Meadows, at 8,600 feet, averages a February high of 39°F and a low of 12°F, colder by day than January, and the park describes most of Yosemite as blanketed in snow from about November through May. Pack for a wet day and a cold clear one, and plan on frost every night.
+
+### What is open in February
+
+Yosemite Valley and Wawona are reachable by car all year, and they are the whole of a February trip by road. Everything above them was decided in November.
+
+Tioga Road is closed, and Tuolumne Meadows, Tenaya Lake, and Olmsted Point with it. Glacier Point Road is plowed only to Badger Pass: from mid-December through early April the park clears the road as far as the Badger Pass Ski Area and no farther, so the drive-up view from Glacier Point is not part of any February trip. The point is still reachable on skis, which is a long day, and the road beyond Badger becomes a groomed track for exactly that purpose.
+
+The Mariposa Grove is open on foot. The grove road is closed in winter, and the park says it usually opens by sometime in April. Until then the Washburn Trail is a two-mile route from the Welcome Plaza to the grove with 500 feet of elevation gain, which the park warns may be snowy or icy enough that skis or snowshoes are the right tools. A clear February day among snow-loaded sequoias is one of the best things the month has, and the walk-in plan is in the Mariposa Grove guide.
+
+The trails close the way they did in January. The Mist Trail beside Vernal Fall, the stretch of the John Muir Trail between Clark Point and the top of Nevada Fall, and the Four Mile Trail above its winter gate below Union Point are the park's routine winter closures, and February is the middle of their season. The Yosemite Falls Trail to Columbia Rock, which takes direct winter sun on its lower switchbacks, is the month's most reliable climb. The full list of what stays open, from the Valley Loop to Hetch Hetchy, is in the winter hiking guide.
+
+Photo: George Fiske / Wikimedia Commons (public domain)
+
+### The fence in the middle: firefall weeks and Presidents' Day
+
+The Park Service gives the firefall's window as mid to late February, on clear evenings when Horsetail Fall is flowing, and says the effect is rare and that haze or cloud can erase it. The same weeks hold the month's one federal holiday. Presidents' Day falls on Monday, February 15, 2027, which puts the long weekend squarely inside the firefall window.
+
+The concessioner marks the overlap in its rate calendar. Its Yosemite Valley Lodge winter offer for 2026 to 2027 runs from November 29 through March 13 and carries two blackout windows: December 23 through January 2, and February 12 through 20, 2027. The site's winter guide records the same February blackout on the Ahwahnee and Curry Village offers. That is the hotel company saying, in its own language, which nine nights of February it expects to sell at full price. The rest of the month is discount season.
+
+The park sets its firefall rules each season, and as of this writing it has published none for 2027. For February 2026 it required no reservation for the park or the Horsetail Fall area. It prohibited parking, stopping, and unloading passengers on Northside Drive between Lower Yosemite Fall and the El Capitan Crossover, closed one lane of that road to cars so pedestrians could walk it, and warned that on busy weekends Northside Drive might close completely for about half an hour after sunset. Viewers parked at Yosemite Falls, or at Yosemite Village or Curry Village with the free shuttle, and walked 1.5 miles each way to the viewing area near the El Capitan Picnic Area. Whatever the park announces for 2027 will be on the firefall page; plan on rules of that shape, and on a cold walk back in the dark.
+
+Two more February details belong to the calendar. In 2026 the park system's first free entrance day of the year was Presidents' Day, February 16, and from 2026 those days apply to US citizens and residents only. The 2027 list has not been published. And the park dropped its timed-entry reservation system for 2026; whether it returns for 2027 has not been announced, so check the park's reservations page for the year you travel. The standard entrance pass is $35 for a private vehicle, valid for seven consecutive days. Visitors who are not US residents should read the international visitors page first, because the park adds a $100 per-person fee for nonresidents 16 and older.
+
+Photo: Barney Moss / Wikimedia Commons (CC BY 2.0)
+
+### Badger Pass in February
+
+On paper, February is the heart of the ski season. The concessioner describes the Badger Pass downhill area as operating daily from 9 a.m. to 4 p.m., mid-December to mid-March, conditions permitting, and gives the tubing hill's anticipated dates as January through March, because the hill is built entirely from natural snow. The free park shuttle between the Valley and Badger Pass runs whenever the ski area's facilities are open, which the park puts at typically mid-December through March.
+
+The last two winters show what "conditions permitting" means. In February 2025 the concessioner and the Park Service announced that Badger Pass would not open at all for the 2024 to 2025 season, because the snow had come too late to make a short season worthwhile. In 2025 to 2026 the Nordic center opened on January 9 and the lifts on January 16, and the area closed for the season on March 18, after a week of warm days and nights without a freeze melted the snowpack. In both years February was the month a ski trip depended on, and in one of them there was nothing to ski. The 2026 to 2027 opening date has not been announced.
+
+So February is the best month in the calendar for Badger, and still not a promise. Before building a day around the ski area, the tubing hill, or the ranger-led snowshoe walks that start there, call the concessioner's Snow Phone at 209/372-1000 or check its Badger Pass page. Down in the Valley, the Curry Village ice rink needs no snow at all; the park gives its season as mid-November to mid-March, conditions permitting, and the concessioner lists the 2026 to 2027 opening date as still to be determined.
+
+### Driving in: chains, still
+
+The park's guidance is to expect chain requirements from November through March, and February is in the middle of that window. The rule that catches visitors is about carrying, not mounting: whenever a chain control is in effect, every vehicle must have chains or cables in it, four-wheel drives and rentals included. Under R1, a car or pickup under 6,000 pounds with snow tires on at least two drive wheels may skip mounting them; under R2, a vehicle under 6,500 pounds with four-wheel or all-wheel drive engaged and snow tires on all four wheels may skip them; under R3 there are no exceptions. Failing to put chains on when required carries a citation of up to $5,000.
+
+Route choice matters. The park says the Wawona Road (Highway 41), the Big Oak Flat Road (Highway 120 from the west), and Badger Pass Road need chains more often than the El Portal Road (Highway 140), the Valley's own roads, and the Hetch Hetchy Road. Highway 140 is also the one route YARTS runs all year, from Merced through Mariposa, Midpines, and El Portal. The road-conditions recording, 209/372-0200, then 1, then 1, is the call to make the morning you drive.
+
+### Where to sleep in February
+
+In the park, the Ahwahnee, Yosemite Valley Lodge, and Curry Village carry the month, as they did in January. Book the firefall nights first if you want them: February 12 through 20 is the stretch the concessioner expects to fill, and Presidents' Day weekend falls inside it. Outside that window, the winter rates return and a midweek room is not hard to find.
+
+Camping in February is a short list. Upper Pines is the only campground on reservations all year, and it sells on the park's monthly calendar at 7 a.m. Pacific, five months out, so the February 2027 dates are already on sale: arrivals from January 15 through February 14 went on sale September 15, 2026, and arrivals from February 15 through March 14 on October 15. Presidents' Day weekend straddles the two, with the Saturday and Sunday in the first and the Monday in the second. Camp 4, Wawona, and Hodgdon Meadow are first come, first served in winter, and the park warns that they can fill on holidays and weekends, which describes the middle of February exactly. Plan for nights below freezing and a tent that can carry snow.
+
+Outside the park, the towns on Highway 140 put you on the lowest road and the year-round bus line, and that is the strongest argument for Mariposa or El Portal in February. The town-by-town comparison is on the lodging board.
+
+### A naturalist's February
+
+The waterfalls are coming back. The park's account of winter is that water levels tend to be low, but that once rain and snow have fallen, Yosemite Falls begins flowing again, though not at springtime levels, and after the two wettest months of the year that usually means a fall with some voice to it. The firefall depends on the same water. Horsetail Fall is a seasonal stream off the top of El Capitan, and a dry winter can leave it too thin to light.
+
+The high country is at its deepest, and the park's naturalists have long gone up to look at it. The March 1932 Yosemite Nature Notes reported that the mountaineer Norman Clyde spent the first week of that February at Glacier Point, snowed in by a heavy storm. On one of his snowshoe trips he flushed a grouse from a snowbank and found that the bird had been sheltering in a hole about two feet deep in the fresh snow, a habit the bulletin called regularly observed in the East and rare in the Sierra. The same issue noted that bears were out and about through that heavy-snow winter, as in other years. The park's food-storage rules are written without a season, so a February visitor stores food exactly as a July one does.
+
+### How to build a February trip
+
+Pick your half of the month first. If the firefall is the point, come between February 12 and 20, book the room before anything else, and accept that the evenings will be crowded and the walk out long. If the point is the park, come in the first ten days of the month or the last week, midweek, when the winter rates are in force and the Valley is as quiet as it gets.
+
+Then check the snow, not the calendar. February is the likeliest month for Badger Pass to be running, and the last two winters show it is still not certain. Confirm before you drive up. If the ski area is closed, the Valley floor, Columbia Rock, and the walk into the Mariposa Grove make a full trip without it, and by the end of the month the season is already turning toward March, when the waterfalls start to build.
+
+Read the conditions the morning of. Chain controls, road closures, trail gates, and the ski area change by the day. The conditions page collects the park's live feeds and phone numbers in one place. Come up 140 with chains in the trunk, keep one day free for the storm, and spend the clear day after it outside.
+
+#### February rooms depend on which half
+
+From February 12 through 20 the concessioner blacks out its winter rates for the firefall and Presidents' Day weekend, and the in-park rooms go first. Either side of that window, the winter discounts are back and the gateway towns on Highway 140 are quiet. A search on your dates shows which February you are dealing with.
+
+Search February lodging around Yosemite →
+Where to stay: every option compared
+
+Availability links are affiliate links. The recommendations do not change for them. Disclosure.
+
+Some links in this piece are affiliate links. If you buy or book through one, The Talus Field may earn a small commission at no extra cost to you. The recommendations do not change for it. Full disclosure.
+
+#### Sources
+
+- Weather, NPS Yosemite
+- Visiting in Winter, NPS Yosemite
+- Winter Activities, NPS Yosemite
+- Horsetail Fall, NPS Yosemite
+- Tire Chain Requirements, NPS Yosemite
+- Public Transportation, NPS Yosemite
+- Campground Reservations, NPS Yosemite
+- Fees and Passes, NPS Yosemite
+- Entrance Reservations, NPS Yosemite
+- Free Entrance Days in the National Parks, NPS
+- Downhill Skiing and Snowboarding, Yosemite Hospitality
+- Snow Tubing, Yosemite Hospitality
+- Curry Village Ice Skating Rink, Yosemite Hospitality
+- Yosemite Valley Lodge winter offer, Yosemite Hospitality
 
 ---
 

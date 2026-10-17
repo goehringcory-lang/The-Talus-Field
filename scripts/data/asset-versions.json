@@ -5,6 +5,10 @@
       "v": 22,
       "sha256": "25638d073031315c"
     },
+    "/dist/bodies/badger-pass-ski-area.js": {
+      "v": 1,
+      "sha256": "b61bd14d28ebcd81"
+    },
     "/dist/bodies/best-airport-for-yosemite.js": {
       "v": 7,
       "sha256": "d195dc8c58f540fc"
@@ -100,6 +104,10 @@
     "/dist/bodies/showy-milkweed-yosemite-valley.js": {
       "v": 7,
       "sha256": "20fe8fe6aa2cea9a"
+    },
+    "/dist/bodies/snowshoeing-in-yosemite.js": {
+      "v": 1,
+      "sha256": "2d2f4acb10a35595"
     },
     "/dist/bodies/so-you-want-to-hike-half-dome.js": {
       "v": 85,
@@ -236,6 +244,10 @@
     "/dist/bodies/yosemite-in-fall.js": {
       "v": 11,
       "sha256": "9c0483bd2b6e5fc5"
+    },
+    "/dist/bodies/yosemite-in-february.js": {
+      "v": 1,
+      "sha256": "a1027cbd1e6c0a08"
     },
     "/dist/bodies/yosemite-in-january.js": {
       "v": 2,

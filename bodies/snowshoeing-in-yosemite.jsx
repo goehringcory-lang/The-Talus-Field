@@ -1,8 +1,5 @@
 /* global React, Placeholder, MotifMountains, MotifTrees */
 
-// DRAFT, NOT PUBLISHED. Lives under docs/drafts/, which .assetsignore keeps off
-// the deployed site. Publishing steps are in docs/drafts/README.md.
-
 window.ARTICLE_BODIES = window.ARTICLE_BODIES || {};
 
 window.ARTICLE_BODIES["snowshoeing-in-yosemite"] = function SnowshoeingInYosemiteBody() {
@@ -19,7 +16,7 @@ window.ARTICLE_BODIES["snowshoeing-in-yosemite"] = function SnowshoeingInYosemit
       <h2>When there is snow to walk on</h2>
 
       <p>
-        The park's estimate is that its marked winter routes generally have enough snow from <strong>mid to late December through mid-March</strong>, and it adds that this varies from year to year. The last two winters show how much. The Badger Pass Nordic center, which rents the snowshoes and grooms the trails, did not open at all in the 2024 to 2025 season and opened on January 9 in 2025 to 2026, closing with the rest of the ski area on March 18. A snowshoe trip planned for Christmas week is a bet; one planned for late January or February is a better one.
+        The park's estimate is that its marked winter routes generally have enough snow from <strong>mid to late December through mid-March</strong>, and it adds that this varies from year to year. The last two winters show how much. The Badger Pass Nordic center, which rents the snowshoes and grooms the trails, did not open at all in the 2024 to 2025 season and opened on January 9 in 2025 to 2026; the lifts closed for the season on March 18. A snowshoe trip planned for Christmas week is a bet; one planned for late January or February is a better one.
       </p>
 
       <p>
@@ -29,7 +26,7 @@ window.ARTICLE_BODIES["snowshoeing-in-yosemite"] = function SnowshoeingInYosemit
       <h2>Badger Pass and the Glacier Point Road</h2>
 
       <p>
-        Badger Pass has the park's <strong>largest marked network</strong>, and it is the place to start. The ski area sits five miles up Glacier Point Road from the Wawona Road, at a base of 7,200 feet; beyond it the park closes the road to cars and grooms it, in part, for skiing and snowshoeing. Restrooms are at the ski area, and there is a pit toilet at Summit Meadow, about a mile out. One rule of the road: <strong>snowshoers stay outside the parallel ski tracks</strong>, and the center lane belongs to skate skiers and beginners. Walking in the classic track ruins it for everyone behind you.
+        Badger Pass has the park's <strong>largest marked network</strong>, and it is the place to start. The <a href="/articles/badger-pass-ski-area">ski area</a> sits five miles up Glacier Point Road from the Wawona Road, at a base of 7,200 feet; beyond it the park closes the road to cars and grooms it, in part, for skiing and snowshoeing. Restrooms are at the ski area, and there is a pit toilet at Summit Meadow, about a mile out. One rule of the road: <strong>snowshoers stay outside the parallel ski tracks</strong>, and the center lane belongs to skate skiers and beginners. Walking in the classic track ruins it for everyone behind you.
       </p>
 
       <p>
@@ -125,7 +122,7 @@ window.ARTICLE_BODIES["snowshoeing-in-yosemite"] = function SnowshoeingInYosemit
       </p>
 
       <p>
-        <strong>Cold and wet.</strong> The park warns that weather can change rapidly and dramatically, that early and late storms can come at any time from November through April, and that warm, wet storms add the risk of hypothermia. It asks you to watch for hypothermia, exhaustion, and dehydration in your companions as well as yourself.
+        <strong>Cold and wet.</strong> The park warns that weather can change rapidly and dramatically, that winter conditions generally run from November through April, though early and late storms can come at any time, and that warm, wet storms add the risk of hypothermia. It asks you to watch for hypothermia, exhaustion, and dehydration in your companions as well as yourself.
       </p>
 
       <p>
@@ -139,7 +136,7 @@ window.ARTICLE_BODIES["snowshoeing-in-yosemite"] = function SnowshoeingInYosemit
       </p>
 
       <p>
-        The winter camping rules are specific. Camp at least a mile from any plowed road and a mile and a half from the Badger Pass Ski Area boundary, out of sight of trails and water. Camping is not allowed at Summit Meadow, Dewey Point, or Glacier Point themselves, though it is allowed nearby, and it is not allowed in the Tuolumne Grove. Cook on a stove; the park allows open fires for emergencies only. Pets are not allowed. For a roof instead of a tent, the Ostrander Ski Hut, run by Yosemite Conservancy about 10 miles from Badger Pass, is open from late December to early April by reservation, and the Conservancy describes the route in as for experienced skiers only.
+        The winter camping rules are specific. Camp at least a mile from any plowed road and a mile and a half from the Badger Pass Ski Area boundary, out of sight of trails and water. Camping is not allowed at Summit Meadow, or on Dewey Point or Glacier Point themselves, though it is allowed near the two points, and it is not allowed in the Tuolumne Grove. Cook on a stove; the park allows open fires for emergencies only. Pets are not allowed. For a roof instead of a tent, the Ostrander Ski Hut, run by Yosemite Conservancy about 10 miles from Badger Pass, is open from late December to early April, booked by a fall lottery and then first come, first served, and the Conservancy describes the route in as for experienced skiers only. As of mid-October 2026 the trails south of Glacier Point Road toward Ostrander Lake were still closed for the Dome Fire; the Dewey Point routes, north of the road, were not in the closure. Check the park's closures before you plan either.
       </p>
 
       <h2>Reading the snow, the old way</h2>

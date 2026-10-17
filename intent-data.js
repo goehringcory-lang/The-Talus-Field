@@ -80,6 +80,9 @@ window.INTENT_FACETS = [
 
 // Per-article tags. Keyed by the slug in window.ARTICLES.
 window.ARTICLE_INTENT = {
+  "badger-pass-ski-area": { stage: ["dates-set", "in-park"], who: ["families"], topic: ["conditions", "transportation"] },
+  "snowshoeing-in-yosemite": { stage: ["dates-set", "in-park"], who: ["families", "backpacking"], topic: ["trails", "permits"] },
+  "yosemite-in-february": { stage: ["before-booking", "dates-set"], who: [], topic: ["conditions", "transportation", "lodging", "camping"] },
   "yosemite-in-january": { stage: ["before-booking", "dates-set"], who: [], topic: ["conditions", "transportation", "lodging", "camping"] },
   "yosemite-rockfall": { stage: ["in-park"], who: ["families"], topic: [] },
   "yosemite-trees-identification-guide": { stage: ["in-park"], who: ["families", "non-hikers"], topic: [] },
@@ -329,6 +332,11 @@ window.ARTICLE_MONTHS = {
   "yosemite-in-november": ["nov"],
   "yosemite-in-december": ["dec"],
   "yosemite-in-january": ["jan"],
+  "yosemite-in-february": ["feb"],
+  // The published ski season, mid-December to mid-March.
+  "badger-pass-ski-area": ["dec", "jan", "feb", "mar"],
+  // "mid to late December through mid-March", the park's snow window for the marked routes.
+  "snowshoeing-in-yosemite": ["dec", "jan", "feb", "mar"],
   "horsetail-fall-firefall": ["feb"],
   "memorial-day-skip-the-valley-go-high-2026": ["may"],
   "tioga-road-opening-weekend": ["may", "jun"],

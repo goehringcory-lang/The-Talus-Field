@@ -1,8 +1,5 @@
 /* global React, Placeholder, MotifMountains, MotifTrees, AffiliateNote, LodgingCta */
 
-// DRAFT, NOT PUBLISHED. Lives under docs/drafts/, which .assetsignore keeps off
-// the deployed site. Publishing steps are in docs/drafts/README.md.
-
 window.ARTICLE_BODIES = window.ARTICLE_BODIES || {};
 
 window.ARTICLE_BODIES["yosemite-in-february"] = function YosemiteInFebruaryBody() {
@@ -41,7 +38,7 @@ window.ARTICLE_BODIES["yosemite-in-february"] = function YosemiteInFebruaryBody(
       </p>
 
       <p>
-        <strong>The trails close the way they did in January.</strong> The Mist Trail beside Vernal Fall, the stretch of the John Muir Trail between Clark Point and the top of Nevada Fall, and the Four Mile Trail to Glacier Point are the park's routine winter closures, and February is the middle of their season. The Yosemite Falls Trail to Columbia Rock, which takes direct winter sun on its lower switchbacks, is the month's most reliable climb. The full list of what stays open, from the Valley Loop to Hetch Hetchy, is in <a href="/articles/yosemite-winter-hikes">the winter hiking guide</a>.
+        <strong>The trails close the way they did in January.</strong> The Mist Trail beside Vernal Fall, the stretch of the John Muir Trail between Clark Point and the top of Nevada Fall, and the Four Mile Trail above its winter gate below Union Point are the park's routine winter closures, and February is the middle of their season. The Yosemite Falls Trail to Columbia Rock, which takes direct winter sun on its lower switchbacks, is the month's most reliable climb. The full list of what stays open, from the Valley Loop to Hetch Hetchy, is in <a href="/articles/yosemite-winter-hikes">the winter hiking guide</a>.
       </p>
 
       <Placeholder
@@ -85,11 +82,11 @@ window.ARTICLE_BODIES["yosemite-in-february"] = function YosemiteInFebruaryBody(
       <h2>Badger Pass in February</h2>
 
       <p>
-        On paper, February is the heart of the ski season. The concessioner describes the Badger Pass downhill area as operating <strong>daily from 9 a.m. to 4 p.m., mid-December to mid-March, conditions permitting</strong>, and gives the tubing hill's anticipated dates as January through March, because the hill is built entirely from natural snow. The free park shuttle between the Valley and Badger Pass runs whenever the ski area's facilities are open, which the park puts at typically mid-December through March.
+        On paper, February is the heart of the ski season. The concessioner describes the <a href="/articles/badger-pass-ski-area">Badger Pass</a> downhill area as operating <strong>daily from 9 a.m. to 4 p.m., mid-December to mid-March, conditions permitting</strong>, and gives the tubing hill's anticipated dates as January through March, because the hill is built entirely from natural snow. The free park shuttle between the Valley and Badger Pass runs whenever the ski area's facilities are open, which the park puts at typically mid-December through March.
       </p>
 
       <p>
-        The last two winters show what "conditions permitting" means. In February 2025 the concessioner and the Park Service announced that Badger Pass would not open at all for the 2024 to 2025 season, because the snow had come too late to make a season of less than a month worthwhile. In 2025 to 2026 the Nordic center opened on January 9 and the lifts on January 16, and the area closed for the season on March 18, after warm weather and rain took the snowpack. In both years February was the month a ski trip depended on, and in one of them there was nothing to ski. The 2026 to 2027 opening date has not been announced.
+        The last two winters show what "conditions permitting" means. In February 2025 the concessioner and the Park Service announced that Badger Pass would not open at all for the 2024 to 2025 season, because the snow had come too late to make a short season worthwhile. In 2025 to 2026 the Nordic center opened on January 9 and the lifts on January 16, and the area closed for the season on March 18, after a week of warm days and nights without a freeze melted the snowpack. In both years February was the month a ski trip depended on, and in one of them there was nothing to ski. The 2026 to 2027 opening date has not been announced.
       </p>
 
       <p>
@@ -113,7 +110,7 @@ window.ARTICLE_BODIES["yosemite-in-february"] = function YosemiteInFebruaryBody(
       </p>
 
       <p>
-        <strong>Camping</strong> in February is a short list. Upper Pines is the only campground on reservations all year, and it sells on the park's monthly calendar at 7 a.m. Pacific, five months out: arrivals from January 15 through February 14 open on September 15, and arrivals from <strong>February 15 through March 14 open on October 15</strong>. The firefall's later evenings and Presidents' Day itself sit in the second window. Camp 4, Wawona, and Hodgdon Meadow are first come, first served in winter, and the park warns that they can fill on holidays and weekends, which describes the middle of February exactly. Plan for nights below freezing and a tent that can carry snow.
+        <strong>Camping</strong> in February is a short list. Upper Pines is the only campground on reservations all year, and it sells on the park's monthly calendar at 7 a.m. Pacific, five months out, so the February 2027 dates are already on sale: arrivals from January 15 through February 14 went on sale September 15, 2026, and arrivals from <strong>February 15 through March 14 on October 15</strong>. Presidents' Day weekend straddles the two, with the Saturday and Sunday in the first and the Monday in the second. Camp 4, Wawona, and Hodgdon Meadow are first come, first served in winter, and the park warns that they can fill on holidays and weekends, which describes the middle of February exactly. Plan for nights below freezing and a tent that can carry snow.
       </p>
 
       <p>

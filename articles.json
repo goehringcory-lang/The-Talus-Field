@@ -1,5 +1,85 @@
 [
   {
+    "slug": "badger-pass-ski-area",
+    "cat": "seasonal",
+    "title": "Badger Pass Ski Area: Is It Open, What It Costs, and How the Season Really Works",
+    "dek": "California's oldest downhill ski area is ten runs, five lifts, and a tubing hill that runs on natural snow, and in the last two winters it opened late once and not at all once. How to check whether it is open, the drive and the free shuttle, the posted ticket and lesson prices, the tubing rules, the Nordic center and the 21-mile track to Glacier Point, and the two huts.",
+    "seoTitle": "Badger Pass Ski Area, Yosemite: Season, Tickets, Tubing, Lessons, Shuttle",
+    "seoDek": "Badger Pass Ski Area in Yosemite: season dates and how to check if it's open, tickets, lessons, tubing, cross-country, the free shuttle, and huts.",
+    "date": "October 17, 2026",
+    "isoDate": "2026-10-17",
+    "isoModified": "2026-10-17",
+    "read": "9 min",
+    "image": "img/glacier-point-skiers-half-dome-nps.jpg",
+    "ogImage": { "url": "img/responsive/glacier-point-skiers-half-dome-nps-1600.jpg", "width": 1600, "height": 1200 },
+    "placeholder": "Two skiers on the snow at Glacier Point above Half Dome, Vernal Fall and Nevada Fall, the far end of the ski track from Badger Pass",
+    "wordCount": 2314,
+    "keywords": ["badger pass ski area", "is badger pass open", "badger pass opening", "badger pass ski season", "badger pass tubing", "badger pass lift tickets", "badger pass ski lessons", "yosemite ski and snowboard area", "badger pass shuttle", "skiing in yosemite"],
+    "faq": [
+      { "q": "Is Badger Pass open?", "a": "Its published season is mid-December to mid-March, conditions permitting, with lifts running daily from 9 a.m. to 4 p.m., but the opening date is set by the snow. It did not open at all in the 2024 to 2025 season, and in 2025 to 2026 the lifts opened on January 16 and the area closed on March 18. The 2026 to 2027 opening date has not been announced. Check the Snow Phone, 209/372-1000." },
+      { "q": "Is Badger Pass the same as the Yosemite Ski & Snowboard Area?", "a": "Yes. The park used the name Yosemite Ski & Snowboard Area from 2016 during a trademark dispute with a former concessioner, Delaware North. The dispute was settled in July 2019 and the original name, Badger Pass Ski Area, came back." },
+      { "q": "How much are lift tickets at Badger Pass?", "a": "The concessioner's posted prices are $79 for an adult all-day ticket and $59.50 for a child 7 to 12, $72 and $46.50 for a half day, and $35 and $17.50 for the lower lifts only. Children 6 and under ski free with a paying adult. It has not published a 2026 to 2027 price list, so treat these as last season's figures." },
+      { "q": "How does tubing at Badger Pass work?", "a": "The tubing hill's anticipated dates are January through March, weather permitting, because it is built entirely from natural snow. Sessions run 11 a.m. to 1 p.m. and 1:30 to 3:30 p.m., at $30 per person for two hours, for riders at least 42 inches tall. There is no conveyor; you carry the tube up. Sledding is not allowed at Badger Pass; the park's snow play area is at Crane Flat." },
+      { "q": "Is there a shuttle to Badger Pass?", "a": "Yes. The free Badger Pass shuttle runs from Yosemite Valley whenever the ski area's facilities are open, typically mid-December through March. The morning shuttle reaches Badger Pass at about 9:30 a.m." },
+      { "q": "Can you ski to Glacier Point in winter?", "a": "Yes. Beyond Badger Pass, Glacier Point Road is closed to cars and groomed in part for skiing and snowshoeing, 10.5 miles one way to Glacier Point, a 21-mile round trip. The Glacier Point Ski Hut did not open in 2025 to 2026 and had posted nothing about 2026 to 2027." },
+      { "q": "Are there ski lessons for beginners at Badger Pass?", "a": "Yes. The Guaranteed Learn to Ski or Snowboard package is $154 for adults and $140 for children 7 to 12, with rental, helmet, a beginner lift ticket, and two group lessons, and a free return lesson if you do not ride the beginner run on the first day. Badger Pups lessons for ages 4 to 6 are $100 for one or $130 for two." }
+    ],
+    "related": ["yosemite-in-winter", "snowshoeing-in-yosemite", "glacier-point-how-to-visit", "yosemite-in-january", "yosemite-in-february", "where-to-stay-in-yosemite"]
+  },
+  {
+    "slug": "snowshoeing-in-yosemite",
+    "cat": "trails",
+    "title": "Snowshoeing in Yosemite: Badger Pass, Crane Flat, the Mariposa Grove, and the Ranger Walks",
+    "dek": "The park marks winter routes in three places, and none of them is the Valley floor. Badger Pass and the road to Dewey Point, the quiet routes at Crane Flat, the Washburn Trail into the sequoias, the free ranger walks and the guided ones, where to rent, the permit and camping rules, and a 1933 snowshoe trip that came back counting tracks.",
+    "seoTitle": "Snowshoeing in Yosemite: Where to Go, Ranger Walks, Rentals, Safety",
+    "seoDek": "Snowshoeing in Yosemite: Badger Pass and Dewey Point, Crane Flat, the Mariposa Grove, free ranger walks, guided hikes, rentals, and safety rules.",
+    "date": "October 17, 2026",
+    "isoDate": "2026-10-17",
+    "isoModified": "2026-10-17",
+    "read": "8 min",
+    "image": "img/clark-range-view-glacier-point-road.jpg",
+    "ogImage": { "url": "img/responsive/clark-range-view-glacier-point-road-1600.jpg", "width": 1600, "height": 1116 },
+    "placeholder": "Snow on the high country beyond Badger Pass, with Mount Clark above Glacier Point Road",
+    "wordCount": 2188,
+    "keywords": ["snowshoeing in yosemite", "yosemite snowshoe trails", "ranger led snowshoe walk yosemite", "dewey point snowshoe", "snowshoe rental yosemite", "crane flat snowshoe", "mariposa grove snowshoe", "badger pass snowshoeing", "yosemite winter camping permit"],
+    "faq": [
+      { "q": "Where can you snowshoe in Yosemite?", "a": "The park marks winter routes in three places: Badger Pass on Glacier Point Road, at a base of 7,200 feet and the largest marked network; Crane Flat on the Big Oak Flat Road, at about 6,200 feet; and the Mariposa Grove, at about 5,100 feet, where snow is less reliable. The Valley floor's snow melts within days and leaves ice, which calls for traction cleats, not snowshoes." },
+      { "q": "Are ranger-led snowshoe walks free?", "a": "Yes. The Park Service says rangers may lead free snowshoe walks from Badger Pass from mid-December through March, conditions and staffing permitting, and lists them on the park calendar when they run." },
+      { "q": "How long is the Dewey Point snowshoe?", "a": "Seven to eight miles round trip from the Badger Pass area, depending on whether you take the Meadow route or the Ridge route, both ungroomed. The guided version from the Yosemite Mountaineering School is about eight miles and all day, $125 including rentals, for ages 14 and up with an adult." },
+      { "q": "Where can you rent snowshoes in Yosemite?", "a": "At the Badger Pass Nordic center, first come, first served, open daily from 8:30 a.m. to 4 p.m. in season. The concessioner's pages list $26.50 or $30 for a full day and $24 for a half day. The park lists no rentals at Crane Flat or the Mariposa Grove." },
+      { "q": "When is there enough snow to snowshoe in Yosemite?", "a": "The park says its marked winter routes generally have enough snow from mid to late December through mid-March, and that this varies from year to year. The Badger Pass Nordic center did not open in 2024 to 2025 and opened on January 9 in 2025 to 2026." },
+      { "q": "Do you need a permit to snowshoe in Yosemite?", "a": "Not for a day trip. An overnight trip needs a free wilderness permit picked up at the station closest to your starting point, such as the Badger Pass Ranger Station; reservations are not available from November through April. Winter campers must be at least a mile from a plowed road and a mile and a half from the ski area boundary." }
+    ],
+    "related": ["yosemite-in-winter", "badger-pass-ski-area", "yosemite-winter-hikes", "mariposa-grove-how-to-visit", "glacier-point-how-to-visit", "yosemite-ranger-programs"]
+  },
+  {
+    "slug": "yosemite-in-february",
+    "cat": "seasonal",
+    "title": "Yosemite in February: The Firefall Weeks, the Quiet Weeks, and What Is Actually Open",
+    "dek": "February is two trips with a fence between them: quiet weeks at winter rates on either side, and a stretch in the middle when the firefall and Presidents' Day weekend land together and the hotels stop discounting. The weather in numbers, what is open, Badger Pass's recent seasons, the chain rules, the campground calendar, and how to pick your half.",
+    "seoTitle": "Yosemite in February: Weather, Firefall Weeks, Badger Pass, What's Open",
+    "seoDek": "Yosemite in February: weather, what's open, firefall-week crowds and Presidents' Day, Badger Pass odds, chain rules, winter rates, and camping.",
+    "date": "October 17, 2026",
+    "isoDate": "2026-10-17",
+    "isoModified": "2026-10-17",
+    "read": "9 min",
+    "image": "img/yosemite-valley-snow-fiske.jpg",
+    "ogImage": { "url": "img/responsive/yosemite-valley-snow-fiske-1600.jpg", "width": 1600, "height": 1233 },
+    "placeholder": "Fresh snow on the Yosemite Valley floor after a winter storm, in a George Fiske photograph",
+    "wordCount": 2282,
+    "keywords": ["yosemite in february", "visiting yosemite in february", "yosemite february weather", "is yosemite open in february", "yosemite presidents day weekend", "yosemite firefall crowds", "badger pass february", "yosemite chains february", "camping in yosemite in february", "yosemite winter lodging deals february"],
+    "faq": [
+      { "q": "What is the weather like in Yosemite in February?", "a": "The Park Service's 1991 to 2020 normals for Yosemite Valley give February an average high of 51°F and an average low of 30°F, with 6.5 inches of precipitation, which makes it the second wettest month of the year in the Valley, behind January. A Valley storm can arrive as rain or snow; Tuolumne Meadows averages a February high of 39°F and a low of 12°F." },
+      { "q": "Is Yosemite open in February?", "a": "Yes. Yosemite Valley and Wawona are reachable by car all year. Tioga Road is closed, Glacier Point Road is plowed only as far as the Badger Pass Ski Area from mid-December through early April, and the Mariposa Grove is open on foot by the Washburn Trail, a two-mile route with 500 feet of elevation gain." },
+      { "q": "When is Yosemite busiest in February?", "a": "In the middle of the month. The Park Service gives the firefall's window as mid to late February, Presidents' Day falls on Monday, February 15, 2027, and the concessioner blacks out its Yosemite Valley Lodge winter rate from February 12 through 20, 2027. Either side of that window the winter rates are in force." },
+      { "q": "Do you need a reservation for the firefall?", "a": "Not in 2026: the park required no reservation for the park or the Horsetail Fall area in February 2026, and it has published no rules for 2027 yet. In 2026 it prohibited parking and stopping on Northside Drive between Lower Yosemite Fall and the El Capitan Crossover, and viewers walked 1.5 miles each way from Yosemite Falls parking to the viewing area near the El Capitan Picnic Area." },
+      { "q": "Is Badger Pass open in February?", "a": "February is inside its published season, mid-December to mid-March, conditions permitting, and the tubing hill's anticipated dates are January through March. It is not a promise: Badger Pass did not open at all in the 2024 to 2025 season, and in 2025 to 2026 the lifts opened on January 16 and the area closed on March 18. Call the Snow Phone, 209/372-1000, before you drive up." },
+      { "q": "Do you need chains to drive to Yosemite in February?", "a": "Carry them. The park says to expect chain requirements from November through March, and whenever a chain control is in effect every vehicle must have chains or cables in it, four-wheel drives and rentals included. Highway 140 needs chains less often than Highway 41, Highway 120 from the west, and Badger Pass Road. The road-conditions line is 209/372-0200, then 1, then 1." },
+      { "q": "Can you camp in Yosemite in February?", "a": "Yes. Upper Pines is on reservations all year, and the February 2027 dates went on sale five months out at 7 a.m. Pacific: arrivals from January 15 through February 14 on September 15, 2026, and arrivals from February 15 through March 14 on October 15, 2026. Camp 4, Wawona, and Hodgdon Meadow are first come, first served in winter and can fill on holidays and weekends." }
+    ],
+    "related": ["horsetail-fall-firefall", "yosemite-in-winter", "yosemite-in-january", "yosemite-in-march", "badger-pass-ski-area", "mariposa-grove-how-to-visit"]
+  },
+  {
     "slug": "yosemite-in-january",
     "cat": "seasonal",
     "title": "Yosemite in January: The Wettest Month, the Quietest Weeks, and What Is Actually Open",
@@ -13,7 +93,7 @@
     "ogImage": { "url": "img/responsive/el-capitan-snow-spring-1600.jpg", "width": 1600, "height": 952 },
     "placeholder": "El Capitan in last light above snow on the Yosemite Valley floor",
     "wordCount": 2921,
-    "keywords": ["yosemite in january", "visiting yosemite in january", "yosemite january weather", "is yosemite open in january", "does it snow in yosemite in january", "yosemite chains january", "badger pass tubing", "badger pass ski season", "yosemite winter lodging deals", "camping in yosemite in january"],
+    "keywords": ["yosemite in january", "visiting yosemite in january", "yosemite january weather", "is yosemite open in january", "does it snow in yosemite in january", "yosemite chains january", "yosemite winter lodging deals", "camping in yosemite in january"],
     "faq": [
       { "q": "Is Yosemite open in January?", "a": "Yes. Yosemite Valley and Wawona are reachable by car all year. Tioga Road is closed, Glacier Point Road is plowed only as far as the Badger Pass Ski Area from mid-December through early April, and the Mariposa Grove is open on foot by the Washburn Trail, a two-mile route with 500 feet of elevation gain." },
       { "q": "What is the weather like in Yosemite in January?", "a": "The Park Service's 1991 to 2020 normals for Yosemite Valley give January an average high of 48°F and an average low of 29°F, with 7.0 inches of precipitation, which makes it the wettest month of the year in the Valley. A Valley storm can arrive as rain or snow; Tuolumne Meadows averages a January high of 41°F and a low of 13°F." },
@@ -23,7 +103,7 @@
       { "q": "Is January a cheap time to stay in Yosemite?", "a": "After January 2, yes, by the concessioner's own calendar. Its winter offers at the Ahwahnee, Yosemite Valley Lodge, and Curry Village black out December 23 through January 2 and again February 12 through 20, so all three are in force between January 3 and February 11. Rates move with the date." },
       { "q": "Can you camp in Yosemite in January?", "a": "Yes. Upper Pines is the only campground on reservations all year; arrivals from December 15 through January 14 go on sale August 15 and arrivals from January 15 through February 14 on September 15, at 7 a.m. Pacific. Camp 4, Wawona, and Hodgdon Meadow are first come, first served in winter, though they can fill on holidays and weekends." }
     ],
-    "related": ["yosemite-in-winter", "yosemite-winter-hikes", "yosemite-in-december", "horsetail-fall-firefall", "mariposa-grove-how-to-visit", "where-to-stay-in-yosemite"]
+    "related": ["yosemite-in-winter", "yosemite-winter-hikes", "yosemite-in-december", "horsetail-fall-firefall", "mariposa-grove-how-to-visit", "yosemite-in-february"]
   },
   {
     "slug": "yosemite-rockfall",
@@ -299,7 +379,7 @@
     "ogImage": { "url": "img/responsive/yosemite-valley-winter-wall-1600.jpg", "width": 1600, "height": 1060 },
     "placeholder": "A snow-patched Yosemite Valley meadow in winter",
     "wordCount": 2666,
-    "keywords": ["yosemite in december", "visiting yosemite in december", "yosemite december weather", "is yosemite open in december", "yosemite christmas", "yosemite chains december", "does it snow in yosemite in december", "badger pass opening", "curry village ice rink", "camping in yosemite in december"],
+    "keywords": ["yosemite in december", "visiting yosemite in december", "yosemite december weather", "is yosemite open in december", "yosemite christmas", "yosemite chains december", "does it snow in yosemite in december", "curry village ice rink", "camping in yosemite in december"],
     "faq": [
       { "q": "Is Yosemite open in December?", "a": "Yes. Yosemite Valley and Wawona are reachable by car all year. Tioga Road is closed, Glacier Point Road is closed past Badger Pass and plowed only as far as the ski area from mid-December through early April, and the Mariposa Grove is open on foot by the Washburn Trail, a two-mile route with 500 feet of gain." },
       { "q": "What is the weather like in Yosemite in December?", "a": "The Park Service's normals for Yosemite Valley give December an average high of 46°F and an average low of 28°F, with about 5.6 inches of precipitation. That makes it the coldest month of the year by its average high and the third wettest. A Valley storm can arrive as rain or snow; Tuolumne Meadows averages a December high of 40°F and a low of 12°F." },
@@ -673,7 +753,7 @@
       { "q": "What is the best winter hike in Yosemite?", "a": "For effort against reward, Columbia Rock: about two miles round trip and 1,000 feet up the sunny south-facing wall. For solitude, the Wapama Falls trail at Hetch Hetchy, about five miles round trip. For the sight nobody expects, the two-mile walk up the closed road to the snowbound sequoias of the Mariposa Grove." },
       { "q": "Is Hetch Hetchy open for hiking in winter?", "a": "Usually. It sits below four thousand feet and is the corner of the park most likely to be snow-free all winter. The access road runs on posted gate hours, roughly sunrise to sunset, and snow can close it for days after a storm, so check conditions before the drive." }
     ],
-    "related": ["yosemite-in-winter", "horsetail-fall-firefall", "yosemite-waterfalls-guide", "yosemite-for-non-hikers", "yosemite-photography-spots", "yosemite-falls-trail"]
+    "related": ["yosemite-in-winter", "horsetail-fall-firefall", "yosemite-waterfalls-guide", "yosemite-for-non-hikers", "snowshoeing-in-yosemite", "yosemite-falls-trail"]
   },
   {
     "slug": "yosemite-in-march",
@@ -698,7 +778,7 @@
       { "q": "Can you see the firefall in March?", "a": "Mostly no. The alignment that lights Horsetail Fall runs roughly mid-to-late February. A faint version can still fire in the first evenings of March if the fall has water and the western sky is clean, but that is a consolation prize for people already in the park, not a reason to plan a March trip. If the firefall is the trip, come in February." },
       { "q": "How crowded is Yosemite in March?", "a": "Quiet, with one exception. Averaged across 2010 to 2024, March brings roughly 160,000 visits against about 625,000 in July, about a quarter of the summer load. The exception is spring break: mid and late March weekends and Easter week concentrate most of the month's traffic into a handful of days. Midweek March is one of the emptiest good-weather windows of the year, and as of the 2026 season no entry reservation is required." }
     ],
-    "related": ["yosemite-in-winter", "yosemite-waterfalls-guide", "horsetail-fall-firefall", "when-to-visit-yosemite", "yosemite-in-december", "yosemite-in-january"]
+    "related": ["yosemite-in-winter", "yosemite-waterfalls-guide", "horsetail-fall-firefall", "when-to-visit-yosemite", "yosemite-in-february", "yosemite-in-january"]
   },
   {
     "slug": "camping-in-yosemite-first-time",
@@ -1151,7 +1231,7 @@
     "ogImage": { "url": "img/responsive/half-dome-winter-snow-1600.jpg", "width": 1600, "height": 1247 },
     "placeholder": "Half Dome above a snow-covered Yosemite Valley in a George Fiske photograph",
     "wordCount": 2106,
-    "keywords": ["yosemite in winter", "yosemite winter road closures", "yosemite chain control R1 R2 R3", "badger pass ski area", "dewey point snowshoe", "curry village ice rink", "yosemite winter driving highway 140"],
+    "keywords": ["yosemite in winter", "yosemite winter road closures", "yosemite chain control R1 R2 R3", "curry village ice rink", "yosemite winter driving highway 140"],
     "faq": [
       { "q": "Is Yosemite open in winter?", "a": "Yes. Yosemite Valley is open year-round, along with Wawona, Hetch Hetchy, and Badger Pass, all reached by plowed roads. Lodging, food service, the visitor center, and the shuttle keep operating. What closes is the high country: Tioga Road and Glacier Point Road shut with the first serious snow, typically in November, and reopen in late May or later." },
       { "q": "Do I need tire chains to visit Yosemite in winter?", "a": "When chain control is in effect, you must carry chains even if your vehicle is exempt from mounting them. R1 requires chains unless you have snow tires; R2 requires chains unless you have four-wheel or all-wheel drive with snow tires; R3 means chains on everything. Rangers check at checkpoints, and chains can be bought or rented in the gateway towns such as Mariposa, Oakhurst, and Groveland." },
@@ -1160,7 +1240,7 @@
       { "q": "What is there to do in Yosemite in winter?", "a": "Ski or take lessons at Badger Pass, one of California's oldest ski areas; snowshoe the roughly seven-mile round trip to Dewey Point on the Valley rim; join a ranger-led snowshoe walk from Badger Pass; skate the outdoor Curry Village ice rink under Half Dome; and photograph clearing storms, the best photographic conditions the park offers all year." },
       { "q": "When does Horsetail Fall glow in Yosemite?", "a": "For about two weeks in mid-February, when the sunset angle is right, the fall is running, and the sky cooperates, Horsetail Fall on the east shoulder of El Capitan lights up orange in the last minutes of the day. The firefall now draws large crowds and has a reservation system of its own." }
     ],
-    "related": ["yosemite-winter-hikes", "yosemite-in-december", "horsetail-fall-firefall", "when-to-visit-yosemite", "yosemite-in-march", "bracebridge-dinner-and-vintners-holidays"]
+    "related": ["yosemite-winter-hikes", "yosemite-in-december", "horsetail-fall-firefall", "when-to-visit-yosemite", "yosemite-in-march", "badger-pass-ski-area"]
   },
   {
     "slug": "where-to-stay-in-yosemite",
