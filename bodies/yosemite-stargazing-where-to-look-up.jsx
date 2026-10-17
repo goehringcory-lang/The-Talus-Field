@@ -203,6 +203,10 @@ window.ARTICLE_BODIES["yosemite-stargazing-where-to-look-up"] = function Yosemit
         The schedule is posted each summer on the NPS Yosemite programs page. Check there before planning a trip around a star party.
       </p>
 
+      <p>
+        The star parties are one of several ways to see this sky with a guide. <a href="/articles/yosemite-stargazing-tours-and-programs">The stargazing tours and programs guide</a> compares them: Yosemite Conservancy's naturalist-led night sky program in the Valley, the star parties, and Yosemite Hospitality's night walks, with what each costs and which dates are posted.
+      </p>
+
       <h2>A note on light, courtesy, and how not to ruin everyone's night</h2>
 
       <p>A short list of things to do and not do at any dark-sky location.</p>

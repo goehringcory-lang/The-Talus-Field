@@ -13039,6 +13039,76 @@ html[data-nav-mode="pinned"] { scroll-padding-top: 62px; }
 /* The crawler fragment is not laid out as a grid. */
 #prerender-prose .mt-feature :is(.ff-split, .ff-facts, .mt-turns, .mt-wet, .mt-seasons, .ff-rules) { display: block; }
 
+/* ── /articles/yosemite-stargazing-tours-and-programs: the `.sg-*` pieces ──
+   A feature article on the `.hp-event` tokens and the `.ff-*` kit, built like
+   the Mist Trail layer above. Its own pieces: the program comparison table,
+   the Conservancy's session ladder (the shared `.ff-hours`), its four policy
+   cards (the shared `.ff-rules`), the program cards, the star-party list, and
+   the sources beside the questions. */
+.sg-feature .ff-split > * { min-width: 0; }
+.sg-prose { font: 17px/1.75 var(--sans); color: var(--hp-ink); max-width: 640px; }
+.sg-prose p { margin: 0 0 1.1em; }
+.sg-prose p:last-child { margin-bottom: 0; }
+.sg-prose strong { font-weight: 600; }
+.sg-prose a, .sg-feature .ff-alert a { color: inherit; text-decoration: underline; text-decoration-color: var(--hp-accent); text-decoration-thickness: 1px; text-underline-offset: 3px; }
+.sg-prose a:hover, .sg-feature .ff-alert a:hover { color: var(--hp-accent); }
+.sg-prose .dropcap::first-letter { font-family: var(--serif); font-weight: 400; font-size: 4.1em; float: left; line-height: 0.82; margin: 0.08em 0.1em 0 -0.03em; color: var(--hp-accent); }
+.sg-open .sg-prose { font: 19px/1.6 var(--serif); color: var(--ink-2); }
+.sg-open .sg-prose p:first-child { color: var(--hp-ink); }
+.hp-design a.sg-short__link { display: flex; align-items: center; justify-content: center; min-height: 48px; padding: 12px 18px; border: 1.5px solid rgba(247, 241, 225, 0.7); border-radius: 3px; font: 600 13px var(--sans); color: var(--hp-paper); text-align: center; }
+.hp-design a.sg-short__link:hover { background: var(--hp-paper); color: var(--hp-ink); }
+.sg-feature .ff-alert p, .sg-feature .ff-alert span { margin: 0; }
+
+/* The comparison table: scrolls sideways on a phone rather than squeezing. */
+.sg-table-wrap { margin-top: 48px; overflow-x: auto; -webkit-overflow-scrolling: touch; }
+.sg-compare { width: 100%; min-width: 760px; border-collapse: collapse; font: 14px/1.5 var(--sans); color: var(--ink-2); }
+.sg-compare caption { text-align: left; font: 600 10px var(--sans); letter-spacing: 1.6px; text-transform: uppercase; color: var(--hp-muted); padding-bottom: 12px; }
+.sg-compare thead th { font: 600 10px var(--sans); letter-spacing: 1.4px; text-transform: uppercase; color: var(--hp-muted); text-align: left; padding: 0 14px 10px 0; border-bottom: 2px solid var(--hp-ink); }
+.sg-compare tbody th { font: 400 18px/1.3 var(--serif); color: var(--hp-ink); text-align: left; }
+.sg-compare tbody th, .sg-compare td { padding: 14px 14px 14px 0; border-bottom: 1px solid var(--hp-rule); vertical-align: top; }
+
+/* The Conservancy program: the sessions and the policy cards. */
+.sg-sessions { background: var(--hp-card); border: 1px solid var(--hp-rule); border-radius: 4px; padding: 24px; }
+.sg-sessions .hp-eyebrow { margin: 0 0 18px; }
+.sg-rules { margin-top: 48px; }
+
+/* The cards: overnights, custom trips, the concessioner's programs. */
+.sg-cards { display: grid; gap: 16px; align-content: start; }
+.sg-card { background: var(--hp-card); border: 1px solid var(--hp-rule); border-radius: 4px; padding: 24px; display: grid; gap: 8px; }
+.sg-card .hp-eyebrow { margin: 0; }
+.sg-card h3 { margin: 0; font-size: 26px; }
+.sg-card dl { margin: 6px 0 0; border-top: 1px solid var(--hp-rule); }
+.sg-card dl div { display: flex; justify-content: space-between; gap: 16px; padding-block: 9px; border-bottom: 1px solid var(--hp-rule); }
+.sg-card dt { font: 600 10px var(--sans); letter-spacing: 1.4px; text-transform: uppercase; color: var(--hp-muted); padding-top: 3px; }
+.sg-card dd { margin: 0; font: 14px/1.5 var(--sans); color: var(--hp-ink); text-align: right; }
+
+/* Glacier Point: the star-party list. */
+.sg-parties { margin: 0; background: var(--hp-card); border: 1px solid var(--hp-rule); border-radius: 4px; padding: 24px; }
+.sg-parties figcaption { font: 600 10px var(--sans); letter-spacing: 1.6px; text-transform: uppercase; color: var(--hp-muted); margin-bottom: 12px; }
+.sg-parties ol { list-style: none; margin: 0; padding: 0; border-top: 2px solid var(--hp-ink); }
+.sg-parties li { display: grid; grid-template-columns: 11em 1fr; gap: 12px; padding-block: 11px; border-bottom: 1px solid var(--hp-rule); align-items: baseline; }
+.sg-parties span { font: 700 12px var(--sans); letter-spacing: 1px; text-transform: uppercase; color: var(--hp-muted); }
+.sg-parties strong { font: 400 19px/1.3 var(--serif); color: var(--hp-ink); }
+.sg-funding { margin-top: 20px; }
+
+/* Going on your own, the photo, the sources. */
+.sg-ownway .hp-eyebrow { margin: 0 0 14px; }
+.sg-photo { margin: 0; }
+.sg-photo img { display: block; width: 100%; height: auto; border-radius: 4px; }
+.sg-photo figcaption { margin-top: 10px; font: 12px/1.5 var(--sans); color: var(--hp-muted); }
+.sg-sources { margin-top: 28px; }
+.hp-event .sg-sources h3 { font-size: 20px; margin-bottom: 8px; }
+.sg-sources ul { list-style: none; margin: 0; padding: 0; }
+.sg-sources li { padding-block: 8px; border-top: 1px solid var(--hp-rule); font: 13px var(--sans); }
+.sg-sources a { color: var(--hp-accent); }
+
+@media (max-width: 640px) {
+  .sg-card, .sg-sessions, .sg-parties { padding: 20px; }
+  .sg-parties li { grid-template-columns: 1fr; gap: 2px; }
+}
+/* The crawler fragment is not laid out as a grid. */
+#prerender-prose .sg-feature :is(.ff-split, .ff-facts, .sg-cards, .ff-rules) { display: block; }
+
 /* ===== UX and sales audit (October 2026) =====
    The shared checkout error under every /guide buy button, the walkthrough's
    pause control, the offline toggle's illustration note, the band's
