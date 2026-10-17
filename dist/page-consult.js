@@ -1,6 +1,6 @@
 var CONSULT_PAYMENT_LINK_URL = "";
 var CONSULT_BOOKING_URL = "";
-var CONSULT_PRICE = "$95";
+var CONSULT_PRICE = "$75";
 var CONSULT_SLOTS_PER_MONTH = 6;
 var CONSULT_INTAKE = ["Travel dates:", "How many in the party (and ages, if kids):", "Where you are staying, or the towns you are weighing:", "The main thing you are trying to figure out:", "Anything that limits the plan (knees, a dog, a flight time, a permit you did or did not get):", "A call or a written plan:"].join("\n\n");
 var CONSULT_MAILTO = "mailto:cory@thetalusfieldjournal.com?subject=Field%20consult%20inquiry&body=" + encodeURIComponent(CONSULT_INTAKE + "\n");

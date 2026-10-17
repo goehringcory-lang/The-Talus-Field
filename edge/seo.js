@@ -995,7 +995,7 @@ function seoForPath(pathname, searchParams) {
     "/consult": {
       title: `Field Consult: thirty minutes on your Yosemite plan | ${SITE_NAME}`,
       description:
-        "A one-on-one planning consult with a Yosemite naturalist: your dates, group, and constraints, turned into a plan that fits the park. $95, thirty minutes, a few slots a month.",
+        "A one-on-one planning consult with a Yosemite naturalist: your dates, group, and constraints, turned into a plan that fits the park. $75, thirty minutes, a few slots a month.",
       breadcrumb: [["Home", `${SITE_ORIGIN}/`], ["Field consult", null]],
       jsonLd: {
         "@context": "https://schema.org",
