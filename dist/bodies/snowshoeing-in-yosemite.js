@@ -40,7 +40,9 @@ window.ARTICLE_BODIES["snowshoeing-in-yosemite"] = function SnowshoeingInYosemit
     href: "/articles/yosemite-winter-hikes"
   }, "the winter hiking guide"), ", want cleats, not webbing. Check the ", React.createElement("a", {
     href: "/conditions"
-  }, "conditions page"), " and the park calendar the morning you go."), React.createElement("h3", null, "Sources"), React.createElement("ul", {
+  }, "conditions page"), ", the ", React.createElement("a", {
+    href: "/webcams"
+  }, "Yosemite webcams"), " for whether snow is lying, and the park calendar the morning you go."), React.createElement("h3", null, "Sources"), React.createElement("ul", {
     style: {
       fontSize: 14
     }

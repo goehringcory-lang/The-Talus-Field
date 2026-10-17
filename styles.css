@@ -13325,3 +13325,18 @@ html[data-nl-bar] .totop { bottom: calc(76px + env(safe-area-inset-bottom)); }
   .nlmid__form input[type=email] { font-size: 16px; }
 }
 @media print { .nlmid { display: none; } }
+
+/* End-of-article letter: the article-aware lead-in under the headline. */
+.hp-design .hp-letter .hp-letter__leadin {
+  margin: 12px 0 0;
+  max-width: 455px;
+  font: 15px/1.6 var(--sans);
+  color: var(--hp-ink);
+}
+.hp-design .hp-letter .hp-letter__leadin cite {
+  font-family: var(--serif);
+  font-style: italic;
+}
+@media (max-width: 480px) {
+  .hp-design .hp-letter .hp-letter__leadin { font-size: 14px; max-width: none; }
+}

@@ -3593,7 +3593,7 @@ function NewsletterBar({
       var max = document.documentElement.scrollHeight - window.innerHeight;
       var hide = max > 0 && max - window.scrollY < 120;
       if (!hide) {
-        var units = document.querySelectorAll(".nlbox, .softgate");
+        var units = document.querySelectorAll(".nlbox, .softgate, .hp-letter, .nlmid");
         for (var u of units) {
           var r = u.getBoundingClientRect();
           if (r.bottom > 0 && r.top < window.innerHeight) {

@@ -75,6 +75,32 @@ var END_NEWSLETTER_OFFER_B = {
     blurb: "Waterfalls peak, colors turn, roads open late. One Sunday letter tracks the season so you time it right."
   }
 };
+var END_LEADIN_TOPICS = [{
+  test: /(^|-)(permits?|lottery|reservations?|walk-up|half-dome|firefall|cables)(-|$)/,
+  line: "Permit and reservation rules change from year to year. The Sunday letter keeps an eye on the season you are planning around."
+}, {
+  test: /(^|-)(winter|snow|snowshoeing|february|january|december|badger|ski)(-|$)/,
+  line: "Winter here turns on snow, chains and which roads are open. The Sunday letter follows the park through the cold months."
+}, {
+  test: /(^|-)(road|tioga|glacier-point|highway|closed|closure|smoke|wildfire|fire-restrictions|conditions)(-|$)/,
+  line: "Roads and conditions shift week to week. The Sunday letter notes what the park is doing right now and why."
+}, {
+  test: /(^|-)(stay|lodging|camping|gateway|hotels?|eat|food|dining|restaurants?)(-|$)/,
+  line: "Where you sleep and eat depends on the month. The Sunday letter is written for the season you are in."
+}, {
+  test: /(^|-)(waterfalls?|bloom|wildflowers?|fall-color|autumn|spring)(-|$)/,
+  line: "Peak timing moves with snowpack and weather. The Sunday letter reads the season as it unfolds."
+}];
+var END_LEADIN_CAT = {
+  planning: "Planning is easier with the season in view. The Sunday letter covers what the park is doing now.",
+  trails: "Trails change with the season. The Sunday letter covers what is happening along them right now.",
+  wildlife: "The Sunday letter is a naturalist's note on what is moving in the park this week, set beside what rangers wrote in the same weeks a century ago.",
+  seasonal: "The Sunday letter follows the season: what is blooming, flowing or closing, with the reason behind it."
+};
+function endLeadIn(article) {
+  var hit = END_LEADIN_TOPICS.find(t => t.test.test(article.slug));
+  return hit ? hit.line : END_LEADIN_CAT[article.cat] || "The Sunday letter is a short note on what the park is doing this week.";
+}
 function newsletterTag(placement, cat) {
   return cat ? `${placement}-${cat}` : placement;
 }
@@ -732,7 +758,9 @@ function ArticlePage({
       location: "article_end",
       tag: newsletterTag("article-end", article.cat),
       variant: endVariant
-    });
+    }, React.createElement("p", {
+      className: "hp-letter__leadin"
+    }, React.createElement("span", null, "You just read "), React.createElement("cite", null, article.title), /[.?]$/.test(article.title) ? "" : ".", " ", endLeadIn(article)));
   })());
 }
 window.ArticlePage = ArticlePage;

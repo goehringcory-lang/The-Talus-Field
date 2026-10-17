@@ -3125,7 +3125,7 @@ function NewsletterBar({ route }) {
       const max = document.documentElement.scrollHeight - window.innerHeight;
       let hide = max > 0 && max - window.scrollY < 120;
       if (!hide) {
-        const units = document.querySelectorAll(".nlbox, .softgate");
+        const units = document.querySelectorAll(".nlbox, .softgate, .hp-letter, .nlmid");
         for (const u of units) {
           const r = u.getBoundingClientRect();
           if (r.bottom > 0 && r.top < window.innerHeight) { hide = true; break; }
