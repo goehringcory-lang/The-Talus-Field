@@ -218,8 +218,8 @@
       "sha256": "84a799e6c817ad3b"
     },
     "/dist/bodies/yosemite-for-non-hikers.js": {
-      "v": 88,
-      "sha256": "53bef5307c601577"
+      "v": 89,
+      "sha256": "379be7e9a21b6aed"
     },
     "/dist/bodies/yosemite-from-las-vegas.js": {
       "v": 5,
@@ -313,9 +313,13 @@
       "v": 13,
       "sha256": "3359727037b00f56"
     },
+    "/dist/bodies/yosemite-stargazing-tours-and-programs.js": {
+      "v": 1,
+      "sha256": "3fe983591609fc5b"
+    },
     "/dist/bodies/yosemite-stargazing-where-to-look-up.js": {
-      "v": 88,
-      "sha256": "b41d086bd97057ec"
+      "v": 89,
+      "sha256": "c10d82d2b8aaa875"
     },
     "/dist/bodies/yosemite-trees-identification-guide.js": {
       "v": 5,

@@ -28,6 +28,33 @@
     "related": ["where-to-stay-in-yosemite", "yosemite-camping-complete-guide", "where-to-eat-yosemite", "yosemite-bears-safety-guide", "mist-trail-the-real-guide", "camping-in-yosemite-first-time"]
   },
   {
+    "slug": "yosemite-stargazing-tours-and-programs",
+    "cat": "seasonal",
+    "title": "Yosemite stargazing tours: the Conservancy's night sky program, Glacier Point star parties and the rest",
+    "dek": "Three organizations take people out under Yosemite's night sky, and they do it differently. Yosemite Conservancy's naturalist program in the Valley, the summer star parties with telescopes at Glacier Point, Yosemite Hospitality's night walks and moonlight tram, and the ranger programs: what each is, what it costs, and which schedules are posted.",
+    "seoTitle": "Yosemite Stargazing Tours and Night Sky Programs",
+    "seoDek": "Yosemite stargazing tours compared: the Conservancy's $25 night sky program, Glacier Point star parties, Yosemite Hospitality's walks. Dates, prices, booking.",
+    "date": "October 17, 2026",
+    "isoDate": "2026-10-17",
+    "isoModified": "2026-10-17",
+    "read": "11 min",
+    "image": "img/half-dome-starry-night-casey-horner.jpg",
+    "ogImage": { "url": "img/responsive/half-dome-starry-night-casey-horner-1600.jpg", "width": 1600, "height": 1068 },
+    "placeholder": "Stars over Half Dome at night, seen from the rim above Yosemite Valley",
+    "cover": true,
+    "wordCount": 2450,
+    "keywords": ["stargazing tour yosemite", "glacier point stargazing tour", "yosemite stargazing", "best place to stargaze in yosemite", "explore yosemite's night sky", "yosemite conservancy stargazing", "glacier point star party", "walking starry skies", "yosemite after dark", "yosemite moonlight tour"],
+    "faq": [
+      { "q": "Is there a stargazing tour in Yosemite?", "a": "Yes. Yosemite Conservancy's Explore Yosemite's Night Sky is a guided stargazing program in Yosemite Valley, $25 a person, on Friday and Saturday nights through November 21, 2026. Yosemite Hospitality runs Walking Starry Skies and Yosemite After Dark in the Valley, $25 each, and in summer a seated night-sky program at Glacier Point." },
+      { "q": "Is there a Glacier Point stargazing tour?", "a": "Not one with transportation. In summer, amateur astronomy clubs host star parties with telescopes at the Glacier Point Amphitheater on set weekends, and Yosemite Hospitality runs Glacier Point Starry Night Skies, a one-hour seated program for $25 on select weeknights. You drive yourself to both. The park lists Glacier Point as open roughly late May to November." },
+      { "q": "When are the Glacier Point star parties?", "a": "In 2026 the park's Stars Over Yosemite series ran on Friday and Saturday nights from 8:30 p.m. on six weekends between July 3 and August 15, each hosted by a different astronomy club. Programs are canceled if the sky is overcast. The 2027 schedule is not posted yet." },
+      { "q": "How much does the Yosemite Conservancy night sky program cost?", "a": "$25 a person. Children five and under attend free but need a waiver. Registration does not include the park's $35 vehicle entrance fee. A refund for a canceled booking comes as a Conservancy gift card, not cash." },
+      { "q": "Do Yosemite stargazing programs use telescopes?", "a": "The Conservancy's Explore Yosemite's Night Sky does not: the naturalist points out stars and constellations with a laser. The Glacier Point star parties are the programs with telescopes, set up by the visiting astronomy clubs." },
+      { "q": "What is the best place to stargaze in Yosemite?", "a": "The park lists Glacier Point and Washburn Point, Tenaya Lake and Olmsted Point on Tioga Road, Wawona Meadow, and in the Valley El Capitan Meadow, Cook's Meadow, Swinging Bridge and Tunnel View, where car lights and campfire haze can interfere. The darkest skies run from about an hour and a half after sunset to an hour and a half before sunrise, on nights without the moon." }
+    ],
+    "related": ["yosemite-stargazing-where-to-look-up", "glacier-point-how-to-visit", "yosemite-ranger-programs", "glacier-point-road-open-2026", "yosemite-in-fall", "yosemite-for-non-hikers"]
+  },
+  {
     "slug": "badger-pass-ski-area",
     "cat": "seasonal",
     "title": "Badger Pass Ski Area: Is It Open, What It Costs, and How the Season Really Works",
@@ -1479,7 +1506,7 @@
       { "q": "Can adults do the Yosemite Junior Ranger program?", "a": "Yes. Rangers perform the badge ceremony with the same seriousness for adults as for children, and adults are encouraged to participate." },
       { "q": "Are there ranger programs in Yosemite in winter?", "a": "Yes, though the calendar thins. The ranger-to-visitor ratio is the best of the year, and the snowshoe walks, when offered, are some of the best programs the park runs." }
     ],
-    "related": ["yosemite-with-kids-no-reservations-2026", "yosemite-wildlife-viewing-guide", "yosemite-for-non-hikers", "yosemite-accessibility-guide", "yosemite-facelift-volunteer-guide"]
+    "related": ["yosemite-with-kids-no-reservations-2026", "yosemite-wildlife-viewing-guide", "yosemite-for-non-hikers", "yosemite-accessibility-guide", "yosemite-facelift-volunteer-guide", "yosemite-stargazing-tours-and-programs"]
   },
   {
     "slug": "yosemite-camping-complete-guide",
@@ -2154,7 +2181,7 @@
     "seoDek": "Where to stargaze in Yosemite: Glacier Point, Olmsted Point, Tunnel View, Tenaya Lake, Tuolumne. Milky Way season, moon phase and the free summer Star Parties.",
     "date": "April 27, 2026",
     "isoDate": "2026-04-27",
-    "isoModified": "2026-04-27",
+    "isoModified": "2026-10-17",
     "read": "10 min",
     "image": "img/milky-way-sentinel-dome.jpg",
     "ogImage": { "url": "img/responsive/milky-way-sentinel-dome-og.jpg", "width": 1200, "height": 630 },
@@ -2169,7 +2196,7 @@
       { "q": "Can you see the Milky Way from Yosemite Valley?", "a": "On a moonless night, yes, but the Valley's lodging and village lighting reduce contrast. The high-country sites, Olmsted Point, Glacier Point, and Sentinel Dome, offer dramatically better views with comparable drive time from most gateway towns." },
       { "q": "What should I bring for stargazing in Yosemite?", "a": "Warm layers (high-country nights drop to 40F even in August), a red-light flashlight to preserve night vision, a blanket or camp chair for lying back, and binoculars, which reveal far more than the naked eye without telescope setup. A free app like Stellarium helps identify constellations and planets." }
     ],
-    "related": ["tuolumne-meadows-in-a-day", "glacier-point-road-open-2026", "yosemite-photography-spots", "tioga-road-opening-weekend", "yosemite-in-fall", "tioga-road-stop-by-stop"]
+    "related": ["yosemite-stargazing-tours-and-programs", "tuolumne-meadows-in-a-day", "glacier-point-road-open-2026", "yosemite-photography-spots", "tioga-road-opening-weekend", "yosemite-in-fall"]
   },
   {
     "slug": "yosemite-for-non-hikers",
