@@ -36,12 +36,13 @@ export default async function checkSeo() {
   for (const a of articles) {
     const id = a.slug || "(no slug)";
 
-    // Title: present + unique.
+    // Title: present + unique. The rendered <title> is seoTitle || title.
+    const shown = a.seoTitle || a.title;
     if (!a.title || !a.title.trim()) check.error(`${id}: missing title`);
     else {
-      const prev = titles.get(a.title);
+      const prev = titles.get(shown);
       if (prev) check.error(`${id}: duplicate title shared with ${prev}`);
-      else titles.set(a.title, id);
+      else titles.set(shown, id);
     }
 
     // Meta description (seoDek || dek).

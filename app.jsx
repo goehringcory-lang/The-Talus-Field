@@ -382,7 +382,8 @@ function buildSeo(route) {
         // No brand suffix, matching edge/seo.js's article branch: the suffix
         // pushed 65 of 71 rendered titles past Google's ~600px cut. These two
         // must agree, or a direct load and an SPA click title one URL two ways.
-        title: a.title,
+        // seoTitle is the search title only; the H1 and headline keep a.title.
+        title: a.seoTitle || a.title,
         description: desc,
         canonical: url,
         ogType: "article",
@@ -808,11 +809,13 @@ function buildSeo(route) {
       breadcrumb: [["Home", `${SITE_ORIGIN}/`], ["Tioga opening", null]],
     },
     "half-dome-lottery": {
-      title: `Half Dome Lottery: Dates, Odds and Daily Lottery Strategy | ${SITE_NAME}`,
+      // No brand suffix; see the note in edge/seo.js. Same for webcams and
+      // distances.
+      title: "Yosemite Half Dome Lottery: Dates, Odds and Strategy",
       // Byte-identical to the /half-dome-lottery entry in edge/seo.js; see the
       // note there. These two had drifted.
       description:
-        "Both Half Dome permit lotteries: the March preseason draw, the daily lottery almost nobody uses, the published NPS odds, and a strategy that works.",
+        "Both Yosemite Half Dome lotteries: the March preseason draw, the daily lottery two days ahead, the published NPS odds, and why late-season weekdays draw best.",
       ogType: "website",
       breadcrumb: [["Home", `${SITE_ORIGIN}/`], ["Half Dome lottery", null]],
     },
@@ -838,9 +841,9 @@ function buildSeo(route) {
       breadcrumb: [["Home", `${SITE_ORIGIN}/`], ["Frazil ice", null]],
     },
     webcams: {
-      title: `Yosemite Webcams Live: Half Dome, Yosemite Falls, El Capitan | ${SITE_NAME}`,
+      title: "Yosemite Webcams: Live Half Dome, Yosemite Falls, El Capitan",
       description:
-        "Live Yosemite webcams: Half Dome, Yosemite Falls, El Capitan and Wawona, how to read them, and what to check for Tuolumne Meadows, which has no Conservancy camera.",
+        "Live Yosemite webcams of Half Dome, Yosemite Falls, El Capitan and Wawona: what each one shows, the best hour to check it, and what to use for Tuolumne Meadows.",
       ogType: "website",
       breadcrumb: [["Home", `${SITE_ORIGIN}/`], ["Webcams", null]],
     },
@@ -866,9 +869,9 @@ function buildSeo(route) {
       breadcrumb: [["Home", `${SITE_ORIGIN}/`], ["Visiting from abroad", null]],
     },
     distances: {
-      title: `Yosemite Drive Times and Distances: Every Gateway Town in One Table | ${SITE_NAME}`,
+      title: "Yosemite Drive Times: Distances From Every Gateway Town",
       description:
-        "How far Yosemite Valley is from El Portal, Mariposa, Groveland, Oakhurst and Lee Vining: miles, drive times, entrances, elevations and what the season does to each route.",
+        "How far is Yosemite Valley from El Portal, Mariposa, Groveland, Oakhurst and Lee Vining? Miles, drive times, entrances, and what winter does to each route.",
       ogType: "website",
       breadcrumb: [["Home", `${SITE_ORIGIN}/`], ["Distances", null]],
     },

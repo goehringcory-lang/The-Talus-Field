@@ -158,6 +158,8 @@ function mergeArticles(articles, seoData, ogImages, planningSlugs, relatedFor) {
       title: art.title,
       dek: art.dek,
     };
+    // seoTitle: the <title>/og:title when the visible H1 should stay as written.
+    if (art.seoTitle) o.seoTitle = art.seoTitle;
     if (art.seoDek) o.seoDek = art.seoDek;
     o.date = art.date;
     o.isoDate = art.isoDate;

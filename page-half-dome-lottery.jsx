@@ -371,7 +371,7 @@ function HalfDomeLotteryPage({ go }) {
           <li><EventIcon name="ticket" size={26} /><strong>Run the daily lottery every day of the trip</strong><p>Each application is an independent chance, and five eligible weekday mornings is a good position to be in.</p></li>
           <li className="is-no"><EventIcon name="no" size={26} /><strong>Do not go anyway</strong><p>Rangers are at the checkpoint, they check every group, and the citation follows you home.</p></li>
           <li><EventIcon name="bed" size={26} /><strong>Consider the backpacker route</strong><p>A wilderness permit for a trip through Little Yosemite Valley can carry a Half Dome add-on from an allocation the day-hiker lottery does not touch. It means an overnight, a bear canister and wilderness gear, but it is a legitimate path to the cables. Apply through <HomeLink go={go} location="half_dome_lose" href="/articles/yosemite-wilderness-permits-guide">the wilderness permit system</HomeLink>, not this lottery.</p></li>
-          <li><EventIcon name="mountain" size={26} /><strong>Hike Clouds Rest instead</strong><p>The summit is 9,926 feet, more than a thousand feet higher than Half Dome, with no permit required and bigger views in every direction. On a Tuesday in June you might have it to yourself.</p></li>
+          <li><EventIcon name="mountain" size={26} /><strong>Hike Clouds Rest instead</strong><p>The summit is 9,926 feet, more than a thousand feet higher than Half Dome, with no permit required and bigger views in every direction. On a Tuesday in June you might have it to yourself. The route is in <HomeLink go={go} location="half_dome_lose" href="/articles/clouds-rest-hike">the Clouds Rest guide</HomeLink>.</p></li>
           <li><EventIcon name="calendar" size={26} /><strong>Come back late season, midweek</strong><p>The best daily lottery odds of the year are weekdays in September and early October: the cables are still up and the crowds have thinned.</p></li>
         </ul>
       </section>
@@ -388,7 +388,7 @@ function HalfDomeLotteryPage({ go }) {
             {/* The live layer: rules and fees change annually; the sources don't. */}
             <aside className="ff-closing hd-rules">
               <p className="hp-eyebrow">THE CURRENT YEAR'S RULES</p>
-              <p>Dates, fees, and any rule changes for the current season: <a href="https://www.nps.gov/yose/planyourvisit/hdpermits.htm" target="_blank" rel="noopener noreferrer">the NPS Half Dome permits page</a> and <a href="https://www.recreation.gov/permits/234652" target="_blank" rel="noopener noreferrer">the Recreation.gov lottery page</a>. The wilderness office answers permit questions at 209-372-0826, weekday mornings and afternoons in season. The week's park-wide picture is on <HomeLink go={go} location="half_dome_rules" href="/now">the Park Bulletin</HomeLink>.</p>
+              <p>Dates, fees, and any rule changes for the current season: <a href="https://www.nps.gov/yose/planyourvisit/hdpermits.htm" target="_blank" rel="noopener noreferrer">the NPS Half Dome permits page</a> and <a href="https://www.recreation.gov/permits/234652" target="_blank" rel="noopener noreferrer">the Recreation.gov lottery page</a>. The wilderness office answers permit questions at 209-372-0826, weekday mornings and afternoons in season. The week's park-wide picture is on <HomeLink go={go} location="half_dome_rules" href="/now">the Park Bulletin</HomeLink>, and both lottery windows are calendar files on <HomeLink go={go} location="half_dome_rules" href="/dates">the dates page</HomeLink>.</p>
               <h3>Sources</h3>
               <ul>
                 <li><a href="https://www.nps.gov/yose/planyourvisit/hdpermits.htm" target="_blank" rel="noopener noreferrer">Half Dome Permits, NPS ↗</a></li>
@@ -402,7 +402,7 @@ function HalfDomeLotteryPage({ go }) {
                 Expedia search, as on /firefall. */}
             <aside className="ff-closing hd-stay" aria-label="Lodging availability">
               <p className="hp-eyebrow">THE NIGHT BEFORE, AND THE NIGHT AFTER</p>
-              <p>The hike wants a pre-dawn start and gives back a ten-to-twelve-hour day. Driving in from Oakhurst at 3 a.m. and back out at 10 p.m. is how a permit gets wasted. A bed in the Valley or in El Portal is the difference, and the permit date is known far enough ahead to book one.</p>
+              <p>The hike wants a pre-dawn start and gives back a ten-to-twelve-hour day. Driving in from Oakhurst at 3 a.m. and back out at 10 p.m. is how a permit gets wasted (<HomeLink go={go} location="half_dome_stay" href="/distances">every town's drive to the Valley</HomeLink>). A bed in the Valley or in El Portal is the difference, and the permit date is known far enough ahead to book one.</p>
               <AvailabilityLink destination="Yosemite National Park" list="page_half_dome" slug="half-dome-lottery" className="ff-book">Search lodging near the trailhead ↗</AvailabilityLink>
               <p className="ff-note">Availability search on Expedia; we may earn a commission, and the advice is the same either way. <a href="/affiliate">Disclosure.</a> Every option compared: <HomeLink go={go} location="half_dome_stay" href="/stay">where to stay</HomeLink>.</p>
             </aside>

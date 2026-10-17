@@ -95,7 +95,9 @@ function WebcamsPage({ go }) {
             <strong>Check two, not one.</strong> A single camera tells you about
             one wall. Half Dome plus El Capitan tells you whether the whole
             Valley is clear, socked in, or hazy, and those are three different
-            days.
+            days. The El Capitan view is far too wide to show a climber; for
+            that, <a href="/articles/watching-climbers-el-capitan" onClick={(e) => { e.preventDefault(); go("a:watching-climbers-el-capitan"); }}>stand
+            in El Capitan Meadow with binoculars</a>.
           </p>
           <p>
             <strong>Elevation lies to you.</strong> The Valley floor sits at
@@ -118,6 +120,8 @@ function WebcamsPage({ go }) {
             <a href="/now" onClick={(e) => { e.preventDefault(); go("now"); }}>the Park Bulletin</a>,
             and for forecasts and entrance waits use{" "}
             <a href="/conditions" onClick={(e) => { e.preventDefault(); go("conditions"); }}>the conditions page</a>.
+            How long the drive in takes from each gateway town is in{" "}
+            <a href="/distances" onClick={(e) => { e.preventDefault(); go("distances"); }}>the drive-time table</a>.
           </p>
         </section>
 

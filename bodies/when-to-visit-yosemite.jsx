@@ -568,7 +568,7 @@ window.ARTICLE_BODIES["when-to-visit-yosemite"] = function WhenToVisitYosemiteBo
               </p>
               <div className="wv-prose">
                 <p>
-                  The 2022 through 2025 reservation systems covered the same stretch of the day, from 5 or 6 in the morning to 2 or 4 in the afternoon. With no system in 2026, you enforce it on yourself. Valley parking fills early on peak days: reports put it as soon as 8 a.m. over Memorial Day weekend, and typically between 10 and 11 a.m. on summer Saturdays and holidays.
+                  The 2022 through 2025 reservation systems covered the same stretch of the day, from 5 or 6 in the morning to 2 or 4 in the afternoon. With no system in 2026, you enforce it on yourself. Valley parking fills early on peak days: reports put it as soon as 8 a.m. over Memorial Day weekend, and typically between 10 and 11 a.m. on summer Saturdays and holidays. Work back from the gate: <a href="/distances">the drive-time table</a> has every gateway town's time to the Valley.
                 </p>
               </div>
             </div>
@@ -606,7 +606,7 @@ window.ARTICLE_BODIES["when-to-visit-yosemite"] = function WhenToVisitYosemiteBo
           <li>
             <span>For 2027</span>
             <strong>The days after Labor Day</strong>
-            <p>September averages 82 on the July scale, and the Park Service gated Labor Day weekend in 2025, so plan around that weekend and take the days after it. The last week of September is also <a href="/articles/yosemite-facelift-volunteer-guide">the Yosemite Facelift, the park's biggest volunteer cleanup</a> (September 23 to 27 in 2026), and it fits into a normal visit.</p>
+            <p>September averages 82 on the July scale, and the Park Service gated Labor Day weekend in 2025, so plan around that weekend and take the days after it. Late-season weekdays are also the best draw of the year in <a href="/half-dome-lottery">the Half Dome daily lottery</a>. The last week of September is also <a href="/articles/yosemite-facelift-volunteer-guide">the Yosemite Facelift, the park's biggest volunteer cleanup</a> (September 23 to 27 in 2026), and it fits into a normal visit.</p>
           </li>
           <li>
             <span>For 2027</span>

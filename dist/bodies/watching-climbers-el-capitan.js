@@ -414,7 +414,9 @@ window.ARTICLE_BODIES["watching-climbers-el-capitan"] = function WatchingClimber
     href: "/articles/yosemite-for-non-hikers"
   }, "great Yosemite experiences that require no hiking at all"), ". Both spots are pinned on ", React.createElement("a", {
     href: "/map"
-  }, "our interactive Valley map"), " if you're building a driving day around them."))), React.createElement(WhereMap, null)), React.createElement("div", {
+  }, "our interactive Valley map"), " if you're building a driving day around them. Before you drive over, ", React.createElement("a", {
+    href: "/webcams"
+  }, "the El Capitan webcam"), " on Turtleback Dome shows whether the Valley is clear or hazy; it is far too wide a view to pick out a climber."))), React.createElement(WhereMap, null)), React.createElement("div", {
     className: "ec-spots"
   }, React.createElement("div", {
     className: "ec-spot"
@@ -573,7 +575,9 @@ window.ARTICLE_BODIES["watching-climbers-el-capitan"] = function WatchingClimber
     className: "hp-eyebrow"
   }, "WHEN THE SHOW RUNS"), React.createElement("h2", null, "Spring and fall, and stay until dark"), React.createElement("div", {
     className: "ec-prose"
-  }, React.createElement("p", null, "Climbing on El Capitan is a ", React.createElement("strong", null, "spring and fall"), " sport. The wall faces the sun, and in midsummer the granite bakes; the sustained heat makes multi-day ascents somewhere between miserable and dangerous, so July and August afternoons are thin. Winter is worse: storms arrive fast, and a wall that sheds water and ice onto climbers who cannot retreat quickly is a hazardous place. So the reliable spectating windows are roughly ", React.createElement("strong", null, "April through early June"), " and ", React.createElement("strong", null, "September through October"), ", when the meadow fills with tourists looking up and the wall fills with parties. You may see climbers in other months, but those are the reliable ones.")), React.createElement("figure", {
+  }, React.createElement("p", null, "Climbing on El Capitan is a ", React.createElement("strong", null, "spring and fall"), " sport. The wall faces the sun, and in midsummer the granite bakes; the sustained heat makes multi-day ascents somewhere between miserable and dangerous, so July and August afternoons are thin. Winter is worse: storms arrive fast, and a wall that sheds water and ice onto climbers who cannot retreat quickly is a hazardous place. So the reliable spectating windows are roughly ", React.createElement("strong", null, "April through early June"), " and ", React.createElement("strong", null, "September through October"), ", when the meadow fills with tourists looking up and the wall fills with parties. You may see climbers in other months, but those are the reliable ones. How the same months compare for crowds is in ", React.createElement("a", {
+    href: "/articles/when-to-visit-yosemite"
+  }, "the month-by-month crowd calendar"), ".")), React.createElement("figure", {
     className: "ec-months"
   }, React.createElement("figcaption", null, "The spectating year"), React.createElement("ol", null, MONTHS.map(([m, s]) => React.createElement("li", {
     key: m,

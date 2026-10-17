@@ -177,7 +177,13 @@ function DistancesPage({
       e.preventDefault();
       go("conditions");
     }
-  }, "current conditions"), "."), React.createElement("p", null, React.createElement("strong", null, "Entrance queues are not drive time."), " On a peak summer morning the wait at a gate can add half an hour that no mileage predicts. Live entrance waits are on", " ", React.createElement("a", {
+  }, "current conditions"), ", and ", React.createElement("a", {
+    href: "/webcams",
+    onClick: e => {
+      e.preventDefault();
+      go("webcams");
+    }
+  }, "the live webcams"), " show the Valley's weather before you leave."), React.createElement("p", null, React.createElement("strong", null, "Entrance queues are not drive time."), " On a peak summer morning the wait at a gate can add half an hour that no mileage predicts. Live entrance waits are on", " ", React.createElement("a", {
     href: "/conditions",
     onClick: e => {
       e.preventDefault();
@@ -192,10 +198,13 @@ function DistancesPage({
       e.preventDefault();
       go("stay");
     }
-  }, "the where-to-stay page"), ", and what a trip costs is in", " ", React.createElement("a", {
+  }, "the where-to-stay page"), ", what a trip costs is in", " ", React.createElement("a", {
     href: "/articles/yosemite-trip-cost-budget",
     onClick: e => goArticle(e, "yosemite-trip-cost-budget")
-  }, "the budget breakdown"), ". If you are coming from further out, ", React.createElement("a", {
+  }, "the budget breakdown"), ", and where to eat in each town is in", " ", React.createElement("a", {
+    href: "/articles/where-to-eat-yosemite",
+    onClick: e => goArticle(e, "where-to-eat-yosemite")
+  }, "the Yosemite dining guide"), ". If you are coming from further out, ", React.createElement("a", {
     href: "/articles/getting-to-yosemite",
     onClick: e => goArticle(e, "getting-to-yosemite")
   }, "getting to Yosemite"), " ", "covers the airports and the long approaches.")), React.createElement(LodgingCta, {

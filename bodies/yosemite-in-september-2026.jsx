@@ -40,7 +40,7 @@ window.ARTICLE_BODIES["yosemite-in-september-2026"] = function YosemiteInSeptemb
       </p>
 
       <p>
-        Two longer closures run through the month and are not seasonal: the <strong>Wawona Hotel and its dining room are closed while the Park Service assesses the building</strong>, and <strong>White Wolf</strong>, its lodge, store and dining room, is closed for the season. If either was in the plan, it needs replacing rather than rescheduling. Raft rentals on the Merced are finished for the year.
+        Two longer closures run through the month and are not seasonal: the <strong>Wawona Hotel and its dining room are closed while the Park Service assesses the building</strong>, and <strong>White Wolf</strong>, its lodge, store and dining room, is closed for the season. If either was in the plan, it needs replacing rather than rescheduling. Raft rentals on the Merced are finished for the year. The river itself runs low, warm and slow by now, and <a href="/articles/swimming-in-the-merced">the Merced swimming guide</a> has the beaches.
       </p>
 
       <p>
@@ -64,7 +64,7 @@ window.ARTICLE_BODIES["yosemite-in-september-2026"] = function YosemiteInSeptemb
       </p>
 
       <p>
-        If the permit does not come through, September is also the best month for the alternative. Clouds Rest is higher than Half Dome, needs no permit, and is reachable from Tioga Road while the road is open.
+        If the permit does not come through, September is also the best month for the alternative. <a href="/articles/clouds-rest-hike">Clouds Rest</a> is higher than Half Dome, needs no permit, and is reachable from Tioga Road while the road is open.
       </p>
 
       <h2>Fire season, and the air</h2>

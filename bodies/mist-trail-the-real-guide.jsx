@@ -202,7 +202,7 @@ window.ARTICLE_BODIES["mist-trail-the-real-guide"] = function MistTrailBody() {
       <h2>The crowd question</h2>
 
       <p>
-        Yes, it's crowded, especially on weekends from May through July. The Mist Trail is Yosemite's signature hike and it draws people from all over the world.
+        Yes, it's crowded, especially on weekends from May through July. The Mist Trail is Yosemite's signature hike and it draws people from all over the world. <a href="/articles/when-to-visit-yosemite">The park-wide crowd calendar</a> has the month-by-month numbers.
       </p>
 
       <p>

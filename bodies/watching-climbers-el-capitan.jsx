@@ -297,7 +297,7 @@ window.ARTICLE_BODIES["watching-climbers-el-capitan"] = function WatchingClimber
               </p>
 
               <p>
-                The second angle is from <strong>El Capitan Bridge</strong>, where the road crosses the Merced. The bridge view is more oblique and adds the river in the foreground, and in spring it puts the wall's reflection at your feet. Photographers tend to prefer it; spectators tracking a specific party tend to prefer the meadow. Both are flat and roadside, which puts El Capitan viewing firmly on the short list of <a href="/articles/yosemite-for-non-hikers">great Yosemite experiences that require no hiking at all</a>. Both spots are pinned on <a href="/map">our interactive Valley map</a> if you're building a driving day around them.
+                The second angle is from <strong>El Capitan Bridge</strong>, where the road crosses the Merced. The bridge view is more oblique and adds the river in the foreground, and in spring it puts the wall's reflection at your feet. Photographers tend to prefer it; spectators tracking a specific party tend to prefer the meadow. Both are flat and roadside, which puts El Capitan viewing firmly on the short list of <a href="/articles/yosemite-for-non-hikers">great Yosemite experiences that require no hiking at all</a>. Both spots are pinned on <a href="/map">our interactive Valley map</a> if you're building a driving day around them. Before you drive over, <a href="/webcams">the El Capitan webcam</a> on Turtleback Dome shows whether the Valley is clear or hazy; it is far too wide a view to pick out a climber.
               </p>
             </div>
           </div>
@@ -489,7 +489,7 @@ window.ARTICLE_BODIES["watching-climbers-el-capitan"] = function WatchingClimber
             <h2>Spring and fall, and stay until dark</h2>
             <div className="ec-prose">
               <p>
-                Climbing on El Capitan is a <strong>spring and fall</strong> sport. The wall faces the sun, and in midsummer the granite bakes; the sustained heat makes multi-day ascents somewhere between miserable and dangerous, so July and August afternoons are thin. Winter is worse: storms arrive fast, and a wall that sheds water and ice onto climbers who cannot retreat quickly is a hazardous place. So the reliable spectating windows are roughly <strong>April through early June</strong> and <strong>September through October</strong>, when the meadow fills with tourists looking up and the wall fills with parties. You may see climbers in other months, but those are the reliable ones.
+                Climbing on El Capitan is a <strong>spring and fall</strong> sport. The wall faces the sun, and in midsummer the granite bakes; the sustained heat makes multi-day ascents somewhere between miserable and dangerous, so July and August afternoons are thin. Winter is worse: storms arrive fast, and a wall that sheds water and ice onto climbers who cannot retreat quickly is a hazardous place. So the reliable spectating windows are roughly <strong>April through early June</strong> and <strong>September through October</strong>, when the meadow fills with tourists looking up and the wall fills with parties. You may see climbers in other months, but those are the reliable ones. How the same months compare for crowds is in <a href="/articles/when-to-visit-yosemite">the month-by-month crowd calendar</a>.
               </p>
             </div>
             <figure className="ec-months">
