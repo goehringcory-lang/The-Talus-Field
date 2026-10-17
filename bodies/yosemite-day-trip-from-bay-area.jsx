@@ -146,11 +146,11 @@ window.ARTICLE_BODIES["yosemite-day-trip-from-bay-area"] = function YosemiteDayT
       </p>
 
       <p>
-        Amtrak's San Joaquins run from the Bay Area to Merced, with bus connections from San Francisco to Emeryville and a direct BART interchange at Richmond, and the first departures land in Merced in the morning. YARTS, the regional transit system, runs buses from the Merced station up Highway 140 into Yosemite Valley year-round, timed to meet the trains, and the two can be booked as a single ticket.
+        Amtrak's Gold Runner (formerly the San Joaquins) runs from the Bay Area to Merced, reached by Amtrak's connecting bus from San Francisco to Emeryville, or by BART to Richmond, where the train stops at the BART station, and the first train that meets a bus reaches Merced in late morning. YARTS, the regional transit system, runs buses from the Merced station up Highway 140 into Yosemite Valley year-round, timed to meet some of the trains, and the two can be booked as a single ticket.
       </p>
 
       <p>
-        The advantages are real: you skip the entrance line entirely, you have no parking problem to solve, the free Valley shuttle takes it from there, and somebody else drives home while you sleep. The disadvantage is equally real: the combined transit time runs roughly four to four and a half hours each way, which is no faster than driving and less flexible, and the schedule rather than your judgment decides when you leave the Valley. A same-day round trip is possible but tight, and it typically leaves fewer hours in the park than the car does.
+        The advantages are real: you skip the entrance line entirely, you have no parking problem to solve, the free Valley shuttle takes it from there, and somebody else drives home while you sleep. The disadvantage is equally real: the combined transit time runs about six and a half to seven hours each way door to door from San Francisco, which is slower than driving and less flexible, and the schedule rather than your judgment decides when you leave the Valley. On the winter timetable (October 1 to May 28) a same-day round trip does not work, so plan a night in or near the park; if you are travelling May to September, check the summer timetable.
       </p>
 
       <p>
