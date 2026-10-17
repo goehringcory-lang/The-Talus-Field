@@ -13283,6 +13283,15 @@ html[data-nav-mode="pinned"] { scroll-padding-top: 62px; }
 /* The crawler fragment is not laid out as a grid. */
 #prerender-prose .sfb-feature :is(.ff-split, .ff-facts, .sfb-routes, .sfb-tours, .sfb-choose, .ff-timeline, .ff-rules) { display: block; }
 
+/* ── /articles/yosemite-crowds-by-month: the `.ycm-*` hook ───────────────
+   Built from the shared `.ff-*` kit and the when-to-visit `.wv-prose`,
+   `.wv-table` and `.wv-sources` pieces; only the links in the rule cards
+   and the split columns need saying here. */
+.ycm-feature .ff-split > * { min-width: 0; }
+.ycm-feature .ff-rules a { color: inherit; text-decoration: underline; text-decoration-color: var(--hp-accent); text-decoration-thickness: 1px; text-underline-offset: 3px; }
+.ycm-feature .ff-rules a:hover { color: var(--hp-accent); }
+#prerender-prose .ycm-feature :is(.ff-split, .ff-facts, .ff-timeline, .ff-rules) { display: block; }
+
 /* ===== UX and sales audit (October 2026) =====
    The shared checkout error under every /guide buy button, the walkthrough's
    pause control, the offline toggle's illustration note, the band's
