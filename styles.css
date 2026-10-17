@@ -13039,6 +13039,250 @@ html[data-nav-mode="pinned"] { scroll-padding-top: 62px; }
 /* The crawler fragment is not laid out as a grid. */
 #prerender-prose .mt-feature :is(.ff-split, .ff-facts, .mt-turns, .mt-wet, .mt-seasons, .ff-rules) { display: block; }
 
+/* ── /articles/yosemite-stargazing-tours-and-programs: the `.sg-*` pieces ──
+   A feature article on the `.hp-event` tokens and the `.ff-*` kit, built like
+   the Mist Trail layer above. Its own pieces: the program comparison table,
+   the Conservancy's session ladder (the shared `.ff-hours`), its four policy
+   cards (the shared `.ff-rules`), the program cards, the star-party list, and
+   the sources beside the questions. */
+.sg-feature .ff-split > * { min-width: 0; }
+.sg-prose { font: 17px/1.75 var(--sans); color: var(--hp-ink); max-width: 640px; }
+.sg-prose p { margin: 0 0 1.1em; }
+.sg-prose p:last-child { margin-bottom: 0; }
+.sg-prose strong { font-weight: 600; }
+.sg-prose a, .sg-feature .ff-alert a { color: inherit; text-decoration: underline; text-decoration-color: var(--hp-accent); text-decoration-thickness: 1px; text-underline-offset: 3px; }
+.sg-prose a:hover, .sg-feature .ff-alert a:hover { color: var(--hp-accent); }
+.sg-prose .dropcap::first-letter { font-family: var(--serif); font-weight: 400; font-size: 4.1em; float: left; line-height: 0.82; margin: 0.08em 0.1em 0 -0.03em; color: var(--hp-accent); }
+.sg-open .sg-prose { font: 19px/1.6 var(--serif); color: var(--ink-2); }
+.sg-open .sg-prose p:first-child { color: var(--hp-ink); }
+.hp-design a.sg-short__link { display: flex; align-items: center; justify-content: center; min-height: 48px; padding: 12px 18px; border: 1.5px solid rgba(247, 241, 225, 0.7); border-radius: 3px; font: 600 13px var(--sans); color: var(--hp-paper); text-align: center; }
+.hp-design a.sg-short__link:hover { background: var(--hp-paper); color: var(--hp-ink); }
+.sg-feature .ff-alert p, .sg-feature .ff-alert span { margin: 0; }
+
+/* The comparison table: scrolls sideways on a phone rather than squeezing. */
+.sg-table-wrap { margin-top: 48px; overflow-x: auto; -webkit-overflow-scrolling: touch; }
+.sg-compare { width: 100%; min-width: 760px; border-collapse: collapse; font: 14px/1.5 var(--sans); color: var(--ink-2); }
+.sg-compare caption { text-align: left; font: 600 10px var(--sans); letter-spacing: 1.6px; text-transform: uppercase; color: var(--hp-muted); padding-bottom: 12px; }
+.sg-compare thead th { font: 600 10px var(--sans); letter-spacing: 1.4px; text-transform: uppercase; color: var(--hp-muted); text-align: left; padding: 0 14px 10px 0; border-bottom: 2px solid var(--hp-ink); }
+.sg-compare tbody th { font: 400 18px/1.3 var(--serif); color: var(--hp-ink); text-align: left; }
+.sg-compare tbody th, .sg-compare td { padding: 14px 14px 14px 0; border-bottom: 1px solid var(--hp-rule); vertical-align: top; }
+
+/* The Conservancy program: the sessions and the policy cards. */
+.sg-sessions { background: var(--hp-card); border: 1px solid var(--hp-rule); border-radius: 4px; padding: 24px; }
+.sg-sessions .hp-eyebrow { margin: 0 0 18px; }
+.sg-rules { margin-top: 48px; }
+
+/* The cards: overnights, custom trips, the concessioner's programs. */
+.sg-cards { display: grid; gap: 16px; align-content: start; }
+.sg-card { background: var(--hp-card); border: 1px solid var(--hp-rule); border-radius: 4px; padding: 24px; display: grid; gap: 8px; }
+.sg-card .hp-eyebrow { margin: 0; }
+.sg-card h3 { margin: 0; font-size: 26px; }
+.sg-card dl { margin: 6px 0 0; border-top: 1px solid var(--hp-rule); }
+.sg-card dl div { display: flex; justify-content: space-between; gap: 16px; padding-block: 9px; border-bottom: 1px solid var(--hp-rule); }
+.sg-card dt { font: 600 10px var(--sans); letter-spacing: 1.4px; text-transform: uppercase; color: var(--hp-muted); padding-top: 3px; }
+.sg-card dd { margin: 0; font: 14px/1.5 var(--sans); color: var(--hp-ink); text-align: right; }
+
+/* Glacier Point: the star-party list. */
+.sg-parties { margin: 0; background: var(--hp-card); border: 1px solid var(--hp-rule); border-radius: 4px; padding: 24px; }
+.sg-parties figcaption { font: 600 10px var(--sans); letter-spacing: 1.6px; text-transform: uppercase; color: var(--hp-muted); margin-bottom: 12px; }
+.sg-parties ol { list-style: none; margin: 0; padding: 0; border-top: 2px solid var(--hp-ink); }
+.sg-parties li { display: grid; grid-template-columns: 11em 1fr; gap: 12px; padding-block: 11px; border-bottom: 1px solid var(--hp-rule); align-items: baseline; }
+.sg-parties span { font: 700 12px var(--sans); letter-spacing: 1px; text-transform: uppercase; color: var(--hp-muted); }
+.sg-parties strong { font: 400 19px/1.3 var(--serif); color: var(--hp-ink); }
+.sg-funding { margin-top: 20px; }
+
+/* Going on your own, the photo, the sources. */
+.sg-ownway .hp-eyebrow { margin: 0 0 14px; }
+.sg-photo { margin: 0; }
+.sg-photo img { display: block; width: 100%; height: auto; border-radius: 4px; }
+.sg-photo figcaption { margin-top: 10px; font: 12px/1.5 var(--sans); color: var(--hp-muted); }
+.sg-sources { margin-top: 28px; }
+.hp-event .sg-sources h3 { font-size: 20px; margin-bottom: 8px; }
+.sg-sources ul { list-style: none; margin: 0; padding: 0; }
+.sg-sources li { padding-block: 8px; border-top: 1px solid var(--hp-rule); font: 13px var(--sans); }
+.sg-sources a { color: var(--hp-accent); }
+
+@media (max-width: 640px) {
+  .sg-card, .sg-sessions, .sg-parties { padding: 20px; }
+  .sg-parties li { grid-template-columns: 1fr; gap: 2px; }
+}
+/* The crawler fragment is not laid out as a grid. */
+#prerender-prose .sg-feature :is(.ff-split, .ff-facts, .sg-cards, .ff-rules) { display: block; }
+
+/* ── /articles/housekeeping-camp-vs-curry-village: the `.hk-*` pieces ──────
+   A feature article on the `.hp-event` tokens and the `.ff-*` kit, built
+   like the Mist Trail layer above. Its own pieces: the NPS map crop (the
+   shared `.npsmap`, three pins), the side-by-side table, the one-unit card,
+   the Curry room table, the season strip, the kitchen list (the shared
+   `.ff-hours`), the bear rules (the shared `.ff-rules`), the booking steps
+   (the shared `.ff-timeline`) and the two who-books-which columns. */
+.hk-feature .ff-split > * { min-width: 0; }
+.hk-prose { font: 17px/1.75 var(--sans); color: var(--hp-ink); max-width: 640px; }
+.hk-prose p { margin: 0 0 1.1em; }
+.hk-prose p:last-child { margin-bottom: 0; }
+.hk-prose strong { font-weight: 600; }
+.hk-prose a, .hk-feature .ff-alert a, .hk-feature .ff-note a, .hk-feature .ff-lede a { color: inherit; text-decoration: underline; text-decoration-color: var(--hp-accent); text-decoration-thickness: 1px; text-underline-offset: 3px; }
+.hk-prose a:hover, .hk-feature .ff-alert a:hover, .hk-feature .ff-note a:hover, .hk-feature .ff-lede a:hover { color: var(--hp-accent); }
+.hk-prose .dropcap::first-letter { font-family: var(--serif); font-weight: 400; font-size: 4.1em; float: left; line-height: 0.82; margin: 0.08em 0.1em 0 -0.03em; color: var(--hp-accent); }
+.hk-open .hk-prose { font: 19px/1.6 var(--serif); color: var(--ink-2); }
+.hk-open .hk-prose p:first-child { color: var(--hp-ink); }
+.hk-open .ff-short { position: sticky; top: 88px; }
+.hp-design a.hk-short__link { display: flex; align-items: center; justify-content: center; min-height: 48px; padding: 12px 18px; border: 1.5px solid rgba(247, 241, 225, 0.7); border-radius: 3px; font: 600 13px var(--sans); color: var(--hp-paper); text-align: center; }
+.hp-design a.hk-short__link:hover { background: var(--hp-paper); color: var(--hp-ink); }
+
+/* Side by side: the map and the table. */
+.hk-map { margin: 0; }
+.hk-compare-wrap { margin-top: 44px; overflow-x: auto; }
+.hk-compare { width: 100%; min-width: 620px; border-collapse: collapse; font: 15px/1.5 var(--sans); background: var(--hp-card); border: 1px solid var(--hp-rule); border-radius: 4px; }
+.hk-compare caption { text-align: left; padding-bottom: 10px; font: 700 11px var(--sans); letter-spacing: 1.2px; text-transform: uppercase; color: var(--hp-muted); }
+.hk-compare th, .hk-compare td { text-align: left; vertical-align: top; padding: 12px 16px; border-bottom: 1px solid var(--hp-rule); }
+.hk-compare thead th { border-bottom: 2px solid var(--hp-ink); font: 400 22px/1.2 var(--serif); color: var(--hp-ink); }
+.hk-compare tbody th { width: 22%; font: 700 11px var(--sans); letter-spacing: 1.2px; text-transform: uppercase; color: var(--hp-muted); padding-top: 15px; }
+.hk-compare td { width: 39%; color: var(--ink-2); }
+.hk-compare tbody tr:last-child > * { border-bottom: 0; }
+
+/* Housekeeping Camp: the one-unit card. Curry Village: the photo and rooms. */
+.hk-unit { background: var(--hp-card); border: 1px solid var(--hp-rule); border-radius: 4px; padding: 24px; align-self: start; }
+.hk-unit .hp-eyebrow { margin: 0 0 12px; }
+.hk-unit dl { margin: 0 0 14px; border-top: 1px solid var(--hp-rule); }
+.hk-unit dl div { display: grid; grid-template-columns: 96px 1fr; gap: 12px; padding-block: 10px; border-bottom: 1px solid var(--hp-rule); }
+.hk-unit dt { font: 600 10px var(--sans); letter-spacing: 1.4px; text-transform: uppercase; color: var(--hp-muted); padding-top: 3px; }
+.hk-unit dd { margin: 0; font: 14px/1.5 var(--sans); color: var(--hp-ink); }
+.hk-photo { margin: 0; }
+.hk-photo img { display: block; width: 100%; height: auto; border-radius: 4px; }
+.hk-photo figcaption { margin-top: 10px; font: 12px/1.5 var(--sans); color: var(--hp-muted); }
+.hk-rooms { width: 100%; margin: 40px 0 0; border-collapse: collapse; font: 14px/1.45 var(--sans); }
+.hk-rooms caption { text-align: left; padding-bottom: 10px; font: 700 11px var(--sans); letter-spacing: 1.2px; text-transform: uppercase; color: var(--hp-muted); }
+.hk-rooms th, .hk-rooms td { text-align: left; padding: 9px 12px 9px 0; border-bottom: 1px solid var(--hp-rule); vertical-align: top; }
+.hk-rooms thead th { border-bottom: 2px solid var(--hp-ink); font: 700 11px var(--sans); letter-spacing: 1px; text-transform: uppercase; color: var(--hp-ink); }
+.hk-rooms tbody th { font: 400 17px/1.3 var(--serif); color: var(--hp-ink); }
+.hk-rooms td { color: var(--ink-2); }
+.hk-feature .ff-alert { margin-top: 28px; }
+
+/* The seasons: three cards. */
+.hk-seasons { list-style: none; margin: 0; padding: 0; display: grid; gap: 12px; }
+.hk-seasons li { background: var(--hp-card); border: 1px solid var(--hp-rule); border-left: 6px solid var(--hp-accent); border-radius: 4px; padding: 18px 20px; display: grid; gap: 6px; }
+.hk-seasons li.is-cv { border-left-color: var(--hp-ink); }
+.hk-seasons li.is-heat { border-left-color: #c98a5a; }
+.hk-seasons span { font: 700 11px var(--sans); letter-spacing: 1.2px; text-transform: uppercase; color: var(--hp-muted); }
+.hk-seasons strong { font: 400 22px/1.2 var(--serif); color: var(--hp-ink); }
+.hk-seasons p { margin: 0; font: 14px/1.6 var(--sans); color: var(--ink-2); }
+
+/* The food: the kitchen list. */
+.hp-event .hk-kitchens__head { margin: 0 0 18px; }
+.hk-kitchens p strong { display: block; margin-bottom: 2px; font-weight: 600; color: var(--hp-ink); }
+
+/* The bears and the booking steps. */
+.hk-rules { grid-template-columns: repeat(2, minmax(0, 1fr)); align-self: start; }
+.hk-steps { align-self: start; margin: 0; grid-template-columns: 1fr; }
+.hk-steps li { padding: 18px 0 16px; }
+.hk-steps li + li { padding-left: 0; border-left: 0; border-top: 1px solid var(--hp-rule); }
+
+/* Who books which: two columns, then the warnings. */
+.hk-choose { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; margin-top: 8px; }
+.hk-choose__col { background: var(--hp-card); border: 1px solid var(--hp-rule); border-radius: 4px; padding: 22px 24px; }
+.hk-choose__col--hk { background: var(--hp-ink); border-color: var(--hp-ink); color: var(--hp-paper); }
+.hk-choose__head { display: flex; align-items: center; gap: 10px; margin: 0 0 12px; font: 700 11px var(--sans); letter-spacing: 1.6px; text-transform: uppercase; color: var(--hp-accent); }
+.hk-choose__col--hk .hk-choose__head { color: var(--hp-gold); }
+.hk-choose ul { margin: 0; padding-left: 20px; display: grid; gap: 8px; font: 18px/1.4 var(--serif); }
+.hk-who { margin-top: 36px; }
+
+/* The sources beside the questions. */
+.hk-sources { margin-top: 28px; }
+.hp-event .hk-sources h3 { font-size: 20px; margin-bottom: 8px; }
+.hk-sources ul { list-style: none; margin: 0; padding: 0; }
+.hk-sources li { padding-block: 8px; border-top: 1px solid var(--hp-rule); font: 13px var(--sans); }
+.hk-sources a { color: var(--hp-accent); }
+
+@media (max-width: 880px) {
+  .hk-open .ff-short { position: static; }
+  .hk-choose, .hk-rules { grid-template-columns: 1fr; }
+}
+@media (max-width: 640px) {
+  .hk-unit { padding: 20px; }
+  .hk-unit dl div { grid-template-columns: 1fr; gap: 2px; }
+}
+/* The crawler fragment is not laid out as a grid. */
+#prerender-prose .hk-feature :is(.ff-split, .ff-facts, .hk-choose, .hk-seasons, .ff-rules) { display: block; }
+
+/* ── /articles/yosemite-san-francisco-bus: the `.sfb-*` pieces ────────────
+   A feature article on the `.hp-event` tokens and the `.ff-*` kit (see the
+   feature-article layer above). Its own pieces: the photo beside the route,
+   the transit legs (the shared `.ff-timeline`), the four YARTS route cards
+   (the year-round one in ink), the return-trip rule cards (the shared
+   `.ff-rules`, two to a row beside the prose), the fare card (the shared
+   `.ff-inpark`), the three tour cards, the bus-or-car columns and the
+   sources beside the questions. */
+.sfb-feature .ff-split > * { min-width: 0; }
+.sfb-prose { font: 17px/1.75 var(--sans); color: var(--hp-ink); max-width: 640px; }
+.sfb-prose p { margin: 0 0 1.1em; }
+.sfb-prose p:last-child { margin-bottom: 0; }
+.sfb-prose strong { font-weight: 600; }
+.sfb-prose a, .sfb-feature .ff-note a, .sfb-feature .ff-alert a, .sfb-feature .ff-lede a, .sfb-rules a { color: inherit; text-decoration: underline; text-decoration-color: var(--hp-accent); text-decoration-thickness: 1px; text-underline-offset: 3px; }
+.sfb-prose a:hover, .sfb-feature .ff-note a:hover, .sfb-feature .ff-alert a:hover, .sfb-feature .ff-lede a:hover, .sfb-rules a:hover { color: var(--hp-accent); }
+.sfb-prose .dropcap::first-letter { font-family: var(--serif); font-weight: 400; font-size: 4.1em; float: left; line-height: 0.82; margin: 0.08em 0.1em 0 -0.03em; color: var(--hp-accent); }
+.sfb-open .sfb-prose { font: 19px/1.6 var(--serif); color: var(--ink-2); }
+.sfb-open .sfb-prose p:first-child { color: var(--hp-ink); }
+.sfb-open .ff-short { position: sticky; top: 88px; }
+
+.sfb-photo { margin: 0; }
+.sfb-photo img { display: block; width: 100%; height: auto; border-radius: 4px; }
+.sfb-photo figcaption { margin-top: 10px; font: 12px/1.5 var(--sans); color: var(--hp-muted); }
+
+.sfb-routes { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 20px; }
+.sfb-route { background: var(--hp-card); border: 1px solid var(--hp-rule); border-top: 4px solid var(--bt-warn); border-radius: 4px; padding: 22px; display: grid; gap: 10px; align-content: start; }
+.sfb-route.is-year { background: var(--hp-ink); border-color: var(--hp-ink); color: var(--hp-paper); }
+.sfb-route__season { margin: 0; font: 700 10px var(--sans); letter-spacing: 1.4px; text-transform: uppercase; color: var(--hp-muted); }
+.sfb-route.is-year .sfb-route__season { color: var(--hp-gold); }
+.sfb-route h3 { margin: 0; font-size: 26px; }
+.sfb-route.is-year h3 { color: var(--hp-paper); }
+.sfb-route__from { margin: 0; font: 13px/1.5 var(--sans); color: var(--hp-muted); }
+.sfb-route.is-year .sfb-route__from { color: var(--hp-band-muted); }
+.sfb-route dl { margin: 0; border-top: 1px solid var(--hp-rule); }
+.sfb-route dl > div { padding-block: 9px; border-bottom: 1px solid var(--hp-rule); }
+.sfb-route dt { font: 700 10px var(--sans); letter-spacing: 1.4px; text-transform: uppercase; color: var(--hp-muted); }
+.sfb-route dd { margin: 3px 0 0; font: 14px/1.55 var(--sans); color: var(--ink-2); }
+.sfb-route.is-year dl, .sfb-route.is-year dl > div { border-color: rgba(255, 255, 255, .18); }
+.sfb-route.is-year dt { color: var(--hp-band-muted); }
+.sfb-route.is-year dd { color: var(--hp-paper); }
+.sfb-route__note { margin: 0; font: 18px/1.35 var(--serif); }
+
+.ff-rules.sfb-rules { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+
+.sfb-tours { display: grid; gap: 14px; }
+.sfb-tour { background: var(--hp-card); border: 1px solid var(--hp-rule); border-left: 4px solid var(--hp-accent); border-radius: 4px; padding: 20px 22px; }
+.sfb-tour__season { margin: 0 0 6px; font: 700 10px var(--sans); letter-spacing: 1.4px; text-transform: uppercase; color: var(--hp-muted); }
+.sfb-tour h3 { font-size: 24px; margin: 0 0 8px; }
+.sfb-tour p:not(.sfb-tour__season) { margin: 0; font: 14px/1.6 var(--sans); color: var(--ink-2); }
+.sfb-tours .ff-note { margin: 0; }
+
+.sfb-choose { display: grid; gap: 14px; }
+.sfb-choose__col { background: var(--hp-card); border: 1px solid var(--hp-rule); border-radius: 4px; padding: 22px 24px; }
+.sfb-choose__col--car { background: var(--hp-ink); border-color: var(--hp-ink); color: var(--hp-paper); }
+.sfb-choose__head { display: flex; align-items: center; gap: 10px; margin: 0 0 12px; font: 700 11px var(--sans); letter-spacing: 1.6px; text-transform: uppercase; color: var(--hp-accent); }
+.sfb-choose__col--car .sfb-choose__head { color: var(--hp-gold); }
+.sfb-choose ul { margin: 0; padding-left: 20px; display: grid; gap: 8px; font: 18px/1.4 var(--serif); }
+
+.sfb-sources { margin-top: 28px; }
+.hp-event .sfb-sources h3 { font-size: 20px; margin-bottom: 8px; }
+.sfb-sources ul { list-style: none; margin: 0; padding: 0; }
+.sfb-sources li { padding-block: 8px; border-top: 1px solid var(--hp-rule); font: 13px var(--sans); }
+.sfb-sources a { color: var(--hp-accent); }
+
+@media (max-width: 1100px) {
+  .sfb-routes { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (max-width: 880px) {
+  .sfb-open .ff-short { position: static; }
+}
+@media (max-width: 640px) {
+  .sfb-routes, .ff-rules.sfb-rules { grid-template-columns: 1fr; }
+  .sfb-route { padding: 20px; }
+  .sfb-choose ul { font-size: 17px; }
+}
+/* The crawler fragment is not laid out as a grid. */
+#prerender-prose .sfb-feature :is(.ff-split, .ff-facts, .sfb-routes, .sfb-tours, .sfb-choose, .ff-timeline, .ff-rules) { display: block; }
+
 /* ===== UX and sales audit (October 2026) =====
    The shared checkout error under every /guide buy button, the walkthrough's
    pause control, the offline toggle's illustration note, the band's
@@ -13522,8 +13766,8 @@ html[data-nav-mode="pinned"] { scroll-padding-top: 62px; }
 /* Every article's sources list underlines its links at rest, as .nh-sources,
    .cg-sources and .wv-sources already do: a rust link alone in a muted list
    is told apart by colour only (axe link-in-text-block). */
-:is(.ec-sources, .eat-sources, .sv-sources, .ft-sources, .mt-sources) a { text-decoration: underline; text-decoration-color: #d9b6a8; text-underline-offset: 3px; }
-:is(.ec-sources, .eat-sources, .sv-sources, .ft-sources, .mt-sources) a:hover { text-decoration-color: currentColor; }
+:is(.ec-sources, .eat-sources, .sv-sources, .ft-sources, .mt-sources, .sfb-sources) a { text-decoration: underline; text-decoration-color: #d9b6a8; text-underline-offset: 3px; }
+:is(.ec-sources, .eat-sources, .sv-sources, .ft-sources, .mt-sources, .sfb-sources) a:hover { text-decoration-color: currentColor; }
 
 /* ===== Newsletter growth hooks (October 2026): the scroll bar and the
    mid-article banner. The exit-intent modal keeps its .nlmodal styles. ===== */

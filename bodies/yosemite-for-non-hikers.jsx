@@ -542,7 +542,7 @@ window.ARTICLE_BODIES["yosemite-for-non-hikers"] = function YosemiteForNonHikers
             <li>
               <strong>Olmsted Point</strong>
               <span>8,400 feet</span>
-              <p>A parking lot view back into the head of Tenaya Canyon, including the back side of Half Dome. The paved walkways by the lot are wheelchair accessible, and a bronze tactile model of Half Dome stands there. The short, hilly 0.25-mile walk out to the point is not accessible. At night it is also a<a href="/articles/yosemite-stargazing-where-to-look-up">stargazing pullout</a> in the park.</p>
+              <p>A parking lot view back into the head of Tenaya Canyon, including the back side of Half Dome. The paved walkways by the lot are wheelchair accessible, and a bronze tactile model of Half Dome stands there. The short, hilly 0.25-mile walk out to the point is not accessible. At night it is also a <a href="/articles/yosemite-stargazing-where-to-look-up">stargazing pullout</a> in the park.</p>
             </li>
             <li>
               <strong>Tenaya Lake</strong>

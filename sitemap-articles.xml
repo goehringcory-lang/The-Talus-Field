@@ -31,7 +31,7 @@
   <!-- Sections -->
   <url>
     <loc>https://thetalusfieldjournal.com/section/planning</loc>
-    <lastmod>2026-10-14</lastmod>
+    <lastmod>2026-10-17</lastmod>
   </url>
   <url>
     <loc>https://thetalusfieldjournal.com/section/trails</loc>
@@ -173,6 +173,30 @@
   </url>
 
   <!-- Articles -->
+  <url>
+    <loc>https://thetalusfieldjournal.com/articles/yosemite-san-francisco-bus</loc>
+    <lastmod>2026-10-17</lastmod>
+    <image:image>
+      <image:loc>https://thetalusfieldjournal.com/img/responsive/yarts-bus-merced-amtrak-1600.jpg</image:loc>
+      <image:title>Passengers with bicycles and bags boarding a green YARTS coach at the Merced Amtrak station</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://thetalusfieldjournal.com/articles/housekeeping-camp-vs-curry-village</loc>
+    <lastmod>2026-10-17</lastmod>
+    <image:image>
+      <image:loc>https://thetalusfieldjournal.com/img/responsive/housekeeping-camp-yosemite-1600.jpg</image:loc>
+      <image:title>A Housekeeping Camp unit: concrete walls, a canvas roof over the patio, a table and chairs, pines behind</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://thetalusfieldjournal.com/articles/yosemite-stargazing-tours-and-programs</loc>
+    <lastmod>2026-10-17</lastmod>
+    <image:image>
+      <image:loc>https://thetalusfieldjournal.com/img/responsive/half-dome-starry-night-casey-horner-1600.jpg</image:loc>
+      <image:title>Stars over Half Dome at night, seen from the rim above Yosemite Valley</image:title>
+    </image:image>
+  </url>
   <url>
     <loc>https://thetalusfieldjournal.com/articles/badger-pass-ski-area</loc>
     <lastmod>2026-10-17</lastmod>
@@ -831,7 +855,7 @@
   </url>
   <url>
     <loc>https://thetalusfieldjournal.com/articles/yosemite-stargazing-where-to-look-up</loc>
-    <lastmod>2026-04-27</lastmod>
+    <lastmod>2026-10-17</lastmod>
     <image:image>
       <image:loc>https://thetalusfieldjournal.com/img/responsive/milky-way-sentinel-dome-og.jpg</image:loc>
       <image:title>Milky Way over Sentinel Dome, July</image:title>
