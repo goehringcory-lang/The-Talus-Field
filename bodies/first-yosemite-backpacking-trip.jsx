@@ -1,4 +1,4 @@
-/* global React, Placeholder, MotifMountains, MotifSun */
+/* global React, Placeholder, MotifMountains, MotifSun, AffLink, AffiliateNote */
 
 window.ARTICLE_BODIES = window.ARTICLE_BODIES || {};
 
@@ -86,7 +86,7 @@ window.ARTICLE_BODIES["first-yosemite-backpacking-trip"] = function FirstYosemit
       </p>
 
       <p>
-        For gear: a head net weighs almost nothing and is the single highest-return item in the pack during the peak weeks. Permethrin at 0.5 percent goes on clothing and gear only, never skin, and survives several washes. On skin, DEET in the 20 to 30 percent range or picaridin at 20 percent or higher does the work; higher DEET concentrations mostly buy duration rather than better protection. Treated clothing plus a repellent on the exposed skin is the combination that actually holds up, and long sleeves in July are not the sacrifice they sound like at 9,000 feet.
+        For gear: a head net weighs almost nothing and is the single highest-return item in the pack during the peak weeks. Permethrin at 0.5 percent goes on clothing and gear only, never skin, and survives several washes. On skin, DEET in the 20 to 30 percent range or picaridin at 20 percent or higher does the work; higher DEET concentrations mostly buy duration rather than better protection. Treated clothing plus a repellent on the exposed skin is the combination that actually holds up, and <AffLink q="sun hoody" list="article_inline" slug="first-yosemite-backpacking-trip" name="Long-sleeve sun shirt">long sleeves</AffLink> in July are not the sacrifice they sound like at 9,000 feet.
       </p>
 
       <h2>You are about to sleep higher than you ever have</h2>
@@ -264,6 +264,8 @@ window.ARTICLE_BODIES["first-yosemite-backpacking-trip"] = function FirstYosemit
       <p>
         Go somewhere small the first time. Then go back.
       </p>
+
+      <AffiliateNote />
     </>
   );
 };

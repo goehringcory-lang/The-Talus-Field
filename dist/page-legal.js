@@ -80,7 +80,7 @@ function AffiliatePage({
     updated: "October 13, 2026",
     sections: 6,
     numberedHeads: false
-  }, React.createElement("p", null, "The Talus Field currently participates in three affiliate programs: Patagonia's, run through the Impact network; the Expedia Group Travel Creator Program, run through Partnerize, which powers every lodging availability link on the site; and Bookshop.org's, which carries the list of field guides and natural-history books I recommend. The book list is linked from the top of every page, as \"Books\" and in the Read menu, from ", React.createElement("a", {
+  }, React.createElement("p", null, "The Talus Field currently participates in ", window.REI_AFFILIATE_BASE ? "four" : "three", " affiliate programs: Patagonia's, run through the Impact network; the Expedia Group Travel Creator Program, run through Partnerize, which powers every lodging availability link on the site; ", window.REI_AFFILIATE_BASE ? "" : "and ", "Bookshop.org's, which carries the list of field guides and natural-history books I recommend", window.REI_AFFILIATE_BASE ? "; and REI Co-op's, run through AvantLink, which carries the camping and hiking hardgoods on the kit's packing lists" : "", ". The book list is linked from the top of every page, as \"Books\" and in the Read menu, from ", React.createElement("a", {
     href: "/kit"
   }, "the kit"), ", and at the end of the Wildlife and Nature articles. Those links appear in the planning articles, on ", React.createElement("a", {
     href: "/stay"

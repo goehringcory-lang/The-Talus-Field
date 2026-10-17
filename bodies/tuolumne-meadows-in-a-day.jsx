@@ -1,4 +1,4 @@
-/* global React, Placeholder, MotifMountains */
+/* global React, Placeholder, MotifMountains, AffLink, AffiliateNote */
 
 window.ARTICLE_BODIES = window.ARTICLE_BODIES || {};
 
@@ -114,7 +114,7 @@ window.ARTICLE_BODIES["tuolumne-meadows-in-a-day"] = function TuolumneMeadowsInA
       </p>
 
       <p>
-        The practical rule is to do the exposed thing first. Domes, summits, and open granite in the morning; meadow, forest, lakeshore, and lunch in the afternoon. Being the highest object on a bare granite dome with a storm building is the specific way this landscape hurts people, and it is entirely avoidable by reordering your day. Carry a rain shell in a daypack even when the morning makes it look ridiculous. <a href="/articles/yosemite-heat-safety-guide">The heat and weather guide</a> goes further into lightning.
+        The practical rule is to do the exposed thing first. Domes, summits, and open granite in the morning; meadow, forest, lakeshore, and lunch in the afternoon. Being the highest object on a bare granite dome with a storm building is the specific way this landscape hurts people, and it is entirely avoidable by reordering your day. Carry a <AffLink q="rain jacket" list="article_inline" slug="tuolumne-meadows-in-a-day" name="Rain shell">rain shell</AffLink> in a daypack even when the morning makes it look ridiculous. <a href="/articles/yosemite-heat-safety-guide">The heat and weather guide</a> goes further into lightning.
       </p>
 
       <h2>Water, and the swimming question</h2>
@@ -166,6 +166,8 @@ window.ARTICLE_BODIES["tuolumne-meadows-in-a-day"] = function TuolumneMeadowsInA
         <li><a href="https://www.nps.gov/yose/planyourvisit/hours.htm" target="_blank" rel="noopener noreferrer">Operating Hours and Seasons, NPS Yosemite</a></li>
         <li><a href="https://www.nps.gov/yose/planyourvisit/watersafety.htm" target="_blank" rel="noopener noreferrer">Water Safety, NPS Yosemite</a></li>
       </ul>
+
+      <AffiliateNote />
     </>
   );
 };

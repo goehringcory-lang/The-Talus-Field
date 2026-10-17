@@ -78,7 +78,7 @@ function KitPage({ go }) {
         intro="Three packing checklists for a Yosemite trip: a day pack, what an overnight adds to it, and the full car load. Tick items off as you plan and pack. Your progress is saved in this browser, so you can close the tab and come back to it. Press Cmd+P or Ctrl+P for a clean printable copy."
       >
         <p className="hp-byline kit__aff-note">
-          Some gear here links to Patagonia through an affiliate link, marked with a star, and the book list at the end links to Bookshop.org the same way. If you buy through one, the site may earn a small commission at no extra cost to you. See the <a className="hp-inline" href="/affiliate" onClick={(e) => { e.preventDefault(); go("affiliate"); }}>Affiliate Disclosure</a>.
+          Some gear here links to Patagonia{window.REI_AFFILIATE_BASE ? " or REI" : ""} through an affiliate link, marked with a star, and the book list at the end links to Bookshop.org the same way. If you buy through one, the site may earn a small commission at no extra cost to you. See the <a className="hp-inline" href="/affiliate" onClick={(e) => { e.preventDefault(); go("affiliate"); }}>Affiliate Disclosure</a>.
         </p>
       </HpPageHead>
 
@@ -150,8 +150,15 @@ function KitPage({ go }) {
                     // "Shop Patagonia" CTA wired to the app.jsx affiliate-click
                     // listener; see affiliate.js for how the links are built.
                     const isAff = it.aff && it.aff !== "#";
+                    // REI (AvantLink) carries the hardgoods Patagonia does not.
+                    // Renders only once REI_AFFILIATE_BASE is pasted into
+                    // affiliate.js, so no untracked link ships as sponsored.
+                    const reiQ = !isAff && window.REI_AFFILIATE_BASE && window.KIT_REI && window.KIT_REI[it.id];
+                    const reiHref = reiQ && window.buildAffiliateLink
+                      ? window.buildAffiliateLink("rei", "https://www.rei.com/search?q=" + encodeURIComponent(reiQ).replace(/%20/g, "+"))
+                      : null;
                     return (
-                    <li key={it.id} id={it.id.replace(/:/g, "-")} className={`kit-check ${(it.link || isAff) ? "kit-check--callout" : ""}`}>
+                    <li key={it.id} id={it.id.replace(/:/g, "-")} className={`kit-check ${(it.link || isAff || reiHref) ? "kit-check--callout" : ""}`}>
                       <label className="kit-check__row">
                         <input
                           type="checkbox"
@@ -164,7 +171,7 @@ function KitPage({ go }) {
                           {it.note && <span className="kit-check__note">{it.note}</span>}
                         </span>
                       </label>
-                      {(it.link || isAff || it.articleSlug) && (
+                      {(it.link || isAff || reiHref || it.articleSlug) && (
                         <div className="kit-check__links">
                           {it.link && (
                             <a
@@ -185,6 +192,18 @@ function KitPage({ go }) {
                               data-aff-item-slug={it.id}
                               data-aff-name={it.name}
                             >Shop Patagonia ↗</a>
+                          )}
+                          {reiHref && (
+                            <a
+                              className="kit-check__link kit-check__aff"
+                              href={reiHref}
+                              target="_blank"
+                              rel="sponsored noopener"
+                              data-aff-network="rei"
+                              data-aff-list={list.slug}
+                              data-aff-item-slug={it.id}
+                              data-aff-name={it.name}
+                            >Shop REI ↗</a>
                           )}
                           {it.articleSlug && (
                             <a

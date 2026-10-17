@@ -78,7 +78,7 @@ function KitPage({
     intro: "Three packing checklists for a Yosemite trip: a day pack, what an overnight adds to it, and the full car load. Tick items off as you plan and pack. Your progress is saved in this browser, so you can close the tab and come back to it. Press Cmd+P or Ctrl+P for a clean printable copy."
   }, React.createElement("p", {
     className: "hp-byline kit__aff-note"
-  }, "Some gear here links to Patagonia through an affiliate link, marked with a star, and the book list at the end links to Bookshop.org the same way. If you buy through one, the site may earn a small commission at no extra cost to you. See the ", React.createElement("a", {
+  }, "Some gear here links to Patagonia", window.REI_AFFILIATE_BASE ? " or REI" : "", " through an affiliate link, marked with a star, and the book list at the end links to Bookshop.org the same way. If you buy through one, the site may earn a small commission at no extra cost to you. See the ", React.createElement("a", {
     className: "hp-inline",
     href: "/affiliate",
     onClick: e => {
@@ -151,10 +151,12 @@ function KitPage({
       className: "kit-group__list"
     }, group.items.map(it => {
       var isAff = it.aff && it.aff !== "#";
+      var reiQ = !isAff && window.REI_AFFILIATE_BASE && window.KIT_REI && window.KIT_REI[it.id];
+      var reiHref = reiQ && window.buildAffiliateLink ? window.buildAffiliateLink("rei", "https://www.rei.com/search?q=" + encodeURIComponent(reiQ).replace(/%20/g, "+")) : null;
       return React.createElement("li", {
         key: it.id,
         id: it.id.replace(/:/g, "-"),
-        className: `kit-check ${it.link || isAff ? "kit-check--callout" : ""}`
+        className: `kit-check ${it.link || isAff || reiHref ? "kit-check--callout" : ""}`
       }, React.createElement("label", {
         className: "kit-check__row"
       }, React.createElement("input", {
@@ -168,7 +170,7 @@ function KitPage({
         className: "kit-check__name"
       }, it.name), it.note && React.createElement("span", {
         className: "kit-check__note"
-      }, it.note))), (it.link || isAff || it.articleSlug) && React.createElement("div", {
+      }, it.note))), (it.link || isAff || reiHref || it.articleSlug) && React.createElement("div", {
         className: "kit-check__links"
       }, it.link && React.createElement("a", {
         className: "kit-check__link",
@@ -184,7 +186,16 @@ function KitPage({
         "data-aff-list": list.slug,
         "data-aff-item-slug": it.id,
         "data-aff-name": it.name
-      }, "Shop Patagonia\xA0↗"), it.articleSlug && React.createElement("a", {
+      }, "Shop Patagonia\xA0↗"), reiHref && React.createElement("a", {
+        className: "kit-check__link kit-check__aff",
+        href: reiHref,
+        target: "_blank",
+        rel: "sponsored noopener",
+        "data-aff-network": "rei",
+        "data-aff-list": list.slug,
+        "data-aff-item-slug": it.id,
+        "data-aff-name": it.name
+      }, "Shop REI\xA0↗"), it.articleSlug && React.createElement("a", {
         className: "kit-check__article",
         href: `/articles/${it.articleSlug}`,
         onClick: e => {

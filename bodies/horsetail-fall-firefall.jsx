@@ -1,4 +1,4 @@
-/* global React, NatureNotesFilm */
+/* global React, NatureNotesFilm, AffLink, AffiliateNote */
 
 window.ARTICLE_BODIES = window.ARTICLE_BODIES || {};
 
@@ -124,7 +124,7 @@ window.ARTICLE_BODIES["horsetail-fall-firefall"] = function HorsetailFallFirefal
         On a promising February evening, the stretch of <strong>Northside Drive near the El Capitan Picnic Area</strong>, the classic viewing zone, draws crowds in the thousands. The park has spent recent years actively managing the event: parking restrictions, road closures, designated walking routes, and in some years a reservation requirement for February weekends. The specifics have changed from year to year, and I am deliberately not quoting this year's rules, because the reliable move is to check the park's current conditions before you commit to anything. Read the NPS Horsetail Fall page and the current-conditions page in the week before your trip, and treat our <a href="/conditions">conditions page</a> as the quick index to the live sources.
       </p>
 
-      <p>Assume the following shape of an evening, whatever the current rules are. You will park somewhere designated, probably at Yosemite Falls parking, and walk a mile or more each way on pavement. You should arrive very early: photographers stake tripod positions by early afternoon on good days, and even a casual viewer should be in place at least an hour before sunset. And you will wait, standing still, through a February evening in a shaded valley at 4,000 feet. The temperature falls fast once the sun leaves the floor. Bring real layers, something insulated to stand on or sit on, a headlamp for the walk out, and a thermos. The people who suffer at the firefall are almost never underdressed for hiking. They are underdressed for standing still.</p>
+      <p>Assume the following shape of an evening, whatever the current rules are. You will park somewhere designated, probably at Yosemite Falls parking, and walk a mile or more each way on pavement. You should arrive very early: photographers stake tripod positions by early afternoon on good days, and even a casual viewer should be in place at least an hour before sunset. And you will wait, standing still, through a February evening in a shaded valley at 4,000 feet. The temperature falls fast once the sun leaves the floor. Bring <AffLink q="down jacket" list="article_inline" slug="horsetail-fall-firefall" name="Insulated jacket">real layers</AffLink>, something insulated to stand on or sit on, a headlamp for the walk out, and a thermos. The people who suffer at the firefall are almost never underdressed for hiking. They are underdressed for standing still.</p>
 
       <p>
         February driving matters too. Chain control on the approach highways is routine after storms, which is exactly the weather that fills the fall. The <a href="/articles/getting-to-yosemite">entrance-by-entrance guide</a> covers which roads hold up best in winter, and the broader case for the season is made in the <a href="/articles/yosemite-in-winter">winter guide</a>.
@@ -155,6 +155,8 @@ window.ARTICLE_BODIES["horsetail-fall-firefall"] = function HorsetailFallFirefal
         <li><a href="https://www.nps.gov/yose/learn/historyculture/encroaching-civilization-visitor-services.htm" target="_blank" rel="noopener noreferrer">The Firefall from Glacier Point, NPS Yosemite history</a></li>
         <li><a href="https://yosemite.org/horsetail-fall/" target="_blank" rel="noopener noreferrer">Horsetail Fall, Yosemite Conservancy</a></li>
       </ul>
+
+      <AffiliateNote />
     </>
   );
 };
