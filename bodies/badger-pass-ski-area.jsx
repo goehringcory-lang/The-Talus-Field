@@ -40,7 +40,7 @@ window.ARTICLE_BODIES["badger-pass-ski-area"] = function BadgerPassSkiAreaBody()
       <ul>
         <li><strong>The Snow Phone</strong>, 209/372-1000, the concessioner's line for conditions, weather, and ski area information.</li>
         <li><strong>The concessioner's Badger Pass pages</strong> at travelyosemite.com, which post the opening and closing notices.</li>
-        <li><strong>The park's road recording</strong>, 209/372-0200, then 1, then 1, for whether Badger Pass Road is open and under chain control that morning. The <a href="/conditions">conditions page</a> collects the park's live feeds in one place.</li>
+        <li><strong>The park's road recording</strong>, 209/372-0200, then 1, then 1, for whether Badger Pass Road is open and under chain control that morning. The <a href="/conditions">conditions page</a> collects the park's live feeds in one place, and the <a href="/webcams">Yosemite webcams</a> show whether snow is lying in the Valley and at Wawona before you drive.</li>
       </ul>
 
       <h2>Getting there: the road, the chains, the shuttle</h2>

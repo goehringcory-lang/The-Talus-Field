@@ -98,6 +98,37 @@ const END_NEWSLETTER_OFFER_B = {
   },
 };
 
+// Article-aware lead-in under the end-of-article headline. It names the piece
+// the reader just finished and says what the Sunday letter does with that
+// subject. The first matching topic (whole slug words, so "heat" never reads as "eat") wins; otherwise the category
+// line applies. The headline and blurb above stay owned by the
+// article_end_copy A/B arms, so the experiment still measures the same thing.
+// Only claim what the letter does: a seasonal observation with the science
+// behind it, set beside the park naturalists' own notes from the same weeks,
+// plus short "also in season" notes.
+const END_LEADIN_TOPICS = [
+  { test: /(^|-)(permits?|lottery|reservations?|walk-up|half-dome|firefall|cables)(-|$)/,
+    line: "Permit and reservation rules change from year to year. The Sunday letter keeps an eye on the season you are planning around." },
+  { test: /(^|-)(winter|snow|snowshoeing|february|january|december|badger|ski)(-|$)/,
+    line: "Winter here turns on snow, chains and which roads are open. The Sunday letter follows the park through the cold months." },
+  { test: /(^|-)(road|tioga|glacier-point|highway|closed|closure|smoke|wildfire|fire-restrictions|conditions)(-|$)/,
+    line: "Roads and conditions shift week to week. The Sunday letter notes what the park is doing right now and why." },
+  { test: /(^|-)(stay|lodging|camping|gateway|hotels?|eat|food|dining|restaurants?)(-|$)/,
+    line: "Where you sleep and eat depends on the month. The Sunday letter is written for the season you are in." },
+  { test: /(^|-)(waterfalls?|bloom|wildflowers?|fall-color|autumn|spring)(-|$)/,
+    line: "Peak timing moves with snowpack and weather. The Sunday letter reads the season as it unfolds." },
+];
+const END_LEADIN_CAT = {
+  planning: "Planning is easier with the season in view. The Sunday letter covers what the park is doing now.",
+  trails: "Trails change with the season. The Sunday letter covers what is happening along them right now.",
+  wildlife: "The Sunday letter is a naturalist's note on what is moving in the park this week, set beside what rangers wrote in the same weeks a century ago.",
+  seasonal: "The Sunday letter follows the season: what is blooming, flowing or closing, with the reason behind it.",
+};
+function endLeadIn(article) {
+  const hit = END_LEADIN_TOPICS.find(t => t.test.test(article.slug));
+  return hit ? hit.line : (END_LEADIN_CAT[article.cat] || "The Sunday letter is a short note on what the park is doing this week.");
+}
+
 // Buttondown's embed-subscribe form accepts one `tag` field per submission
 // (multiple hidden inputs behave like radio buttons, not an array), so a
 // placement tag and an interest tag are combined into one compound value
@@ -825,7 +856,11 @@ function ArticlePage({ slug, go }) {
             location="article_end"
             tag={newsletterTag("article-end", article.cat)}
             variant={endVariant}
-          />
+          >
+            <p className="hp-letter__leadin">
+              <span>You just read </span><cite>{article.title}</cite>{/[.?]$/.test(article.title) ? "" : "."} {endLeadIn(article)}
+            </p>
+          </HpLetter>
         );
       })()}
 

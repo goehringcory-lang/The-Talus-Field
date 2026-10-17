@@ -13389,3 +13389,18 @@ html[data-nav-mode="pinned"] { scroll-padding-top: 62px; }
    is told apart by colour only (axe link-in-text-block). */
 :is(.ec-sources, .eat-sources, .sv-sources, .ft-sources) a { text-decoration: underline; text-decoration-color: #d9b6a8; text-underline-offset: 3px; }
 :is(.ec-sources, .eat-sources, .sv-sources, .ft-sources) a:hover { text-decoration-color: currentColor; }
+
+/* End-of-article letter: the article-aware lead-in under the headline. */
+.hp-design .hp-letter .hp-letter__leadin {
+  margin: 12px 0 0;
+  max-width: 455px;
+  font: 15px/1.6 var(--sans);
+  color: var(--hp-ink);
+}
+.hp-design .hp-letter .hp-letter__leadin cite {
+  font-family: var(--serif);
+  font-style: italic;
+}
+@media (max-width: 480px) {
+  .hp-design .hp-letter .hp-letter__leadin { font-size: 14px; max-width: none; }
+}
