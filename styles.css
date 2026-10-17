@@ -13405,6 +13405,101 @@ html[data-nav-mode="pinned"] { scroll-padding-top: 62px; }
 :is(.ec-sources, .eat-sources, .sv-sources, .ft-sources) a { text-decoration: underline; text-decoration-color: #d9b6a8; text-underline-offset: 3px; }
 :is(.ec-sources, .eat-sources, .sv-sources, .ft-sources) a:hover { text-decoration-color: currentColor; }
 
+/* ===== Newsletter growth hooks (October 2026): the scroll bar and the
+   mid-article banner. The exit-intent modal keeps its .nlmodal styles. ===== */
+
+/* The scroll bar (NewsletterBar). Fixed to the bottom edge and moved only by
+   transform, so it never reflows the page. Off-screen it is also
+   visibility:hidden (after the slide), so a parked bar is not in the tab order. */
+.nlbar {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 60;
+  background: var(--hp-card);
+  border-top: 1px solid var(--hp-rule);
+  box-shadow: 0 -10px 30px -18px rgba(20, 39, 31, .35);
+  color: var(--hp-ink);
+  font-family: var(--sans);
+  padding-bottom: env(safe-area-inset-bottom);
+  transform: translateY(100%);
+  visibility: hidden;
+  transition: transform .28s ease, visibility 0s linear .28s;
+}
+.nlbar.is-in { transform: none; visibility: visible; transition: transform .28s ease, visibility 0s; }
+.nlbar__inner {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: 10px 24px;
+}
+.nlbar__text { margin: 0; flex: 1 1 auto; min-width: 0; font: 400 15px/1.4 var(--serif); }
+.nlbar__done { font-size: 16px; color: var(--hp-accent); }
+.nlbar__form { flex: 0 1 460px; min-width: 0; }
+.nlbar__fields { display: flex; gap: 8px; margin: 0; }
+.nlbar__fields input[type=email] { min-width: 0; flex: 1; padding: 10px 12px; background: #fffdf7; border: 1px solid #b8c0b3; border-radius: 3px; color: var(--hp-ink); font: 14px var(--sans); }
+.nlbar__fields button { padding: 11px 16px; background: var(--hp-accent); border: 0; border-radius: 3px; color: var(--hp-on-accent); font: 600 12px var(--sans); white-space: nowrap; cursor: pointer; }
+.nlbar__fields button:hover { background: var(--hp-accent-deep); }
+.nlbar__fields button:disabled { opacity: .7; cursor: progress; }
+.nlbar__form .nlbox__note { margin: 6px 0 0; font-size: 12px; }
+.nlbar__open { display: none; }
+.nlbar__close { flex: 0 0 auto; width: 44px; height: 44px; margin: -6px -10px -6px 0; background: transparent; border: 0; color: var(--hp-muted); font-size: 16px; line-height: 1; cursor: pointer; }
+.nlbar__close:hover { color: var(--hp-ink); }
+.nlbar :is(button, input):focus-visible { outline: 2px solid var(--hp-accent); outline-offset: 2px; }
+/* BackToTop rides above the bar while it is showing. */
+html[data-nl-bar] .totop { bottom: calc(76px + env(safe-area-inset-bottom)); }
+
+@media (max-width: 760px) {
+  /* One compact row: the line, "Sign up", close. Tapping "Sign up" opens the
+     field in the same fixed box (it grows upward; nothing in the page moves). */
+  .nlbar__inner { flex-wrap: wrap; gap: 8px 10px; padding: 8px 14px; }
+  .nlbar__text { font-size: 14px; flex: 1 1 0; }
+  .nlbar__open { display: inline-block; flex: 0 0 auto; padding: 9px 14px; background: var(--hp-accent); border: 0; border-radius: 3px; color: var(--hp-on-accent); font: 600 12px var(--sans); cursor: pointer; }
+  .nlbar.is-expanded .nlbar__open { display: none; }
+  .nlbar__form { display: none; order: 3; flex: 1 1 100%; }
+  .nlbar.is-expanded .nlbar__form { display: block; }
+  .nlbar__fields input[type=email] { font-size: 16px; }
+  .nlbar__close { margin: -4px -10px -4px 0; }
+  html[data-nl-bar] .totop { bottom: calc(68px + env(safe-area-inset-bottom)); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .nlbar, .nlbar.is-in { transition: none; }
+}
+@media print { .nlbar { display: none; } }
+
+/* The mid-article banner (ArticleMidLetter): a quiet rule-bordered aside in
+   the reading column. The host div is empty until the banner mounts. */
+.nlmid {
+  margin: 36px 0;
+  padding: 22px 24px;
+  background: var(--hp-card);
+  border: 1px solid var(--hp-rule);
+  border-left: 3px solid var(--hp-accent);
+  border-radius: 3px;
+  font-family: var(--sans);
+  color: var(--hp-ink);
+}
+.nlmid > p { margin: 0; }
+.nlmid__eyebrow { font: 600 10px/1 var(--sans); letter-spacing: .12em; text-transform: uppercase; color: var(--hp-accent); margin-bottom: 10px !important; }
+.nlmid__title { font: 400 26px/1.1 var(--serif); letter-spacing: -.4px; margin-bottom: 8px !important; }
+.nlmid__blurb { font-size: 14px; line-height: 1.65; color: var(--hp-muted); margin-bottom: 16px !important; }
+.nlmid__form { display: flex; gap: 8px; margin: 0; }
+.nlmid__form input[type=email] { min-width: 0; flex: 1; padding: 12px; background: #fffdf7; border: 1px solid #b8c0b3; border-radius: 3px; color: var(--hp-ink); font: 14px var(--sans); }
+.nlmid__form button { padding: 13px 17px; background: var(--hp-accent); border: 0; border-radius: 3px; color: var(--hp-on-accent); font: 600 12px var(--sans); white-space: nowrap; cursor: pointer; }
+.nlmid__form button:hover { background: var(--hp-accent-deep); }
+.nlmid__form button:disabled { opacity: .7; cursor: progress; }
+.nlmid .nlbox__note { margin: 8px 0 0; font-size: 13px; }
+.nlmid .nlbox__done { padding: 0; }
+@media (max-width: 480px) {
+  .nlmid { padding: 18px 16px; margin: 28px 0; }
+  .nlmid__title { font-size: 22px; }
+  .nlmid__form input[type=email] { font-size: 16px; }
+}
+@media print { .nlmid { display: none; } }
+
 /* End-of-article letter: the article-aware lead-in under the headline. */
 .hp-design .hp-letter .hp-letter__leadin {
   margin: 12px 0 0;

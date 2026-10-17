@@ -194,6 +194,34 @@ function ArticleBonus({
     onClick: printSheet
   }, "Print this checklist")));
 }
+function ArticleMidLetter({
+  cat
+}) {
+  var [done, setDone] = React.useState(null);
+  var copy = window.nlHookCopy("mid", "", cat);
+  var tag = window.nlHookTag("article-mid", cat);
+  var ref = window.useNewsletterImpression("article_mid", tag, !done);
+  return React.createElement("aside", {
+    className: "nlmid",
+    ref: ref,
+    "aria-label": "Sunday Field Notes"
+  }, React.createElement("p", {
+    className: "nlmid__eyebrow"
+  }, "Sunday Field Notes / free"), React.createElement("p", {
+    className: "nlmid__title"
+  }, copy.heading), React.createElement("p", {
+    className: "nlmid__blurb"
+  }, copy.blurb), done ? React.createElement("p", {
+    className: "nlbox__done",
+    role: "status"
+  }, window.nlDoneLine(done)) : React.createElement(window.NewsletterForm, {
+    location: "article_mid",
+    tag: tag,
+    cta: "Subscribe →",
+    className: "nlmid__form",
+    onDone: setDone
+  }));
+}
 function ArticlePage({
   slug,
   go
@@ -352,6 +380,30 @@ function ArticlePage({
     };
   }, [bodyState, slug, Body]);
   var closeLightbox = React.useCallback(() => setLightbox(null), []);
+  var [midHost, setMidHost] = React.useState(null);
+  React.useEffect(() => {
+    setMidHost(null);
+    if (bodyState !== "ready" || !article || article.feature || ARTICLE_BONUS[slug]) return;
+    if (window.isSubscribed && window.isSubscribed()) return;
+    if (window.location.hash) return;
+    var host = null;
+    var raf = requestAnimationFrame(() => requestAnimationFrame(() => {
+      var prose = proseRef.current;
+      if (!prose) return;
+      var heads = Array.from(prose.children).filter(el => el.tagName === "H2");
+      if (heads.length < 4) return;
+      var target = heads[Math.floor(heads.length / 2)];
+      if (target.getBoundingClientRect().top < window.innerHeight) return;
+      host = document.createElement("div");
+      host.className = "nlmid-host";
+      prose.insertBefore(host, target);
+      setMidHost(host);
+    }));
+    return () => {
+      cancelAnimationFrame(raf);
+      if (host && host.parentNode) host.parentNode.removeChild(host);
+    };
+  }, [bodyState, slug, Body]);
   var barRef = React.useRef(null);
   React.useEffect(() => {
     if (bodyState !== "ready") return;
@@ -621,7 +673,9 @@ function ArticlePage({
     className: "label"
   }, "Section"), React.createElement("span", {
     className: "val"
-  }, cat.label))), bodyEl), bodyState === "ready" && React.createElement(ArticleBonus, {
+  }, cat.label))), bodyEl), midHost && window.ReactDOM.createPortal(React.createElement(ArticleMidLetter, {
+    cat: article.cat
+  }), midHost), bodyState === "ready" && React.createElement(ArticleBonus, {
     slug: slug
   }), React.createElement("div", {
     className: "hp-article__authorbox"

@@ -3001,13 +3001,151 @@ function NewsletterInline({ heading, blurb, location, tag, variant = "", cta, mo
 }
 
 // ============================================================
-// Exit-intent newsletter modal. Article pages mount one of these. It shows at
-// most once per 14 days (tfg.nl.exit.seen) and never once subscribed
-// (tfg.nl.subscribed). Desktop trigger is the cursor leaving toward the
-// browser chrome; touch devices have no exit signal, so they fall back to a
-// scroll-depth + dwell heuristic.
+// Growth hooks: the exit-intent modal, the scroll bar (NewsletterBar) and the
+// mid-article banner (page-article.jsx) all offer Sunday Field Notes, and they
+// share three things defined here.
+// (1) Copy that names the page, its section and the season (nlHookCopy), so
+//     no hook says the same generic sentence. Every line is true of the real
+//     letter (a weekly Sunday letter about the park right now); none promises
+//     a feature, a count or a road status.
+// (2) A per-session lock: whichever of the exit modal and the scroll bar
+//     shows first suppresses the other until the tab closes (sessionStorage,
+//     with an in-memory fallback where storage is blocked). The mid-article
+//     banner sits in the text and is not part of the lock.
+// (3) The routes on which neither popup may appear: pages that already carry
+//     their own signup or gate, and the paid product's pages.
+// ============================================================
+const NL_HOOK_SESSION_KEY = "tfg.nl.hook.session";
+function nlHookSessionGet() {
+  try { return window.sessionStorage.getItem(NL_HOOK_SESSION_KEY) || window.__tfgNlHook || null; }
+  catch (_e) { return window.__tfgNlHook || null; }
+}
+function nlHookSessionSet(who) {
+  window.__tfgNlHook = who;
+  try { window.sessionStorage.setItem(NL_HOOK_SESSION_KEY, who); } catch (_e) { /* the memory flag covers this page load */ }
+}
+// Days since an ISO timestamp kept under `key`; Infinity when absent or unreadable.
+function nlDaysSince(key) {
+  const raw = window.safeStorage.get(key);
+  const t = raw ? new Date(raw).getTime() : NaN;
+  return Number.isFinite(t) ? (Date.now() - t) / 86400000 : Infinity;
+}
+const NL_POPUP_EXCLUDED = new Set([
+  "newsletter", "contact", "privacy", "terms", "affiliate", "films",
+  // their own email gate or signup, or a form the reader is in the middle of
+  "map", "itineraries", "checklist", "dates", "consult", "widget", "partners", "search", "kit",
+  // the paid product: its pages sell, and one ask per page holds
+  "guide", "notfound",
+]);
+const NL_BAR_ROUTES = new Set([
+  "articles", "planning", "conditions", "stay", "webcams", "distances", "start-here",
+  "firefall", "tioga-opening", "half-dome-lottery", "fall-color", "moonbow", "frazil-ice",
+]);
+function nlRouteCat(route) {
+  if (route && route.startsWith("a:")) { const a = window.findArticle && window.findArticle(route.slice(2)); return a ? a.cat : ""; }
+  if (route && route.startsWith("cat:")) return route.slice(4);
+  return "";
+}
+window.nlPopupAllowed = (route) => !NL_POPUP_EXCLUDED.has(route);
+window.nlBarAllowed = (route) => !!route && (route.startsWith("a:") || route.startsWith("cat:") || NL_BAR_ROUTES.has(route));
+
+function nlSeason(date) {
+  const m = (date || new Date()).getMonth(); // 0 = January
+  return m <= 1 || m === 11 ? "winter" : m <= 4 ? "spring" : m <= 7 ? "summer" : "fall";
+}
+window.nlSeason = nlSeason;
+// What the letter is following in each season, in the plain terms the park's
+// own calendar gives it. Closes a blurb.
+const NL_SEASON_LINE = {
+  winter: "Right now that means snow, storms and the quiet valley floor.",
+  spring: "Right now that means snowmelt and rising water.",
+  summer: "Right now that means the high country and the long days.",
+  fall: "Right now that means shorter days and the turn of the leaves.",
+};
+const NL_LETTER_TAIL = "Free, and you can leave anytime.";
+// Per section: [heading, blurb] for the mid-article banner and the exit modal,
+// and the scroll bar's single line (`{s}` is the season word).
+const NL_HOOK_CAT = {
+  planning: {
+    mid: ["Plans change with the season", "Sunday Field Notes is a free weekly letter on what the park is doing right now, so a plan made today is read against the week you actually drive in."],
+    exit: ["Before you lock in the plan", "Sunday Field Notes is a weekly letter on what Yosemite is doing this week and why, so the trip you are planning is read against the season it lands in."],
+    bar: "Planning a {s} trip? Sunday Field Notes is a free weekly letter on the park right now.",
+  },
+  trails: {
+    mid: ["Before the next hike", "A free Sunday letter on how the park is behaving this week, from the gauges to the snowline, set beside what its naturalists wrote down in the same weeks a century ago."],
+    exit: ["Take the trail notes with you", "Sunday Field Notes follows what the park is doing this week, from creek flow to the snowline, so the next trail you pick is one you read about first."],
+    bar: "Hiking this {s}? Sunday Field Notes covers how the park is behaving this week. Free.",
+  },
+  wildlife: {
+    mid: ["Who is moving this week", "A free Sunday letter that watches the park's wildlife and plants week by week, with the science behind what you are seeing and the naturalists' notes from a century ago."],
+    exit: ["More like this, on Sundays", "Sunday Field Notes is a naturalist's letter: one seasonal observation a week, with the mechanism, the species and the numbers behind it."],
+    bar: "Who is moving in the park this {s}? Sunday Field Notes, free, once a week.",
+  },
+  seasonal: {
+    mid: ["Follow the season as it turns", "A free Sunday letter that tracks the park week by week, so the month you are reading about is the month you see."],
+    exit: ["Keep up with the season", "Sunday Field Notes follows the park as the seasons turn: what the river is doing, what is in bloom and what the naturalists recorded in the same weeks a century ago."],
+    bar: "Following the {s}? Sunday Field Notes is the free weekly letter on the park right now.",
+  },
+};
+// Standing pages that have a subject of their own.
+const NL_HOOK_ROUTE = {
+  planning: {
+    exit: ["Before you book anything", "Sunday Field Notes is a weekly letter on what Yosemite is doing this week and why. It reads the season the trip lands in."],
+    bar: "Planning a Yosemite trip? Sunday Field Notes is a free weekly letter on the park right now.",
+  },
+  conditions: {
+    exit: ["Conditions change weekly", "Sunday Field Notes puts the week in one letter: the gauges, the snow, the season, and what the naturalists recorded in the same weeks a century ago."],
+    bar: "Conditions change by the week. Sunday Field Notes puts the week in one letter. Free.",
+  },
+  stay: {
+    exit: ["Before you book a bed", "Sunday Field Notes is a free weekly letter on what the park is doing, so the dates you choose match the season you will find."],
+    bar: "Choosing where to stay? Sunday Field Notes is a free weekly letter on the park right now.",
+  },
+  webcams: {
+    exit: ["Seen enough for today?", "Sunday Field Notes is the weekly letter on what the park is doing and why: the water, the snow and the season, written on Sundays."],
+    bar: "Watching the park on camera? Sunday Field Notes explains the week. Free.",
+  },
+};
+const NL_HOOK_DEFAULT = {
+  mid: ["Sunday Field Notes", "A free letter from inside the park on Sundays: what Yosemite is doing this week and why."],
+  exit: ["A letter from inside the park, on Sundays.", "Sunday Field Notes: what Yosemite is doing this week and why, from the river gauges to the oaks, set beside what its naturalists wrote down in the same weeks a century ago. Free, and you can leave anytime."],
+  bar: "Sunday Field Notes: a free weekly letter from inside Yosemite.",
+};
+// kind: "mid" | "exit" | "bar". Returns { heading, blurb } (bar: { line }).
+// `catOverride` lets an article page pass its own section.
+function nlHookCopy(kind, route, catOverride) {
+  const cat = catOverride || nlRouteCat(route);
+  const s = nlSeason();
+  const byCat = NL_HOOK_CAT[cat] || null;
+  const byRoute = (!byCat && NL_HOOK_ROUTE[route]) || null;
+  if (kind === "bar") {
+    const line = (byCat && byCat.bar) || (byRoute && byRoute.bar) || NL_HOOK_DEFAULT.bar;
+    return { line: line.replace("{s}", s) };
+  }
+  const specific = (byCat && byCat[kind]) || (byRoute && byRoute[kind]);
+  if (!specific) return { heading: NL_HOOK_DEFAULT[kind][0], blurb: NL_HOOK_DEFAULT[kind][1] };
+  const blurb = specific[1] + " " + NL_SEASON_LINE[s] + (kind === "exit" ? " " + NL_LETTER_TAIL : "");
+  return { heading: specific[0], blurb };
+}
+window.nlHookCopy = nlHookCopy;
+// Compound Buttondown tag, the same shape as the end-of-article unit's: the
+// placement and, on an article, its section in one value.
+function nlHookTag(placement, cat) { return cat ? `${placement}-${cat}` : placement; }
+window.nlHookTag = nlHookTag;
+
+// ============================================================
+// Exit-intent newsletter modal, mounted once in app.jsx. Desktop only: the
+// trigger is the cursor leaving through the top of the window, toward the
+// browser chrome. Touch devices get no exit popup (the scroll bar below is
+// their hook); there is no scroll or back-button fallback. Rules: not before
+// 20 seconds on the page, once per 14 days (tfg.nl.exit.seen), once per
+// session and never after the scroll bar has shown this session, never once
+// subscribed (tfg.nl.subscribed), never on NL_POPUP_EXCLUDED routes. The copy
+// follows the page (nlHookCopy). location and tag are unchanged, so the
+// placement keeps its analytics history.
 // ============================================================
 const EXIT_COOLDOWN_DAYS = 14;
+const EXIT_MIN_DWELL_MS = 20000;
 
 // ============================================================
 // Modal focus management, shared by the exit-intent modal and the map
@@ -3046,50 +3184,39 @@ function useModalFocus(active, initialSelector) {
   return dialogRef;
 }
 
-function ExitIntentNewsletter({ disabled }) {
+function ExitIntentNewsletter({ disabled, route }) {
   const [open, setOpen] = useState(false);
   const [done, setDone] = useState(null); // null | "api" | "tab"
   const firedRef = useRef(false);
+  const copyRef = useRef(null); // the copy is chosen once, at the moment it opens
 
+  // `route` is in the deps so the dwell clock restarts on each SPA navigation:
+  // 20 seconds on the page the reader is leaving, not on the site.
   useEffect(() => {
-    if (disabled) return;
-    let suppressed = isSubscribed();
-    const seen = window.safeStorage.get("tfg.nl.exit.seen");
-    if (seen) {
-      const ageDays = (Date.now() - new Date(seen).getTime()) / 86400000;
-      if (ageDays < EXIT_COOLDOWN_DAYS) suppressed = true;
-    }
-    if (suppressed) return;
+    if (disabled || firedRef.current) return;
+    // Desktop pointers only. A touch device has no exit signal worth the name.
+    if (!window.matchMedia || !window.matchMedia("(hover: hover) and (pointer: fine)").matches) return;
+    const mountedAt = Date.now();
 
-    const reveal = () => {
-      if (firedRef.current) return;
+    const onMouseOut = (e) => {
+      if (firedRef.current || !(e.clientY <= 0 && !e.relatedTarget)) return;
+      if (Date.now() - mountedAt < EXIT_MIN_DWELL_MS) return;
+      // Re-read every gate at the moment of exit: the reader may have
+      // subscribed, or the scroll bar may have shown, since this page loaded.
+      if (isSubscribed() || nlDaysSince("tfg.nl.exit.seen") < EXIT_COOLDOWN_DAYS) return;
+      if (nlHookSessionGet()) return; // the bar (or this modal) already showed this session
       firedRef.current = true;
+      nlHookSessionSet("exit");
       window.safeStorage.set("tfg.nl.exit.seen", new Date().toISOString());
+      copyRef.current = nlHookCopy("exit", route);
       if (window.track) window.track("newsletter_exit_intent_shown", { location: "article_exit_intent", tag: "exit-intent" });
       trackNewsletterImpression("article_exit_intent", "exit-intent");
       setOpen(true);
     };
 
-    const onMouseOut = (e) => { if (e.clientY <= 0 && !e.relatedTarget) reveal(); };
-
-    const isTouch = window.matchMedia && window.matchMedia("(hover: none)").matches;
-    const mountedAt = Date.now();
-    const onScroll = () => {
-      if (Date.now() - mountedAt < 25000) return;
-      const max = document.documentElement.scrollHeight - window.innerHeight;
-      if (max > 0 && window.scrollY / max >= 0.6) reveal();
-    };
-
-    if (isTouch) {
-      window.addEventListener("scroll", onScroll, { passive: true });
-    } else {
-      document.addEventListener("mouseout", onMouseOut);
-    }
-    return () => {
-      window.removeEventListener("scroll", onScroll);
-      document.removeEventListener("mouseout", onMouseOut);
-    };
-  }, [disabled]);
+    document.addEventListener("mouseout", onMouseOut);
+    return () => document.removeEventListener("mouseout", onMouseOut);
+  }, [disabled, route]);
 
   useEffect(() => {
     if (!open) return;
@@ -3103,11 +3230,12 @@ function ExitIntentNewsletter({ disabled }) {
     };
   }, [open]);
 
-  // Land on Close, not the email input: this modal interrupts, and focusing
-  // the input would raise the keyboard on the touch (scroll-triggered) path.
+  // Land on Close, not the email input: this modal interrupts, and the reader
+  // should choose to type.
   const dialogRef = useModalFocus(open, ".nlmodal__close");
 
   if (!open) return null;
+  const copy = copyRef.current || nlHookCopy("exit", route);
 
   return (
     <div className="nlmodal" role="dialog" aria-modal="true" aria-label="Subscribe to Sunday Field Notes">
@@ -3115,8 +3243,8 @@ function ExitIntentNewsletter({ disabled }) {
       <div className="nlmodal__card" ref={dialogRef}>
         <button type="button" className="nlmodal__close" aria-label="Close" onClick={() => setOpen(false)}>✕</button>
         <div className="eyebrow eyebrow--moss" style={{ marginBottom: 12 }}>Before you go</div>
-        <h3>A letter from inside the park, on Sundays.</h3>
-        <p>Sunday Field Notes: what Yosemite is doing this week and why, from the river gauges to the oaks, set beside what the park's naturalists wrote down in the same weeks a century ago. Free, and you can leave anytime.</p>
+        <h3>{copy.heading}</h3>
+        <p>{copy.blurb}</p>
         {done ? (
           <p className="nlbox__done" role="status">{nlDoneLine(done)}</p>
         ) : (
@@ -3125,6 +3253,189 @@ function ExitIntentNewsletter({ disabled }) {
             <LatestLetter location="article_exit_intent" />
           </>
         )}
+      </div>
+    </div>
+  );
+}
+
+// ============================================================
+// NewsletterBar: the slim scroll-depth signup bar, mounted once in app.jsx
+// beside ExitIntentNewsletter and independent of the masthead. It is fixed to
+// the bottom edge and enters with a transform, so it never moves content (no
+// CLS). Why the bottom: the top edge already belongs to the compact bar and,
+// on /stay, to the booking bar; the bottom belongs to the thumb, which is
+// where a phone reader taps. On a phone it is one compact row (the line, a
+// "Sign up" button, a close) and the email field opens inside the same fixed
+// box on tap, so it never covers more than one row until asked. It parks out
+// of sight while a page's own letter unit is on screen or the reader is at
+// the foot of the page, so it never doubles an ask or sits over the footer.
+// Rules: only on NL_BAR_ROUTES, article and section pages (nlBarAllowed);
+// after 50% scroll depth and 15 seconds on the page; not subscribed; not
+// within 14 days of a dismissal (tfg.nl.bar.dismissed) or 3 days of the last
+// time it showed (tfg.nl.bar.seen); not after the exit modal showed this
+// session; and not at all where storage is blocked, because the caps could not
+// be kept. location scroll_bar, tag scroll-bar.
+// ============================================================
+const BAR_DISMISS_DAYS = 14;
+const BAR_REPEAT_DAYS = 3;
+const BAR_MIN_DWELL_MS = 15000;
+const BAR_SCROLL_DEPTH = 0.5;
+
+function NewsletterBar({ route }) {
+  const allowed = window.nlBarAllowed(route);
+  const [phase, setPhase] = useState("idle"); // idle | shown | closed
+  const [entered, setEntered] = useState(false);
+  const [parked, setParked] = useState(false);
+  const [expanded, setExpanded] = useState(false);
+  const [done, setDone] = useState(null);
+  const copyRef = useRef(null);
+  const barRef = useRef(null);
+  const inputWrapRef = useRef(null);
+  const shownRef = useRef(false);
+
+  // Trigger: scroll depth plus dwell, armed afresh for each page.
+  useEffect(() => {
+    if (!allowed || shownRef.current || phase !== "idle") return;
+    if (!nlStorageWorks()) return; // the caps could not be kept, so do not ask
+    if (isSubscribed()) return;
+    const mountedAt = Date.now();
+    let raf = 0;
+    const check = () => {
+      raf = 0;
+      if (shownRef.current || Date.now() - mountedAt < BAR_MIN_DWELL_MS) return;
+      const max = document.documentElement.scrollHeight - window.innerHeight;
+      // A page shorter than two screens has no depth worth reading as intent.
+      if (max < window.innerHeight || window.scrollY / max < BAR_SCROLL_DEPTH) return;
+      if (isSubscribed() || nlHookSessionGet()) return;
+      if (nlDaysSince("tfg.nl.bar.dismissed") < BAR_DISMISS_DAYS || nlDaysSince("tfg.nl.bar.seen") < BAR_REPEAT_DAYS) return;
+      shownRef.current = true;
+      nlHookSessionSet("bar");
+      window.safeStorage.set("tfg.nl.bar.seen", new Date().toISOString());
+      copyRef.current = nlHookCopy("bar", route);
+      if (window.track) window.track("newsletter_bar_shown", { location: "scroll_bar", tag: "scroll-bar" });
+      trackNewsletterImpression("scroll_bar", "scroll-bar");
+      setPhase("shown");
+    };
+    const onScroll = () => { if (!raf) raf = requestAnimationFrame(check); };
+    // The dwell timer also checks once, for a reader who scrolled first and stopped.
+    const timer = setTimeout(onScroll, BAR_MIN_DWELL_MS + 50);
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => {
+      clearTimeout(timer);
+      if (raf) cancelAnimationFrame(raf);
+      window.removeEventListener("scroll", onScroll);
+    };
+  }, [allowed, route, phase]);
+
+  // Entrance: mount off-screen, then add the class a frame later so the
+  // transform transition runs.
+  useEffect(() => {
+    if (phase !== "shown") return;
+    const raf = requestAnimationFrame(() => setEntered(true));
+    return () => cancelAnimationFrame(raf);
+  }, [phase]);
+
+  // Leaving an allowed page (SPA navigation to a checkout-like or excluded
+  // route) removes the bar rather than carrying it along.
+  useEffect(() => {
+    if (phase === "shown" && !allowed) setPhase("closed");
+  }, [allowed, phase]);
+
+  // Park while a letter unit is on screen or the reader is at the page foot.
+  useEffect(() => {
+    if (phase !== "shown") return;
+    let raf = 0;
+    const measure = () => {
+      raf = 0;
+      const max = document.documentElement.scrollHeight - window.innerHeight;
+      let hide = max > 0 && max - window.scrollY < 120;
+      if (!hide) {
+        const units = document.querySelectorAll(".nlbox, .softgate, .hp-letter, .nlmid");
+        for (const u of units) {
+          const r = u.getBoundingClientRect();
+          if (r.bottom > 0 && r.top < window.innerHeight) { hide = true; break; }
+        }
+      }
+      setParked(hide);
+    };
+    const onScroll = () => { if (!raf) raf = requestAnimationFrame(measure); };
+    window.addEventListener("scroll", onScroll, { passive: true });
+    window.addEventListener("resize", onScroll);
+    onScroll();
+    return () => {
+      if (raf) cancelAnimationFrame(raf);
+      window.removeEventListener("scroll", onScroll);
+      window.removeEventListener("resize", onScroll);
+    };
+  }, [phase]);
+
+  // Tells BackToTop's stylesheet rule to ride above the bar while it is up.
+  const visible = phase === "shown" && entered && !parked;
+  useEffect(() => {
+    if (!visible) return;
+    document.documentElement.setAttribute("data-nl-bar", "");
+    return () => document.documentElement.removeAttribute("data-nl-bar");
+  }, [visible]);
+
+  const dismiss = (how) => {
+    if (!done) window.safeStorage.set("tfg.nl.bar.dismissed", new Date().toISOString());
+    if (window.track) window.track("newsletter_bar_dismiss", { location: "scroll_bar", tag: "scroll-bar", how });
+    setPhase("closed");
+  };
+
+  // Escape dismisses when focus is in the bar or nowhere in particular; with
+  // focus in a menu or dialog Escape belongs to that.
+  useEffect(() => {
+    if (phase !== "shown") return;
+    const onKey = (e) => {
+      if (e.key !== "Escape") return;
+      const active = document.activeElement;
+      const inBar = barRef.current && barRef.current.contains(active);
+      if (inBar || !active || active === document.body) dismiss("escape");
+    };
+    document.addEventListener("keydown", onKey);
+    return () => document.removeEventListener("keydown", onKey);
+  });
+
+  // A signed-up reader sees the confirmation for a few seconds, then it goes.
+  useEffect(() => {
+    if (!done) return;
+    const t = setTimeout(() => setPhase("closed"), 6000);
+    return () => clearTimeout(t);
+  }, [done]);
+
+  if (phase !== "shown") return null;
+  const copy = copyRef.current || nlHookCopy("bar", route);
+  const open = () => {
+    setExpanded(true);
+    if (window.track) window.track("newsletter_bar_expand", { location: "scroll_bar", tag: "scroll-bar" });
+    // The field exists only once expanded; focus it on the next frame.
+    requestAnimationFrame(() => {
+      const input = inputWrapRef.current && inputWrapRef.current.querySelector("input[type=email]");
+      if (input) input.focus();
+    });
+  };
+
+  return (
+    <div
+      ref={barRef}
+      className={["nlbar", entered && !parked ? "is-in" : "", expanded ? "is-expanded" : ""].filter(Boolean).join(" ")}
+      role="region"
+      aria-label="Subscribe to Sunday Field Notes"
+    >
+      <div className="nlbar__inner">
+        {done ? (
+          <p className="nlbar__text nlbar__done" role="status">{nlDoneLine(done)}</p>
+        ) : (
+          <>
+            <p className="nlbar__text">{copy.line}</p>
+            <button type="button" className="nlbar__open" aria-expanded={expanded} onClick={open}>Sign up</button>
+            <div className="nlbar__form" ref={inputWrapRef}>
+              <NewsletterForm location="scroll_bar" tag="scroll-bar" cta="Subscribe →" className="nlbar__fields" onDone={setDone} />
+            </div>
+          </>
+        )}
+        <button type="button" className="nlbar__close" aria-label="Close the Sunday Field Notes signup" onClick={() => dismiss("close")}>✕</button>
       </div>
     </div>
   );
@@ -3720,7 +4031,7 @@ Object.assign(window, {
   Placeholder, ResponsiveImage, preloadResponsive,
   SIZES_HERO, SIZES_CARD,
   MotifMountains, MotifSun, MotifTrees,
-  Header, Footer, BackToTop, NewsletterInline, NewsletterForm, SoftGate, ExitIntentNewsletter, MapLightbox,
+  Header, Footer, BackToTop, NewsletterInline, NewsletterForm, SoftGate, ExitIntentNewsletter, NewsletterBar, MapLightbox,
   EntranceWaits, WebcamStrip, FilmEmbed, NatureNotesFilm, EventIcon,
   HomeLink, HomeMasthead, HpHeading, HpRow, HpCard, HpArticleCard, HpPageHead, HpGuideBand, HpLetter, HpPostcard,
   FjLayout, FjFacts, FjPull, FjRidge, FjCard, FjSteps, FjPlate,

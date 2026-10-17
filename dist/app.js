@@ -1327,7 +1327,7 @@ function App() {
       go: go
     });
   }
-  var exitDisabled = ["newsletter", "contact", "privacy", "terms", "affiliate", "films"].includes(route);
+  var exitDisabled = !window.nlPopupAllowed(route);
   return React.createElement(React.Fragment, null, React.createElement(Header, {
     current: currentNav,
     go: go,
@@ -1348,13 +1348,16 @@ function App() {
   }), React.createElement(window.BackToTop, {
     current: currentNav
   }), React.createElement(ExitIntentNewsletter, {
-    disabled: exitDisabled
+    disabled: exitDisabled,
+    route: route
+  }), React.createElement(NewsletterBar, {
+    route: route
   }));
 }
 window.routeToPath = routeToPath;
 window.ensureRoute = ensureRoute;
 window.SITE_ORIGIN = SITE_ORIGIN;
-var REQUIRED_GLOBALS = ["Header", "Footer", "KeepGoing", "ExitIntentNewsletter"];
+var REQUIRED_GLOBALS = ["Header", "Footer", "KeepGoing", "ExitIntentNewsletter", "NewsletterBar"];
 var missingGlobals = REQUIRED_GLOBALS.filter(n => typeof window[n] === "undefined");
 if (missingGlobals.length) {
   console.error("app.jsx boot: missing shell globals (a script failed to load or register):", missingGlobals.join(", "));
