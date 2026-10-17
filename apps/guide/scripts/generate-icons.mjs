@@ -89,8 +89,19 @@ async function main() {
     .resize({ height: 192, fit: 'inside' })
     .png({ palette: true, compressionLevel: 9 })
     .toFile(join(brandDir, 'mark-192.png'))
+  // WebP twins of the two lockup marks for the in-app <img>s (Lighthouse
+  // modern-image-formats). The PNGs stay: the purchase emails (Worker
+  // email.ts) and the field card's canvas draw mark-192.png.
+  await sharp(mark)
+    .resize({ height: 96, fit: 'inside' })
+    .webp({ quality: 90, alphaQuality: 100, effort: 6 })
+    .toFile(join(brandDir, 'mark-96.webp'))
+  await sharp(mark)
+    .resize({ height: 192, fit: 'inside' })
+    .webp({ quality: 90, alphaQuality: 100, effort: 6 })
+    .toFile(join(brandDir, 'mark-192.webp'))
 
-  console.log('Generated: icon-512.v2, icon-192.v2, apple-touch-icon.v2, icon-maskable.v2, icon-maskable-192.v2, brand/favicon-64, brand/mark-96, brand/mark-192')
+  console.log('Generated: icon-512.v2, icon-192.v2, apple-touch-icon.v2, icon-maskable.v2, icon-maskable-192.v2, brand/favicon-64, brand/mark-96 (.png, .webp), brand/mark-192 (.png, .webp)')
 }
 
 main().catch((err) => {

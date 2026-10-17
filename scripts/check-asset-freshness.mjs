@@ -138,7 +138,8 @@ if (bulletinReaders.length) {
 }
 
 // 4. The image counter: mark plus the favicon ladder, immutable for 30 days.
-for (const m of indexHtml.matchAll(/(?:src|href)="(\/img\/[^"]+\.(?:png|ico|jpg))\?v=(\d+)"/g)) {
+// srcset covers the masthead's single-URL WebP <source>.
+for (const m of indexHtml.matchAll(/(?:src|href|srcset)="(\/img\/[^"\s]+\.(?:png|ico|jpg|webp))\?v=(\d+)"/g)) {
   add(m[1], Number(m[2]), m[1].replace(/^\//, ""), "index.html image counter");
 }
 

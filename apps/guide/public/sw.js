@@ -53,6 +53,8 @@ const RUNTIME_PRECACHE = [
   '/brand/favicon-64.png',
   '/brand/mark-96.png',
   '/brand/mark-192.png',
+  '/brand/mark-96.webp',
+  '/brand/mark-192.webp',
   '/fonts/eb-garamond.woff2',
   '/fonts/eb-garamond-italic.woff2',
   '/fonts/inter.woff2',

@@ -75,8 +75,8 @@ function RouteLoading() {
     >
       <img
         className="route-loading__mark"
-        src="/brand/mark-96.png"
-        srcSet="/brand/mark-96.png 1x, /brand/mark-192.png 2x"
+        src="/brand/mark-96.webp"
+        srcSet="/brand/mark-96.webp 1x, /brand/mark-192.webp 2x"
         alt=""
         width="61"
         height="48"
