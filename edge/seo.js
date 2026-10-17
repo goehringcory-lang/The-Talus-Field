@@ -553,7 +553,7 @@ const HUB_PROSE = {
   "/affiliate": () =>
     hubProse(
       "Affiliate Disclosure",
-      "Some links on this site are affiliate links: The Talus Field participates in Patagonia's program through Impact and the Expedia Group Travel Creator Program through Partnerize, which powers the lodging availability links. A booking through one earns a small commission at no extra cost. The governing rule: no program's catalog shapes a recommendation, and the best option stays the top recommendation, linkless, if it has no program."
+      "Some links on this site are affiliate links: The Talus Field participates in Patagonia's program through Impact and the Expedia Group Travel Creator Program through Partnerize, which powers the lodging availability searches, Stay22's program, whose links compare booking sites for a town, and Bookshop.org's, for the list of recommended field guides. A booking through one earns a small commission at no extra cost. The governing rule: no program's catalog shapes a recommendation, and the best option stays the top recommendation, linkless, if it has no program."
     ),
 };
 

@@ -147,10 +147,13 @@ function AffiliateNote() {
 // whole point of prerendering these fragments.
 function AvailabilityLink(props) {
   const dest = props.destination || "";
-  const href = buildAffiliateLink(
-    "expedia",
-    "https://www.expedia.com/Hotel-Search?destination=" + encodeURIComponent(dest)
-  );
+  const stay22 = props.network === "stay22";
+  const href = stay22
+    ? stay22SearchUrl(dest, props.campaign || props.list)
+    : buildAffiliateLink(
+        "expedia",
+        "https://www.expedia.com/Hotel-Search?destination=" + encodeURIComponent(dest)
+      );
   return React.createElement(
     "a",
     {
@@ -158,12 +161,12 @@ function AvailabilityLink(props) {
       href,
       target: "_blank",
       rel: "sponsored noopener",
-      "data-aff-network": "expedia",
+      "data-aff-network": stay22 ? "stay22" : "expedia",
       "data-aff-list": props.list || "page",
       "data-aff-item-slug": props.slug || "",
-      "data-aff-name": props.name || dest + " lodging search",
+      "data-aff-name": props.name || dest + (stay22 ? " booking-site comparison" : " lodging search"),
     },
-    props.children || `Check ${dest} availability →`
+    props.children || (stay22 ? `Compare booking sites for ${dest} ↗` : `Check ${dest} availability →`)
   );
 }
 function LodgingCta(props) {
@@ -224,7 +227,7 @@ function LodgingCta(props) {
 // window.buildAffiliateLink at render time (affiliate.js in the browser).
 // Mirror both here, minus the console warning, so those hrefs prerender to the
 // same URLs the SPA renders. Keep the base and the network IDs in sync with
-// affiliate.js: the lodging/camping IDs are empty until those applications
+// affiliate.js: the Booking and Hipcamp IDs are empty until those applications
 // are approved, and while empty, links prerender as the plain destination,
 // exactly as the SPA renders them.
 const PATAGONIA_AFFILIATE_BASE = "https://patagonia.pxf.io/c/7338432/1948563/23649";
@@ -235,7 +238,13 @@ function buildPatagoniaAffiliateLink(targetUrl) {
 
 const EXPEDIA_CAMREF = "1110lKspj";
 const BOOKING_AFFILIATE_AID = "";
-const STAY22_AFFILIATE_ID = "";
+// Live since October 2026. stay22SearchUrl mirrors window.stay22SearchUrl in
+// affiliate.js (the address form AvailabilityLink uses with network="stay22").
+const STAY22_AFFILIATE_ID = "thetalusfield";
+function stay22SearchUrl(place, campaign) {
+  if (!STAY22_AFFILIATE_ID) return "https://www.booking.com/searchresults.html?ss=" + encodeURIComponent(place);
+  return "https://www.stay22.com/allez/roam?aid=" + encodeURIComponent(STAY22_AFFILIATE_ID) + "&address=" + encodeURIComponent(place) + (campaign ? "&campaign=" + encodeURIComponent(campaign) : "");
+}
 const HIPCAMP_AFFILIATE_BASE = "";
 const BOOKSHOP_LIST_URL = "https://bookshop.org/lists/yosemite-field-guides-a-naturalist-s-bookshelf";
 function buildAffiliateLink(network, targetUrl) {

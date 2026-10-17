@@ -2129,25 +2129,35 @@ function expediaSearchUrl(destination) {
   return EXPEDIA_SEARCH_BASE + encodeURIComponent(destination);
 }
 
-// A single disclosed availability link. `destination` is what Expedia
-// searches ("Mariposa, California"); `name` is what GA4 records.
-function AvailabilityLink({ destination, children, list, slug, name, className, style }) {
-  const href = window.buildAffiliateLink
-    ? window.buildAffiliateLink("expedia", expediaSearchUrl(destination))
-    : expediaSearchUrl(destination);
+// A single disclosed availability link. `destination` is what the network
+// searches ("Mariposa, California"); `name` is what GA4 records. `network` is
+// "expedia" (the default, and the only network behind a filled booking
+// button) or "stay22", an Allez roam search of the same place that compares
+// booking sites; `campaign` tags a Stay22 click by placement and defaults to
+// the aff_list value.
+function AvailabilityLink({ destination, children, list, slug, name, className, style, network = "expedia", campaign }) {
+  const stay22 = network === "stay22";
+  let href;
+  if (stay22) {
+    href = window.stay22SearchUrl ? window.stay22SearchUrl(destination, campaign || list) : "https://www.booking.com/searchresults.html?ss=" + encodeURIComponent(destination);
+  } else {
+    href = window.buildAffiliateLink
+      ? window.buildAffiliateLink("expedia", expediaSearchUrl(destination))
+      : expediaSearchUrl(destination);
+  }
   return (
     <a
       className={["aff-link", className].filter(Boolean).join(" ")}
       href={href}
       target="_blank"
       rel="sponsored noopener"
-      data-aff-network="expedia"
+      data-aff-network={stay22 ? "stay22" : "expedia"}
       data-aff-list={list || "page"}
       data-aff-item-slug={slug || ""}
-      data-aff-name={name || destination + " lodging search"}
+      data-aff-name={name || destination + (stay22 ? " booking-site comparison" : " lodging search")}
       style={style}
     >
-      {children || `Check ${destination} availability →`}
+      {children || (stay22 ? `Compare booking sites for ${destination} ↗` : `Check ${destination} availability →`)}
     </a>
   );
 }

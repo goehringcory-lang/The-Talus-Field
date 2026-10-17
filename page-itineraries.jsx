@@ -477,7 +477,8 @@ function ItinerariesPage({ go }) {
             <p className="hp-eyebrow">EVERY PLAN ABOVE NEEDS A NIGHT BETWEEN THE DAYS</p>
             <p>These are built on early starts, which is a lodging decision before it is an itinerary decision: a bed in the Valley or in El Portal buys the first two hours of the day, and Oakhurst costs you them. The full comparison of every in-park and gateway option is one page over.</p>
             <AvailabilityLink destination="Yosemite National Park" list="page_itineraries" slug="itineraries" className="ff-book">See what is available on your dates ↗</AvailabilityLink>
-            <p className="ff-note">Availability search on Expedia; we may earn a commission, and the advice is the same either way. <a href="/affiliate">Disclosure.</a> Every option compared: <HomeLink go={go} location="itineraries_stay" href="/stay">where to stay</HomeLink>.</p>
+            <p className="ff-note">Or <AvailabilityLink network="stay22" destination="Yosemite National Park" list="itineraries_compare" campaign="itineraries_compare" slug="itineraries" name="Yosemite National Park booking-site comparison">compare every booking site ↗</AvailabilityLink>, through Stay22.</p>
+            <p className="ff-note">Availability searches on Expedia and Stay22; we may earn a commission on either, and the advice is the same either way. <a href="/affiliate">Disclosure.</a> Every option compared: <HomeLink go={go} location="itineraries_stay" href="/stay">where to stay</HomeLink>.</p>
           </aside>
         </div>
       </section>
