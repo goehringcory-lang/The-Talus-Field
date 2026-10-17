@@ -506,9 +506,13 @@ const HUB_PROSE = {
     ),
   "/half-dome-lottery": () =>
     hubProse(
-      "The Half Dome Lottery",
-      "There are two Half Dome permit lotteries, not one. The preseason lottery takes applications on Recreation.gov through March with results in mid-April; the daily lottery runs every day the cables are up, taken two days before the hike date. In the 2024 season the National Park Service recorded 35,289 preseason applications at a 22% success rate and 35,561 daily-lottery applications at 19%, with weekday odds in the daily lottery running 22% against 14% on weekends. Late-season weekdays are the best draw of the year. Strategy: use all seven date choices, front-load unpopular dates, avoid Saturday, enter both lotteries, and plan the hike mid-trip so the daily lottery gets several independent draws."
+      "The Half Dome Lottery: Odds and Strategy",
+      "There are two Half Dome permit lotteries, not one. The preseason lottery takes applications on Recreation.gov through March, Eastern time, with results in mid-April; the daily lottery runs every day the cables are up, taken two days before the hike date between midnight and 4 p.m. Pacific, with results late that night. In the 2024 season the National Park Service recorded 35,289 preseason applications at a 22% success rate and 35,561 daily-lottery applications at 19%, with weekday odds in the daily lottery running 22% against 14% on weekends. Late-season weekdays are the best draw of the year."
     ) +
+    `<p>How to read the odds: the 22% preseason rate is per application, across all of its date choices; counted per date choice, the preseason odds were about 1.0% on a weekday and 0.8% on a weekend. The daily lottery has no fixed number of permits: the park sizes it by the estimated rate of under-use and cancellation, so the supply moves from day to day.</p>` +
+    // VERIFY (Cory): the separate-daily-entries sentence is inferred from the
+    // one-application-per-person-per-lottery rule, as on the page.
+    `<p>Strategy: use all seven date choices and front-load unpopular weekdays, since the system awards your highest-ranked date that has room. Do not pad the group: an application succeeds only if the full number of permits requested is available on at least one of its dates. Name an alternate early in March, because Recreation.gov gives them 72 hours to accept and one who never accepts is not on the permit. Avoid Saturday. Enter both lotteries, and plan the hike mid-trip so the daily lottery gets several independent draws; set a reminder for its midnight-to-4 p.m. window, and keep a working card on file, since a win charges it automatically and a declined card forfeits the permit. Each adult in a party may enter a given day's draw separately, at an application fee each, and cancel any extra permits by 11:59 p.m. Pacific the day before for a refund of the per-person fee.</p>` +
     `<p>The cables are up from about the Friday before Memorial Day to the day after the second Monday in October. A permit is required past the base of the subdome, checked against photo ID, with 300 hikers a day allowed through: roughly 225 day hikers from these lotteries and 75 backpackers on wilderness permits. Going without one violates 36 CFR 1.6 and carries a fine of up to $5,000.</p>` +
     `<p>Whether the hike itself is the right goal: <a href="/articles/so-you-want-to-hike-half-dome">So You Want to Hike Half Dome</a>, which makes the case for Clouds Rest. Every other permit the park runs: <a href="/articles/yosemite-wilderness-permits-guide">the wilderness permits guide</a> and <a href="/articles/yosemite-walk-up-and-day-of-permits">walk-up and day-of permits</a>. The no-permit alternative: <a href="/articles/clouds-rest-hike">the Clouds Rest guide</a>. Both lottery windows as calendar files: <a href="/dates">the dates page</a>. The drive in for a pre-dawn start: <a href="/distances">every town's drive to the Valley</a>.</p>`,
   // The October 2026 event pages. Facts follow each page's own copy
@@ -1284,15 +1288,17 @@ function seoForPath(pathname, searchParams) {
       // /articles/half-dome-permit-lottery-2026 in August 2026.
       // No brand suffix (October 2026 top-pages pass), as on articles: with it
       // the title ran 75 characters, past Google's ~600px cut. Same for
-      // /webcams and /distances.
-      title: "Yosemite Half Dome Lottery: Dates, Odds and Strategy",
+      // /webcams and /distances. October 2026 SEO pass: title and description
+      // lead with the searched phrases ("half dome lottery", "daily lottery",
+      // "odds", "permit lottery"), and the faq mirrors the page's HD_FAQ.
+      title: "Half Dome Lottery: Permit Odds, Daily Lottery and Strategy",
       // Keep byte-identical to the /half-dome-lottery entry in app.jsx's
       // buildSeo. These drifted (published NPS odds here, honest odds there),
       // so a direct load and an SPA click described one URL two ways, and at
       // 188 characters both were cut before the differentiator. This is the
       // site's most-searched surface and its worst click-through.
       description:
-        "Both Yosemite Half Dome lotteries: the March preseason draw, the daily lottery two days ahead, the published NPS odds, and why late-season weekdays draw best.",
+        "How the Half Dome permit lottery works: the March preseason draw, the daily lottery two days out, the NPS-published odds, and the strategy that improves them.",
       breadcrumb: [["Home", `${SITE_ORIGIN}/`], ["Half Dome lottery", null]],
       // The full-width cover photo (page-half-dome-lottery.jsx, sizes 100vw)
       // is the route's LCP element and is drawn only after the page bundle
@@ -1302,35 +1308,45 @@ function seoForPath(pathname, searchParams) {
       // Edge-only FAQ: the client entry in app.jsx carries none, so this
       // copy survives hydration on direct loads. A client-side faq added
       // later REPLACES it on first paint (the /planning drift) — change
-      // both sides together or neither.
+      // both sides together or neither. Mirrors HD_FAQ in
+      // page-half-dome-lottery.jsx word for word and in the same order, as
+      // "/fall-color" mirrors FC_FAQ; change both.
       faq: [
         {
+          q: "How does the Half Dome lottery work?",
+          a: "Recreation.gov runs two lotteries for the day-hiker permits, about 225 a day while the cables are up. The preseason lottery takes applications through March and awards dates across the whole season; the daily lottery runs every day of the season and gives out the permits the park expects to go unused or be cancelled. Rangers check the permit at the base of the subdome.",
+        },
+        {
           q: "When is the Half Dome permit lottery?",
-          a: "There are two. The preseason lottery accepts applications on Recreation.gov for the month of March, with results emailed in mid-April. The daily lottery runs every day the cables are up: apply two days before your hike date, between midnight and 4 p.m. Pacific, with results late that evening.",
+          a: "There are two. The preseason lottery accepts applications on Recreation.gov from March 1 to 31, Eastern time, with results emailed in mid-April. The daily lottery runs every day the cables are up: apply two days before your hike date, between midnight and 4 p.m. Pacific, with results late that night.",
         },
         {
-          q: "How hard is it to win a Half Dome permit?",
-          a: "In the 2024 season the National Park Service recorded 35,289 preseason applications with a 22% success rate, and 35,561 daily-lottery applications with a 19% success rate. Weekdays draw meaningfully better odds than weekends in the daily lottery, 22% against 14%, and late-season weekdays, late August through the October cable takedown, are the best draw of the year.",
+          q: "What are the Half Dome lottery odds?",
+          a: "In the 2024 season, the most recent the National Park Service has published, 22% of 35,289 preseason applications won a permit, and 19% of 35,561 daily-lottery applications did, 22% on weekdays against 14% on weekends. Those rates are per application; counted per date choice, the preseason odds were about 1.0% for a weekday and 0.8% for a weekend day. Late-season weekdays, late August through the October takedown, are the best draw of the year.",
         },
         {
-          q: "What are the odds of winning the Half Dome daily lottery?",
-          a: "About 19% of daily-lottery applications succeeded in the 2024 season, split 22% on weekdays and 14% on weekends. Because each day's draw is independent, applying on five eligible weekday mornings works out to roughly a two in three chance of winning at least once, which is why the hike is best planned for the middle of a trip rather than its first day.",
+          q: "How does the Half Dome daily lottery work?",
+          a: "Apply on Recreation.gov two days before the hike, between midnight and 4 p.m. Pacific, so Thursday for a Saturday, and the results arrive late that night. The number of permits is not fixed: it follows the park's estimate of preseason permits that will be cancelled or go unused. There is no alternate, and a win charges the card on file automatically; a declined card forfeits the permit.",
         },
         {
           q: "How much does a Half Dome permit cost?",
-          a: "There is a non-refundable application fee charged per application rather than per person, plus a per-person recreation fee if you win. Both were $10 in the 2024 season, so a group of four that applied once and won paid $50 in total. The recreation fee is refundable if you cancel by 11:59 p.m. Pacific the day before your hike date, or if the cables are not up on your date. Check the NPS permit page for the current season's amounts.",
+          a: "A non-refundable application fee per application, not per person, plus a per-person recreation fee if you win. Both were $10 in the 2024 season, so a group of four that applied once and won paid $50; the recreation fee is refundable if you cancel by 11:59 p.m. Pacific the day before your hike date, or if the cables are not up on your date. Check the NPS permit page for the current season's amounts.",
         },
         {
-          q: "How many people can be on one Half Dome permit application?",
-          a: "Up to six, in both lotteries, and the group hikes together. Larger parties split across two applications under two different permit holders, which are entered independently. Each person may appear as permit holder or alternate on only one preseason application; appearing on two cancels all of them without a refund.",
+          q: "How many people can be on one Half Dome permit?",
+          a: "Up to six, and the group hikes together. Larger parties split across two applications under two different permit holders, which are entered independently. Each person may appear as permit holder or alternate on only one preseason application; appearing on two cancels all of them without a refund.",
+        },
+        {
+          q: "What if I don't win the Half Dome lottery?",
+          a: "Enter the daily lottery on every eligible day of the trip: worked from the 2024 season's published weekday rate, five weekday entries come to about a 71% chance of at least one win, an estimate rather than a park figure. Failing that, a wilderness permit through Little Yosemite Valley can carry a Half Dome add-on from a separate backpacker allocation, and Clouds Rest, higher than Half Dome, needs no permit at all.",
         },
         {
           q: "Can you hike Half Dome without a permit?",
-          a: "No. While the cables are up, rangers check permits and photo ID at the base of the subdome, and hiking past the checkpoint without one is a federal violation with fines running to thousands of dollars. The legal alternative is a wilderness permit with a Half Dome add-on, drawn from a separate backpacker allocation.",
+          a: "Not past the base of the subdome while the cables are up. Rangers check the permit and a photo ID there, and going on without one violates 36 CFR 1.6, with a fine of up to $5,000 and up to six months in jail. The legal alternative is a wilderness permit with a Half Dome add-on, drawn from a separate backpacker allocation.",
         },
         {
           q: "When are the Half Dome cables up?",
-          a: "Typically from the Friday before Memorial Day until the day after the second Monday in October, shifting with snow and weather. Outside that window the cables are down and the summit route is not maintained.",
+          a: "Typically from the Friday before Memorial Day until the day after the second Monday in October, shifting with snow on the route, crew availability and weather. The park posts each season's dates on its permit page.",
         },
       ],
     },

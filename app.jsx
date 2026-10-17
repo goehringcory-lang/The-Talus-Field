@@ -811,11 +811,12 @@ function buildSeo(route) {
     "half-dome-lottery": {
       // No brand suffix; see the note in edge/seo.js. Same for webcams and
       // distances.
-      title: "Yosemite Half Dome Lottery: Dates, Odds and Strategy",
+      title: "Half Dome Lottery: Permit Odds, Daily Lottery and Strategy",
       // Byte-identical to the /half-dome-lottery entry in edge/seo.js; see the
-      // note there. These two had drifted.
+      // note there. These two had drifted. No faq here: the edge copy is the
+      // structured data, and a client faq would replace it.
       description:
-        "Both Yosemite Half Dome lotteries: the March preseason draw, the daily lottery two days ahead, the published NPS odds, and why late-season weekdays draw best.",
+        "How the Half Dome permit lottery works: the March preseason draw, the daily lottery two days out, the NPS-published odds, and the strategy that improves them.",
       ogType: "website",
       breadcrumb: [["Home", `${SITE_ORIGIN}/`], ["Half Dome lottery", null]],
     },

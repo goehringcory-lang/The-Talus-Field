@@ -713,8 +713,8 @@ function buildSeo(route) {
       breadcrumb: [["Home", `${SITE_ORIGIN}/`], ["Tioga opening", null]]
     },
     "half-dome-lottery": {
-      title: "Yosemite Half Dome Lottery: Dates, Odds and Strategy",
-      description: "Both Yosemite Half Dome lotteries: the March preseason draw, the daily lottery two days ahead, the published NPS odds, and why late-season weekdays draw best.",
+      title: "Half Dome Lottery: Permit Odds, Daily Lottery and Strategy",
+      description: "How the Half Dome permit lottery works: the March preseason draw, the daily lottery two days out, the NPS-published odds, and the strategy that improves them.",
       ogType: "website",
       breadcrumb: [["Home", `${SITE_ORIGIN}/`], ["Half Dome lottery", null]]
     },
