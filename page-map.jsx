@@ -777,6 +777,17 @@ function MapView({ go }) {
     setMapUnlocked();
     setUnlocked(true);
   }, []);
+  // A signup our side could not complete (Buttondown refused the address,
+  // the Worker did not answer, or this connection hit the hourly limit)
+  // opens the map anyway: the gate is bypassable by design and fails open
+  // everywhere else. Nobody joined, so the subscribed flag and the
+  // newsletter_signup event stay untouched; MapGateFinish offers the
+  // Buttondown step over the opened map instead.
+  const [gateFinish, setGateFinish] = useState(null); // { result, email }
+  const handleGateFallback = useCallback((result, email) => {
+    setGateFinish({ result, email });
+    handleGateSubscribed();
+  }, [handleGateSubscribed]);
 
   // Record one impression per visit while the gate is showing (it covers the
   // whole page for a locked visitor, so locked === shown).
@@ -1658,6 +1669,7 @@ function MapView({ go }) {
           </div>
         )}
         <div ref={containerRef} id="map" className="map-page__map" />
+        {gateFinish && <MapGateFinish {...gateFinish} onClose={() => setGateFinish(null)} />}
         {mapReady && unlocked && roadKeyRows.length > 0 && (
           <div className="map-page__roadkey" role="note">
             {roadKeyRows.map((row) => {
@@ -1701,7 +1713,7 @@ function MapView({ go }) {
           </div>
         )}
       </div>
-      {!unlocked && <MapAccessGate onSubscribed={handleGateSubscribed} />}
+      {!unlocked && <MapAccessGate onSubscribed={handleGateSubscribed} onFallback={handleGateFallback} />}
     </div>
   );
 }
@@ -2744,11 +2756,15 @@ function escapeHtml(s) {
 // footer stay reachable and the visitor is never trapped on the site. One
 // signup unlocks this device permanently (tfg.map.unlocked); the gate is
 // bypassable by design and fails open when storage is unavailable. Reuses
-// the exit-intent modal's .nlmodal card styling. The signup also satisfies
-// the shared "subscribed" flag (via trackNewsletterSubmit), suppressing the
-// exit-intent modal elsewhere on the site.
+// the exit-intent modal's .nlmodal card styling. A confirmed signup also
+// satisfies the shared "subscribed" flag (via trackNewsletterSubmit),
+// suppressing the exit-intent modal elsewhere on the site. A signup that
+// fails on our side (NewsletterForm's onFallback: "fallback", "blocked",
+// "rate") opens the map on the same press without that flag, and
+// MapGateFinish below offers the Buttondown step, so the fine print's "the
+// map opens the moment you submit" holds either way.
 // ---------------------------------------------------------------------------
-function MapAccessGate({ onSubscribed }) {
+function MapAccessGate({ onSubscribed, onFallback }) {
   return (
     // role="dialog" without aria-modal: the global header and footer stay
     // reachable by design (see the comment above), so claiming modality to
@@ -2760,9 +2776,48 @@ function MapAccessGate({ onSubscribed }) {
         <div className="eyebrow eyebrow--moss" style={{ marginBottom: 12 }}>The Trip Planner Map</div>
         <h3>The map opens with an email.</h3>
         <p>Every pin here was placed and written by a resident of the park: quiet vistas, parking turnouts that actually have space, picnic tables worth the drive. Drop your email and the full map, filters, and trip builder open right here, and stay open on this device.</p>
-        <NewsletterForm location="map_gate" tag="map-gate" cta="Unlock the map →" onDone={() => onSubscribed()} />
+        <NewsletterForm location="map_gate" tag="map-gate" cta="Unlock the map →" onDone={() => onSubscribed()} onFallback={onFallback} />
         <p className="map-gate__fine">The map opens the moment you submit. Signing up also gets you Sunday Field Notes, one short letter a week. No spam, leave anytime.</p>
       </div>
+    </div>
+  );
+}
+
+// The Buttondown step for a map-gate signup our side could not complete.
+// The gate card has unmounted by now, so this small dismissible card sits
+// over the opened map. Its button is a native POST to Buttondown's embed
+// form in a new tab: the press is the user gesture a new tab needs, and
+// Buttondown's own page is where a human passes its Turnstile check (a
+// hidden iframe cannot). Only that press counts as a signup.
+const MAP_GATE_FINISH_COPY = {
+  blocked: "Buttondown could not accept that address. The map is open. To get the Sunday letter, finish on Buttondown.",
+  rate: "Too many signups from this connection in the last hour. The map is open. To get the Sunday letter, finish on Buttondown.",
+  fallback: "Our signup did not answer. The map is open. To get the Sunday letter, finish on Buttondown.",
+};
+function MapGateFinish({ result, email, onClose }) {
+  const [sent, setSent] = useState(false);
+  const onSubmit = () => {
+    if (window.track) window.track("newsletter_signup_result", { location: "map_gate", tag: "map-gate", result: "tab" });
+    if (window.trackNewsletterSubmit) window.trackNewsletterSubmit("map_gate", "map-gate");
+    // After the native submit has gone, as NewsletterForm does with onDone.
+    setTimeout(() => setSent(true), 0);
+  };
+  return (
+    <div className="nlmodal__card map-page__finish" role="status">
+      <button type="button" className="nlmodal__close" aria-label="Close" onClick={onClose}>×</button>
+      {sent ? (
+        <p className="nlbox__note">{window.nlDoneLine ? window.nlDoneLine("tab") : ""}</p>
+      ) : (
+        <>
+          <p className="nlbox__note">{MAP_GATE_FINISH_COPY[result] || MAP_GATE_FINISH_COPY.fallback}</p>
+          <form className="nlbox__form" action={window.NL_BUTTONDOWN_ACTION} method="post" target="_blank" rel="noopener" onSubmit={onSubmit}>
+            <input type="hidden" name="email" value={email} />
+            <input type="hidden" name="tag" value="map-gate" />
+            <input type="hidden" name="embed" value="1" />
+            <button type="submit">Finish on Buttondown</button>
+          </form>
+        </>
+      )}
     </div>
   );
 }

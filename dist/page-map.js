@@ -611,6 +611,14 @@ function MapView({
     setMapUnlocked();
     setUnlocked(true);
   }, []);
+  var [gateFinish, setGateFinish] = useState(null);
+  var handleGateFallback = useCallback((result, email) => {
+    setGateFinish({
+      result,
+      email
+    });
+    handleGateSubscribed();
+  }, [handleGateSubscribed]);
   useEffect(() => {
     if (!unlocked && window.trackNewsletterImpression) {
       window.trackNewsletterImpression("map_gate", "map-gate");
@@ -1366,6 +1374,9 @@ function MapView({
     ref: containerRef,
     id: "map",
     className: "map-page__map"
+  }), gateFinish && React.createElement(MapGateFinish, {
+    ...gateFinish,
+    onClose: () => setGateFinish(null)
   }), mapReady && unlocked && roadKeyRows.length > 0 && React.createElement("div", {
     className: "map-page__roadkey",
     role: "note"
@@ -1400,7 +1411,8 @@ function MapView({
     disabled: locating,
     title: "Show where you are on the map"
   }, locating ? "Locating…" : "Find me"))), !unlocked && React.createElement(MapAccessGate, {
-    onSubscribed: handleGateSubscribed
+    onSubscribed: handleGateSubscribed,
+    onFallback: handleGateFallback
   }));
 }
 function TripEmailBox({
@@ -2213,7 +2225,8 @@ function escapeHtml(s) {
   return String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;").replace(/'/g, "&#39;");
 }
 function MapAccessGate({
-  onSubscribed
+  onSubscribed,
+  onFallback
 }) {
   return (React.createElement("div", {
       className: "map-page__gate",
@@ -2232,11 +2245,67 @@ function MapAccessGate({
       location: "map_gate",
       tag: "map-gate",
       cta: "Unlock the map →",
-      onDone: () => onSubscribed()
+      onDone: () => onSubscribed(),
+      onFallback: onFallback
     }), React.createElement("p", {
       className: "map-gate__fine"
     }, "The map opens the moment you submit. Signing up also gets you Sunday Field Notes, one short letter a week. No spam, leave anytime.")))
   );
+}
+var MAP_GATE_FINISH_COPY = {
+  blocked: "Buttondown could not accept that address. The map is open. To get the Sunday letter, finish on Buttondown.",
+  rate: "Too many signups from this connection in the last hour. The map is open. To get the Sunday letter, finish on Buttondown.",
+  fallback: "Our signup did not answer. The map is open. To get the Sunday letter, finish on Buttondown."
+};
+function MapGateFinish({
+  result,
+  email,
+  onClose
+}) {
+  var [sent, setSent] = useState(false);
+  var onSubmit = () => {
+    if (window.track) window.track("newsletter_signup_result", {
+      location: "map_gate",
+      tag: "map-gate",
+      result: "tab"
+    });
+    if (window.trackNewsletterSubmit) window.trackNewsletterSubmit("map_gate", "map-gate");
+    setTimeout(() => setSent(true), 0);
+  };
+  return React.createElement("div", {
+    className: "nlmodal__card map-page__finish",
+    role: "status"
+  }, React.createElement("button", {
+    type: "button",
+    className: "nlmodal__close",
+    "aria-label": "Close",
+    onClick: onClose
+  }, "×"), sent ? React.createElement("p", {
+    className: "nlbox__note"
+  }, window.nlDoneLine ? window.nlDoneLine("tab") : "") : React.createElement(React.Fragment, null, React.createElement("p", {
+    className: "nlbox__note"
+  }, MAP_GATE_FINISH_COPY[result] || MAP_GATE_FINISH_COPY.fallback), React.createElement("form", {
+    className: "nlbox__form",
+    action: window.NL_BUTTONDOWN_ACTION,
+    method: "post",
+    target: "_blank",
+    rel: "noopener",
+    onSubmit: onSubmit
+  }, React.createElement("input", {
+    type: "hidden",
+    name: "email",
+    value: email
+  }), React.createElement("input", {
+    type: "hidden",
+    name: "tag",
+    value: "map-gate"
+  }), React.createElement("input", {
+    type: "hidden",
+    name: "embed",
+    value: "1"
+  }), React.createElement("button", {
+    type: "submit"
+  }, "Finish on Buttondown"))));
 }
 function useMastheadHeight() {
   React.useEffect(() => {

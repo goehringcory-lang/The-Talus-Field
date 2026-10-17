@@ -268,7 +268,7 @@ Security** tab → confirm the crawlers the repo allows are set to **Allow**.
 
 ## 8. Smoke test
 
-1. Open the deployed editorial site → open `/guide` (the masthead's "Get the app" button on any page but the homepage, where it jumps to the Field Guide section, or the footer's Field Guide link) → the buy box renders "Buy the guide → $3.99" with the price read live from `/api/inventory`. There is no sold/cap counter and no sold-out state: checkout is open every month.
+1. Open the deployed editorial site → open `/guide` (the masthead's "Field Guide" link on any page but the homepage, where it jumps to the Field Guide section, or the footer's Field Guide link) → the buy box renders "Buy the guide → $3.99" with the price read live from `/api/inventory`. There is no sold/cap counter and no sold-out state: checkout is open every month.
 2. Click buy → Stripe checkout opens. Use test card `4242 4242 4242 4242`, any future date, any CVC, any zip.
 3. Payment completes → redirected to `?guide=success` → email arrives within ~30s with a 6-digit code and a magic link.
 4. Click the magic link → opens `https://guide.thetalusfieldjournal.com/open?token=...` → "Signing you in…" → redirects to the setup page, then home with four region cards (`valley`, `glacier-mariposa`, `tuolumne`, `hetch-hetchy`).

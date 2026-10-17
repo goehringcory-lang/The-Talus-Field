@@ -512,6 +512,9 @@ function ArticlePage({
         label: "Home",
         route: "home"
       }, {
+        label: "Library",
+        route: "articles"
+      }, {
         label: cat.label,
         route: `cat:${cat.slug}`
       }, {

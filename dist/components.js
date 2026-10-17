@@ -539,7 +539,7 @@ function releaseRockfall(markEl) {
 }
 var NAV_GROUPS = [{
   key: "plan",
-  label: "Plan a trip",
+  label: "Plan",
   route: "planning",
   cta: "The Planning Guide →",
   blurb: "The trip, in the order the decisions actually come at you.",
@@ -553,44 +553,18 @@ var NAV_GROUPS = [{
       label: "Start the selector"
     }
   },
-  feature: "map",
   columns: [{
     heading: "Decide",
     links: [{
       key: "start-here",
       label: "Start here",
-      note: "Your first trip, the questions in order"
-    }, {
-      key: "planning",
-      label: "The Planning Guide",
-      note: "Every article, in trip order"
+      note: "Your first trip, the questions in order",
+      quick: true
     }, {
       key: "itineraries",
       label: "Itineraries",
-      note: "Half-day to three-day plans, in drive order"
-    }, {
-      key: "consult",
-      label: "Trip consults",
-      note: "Thirty minutes, one on one. Paid"
-    }]
-  }, {
-    heading: "Book and get there",
-    links: [{
-      key: "stay",
-      label: "Where to stay",
-      note: "In-park lodging and the gateway towns"
-    }, {
-      key: "a:best-airport-for-yosemite",
-      label: "Flying in",
-      note: "Which airport, and the drive or bus from it"
-    }, {
-      key: "distances",
-      label: "Drive times",
-      note: "How far the Valley is from every gateway town"
-    }, {
-      key: "international",
-      label: "Visiting from abroad",
-      note: "The non-resident entrance fee, and the cheapest way in"
+      note: "Half-day to three-day plans, in drive order",
+      quick: true
     }, {
       key: "checklist",
       label: "First-week checklist",
@@ -599,13 +573,91 @@ var NAV_GROUPS = [{
       key: "kit",
       label: "Kit",
       note: "What earns its place in the pack"
+    }, {
+      key: "consult",
+      label: "Trip consults",
+      note: "Thirty minutes, one on one. Paid"
+    }]
+  }, {
+    heading: "Stay and eat",
+    links: [{
+      key: "stay",
+      label: "Where to stay",
+      note: "In-park lodging and the gateway towns",
+      quick: true
+    }, {
+      key: "a:yosemite-camping-complete-guide",
+      label: "Camping",
+      note: "All thirteen campgrounds, and how to get a site"
+    }, {
+      key: "a:where-to-eat-yosemite",
+      label: "Where to eat",
+      note: "Restaurants, groceries and picnic spots, by area"
+    }]
+  }, {
+    heading: "Getting here",
+    links: [{
+      key: "distances",
+      label: "Drive times",
+      note: "How far the Valley is from every gateway town"
+    }, {
+      key: "a:best-airport-for-yosemite",
+      label: "Flying in",
+      note: "Which airport, and the drive or bus from it"
+    }, {
+      key: "international",
+      label: "Visiting from abroad",
+      note: "The non-resident entrance fee, and the cheapest way in"
     }]
   }]
 }, {
-  key: "now",
-  label: "Park now",
-  route: "now",
-  cta: "The Park Bulletin →",
+  key: "hikes",
+  label: "Hikes & permits",
+  route: "cat:trails",
+  cta: "All trails and hikes →",
+  blurb: "The day hikes worth the drive, and the permit that decides the big one.",
+  columns: [{
+    heading: "Permits",
+    links: [{
+      key: "half-dome-lottery",
+      label: "Half Dome lottery",
+      note: "The permit odds, plainly",
+      quick: true
+    }]
+  }, {
+    heading: "Day hikes",
+    links: [{
+      key: "a:mist-trail-the-real-guide",
+      label: "Mist Trail",
+      note: "Vernal and Nevada Falls, and where to turn around",
+      quick: true
+    }, {
+      key: "a:cathedral-lakes-day-hike",
+      label: "Cathedral Lakes",
+      note: "The high-country day out of Tuolumne",
+      quick: true
+    }, {
+      key: "a:yosemite-falls-trail",
+      label: "Yosemite Falls Trail",
+      note: "Columbia Rock, the top, and the loop below"
+    }, {
+      key: "a:clouds-rest-hike",
+      label: "Clouds Rest",
+      note: "Higher than Half Dome, and no lottery"
+    }]
+  }, {
+    heading: "Gear",
+    links: [{
+      key: "kit",
+      label: "Kit",
+      note: "The day pack, the overnight pack, the car kit"
+    }]
+  }]
+}, {
+  key: "conditions",
+  label: "Conditions",
+  route: "conditions",
+  cta: "Conditions and road alerts →",
   blurb: "What is open, what is on, and what the gates look like.",
   aside: {
     eyebrow: "Road alerts",
@@ -623,38 +675,46 @@ var NAV_GROUPS = [{
     links: [{
       key: "now",
       label: "The Park Bulletin",
-      note: "What is happening in the park right now"
-    }, {
-      key: "conditions",
-      label: "Conditions",
-      note: "Gates, lots, roads, and who to call"
+      note: "What is happening in the park right now",
+      quick: true
     }, {
       key: "webcams",
       label: "Webcams",
-      note: "The live views, and how to read them"
+      note: "The live views, and how to read them",
+      quick: true
+    }, {
+      key: "tioga-opening",
+      label: "Tioga Road opening",
+      note: "When the high country actually opens",
+      quick: true
     }]
-  }, {
+  }]
+}, {
+  key: "seasons",
+  label: "Seasons",
+  route: "cat:seasonal",
+  cta: "Seasonal guides →",
+  blurb: "The dates people plan a trip around, and the park month by month.",
+  columns: [{
     heading: "The calendar",
     links: [{
       key: "dates",
       label: "Dates that matter",
-      note: "Lotteries, release mornings, road windows, for your calendar"
-    }, {
-      key: "tioga-opening",
-      label: "Tioga Road opening",
-      note: "When the high country actually opens"
+      note: "Lotteries, release mornings, road windows, for your calendar",
+      quick: true
+    }]
+  }, {
+    heading: "The events",
+    links: [{
+      key: "fall-color",
+      label: "Fall color",
+      note: "When and where the leaves turn",
+      quick: true
     }, {
       key: "firefall",
       label: "Firefall",
-      note: "Whether to plan a trip around Horsetail Fall"
-    }, {
-      key: "half-dome-lottery",
-      label: "Half Dome lottery",
-      note: "The permit odds, plainly"
-    }, {
-      key: "fall-color",
-      label: "Fall color",
-      note: "When and where the leaves turn"
+      note: "Whether to plan a trip around Horsetail Fall",
+      quick: true
     }, {
       key: "moonbow",
       label: "Moonbow",
@@ -670,11 +730,20 @@ var NAV_GROUPS = [{
   label: "Map",
   route: "map"
 }, {
-  key: "read",
-  label: "Read",
+  key: "library",
+  label: "Library",
   route: "articles",
   cta: "All articles →",
-  blurb: "The journal itself: everything published, by section.",
+  blurb: "The journal itself, everything published by section, and the park's own record.",
+  aside: {
+    eyebrow: "Search",
+    title: "Looking for one thing?",
+    text: "Titles, sections and summaries, as you type.",
+    link: {
+      key: "search",
+      label: "Search the site"
+    }
+  },
   feature: "newest",
   columns: [{
     heading: "Sections",
@@ -696,34 +765,33 @@ var NAV_GROUPS = [{
       note: "The park, month by month"
     }]
   }, {
-    heading: "From the archive",
+    heading: "The record",
     links: [{
       href: "/archive/",
       label: "Nature Notes archive",
-      note: "512 issues of the park's own bulletin"
+      note: "512 issues of the park's own bulletin",
+      quick: true
     }, {
       key: "films",
       label: "Films",
-      note: "The NPS Nature Notes film series, annotated"
+      note: "The NPS Nature Notes film series, annotated",
+      quick: true
     }, {
       key: "newsletter",
       onHome: "home-newsletter",
       label: "The Sunday Letter",
-      note: "One short letter a week. Free"
+      note: "One short letter a week, and the past letters",
+      quick: true
     }, {
       aff: "bookshop",
-      label: "The bookshelf ↗",
-      note: "The field guides I recommend, on Bookshop.org. Affiliate link"
+      label: "Books ↗",
+      note: "The bookshelf: the field guides I recommend, on Bookshop.org. Affiliate link"
     }, {
       key: "explore",
       label: "Everything on this site",
       note: "Every page, with a line on each"
     }]
   }]
-}, {
-  key: "guide",
-  label: "Field Guide",
-  route: "guide"
 }];
 window.NAV_GROUPS = NAV_GROUPS;
 function HomeLink({
@@ -762,55 +830,33 @@ function HomeLink({
   }, children);
 }
 var HOME_NAV = [{
-  label: "Plan a trip",
+  label: "Plan",
   group: "plan"
 }, {
-  label: "Park now",
-  group: "now"
+  label: "Hikes & permits",
+  group: "hikes"
+}, {
+  label: "Conditions",
+  group: "conditions"
+}, {
+  label: "Seasons",
+  group: "seasons"
 }, {
   href: "/map",
   label: "Map"
 }, {
-  label: "Read",
-  group: "read"
+  label: "Library",
+  group: "library"
 }];
-var homeMenuCta = cta => `${(cta || "Open the section").replace(/\s*→\s*$/, "")} ↗`;
+var SUBSCRIBE_HREF = {
+  home: "#home-newsletter",
+  other: "/newsletter"
+};
+var homeMenuCta = cta => `${(cta || "Open the section").replace(/\s*→\s*$/, "")} ↗`;
 function navGroupOf(current) {
   if (!current || current === "home") return null;
   var g = NAV_GROUPS.find(group => group.columns && (group.route === current || group.columns.some(col => col.links.some(l => l.key === current))));
   return g ? g.key : null;
-}
-function NavMapFeature({
-  link
-}) {
-  return React.createElement("div", {
-    className: "hp-navfeat hp-navfeat--map"
-  }, React.createElement("p", {
-    className: "hp-menu__heading"
-  }, "The trip map"), React.createElement("picture", null, React.createElement("source", {
-    type: "image/avif",
-    sizes: "320px",
-    srcSet: "/img/responsive/nps-yosemite-valley-map-400.avif 400w, /img/responsive/nps-yosemite-valley-map-800.avif 800w"
-  }), React.createElement("source", {
-    type: "image/webp",
-    sizes: "320px",
-    srcSet: "/img/responsive/nps-yosemite-valley-map-400.webp 400w, /img/responsive/nps-yosemite-valley-map-800.webp 800w"
-  }), React.createElement("img", {
-    className: "hp-navfeat__art",
-    src: "/img/responsive/nps-yosemite-valley-map-800.jpg",
-    sizes: "320px",
-    srcSet: "/img/responsive/nps-yosemite-valley-map-400.jpg 400w, /img/responsive/nps-yosemite-valley-map-800.jpg 800w",
-    width: "236",
-    height: "104",
-    loading: "lazy",
-    decoding: "async",
-    alt: "A strip of the National Park Service map of Yosemite Valley"
-  })), React.createElement("p", {
-    className: "hp-navfeat__text"
-  }, "Every pin in the park, assembled into a route you can share or open in the Field Guide."), link({
-    key: "map",
-    label: "Open the map ↗"
-  }, "hp-link"));
 }
 function NavWaitsFeature({
   live,
@@ -829,7 +875,7 @@ function NavWaitsFeature({
   }, "Posted by the National Park Service. A dash means no wait is posted right now."), link({
     key: "conditions",
     hash: "cond-waits",
-    label: "Gates and lots on Conditions ↗"
+    label: "Gates and lots on Conditions ↗"
   }, "hp-link"));
 }
 function NavNewestFeature({
@@ -854,11 +900,11 @@ function NavNewestFeature({
 var SEARCH_JUMPS = [{
   key: "now",
   title: "The Park Bulletin",
-  kind: "Park now"
+  kind: "Conditions"
 }, {
   key: "conditions",
   title: "Conditions",
-  kind: "Park now"
+  kind: "Conditions"
 }, {
   key: "map",
   title: "The trip map",
@@ -866,7 +912,7 @@ var SEARCH_JUMPS = [{
 }, {
   key: "stay",
   title: "Where to stay",
-  kind: "Plan a trip"
+  kind: "Plan"
 }];
 function MastheadSearch({
   go,
@@ -1077,15 +1123,18 @@ function HomeMasthead({
   var [open, setOpen] = useState(null);
   var [pinned, setPinned] = useState(false);
   var [nowSeen, setNowSeen] = useState(false);
+  var [sheet, setSheet] = useState(false);
   var closeTimer = useRef(null);
   var blockRef = useRef(null);
   var headerRef = useRef(null);
   var navRef = useRef(null);
+  var sheetRef = useRef(null);
+  var menuButtonRef = useRef(null);
   var openMenu = (key, byHover) => {
     clearTimeout(closeTimer.current);
     setOpen(key);
     setPinned(!byHover);
-    if (key === "now") setNowSeen(true);
+    if (key === "conditions") setNowSeen(true);
   };
   var closeMenu = () => {
     clearTimeout(closeTimer.current);
@@ -1131,6 +1180,53 @@ function HomeMasthead({
       document.removeEventListener("pointerdown", onDown);
     };
   }, [open]);
+  var closeSheet = restore => {
+    setSheet(false);
+    if (restore && menuButtonRef.current) menuButtonRef.current.focus();
+  };
+  React.useEffect(() => {
+    if (!sheet) return undefined;
+    var node = sheetRef.current;
+    var root = document.documentElement;
+    var prevOverflow = root.style.overflow;
+    var prevBodyOverflow = document.body.style.overflow;
+    root.style.overflow = "hidden";
+    document.body.style.overflow = "hidden";
+    var focusables = () => node ? Array.from(node.querySelectorAll('a[href], button:not([disabled])')).filter(el => el.offsetParent !== null || el === document.activeElement) : [];
+    var first = focusables()[0];
+    if (first) first.focus();
+    var onKey = e => {
+      if (e.key === "Escape") {
+        e.preventDefault();
+        closeSheet(true);
+        return;
+      }
+      if (e.key !== "Tab") return;
+      var items = focusables();
+      if (!items.length) return;
+      var head = items[0];
+      var tail = items[items.length - 1];
+      if (e.shiftKey && (document.activeElement === head || !node.contains(document.activeElement))) {
+        e.preventDefault();
+        tail.focus();
+      } else if (!e.shiftKey && (document.activeElement === tail || !node.contains(document.activeElement))) {
+        e.preventDefault();
+        head.focus();
+      }
+    };
+    var wide = window.matchMedia("(min-width: 880px)");
+    var onWide = () => {
+      if (wide.matches) closeSheet(false);
+    };
+    document.addEventListener("keydown", onKey);
+    if (wide.addEventListener) wide.addEventListener("change", onWide);
+    return () => {
+      document.removeEventListener("keydown", onKey);
+      if (wide.removeEventListener) wide.removeEventListener("change", onWide);
+      root.style.overflow = prevOverflow;
+      document.body.style.overflow = prevBodyOverflow;
+    };
+  }, [sheet]);
   React.useEffect(() => {
     var block = blockRef.current;
     var header = headerRef.current;
@@ -1252,25 +1348,30 @@ function HomeMasthead({
     go(key);
     jump();
   };
-  var menuLink = (link, className) => {
+  var menuLink = (link, className, where) => {
     var {
       key,
       href,
       label,
       note
     } = link;
+    var loc = where ? where.location : location;
+    var done = () => {
+      closeMenu();
+      setSheet(false);
+    };
     if (link.aff) {
       return React.createElement("a", {
         key: `aff:${link.aff}`,
         className: className,
-        href: window.buildAffiliateLink ? window.buildAffiliateLink(link.aff) : "#",
+        href: window.buildAffiliateLink ? window.buildAffiliateLink(link.aff) : "/kit",
         target: "_blank",
         rel: "sponsored noopener",
         "data-aff-network": link.aff,
-        "data-aff-list": "nav_menu",
+        "data-aff-list": where ? where.affList : "nav_menu",
         "data-aff-item-slug": "bookshelf",
         "data-aff-name": "Naturalist's bookshelf",
-        onClick: closeMenu
+        onClick: done
       }, React.createElement("span", {
         className: "hp-menu__label"
       }, label), React.createElement("span", {
@@ -1287,11 +1388,11 @@ function HomeMasthead({
       "aria-current": !href && !hash && key === exact ? "page" : undefined,
       onClick: e => {
         if (e.defaultPrevented || e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
-        if (window.track) window.track("cta_click", {
-          location,
+        if (window.track) window.track(path === "/guide" ? "guide_cta_click" : "cta_click", {
+          location: loc,
           target: path
         });
-        closeMenu();
+        done();
         if (href && !(home && link.onHome)) return;
         e.preventDefault();
         follow(home && link.onHome ? "home" : key, hash);
@@ -1309,7 +1410,7 @@ function HomeMasthead({
       var cat = a && window.findCategory ? window.findCategory(a.cat) : null;
       return cat ? [{
         key: "articles",
-        label: "Read"
+        label: "Library"
       }, {
         key: `cat:${cat.slug}`,
         label: cat.label
@@ -1317,7 +1418,7 @@ function HomeMasthead({
     }
     if (route.startsWith("cat:")) return [{
       key: "articles",
-      label: "Read"
+      label: "Library"
     }];
     return null;
   })();
@@ -1440,26 +1541,17 @@ function HomeMasthead({
           className: "hp-menu__col"
         }, React.createElement("p", {
           className: "hp-menu__heading"
-        }, col.heading), col.links.map(link => menuLink(link, "hp-menu__link")))), g.feature === "map" && React.createElement(NavMapFeature, {
-          link: menuLink
-        }), g.feature === "waits" && React.createElement(NavWaitsFeature, {
+        }, col.heading), col.links.map(link => menuLink(link, "hp-menu__link")))), g.feature === "waits" && React.createElement(NavWaitsFeature, {
           live: nowSeen,
           link: menuLink
         }), g.feature === "newest" && React.createElement(NavNewestFeature, {
           link: menuLink
         })))))
       );
-    }), React.createElement("a", {
-      className: "hp-nav__books",
-      href: window.buildAffiliateLink ? window.buildAffiliateLink("bookshop") : "#",
-      target: "_blank",
-      rel: "sponsored noopener",
-      title: "The field guides I recommend, on Bookshop.org. Affiliate link",
-      "data-aff-network": "bookshop",
-      "data-aff-list": "nav_header",
-      "data-aff-item-slug": "bookshelf",
-      "data-aff-name": "Naturalist's bookshelf"
-    }, "Books ↗"), React.createElement(HomeLink, {
+    })), React.createElement(MastheadSearch, {
+      go: go,
+      location: location
+    }), React.createElement(HomeLink, {
       go: go,
       location: location,
       className: "hp-nav__search",
@@ -1467,8 +1559,8 @@ function HomeMasthead({
       "aria-current": here("search")
     }, React.createElement("svg", {
       viewBox: "0 0 24 24",
-      width: "13",
-      height: "13",
+      width: "16",
+      height: "16",
       "aria-hidden": "true",
       focusable: "false"
     }, React.createElement("circle", {
@@ -1486,17 +1578,133 @@ function HomeMasthead({
       stroke: "currentColor",
       strokeWidth: "2",
       strokeLinecap: "round"
-    })), React.createElement("span", null, "Search"))), React.createElement(MastheadSearch, {
-      go: go,
-      location: location
-    }), React.createElement(HomeLink, {
+    })), React.createElement("span", null, "Search")), React.createElement(HomeLink, {
       go: go,
       location: location,
-      className: "hp-button",
+      className: "hp-header__guide",
       href: home ? "#field-guide" : "/guide",
       "aria-current": here("guide")
-    }, "Get the app\xA0↗")))
+    }, "Field Guide"), React.createElement(HomeLink, {
+      go: go,
+      location: location,
+      className: "hp-button hp-header__subscribe",
+      href: home ? SUBSCRIBE_HREF.home : SUBSCRIBE_HREF.other,
+      "aria-current": here("newsletter")
+    }, "Subscribe"), React.createElement("button", {
+      type: "button",
+      className: "hp-header__menu",
+      ref: menuButtonRef,
+      "aria-expanded": sheet,
+      "aria-controls": "hp-sheet",
+      "aria-haspopup": "dialog",
+      onClick: () => {
+        closeMenu();
+        if (!sheet && window.track) window.track("nav_menu_open", {
+          location
+        });
+        setSheet(!sheet);
+      }
+    }, React.createElement("svg", {
+      viewBox: "0 0 16 12",
+      width: "16",
+      height: "12",
+      "aria-hidden": "true",
+      focusable: "false"
+    }, React.createElement("path", {
+      d: "M1 1h14M1 6h14M1 11h14",
+      fill: "none",
+      stroke: "currentColor",
+      strokeWidth: "1.6",
+      strokeLinecap: "round"
+    })), React.createElement("span", null, "Menu"))), React.createElement(NavSheet, {
+      open: sheet,
+      sheetRef: sheetRef,
+      home: home,
+      link: menuLink,
+      onClose: () => closeSheet(true)
+    }))
   );
+}
+function NavSheet({
+  open,
+  sheetRef,
+  home,
+  link,
+  onClose
+}) {
+  var where = {
+    location: "mobile_navigation",
+    affList: "nav_sheet"
+  };
+  return React.createElement("div", {
+    className: ["hp-sheet", open && "is-open"].filter(Boolean).join(" "),
+    id: "hp-sheet",
+    ref: sheetRef,
+    hidden: !open,
+    ...(open ? {
+      role: "dialog",
+      "aria-modal": "true",
+      "aria-label": "Site menu"
+    } : {})
+  }, open && React.createElement("div", {
+    className: "hp-sheet__inner"
+  }, React.createElement("div", {
+    className: "hp-sheet__top"
+  }, React.createElement("p", {
+    className: "hp-sheet__title"
+  }, "Menu"), React.createElement("button", {
+    type: "button",
+    className: "hp-sheet__close",
+    onClick: onClose
+  }, React.createElement("svg", {
+    viewBox: "0 0 12 12",
+    width: "12",
+    height: "12",
+    "aria-hidden": "true",
+    focusable: "false"
+  }, React.createElement("path", {
+    d: "M1 1l10 10M11 1L1 11",
+    fill: "none",
+    stroke: "currentColor",
+    strokeWidth: "1.6",
+    strokeLinecap: "round"
+  })), React.createElement("span", null, "Close"))), HOME_NAV.map(item => {
+    var g = item.group && NAV_GROUPS.find(group => group.key === item.group);
+    if (!g || !g.columns) {
+      return React.createElement("div", {
+        key: item.href,
+        className: "hp-sheet__group hp-sheet__group--link"
+      }, link({
+        key: item.href.slice(1),
+        label: item.label
+      }, "hp-sheet__head", where));
+    }
+    var quick = g.columns.flatMap(col => col.links).filter(l => l.quick);
+    return React.createElement("section", {
+      key: g.key,
+      className: "hp-sheet__group"
+    }, React.createElement("h2", {
+      className: "hp-sheet__label"
+    }, item.label), quick.map(l => link({
+      ...l,
+      note: undefined
+    }, "hp-sheet__link", where)), link({
+      key: g.route,
+      label: `More: ${homeMenuCta(g.cta)}`
+    }, "hp-sheet__more", where));
+  }), React.createElement("div", {
+    className: "hp-sheet__foot"
+  }, link({
+    key: "guide",
+    ...(home ? {
+      onHome: "field-guide"
+    } : {}),
+    label: "Field Guide"
+  }, "hp-sheet__link", where), link({
+    aff: "bookshop",
+    label: "Books ↗",
+    note: "The field guides I recommend, on Bookshop.org. Affiliate link"
+  }, "hp-sheet__link hp-sheet__books", where))));
 }
 function HpHeading({
   go,
@@ -1898,6 +2106,17 @@ function Footer({
       go(route);
     }
   }, label));
+  var inline = (route, label) => React.createElement("a", {
+    key: route,
+    href: window.routeToPath ? window.routeToPath(route) : `/${route}`,
+    onClick: e => {
+      e.preventDefault();
+      if (route === "guide" && window.track) window.track("guide_cta_click", {
+        location: "footer_guide_link"
+      });
+      go(route);
+    }
+  }, label);
   return React.createElement("footer", {
     className: "site-footer"
   }, React.createElement("div", {
@@ -1921,17 +2140,13 @@ function Footer({
       });
       go("explore");
     }
-  }, "Everything on this site →")), React.createElement("div", null, React.createElement("h2", null, "Plan a trip"), React.createElement("ul", null, link("start-here", "Start here"), link("planning", "The Planning Guide"), link("map", "The trip map"), link("itineraries", "Itineraries"), link("stay", "Where to stay"), link("distances", "Drive times"), link("international", "Visiting from abroad"), link("checklist", "First-week checklist"), link("kit", "Kit"), link("guide", "The Field Guide"))), React.createElement("div", null, React.createElement("h2", null, "Park now"), React.createElement("ul", null, link("now", "The Park Bulletin"), link("conditions", "Conditions"), link("webcams", "Webcams"), link("dates", "Dates that matter"))), React.createElement("div", null, React.createElement("h2", null, "Read"), React.createElement("ul", null, link("articles", "All articles"), window.CATEGORIES.map(c => React.createElement("li", {
-    key: c.slug
-  }, React.createElement("a", {
-    href: `/section/${c.slug}`,
-    onClick: e => {
-      e.preventDefault();
-      go(`cat:${c.slug}`);
-    }
-  }, c.label))), link("films", "Films"), React.createElement("li", null, React.createElement("a", {
+  }, "Everything on this site →"), React.createElement("p", {
+    className: "site-footer__journal"
+  }, inline("about", "About"), " · ", inline("contact", "Contact"))), React.createElement("div", null, React.createElement("h2", null, "Plan"), React.createElement("ul", null, link("start-here", "Start here"), link("planning", "The Planning Guide"), link("itineraries", "Itineraries"), link("stay", "Where to stay"), link("a:yosemite-camping-complete-guide", "Camping"), link("a:where-to-eat-yosemite", "Where to eat"), link("distances", "Drive times"), link("a:best-airport-for-yosemite", "Flying in"), link("international", "Visiting from abroad"), link("checklist", "First-week checklist"), link("kit", "Kit"), link("consult", "Trip consults"))), React.createElement("div", null, React.createElement("h2", null, "Hikes & permits"), React.createElement("ul", null, link("half-dome-lottery", "Half Dome lottery"), link("a:mist-trail-the-real-guide", "Mist Trail"), link("a:cathedral-lakes-day-hike", "Cathedral Lakes"), link("a:yosemite-falls-trail", "Yosemite Falls Trail"), link("a:clouds-rest-hike", "Clouds Rest"), link("cat:trails", "All trails and hikes"))), React.createElement("div", null, React.createElement("h2", null, "Conditions"), React.createElement("ul", null, link("conditions", "Conditions and road alerts"), link("now", "The Park Bulletin"), link("webcams", "Webcams"), link("tioga-opening", "Tioga Road opening"))), React.createElement("div", null, React.createElement("h2", null, "Seasons"), React.createElement("ul", null, link("dates", "Dates that matter"), link("fall-color", "Fall color"), link("firefall", "Firefall"), link("moonbow", "Moonbow"), link("frazil-ice", "Frazil ice"), link("cat:seasonal", "Seasonal guides"))), React.createElement("div", null, React.createElement("h2", null, "Map"), React.createElement("ul", null, link("map", "The trip map"))), React.createElement("div", null, React.createElement("h2", null, "Library"), React.createElement("ul", null, link("articles", "All articles"), link("cat:planning", "Planning"), link("cat:trails", "Trails and hikes"), link("cat:wildlife", "Wildlife and nature"), link("cat:seasonal", "Seasonal guides"), React.createElement("li", null, React.createElement("a", {
     href: "/archive/"
-  }, "Nature Notes archive")))), React.createElement("div", null, React.createElement("h2", null, "The journal"), React.createElement("ul", null, link("about", "About"), link("newsletter", "Newsletter"), link("contact", "Contact")))), React.createElement("div", {
+  }, "Nature Notes archive")), link("films", "Films"), link("newsletter", "The Sunday Letter"), link("search", "Search")))), React.createElement("p", {
+    className: "site-footer__tools"
+  }, React.createElement("span", null, "Tools"), inline("map", "Map"), inline("guide", "Field Guide"), inline("widget", "Conditions widget")), React.createElement("div", {
     className: "site-footer__disclosure"
   }, "Some links on this site are affiliate links. If you book or buy through one, The Talus Field may earn a small commission at no extra cost to you. ", React.createElement("a", {
     href: "/affiliate",
@@ -2937,7 +3152,9 @@ function subscribeNewsletter({
     }),
     signal: ctrl ? ctrl.signal : undefined
   }).then(r => {
-    if (!r.ok) return r.status === 400 ? "invalid" : r.status === 429 ? "rate" : "fallback";
+    if (r.status === 400) return "invalid";
+    if (r.status === 429) return "rate";
+    if (!r.ok) return r.json().then(j => j && j.code === "subscriber_blocked" ? "blocked" : "fallback", () => "fallback");
     return r.json().then(j => send && j && j.sent ? "sent" : "ok", () => "ok");
   }).catch(() => "fallback").then(result => {
     if (timer) clearTimeout(timer);
@@ -2953,7 +3170,8 @@ window.subscribeNewsletter = subscribeNewsletter;
 var NL_STATUS_COPY = {
   invalid: "That address did not take. Check it and try again.",
   rate: "Too many tries from this connection. Try again in an hour.",
-  fallback: "Our signup did not answer. Press the button again to finish on Buttondown; it opens in a new tab."
+  fallback: "Our signup did not answer. Press the button again to finish on Buttondown; it opens in a new tab.",
+  blocked: "Buttondown could not accept that address here. Press the button again to finish on Buttondown; it opens in a new tab."
 };
 function NewsletterForm({
   location,
@@ -2962,6 +3180,7 @@ function NewsletterForm({
   cta = "Subscribe →",
   send,
   onDone,
+  onFallback,
   className = "nlbox__form",
   inputId,
   inputLabel,
@@ -2970,12 +3189,13 @@ function NewsletterForm({
   autoFocus
 }) {
   var [status, setStatus] = useState("idle");
+  var handoff = status === "fallback" || status === "blocked";
   var finish = (mode, email) => {
     trackNewsletterSubmit(location, tag, variant);
     if (onDone) setTimeout(() => onDone(mode, email), 0);
   };
   var onSubmit = e => {
-    if (status === "fallback") {
+    if (handoff) {
       if (window.track) window.track("newsletter_signup_result", {
         location: location || "unknown",
         tag: tag || "",
@@ -2996,7 +3216,10 @@ function NewsletterForm({
       location,
       send
     }).then(result => {
-      if (result === "ok") finish("api", email);else if (result === "sent") finish("sent", email);else setStatus(result);
+      if (result === "ok") finish("api", email);else if (result === "sent") finish("sent", email);else if (onFallback && result !== "invalid") {
+        setStatus("idle");
+        onFallback(result, email);
+      } else setStatus(result);
     });
   };
   var note = NL_STATUS_COPY[status];
@@ -3036,7 +3259,7 @@ function NewsletterForm({
   }), React.createElement("button", {
     type: "submit",
     disabled: status === "sending"
-  }, status === "sending" ? "Joining…" : status === "fallback" ? "Finish on Buttondown →" : cta)), note && React.createElement("p", {
+  }, status === "sending" ? "Joining…" : handoff ? "Finish on Buttondown →" : cta)), note && React.createElement("p", {
     className: "nlbox__note",
     role: "status"
   }, note));

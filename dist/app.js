@@ -384,7 +384,7 @@ function buildSeo(route) {
           isAccessibleForFree: true,
           inLanguage: "en-US"
         },
-        breadcrumb: breadcrumbLd([["Home", `${SITE_ORIGIN}/`], cat ? [cat.label, `${SITE_ORIGIN}/section/${cat.slug}`] : null, [a.title, null]].filter(Boolean)),
+        breadcrumb: breadcrumbLd([["Home", `${SITE_ORIGIN}/`], ["Library", `${SITE_ORIGIN}/articles`], cat ? [cat.label, `${SITE_ORIGIN}/section/${cat.slug}`] : null, [a.title, null]].filter(Boolean)),
         faq: a.faq ? faqLd(a.faq) : null
       };
     }
@@ -420,7 +420,7 @@ function buildSeo(route) {
             datePublished: a.isoDate || a.date
           }))
         },
-        breadcrumb: breadcrumbLd([["Home", `${SITE_ORIGIN}/`], [_cat.label, null]])
+        breadcrumb: breadcrumbLd([["Home", `${SITE_ORIGIN}/`], ["Library", `${SITE_ORIGIN}/articles`], [_cat.label, null]])
       };
     }
   }

@@ -333,7 +333,7 @@ function PlanningSectionPage({
       label: "Home",
       route: "home"
     }, {
-      label: "Read",
+      label: "Library",
       route: "articles"
     }, {
       label: "Planning"
@@ -1048,7 +1048,7 @@ function SeasonalSectionPage({
       label: "Home",
       route: "home"
     }, {
-      label: "Read",
+      label: "Library",
       route: "articles"
     }, {
       label: "Seasonal Guides"
@@ -1333,7 +1333,7 @@ function TrailsSectionPage({
       label: "Home",
       route: "home"
     }, {
-      label: "Read",
+      label: "Library",
       route: "articles"
     }, {
       label: "Trails and Hikes"
@@ -1606,7 +1606,7 @@ function WildlifeSectionPage({
       label: "Home",
       route: "home"
     }, {
-      label: "Read",
+      label: "Library",
       route: "articles"
     }, {
       label: "Wildlife and Nature"
@@ -1794,6 +1794,9 @@ function CategoryPage({
     crumbs: [{
       label: "Home",
       route: "home"
+    }, {
+      label: "Library",
+      route: "articles"
     }, {
       label: cat.label
     }],
