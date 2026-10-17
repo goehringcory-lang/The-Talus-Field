@@ -21,9 +21,12 @@ window.ARTICLE_BODIES = window.ARTICLE_BODIES || {};
 //     Merced bus is Amtrak Connection Route 15, run by YARTS; "the (shuttle)
 //     bus ride and admission to the park are included").
 //   - YARTS Highway 140: stops, the winter timetable October 1, 2026 to May
-//     28, 2027, the 7:13 a.m. first arrival (run 140-1, 4:00 a.m. from
-//     Merced), the four holidays and their 2026-27 dates. "Three to four
-//     hours" is computed from that timetable (3h13 to 3h55, by run).
+//     28, 2027, the 7:13 a.m. first arrival (run 140-1, 4:15 a.m. from
+//     Merced), the four holidays and their 2026-27 dates. "Three to three
+//     and a half hours" is computed from that timetable (4:15-7:13,
+//     7:15-10:45, 11:30-2:40, 5:30-8:58). Train times: Amtrak Gold Runner
+//     710 (Richmond 8:27a, Merced 11:23a) and 716 (2:37p, 5:23p); BART
+//     Embarcadero-Richmond about 37 min.
 //   - Fares, the child and reduced-fare rules, the $2.50 online fee and the
 //     $1 surcharge, the entrance-fee disclaimer: YARTS tickets and fares, and
 //     how to ride (walk-ons, bags, bikes, service animals, Recreation.gov).
@@ -84,7 +87,7 @@ window.ARTICLE_BODIES["yosemite-san-francisco-bus"] = function YosemiteSanFranci
 
   const FAQ = [
     ["Is there a bus from San Francisco to Yosemite?", "Not a direct one on public transit. The scheduled route is three legs: BART to Richmond, or Amtrak's connecting bus from San Francisco to Emeryville; the Amtrak Gold Runner train, long known as the San Joaquins, to Merced; then the YARTS bus up Highway 140 into Yosemite Valley. It runs all year, and Amtrak sells the train and the YARTS bus as one ticket."],
-    ["How long does the bus take from Merced to Yosemite Valley?", "About three to four hours on the YARTS winter timetable, which runs from October 1, 2026 to May 28, 2027, depending on the run. The bus calls at Catheys Valley, Mariposa, Midpines and El Portal on the way up the Merced River canyon and stops at Yosemite Valley Lodge, Yosemite Village and Curry Village."],
+    ["How long does the bus take from Merced to Yosemite Valley?", "About three to three and a half hours on the YARTS winter timetable, which runs from October 1, 2026 to May 28, 2027, depending on the run. The bus calls at Catheys Valley, Mariposa, Midpines and El Portal on the way up the Merced River canyon and stops at Yosemite Valley Lodge, Yosemite Village and Curry Village."],
     ["How much is the YARTS bus from Merced to Yosemite?", "YARTS lists $22 one way and $44 round trip for an adult between Merced and Yosemite Valley, and reduced fares of $11 and $22. Children 5 and under ride free, and one child aged 6 to 12 rides free with each paid adult. Online tickets carry a $2.50 fee each way, the posted fares leave out a $1 surcharge per person, and walk-ons ride as space allows."],
     ["Does YARTS run all year?", "Only the Highway 140 route, from Merced. The Highway 41 route from Fresno, Highway 120 west from Sonora and Highway 120 east from Mammoth Lakes are summer services. YARTS does not run on Thanksgiving, Christmas, New Year's Day or Easter."],
     ["How do I get from Yosemite to San Francisco by bus?", "The same three legs in reverse: YARTS from the Valley down Highway 140 to the Merced Amtrak station, the Gold Runner train to Richmond or Emeryville, then BART from Richmond or Amtrak's connecting bus from Emeryville into San Francisco. Book it as one Amtrak ticket so the bus and train are planned to connect, and check the current timetable before you choose a bus."],
@@ -96,7 +99,7 @@ window.ARTICLE_BODIES["yosemite-san-francisco-bus"] = function YosemiteSanFranci
       <div className="hp-wrap">
         <dl className="ff-facts">
           <div><EventIcon name="route" /><dt>The way in</dt><dd>BART, train to Merced, YARTS</dd></div>
-          <div><EventIcon name="clock" /><dt>Merced to the Valley</dt><dd>3 to 4 hours by bus</dd></div>
+          <div><EventIcon name="clock" /><dt>Merced to the Valley</dt><dd>3 to 3½ hours by bus</dd></div>
           <div><EventIcon name="ticket" /><dt>YARTS from Merced</dt><dd>$22 one way, $44 round trip</dd></div>
           <div><EventIcon name="snow" /><dt>In winter</dt><dd>Highway 140 only</dd></div>
         </dl>
@@ -144,7 +147,7 @@ window.ARTICLE_BODIES["yosemite-san-francisco-bus"] = function YosemiteSanFranci
                   At the Merced station you change to the <strong>YARTS</strong> bus. YARTS is the Yosemite Area Regional Transportation System, a public transit agency, not a tour company, and Amtrak sells its Merced bus as its own connection, Route 15, which is why the train and the bus can be booked as one ticket rather than two. The bus climbs Highway 140 through Catheys Valley, Mariposa, Midpines and El Portal and sets down at <strong>Yosemite Valley Lodge</strong>, <strong>Yosemite Village</strong> and <strong>Curry Village</strong>, all on the free Valley shuttle.
                 </p>
                 <p>
-                  The bus leg alone takes about three to four hours on the winter timetable, depending on the run. Add the train and the ride across the Bay and it is most of a day, so plan the first afternoon in the Valley, not the first morning. Book Yosemite as the destination on Amtrak's site and the itinerary it returns, train and bus together, is the timetable to trust, not this page.
+                  The bus leg alone takes about three to three and a half hours on the winter timetable. Add BART to Richmond (about 37 minutes from Embarcadero) and the train to Merced (about 2 hours 45 minutes to 3 hours) and it is about six and a half to seven hours door to door from downtown San Francisco. On the winter timetable only two pairings connect closely: train 710 (Richmond 8:27 a.m., Merced 11:23 a.m.) with the 11:30 a.m. bus, which reaches Yosemite Valley Lodge at 2:40 p.m., and train 716 (Richmond 2:37 p.m., Merced 5:23 p.m.) with the 5:30 p.m. bus, in at 8:58 p.m. Plan the first afternoon or evening in the Valley, not the first morning, and a same-day round trip from San Francisco does not work in winter. Book Yosemite as the destination on Amtrak's site and the itinerary it returns, train and bus together, is the timetable to trust, not this page.
                 </p>
               </div>
             </div>
@@ -199,7 +202,7 @@ window.ARTICLE_BODIES["yosemite-san-francisco-bus"] = function YosemiteSanFranci
                   Out of the park, you board YARTS at one of its three Valley stops, ride down the canyon to the Merced station, take the train north, and get off at Richmond for BART or at Emeryville for the connecting bus into San Francisco. The difference is the clock. On the way in, a late bus costs you an hour of afternoon. On the way out, it can cost you a train, so pick a bus that leaves you a margin at Merced, and buy the through ticket so the two legs are planned to connect.
                 </p>
                 <p>
-                  The winter timetable runs from <strong>October 1, 2026 to May 28, 2027</strong>. Its first run leaves Merced at 4 a.m. and reaches Yosemite Valley Lodge at 7:13. I am not printing the rest of the times here because they change with each timetable; read them on the YARTS Highway 140 page the week you travel.
+                  The winter timetable runs from <strong>October 1, 2026 to May 28, 2027</strong>. Runs leave Merced at 4:15 a.m., 7:15 a.m., 11:30 a.m. and 5:30 p.m. and reach Yosemite Valley Lodge at 7:13 a.m., 10:45 a.m., 2:40 p.m. and 8:58 p.m. Times change with each timetable, so read them on the YARTS Highway 140 page the week you travel.
                 </p>
               </div>
             </div>

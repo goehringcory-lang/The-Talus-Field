@@ -110,7 +110,7 @@ window.planningSeriesFor = function (slug) {
 // verifies this map stays in sync with the files in bodies/.
 // ============================================================
 window.BODY_VERSIONS = {
-  "yosemite-san-francisco-bus": 1,
+  "yosemite-san-francisco-bus": 2,
   "badger-pass-ski-area": 2,
   "snowshoeing-in-yosemite": 2,
   "yosemite-in-february": 2,
@@ -147,7 +147,7 @@ window.BODY_VERSIONS = {
   "tuolumne-meadows-in-a-day": 13,
   "swimming-in-the-merced": 6,
   "yosemite-valley-parking-guide": 6,
-  "yosemite-shuttle-and-yarts": 14,
+  "yosemite-shuttle-and-yarts": 15,
   "yosemite-walk-up-and-day-of-permits": 9,
   "yosemite-in-fall": 11,
   "yosemite-tunnel-trees": 6,
@@ -189,7 +189,7 @@ window.BODY_VERSIONS = {
   "yosemite-during-smoke-season": 82,
   "yosemite-gateway-towns-compared": 112,
   "pack-your-car-for-yosemite": 88,
-  "yosemite-for-non-hikers": 88,
+  "yosemite-for-non-hikers": 89,
   "yosemite-stargazing-where-to-look-up": 88,
   "hetch-hetchy-the-other-yosemite-valley": 83,
   "what-is-a-talus-field": 7,

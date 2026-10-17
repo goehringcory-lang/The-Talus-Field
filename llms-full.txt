@@ -24,7 +24,7 @@ Summary: Bus from San Francisco to Yosemite: BART, the Amtrak train to Merced an
 
 The way inBART, train to Merced, YARTS
 
-Merced to the Valley3 to 4 hours by bus
+Merced to the Valley3 to 3½ hours by bus
 
 YARTS from Merced$22 one way, $44 round trip
 
@@ -56,7 +56,7 @@ The train does not reach San Francisco itself, so the trip starts on the east si
 
 At the Merced station you change to the YARTS bus. YARTS is the Yosemite Area Regional Transportation System, a public transit agency, not a tour company, and Amtrak sells its Merced bus as its own connection, Route 15, which is why the train and the bus can be booked as one ticket rather than two. The bus climbs Highway 140 through Catheys Valley, Mariposa, Midpines and El Portal and sets down at Yosemite Valley Lodge, Yosemite Village and Curry Village, all on the free Valley shuttle.
 
-The bus leg alone takes about three to four hours on the winter timetable, depending on the run. Add the train and the ride across the Bay and it is most of a day, so plan the first afternoon in the Valley, not the first morning. Book Yosemite as the destination on Amtrak's site and the itinerary it returns, train and bus together, is the timetable to trust, not this page.
+The bus leg alone takes about three to three and a half hours on the winter timetable. Add BART to Richmond (about 37 minutes from Embarcadero) and the train to Merced (about 2 hours 45 minutes to 3 hours) and it is about six and a half to seven hours door to door from downtown San Francisco. On the winter timetable only two pairings connect closely: train 710 (Richmond 8:27 a.m., Merced 11:23 a.m.) with the 11:30 a.m. bus, which reaches Yosemite Valley Lodge at 2:40 p.m., and train 716 (Richmond 2:37 p.m., Merced 5:23 p.m.) with the 5:30 p.m. bus, in at 8:58 p.m. Plan the first afternoon or evening in the Valley, not the first morning, and a same-day round trip from San Francisco does not work in winter. Book Yosemite as the destination on Amtrak's site and the itinerary it returns, train and bus together, is the timetable to trust, not this page.
 
 The year-round bus, in the Valley in winter. Photo: YARTS
 
@@ -136,7 +136,7 @@ YOSEMITE TO SAN FRANCISCO
 
 Out of the park, you board YARTS at one of its three Valley stops, ride down the canyon to the Merced station, take the train north, and get off at Richmond for BART or at Emeryville for the connecting bus into San Francisco. The difference is the clock. On the way in, a late bus costs you an hour of afternoon. On the way out, it can cost you a train, so pick a bus that leaves you a margin at Merced, and buy the through ticket so the two legs are planned to connect.
 
-The winter timetable runs from October 1, 2026 to May 28, 2027. Its first run leaves Merced at 4 a.m. and reaches Yosemite Valley Lodge at 7:13. I am not printing the rest of the times here because they change with each timetable; read them on the YARTS Highway 140 page the week you travel.
+The winter timetable runs from October 1, 2026 to May 28, 2027. Runs leave Merced at 4:15 a.m., 7:15 a.m., 11:30 a.m. and 5:30 p.m. and reach Yosemite Valley Lodge at 7:13 a.m., 10:45 a.m., 2:40 p.m. and 8:58 p.m. Times change with each timetable, so read them on the YARTS Highway 140 page the week you travel.
 
 - Four days with no bus
 YARTS does not run on Thanksgiving, Christmas, New Year's Day or Easter: this season, November 26, December 25, January 1 and March 28, 2027.
@@ -251,7 +251,7 @@ Every road into the park, and why the phone's route is not to be trusted: gettin
 Is there a bus from San Francisco to Yosemite?
 Not a direct one on public transit. The scheduled route is three legs: BART to Richmond, or Amtrak's connecting bus from San Francisco to Emeryville; the Amtrak Gold Runner train, long known as the San Joaquins, to Merced; then the YARTS bus up Highway 140 into Yosemite Valley. It runs all year, and Amtrak sells the train and the YARTS bus as one ticket.
 How long does the bus take from Merced to Yosemite Valley?
-About three to four hours on the YARTS winter timetable, which runs from October 1, 2026 to May 28, 2027, depending on the run. The bus calls at Catheys Valley, Mariposa, Midpines and El Portal on the way up the Merced River canyon and stops at Yosemite Valley Lodge, Yosemite Village and Curry Village.
+About three to three and a half hours on the YARTS winter timetable, which runs from October 1, 2026 to May 28, 2027, depending on the run. The bus calls at Catheys Valley, Mariposa, Midpines and El Portal on the way up the Merced River canyon and stops at Yosemite Valley Lodge, Yosemite Village and Curry Village.
 How much is the YARTS bus from Merced to Yosemite?
 YARTS lists $22 one way and $44 round trip for an adult between Merced and Yosemite Valley, and reduced fares of $11 and $22. Children 5 and under ride free, and one child aged 6 to 12 rides free with each paid adult. Online tickets carry a $2.50 fee each way, the posted fares leave out a $1 surcharge per person, and walk-ons ride as space allows.
 Does YARTS run all year?
@@ -5053,7 +5053,7 @@ The Tuolumne Meadows buses are the ones to check rather than assume. The high-co
 
 YARTS is the Yosemite Area Regional Transportation System, a public transit agency rather than a tour operator, and it runs full-size coaches on four corridors into Yosemite Valley.
 
-Highway 140, from Merced. The backbone, and the only route that runs year-round, seven days a week. It leaves from the Amtrak station in Merced and calls at Mariposa, Midpines, and El Portal on its way up the Merced canyon. Figure about three hours end to end. Because it connects to a train, this is the route that makes a car-free Yosemite trip possible from San Francisco, Sacramento, or Los Angeles. The Yosemite to San Francisco by bus guide walks through that connection leg by leg.
+Highway 140, from Merced. The backbone, and the only route that runs year-round, seven days a week. It leaves from the Amtrak station in Merced and calls at Mariposa, Midpines, and El Portal on its way up the Merced canyon. Figure about three to three and a half hours end to end on the winter timetable. Because it connects to a train, this is the route that makes a car-free Yosemite trip possible from San Francisco, Sacramento, or Los Angeles. The Yosemite to San Francisco by bus guide walks through that connection leg by leg.
 
 Highway 41, from Fresno. Seasonal, roughly late May into late September, calling at Oakhurst, Fish Camp, the Mariposa Grove, and Wawona. This is the route for anyone flying into Fresno, which is the closest major airport; the airport guide weighs it against landing at SFO or LAX and renting a car.
 
@@ -12511,7 +12511,7 @@ Yes. The Valley Floor Tour is a two-hour tour, led by a naturalist or ranger, on
 Is Glacier Point accessible without hiking?
 Yes. Glacier Point Road is open to cars from about late May through October or November, and the drive from the Valley takes about an hour. A short paved path leads from the parking lot to the overlook, and the Park Service lists it as wheelchair accessible; its older accessibility guide notes that some sections are steeper than an accessible grade. The Glacier Point Tour bus also goes there while the road is open.
 Can you visit Yosemite by bus or train?
-Yes. Amtrak runs to Merced, where the YARTS Highway 140 bus leaves for Yosemite Valley year-round, about two and a half hours end to end. YARTS's Highway 41, Highway 120 and Highway 395 routes run in summer only. Budget for the park entrance fee, because the Park Service and YARTS disagree about whether the fare covers it.
+Yes. Amtrak runs to Merced, where the YARTS Highway 140 bus leaves for Yosemite Valley year-round, about three to three and a half hours on the bus alone. YARTS's Highway 41, Highway 120 and Highway 395 routes run in summer only. Budget for the park entrance fee, because the Park Service and YARTS disagree about whether the fare covers it.
 Does the Yosemite Valley shuttle run in winter, and can it carry a wheelchair?
 The free Valley shuttle runs daily, year-round, from 7 a.m. to 10 p.m. Every bus has a wheelchair lift and tie-downs. The Park Service gives the maximum wheelchair size as 24 inches wide by 46 inches long.
 Do I need a reservation to enter Yosemite?

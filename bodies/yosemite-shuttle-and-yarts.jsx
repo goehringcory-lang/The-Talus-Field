@@ -114,7 +114,7 @@ window.ARTICLE_BODIES["yosemite-shuttle-and-yarts"] = function YosemiteShuttleAn
       </p>
 
       <p>
-        <strong>Highway 140, from Merced.</strong> The backbone, and the only route that runs year-round, seven days a week. It leaves from the Amtrak station in Merced and calls at Mariposa, Midpines, and El Portal on its way up the Merced canyon. Figure about three hours end to end. Because it connects to a train, this is the route that makes a car-free Yosemite trip possible from San Francisco, Sacramento, or Los Angeles. <a href="/articles/yosemite-san-francisco-bus">The Yosemite to San Francisco by bus guide</a> walks through that connection leg by leg.
+        <strong>Highway 140, from Merced.</strong> The backbone, and the only route that runs year-round, seven days a week. It leaves from the Amtrak station in Merced and calls at Mariposa, Midpines, and El Portal on its way up the Merced canyon. Figure about three to three and a half hours end to end on the winter timetable. Because it connects to a train, this is the route that makes a car-free Yosemite trip possible from San Francisco, Sacramento, or Los Angeles. <a href="/articles/yosemite-san-francisco-bus">The Yosemite to San Francisco by bus guide</a> walks through that connection leg by leg.
       </p>
 
       <p>

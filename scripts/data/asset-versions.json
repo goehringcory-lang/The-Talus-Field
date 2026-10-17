@@ -214,8 +214,8 @@
       "sha256": "84a799e6c817ad3b"
     },
     "/dist/bodies/yosemite-for-non-hikers.js": {
-      "v": 88,
-      "sha256": "53bef5307c601577"
+      "v": 89,
+      "sha256": "d5a11b29ede44173"
     },
     "/dist/bodies/yosemite-from-las-vegas.js": {
       "v": 5,
@@ -306,12 +306,12 @@
       "sha256": "331e053e91410cb9"
     },
     "/dist/bodies/yosemite-san-francisco-bus.js": {
-      "v": 1,
-      "sha256": "2105e1f0dee99657"
+      "v": 2,
+      "sha256": "622f3f906cd9c136"
     },
     "/dist/bodies/yosemite-shuttle-and-yarts.js": {
-      "v": 14,
-      "sha256": "d7559f23e3e15cc3"
+      "v": 15,
+      "sha256": "dd4aa5a8481a2728"
     },
     "/dist/bodies/yosemite-stargazing-where-to-look-up.js": {
       "v": 88,
