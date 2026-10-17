@@ -78,8 +78,8 @@ export default function Redeem() {
         <header className="brand-lockup">
           <img
             className="brand-lockup__mark"
-            src="/brand/mark-96.png"
-            srcSet="/brand/mark-96.png 1x, /brand/mark-192.png 2x"
+            src="/brand/mark-96.webp"
+            srcSet="/brand/mark-96.webp 1x, /brand/mark-192.webp 2x"
             alt=""
             width="61"
             height="48"
@@ -102,6 +102,7 @@ export default function Redeem() {
             src="/photos/tunnel-view-panorama.jpg"
             alt="Tunnel View: El Capitan, Bridalveil Fall, and Half Dome"
             loading="eager"
+            fetchPriority="high"
             width={1200}
             height={900}
             sizes="(max-width: 720px) 100vw, 560px"

@@ -1294,6 +1294,11 @@ function seoForPath(pathname, searchParams) {
       description:
         "Both Yosemite Half Dome lotteries: the March preseason draw, the daily lottery two days ahead, the published NPS odds, and why late-season weekdays draw best.",
       breadcrumb: [["Home", `${SITE_ORIGIN}/`], ["Half Dome lottery", null]],
+      // The full-width cover photo (page-half-dome-lottery.jsx, sizes 100vw)
+      // is the route's LCP element and is drawn only after the page bundle
+      // loads, so it is preloaded here like an article cover (Lighthouse
+      // prioritize-lcp-image, October 2026). Keep in step with the page.
+      hero: { image: "img/half-dome-alpenglow-madhu-shesharam.jpg", cover: true },
       // Edge-only FAQ: the client entry in app.jsx carries none, so this
       // copy survives hydration on direct loads. A client-side faq added
       // later REPLACES it on first paint (the /planning drift) — change
@@ -1530,6 +1535,8 @@ function seoForPath(pathname, searchParams) {
     faq: meta.faq ? faqLd(meta.faq) : null,
     robots: meta.robots || null,
     prose: HUB_PROSE[path] ? HUB_PROSE[path]() : null,
+    heroImagePath: meta.hero ? meta.hero.image : null,
+    heroCover: meta.hero ? !!meta.hero.cover : false,
   };
   if (path === "/map") applyTripSeo(seo, searchParams);
   return seo;
@@ -1757,7 +1764,8 @@ async function handleRequest({ request, next, env }) {
   } else if (seo.prose) {
     proseHtml = seo.prose;
   }
-  const heroPreload = seo.prerenderSlug ? heroPreloadTag(seo.heroImagePath, seo.heroCover) : null;
+  // Articles, plus the static routes whose known[] entry names a `hero`.
+  const heroPreload = seo.heroImagePath ? heroPreloadTag(seo.heroImagePath, seo.heroCover) : null;
   // Route-aware static H1: the sr-only #seo-static-h1 in index.html carries the
   // homepage title for markup-only parsers. When a prose fragment is injected
   // it brings its own on-topic <h1>, so the static one is removed to avoid a

@@ -674,6 +674,13 @@ function GuideWaitlistBox() {
     }
   }, "cory@thetalusfieldjournal.com"), ".")));
 }
+var SCREEN_SIZES = "(max-width: 720px) 192px, 224px";
+function screenSrcSet(src) {
+  var file = src.split("/").pop();
+  var dir = src.slice(0, src.length - file.length);
+  var slug = file.toLowerCase().replace(/\.[^.]+$/, "").replace(/[^a-z0-9]+/g, "-").replace(/^-+|-+$/g, "");
+  return `${dir}responsive/${slug}-400.webp 400w, ${src} 640w`;
+}
 var APP_SHOTS = [{
   src: "img/guide/screens/front-page.v7.webp",
   alt: "The Field Guide app's front page, 'Yosemite, right now': the valley-floor weather with the next two days, the day's light drawn from sunrise to sunset with the hours left, and the wait at each entrance",
@@ -766,6 +773,8 @@ function AppShots({
     className: "app-shot__frame"
   }, React.createElement("img", {
     src: shot.src,
+    srcSet: screenSrcSet(shot.src),
+    sizes: SCREEN_SIZES,
     alt: shot.alt,
     width: "640",
     height: "1385",
@@ -849,6 +858,8 @@ function GuideWalkthrough() {
     key: step.src,
     className: "guide-walkthrough__shot" + (i === active ? " is-active" : ""),
     src: step.src,
+    srcSet: screenSrcSet(step.src),
+    sizes: SCREEN_SIZES,
     alt: step.alt,
     width: "640",
     height: "1385",
@@ -1306,6 +1317,8 @@ function GuideOfflineDemo() {
     "aria-hidden": "true"
   }, "No Service · Airplane mode"), React.createElement("img", {
     src: "img/guide/screens/stop.v7.webp",
+    srcSet: screenSrcSet("img/guide/screens/stop.v7.webp"),
+    sizes: SCREEN_SIZES,
     alt: "A stop page in the app, rendering identically with or without cell service",
     width: "640",
     height: "1385",

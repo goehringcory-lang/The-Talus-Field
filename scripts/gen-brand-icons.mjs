@@ -28,6 +28,8 @@
 //                                    805 x 622 master itself, 567 KB on every
 //                                    page view (and every archive page) for
 //                                    an image drawn 56 px tall.
+//   img/talus-field-mark-masthead.webp  the same mark, 144 px wide, as the
+//                                    masthead <picture>'s WebP source
 //   img/mark-192.png                 the trip-share email's masthead
 //                                    (workers/src/lib/email.ts), which has
 //                                    always pointed here — the file was simply
@@ -149,6 +151,17 @@ async function main() {
   write(
     'talus-field-mark-masthead.png',
     await sharp(mark).resize({ height: 168, fit: 'inside' }).png(PNG_OPTS).toBuffer(),
+  )
+
+  // The same mark as WebP, for the masthead's <picture> source. The CSS box
+  // is 48 px square with object-fit: contain, so the 1.27:1 mark is drawn
+  // 48 px wide; 144 px is three times that. Lighthouse flagged the 214 px PNG
+  // as oversized and not a modern format (October 2026 perf pass). The PNG
+  // stays as the fallback <img>. Served under its own ?v= counter, guarded by
+  // check-asset-freshness.mjs like the PNG.
+  write(
+    'talus-field-mark-masthead.webp',
+    await sharp(mark).resize({ width: 144, fit: 'inside' }).webp({ quality: 90, alphaQuality: 100, effort: 6 }).toBuffer(),
   )
 
   // Transparent lockup mark for the trip-share email, sized to match the

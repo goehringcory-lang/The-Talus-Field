@@ -764,8 +764,18 @@ function NavMapFeature({ link }) {
   return (
     <div className="hp-navfeat hp-navfeat--map">
       <p className="hp-menu__heading">The trip map</p>
-      <img className="hp-navfeat__art" src="/img/responsive/nps-yosemite-valley-map-800.jpg" width="236" height="104" loading="lazy" decoding="async"
-        alt="A strip of the National Park Service map of Yosemite Valley" />
+      {/* The track draws the strip about 320px wide (cover-cropped), so the
+          400w cut serves a 1x screen and the 800w one a phone; AVIF/WebP first. */}
+      <picture>
+        <source type="image/avif" sizes="320px"
+          srcSet="/img/responsive/nps-yosemite-valley-map-400.avif 400w, /img/responsive/nps-yosemite-valley-map-800.avif 800w" />
+        <source type="image/webp" sizes="320px"
+          srcSet="/img/responsive/nps-yosemite-valley-map-400.webp 400w, /img/responsive/nps-yosemite-valley-map-800.webp 800w" />
+        <img className="hp-navfeat__art" src="/img/responsive/nps-yosemite-valley-map-800.jpg" sizes="320px"
+          srcSet="/img/responsive/nps-yosemite-valley-map-400.jpg 400w, /img/responsive/nps-yosemite-valley-map-800.jpg 800w"
+          width="236" height="104" loading="lazy" decoding="async"
+          alt="A strip of the National Park Service map of Yosemite Valley" />
+      </picture>
       <p className="hp-navfeat__text">Every pin in the park, assembled into a route you can share or open in the Field Guide.</p>
       {link({ key: "map", label: "Open the map ↗" }, "hp-link")}
     </div>
@@ -1263,7 +1273,10 @@ function HomeMasthead({ go, current = "home", route }) {
       <div className="hp-wrap hp-header" ref={headerRef}>
         <HomeLink go={go} location={location} className="hp-brand" href="/"
           onClickCapture={(e) => releaseRockfall(e.currentTarget.querySelector("img"))}>
-          <img src="/img/talus-field-mark-masthead.png?v=2" width="214" height="168" alt="" />
+          <picture>
+            <source type="image/webp" srcSet="/img/talus-field-mark-masthead.webp?v=1" />
+            <img src="/img/talus-field-mark-masthead.png?v=2" width="214" height="168" alt="" />
+          </picture>
           <span>The Talus Field<small>YOSEMITE, FROM THE INSIDE.</small></span>
         </HomeLink>
         {crumb && (

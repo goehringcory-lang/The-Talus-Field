@@ -787,15 +787,25 @@ function NavMapFeature({
     className: "hp-navfeat hp-navfeat--map"
   }, React.createElement("p", {
     className: "hp-menu__heading"
-  }, "The trip map"), React.createElement("img", {
+  }, "The trip map"), React.createElement("picture", null, React.createElement("source", {
+    type: "image/avif",
+    sizes: "320px",
+    srcSet: "/img/responsive/nps-yosemite-valley-map-400.avif 400w, /img/responsive/nps-yosemite-valley-map-800.avif 800w"
+  }), React.createElement("source", {
+    type: "image/webp",
+    sizes: "320px",
+    srcSet: "/img/responsive/nps-yosemite-valley-map-400.webp 400w, /img/responsive/nps-yosemite-valley-map-800.webp 800w"
+  }), React.createElement("img", {
     className: "hp-navfeat__art",
     src: "/img/responsive/nps-yosemite-valley-map-800.jpg",
+    sizes: "320px",
+    srcSet: "/img/responsive/nps-yosemite-valley-map-400.jpg 400w, /img/responsive/nps-yosemite-valley-map-800.jpg 800w",
     width: "236",
     height: "104",
     loading: "lazy",
     decoding: "async",
     alt: "A strip of the National Park Service map of Yosemite Valley"
-  }), React.createElement("p", {
+  })), React.createElement("p", {
     className: "hp-navfeat__text"
   }, "Every pin in the park, assembled into a route you can share or open in the Field Guide."), link({
     key: "map",
@@ -1329,12 +1339,15 @@ function HomeMasthead({
       className: "hp-brand",
       href: "/",
       onClickCapture: e => releaseRockfall(e.currentTarget.querySelector("img"))
-    }, React.createElement("img", {
+    }, React.createElement("picture", null, React.createElement("source", {
+      type: "image/webp",
+      srcSet: "/img/talus-field-mark-masthead.webp?v=1"
+    }), React.createElement("img", {
       src: "/img/talus-field-mark-masthead.png?v=2",
       width: "214",
       height: "168",
       alt: ""
-    }), React.createElement("span", null, "The Talus Field", React.createElement("small", null, "YOSEMITE, FROM THE INSIDE."))), crumb && React.createElement("p", {
+    })), React.createElement("span", null, "The Talus Field", React.createElement("small", null, "YOSEMITE, FROM THE INSIDE."))), crumb && React.createElement("p", {
       className: "hp-header__crumb"
     }, crumb.map(c => React.createElement(HomeLink, {
       key: c.key,

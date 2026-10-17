@@ -171,10 +171,54 @@ async function makeDefaultOgCard() {
   return true;
 }
 
+// The Field Guide phone captures on /guide (img/guide/screens/<name>.v<N>.webp,
+// 640 x 1385) are drawn at most 224px wide, so each also gets one 400px WebP
+// cut for the page's srcset (October 2026 perf pass: Lighthouse counted ~294
+// KiB of oversized screenshots). Only the newest version of each capture is
+// cut; older versions stay in place for caches but are no longer referenced.
+// Output: img/guide/screens/responsive/<slug>-400.webp, slug as above
+// ("front-page.v7.webp" -> "front-page-v7-400.webp"); page-guide.jsx's
+// screenSrcSet derives the same name.
+const SCREENS_DIR = path.join(ROOT, "img/guide/screens");
+const SCREEN_CUT_WIDTH = 400;
+
+async function processScreens() {
+  if (!existsSync(SCREENS_DIR)) return { dir: path.relative(ROOT, SCREENS_DIR), made: 0, skipped: 0, sources: 0 };
+  const outDir = path.join(SCREENS_DIR, "responsive");
+  await mkdir(outDir, { recursive: true });
+  const newest = new Map();
+  for (const f of await readdir(SCREENS_DIR)) {
+    const m = f.match(/^(.+)\.v(\d+)\.webp$/);
+    if (!m) continue;
+    const prior = newest.get(m[1]);
+    if (!prior || Number(m[2]) > prior.v) newest.set(m[1], { v: Number(m[2]), file: f });
+  }
+  let made = 0;
+  let skipped = 0;
+  let sources = 0;
+  for (const { file } of newest.values()) {
+    const srcPath = path.join(SCREENS_DIR, file);
+    const meta = await sharp(srcPath).metadata();
+    // Portrait phone captures only; the wide 3D-map shot keeps its one file.
+    if (!meta.width || meta.width <= SCREEN_CUT_WIDTH || (meta.height || 0) <= meta.width) continue;
+    sources++;
+    const outPath = path.join(outDir, `${slugify(file)}-${SCREEN_CUT_WIDTH}.webp`);
+    if (!(await newerThan(srcPath, outPath))) {
+      skipped++;
+      continue;
+    }
+    await sharp(srcPath).resize({ width: SCREEN_CUT_WIDTH }).webp({ quality: 80 }).toFile(outPath);
+    made++;
+  }
+  return { dir: path.relative(ROOT, SCREENS_DIR), made, skipped, sources };
+}
+
 async function main() {
   console.log("Generating responsive image variants...\n");
-  for (const { dir, ogCards } of TARGET_DIRS) {
-    const r = await processDir(dir, ogCards);
+  const results = [];
+  for (const { dir, ogCards } of TARGET_DIRS) results.push(await processDir(dir, ogCards));
+  results.push(await processScreens());
+  for (const r of results) {
     console.log(
       `  ${r.dir.padEnd(28)} sources: ${String(r.sources).padStart(3)}  written: ${String(
         r.made

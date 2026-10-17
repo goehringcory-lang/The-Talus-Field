@@ -18,6 +18,9 @@ type Props = {
   width?: number
   height?: number
   loading?: 'lazy' | 'eager'
+  // 'high' only on a route's LCP photo (the /login and /redeem plates), so the
+  // browser fetches it ahead of the other images it discovers.
+  fetchPriority?: 'high' | 'low' | 'auto'
   style?: CSSProperties
 }
 
@@ -29,6 +32,7 @@ export default function ResponsivePhoto({
   width = 1200,
   height = 900,
   loading = 'lazy',
+  fetchPriority,
   style,
 }: Props) {
   // A 404ing photo (bad path, evicted cache while offline) would render the
@@ -51,7 +55,7 @@ export default function ResponsivePhoto({
 
   if (isExternal) {
     return (
-      <img className={className} src={src} alt={alt} loading={loading} decoding="async" width={width} height={height} style={style} onError={() => setFailedSrc(src)} />
+      <img className={className} src={src} alt={alt} loading={loading} fetchPriority={fetchPriority} decoding="async" width={width} height={height} style={style} onError={() => setFailedSrc(src)} />
     )
   }
 
@@ -69,6 +73,7 @@ export default function ResponsivePhoto({
         sizes={sizes}
         alt={alt}
         loading={loading}
+        fetchPriority={fetchPriority}
         decoding="async"
         width={width}
         height={height}

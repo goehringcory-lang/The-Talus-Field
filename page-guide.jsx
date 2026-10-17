@@ -622,6 +622,18 @@ function GuideWaitlistBox() {
 // app (conditions-first home, Secret Guide cover) took .v7, skipping .v6
 // because the Secret Guide shot already held it. The 3D map captures keep
 // their own numbers. The next refresh takes .v8.
+//
+// Every phone frame on this page draws its capture at most 224px wide, so the
+// 640px file is offered beside a 400px WebP cut that `npm --prefix scripts run
+// images` writes to img/guide/screens/responsive/ (the newest version of each
+// capture only). screenSrcSet mirrors that generator's slug.
+const SCREEN_SIZES = "(max-width: 720px) 192px, 224px";
+function screenSrcSet(src) {
+  const file = src.split("/").pop();
+  const dir = src.slice(0, src.length - file.length);
+  const slug = file.toLowerCase().replace(/\.[^.]+$/, "").replace(/[^a-z0-9]+/g, "-").replace(/^-+|-+$/g, "");
+  return `${dir}responsive/${slug}-400.webp 400w, ${src} 640w`;
+}
 const APP_SHOTS = [
   {
     src: "img/guide/screens/front-page.v7.webp",
@@ -733,7 +745,7 @@ function AppShots({ shots = APP_SHOTS }) {
       {shots.map((shot) => (
         <figure className="app-shot" role="listitem" key={shot.src}>
           <div className="app-shot__frame">
-            <img src={shot.src} alt={shot.alt} width="640" height="1385" loading="lazy" decoding="async" />
+            <img src={shot.src} srcSet={screenSrcSet(shot.src)} sizes={SCREEN_SIZES} alt={shot.alt} width="640" height="1385" loading="lazy" decoding="async" />
           </div>
           <figcaption className="app-shot__caption">{shot.caption}</figcaption>
         </figure>
@@ -834,6 +846,8 @@ function GuideWalkthrough() {
             key={step.src}
             className={"guide-walkthrough__shot" + (i === active ? " is-active" : "")}
             src={step.src}
+            srcSet={screenSrcSet(step.src)}
+            sizes={SCREEN_SIZES}
             alt={step.alt}
             width="640"
             height="1385"
@@ -1351,6 +1365,8 @@ function GuideOfflineDemo() {
           <div className="guide-offline__status" aria-hidden="true">No Service · Airplane mode</div>
           <img
             src="img/guide/screens/stop.v7.webp"
+            srcSet={screenSrcSet("img/guide/screens/stop.v7.webp")}
+            sizes={SCREEN_SIZES}
             alt="A stop page in the app, rendering identically with or without cell service"
             width="640"
             height="1385"

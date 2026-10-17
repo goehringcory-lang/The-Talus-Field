@@ -51,7 +51,7 @@
   --moss: #a4462c;       /* the accent; the name predates the palette */
   --moss-2: #84361f;
   --rust: #a4462c;
-  --gold: #9a7a2e;
+  --gold: #886c28;       /* text only (moderate waits, plan flags); was #9a7a2e, 3.7:1 on paper, now 4.6:1 */
 
   /* Type system. Alpine Journal-leaning.
      Font diet (LCP pass): EB Garamond + Inter are the only webfonts loaded
@@ -75,7 +75,8 @@ a:focus-visible,
 input:focus-visible,
 textarea:focus-visible,
 select:focus-visible,
-summary:focus-visible {
+summary:focus-visible,
+:where([tabindex]:not([tabindex="-1"]), [role="button"]):focus-visible {
   outline: 2px solid var(--moss);
   outline-offset: 3px;
   border-radius: 1px;
@@ -2334,6 +2335,9 @@ main:focus { outline: none; }
   letter-spacing: 0.08em;
   color: var(--ink-3);
 }
+/* --ink-3 is 4.3:1 on the selected row's --paper-3; --ink-2 is 6.2:1. */
+.map-sidebar__trip-item--selected .map-sidebar__trip-cat,
+.map-sidebar__trip-item:focus-visible .map-sidebar__trip-cat { color: var(--ink-2); }
 .map-sidebar__trip-actions {
   display: flex;
   gap: 2px;
@@ -6100,6 +6104,11 @@ kbd {
   gap:10px;
   white-space:nowrap
 }
+/* The mark's <picture> (WebP with the PNG fallback) is layout-neutral, so the
+   <img> stays the flex item every .hp-brand img rule sizes. */
+.hp-design .hp-brand picture {
+  display:contents
+}
 .hp-design .hp-brand img {
   height:48px;
   width:48px;
@@ -7269,6 +7278,7 @@ kbd {
 .hp-design .hp-navfeat { display: flex; flex-direction: column; gap: 10px; align-items: flex-start; }
 .hp-design .hp-navfeat > .hp-menu__heading { align-self: stretch; margin-bottom: 0; }
 .hp-design .hp-navfeat__text { font-size: 11px; line-height: 1.6; color: #5c675f; margin: 0; }
+.hp-design .hp-navfeat picture { display: contents; }
 .hp-design .hp-navfeat__art { display: block; width: 100%; height: auto; aspect-ratio: 236 / 104; object-fit: cover; object-position: 45% 40%; background: #efeadc; border-radius: 3px; }
 /* The waits on an ink plate, the /conditions readout's treatment; the alarm
    colours are that readout's lifted pair, since the accent fails on ink. */
