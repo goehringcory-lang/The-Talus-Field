@@ -188,7 +188,7 @@ window.BODY_VERSIONS = {
   "yosemite-during-smoke-season": 82,
   "yosemite-gateway-towns-compared": 112,
   "pack-your-car-for-yosemite": 88,
-  "yosemite-for-non-hikers": 88,
+  "yosemite-for-non-hikers": 89,
   "yosemite-stargazing-where-to-look-up": 88,
   "hetch-hetchy-the-other-yosemite-valley": 83,
   "what-is-a-talus-field": 7,
