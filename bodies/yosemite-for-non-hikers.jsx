@@ -73,7 +73,7 @@ window.ARTICLE_BODIES["yosemite-for-non-hikers"] = function YosemiteForNonHikers
     ["Is Glacier Point accessible without hiking?",
       "Yes. Glacier Point Road is open to cars from about late May through October or November, and the drive from the Valley takes about an hour. A short paved path leads from the parking lot to the overlook, and the Park Service lists it as wheelchair accessible; its older accessibility guide notes that some sections are steeper than an accessible grade. The Glacier Point Tour bus also goes there while the road is open."],
     ["Can you visit Yosemite by bus or train?",
-      "Yes. Amtrak runs to Merced, where the YARTS Highway 140 bus leaves for Yosemite Valley year-round, about three to three and a half hours on the bus alone. YARTS's Highway 41, Highway 120 and Highway 395 routes run in summer only. Budget for the park entrance fee, because the Park Service and YARTS disagree about whether the fare covers it."],
+      "Yes. Amtrak runs to Merced, where the YARTS Highway 140 bus leaves for Yosemite Valley year-round, about three to three and a half hours on the bus alone, and closer to seven hours door to door from San Francisco. YARTS's Highway 41, Highway 120 and Highway 395 routes run in summer only. Budget for the park entrance fee, because the Park Service and YARTS disagree about whether the fare covers it."],
     ["Does the Yosemite Valley shuttle run in winter, and can it carry a wheelchair?",
       "The free Valley shuttle runs daily, year-round, from 7 a.m. to 10 p.m. Every bus has a wheelchair lift and tie-downs. The Park Service gives the maximum wheelchair size as 24 inches wide by 46 inches long."],
     ["Do I need a reservation to enter Yosemite?",

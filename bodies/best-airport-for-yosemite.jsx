@@ -22,10 +22,14 @@ window.ARTICLE_BODIES = window.ARTICLE_BODIES || {};
 //     the 2026 Highway 41 season May 22 to September 25, the $20 / $40 Fresno
 //     fares, the $22 / $44 Merced fares), as yosemite-shuttle-and-yarts and
 //     yosemite-from-los-angeles already publish them.
-//   - Amtrak: the San Joaquins, BART at Richmond, the Thruway bus from Los
-//     Angeles to Bakersfield, and the four to four and a half hours from the
-//     Bay, as yosemite-day-trip-from-bay-area and yosemite-from-los-angeles
-//     publish them.
+//   - Amtrak: the Gold Runner (renamed from the San Joaquins on November 3,
+//     2025), BART at Richmond, and the Thruway bus from Los Angeles to
+//     Bakersfield, as yosemite-from-los-angeles publishes them. The six and a
+//     half to seven hours door to door from downtown San Francisco is read
+//     from the YARTS Highway 140 winter timetable (October 1, 2026 to May 28,
+//     2027) and the Amtrak Gold Runner timetable, both read October 17, 2026:
+//     BART about 37 minutes, Richmond to Merced about 2 h 45 to 3 h, the bus
+//     about 3 to 3.5 h, and only two trains (710 and 716) meet a bus closely.
 //   - Fresno's nonstops (San Francisco and Los Angeles among them): the
 //     airport's own route list. Merced's Contour Airlines regional jet service
 //     from LAX began July 1, 2026 (KMPH, July 2, 2026).
@@ -77,7 +81,7 @@ window.ARTICLE_BODIES["best-airport-for-yosemite"] = function BestAirportForYose
       miles: "176 mi", time: "About 4 hours", hours: [4, 4], chart: "4 h",
       road: "South through the Central Valley to Highway 120 or 140",
       flights: "Mostly domestic. Worth pricing against SFO.",
-      transit: "The San Joaquins train runs from Sacramento to Merced, where YARTS takes over.",
+      transit: "The Gold Runner (formerly the San Joaquins) runs from Sacramento to Merced, where YARTS takes over.",
       verdict: "A quieter airport than SFO, the same drive.",
     },
     {
@@ -85,7 +89,7 @@ window.ARTICLE_BODIES["best-airport-for-yosemite"] = function BestAirportForYose
       miles: "195 mi", time: "4 to 5 hours", hours: [4, 5], chart: "4 to 5 h",
       road: "Highway 120 through Groveland, or 140 through Mariposa in winter",
       flights: "The most long-haul flights into Northern California. Oakland and San Jose are the same drive.",
-      transit: "BART to Richmond, the San Joaquins to Merced, YARTS into the Valley. Four to four and a half hours, all year.",
+      transit: "BART to Richmond, the Gold Runner to Merced, YARTS into the Valley. About seven hours door to door, all year.",
       verdict: "The usual answer for a visitor from abroad.",
     },
     {
@@ -118,7 +122,7 @@ window.ARTICLE_BODIES["best-airport-for-yosemite"] = function BestAirportForYose
   const FAQ = [
     ["What is the best airport to fly into for Yosemite?", "Fresno Yosemite International is the closest major airport, about 94 miles and two hours fifteen minutes from Yosemite Valley, with nonstops from SFO and LAX. For a visitor from abroad, San Francisco is usually the practical answer: the most long-haul flights, and 195 miles and four to five hours to the Valley by the park's own figures."],
     ["Is it better to fly into SFO or LAX for Yosemite?", "SFO, unless the trip also includes Southern California. The park puts San Francisco at 195 miles and four to five hours from Yosemite Valley and Los Angeles at 313 miles and six hours, which in practice is seven. From LAX, the better move is often a connecting flight to Fresno or Merced."],
-    ["Can you get to Yosemite from SFO without a car?", "Yes, all year. Take BART to Richmond, the Amtrak San Joaquins train to Merced, and the YARTS bus up Highway 140 into Yosemite Valley. Amtrak sells the train and the bus as one ticket. Allow four to four and a half hours from the Bay Area, and plan the trip around the Valley, because the bus serves one corridor, not the whole park."],
+    ["Can you get to Yosemite from SFO without a car?", "Yes, all year. Take BART to Richmond, Amtrak's Gold Runner (formerly the San Joaquins) to Merced, and the YARTS bus up Highway 140 into Yosemite Valley. Amtrak sells the train and the bus as one ticket. Allow about six and a half to seven hours door to door from downtown San Francisco when the train and bus connect, with the bus leg alone taking about three to three and a half hours. Only some trains connect closely, so check Amtrak's Yosemite itinerary for the timetable, and plan the trip around the Valley, because the bus serves one corridor, not the whole park."],
     ["Do I need a rental car for Yosemite?", "Not for one or two people on a Valley trip: the YARTS bus and the free Valley shuttle cover it. Yes for a family, for any trip that includes Glacier Point, Tuolumne Meadows or Hetch Hetchy, and for anyone sleeping off the bus routes. Four round-trip bus fares from Merced cost several times what the gate charges one car."],
     ["Can I drive in California with a foreign driver's license?", "Yes. California lets a visitor aged 18 or older drive on a valid license from home. An International Driving Permit is not a license; it is a translation carried beside one. Get one before you leave if your license is not in English, because rental desks set their own rules and many ask for it."],
     ["Do rental cars need snow chains for Yosemite?", "From roughly October through April, chains can be required on any road into the park, and every car must carry them when they are, rentals and four-wheel drives included. Rental cars do not come with chains and many rental contracts forbid fitting them. Buy a set in the city before you drive up, or come in on Highway 140, which needs them least, or take the YARTS bus."],
@@ -299,7 +303,7 @@ window.ARTICLE_BODIES["best-airport-for-yosemite"] = function BestAirportForYose
               <h2>Train, then bus, from the Bay</h2>
               <div className="fly-prose">
                 <p>
-                  From San Francisco the route is three legs, and it runs every day of the year. The San Joaquins train does not reach the city itself, so you start on BART. Amtrak sells the train and the YARTS bus as one ticket to Yosemite, and the bus is timed to meet the trains at Merced. Allow four to four and a half hours from the Bay, which is no faster than driving and a good deal more restful.
+                  From San Francisco the route is three legs, and it runs every day of the year. Amtrak's Gold Runner (formerly the San Joaquins) does not reach the city itself, so you start on BART. Amtrak sells the train and the YARTS bus as one ticket to Yosemite, and the bus is timed to meet some of the trains at Merced. When the train and bus connect, allow about six and a half to seven hours door to door from downtown San Francisco, with the bus leg alone taking about three to three and a half hours. Only some trains connect closely, so rely on Amtrak's Yosemite itinerary for the timetable. It is slower than driving and a good deal more restful.
                 </p>
                 <p>
                   The bus drops you at Yosemite Valley Lodge, Yosemite Village or Curry Village, all on the free Valley shuttle. Whether the bus fare covers your entrance fee is unsettled: the Park Service says YARTS riders do not pay it, while YARTS' fares page says the park entrance and non-resident fees are not included, so budget for them. <a href="/articles/yosemite-shuttle-and-yarts">The shuttle and YARTS guide</a> has the timetable.
@@ -315,7 +319,7 @@ window.ARTICLE_BODIES["best-airport-for-yosemite"] = function BestAirportForYose
 
           <ol className="ff-timeline fly-legs">
             <li className="is-open"><span>Leg one</span><strong>BART to Richmond</strong><p>From the station at SFO's international terminal, usually with a change of line in Oakland. From Oakland's airport, the BART connector joins the same network.</p></li>
-            <li className="is-open"><span>Leg two</span><strong>San Joaquins to Merced</strong><p>Amtrak's Central Valley train, south from Richmond. From Sacramento, board at the city's Amtrak station.</p></li>
+            <li className="is-open"><span>Leg two</span><strong>Gold Runner to Merced</strong><p>Amtrak's Central Valley train, south from Richmond. From Sacramento, board at the city's Amtrak station.</p></li>
             <li className="is-open"><span>Leg three</span><strong>YARTS up Highway 140</strong><p>From the Merced Amtrak station, through Mariposa and El Portal, into the Valley. $22 one way, $44 round trip for an adult.</p></li>
             <li className="is-open"><span>In the Valley</span><strong>The free shuttle</strong><p>From the bus stop to wherever you are sleeping or walking. No ticket.</p></li>
           </ol>
@@ -323,7 +327,7 @@ window.ARTICLE_BODIES["best-airport-for-yosemite"] = function BestAirportForYose
           <div className="fly-routes">
             <div>
               <h3>From LAX</h3>
-              <p>The same idea and a longer day: an Amtrak Thruway bus from Union Station to Bakersfield, the San Joaquins north to Merced, then YARTS. Most visitors are better served by the short flight to Fresno or Merced.</p>
+              <p>The same idea and a longer day: an Amtrak Thruway bus from Union Station to Bakersfield, the Gold Runner north to Merced, then YARTS. Most visitors are better served by the short flight to Fresno or Merced.</p>
             </div>
             <div>
               <h3>From Fresno, in summer</h3>

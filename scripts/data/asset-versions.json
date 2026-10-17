@@ -10,8 +10,8 @@
       "sha256": "c32d299f9f6b1b98"
     },
     "/dist/bodies/best-airport-for-yosemite.js": {
-      "v": 8,
-      "sha256": "3d931acff2f3080d"
+      "v": 9,
+      "sha256": "8b529a7a7eeee5c8"
     },
     "/dist/bodies/best-yosemite-backpacking-trips.js": {
       "v": 3,
@@ -198,8 +198,8 @@
       "sha256": "3141e1acadb6d448"
     },
     "/dist/bodies/yosemite-day-trip-from-bay-area.js": {
-      "v": 5,
-      "sha256": "e9b66782ab201d52"
+      "v": 6,
+      "sha256": "ccee4530a5e32009"
     },
     "/dist/bodies/yosemite-during-smoke-season.js": {
       "v": 82,
@@ -218,16 +218,16 @@
       "sha256": "84a799e6c817ad3b"
     },
     "/dist/bodies/yosemite-for-non-hikers.js": {
-      "v": 90,
-      "sha256": "60dd0089b3a81cf8"
+      "v": 91,
+      "sha256": "8d9b89fd7d600e32"
     },
     "/dist/bodies/yosemite-from-las-vegas.js": {
       "v": 5,
       "sha256": "54f504aa3a32c211"
     },
     "/dist/bodies/yosemite-from-los-angeles.js": {
-      "v": 8,
-      "sha256": "6ba6ca2528183ca5"
+      "v": 9,
+      "sha256": "54de2cd4186b7384"
     },
     "/dist/bodies/yosemite-gateway-towns-compared.js": {
       "v": 112,
