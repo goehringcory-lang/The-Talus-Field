@@ -76,9 +76,10 @@ const END_NEWSLETTER_OFFER = {
   },
 };
 
-// B arm of the article_end_copy test: same placement, concrete-utility
-// framing. The device's sticky bucket (abVariant) picks the arm; the variant
-// rides on the GA4 impression/signup events so each arm's rate is sliceable.
+// B arm of the nl_valueprop test (the old article_end_copy test, folded in):
+// same placement, concrete-utility framing. The device's sticky bucket
+// (nlValueProp) picks the arm; nl_valueprop:<arm> rides on the GA4
+// impression/signup events so each arm's rate is sliceable.
 const END_NEWSLETTER_OFFER_B = {
   planning: {
     heading: "What changed this week in Yosemite",
@@ -102,7 +103,7 @@ const END_NEWSLETTER_OFFER_B = {
 // the reader just finished and says what the Sunday letter does with that
 // subject. The first matching topic (whole slug words, so "heat" never reads as "eat") wins; otherwise the category
 // line applies. The headline and blurb above stay owned by the
-// article_end_copy A/B arms, so the experiment still measures the same thing.
+// nl_valueprop A/B arms, so the experiment still measures the same thing.
 // Only claim what the letter does: a seasonal observation with the science
 // behind it, set beside the park naturalists' own notes from the same weeks,
 // plus short "also in season" notes.
@@ -273,9 +274,12 @@ function ArticleBonus({ slug }) {
 // heading: it adds nothing to the article's outline or the jump list.
 function ArticleMidLetter({ cat }) {
   const [done, setDone] = React.useState(null);
-  const copy = window.nlHookCopy("mid", "", cat);
+  // The nl_valueprop arm is resolved once, synchronously, before the unit's first paint.
+  const [arm] = React.useState(() => window.nlValueProp());
+  const variant = window.nlValuePropVariant(arm);
+  const copy = window.nlHookCopy("mid", "", cat, arm);
   const tag = window.nlHookTag("article-mid", cat);
-  const ref = window.useNewsletterImpression("article_mid", tag, !done);
+  const ref = window.useNewsletterImpression("article_mid", tag, !done, variant);
   return (
     <aside className="nlmid" ref={ref} aria-label="Sunday Field Notes">
       <p className="nlmid__eyebrow">Sunday Field Notes / free</p>
@@ -284,7 +288,7 @@ function ArticleMidLetter({ cat }) {
       {done ? (
         <p className="nlbox__done" role="status">{window.nlDoneLine(done)}</p>
       ) : (
-        <window.NewsletterForm location="article_mid" tag={tag} cta="Subscribe →" className="nlmid__form" onDone={setDone} />
+        <window.NewsletterForm location="article_mid" tag={tag} variant={variant} cta="Subscribe →" className="nlmid__form" onDone={setDone} />
       )}
     </aside>
   );
@@ -898,12 +902,14 @@ function ArticlePage({ slug, go }) {
       )}
 
       {!ARTICLE_BONUS[slug] && (() => {
-        // article_end copy test: arm a keeps the standing section offers,
-        // arm b leads with concrete utility. Copy is chosen here (the
-        // caller-controlled A/B path); NewsletterInline just tags the
-        // variant onto its GA4 events.
-        const endVariant = window.abVariant ? window.abVariant("article_end_copy") : "a";
-        const offers = endVariant === "b" ? END_NEWSLETTER_OFFER_B : END_NEWSLETTER_OFFER;
+        // nl_valueprop test (one framing across article_end, article_mid, the
+        // exit modal and the scroll bar): arm a keeps the standing section
+        // offers, arm b leads with concrete utility. Copy is chosen here (the
+        // caller-controlled A/B path); NewsletterInline just tags the variant
+        // (nl_valueprop:<arm>) onto its GA4 events.
+        const endArm = window.nlValueProp ? window.nlValueProp() : "a";
+        const endVariant = window.nlValuePropVariant ? window.nlValuePropVariant(endArm) : "";
+        const offers = endArm === "b" ? END_NEWSLETTER_OFFER_B : END_NEWSLETTER_OFFER;
         const offer = offers[article.cat] || {};
         const heading = offer.heading || "Sunday Field Notes";
         return (
