@@ -10,9 +10,10 @@
 // in the August 2026 audit: utility aggregations get linked, essays do not.
 //
 // SOURCING RULE. Every camera and every link on this page has to be one the
-// site already stands behind. The four live tiles are the Yosemite Conservancy
+// site already stands behind. The live tiles are the Yosemite Conservancy
 // cams the WebcamStrip component has served on /conditions and the homepage for
-// months; the outbound links are the operators' own index pages. Do NOT add a
+// months, plus the Conservancy's High Sierra cam (same host, loaded and checked
+// October 17, 2026); the outbound links are the operators' own index pages. Do NOT add a
 // camera from memory or from a search result: a dead cam URL on a page whose
 // entire promise is "these are the working cameras" is the one failure this
 // page cannot survive. Add a row only after loading it.
@@ -31,7 +32,7 @@ const CAM_NOTES = [
     name: "Half Dome",
     from: "Ahwahnee Meadow, looking east",
     shows:
-      "The face of Half Dome above the eastern end of Yosemite Valley. The best of the four for weather: if the dome is in cloud, the Valley is having a day.",
+      "The face of Half Dome above the eastern end of Yosemite Valley. The best of the five for weather: if the dome is in cloud, the Valley is having a day.",
     best: "Late afternoon, when the west light hits the face.",
   },
   {
@@ -45,7 +46,7 @@ const CAM_NOTES = [
     name: "El Capitan",
     from: "Turtleback Dome, looking east into the Valley",
     shows:
-      "El Capitan and the western Valley from above Highway 41. A wide view rather than a close one, and the most useful of the four for judging haze and smoke.",
+      "El Capitan and the western Valley from above Highway 41. A wide view rather than a close one, and the most useful of the five for judging haze and smoke.",
     best: "Any clear hour; sunset for the light on the nose.",
   },
   {
@@ -54,6 +55,13 @@ const CAM_NOTES = [
     shows:
       "Conditions an hour south of the Valley and about thirty minutes from the Mariposa Grove, at about 4,000 feet. Worth checking separately in winter, when Wawona and the Valley genuinely differ.",
     best: "Midday in winter, to see whether snow is lying.",
+  },
+  {
+    name: "High Sierra",
+    from: "Near Sentinel Dome at about 8,000 feet, looking east",
+    shows:
+      "Half Dome from above, with Clouds Rest behind it and Tenaya Peak and Cathedral Peak of the Tuolumne high country on the skyline. The only one of the five that shows the high country at all, and the one to check for snow on the peaks above Tioga Road.",
+    best: "Early morning, before the haze builds over the Valley.",
   },
 ];
 
@@ -65,7 +73,7 @@ function WebcamsPage({ go }) {
         crumbs={[{ label: "Home", route: "home" }, { label: "Webcams" }]}
         eyebrow="LIVE VIEWS"
         title="Yosemite webcams"
-        intro="The live cameras worth checking before you drive in, what each one actually shows, and how often it refreshes. Four load on this page. The rest are one link away, because the operators would rather you watched them at home."
+        intro="The live cameras worth checking before you drive in, what each one actually shows, and how often it refreshes. Five load on this page. The rest are one link away, because the operators would rather you watched them at home."
       />
 
       <section className="hp-wrap hp-section hp-webcams__live">
@@ -74,12 +82,47 @@ function WebcamsPage({ go }) {
         <WebcamStrip />
       </section>
 
+      <section className="hp-wrap hp-section hp-webcams__high">
+        <HpHeading go={go} location="webcams" eyebrow="HIGH COUNTRY" title="Tuolumne & Tioga"
+          link={{ href: "https://yosemite.org/webcams/high-sierra/", label: "High Sierra camera ↗" }} />
+        <div className="hp-webcams__highbody">
+          <WebcamStrip only={["High Sierra"]} />
+          <div className="prose">
+            <p>
+              The Conservancy's High Sierra camera sits near Sentinel Dome at
+              about 8,000 feet and looks east. Half Dome fills the foreground,
+              Clouds Rest rises behind it, and Tenaya Peak and Cathedral Peak
+              mark the Tuolumne high country on the skyline. It is the one
+              working camera that shows the high country, from a distance.
+            </p>
+            <p>
+              There is no live camera at Tuolumne Meadows or Tioga Pass itself
+              outside summer. Yosemite Hospitality's{" "}
+              <a href="https://www.travelyosemite.com/plan/webcams/tuolumne-meadows-with-fairview-dome" target="_blank" rel="noopener noreferrer">Tuolumne
+              Meadows Store camera</a>, looking at Fairview Dome, runs roughly
+              June through September; its picture has not updated since October
+              2025 and the{" "}
+              <a href="https://www.nps.gov/media/webcam/view.htm?id=81B46511-1DD8-B71B-0BF4530A57767712" target="_blank" rel="noopener noreferrer">NPS
+              listing</a> marks it inactive. For the road itself, Caltrans{" "}
+              <a href="https://quickmap.dot.ca.gov/" target="_blank" rel="noopener noreferrer">QuickMap</a>{" "}
+              carries highway cameras along SR-120 and US-395 near Lee Vining,
+              including Conway Summit, which is the east-side check. Whether the
+              road is open is on the{" "}
+              <a href="https://www.nps.gov/yose/planyourvisit/conditions.htm" target="_blank" rel="noopener noreferrer">NPS
+              current conditions page</a>, and how the season works is on{" "}
+              <a href="/tioga-opening" onClick={(e) => { e.preventDefault(); go("tioga-opening"); }}>the
+              Tioga opening page</a>.
+            </p>
+          </div>
+        </div>
+      </section>
+
       <div className="hp-wrap hp-reading">
         <div className="hp-reading__column">
         <section className="prose">
           <h2>What each camera shows</h2>
           <p>
-            All four are still images rather than video streams. They
+            All five are still images rather than video streams. They
             refresh on the order of minutes rather than seconds, which is why a
             page reload does not always change the picture and why nothing here
             is going to show you a bear walking past.
@@ -133,7 +176,7 @@ function WebcamsPage({ go }) {
         <section className="prose" style={{ marginTop: 48 }}>
           <h2>The other cameras</h2>
           <p>
-            <strong>Yosemite Conservancy</strong> runs the four above plus its
+            <strong>Yosemite Conservancy</strong> runs the five above plus its
             full set, including views this page does not embed:{" "}
             <a href="https://yosemite.org/webcams/" target="_blank" rel="noopener noreferrer">yosemite.org/webcams</a>.
             They are the operator, so their page is always the current list.
@@ -145,13 +188,13 @@ function WebcamsPage({ go }) {
             <a href="https://www.nps.gov/yose/planyourvisit/conditions.htm" target="_blank" rel="noopener noreferrer">nps.gov current conditions</a>.
           </p>
           <p>
-            <strong>For the high country and the east side</strong>, there is no
-            Conservancy camera at Tuolumne Meadows or Tioga Pass, which is the
-            single most requested view missing from this list.
-            Yosemite Hospitality runs a summer-only camera at the Tuolumne
-            Meadows Store, which the{" "}
-            <a href="https://www.nps.gov/yose/learn/photosmultimedia/webcams.htm" target="_blank" rel="noopener noreferrer">NPS webcams page</a>{" "}
-            links. Until the road opens, the honest substitutes are the NPS Tioga Road
+            <strong>For the high country and the east side</strong>, the
+            Conservancy's High Sierra camera above is the only one that shows
+            the Tuolumne peaks; no camera runs at Tuolumne Meadows or Tioga Pass
+            outside summer. Yosemite Hospitality's summer-only camera at the
+            Tuolumne Meadows Store is listed with the park's others on the{" "}
+            <a href="https://www.nps.gov/yose/learn/photosmultimedia/webcams.htm" target="_blank" rel="noopener noreferrer">NPS webcams page</a>.
+            Until the road opens, the honest substitutes are the NPS Tioga Road
             page for plowing status and{" "}
             <a href="/tioga-opening">the opening page</a> for how the season
             works.

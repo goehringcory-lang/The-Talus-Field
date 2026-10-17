@@ -3084,6 +3084,9 @@ const WEBCAMS = [
   { label: "Yosemite Falls", img: "yosfalls-t.jpg",   href: "https://yosemite.org/webcams/yosemite-falls/", alt: "Live view of Upper Yosemite Falls" },
   { label: "El Capitan",     img: "turtleback-t.jpg", href: "https://yosemite.org/webcams/el-capitan/",     alt: "Live view of El Capitan from Turtleback Dome" },
   { label: "Wawona",         img: "wawona-t.jpg",     href: "https://yosemite.org/webcams/wawona/",         alt: "Live view of Wawona" },
+  // `optIn`: rendered only when named in `only` (/webcams' high-country section),
+  // so the default strip on the homepage, /conditions and /webcams stays four.
+  { label: "High Sierra",    img: "sentinel-t.jpg",   href: "https://yosemite.org/webcams/high-sierra/",    alt: "Live view east from about 8,000 feet toward Half Dome, Clouds Rest and the Tuolumne high country", optIn: true },
 ];
 
 // `variant="board"` is the /conditions treatment: two large tiles per row with
@@ -3093,7 +3096,8 @@ const WEBCAMS = [
 // asserting a freshness this component has not checked. Default is the four-up
 // strip, which /webcams still mounts. `only` is an optional list of labels
 // that picks cameras and sets their order (/firefall shows El Capitan, its
-// water check, then Half Dome, its cloud check); omitted, all four render.
+// water check, then Half Dome, its cloud check); omitted, the four non-`optIn`
+// cameras render.
 function WebcamStrip({ variant, only }) {
   // Bucket the cache-buster to five minutes instead of the exact millisecond.
   // Per-render Date.now() made every one of these four third-party images a
@@ -3105,7 +3109,7 @@ function WebcamStrip({ variant, only }) {
   return (
     <>
       <div className={board ? "cam-grid cam-grid--board" : "cam-grid"}>
-        {(only ? only.map((l) => WEBCAMS.find((c) => c.label === l)).filter(Boolean) : WEBCAMS).map(cam => (
+        {(only ? only.map((l) => WEBCAMS.find((c) => c.label === l)).filter(Boolean) : WEBCAMS.filter((c) => !c.optIn)).map(cam => (
           <a
             key={cam.img}
             className="cam-tile"
