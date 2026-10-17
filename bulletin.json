@@ -4,8 +4,8 @@
     "label": "September 23 – November 24, 2026",
     "start": "2026-09-23",
     "end": "2026-11-24",
-    "updated": "2026-10-12",
-    "notice": "Glacier Point Road reopened Saturday, Oct 10, after its closure for the Dome Fire; watch for firefighters along it. The trails and country closed by the park's October 2 order stay closed.",
+    "updated": "2026-10-17",
+    "notice": "Glacier Point Road reopened Saturday, Oct 10, after its closure for the Dome Fire; watch for firefighters along it. The trails and country closed by the park's October 17 order stay closed.",
     "lede": "The edition where the park packs up for winter. The Tuolumne visitor center shuts Sep 27, the wilderness permit desks by Oct 18, the Glacier Point tour bus on Oct 11 and most of the Valley's seasonal counters on Oct 25. Overnight parking on Tioga and Glacier Point Roads ends Oct 15, and both roads usually close for the season sometime in November, on the weather's schedule rather than the calendar's. The Valley stays open and gets quieter: the falls are dry, the oaks are turning, and the rangers are still walking.",
     "source": "Condensed from the National Park Service Yosemite Guide for September 23 – November 24, 2026, with the park's current conditions page and the journal's own notes.",
     "sourceUrl": "https://www.nps.gov/yose/planyourvisit/guide.htm"
@@ -23,7 +23,7 @@
       "icon": "flame",
       "status": "Burning near Wawona",
       "tone": "warn",
-      "text": "Burning northeast of Wawona. Closed until further notice under the park's October 2 order: the country east of Wawona Road and south of Glacier Point Road, out to Buena Vista Creek, including the Ostrander Lake, Mono Meadow and Buena Vista trails. The Chilnualna Falls trail has reopened to the top of the falls. Glacier Point Road, closed for smoke and firefighting operations, reopened Saturday, Oct 10; the Four Mile and Panorama Trails stay open to hikers. Wawona Road and the Mariposa Grove are open. Smoke settles overnight in Wawona and the Valley: check fire.airnow.gov before you drive in. Two helicopter pilots were killed fighting the fire on Sep 20."
+      "text": "Burning northeast of Wawona. Closed until further notice under the park's October 17 order: the country east of Wawona Road and south of Glacier Point Road, out to Buena Vista Creek, including the Ostrander Lake, Mono Meadow and Buena Vista trails. Every trail inside the fire's footprint is closed, including the trails that leave Glacier Point Road heading south and east. The Chilnualna Falls trail has reopened to the falls and Crescent Lake, and the Alder Creek trail is open north to the Deer Camp trailhead. Glacier Point Road, closed for smoke and firefighting operations, reopened Saturday, Oct 10. Wawona Road and the Mariposa Grove are open. Smoke settles overnight in Wawona and the Valley: check fire.airnow.gov before you drive in. Two helicopter pilots were killed fighting the fire on Sep 20."
     },
     {
       "label": "Services",
@@ -45,7 +45,7 @@
       "date": "2026-09-20",
       "kind": "closes",
       "what": "Ostrander Lake Trail and all trails south of it, for the Dome Fire",
-      "detail": "Until further notice. The park's October 2 order widened the closed area east to Buena Vista Creek; the Chilnualna Falls trail has since reopened."
+      "detail": "Until further notice. The park's later orders widened the closed area east to Buena Vista Creek, and the October 17 order now governs it; the Chilnualna Falls trail has since reopened."
     },
     {
       "date": "2026-09-23",
@@ -176,6 +176,12 @@
       "kind": "closes",
       "what": "Happy Isles Art & Nature Center",
       "detail": "The Conservancy art classes and the kids' open studio end with it."
+    },
+    {
+      "date": "2026-10-17",
+      "kind": "closes",
+      "what": "Dome Fire closure order reissued",
+      "detail": "Until further notice. The park's October 17 order, drawn on its map ver9, supersedes and includes every earlier Dome Fire closure."
     },
     {
       "date": "2026-10-18",
@@ -362,7 +368,7 @@
       "name": "Glacier Point Road",
       "chip": "Open",
       "tone": "open",
-      "note": "Reopened Saturday, Oct 10, after its closure for the Dome Fire, so Glacier Point, Sentinel Dome and Taft Point can be reached by car again. Drive carefully and watch for firefighters along the road. Smoke can still settle along the road, so check conditions before you drive up. The Four Mile and Panorama Trails stay open to hikers, and the Ostrander Lake, Mono Meadow and Buena Vista trails, with the country south of the road out to Buena Vista Creek, are closed until further notice. The gift shop was to run 9 am to 7 pm through Oct 25 and the tour bus through Oct 11; there is no overnight parking from Oct 15, and the road typically closes for winter in November. Road status: 209/372-0200, press 1 then 1."
+      "note": "Reopened Saturday, Oct 10, after its closure for the Dome Fire, so Glacier Point, Sentinel Dome and Taft Point can be reached by car again. Drive carefully and watch for firefighters along the road. Smoke can still settle along the road, so check conditions before you drive up. The Ostrander Lake, Mono Meadow and Buena Vista trails, with the country south of the road out to Buena Vista Creek, are closed until further notice. The gift shop was to run 9 am to 7 pm through Oct 25 and the tour bus through Oct 11; there is no overnight parking from Oct 15, and the road typically closes for winter in November. Road status: 209/372-0200, press 1 then 1."
     },
     {
       "name": "Wawona & Mariposa Grove",
@@ -988,14 +994,14 @@
       "chip": "Closed",
       "tone": "closed",
       "start": "Ostrander Lake trailhead, Glacier Point Road",
-      "note": "The trail and every area and trail south of it are closed for the Dome Fire until further notice. The park's October 2 order closes the country east of Wawona Road and south of Glacier Point Road, out to Buena Vista Creek; the park's public information map shows the line."
+      "note": "The trail and every area and trail south of it are closed for the Dome Fire until further notice. The park's October 17 order closes the country east of Wawona Road and south of Glacier Point Road, out to Buena Vista Creek; the park's public information map shows the line."
     },
     {
       "name": "Mono Meadow",
       "chip": "Closed",
       "tone": "closed",
       "start": "Mono Meadow trailhead, Glacier Point Road",
-      "note": "Closed for the Dome Fire until further notice under the park's October 2 order, along with the Buena Vista trail. The trailhead is on Glacier Point Road, which reopened Saturday, Oct 10, but the trail stays closed."
+      "note": "Closed for the Dome Fire until further notice under the park's October 17 order, along with the Buena Vista trail. The trailhead is on Glacier Point Road, which reopened Saturday, Oct 10, but the trail stays closed."
     },
     {
       "name": "Half Dome",
