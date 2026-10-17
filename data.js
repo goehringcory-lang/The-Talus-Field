@@ -111,6 +111,8 @@ window.planningSeriesFor = function (slug) {
 // ============================================================
 window.BODY_VERSIONS = {
   "yosemite-san-francisco-bus": 2,
+  "housekeeping-camp-vs-curry-village": 1,
+  "yosemite-stargazing-tours-and-programs": 1,
   "badger-pass-ski-area": 2,
   "snowshoeing-in-yosemite": 2,
   "yosemite-in-february": 2,
@@ -158,7 +160,7 @@ window.BODY_VERSIONS = {
   "yosemite-photography-spots": 7,
   "horsetail-fall-firefall": 10,
   "yosemite-in-winter": 13,
-  "where-to-stay-in-yosemite": 19,
+  "where-to-stay-in-yosemite": 20,
   "yosemite-wildflowers-guide": 9,
   "watching-climbers-el-capitan": 7,
   "getting-to-yosemite": 14,
@@ -189,8 +191,8 @@ window.BODY_VERSIONS = {
   "yosemite-during-smoke-season": 82,
   "yosemite-gateway-towns-compared": 112,
   "pack-your-car-for-yosemite": 88,
-  "yosemite-for-non-hikers": 89,
-  "yosemite-stargazing-where-to-look-up": 88,
+  "yosemite-for-non-hikers": 90,
+  "yosemite-stargazing-where-to-look-up": 89,
   "hetch-hetchy-the-other-yosemite-valley": 83,
   "what-is-a-talus-field": 7,
   "yosemite-glaciers-climate": 84,
@@ -926,6 +928,53 @@ window.ARTICLES = [
       eyebrow: "BART · AMTRAK · YARTS · BOTH DIRECTIONS",
       focus: "50% 55%",
       actions: [["#sfb-the-route", "The route, leg by leg"], ["#sfb-yarts-routes", "The four YARTS routes"]],
+    },
+  },
+  {
+    slug: "housekeeping-camp-vs-curry-village",
+    cat: "planning",
+    title: "Housekeeping Camp vs Curry Village: which Yosemite Valley camp to book",
+    seoTitle: "Housekeeping Camp vs Curry Village: Yosemite Valley Compared",
+    dek: "Both sit on the east end of the Valley floor, both put canvas over most of their guests and a bear locker beside them, and both book on the same website. One is a seasonal river camp where you cook over your own fire; the other is a village of tent cabins with a pizza deck, open most of the year. The units, the seasons, the food, the bears, the money, and who should book which.",
+    seoDek: "Housekeeping Camp vs Curry Village: units, seasons, bedding, cooking, bear lockers, Curry Village dining hours, a map of both, and who each one suits.",
+    date: "October 17, 2026",
+    isoDate: "2026-10-17",
+    isoModified: "2026-10-17",
+    read: "10 min",
+    placeholder: "A Housekeeping Camp unit: concrete walls, a canvas roof over the patio, a table and chairs, pines behind",
+    image: "img/housekeeping-camp-yosemite.jpg",
+    credit: "Photo: advencap / Wikimedia Commons (CC BY-SA 2.0)",
+    // The /firefall layout for an article (page-article.jsx), as on the
+    // airport and Mist Trail pieces. The two buttons jump to the side-by-side
+    // table and to the who-books-which columns.
+    feature: {
+      eyebrow: "HOUSEKEEPING CAMP · CURRY VILLAGE · THE SEASONS · THE FOOD · THE BEARS",
+      focus: "50% 55%",
+      actions: [["#side-by-side", "The two side by side"], ["#who-should-book-which", "Which one to book"]],
+    },
+  },
+  {
+    slug: "yosemite-stargazing-tours-and-programs",
+    cat: "seasonal",
+    title: "Yosemite stargazing tours: the Conservancy's night sky program, Glacier Point star parties and the rest",
+    seoTitle: "Yosemite Stargazing Tours and Night Sky Programs",
+    dek: "Three organizations take people out under Yosemite's night sky, and they do it differently. Yosemite Conservancy's naturalist program in the Valley, the summer star parties with telescopes at Glacier Point, Yosemite Hospitality's night walks and moonlight tram, and the ranger programs: what each is, what it costs, and which schedules are posted.",
+    seoDek: "Yosemite stargazing tours compared: the Conservancy's $25 night sky program, Glacier Point star parties, Yosemite Hospitality's walks. Dates, prices, booking.",
+    date: "October 17, 2026",
+    isoDate: "2026-10-17",
+    isoModified: "2026-10-17",
+    read: "11 min",
+    placeholder: "Stars over Half Dome at night, seen from the rim above Yosemite Valley",
+    image: "img/half-dome-starry-night-casey-horner.jpg",
+    credit: "Photo: Casey Horner / Unsplash",
+    // The /firefall layout for an article (page-article.jsx), as on the Mist
+    // Trail and El Capitan pieces. The photo is landscape; `focus` keeps Half
+    // Dome and the horizon glow in frame. The two buttons jump to the
+    // Conservancy program and the Glacier Point star parties.
+    feature: {
+      eyebrow: "YOSEMITE CONSERVANCY · GLACIER POINT · YOSEMITE HOSPITALITY · THE PARK SERVICE",
+      focus: "50% 65%",
+      actions: [["#sec-0-the-conservancys-night-sky-program", "The Conservancy program"], ["#sec-2-glacier-point-star-parties", "Glacier Point star parties"]],
     },
   },
   {
@@ -2256,7 +2305,7 @@ window.ARTICLES = [
     seoDek: "Where to stargaze in Yosemite: Glacier Point, Olmsted Point, Tunnel View, Tenaya Lake, Tuolumne. Milky Way season, moon phase and the free summer Star Parties.",
     date: "April 27, 2026",
     isoDate: "2026-04-27",
-    isoModified: "2026-04-27",
+    isoModified: "2026-10-17",
     read: "10 min",
     placeholder: "Milky Way over Sentinel Dome, July",
     image: "img/milky-way-sentinel-dome.jpg",
@@ -2404,6 +2453,10 @@ window.START_HERE = [
 // cluster, or when it is the destination that needs the equity.
 window.RELATED = {
   "yosemite-san-francisco-bus": ["yosemite-shuttle-and-yarts", "best-airport-for-yosemite", "yosemite-day-trip-from-bay-area", "sustainable-yosemite-car-free-zero-waste", "yosemite-in-one-or-two-days", "getting-to-yosemite"],
+  // Housekeeping Camp vs Curry Village: the two canvas-roofed Valley stays.
+  // Onward to every bed in the park, the campgrounds, the kitchens, the bear
+  // rules, the trail at Curry's door and the first-time camper's guide.
+  "housekeeping-camp-vs-curry-village": ["where-to-stay-in-yosemite", "yosemite-camping-complete-guide", "where-to-eat-yosemite", "yosemite-bears-safety-guide", "mist-trail-the-real-guide", "camping-in-yosemite-first-time"],
   "badger-pass-ski-area": ["yosemite-in-winter",  "snowshoeing-in-yosemite",  "glacier-point-how-to-visit",  "yosemite-in-january",  "yosemite-in-february",  "where-to-stay-in-yosemite"],
   "snowshoeing-in-yosemite": ["yosemite-in-winter",  "badger-pass-ski-area",  "yosemite-winter-hikes",  "mariposa-grove-how-to-visit",  "glacier-point-how-to-visit",  "yosemite-ranger-programs"],
   "yosemite-in-february": ["horsetail-fall-firefall",  "yosemite-in-winter",  "yosemite-in-january",  "yosemite-in-march",  "badger-pass-ski-area",  "mariposa-grove-how-to-visit"],
@@ -2459,7 +2512,7 @@ window.RELATED = {
   // Lodging and gateway towns
   "bracebridge-dinner-and-vintners-holidays": ["where-to-stay-in-yosemite", "yosemite-in-winter", "yosemite-in-december", "thanksgiving-in-yosemite", "yosemite-gateway-towns-compared", "where-to-eat-yosemite"],
   "yosemite-gateway-towns-compared": ["where-to-stay-in-yosemite", "where-to-eat-yosemite", "yosemite-from-los-angeles", "yosemite-with-kids-no-reservations-2026", "highway-140-closed-yosemite", "yosemite-trip-cost-budget"],
-  "where-to-stay-in-yosemite": ["yosemite-gateway-towns-compared", "yosemite-camping-complete-guide", "wawona-yosemite-guide", "yosemite-trip-cost-budget", "bracebridge-dinner-and-vintners-holidays", "where-to-eat-yosemite"],
+  "where-to-stay-in-yosemite": ["yosemite-gateway-towns-compared", "housekeeping-camp-vs-curry-village", "yosemite-camping-complete-guide", "wawona-yosemite-guide", "yosemite-trip-cost-budget", "where-to-eat-yosemite"],
   "yosemite-camping-complete-guide": ["camping-in-yosemite-first-time", "where-to-stay-in-yosemite", "first-yosemite-backpacking-trip", "yosemite-trip-cost-budget", "yosemite-facelift-volunteer-guide", "sustainable-yosemite-car-free-zero-waste"],
   "camping-in-yosemite-first-time": ["yosemite-camping-complete-guide", "yosemite-bears-safety-guide", "is-bear-spray-allowed-in-yosemite", "where-to-stay-in-yosemite", "pets-in-yosemite"],
   "yosemite-trip-cost-budget": ["where-to-stay-in-yosemite", "yosemite-gateway-towns-compared", "yosemite-camping-complete-guide", "where-to-eat-yosemite", "bracebridge-dinner-and-vintners-holidays"],
@@ -2521,13 +2574,13 @@ window.RELATED = {
   "memorial-day-skip-the-valley-go-high-2026": ["tioga-road-opening-weekend", "tuolumne-meadows-in-a-day", "when-to-visit-yosemite", "clouds-rest-hike", "hetch-hetchy-the-other-yosemite-valley", "cathedral-lakes-day-hike"],
   "swimming-in-the-merced": ["yosemite-heat-safety-guide", "yosemite-with-kids-no-reservations-2026", "mist-trail-the-real-guide", "yosemite-waterfalls-guide", "yosemite-in-june", "yosemite-in-september-2026"],
   "horsetail-fall-firefall": ["yosemite-in-winter", "yosemite-photography-spots", "yosemite-winter-hikes", "when-to-visit-yosemite", "yosemite-in-march"],
-  "yosemite-stargazing-where-to-look-up": ["tuolumne-meadows-in-a-day", "glacier-point-road-open-2026", "yosemite-photography-spots", "tioga-road-opening-weekend", "yosemite-in-fall", "tioga-road-stop-by-stop"],
+  "yosemite-stargazing-where-to-look-up": ["yosemite-stargazing-tours-and-programs", "tuolumne-meadows-in-a-day", "glacier-point-road-open-2026", "yosemite-photography-spots", "tioga-road-opening-weekend", "yosemite-in-fall"],
 
   // Doing and seeing
   "yosemite-photography-spots": ["yosemite-stargazing-where-to-look-up", "horsetail-fall-firefall", "four-mile-up-panorama-down", "yosemite-waterfalls-guide", "yosemite-in-fall", "watching-climbers-el-capitan"],
   "watching-climbers-el-capitan": ["yosemite-for-non-hikers", "yosemite-photography-spots", "yosemite-rockfall", "yosemite-valley-parking-guide", "where-to-propose-in-yosemite", "yosemite-ranger-programs"],
   "mariposa-grove-how-to-visit": ["wawona-yosemite-guide", "giant-sequoias-fire-adaptation", "yosemite-accessibility-guide", "yosemite-gateway-towns-compared", "yosemite-for-non-hikers", "yosemite-tunnel-trees"],
-  "yosemite-ranger-programs": ["yosemite-with-kids-no-reservations-2026", "yosemite-wildlife-viewing-guide", "yosemite-for-non-hikers", "yosemite-accessibility-guide", "yosemite-facelift-volunteer-guide"],
+  "yosemite-ranger-programs": ["yosemite-with-kids-no-reservations-2026", "yosemite-wildlife-viewing-guide", "yosemite-for-non-hikers", "yosemite-accessibility-guide", "yosemite-facelift-volunteer-guide", "yosemite-stargazing-tours-and-programs"],
   "where-to-propose-in-yosemite": ["yosemite-photography-spots", "yosemite-for-non-hikers", "where-to-eat-yosemite", "where-to-stay-in-yosemite", "yosemite-in-one-or-two-days"],
   "working-in-yosemite": ["yosemite-ranger-programs", "yosemite-gateway-towns-compared", "yosemite-connecting-to-traditions", "yosemite-needs-a-reservation-system", "yosemite-in-winter"],
   "yosemite-needs-a-reservation-system": ["when-to-visit-yosemite", "yosemite-without-reservations-2026", "yosemite-valley-parking-guide", "working-in-yosemite", "sustainable-yosemite-car-free-zero-waste"],
@@ -2544,6 +2597,10 @@ window.RELATED = {
   "yosemite-tunnel-trees": ["giant-sequoias-fire-adaptation", "mariposa-grove-how-to-visit", "yosemite-connecting-to-traditions", "what-is-a-talus-field", "yosemite-needs-a-reservation-system"],
   "showy-milkweed-yosemite-valley": ["yosemite-wildflowers-guide", "yosemite-wildlife-viewing-guide", "water-ouzels-waterfalls", "swimming-in-the-merced", "giant-sequoias-fire-adaptation"],
   "yosemite-connecting-to-traditions": ["yosemite-tunnel-trees", "yosemite-ranger-programs", "working-in-yosemite", "mariposa-grove-how-to-visit", "yosemite-wildlife-viewing-guide", "yosemite-place-names-meanings"],
+  // The stargazing programs: who takes you out under the sky and what it
+  // costs. Onward to doing it alone (the stargazing guide), the road and the
+  // rim the star parties need, the free ranger schedule, and the season.
+  "yosemite-stargazing-tours-and-programs": ["yosemite-stargazing-where-to-look-up", "glacier-point-how-to-visit", "yosemite-ranger-programs", "glacier-point-road-open-2026", "yosemite-in-fall", "yosemite-for-non-hikers"],
 };
 
 // How many links a related block carries. Six is the working number: enough

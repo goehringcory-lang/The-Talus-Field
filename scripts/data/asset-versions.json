@@ -77,6 +77,10 @@
       "v": 10,
       "sha256": "f5262c0ec816fbc3"
     },
+    "/dist/bodies/housekeeping-camp-vs-curry-village.js": {
+      "v": 1,
+      "sha256": "029629ebc7a4be1f"
+    },
     "/dist/bodies/is-bear-spray-allowed-in-yosemite.js": {
       "v": 6,
       "sha256": "c8b08d388d425153"
@@ -166,8 +170,8 @@
       "sha256": "9c4fddef2b13f6b9"
     },
     "/dist/bodies/where-to-stay-in-yosemite.js": {
-      "v": 19,
-      "sha256": "c4af4e2d0664d221"
+      "v": 20,
+      "sha256": "5ab085ac33718118"
     },
     "/dist/bodies/wildfire-in-yosemite-during-your-trip.js": {
       "v": 6,
@@ -214,8 +218,8 @@
       "sha256": "84a799e6c817ad3b"
     },
     "/dist/bodies/yosemite-for-non-hikers.js": {
-      "v": 89,
-      "sha256": "d5a11b29ede44173"
+      "v": 90,
+      "sha256": "60dd0089b3a81cf8"
     },
     "/dist/bodies/yosemite-from-las-vegas.js": {
       "v": 5,
@@ -313,9 +317,13 @@
       "v": 15,
       "sha256": "dd4aa5a8481a2728"
     },
+    "/dist/bodies/yosemite-stargazing-tours-and-programs.js": {
+      "v": 1,
+      "sha256": "3fe983591609fc5b"
+    },
     "/dist/bodies/yosemite-stargazing-where-to-look-up.js": {
-      "v": 88,
-      "sha256": "b41d086bd97057ec"
+      "v": 89,
+      "sha256": "c10d82d2b8aaa875"
     },
     "/dist/bodies/yosemite-trees-identification-guide.js": {
       "v": 5,
