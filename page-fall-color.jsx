@@ -30,6 +30,10 @@
 //      is only ever an Expedia availability search for a town, never a
 //      property. Placements: `fall_color_town` (the gateway rows) and
 //      `page_fall_color` (the closing search), inventoried in ARCHITECTURE.md.
+//      Featured-snippet pass (October 2026): the `.fcol-answer` block under the
+//      facts strip (question h2, the direct answer, a "Where to see it" list,
+//      `fall_color_answer` links) and the second FAQ entry, "When do the leaves
+//      change color in Yosemite?"; both restate facts found further down.
 //      The FAQ is mirrored in edge/seo.js's "/fall-color" entry; change both.
 // =============================================================================
 
@@ -100,6 +104,7 @@ const FC_TOWNS = [
 // Mirrored in edge/seo.js's "/fall-color" faq (the JSON-LD). Change both.
 const FC_FAQ = [
   ["When is peak fall color in Yosemite?", "In Yosemite Valley, usually late October into early November. The park's maples and black oaks are showy from about mid-October, and the Valley's color holds until the first heavy winter storm or hard frost, which in some years is early December. The high country turns weeks earlier."],
+  ["When do the leaves change color in Yosemite?", "From the top of the park down. Aspens on the Tioga Road and past Summit Meadow on Glacier Point Road turn from late September, dogwoods at middle elevations in early to mid October, the Valley's maples and black oaks from about mid-October, and the willows and cottonwoods at El Portal last, into November."],
   ["Is Yosemite good for fall colors?", "In places. The park says it is not known for spectacular fall color, because most of its trees are evergreen. What it has is concentrated: maples along the south wall, black oaks in the meadows, dogwoods under the conifers, aspens up high. Against grey granite it reads brighter than the acreage suggests."],
   ["Where are the best fall colors in Yosemite Valley?", "The bigleaf maples along the south wall from below Bridalveil Creek past Sentinel Creek to Happy Isles, the black oaks in El Capitan Meadow, the sugar maple beside the Yosemite Valley Chapel, and the elm in Cook's Meadow, which turns first."],
   ["When do the aspens turn on Tioga Road?", "Late September through October, earliest of anything in the park. Look near the Tuolumne Grove trailhead and the Yosemite Creek picnic area. The road closes for the winter, usually sometime in November."],
@@ -181,6 +186,19 @@ function FallColorPage({ go }) {
           <div><EventIcon name="drop" /><dt>The waterfalls</dt><dd>Low or dry</dd></div>
           <div><EventIcon name="therm" /><dt>The end</dt><dd>The first hard frost or big storm</dd></div>
         </dl>
+        <section className="fcol-answer" aria-labelledby="fall-color-answer">
+          <h2 id="fall-color-answer">When do the leaves change in Yosemite?</h2>
+          <p>Peak fall color in Yosemite Valley is usually late October into early November. The park says its bigleaf maples, black oaks and dogwoods are showy from about mid-October, and the color lingers until the first heavy storm or hard frost. The high country turns first: Tioga Road's aspens start in late September.</p>
+          <h3>Where to see it</h3>
+          <ul>
+            <li>Yosemite Valley's south wall: bigleaf maples from below Bridalveil Creek past Sentinel Creek to Happy Isles.</li>
+            <li>The Yosemite Valley Chapel: the planted sugar maple, the Valley's brightest red.</li>
+            <li>El Capitan and Cook's meadows: black oaks, and the elm that turns first.</li>
+            <li>Tioga Road and Glacier Point Road: aspens near the Tuolumne Grove trailhead and the Yosemite Creek picnic area, and past Summit Meadow.</li>
+            <li>Wawona and El Portal: oaks and dogwoods on the way in; cottonwoods, willows and poison oak along the Merced last.</li>
+          </ul>
+          <p className="fcol-answer__links">Check it live on <HomeLink go={go} location="fall_color_answer" href="/webcams">the webcams</HomeLink> (the Half Dome camera looks across Ahwahnee Meadow's oaks) and the overnight low on <HomeLink go={go} location="fall_color_answer" href="/conditions">the conditions board</HomeLink>; the month around it: <HomeLink go={go} location="fall_color_answer" href="/articles/yosemite-in-october-2026">Yosemite in October</HomeLink>.</p>
+        </section>
         <nav className="ff-toc" aria-label="On this page">
           <span>On this page</span>
           {toc.map(([href, label]) => (

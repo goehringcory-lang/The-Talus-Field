@@ -3373,6 +3373,26 @@ function abVariant(testKey) {
   return assigned;
 }
 window.abVariant = abVariant;
+function nlValueProp() {
+  var store = window.safeStorage;
+  if (!store) return "a";
+  var legacy = store.get("tfg.ab.article_end_copy");
+  if (legacy !== null && legacy !== undefined) {
+    if ((legacy === "a" || legacy === "b") && store.get("tfg.ab.nl_valueprop") === null) {
+      store.set("tfg.ab.nl_valueprop", legacy);
+    }
+    store.remove("tfg.ab.article_end_copy");
+  }
+  var existing = store.get("tfg.ab.nl_valueprop");
+  if (existing === "a" || existing === "b") return existing;
+  if (isSubscribed()) return "a";
+  return abVariant("nl_valueprop");
+}
+window.nlValueProp = nlValueProp;
+function nlValuePropVariant(arm) {
+  return "nl_valueprop:" + (arm === "b" ? "b" : "a");
+}
+window.nlValuePropVariant = nlValuePropVariant;
 function isSubscribed() {
   return window.safeStorage.get(NL_SUBSCRIBED_KEY) === NL_SUBSCRIBED_VALUE;
 }
@@ -3607,21 +3627,70 @@ var NL_HOOK_DEFAULT = {
   exit: ["A letter from inside the park, on Sundays.", "Sunday Field Notes: what Yosemite is doing this week and why, from the river gauges to the oaks, set beside what its naturalists wrote down in the same weeks a century ago. Free, and you can leave anytime."],
   bar: "Sunday Field Notes: a free weekly letter from inside Yosemite."
 };
-function nlHookCopy(kind, route, catOverride) {
+var NL_HOOK_CAT_B = {
+  planning: {
+    mid: ["What's open the week you go", "Sunday Field Notes is a free weekly letter on what's open, what's booked out and what changed this week, so a plan made today holds up the Sunday before you go."],
+    exit: ["Check it the Sunday before you go", "Sunday Field Notes is a weekly letter on what's open, what's booked out and what changed this week, so the trip you are planning is checked against the week it lands in."],
+    bar: "Planning a {s} trip? Get what's open and what's booked out, the Sunday before you go. Free."
+  },
+  trails: {
+    mid: ["Trail status before you drive in", "A free Sunday letter on what's open and what changed on the trails this week, from creek flow to the snowline, so you read it before the next hike."],
+    exit: ["Trail status, the Sunday before", "Sunday Field Notes covers what's open and what changed on the trails this week, from creek flow to the snowline, so you know before you pick the next one."],
+    bar: "Hiking this {s}? Sunday Field Notes covers what's open and what changed this week. Free."
+  },
+  wildlife: {
+    mid: ["What's out there this week", "A free Sunday letter on what the park's wildlife and plants are doing this week and what changed since last Sunday, so you know what to look for before you go."],
+    exit: ["What's moving, on Sundays", "Sunday Field Notes is a weekly letter on what the park's wildlife and plants are doing this week and what changed since the last one, read before you go."],
+    bar: "What's moving in the park this {s}? Get this week's changes on Sunday. Free."
+  },
+  seasonal: {
+    mid: ["Time it to the season", "A free Sunday letter on what's flowing, what's open and what changed this week, so the month you are reading about is the month you see."],
+    exit: ["Know what's open this season", "Sunday Field Notes follows the season week by week: what the river is doing, what is open and what changed since last Sunday, read the Sunday before you go."],
+    bar: "Following the {s}? Sunday Field Notes is the free weekly letter on what's open and what changed."
+  }
+};
+var NL_HOOK_ROUTE_B = {
+  planning: {
+    exit: ["Check what's open before you book", "Sunday Field Notes is a weekly letter on what's open, what's booked out and what changed this week. Read it the Sunday before you go."],
+    bar: "Planning a Yosemite trip? Get what's open and what's booked out, the Sunday before you go. Free."
+  },
+  conditions: {
+    exit: ["What changed this week", "Sunday Field Notes puts the week in one letter: what's open, what's closed, the gauges and the snow, and what changed since last Sunday."],
+    bar: "Conditions change by the week. Get what's open and what changed on Sunday. Free."
+  },
+  stay: {
+    exit: ["What's booked out, before you book", "Sunday Field Notes is a free weekly letter on what's open and what's booked out, so the dates you choose match the week you will find."],
+    bar: "Choosing where to stay? Get what's open and what's booked out on Sunday. Free."
+  },
+  webcams: {
+    exit: ["What the cameras can't tell you", "Sunday Field Notes is the weekly letter on what's open, what changed and what the park is doing this week, written on Sundays."],
+    bar: "Watching the park on camera? Sunday Field Notes says what changed this week. Free."
+  }
+};
+var NL_HOOK_DEFAULT_B = {
+  mid: ["What's open this week", "A free letter on Sundays: what's open, what's booked out and what changed in Yosemite this week."],
+  exit: ["What's open, the Sunday before you go.", "Sunday Field Notes: what's open, what's booked out and what changed in Yosemite this week, from the roads to the river gauges. Free, and you can leave anytime."],
+  bar: "Sunday Field Notes: what's open in Yosemite this week, free, every Sunday."
+};
+function nlHookCopy(kind, route, catOverride, variant) {
+  var isB = variant === "b";
+  var catTable = isB ? NL_HOOK_CAT_B : NL_HOOK_CAT;
+  var routeTable = isB ? NL_HOOK_ROUTE_B : NL_HOOK_ROUTE;
+  var defaults = isB ? NL_HOOK_DEFAULT_B : NL_HOOK_DEFAULT;
   var cat = catOverride || nlRouteCat(route);
   var s = nlSeason();
-  var byCat = NL_HOOK_CAT[cat] || null;
-  var byRoute = !byCat && NL_HOOK_ROUTE[route] || null;
+  var byCat = catTable[cat] || null;
+  var byRoute = !byCat && routeTable[route] || null;
   if (kind === "bar") {
-    var line = byCat && byCat.bar || byRoute && byRoute.bar || NL_HOOK_DEFAULT.bar;
+    var line = byCat && byCat.bar || byRoute && byRoute.bar || defaults.bar;
     return {
       line: line.replace("{s}", s)
     };
   }
   var specific = byCat && byCat[kind] || byRoute && byRoute[kind];
   if (!specific) return {
-    heading: NL_HOOK_DEFAULT[kind][0],
-    blurb: NL_HOOK_DEFAULT[kind][1]
+    heading: defaults[kind][0],
+    blurb: defaults[kind][1]
   };
   var blurb = specific[1] + " " + NL_SEASON_LINE[s] + (kind === "exit" ? " " + NL_LETTER_TAIL : "");
   return {
@@ -3675,6 +3744,7 @@ function ExitIntentNewsletter({
   var [done, setDone] = useState(null);
   var firedRef = useRef(false);
   var copyRef = useRef(null);
+  var variantRef = useRef("");
   useEffect(() => {
     if (disabled || firedRef.current) return;
     if (!window.matchMedia || !window.matchMedia("(hover: hover) and (pointer: fine)").matches) return;
@@ -3687,12 +3757,15 @@ function ExitIntentNewsletter({
       firedRef.current = true;
       nlHookSessionSet("exit");
       window.safeStorage.set("tfg.nl.exit.seen", new Date().toISOString());
-      copyRef.current = nlHookCopy("exit", route);
+      var arm = nlValueProp();
+      variantRef.current = nlValuePropVariant(arm);
+      copyRef.current = nlHookCopy("exit", route, undefined, arm);
       if (window.track) window.track("newsletter_exit_intent_shown", {
         location: "article_exit_intent",
-        tag: "exit-intent"
+        tag: "exit-intent",
+        variant: variantRef.current
       });
-      trackNewsletterImpression("article_exit_intent", "exit-intent");
+      trackNewsletterImpression("article_exit_intent", "exit-intent", variantRef.current);
       setOpen(true);
     };
     document.addEventListener("mouseout", onMouseOut);
@@ -3741,6 +3814,7 @@ function ExitIntentNewsletter({
   }, nlDoneLine(done)) : React.createElement(React.Fragment, null, React.createElement(NewsletterForm, {
     location: "article_exit_intent",
     tag: "exit-intent",
+    variant: variantRef.current,
     onDone: setDone
   }), React.createElement(LatestLetter, {
     location: "article_exit_intent"
@@ -3760,6 +3834,7 @@ function NewsletterBar({
   var [expanded, setExpanded] = useState(false);
   var [done, setDone] = useState(null);
   var copyRef = useRef(null);
+  var variantRef = useRef("");
   var barRef = useRef(null);
   var inputWrapRef = useRef(null);
   var shownRef = useRef(false);
@@ -3779,12 +3854,15 @@ function NewsletterBar({
       shownRef.current = true;
       nlHookSessionSet("bar");
       window.safeStorage.set("tfg.nl.bar.seen", new Date().toISOString());
-      copyRef.current = nlHookCopy("bar", route);
+      var arm = nlValueProp();
+      variantRef.current = nlValuePropVariant(arm);
+      copyRef.current = nlHookCopy("bar", route, undefined, arm);
       if (window.track) window.track("newsletter_bar_shown", {
         location: "scroll_bar",
-        tag: "scroll-bar"
+        tag: "scroll-bar",
+        variant: variantRef.current
       });
-      trackNewsletterImpression("scroll_bar", "scroll-bar");
+      trackNewsletterImpression("scroll_bar", "scroll-bar", variantRef.current);
       setPhase("shown");
     };
     var onScroll = () => {
@@ -3852,7 +3930,8 @@ function NewsletterBar({
     if (window.track) window.track("newsletter_bar_dismiss", {
       location: "scroll_bar",
       tag: "scroll-bar",
-      how
+      how,
+      variant: variantRef.current
     });
     setPhase("closed");
   };
@@ -3878,7 +3957,8 @@ function NewsletterBar({
     setExpanded(true);
     if (window.track) window.track("newsletter_bar_expand", {
       location: "scroll_bar",
-      tag: "scroll-bar"
+      tag: "scroll-bar",
+      variant: variantRef.current
     });
     requestAnimationFrame(() => {
       var input = inputWrapRef.current && inputWrapRef.current.querySelector("input[type=email]");
@@ -3908,6 +3988,7 @@ function NewsletterBar({
   }, React.createElement(NewsletterForm, {
     location: "scroll_bar",
     tag: "scroll-bar",
+    variant: variantRef.current,
     cta: "Subscribe →",
     className: "nlbar__fields",
     onDone: setDone

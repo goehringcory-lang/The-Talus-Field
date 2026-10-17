@@ -719,8 +719,8 @@ function buildSeo(route) {
       breadcrumb: [["Home", `${SITE_ORIGIN}/`], ["Half Dome lottery", null]]
     },
     "fall-color": {
-      title: `Yosemite Fall Colors: when and where the leaves turn | ${SITE_NAME}`,
-      description: "When Yosemite's fall color peaks, band by band from the Tioga Road aspens to the Valley's maples and black oaks, where the park's own naturalists look, and what ends the season.",
+      title: `Yosemite Fall Colors: When the Leaves Peak and Where to Look | ${SITE_NAME}`,
+      description: "Peak fall color in Yosemite Valley is usually late October into early November; Tioga Road's aspens turn first. Where to see it, and what ends the season.",
       ogType: "website",
       breadcrumb: [["Home", `${SITE_ORIGIN}/`], ["Fall color", null]]
     },
@@ -755,8 +755,8 @@ function buildSeo(route) {
       breadcrumb: [["Home", `${SITE_ORIGIN}/`], ["Dates that matter", null]]
     },
     international: {
-      title: `Yosemite for International Visitors: the 2026 non-resident fee, explained | ${SITE_NAME}`,
-      description: "The 2026 non-resident entrance fee at Yosemite, the $250 pass, a calculator for the cheapest way in, and what surprises visitors from abroad: reservations, roads, chains, signal, bears.",
+      title: "Yosemite Non-Resident Fee 2026: $100 Fee, $250 Pass",
+      description: "Yosemite non-resident fee 2026: $100 per person aged 16 and up, plus the car fee. The $250 annual pass waives it. A calculator finds the cheapest way in.",
       ogType: "website",
       breadcrumb: [["Home", `${SITE_ORIGIN}/`], ["Visiting from abroad", null]]
     },

@@ -500,7 +500,7 @@ const HUB_PROSE = {
     hubProse(
       "Yosemite for Visitors From Outside the United States",
       "Since January 1, 2026, a visitor who is not a US citizen or resident pays a non-resident fee of $100 per person aged 16 and older to enter Yosemite, on top of the standard entrance fee of $35 per car, $30 for up to two motorcycles or $20 per person on foot or by bus, unless covered by an annual pass. The non-resident America the Beautiful pass costs $250, covers the holder's vehicle and its occupants for twelve months at every federal fee site, and waives the non-resident fee for them. One adult in one car pays $135 at the gate; three adults pay $335 at the gate or $250 with the pass. The fee-free days are for US residents only in 2026. The gate takes cards, not cash. The same surcharge applies at Acadia, Bryce Canyon, Everglades, Glacier, Grand Canyon, Grand Teton, Rocky Mountain, Sequoia and Kings Canyon, Yellowstone and Zion.",
-      `<p>What else is different here: the nearest big airports are hours away (<a href="/articles/best-airport-for-yosemite">which airport to fly into</a>); no entry reservation is needed in 2026 (<a href="/articles/yosemite-without-reservations-2026">the no-reservations strategy</a>); most of the park has no mobile signal; Tioga Road and Glacier Point Road close from roughly November to late May (<a href="/tioga-opening">the Tioga Road page</a>); chains are required by law in winter, in rental cars too (<a href="/articles/getting-to-yosemite">getting to Yosemite</a>); the park can be reached without a car by Amtrak and YARTS (<a href="/articles/yosemite-shuttle-and-yarts">the shuttle and YARTS guide</a>); in-park beds sell out a year ahead (<a href="/stay">where to stay</a>); bear rules carry fines (<a href="/articles/yosemite-bears-safety-guide">the bears guide</a>). What a week costs all in: <a href="/articles/yosemite-trip-cost-budget">the trip-cost breakdown</a>.</p>`
+      `<p>What else is different here: the nearest big airports are hours away (<a href="/articles/best-airport-for-yosemite">which airport to fly into</a>); no entry reservation is needed in 2026 (<a href="/articles/yosemite-without-reservations-2026">the no-reservations strategy</a>); most of the park has no mobile signal (<a href="/articles/cell-service-in-yosemite">what works where, carrier by carrier</a>); Tioga Road and Glacier Point Road close from roughly November to late May (<a href="/tioga-opening">the Tioga Road page</a>); chains are required by law in winter, in rental cars too (<a href="/articles/getting-to-yosemite">getting to Yosemite</a>); the park can be reached without a car by Amtrak and YARTS (<a href="/articles/yosemite-shuttle-and-yarts">the shuttle and YARTS guide</a>); in-park beds sell out a year ahead (<a href="/stay">where to stay</a>); bear rules carry fines (<a href="/articles/yosemite-bears-safety-guide">the bears guide</a>). What a week costs all in: <a href="/articles/yosemite-trip-cost-budget">the trip-cost breakdown</a>.</p>`
     ),
   "/start-here": () =>
     hubProse(
@@ -528,10 +528,11 @@ const HUB_PROSE = {
   "/fall-color": () =>
     hubProse(
       "Yosemite Fall Color",
-      "Most of Yosemite is evergreen, so autumn color here is concentrated: bigleaf maples gone yellow along the creeks, black oaks orange to gold in the meadows, dogwoods red under the conifers, aspens yellow up high. Color starts at the top of the park and walks down it. Aspens along the Tioga Road turn from late September; dogwoods at middle elevations follow; Yosemite Valley's maples and black oaks are showy from about mid-October, and the Valley's color usually builds through late October and holds until the first heavy storm or hard frost."
+      "Peak fall color in Yosemite Valley is usually late October into early November. The park says its bigleaf maples, black oaks and dogwoods are showy from about mid-October, and the color lingers until the first heavy storm or hard frost. The high country turns first: Tioga Road's aspens start in late September."
     ) +
-    `<p>The park's own band of color is the bigleaf maples along the south wall, from below Bridalveil Creek past Sentinel Creek to Happy Isles. Add the black oaks of El Capitan Meadow, the planted sugar maple by the Yosemite Valley Chapel, and the elm in Cook's Meadow, which turns first. Outside the Valley: Wawona's oaks and dogwoods, aspens past Summit Meadow on Glacier Point Road, aspens near the Tuolumne Grove trailhead on the Tioga Road, and willows and cottonwoods at El Portal.</p>` +
-    `<p>Autumn also means low water, with Yosemite Falls often a trickle or dry, and the high roads closing for snow, usually sometime in November. A hard frost or the first big storm ends the color. More: <a href="/articles/yosemite-in-fall">Yosemite in fall</a>, <a href="/articles/yosemite-trees-identification-guide">the tree guide</a>, <a href="/articles/yosemite-photography-spots">the photography guide</a>, and <a href="/stay">where to stay</a>.</p>`,
+    `<p>Most of Yosemite is evergreen, so autumn color here is concentrated: bigleaf maples gone yellow along the creeks, black oaks orange to gold in the meadows, dogwoods red under the conifers, aspens yellow up high. Color starts at the top of the park and walks down it: Tioga Road aspens, then dogwoods at middle elevations, then the Valley, then willows and cottonwoods at El Portal.</p>` +
+    `<p>Where to see it: the bigleaf maples along the south wall, from below Bridalveil Creek past Sentinel Creek to Happy Isles; the black oaks of El Capitan Meadow; the planted sugar maple by the Yosemite Valley Chapel; the elm in Cook's Meadow, which turns first. Outside the Valley: Wawona's oaks and dogwoods, aspens past Summit Meadow on Glacier Point Road, aspens near the Tuolumne Grove trailhead and the Yosemite Creek picnic area on the Tioga Road, and willows and cottonwoods at El Portal.</p>` +
+    `<p>Autumn also means low water, with Yosemite Falls often a trickle or dry, and the high roads closing for snow, usually sometime in November. A hard frost or the first big storm ends the color. Check it live on <a href="/webcams">the webcams</a> and the overnight low on <a href="/conditions">the conditions board</a>. More: <a href="/articles/yosemite-in-october-2026">Yosemite in October</a>, <a href="/articles/yosemite-in-fall">Yosemite in fall</a>, <a href="/articles/yosemite-trees-identification-guide">the tree guide</a>, <a href="/articles/yosemite-photography-spots">the photography guide</a>, and <a href="/stay">where to stay</a>.</p>`,
   "/moonbow": () =>
     hubProse(
       "The Yosemite Moonbow",
@@ -1203,9 +1204,10 @@ function seoForPath(pathname, searchParams) {
       ],
     },
     "/international": {
-      title: `Yosemite for International Visitors: the 2026 non-resident fee, explained | ${SITE_NAME}`,
+      // No brand suffix, as for /webcams and /distances; must match app.jsx.
+      title: "Yosemite Non-Resident Fee 2026: $100 Fee, $250 Pass",
       description:
-        "The 2026 non-resident entrance fee at Yosemite, the $250 pass, a calculator for the cheapest way in, and what surprises visitors from abroad: reservations, roads, chains, signal, bears.",
+        "Yosemite non-resident fee 2026: $100 per person aged 16 and up, plus the car fee. The $250 annual pass waives it. A calculator finds the cheapest way in.",
       breadcrumb: [["Home", `${SITE_ORIGIN}/`], ["Visiting from abroad", null]],
       // Edge-only FAQ, quoted from fees-data.js, which names its NPS sources.
       faq: [
@@ -1363,15 +1365,19 @@ function seoForPath(pathname, searchParams) {
       // The FAQ mirrors FC_FAQ in page-fall-color.jsx word for word; its facts
       // follow the NPS fall color and Visiting in Fall pages (sources in that
       // file's header). Keep title and description byte-identical to app.jsx.
-      title: `Yosemite Fall Colors: when and where the leaves turn | ${SITE_NAME}`,
+      title: `Yosemite Fall Colors: When the Leaves Peak and Where to Look | ${SITE_NAME}`,
       description:
-        "When Yosemite's fall color peaks, band by band from the Tioga Road aspens to the Valley's maples and black oaks, where the park's own naturalists look, and what ends the season.",
+        "Peak fall color in Yosemite Valley is usually late October into early November; Tioga Road's aspens turn first. Where to see it, and what ends the season.",
       breadcrumb: [["Home", `${SITE_ORIGIN}/`], ["Fall color", null]],
       // Edge-only FAQ, as on /firefall: the client entry carries none.
       faq: [
         {
           q: "When is peak fall color in Yosemite?",
           a: "In Yosemite Valley, usually late October into early November. The park's maples and black oaks are showy from about mid-October, and the Valley's color holds until the first heavy winter storm or hard frost, which in some years is early December. The high country turns weeks earlier.",
+        },
+        {
+          q: "When do the leaves change color in Yosemite?",
+          a: "From the top of the park down. Aspens on the Tioga Road and past Summit Meadow on Glacier Point Road turn from late September, dogwoods at middle elevations in early to mid October, the Valley's maples and black oaks from about mid-October, and the willows and cottonwoods at El Portal last, into November.",
         },
         {
           q: "Is Yosemite good for fall colors?",
