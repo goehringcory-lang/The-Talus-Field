@@ -560,6 +560,10 @@
         "a": "From roughly October through April, chains can be required on any road into the park, and every car must carry them when they are, rentals and four-wheel drives included. Rental cars do not come with chains and many rental contracts forbid fitting them. Buy a set in the city before you drive up, or come in on Highway 140, which needs them least, or take the YARTS bus."
       },
       {
+        "q": "What is the closest airport to Yosemite National Park?",
+        "a": "Merced Yosemite Regional is the closest runway, 81 miles and about two hours from the Valley on Highway 140, but its only service is a 30-seat regional jet from LAX and Las Vegas that began in July 2026. Fresno Yosemite International is the closest real airport, 94 miles and two hours fifteen minutes away, with nonstops from SFO, LAX, Denver, Dallas, Phoenix, Seattle and other US hubs."
+      },
+      {
         "q": "How far is Fresno airport from Yosemite?",
         "a": "About 94 miles and two hours fifteen minutes to Yosemite Valley, and about an hour and a quarter to the South Entrance on Highway 41. In summer the YARTS Highway 41 bus leaves from the airport; the 2026 season ran May 22 to September 25."
       }
@@ -2355,6 +2359,14 @@
       {
         "q": "Can I camp in Yosemite without a reservation?",
         "a": "Only in the off-season. Camp 4, Hodgdon Meadow and Wawona run first-come, first-served from late October to early April (Camp 4 usually until sometime in April), and they can fill on holidays and weekends. In peak season the Park Service says not to arrive without a reservation. You may not sleep in a car or RV anywhere except a campsite you are registered for. Call 209/372-0266 for current status."
+      },
+      {
+        "q": "What is Porcupine Flat campground like?",
+        "a": "Porcupine Flat is a primitive campground right on the Tioga Road at 8,100 feet, about 20 minutes west of Tuolumne Meadows and about an hour and ten minutes from the Valley. It has 55 sites at $24 a night, vault toilets, no drinking water (Porcupine Creek is the only water source, so boil or treat it) and no cell service. Only four sites take a 24-foot RV. It books on the two-week rolling window and is one of the last campgrounds to fill on any given night; in 2026 it ran June 23 to October 11."
+      },
+      {
+        "q": "Is there a lottery for Yosemite campgrounds?",
+        "a": "Only once so far. North Pines ran a one-time Early Access Lottery for the 2026 season: applications ran November 24 to December 14, 2025, results went out December 22, and winners booked January 2 to February 1. Whatever they did not claim went back into the ordinary five-month releases. The Park Service said it may consider expanding the lottery to other campgrounds, so check the campground's page on Recreation.gov before you plan a release morning."
       }
     ]
   },
@@ -3177,11 +3189,11 @@
       },
       {
         "q": "When is the best time to stargaze in Yosemite?",
-        "a": "New moon weekends from late July through September. The Milky Way core is highest in August, which is also the driest, warmest month for high-country nights. Use a moon phase calendar and timeanddate.com moonrise tables to find nights when the moon sets before midnight."
+        "a": "For the Milky Way core, mid-July through mid-August on a new moon week. The core is visible from about April through October and peaks June through August, standing in the south between roughly 11 p.m. and 3 a.m. Outside core season, almost any clear, moonless night still shows far more than a city sky."
       },
       {
         "q": "Is there a Yosemite Star Party?",
-        "a": "Yes. The Yosemite Conservancy organizes annual stargazing programs at Glacier Point, typically in late summer, with telescopes and astronomy interpreters. Tickets are limited and sell out early, so check yosemite.org for dates and registration."
+        "a": "Yes. The Yosemite Star Parties at Glacier Point are free, held by amateur astronomy clubs from the Bay Area and Monterey with the Park Service, typically on Friday and Saturday nights in July and August, weather permitting (the 2026 list ran from July 3 to August 15). Astronomers set up telescopes for public viewing, and rangers give talks. The schedule is posted each summer on the NPS Yosemite programs page."
       },
       {
         "q": "Can you see the Milky Way from Yosemite Valley?",
@@ -3230,6 +3242,10 @@
       {
         "q": "Do I need a reservation to enter Yosemite?",
         "a": "Not in 2026. The Park Service says a reservation is not required to enter. You pay the entrance fee, $35 a vehicle for seven days, at the gate. Valley parking is the limit: the Park Service says lots are usually full after 9 a.m."
+      },
+      {
+        "q": "How long does it take to drive through Yosemite?",
+        "a": "There is no single figure, because the park is several drives. Glacier Point is about an hour from the Valley: 14 miles south on Wawona Road, then 16 on Glacier Point Road. Tioga Road is 46 miles across the park, climbing from 6,200 feet to nearly 10,000, with Tioga Pass at 9,945 feet. The Valley loop, with nine stops and lunch, takes three to four hours, and a stop you miss costs another trip around the one-way loop, twenty minutes or more in summer traffic."
       }
     ]
   },
