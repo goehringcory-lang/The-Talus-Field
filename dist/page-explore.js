@@ -195,6 +195,10 @@ function ExplorePage({
     name: "Advertise",
     note: "What a directory listing is, what it costs, and what disqualifies an applicant."
   }, {
+    route: "media-kit",
+    name: "Media kit",
+    note: "Who reads the site, its search reach and Sunday letter, when Yosemite planners search, and the placements on offer."
+  }, {
     route: "widget",
     name: "The conditions widget",
     note: "A free embeddable box with live entrance waits and the Valley forecast, for gateway businesses. One script tag."

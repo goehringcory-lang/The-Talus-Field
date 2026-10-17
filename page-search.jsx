@@ -51,6 +51,7 @@ const SEARCH_PAGES = [
   { route: "partners", title: "Group codes", dek: "The Field Guide in packs for hotels, inns, and rental hosts: one code per guest.", kind: "Page" },
   { route: "widget", title: "The conditions widget", dek: "A free embeddable box with live entrance waits and the Valley forecast, for gateway businesses.", kind: "Page" },
   { route: "advertise", title: "Advertise", dek: "What a directory listing is, what it costs, and what disqualifies an applicant.", kind: "Page" },
+  { route: "media-kit", title: "Media kit", dek: "Who reads the site, its search reach and Sunday letter, and when Yosemite planners search.", kind: "Page" },
   { route: "map", title: "Trip planner map", dek: "Every pin in the park, filterable by category, assembled into a trip you can share or email to yourself.", kind: "Page" },
   { route: "checklist", title: "First-week checklist", dek: "What to do in the week before a Yosemite trip, in order.", kind: "Page" },
   { route: "kit", title: "Kit", dek: "The gear that actually earns its place in a Yosemite pack, and what to leave home.", kind: "Page" },

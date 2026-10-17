@@ -2169,6 +2169,12 @@ function Footer({
       go("advertise");
     }
   }, "Advertise"), React.createElement("a", {
+    href: "/media-kit",
+    onClick: e => {
+      e.preventDefault();
+      go("media-kit");
+    }
+  }, "Media kit"), React.createElement("a", {
     href: "/widget",
     onClick: e => {
       e.preventDefault();
@@ -2658,6 +2664,10 @@ var KEEP_GOING = {
   },
   advertise: {
     links: [{
+      key: "media-kit",
+      label: "Media kit",
+      note: "Who reads, reach, and when planners search"
+    }, {
       key: "places",
       label: "The Directory",
       note: "The short list of operators worth knowing"
@@ -2669,6 +2679,21 @@ var KEEP_GOING = {
       key: "widget",
       label: "Conditions widget",
       note: "Free embed"
+    }]
+  },
+  "media-kit": {
+    links: [{
+      key: "advertise",
+      label: "Advertise",
+      note: "What a listing is, and what disqualifies one"
+    }, {
+      key: "places",
+      label: "The Directory",
+      note: "The short list of operators worth knowing"
+    }, {
+      key: "partners",
+      label: "Group codes",
+      note: "The Field Guide, in packs"
     }]
   },
   widget: {

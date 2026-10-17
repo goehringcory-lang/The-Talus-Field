@@ -60,6 +60,7 @@ const PAGE_FILES = [
   "page-films.jsx",
   "page-places.jsx",
   "page-advertise.jsx",
+  "page-media-kit.jsx",
   "page-guide.jsx",
   "page-map.jsx",
   "page-itineraries.jsx",

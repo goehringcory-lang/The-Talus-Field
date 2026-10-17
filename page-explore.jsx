@@ -257,6 +257,7 @@ function ExplorePage({ go }) {
     { route: "contact", name: "Contact", note: "Trip questions, corrections, press, or anything else." },
     { route: "places", name: "The Directory", note: "A deliberately short list of Yosemite-area operators worth recommending." },
     { route: "advertise", name: "Advertise", note: "What a directory listing is, what it costs, and what disqualifies an applicant." },
+    { route: "media-kit", name: "Media kit", note: "Who reads the site, its search reach and Sunday letter, when Yosemite planners search, and the placements on offer." },
     { route: "widget", name: "The conditions widget", note: "A free embeddable box with live entrance waits and the Valley forecast, for gateway businesses. One script tag." },
     { route: "privacy", name: "Privacy", note: "What this site collects and what it does not." },
     { route: "terms", name: "Terms", note: "Content licensing and the usual limitations." },

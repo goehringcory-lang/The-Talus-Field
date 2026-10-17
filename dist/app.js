@@ -11,7 +11,7 @@ function routeToPath(route) {
   if (route.startsWith("a:")) return `/articles/${route.slice(2)}`;
   return `/${route}`;
 }
-var STATIC_ROUTE_KEYS = new Set(["home", "articles", "planning", "checklist", "about", "kit", "places", "advertise", "newsletter", "contact", "privacy", "terms", "affiliate", "guide", "map", "films", "itineraries", "conditions", "now", "firefall", "stay", "consult", "widget", "partners", "search", "tioga-opening", "half-dome-lottery", "explore", "distances", "webcams", "start-here", "dates", "international", "fall-color", "moonbow", "frazil-ice"]);
+var STATIC_ROUTE_KEYS = new Set(["home", "articles", "planning", "checklist", "about", "kit", "places", "advertise", "newsletter", "contact", "privacy", "terms", "affiliate", "guide", "map", "films", "itineraries", "conditions", "now", "firefall", "stay", "consult", "widget", "partners", "search", "tioga-opening", "half-dome-lottery", "explore", "distances", "webcams", "start-here", "dates", "international", "fall-color", "moonbow", "frazil-ice", "media-kit"]);
 function pathToRoute(pathname) {
   var path = (pathname || "/").replace(/\/+$/, "") || "/";
   if (path === "/") return "home";
@@ -58,6 +58,10 @@ var PAGE_MODULES = {
   advertise: {
     scripts: ["/dist/page-advertise.js"],
     globals: ["AdvertisePage"]
+  },
+  "media-kit": {
+    scripts: ["/dist/page-media-kit.js"],
+    globals: ["MediaKitPage"]
   },
   articles: {
     scripts: ["/intent-data.js", "/dist/intent.js", "/dist/page-articles.js"],
@@ -578,6 +582,12 @@ function buildSeo(route) {
       description: "How to list a Yosemite-area lodge, inn, guide service, or outfitter on The Talus Field directory. Listings from $300 a year.",
       ogType: "website",
       breadcrumb: [["Home", `${SITE_ORIGIN}/`], ["List your business", null]]
+    },
+    "media-kit": {
+      title: `Media kit: advertise to Yosemite trip planners | ${SITE_NAME}`,
+      description: "Who reads The Talus Field, its search reach and Sunday letter, when Yosemite planners search, and directory listings from $300 a year.",
+      ogType: "website",
+      breadcrumb: [["Home", `${SITE_ORIGIN}/`], ["List your business", `${SITE_ORIGIN}/advertise`], ["Media kit", null]]
     },
     newsletter: {
       title: `Sunday Field Notes | ${SITE_NAME}`,
@@ -1190,6 +1200,10 @@ function App() {
     });
   } else if (route === "advertise") {
     page = React.createElement(window.AdvertisePage, {
+      go: go
+    });
+  } else if (route === "media-kit") {
+    page = React.createElement(window.MediaKitPage, {
       go: go
     });
   } else if (route === "articles") {

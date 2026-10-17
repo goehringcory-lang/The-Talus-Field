@@ -29,7 +29,7 @@ const STATIC_ROUTE_KEYS = new Set([
   "guide", "map", "films", "itineraries", "conditions", "now", "firefall", "stay",
   "consult", "widget", "partners", "search", "tioga-opening", "half-dome-lottery",
   "explore", "distances", "webcams", "start-here", "dates", "international",
-  "fall-color", "moonbow", "frazil-ice",
+  "fall-color", "moonbow", "frazil-ice", "media-kit",
 ]);
 
 function pathToRoute(pathname) {
@@ -89,6 +89,7 @@ const PAGE_MODULES = {
   kit: { scripts: ["/dist/page-kit.js"], globals: ["KitPage"] },
   places: { scripts: ["/dist/page-places.js"], globals: ["PlacesPage"] },
   advertise: { scripts: ["/dist/page-advertise.js"], globals: ["AdvertisePage"] },
+  "media-kit": { scripts: ["/dist/page-media-kit.js"], globals: ["MediaKitPage"] },
   // The intent model (taxonomy + trip selector) rides along on the two routes
   // that render it. /planning also pulls the itineraries data so the trip
   // selector can hand back a real /map?trip= link rather than a generic pointer
@@ -643,6 +644,13 @@ function buildSeo(route) {
         "How to list a Yosemite-area lodge, inn, guide service, or outfitter on The Talus Field directory. Listings from $300 a year.",
       ogType: "website",
       breadcrumb: [["Home", `${SITE_ORIGIN}/`], ["List your business", null]],
+    },
+    "media-kit": {
+      title: `Media kit: advertise to Yosemite trip planners | ${SITE_NAME}`,
+      description:
+        "Who reads The Talus Field, its search reach and Sunday letter, when Yosemite planners search, and directory listings from $300 a year.",
+      ogType: "website",
+      breadcrumb: [["Home", `${SITE_ORIGIN}/`], ["List your business", `${SITE_ORIGIN}/advertise`], ["Media kit", null]],
     },
     newsletter: {
       title: `Sunday Field Notes | ${SITE_NAME}`,
@@ -1415,6 +1423,8 @@ function App() {
     page = <window.FilmsPage go={go} />;
   } else if (route === "advertise") {
     page = <window.AdvertisePage go={go} />;
+  } else if (route === "media-kit") {
+    page = <window.MediaKitPage go={go} />;
   } else if (route === "articles") {
     page = <window.ArticlesIndex go={go} />;
   } else if (route === "planning") {
