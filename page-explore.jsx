@@ -3,8 +3,8 @@
 // =============================================================================
 // THE INDEX — `/explore`. One page that lists every reader-facing destination
 // on the site, sectioned by the masthead's words in the masthead's order
-// (Plan a trip, Park now, Read), then the Field Guide and the journal's own
-// pages, each with a line saying what it is.
+// (Plan, Hikes & permits, Conditions, Seasons, Map, Library), then the Field
+// Guide and the journal's own pages, each with a line saying what it is.
 //
 // Why it exists: the site now carries four article sections, a 512-issue
 // transcribed archive, a film archive, a bulletin, a trip map, a planning
@@ -64,55 +64,36 @@ function ExplorePage({ go }) {
   const films = (window.NATURE_NOTES && window.NATURE_NOTES.episodes) || [];
   const plural = (n, one, many) => `${n} ${n === 1 ? one : many}`;
 
-  const sectionEntries = (window.CATEGORIES || []).map((c) => ({
-    route: `cat:${c.slug}`,
-    name: c.label,
-    count: plural(window.byCategory(c.slug).length, "entry", "entries"),
-    note: c.blurb,
-  }));
-
-  const reading = [
-    {
-      route: "articles",
-      name: "All articles",
-      count: plural(articles.length, "entry", "entries"),
-      note: "The full catalog, newest first, filterable by section.",
-    },
-    ...sectionEntries,
-    {
-      route: "films",
-      name: "Films",
-      count: films.length ? plural(films.length, "film", "films") : null,
-      note: "The National Park Service's Yosemite Nature Notes film series, grouped by subject and annotated. Public domain, free to watch, most under ten minutes.",
-    },
-    {
-      href: "/archive/",
-      name: "The Nature Notes archive",
-      count: "511 issues",
-      note: "The park's own bulletin, Yosemite Nature Notes, transcribed from the scans: the issues from 1922 to 2003, roughly 1.87 million words, with year indexes and its own search-engine sitemap.",
-    },
-    {
-      route: "search",
-      name: "Search",
-      note: "Article titles, summaries, and section names, as you type.",
-    },
-  ];
+  // A section of the catalog, with its live count. Each lives under the
+  // masthead group that lands on it (Trails under Hikes & permits, Seasonal
+  // under Seasons); Library carries the other two.
+  const section = (slug) => {
+    const c = (window.CATEGORIES || []).find((x) => x.slug === slug);
+    if (!c) return null;
+    return {
+      route: `cat:${c.slug}`,
+      name: c.label,
+      count: plural(window.byCategory(c.slug).length, "entry", "entries"),
+      note: c.blurb,
+    };
+  };
+  // An article the masthead links by name (the hand-picked hikes), with its
+  // own dek as the line, so the index never restates a figure by hand.
+  const article = (slug, name) => {
+    const a = articles.find((x) => x.slug === slug);
+    return a ? { route: `a:${slug}`, name, note: a.dek } : null;
+  };
 
   const planning = [
-    {
-      route: "planning",
-      name: "The Yosemite Planning Guide",
-      note: "The archive reorganized for a real trip, in the order the decisions come: before you book, getting there and getting in, and what to do once you arrive.",
-    },
-    {
-      route: "map",
-      name: "The Map",
-      note: "Every vista, trailhead, parking turnout, and meal in the park as a filterable pin. Tap to assemble a trip, share it as a link, or email it to yourself. Free; one newsletter signup opens it.",
-    },
     {
       route: "start-here",
       name: "Start here",
       note: "The first-trip questions answered plainly, reservations, timing, trip length, lodging, entrances, permits, each one linking the full guide behind it.",
+    },
+    {
+      route: "planning",
+      name: "The Yosemite Planning Guide",
+      note: "The archive reorganized for a real trip, in the order the decisions come: before you book, getting there and getting in, and what to do once you arrive.",
     },
     {
       route: "itineraries",
@@ -124,11 +105,14 @@ function ExplorePage({ go }) {
       name: "Where to stay",
       note: "In-park lodging and the gateway towns by road corridor, with the named lodges, drive times, which corridor fits which season, and the booking windows that actually matter.",
     },
+    article("yosemite-camping-complete-guide", "Camping"),
+    article("where-to-eat-yosemite", "Where to eat"),
     {
       route: "distances",
       name: "Drive times",
       note: "How far Yosemite Valley is from every gateway town, in one table: miles, drive times, which entrance each route uses, and what the season does to it.",
     },
+    article("best-airport-for-yosemite", "Flying in"),
     {
       route: "international",
       name: "Visiting from abroad",
@@ -149,19 +133,32 @@ function ExplorePage({ go }) {
       name: "Trip consults",
       note: "Paid one-on-one planning: thirty minutes with a naturalist who lives in the park, on your dates and your group.",
     },
-  ];
+  ].filter(Boolean);
 
-  // The masthead's Park now menu: the live pages, then the dated decisions.
-  const parkNow = [
+  const hikes = [
+    {
+      route: "half-dome-lottery",
+      name: "The Half Dome lottery",
+      note: "How the cable permit lottery works, the preseason and daily odds, and what to climb instead when the draw goes against you.",
+    },
+    section("trails"),
+    article("mist-trail-the-real-guide", "Mist Trail"),
+    article("cathedral-lakes-day-hike", "Cathedral Lakes"),
+    article("yosemite-falls-trail", "Yosemite Falls Trail"),
+    article("clouds-rest-hike", "Clouds Rest"),
+  ].filter(Boolean);
+
+  // The masthead's Conditions menu: the live pages.
+  const conditions = [
+    {
+      route: "conditions",
+      name: "Conditions",
+      note: "Live park webcams, entrance wait times, the three forecasts worth checking, and the road alerts signup, on one bookmarkable page.",
+    },
     {
       route: "now",
       name: "The Park Bulletin",
       note: "Everything happening in the park right now on one board: closures, road and area status, free ranger programs, dated events, trail status, hours, transit, phone numbers. Rewritten for each edition of the park's own Yosemite Guide.",
-    },
-    {
-      route: "conditions",
-      name: "Conditions",
-      note: "Live park webcams, entrance wait times, and the three forecasts worth checking, on one bookmarkable page.",
     },
     {
       route: "webcams",
@@ -169,29 +166,29 @@ function ExplorePage({ go }) {
       note: "The live Yosemite cameras worth checking before you drive in, with what each one shows, how often it refreshes, and how to read two of them together.",
     },
     {
+      route: "tioga-opening",
+      name: "The Tioga Road opening",
+      note: "When the high country actually opens, how the plowing schedule works, and what is worth doing in the first week it is passable.",
+    },
+  ];
+
+  // The masthead's Seasons menu: the calendar, the section, the events.
+  const seasons = [
+    {
       route: "dates",
       name: "Dates that matter",
       note: "The deadlines that decide a trip, in one table: the Half Dome lotteries, the wilderness permit windows, the campground release mornings and the road openings, each one a calendar file, measured against your dates.",
+    },
+    section("seasonal"),
+    {
+      route: "fall-color",
+      name: "Fall color",
+      note: "When Yosemite's maples, oaks, dogwoods and aspens turn, band by band down the mountain, where the park's own naturalists look, and what ends the season.",
     },
     {
       route: "firefall",
       name: "Firefall",
       note: "Whether to plan a February trip around Horsetail Fall, what the odds actually are, and what to do with the trip if the light does not come.",
-    },
-    {
-      route: "tioga-opening",
-      name: "The Tioga Road opening",
-      note: "When the high country actually opens, how the plowing schedule works, and what is worth doing in the first week it is passable.",
-    },
-    {
-      route: "half-dome-lottery",
-      name: "The Half Dome lottery",
-      note: "How the cable permit lottery works, the preseason and daily odds, and what to climb instead when the draw goes against you.",
-    },
-    {
-      route: "fall-color",
-      name: "Fall color",
-      note: "When Yosemite's maples, oaks, dogwoods and aspens turn, band by band down the mountain, where the park's own naturalists look, and what ends the season.",
     },
     {
       route: "moonbow",
@@ -203,7 +200,44 @@ function ExplorePage({ go }) {
       name: "Frazil ice",
       note: "The cold spring mornings when Yosemite Creek runs white with frozen mist: what it is, when to look, where to watch it safely, and the park's film of it.",
     },
+  ].filter(Boolean);
+
+  const map = [
+    {
+      route: "map",
+      name: "The Map",
+      note: "Every vista, trailhead, parking turnout, and meal in the park as a filterable pin. Tap to assemble a trip, share it as a link, or email it to yourself. Free; one newsletter signup opens it.",
+    },
   ];
+
+  const library = [
+    {
+      route: "articles",
+      name: "All articles",
+      count: plural(articles.length, "entry", "entries"),
+      note: "The full catalog, newest first, filterable by section.",
+    },
+    section("planning"),
+    section("wildlife"),
+    {
+      href: "/archive/",
+      name: "The Nature Notes archive",
+      count: "511 issues",
+      note: "The park's own bulletin, Yosemite Nature Notes, transcribed from the scans: the issues from 1922 to 2003, roughly 1.87 million words, with year indexes and its own search-engine sitemap.",
+    },
+    {
+      route: "films",
+      name: "Films",
+      count: films.length ? plural(films.length, "film", "films") : null,
+      note: "The National Park Service's Yosemite Nature Notes film series, grouped by subject and annotated. Public domain, free to watch, most under ten minutes.",
+    },
+    { route: "newsletter", name: "The Sunday Letter", note: "One short letter a week from inside the park, and the recent letters. Free." },
+    {
+      route: "search",
+      name: "Search",
+      note: "Article titles, summaries, and section names, as you type.",
+    },
+  ].filter(Boolean);
 
   const guide = [
     {
@@ -220,7 +254,6 @@ function ExplorePage({ go }) {
 
   const journal = [
     { route: "about", name: "About the journal", note: "Who writes The Talus Field, from where, and on what standard." },
-    { route: "newsletter", name: "Sunday Field Notes", note: "One short letter a week from inside the park. Free." },
     { route: "contact", name: "Contact", note: "Trip questions, corrections, press, or anything else." },
     { route: "places", name: "The Directory", note: "A deliberately short list of Yosemite-area operators worth recommending." },
     { route: "advertise", name: "Advertise", note: "What a directory listing is, what it costs, and what disqualifies an applicant." },
@@ -242,7 +275,7 @@ function ExplorePage({ go }) {
 
       <ExploreSection
         go={go}
-        eyebrow="Plan a trip"
+        eyebrow="Plan"
         title="The trip."
         dek="In roughly the order the decisions come at you."
         entries={planning}
@@ -250,18 +283,41 @@ function ExplorePage({ go }) {
 
       <ExploreSection
         go={go}
-        eyebrow="Park now"
-        title="What is open, and what is coming."
-        dek="Live conditions, the current edition of the park's newspaper, and the dates people plan a trip around."
-        entries={parkNow}
+        eyebrow="Hikes & permits"
+        title="The trails, and the permit."
+        dek="The section of trail guides, the hikes the masthead names, and the lottery that decides Half Dome."
+        entries={hikes}
       />
 
       <ExploreSection
         go={go}
-        eyebrow="Read"
+        eyebrow="Conditions"
+        title="What is open right now."
+        dek="Live conditions, the gates and the cameras, and the current edition of the park's newspaper."
+        entries={conditions}
+      />
+
+      <ExploreSection
+        go={go}
+        eyebrow="Seasons"
+        title="What is coming."
+        dek="The dates people plan a trip around, the park month by month, and the events worth a trip of their own."
+        entries={seasons}
+      />
+
+      <ExploreSection
+        go={go}
+        eyebrow="Map"
+        title="The trip map."
+        entries={map}
+      />
+
+      <ExploreSection
+        go={go}
+        eyebrow="Library"
         title="The writing, and the record."
-        dek="The journal itself, plus the park's own bulletin and film series."
-        entries={reading}
+        dek="The journal itself, plus the park's own bulletin, its film series, and the Sunday letter."
+        entries={library}
       />
 
       <ExploreSection

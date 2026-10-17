@@ -256,7 +256,7 @@ function PlanningSectionPage({ go }) {
           alt="A tent pitched in a Yosemite campground among pines, a dog resting beside it" sizes="100vw" />
         <HpPageHead
           go={go}
-          crumbs={[{ label: "Home", route: "home" }, { label: "Read", route: "articles" }, { label: "Planning" }]}
+          crumbs={[{ label: "Home", route: "home" }, { label: "Library", route: "articles" }, { label: "Planning" }]}
           eyebrow="SECTION · PLANNING · HOW-TO GUIDES"
           title="Plan a Yosemite trip, step by step"
           intro="How to book a campsite on the release morning, spend a first night in a campground without the usual mistakes, get a wilderness permit on Recreation.gov, pack for the trip you actually booked, and choose the road in. Every step is drawn from a longer article, linked where it applies."
@@ -788,7 +788,7 @@ function SeasonalSectionPage({ go }) {
           alt="Tunnel View in autumn, the Valley's granite walls under yellow leaves" sizes="100vw" />
         <HpPageHead
           go={go}
-          crumbs={[{ label: "Home", route: "home" }, { label: "Read", route: "articles" }, { label: "Seasonal Guides" }]}
+          crumbs={[{ label: "Home", route: "home" }, { label: "Library", route: "articles" }, { label: "Seasonal Guides" }]}
           eyebrow="SECTION · SEASONAL GUIDES · MONTH BY MONTH"
           title="Yosemite, month by month"
           intro="The park in January is not the park in July. Pick the month you are coming and see what the roads are doing, what the month is like, and which guide to read first. Every month is drawn from a longer piece, linked where it applies."
@@ -1016,7 +1016,7 @@ function TrailsSectionPage({ go }) {
           alt="Nevada Fall and Liberty Cap seen from the trail above the Merced River" sizes="100vw" />
         <HpPageHead
           go={go}
-          crumbs={[{ label: "Home", route: "home" }, { label: "Read", route: "articles" }, { label: "Trails and Hikes" }]}
+          crumbs={[{ label: "Home", route: "home" }, { label: "Library", route: "articles" }, { label: "Trails and Hikes" }]}
           eyebrow="SECTION · TRAILS AND HIKES · PICK A HIKE"
           title="Pick a Yosemite hike"
           intro="Seven of the park's best-known hikes side by side: how far, how much climbing, how hard, and which ones need a permit. Choose by effort and by the month you are going, then open the full guide for the route."
@@ -1220,7 +1220,7 @@ function WildlifeSectionPage({ go }) {
           alt="A mule deer grazing in a Valley meadow with Half Dome behind it" sizes="100vw" />
         <HpPageHead
           go={go}
-          crumbs={[{ label: "Home", route: "home" }, { label: "Read", route: "articles" }, { label: "Wildlife and Nature" }]}
+          crumbs={[{ label: "Home", route: "home" }, { label: "Library", route: "articles" }, { label: "Wildlife and Nature" }]}
           eyebrow="SECTION · WILDLIFE AND NATURE · WHO LIVES HERE"
           title="Wildlife and nature in Yosemite"
           intro="When to look for the animals, what to do about the bears, where the flowers are in any given month, and the rock, ice and trees that explain the place. Every answer is drawn from a longer piece, linked where it applies."
@@ -1383,7 +1383,7 @@ function CategoryPage({ slug, go }) {
     <div className="page hp-index">
       <HpPageHead
         go={go}
-        crumbs={[{ label: "Home", route: "home" }, { label: cat.label }]}
+        crumbs={[{ label: "Home", route: "home" }, { label: "Library", route: "articles" }, { label: cat.label }]}
         eyebrow="SECTION"
         title={cat.label}
         intro={cat.blurb}

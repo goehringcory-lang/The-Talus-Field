@@ -581,6 +581,7 @@ function ArticlePage({ slug, go }) {
           className="hp-article__head"
           crumbs={[
             { label: "Home", route: "home" },
+            { label: "Library", route: "articles" },
             { label: cat.label, route: `cat:${cat.slug}` },
             { label: article.title },
           ]}

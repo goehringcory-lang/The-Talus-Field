@@ -421,6 +421,7 @@ function buildSeo(route) {
         },
         breadcrumb: breadcrumbLd([
           ["Home", `${SITE_ORIGIN}/`],
+          ["Library", `${SITE_ORIGIN}/articles`],
           cat ? [cat.label, `${SITE_ORIGIN}/section/${cat.slug}`] : null,
           [a.title, null],
         ].filter(Boolean)),
@@ -461,6 +462,7 @@ function buildSeo(route) {
         },
         breadcrumb: breadcrumbLd([
           ["Home", `${SITE_ORIGIN}/`],
+          ["Library", `${SITE_ORIGIN}/articles`],
           [cat.label, null],
         ]),
       };

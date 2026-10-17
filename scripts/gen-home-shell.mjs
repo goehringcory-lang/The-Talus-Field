@@ -208,6 +208,16 @@ function blankDateSlots(html) {
 const site = loadSite();
 const sandbox = buildSandbox(site);
 
+// affiliate.js loads eagerly ahead of components.js in index.html, so the
+// browser's first render mints the Library menu's bookshelf link from it.
+// Evaluating it here bakes the same real href, where the shell used to bake
+// "#" (a dead link for every reader before boot and every crawler).
+vm.runInContext(fs.readFileSync(path.join(ROOT, "affiliate.js"), "utf8"), sandbox, { filename: "affiliate.js" });
+if (typeof sandbox.window.buildAffiliateLink !== "function") {
+  console.error("gen-home-shell: affiliate.js did not register window.buildAffiliateLink.");
+  process.exit(2);
+}
+
 for (const f of SOURCES) {
   const src = fs.readFileSync(path.join(ROOT, f), "utf8");
   try {
@@ -298,10 +308,12 @@ const MUST_CONTAIN = [
   ['Plan my first visit', "the primary planning CTA"],
   ['href="/start-here"', "the hero's first-trip door"],
   ['Explore the offline Field Guide', "the hero's Field Guide door"],
-  ['href="#field-guide"', "the masthead's app button (a jump to the band on /)"],
-  ['href="#home-newsletter"', "the newsletter section CTA (the Read menu's Sunday Letter link)"],
+  ['class="hp-header__guide" href="#field-guide"', "the masthead's Field Guide link (a jump to the band on /)"],
+  ['href="#home-newsletter"', "the masthead's Subscribe button and the Library menu's Sunday Letter link"],
   ['id="masthead-search"', "the masthead's search box"],
-  ['data-menu="now"', "the masthead's Park now menu"],
+  ['data-menu="conditions"', "the masthead's Conditions menu"],
+  ['aria-controls="hp-sheet"', "the phone Menu button"],
+  ['href="https://bookshop.org/', "the Library menu's bookshelf link, as a real href"],
   ['class="hp-wrap hp-header"', "the homepage masthead"],
   ['<main id="main" tabindex="-1" class="hp-design">', "the main landmark (the skip link's pre-boot target)"],
 ];
