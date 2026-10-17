@@ -24,7 +24,7 @@ window.ARTICLE_BODIES["yosemite-in-october-2026"] = function YosemiteInOctober20
       </p>
 
       <p>
-        The country around the fire is closed until further notice under the park's October 2 order: the area east of Wawona Road and south of Glacier Point Road, north of Wawona and out to Buena Vista Creek, which takes in the <strong>Ostrander Lake, Mono Meadow and Buena Vista trails</strong>. The <strong>Chilnualna Falls trail</strong> has reopened from the trailhead to the falls and Crescent Lake.
+        The country around the fire is closed until further notice under the park's October 17 order: the area east of Wawona Road and south of Glacier Point Road, north of Wawona and out to Buena Vista Creek, which takes in the <strong>Ostrander Lake, Mono Meadow and Buena Vista trails</strong> and every trail that leaves Glacier Point Road heading south or east. The <strong>Chilnualna Falls trail</strong> has reopened from the trailhead to the falls and Crescent Lake.
       </p>
 
       <p>
