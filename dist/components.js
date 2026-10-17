@@ -3296,7 +3296,123 @@ function NewsletterInline({
     location: location
   }));
 }
+var NL_HOOK_SESSION_KEY = "tfg.nl.hook.session";
+function nlHookSessionGet() {
+  try {
+    return window.sessionStorage.getItem(NL_HOOK_SESSION_KEY) || window.__tfgNlHook || null;
+  } catch (_e) {
+    return window.__tfgNlHook || null;
+  }
+}
+function nlHookSessionSet(who) {
+  window.__tfgNlHook = who;
+  try {
+    window.sessionStorage.setItem(NL_HOOK_SESSION_KEY, who);
+  } catch (_e) {}
+}
+function nlDaysSince(key) {
+  var raw = window.safeStorage.get(key);
+  var t = raw ? new Date(raw).getTime() : NaN;
+  return Number.isFinite(t) ? (Date.now() - t) / 86400000 : Infinity;
+}
+var NL_POPUP_EXCLUDED = new Set(["newsletter", "contact", "privacy", "terms", "affiliate", "films", "map", "itineraries", "checklist", "dates", "consult", "widget", "partners", "search", "kit", "guide", "notfound"]);
+var NL_BAR_ROUTES = new Set(["articles", "planning", "conditions", "stay", "webcams", "distances", "start-here", "firefall", "tioga-opening", "half-dome-lottery", "fall-color", "moonbow", "frazil-ice"]);
+function nlRouteCat(route) {
+  if (route && route.startsWith("a:")) {
+    var a = window.findArticle && window.findArticle(route.slice(2));
+    return a ? a.cat : "";
+  }
+  if (route && route.startsWith("cat:")) return route.slice(4);
+  return "";
+}
+window.nlPopupAllowed = route => !NL_POPUP_EXCLUDED.has(route);
+window.nlBarAllowed = route => !!route && (route.startsWith("a:") || route.startsWith("cat:") || NL_BAR_ROUTES.has(route));
+function nlSeason(date) {
+  var m = (date || new Date()).getMonth();
+  return m <= 1 || m === 11 ? "winter" : m <= 4 ? "spring" : m <= 7 ? "summer" : "fall";
+}
+window.nlSeason = nlSeason;
+var NL_SEASON_LINE = {
+  winter: "Right now that means snow, storms and the quiet valley floor.",
+  spring: "Right now that means snowmelt and rising water.",
+  summer: "Right now that means the high country and the long days.",
+  fall: "Right now that means shorter days and the turn of the leaves."
+};
+var NL_LETTER_TAIL = "Free, and you can leave anytime.";
+var NL_HOOK_CAT = {
+  planning: {
+    mid: ["Plans change with the season", "Sunday Field Notes is a free weekly letter on what the park is doing right now, so a plan made today is read against the week you actually drive in."],
+    exit: ["Before you lock in the plan", "Sunday Field Notes is a weekly letter on what Yosemite is doing this week and why, so the trip you are planning is read against the season it lands in."],
+    bar: "Planning a {s} trip? Sunday Field Notes is a free weekly letter on the park right now."
+  },
+  trails: {
+    mid: ["Before the next hike", "A free Sunday letter on how the park is behaving this week, from the gauges to the snowline, set beside what its naturalists wrote down in the same weeks a century ago."],
+    exit: ["Take the trail notes with you", "Sunday Field Notes follows what the park is doing this week, from creek flow to the snowline, so the next trail you pick is one you read about first."],
+    bar: "Hiking this {s}? Sunday Field Notes covers how the park is behaving this week. Free."
+  },
+  wildlife: {
+    mid: ["Who is moving this week", "A free Sunday letter that watches the park's wildlife and plants week by week, with the science behind what you are seeing and the naturalists' notes from a century ago."],
+    exit: ["More like this, on Sundays", "Sunday Field Notes is a naturalist's letter: one seasonal observation a week, with the mechanism, the species and the numbers behind it."],
+    bar: "Who is moving in the park this {s}? Sunday Field Notes, free, once a week."
+  },
+  seasonal: {
+    mid: ["Follow the season as it turns", "A free Sunday letter that tracks the park week by week, so the month you are reading about is the month you see."],
+    exit: ["Keep up with the season", "Sunday Field Notes follows the park as the seasons turn: what the river is doing, what is in bloom and what the naturalists recorded in the same weeks a century ago."],
+    bar: "Following the {s}? Sunday Field Notes is the free weekly letter on the park right now."
+  }
+};
+var NL_HOOK_ROUTE = {
+  planning: {
+    exit: ["Before you book anything", "Sunday Field Notes is a weekly letter on what Yosemite is doing this week and why. It reads the season the trip lands in."],
+    bar: "Planning a Yosemite trip? Sunday Field Notes is a free weekly letter on the park right now."
+  },
+  conditions: {
+    exit: ["Conditions change weekly", "Sunday Field Notes puts the week in one letter: the gauges, the snow, the season, and what the naturalists recorded in the same weeks a century ago."],
+    bar: "Conditions change by the week. Sunday Field Notes puts the week in one letter. Free."
+  },
+  stay: {
+    exit: ["Before you book a bed", "Sunday Field Notes is a free weekly letter on what the park is doing, so the dates you choose match the season you will find."],
+    bar: "Choosing where to stay? Sunday Field Notes is a free weekly letter on the park right now."
+  },
+  webcams: {
+    exit: ["Seen enough for today?", "Sunday Field Notes is the weekly letter on what the park is doing and why: the water, the snow and the season, written on Sundays."],
+    bar: "Watching the park on camera? Sunday Field Notes explains the week. Free."
+  }
+};
+var NL_HOOK_DEFAULT = {
+  mid: ["Sunday Field Notes", "A free letter from inside the park on Sundays: what Yosemite is doing this week and why."],
+  exit: ["A letter from inside the park, on Sundays.", "Sunday Field Notes: what Yosemite is doing this week and why, from the river gauges to the oaks, set beside what its naturalists wrote down in the same weeks a century ago. Free, and you can leave anytime."],
+  bar: "Sunday Field Notes: a free weekly letter from inside Yosemite."
+};
+function nlHookCopy(kind, route, catOverride) {
+  var cat = catOverride || nlRouteCat(route);
+  var s = nlSeason();
+  var byCat = NL_HOOK_CAT[cat] || null;
+  var byRoute = !byCat && NL_HOOK_ROUTE[route] || null;
+  if (kind === "bar") {
+    var line = byCat && byCat.bar || byRoute && byRoute.bar || NL_HOOK_DEFAULT.bar;
+    return {
+      line: line.replace("{s}", s)
+    };
+  }
+  var specific = byCat && byCat[kind] || byRoute && byRoute[kind];
+  if (!specific) return {
+    heading: NL_HOOK_DEFAULT[kind][0],
+    blurb: NL_HOOK_DEFAULT[kind][1]
+  };
+  var blurb = specific[1] + " " + NL_SEASON_LINE[s] + (kind === "exit" ? " " + NL_LETTER_TAIL : "");
+  return {
+    heading: specific[0],
+    blurb
+  };
+}
+window.nlHookCopy = nlHookCopy;
+function nlHookTag(placement, cat) {
+  return cat ? `${placement}-${cat}` : placement;
+}
+window.nlHookTag = nlHookTag;
 var EXIT_COOLDOWN_DAYS = 14;
+var EXIT_MIN_DWELL_MS = 20000;
 function useModalFocus(active, initialSelector) {
   var dialogRef = useRef(null);
   useEffect(() => {
@@ -3329,24 +3445,26 @@ function useModalFocus(active, initialSelector) {
   return dialogRef;
 }
 function ExitIntentNewsletter({
-  disabled
+  disabled,
+  route
 }) {
   var [open, setOpen] = useState(false);
   var [done, setDone] = useState(null);
   var firedRef = useRef(false);
+  var copyRef = useRef(null);
   useEffect(() => {
-    if (disabled) return;
-    var suppressed = isSubscribed();
-    var seen = window.safeStorage.get("tfg.nl.exit.seen");
-    if (seen) {
-      var ageDays = (Date.now() - new Date(seen).getTime()) / 86400000;
-      if (ageDays < EXIT_COOLDOWN_DAYS) suppressed = true;
-    }
-    if (suppressed) return;
-    var reveal = () => {
-      if (firedRef.current) return;
+    if (disabled || firedRef.current) return;
+    if (!window.matchMedia || !window.matchMedia("(hover: hover) and (pointer: fine)").matches) return;
+    var mountedAt = Date.now();
+    var onMouseOut = e => {
+      if (firedRef.current || !(e.clientY <= 0 && !e.relatedTarget)) return;
+      if (Date.now() - mountedAt < EXIT_MIN_DWELL_MS) return;
+      if (isSubscribed() || nlDaysSince("tfg.nl.exit.seen") < EXIT_COOLDOWN_DAYS) return;
+      if (nlHookSessionGet()) return;
       firedRef.current = true;
+      nlHookSessionSet("exit");
       window.safeStorage.set("tfg.nl.exit.seen", new Date().toISOString());
+      copyRef.current = nlHookCopy("exit", route);
       if (window.track) window.track("newsletter_exit_intent_shown", {
         location: "article_exit_intent",
         tag: "exit-intent"
@@ -3354,28 +3472,9 @@ function ExitIntentNewsletter({
       trackNewsletterImpression("article_exit_intent", "exit-intent");
       setOpen(true);
     };
-    var onMouseOut = e => {
-      if (e.clientY <= 0 && !e.relatedTarget) reveal();
-    };
-    var isTouch = window.matchMedia && window.matchMedia("(hover: none)").matches;
-    var mountedAt = Date.now();
-    var onScroll = () => {
-      if (Date.now() - mountedAt < 25000) return;
-      var max = document.documentElement.scrollHeight - window.innerHeight;
-      if (max > 0 && window.scrollY / max >= 0.6) reveal();
-    };
-    if (isTouch) {
-      window.addEventListener("scroll", onScroll, {
-        passive: true
-      });
-    } else {
-      document.addEventListener("mouseout", onMouseOut);
-    }
-    return () => {
-      window.removeEventListener("scroll", onScroll);
-      document.removeEventListener("mouseout", onMouseOut);
-    };
-  }, [disabled]);
+    document.addEventListener("mouseout", onMouseOut);
+    return () => document.removeEventListener("mouseout", onMouseOut);
+  }, [disabled, route]);
   useEffect(() => {
     if (!open) return;
     var onKey = e => {
@@ -3391,6 +3490,7 @@ function ExitIntentNewsletter({
   }, [open]);
   var dialogRef = useModalFocus(open, ".nlmodal__close");
   if (!open) return null;
+  var copy = copyRef.current || nlHookCopy("exit", route);
   return React.createElement("div", {
     className: "nlmodal",
     role: "dialog",
@@ -3412,7 +3512,7 @@ function ExitIntentNewsletter({
     style: {
       marginBottom: 12
     }
-  }, "Before you go"), React.createElement("h3", null, "A letter from inside the park, on Sundays."), React.createElement("p", null, "Sunday Field Notes: what Yosemite is doing this week and why, from the river gauges to the oaks, set beside what the park's naturalists wrote down in the same weeks a century ago. Free, and you can leave anytime."), done ? React.createElement("p", {
+  }, "Before you go"), React.createElement("h3", null, copy.heading), React.createElement("p", null, copy.blurb), done ? React.createElement("p", {
     className: "nlbox__done",
     role: "status"
   }, nlDoneLine(done)) : React.createElement(React.Fragment, null, React.createElement(NewsletterForm, {
@@ -3422,6 +3522,178 @@ function ExitIntentNewsletter({
   }), React.createElement(LatestLetter, {
     location: "article_exit_intent"
   }))));
+}
+var BAR_DISMISS_DAYS = 14;
+var BAR_REPEAT_DAYS = 3;
+var BAR_MIN_DWELL_MS = 15000;
+var BAR_SCROLL_DEPTH = 0.5;
+function NewsletterBar({
+  route
+}) {
+  var allowed = window.nlBarAllowed(route);
+  var [phase, setPhase] = useState("idle");
+  var [entered, setEntered] = useState(false);
+  var [parked, setParked] = useState(false);
+  var [expanded, setExpanded] = useState(false);
+  var [done, setDone] = useState(null);
+  var copyRef = useRef(null);
+  var barRef = useRef(null);
+  var inputWrapRef = useRef(null);
+  var shownRef = useRef(false);
+  useEffect(() => {
+    if (!allowed || shownRef.current || phase !== "idle") return;
+    if (!nlStorageWorks()) return;
+    if (isSubscribed()) return;
+    var mountedAt = Date.now();
+    var raf = 0;
+    var check = () => {
+      raf = 0;
+      if (shownRef.current || Date.now() - mountedAt < BAR_MIN_DWELL_MS) return;
+      var max = document.documentElement.scrollHeight - window.innerHeight;
+      if (max < window.innerHeight || window.scrollY / max < BAR_SCROLL_DEPTH) return;
+      if (isSubscribed() || nlHookSessionGet()) return;
+      if (nlDaysSince("tfg.nl.bar.dismissed") < BAR_DISMISS_DAYS || nlDaysSince("tfg.nl.bar.seen") < BAR_REPEAT_DAYS) return;
+      shownRef.current = true;
+      nlHookSessionSet("bar");
+      window.safeStorage.set("tfg.nl.bar.seen", new Date().toISOString());
+      copyRef.current = nlHookCopy("bar", route);
+      if (window.track) window.track("newsletter_bar_shown", {
+        location: "scroll_bar",
+        tag: "scroll-bar"
+      });
+      trackNewsletterImpression("scroll_bar", "scroll-bar");
+      setPhase("shown");
+    };
+    var onScroll = () => {
+      if (!raf) raf = requestAnimationFrame(check);
+    };
+    var timer = setTimeout(onScroll, BAR_MIN_DWELL_MS + 50);
+    window.addEventListener("scroll", onScroll, {
+      passive: true
+    });
+    return () => {
+      clearTimeout(timer);
+      if (raf) cancelAnimationFrame(raf);
+      window.removeEventListener("scroll", onScroll);
+    };
+  }, [allowed, route, phase]);
+  useEffect(() => {
+    if (phase !== "shown") return;
+    var raf = requestAnimationFrame(() => setEntered(true));
+    return () => cancelAnimationFrame(raf);
+  }, [phase]);
+  useEffect(() => {
+    if (phase === "shown" && !allowed) setPhase("closed");
+  }, [allowed, phase]);
+  useEffect(() => {
+    if (phase !== "shown") return;
+    var raf = 0;
+    var measure = () => {
+      raf = 0;
+      var max = document.documentElement.scrollHeight - window.innerHeight;
+      var hide = max > 0 && max - window.scrollY < 120;
+      if (!hide) {
+        var units = document.querySelectorAll(".nlbox, .softgate");
+        for (var u of units) {
+          var r = u.getBoundingClientRect();
+          if (r.bottom > 0 && r.top < window.innerHeight) {
+            hide = true;
+            break;
+          }
+        }
+      }
+      setParked(hide);
+    };
+    var onScroll = () => {
+      if (!raf) raf = requestAnimationFrame(measure);
+    };
+    window.addEventListener("scroll", onScroll, {
+      passive: true
+    });
+    window.addEventListener("resize", onScroll);
+    onScroll();
+    return () => {
+      if (raf) cancelAnimationFrame(raf);
+      window.removeEventListener("scroll", onScroll);
+      window.removeEventListener("resize", onScroll);
+    };
+  }, [phase]);
+  var visible = phase === "shown" && entered && !parked;
+  useEffect(() => {
+    if (!visible) return;
+    document.documentElement.setAttribute("data-nl-bar", "");
+    return () => document.documentElement.removeAttribute("data-nl-bar");
+  }, [visible]);
+  var dismiss = how => {
+    if (!done) window.safeStorage.set("tfg.nl.bar.dismissed", new Date().toISOString());
+    if (window.track) window.track("newsletter_bar_dismiss", {
+      location: "scroll_bar",
+      tag: "scroll-bar",
+      how
+    });
+    setPhase("closed");
+  };
+  useEffect(() => {
+    if (phase !== "shown") return;
+    var onKey = e => {
+      if (e.key !== "Escape") return;
+      var active = document.activeElement;
+      var inBar = barRef.current && barRef.current.contains(active);
+      if (inBar || !active || active === document.body) dismiss("escape");
+    };
+    document.addEventListener("keydown", onKey);
+    return () => document.removeEventListener("keydown", onKey);
+  });
+  useEffect(() => {
+    if (!done) return;
+    var t = setTimeout(() => setPhase("closed"), 6000);
+    return () => clearTimeout(t);
+  }, [done]);
+  if (phase !== "shown") return null;
+  var copy = copyRef.current || nlHookCopy("bar", route);
+  var open = () => {
+    setExpanded(true);
+    if (window.track) window.track("newsletter_bar_expand", {
+      location: "scroll_bar",
+      tag: "scroll-bar"
+    });
+    requestAnimationFrame(() => {
+      var input = inputWrapRef.current && inputWrapRef.current.querySelector("input[type=email]");
+      if (input) input.focus();
+    });
+  };
+  return React.createElement("div", {
+    ref: barRef,
+    className: ["nlbar", entered && !parked ? "is-in" : "", expanded ? "is-expanded" : ""].filter(Boolean).join(" "),
+    role: "region",
+    "aria-label": "Subscribe to Sunday Field Notes"
+  }, React.createElement("div", {
+    className: "nlbar__inner"
+  }, done ? React.createElement("p", {
+    className: "nlbar__text nlbar__done",
+    role: "status"
+  }, nlDoneLine(done)) : React.createElement(React.Fragment, null, React.createElement("p", {
+    className: "nlbar__text"
+  }, copy.line), React.createElement("button", {
+    type: "button",
+    className: "nlbar__open",
+    "aria-expanded": expanded,
+    onClick: open
+  }, "Sign up"), React.createElement("div", {
+    className: "nlbar__form",
+    ref: inputWrapRef
+  }, React.createElement(NewsletterForm, {
+    location: "scroll_bar",
+    tag: "scroll-bar",
+    cta: "Subscribe →",
+    className: "nlbar__fields",
+    onDone: setDone
+  }))), React.createElement("button", {
+    type: "button",
+    className: "nlbar__close",
+    "aria-label": "Close the Sunday Field Notes signup",
+    onClick: () => dismiss("close")
+  }, "✕")));
 }
 function MapLightbox({
   src,
@@ -4237,6 +4509,7 @@ Object.assign(window, {
   NewsletterForm,
   SoftGate,
   ExitIntentNewsletter,
+  NewsletterBar,
   MapLightbox,
   EntranceWaits,
   WebcamStrip,

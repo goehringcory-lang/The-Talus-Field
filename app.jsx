@@ -1,4 +1,4 @@
-/* global React, ReactDOM, Header, Footer, KeepGoing, ExitIntentNewsletter, HpPageHead */
+/* global React, ReactDOM, Header, Footer, KeepGoing, ExitIntentNewsletter, NewsletterBar, HpPageHead */
 /* Page components (HomePage, ArticlePage, MapPage, ...) are NOT bare globals
    here: their bundles lazy-load per route (see PAGE_MODULES) and the route
    switch reads them from window.* after ensureRoute resolves. */
@@ -1483,7 +1483,10 @@ function App() {
   // so it persists across SPA navigation and does not re-arm). Suppressed on
   // pages where a popup is redundant or out of place.
   // "films" is included so the popup never interrupts a playing film.
-  const exitDisabled = ["newsletter", "contact", "privacy", "terms", "affiliate", "films"].includes(route);
+  // The exclusion list lives with the hooks (NL_POPUP_EXCLUDED, components.jsx)
+  // and is shared with the scroll bar: it adds the map, the guide and the pages
+  // that carry their own gate or signup.
+  const exitDisabled = !window.nlPopupAllowed(route);
 
   return (
     <>
@@ -1508,7 +1511,8 @@ function App() {
           change never remounts them mid-transition. */}
       <div className="navprogress" aria-hidden="true" />
       <window.BackToTop current={currentNav} />
-      <ExitIntentNewsletter disabled={exitDisabled} />
+      <ExitIntentNewsletter disabled={exitDisabled} route={route} />
+      <NewsletterBar route={route} />
     </>
   );
 }
@@ -1523,7 +1527,7 @@ window.SITE_ORIGIN = SITE_ORIGIN;
 // Boot-time registration check for the EAGER shell only (components.jsx). Page components are lazy-loaded per route and verified by
 // ensureRoute after each load, so they are deliberately absent here.
 const REQUIRED_GLOBALS = [
-  "Header", "Footer", "KeepGoing", "ExitIntentNewsletter",
+  "Header", "Footer", "KeepGoing", "ExitIntentNewsletter", "NewsletterBar",
 ];
 const missingGlobals = REQUIRED_GLOBALS.filter((n) => typeof window[n] === "undefined");
 if (missingGlobals.length) {

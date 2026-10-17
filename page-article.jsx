@@ -236,6 +236,29 @@ function ArticleBonus({ slug }) {
   );
 }
 
+// The mid-article banner's content. Copy comes from nlHookCopy("mid") by
+// section and season (components.jsx); the tag is the same compound shape as
+// the end-of-article unit's (article-mid-<section>). A figure-like aside, not a
+// heading: it adds nothing to the article's outline or the jump list.
+function ArticleMidLetter({ cat }) {
+  const [done, setDone] = React.useState(null);
+  const copy = window.nlHookCopy("mid", "", cat);
+  const tag = window.nlHookTag("article-mid", cat);
+  const ref = window.useNewsletterImpression("article_mid", tag, !done);
+  return (
+    <aside className="nlmid" ref={ref} aria-label="Sunday Field Notes">
+      <p className="nlmid__eyebrow">Sunday Field Notes / free</p>
+      <p className="nlmid__title">{copy.heading}</p>
+      <p className="nlmid__blurb">{copy.blurb}</p>
+      {done ? (
+        <p className="nlbox__done" role="status">{window.nlDoneLine(done)}</p>
+      ) : (
+        <window.NewsletterForm location="article_mid" tag={tag} cta="Subscribe →" className="nlmid__form" onDone={setDone} />
+      )}
+    </aside>
+  );
+}
+
 function ArticlePage({ slug, go }) {
   const article = window.findArticle(slug);
 
@@ -411,6 +434,41 @@ function ArticlePage({ slug, go }) {
     };
   }, [bodyState, slug, Body]);
   const closeLightbox = React.useCallback(() => setLightbox(null), []);
+
+  // Mid-article letter banner (location article_mid). A long piece (four or
+  // more h2 sections) gets one banner in the reading column, before the h2
+  // nearest the middle. Three guards keep it from costing the reader anything:
+  // it is placed only while that heading is still below the viewport and the
+  // URL carries no #fragment, so nothing the reader can see ever moves
+  // (CLS); it is skipped on a subscribed device, on a feature body and on the
+  // three guides whose bonus sheet is the article's letter ask; and it is
+  // client-only, so neither the prerendered fragment nor the crawler prose
+  // carries it. The host node is inserted between two of the body's own
+  // blocks and removed on cleanup, so React's tree is untouched.
+  const [midHost, setMidHost] = React.useState(null);
+  React.useEffect(() => {
+    setMidHost(null);
+    if (bodyState !== "ready" || !article || article.feature || ARTICLE_BONUS[slug]) return;
+    if (window.isSubscribed && window.isSubscribed()) return;
+    if (window.location.hash) return;
+    let host = null;
+    const raf = requestAnimationFrame(() => requestAnimationFrame(() => {
+      const prose = proseRef.current;
+      if (!prose) return;
+      const heads = Array.from(prose.children).filter((el) => el.tagName === "H2");
+      if (heads.length < 4) return;
+      const target = heads[Math.floor(heads.length / 2)];
+      if (target.getBoundingClientRect().top < window.innerHeight) return;
+      host = document.createElement("div");
+      host.className = "nlmid-host";
+      prose.insertBefore(host, target);
+      setMidHost(host);
+    }));
+    return () => {
+      cancelAnimationFrame(raf);
+      if (host && host.parentNode) host.parentNode.removeChild(host);
+    };
+  }, [bodyState, slug, Body]);
 
   const barRef = React.useRef(null);
   React.useEffect(() => {
@@ -717,6 +775,7 @@ function ArticlePage({ slug, go }) {
 
               {bodyEl}
             </div>}
+            {midHost && window.ReactDOM.createPortal(<ArticleMidLetter cat={article.cat} />, midHost)}
 
             {bodyState === "ready" && <ArticleBonus slug={slug} />}
 
