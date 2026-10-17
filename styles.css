@@ -352,11 +352,12 @@ main:focus { outline: none; }
   margin-bottom: 36px;
 }
 .site-footer__grid {
-  /* The about block plus the masthead's words (Plan a trip, Park now, Read)
-     and The journal. */
+  /* The about block plus the masthead's six labels (Plan, Hikes & permits,
+     Conditions, Seasons, Map, Library). Under 1200px the about block takes
+     its own row above the six. */
   display: grid;
-  grid-template-columns: 1.4fr repeat(4, 1fr);
-  gap: 40px;
+  grid-template-columns: 1.3fr repeat(6, 1fr);
+  gap: 32px;
   border-top: 1px solid var(--rule);
   padding-top: 36px;
 }
@@ -396,6 +397,30 @@ main:focus { outline: none; }
   color: var(--ink-2);
   margin: 0;
   max-width: 36ch;
+}
+@media (max-width: 1199px) {
+  .site-footer__grid { grid-template-columns: repeat(3, 1fr); }
+  .site-footer__about { grid-column: 1 / -1; }
+}
+/* About and Contact, under the about block. */
+.site-footer__about .site-footer__journal { margin-top: 14px; font-style: normal; font-family: var(--sans); font-size: 13px; }
+/* The Tools line under the grid: the map, the Field Guide, the widget. */
+.site-footer__tools {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 4px 22px;
+  margin: 32px 0 0;
+  font-family: var(--serif);
+  font-size: 16px;
+}
+.site-footer__tools span {
+  font-family: var(--sans);
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.22em;
+  color: var(--ink-3);
 }
 .site-footer__legal {
   margin-top: 56px;
@@ -6933,18 +6958,11 @@ kbd {
   .site-footer > .wrap,
   .keep-going > .wrap { width: calc(100% - 40px); }
 }
-/* Masthead labels never break inside themselves. Between 761px and about
-   830px the brand, five links and the button did not fit one row, so "Start
-   here", "The journal", "Park conditions", "Sunday Letter" and the button each
-   wrapped onto two lines. Below 880px (a margin for fallback fonts) the nav
-   now takes its own row under the brand, the layout phones already use. */
+/* Masthead labels never break inside themselves. (Where the six labels sit
+   at each width is the six-label block after the compact bar's rules.) */
 .hp-navigation nav > a,
 .hp-navigation nav > .hp-menu > a,
 .hp-design .hp-header > .hp-button { white-space: nowrap; }
-@media (min-width: 761px) and (max-width: 879px) {
-  .hp-design .hp-header { flex-wrap: wrap; row-gap: 0; }
-  .hp-navigation nav { order: 3; width: 100%; justify-content: flex-start; gap: 32px; margin-top: 14px; }
-}
 @media(max-width:360px) {
   :where(.hp-design) h1 { font-size: 55px; }
   .hp-navigation nav { font-size: 11px; }
@@ -7102,7 +7120,8 @@ kbd {
   .hp-guide .guide-prose h2 { font-size: 32px !important; padding-top: 36px; margin-top: 48px; }
 }
 
-/* Masthead menus: the Plan a trip, Park now and Read panels (NAV_GROUPS),
+/* Masthead menus: the Plan, Hikes & permits, Conditions, Seasons and Library
+   panels (NAV_GROUPS),
    drawn in the homepage's own type and palette. A panel opens from state,
    never from :hover (HomeMasthead in components.jsx says why), so the only
    rule that shows one is .is-open. */
@@ -7235,37 +7254,13 @@ kbd {
 }
 .hp-design .hp-menu__note { font-size: 11px; line-height: 1.5; color: #5c675f; }
 .hp-design .hp-menu__link:hover .hp-menu__label { color: #a4462c; }
-@media (max-width: 760px) {
-  /* The row runs edge to edge on a 375 or 390px phone. It is space-between,
-     so this lowers only the minimum gap; wherever the row fits, the labels
-     keep their spacing. */
-  .hp-design .hp-header nav { gap: 6px; }
-  .hp-design .hp-menu { gap: 2px; }
-  .hp-design .hp-menu__trigger { padding-block: 12px; }
-  /* The nav is its own row here and a panel opens from the caret, by tap, so
-     there is no pointer to bridge. One column, scrolling inside the window. */
-  .hp-design .hp-menu__panel { padding-top: 10px; }
-  .hp-design .hp-menu__panel::before { content: none; }
-  .hp-design .hp-menu__card {
-    grid-template-columns: 1fr;
-    gap: 22px;
-    padding: 24px 22px 26px;
-    max-height: min(70vh, 560px);
-  }
-  .hp-design .hp-menu__lede {
-    border-right: 0;
-    padding-right: 0;
-    border-bottom: 1px solid #d6dacf;
-    padding-bottom: 20px;
-  }
-  .hp-design .hp-menu__blurb { font-size: 24px; margin-bottom: 18px; }
-  .hp-design .hp-menu__cols { grid-template-columns: 1fr; gap: 20px; }
-  .hp-design .hp-menu__link { padding-block: 10px; }
-}
+/* Below 880px the labels and their panels are not drawn (the phone Menu
+   sheet stands in), so the panels have no phone layout of their own. */
 
 /* ── Masthead: layout, panel features, search box, compact bar ────────────
-   (HomeMasthead in components.jsx.) The nav sits centred between the brand
-   and the search box; below 880px it takes its own row, as before. */
+   (HomeMasthead in components.jsx.) From 880px up the six labels take the
+   masthead's second row; in the compact bar they sit centred in its one row.
+   Below 880px they give way to the Menu button. */
 .hp-design .hp-header > nav { margin-inline: auto; }
 
 /* A panel's small second block under its lede (the trip selector, road
@@ -7278,8 +7273,6 @@ kbd {
 .hp-design .hp-navfeat { display: flex; flex-direction: column; gap: 10px; align-items: flex-start; }
 .hp-design .hp-navfeat > .hp-menu__heading { align-self: stretch; margin-bottom: 0; }
 .hp-design .hp-navfeat__text { font-size: 11px; line-height: 1.6; color: #5c675f; margin: 0; }
-.hp-design .hp-navfeat picture { display: contents; }
-.hp-design .hp-navfeat__art { display: block; width: 100%; height: auto; aspect-ratio: 236 / 104; object-fit: cover; object-position: 45% 40%; background: #efeadc; border-radius: 3px; }
 /* The waits on an ink plate, the /conditions readout's treatment; the alarm
    colours are that readout's lifted pair, since the accent fails on ink. */
 .hp-design .hp-navfeat--waits { background: #233e35; color: #f8f5ed; border-radius: 3px; padding: 20px 22px 22px; }
@@ -7295,10 +7288,13 @@ kbd {
 .hp-design .hp-gates__row--moderate .hp-gates__read { color: #e3c489; }
 .hp-design .hp-gates__row--long .hp-gates__read { color: #e8a184; }
 
-/* Search. The box in the header from 1001px up; below that the nav's Search
-   link stands in for it. */
-.hp-navigation nav > .hp-nav__search { display: none; align-items: center; gap: 6px; }
-.hp-navigation nav > .hp-nav__search svg { display: block; flex: none; }
+/* Search. The box in the header from 1001px up; below that (and in the
+   compact bar) the Search link beside it stands in, as an icon with its word
+   kept for screen readers. */
+.hp-design .hp-header > .hp-nav__search { display: none; align-items: center; justify-content: center; min-width: 44px; min-height: 44px; color: #233e35; }
+.hp-design .hp-header > .hp-nav__search:hover { color: #a4462c; }
+.hp-design .hp-header > .hp-nav__search svg { display: block; flex: none; }
+.hp-design .hp-header > .hp-nav__search span { position: absolute; width: 1px; height: 1px; margin: -1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
 .hp-design .hp-search { position: relative; flex: none; }
 .hp-design .hp-search__field {
   display: flex;
@@ -7368,12 +7364,7 @@ kbd {
 .hp-design .hp-search__all { margin-top: 6px; padding-top: 14px; border-top: 1px solid #d6dacf; font-size: 11px; font-weight: 600; }
 @media (max-width: 1000px) {
   .hp-design .hp-search { display: none; }
-  .hp-navigation nav > .hp-nav__search { display: inline-flex; }
-}
-/* Six labels do not fit one row under 400px since the Books link joined it,
-   so Search keeps its icon and its word goes to screen readers only. */
-@media (max-width: 399px) {
-  .hp-navigation nav > .hp-nav__search span { position: absolute; width: 1px; height: 1px; margin: -1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+  .hp-design .hp-header > .hp-nav__search { display: inline-flex; }
 }
 
 /* The compact bar (HomeMasthead's scroll effect). Past the masthead's slot
@@ -7408,11 +7399,35 @@ kbd {
 .hp-navigation.is-stuck .hp-brand small { display: none; }
 .hp-navigation.is-stuck .hp-header > .hp-button { padding: 10px 16px; }
 .hp-navigation.is-stuck .hp-search__field { height: 38px; }
-.hp-navigation.is-stuck .hp-header > nav { order: 0; width: auto; margin-top: 0; }
+.hp-navigation.is-stuck .hp-header > nav { order: 0; width: auto; margin: 0 auto; }
 .hp-navigation.is-stuck .hp-menu__panel { left: var(--hp-edge); right: var(--hp-edge); padding-top: 10px; }
 .hp-navigation.is-stuck .hp-menu__panel::before { height: 18px; }
 .hp-navigation.is-stuck .hp-menu__card { max-height: calc(100vh - 96px); }
+/* One row holds the mark, the six labels, Search and Subscribe: the box
+   gives way to its icon and the Field Guide link sits out (every page
+   carries the Field Guide band), and below 1200px the name goes to screen
+   readers only. */
+.hp-navigation.is-stuck .hp-header { gap: 18px; }
+.hp-navigation.is-stuck .hp-search,
+.hp-navigation.is-stuck .hp-header > .hp-header__guide { display: none; }
+.hp-navigation.is-stuck .hp-header > .hp-nav__search { display: inline-flex; margin-left: 0; }
+@media (min-width: 880px) {
+  .hp-navigation.is-stuck .hp-header > nav { font-size: 13px; gap: 18px; }
+}
 @media (min-width: 1200px) {
+  .hp-navigation.is-stuck .hp-header > nav { font-size: 14px; gap: 22px; }
+}
+@media (max-width: 1199px) {
+  .hp-navigation.is-stuck .hp-brand > span {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip-path: inset(50%);
+    white-space: nowrap;
+  }
+}
+@media (min-width: 1440px) {
   .hp-navigation.is-stuck .hp-header__crumb {
     display: flex;
     align-items: center;
@@ -7434,24 +7449,11 @@ kbd {
   .hp-navigation.is-stuck .hp-header { --hp-edge: 32px; }
 }
 @media (max-width: 760px) {
-  /* One row on a phone: the mark (its name kept for screen readers), the
-     four labels and Search. The app button sits out; every page carries the
-     Field Guide band. */
-  .hp-navigation.is-stuck .hp-header { --hp-edge: 14px; height: 52px; gap: 10px; }
-  .hp-navigation.is-stuck .hp-brand > span {
-    position: absolute;
-    width: 1px;
-    height: 1px;
-    overflow: hidden;
-    clip-path: inset(50%);
-    white-space: nowrap;
-  }
+  /* One row on a phone, the masthead's own row at 52px: the mark (its name
+     kept for screen readers), Search, Subscribe and Menu. */
+  .hp-navigation.is-stuck .hp-header { --hp-edge: 14px; height: 52px; gap: 8px; }
   .hp-navigation.is-stuck .hp-brand img { width: 28px; height: 28px; }
-  .hp-navigation.is-stuck .hp-header > .hp-button { display: none; }
-  .hp-navigation.is-stuck .hp-header > nav { flex: 1; justify-content: space-between; gap: 4px; }
-  .hp-navigation.is-stuck .hp-header nav a,
-  .hp-navigation.is-stuck .hp-menu__trigger { padding-block: 10px; }
-  .hp-navigation.is-stuck .hp-menu__card { max-height: calc(100vh - 80px); }
+  .hp-navigation.is-stuck .hp-header > .hp-button { padding: 9px 12px; }
 }
 @media (prefers-reduced-motion: reduce) {
   .hp-navigation.is-stuck .hp-header { transition: none; }
@@ -7466,6 +7468,163 @@ html[data-nav-mode="pinned"] { scroll-padding-top: 62px; }
 }
 @media (max-width: 760px) {
   html[data-nav-compact] .readbar { top: 52px; }
+}
+
+/* ── Masthead, the six-label pass (October 2026) ──────────────────────────
+   Six labels, Search, the Field Guide link and Subscribe do not share one
+   row with the brand at any laptop width, so from 880px up the masthead is
+   two rows: the brand, then the search box (or its icon), the Field Guide
+   link and Subscribe on the right; the six labels on the second row, under
+   the brand. Below 880px the row is the mark, Search, Subscribe and Menu,
+   and the labels are not drawn: Menu opens the sheet (NavSheet). The
+   archive's flat, link-only row (.hp-nav--flat) has no Menu button, so it
+   stays drawn at every width and wraps on phones. */
+.hp-design .hp-header { flex-wrap: wrap; row-gap: 0; }
+.hp-design .hp-header > .hp-brand { margin-right: auto; }
+.hp-design .hp-header > .hp-header__guide {
+  font: 600 13px var(--sans);
+  color: #233e35;
+  white-space: nowrap;
+  padding-block: 12px;
+}
+.hp-design .hp-header > .hp-header__guide:hover { color: #a4462c; }
+.hp-design .hp-header > .hp-header__guide[aria-current="page"] {
+  text-decoration: underline;
+  text-decoration-color: #a4462c;
+  text-underline-offset: 7px;
+}
+.hp-design .hp-header > .hp-header__menu { display: none; }
+@media (min-width: 880px) {
+  .hp-design .hp-header > nav {
+    order: 3;
+    width: 100%;
+    margin: 18px 0 0;
+    justify-content: flex-start;
+    gap: 36px;
+  }
+}
+@media (min-width: 880px) and (max-width: 1100px) {
+  .hp-design .hp-header > nav { gap: 28px; }
+}
+@media (max-width: 879px) {
+  .hp-design .hp-header { gap: 8px; }
+  .hp-design .hp-header > nav:not(.hp-nav--flat),
+  .hp-design .hp-header > .hp-header__guide { display: none; }
+  .hp-design .hp-brand small { display: none; }
+  .hp-design .hp-header > .hp-header__menu {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    min-height: 40px;
+    padding: 0 12px;
+    margin: 0;
+    background: none;
+    border: 1px solid #c3cabd;
+    border-radius: 3px;
+    font: 600 12px var(--sans);
+    color: #233e35;
+    cursor: pointer;
+    white-space: nowrap;
+  }
+  .hp-design .hp-header > .hp-header__menu:hover,
+  .hp-design .hp-header > .hp-header__menu[aria-expanded="true"] { border-color: #a4462c; color: #a4462c; }
+  .hp-design .hp-header > .hp-header__menu svg { display: block; flex: none; }
+  .hp-design .hp-header > .hp-nav--flat {
+    order: 3;
+    width: 100%;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    gap: 0 18px;
+    margin-top: 6px;
+    font-size: 12px;
+  }
+  .hp-design .hp-header > .hp-nav--flat a { padding-block: 10px; }
+}
+@media (max-width: 760px) {
+  .hp-design .hp-brand { font-size: 24px; }
+}
+/* Under 480px the row cannot hold the full name beside its three controls,
+   so the mark stands alone and the name goes to screen readers, as it does
+   in the phone compact bar. */
+@media (max-width: 479px) {
+  .hp-design .hp-header > .hp-brand > span {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip-path: inset(50%);
+    white-space: nowrap;
+  }
+  .hp-design .hp-header > .hp-header__menu { padding: 0 10px; }
+}
+
+/* The phone Menu sheet: full height, over everything, in the panels' paper
+   and type. Hidden (and empty) while closed. */
+.hp-design.hp-navigation .hp-sheet[hidden] { display: none; }
+.hp-design.hp-navigation .hp-sheet {
+  position: fixed;
+  inset: 0;
+  z-index: 80;
+  background: #f8f5ed;
+  color: #233e35;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  -webkit-overflow-scrolling: touch;
+}
+.hp-design .hp-sheet__inner { max-width: 560px; margin: 0 auto; padding: 0 20px 48px; }
+.hp-design .hp-sheet__top {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 60px;
+  background: #f8f5ed;
+  border-bottom: 1px solid #c3cabd;
+}
+.hp-design .hp-sheet__title { margin: 0; font: 600 9px/1 var(--sans); letter-spacing: 1.7px; text-transform: uppercase; color: #5c675f; }
+.hp-design .hp-sheet__close {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 40px;
+  padding: 0 12px;
+  background: none;
+  border: 1px solid #c3cabd;
+  border-radius: 3px;
+  font: 600 12px var(--sans);
+  color: #233e35;
+  cursor: pointer;
+}
+.hp-design .hp-sheet__close:hover { border-color: #a4462c; color: #a4462c; }
+.hp-design .hp-sheet__group { padding: 18px 0 14px; border-bottom: 1px solid #d6dacf; }
+.hp-design .hp-sheet__label {
+  margin: 0 0 4px;
+  font: 600 9px/1.4 var(--sans);
+  letter-spacing: 1.7px;
+  text-transform: uppercase;
+  color: #a4462c;
+}
+.hp-design .hp-sheet__link,
+.hp-design .hp-sheet__head { display: block; padding: 9px 0; font: 21px/1.2 var(--serif); color: #233e35; }
+.hp-design .hp-sheet__head { padding-block: 4px; }
+.hp-design .hp-sheet__link:hover,
+.hp-design .hp-sheet__head:hover { color: #a4462c; }
+.hp-design .hp-sheet__more {
+  display: inline-block;
+  margin-top: 6px;
+  padding: 8px 0 4px;
+  font: 600 12px var(--sans);
+  color: #233e35;
+  border-bottom: 1px solid #a4462c;
+}
+.hp-design .hp-sheet__more:hover { color: #a4462c; }
+.hp-design .hp-sheet__foot { padding-top: 14px; }
+.hp-design .hp-sheet__books { display: flex; flex-direction: column; gap: 3px; }
+.hp-design .hp-sheet__books .hp-menu__label { font-size: 21px; }
+@media (min-width: 880px) {
+  .hp-design.hp-navigation .hp-sheet { display: none; }
 }
 
 /* ── Articles (page-article.jsx, /articles/<slug>) ─────────────────────────

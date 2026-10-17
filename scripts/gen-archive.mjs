@@ -20,9 +20,9 @@
 // so rendering them statically would ship labels that do nothing. These
 // pages get a flat, link-only masthead instead, built from the same
 // styles.css classes so it still reads as the same publication: the design
-// masthead (HomeMasthead's labels without its three JavaScript menus, each
-// linked to its landing page, and its search box as a plain GET form, with
-// no compact bar) and the site footer's structure
+// masthead (HomeMasthead's six labels without its five JavaScript menus,
+// each linked to its landing page, its search box as a plain GET form, and
+// no compact bar and no phone Menu sheet) and the site footer's structure
 // (Footer in components.jsx, without its date-derived copyright year, which
 // would make --check fail every January 1). Both are hand-kept mirrors: when
 // HOME_NAV or the Footer columns change, change DESIGN_NAV / siteFooter here.
@@ -42,7 +42,6 @@ import fs from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 import { loadIssues, groupByDecade, groupByYear } from "./lib/nature-notes.mjs";
-import { loadDataJs } from "./lib/catalog.mjs";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const ROOT = path.resolve(__dirname, "..");
@@ -96,24 +95,27 @@ function truncate(s, n) {
 // ---------------------------------------------------------------------------
 
 
-// HOME_NAV's labels (components.jsx), each linked to its group's landing
-// page: these pages load no JavaScript, so the three menus cannot open here
-// and a label goes where the menu's first link would.
+// HOME_NAV's six labels (components.jsx), each linked to its group's landing
+// page (NAV_GROUPS' `route`): these pages load no JavaScript, so the five
+// menus cannot open here and a label goes where the menu's first link would.
+// For the same reason there is no phone Menu button: the flat row stays on
+// screen at every width (.hp-nav--flat in styles.css), wrapping on phones.
 const DESIGN_NAV = [
-  ["/planning", "Plan a trip"],
-  ["/now", "Park now"],
+  ["/planning", "Plan"],
+  ["/section/trails", "Hikes & permits"],
+  ["/conditions", "Conditions"],
+  ["/section/seasonal", "Seasons"],
   ["/map", "Map"],
-  ["/articles", "Read"],
+  ["/articles", "Library"],
 ];
 
 // The masthead's search box, as a plain GET form (/search reads ?q= when it
-// loads), and the nav's Search link that stands in for it below 1000px. No
-// "/" hint: the shortcut is JavaScript.
+// loads), and the Search link that stands in for it below 1000px. No "/"
+// hint: the shortcut is JavaScript.
 const SEARCH_ICON = `<svg viewBox="0 0 24 24" width="15" height="15" aria-hidden="true" focusable="false"><circle cx="11" cy="11" r="6.5" fill="none" stroke="currentColor" stroke-width="2"></circle><line x1="16" y1="16" x2="21" y2="21" stroke="currentColor" stroke-width="2" stroke-linecap="round"></line></svg>`;
 
 function masthead() {
-  const nav = DESIGN_NAV.map(([href, label]) => `<a href="${href}">${esc(label)}</a>`).join("")
-    + `<a class="hp-nav__search" href="/search">${SEARCH_ICON.replace(/15/g, "13")}<span>Search</span></a>`;
+  const nav = DESIGN_NAV.map(([href, label]) => `<a href="${href}">${esc(label)}</a>`).join("");
   const search = `<form class="hp-search" role="search" action="/search" method="get"><label class="hp-search__field">${SEARCH_ICON}<input type="search" name="q" placeholder="Search the journal" aria-label="Search the journal" autocomplete="off" /></label></form>`;
   // The brand box takes the square cut of the mark (favicon-96.png, written by
   // gen-brand-icons.mjs from the same master, 5.7 KB), drawn at the design
@@ -124,9 +126,11 @@ function masthead() {
 <div class="hp-top">AN INDEPENDENT GUIDE TO YOSEMITE<span>Written here. Taken everywhere.</span></div>
 <div class="hp-wrap hp-header">
   <a class="hp-brand" href="/"><img src="/img/favicon-96.png" width="96" height="96" alt="" /><span>The Talus Field<small>YOSEMITE, FROM THE INSIDE.</small></span></a>
-  <nav aria-label="Main navigation">${nav}</nav>
+  <nav class="hp-nav--flat" aria-label="Main navigation">${nav}</nav>
   ${search}
-  <a class="hp-button" href="/guide">Get the app ↗</a>
+  <a class="hp-nav__search" href="/search">${SEARCH_ICON.replace(/15/g, "16")}<span>Search</span></a>
+  <a class="hp-header__guide" href="/guide">Field Guide</a>
+  <a class="hp-button hp-header__subscribe" href="/newsletter">Subscribe</a>
 </div>
 </div>`;
 }
@@ -154,30 +158,40 @@ const PROVENANCE = `<div class="hp-wrap arc-provenance">
     </p>
   </div>`;
 
-// Footer in components.jsx, as static links. The section list is read from
-// the catalog, as the SPA reads window.CATEGORIES.
+// Footer in components.jsx, as static links: the masthead's six labels as
+// column headings, the Tools line, About and Contact under the about block,
+// and the business and legal bar. The section labels follow the masthead's
+// sentence case ("Trails and hikes"), as Footer does.
 function siteFooter() {
-  const { categories } = loadDataJs();
   const li = (href, label) => `<li><a href="${href}">${esc(label)}</a></li>`;
-  const plan = [
-    ["/start-here", "Start here"], ["/planning", "The Planning Guide"], ["/map", "The trip map"],
-    ["/itineraries", "Itineraries"], ["/stay", "Where to stay"], ["/distances", "Drive times"],
-    ["/international", "Visiting from abroad"], ["/checklist", "First-week checklist"], ["/kit", "Kit"],
-    ["/guide", "The Field Guide"],
-  ].map(([h, l]) => li(h, l)).join("");
-  const now = [
-    ["/now", "The Park Bulletin"], ["/conditions", "Conditions"], ["/webcams", "Webcams"],
-    ["/dates", "Dates that matter"],
-  ].map(([h, l]) => li(h, l)).join("");
-  const read = [
-    li("/articles", "All articles"),
-    ...categories.map((c) => li(`/section/${c.slug}`, c.label)),
-    li("/films", "Films"),
-    li("/archive/", "Nature Notes archive"),
-  ].join("");
-  const journal = [
-    ["/about", "About"], ["/newsletter", "Newsletter"], ["/contact", "Contact"],
-  ].map(([h, l]) => li(h, l)).join("");
+  const list = (rows) => rows.map(([h, l]) => li(h, l)).join("");
+  const plan = list([
+    ["/start-here", "Start here"], ["/planning", "The Planning Guide"], ["/itineraries", "Itineraries"],
+    ["/stay", "Where to stay"], ["/articles/yosemite-camping-complete-guide", "Camping"],
+    ["/articles/where-to-eat-yosemite", "Where to eat"], ["/distances", "Drive times"],
+    ["/articles/best-airport-for-yosemite", "Flying in"], ["/international", "Visiting from abroad"],
+    ["/checklist", "First-week checklist"], ["/kit", "Kit"], ["/consult", "Trip consults"],
+  ]);
+  const hikes = list([
+    ["/half-dome-lottery", "Half Dome lottery"], ["/articles/mist-trail-the-real-guide", "Mist Trail"],
+    ["/articles/cathedral-lakes-day-hike", "Cathedral Lakes"], ["/articles/yosemite-falls-trail", "Yosemite Falls Trail"],
+    ["/articles/clouds-rest-hike", "Clouds Rest"], ["/section/trails", "All trails and hikes"],
+  ]);
+  const conditions = list([
+    ["/conditions", "Conditions and road alerts"], ["/now", "The Park Bulletin"], ["/webcams", "Webcams"],
+    ["/tioga-opening", "Tioga Road opening"],
+  ]);
+  const seasons = list([
+    ["/dates", "Dates that matter"], ["/fall-color", "Fall color"], ["/firefall", "Firefall"],
+    ["/moonbow", "Moonbow"], ["/frazil-ice", "Frazil ice"], ["/section/seasonal", "Seasonal guides"],
+  ]);
+  const map = list([["/map", "The trip map"]]);
+  const library = list([
+    ["/articles", "All articles"], ["/section/planning", "Planning"], ["/section/trails", "Trails and hikes"],
+    ["/section/wildlife", "Wildlife and nature"], ["/section/seasonal", "Seasonal guides"],
+    ["/archive/", "Nature Notes archive"], ["/films", "Films"], ["/newsletter", "The Sunday Letter"],
+    ["/search", "Search"],
+  ]);
   return `<footer class="site-footer">
   <div class="wrap">
     <div class="site-footer__grid">
@@ -186,12 +200,16 @@ function siteFooter() {
         <div class="site-footer__sub">A field journal of Yosemite</div>
         <p>Notes on a single park, kept slowly. Updated when something is worth saying.</p>
         <a class="site-footer__index" href="/explore">Everything on this site →</a>
+        <p class="site-footer__journal"><a href="/about">About</a> · <a href="/contact">Contact</a></p>
       </div>
-      <div><h2>Plan a trip</h2><ul>${plan}</ul></div>
-      <div><h2>Park now</h2><ul>${now}</ul></div>
-      <div><h2>Read</h2><ul>${read}</ul></div>
-      <div><h2>The journal</h2><ul>${journal}</ul></div>
+      <div><h2>Plan</h2><ul>${plan}</ul></div>
+      <div><h2>Hikes &amp; permits</h2><ul>${hikes}</ul></div>
+      <div><h2>Conditions</h2><ul>${conditions}</ul></div>
+      <div><h2>Seasons</h2><ul>${seasons}</ul></div>
+      <div><h2>Map</h2><ul>${map}</ul></div>
+      <div><h2>Library</h2><ul>${library}</ul></div>
     </div>
+    <p class="site-footer__tools"><span>Tools</span><a href="/map">Map</a><a href="/guide">Field Guide</a><a href="/widget">Conditions widget</a></p>
     <div class="site-footer__disclosure">
       Some links on this site are affiliate links. If you book or buy through one, The Talus Field may earn a small commission at no extra cost to you. <a href="/affiliate">Full disclosure here.</a>
     </div>
@@ -788,7 +806,7 @@ const ARCHIVE_CSS = `/* Generated by scripts/gen-archive.mjs — edit that file,
 // The issue's own 1922-1954 date is not lost. It is the visible dateline on
 // each page and the datePublished of its PublicationIssue JSON-LD, which is
 // where a publication date belongs.
-const ARCHIVE_CONTENT_UPDATED = "2026-10-15";
+const ARCHIVE_CONTENT_UPDATED = "2026-10-17";
 
 function renderSitemap(issues, years) {
   // No changefreq and no priority: Google has ignored both for years, and they

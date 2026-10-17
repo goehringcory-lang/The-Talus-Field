@@ -275,16 +275,22 @@ const HUB_PROSE = {
       "Everything on The Talus Field",
       "The site index: every destination in this Yosemite field journal, with a line on what each one is for."
     ) +
-    `<h2>Read</h2>` +
-    `<p><a href="/articles">All articles</a> · <a href="/section/planning">Planning</a> · <a href="/section/trails">Trails and hikes</a> · <a href="/section/wildlife">Wildlife and nature</a> · <a href="/section/seasonal">Seasonal guides</a> · <a href="/now">The Park Bulletin</a> · <a href="/films">Films</a> · <a href="/archive/">The Nature Notes archive</a> · <a href="/search">Search</a></p>` +
-    `<h2>Plan a trip</h2>` +
-    `<p><a href="/planning">The Yosemite Planning Guide</a> · <a href="/map">The Map</a> · <a href="/itineraries">Itineraries</a> · <a href="/stay">Where to stay</a> · <a href="/conditions">Conditions</a> · <a href="/checklist">The first-week checklist</a> · <a href="/kit">The Kit</a> · <a href="/consult">Trip consults</a></p>` +
-    `<h2>Dated events</h2>` +
-    `<p><a href="/firefall">Firefall</a> · <a href="/tioga-opening">The Tioga Road opening</a> · <a href="/half-dome-lottery">The Half Dome lottery</a> · <a href="/fall-color">Fall color</a> · <a href="/moonbow">The moonbow</a> · <a href="/frazil-ice">Frazil ice</a></p>` +
+    `<h2>Plan</h2>` +
+    `<p><a href="/start-here">Start here</a> · <a href="/planning">The Yosemite Planning Guide</a> · <a href="/itineraries">Itineraries</a> · <a href="/stay">Where to stay</a> · <a href="/articles/yosemite-camping-complete-guide">Camping</a> · <a href="/articles/where-to-eat-yosemite">Where to eat</a> · <a href="/distances">Drive times</a> · <a href="/articles/best-airport-for-yosemite">Flying in</a> · <a href="/international">Visiting from abroad</a> · <a href="/checklist">The first-week checklist</a> · <a href="/kit">The Kit</a> · <a href="/consult">Trip consults</a></p>` +
+    `<h2>Hikes &amp; permits</h2>` +
+    `<p><a href="/half-dome-lottery">The Half Dome lottery</a> · <a href="/section/trails">Trails and hikes</a></p>` +
+    `<h2>Conditions</h2>` +
+    `<p><a href="/conditions">Conditions and road alerts</a> · <a href="/now">The Park Bulletin</a> · <a href="/webcams">Webcams</a> · <a href="/tioga-opening">The Tioga Road opening</a></p>` +
+    `<h2>Seasons</h2>` +
+    `<p><a href="/dates">Dates that matter</a> · <a href="/section/seasonal">Seasonal guides</a> · <a href="/fall-color">Fall color</a> · <a href="/firefall">Firefall</a> · <a href="/moonbow">The moonbow</a> · <a href="/frazil-ice">Frazil ice</a></p>` +
+    `<h2>Map</h2>` +
+    `<p><a href="/map">The Map</a></p>` +
+    `<h2>Library</h2>` +
+    `<p><a href="/articles">All articles</a> · <a href="/section/planning">Planning</a> · <a href="/section/trails">Trails and hikes</a> · <a href="/section/wildlife">Wildlife and nature</a> · <a href="/section/seasonal">Seasonal guides</a> · <a href="/archive/">The Nature Notes archive</a> · <a href="/films">Films</a> · <a href="/newsletter">The Sunday Letter</a> · <a href="/search">Search</a></p>` +
     `<h2>The Field Guide</h2>` +
     `<p><a href="/guide">The Field Guide</a> · <a href="/partners">Group codes</a></p>` +
     `<h2>The journal</h2>` +
-    `<p><a href="/about">About the journal</a> · <a href="/newsletter">Sunday Field Notes</a> · <a href="/contact">Contact</a> · <a href="/places">The Directory</a> · <a href="/advertise">Advertise</a> · <a href="/widget">The conditions widget</a> · <a href="/privacy">Privacy</a> · <a href="/terms">Terms</a> · <a href="/affiliate">Affiliate disclosure</a></p>`,
+    `<p><a href="/about">About the journal</a> · <a href="/contact">Contact</a> · <a href="/places">The Directory</a> · <a href="/advertise">Advertise</a> · <a href="/widget">The conditions widget</a> · <a href="/privacy">Privacy</a> · <a href="/terms">Terms</a> · <a href="/affiliate">Affiliate disclosure</a></p>`,
   "/conditions": () =>
     hubProse(
       "Yosemite conditions: webcams, waits, and weather",
@@ -661,6 +667,7 @@ function seoForPath(pathname, searchParams) {
       },
       breadcrumb: breadcrumbLd([
         ["Home", `${SITE_ORIGIN}/`],
+        ["Library", `${SITE_ORIGIN}/articles`],
         cat ? [cat.label, `${SITE_ORIGIN}/section/${cat.slug}`] : null,
         [a.title, null],
       ].filter(Boolean)),
@@ -699,6 +706,7 @@ function seoForPath(pathname, searchParams) {
       },
       breadcrumb: breadcrumbLd([
         ["Home", `${SITE_ORIGIN}/`],
+        ["Library", `${SITE_ORIGIN}/articles`],
         [cat.label, null],
       ]),
       prose: hubProse(cat.label, `${cat.blurb} ${items.length} entries from The Talus Field's Yosemite field journal.`, articleLinkList(items)),

@@ -551,12 +551,13 @@ function releaseRockfall(markEl) {
 // ============================================================
 // Masthead menus
 // ============================================================
-// NAV_GROUPS is the site's map of primary destinations, and its four words
-// (Plan a trip, Park now, Map, Read) are the site's one navigation
-// vocabulary: HomeMasthead draws them in that order on every route, the
-// footer heads its columns with them, and /explore sections itself by them.
-// Three groups are menus (Plan a trip, Park now, Read), Map is a plain link,
-// and the Field Guide is the masthead's button. The secondary destinations
+// NAV_GROUPS is the site's map of primary destinations, and its six labels
+// (Plan, Hikes & permits, Conditions, Seasons, Map, Library) are the site's
+// one navigation vocabulary: HomeMasthead draws them in that order on every
+// route, the phone Menu sheet lists them in the same order, the footer heads
+// its columns with them, and /explore sections itself by them. Five groups
+// are menus; Map is a plain link. Subscribe (the Sunday Letter) and the Field
+// Guide link sit to the right of the labels. The secondary destinations
 // (About, Contact, Directory, the business pages) live in the footer and on
 // /explore.
 //
@@ -570,15 +571,17 @@ function releaseRockfall(markEl) {
 // Sunday Letter is a section of the homepage itself). Start here deliberately
 // carries no `onHome`: it always opens the /start-here page, even from "/",
 // where the homepage's own "Plan your first visit" button is the in-page jump.
-// `route` is the group's landing page, the first link in
-// its panel; the label itself opens the panel rather than navigating. `aside`
-// is a small block under the panel's lede, and `feature` names the panel's
-// third track (NavMapFeature, NavWaitsFeature, NavNewestFeature below). A
-// group with no `columns` renders as a plain link. A link with `aff` instead
-// of a key is an affiliate link out of the site (the bookshelf on
-// Bookshop.org): the masthead mints it from that network's registry entry in
-// affiliate.js with the full affiliate markup, and its `note` carries the
-// disclosure, since a menu has no page head to put one in.
+// `route` is the group's landing page: the panel's first link (its `cta`)
+// and the phone sheet's "More" link, so no column repeats it, and no link
+// appears twice in one group. The label itself opens the panel rather than
+// navigating. `aside` is a small block under the panel's lede, and `feature`
+// names the panel's third track (NavWaitsFeature, NavNewestFeature below).
+// `quick: true` marks the three or four links the phone Menu sheet lists
+// under the group's label. A group with no `columns` renders as a plain link.
+// A link with `aff` instead of a key is an affiliate link out of the site
+// (the bookshelf on Bookshop.org): the masthead mints it from that network's
+// registry entry in affiliate.js with the full affiliate markup, and its
+// `note` carries the disclosure, since a menu has no page head to put one in.
 //
 // Two rules for the copy: keep a `note` to one short line, and keep years
 // out of all of it. The masthead is baked into index.html's static home shell
@@ -586,13 +589,13 @@ function releaseRockfall(markEl) {
 // that file is cached hard. For the same reason nothing in this table may be
 // computed from the catalog (the generator renders with an empty
 // window.ARTICLES, so a live count would bake as zero and then shift on
-// boot). The Read panel's Newest column is the one thing the masthead reads
-// from the catalog, at render: the shell bakes it empty, which is safe only
-// because every panel is closed at first paint.
+// boot). The Library panel's Newest column is the one thing the masthead
+// reads from the catalog, at render: the shell bakes it empty, which is safe
+// only because every panel is closed at first paint.
 const NAV_GROUPS = [
   {
     key: "plan",
-    label: "Plan a trip",
+    label: "Plan",
     route: "planning",
     cta: "The Planning Guide →",
     blurb: "The trip, in the order the decisions actually come at you.",
@@ -602,37 +605,72 @@ const NAV_GROUPS = [
       text: "When, how long, where you sleep, who is coming, and what matters most.",
       link: { key: "planning", hash: "trip-selector", label: "Start the selector" },
     },
-    feature: "map",
     columns: [
       {
         heading: "Decide",
         links: [
-          { key: "start-here", label: "Start here", note: "Your first trip, the questions in order" },
-          { key: "planning", label: "The Planning Guide", note: "Every article, in trip order" },
-          { key: "itineraries", label: "Itineraries", note: "Half-day to three-day plans, in drive order" },
+          { key: "start-here", label: "Start here", note: "Your first trip, the questions in order", quick: true },
+          { key: "itineraries", label: "Itineraries", note: "Half-day to three-day plans, in drive order", quick: true },
+          { key: "checklist", label: "First-week checklist", note: "What to do in the week before you go" },
+          { key: "kit", label: "Kit", note: "What earns its place in the pack" },
           { key: "consult", label: "Trip consults", note: "Thirty minutes, one on one. Paid" },
         ],
       },
       {
-        heading: "Book and get there",
+        heading: "Stay and eat",
         links: [
-          { key: "stay", label: "Where to stay", note: "In-park lodging and the gateway towns" },
-          { key: "a:best-airport-for-yosemite", label: "Flying in", note: "Which airport, and the drive or bus from it" },
+          { key: "stay", label: "Where to stay", note: "In-park lodging and the gateway towns", quick: true },
+          { key: "a:yosemite-camping-complete-guide", label: "Camping", note: "All thirteen campgrounds, and how to get a site" },
+          { key: "a:where-to-eat-yosemite", label: "Where to eat", note: "Restaurants, groceries and picnic spots, by area" },
+        ],
+      },
+      {
+        heading: "Getting here",
+        links: [
           { key: "distances", label: "Drive times", note: "How far the Valley is from every gateway town" },
+          { key: "a:best-airport-for-yosemite", label: "Flying in", note: "Which airport, and the drive or bus from it" },
           { key: "international", label: "Visiting from abroad", note: "The non-resident entrance fee, and the cheapest way in" },
-          { key: "checklist", label: "First-week checklist", note: "What to do in the week before you go" },
-          { key: "kit", label: "Kit", note: "What earns its place in the pack" },
         ],
       },
     ],
   },
   {
-    // Everything that answers "what is it like in there right now, and what
-    // is coming": the live pages, and the dated decisions people plan around.
-    key: "now",
-    label: "Park now",
-    route: "now",
-    cta: "The Park Bulletin →",
+    key: "hikes",
+    label: "Hikes & permits",
+    route: "cat:trails",
+    cta: "All trails and hikes →",
+    blurb: "The day hikes worth the drive, and the permit that decides the big one.",
+    columns: [
+      {
+        heading: "Permits",
+        links: [
+          { key: "half-dome-lottery", label: "Half Dome lottery", note: "The permit odds, plainly", quick: true },
+        ],
+      },
+      {
+        heading: "Day hikes",
+        links: [
+          { key: "a:mist-trail-the-real-guide", label: "Mist Trail", note: "Vernal and Nevada Falls, and where to turn around", quick: true },
+          { key: "a:cathedral-lakes-day-hike", label: "Cathedral Lakes", note: "The high-country day out of Tuolumne", quick: true },
+          { key: "a:yosemite-falls-trail", label: "Yosemite Falls Trail", note: "Columbia Rock, the top, and the loop below" },
+          { key: "a:clouds-rest-hike", label: "Clouds Rest", note: "Higher than Half Dome, and no lottery" },
+        ],
+      },
+      {
+        heading: "Gear",
+        links: [
+          { key: "kit", label: "Kit", note: "The day pack, the overnight pack, the car kit" },
+        ],
+      },
+    ],
+  },
+  {
+    // What it is like in there right now: the live pages only. The dated
+    // decisions people plan around are under Seasons.
+    key: "conditions",
+    label: "Conditions",
+    route: "conditions",
+    cta: "Conditions and road alerts →",
     blurb: "What is open, what is on, and what the gates look like.",
     aside: {
       eyebrow: "Road alerts",
@@ -645,19 +683,31 @@ const NAV_GROUPS = [
       {
         heading: "Today",
         links: [
-          { key: "now", label: "The Park Bulletin", note: "What is happening in the park right now" },
-          { key: "conditions", label: "Conditions", note: "Gates, lots, roads, and who to call" },
-          { key: "webcams", label: "Webcams", note: "The live views, and how to read them" },
+          { key: "now", label: "The Park Bulletin", note: "What is happening in the park right now", quick: true },
+          { key: "webcams", label: "Webcams", note: "The live views, and how to read them", quick: true },
+          { key: "tioga-opening", label: "Tioga Road opening", note: "When the high country actually opens", quick: true },
         ],
       },
+    ],
+  },
+  {
+    key: "seasons",
+    label: "Seasons",
+    route: "cat:seasonal",
+    cta: "Seasonal guides →",
+    blurb: "The dates people plan a trip around, and the park month by month.",
+    columns: [
       {
         heading: "The calendar",
         links: [
-          { key: "dates", label: "Dates that matter", note: "Lotteries, release mornings, road windows, for your calendar" },
-          { key: "tioga-opening", label: "Tioga Road opening", note: "When the high country actually opens" },
-          { key: "firefall", label: "Firefall", note: "Whether to plan a trip around Horsetail Fall" },
-          { key: "half-dome-lottery", label: "Half Dome lottery", note: "The permit odds, plainly" },
-          { key: "fall-color", label: "Fall color", note: "When and where the leaves turn" },
+          { key: "dates", label: "Dates that matter", note: "Lotteries, release mornings, road windows, for your calendar", quick: true },
+        ],
+      },
+      {
+        heading: "The events",
+        links: [
+          { key: "fall-color", label: "Fall color", note: "When and where the leaves turn", quick: true },
+          { key: "firefall", label: "Firefall", note: "Whether to plan a trip around Horsetail Fall", quick: true },
           { key: "moonbow", label: "Moonbow", note: "Rainbows by moonlight at Yosemite Falls" },
           { key: "frazil-ice", label: "Frazil ice", note: "The mornings the creek runs white" },
         ],
@@ -666,12 +716,17 @@ const NAV_GROUPS = [
   },
   { key: "map", label: "Map", route: "map" },
   {
-    // Keeps the key "read": navGroupOf and the footer lean on it.
-    key: "read",
-    label: "Read",
+    key: "library",
+    label: "Library",
     route: "articles",
     cta: "All articles →",
-    blurb: "The journal itself: everything published, by section.",
+    blurb: "The journal itself, everything published by section, and the park's own record.",
+    aside: {
+      eyebrow: "Search",
+      title: "Looking for one thing?",
+      text: "Titles, sections and summaries, as you type.",
+      link: { key: "search", label: "Search the site" },
+    },
     feature: "newest",
     columns: [
       {
@@ -684,18 +739,17 @@ const NAV_GROUPS = [
         ],
       },
       {
-        heading: "From the archive",
+        heading: "The record",
         links: [
-          { href: "/archive/", label: "Nature Notes archive", note: "512 issues of the park's own bulletin" },
-          { key: "films", label: "Films", note: "The NPS Nature Notes film series, annotated" },
-          { key: "newsletter", onHome: "home-newsletter", label: "The Sunday Letter", note: "One short letter a week. Free" },
-          { aff: "bookshop", label: "The bookshelf ↗", note: "The field guides I recommend, on Bookshop.org. Affiliate link" },
+          { href: "/archive/", label: "Nature Notes archive", note: "512 issues of the park's own bulletin", quick: true },
+          { key: "films", label: "Films", note: "The NPS Nature Notes film series, annotated", quick: true },
+          { key: "newsletter", onHome: "home-newsletter", label: "The Sunday Letter", note: "One short letter a week, and the past letters", quick: true },
+          { aff: "bookshop", label: "Books ↗", note: "The bookshelf: the field guides I recommend, on Bookshop.org. Affiliate link" },
           { key: "explore", label: "Everything on this site", note: "Every page, with a line on each" },
         ],
       },
     ],
   },
-  { key: "guide", label: "Field Guide", route: "guide" },
 ];
 
 window.NAV_GROUPS = NAV_GROUPS;
@@ -733,20 +787,27 @@ function HomeLink({ go, href, location, children, ...props }) {
 // of styles.css.
 // ============================================================
 
-// The masthead's links, in the order a visit runs: plan it, check the park,
-// find it on the map, read. Three are menus built from NAV_GROUPS (the panel
-// is the group's lede, its `columns` and its `feature`); Map is a plain link.
-// The same words head the footer's columns and /explore's sections.
+// The masthead's labels, in the order a visit runs: plan it, pick the hikes,
+// check the park, pick the season, find it on the map, read. Five are menus
+// built from NAV_GROUPS (the panel is the group's lede, its `columns` and its
+// `feature`); Map is a plain link. The same words, in the same order, head
+// the phone Menu sheet's groups, the footer's columns and /explore's sections.
 const HOME_NAV = [
-  { label: "Plan a trip", group: "plan" },
-  { label: "Park now", group: "now" },
+  { label: "Plan", group: "plan" },
+  { label: "Hikes & permits", group: "hikes" },
+  { label: "Conditions", group: "conditions" },
+  { label: "Seasons", group: "seasons" },
   { href: "/map", label: "Map" },
-  { label: "Read", group: "read" },
+  { label: "Library", group: "library" },
 ];
 
+// Where the masthead's Subscribe button goes: the homepage's own letter
+// section on "/", the signup page everywhere else.
+const SUBSCRIBE_HREF = { home: "#home-newsletter", other: "/newsletter" };
+
 // A panel's landing link reads like the homepage's other text links, which
-// end in ↗ rather than →.
-const homeMenuCta = (cta) => `${(cta || "Open the section").replace(/\s*→\s*$/, "")} ↗`;
+// end in ↗ rather than →.
+const homeMenuCta = (cta) => `${(cta || "Open the section").replace(/\s*→\s*$/, "")} ↗`;
 
 // The menu group holding the page the reader is on, so its trigger can say
 // so. app.jsx passes "articles" for every article and section route.
@@ -757,32 +818,7 @@ function navGroupOf(current) {
   return g ? g.key : null;
 }
 
-// The Plan a trip panel's third track: the trip map, the tool most planning
-// pages end in. The picture is a strip of the National Park Service's own
-// Valley map (img/nps-yosemite-valley-map.jpg), not a drawing of anywhere.
-function NavMapFeature({ link }) {
-  return (
-    <div className="hp-navfeat hp-navfeat--map">
-      <p className="hp-menu__heading">The trip map</p>
-      {/* The track draws the strip about 320px wide (cover-cropped), so the
-          400w cut serves a 1x screen and the 800w one a phone; AVIF/WebP first. */}
-      <picture>
-        <source type="image/avif" sizes="320px"
-          srcSet="/img/responsive/nps-yosemite-valley-map-400.avif 400w, /img/responsive/nps-yosemite-valley-map-800.avif 800w" />
-        <source type="image/webp" sizes="320px"
-          srcSet="/img/responsive/nps-yosemite-valley-map-400.webp 400w, /img/responsive/nps-yosemite-valley-map-800.webp 800w" />
-        <img className="hp-navfeat__art" src="/img/responsive/nps-yosemite-valley-map-800.jpg" sizes="320px"
-          srcSet="/img/responsive/nps-yosemite-valley-map-400.jpg 400w, /img/responsive/nps-yosemite-valley-map-800.jpg 800w"
-          width="236" height="104" loading="lazy" decoding="async"
-          alt="A strip of the National Park Service map of Yosemite Valley" />
-      </picture>
-      <p className="hp-navfeat__text">Every pin in the park, assembled into a route you can share or open in the Field Guide.</p>
-      {link({ key: "map", label: "Open the map ↗" }, "hp-link")}
-    </div>
-  );
-}
-
-// The Park now panel's third track: the entrance waits, read from the Park
+// The Conditions panel's third track: the entrance waits, read from the Park
 // Service's feed. `live` mounts the feed the first time the panel opens, so a
 // page view that never opens the menu never fetches it; until then (and in
 // the static shell) the rows hold dashes.
@@ -792,13 +828,13 @@ function NavWaitsFeature({ live, link }) {
       <p className="hp-menu__heading">Entrance waits, live</p>
       {live ? <EntranceWaits variant="menu" /> : <GateReadout waits={null} />}
       <p className="hp-navfeat__text">Posted by the National Park Service. A dash means no wait is posted right now.</p>
-      {link({ key: "conditions", hash: "cond-waits", label: "Gates and lots on Conditions ↗" }, "hp-link")}
+      {link({ key: "conditions", hash: "cond-waits", label: "Gates and lots on Conditions ↗" }, "hp-link")}
     </div>
   );
 }
 
-// The Read panel's third track: the three newest entries. The only part of
-// the masthead read from the catalog; the static shell renders it empty.
+// The Library panel's third track: the three newest entries. The only part
+// of the masthead read from the catalog; the static shell renders it empty.
 function NavNewestFeature({ link }) {
   const newest = (window.ARTICLES || [])
     .slice()
@@ -820,10 +856,10 @@ function NavNewestFeature({ link }) {
 // What the search box offers before anything is typed: the four pages most
 // visits are after, so the box is a way in even for a reader with no query.
 const SEARCH_JUMPS = [
-  { key: "now", title: "The Park Bulletin", kind: "Park now" },
-  { key: "conditions", title: "Conditions", kind: "Park now" },
+  { key: "now", title: "The Park Bulletin", kind: "Conditions" },
+  { key: "conditions", title: "Conditions", kind: "Conditions" },
   { key: "map", title: "The trip map", kind: "Map" },
-  { key: "stay", title: "Where to stay", kind: "Plan a trip" },
+  { key: "stay", title: "Where to stay", kind: "Plan" },
 ];
 
 // The masthead's search box. Results come from window.searchCatalog, the
@@ -1014,6 +1050,20 @@ const NAV_HEADROOM_ROUTES = new Set(["stay"]);
 // never React state, so a scroll does not re-render the masthead. Off on
 // /map, whose page is the map.
 //
+// The phone Menu sheet (approved by Cory, October 2026). Below 880px the
+// labels and their panels are not drawn; the row is the mark, Search,
+// Subscribe and a Menu button, which opens NavSheet: a full-height dialog
+// listing the six groups, each with its `quick` links and a "More" link to
+// its landing page, then the Field Guide and the bookshelf. The button
+// carries aria-expanded and aria-controls; the sheet is role="dialog"
+// aria-modal="true" with a label, takes focus when it opens, keeps Tab
+// inside itself, closes on Escape (focus back on the button), on taking a
+// link and on growing past 880px, and locks the page's scroll while open.
+// The sheet's element is always in the markup (empty and hidden while
+// closed) so aria-controls always names something; it carries the dialog
+// role only while open, because app.jsx's "/" shortcut stands down whenever
+// a modal dialog is in the document.
+//
 // On the homepage the static shell (scripts/gen-home-shell.mjs) bakes this
 // render, so the render itself must stay free of browser state; everything
 // that reads the window happens in effects and handlers.
@@ -1026,16 +1076,19 @@ function HomeMasthead({ go, current = "home", route }) {
   const [open, setOpen] = useState(null);
   const [pinned, setPinned] = useState(false);
   const [nowSeen, setNowSeen] = useState(false);
+  const [sheet, setSheet] = useState(false);
   const closeTimer = useRef(null);
   const blockRef = useRef(null);
   const headerRef = useRef(null);
   const navRef = useRef(null);
+  const sheetRef = useRef(null);
+  const menuButtonRef = useRef(null);
 
   const openMenu = (key, byHover) => {
     clearTimeout(closeTimer.current);
     setOpen(key);
     setPinned(!byHover);
-    if (key === "now") setNowSeen(true);
+    if (key === "conditions") setNowSeen(true);
   };
   const closeMenu = () => { clearTimeout(closeTimer.current); setOpen(null); setPinned(false); };
   const closeSoon = () => {
@@ -1078,6 +1131,53 @@ function HomeMasthead({ go, current = "home", route }) {
       document.removeEventListener("pointerdown", onDown);
     };
   }, [open]);
+
+  // The Menu sheet's dialog contract: focus in, Tab kept inside, Escape out
+  // with focus back on the button, the page's scroll locked, and closed again
+  // if the window grows past the phone layout.
+  const closeSheet = (restore) => {
+    setSheet(false);
+    if (restore && menuButtonRef.current) menuButtonRef.current.focus();
+  };
+  React.useEffect(() => {
+    if (!sheet) return undefined;
+    const node = sheetRef.current;
+    const root = document.documentElement;
+    const prevOverflow = root.style.overflow;
+    const prevBodyOverflow = document.body.style.overflow;
+    root.style.overflow = "hidden";
+    document.body.style.overflow = "hidden";
+    const focusables = () => (node
+      ? Array.from(node.querySelectorAll('a[href], button:not([disabled])')).filter((el) => el.offsetParent !== null || el === document.activeElement)
+      : []);
+    const first = focusables()[0];
+    if (first) first.focus();
+    const onKey = (e) => {
+      if (e.key === "Escape") { e.preventDefault(); closeSheet(true); return; }
+      if (e.key !== "Tab") return;
+      const items = focusables();
+      if (!items.length) return;
+      const head = items[0];
+      const tail = items[items.length - 1];
+      if (e.shiftKey && (document.activeElement === head || !node.contains(document.activeElement))) {
+        e.preventDefault();
+        tail.focus();
+      } else if (!e.shiftKey && (document.activeElement === tail || !node.contains(document.activeElement))) {
+        e.preventDefault();
+        head.focus();
+      }
+    };
+    const wide = window.matchMedia("(min-width: 880px)");
+    const onWide = () => { if (wide.matches) closeSheet(false); };
+    document.addEventListener("keydown", onKey);
+    if (wide.addEventListener) wide.addEventListener("change", onWide);
+    return () => {
+      document.removeEventListener("keydown", onKey);
+      if (wide.removeEventListener) wide.removeEventListener("change", onWide);
+      root.style.overflow = prevOverflow;
+      document.body.style.overflow = prevBodyOverflow;
+    };
+  }, [sheet]);
 
   React.useEffect(() => {
     const block = blockRef.current;
@@ -1194,25 +1294,29 @@ function HomeMasthead({ go, current = "home", route }) {
   // One renderer for every link inside a panel. A `key` is an SPA route and an
   // `href` is a real navigation (the generated archive pages), which never
   // calls go(); modified clicks keep the browser's own behaviour, as HomeLink's
-  // do, and leave the panel open.
-  const menuLink = (link, className) => {
+  // do, and leave the panel open. The phone Menu sheet draws its links with
+  // the same renderer and its own `where` (GA4 location, aff_list).
+  const menuLink = (link, className, where) => {
     const { key, href, label, note } = link;
+    const loc = where ? where.location : location;
+    const done = () => { closeMenu(); setSheet(false); };
     // An affiliate link out of the site. Literal target and rel, which is
     // what check-affiliate-links.mjs reads; app.jsx's delegated listener
-    // fires affiliate_click from the data attributes.
+    // fires affiliate_click from the data attributes. The shell generator
+    // loads affiliate.js, so the baked href is the real one.
     if (link.aff) {
       return (
         <a
           key={`aff:${link.aff}`}
           className={className}
-          href={window.buildAffiliateLink ? window.buildAffiliateLink(link.aff) : "#"}
+          href={window.buildAffiliateLink ? window.buildAffiliateLink(link.aff) : "/kit"}
           target="_blank"
           rel="sponsored noopener"
           data-aff-network={link.aff}
-          data-aff-list="nav_menu"
+          data-aff-list={where ? where.affList : "nav_menu"}
           data-aff-item-slug="bookshelf"
           data-aff-name="Naturalist's bookshelf"
-          onClick={closeMenu}
+          onClick={done}
         >
           <span className="hp-menu__label">{label}</span>
           <span className="hp-menu__note">{note}</span>
@@ -1231,8 +1335,8 @@ function HomeMasthead({ go, current = "home", route }) {
         aria-current={!href && !hash && key === exact ? "page" : undefined}
         onClick={(e) => {
           if (e.defaultPrevented || e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
-          if (window.track) window.track("cta_click", { location, target: path });
-          closeMenu();
+          if (window.track) window.track(path === "/guide" ? "guide_cta_click" : "cta_click", { location: loc, target: path });
+          done();
           if (href && !(home && link.onHome)) return;
           e.preventDefault();
           follow(home && link.onHome ? "home" : key, hash);
@@ -1255,9 +1359,9 @@ function HomeMasthead({ go, current = "home", route }) {
     if (route.startsWith("a:")) {
       const a = (window.ARTICLES || []).find((x) => x.slug === route.slice(2));
       const cat = a && window.findCategory ? window.findCategory(a.cat) : null;
-      return cat ? [{ key: "articles", label: "Read" }, { key: `cat:${cat.slug}`, label: cat.label }] : null;
+      return cat ? [{ key: "articles", label: "Library" }, { key: `cat:${cat.slug}`, label: cat.label }] : null;
     }
-    if (route.startsWith("cat:")) return [{ key: "articles", label: "Read" }];
+    if (route.startsWith("cat:")) return [{ key: "articles", label: "Library" }];
     return null;
   })();
 
@@ -1347,7 +1451,6 @@ function HomeMasthead({ go, current = "home", route }) {
                           {col.links.map((link) => menuLink(link, "hp-menu__link"))}
                         </div>
                       ))}
-                      {g.feature === "map" && <NavMapFeature link={menuLink} />}
                       {g.feature === "waits" && <NavWaitsFeature live={nowSeen} link={menuLink} />}
                       {g.feature === "newest" && <NavNewestFeature link={menuLink} />}
                     </div>
@@ -1356,33 +1459,99 @@ function HomeMasthead({ go, current = "home", route }) {
               </div>
             );
           })}
-          {/* The bookshelf: the owner's Bookshop.org list, the one link in
-              the row that leaves the site (owner's call, October 2026). An
-              affiliate link, so it carries the full markup and says so in
-              its title; the Read panel's entry has the written note. */}
-          <a
-            className="hp-nav__books"
-            href={window.buildAffiliateLink ? window.buildAffiliateLink("bookshop") : "#"}
-            target="_blank"
-            rel="sponsored noopener"
-            title="The field guides I recommend, on Bookshop.org. Affiliate link"
-            data-aff-network="bookshop"
-            data-aff-list="nav_header"
-            data-aff-item-slug="bookshelf"
-            data-aff-name="Naturalist's bookshelf"
-          >Books ↗</a>
-          {/* Search as a link, for widths where the box below gives way. */}
-          <HomeLink go={go} location={location} className="hp-nav__search" href="/search" aria-current={here("search")}>
-            <svg viewBox="0 0 24 24" width="13" height="13" aria-hidden="true" focusable="false">
-              <circle cx="11" cy="11" r="6.5" fill="none" stroke="currentColor" strokeWidth="2" />
-              <line x1="16" y1="16" x2="21" y2="21" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
-            </svg>
-            <span>Search</span>
-          </HomeLink>
         </nav>
         <MastheadSearch go={go} location={location} />
-        <HomeLink go={go} location={location} className="hp-button" href={home ? "#field-guide" : "/guide"} aria-current={here("guide")}>Get the app ↗</HomeLink>
+        {/* Search as a link, for widths where the box gives way (and the
+            phone row, where it is one of the row's three controls). */}
+        <HomeLink go={go} location={location} className="hp-nav__search" href="/search" aria-current={here("search")}>
+          <svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" focusable="false">
+            <circle cx="11" cy="11" r="6.5" fill="none" stroke="currentColor" strokeWidth="2" />
+            <line x1="16" y1="16" x2="21" y2="21" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+          </svg>
+          <span>Search</span>
+        </HomeLink>
+        <HomeLink go={go} location={location} className="hp-header__guide" href={home ? "#field-guide" : "/guide"} aria-current={here("guide")}>Field Guide</HomeLink>
+        <HomeLink go={go} location={location} className="hp-button hp-header__subscribe" href={home ? SUBSCRIBE_HREF.home : SUBSCRIBE_HREF.other} aria-current={here("newsletter")}>Subscribe</HomeLink>
+        <button
+          type="button"
+          className="hp-header__menu"
+          ref={menuButtonRef}
+          aria-expanded={sheet}
+          aria-controls="hp-sheet"
+          aria-haspopup="dialog"
+          onClick={() => {
+            closeMenu();
+            if (!sheet && window.track) window.track("nav_menu_open", { location });
+            setSheet(!sheet);
+          }}
+        >
+          <svg viewBox="0 0 16 12" width="16" height="12" aria-hidden="true" focusable="false">
+            <path d="M1 1h14M1 6h14M1 11h14" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" />
+          </svg>
+          <span>Menu</span>
+        </button>
       </div>
+      <NavSheet
+        open={sheet}
+        sheetRef={sheetRef}
+        home={home}
+        link={menuLink}
+        onClose={() => closeSheet(true)}
+      />
+    </div>
+  );
+}
+
+// The phone Menu sheet (HomeMasthead above has its dialog contract). The
+// six groups in the masthead's order, each with its `quick` links and a
+// "More" link to its landing page (Map is one link), then the Field Guide and
+// the bookshelf. Rendered empty while closed: the desktop panels already
+// carry every link for a crawler, and the static shell stays small.
+function NavSheet({ open, sheetRef, home, link, onClose }) {
+  const where = { location: "mobile_navigation", affList: "nav_sheet" };
+  return (
+    <div
+      className={["hp-sheet", open && "is-open"].filter(Boolean).join(" ")}
+      id="hp-sheet"
+      ref={sheetRef}
+      hidden={!open}
+      {...(open ? { role: "dialog", "aria-modal": "true", "aria-label": "Site menu" } : {})}
+    >
+      {open && (
+        <div className="hp-sheet__inner">
+          <div className="hp-sheet__top">
+            <p className="hp-sheet__title">Menu</p>
+            <button type="button" className="hp-sheet__close" onClick={onClose}>
+              <svg viewBox="0 0 12 12" width="12" height="12" aria-hidden="true" focusable="false">
+                <path d="M1 1l10 10M11 1L1 11" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" />
+              </svg>
+              <span>Close</span>
+            </button>
+          </div>
+          {HOME_NAV.map((item) => {
+            const g = item.group && NAV_GROUPS.find((group) => group.key === item.group);
+            if (!g || !g.columns) {
+              return (
+                <div key={item.href} className="hp-sheet__group hp-sheet__group--link">
+                  {link({ key: item.href.slice(1), label: item.label }, "hp-sheet__head", where)}
+                </div>
+              );
+            }
+            const quick = g.columns.flatMap((col) => col.links).filter((l) => l.quick);
+            return (
+              <section key={g.key} className="hp-sheet__group">
+                <h2 className="hp-sheet__label">{item.label}</h2>
+                {quick.map((l) => link({ ...l, note: undefined }, "hp-sheet__link", where))}
+                {link({ key: g.route, label: `More: ${homeMenuCta(g.cta)}` }, "hp-sheet__more", where)}
+              </section>
+            );
+          })}
+          <div className="hp-sheet__foot">
+            {link({ key: "guide", ...(home ? { onHome: "field-guide" } : {}), label: "Field Guide" }, "hp-sheet__link", where)}
+            {link({ aff: "bookshop", label: "Books ↗", note: "The field guides I recommend, on Bookshop.org. Affiliate link" }, "hp-sheet__link hp-sheet__books", where)}
+          </div>
+        </div>
+      )}
     </div>
   );
 }
@@ -1671,11 +1840,14 @@ function BackToTop({ current }) {
 // Site footer
 // ============================================================
 function Footer({ go }) {
-  // The full map of the site. The columns carry the masthead's words (Plan a
-  // trip, Park now, Read) plus the journal's own pages, so a reader who
-  // learned where something lives in the menus finds it under the same
-  // heading here. The secondary destinations (films, the archive, the
-  // business pages) stay reachable here and on /explore.
+  // The full map of the site. The columns carry the masthead's six labels in
+  // the masthead's order (Plan, Hikes & permits, Conditions, Seasons, Map,
+  // Library), so a reader who learned where something lives in the menus
+  // finds it under the same heading here. Under the grid, the Tools line
+  // (the map, the Field Guide, the conditions widget); the journal's own
+  // pages sit under the about block, and the business and legal pages in the
+  // bar at the foot. Hand-kept, not derived from NAV_GROUPS: the footer lists
+  // more than the menus do. scripts/gen-archive.mjs mirrors it (siteFooter).
   const link = (route, label) => (
     <li key={route}>
       <a
@@ -1687,6 +1859,17 @@ function Footer({ go }) {
         }}
       >{label}</a>
     </li>
+  );
+  const inline = (route, label) => (
+    <a
+      key={route}
+      href={window.routeToPath ? window.routeToPath(route) : `/${route}`}
+      onClick={(e) => {
+        e.preventDefault();
+        if (route === "guide" && window.track) window.track("guide_cta_click", { location: "footer_guide_link" });
+        go(route);
+      }}
+    >{label}</a>
   );
   return (
     <footer className="site-footer">
@@ -1701,68 +1884,96 @@ function Footer({ go }) {
               href="/explore"
               onClick={(e) => { e.preventDefault(); if (window.track) window.track("cta_click", { location: "footer_index", target: "explore" }); go("explore"); }}
             >Everything on this site →</a>
+            <p className="site-footer__journal">{inline("about", "About")} · {inline("contact", "Contact")}</p>
           </div>
           <div>
-            <h2>Plan a trip</h2>
+            <h2>Plan</h2>
             <ul>
               {link("start-here", "Start here")}
               {link("planning", "The Planning Guide")}
-              {link("map", "The trip map")}
               {link("itineraries", "Itineraries")}
               {link("stay", "Where to stay")}
+              {link("a:yosemite-camping-complete-guide", "Camping")}
+              {link("a:where-to-eat-yosemite", "Where to eat")}
               {link("distances", "Drive times")}
+              {link("a:best-airport-for-yosemite", "Flying in")}
               {link("international", "Visiting from abroad")}
               {link("checklist", "First-week checklist")}
               {link("kit", "Kit")}
-              {link("guide", "The Field Guide")}
+              {link("consult", "Trip consults")}
             </ul>
           </div>
           <div>
-            <h2>Park now</h2>
+            <h2>Hikes &amp; permits</h2>
             <ul>
-              {link("now", "The Park Bulletin")}
-              {link("conditions", "Conditions")}
-              {link("webcams", "Webcams")}
-              {link("dates", "Dates that matter")}
+              {link("half-dome-lottery", "Half Dome lottery")}
+              {link("a:mist-trail-the-real-guide", "Mist Trail")}
+              {link("a:cathedral-lakes-day-hike", "Cathedral Lakes")}
+              {link("a:yosemite-falls-trail", "Yosemite Falls Trail")}
+              {link("a:clouds-rest-hike", "Clouds Rest")}
+              {link("cat:trails", "All trails and hikes")}
             </ul>
           </div>
           <div>
-            <h2>Read</h2>
+            <h2>Conditions</h2>
+            <ul>
+              {link("conditions", "Conditions and road alerts")}
+              {link("now", "The Park Bulletin")}
+              {link("webcams", "Webcams")}
+              {link("tioga-opening", "Tioga Road opening")}
+            </ul>
+          </div>
+          <div>
+            <h2>Seasons</h2>
+            <ul>
+              {link("dates", "Dates that matter")}
+              {link("fall-color", "Fall color")}
+              {link("firefall", "Firefall")}
+              {link("moonbow", "Moonbow")}
+              {link("frazil-ice", "Frazil ice")}
+              {link("cat:seasonal", "Seasonal guides")}
+            </ul>
+          </div>
+          <div>
+            <h2>Map</h2>
+            <ul>
+              {link("map", "The trip map")}
+            </ul>
+          </div>
+          <div>
+            <h2>Library</h2>
             <ul>
               {link("articles", "All articles")}
-              {window.CATEGORIES.map(c => (
-                <li key={c.slug}>
-                  <a href={`/section/${c.slug}`} onClick={(e) => { e.preventDefault(); go(`cat:${c.slug}`); }}>{c.label}</a>
-                </li>
-              ))}
-              {link("films", "Films")}
+              {link("cat:planning", "Planning")}
+              {link("cat:trails", "Trails and hikes")}
+              {link("cat:wildlife", "Wildlife and nature")}
+              {link("cat:seasonal", "Seasonal guides")}
               {/*
                 /archive is generated static HTML (scripts/gen-archive.mjs), not an
                 SPA route, so this link must be a real navigation — no go() handler.
               */}
               <li><a href="/archive/">Nature Notes archive</a></li>
-            </ul>
-          </div>
-          {/* Reader destinations only. The business and legal pages moved to
-              the legal bar below: sitewide footer links are the site's most
-              plentiful internal links, and /advertise, /widget, /partners,
-              /privacy and /terms were each collecting 31 to 65 of them, more
-              than any article except the gateway hub. They stay reachable
-              (nothing is dropped, and /explore lists them too) but
-              they no longer outrank the writing for the site's own link
-              equity. */}
-          <div>
-            <h2>The journal</h2>
-            <ul>
-              {link("about", "About")}
-              {link("newsletter", "Newsletter")}
-              {link("contact", "Contact")}
+              {link("films", "Films")}
+              {link("newsletter", "The Sunday Letter")}
+              {link("search", "Search")}
             </ul>
           </div>
         </div>
+        <p className="site-footer__tools">
+          <span>Tools</span>
+          {inline("map", "Map")}
+          {inline("guide", "Field Guide")}
+          {inline("widget", "Conditions widget")}
+        </p>
         <div className="site-footer__disclosure">
           Some links on this site are affiliate links. If you book or buy through one, The Talus Field may earn a small commission at no extra cost to you. <a href="/affiliate" onClick={(e) => { e.preventDefault(); go("affiliate"); }}>Full disclosure here.</a>
         </div>
+        {/* The business and legal pages. Sitewide footer links are the
+            site's most plentiful internal links, and /advertise, /widget,
+            /partners, /privacy and /terms were each collecting 31 to 65 of
+            them, more than any article except the gateway hub; they sit in
+            this bar, out of the columns, so they no longer outrank the
+            writing for the site's own link equity. /explore lists them too. */}
         <div className="site-footer__legal">
           <div>© {new Date().getFullYear()} The Talus Field. Independent. Not affiliated with the National Park Service.</div>
           <div>
