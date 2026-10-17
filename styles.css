@@ -905,6 +905,33 @@ main:focus { outline: none; }
 .bonus .softgate__card { padding: 22px; }
 .bonus .softgate__card h3 { font-size: 24px; }
 @media print { .bonus .softgate__card, .bonus .softgate__teaser { display: none; } }
+.bonus__print { margin-top: 10px; padding: 10px 16px; }
+/* "Print this checklist" sets html.print-bonus until afterprint, and every
+   rule below keys off it, so printing the article itself is unchanged. The
+   page prints as the sheet's title and its lines, each a box to tick: every
+   element that neither is nor holds the sheet is dropped, and the ones that
+   hold it lose their box. A browser without :has() drops the first two rules
+   and prints the article as usual. */
+@media print {
+  html.print-bonus body *:not(:has(.bonus)):not(.bonus):not(.bonus *) { display: none !important; }
+  html.print-bonus body :has(.bonus) {
+    display: block !important; position: static !important;
+    margin: 0 !important; padding: 0 !important; border: 0 !important;
+    width: auto !important; max-width: none !important; background: none !important;
+  }
+  html.print-bonus .bonus { margin: 0; padding: 0; border: 0; background: none; }
+  html.print-bonus .bonus__eyebrow,
+  html.print-bonus .bonus__intro,
+  html.print-bonus .bonus__print,
+  html.print-bonus .softgate__done { display: none !important; }
+  html.print-bonus .bonus__title { font-size: 22pt; color: #000; margin: 0 0 16pt; }
+  html.print-bonus .bonus__list { list-style: none; padding-left: 0; font-size: 12pt; line-height: 1.45; color: #000; }
+  html.print-bonus .bonus__list li { position: relative; padding-left: 24pt; margin-bottom: 10pt; break-inside: avoid; }
+  html.print-bonus .bonus__list li::before {
+    content: ""; position: absolute; left: 0; top: .15em;
+    width: 11pt; height: 11pt; border: 1pt solid #000;
+  }
+}
 
 /* /itineraries: "Email me this plan" under each plan's map button. */
 .itin-email { margin-top: 22px; max-width: 520px; }

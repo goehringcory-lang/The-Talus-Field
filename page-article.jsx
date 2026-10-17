@@ -157,7 +157,7 @@ const ARTICLE_BONUS = {
     title: "The night-before and trailhead sheet",
     intro: "What to settle the night before a Mist Trail hike and what to do at Happy Isles, so the early start actually happens.",
     heading: "The night-before sheet for the Mist Trail",
-    blurb: "Unlock the short checklist for the evening before and the morning at the trailhead: turnaround, closures, water, layers and parking. It comes with Sunday Field Notes, a free weekly letter.",
+    blurb: "Unlock a printable checklist for the evening before and the morning at the trailhead: turnaround, closures, water, layers and parking. It comes with Sunday Field Notes, the free weekly letter.",
     items: [
       "Pick your turnaround: 1.6 miles round trip to the footbridge, 2.4 miles to the top of Vernal Fall, or 5.4 miles to the top of Nevada Fall.",
       "Check for repair closures before you go. When one is posted, follow the signed JMT detour.",
@@ -168,12 +168,42 @@ const ARTICLE_BONUS = {
       "On the trail, stay behind the railings, and do not wade or swim in the pools above the falls.",
     ],
   },
+  "so-you-want-to-hike-half-dome": {
+    title: "The Half Dome day-hike checklist",
+    intro: "What to have settled before a Half Dome day hike, from the permit to the morning you leave Happy Isles.",
+    heading: "The day-hike checklist for Half Dome",
+    blurb: "Unlock a printable checklist for the permit, the night before and the start: photo ID, forecast, water, gloves and the hours the hike takes. It comes with Sunday Field Notes, the free weekly letter.",
+    items: [
+      "Have the permit. One is required past the base of the subdome whenever the cables are up, typically the Friday before Memorial Day to the day after Columbus Day. Without one, a ranger turns you around.",
+      "No preseason permit? Enter the daily lottery: permits release two days before each hiking date, you apply by 4 p.m. Pacific, and results come late that evening.",
+      "Budget the fees: $10 to apply, non-refundable, plus $10 per person if you win.",
+      "Carry photo ID. Permits are non-transferable and are checked at the subdome checkpoint.",
+      "Check the forecast the night before. If there is any chance of rain, do not go: nearly all fatal falls from the cable route have happened when the rock was wet.",
+      "Plan the day: 14 to 16 miles round trip from Happy Isles with about 4,800 feet of gain, and 10 to 12 hours for most hikers by the Park Service's count.",
+      "Pack 4 liters of water and gloves for the cables, and start before dawn. In July and August the trail has no shade for long stretches.",
+    ],
+  },
 };
 
 function ArticleBonus({ slug }) {
   const b = ARTICLE_BONUS[slug];
   const SoftGate = window.SoftGate;
+  // Printing the sheet sets html.print-bonus for the length of the print
+  // dialog; every @media print rule for it in styles.css keys off that class,
+  // so Cmd+P on the article itself still prints the article.
+  React.useEffect(() => () => document.documentElement.classList.remove("print-bonus"), []);
   if (!b || !SoftGate || !b.items || b.items.length < 2) return null;
+  const printSheet = () => {
+    const root = document.documentElement;
+    const done = () => {
+      root.classList.remove("print-bonus");
+      window.removeEventListener("afterprint", done);
+    };
+    root.classList.add("print-bonus");
+    window.addEventListener("afterprint", done);
+    if (window.track) window.track("bonus_print", { slug });
+    window.print();
+  };
   const list = (items, start) => (
     <ol className="bonus__list" start={start}>
       {items.map((t, i) => <li key={i}>{t}</li>)}
@@ -200,6 +230,7 @@ function ArticleBonus({ slug }) {
         teaser={teaser}
       >
         {list(b.items.slice(1), 2)}
+        <button type="button" className="btn btn--ghost bonus__print" onClick={printSheet}>Print this checklist</button>
       </SoftGate>
     </aside>
   );
