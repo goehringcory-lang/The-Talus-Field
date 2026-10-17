@@ -110,6 +110,7 @@ window.planningSeriesFor = function (slug) {
 // verifies this map stays in sync with the files in bodies/.
 // ============================================================
 window.BODY_VERSIONS = {
+  "housekeeping-camp-vs-curry-village": 1,
   "badger-pass-ski-area": 2,
   "snowshoeing-in-yosemite": 2,
   "yosemite-in-february": 2,
@@ -157,7 +158,7 @@ window.BODY_VERSIONS = {
   "yosemite-photography-spots": 7,
   "horsetail-fall-firefall": 10,
   "yosemite-in-winter": 13,
-  "where-to-stay-in-yosemite": 19,
+  "where-to-stay-in-yosemite": 20,
   "yosemite-wildflowers-guide": 9,
   "watching-climbers-el-capitan": 7,
   "getting-to-yosemite": 14,
@@ -904,6 +905,29 @@ window.KIT_REI = {
 // AffiliateDisclosure line under the byline, before the first link;
 // scripts/check-affiliate-links.mjs fails when the flag and the body disagree.
 window.ARTICLES = [
+  {
+    slug: "housekeeping-camp-vs-curry-village",
+    cat: "planning",
+    title: "Housekeeping Camp vs Curry Village: which Yosemite Valley camp to book",
+    seoTitle: "Housekeeping Camp vs Curry Village: Yosemite Valley Compared",
+    dek: "Both sit on the east end of the Valley floor, both put canvas over most of their guests and a bear locker beside them, and both book on the same website. One is a seasonal river camp where you cook over your own fire; the other is a village of tent cabins with a pizza deck, open most of the year. The units, the seasons, the food, the bears, the money, and who should book which.",
+    seoDek: "Housekeeping Camp vs Curry Village: units, seasons, bedding, cooking, bear lockers, Curry Village dining hours, a map of both, and who each one suits.",
+    date: "October 17, 2026",
+    isoDate: "2026-10-17",
+    isoModified: "2026-10-17",
+    read: "10 min",
+    placeholder: "A Housekeeping Camp unit: concrete walls, a canvas roof over the patio, a table and chairs, pines behind",
+    image: "img/housekeeping-camp-yosemite.jpg",
+    credit: "Photo: advencap / Wikimedia Commons (CC BY-SA 2.0)",
+    // The /firefall layout for an article (page-article.jsx), as on the
+    // airport and Mist Trail pieces. The two buttons jump to the side-by-side
+    // table and to the who-books-which columns.
+    feature: {
+      eyebrow: "HOUSEKEEPING CAMP · CURRY VILLAGE · THE SEASONS · THE FOOD · THE BEARS",
+      focus: "50% 55%",
+      actions: [["#side-by-side", "The two side by side"], ["#who-should-book-which", "Which one to book"]],
+    },
+  },
   {
     slug: "badger-pass-ski-area",
     aff: true,
@@ -2372,6 +2396,10 @@ window.START_HERE = [
 // Curate a piece when it earns real search impressions, when it anchors a
 // cluster, or when it is the destination that needs the equity.
 window.RELATED = {
+  // Housekeeping Camp vs Curry Village: the two canvas-roofed Valley stays.
+  // Onward to every bed in the park, the campgrounds, the kitchens, the bear
+  // rules, the trail at Curry's door and the first-time camper's guide.
+  "housekeeping-camp-vs-curry-village": ["where-to-stay-in-yosemite", "yosemite-camping-complete-guide", "where-to-eat-yosemite", "yosemite-bears-safety-guide", "mist-trail-the-real-guide", "camping-in-yosemite-first-time"],
   "badger-pass-ski-area": ["yosemite-in-winter",  "snowshoeing-in-yosemite",  "glacier-point-how-to-visit",  "yosemite-in-january",  "yosemite-in-february",  "where-to-stay-in-yosemite"],
   "snowshoeing-in-yosemite": ["yosemite-in-winter",  "badger-pass-ski-area",  "yosemite-winter-hikes",  "mariposa-grove-how-to-visit",  "glacier-point-how-to-visit",  "yosemite-ranger-programs"],
   "yosemite-in-february": ["horsetail-fall-firefall",  "yosemite-in-winter",  "yosemite-in-january",  "yosemite-in-march",  "badger-pass-ski-area",  "mariposa-grove-how-to-visit"],
@@ -2427,7 +2455,7 @@ window.RELATED = {
   // Lodging and gateway towns
   "bracebridge-dinner-and-vintners-holidays": ["where-to-stay-in-yosemite", "yosemite-in-winter", "yosemite-in-december", "thanksgiving-in-yosemite", "yosemite-gateway-towns-compared", "where-to-eat-yosemite"],
   "yosemite-gateway-towns-compared": ["where-to-stay-in-yosemite", "where-to-eat-yosemite", "yosemite-from-los-angeles", "yosemite-with-kids-no-reservations-2026", "highway-140-closed-yosemite", "yosemite-trip-cost-budget"],
-  "where-to-stay-in-yosemite": ["yosemite-gateway-towns-compared", "yosemite-camping-complete-guide", "wawona-yosemite-guide", "yosemite-trip-cost-budget", "bracebridge-dinner-and-vintners-holidays", "where-to-eat-yosemite"],
+  "where-to-stay-in-yosemite": ["yosemite-gateway-towns-compared", "housekeeping-camp-vs-curry-village", "yosemite-camping-complete-guide", "wawona-yosemite-guide", "yosemite-trip-cost-budget", "where-to-eat-yosemite"],
   "yosemite-camping-complete-guide": ["camping-in-yosemite-first-time", "where-to-stay-in-yosemite", "first-yosemite-backpacking-trip", "yosemite-trip-cost-budget", "yosemite-facelift-volunteer-guide", "sustainable-yosemite-car-free-zero-waste"],
   "camping-in-yosemite-first-time": ["yosemite-camping-complete-guide", "yosemite-bears-safety-guide", "is-bear-spray-allowed-in-yosemite", "where-to-stay-in-yosemite", "pets-in-yosemite"],
   "yosemite-trip-cost-budget": ["where-to-stay-in-yosemite", "yosemite-gateway-towns-compared", "yosemite-camping-complete-guide", "where-to-eat-yosemite", "bracebridge-dinner-and-vintners-holidays"],
