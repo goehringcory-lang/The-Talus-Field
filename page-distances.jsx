@@ -190,7 +190,9 @@ function DistancesPage({ go }) {
             in a bad winter that matters more than any of the mileages here. The
             full picture is in{" "}
             <a href="/tioga-opening">the Tioga Road opening page</a> and in{" "}
-            <a href="/conditions" onClick={(e) => { e.preventDefault(); go("conditions"); }}>current conditions</a>.
+            <a href="/conditions" onClick={(e) => { e.preventDefault(); go("conditions"); }}>current conditions</a>,
+            and <a href="/webcams" onClick={(e) => { e.preventDefault(); go("webcams"); }}>the live webcams</a> show
+            the Valley's weather before you leave.
           </p>
           <p>
             <strong>Entrance queues are not drive time.</strong> On a peak
@@ -217,10 +219,14 @@ function DistancesPage({ go }) {
               the gateway towns comparison
             </a>
             , which is where these numbers come from. The lodging itself is on{" "}
-            <a href="/stay" onClick={(e) => { e.preventDefault(); go("stay"); }}>the where-to-stay page</a>, and
+            <a href="/stay" onClick={(e) => { e.preventDefault(); go("stay"); }}>the where-to-stay page</a>,
             what a trip costs is in{" "}
             <a href="/articles/yosemite-trip-cost-budget" onClick={(e) => goArticle(e, "yosemite-trip-cost-budget")}>
               the budget breakdown
+            </a>
+            , and where to eat in each town is in{" "}
+            <a href="/articles/where-to-eat-yosemite" onClick={(e) => goArticle(e, "where-to-eat-yosemite")}>
+              the Yosemite dining guide
             </a>
             . If you are coming from further out, <a href="/articles/getting-to-yosemite" onClick={(e) => goArticle(e, "getting-to-yosemite")}>getting to Yosemite</a>{" "}
             covers the airports and the long approaches.

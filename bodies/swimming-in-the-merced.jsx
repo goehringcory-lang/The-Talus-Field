@@ -16,7 +16,7 @@ window.ARTICLE_BODIES["swimming-in-the-merced"] = function SwimmingInTheMercedBo
       </p>
 
       <p>
-        The practical version, and this is the one the site has taken as its position for years: <strong>do not swim in the Merced in spring.</strong> Through the melt the current is stronger than it looks, the water is cold enough to disable you in under a minute, and spring is when people get carried off the bank. By high summer, once the flow has dropped and the water has had weeks of sun on shallow granite, it becomes the family swimming river everybody pictures. By September it is low, warm and slow.
+        The practical version, and this is the one the site has taken as its position for years: <strong>do not swim in the Merced in spring.</strong> Through the melt the current is stronger than it looks, the water is cold enough to disable you in under a minute, and spring is when people get carried off the bank. By high summer, once the flow has dropped and the water has had weeks of sun on shallow granite, it becomes the family swimming river everybody pictures. By September it is low, warm and slow; <a href="/articles/yosemite-in-september-2026">Yosemite in September</a> covers what else that month brings.
       </p>
 
       <p>
@@ -64,7 +64,7 @@ window.ARTICLE_BODIES["swimming-in-the-merced"] = function SwimmingInTheMercedBo
       </p>
 
       <p>
-        <strong>Sentinel Beach</strong> is the default: a sandy bank on the south side with a picnic area attached, calm by late summer, and Half Dome visible from the water. It is the one to take small children to.
+        <strong>Sentinel Beach</strong> is the default: a sandy bank on the south side with a picnic area attached, calm by late summer, and Half Dome visible from the water. It is the one to take small children to. Carry your own water: of the Valley's picnic areas, only Lower Yosemite Fall and Church Bowl have drinking water, as <a href="/articles/where-to-eat-yosemite#picnic-areas">the picnic list in the dining guide</a> shows.
       </p>
 
       <p>

@@ -475,14 +475,14 @@ const HUB_PROSE = {
       "Yosemite Webcams",
       "The live cameras worth checking before you drive in. Four Yosemite Conservancy cameras run on this page: Half Dome from Ahwahnee Meadow looking east, Upper Yosemite Fall from the Valley floor, El Capitan and the western Valley from Turtleback Dome, and Wawona at the park's south end. The four tiles are still images that refresh on the order of minutes rather than video streams.",
       "<p>How to read them: check two rather than one, because a single camera describes one wall while Half Dome plus El Capitan tells you whether the whole Valley is clear, socked in or hazy. Elevation matters more than the pictures suggest, since the Valley floor is at 4,000 feet and Tuolumne Meadows at 8,600, so a clear Valley camera says nothing about whether it is snowing on Tioga Road. And a dry waterfall on the Yosemite Falls camera in August is the season, not a broken camera.</p>" +
-        "<p>There is no Conservancy camera at Tuolumne Meadows or Tioga Pass, which is the most requested view missing from the list. Yosemite Hospitality runs a summer-only camera at the Tuolumne Meadows Store, linked from the <a href=\"https://www.nps.gov/yose/learn/photosmultimedia/webcams.htm\">NPS webcams page</a>. Full camera list: <a href=\"https://yosemite.org/webcams/\">Yosemite Conservancy</a>. Road status and closures: <a href=\"/now\">the Park Bulletin</a>. Forecasts and live entrance waits: <a href=\"/conditions\">the conditions page</a>. Which waterfalls are running on your dates: <a href=\"/articles/yosemite-waterfalls-guide\">the flow-by-month table</a>.</p>"
+        "<p>There is no Conservancy camera at Tuolumne Meadows or Tioga Pass, which is the most requested view missing from the list. Yosemite Hospitality runs a summer-only camera at the Tuolumne Meadows Store, linked from the <a href=\"https://www.nps.gov/yose/learn/photosmultimedia/webcams.htm\">NPS webcams page</a>. Full camera list: <a href=\"https://yosemite.org/webcams/\">Yosemite Conservancy</a>. Road status and closures: <a href=\"/now\">the Park Bulletin</a>. Forecasts and live entrance waits: <a href=\"/conditions\">the conditions page</a>. Which waterfalls are running on your dates: <a href=\"/articles/yosemite-waterfalls-guide\">the flow-by-month table</a>. The drive in from each gateway town: <a href=\"/distances\">the drive-time table</a>. The El Capitan view is far too wide to show a climber; for that, <a href=\"/articles/watching-climbers-el-capitan\">stand in El Capitan Meadow with binoculars</a>.</p>"
     ),
   "/distances": () =>
     hubProse(
       "Yosemite Drive Times",
       "How far Yosemite Valley is from each gateway town, in one table. El Portal is about 14 miles and 25 to 35 minutes on Highway 140; Mariposa about 45 miles and 60 to 75 minutes on the same road; Groveland about 49 miles and 65 to 80 minutes on Highway 120, where chain controls are common in winter; Oakhurst about 55 miles and 75 to 90 minutes on Highway 41; and Lee Vining about 75 miles and two hours over Tioga Pass, only while the pass is open.",
       "<p>Other legs the Valley table does not answer: Oakhurst to the South Entrance is about 14 miles and 20 to 25 minutes, with the Mariposa Grove welcome plaza immediately inside the gate and Wawona eight miles further on; Groveland to the Big Oak Flat Entrance is about 24 miles and 30 to 40 minutes on a winding road; Lee Vining to Tuolumne Meadows is about 20 miles and 30 minutes while Tioga Pass is open. Oakhurst is the longest drive to the Valley of the four year-round towns and the shortest to the sequoias by a wide margin.</p>" +
-        "<p>Times are to the west end of Yosemite Valley in ordinary conditions; add 15 to 20 minutes for Curry Village at the east end, and more for summer afternoons. Season changes the answer more than distance does, and entrance queues on a peak morning can add half an hour no mileage predicts. Full comparison: <a href=\"/articles/yosemite-gateway-towns-compared\">the gateway towns guide</a>. Live waits: <a href=\"/conditions\">the conditions page</a>.</p>"
+        "<p>Times are to the west end of Yosemite Valley in ordinary conditions; add 15 to 20 minutes for Curry Village at the east end, and more for summer afternoons. Season changes the answer more than distance does, and entrance queues on a peak morning can add half an hour no mileage predicts. Full comparison: <a href=\"/articles/yosemite-gateway-towns-compared\">the gateway towns guide</a>. Where to eat in each town: <a href=\"/articles/where-to-eat-yosemite\">the Yosemite dining guide</a>. Live waits: <a href=\"/conditions\">the conditions page</a>. The Valley's weather before you leave: <a href=\"/webcams\">the live webcams</a>.</p>"
     ),
   "/dates": () =>
     hubProse(
@@ -510,7 +510,7 @@ const HUB_PROSE = {
       "There are two Half Dome permit lotteries, not one. The preseason lottery takes applications on Recreation.gov through March with results in mid-April; the daily lottery runs every day the cables are up, taken two days before the hike date. In the 2024 season the National Park Service recorded 35,289 preseason applications at a 22% success rate and 35,561 daily-lottery applications at 19%, with weekday odds in the daily lottery running 22% against 14% on weekends. Late-season weekdays are the best draw of the year. Strategy: use all seven date choices, front-load unpopular dates, avoid Saturday, enter both lotteries, and plan the hike mid-trip so the daily lottery gets several independent draws."
     ) +
     `<p>The cables are up from about the Friday before Memorial Day to the day after the second Monday in October. A permit is required past the base of the subdome, checked against photo ID, with 300 hikers a day allowed through: roughly 225 day hikers from these lotteries and 75 backpackers on wilderness permits. Going without one violates 36 CFR 1.6 and carries a fine of up to $5,000.</p>` +
-    `<p>Whether the hike itself is the right goal: <a href="/articles/so-you-want-to-hike-half-dome">So You Want to Hike Half Dome</a>, which makes the case for Clouds Rest. Every other permit the park runs: <a href="/articles/yosemite-wilderness-permits-guide">the wilderness permits guide</a> and <a href="/articles/yosemite-walk-up-and-day-of-permits">walk-up and day-of permits</a>.</p>`,
+    `<p>Whether the hike itself is the right goal: <a href="/articles/so-you-want-to-hike-half-dome">So You Want to Hike Half Dome</a>, which makes the case for Clouds Rest. Every other permit the park runs: <a href="/articles/yosemite-wilderness-permits-guide">the wilderness permits guide</a> and <a href="/articles/yosemite-walk-up-and-day-of-permits">walk-up and day-of permits</a>. The no-permit alternative: <a href="/articles/clouds-rest-hike">the Clouds Rest guide</a>. Both lottery windows as calendar files: <a href="/dates">the dates page</a>. The drive in for a pre-dawn start: <a href="/distances">every town's drive to the Valley</a>.</p>`,
   // The October 2026 event pages. Facts follow each page's own copy
   // (page-fall-color.jsx, page-moonbow.jsx, page-frazil-ice.jsx), whose
   // headers carry the sources; no year appears, and the moonbow's computed
@@ -606,7 +606,9 @@ function seoForPath(pathname, searchParams) {
       // query-first phrasing that pass bought. The brand is still carried by
       // og:site_name, the WebSite and Organization nodes, and Google's own
       // site-name row. Hub titles keep their suffix; they are short enough.
-      title: a.title,
+      // seoTitle, when authored, is the search title only: the visible H1, the
+      // headline and the breadcrumb keep a.title. app.jsx must match.
+      title: a.seoTitle || a.title,
       description: desc,
       canonical: url,
       ogType: "article",
@@ -1143,9 +1145,9 @@ function seoForPath(pathname, searchParams) {
       ],
     },
     "/webcams": {
-      title: `Yosemite Webcams Live: Half Dome, Yosemite Falls, El Capitan | ${SITE_NAME}`,
+      title: "Yosemite Webcams: Live Half Dome, Yosemite Falls, El Capitan",
       description:
-        "Live Yosemite webcams: Half Dome, Yosemite Falls, El Capitan and Wawona, how to read them, and what to check for Tuolumne Meadows, which has no Conservancy camera.",
+        "Live Yosemite webcams of Half Dome, Yosemite Falls, El Capitan and Wawona: what each one shows, the best hour to check it, and what to use for Tuolumne Meadows.",
       breadcrumb: [["Home", `${SITE_ORIGIN}/`], ["Webcams", null]],
       faq: [
         {
@@ -1214,9 +1216,9 @@ function seoForPath(pathname, searchParams) {
       ],
     },
     "/distances": {
-      title: `Yosemite Drive Times and Distances: Every Gateway Town in One Table | ${SITE_NAME}`,
+      title: "Yosemite Drive Times: Distances From Every Gateway Town",
       description:
-        "How far Yosemite Valley is from El Portal, Mariposa, Groveland, Oakhurst and Lee Vining: miles, drive times, entrances, elevations and what the season does to each route.",
+        "How far is Yosemite Valley from El Portal, Mariposa, Groveland, Oakhurst and Lee Vining? Miles, drive times, entrances, and what winter does to each route.",
       breadcrumb: [["Home", `${SITE_ORIGIN}/`], ["Distances", null]],
       // Edge-only FAQ, answering the distance queries the gateway article ranks
       // top-three for and earns no clicks on. Every figure is quoted from that
@@ -1280,14 +1282,17 @@ function seoForPath(pathname, searchParams) {
       // FAQ answers come from the page's own published body
       // (page-half-dome-lottery.jsx), which absorbed the retired article
       // /articles/half-dome-permit-lottery-2026 in August 2026.
-      title: `Half Dome Lottery: Dates, Odds and Daily Lottery Strategy | ${SITE_NAME}`,
+      // No brand suffix (October 2026 top-pages pass), as on articles: with it
+      // the title ran 75 characters, past Google's ~600px cut. Same for
+      // /webcams and /distances.
+      title: "Yosemite Half Dome Lottery: Dates, Odds and Strategy",
       // Keep byte-identical to the /half-dome-lottery entry in app.jsx's
       // buildSeo. These drifted (published NPS odds here, honest odds there),
       // so a direct load and an SPA click described one URL two ways, and at
       // 188 characters both were cut before the differentiator. This is the
       // site's most-searched surface and its worst click-through.
       description:
-        "Both Half Dome permit lotteries: the March preseason draw, the daily lottery almost nobody uses, the published NPS odds, and a strategy that works.",
+        "Both Yosemite Half Dome lotteries: the March preseason draw, the daily lottery two days ahead, the published NPS odds, and why late-season weekdays draw best.",
       breadcrumb: [["Home", `${SITE_ORIGIN}/`], ["Half Dome lottery", null]],
       // Edge-only FAQ: the client entry in app.jsx carries none, so this
       // copy survives hydration on direct loads. A client-side faq added

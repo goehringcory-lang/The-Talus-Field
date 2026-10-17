@@ -623,7 +623,7 @@ window.ARTICLE_BODIES["where-to-eat-yosemite"] = function WhereToEatYosemiteBody
       <section className="hp-wrap hp-section" id="sec-5-restaurants-near-yosemite-the-gateway-to" tabIndex={-1}>
         <p className="hp-eyebrow">RESTAURANTS NEAR YOSEMITE</p>
         <h2>The gateway towns, and where to eat in each</h2>
-        <p className="ff-lede">Where to base yourself is a bigger question than where to eat, and <a href="/articles/yosemite-gateway-towns-compared">the gateway towns comparison</a> answers it. This is the food half.</p>
+        <p className="ff-lede">Where to base yourself is a bigger question than where to eat, and <a href="/articles/yosemite-gateway-towns-compared">the gateway towns comparison</a> answers it, with <a href="/distances">every town's drive time to the Valley</a> in one table. This is the food half.</p>
 
         <div className="eat-towns">
           <article className="eat-town">
@@ -846,7 +846,7 @@ window.ARTICLE_BODIES["where-to-eat-yosemite"] = function WhereToEatYosemiteBody
             <h2>Where the granite slab has a table</h2>
             <div className="eat-prose">
               <p>
-                The park's picnic areas are first come, first served, open dawn to dusk, and come with tables, vault toilets and trash and recycling, and most have grills. Two things catch people out. Only <strong>Lower Yosemite Fall</strong> and <strong>Church Bowl</strong> have drinking water and flush toilets, so carry water to the rest. And in Yosemite Valley a grill fire is legal only between 5 and 10 p.m., inside the grill, and only when the park's fire restrictions allow it (<a href="/articles/yosemite-fire-restrictions-explained">what the restrictions mean</a>). Food stays within arm's reach the whole time; the rule is below.
+                The park's picnic areas are first come, first served, open dawn to dusk, and come with tables, vault toilets and trash and recycling, and most have grills. Two things catch people out. Only <strong>Lower Yosemite Fall</strong> and <strong>Church Bowl</strong> have drinking water and flush toilets, so carry water to the rest. And in Yosemite Valley a grill fire is legal only between 5 and 10 p.m., inside the grill, and only when the park's fire restrictions allow it (<a href="/articles/yosemite-fire-restrictions-explained">what the restrictions mean</a>). Food stays within arm's reach the whole time; the rule is below. Sentinel Beach, Cathedral Beach and Swinging Bridge double as the Valley's swimming beaches, and <a href="/articles/swimming-in-the-merced">the Merced swimming guide</a> has when the river is safe to get into.
               </p>
             </div>
           </div>

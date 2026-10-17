@@ -67,7 +67,11 @@ article:
    the article body in `bodies/<slug>.jsx`.
 2. Add enrichment (seoDek in data.js; wordCount / keywords / faq / trail in
    `seo-data.json`). FAQ answers and trail numbers must come from the
-   published body; do not invent facts.
+   published body; do not invent facts. An optional `seoTitle` in data.js
+   replaces the `<title>` and og:title only (both `edge/seo.js` and `app.jsx`
+   read `seoTitle || title`); the visible H1, the Article headline and the
+   breadcrumb keep `title`. Use it when the search phrasing would read badly
+   as a headline, and keep it under about 60 characters.
 3. Run `npm --prefix scripts run prerender` and `npm --prefix scripts run compile`
    to refresh the prerendered prose fragment and the compiled page scripts.
 4. Run `npm --prefix scripts run seo` — this regenerates `articles.json`

@@ -424,7 +424,11 @@ function HalfDomeLotteryPage({
   }, "the wilderness permit system"), ", not this lottery.")), React.createElement("li", null, React.createElement(EventIcon, {
     name: "mountain",
     size: 26
-  }), React.createElement("strong", null, "Hike Clouds Rest instead"), React.createElement("p", null, "The summit is 9,926 feet, more than a thousand feet higher than Half Dome, with no permit required and bigger views in every direction. On a Tuesday in June you might have it to yourself.")), React.createElement("li", null, React.createElement(EventIcon, {
+  }), React.createElement("strong", null, "Hike Clouds Rest instead"), React.createElement("p", null, "The summit is 9,926 feet, more than a thousand feet higher than Half Dome, with no permit required and bigger views in every direction. On a Tuesday in June you might have it to yourself. The route is in ", React.createElement(HomeLink, {
+    go: go,
+    location: "half_dome_lose",
+    href: "/articles/clouds-rest-hike"
+  }, "the Clouds Rest guide"), ".")), React.createElement("li", null, React.createElement(EventIcon, {
     name: "calendar",
     size: 26
   }), React.createElement("strong", null, "Come back late season, midweek"), React.createElement("p", null, "The best daily lottery odds of the year are weekdays in September and early October: the cables are still up and the crowds have thinned.")))), React.createElement("section", {
@@ -457,7 +461,11 @@ function HalfDomeLotteryPage({
     go: go,
     location: "half_dome_rules",
     href: "/now"
-  }, "the Park Bulletin"), "."), React.createElement("h3", null, "Sources"), React.createElement("ul", null, React.createElement("li", null, React.createElement("a", {
+  }, "the Park Bulletin"), ", and both lottery windows are calendar files on ", React.createElement(HomeLink, {
+    go: go,
+    location: "half_dome_rules",
+    href: "/dates"
+  }, "the dates page"), "."), React.createElement("h3", null, "Sources"), React.createElement("ul", null, React.createElement("li", null, React.createElement("a", {
     href: "https://www.nps.gov/yose/planyourvisit/hdpermits.htm",
     target: "_blank",
     rel: "noopener noreferrer"
@@ -474,7 +482,11 @@ function HalfDomeLotteryPage({
     "aria-label": "Lodging availability"
   }, React.createElement("p", {
     className: "hp-eyebrow"
-  }, "THE NIGHT BEFORE, AND THE NIGHT AFTER"), React.createElement("p", null, "The hike wants a pre-dawn start and gives back a ten-to-twelve-hour day. Driving in from Oakhurst at 3 a.m. and back out at 10 p.m. is how a permit gets wasted. A bed in the Valley or in El Portal is the difference, and the permit date is known far enough ahead to book one."), React.createElement(AvailabilityLink, {
+  }, "THE NIGHT BEFORE, AND THE NIGHT AFTER"), React.createElement("p", null, "The hike wants a pre-dawn start and gives back a ten-to-twelve-hour day. Driving in from Oakhurst at 3 a.m. and back out at 10 p.m. is how a permit gets wasted (", React.createElement(HomeLink, {
+    go: go,
+    location: "half_dome_stay",
+    href: "/distances"
+  }, "every town's drive to the Valley"), "). A bed in the Valley or in El Portal is the difference, and the permit date is known far enough ahead to book one."), React.createElement(AvailabilityLink, {
     destination: "Yosemite National Park",
     list: "page_half_dome",
     slug: "half-dome-lottery",

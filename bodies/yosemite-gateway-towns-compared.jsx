@@ -614,7 +614,7 @@ window.ARTICLE_BODIES["yosemite-gateway-towns-compared"] = function YosemiteGate
       </p>
 
       <p>
-        <strong>Groceries.</strong> Mariposa and Oakhurst have full-size supermarkets. Groveland has a market. El Portal and Lee Vining have convenience-scale markets and nothing more. Whichever town you pick, do the real shop in Mariposa or Oakhurst on the way in, because in-park food is limited, expensive, and keeps shorter hours than you expect. <a href="/articles/pack-your-car-for-yosemite">How to pack your car for a Yosemite trip</a> covers the rest.
+        <strong>Groceries.</strong> Mariposa and Oakhurst have full-size supermarkets. Groveland has a market. El Portal and Lee Vining have convenience-scale markets and nothing more. Whichever town you pick, do the real shop in Mariposa or Oakhurst on the way in, because in-park food is limited, expensive, and keeps shorter hours than you expect. <a href="/articles/where-to-eat-yosemite">Where to eat in Yosemite</a> has what is open inside the park and the restaurants worth planning around in each town. <a href="/articles/pack-your-car-for-yosemite">How to pack your car for a Yosemite trip</a> covers the rest.
       </p>
 
       <p>

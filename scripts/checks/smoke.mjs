@@ -26,7 +26,7 @@ export default async function checkSmoke(ctx) {
 
   const base = ctx.baseUrl || SITE_ORIGIN;
   const sampleArticles = ctx.articles.slice(0, 3);
-  const expectedTitle = new Map(sampleArticles.map((a) => [`/articles/${a.slug}`, a.title]));
+  const expectedTitle = new Map(sampleArticles.map((a) => [`/articles/${a.slug}`, a.seoTitle || a.title]));
   const paths = ["/", ...expectedTitle.keys()];
 
   for (const p of paths) {

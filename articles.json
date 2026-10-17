@@ -780,7 +780,8 @@
     "cat": "seasonal",
     "title": "Swimming in Yosemite: Where to Get in the Merced River",
     "dek": "The river is the best thing about a hot Yosemite afternoon, and the Park Service pulls fifteen to twenty people out of it in a normal season. The difference is mostly the calendar. When it is safe, where to get in, where swimming is flatly prohibited, and how to read the flow before you go.",
-    "seoDek": "When it is safe to swim in the Merced River in Yosemite, the best beaches, the places swimming is prohibited, cold water shock, and how to check the flow.",
+    "seoTitle": "Swimming in Yosemite: Merced River Beaches, When It's Safe",
+    "seoDek": "Where to swim in the Merced River in Yosemite: Sentinel and Cathedral Beaches, Swinging Bridge, when the river is safe, where it is banned, and the flow gauge.",
     "date": "August 7, 2026",
     "isoDate": "2026-08-07",
     "isoModified": "2026-08-07",
@@ -798,7 +799,7 @@
       { "q": "Why is cold water dangerous even for strong swimmers?", "a": "Because the dangerous part happens in the first minute, not the first hour. Going into cold water triggers an involuntary gasp followed by breathing you cannot control, and if your head is under at that moment you inhale water. Over the following minutes your hands and forearms stop doing what you ask of them, well before you feel dangerously cold. People do not drown in snowmelt because they are bad swimmers; they drown because the ability to swim is temporarily taken away from them. Get in gradually rather than jumping, and never enter cold water alone." },
       { "q": "Do you need a life jacket to raft the Merced River in Yosemite?", "a": "Children aged thirteen and under must wear one on the water at all times. Everyone must wear one when the Pohono Bridge gauge reads above four feet at eight in the morning. Boating is also restricted above Little Yosemite Valley and below El Capitan Bridge. That four-foot threshold is worth knowing even if you are only swimming: if the river is high enough that the Park Service has made flotation compulsory for rafters, it is not a swimming day." }
     ],
-    "related": ["yosemite-heat-safety-guide", "yosemite-with-kids-no-reservations-2026", "mist-trail-the-real-guide", "yosemite-waterfalls-guide", "yosemite-in-june"]
+    "related": ["yosemite-heat-safety-guide", "yosemite-with-kids-no-reservations-2026", "mist-trail-the-real-guide", "yosemite-waterfalls-guide", "yosemite-in-june", "yosemite-in-september-2026"]
   },
   {
     "slug": "tuolumne-meadows-in-a-day",
@@ -1221,7 +1222,8 @@
     "cat": "planning",
     "title": "Watching Climbers on El Capitan: A Spectator's Guide",
     "dek": "Three thousand feet of granite, climbers who live on it for days, and headlamps that turn the wall into a constellation at dusk. Where to stand, what the binoculars reveal, the Ask a Climber scopes, and why the meadow is the best free show in the park.",
-    "seoDek": "How to watch climbers on El Capitan: El Capitan Meadow and Bridge viewpoints, the Ask a Climber program, dusk headlamps, Nose history, and best seasons.",
+    "seoTitle": "Watching Climbers on El Capitan: Where to Stand and When",
+    "seoDek": "Where to watch climbers on El Capitan: the meadow or the bridge, why binoculars matter, the free Ask a Climber scopes, the dusk headlamps, and the best months.",
     "date": "July 12, 2026",
     "isoDate": "2026-07-12",
     "isoModified": "2026-09-27",
@@ -1501,7 +1503,8 @@
     "cat": "planning",
     "title": "Best Time to Visit Yosemite in 2026, by the Traffic Data",
     "dek": "The reservation system is gone and the park is pacing toward its second-busiest year ever. A decade of NPS visitation data, a crowd calendar built on the Park Service's own monthly averages, and the hours that still work.",
-    "seoDek": "No reservation system in 2026, and Yosemite is pacing toward its second-busiest year. NPS visitation data, a monthly crowd calendar, and the best days to go.",
+    "seoTitle": "Best Time to Visit Yosemite: 2026 Crowd Calendar by Month",
+    "seoDek": "When to visit Yosemite in 2026: a month-by-month crowd calendar from NPS data, what ending reservations changed, the seasonal roads, and the best days to go.",
     "date": "June 11, 2026",
     "isoDate": "2026-06-11",
     "isoModified": "2026-10-01",
@@ -1551,7 +1554,7 @@
     "cat": "seasonal",
     "title": "Yosemite in September 2026: What Closes, What Gets Better",
     "dek": "The waterfalls are gone, the concessions shut in the first three weeks, and the Mist Trail is closed four days a week. The high country is also the best it gets all year. Both are true.",
-    "seoDek": "Yosemite in September 2026: dry waterfalls, closure dates for the pools, stores and shuttles, Mist Trail weekday closures, and the year's best Half Dome odds.",
+    "seoDek": "Yosemite in September 2026: dry waterfalls, the high country at its best, closing dates for pools, stores and shuttles, Mist Trail closures, and Half Dome odds.",
     "date": "August 25, 2026",
     "isoDate": "2026-08-25",
     "isoModified": "2026-08-25",
@@ -1670,7 +1673,8 @@
     "cat": "planning",
     "title": "Where to eat in Yosemite: restaurants by area",
     "dek": "Quick meals and sit-down dinners in Yosemite Valley, the Ahwahnee's dress code, where to buy groceries, the places with no food at all, picnic areas, food near each entrance, and the seasonal kitchens that close while the roads are still open.",
-    "seoDek": "Find restaurants in Yosemite Valley and the gateway towns, plus Wawona and Tuolumne food options, reservation advice, and seasonal closure details.",
+    "seoTitle": "Where to Eat in Yosemite: Restaurants, Groceries and Picnics",
+    "seoDek": "Yosemite restaurants by area: quick meals and sit-down dinners in the Valley, the Ahwahnee dress code, groceries, picnic areas, and food near each entrance.",
     "date": "May 19, 2026",
     "isoDate": "2026-05-19",
     "isoModified": "2026-10-01",
@@ -1692,7 +1696,7 @@
       { "q": "Where should I eat near Yosemite?", "a": "Choose restaurants near your route or lodging. The guide recommends 1850, Smokin Oak BBQ, and Tacos Sonora in Mariposa; South Gate Brewing Company and The Elderberry House in Oakhurst; and Latte Da Cafe in Lee Vining. On Highway 120, Rush Creek Lodge and Evergreen Lodge have full restaurants a few miles from the Big Oak Flat entrance. Check current hours before making a special trip." },
       { "q": "Do Yosemite picnic areas have water?", "a": "Mostly not. The Park Service says only Lower Yosemite Fall and Church Bowl have drinking water and flush toilets; the other picnic areas have tables, vault toilets and, at most, grills. Bring water, and keep food within arm's reach." }
     ],
-    "related": ["yosemite-gateway-towns-compared", "where-to-stay-in-yosemite", "yosemite-camping-complete-guide", "yosemite-trip-cost-budget", "yosemite-in-one-or-two-days", "pack-your-car-for-yosemite"]
+    "related": ["yosemite-gateway-towns-compared", "where-to-stay-in-yosemite", "swimming-in-the-merced", "yosemite-trip-cost-budget", "yosemite-in-one-or-two-days", "pack-your-car-for-yosemite"]
   },
   {
     "slug": "yosemite-in-one-or-two-days",
@@ -1859,7 +1863,7 @@
     "cat": "trails",
     "title": "Mist Trail, Yosemite: distance, difficulty and route guide",
     "dek": "Choose your Mist Trail turnaround: Vernal Fall footbridge, Vernal Fall, or Nevada Fall. Distances, hiking times, water, parking, and the weekday repair detour.",
-    "seoDek": "Plan the Mist Trail in Yosemite: distances to Vernal and Nevada Falls, hiking times, difficulty, water, parking, and current closure links.",
+    "seoDek": "Mist Trail distances from Happy Isles: 1.6 miles round trip to the Vernal Fall footbridge, 2.4 to the top of Vernal, 5.4 to Nevada Fall. Times, water, parking.",
     "date": "May 11, 2026",
     "isoDate": "2026-05-11",
     "isoModified": "2026-09-27",
@@ -2107,7 +2111,8 @@
     "cat": "planning",
     "title": "Mariposa vs Oakhurst vs Groveland: Best Town to Stay Near Yosemite",
     "dek": "El Portal for a shorter Valley drive, Mariposa for services, Oakhurst for the sequoias, Groveland for Highway 120, and Lee Vining for the high country in season.",
-    "seoDek": "Mariposa, Oakhurst, Groveland, El Portal and Lee Vining compared: the closest town to each entrance, drive times, winter access, kids, and which to book.",
+    "seoTitle": "Oakhurst vs Mariposa vs Groveland: Best Base for Yosemite",
+    "seoDek": "Oakhurst vs Mariposa vs Groveland, plus El Portal and Lee Vining: drive times to the Valley, the closest town to each entrance, winter, kids, and which to book.",
     "date": "April 26, 2026",
     "isoDate": "2026-04-26",
     "isoModified": "2026-10-01",
@@ -2131,7 +2136,7 @@
       { "q": "Where should I stay to see Yosemite and Sequoia on one trip?", "a": "Oakhurst. The South Entrance is 20 to 25 minutes north, and the Kings Canyon entrance to Sequoia and Kings Canyon is roughly two to two and a half hours south by way of Fresno. Do not attempt Sequoia as a day trip from any Yosemite gateway." },
       { "q": "Do Yosemite gateway towns have reliable cell service?", "a": "Service is patchy in the gateways and unreliable to nonexistent through much of the park and approach roads. Download offline maps and reservation details before leaving town, and agree on a meeting point with your group." }
     ],
-    "related": ["where-to-stay-in-yosemite", "yosemite-from-los-angeles", "yosemite-with-kids-no-reservations-2026", "highway-140-closed-yosemite", "yosemite-trip-cost-budget", "getting-to-yosemite"]
+    "related": ["where-to-stay-in-yosemite", "where-to-eat-yosemite", "yosemite-from-los-angeles", "yosemite-with-kids-no-reservations-2026", "highway-140-closed-yosemite", "yosemite-trip-cost-budget"]
   },
   {
     "slug": "yosemite-during-smoke-season",

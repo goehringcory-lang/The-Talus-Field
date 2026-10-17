@@ -623,7 +623,9 @@ window.ARTICLE_BODIES["where-to-eat-yosemite"] = function WhereToEatYosemiteBody
     className: "ff-lede"
   }, "Where to base yourself is a bigger question than where to eat, and ", React.createElement("a", {
     href: "/articles/yosemite-gateway-towns-compared"
-  }, "the gateway towns comparison"), " answers it. This is the food half."), React.createElement("div", {
+  }, "the gateway towns comparison"), " answers it, with ", React.createElement("a", {
+    href: "/distances"
+  }, "every town's drive time to the Valley"), " in one table. This is the food half."), React.createElement("div", {
     className: "eat-towns"
   }, React.createElement("article", {
     className: "eat-town"
@@ -923,7 +925,9 @@ window.ARTICLE_BODIES["where-to-eat-yosemite"] = function WhereToEatYosemiteBody
     className: "eat-prose"
   }, React.createElement("p", null, "The park's picnic areas are first come, first served, open dawn to dusk, and come with tables, vault toilets and trash and recycling, and most have grills. Two things catch people out. Only ", React.createElement("strong", null, "Lower Yosemite Fall"), " and ", React.createElement("strong", null, "Church Bowl"), " have drinking water and flush toilets, so carry water to the rest. And in Yosemite Valley a grill fire is legal only between 5 and 10 p.m., inside the grill, and only when the park's fire restrictions allow it (", React.createElement("a", {
     href: "/articles/yosemite-fire-restrictions-explained"
-  }, "what the restrictions mean"), "). Food stays within arm's reach the whole time; the rule is below."))), React.createElement("div", null, PICNICS.map(([area, list]) => React.createElement("div", {
+  }, "what the restrictions mean"), "). Food stays within arm's reach the whole time; the rule is below. Sentinel Beach, Cathedral Beach and Swinging Bridge double as the Valley's swimming beaches, and ", React.createElement("a", {
+    href: "/articles/swimming-in-the-merced"
+  }, "the Merced swimming guide"), " has when the river is safe to get into."))), React.createElement("div", null, PICNICS.map(([area, list]) => React.createElement("div", {
     key: area,
     className: "eat-picnic"
   }, React.createElement("h3", {
