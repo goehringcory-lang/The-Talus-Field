@@ -898,7 +898,7 @@ const seed: SecretSpotInput[] = [
     teaser:
       'Twice a week, all year, a staff photographer from The Ansel Adams Gallery takes ten people on a free morning walk through the Valley: the camera you brought, composition, exposure. Registration opens three days ahead.',
     body:
-      'The Ansel Adams Gallery in Yosemite Village runs a free photography walk on Tuesday and Thursday mornings at 9, all year, from the gallery porch. A staff photographer leads it for about an hour and a half, on using the camera you brought, composition and exposure; digital or film. It is limited to ten people.\n\nRegistration opens three days ahead on Eventbrite, or by phone at 650-692-3495. For a longer afternoon, the gallery\'s paid In the Footsteps of Ansel Adams program runs about four hours.',
+      'The Ansel Adams Gallery in Yosemite Village runs a free photography walk on Tuesday and Thursday mornings at 9, all year, from the gallery porch. A staff photographer leads it, on using the camera you brought, composition and exposure; digital or film. It is limited to ten people.\n\nRegistration opens three days ahead on Eventbrite, or by phone at 650-692-3495. For a longer afternoon, the gallery\'s paid In the Footsteps of Ansel Adams program runs about four hours.',
     booking: { verb: 'Book', source: 'The Ansel Adams Gallery', url: 'https://www.anseladams.com/pages/photography-education' },
     photos: [{ src: '/photos/yosemite-village.jpg', caption: 'Yosemite Village, where the walk leaves from the gallery porch.' }], // stand-in: not this entry, see guide-photo-manifest.json
     swap:
@@ -917,7 +917,7 @@ const seed: SecretSpotInput[] = [
     teaser:
       'Yosemite Conservancy\'s art classes are four hours outdoors with a working artist, weekday mornings in season at Happy Isles. Children draw for free at the open studio on weekdays.',
     body:
-      'Yosemite Conservancy teaches art at the Happy Isles Art and Nature Center, by the Merced at the east end of the Valley: four-hour outdoor workshops led by guest artists, on weekday mornings from spring into fall, with supplies included. The class fee and the season\'s artists are on the Conservancy\'s art page, and its 2026 program added free classes, free children\'s classes and pop-up art.\n\nFor families, the free Kids\' Open Art Studio in the same building is drop-in on weekdays through the season. The center is at the Happy Isles shuttle stop, number 16, near the start of the Mist Trail; the road there is closed to private cars, so ride the shuttle or walk from Curry Village.',
+      'Yosemite Conservancy teaches art at the Happy Isles Art and Nature Center, by the Merced at the east end of the Valley: four-hour outdoor workshops led by guest artists, on weekday mornings from spring into fall. The class fee and the season\'s artists are on the Conservancy\'s art page.\n\nFor families, the free Kids\' Open Art Studio in the same building is drop-in on weekdays through the season. The center is at the Happy Isles shuttle stop, number 16, near the start of the Mist Trail; there is no parking there, so ride the shuttle or walk from Curry Village.',
     booking: { verb: 'Book', source: 'Yosemite Conservancy', url: 'https://yosemite.org/experience/art/' },
     photos: [{ src: '/photos/happy-isles-ouzel-watch.jpg', caption: 'The Merced at Happy Isles, beside the center.' }],
     swap:
