@@ -130,7 +130,7 @@ window.ARTICLE_BODIES["yosemite-in-february"] = function YosemiteInFebruaryBody(
       <h2>How to build a February trip</h2>
 
       <p>
-        <strong>Pick your half of the month first.</strong> If the firefall is the point, come between February 12 and 20, book the room before anything else, and accept that the evenings will be crowded and the walk out long. If the point is the park, come in the first ten days of the month or the last week, midweek, when the winter rates are in force and the Valley is as quiet as it gets.
+        <strong>Pick your half of the month first.</strong> If the firefall is the point, come between February 12 and 20, book the room before anything else, and accept that the evenings will be crowded and the walk out long. If the point is the park, come in the first ten days of the month or the last week, midweek, when the winter rates are in force and the Valley is as quiet as it gets. If a Half Dome day is on next summer's list, the planning starts at the end of the month: the preseason permit lottery takes applications on Recreation.gov from March 1 to 31, Eastern time, and <a href="/half-dome-lottery">the Half Dome lottery page</a> explains how it works.
       </p>
 
       <p>
@@ -138,7 +138,7 @@ window.ARTICLE_BODIES["yosemite-in-february"] = function YosemiteInFebruaryBody(
       </p>
 
       <p>
-        <strong>Read the conditions the morning of.</strong> Chain controls, road closures, trail gates, and the ski area change by the day. The <a href="/conditions">conditions page</a> collects the park's live feeds and phone numbers in one place. Come up 140 with chains in the trunk, keep one day free for the storm, and spend the clear day after it outside.
+        <strong>Read the conditions the morning of.</strong> Chain controls, road closures, trail gates, and the ski area change by the day. The <a href="/conditions">conditions page</a> collects the park's live feeds and phone numbers in one place. The <a href="/webcams">Yosemite webcams</a> show whether snow is lying in the Valley and at Wawona before you drive. Come up 140 with chains in the trunk, keep one day free for the storm, and spend the clear day after it outside.
       </p>
 
       <LodgingCta
