@@ -528,10 +528,11 @@ const HUB_PROSE = {
   "/fall-color": () =>
     hubProse(
       "Yosemite Fall Color",
-      "Most of Yosemite is evergreen, so autumn color here is concentrated: bigleaf maples gone yellow along the creeks, black oaks orange to gold in the meadows, dogwoods red under the conifers, aspens yellow up high. Color starts at the top of the park and walks down it. Aspens along the Tioga Road turn from late September; dogwoods at middle elevations follow; Yosemite Valley's maples and black oaks are showy from about mid-October, and the Valley's color usually builds through late October and holds until the first heavy storm or hard frost."
+      "Peak fall color in Yosemite Valley is usually late October into early November. The park says its bigleaf maples, black oaks and dogwoods are showy from about mid-October, and the color lingers until the first heavy storm or hard frost. The high country turns first: Tioga Road's aspens start in late September."
     ) +
-    `<p>The park's own band of color is the bigleaf maples along the south wall, from below Bridalveil Creek past Sentinel Creek to Happy Isles. Add the black oaks of El Capitan Meadow, the planted sugar maple by the Yosemite Valley Chapel, and the elm in Cook's Meadow, which turns first. Outside the Valley: Wawona's oaks and dogwoods, aspens past Summit Meadow on Glacier Point Road, aspens near the Tuolumne Grove trailhead on the Tioga Road, and willows and cottonwoods at El Portal.</p>` +
-    `<p>Autumn also means low water, with Yosemite Falls often a trickle or dry, and the high roads closing for snow, usually sometime in November. A hard frost or the first big storm ends the color. More: <a href="/articles/yosemite-in-fall">Yosemite in fall</a>, <a href="/articles/yosemite-trees-identification-guide">the tree guide</a>, <a href="/articles/yosemite-photography-spots">the photography guide</a>, and <a href="/stay">where to stay</a>.</p>`,
+    `<p>Most of Yosemite is evergreen, so autumn color here is concentrated: bigleaf maples gone yellow along the creeks, black oaks orange to gold in the meadows, dogwoods red under the conifers, aspens yellow up high. Color starts at the top of the park and walks down it: Tioga Road aspens, then dogwoods at middle elevations, then the Valley, then willows and cottonwoods at El Portal.</p>` +
+    `<p>Where to see it: the bigleaf maples along the south wall, from below Bridalveil Creek past Sentinel Creek to Happy Isles; the black oaks of El Capitan Meadow; the planted sugar maple by the Yosemite Valley Chapel; the elm in Cook's Meadow, which turns first. Outside the Valley: Wawona's oaks and dogwoods, aspens past Summit Meadow on Glacier Point Road, aspens near the Tuolumne Grove trailhead and the Yosemite Creek picnic area on the Tioga Road, and willows and cottonwoods at El Portal.</p>` +
+    `<p>Autumn also means low water, with Yosemite Falls often a trickle or dry, and the high roads closing for snow, usually sometime in November. A hard frost or the first big storm ends the color. Check it live on <a href="/webcams">the webcams</a> and the overnight low on <a href="/conditions">the conditions board</a>. More: <a href="/articles/yosemite-in-october-2026">Yosemite in October</a>, <a href="/articles/yosemite-in-fall">Yosemite in fall</a>, <a href="/articles/yosemite-trees-identification-guide">the tree guide</a>, <a href="/articles/yosemite-photography-spots">the photography guide</a>, and <a href="/stay">where to stay</a>.</p>`,
   "/moonbow": () =>
     hubProse(
       "The Yosemite Moonbow",
@@ -1363,15 +1364,19 @@ function seoForPath(pathname, searchParams) {
       // The FAQ mirrors FC_FAQ in page-fall-color.jsx word for word; its facts
       // follow the NPS fall color and Visiting in Fall pages (sources in that
       // file's header). Keep title and description byte-identical to app.jsx.
-      title: `Yosemite Fall Colors: when and where the leaves turn | ${SITE_NAME}`,
+      title: `Yosemite Fall Colors: When the Leaves Peak and Where to Look | ${SITE_NAME}`,
       description:
-        "When Yosemite's fall color peaks, band by band from the Tioga Road aspens to the Valley's maples and black oaks, where the park's own naturalists look, and what ends the season.",
+        "Peak fall color in Yosemite Valley is usually late October into early November; Tioga Road's aspens turn first. Where to see it, and what ends the season.",
       breadcrumb: [["Home", `${SITE_ORIGIN}/`], ["Fall color", null]],
       // Edge-only FAQ, as on /firefall: the client entry carries none.
       faq: [
         {
           q: "When is peak fall color in Yosemite?",
           a: "In Yosemite Valley, usually late October into early November. The park's maples and black oaks are showy from about mid-October, and the Valley's color holds until the first heavy winter storm or hard frost, which in some years is early December. The high country turns weeks earlier.",
+        },
+        {
+          q: "When do the leaves change color in Yosemite?",
+          a: "From the top of the park down. Aspens on the Tioga Road and past Summit Meadow on Glacier Point Road turn from late September, dogwoods at middle elevations in early to mid October, the Valley's maples and black oaks from about mid-October, and the willows and cottonwoods at El Portal last, into November.",
         },
         {
           q: "Is Yosemite good for fall colors?",
