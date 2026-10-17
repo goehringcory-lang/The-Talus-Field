@@ -755,8 +755,8 @@ function buildSeo(route) {
       breadcrumb: [["Home", `${SITE_ORIGIN}/`], ["Dates that matter", null]]
     },
     international: {
-      title: `Yosemite for International Visitors: the 2026 non-resident fee, explained | ${SITE_NAME}`,
-      description: "The 2026 non-resident entrance fee at Yosemite, the $250 pass, a calculator for the cheapest way in, and what surprises visitors from abroad: reservations, roads, chains, signal, bears.",
+      title: "Yosemite Non-Resident Fee 2026: $100 Fee, $250 Pass",
+      description: "Yosemite non-resident fee 2026: $100 per person aged 16 and up, plus the car fee. The $250 annual pass waives it. A calculator finds the cheapest way in.",
       ogType: "website",
       breadcrumb: [["Home", `${SITE_ORIGIN}/`], ["Visiting from abroad", null]]
     },

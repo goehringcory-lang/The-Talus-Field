@@ -500,7 +500,7 @@ const HUB_PROSE = {
     hubProse(
       "Yosemite for Visitors From Outside the United States",
       "Since January 1, 2026, a visitor who is not a US citizen or resident pays a non-resident fee of $100 per person aged 16 and older to enter Yosemite, on top of the standard entrance fee of $35 per car, $30 for up to two motorcycles or $20 per person on foot or by bus, unless covered by an annual pass. The non-resident America the Beautiful pass costs $250, covers the holder's vehicle and its occupants for twelve months at every federal fee site, and waives the non-resident fee for them. One adult in one car pays $135 at the gate; three adults pay $335 at the gate or $250 with the pass. The fee-free days are for US residents only in 2026. The gate takes cards, not cash. The same surcharge applies at Acadia, Bryce Canyon, Everglades, Glacier, Grand Canyon, Grand Teton, Rocky Mountain, Sequoia and Kings Canyon, Yellowstone and Zion.",
-      `<p>What else is different here: the nearest big airports are hours away (<a href="/articles/best-airport-for-yosemite">which airport to fly into</a>); no entry reservation is needed in 2026 (<a href="/articles/yosemite-without-reservations-2026">the no-reservations strategy</a>); most of the park has no mobile signal; Tioga Road and Glacier Point Road close from roughly November to late May (<a href="/tioga-opening">the Tioga Road page</a>); chains are required by law in winter, in rental cars too (<a href="/articles/getting-to-yosemite">getting to Yosemite</a>); the park can be reached without a car by Amtrak and YARTS (<a href="/articles/yosemite-shuttle-and-yarts">the shuttle and YARTS guide</a>); in-park beds sell out a year ahead (<a href="/stay">where to stay</a>); bear rules carry fines (<a href="/articles/yosemite-bears-safety-guide">the bears guide</a>). What a week costs all in: <a href="/articles/yosemite-trip-cost-budget">the trip-cost breakdown</a>.</p>`
+      `<p>What else is different here: the nearest big airports are hours away (<a href="/articles/best-airport-for-yosemite">which airport to fly into</a>); no entry reservation is needed in 2026 (<a href="/articles/yosemite-without-reservations-2026">the no-reservations strategy</a>); most of the park has no mobile signal (<a href="/articles/cell-service-in-yosemite">what works where, carrier by carrier</a>); Tioga Road and Glacier Point Road close from roughly November to late May (<a href="/tioga-opening">the Tioga Road page</a>); chains are required by law in winter, in rental cars too (<a href="/articles/getting-to-yosemite">getting to Yosemite</a>); the park can be reached without a car by Amtrak and YARTS (<a href="/articles/yosemite-shuttle-and-yarts">the shuttle and YARTS guide</a>); in-park beds sell out a year ahead (<a href="/stay">where to stay</a>); bear rules carry fines (<a href="/articles/yosemite-bears-safety-guide">the bears guide</a>). What a week costs all in: <a href="/articles/yosemite-trip-cost-budget">the trip-cost breakdown</a>.</p>`
     ),
   "/start-here": () =>
     hubProse(
@@ -1203,9 +1203,10 @@ function seoForPath(pathname, searchParams) {
       ],
     },
     "/international": {
-      title: `Yosemite for International Visitors: the 2026 non-resident fee, explained | ${SITE_NAME}`,
+      // No brand suffix, as for /webcams and /distances; must match app.jsx.
+      title: "Yosemite Non-Resident Fee 2026: $100 Fee, $250 Pass",
       description:
-        "The 2026 non-resident entrance fee at Yosemite, the $250 pass, a calculator for the cheapest way in, and what surprises visitors from abroad: reservations, roads, chains, signal, bears.",
+        "Yosemite non-resident fee 2026: $100 per person aged 16 and up, plus the car fee. The $250 annual pass waives it. A calculator finds the cheapest way in.",
       breadcrumb: [["Home", `${SITE_ORIGIN}/`], ["Visiting from abroad", null]],
       // Edge-only FAQ, quoted from fees-data.js, which names its NPS sources.
       faq: [
