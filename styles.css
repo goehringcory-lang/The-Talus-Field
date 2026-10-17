@@ -13205,6 +13205,84 @@ html[data-nav-mode="pinned"] { scroll-padding-top: 62px; }
 /* The crawler fragment is not laid out as a grid. */
 #prerender-prose .hk-feature :is(.ff-split, .ff-facts, .hk-choose, .hk-seasons, .ff-rules) { display: block; }
 
+/* ── /articles/yosemite-san-francisco-bus: the `.sfb-*` pieces ────────────
+   A feature article on the `.hp-event` tokens and the `.ff-*` kit (see the
+   feature-article layer above). Its own pieces: the photo beside the route,
+   the transit legs (the shared `.ff-timeline`), the four YARTS route cards
+   (the year-round one in ink), the return-trip rule cards (the shared
+   `.ff-rules`, two to a row beside the prose), the fare card (the shared
+   `.ff-inpark`), the three tour cards, the bus-or-car columns and the
+   sources beside the questions. */
+.sfb-feature .ff-split > * { min-width: 0; }
+.sfb-prose { font: 17px/1.75 var(--sans); color: var(--hp-ink); max-width: 640px; }
+.sfb-prose p { margin: 0 0 1.1em; }
+.sfb-prose p:last-child { margin-bottom: 0; }
+.sfb-prose strong { font-weight: 600; }
+.sfb-prose a, .sfb-feature .ff-note a, .sfb-feature .ff-alert a, .sfb-feature .ff-lede a, .sfb-rules a { color: inherit; text-decoration: underline; text-decoration-color: var(--hp-accent); text-decoration-thickness: 1px; text-underline-offset: 3px; }
+.sfb-prose a:hover, .sfb-feature .ff-note a:hover, .sfb-feature .ff-alert a:hover, .sfb-feature .ff-lede a:hover, .sfb-rules a:hover { color: var(--hp-accent); }
+.sfb-prose .dropcap::first-letter { font-family: var(--serif); font-weight: 400; font-size: 4.1em; float: left; line-height: 0.82; margin: 0.08em 0.1em 0 -0.03em; color: var(--hp-accent); }
+.sfb-open .sfb-prose { font: 19px/1.6 var(--serif); color: var(--ink-2); }
+.sfb-open .sfb-prose p:first-child { color: var(--hp-ink); }
+.sfb-open .ff-short { position: sticky; top: 88px; }
+
+.sfb-photo { margin: 0; }
+.sfb-photo img { display: block; width: 100%; height: auto; border-radius: 4px; }
+.sfb-photo figcaption { margin-top: 10px; font: 12px/1.5 var(--sans); color: var(--hp-muted); }
+
+.sfb-routes { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 20px; }
+.sfb-route { background: var(--hp-card); border: 1px solid var(--hp-rule); border-top: 4px solid var(--bt-warn); border-radius: 4px; padding: 22px; display: grid; gap: 10px; align-content: start; }
+.sfb-route.is-year { background: var(--hp-ink); border-color: var(--hp-ink); color: var(--hp-paper); }
+.sfb-route__season { margin: 0; font: 700 10px var(--sans); letter-spacing: 1.4px; text-transform: uppercase; color: var(--hp-muted); }
+.sfb-route.is-year .sfb-route__season { color: var(--hp-gold); }
+.sfb-route h3 { margin: 0; font-size: 26px; }
+.sfb-route.is-year h3 { color: var(--hp-paper); }
+.sfb-route__from { margin: 0; font: 13px/1.5 var(--sans); color: var(--hp-muted); }
+.sfb-route.is-year .sfb-route__from { color: var(--hp-band-muted); }
+.sfb-route dl { margin: 0; border-top: 1px solid var(--hp-rule); }
+.sfb-route dl > div { padding-block: 9px; border-bottom: 1px solid var(--hp-rule); }
+.sfb-route dt { font: 700 10px var(--sans); letter-spacing: 1.4px; text-transform: uppercase; color: var(--hp-muted); }
+.sfb-route dd { margin: 3px 0 0; font: 14px/1.55 var(--sans); color: var(--ink-2); }
+.sfb-route.is-year dl, .sfb-route.is-year dl > div { border-color: rgba(255, 255, 255, .18); }
+.sfb-route.is-year dt { color: var(--hp-band-muted); }
+.sfb-route.is-year dd { color: var(--hp-paper); }
+.sfb-route__note { margin: 0; font: 18px/1.35 var(--serif); }
+
+.ff-rules.sfb-rules { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+
+.sfb-tours { display: grid; gap: 14px; }
+.sfb-tour { background: var(--hp-card); border: 1px solid var(--hp-rule); border-left: 4px solid var(--hp-accent); border-radius: 4px; padding: 20px 22px; }
+.sfb-tour__season { margin: 0 0 6px; font: 700 10px var(--sans); letter-spacing: 1.4px; text-transform: uppercase; color: var(--hp-muted); }
+.sfb-tour h3 { font-size: 24px; margin: 0 0 8px; }
+.sfb-tour p:not(.sfb-tour__season) { margin: 0; font: 14px/1.6 var(--sans); color: var(--ink-2); }
+.sfb-tours .ff-note { margin: 0; }
+
+.sfb-choose { display: grid; gap: 14px; }
+.sfb-choose__col { background: var(--hp-card); border: 1px solid var(--hp-rule); border-radius: 4px; padding: 22px 24px; }
+.sfb-choose__col--car { background: var(--hp-ink); border-color: var(--hp-ink); color: var(--hp-paper); }
+.sfb-choose__head { display: flex; align-items: center; gap: 10px; margin: 0 0 12px; font: 700 11px var(--sans); letter-spacing: 1.6px; text-transform: uppercase; color: var(--hp-accent); }
+.sfb-choose__col--car .sfb-choose__head { color: var(--hp-gold); }
+.sfb-choose ul { margin: 0; padding-left: 20px; display: grid; gap: 8px; font: 18px/1.4 var(--serif); }
+
+.sfb-sources { margin-top: 28px; }
+.hp-event .sfb-sources h3 { font-size: 20px; margin-bottom: 8px; }
+.sfb-sources ul { list-style: none; margin: 0; padding: 0; }
+.sfb-sources li { padding-block: 8px; border-top: 1px solid var(--hp-rule); font: 13px var(--sans); }
+.sfb-sources a { color: var(--hp-accent); }
+
+@media (max-width: 1100px) {
+  .sfb-routes { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (max-width: 880px) {
+  .sfb-open .ff-short { position: static; }
+}
+@media (max-width: 640px) {
+  .sfb-routes, .ff-rules.sfb-rules { grid-template-columns: 1fr; }
+  .sfb-route { padding: 20px; }
+  .sfb-choose ul { font-size: 17px; }
+}
+/* The crawler fragment is not laid out as a grid. */
+#prerender-prose .sfb-feature :is(.ff-split, .ff-facts, .sfb-routes, .sfb-tours, .sfb-choose, .ff-timeline, .ff-rules) { display: block; }
+
 /* ===== UX and sales audit (October 2026) =====
    The shared checkout error under every /guide buy button, the walkthrough's
    pause control, the offline toggle's illustration note, the band's
@@ -13688,8 +13766,8 @@ html[data-nav-mode="pinned"] { scroll-padding-top: 62px; }
 /* Every article's sources list underlines its links at rest, as .nh-sources,
    .cg-sources and .wv-sources already do: a rust link alone in a muted list
    is told apart by colour only (axe link-in-text-block). */
-:is(.ec-sources, .eat-sources, .sv-sources, .ft-sources, .mt-sources) a { text-decoration: underline; text-decoration-color: #d9b6a8; text-underline-offset: 3px; }
-:is(.ec-sources, .eat-sources, .sv-sources, .ft-sources, .mt-sources) a:hover { text-decoration-color: currentColor; }
+:is(.ec-sources, .eat-sources, .sv-sources, .ft-sources, .mt-sources, .sfb-sources) a { text-decoration: underline; text-decoration-color: #d9b6a8; text-underline-offset: 3px; }
+:is(.ec-sources, .eat-sources, .sv-sources, .ft-sources, .mt-sources, .sfb-sources) a:hover { text-decoration-color: currentColor; }
 
 /* ===== Newsletter growth hooks (October 2026): the scroll bar and the
    mid-article banner. The exit-intent modal keeps its .nlmodal styles. ===== */

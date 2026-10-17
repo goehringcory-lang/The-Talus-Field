@@ -8,11 +8,258 @@
 Publisher: The Talus Field (https://thetalusfieldjournal.com). Editor: Cory Goehring.
 Citation guidance and the annotated page index: https://thetalusfieldjournal.com/llms.txt
 Canonical article URL pattern: https://thetalusfieldjournal.com/articles/<slug>
-Contents: 91 articles. Most recent update: 2026-10-17.
+Contents: 92 articles. Most recent update: 2026-10-17.
 
 Not in this file: the Yosemite Nature Notes archive, all 512 issues of the
 National Park Service's Yosemite bulletin (1922-2003), transcribed in full
 as plain static HTML at https://thetalusfieldjournal.com/archive/.
+
+---
+
+## San Francisco to Yosemite by Bus and Train: YARTS, Amtrak and BART, Both Ways
+
+URL: https://thetalusfieldjournal.com/articles/yosemite-san-francisco-bus
+Section: Planning. Published: 2026-10-17. Last updated: 2026-10-17.
+Summary: Bus from San Francisco to Yosemite: BART, the Amtrak train to Merced and the year-round YARTS Highway 140 bus. Fares, seasons, routes and the return trip.
+
+The way inBART, train to Merced, YARTS
+
+Merced to the Valley3 to 3½ hours by bus
+
+YARTS from Merced$22 one way, $44 round trip
+
+In winterHighway 140 only
+On this pageThe route
+The four YARTS routes
+Yosemite to San Francisco
+Fares and the entrance fee
+Tours instead
+When to drive
+Questions
+
+Ask where the bus to San Francisco leaves from and the answer disappoints a little: there is no bus from Yosemite to San Francisco. There is a bus to Merced, a train from Merced to the Bay, and a short hop from the train into the city, and the three together make one of the better ways in and out of this park. Nothing about it is direct, but all of it is scheduled, and none of it involves a parking lot.
+
+This is the route as it works now, in both directions: which train, which bus, what the posted fares are, which of the four YARTS routes run in which season, and where the official sources stop agreeing with each other. Where a schedule or price is not posted, I say so rather than guess.
+
+The short version
+
+- BART to Richmond, train to Merced, YARTS to the Valley.
+- Buy it as one Amtrak ticket.
+- October to May, only the Merced bus runs.
+- Budget for the entrance fee anyway.
+
+THE ROUTE
+
+### San Francisco to Yosemite, in three legs
+
+The train does not reach San Francisco itself, so the trip starts on the east side of the Bay. Amtrak's Central Valley line, the Gold Runner, called the San Joaquins until November 2025, stops at the Richmond BART station, and Amtrak runs connecting buses between downtown San Francisco and its station at Emeryville. Either way you board the same train south to Merced.
+
+At the Merced station you change to the YARTS bus. YARTS is the Yosemite Area Regional Transportation System, a public transit agency, not a tour company, and Amtrak sells its Merced bus as its own connection, Route 15, which is why the train and the bus can be booked as one ticket rather than two. The bus climbs Highway 140 through Catheys Valley, Mariposa, Midpines and El Portal and sets down at Yosemite Valley Lodge, Yosemite Village and Curry Village, all on the free Valley shuttle.
+
+The bus leg alone takes about three to three and a half hours on the winter timetable. Add BART to Richmond (about 37 minutes from Embarcadero) and the train to Merced (about 2 hours 45 minutes to 3 hours) and it is about six and a half to seven hours door to door from downtown San Francisco. On the winter timetable only two pairings connect closely: train 710 (Richmond 8:27 a.m., Merced 11:23 a.m.) with the 11:30 a.m. bus, which reaches Yosemite Valley Lodge at 2:40 p.m., and train 716 (Richmond 2:37 p.m., Merced 5:23 p.m.) with the 5:30 p.m. bus, in at 8:58 p.m. Plan the first afternoon or evening in the Valley, not the first morning, and a same-day round trip from San Francisco does not work in winter. Book Yosemite as the destination on Amtrak's site and the itinerary it returns, train and bus together, is the timetable to trust, not this page.
+
+The year-round bus, in the Valley in winter. Photo: YARTS
+
+- Leg oneAcross the Bay
+BART to Richmond, where the Amtrak train stops at the same station, or Amtrak's connecting bus from San Francisco to Emeryville.
+
+- Leg twoGold Runner to Merced
+Amtrak's Central Valley train, south from Richmond or Emeryville to the Merced station.
+
+- Leg threeYARTS up Highway 140
+From the Merced Amtrak station, through Mariposa and El Portal, into the Valley. All year but four holidays.
+
+- In the ValleyThe free shuttle
+From the bus stop to wherever you are sleeping or walking, 7 a.m. to 10 p.m. No ticket.
+
+Flying into SFO or Oakland instead of starting in the city: the same route works from the airport, and the airport guide weighs it against a rental car.
+
+YOSEMITE BUS ROUTES
+
+### Four YARTS routes, one of them all year
+
+YARTS runs full-size coaches into Yosemite Valley on four corridors. From San Francisco only one is practical without a car, because only one meets the train, but the other three matter if your trip is a loop or starts somewhere else.
+
+All year
+
+#### Highway 140
+
+From Merced
+
+Calls atMerced Airport, Merced Transpo and the Merced Amtrak station, then Catheys Valley, Mariposa, Midpines and El Portal, up the Merced River canyon
+
+Fare$22 one way, $44 round trip, adult
+
+The route that meets the train. The only one that runs in winter.
+
+Summer: May 22 to September 25 in 2026
+
+#### Highway 41
+
+From Fresno
+
+Calls atFresno, Coarsegold and Oakhurst, then Fish Camp, the Mariposa Grove and Wawona
+
+Fare$20 one way, $40 round trip, adult
+
+The south side. Fresno is a Gold Runner station too, but the train from the Bay reaches Merced first.
+
+Summer: May 22 to September 30 in 2026
+
+#### Highway 120 west
+
+From Sonora
+
+Calls atSonora and Jamestown, Groveland and Buck Meadows, Big Oak Flat and Crane Flat
+
+Fare$22 one way, $44 round trip, adult
+
+The shortest road from San Francisco, but no train meets it.
+
+Summer: July 1 to September 30 in 2026
+
+#### Highway 120 east
+
+From Mammoth Lakes, on Highway 395
+
+Calls atMammoth Lakes, June Lake and Lee Vining, over Tioga Pass to Tuolumne Meadows, White Wolf and Crane Flat
+
+Fare$30 one way, $60 round trip, adult
+
+The east side. Useful from San Francisco only on a loop trip.
+
+The 2026 summer routes have ended. Highway 41 finished on September 25, Highway 120 west and Highway 120 east on September 30. Check YARTS for next summer's dates; until those routes run, from San Francisco, the Merced bus is the whole system. Every corridor on the park map, with its stops in order: the shuttle and YARTS guide.
+
+YOSEMITE TO SAN FRANCISCO
+
+### Going home is the same trip backwards, with less slack
+
+Out of the park, you board YARTS at one of its three Valley stops, ride down the canyon to the Merced station, take the train north, and get off at Richmond for BART or at Emeryville for the connecting bus into San Francisco. The difference is the clock. On the way in, a late bus costs you an hour of afternoon. On the way out, it can cost you a train, so pick a bus that leaves you a margin at Merced, and buy the through ticket so the two legs are planned to connect.
+
+The winter timetable runs from October 1, 2026 to May 28, 2027. Runs leave Merced at 4:15 a.m., 7:15 a.m., 11:30 a.m. and 5:30 p.m. and reach Yosemite Valley Lodge at 7:13 a.m., 10:45 a.m., 2:40 p.m. and 8:58 p.m. Times change with each timetable, so read them on the YARTS Highway 140 page the week you travel.
+
+- Four days with no bus
+YARTS does not run on Thanksgiving, Christmas, New Year's Day or Easter: this season, November 26, December 25, January 1 and March 28, 2027.
+
+- Walk-ons ride if there is room
+Booking is optional and walk-ons ride first come, first served. On a summer weekend, a reservation is cheap insurance.
+
+- Bags yes, pets no
+YARTS takes backpacks of any size. Bikes ride underneath, disassembled, as space allows, never guaranteed. Only service animals ride.
+
+- If Highway 140 closes
+Rockfall and storms close the canyon road some years. Read the closure before you travel: Highway 140 closed.
+
+FARES AND THE ENTRANCE FEE
+
+### What the bus costs, and what it may not cover
+
+The YARTS fare from Merced is posted and simple. The Amtrak fare is not something I can print: Amtrak prices the train by date and by how early you book, so search your own dates on its site. The through ticket to Yosemite includes the YARTS leg.
+
+Then the entrance fee, the one question a car-free visitor cannot get a straight answer to. YARTS says its fares do not include it: Park Service gate fees and non-resident fees are the rider's to pay, and can be paid on Recreation.gov. Amtrak's Yosemite page says its tickets include admission. Two official sources, two answers. Budget for the fee, and if you are waved through, treat it as a refund. The pass for anyone arriving by bus is $20 per person, good for seven days; people 15 and under are free, and non-US residents 16 and over pay $100 more unless they carry an annual or America the Beautiful pass. The park does not take cash, so buy it before you board.
+
+YARTS · HIGHWAY 140 · ALL YEAR
+
+#### Merced to Yosemite Valley
+
+Adult$22 one way, $44 round trip
+
+Reduced$11 one way, $22 round trip
+
+Children5 and under free; one child 6 to 12 free with each paid adult
+
+Fees$1 surcharge per person; $2.50 per one-way ticket bought online
+
+Entrance pass$20 per person, seven days, card only
+
+Reduced fares cover children 6 to 17 beyond the one free child, riders 62 and over and veterans with ID, and riders with disabilities. Walk-ons pay on board; the YARTS fares page does not list the payment methods, so check it before you travel. What the whole week costs, the fee worked through for a family and for visitors from abroad: the trip-cost breakdown.
+
+TOURS INSTEAD
+
+### When someone else should do the driving
+
+The bus gets you to the Valley floor and stops there. If the trip is a day or two and you want Glacier Point or the giant sequoias too, the park concessioner runs guided tours from Yosemite Valley Lodge, which is a YARTS stop, so the two fit together. The year-round one is the two-hour Valley Floor Tour. The Glacier Point Tour and the eight-hour Grand Tour, which adds the Mariposa Grove, run only while Glacier Point Road is open; in 2026 the Grand Tour ran May 9 to October 12, and both ended for the year on October 12. Book ahead at travelyosemite.com, and ask for an accessible vehicle when you book, not when you arrive.
+
+Private companies also sell day tours from San Francisco. I do not review them and do not quote their prices. Before you book one, do the arithmetic: the Park Service puts the Bay Area at 195 miles and four to five hours from the park by car, so a day trip is eight or more hours in a seat for a few hours in the park.
+
+All year, conditions permitting
+
+#### Valley Floor Tour
+
+Two hours from Yosemite Valley Lodge, open-air tram from mid-April to mid-October, heated motor coach the rest of the year. $41.25 adult, $28.25 child 2 to 12.
+
+While Glacier Point Road is open
+
+#### Glacier Point Tour
+
+Four hours round trip, from 8:30 a.m. and 1:30 p.m. $72.50 adult and $50.50 child round trip; one way, $28.50 and $18.25, which is how hikers walk down. Ended for 2026 on October 12.
+
+May 9 to October 12 in 2026
+
+#### Grand Tour
+
+About eight hours, lunch included: the Valley, Glacier Point and the Mariposa Grove. $141 adult, $71 child 2 to 12.
+
+Fares as the concessioner listed them on October 17, 2026. Every tour, with the departure times and the moonlight one: Yosemite for non-hikers.
+
+WHEN TO DRIVE INSTEAD
+
+### The bus is a Valley tool
+
+YARTS serves a corridor, not the park. If the plan is Glacier Point on Tuesday, Tuolumne Meadows on Wednesday and Hetch Hetchy on Thursday, you need a car, and from San Francisco the drive is shorter than the train and bus. It is also cheaper for a group: the entrance fee is $35 a car for seven days if you drive in, against $20 a head on the bus, before the bus fares.
+
+For one or two people sleeping in the Valley, the bus wins: no chains to fit in winter, nobody driving four hours and then hiking, and no hunt for a space at eleven in the morning. If you do drive, the day trip from the Bay Area has the roads and the hours, and the parking guide has the hours the lots fill.
+
+Take the train and bus if
+
+- It is one or two of you, on a Valley trip.
+- You are sleeping in the Valley or on Highway 140.
+- It is winter, and chains are the part you dread.
+
+Drive if
+
+- There are three or more of you.
+- The trip includes Glacier Point, Tuolumne or Hetch Hetchy.
+- You want to be at a trailhead before the first bus arrives.
+
+The rest of the car-free trip, the bike path, the bins and the propane included: Yosemite without a car. Built around the shuttle line: Yosemite in one or two days.
+
+QUESTIONS
+
+### The bus to Yosemite, answered
+
+Every road into the park, and why the phone's route is not to be trusted: getting to Yosemite.
+
+#### Sources
+
+- Public transportation, NPS Yosemite
+- Entrance fees, NPS Yosemite
+- Driving distances and times, NPS Yosemite
+- Tickets and fares, YARTS
+- How to ride, YARTS
+- Highway 140 route, YARTS
+- Highway 41 route, YARTS
+- Highway 120 route, YARTS
+- Highway 395/120E route, YARTS
+- Yosemite by train, Amtrak
+- Gold Runner route, Amtrak
+- Emeryville station, Amtrak
+- San Joaquins becomes Gold Runner, Amtrak, November 3, 2025
+- Richmond station, BART
+- Guided bus tours, Yosemite Hospitality
+
+Is there a bus from San Francisco to Yosemite?
+Not a direct one on public transit. The scheduled route is three legs: BART to Richmond, or Amtrak's connecting bus from San Francisco to Emeryville; the Amtrak Gold Runner train, long known as the San Joaquins, to Merced; then the YARTS bus up Highway 140 into Yosemite Valley. It runs all year, and Amtrak sells the train and the YARTS bus as one ticket.
+How long does the bus take from Merced to Yosemite Valley?
+About three to three and a half hours on the YARTS winter timetable, which runs from October 1, 2026 to May 28, 2027, depending on the run. The bus calls at Catheys Valley, Mariposa, Midpines and El Portal on the way up the Merced River canyon and stops at Yosemite Valley Lodge, Yosemite Village and Curry Village.
+How much is the YARTS bus from Merced to Yosemite?
+YARTS lists $22 one way and $44 round trip for an adult between Merced and Yosemite Valley, and reduced fares of $11 and $22. Children 5 and under ride free, and one child aged 6 to 12 rides free with each paid adult. Online tickets carry a $2.50 fee each way, the posted fares leave out a $1 surcharge per person, and walk-ons ride as space allows.
+Does YARTS run all year?
+Only the Highway 140 route, from Merced. The Highway 41 route from Fresno, Highway 120 west from Sonora and Highway 120 east from Mammoth Lakes are summer services. YARTS does not run on Thanksgiving, Christmas, New Year's Day or Easter.
+How do I get from Yosemite to San Francisco by bus?
+The same three legs in reverse: YARTS from the Valley down Highway 140 to the Merced Amtrak station, the Gold Runner train to Richmond or Emeryville, then BART from Richmond or Amtrak's connecting bus from Emeryville into San Francisco. Book it as one Amtrak ticket so the bus and train are planned to connect, and check the current timetable before you choose a bus.
+Does the bus fare include the Yosemite entrance fee?
+The official sources disagree. YARTS says entrance and non-resident fees are not included in its ticket prices, while Amtrak's Yosemite page says its tickets include admission. Plan to pay: the per-person pass is $20 for seven days, people 15 and under are free, non-US residents 16 and over pay $100 more, and the park does not accept cash.
 
 ---
 
@@ -5314,7 +5561,7 @@ The Tuolumne Meadows buses are the ones to check rather than assume. The high-co
 
 YARTS is the Yosemite Area Regional Transportation System, a public transit agency rather than a tour operator, and it runs full-size coaches on four corridors into Yosemite Valley.
 
-Highway 140, from Merced. The backbone, and the only route that runs year-round, seven days a week. It leaves from the Amtrak station in Merced and calls at Mariposa, Midpines, and El Portal on its way up the Merced canyon. Figure about three hours end to end. Because it connects to a train, this is the route that makes a car-free Yosemite trip possible from San Francisco, Sacramento, or Los Angeles.
+Highway 140, from Merced. The backbone, and the only route that runs year-round, seven days a week. It leaves from the Amtrak station in Merced and calls at Mariposa, Midpines, and El Portal on its way up the Merced canyon. Figure about three to three and a half hours end to end on the winter timetable. Because it connects to a train, this is the route that makes a car-free Yosemite trip possible from San Francisco, Sacramento, or Los Angeles. The Yosemite to San Francisco by bus guide walks through that connection leg by leg.
 
 Highway 41, from Fresno. Seasonal, roughly late May into late September, calling at Oakhurst, Fish Camp, the Mariposa Grove, and Wawona. This is the route for anyone flying into Fresno, which is the closest major airport; the airport guide weighs it against landing at SFO or LAX and renting a car.
 
@@ -12774,7 +13021,7 @@ Yes. The Valley Floor Tour is a two-hour tour, led by a naturalist or ranger, on
 Is Glacier Point accessible without hiking?
 Yes. Glacier Point Road is open to cars from about late May through October or November, and the drive from the Valley takes about an hour. A short paved path leads from the parking lot to the overlook, and the Park Service lists it as wheelchair accessible; its older accessibility guide notes that some sections are steeper than an accessible grade. The Glacier Point Tour bus also goes there while the road is open.
 Can you visit Yosemite by bus or train?
-Yes. Amtrak runs to Merced, where the YARTS Highway 140 bus leaves for Yosemite Valley year-round, about two and a half hours end to end. YARTS's Highway 41, Highway 120 and Highway 395 routes run in summer only. Budget for the park entrance fee, because the Park Service and YARTS disagree about whether the fare covers it.
+Yes. Amtrak runs to Merced, where the YARTS Highway 140 bus leaves for Yosemite Valley year-round, about three to three and a half hours on the bus alone. YARTS's Highway 41, Highway 120 and Highway 395 routes run in summer only. Budget for the park entrance fee, because the Park Service and YARTS disagree about whether the fare covers it.
 Does the Yosemite Valley shuttle run in winter, and can it carry a wheelchair?
 The free Valley shuttle runs daily, year-round, from 7 a.m. to 10 p.m. Every bus has a wheelchair lift and tie-downs. The Park Service gives the maximum wheelchair size as 24 inches wide by 46 inches long.
 Do I need a reservation to enter Yosemite?
