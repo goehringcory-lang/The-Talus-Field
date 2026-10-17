@@ -35,7 +35,7 @@
   </url>
   <url>
     <loc>https://thetalusfieldjournal.com/section/trails</loc>
-    <lastmod>2026-10-07</lastmod>
+    <lastmod>2026-10-17</lastmod>
   </url>
   <url>
     <loc>https://thetalusfieldjournal.com/section/wildlife</loc>
@@ -173,6 +173,30 @@
   </url>
 
   <!-- Articles -->
+  <url>
+    <loc>https://thetalusfieldjournal.com/articles/badger-pass-ski-area</loc>
+    <lastmod>2026-10-17</lastmod>
+    <image:image>
+      <image:loc>https://thetalusfieldjournal.com/img/responsive/glacier-point-skiers-half-dome-nps-1600.jpg</image:loc>
+      <image:title>Two skiers on the snow at Glacier Point above Half Dome, Vernal Fall and Nevada Fall, the far end of the ski track from Badger Pass</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://thetalusfieldjournal.com/articles/snowshoeing-in-yosemite</loc>
+    <lastmod>2026-10-17</lastmod>
+    <image:image>
+      <image:loc>https://thetalusfieldjournal.com/img/responsive/clark-range-view-glacier-point-road-1600.jpg</image:loc>
+      <image:title>Snow on the high country beyond Badger Pass, with Mount Clark above Glacier Point Road</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://thetalusfieldjournal.com/articles/yosemite-in-february</loc>
+    <lastmod>2026-10-17</lastmod>
+    <image:image>
+      <image:loc>https://thetalusfieldjournal.com/img/responsive/yosemite-valley-snow-fiske-1600.jpg</image:loc>
+      <image:title>Fresh snow on the Yosemite Valley floor after a winter storm, in a George Fiske photograph</image:title>
+    </image:image>
+  </url>
   <url>
     <loc>https://thetalusfieldjournal.com/articles/yosemite-in-january</loc>
     <lastmod>2026-10-15</lastmod>

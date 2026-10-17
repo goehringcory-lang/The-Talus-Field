@@ -1,8 +1,5 @@
 /* global React, Placeholder, MotifMountains, AffiliateNote, LodgingCta */
 
-// DRAFT, NOT PUBLISHED. Lives under docs/drafts/, which .assetsignore keeps off
-// the deployed site. Publishing steps are in docs/drafts/README.md.
-
 window.ARTICLE_BODIES = window.ARTICLE_BODIES || {};
 
 window.ARTICLE_BODIES["badger-pass-ski-area"] = function BadgerPassSkiAreaBody() {
@@ -33,7 +30,7 @@ window.ARTICLE_BODIES["badger-pass-ski-area"] = function BadgerPassSkiAreaBody()
       </p>
 
       <p>
-        "Conditions permitting" is the load-bearing phrase. In February 2025 the concessioner and the Park Service announced that Badger Pass would not open at all for the 2024 to 2025 season: the snow had come too late, they said, to make a season of less than a month worthwhile, and season passes were refunded. The next winter it opened late and closed early. The Nordic center, which runs the cross-country and snowshoe trails, opened on Friday, January 9, 2026, the lifts followed on January 16, and the concessioner closed the area for the season on <strong>March 18, 2026</strong>, after a warm week and rain took the snowpack. Neither winter came close to mid-December.
+        "Conditions permitting" is the load-bearing phrase. In February 2025 the concessioner and the Park Service announced that Badger Pass would not open at all for the 2024 to 2025 season: the snow had come too late, they said, to make a short season worthwhile, and season passes were refunded. The next winter it opened late and closed early. The Nordic center, which runs the cross-country and snowshoe trails, opened on Friday, January 9, 2026, the lifts followed on January 16, and the concessioner closed the area for the season on <strong>March 18, 2026</strong>, after a week of unseasonable warmth melted the snow. Neither winter came close to mid-December.
       </p>
 
       <p>
@@ -122,7 +119,7 @@ window.ARTICLE_BODIES["badger-pass-ski-area"] = function BadgerPassSkiAreaBody()
       </p>
 
       <p>
-        The marquee route is the road itself: <strong>10.5 miles one way to Glacier Point</strong>, a 21-mile round trip that is a long day for a strong skier and an overnight for most people. <a href="/articles/glacier-point-how-to-visit">The Glacier Point guide</a> covers the summer version of the same road. Shorter, ungroomed routes lead to Dewey Point on the Valley rim.
+        The marquee route is the road itself: <strong>10.5 miles one way to Glacier Point</strong>, a 21-mile round trip that is a long day for a strong skier and an overnight for most people. <a href="/articles/glacier-point-how-to-visit">The Glacier Point guide</a> covers the summer version of the same road. Shorter, ungroomed routes lead to Dewey Point on the Valley rim, and the snowshoe routes from the same lot are in <a href="/articles/snowshoeing-in-yosemite">the snowshoeing guide</a>.
       </p>
 
       <p>
@@ -140,7 +137,7 @@ window.ARTICLE_BODIES["badger-pass-ski-area"] = function BadgerPassSkiAreaBody()
       </p>
 
       <p>
-        The <strong>Ostrander Ski Hut</strong>, run by Yosemite Conservancy, is a stone hut at 8,500 feet, about 10 miles from Badger Pass with more than 2,500 feet of climbing, and the Conservancy describes it as for experienced skiers only. Its 2026 to 2027 season is listed as December 23, 2026, through April 4, 2027, subject to change. Space is awarded by a lottery that the Conservancy ran in October 2026; beds left over are released first come, first served from December 1, 2026. A free wilderness permit from the Badger Pass Ranger Station, the A-frame building at the ski area, is required.
+        The <strong>Ostrander Ski Hut</strong>, run by Yosemite Conservancy, is a stone hut at 8,500 feet, about 10 miles from Badger Pass with more than 2,500 feet of climbing, and the Conservancy describes it as for experienced skiers only. Its 2026 to 2027 season is listed as December 23, 2026, through April 4, 2027, subject to change. Space is awarded by a fall lottery: for 2026 to 2027, applications ran from October 12 through 11:59 p.m. on October 18, 2026, with winners notified by October 23, and beds left over are released first come, first served from 9 a.m. on December 1, 2026, and most Tuesdays after that. As of mid-October 2026 the trails south of Glacier Point Road toward Ostrander Lake were still closed for the Dome Fire, during which crews protected the hut; check the park's closures before you apply and again before you go. A free wilderness permit from the Badger Pass Ranger Station, the A-frame building at the ski area, is required.
       </p>
 
       <p>
@@ -156,7 +153,7 @@ window.ARTICLE_BODIES["badger-pass-ski-area"] = function BadgerPassSkiAreaBody()
       <h2>The short version</h2>
 
       <p>
-        Badger Pass is a beginner's hill and a cross-country trailhead with a lodge between them, and in a year with snow it is one of the best winter days in the park. The season is set by the storms: assume nothing before January, check the Snow Phone the night before, and carry chains even if you plan to take the shuttle. If the snow is late, the Valley still has the rink, Columbia Rock, and the walk into the Mariposa Grove. If the snow is good, come midweek in January or February, book the learn-to-ski package for the first-timer, and give the rest of the party the road to Glacier Point. By <a href="/articles/yosemite-in-march">March</a> the season can end in a week.
+        Badger Pass is a beginner's hill and a cross-country trailhead with a lodge between them, and in a year with snow it is one of the best winter days in the park. The season is set by the storms: assume nothing before January, check the Snow Phone the night before, and carry chains even if you plan to take the shuttle. If the snow is late, the Valley still has the rink, Columbia Rock, and the walk into the Mariposa Grove. If the snow is good, come midweek in January or <a href="/articles/yosemite-in-february">February</a>, book the learn-to-ski package for the first-timer, and give the rest of the party the road to Glacier Point. By <a href="/articles/yosemite-in-march">March</a> the season can end in a week.
       </p>
 
       <LodgingCta

@@ -44,13 +44,13 @@
     "license": "CC BY-SA 3.0",
     "source": "https://commons.wikimedia.org/wiki/File:Yosemite_Camp_Four-3.jpg"
   },
-  "img/camp-ahwahnee-sentinel-rock.jpg": {
-    "author": "Detroit Publishing Co., scan by the New York Public Library",
+  "img/camp-ahwahnee-sentinel-rock-card.jpg": {
+    "author": "Detroit Publishing Co., scan by the New York Public Library (cropped to the printed image)",
     "license": "Public domain",
     "source": "https://commons.wikimedia.org/wiki/File:Camp_Ahwahnee,_Sentinel_Rock,_Yosemite,_Calif_(NYPL_b12647398-73959).tiff"
   },
-  "img/camp-ahwahnee-sentinel-rock-card.jpg": {
-    "author": "Detroit Publishing Co., scan by the New York Public Library (cropped to the printed image)",
+  "img/camp-ahwahnee-sentinel-rock.jpg": {
+    "author": "Detroit Publishing Co., scan by the New York Public Library",
     "license": "Public domain",
     "source": "https://commons.wikimedia.org/wiki/File:Camp_Ahwahnee,_Sentinel_Rock,_Yosemite,_Calif_(NYPL_b12647398-73959).tiff"
   },
@@ -68,6 +68,11 @@
     "author": "Justin Johnsen",
     "license": "CC BY-SA 4.0",
     "source": "https://commons.wikimedia.org/wiki/File:Mount_Clark_west_face_winter.jpg"
+  },
+  "img/curry-village-rockfall-boulder-2008.jpg": {
+    "author": "U.S. National Park Service",
+    "license": "Public domain",
+    "source": "https://commons.wikimedia.org/wiki/File:Yosemite-Curry-Village-Oct-2008-rockfall-damage.png"
   },
   "img/el-capitan-climbers-on-the-nose.jpg": {
     "author": "Tom Frost",
@@ -93,6 +98,16 @@
     "author": "LaurentianShield",
     "license": "CC BY-SA 3.0",
     "source": "https://commons.wikimedia.org/wiki/File:FergusonSlideBridge-2014-01-10.jpg"
+  },
+  "img/frazil-ice-yosemite-creek-nps.jpg": {
+    "author": "National Park Service",
+    "license": "Public domain",
+    "source": "https://commons.wikimedia.org/wiki/File:Frazil_ice_in_Yosemite_Creek.png"
+  },
+  "img/glacier-point-skiers-half-dome-nps.jpg": {
+    "author": "National Park Service Digital Image Archives",
+    "license": "Public domain",
+    "source": "https://commons.wikimedia.org/wiki/File:Yosemite_National_Park_YOSE4105.jpg"
   },
   "img/glen-aulin-tent-cabin.jpg": {
     "author": "Lela Getzler",
@@ -128,6 +143,11 @@
     "author": "George Fiske",
     "license": "Public domain",
     "source": "https://commons.wikimedia.org/wiki/File:Yosemite_Valley_in_Yosemite_National_Park_in_winter,_before_1900_(CHS-858).jpg"
+  },
+  "img/happy-isles-rockfall-scar-1996.jpg": {
+    "author": "U.S. Geological Survey",
+    "license": "Public domain",
+    "source": "https://commons.wikimedia.org/wiki/File:1996_Yosemite_Valley_rockslide.jpg"
   },
   "img/hetch-hetchy-reservoir-kolana-rock.jpg": {
     "author": "King of Hearts",
@@ -179,35 +199,50 @@
     "license": "CC BY-SA 4.0",
     "source": "https://commons.wikimedia.org/wiki/File:Yosemite_National_Park_1989_50.jpg"
   },
+  "img/moonbow-lower-yosemite-fall-inaglory.jpg": {
+    "author": "Brocken Inaglory",
+    "license": "CC BY-SA 3.0",
+    "source": "https://commons.wikimedia.org/wiki/File:Moonbow_at_lower_Yosemite_fall.jpg"
+  },
+  "img/moonbow-lower-yosemite-fall-wakabayashi.jpg": {
+    "author": "Ted Wakabayashi",
+    "license": "Public domain",
+    "source": "https://commons.wikimedia.org/wiki/File:070602-M_Yosemite_@night_18_Moonbow.jpg"
+  },
   "img/nps-ranger-horseback-visitors.jpg": {
     "author": "Cecil W. Stoughton",
     "license": "Public domain",
     "source": "https://commons.wikimedia.org/wiki/File:HFCA_1607_People_Volume_1_183.jpg_(ee9aab3cdc6b4541aef18e37c13af2a1).jpg"
-  },
-  "img/tioga-road-above-tenaya-lake.jpg": {
-    "author": "U.S. National Archives (NARA 7722409)",
-    "license": "Public domain",
-    "source": "https://commons.wikimedia.org/wiki/File:Tioga_Road-Big_Oak_Flat_Road_-_Tioga_Road_in_Yosemite_National_Park_-_NARA_-_7722409.jpg"
-  },
-  "img/olmsted-point-tioga-road.jpg": {
-    "author": "Dcrjsr",
-    "license": "CC BY 3.0",
-    "source": "https://commons.wikimedia.org/wiki/File:Olmsted_Point_Yosemite_view.jpg"
   },
   "img/oakhurst-highway-41-ken-lund.jpg": {
     "author": "Ken Lund",
     "license": "CC BY-SA 2.0",
     "source": "https://commons.wikimedia.org/wiki/File:Oakhurst,_California_skyline.jpg"
   },
+  "img/olmsted-point-tioga-road.jpg": {
+    "author": "Dcrjsr",
+    "license": "CC BY 3.0",
+    "source": "https://commons.wikimedia.org/wiki/File:Olmsted_Point_Yosemite_view.jpg"
+  },
   "img/propane-canister-recycling-yosemite.jpg": {
     "author": "Mx. Granger",
     "license": "CC0",
     "source": "https://commons.wikimedia.org/wiki/File:Propane_canister_recycling.jpg"
   },
+  "img/talus-slope-old-big-oak-flat-road.jpg": {
+    "author": "Brian Grogan, Historic American Engineering Record (Library of Congress)",
+    "license": "Public domain",
+    "source": "https://commons.wikimedia.org/wiki/File:View_of_Old_Big_Oak_Flat_Road_in_Talus_Slope._Bridal_Veil_Falls_at_center_distance._Looking_east_-_Big_Oak_Flat_Road,_Between_Big_Oak_Flat_Entrance_and_Merced_River,_Yosemite_HAER_CAL,22-YOSEM,29-32.tif"
+  },
   "img/tioga-pass-entrance-station.jpg": {
     "author": "daveynin from United States",
     "license": "CC BY 2.0",
     "source": "https://commons.wikimedia.org/wiki/File:Tioga_Pass_entrance_station_-_Flickr_-_daveynin.jpg"
+  },
+  "img/tioga-road-above-tenaya-lake.jpg": {
+    "author": "U.S. National Archives (NARA 7722409)",
+    "license": "Public domain",
+    "source": "https://commons.wikimedia.org/wiki/File:Tioga_Road-Big_Oak_Flat_Road_-_Tioga_Road_in_Yosemite_National_Park_-_NARA_-_7722409.jpg"
   },
   "img/tunnel-view-ferguson-fire-smoke.jpg": {
     "author": "Region 5 Photography",
@@ -323,35 +358,5 @@
     "author": "Rennett Stowe from USA",
     "license": "CC BY 2.0",
     "source": "https://commons.wikimedia.org/wiki/File:Yosemite_Village_Store_(3020745703).jpg"
-  },
-  "img/moonbow-lower-yosemite-fall-inaglory.jpg": {
-    "author": "Brocken Inaglory",
-    "license": "CC BY-SA 3.0",
-    "source": "https://commons.wikimedia.org/wiki/File:Moonbow_at_lower_Yosemite_fall.jpg"
-  },
-  "img/moonbow-lower-yosemite-fall-wakabayashi.jpg": {
-    "author": "Ted Wakabayashi",
-    "license": "Public domain",
-    "source": "https://commons.wikimedia.org/wiki/File:070602-M_Yosemite_@night_18_Moonbow.jpg"
-  },
-  "img/frazil-ice-yosemite-creek-nps.jpg": {
-    "author": "National Park Service",
-    "license": "Public domain",
-    "source": "https://commons.wikimedia.org/wiki/File:Frazil_ice_in_Yosemite_Creek.png"
-  },
-  "img/talus-slope-old-big-oak-flat-road.jpg": {
-    "author": "Brian Grogan, Historic American Engineering Record (Library of Congress)",
-    "license": "Public domain",
-    "source": "https://commons.wikimedia.org/wiki/File:View_of_Old_Big_Oak_Flat_Road_in_Talus_Slope._Bridal_Veil_Falls_at_center_distance._Looking_east_-_Big_Oak_Flat_Road,_Between_Big_Oak_Flat_Entrance_and_Merced_River,_Yosemite_HAER_CAL,22-YOSEM,29-32.tif"
-  },
-  "img/happy-isles-rockfall-scar-1996.jpg": {
-    "author": "U.S. Geological Survey",
-    "license": "Public domain",
-    "source": "https://commons.wikimedia.org/wiki/File:1996_Yosemite_Valley_rockslide.jpg"
-  },
-  "img/curry-village-rockfall-boulder-2008.jpg": {
-    "author": "U.S. National Park Service",
-    "license": "Public domain",
-    "source": "https://commons.wikimedia.org/wiki/File:Yosemite-Curry-Village-Oct-2008-rockfall-damage.png"
   }
 }

@@ -110,6 +110,9 @@ window.planningSeriesFor = function (slug) {
 // verifies this map stays in sync with the files in bodies/.
 // ============================================================
 window.BODY_VERSIONS = {
+  "badger-pass-ski-area": 1,
+  "snowshoeing-in-yosemite": 1,
+  "yosemite-in-february": 1,
   "yosemite-in-january": 2,
   "yosemite-rockfall": 3,
   "wawona-yosemite-guide": 2,
@@ -901,6 +904,53 @@ window.KIT_REI = {
 // AffiliateDisclosure line under the byline, before the first link;
 // scripts/check-affiliate-links.mjs fails when the flag and the body disagree.
 window.ARTICLES = [
+  {
+    slug: "badger-pass-ski-area",
+    aff: true,
+    cat: "seasonal",
+    title: "Badger Pass Ski Area: Is It Open, What It Costs, and How the Season Really Works",
+    seoTitle: "Badger Pass Ski Area, Yosemite: Season, Tickets, Tubing, Lessons, Shuttle",
+    dek: "California's oldest downhill ski area is ten runs, five lifts, and a tubing hill that runs on natural snow, and in the last two winters it opened late once and not at all once. How to check whether it is open, the drive and the free shuttle, the posted ticket and lesson prices, the tubing rules, the Nordic center and the 21-mile track to Glacier Point, and the two huts.",
+    seoDek: "Badger Pass Ski Area in Yosemite: season dates and how to check if it's open, tickets, lessons, tubing, cross-country, the free shuttle, and huts.",
+    date: "October 17, 2026",
+    isoDate: "2026-10-17",
+    isoModified: "2026-10-17",
+    read: "9 min",
+    placeholder: "Two skiers on the snow at Glacier Point above Half Dome, Vernal Fall and Nevada Fall, the far end of the ski track from Badger Pass",
+    image: "img/glacier-point-skiers-half-dome-nps.jpg",
+    credit: "Photo: National Park Service / Wikimedia Commons (public domain)",
+  },
+  {
+    slug: "snowshoeing-in-yosemite",
+    cat: "trails",
+    title: "Snowshoeing in Yosemite: Badger Pass, Crane Flat, the Mariposa Grove, and the Ranger Walks",
+    seoTitle: "Snowshoeing in Yosemite: Where to Go, Ranger Walks, Rentals, Safety",
+    dek: "The park marks winter routes in three places, and none of them is the Valley floor. Badger Pass and the road to Dewey Point, the quiet routes at Crane Flat, the Washburn Trail into the sequoias, the free ranger walks and the guided ones, where to rent, the permit and camping rules, and a 1933 snowshoe trip that came back counting tracks.",
+    seoDek: "Snowshoeing in Yosemite: Badger Pass and Dewey Point, Crane Flat, the Mariposa Grove, free ranger walks, guided hikes, rentals, and safety rules.",
+    date: "October 17, 2026",
+    isoDate: "2026-10-17",
+    isoModified: "2026-10-17",
+    read: "8 min",
+    placeholder: "Snow on the high country beyond Badger Pass, with Mount Clark above Glacier Point Road",
+    image: "img/clark-range-view-glacier-point-road.jpg",
+    credit: "Photo: Justin Johnsen / Wikimedia Commons (CC BY-SA 4.0)",
+  },
+  {
+    slug: "yosemite-in-february",
+    aff: true,
+    cat: "seasonal",
+    title: "Yosemite in February: The Firefall Weeks, the Quiet Weeks, and What Is Actually Open",
+    seoTitle: "Yosemite in February: Weather, Firefall Weeks, Badger Pass, What's Open",
+    dek: "February is two trips with a fence between them: quiet weeks at winter rates on either side, and a stretch in the middle when the firefall and Presidents' Day weekend land together and the hotels stop discounting. The weather in numbers, what is open, Badger Pass's recent seasons, the chain rules, the campground calendar, and how to pick your half.",
+    seoDek: "Yosemite in February: weather, what's open, firefall-week crowds and Presidents' Day, Badger Pass odds, chain rules, winter rates, and camping.",
+    date: "October 17, 2026",
+    isoDate: "2026-10-17",
+    isoModified: "2026-10-17",
+    read: "9 min",
+    placeholder: "Fresh snow on the Yosemite Valley floor after a winter storm, in a George Fiske photograph",
+    image: "img/yosemite-valley-snow-fiske.jpg",
+    credit: "Photo: George Fiske / Wikimedia Commons (public domain)",
+  },
   {
     slug: "yosemite-in-january",
     aff: true,
@@ -2313,7 +2363,10 @@ window.START_HERE = [
 // Curate a piece when it earns real search impressions, when it anchors a
 // cluster, or when it is the destination that needs the equity.
 window.RELATED = {
-  "yosemite-in-january": ["yosemite-in-winter", "yosemite-winter-hikes", "yosemite-in-december", "horsetail-fall-firefall", "mariposa-grove-how-to-visit", "where-to-stay-in-yosemite"],
+  "badger-pass-ski-area": ["yosemite-in-winter",  "snowshoeing-in-yosemite",  "glacier-point-how-to-visit",  "yosemite-in-january",  "yosemite-in-february",  "where-to-stay-in-yosemite"],
+  "snowshoeing-in-yosemite": ["yosemite-in-winter",  "badger-pass-ski-area",  "yosemite-winter-hikes",  "mariposa-grove-how-to-visit",  "glacier-point-how-to-visit",  "yosemite-ranger-programs"],
+  "yosemite-in-february": ["horsetail-fall-firefall",  "yosemite-in-winter",  "yosemite-in-january",  "yosemite-in-march",  "badger-pass-ski-area",  "mariposa-grove-how-to-visit"],
+  "yosemite-in-january": ["yosemite-in-winter", "yosemite-winter-hikes", "yosemite-in-december", "horsetail-fall-firefall", "mariposa-grove-how-to-visit", "yosemite-in-february"],
   "yosemite-rockfall": ["what-is-a-talus-field", "yosemite-glaciers-climate", "watching-climbers-el-capitan", "mist-trail-the-real-guide", "highway-140-closed-yosemite", "yosemite-place-names-meanings"],
   // Wawona: what is at Yosemite's south end, and how to spend a day there
   "wawona-yosemite-guide": ["mariposa-grove-how-to-visit", "where-to-stay-in-yosemite", "where-to-eat-yosemite", "pets-in-yosemite", "wildfire-in-yosemite-during-your-trip", "yosemite-gateway-towns-compared"],
@@ -2397,7 +2450,7 @@ window.RELATED = {
   "cathedral-lakes-day-hike": ["tuolumne-meadows-in-a-day", "clouds-rest-hike", "tioga-road-opening-weekend", "so-you-want-to-hike-half-dome", "first-yosemite-backpacking-trip", "yosemite-wildflowers-guide"],
   "tuolumne-meadows-in-a-day": ["cathedral-lakes-day-hike", "clouds-rest-hike", "tioga-road-opening-weekend", "yosemite-from-las-vegas", "yosemite-wildflowers-guide", "yosemite-stargazing-where-to-look-up"],
   "hetch-hetchy-the-other-yosemite-valley": ["yosemite-waterfalls-guide", "yosemite-without-reservations-2026", "yosemite-in-march", "yosemite-wildflowers-guide", "yosemite-glaciers-climate"],
-  "yosemite-winter-hikes": ["yosemite-in-winter", "horsetail-fall-firefall", "yosemite-waterfalls-guide", "yosemite-for-non-hikers", "yosemite-photography-spots", "yosemite-falls-trail"],
+  "yosemite-winter-hikes": ["yosemite-in-winter", "horsetail-fall-firefall", "yosemite-waterfalls-guide", "yosemite-for-non-hikers", "snowshoeing-in-yosemite", "yosemite-falls-trail"],
   "yosemite-waterfalls-guide": ["mist-trail-the-real-guide", "when-to-visit-yosemite", "hetch-hetchy-the-other-yosemite-valley", "yosemite-photography-spots", "water-ouzels-waterfalls", "yosemite-in-march"],
 
   // Who the trip is for
@@ -2417,8 +2470,8 @@ window.RELATED = {
   "yosemite-in-june": ["when-to-visit-yosemite", "yosemite-waterfalls-guide", "tioga-road-opening-weekend", "yosemite-heat-safety-guide"],
   "yosemite-in-september-2026": ["when-to-visit-yosemite", "yosemite-in-fall", "tuolumne-meadows-in-a-day", "yosemite-during-smoke-season", "cathedral-lakes-day-hike", "mist-trail-the-real-guide"],
   "yosemite-in-fall": ["yosemite-in-october-2026", "yosemite-in-september-2026", "clouds-rest-hike", "when-to-visit-yosemite", "thanksgiving-in-yosemite", "yosemite-in-november"],
-  "yosemite-in-winter": ["yosemite-winter-hikes", "yosemite-in-december", "horsetail-fall-firefall", "when-to-visit-yosemite", "yosemite-in-march", "bracebridge-dinner-and-vintners-holidays"],
-  "yosemite-in-march": ["yosemite-in-winter", "yosemite-waterfalls-guide", "horsetail-fall-firefall", "when-to-visit-yosemite", "yosemite-in-december", "yosemite-in-january"],
+  "yosemite-in-winter": ["yosemite-winter-hikes", "yosemite-in-december", "horsetail-fall-firefall", "when-to-visit-yosemite", "yosemite-in-march", "badger-pass-ski-area"],
+  "yosemite-in-march": ["yosemite-in-winter", "yosemite-waterfalls-guide", "horsetail-fall-firefall", "when-to-visit-yosemite", "yosemite-in-february", "yosemite-in-january"],
   "tioga-road-opening-weekend": ["cathedral-lakes-day-hike", "tuolumne-meadows-in-a-day", "yosemite-from-las-vegas", "memorial-day-skip-the-valley-go-high-2026", "yosemite-stargazing-where-to-look-up", "tioga-road-stop-by-stop"],
   "glacier-point-road-open-2026": ["four-mile-up-panorama-down", "glacier-point-how-to-visit", "yosemite-photography-spots", "yosemite-stargazing-where-to-look-up", "yosemite-for-non-hikers"],
   "yosemite-heat-safety-guide": ["swimming-in-the-merced", "mist-trail-the-real-guide", "when-to-visit-yosemite", "yosemite-during-smoke-season", "yosemite-waterfalls-guide", "yosemite-falls-trail"],
