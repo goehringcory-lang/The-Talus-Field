@@ -198,9 +198,11 @@ function ArticleMidLetter({
   cat
 }) {
   var [done, setDone] = React.useState(null);
-  var copy = window.nlHookCopy("mid", "", cat);
+  var [arm] = React.useState(() => window.nlValueProp());
+  var variant = window.nlValuePropVariant(arm);
+  var copy = window.nlHookCopy("mid", "", cat, arm);
   var tag = window.nlHookTag("article-mid", cat);
-  var ref = window.useNewsletterImpression("article_mid", tag, !done);
+  var ref = window.useNewsletterImpression("article_mid", tag, !done, variant);
   return React.createElement("aside", {
     className: "nlmid",
     ref: ref,
@@ -217,6 +219,7 @@ function ArticleMidLetter({
   }, window.nlDoneLine(done)) : React.createElement(window.NewsletterForm, {
     location: "article_mid",
     tag: tag,
+    variant: variant,
     cta: "Subscribe →",
     className: "nlmid__form",
     onDone: setDone
@@ -749,8 +752,9 @@ function ArticlePage({
   }, a.title), React.createElement("span", {
     className: "relrail__dek"
   }, a.seoDek || a.dek))))), !ARTICLE_BONUS[slug] && (() => {
-    var endVariant = window.abVariant ? window.abVariant("article_end_copy") : "a";
-    var offers = endVariant === "b" ? END_NEWSLETTER_OFFER_B : END_NEWSLETTER_OFFER;
+    var endArm = window.nlValueProp ? window.nlValueProp() : "a";
+    var endVariant = window.nlValuePropVariant ? window.nlValuePropVariant(endArm) : "";
+    var offers = endArm === "b" ? END_NEWSLETTER_OFFER_B : END_NEWSLETTER_OFFER;
     var offer = offers[article.cat] || {};
     var heading = offer.heading || "Sunday Field Notes";
     return React.createElement(HpLetter, {

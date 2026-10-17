@@ -78,6 +78,8 @@ window.ARTICLE_BODIES["yosemite-for-non-hikers"] = function YosemiteForNonHikers
       "The free Valley shuttle runs daily, year-round, from 7 a.m. to 10 p.m. Every bus has a wheelchair lift and tie-downs. The Park Service gives the maximum wheelchair size as 24 inches wide by 46 inches long."],
     ["Do I need a reservation to enter Yosemite?",
       "Not in 2026. The Park Service says a reservation is not required to enter. You pay the entrance fee, $35 a vehicle for seven days, at the gate. Valley parking is the limit: the Park Service says lots are usually full after 9 a.m."],
+    ["How long does it take to drive through Yosemite?",
+      "There is no single figure, because the park is several drives. Glacier Point is about an hour from the Valley: 14 miles south on Wawona Road, then 16 on Glacier Point Road. Tioga Road is 46 miles across the park, climbing from 6,200 feet to nearly 10,000, with Tioga Pass at 9,945 feet. The Valley loop, with nine stops and lunch, takes three to four hours, and a stop you miss costs another trip around the one-way loop, twenty minutes or more in summer traffic."],
   ];
 
   // ── The Valley on the NPS's own map ────────────────────────────────────────
@@ -515,7 +517,7 @@ window.ARTICLE_BODIES["yosemite-for-non-hikers"] = function YosemiteForNonHikers
                 <div><dt>Height</dt><dd>About 3,200 feet above the Valley floor</dd></div>
               </dl>
               <p>
-                The path is a descent going out and a climb coming back, so budget more time for the return than the distance suggests. The Park Service lists the path as wheelchair accessible. The point stands about 3,200 feet directly above Curry Village, with Half Dome across the gap at eye level and the high country behind it. The Guide lists a gift shop with snacks, and the Park Service's older guide lists accessible restrooms and a bronze tactile relief model of the park's geology on the terrace below the gift shop. Sunset from the railing is an hour a non-hiker should not miss. Vehicles over 30 feet are not allowed past the Sentinel Dome trailhead. See <a href="/articles/glacier-point-how-to-visit">the Glacier Point guide</a> for the details.
+                The path is a descent going out and a climb coming back, so budget more time for the return than the distance suggests. The Park Service lists the path as wheelchair accessible. The point stands about 3,200 feet directly above Curry Village, with Half Dome across the gap at eye level and the high country behind it. The Guide lists a gift shop with snacks, and the Park Service's older guide lists accessible restrooms and a bronze tactile relief model of the park's geology on the terrace below the gift shop. Sunset from the railing is an hour a non-hiker should not miss. Vehicles over 30 feet are not allowed past the Sentinel Dome trailhead. See <a href="/articles/glacier-point-how-to-visit">the Glacier Point guide</a> for the details, and <a href="/distances">the drive-time table</a> for how long each gateway town is from the Valley.
               </p>
             </article>
             <article className="nh-drive">

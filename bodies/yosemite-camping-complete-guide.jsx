@@ -66,6 +66,8 @@ window.ARTICLE_BODIES["yosemite-camping-complete-guide"] = function YosemiteCamp
     ["Which Yosemite campground is best?", "It depends on what you want. Crane Flat is the all-round pick: 16 miles and about 30 minutes from the Valley, cooler and quieter, with flush toilets and drinking water. For the classic Valley trip, book Upper Pines or North Pines and look for sites near the Merced River. For solitude, Tamarack Flat and Yosemite Creek trade amenities for room."],
     ["When can you camp in the Yosemite high country?", "After the Tioga Road opens, and then on each campground's own schedule. In 2026 the road opened May 15, the earliest since 2015 by the park's own table of opening dates, and the campgrounds opened between May 21 (Crane Flat) and July 2 (White Wolf), with Tuolumne Meadows on July 1. Dates move every year. Average lows at Tuolumne Meadows run 32 to 39 degrees from June through September, so bring a sleeping bag rated to 20 degrees."],
     ["Can I camp in Yosemite without a reservation?", "Only in the off-season. Camp 4, Hodgdon Meadow and Wawona run first-come, first-served from late October to early April (Camp 4 usually until sometime in April), and they can fill on holidays and weekends. In peak season the Park Service says not to arrive without a reservation. You may not sleep in a car or RV anywhere except a campsite you are registered for. Call 209/372-0266 for current status."],
+    ["What is Porcupine Flat campground like?", "Porcupine Flat is a primitive campground right on the Tioga Road at 8,100 feet, about 20 minutes west of Tuolumne Meadows and about an hour and ten minutes from the Valley. It has 55 sites at $24 a night, vault toilets, no drinking water (Porcupine Creek is the only water source, so boil or treat it) and no cell service. Only four sites take a 24-foot RV. It books on the two-week rolling window and is one of the last campgrounds to fill on any given night; in 2026 it ran June 23 to October 11."],
+    ["Is there a lottery for Yosemite campgrounds?", "Only once so far. North Pines ran a one-time Early Access Lottery for the 2026 season: applications ran November 24 to December 14, 2025, results went out December 22, and winners booked January 2 to February 1. Whatever they did not claim went back into the ordinary five-month releases. The Park Service said it may consider expanding the lottery to other campgrounds, so check the campground's page on Recreation.gov before you plan a release morning."],
   ];
 
   const MONTHS = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
@@ -838,7 +840,7 @@ window.ARTICLE_BODIES["yosemite-camping-complete-guide"] = function YosemiteCamp
             <article>
               <EventIcon name="signal" size={26} />
               <strong>Cell service: do not count on it</strong>
-              <p>Tamarack Flat and Porcupine Flat list no cell reception at all. Download your maps before you drive up, and read it as a problem or a gift, as you like.</p>
+              <p>Tamarack Flat and Porcupine Flat list no cell reception at all. Download your maps before you drive up, and read it as a problem or a gift, as you like. <a href="/articles/cell-service-in-yosemite">The cell service guide</a> has the Park Service's carrier-by-carrier table for the rest of the park.</p>
             </article>
             <article>
               <EventIcon name="no" size={26} />
