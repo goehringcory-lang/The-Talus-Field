@@ -3378,9 +3378,11 @@ function nlValueProp() {
   if (!store) return "a";
   var legacy = store.get("tfg.ab.article_end_copy");
   if (legacy !== null && legacy !== undefined) {
+    var carried = true;
     if ((legacy === "a" || legacy === "b") && store.get("tfg.ab.nl_valueprop") === null) {
-      store.set("tfg.ab.nl_valueprop", legacy);
+      carried = store.set("tfg.ab.nl_valueprop", legacy);
     }
+    if (!carried) return legacy;
     store.remove("tfg.ab.article_end_copy");
   }
   var existing = store.get("tfg.ab.nl_valueprop");
@@ -3630,12 +3632,12 @@ var NL_HOOK_DEFAULT = {
 var NL_HOOK_CAT_B = {
   planning: {
     mid: ["What's open the week you go", "Sunday Field Notes is a free weekly letter on what's open, what's booked out and what changed this week, so a plan made today holds up the Sunday before you go."],
-    exit: ["Check it the Sunday before you go", "Sunday Field Notes is a weekly letter on what's open, what's booked out and what changed this week, so the trip you are planning is checked against the week it lands in."],
-    bar: "Planning a {s} trip? Get what's open and what's booked out, the Sunday before you go. Free."
+    exit: ["Check the plan the Sunday before", "Sunday Field Notes is a weekly letter on what's open, what's booked out and what changed this week, so the trip you are planning is checked against the week it lands in."],
+    bar: "Planning a {s} trip? Get what's open and booked out, the Sunday before you go. Free."
   },
   trails: {
     mid: ["Trail status before you drive in", "A free Sunday letter on what's open and what changed on the trails this week, from creek flow to the snowline, so you read it before the next hike."],
-    exit: ["Trail status, the Sunday before", "Sunday Field Notes covers what's open and what changed on the trails this week, from creek flow to the snowline, so you know before you pick the next one."],
+    exit: ["Trail status, every Sunday", "Sunday Field Notes covers what's open and what changed on the trails this week, from creek flow to the snowline, so you know before you pick the next one."],
     bar: "Hiking this {s}? Sunday Field Notes covers what's open and what changed this week. Free."
   },
   wildlife: {
@@ -3646,13 +3648,13 @@ var NL_HOOK_CAT_B = {
   seasonal: {
     mid: ["Time it to the season", "A free Sunday letter on what's flowing, what's open and what changed this week, so the month you are reading about is the month you see."],
     exit: ["Know what's open this season", "Sunday Field Notes follows the season week by week: what the river is doing, what is open and what changed since last Sunday, read the Sunday before you go."],
-    bar: "Following the {s}? Sunday Field Notes is the free weekly letter on what's open and what changed."
+    bar: "Following the {s}? Get what's open and what changed, every Sunday. Free."
   }
 };
 var NL_HOOK_ROUTE_B = {
   planning: {
     exit: ["Check what's open before you book", "Sunday Field Notes is a weekly letter on what's open, what's booked out and what changed this week. Read it the Sunday before you go."],
-    bar: "Planning a Yosemite trip? Get what's open and what's booked out, the Sunday before you go. Free."
+    bar: "Planning a Yosemite trip? Get what's open and booked out, the Sunday before you go. Free."
   },
   conditions: {
     exit: ["What changed this week", "Sunday Field Notes puts the week in one letter: what's open, what's closed, the gauges and the snow, and what changed since last Sunday."],
