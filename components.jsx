@@ -1979,6 +1979,7 @@ function Footer({ go }) {
           <div>
             <a href="/places" onClick={(e) => { e.preventDefault(); go("places"); }}>Directory</a>
             <a href="/advertise" onClick={(e) => { e.preventDefault(); go("advertise"); }}>Advertise</a>
+            <a href="/media-kit" onClick={(e) => { e.preventDefault(); go("media-kit"); }}>Media kit</a>
             <a href="/widget" onClick={(e) => { e.preventDefault(); go("widget"); }}>Conditions widget</a>
             <a href="/partners" onClick={(e) => { e.preventDefault(); go("partners"); }}>Group codes</a>
             <a href="/privacy" onClick={(e) => { e.preventDefault(); go("privacy"); }}>Privacy</a>
@@ -2181,9 +2182,15 @@ const KEEP_GOING = {
     { key: "about", label: "About the journal", note: "Who writes this, and why" },
   ] },
   advertise: { links: [
+    { key: "media-kit", label: "Media kit", note: "Who reads, reach, and when planners search" },
     { key: "places", label: "The Directory", note: "The short list of operators worth knowing" },
     { key: "partners", label: "Group codes", note: "The Field Guide, in packs" },
     { key: "widget", label: "Conditions widget", note: "Free embed" },
+  ] },
+  "media-kit": { links: [
+    { key: "advertise", label: "Advertise", note: "What a listing is, and what disqualifies one" },
+    { key: "places", label: "The Directory", note: "The short list of operators worth knowing" },
+    { key: "partners", label: "Group codes", note: "The Field Guide, in packs" },
   ] },
   widget: { links: [
     { key: "partners", label: "Group codes", note: "The Field Guide in packs, for lodging" },

@@ -290,7 +290,7 @@ const HUB_PROSE = {
     `<h2>The Field Guide</h2>` +
     `<p><a href="/guide">The Field Guide</a> · <a href="/partners">Group codes</a></p>` +
     `<h2>The journal</h2>` +
-    `<p><a href="/about">About the journal</a> · <a href="/contact">Contact</a> · <a href="/places">The Directory</a> · <a href="/advertise">Advertise</a> · <a href="/widget">The conditions widget</a> · <a href="/privacy">Privacy</a> · <a href="/terms">Terms</a> · <a href="/affiliate">Affiliate disclosure</a></p>`,
+    `<p><a href="/about">About the journal</a> · <a href="/contact">Contact</a> · <a href="/places">The Directory</a> · <a href="/advertise">Advertise</a> · <a href="/media-kit">Media kit</a> · <a href="/widget">The conditions widget</a> · <a href="/privacy">Privacy</a> · <a href="/terms">Terms</a> · <a href="/affiliate">Affiliate disclosure</a></p>`,
   "/conditions": () =>
     hubProse(
       "Yosemite conditions: webcams, waits, and weather",
@@ -431,7 +431,16 @@ const HUB_PROSE = {
       "List your business",
       "How to list a Yosemite-area lodge, inn, guide service, or outfitter in The Talus Field directory, and what the listing includes.",
       "<p>The Talus Field is read by people actively planning a Yosemite trip, the audience that is about to book lodging, hire a guide or buy a tour. A standard listing carries the business name, its area, a short editorial blurb, a direct outbound link to the booking page, and inclusion in the relevant category, for twelve months and renewable, at $300 a year. A featured listing adds a photo, an extended description and priority position within its category, at $600 a year.</p>" +
-        "<p>What the directory will not do is listed as plainly: no businesses the editor would talk a friend out of using, no unlabeled sponsorship (every paid placement is marked), no payment overriding the editorial tone of a blurb, and no placements from operators with active permit or safety violations. Sponsorship of the Sunday letter and custom packages are priced on inquiry.</p>"
+        "<p>What the directory will not do is listed as plainly: no businesses the editor would talk a friend out of using, no unlabeled sponsorship (every paid placement is marked), no payment overriding the editorial tone of a blurb, and no placements from operators with active permit or safety violations. Sponsorship of the Sunday letter and custom packages are priced on inquiry.</p>" +
+        `<p>Who reads the site, its search reach and the seasons planners search in: <a href="/media-kit">the media kit</a>.</p>`
+    ),
+  "/media-kit": () =>
+    hubProse(
+      "Media kit",
+      "Who reads The Talus Field and how to reach them: people planning a Yosemite trip, most of them before they have booked it, reading about where to sleep, how to get in, which permits and lotteries to enter, which hikes to take, and what the park will be doing the week they arrive.",
+      "<p>Readers arrive ahead of the windows the park sets: the firefall in February, the Half Dome preseason lottery in March with results in mid-April, the Tioga Road opening in late spring, the summer permit and campground releases, and fall color from late September into late October. Sunday Field Notes, the free weekly letter, goes out on Sunday at 9 AM Pacific. The Field Guide, the journal's paid offline companion, carries no advertising.</p>" +
+        "<p>Placements: a standard directory listing, twelve months, at $300 a year; a featured listing, with a photo, an extended description and priority position in its category, at $600 a year; Sunday letter sponsorship and custom packages, priced on inquiry. Every paid placement is labeled and reviewed before it goes live, and payment never changes the editorial blurb.</p>" +
+        `<p>The full terms are on <a href="/advertise">the listings page</a> and the policy on <a href="/affiliate">the disclosure page</a>. To book, write through <a href="/contact">the contact form</a>.</p>`
     ),
   "/widget": () =>
     hubProse(
@@ -814,6 +823,12 @@ function seoForPath(pathname, searchParams) {
       description:
         "How to list a Yosemite-area lodge, inn, guide service, or outfitter on The Talus Field directory. Listings from $300 a year.",
       breadcrumb: [["Home", `${SITE_ORIGIN}/`], ["List your business", null]],
+    },
+    "/media-kit": {
+      title: `Media kit: advertise to Yosemite trip planners | ${SITE_NAME}`,
+      description:
+        "Who reads The Talus Field, its search reach and Sunday letter, when Yosemite planners search, and directory listings from $300 a year.",
+      breadcrumb: [["Home", `${SITE_ORIGIN}/`], ["List your business", `${SITE_ORIGIN}/advertise`], ["Media kit", null]],
     },
     "/newsletter": {
       title: `Sunday Field Notes | ${SITE_NAME}`,

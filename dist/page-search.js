@@ -111,6 +111,11 @@ var SEARCH_PAGES = [{
   dek: "What a directory listing is, what it costs, and what disqualifies an applicant.",
   kind: "Page"
 }, {
+  route: "media-kit",
+  title: "Media kit",
+  dek: "Who reads the site, its search reach and Sunday letter, and when Yosemite planners search.",
+  kind: "Page"
+}, {
   route: "map",
   title: "Trip planner map",
   dek: "Every pin in the park, filterable by category, assembled into a trip you can share or email to yourself.",

@@ -34,6 +34,7 @@ export const STATIC_ROUTES = [
   "/films",
   "/places",
   "/advertise",
+  "/media-kit",
   "/newsletter",
   "/contact",
   "/privacy",

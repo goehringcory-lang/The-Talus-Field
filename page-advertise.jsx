@@ -1,6 +1,7 @@
-/* global React, HpPageHead, HpHeading, HpLetter, FjCard */
+/* global React, HpPageHead, HpHeading, HpLetter, FjCard, HomeLink */
 
 function AdvertisePage({ go }) {
+  const toContact = (e) => { e.preventDefault(); go("contact"); };
   return (
     <div className="page hp-advertise">
       <HpPageHead
@@ -9,7 +10,13 @@ function AdvertisePage({ go }) {
         className="fj-head fj-topo"
         eyebrow="FOR OPERATORS"
         title="List your business on The Talus Field."
-        intro="The Talus Field is read by people actively planning a Yosemite trip. The audience that's about to book lodging, hire a guide, or buy a tour. If you operate a lodge, an inn, a guiding service, an outfitter, a transportation company, or any other Yosemite-adjacent business, a placement in The Directory puts you in front of the right reader at the right moment."
+        intro="The Talus Field is read by people planning a Yosemite trip: the readers about to book a room, hire a guide or buy a tour. If you run a lodge, an inn, a guiding service, an outfitter, a transportation company or another Yosemite-adjacent business, a listing in The Directory puts you in front of that reader at the moment they decide."
+        actions={
+          <React.Fragment>
+            <a className="hp-button" href="/contact" onClick={toContact}>Inquire about a listing</a>
+            <HomeLink go={go} location="advertise" className="hp-link" href="/media-kit">Read the media kit ↗</HomeLink>
+          </React.Fragment>
+        }
         aside={
           <FjCard
             eyebrow="A LISTING, IN FOUR LINES"
@@ -24,7 +31,7 @@ function AdvertisePage({ go }) {
         }
       />
 
-      {/* The pitch */}
+      {/* The pitch: what a listing is, what it costs, what disqualifies one. */}
       <section className="hp-wrap hp-section">
         <div className="places-pitch">
           <div className="places-pitch__grid">
@@ -33,8 +40,8 @@ function AdvertisePage({ go }) {
               <ul>
                 <li>Your business name, area, and a short editorial blurb</li>
                 <li>A direct outbound link to your booking page</li>
-                <li>Inclusion in the relevant category (Lodging, Guides &amp; instruction, or a future category we add)</li>
-                <li>Optional photo, logo, and an extended description for featured listings</li>
+                <li>A place in the relevant category (Lodging, Guides &amp; instruction, or a category added later)</li>
+                <li>For featured listings, a photo, a logo and an extended description</li>
                 <li>Twelve months of placement, renewable</li>
               </ul>
             </div>
@@ -62,14 +69,10 @@ function AdvertisePage({ go }) {
             </div>
           </div>
 
-          <a
-            className="places-pitch__cta"
-            href="/contact"
-            onClick={(e) => { e.preventDefault(); go("contact"); }}
-          >Inquire about a listing →</a>
+          <a className="places-pitch__cta" href="/contact" onClick={toContact}>Inquire about a listing →</a>
 
           <p className="places-pitch__fineprint">
-            Sponsorship of the Sunday letter and custom packages are priced on inquiry. All paid placements are reviewed before they go live. Listings can be removed at the editor's discretion if a business stops meeting basic standards. The <a href="/affiliate" onClick={(e) => { e.preventDefault(); go("affiliate"); }}>full advertising and affiliate policy</a> is on the disclosure page.
+            Sponsorship of the Sunday letter and custom packages are priced on inquiry. Every paid placement is reviewed before it goes live, and a listing can be removed at the editor's discretion if the business stops meeting the standard. The <a href="/affiliate" onClick={(e) => { e.preventDefault(); go("affiliate"); }}>full advertising and affiliate policy</a> is on the disclosure page; readership, reach and timing are in <HomeLink go={go} location="advertise" href="/media-kit">the media kit</HomeLink>.
           </p>
         </div>
       </section>
@@ -88,13 +91,13 @@ function AdvertisePage({ go }) {
         </div>
         <div className="hp-advertise__copy">
           <p className="hp-sub">
-            The visitors reading The Talus Field are not casual browsers. They've already decided to come to the park. They're working out how to do it well, which means they're looking for a place to sleep, a guide to hire, a class to take, a route to drive. A search-engine ad reaches a colder audience and costs a multiple of what a year of placement here costs. A social post reaches a larger but less qualified audience that mostly will not convert.
+            Readers here are not browsing. They have decided to come to the park and are working out how to do it well, which means a place to sleep, a guide to hire, a class to take, a route to drive. A search-engine ad reaches a colder audience at a multiple of what a year here costs. A social post reaches a larger audience that is less qualified and mostly does not convert.
           </p>
           <p className="hp-sub">
-            The directory shows up in a moment of decision, on a site the reader already trusts to give them straight answers. That's the placement.
+            A listing appears at the moment of decision, on a site the reader already trusts for straight answers. That is the placement.
           </p>
           <p className="hp-sub">
-            If you're an operator who fits, and you'd be willing to send a friend to your business, write to <a className="hp-inline" href="mailto:cory@thetalusfieldjournal.com">cory@thetalusfieldjournal.com</a> or use <a className="hp-inline" href="/contact" onClick={(e) => { e.preventDefault(); go("contact"); }}>the contact form</a>. I read every inquiry.
+            If your business fits, and you would send a friend to it, write to <a className="hp-inline" href="mailto:cory@thetalusfieldjournal.com">cory@thetalusfieldjournal.com</a> or use <a className="hp-inline" href="/contact" onClick={toContact}>the contact form</a>. I read every inquiry.
           </p>
         </div>
       </section>
