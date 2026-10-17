@@ -257,6 +257,7 @@ window.ARTICLE_INTENT = {
   "giant-sequoias-fire-adaptation":            { stage: ["in-park"], who: ["families", "non-hikers"], topic: [] },
   "hetch-hetchy-the-other-yosemite-valley":    { stage: ["dates-set", "in-park"], who: ["non-hikers"], topic: ["trails"] },
   "yosemite-stargazing-where-to-look-up":      { stage: ["dates-set", "in-park"], who: ["photography", "non-hikers", "families"], topic: [] },
+  "yosemite-stargazing-tours-and-programs":    { stage: ["dates-set", "in-park"], who: ["non-hikers", "families", "photography"], topic: [] },
   "yosemite-for-non-hikers":                   { stage: ["before-booking", "dates-set", "in-park"], who: ["non-hikers", "accessible", "families"], topic: ["trails"] },
   "pack-your-car-for-yosemite":                { stage: ["week-before"], who: ["families", "dogs"], topic: ["food", "camping"] },
   "yosemite-gateway-towns-compared":           { stage: ["before-booking"], who: ["first-trip", "families"], topic: ["lodging", "transportation", "food"] },

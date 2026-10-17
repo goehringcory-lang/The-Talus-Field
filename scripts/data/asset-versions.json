@@ -309,9 +309,13 @@
       "v": 13,
       "sha256": "3359727037b00f56"
     },
+    "/dist/bodies/yosemite-stargazing-tours-and-programs.js": {
+      "v": 1,
+      "sha256": "3fe983591609fc5b"
+    },
     "/dist/bodies/yosemite-stargazing-where-to-look-up.js": {
-      "v": 88,
-      "sha256": "b41d086bd97057ec"
+      "v": 89,
+      "sha256": "c10d82d2b8aaa875"
     },
     "/dist/bodies/yosemite-trees-identification-guide.js": {
       "v": 5,

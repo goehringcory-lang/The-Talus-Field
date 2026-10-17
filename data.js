@@ -110,6 +110,7 @@ window.planningSeriesFor = function (slug) {
 // verifies this map stays in sync with the files in bodies/.
 // ============================================================
 window.BODY_VERSIONS = {
+  "yosemite-stargazing-tours-and-programs": 1,
   "badger-pass-ski-area": 2,
   "snowshoeing-in-yosemite": 2,
   "yosemite-in-february": 2,
@@ -189,7 +190,7 @@ window.BODY_VERSIONS = {
   "yosemite-gateway-towns-compared": 112,
   "pack-your-car-for-yosemite": 88,
   "yosemite-for-non-hikers": 87,
-  "yosemite-stargazing-where-to-look-up": 88,
+  "yosemite-stargazing-where-to-look-up": 89,
   "hetch-hetchy-the-other-yosemite-valley": 83,
   "what-is-a-talus-field": 7,
   "yosemite-glaciers-climate": 84,
@@ -904,6 +905,30 @@ window.KIT_REI = {
 // AffiliateDisclosure line under the byline, before the first link;
 // scripts/check-affiliate-links.mjs fails when the flag and the body disagree.
 window.ARTICLES = [
+  {
+    slug: "yosemite-stargazing-tours-and-programs",
+    cat: "seasonal",
+    title: "Yosemite stargazing tours: the Conservancy's night sky program, Glacier Point star parties and the rest",
+    seoTitle: "Yosemite Stargazing Tours and Night Sky Programs",
+    dek: "Three organizations take people out under Yosemite's night sky, and they do it differently. Yosemite Conservancy's naturalist program in the Valley, the summer star parties with telescopes at Glacier Point, Yosemite Hospitality's night walks and moonlight tram, and the ranger programs: what each is, what it costs, and which schedules are posted.",
+    seoDek: "Yosemite stargazing tours compared: the Conservancy's $25 night sky program, Glacier Point star parties, Yosemite Hospitality's walks. Dates, prices, booking.",
+    date: "October 17, 2026",
+    isoDate: "2026-10-17",
+    isoModified: "2026-10-17",
+    read: "11 min",
+    placeholder: "Stars over Half Dome at night, seen from the rim above Yosemite Valley",
+    image: "img/half-dome-starry-night-casey-horner.jpg",
+    credit: "Photo: Casey Horner / Unsplash",
+    // The /firefall layout for an article (page-article.jsx), as on the Mist
+    // Trail and El Capitan pieces. The photo is landscape; `focus` keeps Half
+    // Dome and the horizon glow in frame. The two buttons jump to the
+    // Conservancy program and the Glacier Point star parties.
+    feature: {
+      eyebrow: "YOSEMITE CONSERVANCY · GLACIER POINT · YOSEMITE HOSPITALITY · THE PARK SERVICE",
+      focus: "50% 65%",
+      actions: [["#sec-0-the-conservancys-night-sky-program", "The Conservancy program"], ["#sec-2-glacier-point-star-parties", "Glacier Point star parties"]],
+    },
+  },
   {
     slug: "badger-pass-ski-area",
     aff: true,
@@ -2226,7 +2251,7 @@ window.ARTICLES = [
     seoDek: "On a moonless August night at Olmsted Point, the Milky Way casts shadows. Where to go, when to go, and how to see Yosemite the way the ancients did.",
     date: "April 27, 2026",
     isoDate: "2026-04-27",
-    isoModified: "2026-04-27",
+    isoModified: "2026-10-17",
     read: "10 min",
     placeholder: "Milky Way over Sentinel Dome, July",
     image: "img/milky-way-sentinel-dome.jpg",
@@ -2489,13 +2514,13 @@ window.RELATED = {
   "memorial-day-skip-the-valley-go-high-2026": ["tioga-road-opening-weekend", "tuolumne-meadows-in-a-day", "when-to-visit-yosemite", "clouds-rest-hike", "hetch-hetchy-the-other-yosemite-valley", "cathedral-lakes-day-hike"],
   "swimming-in-the-merced": ["yosemite-heat-safety-guide", "yosemite-with-kids-no-reservations-2026", "mist-trail-the-real-guide", "yosemite-waterfalls-guide", "yosemite-in-june", "yosemite-in-september-2026"],
   "horsetail-fall-firefall": ["yosemite-in-winter", "yosemite-photography-spots", "yosemite-winter-hikes", "when-to-visit-yosemite", "yosemite-in-march"],
-  "yosemite-stargazing-where-to-look-up": ["tuolumne-meadows-in-a-day", "glacier-point-road-open-2026", "yosemite-photography-spots", "tioga-road-opening-weekend", "yosemite-in-fall", "tioga-road-stop-by-stop"],
+  "yosemite-stargazing-where-to-look-up": ["yosemite-stargazing-tours-and-programs", "tuolumne-meadows-in-a-day", "glacier-point-road-open-2026", "yosemite-photography-spots", "tioga-road-opening-weekend", "yosemite-in-fall"],
 
   // Doing and seeing
   "yosemite-photography-spots": ["yosemite-stargazing-where-to-look-up", "horsetail-fall-firefall", "four-mile-up-panorama-down", "yosemite-waterfalls-guide", "yosemite-in-fall", "watching-climbers-el-capitan"],
   "watching-climbers-el-capitan": ["yosemite-for-non-hikers", "yosemite-photography-spots", "yosemite-rockfall", "yosemite-valley-parking-guide", "where-to-propose-in-yosemite", "yosemite-ranger-programs"],
   "mariposa-grove-how-to-visit": ["wawona-yosemite-guide", "giant-sequoias-fire-adaptation", "yosemite-accessibility-guide", "yosemite-gateway-towns-compared", "yosemite-for-non-hikers", "yosemite-tunnel-trees"],
-  "yosemite-ranger-programs": ["yosemite-with-kids-no-reservations-2026", "yosemite-wildlife-viewing-guide", "yosemite-for-non-hikers", "yosemite-accessibility-guide", "yosemite-facelift-volunteer-guide"],
+  "yosemite-ranger-programs": ["yosemite-with-kids-no-reservations-2026", "yosemite-wildlife-viewing-guide", "yosemite-for-non-hikers", "yosemite-accessibility-guide", "yosemite-facelift-volunteer-guide", "yosemite-stargazing-tours-and-programs"],
   "where-to-propose-in-yosemite": ["yosemite-photography-spots", "yosemite-for-non-hikers", "where-to-eat-yosemite", "where-to-stay-in-yosemite", "yosemite-in-one-or-two-days"],
   "working-in-yosemite": ["yosemite-ranger-programs", "yosemite-gateway-towns-compared", "yosemite-connecting-to-traditions", "yosemite-needs-a-reservation-system", "yosemite-in-winter"],
   "yosemite-needs-a-reservation-system": ["when-to-visit-yosemite", "yosemite-without-reservations-2026", "yosemite-valley-parking-guide", "working-in-yosemite", "sustainable-yosemite-car-free-zero-waste"],
@@ -2512,6 +2537,10 @@ window.RELATED = {
   "yosemite-tunnel-trees": ["giant-sequoias-fire-adaptation", "mariposa-grove-how-to-visit", "yosemite-connecting-to-traditions", "what-is-a-talus-field", "yosemite-needs-a-reservation-system"],
   "showy-milkweed-yosemite-valley": ["yosemite-wildflowers-guide", "yosemite-wildlife-viewing-guide", "water-ouzels-waterfalls", "swimming-in-the-merced", "giant-sequoias-fire-adaptation"],
   "yosemite-connecting-to-traditions": ["yosemite-tunnel-trees", "yosemite-ranger-programs", "working-in-yosemite", "mariposa-grove-how-to-visit", "yosemite-wildlife-viewing-guide", "yosemite-place-names-meanings"],
+  // The stargazing programs: who takes you out under the sky and what it
+  // costs. Onward to doing it alone (the stargazing guide), the road and the
+  // rim the star parties need, the free ranger schedule, and the season.
+  "yosemite-stargazing-tours-and-programs": ["yosemite-stargazing-where-to-look-up", "glacier-point-how-to-visit", "yosemite-ranger-programs", "glacier-point-road-open-2026", "yosemite-in-fall", "yosemite-for-non-hikers"],
 };
 
 // How many links a related block carries. Six is the working number: enough
