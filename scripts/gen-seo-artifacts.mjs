@@ -302,7 +302,7 @@ function buildSitemap(merged, categories) {
     ["/kit", "2026-04-26"],
     ["/films", "2026-06-10"],
     ["/places", "2026-04-26"],
-    ["/advertise", "2026-04-01"],
+    ["/advertise", "2026-10-16"],
     ["/newsletter", "2026-04-01"],
     ["/contact", "2026-04-01"],
     ["/privacy", "2026-07-08"],

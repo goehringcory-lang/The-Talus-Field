@@ -424,8 +424,8 @@ const HUB_PROSE = {
     hubProse(
       "List your business",
       "How to list a Yosemite-area lodge, inn, guide service, or outfitter in The Talus Field directory, and what the listing includes.",
-      "<p>The Talus Field is read by people actively planning a Yosemite trip, the audience that is about to book lodging, hire a guide or buy a tour. A standard listing carries the business name, its area, a short editorial blurb, a direct outbound link to the booking page, and inclusion in the relevant category, for twelve months and renewable. A featured listing adds a photo, an extended description and priority position within its category.</p>" +
-        "<p>What the directory will not do is listed as plainly: no businesses the editor would talk a friend out of using, no unlabeled sponsorship (every paid placement is marked), no payment overriding the editorial tone of a blurb, and no placements from operators with active permit or safety violations. Rates are quoted on enquiry.</p>"
+      "<p>The Talus Field is read by people actively planning a Yosemite trip, the audience that is about to book lodging, hire a guide or buy a tour. A standard listing carries the business name, its area, a short editorial blurb, a direct outbound link to the booking page, and inclusion in the relevant category, for twelve months and renewable, at $300 a year. A featured listing adds a photo, an extended description and priority position within its category, at $600 a year.</p>" +
+        "<p>What the directory will not do is listed as plainly: no businesses the editor would talk a friend out of using, no unlabeled sponsorship (every paid placement is marked), no payment overriding the editorial tone of a blurb, and no placements from operators with active permit or safety violations. Sponsorship of the Sunday letter and custom packages are priced on inquiry.</p>"
     ),
   "/widget": () =>
     hubProse(
@@ -797,7 +797,7 @@ function seoForPath(pathname, searchParams) {
     "/advertise": {
       title: `List your business | ${SITE_NAME}`,
       description:
-        "How to list a Yosemite-area lodge, inn, guide service, or outfitter on The Talus Field directory.",
+        "How to list a Yosemite-area lodge, inn, guide service, or outfitter on The Talus Field directory. Listings from $300 a year.",
       breadcrumb: [["Home", `${SITE_ORIGIN}/`], ["List your business", null]],
     },
     "/newsletter": {

@@ -29,7 +29,7 @@ function AdvertisePage({
         value: "Before it goes live"
       }, {
         label: "Rate",
-        value: "Inquire for current rate"
+        value: "From $300 a year"
       }]
     })
   }), React.createElement("section", {
@@ -48,7 +48,7 @@ function AdvertisePage({
     className: "places-pitch__tier-summary"
   }, "Name, area, blurb, outbound link in the relevant category."), React.createElement("div", {
     className: "places-pitch__tier-meta"
-  }, "Twelve months · Inquire for current rate")), React.createElement("div", {
+  }, "Twelve months · $300 a year")), React.createElement("div", {
     className: "places-pitch__tier places-pitch__tier--featured"
   }, React.createElement("div", {
     className: "places-pitch__tier-eyebrow"
@@ -56,7 +56,7 @@ function AdvertisePage({
     className: "places-pitch__tier-summary"
   }, "Standard, plus a photo, an extended description, and priority position within the category."), React.createElement("div", {
     className: "places-pitch__tier-meta"
-  }, "Twelve months · Inquire for current rate"))), React.createElement("a", {
+  }, "Twelve months · $600 a year"))), React.createElement("a", {
     className: "places-pitch__cta",
     href: "/contact",
     onClick: e => {
@@ -65,7 +65,7 @@ function AdvertisePage({
     }
   }, "Inquire about a listing →"), React.createElement("p", {
     className: "places-pitch__fineprint"
-  }, "All paid placements are reviewed before they go live. Listings can be removed at the editor's discretion if a business stops meeting basic standards. The ", React.createElement("a", {
+  }, "Sponsorship of the Sunday letter and custom packages are priced on inquiry. All paid placements are reviewed before they go live. Listings can be removed at the editor's discretion if a business stops meeting basic standards. The ", React.createElement("a", {
     href: "/affiliate",
     onClick: e => {
       e.preventDefault();
