@@ -825,7 +825,7 @@ function buildSeo(route) {
     "fall-color": {
       title: `Yosemite Fall Colors: When the Leaves Peak and Where to Look | ${SITE_NAME}`,
       description:
-        "Peak fall color in Yosemite Valley is usually late October into early November; Tioga Road's aspens turn first. Where to see it, and what ends the season.",
+        "Peak fall color in Yosemite Valley is usually late October, lingering until the first storm or hard frost. Tioga Road's aspens turn first. Where to look.",
       ogType: "website",
       breadcrumb: [["Home", `${SITE_ORIGIN}/`], ["Fall color", null]],
     },
