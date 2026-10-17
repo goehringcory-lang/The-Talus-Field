@@ -31,7 +31,7 @@ import { ROOT, loadDataJs } from "./lib/catalog.mjs";
 
 const traverse = traverseMod.default || traverseMod;
 const REL = "sponsored noopener";
-const AFF_HREF_RE = /buildAffiliateLink|buildPatagoniaAffiliateLink|pxf\.io|prf\.hn|bookshop\.org|BOOKSHOP_LIST_URL|search\.href|\.aff\b|EXPEDIA_BANNER|\bb\.href/;
+const AFF_HREF_RE = /buildAffiliateLink|buildPatagoniaAffiliateLink|stay22SearchUrl|stay22\.com|pxf\.io|prf\.hn|bookshop\.org|BOOKSHOP_LIST_URL|search\.href|\.aff\b|EXPEDIA_BANNER|\bb\.href/;
 const BODY_AFF_RE = /<LodgingCta\b|<AvailabilityLink\b|<AffLink\b|<RecommendedCard\b|data-aff-network/;
 
 // Standing pages whose top-of-page notice is not the shared component, and
