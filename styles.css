@@ -7723,6 +7723,13 @@ html[data-nav-mode="pinned"] { scroll-padding-top: 62px; }
 /* ── /webcams (page-webcams.jsx) ───────────────────────────────────────── */
 .hp-webcams__live { padding-bottom: 0; }
 .hp-webcams__live .cam-grid { margin-top: 30px; }
+.hp-webcams__high { padding-bottom: 0; }
+.hp-webcams__highbody { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 40px; margin-top: 30px; align-items: start; }
+.hp-webcams__highbody .cam-grid { grid-template-columns: minmax(0, 1fr); }
+.hp-webcams__highbody .prose p:first-child { margin-top: 0; }
+@media (max-width: 760px) {
+  .hp-webcams__highbody { grid-template-columns: minmax(0, 1fr); gap: 24px; }
+}
 
 /* ── /places (page-places.jsx) ─────────────────────────────────────────── */
 .hp-places__block { border-top: 1px solid var(--hp-rule); }

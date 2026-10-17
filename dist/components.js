@@ -3638,6 +3638,12 @@ var WEBCAMS = [{
   img: "wawona-t.jpg",
   href: "https://yosemite.org/webcams/wawona/",
   alt: "Live view of Wawona"
+}, {
+  label: "High Sierra",
+  img: "sentinel-t.jpg",
+  href: "https://yosemite.org/webcams/high-sierra/",
+  alt: "Live view east from about 8,000 feet toward Half Dome, Clouds Rest and the Tuolumne high country",
+  optIn: true
 }];
 function WebcamStrip({
   variant,
@@ -3647,7 +3653,7 @@ function WebcamStrip({
   var board = variant === "board";
   return React.createElement(React.Fragment, null, React.createElement("div", {
     className: board ? "cam-grid cam-grid--board" : "cam-grid"
-  }, (only ? only.map(l => WEBCAMS.find(c => c.label === l)).filter(Boolean) : WEBCAMS).map(cam => React.createElement("a", {
+  }, (only ? only.map(l => WEBCAMS.find(c => c.label === l)).filter(Boolean) : WEBCAMS.filter(c => !c.optIn)).map(cam => React.createElement("a", {
     key: cam.img,
     className: "cam-tile",
     href: cam.href,
