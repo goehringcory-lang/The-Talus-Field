@@ -529,6 +529,9 @@ const SEASONS = [
 // `stay_town`, `stay_season_now`, `stay_pick`, `stay_pick_fallback`,
 // `stay_table` and `stay_in_park_card`. The existing `stay_*` values keep
 // their meaning (`stay_closing` is now the closing search, slug the place).
+// October 2026: `stay_compare`, the Stay22 text link under each table row's
+// button. It is the page's one non-Expedia booking link, so it is never a
+// filled `.stay-book` (rule 1 of the redesign note).
 // -----------------------------------------------------------------------------
 
 const STAY_HERO = {
@@ -848,9 +851,9 @@ function StaySearch({ search, searchRef }) {
       <StaySearchFields search={search} variant="panel" />
       <StaySearchLink search={search} list="stay_search" className="stay-book--search" />
       <p className="stay-search__fine">
-        Opens Expedia in a new tab. These are affiliate links: if you book
-        through one, The Talus Field may earn a commission at no extra cost to
-        you. What is recommended, and in what order, does not change for
+        Opens Expedia in a new tab. The booking links on this page, on
+        Expedia and on Stay22, are affiliate links: if you book through one,
+        The Talus Field may earn a commission at no extra cost to you. What is recommended, and in what order, does not change for
         it. <a href="/affiliate">Full disclosure.</a>
       </p>
     </section>
@@ -1094,6 +1097,9 @@ function StayCompareTable({ match }) {
                   <AvailabilityLink destination={t.dest} list="stay_table" slug={t.id} name={t.name + " lodging search"} className="stay-book stay-book--sm">
                     <span>Check rates<span className="stay-sr"> in {t.name}</span></span><Arrow />
                   </AvailabilityLink>
+                  <AvailabilityLink network="stay22" destination={t.name + ", California"} list="stay_compare" campaign="stay_compare" slug={t.id} name={t.name + " booking-site comparison"} className="stay-compare-link">
+                    Compare all booking sites<span className="stay-sr"> for {t.name}</span> ↗
+                  </AvailabilityLink>
                 </td>
               </tr>
             );
@@ -1104,7 +1110,8 @@ function StayCompareTable({ match }) {
         Drive times are the published ranges from the gateway towns article, to
         Yosemite Valley in normal conditions. The table prints no rates because
         rates move by the week: every button is a live Expedia search of that
-        town. Affiliate links.
+        town, and the line under it compares the booking sites for the same
+        town through Stay22. Affiliate links.
       </p>
     </div>
   );
@@ -1732,7 +1739,10 @@ function StayPage({ go }) {
           nearest gateway town and says so. The named lodges in the corridor
           lists are described because the gateway reporting already covers
           them, and those links search the town rather than the property, which
-          is the search that answers what is left on your dates.{" "}
+          is the search that answers what is left on your dates. The
+          comparison links in the town table go to Stay22, which sends you to
+          whichever booking site it finds for that town; they are affiliate
+          links on the same terms.{" "}
           <a href="/affiliate">Full disclosure.</a>
         </p>
       </section>

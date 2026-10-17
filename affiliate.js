@@ -33,10 +33,16 @@ window.EXPEDIA_CAMREF = "1110lKspj";
 // any booking.com URL). Registered but unused by article markup while the
 // application is pending; the lodging links run on `expedia` above.
 window.BOOKING_AFFILIATE_AID = "";
-// Stay22 Allez ID. The build below wraps any lodging URL in an Allez redirect;
-// verify the exact link template against the Stay22 dashboard's link builder
-// before filling this in. Registered but unused by article markup.
-window.STAY22_AFFILIATE_ID = "";
+// Stay22 Allez affiliate ID (the `aid` parameter), from the Stay22 dashboard.
+// LIVE since October 2026. Allez `roam` links send the reader to whichever
+// booking site Stay22 picks for them (dev.stay22.com/docs/allez). The site
+// uses the address form, through stay22SearchUrl below: a town search, never
+// a property, with a `campaign` per placement. The registry's `build` still
+// wraps an arbitrary lodging URL as `&link=`. Plain links only: the Stay22
+// site-wide script (Let Me Allez / LinkSwap) would rewrite the live Expedia,
+// Patagonia and Bookshop links, and the CSP in _headers allows no
+// third-party scripts.
+window.STAY22_AFFILIATE_ID = "thetalusfield";
 // Hipcamp (private-land camping) tracking-link prefix from the affiliate
 // dashboard; the destination is appended as an encoded ?u= parameter,
 // Impact-style. Adjust build() below if the approved program uses a
@@ -50,7 +56,7 @@ window.HIPCAMP_AFFILIATE_BASE = "";
 // "&url=" on is dropped and rebuilt per destination, so pasting the full
 // link is fine. While this is empty the kit's "Shop REI" buttons do not
 // render at all (page-kit.jsx), so no untracked link ever ships marked
-// sponsored, and /affiliate keeps listing three programs.
+// sponsored, and /affiliate keeps listing four programs.
 window.REI_AFFILIATE_BASE = "";
 
 // Bookshop.org. The owner's affiliate list of recommended field guides and
@@ -162,6 +168,23 @@ window.AFFILIATES = {
   },
 };
 
+// A Stay22 Allez search of a place ("Mariposa, California"), tagged with the
+// placement as `campaign` so the Stay22 dashboard splits clicks the way GA4's
+// aff_list does. Fails soft like every builder here: with an empty ID it
+// returns a plain Booking.com search of the same place.
+window.stay22SearchUrl = function stay22SearchUrl(place, campaign) {
+  if (!window.STAY22_AFFILIATE_ID) {
+    return "https://www.booking.com/searchresults.html?ss=" + encodeURIComponent(place);
+  }
+  return (
+    "https://www.stay22.com/allez/roam?aid=" +
+    encodeURIComponent(window.STAY22_AFFILIATE_ID) +
+    "&address=" +
+    encodeURIComponent(place) +
+    (campaign ? "&campaign=" + encodeURIComponent(campaign) : "")
+  );
+};
+
 window.buildAffiliateLink = function buildAffiliateLink(network, targetUrl) {
   const entry = window.AFFILIATES[network];
   if (!entry) {
@@ -196,8 +219,11 @@ window.buildPatagoniaAffiliateLink = function buildPatagoniaAffiliateLink(target
 //     window.KIT_REI (data.js) and light up when the base is pasted. Still
 //     linkless after that: the article bodies (traction, canisters,
 //     headlamps), a follow-up once the program is live.
-//   - Booking.com / Stay22 / Hipcamp: already registered above with empty
-//     IDs; the applications are pending (MONETIZATION-IDEAS.md 3.1).
+//   - Booking.com / Hipcamp: already registered above with empty IDs; the
+//     applications are pending (MONETIZATION-IDEAS.md 3.1). Stay22 is
+//     joined (October 2026) and carries the secondary "compare all booking
+//     sites" links on /stay's town table and on /itineraries. Still open:
+//     whether an article placement earns a Stay22 link beside its Expedia one.
 //   - GetYourGuide or Viator: the guided Valley tours and Glacier Point
 //     tour the trip planning pages mention, booked through the concessioner
 //     today.

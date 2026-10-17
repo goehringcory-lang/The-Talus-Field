@@ -832,7 +832,7 @@ function StaySearch({
     className: "stay-book--search"
   }), React.createElement("p", {
     className: "stay-search__fine"
-  }, "Opens Expedia in a new tab. These are affiliate links: if you book through one, The Talus Field may earn a commission at no extra cost to you. What is recommended, and in what order, does not change for it. ", React.createElement("a", {
+  }, "Opens Expedia in a new tab. The booking links on this page, on Expedia and on Stay22, are affiliate links: if you book through one, The Talus Field may earn a commission at no extra cost to you. What is recommended, and in what order, does not change for it. ", React.createElement("a", {
     href: "/affiliate"
   }, "Full disclosure.")));
 }
@@ -1126,10 +1126,20 @@ function StayCompareTable({
       className: "stay-book stay-book--sm"
     }, React.createElement("span", null, "Check rates", React.createElement("span", {
       className: "stay-sr"
-    }, " in ", t.name)), React.createElement(Arrow, null))));
+    }, " in ", t.name)), React.createElement(Arrow, null)), React.createElement(AvailabilityLink, {
+      network: "stay22",
+      destination: t.name + ", California",
+      list: "stay_compare",
+      campaign: "stay_compare",
+      slug: t.id,
+      name: t.name + " booking-site comparison",
+      className: "stay-compare-link"
+    }, "Compare all booking sites", React.createElement("span", {
+      className: "stay-sr"
+    }, " for ", t.name), " ↗")));
   }))), React.createElement("p", {
     className: "stay-table__foot"
-  }, "Drive times are the published ranges from the gateway towns article, to Yosemite Valley in normal conditions. The table prints no rates because rates move by the week: every button is a live Expedia search of that town. Affiliate links."));
+  }, "Drive times are the published ranges from the gateway towns article, to Yosemite Valley in normal conditions. The table prints no rates because rates move by the week: every button is a live Expedia search of that town, and the line under it compares the booking sites for the same town through Stay22. Affiliate links."));
 }
 function StayPicker() {
   var [picked, setPicked] = React.useState("valley");
@@ -1733,7 +1743,7 @@ function StayPage({
     className: "relrail__dek"
   }, "One-, two- and three-day plans to build your nights around."))), React.createElement("p", {
     className: "article-aff-note hp-stay__disclosure"
-  }, "The availability links on this page are affiliate links. If you book through one, The Talus Field may earn a small commission at no extra cost to you. Which property is recommended, and in what order, does not change for it: the Ahwahnee and the Wawona Hotel are here on their merits and the closed one carries no link at all, the in-park cards send you to the concessioner and earn nothing, and the line under some of them, for when the park is sold out, searches the nearest gateway town and says so. The named lodges in the corridor lists are described because the gateway reporting already covers them, and those links search the town rather than the property, which is the search that answers what is left on your dates.", " ", React.createElement("a", {
+  }, "The availability links on this page are affiliate links. If you book through one, The Talus Field may earn a small commission at no extra cost to you. Which property is recommended, and in what order, does not change for it: the Ahwahnee and the Wawona Hotel are here on their merits and the closed one carries no link at all, the in-park cards send you to the concessioner and earn nothing, and the line under some of them, for when the park is sold out, searches the nearest gateway town and says so. The named lodges in the corridor lists are described because the gateway reporting already covers them, and those links search the town rather than the property, which is the search that answers what is left on your dates. The comparison links in the town table go to Stay22, which sends you to whichever booking site it finds for that town; they are affiliate links on the same terms.", " ", React.createElement("a", {
     href: "/affiliate"
   }, "Full disclosure."))), React.createElement(HpGuideBand, {
     go: go,

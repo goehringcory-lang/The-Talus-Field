@@ -6,7 +6,7 @@ Prepared October 16, 2026. This is a ranked list of what would raise revenue. It
 
 - **Field Guide:** $3.99. September brought 1 sale; October has 0 so far, from the public `sold` count. The owner chose on October 16 to keep the price.
 - **Newsletter:** 49 addresses in Buttondown. The newest arrived October 14 through `/api/subscribe`, so the Worker path works. It arrived with no tags, so check that tags reach subscriber records.
-- **Affiliates:** Patagonia, Expedia and Bookshop are live. Booking, Stay22, Hipcamp and the Expedia banner have empty IDs. The kit holds 236 dormant `aff: "#"` items, and almost all of them are hardgoods that Patagonia does not sell.
+- **Affiliates:** Patagonia, Expedia and Bookshop are live, and Stay22 since October 16 (secondary comparison links on `/stay` and `/itineraries`). Booking, Hipcamp and the Expedia banner have empty IDs. The kit holds 236 dormant `aff: "#"` items, and almost all of them are hardgoods that Patagonia does not sell.
 - **Consults:** the page lists a $75 price but can only take an email, because both URL constants in `page-consult.jsx` are empty.
 
 The sales funnel is in good order. The October audit tickets 02 (the mobile checkout error) and 05 (buying directly from the preview) are both shipped. Revenue is limited by two things: traffic, and revenue surfaces that were built but never switched on. The code is not the problem.
@@ -34,7 +34,7 @@ Disclosed affiliate links were added to six high-intent articles. Each link sits
 4. **Paste the Expedia banner** (`EXPEDIA_BANNER.img` and `.href` in `affiliate.js`). It needs two URLs from creator.expediagroup.com, and the `/stay` slot is already built.
 5. **Get an Expedia car-rental deep link.** The Travel Creator program covers cars as well as hotels. Copy one working car-rental search URL from the creator dashboard's link builder; Expedia blocked automated checks, so this branch could not verify the URL format. Once it is pasted, the "Rent a car, usually" section of `best-airport-for-yosemite` and the two drive-in articles (Los Angeles, Las Vegas) can carry a disclosed link.
 6. **Join GetYourGuide or Viator** for the car-free reader who wants a day tour from San Francisco. Leave the concessioner's in-park tours linkless if they are the better recommendation, as the `/affiliate` guardrail requires.
-7. **Booking.com, Stay22 and Hipcamp:** the applications are still pending. Hipcamp fits the camping guide best.
+7. **Booking.com and Hipcamp:** the applications are still pending (Stay22 was approved and is live as of October 16). Hipcamp fits the camping guide best.
 8. **Write a Buttondown welcome sequence** (CONVERSION-STRATEGY R9). No automation exists, so new subscribers hear nothing until Sunday, and `TALUS30` reaches nobody.
 9. **Price:** the owner kept $3.99 on October 16. The September research case for a $6.99 test still stands if you revisit it later. The change is one line, `GUIDE_PRICE_CENTS` in `workers/wrangler.toml`, plus the hard-coded fallbacks.
 10. **Exit-intent modal:** keep it or retire it. It brought in 7 of the first 48 signups.
