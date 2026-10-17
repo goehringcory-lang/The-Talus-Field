@@ -90,11 +90,11 @@ Ordered by fit with the brand's "dry, declarative, no fluff" register — the co
 
 ### 3.3 Sell the naturalist directly: trip consults
 
-**What:** A capped service — "Field consult: 30 minutes on your Yosemite plan, $95" or an async version ("send your dates and constraints; you get a written plan built on the itinerary system"). Stripe Payment Link + Cal.com; a `/consult` page in the house voice; 4–8 slots/month, sold out is sold out.
-**Why it works:** This is the highest-margin product the site can offer and the only one competitors literally cannot copy. It monetizes the credential at ~$190/hour, feeds the editorial (every consult is field intelligence about what planners actually struggle with), and the cap keeps it from eating the writing time. The async version can partially reuse `window.ITINERARIES` + the map's trip links as the deliverable skeleton — a custom `/map?trip=` URL is already a shareable itinerary artifact.
+**What:** A capped service — "Field consult: 30 minutes on your Yosemite plan, $75" or an async version ("send your dates and constraints; you get a written plan built on the itinerary system"). Stripe Payment Link + Cal.com; a `/consult` page in the house voice; 4–8 slots/month, sold out is sold out.
+**Why it works:** This is the highest-margin product the site can offer and the only one competitors literally cannot copy. It monetizes the credential at ~$150/hour, feeds the editorial (every consult is field intelligence about what planners actually struggle with), and the cap keeps it from eating the writing time. The async version can partially reuse `window.ITINERARIES` + the map's trip links as the deliverable skeleton — a custom `/map?trip=` URL is already a shareable itinerary artifact.
 **Build:** Low (a page + payment link). The scarce resource is hours, which the cap protects.
 **Creative extension:** a seasonal group version — "Firefall week briefing," one $25 live Zoom for 40 people the week before the event, recorded and sent to guide owners free (raises guide value too).
-**Status (September 2026): page live, not yet sellable.** `/consult` ships at $95 with six slots a month, and the trip selector routes constrained trips (four-plus days, access needs, unbooked peak dates) to it, but `CONSULT_PAYMENT_LINK_URL` and `CONSULT_BOOKING_URL` in `page-consult.jsx` are empty, so the page degrades to a mailto. Two dashboard pastes make it sell.
+**Status (September 2026): page live, not yet sellable.** `/consult` ships at $75 with six slots a month (lowered from $95 in October 2026, owner-approved), and the trip selector routes constrained trips (four-plus days, access needs, unbooked peak dates) to it, but `CONSULT_PAYMENT_LINK_URL` and `CONSULT_BOOKING_URL` in `page-consult.jsx` are empty, so the page degrades to a mailto. Two dashboard pastes make it sell.
 
 ### 3.4 Seasonal micro-products vs. guide perks — decide the boundary once
 

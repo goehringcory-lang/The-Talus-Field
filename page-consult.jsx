@@ -19,7 +19,7 @@ const CONSULT_PAYMENT_LINK_URL = "";
 // Paste the booking URL here (Cal.com event link or similar).
 const CONSULT_BOOKING_URL = "";
 
-const CONSULT_PRICE = "$95";
+const CONSULT_PRICE = "$75";
 const CONSULT_SLOTS_PER_MONTH = 6;
 // The inquiry email carries the short intake the reply needs, so the first
 // answer can say whether a slot fits instead of asking for the basics.
