@@ -31,7 +31,7 @@
   <!-- Sections -->
   <url>
     <loc>https://thetalusfieldjournal.com/section/planning</loc>
-    <lastmod>2026-10-14</lastmod>
+    <lastmod>2026-10-17</lastmod>
   </url>
   <url>
     <loc>https://thetalusfieldjournal.com/section/trails</loc>
@@ -173,6 +173,14 @@
   </url>
 
   <!-- Articles -->
+  <url>
+    <loc>https://thetalusfieldjournal.com/articles/housekeeping-camp-vs-curry-village</loc>
+    <lastmod>2026-10-17</lastmod>
+    <image:image>
+      <image:loc>https://thetalusfieldjournal.com/img/responsive/housekeeping-camp-yosemite-1600.jpg</image:loc>
+      <image:title>A Housekeeping Camp unit: concrete walls, a canvas roof over the patio, a table and chairs, pines behind</image:title>
+    </image:image>
+  </url>
   <url>
     <loc>https://thetalusfieldjournal.com/articles/yosemite-stargazing-tours-and-programs</loc>
     <lastmod>2026-10-17</lastmod>
