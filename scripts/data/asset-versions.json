@@ -305,9 +305,13 @@
       "v": 3,
       "sha256": "331e053e91410cb9"
     },
+    "/dist/bodies/yosemite-san-francisco-bus.js": {
+      "v": 1,
+      "sha256": "2105e1f0dee99657"
+    },
     "/dist/bodies/yosemite-shuttle-and-yarts.js": {
-      "v": 13,
-      "sha256": "3359727037b00f56"
+      "v": 14,
+      "sha256": "d7559f23e3e15cc3"
     },
     "/dist/bodies/yosemite-stargazing-where-to-look-up.js": {
       "v": 88,

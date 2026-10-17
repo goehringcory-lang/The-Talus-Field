@@ -1,5 +1,32 @@
 [
   {
+    "slug": "yosemite-san-francisco-bus",
+    "cat": "planning",
+    "title": "San Francisco to Yosemite by Bus and Train: YARTS, Amtrak and BART, Both Ways",
+    "dek": "There is no bus from San Francisco to Yosemite. There is BART to Richmond, a train to Merced and a YARTS bus up Highway 140, and together they run all year. The route both ways, the four YARTS routes and their seasons, the posted fares, the entrance fee two official sources disagree about, and the tours that fill the gaps.",
+    "seoTitle": "Bus From San Francisco to Yosemite: YARTS, Amtrak, BART",
+    "seoDek": "Bus from San Francisco to Yosemite: BART, the Amtrak train to Merced and the year-round YARTS Highway 140 bus. Fares, seasons, routes and the return trip.",
+    "date": "October 17, 2026",
+    "isoDate": "2026-10-17",
+    "isoModified": "2026-10-17",
+    "read": "8 min",
+    "image": "img/yarts-bus-merced-amtrak.jpg",
+    "ogImage": { "url": "img/responsive/yarts-bus-merced-amtrak-1600.jpg", "width": 1600, "height": 794 },
+    "placeholder": "Passengers with bicycles and bags boarding a green YARTS coach at the Merced Amtrak station",
+    "cover": true,
+    "wordCount": 2300,
+    "keywords": ["bus from Yosemite to San Francisco", "San Francisco to Yosemite", "San Francisco to Yosemite bus", "YARTS bus", "Yosemite bus routes", "YARTS Highway 140", "Merced to Yosemite bus", "Amtrak to Yosemite", "BART to Yosemite", "Yosemite without a car", "YARTS fares", "Yosemite to San Francisco by train"],
+    "faq": [
+      { "q": "Is there a bus from San Francisco to Yosemite?", "a": "Not a direct one on public transit. The scheduled route is three legs: BART to Richmond, or Amtrak's connecting bus from San Francisco to Emeryville; the Amtrak Gold Runner train, long known as the San Joaquins, to Merced; then the YARTS bus up Highway 140 into Yosemite Valley. It runs all year, and Amtrak sells the train and the YARTS bus as one ticket." },
+      { "q": "How long does the bus take from Merced to Yosemite Valley?", "a": "About three to four hours on the YARTS winter timetable, which runs from October 1, 2026 to May 28, 2027, depending on the run. The bus calls at Catheys Valley, Mariposa, Midpines and El Portal on the way up the Merced River canyon and stops at Yosemite Valley Lodge, Yosemite Village and Curry Village." },
+      { "q": "How much is the YARTS bus from Merced to Yosemite?", "a": "YARTS lists $22 one way and $44 round trip for an adult between Merced and Yosemite Valley, and reduced fares of $11 and $22. Children 5 and under ride free, and one child aged 6 to 12 rides free with each paid adult. Online tickets carry a $2.50 fee each way, the posted fares leave out a $1 surcharge per person, and walk-ons ride as space allows." },
+      { "q": "Does YARTS run all year?", "a": "Only the Highway 140 route, from Merced. The Highway 41 route from Fresno, Highway 120 west from Sonora and Highway 120 east from Mammoth Lakes are summer services. YARTS does not run on Thanksgiving, Christmas, New Year's Day or Easter." },
+      { "q": "How do I get from Yosemite to San Francisco by bus?", "a": "The same three legs in reverse: YARTS from the Valley down Highway 140 to the Merced Amtrak station, the Gold Runner train to Richmond or Emeryville, then BART from Richmond or Amtrak's connecting bus from Emeryville into San Francisco. Book it as one Amtrak ticket so the bus and train are planned to connect, and check the current timetable before you choose a bus." },
+      { "q": "Does the bus fare include the Yosemite entrance fee?", "a": "The official sources disagree. YARTS says entrance and non-resident fees are not included in its ticket prices, while Amtrak's Yosemite page says its tickets include admission. Plan to pay: the per-person pass is $20 for seven days, people 15 and under are free, non-US residents 16 and over pay $100 more, and the park does not accept cash." }
+    ],
+    "related": ["yosemite-shuttle-and-yarts", "best-airport-for-yosemite", "yosemite-day-trip-from-bay-area", "sustainable-yosemite-car-free-zero-waste", "yosemite-in-one-or-two-days", "getting-to-yosemite"]
+  },
+  {
     "slug": "badger-pass-ski-area",
     "cat": "seasonal",
     "title": "Badger Pass Ski Area: Is It Open, What It Costs, and How the Season Really Works",
@@ -853,7 +880,7 @@
       { "q": "Can you get to Yosemite from the Bay Area without a car?", "a": "Yes. Amtrak's San Joaquins run to Merced, with a bus connection from San Francisco to Emeryville and a BART interchange at Richmond, and YARTS buses run from the Merced station up Highway 140 into Yosemite Valley year-round, timed to the trains and bookable as a single ticket. You skip the entrance line and the parking problem, but combined transit runs roughly four to four and a half hours each way and the schedule decides when you leave." },
       { "q": "What does a Yosemite day trip cost from the Bay Area?", "a": "A round trip from San Francisco is close to four hundred miles, so fuel runs somewhere in the region of seventy to a hundred dollars depending on the vehicle, plus the $35 per-vehicle entrance fee. The fee is the buried point: it covers seven days, so a day-tripper pays the full $35 for one day while an overnight visitor pays the same $35 for two or three." }
     ],
-    "related": ["yosemite-in-one-or-two-days", "getting-to-yosemite", "yosemite-from-los-angeles", "yosemite-valley-parking-guide", "yosemite-for-non-hikers", "when-to-visit-yosemite"]
+    "related": ["yosemite-in-one-or-two-days", "getting-to-yosemite", "yosemite-from-los-angeles", "yosemite-valley-parking-guide", "yosemite-for-non-hikers", "yosemite-san-francisco-bus"]
   },
   {
     "slug": "swimming-in-the-merced",

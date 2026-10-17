@@ -110,6 +110,7 @@ window.planningSeriesFor = function (slug) {
 // verifies this map stays in sync with the files in bodies/.
 // ============================================================
 window.BODY_VERSIONS = {
+  "yosemite-san-francisco-bus": 1,
   "badger-pass-ski-area": 2,
   "snowshoeing-in-yosemite": 2,
   "yosemite-in-february": 2,
@@ -146,7 +147,7 @@ window.BODY_VERSIONS = {
   "tuolumne-meadows-in-a-day": 13,
   "swimming-in-the-merced": 6,
   "yosemite-valley-parking-guide": 6,
-  "yosemite-shuttle-and-yarts": 13,
+  "yosemite-shuttle-and-yarts": 14,
   "yosemite-walk-up-and-day-of-permits": 9,
   "yosemite-in-fall": 11,
   "yosemite-tunnel-trees": 6,
@@ -904,6 +905,29 @@ window.KIT_REI = {
 // AffiliateDisclosure line under the byline, before the first link;
 // scripts/check-affiliate-links.mjs fails when the flag and the body disagree.
 window.ARTICLES = [
+  {
+    slug: "yosemite-san-francisco-bus",
+    cat: "planning",
+    title: "San Francisco to Yosemite by Bus and Train: YARTS, Amtrak and BART, Both Ways",
+    seoTitle: "Bus From San Francisco to Yosemite: YARTS, Amtrak, BART",
+    dek: "There is no bus from San Francisco to Yosemite. There is BART to Richmond, a train to Merced and a YARTS bus up Highway 140, and together they run all year. The route both ways, the four YARTS routes and their seasons, the posted fares, the entrance fee two official sources disagree about, and the tours that fill the gaps.",
+    seoDek: "Bus from San Francisco to Yosemite: BART, the Amtrak train to Merced and the year-round YARTS Highway 140 bus. Fares, seasons, routes and the return trip.",
+    date: "October 17, 2026",
+    isoDate: "2026-10-17",
+    isoModified: "2026-10-17",
+    read: "8 min",
+    placeholder: "Passengers with bicycles and bags boarding a green YARTS coach at the Merced Amtrak station",
+    image: "img/yarts-bus-merced-amtrak.jpg",
+    credit: "Photo: RickyCourtney / Wikimedia Commons (CC BY-SA 3.0)",
+    // The /firefall layout for an article (page-article.jsx), as on the
+    // airport and car-free pieces. The two buttons jump to the route and to
+    // the four YARTS routes.
+    feature: {
+      eyebrow: "BART · AMTRAK · YARTS · BOTH DIRECTIONS",
+      focus: "50% 55%",
+      actions: [["#sfb-the-route", "The route, leg by leg"], ["#sfb-yarts-routes", "The four YARTS routes"]],
+    },
+  },
   {
     slug: "badger-pass-ski-area",
     aff: true,
@@ -2372,6 +2396,7 @@ window.START_HERE = [
 // Curate a piece when it earns real search impressions, when it anchors a
 // cluster, or when it is the destination that needs the equity.
 window.RELATED = {
+  "yosemite-san-francisco-bus": ["yosemite-shuttle-and-yarts", "best-airport-for-yosemite", "yosemite-day-trip-from-bay-area", "sustainable-yosemite-car-free-zero-waste", "yosemite-in-one-or-two-days", "getting-to-yosemite"],
   "badger-pass-ski-area": ["yosemite-in-winter",  "snowshoeing-in-yosemite",  "glacier-point-how-to-visit",  "yosemite-in-january",  "yosemite-in-february",  "where-to-stay-in-yosemite"],
   "snowshoeing-in-yosemite": ["yosemite-in-winter",  "badger-pass-ski-area",  "yosemite-winter-hikes",  "mariposa-grove-how-to-visit",  "glacier-point-how-to-visit",  "yosemite-ranger-programs"],
   "yosemite-in-february": ["horsetail-fall-firefall",  "yosemite-in-winter",  "yosemite-in-january",  "yosemite-in-march",  "badger-pass-ski-area",  "mariposa-grove-how-to-visit"],
@@ -2444,7 +2469,7 @@ window.RELATED = {
   "getting-to-yosemite": ["yosemite-shuttle-and-yarts", "best-airport-for-yosemite", "yosemite-gateway-towns-compared", "highway-140-closed-yosemite", "yosemite-from-los-angeles", "yosemite-day-trip-from-bay-area"],
   "yosemite-shuttle-and-yarts": ["getting-to-yosemite", "best-airport-for-yosemite", "yosemite-valley-parking-guide", "highway-140-closed-yosemite", "yosemite-accessibility-guide", "yosemite-day-trip-from-bay-area"],
   "yosemite-valley-parking-guide": ["getting-to-yosemite", "yosemite-shuttle-and-yarts", "yosemite-without-reservations-2026", "yosemite-in-one-or-two-days", "mist-trail-the-real-guide", "sustainable-yosemite-car-free-zero-waste"],
-  "yosemite-day-trip-from-bay-area": ["yosemite-in-one-or-two-days", "getting-to-yosemite", "yosemite-from-los-angeles", "yosemite-valley-parking-guide", "yosemite-for-non-hikers", "when-to-visit-yosemite"],
+  "yosemite-day-trip-from-bay-area": ["yosemite-in-one-or-two-days", "getting-to-yosemite", "yosemite-from-los-angeles", "yosemite-valley-parking-guide", "yosemite-for-non-hikers", "yosemite-san-francisco-bus"],
   "pack-your-car-for-yosemite": ["yosemite-bears-safety-guide", "camping-in-yosemite-first-time", "getting-to-yosemite", "yosemite-valley-parking-guide", "first-time-yosemite-overwhelm", "cell-service-in-yosemite"],
 
   // Permits
