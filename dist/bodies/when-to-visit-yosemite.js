@@ -511,7 +511,9 @@ window.ARTICLE_BODIES["when-to-visit-yosemite"] = function WhenToVisitYosemiteBo
     className: "ff-lede"
   }, "The best planning tool is the park's 15-year monthly average. July is the busiest month, August is nearly as busy, and the six months from May to October carry nearly three-quarters of the year. 2026 has run about eight percent above 2025, so read every bar as a little taller."), React.createElement(TypicalYear, null), React.createElement("p", {
     className: "ff-note"
-  }, "The index and the cards below do not split weekdays from weekends. The Park Service does not publish a weekday series, and the first version of this article invented one."), React.createElement("ol", {
+  }, "The index and the cards below do not split weekdays from weekends. The Park Service does not publish a weekday series, and the first version of this article invented one. The same averages as a table, with the days, hours and places the crowd concentrates: ", React.createElement("a", {
+    href: "/articles/yosemite-crowds-by-month"
+  }, "Yosemite crowds by month"), "."), React.createElement("ol", {
     className: "wv-months"
   }, MCARD.map((c, i) => React.createElement("li", {
     key: FULL[i],

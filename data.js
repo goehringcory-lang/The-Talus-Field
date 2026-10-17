@@ -110,6 +110,7 @@ window.planningSeriesFor = function (slug) {
 // verifies this map stays in sync with the files in bodies/.
 // ============================================================
 window.BODY_VERSIONS = {
+  "yosemite-crowds-by-month": 1,
   "yosemite-san-francisco-bus": 2,
   "housekeeping-camp-vs-curry-village": 1,
   "yosemite-stargazing-tours-and-programs": 1,
@@ -173,7 +174,7 @@ window.BODY_VERSIONS = {
   "is-bear-spray-allowed-in-yosemite": 6,
   "yosemite-bears-safety-guide": 126,
   "yosemite-heat-safety-guide": 12,
-  "when-to-visit-yosemite": 12,
+  "when-to-visit-yosemite": 13,
   "yosemite-trip-cost-budget": 14,
   "yosemite-in-september-2026": 7,
   "yosemite-in-june": 11,
@@ -907,6 +908,28 @@ window.KIT_REI = {
 // AffiliateDisclosure line under the byline, before the first link;
 // scripts/check-affiliate-links.mjs fails when the flag and the body disagree.
 window.ARTICLES = [
+  {
+    slug: "yosemite-crowds-by-month",
+    cat: "planning",
+    title: "Yosemite Crowds by Month: The Park Service's Count, the Busy Hours and Where It Piles Up",
+    seoTitle: "Yosemite Crowds by Month: Busiest and Quietest Times",
+    dek: "July is the busiest month and January the quietest, by the Park Service's own fifteen-year count. The month-by-month table, the days and hours the lots fill, the five places the crowd piles up, the reservation years and the 2026 season without one, and what actually beats the crowd.",
+    seoDek: "Yosemite visitation by month from NPS data: busiest and quietest months, when Valley lots fill, where crowds concentrate, and 2026 reservation status.",
+    date: "October 17, 2026",
+    isoDate: "2026-10-17",
+    isoModified: "2026-10-17",
+    read: "7 min",
+    placeholder: "Visitors boarding the free Yosemite Valley shuttle at Yosemite Village in summer",
+    image: "img/yosemite-village-shuttle-stop.jpg",
+    credit: "Photo: Pi.1415926535 / Wikimedia Commons (CC BY-SA 4.0)",
+    // The /firefall layout for an article (page-article.jsx). The two buttons
+    // jump to the month table and to the five places the crowd concentrates.
+    feature: {
+      eyebrow: "NPS VISITATION · BUSY HOURS · WHERE · 2026",
+      focus: "50% 55%",
+      actions: [["#ycm-calendar", "The month-by-month table"], ["#ycm-where", "Where the crowd piles up"]],
+    },
+  },
   {
     slug: "yosemite-san-francisco-bus",
     cat: "planning",
@@ -2452,6 +2475,7 @@ window.START_HERE = [
 // Curate a piece when it earns real search impressions, when it anchors a
 // cluster, or when it is the destination that needs the equity.
 window.RELATED = {
+  "yosemite-crowds-by-month": ["when-to-visit-yosemite", "yosemite-valley-parking-guide", "yosemite-without-reservations-2026", "glacier-point-how-to-visit", "mariposa-grove-how-to-visit", "yosemite-needs-a-reservation-system"],
   "yosemite-san-francisco-bus": ["yosemite-shuttle-and-yarts", "best-airport-for-yosemite", "yosemite-day-trip-from-bay-area", "sustainable-yosemite-car-free-zero-waste", "yosemite-in-one-or-two-days", "getting-to-yosemite"],
   // Housekeeping Camp vs Curry Village: the two canvas-roofed Valley stays.
   // Onward to every bed in the park, the campgrounds, the kitchens, the bear
@@ -2557,7 +2581,7 @@ window.RELATED = {
   "first-time-yosemite-overwhelm": ["yosemite-in-one-or-two-days", "when-to-visit-yosemite", "yosemite-gateway-towns-compared", "yosemite-without-reservations-2026", "yosemite-in-three-to-five-days", "pack-your-car-for-yosemite"],
   "yosemite-in-one-or-two-days": ["yosemite-in-three-to-five-days", "first-time-yosemite-overwhelm", "yosemite-valley-parking-guide", "yosemite-with-kids-no-reservations-2026", "yosemite-day-trip-from-bay-area", "where-to-eat-yosemite"],
   "yosemite-in-three-to-five-days": ["yosemite-in-one-or-two-days", "tuolumne-meadows-in-a-day", "mist-trail-the-real-guide", "yosemite-gateway-towns-compared", "when-to-visit-yosemite"],
-  "when-to-visit-yosemite": ["yosemite-without-reservations-2026", "yosemite-in-september-2026", "yosemite-in-fall", "yosemite-valley-parking-guide", "yosemite-gateway-towns-compared", "yosemite-in-october-2026"],
+  "when-to-visit-yosemite": ["yosemite-without-reservations-2026", "yosemite-in-september-2026", "yosemite-in-fall", "yosemite-valley-parking-guide", "yosemite-crowds-by-month", "yosemite-gateway-towns-compared"],
   "yosemite-without-reservations-2026": ["when-to-visit-yosemite", "yosemite-valley-parking-guide", "yosemite-walk-up-and-day-of-permits", "yosemite-camping-complete-guide", "hetch-hetchy-the-other-yosemite-valley", "first-time-yosemite-overwhelm"],
 
   // Seasonal

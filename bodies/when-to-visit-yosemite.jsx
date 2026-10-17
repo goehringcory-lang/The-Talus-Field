@@ -520,7 +520,7 @@ window.ARTICLE_BODIES["when-to-visit-yosemite"] = function WhenToVisitYosemiteBo
             The best planning tool is the park's 15-year monthly average. July is the busiest month, August is nearly as busy, and the six months from May to October carry nearly three-quarters of the year. 2026 has run about eight percent above 2025, so read every bar as a little taller.
           </p>
           <TypicalYear />
-          <p className="ff-note">The index and the cards below do not split weekdays from weekends. The Park Service does not publish a weekday series, and the first version of this article invented one.</p>
+          <p className="ff-note">The index and the cards below do not split weekdays from weekends. The Park Service does not publish a weekday series, and the first version of this article invented one. The same averages as a table, with the days, hours and places the crowd concentrates: <a href="/articles/yosemite-crowds-by-month">Yosemite crowds by month</a>.</p>
 
           <ol className="wv-months">
             {MCARD.map((c, i) => (

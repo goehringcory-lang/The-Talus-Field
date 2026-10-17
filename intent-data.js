@@ -177,6 +177,7 @@ window.ARTICLE_INTENT = {
   "yosemite-valley-parking-guide":             { stage: ["dates-set", "week-before", "in-park"], who: [], topic: ["transportation"] },
   "sustainable-yosemite-car-free-zero-waste": { stage: ["before-booking", "dates-set", "week-before", "in-park"], who: [], topic: ["transportation"] },
   "yosemite-shuttle-and-yarts":                { stage: ["before-booking", "dates-set", "week-before", "in-park"], who: [], topic: ["transportation"] },
+  "yosemite-crowds-by-month":                  { stage: ["before-booking", "dates-set"], who: ["first-trip"], topic: ["conditions"] },
   "yosemite-san-francisco-bus":                { stage: ["before-booking", "dates-set"], who: ["first-trip"], topic: ["transportation"] },
   "yosemite-walk-up-and-day-of-permits":       { stage: ["dates-set", "week-before", "in-park"], who: [], topic: ["permits", "camping"] },
   "yosemite-in-fall":                          { stage: ["before-booking", "dates-set"], who: ["first-trip", "photography"], topic: ["conditions", "transportation"] },

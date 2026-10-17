@@ -158,8 +158,8 @@
       "sha256": "8017107ddb644835"
     },
     "/dist/bodies/when-to-visit-yosemite.js": {
-      "v": 12,
-      "sha256": "b7e4db593e5308c5"
+      "v": 13,
+      "sha256": "933ddad6d62fc535"
     },
     "/dist/bodies/where-to-eat-yosemite.js": {
       "v": 96,
@@ -196,6 +196,10 @@
     "/dist/bodies/yosemite-connecting-to-traditions.js": {
       "v": 5,
       "sha256": "3141e1acadb6d448"
+    },
+    "/dist/bodies/yosemite-crowds-by-month.js": {
+      "v": 1,
+      "sha256": "220966f5a311cdd9"
     },
     "/dist/bodies/yosemite-day-trip-from-bay-area.js": {
       "v": 6,

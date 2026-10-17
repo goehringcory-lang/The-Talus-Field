@@ -1,5 +1,32 @@
 [
   {
+    "slug": "yosemite-crowds-by-month",
+    "cat": "planning",
+    "title": "Yosemite Crowds by Month: The Park Service's Count, the Busy Hours and Where It Piles Up",
+    "dek": "July is the busiest month and January the quietest, by the Park Service's own fifteen-year count. The month-by-month table, the days and hours the lots fill, the five places the crowd piles up, the reservation years and the 2026 season without one, and what actually beats the crowd.",
+    "seoTitle": "Yosemite Crowds by Month: Busiest and Quietest Times",
+    "seoDek": "Yosemite visitation by month from NPS data: busiest and quietest months, when Valley lots fill, where crowds concentrate, and 2026 reservation status.",
+    "date": "October 17, 2026",
+    "isoDate": "2026-10-17",
+    "isoModified": "2026-10-17",
+    "read": "7 min",
+    "image": "img/yosemite-village-shuttle-stop.jpg",
+    "ogImage": { "url": "img/responsive/yosemite-village-shuttle-stop-1600.jpg", "width": 1600, "height": 1200 },
+    "placeholder": "Visitors boarding the free Yosemite Valley shuttle at Yosemite Village in summer",
+    "cover": true,
+    "wordCount": 1900,
+    "keywords": ["Yosemite crowds by month", "Yosemite visitation by month", "Yosemite crowd calendar", "Yosemite crowds 2026", "busiest month in Yosemite", "least crowded time to visit Yosemite", "when do Yosemite parking lots fill", "Yosemite busiest days", "Yosemite peak hours reservation", "will Yosemite be crowded", "how to avoid crowds in Yosemite"],
+    "faq": [
+      { "q": "What is Yosemite's visitation by month?", "a": "By the Park Service's averages for 2010 to 2024, July is the busiest month at 624,559 visits and August close behind at 607,000, each about 15 percent of the year. January is the quietest at 120,827, about 3 percent. Nearly 75 percent of visitors come from May through October." },
+      { "q": "What is the least crowded month to visit Yosemite?", "a": "January, then February and December, by the Park Service's averages. Each draws about a fifth to a quarter of July's visits. For a quiet month with more of the park open, early November weekdays and the weekdays of October are the better trade: October averages 388,581 visits, about 62 percent of July." },
+      { "q": "Will Yosemite be crowded in 2026?", "a": "Busier than 2025, with less waiting. There is no timed reservation system in 2026. Visits were running about 8 percent ahead of 2025 through July, but the Park Service counted only two days of significant traffic delays through late August, both on Memorial Day weekend. Saturdays and holiday weekends are still the days the Valley lots fill." },
+      { "q": "What time do Yosemite Valley parking lots fill?", "a": "The Park Service says to arrive before 8 a.m., after which Valley parking is usually full from April through September and on spring and fall weekends. Glacier Point and Tuolumne Meadows: arrive by 9 a.m. The Mariposa Grove welcome plaza can fill by mid-day. Text YNPTRAFFIC to 333111 for the park's live updates." },
+      { "q": "What are the busiest days in Yosemite?", "a": "Saturdays and holiday weekends, by the Park Service's own traffic page: Memorial Day, the Fourth of July, Labor Day, Thanksgiving week and the late-December holidays. Weekdays are less congested, though delays are possible on any day in summer." },
+      { "q": "Do I need a reservation to enter Yosemite in 2026?", "a": "No. The Park Service says it will not use a timed reservation system in 2026, after requiring one in some form in 2021, 2022, 2024 and 2025. You still pay the entrance fee. Check nps.gov/yose before a 2027 trip; the park has not announced its plans for next year." }
+    ],
+    "related": ["when-to-visit-yosemite", "yosemite-valley-parking-guide", "yosemite-without-reservations-2026", "glacier-point-how-to-visit", "mariposa-grove-how-to-visit", "yosemite-needs-a-reservation-system"]
+  },
+  {
     "slug": "yosemite-san-francisco-bus",
     "cat": "planning",
     "title": "San Francisco to Yosemite by Bus and Train: YARTS, Amtrak and BART, Both Ways",
@@ -1693,7 +1720,7 @@
       { "q": "What are the worst days to visit Yosemite in 2026?", "a": "The Park Service counts only two days of significant delays in 2026, both over Memorial Day weekend, and says Juneteenth and July 4 ran without significant delays. Summer Saturdays arriving after 8:30 a.m., Labor Day weekend and the holiday week in late December are still the days to plan around." },
       { "q": "What was Yosemite's busiest year ever?", "a": "2016, with 5,028,868 recreation visits. 2025 was the fourth-busiest at 4,278,413, behind 2016, 2019 and 2017, and 2026 is on pace to land second at roughly 4.5 to 4.6 million." }
     ],
-    "related": ["yosemite-without-reservations-2026", "yosemite-in-september-2026", "yosemite-in-fall", "yosemite-valley-parking-guide", "yosemite-gateway-towns-compared", "yosemite-in-october-2026"]
+    "related": ["yosemite-without-reservations-2026", "yosemite-in-september-2026", "yosemite-in-fall", "yosemite-valley-parking-guide", "yosemite-crowds-by-month", "yosemite-gateway-towns-compared"]
   },
   {
     "slug": "yosemite-trip-cost-budget",
