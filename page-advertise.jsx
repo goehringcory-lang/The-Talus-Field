@@ -18,7 +18,7 @@ function AdvertisePage({ go }) {
               { label: "Placement", value: "Twelve months, renewable" },
               { label: "Tiers", value: "Standard and featured" },
               { label: "Reviewed", value: "Before it goes live" },
-              { label: "Rate", value: "Inquire for current rate" },
+              { label: "Rate", value: "From $300 a year" },
             ]}
           />
         }
@@ -53,12 +53,12 @@ function AdvertisePage({ go }) {
             <div className="places-pitch__tier">
               <div className="places-pitch__tier-eyebrow">Standard listing</div>
               <div className="places-pitch__tier-summary">Name, area, blurb, outbound link in the relevant category.</div>
-              <div className="places-pitch__tier-meta">Twelve months · Inquire for current rate</div>
+              <div className="places-pitch__tier-meta">Twelve months · $300 a year</div>
             </div>
             <div className="places-pitch__tier places-pitch__tier--featured">
               <div className="places-pitch__tier-eyebrow">Featured listing</div>
               <div className="places-pitch__tier-summary">Standard, plus a photo, an extended description, and priority position within the category.</div>
-              <div className="places-pitch__tier-meta">Twelve months · Inquire for current rate</div>
+              <div className="places-pitch__tier-meta">Twelve months · $600 a year</div>
             </div>
           </div>
 
@@ -69,7 +69,7 @@ function AdvertisePage({ go }) {
           >Inquire about a listing →</a>
 
           <p className="places-pitch__fineprint">
-            All paid placements are reviewed before they go live. Listings can be removed at the editor's discretion if a business stops meeting basic standards. The <a href="/affiliate" onClick={(e) => { e.preventDefault(); go("affiliate"); }}>full advertising and affiliate policy</a> is on the disclosure page.
+            Sponsorship of the Sunday letter and custom packages are priced on inquiry. All paid placements are reviewed before they go live. Listings can be removed at the editor's discretion if a business stops meeting basic standards. The <a href="/affiliate" onClick={(e) => { e.preventDefault(); go("affiliate"); }}>full advertising and affiliate policy</a> is on the disclosure page.
           </p>
         </div>
       </section>

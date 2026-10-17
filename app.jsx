@@ -637,7 +637,7 @@ function buildSeo(route) {
     advertise: {
       title: `List your business | ${SITE_NAME}`,
       description:
-        "How to list a Yosemite-area lodge, inn, guide service, or outfitter on The Talus Field directory.",
+        "How to list a Yosemite-area lodge, inn, guide service, or outfitter on The Talus Field directory. Listings from $300 a year.",
       ogType: "website",
       breadcrumb: [["Home", `${SITE_ORIGIN}/`], ["List your business", null]],
     },
