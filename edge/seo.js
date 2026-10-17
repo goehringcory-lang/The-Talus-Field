@@ -528,7 +528,7 @@ const HUB_PROSE = {
   "/fall-color": () =>
     hubProse(
       "Yosemite Fall Color",
-      "Peak fall color in Yosemite Valley is usually late October into early November. The park says its bigleaf maples, black oaks and dogwoods are showy from about mid-October, and the color lingers until the first heavy storm or hard frost. The high country turns first: Tioga Road's aspens start in late September."
+      "Peak fall color in Yosemite Valley usually comes in late October. The park's maples and black oaks are showy from about mid-October, and the color lingers until the first heavy winter storm or hard frost, often in early December. The high country turns first: Tioga Road's aspens start in late September."
     ) +
     `<p>Most of Yosemite is evergreen, so autumn color here is concentrated: bigleaf maples gone yellow along the creeks, black oaks orange to gold in the meadows, dogwoods red under the conifers, aspens yellow up high. Color starts at the top of the park and walks down it: Tioga Road aspens, then dogwoods at middle elevations, then the Valley, then willows and cottonwoods at El Portal.</p>` +
     `<p>Where to see it: the bigleaf maples along the south wall, from below Bridalveil Creek past Sentinel Creek to Happy Isles; the black oaks of El Capitan Meadow; the planted sugar maple by the Yosemite Valley Chapel; the elm in Cook's Meadow, which turns first. Outside the Valley: Wawona's oaks and dogwoods, aspens past Summit Meadow on Glacier Point Road, aspens near the Tuolumne Grove trailhead and the Yosemite Creek picnic area on the Tioga Road, and willows and cottonwoods at El Portal.</p>` +
@@ -1367,13 +1367,13 @@ function seoForPath(pathname, searchParams) {
       // file's header). Keep title and description byte-identical to app.jsx.
       title: `Yosemite Fall Colors: When the Leaves Peak and Where to Look | ${SITE_NAME}`,
       description:
-        "Peak fall color in Yosemite Valley is usually late October into early November; Tioga Road's aspens turn first. Where to see it, and what ends the season.",
+        "Peak fall color in Yosemite Valley is usually late October, lingering until the first storm or hard frost. Tioga Road's aspens turn first. Where to look.",
       breadcrumb: [["Home", `${SITE_ORIGIN}/`], ["Fall color", null]],
       // Edge-only FAQ, as on /firefall: the client entry carries none.
       faq: [
         {
           q: "When is peak fall color in Yosemite?",
-          a: "In Yosemite Valley, usually late October into early November. The park's maples and black oaks are showy from about mid-October, and the Valley's color holds until the first heavy winter storm or hard frost, which in some years is early December. The high country turns weeks earlier.",
+          a: "In Yosemite Valley, usually late October. The park's maples and black oaks are showy from about mid-October, and the color lingers until the first heavy winter storm or hard frost, often in early December. The high country turns weeks earlier.",
         },
         {
           q: "When do the leaves change color in Yosemite?",
