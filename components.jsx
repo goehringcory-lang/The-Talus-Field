@@ -2838,6 +2838,8 @@ window.trackNewsletterImpression = trackNewsletterImpression;
 // view->signup rate is sliceable per arm. Fails OPEN to "a" (control) when
 // storage is unavailable, mirroring the map gate, so a private-mode visitor
 // always sees the safe variant and never a half-applied experiment.
+// nl_valueprop (nlValueProp below) is the one live test; run at most one at a
+// time (CONVERSION-STRATEGY R12).
 // ============================================================
 function abVariant(testKey) {
   const storeKey = "tfg.ab." + testKey;
@@ -2850,6 +2852,35 @@ function abVariant(testKey) {
   return assigned;
 }
 window.abVariant = abVariant;
+
+// nl_valueprop: the one live test (ARCHITECTURE.md, tfg.ab.<test>). It covers
+// all four newsletter placements (article_end, article_mid,
+// article_exit_intent, scroll_bar) so a visitor meets one framing everywhere.
+// Arm "a" is the standing copy, arm "b" the concrete-utility copy. Call it
+// lazily, at render or when a hook opens, never at module load. It folds in
+// the retired article_end_copy test: a device already bucketed there keeps its
+// arm (seeded once into the new key) and the old key is removed. A subscribed
+// visitor with no bucket is not assigned one. Falls open to "a" when storage
+// is unavailable or absent (the prerender sandbox).
+function nlValueProp() {
+  const store = window.safeStorage;
+  if (!store) return "a";
+  const legacy = store.get("tfg.ab.article_end_copy");
+  if (legacy !== null && legacy !== undefined) {
+    if ((legacy === "a" || legacy === "b") && store.get("tfg.ab.nl_valueprop") === null) {
+      store.set("tfg.ab.nl_valueprop", legacy);
+    }
+    store.remove("tfg.ab.article_end_copy");
+  }
+  const existing = store.get("tfg.ab.nl_valueprop");
+  if (existing === "a" || existing === "b") return existing;
+  if (isSubscribed()) return "a";
+  return abVariant("nl_valueprop");
+}
+window.nlValueProp = nlValueProp;
+// The value that rides on the GA4 `variant` param: nl_valueprop:a / nl_valueprop:b.
+function nlValuePropVariant(arm) { return "nl_valueprop:" + (arm === "b" ? "b" : "a"); }
+window.nlValuePropVariant = nlValuePropVariant;
 
 // Single read-path for the subscribed flag. Reads through window.safeStorage,
 // which returns null when storage is unavailable, so this is false in private
@@ -2896,7 +2927,7 @@ window.useNewsletterImpression = useNewsletterImpression;
 // ============================================================
 // HpLetter is the one caller: it passes the copy, the button label, the
 // `hp-newsletter` modifier, the visible input label, and `variant` when the
-// caller runs a copy test (article_end_copy), so each arm's rate is sliceable.
+// caller runs a copy test (nl_valueprop:a / nl_valueprop:b), so each arm's rate is sliceable.
 // `send` names a printable for the Worker to mail with the signup (see
 // PRINTABLES in workers/src/lib/email.ts); a subscribed device still sees the
 // soft state, so the caller keeps its own way to the printable on the page.
@@ -3111,19 +3142,74 @@ const NL_HOOK_DEFAULT = {
   exit: ["A letter from inside the park, on Sundays.", "Sunday Field Notes: what Yosemite is doing this week and why, from the river gauges to the oaks, set beside what its naturalists wrote down in the same weeks a century ago. Free, and you can leave anytime."],
   bar: "Sunday Field Notes: a free weekly letter from inside Yosemite.",
 };
+// B arm of the nl_valueprop test: the same tables keyed the same way, in the
+// concrete-utility register of END_NEWSLETTER_OFFER_B (what's open, what's
+// booked out, what changed this week, the Sunday before you go). Lengths track
+// the A copy so nothing reflows. Every line is still true of the real letter.
+const NL_HOOK_CAT_B = {
+  planning: {
+    mid: ["What's open the week you go", "Sunday Field Notes is a free weekly letter on what's open, what's booked out and what changed this week, so a plan made today holds up the Sunday before you go."],
+    exit: ["Check it the Sunday before you go", "Sunday Field Notes is a weekly letter on what's open, what's booked out and what changed this week, so the trip you are planning is checked against the week it lands in."],
+    bar: "Planning a {s} trip? Get what's open and what's booked out, the Sunday before you go. Free.",
+  },
+  trails: {
+    mid: ["Trail status before you drive in", "A free Sunday letter on what's open and what changed on the trails this week, from creek flow to the snowline, so you read it before the next hike."],
+    exit: ["Trail status, the Sunday before", "Sunday Field Notes covers what's open and what changed on the trails this week, from creek flow to the snowline, so you know before you pick the next one."],
+    bar: "Hiking this {s}? Sunday Field Notes covers what's open and what changed this week. Free.",
+  },
+  wildlife: {
+    mid: ["What's out there this week", "A free Sunday letter on what the park's wildlife and plants are doing this week and what changed since last Sunday, so you know what to look for before you go."],
+    exit: ["What's moving, on Sundays", "Sunday Field Notes is a weekly letter on what the park's wildlife and plants are doing this week and what changed since the last one, read before you go."],
+    bar: "What's moving in the park this {s}? Get this week's changes on Sunday. Free.",
+  },
+  seasonal: {
+    mid: ["Time it to the season", "A free Sunday letter on what's flowing, what's open and what changed this week, so the month you are reading about is the month you see."],
+    exit: ["Know what's open this season", "Sunday Field Notes follows the season week by week: what the river is doing, what is open and what changed since last Sunday, read the Sunday before you go."],
+    bar: "Following the {s}? Sunday Field Notes is the free weekly letter on what's open and what changed.",
+  },
+};
+const NL_HOOK_ROUTE_B = {
+  planning: {
+    exit: ["Check what's open before you book", "Sunday Field Notes is a weekly letter on what's open, what's booked out and what changed this week. Read it the Sunday before you go."],
+    bar: "Planning a Yosemite trip? Get what's open and what's booked out, the Sunday before you go. Free.",
+  },
+  conditions: {
+    exit: ["What changed this week", "Sunday Field Notes puts the week in one letter: what's open, what's closed, the gauges and the snow, and what changed since last Sunday."],
+    bar: "Conditions change by the week. Get what's open and what changed on Sunday. Free.",
+  },
+  stay: {
+    exit: ["What's booked out, before you book", "Sunday Field Notes is a free weekly letter on what's open and what's booked out, so the dates you choose match the week you will find."],
+    bar: "Choosing where to stay? Get what's open and what's booked out on Sunday. Free.",
+  },
+  webcams: {
+    exit: ["What the cameras can't tell you", "Sunday Field Notes is the weekly letter on what's open, what changed and what the park is doing this week, written on Sundays."],
+    bar: "Watching the park on camera? Sunday Field Notes says what changed this week. Free.",
+  },
+};
+const NL_HOOK_DEFAULT_B = {
+  mid: ["What's open this week", "A free letter on Sundays: what's open, what's booked out and what changed in Yosemite this week."],
+  exit: ["What's open, the Sunday before you go.", "Sunday Field Notes: what's open, what's booked out and what changed in Yosemite this week, from the roads to the river gauges. Free, and you can leave anytime."],
+  bar: "Sunday Field Notes: what's open in Yosemite this week, free, every Sunday.",
+};
 // kind: "mid" | "exit" | "bar". Returns { heading, blurb } (bar: { line }).
-// `catOverride` lets an article page pass its own section.
-function nlHookCopy(kind, route, catOverride) {
+// `catOverride` lets an article page pass its own section. `variant` is the
+// nl_valueprop arm ("a" control, the default; "b" concrete utility); callers
+// resolve it with nlValueProp() and pass it, so this stays pure.
+function nlHookCopy(kind, route, catOverride, variant) {
+  const isB = variant === "b";
+  const catTable = isB ? NL_HOOK_CAT_B : NL_HOOK_CAT;
+  const routeTable = isB ? NL_HOOK_ROUTE_B : NL_HOOK_ROUTE;
+  const defaults = isB ? NL_HOOK_DEFAULT_B : NL_HOOK_DEFAULT;
   const cat = catOverride || nlRouteCat(route);
   const s = nlSeason();
-  const byCat = NL_HOOK_CAT[cat] || null;
-  const byRoute = (!byCat && NL_HOOK_ROUTE[route]) || null;
+  const byCat = catTable[cat] || null;
+  const byRoute = (!byCat && routeTable[route]) || null;
   if (kind === "bar") {
-    const line = (byCat && byCat.bar) || (byRoute && byRoute.bar) || NL_HOOK_DEFAULT.bar;
+    const line = (byCat && byCat.bar) || (byRoute && byRoute.bar) || defaults.bar;
     return { line: line.replace("{s}", s) };
   }
   const specific = (byCat && byCat[kind]) || (byRoute && byRoute[kind]);
-  if (!specific) return { heading: NL_HOOK_DEFAULT[kind][0], blurb: NL_HOOK_DEFAULT[kind][1] };
+  if (!specific) return { heading: defaults[kind][0], blurb: defaults[kind][1] };
   const blurb = specific[1] + " " + NL_SEASON_LINE[s] + (kind === "exit" ? " " + NL_LETTER_TAIL : "");
   return { heading: specific[0], blurb };
 }
@@ -3189,6 +3275,7 @@ function ExitIntentNewsletter({ disabled, route }) {
   const [done, setDone] = useState(null); // null | "api" | "tab"
   const firedRef = useRef(false);
   const copyRef = useRef(null); // the copy is chosen once, at the moment it opens
+  const variantRef = useRef(""); // the nl_valueprop value, chosen with the copy
 
   // `route` is in the deps so the dwell clock restarts on each SPA navigation:
   // 20 seconds on the page the reader is leaving, not on the site.
@@ -3208,9 +3295,11 @@ function ExitIntentNewsletter({ disabled, route }) {
       firedRef.current = true;
       nlHookSessionSet("exit");
       window.safeStorage.set("tfg.nl.exit.seen", new Date().toISOString());
-      copyRef.current = nlHookCopy("exit", route);
-      if (window.track) window.track("newsletter_exit_intent_shown", { location: "article_exit_intent", tag: "exit-intent" });
-      trackNewsletterImpression("article_exit_intent", "exit-intent");
+      const arm = nlValueProp();
+      variantRef.current = nlValuePropVariant(arm);
+      copyRef.current = nlHookCopy("exit", route, undefined, arm);
+      if (window.track) window.track("newsletter_exit_intent_shown", { location: "article_exit_intent", tag: "exit-intent", variant: variantRef.current });
+      trackNewsletterImpression("article_exit_intent", "exit-intent", variantRef.current);
       setOpen(true);
     };
 
@@ -3249,7 +3338,7 @@ function ExitIntentNewsletter({ disabled, route }) {
           <p className="nlbox__done" role="status">{nlDoneLine(done)}</p>
         ) : (
           <>
-            <NewsletterForm location="article_exit_intent" tag="exit-intent" onDone={setDone} />
+            <NewsletterForm location="article_exit_intent" tag="exit-intent" variant={variantRef.current} onDone={setDone} />
             <LatestLetter location="article_exit_intent" />
           </>
         )}
@@ -3289,6 +3378,7 @@ function NewsletterBar({ route }) {
   const [expanded, setExpanded] = useState(false);
   const [done, setDone] = useState(null);
   const copyRef = useRef(null);
+  const variantRef = useRef(""); // the nl_valueprop value, chosen with the copy
   const barRef = useRef(null);
   const inputWrapRef = useRef(null);
   const shownRef = useRef(false);
@@ -3311,9 +3401,11 @@ function NewsletterBar({ route }) {
       shownRef.current = true;
       nlHookSessionSet("bar");
       window.safeStorage.set("tfg.nl.bar.seen", new Date().toISOString());
-      copyRef.current = nlHookCopy("bar", route);
-      if (window.track) window.track("newsletter_bar_shown", { location: "scroll_bar", tag: "scroll-bar" });
-      trackNewsletterImpression("scroll_bar", "scroll-bar");
+      const arm = nlValueProp();
+      variantRef.current = nlValuePropVariant(arm);
+      copyRef.current = nlHookCopy("bar", route, undefined, arm);
+      if (window.track) window.track("newsletter_bar_shown", { location: "scroll_bar", tag: "scroll-bar", variant: variantRef.current });
+      trackNewsletterImpression("scroll_bar", "scroll-bar", variantRef.current);
       setPhase("shown");
     };
     const onScroll = () => { if (!raf) raf = requestAnimationFrame(check); };
@@ -3379,7 +3471,7 @@ function NewsletterBar({ route }) {
 
   const dismiss = (how) => {
     if (!done) window.safeStorage.set("tfg.nl.bar.dismissed", new Date().toISOString());
-    if (window.track) window.track("newsletter_bar_dismiss", { location: "scroll_bar", tag: "scroll-bar", how });
+    if (window.track) window.track("newsletter_bar_dismiss", { location: "scroll_bar", tag: "scroll-bar", how, variant: variantRef.current });
     setPhase("closed");
   };
 
@@ -3408,7 +3500,7 @@ function NewsletterBar({ route }) {
   const copy = copyRef.current || nlHookCopy("bar", route);
   const open = () => {
     setExpanded(true);
-    if (window.track) window.track("newsletter_bar_expand", { location: "scroll_bar", tag: "scroll-bar" });
+    if (window.track) window.track("newsletter_bar_expand", { location: "scroll_bar", tag: "scroll-bar", variant: variantRef.current });
     // The field exists only once expanded; focus it on the next frame.
     requestAnimationFrame(() => {
       const input = inputWrapRef.current && inputWrapRef.current.querySelector("input[type=email]");
@@ -3431,7 +3523,7 @@ function NewsletterBar({ route }) {
             <p className="nlbar__text">{copy.line}</p>
             <button type="button" className="nlbar__open" aria-expanded={expanded} onClick={open}>Sign up</button>
             <div className="nlbar__form" ref={inputWrapRef}>
-              <NewsletterForm location="scroll_bar" tag="scroll-bar" cta="Subscribe →" className="nlbar__fields" onDone={setDone} />
+              <NewsletterForm location="scroll_bar" tag="scroll-bar" variant={variantRef.current} cta="Subscribe →" className="nlbar__fields" onDone={setDone} />
             </div>
           </>
         )}

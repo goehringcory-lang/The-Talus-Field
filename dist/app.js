@@ -719,8 +719,8 @@ function buildSeo(route) {
       breadcrumb: [["Home", `${SITE_ORIGIN}/`], ["Half Dome lottery", null]]
     },
     "fall-color": {
-      title: `Yosemite Fall Colors: when and where the leaves turn | ${SITE_NAME}`,
-      description: "When Yosemite's fall color peaks, band by band from the Tioga Road aspens to the Valley's maples and black oaks, where the park's own naturalists look, and what ends the season.",
+      title: `Yosemite Fall Colors: When the Leaves Peak and Where to Look | ${SITE_NAME}`,
+      description: "Peak fall color in Yosemite Valley is usually late October into early November; Tioga Road's aspens turn first. Where to see it, and what ends the season.",
       ogType: "website",
       breadcrumb: [["Home", `${SITE_ORIGIN}/`], ["Fall color", null]]
     },
