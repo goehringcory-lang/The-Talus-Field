@@ -77,10 +77,14 @@ function AffiliatePage({
     go: go,
     title: "Affiliate Disclosure",
     eyebrow: "Legal",
-    updated: "October 13, 2026",
+    updated: "October 16, 2026",
     sections: 6,
     numberedHeads: false
-  }, React.createElement("p", null, "The Talus Field currently participates in ", window.REI_AFFILIATE_BASE ? "four" : "three", " affiliate programs: Patagonia's, run through the Impact network; the Expedia Group Travel Creator Program, run through Partnerize, which powers every lodging availability link on the site; ", window.REI_AFFILIATE_BASE ? "" : "and ", "Bookshop.org's, which carries the list of field guides and natural-history books I recommend", window.REI_AFFILIATE_BASE ? "; and REI Co-op's, run through AvantLink, which carries the camping and hiking hardgoods on the kit's packing lists" : "", ". The book list is linked from the top of every page, as \"Books\" and in the Read menu, from ", React.createElement("a", {
+  }, React.createElement("p", null, "The Talus Field currently participates in ", window.REI_AFFILIATE_BASE ? "five" : "four", " affiliate programs: Patagonia's, run through the Impact network; the Expedia Group Travel Creator Program, run through Partnerize, which powers the lodging availability searches on the site; Stay22's, whose links compare the booking sites for a town and send you to whichever one it finds, and which sit as a second, text-only link beside an Expedia search in ", React.createElement("a", {
+    href: "/stay"
+  }, "the lodging board"), "'s town table and on ", React.createElement("a", {
+    href: "/itineraries"
+  }, "the itineraries page"), "; ", window.REI_AFFILIATE_BASE ? "" : "and ", "Bookshop.org's, which carries the list of field guides and natural-history books I recommend", window.REI_AFFILIATE_BASE ? "; and REI Co-op's, run through AvantLink, which carries the camping and hiking hardgoods on the kit's packing lists" : "", ". The book list is linked from the top of every page, as \"Books\" and in the Read menu, from ", React.createElement("a", {
     href: "/kit"
   }, "the kit"), ", and at the end of the Wildlife and Nature articles. Those links appear in the planning articles, on ", React.createElement("a", {
     href: "/stay"

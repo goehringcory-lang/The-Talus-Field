@@ -8323,6 +8323,17 @@ html[data-nav-mode="pinned"] { scroll-padding-top: 62px; }
 .is-match .stay-range__bar { background: var(--stay-book); }
 .is-match .stay-range__bar--open { background: linear-gradient(90deg, var(--stay-book), rgba(138, 51, 21, 0.25)); }
 .stay-table__cta { width: 150px; }
+/* The Stay22 comparison under each row's button: a text link in ink, never the
+   booking colour, which belongs to the Expedia search alone (rule 1). */
+.hp-design .stay-compare-link {
+  display: block;
+  margin-top: 8px;
+  font: 500 12px/1.4 var(--sans);
+  color: var(--hp-ink);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+.hp-design .stay-compare-link:hover { color: var(--hp-muted); }
 .stay-table__foot { max-width: 900px; margin: 14px 0 0; font-size: 11px; line-height: 1.7; color: var(--hp-muted); }
 
 /* --- inside the park ---------------------------------------------------- */

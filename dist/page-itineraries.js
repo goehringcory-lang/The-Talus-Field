@@ -633,7 +633,16 @@ function ItinerariesPage({
     className: "ff-book"
   }, "See what is available on your dates\xA0↗"), React.createElement("p", {
     className: "ff-note"
-  }, "Availability search on Expedia; we may earn a commission, and the advice is the same either way. ", React.createElement("a", {
+  }, "Or ", React.createElement(AvailabilityLink, {
+    network: "stay22",
+    destination: "Yosemite National Park",
+    list: "itineraries_compare",
+    campaign: "itineraries_compare",
+    slug: "itineraries",
+    name: "Yosemite National Park booking-site comparison"
+  }, "compare every booking site ↗"), ", through Stay22."), React.createElement("p", {
+    className: "ff-note"
+  }, "Availability searches on Expedia and Stay22; we may earn a commission on either, and the advice is the same either way. ", React.createElement("a", {
     href: "/affiliate"
   }, "Disclosure."), " Every option compared: ", React.createElement(HomeLink, {
     go: go,
