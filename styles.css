@@ -3135,6 +3135,21 @@ main:focus { outline: none; }
   z-index: 1;
   max-width: 440px;
 }
+/* After a map-gate signup our side could not complete: the Buttondown step
+   (MapGateFinish) over the opened map, top center, above the road key (5)
+   and the mobile sheet (10), below where the gate sat (30). */
+.map-page__finish {
+  position: absolute;
+  top: 12px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 20;
+  width: calc(100% - 24px);
+  max-width: 420px;
+  padding: 18px 40px 18px 20px;
+}
+.map-page__finish .nlbox__note { margin: 0 0 12px; }
+.map-page__finish .nlbox__note:last-child { margin: 0; }
 /* Teaser: blur the live map behind the gate so it reads as locked content. */
 .map-page--locked .map-page__map { filter: blur(3px); }
 

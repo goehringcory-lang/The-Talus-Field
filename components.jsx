@@ -2632,8 +2632,11 @@ window.nlDoneLine = nlDoneLine;
 
 // POST one signup to the Worker. Resolves to "ok", "sent" (on the list, and
 // the printable named by `send` was mailed), "invalid" (the reader can fix
-// the address), "rate" (too many tries), or "fallback" (anything else,
-// including a timeout or the Worker being unreachable). Never rejects.
+// the address), "rate" (too many tries), "blocked" (Buttondown's firewall
+// refused the address: the Worker's 502 carries code "subscriber_blocked",
+// and the embed form may still take it from a human), or "fallback"
+// (anything else, including a timeout or the Worker being unreachable).
+// Never rejects.
 function subscribeNewsletter({ email, tag, website, location, send }) {
   const ctrl = typeof AbortController !== "undefined" ? new AbortController() : null;
   const timer = ctrl ? setTimeout(() => ctrl.abort(), 10000) : null;
@@ -2644,7 +2647,9 @@ function subscribeNewsletter({ email, tag, website, location, send }) {
     signal: ctrl ? ctrl.signal : undefined,
   })
     .then((r) => {
-      if (!r.ok) return r.status === 400 ? "invalid" : r.status === 429 ? "rate" : "fallback";
+      if (r.status === 400) return "invalid";
+      if (r.status === 429) return "rate";
+      if (!r.ok) return r.json().then((j) => (j && j.code === "subscriber_blocked" ? "blocked" : "fallback"), () => "fallback");
       return r.json().then((j) => (send && j && j.sent ? "sent" : "ok"), () => "ok");
     })
     .catch(() => "fallback")
@@ -2660,6 +2665,7 @@ const NL_STATUS_COPY = {
   invalid: "That address did not take. Check it and try again.",
   rate: "Too many tries from this connection. Try again in an hour.",
   fallback: "Our signup did not answer. Press the button again to finish on Buttondown; it opens in a new tab.",
+  blocked: "Buttondown could not accept that address here. Press the button again to finish on Buttondown; it opens in a new tab.",
 };
 
 // The one signup form. Renders the email field, the hidden tag, a honeypot
@@ -2668,16 +2674,23 @@ const NL_STATUS_COPY = {
 // tab ("tab"), with the address as its second argument (a gate that also
 // emails something needs it); the caller swaps in its own done state,
 // usually nlDoneLine.
+// `onFallback(result, email)` is optional: when given, a "fallback",
+// "blocked" or "rate" result goes to the caller instead of turning the
+// button into the Buttondown step, with no newsletter_signup event and no
+// subscribed flag, since nobody joined. The map gate uses it to open the
+// map anyway and offer the Buttondown step itself; every other form keeps
+// the press-again-to-finish behaviour.
 // `className` defaults to the shared nlbox__form; `inputId` pairs the field
 // with a visible <label> the caller renders.
-function NewsletterForm({ location, tag, variant = "", cta = "Subscribe →", send, onDone, className = "nlbox__form", inputId, inputLabel, placeholder = "you@email.com", inputRef, autoFocus }) {
-  const [status, setStatus] = useState("idle"); // idle | sending | invalid | rate | fallback
+function NewsletterForm({ location, tag, variant = "", cta = "Subscribe →", send, onDone, onFallback, className = "nlbox__form", inputId, inputLabel, placeholder = "you@email.com", inputRef, autoFocus }) {
+  const [status, setStatus] = useState("idle"); // idle | sending | invalid | rate | fallback | blocked
+  const handoff = status === "fallback" || status === "blocked";
   const finish = (mode, email) => {
     trackNewsletterSubmit(location, tag, variant);
     if (onDone) setTimeout(() => onDone(mode, email), 0);
   };
   const onSubmit = (e) => {
-    if (status === "fallback") {
+    if (handoff) {
       // Let the native POST go to Buttondown in a new tab: this press is the
       // user gesture a new tab needs, which an async fetch result is not.
       if (window.track) window.track("newsletter_signup_result", { location: location || "unknown", tag: tag || "", result: "tab" });
@@ -2693,6 +2706,7 @@ function NewsletterForm({ location, tag, variant = "", cta = "Subscribe →", se
       .then((result) => {
         if (result === "ok") finish("api", email);
         else if (result === "sent") finish("sent", email);
+        else if (onFallback && result !== "invalid") { setStatus("idle"); onFallback(result, email); }
         else setStatus(result);
       });
   };
@@ -2705,7 +2719,7 @@ function NewsletterForm({ location, tag, variant = "", cta = "Subscribe →", se
         <input type="hidden" name="embed" value="1" />
         <input type="text" name="website" tabIndex={-1} autoComplete="off" aria-hidden="true" className="nlbox__hp" />
         <button type="submit" disabled={status === "sending"}>
-          {status === "sending" ? "Joining…" : status === "fallback" ? "Finish on Buttondown →" : cta}
+          {status === "sending" ? "Joining…" : handoff ? "Finish on Buttondown →" : cta}
         </button>
       </form>
       {note && <p className="nlbox__note" role="status">{note}</p>}

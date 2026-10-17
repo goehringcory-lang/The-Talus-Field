@@ -3152,7 +3152,9 @@ function subscribeNewsletter({
     }),
     signal: ctrl ? ctrl.signal : undefined
   }).then(r => {
-    if (!r.ok) return r.status === 400 ? "invalid" : r.status === 429 ? "rate" : "fallback";
+    if (r.status === 400) return "invalid";
+    if (r.status === 429) return "rate";
+    if (!r.ok) return r.json().then(j => j && j.code === "subscriber_blocked" ? "blocked" : "fallback", () => "fallback");
     return r.json().then(j => send && j && j.sent ? "sent" : "ok", () => "ok");
   }).catch(() => "fallback").then(result => {
     if (timer) clearTimeout(timer);
@@ -3168,7 +3170,8 @@ window.subscribeNewsletter = subscribeNewsletter;
 var NL_STATUS_COPY = {
   invalid: "That address did not take. Check it and try again.",
   rate: "Too many tries from this connection. Try again in an hour.",
-  fallback: "Our signup did not answer. Press the button again to finish on Buttondown; it opens in a new tab."
+  fallback: "Our signup did not answer. Press the button again to finish on Buttondown; it opens in a new tab.",
+  blocked: "Buttondown could not accept that address here. Press the button again to finish on Buttondown; it opens in a new tab."
 };
 function NewsletterForm({
   location,
@@ -3177,6 +3180,7 @@ function NewsletterForm({
   cta = "Subscribe →",
   send,
   onDone,
+  onFallback,
   className = "nlbox__form",
   inputId,
   inputLabel,
@@ -3185,12 +3189,13 @@ function NewsletterForm({
   autoFocus
 }) {
   var [status, setStatus] = useState("idle");
+  var handoff = status === "fallback" || status === "blocked";
   var finish = (mode, email) => {
     trackNewsletterSubmit(location, tag, variant);
     if (onDone) setTimeout(() => onDone(mode, email), 0);
   };
   var onSubmit = e => {
-    if (status === "fallback") {
+    if (handoff) {
       if (window.track) window.track("newsletter_signup_result", {
         location: location || "unknown",
         tag: tag || "",
@@ -3211,7 +3216,10 @@ function NewsletterForm({
       location,
       send
     }).then(result => {
-      if (result === "ok") finish("api", email);else if (result === "sent") finish("sent", email);else setStatus(result);
+      if (result === "ok") finish("api", email);else if (result === "sent") finish("sent", email);else if (onFallback && result !== "invalid") {
+        setStatus("idle");
+        onFallback(result, email);
+      } else setStatus(result);
     });
   };
   var note = NL_STATUS_COPY[status];
@@ -3251,7 +3259,7 @@ function NewsletterForm({
   }), React.createElement("button", {
     type: "submit",
     disabled: status === "sending"
-  }, status === "sending" ? "Joining…" : status === "fallback" ? "Finish on Buttondown →" : cta)), note && React.createElement("p", {
+  }, status === "sending" ? "Joining…" : handoff ? "Finish on Buttondown →" : cta)), note && React.createElement("p", {
     className: "nlbox__note",
     role: "status"
   }, note));
