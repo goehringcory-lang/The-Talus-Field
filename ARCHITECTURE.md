@@ -119,3 +119,13 @@ All access goes through `window.safeStorage`.
 | `tfg.read.last` | page-article.jsx (via `readHistory`) | Most recent article left 10–90% read: `{ slug, pct, at }`. Fed the home resume band until September 2026; still written and cleared when the piece is finished, and read back only by the article page. |
 | `tfg.read.done` | page-article.jsx (via `readHistory`) | Slugs read past ~90%, capped at 100. Deprioritizes finished pieces in the related rail. |
 | `tfg.read.resume` | nothing, since September 2026 | One-shot handoff flag that the homepage resume band used to set; page-article.jsx still consumes it and jumps to the saved depth if it is present, but no surface writes it now. |
+
+## Turning on REI (AvantLink)
+
+REI Co-op is wired and dormant: nothing about it renders while `window.REI_AFFILIATE_BASE` in `affiliate.js` is `""`.
+
+1. Once AvantLink and REI's own program have both approved the site, open AvantLink's link builder for REI, build a link to `https://www.rei.com/`, and paste the **whole** link into `window.REI_AFFILIATE_BASE`. The `rei` registry entry drops everything from `&url=` on and appends `&url=<encoded destination>` per link, so the pasted destination does not matter. Never type or guess the ID by hand.
+2. `window.KIT_REI` in `data.js` maps a kit item id to its REI destination. A value is either a search query (`"headlamp"`, sent to `https://www.rei.com/search?q=...`) or a full `https://www.rei.com/...` category or product URL, used as-is. Only items with no Patagonia link (`aff: "#"`) belong there; groceries, toiletries, car items, paperwork and reminders stay off it. A product URL is a named product, so it carries `/affiliate`'s fifty-mile promise; prefer a category or search.
+3. What switches on with the paste: a "Shop REI ↗" button beside every mapped item on `/kit` (`rel="sponsored nofollow noopener"`, `data-aff-network="rei"`, `aff_list` = the list slug, so the `affiliate_click` listener counts it), the words "or REI" in the kit's disclosure paragraph above the lists, and `/affiliate` (page-legal.jsx) listing five programs instead of four, with REI described.
+4. Remove the AvantLink site-verification `<script>` and its comment from the `<head>` of `index.html` once the application is approved. Until then it stays exactly as AvantLink issued it, `http://` included, because AvantLink's checker matches the pasted tag; the browser never runs it (mixed content, and the CSP allows no third-party scripts).
+5. Run `npm --prefix scripts run check` (it runs `scripts/check-affiliate-links.mjs`, which fails on a `KIT_REI` key that is not a dormant kit item or a URL value that is not `https://www.rei.com/...`), then `run assets:stamp` for the changed `affiliate.js` hash, and commit.

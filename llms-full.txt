@@ -2624,7 +2624,7 @@ For the sources themselves, Bunnell's Discovery of the Yosemite, Hartesveldt's Y
 ## The best airport for Yosemite: SFO, LAX, Fresno, and the drive in
 
 URL: https://thetalusfieldjournal.com/articles/best-airport-for-yosemite
-Section: Planning. Published: 2026-10-03. Last updated: 2026-10-03.
+Section: Planning. Published: 2026-10-03. Last updated: 2026-10-17.
 Summary: Closest airport to Yosemite: Merced, 81 miles; Fresno, 94 miles (2 h 15 min). SFO is 4 to 5 hours, LAX 6 to 7. Rental car, train and bus compared.
 
 Closest big airportFresno, 94 miles
@@ -4213,7 +4213,7 @@ Some links in this piece are affiliate links. If you buy or book through one, Th
 ## Los Angeles to Yosemite: The Drive and Where to Break It
 
 URL: https://thetalusfieldjournal.com/articles/yosemite-from-los-angeles
-Section: Planning. Published: 2026-09-03. Last updated: 2026-09-03.
+Section: Planning. Published: 2026-09-03. Last updated: 2026-10-17.
 Summary: Los Angeles to Yosemite: the real drive time, the I-5/99/41 route, when to leave, where to stay on the way, winter chains, the 395 alternative, and the train.
 
 Los Angeles is the largest city within a day's drive of this park, and it is the one whose visitors arrive with the least accurate picture of the drive. The map shows a straight run up the middle of the state. The routing app quotes something under five hours. And every summer a great many people leave the San Fernando Valley at nine in the morning, expecting lunch in Yosemite Valley, and reach the South Entrance in the middle of the afternoon with the Valley's parking already full and the best of the light already gone. The distance is not the problem. The shape of the drive is.
@@ -5168,7 +5168,7 @@ Some links in this piece are affiliate links. If you buy or book through one, Th
 ## Yosemite Day Trip From San Francisco: The Honest Math
 
 URL: https://thetalusfieldjournal.com/articles/yosemite-day-trip-from-bay-area
-Section: Planning. Published: 2026-08-07. Last updated: 2026-08-07.
+Section: Planning. Published: 2026-08-07. Last updated: 2026-10-17.
 Summary: Yosemite as a day trip from San Francisco or San Jose: real drive times, daylight math, parking, the one-day Valley plan that works, and the train alternative.
 
 It is a bit under two hundred miles from San Francisco to Yosemite Valley. On a map that looks like an easy out-and-back for a Saturday. Every summer a great many people look at that map and reach the obvious conclusion, and a large fraction of them arrive in the Valley at half past eleven, spend four hours in a place that deserves four days, and drive home in the dark wondering why the trip felt like a day in a parking lot.
@@ -5301,7 +5301,7 @@ Some links in this piece are affiliate links. If you buy or book through one, Th
 ## Swimming in Yosemite: Where to Get in the Merced River
 
 URL: https://thetalusfieldjournal.com/articles/swimming-in-the-merced
-Section: Seasonal Guides. Published: 2026-08-07. Last updated: 2026-08-07.
+Section: Seasonal Guides. Published: 2026-08-07. Last updated: 2026-10-17.
 Summary: Where to swim in the Merced River in Yosemite: Sentinel and Cathedral Beaches, Swinging Bridge, when the river is safe, where it is banned, and the flow gauge.
 
 On a hot August afternoon the Merced River is the best thing in Yosemite Valley: green water over pale granite, shade from the black oaks, El Capitan overhead, and a temperature drop of twenty degrees the moment you get in. It is also the setting for a steady run of rescues and drownings, year after year, and the Park Service pulls fifteen to twenty people out of the water in a normal season. The difference is mostly the calendar, and secondarily knowing the rules.
@@ -7048,7 +7048,7 @@ Yosemite is not a superbloom park. If you have seen photographs of desert valley
 ## Watching Climbers on El Capitan: A Spectator's Guide
 
 URL: https://thetalusfieldjournal.com/articles/watching-climbers-el-capitan
-Section: Planning. Published: 2026-07-12. Last updated: 2026-09-27.
+Section: Planning. Published: 2026-07-12. Last updated: 2026-10-17.
 Summary: Where to watch climbers on El Capitan: the meadow or the bridge, why binoculars matter, the free Ask a Climber scopes, the dusk headlamps, and the best months.
 
 The wallAbout 3,000 vertical feet
@@ -7587,7 +7587,7 @@ A closing word about the people. The rangers and volunteers who lead these progr
 ## Camping in Yosemite: The Dirt on All 13 Campgrounds
 
 URL: https://thetalusfieldjournal.com/articles/yosemite-camping-complete-guide
-Section: Planning. Published: 2026-07-10. Last updated: 2026-10-01.
+Section: Planning. Published: 2026-07-10. Last updated: 2026-10-17.
 Summary: Yosemite camping: 13 campgrounds on Recreation.gov. Pines and Wawona open five months ahead at 7 a.m.; Crane Flat, White Wolf, Porcupine Flat two weeks ahead.
 
 Campgrounds13 in the park, $24 to $36 a night
@@ -8787,7 +8787,7 @@ Some links in this piece are affiliate links. If you buy or book through one, Th
 ## Best Time to Visit Yosemite in 2026, by the Traffic Data
 
 URL: https://thetalusfieldjournal.com/articles/when-to-visit-yosemite
-Section: Planning. Published: 2026-06-11. Last updated: 2026-10-01.
+Section: Planning. Published: 2026-06-11. Last updated: 2026-10-17.
 Summary: When to visit Yosemite in 2026: a month-by-month crowd calendar from NPS data, what ending reservations changed, the seasonal roads, and the best days to go.
 
 ReservationsNone in 2026
@@ -9413,7 +9413,7 @@ Some links in this piece are affiliate links. If you buy or book through one, Th
 ## Yosemite in September 2026: What Closes, What Gets Better
 
 URL: https://thetalusfieldjournal.com/articles/yosemite-in-september-2026
-Section: Seasonal Guides. Published: 2026-08-25. Last updated: 2026-08-25.
+Section: Seasonal Guides. Published: 2026-08-25. Last updated: 2026-10-17.
 Summary: Yosemite in September 2026: dry waterfalls, the high country at its best, closing dates for pools, stores and shuttles, Mist Trail closures, and Half Dome odds.
 
 A man stopped me on the Valley loop in the first week of September last year, holding his phone up with a photograph of Yosemite Falls at full flood, and asked which trail got him to that. None of them, that month. The fall had been dry for six weeks. He had booked the trip in February off a photograph taken in May, which is the single most common way a Yosemite trip disappoints someone, and it is entirely avoidable.
@@ -9828,7 +9828,7 @@ Some links in this piece are affiliate links. If you buy or book through one, Th
 ## Where to eat in Yosemite: restaurants by area
 
 URL: https://thetalusfieldjournal.com/articles/where-to-eat-yosemite
-Section: Planning. Published: 2026-05-19. Last updated: 2026-10-01.
+Section: Planning. Published: 2026-05-19. Last updated: 2026-10-17.
 Summary: Yosemite restaurants by area: quick meals and sit-down dinners in the Valley, the Ahwahnee dress code, groceries, picnic areas, and food near each entrance.
 
 Most choiceYosemite Valley, by a long way
@@ -12530,6 +12530,19 @@ You will see something most people raised in this country never see, and it will
 
 That's the trip.
 
+### Stargazing questions, answered
+
+Where is the best stargazing in Yosemite?
+Olmsted Point and Glacier Point are the most accessible high-country sites, away from Valley light and with wide sky exposure. Tuolumne Meadows has longer horizon lines. Sentinel Dome is excellent for Milky Way photography. The Valley floor has noticeably more light pollution than any of these.
+When is the best time to stargaze in Yosemite?
+For the Milky Way core, mid-July through mid-August on a new moon week. The core is visible from about April through October and peaks June through August. From late June through early August it stands in the south between roughly 11 p.m. and 3 a.m. Outside core season, almost any clear, moonless night still shows far more than a city sky.
+Is there a Yosemite Star Party?
+Yes. The Yosemite Star Parties at Glacier Point are free, held by amateur astronomy clubs from the Bay Area and Monterey with the Park Service, typically on Friday and Saturday nights in July and August, weather permitting (the 2026 list ran from July 3 to August 15). Astronomers set up telescopes for public viewing, and rangers give talks. The schedule is posted each summer on the NPS Yosemite programs page.
+Can you see the Milky Way from Yosemite Valley?
+On a moonless night, yes, but the Valley's lodging and village lighting reduce contrast. The high-country sites, Olmsted Point, Glacier Point, and Sentinel Dome, offer dramatically better views with comparable drive time from most gateway towns.
+What should I bring for stargazing in Yosemite?
+Warm layers (high-country nights drop to 40F even in August), a red-light flashlight to preserve night vision, a blanket or camp chair for lying back, and binoculars, which reveal far more than the naked eye without telescope setup. A free app like Stellarium helps identify constellations and planets.
+
 #### Sources
 
 - Stargazing, NPS Yosemite
@@ -12544,7 +12557,7 @@ Some links in this piece are affiliate links. If you buy or book through one, Th
 ## Yosemite for non-hikers: see the park without a trail
 
 URL: https://thetalusfieldjournal.com/articles/yosemite-for-non-hikers
-Section: Planning. Published: 2026-04-26. Last updated: 2026-10-01.
+Section: Planning. Published: 2026-04-26. Last updated: 2026-10-17.
 Summary: Yosemite without hiking: the Valley loop, Tunnel View, Glacier Point (about an hour by car), Tioga Road, a level Mariposa Grove loop, tours and indoor stops.
 
 Most of the viewsFrom a car or a short paved path
@@ -13366,7 +13379,7 @@ Some links in this piece are affiliate links. If you buy or book through one, Th
 ## Mariposa vs Oakhurst vs Groveland: Best Town to Stay Near Yosemite
 
 URL: https://thetalusfieldjournal.com/articles/yosemite-gateway-towns-compared
-Section: Planning. Published: 2026-04-26. Last updated: 2026-10-01.
+Section: Planning. Published: 2026-04-26. Last updated: 2026-10-17.
 Summary: Oakhurst vs Mariposa vs Groveland, plus El Portal and Lee Vining: drive times to the Valley, the closest town to each entrance, winter, kids, and which to book.
 
 For a Yosemite Valley trip, start with El Portal for a shorter drive or Mariposa for more restaurants and services. Choose Oakhurst for Wawona and the Mariposa Grove, Groveland for the Highway 120 approach, and Lee Vining for the high country when Tioga Road is open.

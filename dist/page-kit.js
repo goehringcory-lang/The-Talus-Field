@@ -152,7 +152,8 @@ function KitPage({
     }, group.items.map(it => {
       var isAff = it.aff && it.aff !== "#";
       var reiQ = !isAff && window.REI_AFFILIATE_BASE && window.KIT_REI && window.KIT_REI[it.id];
-      var reiHref = reiQ && window.buildAffiliateLink ? window.buildAffiliateLink("rei", "https://www.rei.com/search?q=" + encodeURIComponent(reiQ).replace(/%20/g, "+")) : null;
+      var reiDest = reiQ && (reiQ.startsWith("https://www.rei.com/") ? reiQ : "https://www.rei.com/search?q=" + encodeURIComponent(reiQ).replace(/%20/g, "+"));
+      var reiHref = reiDest && window.buildAffiliateLink ? window.buildAffiliateLink("rei", reiDest) : null;
       return React.createElement("li", {
         key: it.id,
         id: it.id.replace(/:/g, "-"),
@@ -181,7 +182,7 @@ function KitPage({
         className: "kit-check__link kit-check__aff",
         href: it.aff,
         target: "_blank",
-        rel: "sponsored noopener",
+        rel: "sponsored nofollow noopener",
         "data-aff-network": "patagonia",
         "data-aff-list": list.slug,
         "data-aff-item-slug": it.id,
@@ -190,7 +191,7 @@ function KitPage({
         className: "kit-check__link kit-check__aff",
         href: reiHref,
         target: "_blank",
-        rel: "sponsored noopener",
+        rel: "sponsored nofollow noopener",
         "data-aff-network": "rei",
         "data-aff-list": list.slug,
         "data-aff-item-slug": it.id,

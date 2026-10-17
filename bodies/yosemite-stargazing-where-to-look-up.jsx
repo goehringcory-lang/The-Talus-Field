@@ -2,7 +2,18 @@
 
 window.ARTICLE_BODIES = window.ARTICLE_BODIES || {};
 
+// The FAQ printed at the end mirrors the `faq` for this slug in
+// seo-data.json, which feeds the FAQPage JSON-LD. Change both.
 window.ARTICLE_BODIES["yosemite-stargazing-where-to-look-up"] = function YosemiteStargazingBody() {
+  // seo-data.json `faq`, word for word.
+  const FAQ = [
+    ["Where is the best stargazing in Yosemite?", "Olmsted Point and Glacier Point are the most accessible high-country sites, away from Valley light and with wide sky exposure. Tuolumne Meadows has longer horizon lines. Sentinel Dome is excellent for Milky Way photography. The Valley floor has noticeably more light pollution than any of these."],
+    ["When is the best time to stargaze in Yosemite?", "For the Milky Way core, mid-July through mid-August on a new moon week. The core is visible from about April through October and peaks June through August. From late June through early August it stands in the south between roughly 11 p.m. and 3 a.m. Outside core season, almost any clear, moonless night still shows far more than a city sky."],
+    ["Is there a Yosemite Star Party?", "Yes. The Yosemite Star Parties at Glacier Point are free, held by amateur astronomy clubs from the Bay Area and Monterey with the Park Service, typically on Friday and Saturday nights in July and August, weather permitting (the 2026 list ran from July 3 to August 15). Astronomers set up telescopes for public viewing, and rangers give talks. The schedule is posted each summer on the NPS Yosemite programs page."],
+    ["Can you see the Milky Way from Yosemite Valley?", "On a moonless night, yes, but the Valley's lodging and village lighting reduce contrast. The high-country sites, Olmsted Point, Glacier Point, and Sentinel Dome, offer dramatically better views with comparable drive time from most gateway towns."],
+    ["What should I bring for stargazing in Yosemite?", "Warm layers (high-country nights drop to 40F even in August), a red-light flashlight to preserve night vision, a blanket or camp chair for lying back, and binoculars, which reveal far more than the naked eye without telescope setup. A free app like Stellarium helps identify constellations and planets."],
+  ];
+
   // ── The Bortle ladder ─────────────────────────────────────────────────────
   // Every reading and star count below is this article's own ("What dark sky
   // actually means"). Readings are typical, not measured on any one night.
@@ -309,6 +320,17 @@ window.ARTICLE_BODIES["yosemite-stargazing-where-to-look-up"] = function Yosemit
       <p>You will see something most people raised in this country never see, and it will not look the way you expected.</p>
 
       <p>That's the trip.</p>
+
+      <h2 id="stargazing-questions">Stargazing questions, answered</h2>
+
+      <div className="ff-faq">
+        {FAQ.map(([q, a], i) => (
+          <details key={q} open={i < 2}>
+            <summary>{q}</summary>
+            <p>{a}</p>
+          </details>
+        ))}
+      </div>
 
       <h3>Sources</h3>
       <ul style={{ fontSize: 14 }}>
