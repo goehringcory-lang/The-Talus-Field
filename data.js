@@ -762,13 +762,15 @@ window.KIT.lists.forEach((l) => {
   l.allItems = (l.groups || []).flatMap((g) => g.items || []);
 });
 
-// REI search queries for the kit's hardgoods (affiliate.js, `rei`). Keyed
-// by kit item id; each is a category search, never a product, because
-// /affiliate promises fifty miles on anything the site names. Only items
-// whose aff is "#" belong here (Patagonia keeps its clothing), and nothing
-// renders until window.REI_AFFILIATE_BASE is pasted. Consumables, food,
+// REI destinations for the kit's hardgoods (affiliate.js, `rei`). Keyed
+// by kit item id; each value is either a search query (the default, a
+// category search, because /affiliate promises fifty miles on anything the
+// site names) or a full https://www.rei.com/ category or product URL, used
+// as the destination as-is. Only items whose aff is "#" belong here
+// (Patagonia keeps its clothing), and nothing renders until
+// window.REI_AFFILIATE_BASE is pasted. Groceries, toiletries, car items,
 // paperwork and reminders stay off the list. scripts/check-affiliate-links.mjs
-// holds the keys to real dormant kit items.
+// holds the keys to real dormant kit items and the URLs to rei.com.
 window.KIT_REI = {
   "day-pack:paper-map": "yosemite national park map",
   "day-pack:compass": "baseplate compass",
@@ -782,6 +784,7 @@ window.KIT_REI = {
   "day-pack:leukotape": "blister care",
   "day-pack:lighter": "waterproof matches",
   "day-pack:knife": "multi-tool",
+  "day-pack:duct-tape": "duct tape",
   "day-pack:paracord": "paracord",
   "day-pack:reservoir": "hydration reservoir",
   "day-pack:water-filter": "squeeze water filter",
@@ -806,6 +809,7 @@ window.KIT_REI = {
   "overnight-pack:stove": "backpacking stove",
   "overnight-pack:cookpot": "backpacking cookpot",
   "overnight-pack:spork": "long spork",
+  "overnight-pack:backup-lighter": "camp lighter",
   "overnight-pack:mug": "insulated camp mug",
   "overnight-pack:collapsible-bottles": "collapsible water bottle",
   "overnight-pack:odor-bags": "odor proof bags",
@@ -832,24 +836,36 @@ window.KIT_REI = {
   "car-trip:sleeping-bag": "camping sleeping bag",
   "car-trip:sleeping-pad": "camping sleeping pad",
   "car-trip:pillow": "camp pillow",
+  "car-trip:blankets": "camp blanket",
   "car-trip:tarp-primary": "camping tarp",
+  "car-trip:tarp-extra": "camping tarp",
   "car-trip:canopy": "camping canopy",
+  "car-trip:canopy-stakes": "tent stakes",
   "car-trip:tent-repair": "tent repair kit",
   "car-trip:stove": "two burner camp stove",
   "car-trip:windscreen": "stove windscreen",
+  "car-trip:spare-propane": "propane fuel",
   "car-trip:adapter-hose": "propane adapter hose",
   "car-trip:skillet": "cast iron skillet",
   "car-trip:pot": "camp cookware",
+  "car-trip:saucepan": "camp cookware",
   "car-trip:kettle": "camp kettle",
   "car-trip:dutch-oven": "dutch oven",
   "car-trip:grate": "campfire grill grate",
+  "car-trip:pot-gripper": "pot gripper",
   "car-trip:cutting-board": "camp cutting board",
   "car-trip:chef-knife": "camp kitchen knife",
+  "car-trip:paring-knife": "camp kitchen knife",
   "car-trip:spatula": "camp kitchen utensils",
+  "car-trip:tongs": "camp kitchen utensils",
+  "car-trip:ladle": "camp kitchen utensils",
+  "car-trip:serving-spoon": "camp kitchen utensils",
   "car-trip:mixing-bowl": "collapsible bowl",
   "car-trip:plates": "camp dinnerware",
+  "car-trip:bowls": "camp dinnerware",
   "car-trip:mugs": "insulated camp mug",
   "car-trip:utensils": "camp utensils",
+  "car-trip:dish-soap": "biodegradable camp soap",
   "car-trip:wash-basin": "collapsible wash basin",
   "car-trip:dish-towels": "camp towel",
   "car-trip:water-jug-5gal": "water jug",
@@ -858,17 +874,25 @@ window.KIT_REI = {
   "car-trip:purification-tablets": "water purification tablets",
   "car-trip:bottles": "water bottle",
   "car-trip:tumbler": "insulated tumbler",
+  "car-trip:kitchen-lighter": "camp lighter",
+  "car-trip:kitchen-matches": "waterproof matches",
+  "car-trip:fatwood": "fire starter",
+  "car-trip:firestarter-cubes": "fire starter",
   "car-trip:long-lighter": "camp lighter",
   "car-trip:fire-matches": "waterproof matches",
+  "car-trip:coal-shovel": "camp shovel",
   "car-trip:roasting-sticks": "roasting sticks",
   "car-trip:hatchet": "hatchet",
   "car-trip:folding-saw": "folding saw",
   "car-trip:paracord-50": "paracord",
+  "car-trip:bank-line-100": "paracord",
   "car-trip:carabiners": "utility carabiner",
+  "car-trip:duct-tape": "duct tape",
   "car-trip:multi-tool": "multi-tool",
   "car-trip:pole-sleeve": "tent pole repair",
   "car-trip:seam-sealer": "seam sealer",
   "car-trip:gear-ties": "gear ties",
+  "car-trip:needle-thread": "gear repair kit",
   "car-trip:headlamp": "headlamp",
   "car-trip:spare-headlamp": "headlamp",
   "car-trip:lantern": "camping lantern",
@@ -876,11 +900,14 @@ window.KIT_REI = {
   "car-trip:power-bank": "power bank",
   "car-trip:string-lights": "camp string lights",
   "car-trip:solar-lantern": "solar lantern",
+  "car-trip:candles": "candle lantern",
   "car-trip:folding-chairs": "camp chair",
   "car-trip:packable-chairs": "backpacking chair",
   "car-trip:camp-table": "camp table",
   "car-trip:hammock": "hammock",
+  "car-trip:outdoor-rug": "outdoor rug",
   "car-trip:clothesline": "camp clothesline",
+  "car-trip:backup-pillow": "inflatable camp pillow",
   "car-trip:quilt": "camp blanket",
   "car-trip:first-aid-kit": "first aid kit",
   "car-trip:whistle": "whistle",
@@ -897,6 +924,7 @@ window.KIT_REI = {
   "car-trip:coffee-setup": "camp coffee maker",
   "car-trip:boots": "hiking boots",
   "car-trip:camp-shoes": "camp shoes",
+  "car-trip:underwear": "underwear",
   "car-trip:gaiters": "low gaiters",
   "car-trip:park-map": "yosemite national park map",
 };
