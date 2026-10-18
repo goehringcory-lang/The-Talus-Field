@@ -310,7 +310,7 @@ function buildSitemap(merged, categories) {
     ["/contact", "2026-04-01"],
     ["/privacy", "2026-07-08"],
     ["/terms", "2026-04-01"],
-    ["/affiliate", "2026-04-01"],
+    ["/affiliate", "2026-10-18"],
     ...(GUIDE_LISTED ? [["/guide", "2026-07-31"]] : []),
     ["/map", "2026-06-10"],
     ["/itineraries", "2026-07-12"],
