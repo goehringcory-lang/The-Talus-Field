@@ -66,7 +66,7 @@ export default function StopCard({
     stop.photoTiming && lightToday ? lightClock(stop.photoTiming.best, lightToday) : null
   // Behind Tioga Road or Glacier Point Road? The full read says what the road
   // is doing today; list cards stay quiet (one alerts reading per card would
-  // be fifty on the Secret Guide).
+  // be seventy on the Secret Guide).
   const road = compact ? null : roadForStopId(stop.id)
   return (
     <article className={compact ? 'stop-card' : 'stop-card stop-card--full'}>

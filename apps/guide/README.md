@@ -34,8 +34,8 @@ the bundle; `npm run check:build` guards the reason why.
 
 ## Where things live
 
-- **Content** — `src/content/`: `stops.ts` (the 66 region stops, core and hidden, zod-validated at
-  module load), `hikes.ts`, `secret-spots.ts` and `secret-guide.ts`, `dining.ts`,
+- **Content** — `src/content/`: `stops.ts` (the region stops, core and hidden, zod-validated at
+  module load; counts live in the data, see `scripts/check-sales-counts.ts`), `hikes.ts`, `secret-spots.ts` and `secret-guide.ts`, `dining.ts`,
   `amenities.ts`, `essentials.ts`, `help.ts`, `wildlife.ts`, `seasonal.ts`,
   `itineraries.ts`, `deadlines.ts` (a hand mirror of the editorial site's
   `scripts/data/deadlines.json`, checked by `check-deadlines.mjs`) and

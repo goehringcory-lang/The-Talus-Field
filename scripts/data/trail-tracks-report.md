@@ -47,7 +47,7 @@ Summary: 44 verified, 13 approx.
 | Guardians Loop, upper Mariposa Grove | verified | 5.80 mi (pub 6.5), gain 1177 ft (pub 1200), snap≤76 m, OSM linework |
 | Tuolumne Grove | verified | 2.45 mi (pub 2.5), gain 600 ft (pub 500), snap≤1 m |
 | Lukens Lake | verified | 1.76 mi (pub 1.6), gain 267 ft (pub 200), snap≤289 m |
-| Harden Lake | approx | 4.09 mi (pub 5.6), gain 470 ft (pub 300), snap≤3 m |
+| Harden Lake | approx | 4.09 mi (pub 5.8), gain 470 ft (pub 390), snap≤3 m |
 | May Lake | verified | 2.48 mi (pub 2.4), gain 485 ft (pub 500), snap≤109 m |
 | Mount Hoffmann | approx | 4.78 mi (pub 6), gain 1465 ft (pub 2000), snap≤250 m |
 | Olmsted Point nature trail | verified | 0.24 mi (pub 0.5), gain 23 ft (pub 100), snap≤11 m |
@@ -59,7 +59,7 @@ Summary: 44 verified, 13 approx.
 | Soda Springs and Parsons Lodge | verified | 1.13 mi (pub 1.5), gain 0 ft (pub 100), snap≤99 m |
 | Lembert Dome | approx | 1.92 mi (pub 2.8), gain 697 ft (pub 850), snap≤39 m |
 | Dog Lake | verified | 2.88 mi (pub 2.8), gain 613 ft (pub 650), snap≤12 m |
-| Elizabeth Lake | approx | 3.90 mi (pub 4.8), gain 816 ft (pub 900), snap≤155 m |
+| Elizabeth Lake | approx | 3.90 mi (pub 4.8), gain 816 ft (pub 1000), snap≤155 m |
 | Cathedral Lakes | approx | 8.50 mi (pub 8), gain 1492 ft (pub 1000), snap≤88 m |
 | Glen Aulin and Tuolumne Falls | verified | 11.40 mi (pub 11), gain 1037 ft (pub 800), snap≤99 m |
 | Lyell Canyon | verified | 7.99 mi (pub 8), gain 409 ft (pub 200), snap≤669 m |

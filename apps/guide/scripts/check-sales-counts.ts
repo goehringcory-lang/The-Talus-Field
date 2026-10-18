@@ -5,7 +5,7 @@
 // The sales copy is hand-written: HP_GUIDE_POINTS in components.jsx (the band
 // on every page that mounts HpGuideBand), /guide, /partners, /widget, the
 // crawler prose in edge/seo.js, and the meta descriptions in app.jsx all print
-// "44 stops", "57 day hikes", "the 50-entry Secret Guide" as literal text.
+// "44 stops", "57 day hikes", "the 70-entry Secret Guide" as literal text.
 // Nothing tied those numbers to the content, so a depth pass that added a
 // stop left every one of them wrong, and the only signal was a reader who
 // counted. September 2026: the /partners crawler prose still said "37-entry
@@ -23,6 +23,11 @@
 // fact about the picture, not a claim about the product. Region-level counts
 // are not checked, because no copy outside those alts prints one.
 //
+// October 2026: the free sample's size ("Read five entries free", "one of
+// five sample entries") is checked too, against the ids in lib/storefront.ts
+// that resolve, the way /preview counts them. That copy spells its number out,
+// so those rules take one to ten in words as well as digits.
+//
 // Run: npm --prefix apps/guide run check:sales-counts
 //      (wired into `npm --prefix scripts run check`)
 // =============================================================================
@@ -30,10 +35,24 @@
 import fs from 'node:fs'
 import path from 'node:path'
 import { fileURLToPath } from 'node:url'
-import { stops, HIKES, SECRET_SPOTS, getSecretGuideEntries } from '../src/content'
+import { stops, HIKES, SECRET_SPOTS, getSecretGuideEntries, getStopById } from '../src/content'
 import { WILDLIFE } from '../src/content/wildlife'
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '../../..')
+
+// The sample ids are read from lib/storefront.ts as text: the module imports
+// lib/api.ts, which reads import.meta.env at load and does not run here.
+function previewSampleCount(): number {
+  const src = fs.readFileSync(path.join(ROOT, 'apps/guide/src/lib/storefront.ts'), 'utf8')
+  const block = /PREVIEW_STOP_IDS[^=]*=\s*\{([^}]*)\}/.exec(src)?.[1]
+  const secret = /PREVIEW_SECRET_SPOT_ID\s*=\s*'([^']+)'/.exec(src)?.[1]
+  if (block == null || secret == null) {
+    console.error('check-sales-counts: could not read PREVIEW_STOP_IDS / PREVIEW_SECRET_SPOT_ID from lib/storefront.ts')
+    process.exit(1)
+  }
+  const regionIds = [...block.matchAll(/:\s*'([^']+)'/g)].map((m) => m[1])
+  return regionIds.filter((id) => getStopById(id)).length + (getStopById(secret) ? 1 : 0)
+}
 
 const hidden = stops.filter((s) => s.collection === 'hidden').length
 const COUNTS = {
@@ -45,6 +64,7 @@ const COUNTS = {
   wildlife: WILDLIFE.length,
   coord: stops.filter((s) => s.coord).length,
   budget: stops.filter((s) => s.timeBudgetMin != null).length,
+  sample: previewSampleCount(),
 }
 // The merged list is secret spots plus hidden stops; if that ever stops being
 // true the "total" arithmetic above is wrong too.
@@ -66,12 +86,16 @@ const FILES = [
   'llms.txt',
 ]
 
+const WORDS = ['one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine', 'ten']
+const NUM = `\\d+|${WORDS.join('|')}`
+const toNumber = (s: string) => (/^\d+$/.test(s) ? Number(s) : WORDS.indexOf(s.toLowerCase()) + 1)
+
 type Key = keyof typeof COUNTS
 type Rule = { name: string; re: RegExp; expect: (m: RegExpMatchArray, line: string) => Key[] }
 
 // Each rule's first capture group is the number. `expect` may return more
-// than one acceptable count where the phrasing is shared ("94 entries" is the
-// whole guide, "50 entries" the Secret Guide's own folio).
+// than one acceptable count where the phrasing is shared ("114 entries" is the
+// whole guide, "70 entries" the Secret Guide's own folio).
 const RULES: Rule[] = [
   { name: 'N stops', re: /\b(\d+) stops\b/g, expect: () => ['core'] },
   { name: 'N of (the) N stops', re: /\b\d+ of (?:the )?(\d+) stops\b/g, expect: () => ['stops'] },
@@ -89,6 +113,9 @@ const RULES: Rule[] = [
     re: /\b(\d+) entries\b/g,
     expect: (_m, line) => (/Quick ID/.test(line) ? ['wildlife'] : ['total', 'secret']),
   },
+  // The free sample: "Read five entries free", "Five entries are free".
+  { name: 'N entries (are) free', re: new RegExp(`\\b(${NUM}) entries (?:are )?free\\b`, 'gi'), expect: () => ['sample'] },
+  { name: 'one of N sample entries', re: new RegExp(`\\bone of (${NUM}) sample entries\\b`, 'gi'), expect: () => ['sample'] },
 ]
 
 const errors: string[] = []
@@ -105,11 +132,13 @@ for (const rel of FILES) {
     if (/^\s*alt:/.test(line)) return
     for (const rule of RULES) {
       for (const m of line.matchAll(rule.re)) {
-        // "65 of the 66 stops" also matches the plain "N stops" rule; the
+        // "64 of the 65 stops" also matches the plain "N stops" rule; the
         // specific rule owns it.
         if (rule.name === 'N stops' && /\bof (?:the )?$/.test(line.slice(0, m.index))) continue
+        // "5 entries free" is the sample, owned by its own rule.
+        if (rule.name === 'N entries' && /^ (?:are )?free\b/i.test(line.slice(m.index! + m[0].length))) continue
         hits.set(rule.name, (hits.get(rule.name) ?? 0) + 1)
-        const n = Number(m[1])
+        const n = toNumber(m[1])
         const ok = rule.expect(m, line)
         if (!ok.some((k) => COUNTS[k] === n)) {
           const want = ok.map((k) => `${COUNTS[k]} (${k})`).join(' or ')
@@ -132,4 +161,4 @@ if (errors.length) {
 }
 
 const total = [...hits.values()].reduce((a, b) => a + b, 0)
-console.log(`check-sales-counts: ${total} printed counts match the guide (${COUNTS.core} stops, ${COUNTS.hikes} hikes, ${COUNTS.secret} Secret Guide, ${COUNTS.total} entries)`)
+console.log(`check-sales-counts: ${total} printed counts match the guide (${COUNTS.core} stops, ${COUNTS.hikes} hikes, ${COUNTS.secret} Secret Guide, ${COUNTS.total} entries, ${COUNTS.sample} free)`)
