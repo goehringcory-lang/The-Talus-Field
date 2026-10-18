@@ -8,11 +8,915 @@
 Publisher: The Talus Field (https://thetalusfieldjournal.com). Editor: Cory Goehring.
 Citation guidance and the annotated page index: https://thetalusfieldjournal.com/llms.txt
 Canonical article URL pattern: https://thetalusfieldjournal.com/articles/<slug>
-Contents: 95 articles. Most recent update: 2026-10-18.
+Contents: 98 articles. Most recent update: 2026-10-18.
 
 Not in this file: the Yosemite Nature Notes archive, all 512 issues of the
 National Park Service's Yosemite bulletin (1922-2003), transcribed in full
 as plain static HTML at https://thetalusfieldjournal.com/archive/.
+
+---
+
+## Tire chains in Yosemite: R1, R2 and R3, rental cars, AWD and EVs
+
+URL: https://thetalusfieldjournal.com/articles/yosemite-tire-chains
+Section: Planning. Published: 2026-10-18. Last updated: 2026-10-18.
+Summary: Yosemite tire chain rules: R1, R2 and R3 explained, the carry rule for AWD and 4WD, rental car chain policies, EV weight limits, and where to buy chains.
+
+Chain seasonNovember through March, sometimes October and April
+
+The carry ruleEvery vehicle, whenever control is on
+
+Speed limit25 mph in a chain control area
+
+CitationUp to $5,000
+On this pageR1, R2, R3
+The carry rule
+Rental cars
+EVs
+Buying and fitting
+Which road
+Questions
+
+Chains in Yosemite are not a matter of whether your car can handle the snow. They are a matter of what the sign at the checkpoint says and what is in your trunk. The Park Service says chains are often required on roads inside and outside the park from November through March, less often in October and April, and rarely in September or May, and that it is not possible to predict whether you will need them.
+
+The rule that catches people is the carrying rule. Whenever chain controls are in effect, every vehicle must have chains in it, four-wheel drives and rental cars included, even when the control level lets that vehicle drive on without mounting them. Inside the park these are federal rules; outside it, on Highways 41, 120 and 140 and the rest of California's mountain roads, they are state law, enforced by the California Highway Patrol.
+
+Below: what R1, R2 and R3 mean, which cars each one exempts, what that means for a rental car, an all-wheel drive and an electric vehicle, where to buy chains, and which road into the park needs them least.
+
+The short version
+
+- From November through March, carry chains on any trip, whatever you drive.
+- AWD and 4WD are not exempt from carrying them. Rentals are not exempt at all.
+- Heavy EVs can miss the R1 and R2 weight limits and have to chain up.
+- Call 209/372-0200, then 1, then 1, the morning you drive.
+The three levels, side by side ↓
+
+CHAIN CONTROL LEVELS
+
+### R1, R2 and R3, as the park defines them
+
+- R1Snow tires OK
+Chains on, unless the vehicle is under 6,000 lbs, has snow tires on at least two drive wheels, and is not towing.
+
+Exempt vehicles still carry chains.
+
+- R24WD or AWD with snow tires OK
+Chains on, unless the vehicle is under 6,500 lbs, has snow tires on all four wheels, has four-wheel or all-wheel drive engaged, and is not towing.
+
+Exempt vehicles still carry chains.
+
+- R3No exceptions
+Chains on the drive wheels of every vehicle.
+
+There is no exemption to claim.
+
+When conditions call for it, signs go up along the road naming the level, and a checkpoint follows. Caltrans says there is usually about a mile between the "Chains Required" signs and the checkpoint, which is the distance you have to find a place to pull completely off the road to the right and put chains on.
+
+R1. The Park Service exempts a vehicle under 6,000 pounds with snow tires on at least two drive wheels that is not towing. Everything else mounts chains.
+
+R2. The park exempts a four-wheel or all-wheel drive vehicle under 6,500 pounds, with snow tires on all four wheels, four-wheel drive engaged, and no trailer. Caltrans words its version without a weight figure: chains on all vehicles except four-wheel and all-wheel drive vehicles with snow-tread tires on all four wheels. Inside the park, go by the park's version.
+
+R3. Chains on all vehicles, no exceptions. The park says on the drive wheels.
+
+What counts as a snow tire. The park accepts tires marked M+S, for mud and snow, with at least 6/32 of an inch of tread. Caltrans lists the sidewall markings MS, M/S, M+S or the words MUD AND SNOW. Read your sidewalls and check the tread before you assume either way.
+
+What counts as a chain. The park accepts chains, cables and tire socks. Plastic devices, straps and other emergency alternatives do not meet the requirement.
+
+#### Who mounts, who only carries
+
+Level | 2WD, no snow tires | 2WD, snow tires on drive wheels | 4WD/AWD, snow tires on all four | Over the weight limit, or towing
+
+R1 | Mount | Carry | Carry | Mount
+R2 | Mount | Mount | Carry | Mount
+R3 | Mount | Mount | Mount | Mount
+
+"Carry" means the vehicle may drive on without chains mounted, but must have them on board. The weight limits are the park's: 6,000 lbs for R1, 6,500 lbs for R2. Chains go on the drive wheels.
+
+THE CARRY RULE, AWD AND 4WD
+
+### All-wheel drive gets you a pass, not an exemption
+
+The Park Service puts it plainly: when chain controls are in effect, all vehicles must have chains in their possession, including four-wheel drive and rental vehicles. Caltrans says the same for its roads: four-wheel and all-wheel drive vehicles must carry traction devices in chain control areas. The park adds that its chain requirements are strictly enforced.
+
+So an all-wheel drive car with proper snow tires can drive through R2 without stopping to chain up, but only with a set in the car, and it cannot drive through R3 without mounting them. An all-wheel drive car on tires that are not snow tires is a two-wheel drive car for the purpose of R2: it mounts chains.
+
+Know your drive wheels. Caltrans says chains go on the drive wheels and tells drivers to know whether their vehicle is front or rear wheel drive. For an all-wheel drive car, check the owner's manual for where chains go and which kind the maker allows. Caltrans does not recommend brands and points drivers to the vehicle maker's specifications.
+
+Under chains, slow down. The park's speed limit in a chain control area is 25 mph. Caltrans gives 25 or 30 mph for its roads, as posted.
+
+Big Oak Flat Road, the Highway 120 approach from the west, is one of the roads the park says needs chains more often than Highway 140. Photo: Famartin / Wikimedia Commons (CC BY-SA 3.0)
+
+RENTAL CARS
+
+### The checkpoint and the rental contract do not agree
+
+The Park Service says rental cars are not exempt from chain requirements, even with all-season tires. The rental company may see it differently. Enterprise's own help page says it "does not offer snow chains/traction devices," and that chains cannot be placed on its rental vehicles "unless required by state law." It also says a four-wheel or all-wheel drive vehicle can be requested at some locations but cannot be guaranteed.
+
+We could not read a current chain policy for the other major rental companies on their own sites, so we do not state one here. Policies can differ by company and by location, and the agreement you sign is the one that binds you.
+
+What to do about it. Before a winter trip, read the rental agreement's section on chains and traction devices, and ask at the counter what the location allows. Ask for an all-wheel drive vehicle and look at the tire sidewalls for an M+S mark before you leave the lot. Bring chains that fit the car you were actually given; the park says rental car companies generally do not provide chains, and chain rentals are rarely available.
+
+If the contract and the checkpoint cannot both be satisfied, do not drive the chain control. Wait for it to lift, stay on Highway 140, which needs chains least often, or leave the car at a YARTS stop outside the park and ride in. The entrances guide lays out each approach.
+
+#### At the rental counter
+
+- Ask
+Does this location allow chains or other traction devices on this car?
+
+- Ask
+Can I have an all-wheel or four-wheel drive vehicle? It is a request, not a guarantee.
+
+- Check
+The sidewalls: an M+S mark and at least 6/32 of an inch of tread.
+
+- Check
+Which wheels drive, and what chains the owner's manual allows.
+
+- Keep
+A copy of the policy you were given, in writing.
+
+A rental is never exempt from carrying. If chain controls are in effect inside the park, the car must have chains in it, whatever the contract says.
+
+ELECTRIC VEHICLES
+
+### The weight limit is the EV rule
+
+There is no separate chain rule for electric vehicles. There is a weight limit, and batteries are heavy. The R1 exemption ends at 6,000 pounds and the R2 exemption at 6,500. The Park Service says many battery-electric trucks and some large electric SUVs exceed those limits, so they need chains even with snow tires. Check your vehicle's weight against those figures before the trip, starting with the owner's manual.
+
+A lighter EV with snow tires is treated like any other car: under R1 it qualifies if its drive wheels have snow tires, and under R2 if it is all-wheel drive with snow tires on all four. Like any car, it must carry chains.
+
+Charging. The park lists Level 2 charging in Yosemite Valley, at Wawona, in the El Portal administrative area and at Tuolumne Meadows, all on J1772 connectors. Wawona has 24 chargers at 11 kW, next to the store, available around the clock; the Valley has stations at the Ahwahnee, Curry Village, Yosemite Valley Lodge, the Yosemite Falls day-use parking and the Welcome Center. The Tuolumne Meadows chargers sit on Tioga Road, which is usually closed by snow from sometime in November until late May or June. The park's pages list no fast chargers inside the park, so arrive with the charge you need to get back out.
+
+EV CHARGING IN THE PARK
+
+#### Level 2, J1772
+
+Yosemite ValleyThe Ahwahnee, Curry Village, Valley Lodge, Yosemite Falls parking, Welcome Center
+
+Wawona24 chargers, 11 kW, by the store
+
+El PortalTwo chargers by the market and gas station
+
+Tuolumne MeadowsFour chargers; Tioga Road closes in winter
+
+The park warns that charging spaces, like all parking, can be hard to get on busy days. Confirm locations on the park's EV charging page.
+
+BUYING AND FITTING
+
+### Buy them before the mountains, fit them before the storm
+
+Where to buy. The Park Service says most auto parts stores and gas stations in the communities near the park sell chains, and that the Village Garage in Yosemite Valley and the Wawona gas station carry a limited stock. Match the chains to your tire size; the size is printed on the sidewall. Rentals are rarely available.
+
+If you arrive without them. The park says you may need a tow truck to bring you chains, which can cost a few hundred dollars, is not covered by AAA, and can take several hours to arrive.
+
+Chain installers. On state highways you may meet people offering to put chains on for a fee. Caltrans says they are independent businesspeople, not Caltrans employees, and that they are not allowed to sell or rent chains. If you hire one, get a receipt and write the installer's badge number on it.
+
+Practice once. Fit the chains in a dry driveway or parking lot before the trip, so the roadside is not the first time. Caltrans suggests carrying a flashlight and chain repair links, and keeping the gas tank full in case a storm turns you around or holds you in traffic. The rest of what belongs in a winter trunk is in the car-packing guide.
+
+- Chains, cables, socks.
+The park accepts all three.
+
+- Not straps or plastic.
+Plastic devices, straps and emergency alternatives do not count.
+
+- Pull fully off.
+Caltrans: wait until you can pull completely off the road to the right.
+
+- Get a receipt.
+From any installer, with the badge number written on it.
+
+WHICH ROAD
+
+### Highway 140 needs chains least often
+
+The Park Service says the El Portal Road, Highway 140 through the Merced River canyon, is lower in elevation and has chain requirements less often than the other entrance roads. Wawona Road (Highway 41), Big Oak Flat Road (Highway 120 from the west) and Badger Pass Road need chains more often than 140, the roads within Yosemite Valley and the Hetch Hetchy Road. Highway 140 is also the YARTS route that runs in winter, and the park's own suggestion for drivers without chains is to park at a YARTS stop on 140 outside the park and ride the bus in; there is a fare.
+
+Less often is not never, and the low road has its own trouble. When it closes, the detours are the higher roads; the Highway 140 closure guide covers what has shut it and what that does to a winter trip. Tioga Road is usually closed by snow from sometime in November until late May or June, so there is no winter crossing of the Sierra through the park.
+
+Check the morning you drive. For roads inside the park, call 209/372-0200, then 1, then 1. For state highways outside it, call the Caltrans Highway Information Network at 800/427-7623 or check Caltrans QuickMap, which shows chain controls and closures. The month-by-month picture, including what else closes, is in the winter guide, the November guide and the December guide.
+
+The Merced River canyon, the Highway 140 approach, which the park says needs chains less often than the other roads in. Photo: Cory Goehring
+
+Road | Chains | Note
+
+El Portal Road (Highway 140) | Lower, so chains are required less often | Also the YARTS winter route; park at a stop outside the park and ride in
+Wawona Road (Highway 41) | Chains required more often | The way to Wawona, the Mariposa Grove and Badger Pass
+Badger Pass Road | Chains required more often | The ski area road off Wawona Road
+Big Oak Flat Road (Highway 120 west) | Chains required more often | The road from Groveland and the Bay Area
+Tioga Road (Highway 120 east) | Usually closed by snow from sometime in November until late May or June | No crossing of the Sierra this way in winter
+
+#### Sleep on the low road
+
+A winter night in Mariposa puts you on Highway 140, the approach the park says needs chains least often, and on the YARTS route into the Valley. Check what is open for your dates.
+
+Search lodging in Mariposa →
+Where to stay: every option compared
+
+Availability links are affiliate links. The recommendations do not change for them. Disclosure.
+
+QUESTIONS
+
+### Yosemite tire chains, answered
+
+#### Sources
+
+- Tire Chain Requirements, NPS Yosemite
+- Frequently Asked Questions about Visiting in Winter, NPS Yosemite
+- Current Conditions, NPS Yosemite
+- Electric Vehicle Charging, NPS Yosemite
+- Chain Controls, Caltrans
+- Winter Driving Tips, Caltrans
+- Rental car snow chains, Enterprise
+
+Do you need tire chains in Yosemite?
+Often, from November through March, and less often in October and April. Whenever a chain control is in effect, every vehicle in Yosemite must carry chains, including four-wheel drives and rental cars, even if the control level lets it drive without mounting them. Call 209/372-0200, then 1, then 1, for the current requirement.
+What do R1, R2 and R3 mean?
+They are the three chain control levels. In the park, R1 exempts vehicles under 6,000 pounds with snow tires on at least two drive wheels and no trailer. R2 exempts four-wheel or all-wheel drive vehicles under 6,500 pounds with snow tires on all four wheels, four-wheel drive engaged and no trailer. R3 means chains on the drive wheels of every vehicle, no exceptions.
+Does an AWD or 4WD car need chains in Yosemite?
+It must carry them whenever a chain control is in effect. Under R2 an all-wheel or four-wheel drive vehicle can go without mounting them only if it has snow tires on all four wheels and meets the park's weight and towing limits. Under R3 it mounts them like everyone else.
+Are rental cars exempt from chain controls in Yosemite?
+No. The Park Service says rental cars are not exempt, even with all-season tires. Rental companies may not supply chains or allow them: Enterprise says it does not offer chains and that chains cannot be placed on its rental vehicles unless required by state law. Read your own rental agreement and ask at the counter before you drive up.
+Do electric cars need chains in Yosemite?
+They follow the same rules as any vehicle, and weight matters. The R1 and R2 exemptions apply only under 6,000 and 6,500 pounds, and the Park Service says many battery-electric trucks and some large electric SUVs exceed those limits, so they need chains even with snow tires.
+What is the fine for not using chains in Yosemite?
+The Park Service says failing to put on chains when required can bring a citation of up to $5,000. A tow truck sent to bring you chains can cost a few hundred dollars, is not covered by AAA, and can take several hours.
+Where can I buy tire chains near Yosemite?
+At most auto parts stores and gas stations in the communities around the park. Inside the park the Village Garage in Yosemite Valley and the Wawona gas station carry a limited stock. The Park Service says rentals are rarely available. Buy chains sized to your tires.
+
+Some links in this piece are affiliate links. If you buy or book through one, The Talus Field may earn a small commission at no extra cost to you. The recommendations do not change for it. Full disclosure.
+
+---
+
+## Yosemite campground reservations: the 15th, 7 am, and every other way to get a site
+
+URL: https://thetalusfieldjournal.com/articles/yosemite-campground-reservations
+Section: Planning. Published: 2026-10-18. Last updated: 2026-10-18.
+Summary: How Yosemite campground reservations work: the 15th-of-the-month 7 am PT release on Recreation.gov, the two-week and one-week windows, first-come sites and tips.
+
+Valley releaseThe 15th, five months ahead
+
+On sale7 am Pacific, gone in minutes
+
+High countryTwo weeks ahead, every morning
+
+Per visitTwo reservations, 15-minute cart
+On this pageThe four windows
+Release calendar
+Release morning
+After you book
+First-come sites
+When it is full
+The lottery
+Questions
+
+Every reservable campsite in Yosemite books on Recreation.gov, and the ones most people want go on sale at 7 am Pacific on the 15th of the month, five months ahead. The Park Service's own word for them is "extremely difficult to get," and it says they sell out within minutes.
+
+That is one door of four. The high-country campgrounds open a new day every morning, two weeks out. Half of Tuolumne Meadows opens two months out. Camp 4 opens one week out. From late fall to early spring, three campgrounds drop reservations altogether and go first-come, first-served.
+
+This page is the mechanics: which campground sits behind which door, the next eight release mornings, what to do in the minutes around 7:00, the rules that come with the site, and the ways in once it is gone. For the campgrounds themselves, site by site, read the complete Yosemite camping guide.
+
+The short version
+
+- The Pines, Wawona and Hodgdon Meadow: the 15th, 7 am Pacific, five months ahead.
+- Want mid-July to mid-August 2027? Your morning is March 15.
+- Two reservations per visit. Log in early, one tab.
+- Missed it: the two-week campgrounds open a day every morning at 7.
+- No first-come camping from mid-April through October.
+Find your release morning ↓
+
+THE FOUR WINDOWS
+
+### Which campground opens when
+
+- 5 monthsOn the 15th
+Upper Pines, Lower Pines, North Pines, Wawona, Hodgdon Meadow
+
+One block of arrival dates, the 15th through the 14th, opens at 7 am Pacific on the 15th, five months out.
+
+- 2 monthsOn the 15th
+Half of Tuolumne Meadows
+
+Half the sites release two months ahead, on the 15th.
+
+- 2 weeksRolling, daily
+Crane Flat, Bridalveil Creek, Tamarack Flat, White Wolf, Yosemite Creek, Porcupine Flat, the other half of Tuolumne
+
+A new day opens every morning at 7 am Pacific.
+
+- 1 weekRolling, daily
+Camp 4, in its reservation season
+
+Seven days ahead, $10 a person a night.
+
+Five months, on the 15th. Upper Pines, Lower Pines and North Pines on the Valley floor, plus Wawona and Hodgdon Meadow, release one block of arrival dates at a time. Recreation.gov's Upper Pines page gives the example: "on January 15, arrival dates for the period May 15 to June 14 become available to reserve." So the block runs from the 15th to the 14th, and it opens on the 15th four months before its first night.
+
+Two months, on the 15th. Half the sites at Tuolumne Meadows, the park's biggest campground at 289 sites, release this way. The Park Service's table lists Tuolumne as "2 months ahead on 15th and 14 days ahead." Its Recreation.gov page does not spell out the split, so check the campground's own page for the exact block.
+
+Two weeks, rolling. Crane Flat, Bridalveil Creek, Tamarack Flat, White Wolf, Yosemite Creek, Porcupine Flat and the other half of Tuolumne open two weeks ahead, one new day every morning. They sit between 6,200 and 8,600 feet, and in 2026 they opened between May 21 and July 3, so their seasons are short and move every year.
+
+One week, rolling. Camp 4, a walk-in, tents-only campground in Yosemite Valley, releases one week before arrival during its reservation season. It costs $10 a person a night, and up to six people can be registered for a site per reservation transaction.
+
+The Park Service says all non-lottery reservations release at 7 am Pacific. Recreation.gov's Yosemite pages print the same hour as both "PT" and "PST." Read it as 7 am on the clock in California that morning.
+
+#### All thirteen, as the Park Service lists them for 2026
+
+Campground | Window | 2026 season | Sites | Night
+
+Upper Pines | 5 months | All year | 236 | $36
+Lower Pines | 5 months | Apr 21 to Oct 19 | 74 | $36
+North Pines | 5 months (2026: lottery first) | Apr 21 to Oct 26 | 81 | $36
+Wawona | 5 months | All year; reserved Apr 15 to Oct 26 (Loop A to Nov 29) | 95 | $36
+Hodgdon Meadow | 5 months | All year; reserved Apr 15 to Oct 26 | 100 | $36
+Tuolumne Meadows | Half 2 months, half 2 weeks | Jul 1 to Sep 27 | 289 | $36
+Crane Flat | 2 weeks | May 21 to Oct 12 | 148 | $36
+Bridalveil Creek | 2 weeks | Jul 3 to Aug 14, closed early | 110 | $36
+White Wolf | 2 weeks | Jul 2 to Sep 14 | 68 | $28
+Tamarack Flat | 2 weeks | Jun 22 to Oct 12 | 52 | $24
+Yosemite Creek | 2 weeks | Jul 1 to Sep 7 | 74 | $24
+Porcupine Flat | 2 weeks | Jun 23 to Oct 11 | 55 | $24
+Camp 4 | 1 week | All year; reserved Apr 15 to Nov 29 | 61 | $10 a person
+
+The park sets the seasons each year, and the 2027 dates were not published when this was written. Bridalveil Creek closed early in 2026 after a lightning strike.
+
+THE RELEASE CALENDAR
+
+### Count back to the 15th, four months before the block
+
+Find the block your first night falls in, then go back to the 15th four months before the block starts. A first night on the 1st to the 14th belongs to the block that began the month before. A trip from July 10 to 13, 2027 sits in the June 15 to July 14 block, so it opens on February 15. A trip from July 16 to 19 sits in the next block and opens on March 15.
+
+There is no earlier door. The block is set by your arrival date, so if a stay starts on the 14th, it opens a month before a stay that starts on the 15th. If you can slide a trip by a day or two across that line, you choose which morning you compete on.
+
+The calendar says which arrival dates open, not which campgrounds will be open on them. Lower and North Pines opened April 21 in 2026, and Wawona and Hodgdon Meadow took reservations from April 15; if 2027 runs the same way, the November 15 morning is an Upper Pines morning only. The three that open summer arrivals are February 15, March 15 and April 15. The park dates table carries the same rule.
+
+#### The next eight release mornings, 7 am Pacific
+
+- Sun, Nov 15, 2026
+Arrivals Mar 15 to Apr 14, 2027.
+
+- Tue, Dec 15, 2026
+Arrivals Apr 15 to May 14, 2027.
+
+- Fri, Jan 15, 2027
+Arrivals May 15 to Jun 14, 2027.
+
+- Mon, Feb 15, 2027
+Arrivals Jun 15 to Jul 14, 2027.
+
+- Mon, Mar 15, 2027
+Arrivals Jul 15 to Aug 14, 2027.
+
+- Thu, Apr 15, 2027
+Arrivals Aug 15 to Sep 14, 2027.
+
+- Sat, May 15, 2027
+Arrivals Sep 15 to Oct 14, 2027.
+
+- Tue, Jun 15, 2027
+Arrivals Oct 15 to Nov 14, 2027.
+
+Worked from Recreation.gov's example for the five-month campgrounds. Highlighted: the summer blocks. Confirm the on-sale date on the campground's Recreation.gov page.
+
+RELEASE MORNING
+
+### The work is done before 7:00
+
+Recreation.gov publishes its own tips for popular campgrounds, and they line up with the Park Service's. Make the account ahead of time. Log in "well before the sale begins"; on the Yosemite pages you cannot add a site to your cart without being logged in. Synchronize your clock to the Recreation.gov clock, which it links as Coordinated Universal Time.
+
+Then one tab. Recreation.gov says plainly: "Do NOT log in to multiple browsers, multiple tabs, or multiple windows using the same account." Once you click Add to Cart, the site is locked in your cart for 15 minutes, which is enough time to check out and not enough to keep browsing.
+
+The Park Service caps you at two reservations per website visit or phone call. Know which two before the clock turns, and have fallback dates written down. Recreation.gov also suggests trips that skip a Friday and Saturday night, and shoulder seasons, where you can.
+
+For a first trip, decide on a campground before you decide on a site. What a first night in a Yosemite campground is actually like covers what you are booking: the bear locker, the neighbors and the arrival hour.
+
+#### The morning, step by step
+
+- Days before
+Create the Recreation.gov account. Pick the campground, the dates, and two fallbacks.
+
+- The night before
+Open the campground's page and confirm its on-sale date and time.
+
+- Well before 7
+Log in. Sync to the Recreation.gov clock. One browser, one tab.
+
+- 7:00 Pacific
+Add a site that fits your party. It is held for 15 minutes. Check out.
+
+- The limit
+Two reservations per visit. Then you are done for the morning.
+
+- If you miss
+Set an Availability Alert on the campground and turn to the rolling windows.
+
+AFTER YOU BOOK
+
+### The rules that come with the site
+
+- Six people, two vehicles.
+A maximum of six people, children included, and two motor vehicles per site. Some sites take only one vehicle; the site details on Recreation.gov say which.
+
+- Noon, and 10 am.
+Check-in and checkout are at noon. Check in at the campground kiosk before 10 am the morning after your first night, or the reservation is cancelled.
+
+- Thirty nights a year.
+From May 1 to September 15, the limit is 14 nights, and only seven of those in Yosemite Valley or Wawona.
+
+- No resale.
+Recreation.gov says resale or auction of advance reservations is prohibited.
+
+Arriving late. Recreation.gov's Upper Pines page says a late arrival should call 209/372-8502, and that the reservation may be cancelled if the campground does not hear from you within 24 hours of your arrival date. An after-hours arrival signs in and returns to the kiosk the next morning to finish check-in.
+
+Sleeping in the car. The Park Service does not allow it anywhere in the park except a campsite you are registered for, and not along the side of the road. Camp 4 is walk-in and tents only, so not there either.
+
+The gate. The campsite does not cover the park entrance fee, which Recreation.gov notes is charged per vehicle and separately.
+
+Quiet hours run 10 pm to 6 am, and generators may run only from 7 to 9 am, noon to 2 pm, and 5 to 7 pm.
+
+#### What cancelling costs
+
+More than 48 hours out$10 transaction fee
+
+Within 48 hours$10 plus the first night
+
+One-night stay, within 48 hoursNo $10 fee, no refund
+
+No-show$20 plus the first night
+
+From Recreation.gov's Upper Pines and North Pines pages. Terms are set per campground; confirm them on your own reservation.
+
+FIRST-COME, FIRST-SERVED
+
+### Only in the cold months
+
+From mid-April through October, the Park Service says, "There are no first-come, first-served campgrounds open." Its advice for those months is blunt: "Do not arrive at Yosemite without a reservation." The only move then is to watch Recreation.gov for cancellations.
+
+Three campgrounds go first-come in the off-season. Hodgdon Meadow and Wawona are first-come, first-served from late October through early April. Camp 4 is first-come from mid-November through mid-April, the Park Service says, "usually until sometime in April," and its fee drops to $10 a night. All three can fill early on weekends and holidays, and Camp 4 "may fill early in the morning every day in spring and fall if weather is nice."
+
+This fall, the dates are later than usual. For 2026 the park extended Camp 4's reservation season to November 29 (the last reserved night is November 28) and Wawona's Loop A to November 29. Hodgdon Meadow's reservations ran through October 26, and Wawona's Loops B and C close for the season on October 26. The park's general reservations page still prints an older Camp 4 season, so the campground pages are the ones to trust. Call the campground status line, 209/372-0266, before you drive up on a hunch.
+
+The Camp 4 kiosk. Reserved one week ahead from April 15 to November 29 in 2026, first-come the rest of the year. Photo: Almonroth / Wikimedia Commons (CC BY-SA 3.0)
+
+- Hodgdon Meadow
+First-come from late October to early April.
+
+- Wawona
+First-come from late October to early April. Loop A reserved to Nov 29 in 2026.
+
+- Camp 4
+First-come from mid-November to mid-April. Reserved to Nov 29 in 2026.
+
+- Everything else
+Reservation only, or closed for winter.
+
+WHEN IT IS SOLD OUT
+
+### The other doors
+
+The rolling campgrounds. A sold-out 15th is not the end of summer. Every morning at 7, the two-week campgrounds open another day, from Crane Flat to the high-country half of Tuolumne Meadows. Their seasons are short, and the campgrounds sit between 6,200 and 8,600 feet.
+
+Cancellations. Recreation.gov's Availability Alerts send an email or notification when a site you are watching opens. Cancelling costs $10 until 48 hours before arrival. Flexible dates matter more than any tool: one fixed weekend is a long shot, a free week is not.
+
+Camp 4. One week out, every day, in its reservation season, and first-come in the cold months.
+
+A roof instead. Housekeeping Camp and Curry Village are not campgrounds. They are lodging run by the park's concessioner, Yosemite Hospitality, which takes its own reservations, and the Park Service says in-park lodging is available 366 days in advance. That is seven months before the campgrounds' first door. Housekeeping Camp against Curry Village compares the two canvas-roofed Valley stays.
+
+A wilderness permit. A night in the backcountry runs on its own quota and its own calendar; the wilderness permit guide covers it.
+
+Tuolumne Meadows, the park's largest campground, half on the two-month window and half on the two-week one. Photo: Dsdugan / Wikimedia Commons (CC0)
+
+#### When every campsite is gone
+
+Watch Recreation.gov for cancellations first, and look at Yosemite Hospitality's tent cabins, which open a year ahead. If you still have nowhere to sleep, a search shows the rooms left within driving distance of the gates.
+
+Search lodging around Yosemite →
+Where to stay: every option compared
+
+Availability links are affiliate links. The recommendations do not change for them. Disclosure.
+
+THE LOTTERY
+
+### North Pines tried one, once
+
+For the 2026 season, North Pines ran what the Park Service called a "one-time early access lottery." Applications ran November 24 to December 14, 2025, with a nonrefundable $10 fee, one application per person. Results came out December 22. Winners got a time slot between January 2 and February 1, 2026, to make one reservation, one continuous stay in one site, capped at seven nights, at $36 a night.
+
+What the winners did not take went back into the ordinary releases, starting with the February 15 on-sale. Sites at risk of flooding were held back until the park judged the risk low.
+
+As of October 18, 2026, we found no announcement of a lottery for 2027, at North Pines or anywhere else. The Park Service said it "may consider expanding it to other campgrounds" depending on visitor feedback. Last year's application window opened in late November, so check the park's lottery page and the campground's Recreation.gov page this November before you count on the 15th.
+
+2026 PILOT
+
+#### North Pines Early Access Lottery
+
+ApplicationsNov 24 to Dec 14, 2025
+
+Fee$10, nonrefundable
+
+ResultsDec 22, 2025
+
+Winners bookedJan 2 to Feb 1, 2026
+
+StayOne site, up to seven nights
+
+2027Not announced as of Oct 18, 2026
+
+QUESTIONS
+
+### Yosemite campground reservations, answered
+
+#### Sources
+
+- Campgrounds, NPS Yosemite
+- Campground Reservations, NPS Yosemite
+- Camp 4, NPS Yosemite
+- Camping Without a Reservation, NPS Yosemite
+- Campground Regulations, NPS Yosemite
+- North Pines Early Access Lottery, NPS Yosemite
+- Lodging, NPS Yosemite
+- Upper Pines Campground, Recreation.gov
+- North Pines Campground, Recreation.gov
+- Tips for Making Campsite Reservations at Popular Locations, Recreation.gov
+- Rules and Reservation Policies, Recreation.gov
+
+When do Yosemite campground reservations open?
+Upper Pines, Lower Pines, North Pines, Wawona and Hodgdon Meadow release on Recreation.gov five months ahead, on the 15th of each month, one block of arrival dates at a time: on January 15, arrivals from May 15 to June 14 open. Half of Tuolumne Meadows releases two months ahead on the 15th. Crane Flat, Bridalveil Creek, Tamarack Flat, White Wolf, Yosemite Creek, Porcupine Flat and the other half of Tuolumne release two weeks ahead on a rolling daily window, and Camp 4 one week ahead.
+What time do Yosemite campsites go on sale?
+7 am Pacific time. The Park Service says all non-lottery reservations are released at 7 am Pacific and sell out within minutes. Log in to Recreation.gov before then; you must be logged in to add a site to your cart.
+How many Yosemite campground reservations can I make at once?
+Two. The Park Service says you may make only two reservations per website visit or phone call. Recreation.gov holds a site in your cart for 15 minutes, and asks you not to log in to the same account in more than one browser, tab or window.
+Are there first-come, first-served campgrounds in Yosemite?
+Only from late fall to early spring. The Park Service says no first-come campgrounds are open from mid-April through October. In the off-season, Camp 4, Hodgdon Meadow and Wawona run first-come, first-served, and they can fill early on weekends and holidays. The campground status line is 209/372-0266.
+What does it cost to cancel a Yosemite campsite?
+Per Recreation.gov's Upper Pines page: $10 more than 48 hours before arrival; $10 plus the first night's fee within 48 hours; a one-night reservation has no $10 fee but is not refundable inside 48 hours; and a no-show pays a $20 fee and loses the first night.
+Is there a Yosemite campground lottery for 2027?
+None was announced as of October 18, 2026. North Pines ran a one-time Early Access Lottery for the 2026 season, with a $10 application fee, and the Park Service said it may consider expanding the idea to other campgrounds. Check the park's lottery page and the campground's Recreation.gov page before planning a release morning.
+
+Some links in this piece are affiliate links. If you buy or book through one, The Talus Field may earn a small commission at no extra cost to you. The recommendations do not change for it. Full disclosure.
+
+---
+
+## Yosemite in April: Waterfalls, Weather, and What Is Open
+
+URL: https://thetalusfieldjournal.com/articles/yosemite-in-april
+Section: Seasonal Guides. Published: 2026-10-18. Last updated: 2026-10-18.
+Summary: Yosemite in April: weather, which roads open, Tioga and Glacier Point history, waterfalls, the Mist Trail, Mariposa Grove, Hetch Hetchy, crowds, fees and camping.
+
+Valley average63°F high, 38°F low
+
+WaterfallsYosemite Falls roaring, peak still ahead
+
+Tioga RoadClosed; plowing starts about April 15
+
+CrowdsAbout 40 percent of July
+On this pageWeather
+Roads
+Waterfalls
+Trails
+Mariposa Grove
+Hetch Hetchy
+Crowds and fees
+Camping and lodging
+The plan
+Questions
+
+April is the month Yosemite Valley turns back on. The Park Service describes Yosemite Falls as roaring from April through June, the lower Mist Trail has reopened by mid-April in most recent years, Lower and North Pines campgrounds opened on April 21 in 2026, and the dogwoods start to flower along the Merced. The crowds have not caught up yet: April averaged about 251,000 visits from 2010 to 2024, against about 625,000 in July.
+
+The other half of the park is still winter. Tioga Road is closed, as it is in almost every April on record, and Glacier Point Road is closed in most of them. Tuolumne Meadows averages a high of 45 degrees. An April trip is a Valley trip with a few low-elevation side trips, and that is not a small thing: it is the Valley with its waterfalls running and its parking lots not yet full by breakfast.
+
+Where March is a coin flip between winter and spring, April usually lands on spring, with a storm or two left in it. Here is what is open, what is not, and what the record says about the roads that decide the rest.
+
+The short version
+
+- Come for the Valley and the waterfalls. The falls are strong; their peak is usually May or June.
+- Tioga Road is closed. Glacier Point Road usually is.
+- The Mist Trail has reopened by mid-April in most recent years. It will be wet.
+- Carry chains. April controls are less common, not impossible.
+- No entry reservation in 2026; check the rules for 2027.
+What is open, road by road ↓
+
+WEATHER
+
+### Spring in the Valley, winter on top
+
+The Park Service's 1991 to 2020 averages put April in Yosemite Valley, at about 4,000 feet, at a high of 63 and a low of 38, with 3.2 inches of precipitation. Tuolumne Meadows, at 8,600 feet, averages a high of 45 and a low of 22. The Park Service's general rule is that most of the park is under snow from about November through May, and April sits inside that window everywhere above the Valley.
+
+An April day in the Valley can run from a cold morning to a T-shirt afternoon, and a late storm is still possible. Pack layers and a rain shell, and plan the trip so that a wet day costs you a hike, not the whole visit.
+
+Chains. The Park Service says chain requirements are most likely from November through March, less common in October and April, and can occur as late as May. When controls are posted, every vehicle in the control area must carry chains or cables, four-wheel drives and rentals included. The road and weather line is 209/372-0200, then 1, then 1. Which highway to take in a storm is covered in the entrances guide.
+
+#### April averages, 1991 to 2020
+
+Place | High | Low | Precipitation
+
+Yosemite Valley, 4,000 ft | 63°F | 38°F | 3.2 in
+Tuolumne Meadows, 8,600 ft | 45°F | 22°F | 2.0 in
+
+Source: National Park Service, Weather and Climate.
+
+Chains ride in the car. Controls are less common in April than in winter, but when they are posted, every vehicle must carry chains, including four-wheel drives and rentals.
+
+ROADS
+
+### What is open, and what the record says
+
+- ClosedTioga Road
+Clearing begins on or about April 15 and usually takes one to two months. One April opening since 1980: April 29, 1988.
+
+- Usually closedGlacier Point Road
+Opened in April or earlier in six of the fifteen years from 2011 to 2025. Median opening, 2004 to 2023: May 15.
+
+- Closed to carsMariposa Grove Road
+Closed to cars until at least April 1; open about mid-April to placard holders only. The shuttle starts no earlier than April 15.
+
+- OpenValley roads and the highways in
+Not on the park's seasonal-closure list. Chain controls are less common than in winter but still possible.
+
+- Open by dayHetch Hetchy Road
+Sunrise to sunset. No vehicles or trailers over 25 feet long or 8 feet wide.
+
+Tioga Road is closed. The Park Service begins clearing it on or about April 15, the work usually takes one to two months, and the park says plainly that predicting the opening is not possible, even in late spring, because April and May weather changes the plowing. Its own record, kept since 1980, shows one April opening: April 29, 1988. The 2004 to 2023 median is May 23. In 2026 the road opened May 15, which the park called the earliest in 16 years; the Tioga opening guide covers how that day goes.
+
+Glacier Point Road is usually closed, but not always. In the park's dataset, it opened in April or earlier in six of the fifteen years from 2011 to 2025, and in May or later in the rest (in 2022 it did not open, for a rehabilitation project). The 2004 to 2023 median opening is May 15. If it opens during your trip, the Glacier Point guide is the next thing to read; if it does not, the view from Tunnel View and the Valley floor is still open to you.
+
+The rest is open, weather permitting. The park's seasonal road record tracks three roads: Tioga, Glacier Point and Mariposa Grove. The Valley roads and the highways in from Oakhurst, Mariposa and Groveland are not among them, though a storm or a chain control can still slow them. Hetch Hetchy's road is open by daylight. Mariposa Grove's road gets its own section, below.
+
+#### Glacier Point Road, the early years
+
+- 2012
+Opened April 20.
+
+- 2014
+Opened April 14.
+
+- 2015
+Opened March 28.
+
+- 2016
+Opened April 19.
+
+- 2018
+Opened April 28.
+
+- 2021
+Opened April 30.
+
+The six openings in April or earlier from 2011 to 2025, from the Park Service's historical road dataset. Median opening, 2004 to 2023: May 15.
+
+WATERFALLS
+
+### Strong now, peaking soon
+
+April is when the waterfalls stop being a winter curiosity. The Park Service says the best time to see them is spring, when most of the snowmelt happens, that Yosemite Falls has "roaring runoff April through June," and that peak runoff typically comes in May or June. Sentinel Fall and Ribbon Fall, which most of the year are stains on the rock, run roughly March through June. Horsetail Fall, the firefall's waterfall, runs roughly December through April, so April is its last month. Month-by-month flow for every fall is in the waterfalls guide.
+
+The easiest close look is Lower Yosemite Fall. The Park Service gives the eastern side of the loop as 0.6 mile one-way from the Yosemite Falls shuttle stop to the viewing area, and the western side as 0.5 mile.
+
+Two things April does better than any other month. On cold mornings, the Park Service says, frazil ice, a slush of ice crystals that flows and piles in the creek, most often forms in spring, "especially April," usually before 9 am, and most famously in Yosemite Creek just below Lower Yosemite Fall. Our frazil ice page covers what to look for. And on clear nights around the full moon, the moonlight on the spray at Lower Yosemite Fall can throw a moonbow, which the park says is most likely in April and May, when the flow is high. The moonbow page has the nights and where to stand.
+
+#### The falls in April
+
+- Yosemite Falls
+Roaring runoff April through June, by the Park Service's account.
+
+- Sentinel Fall and Ribbon Fall
+Run roughly March through June, peaking in May.
+
+- Horsetail Fall
+Runs roughly December through April. April is its last month.
+
+- Bridalveil, Vernal and Nevada falls
+Bridalveil and Nevada run all year; all three build toward the melt.
+
+- The peak
+Peak runoff typically comes in May or June.
+
+Frazil ice in Yosemite Creek, the spring phenomenon the park says is most common in April. Photo: National Park Service (public domain)
+
+FLOWERS
+
+### Dogwood in the Valley, poppies down the canyon
+
+The Valley's own bloom is a tree. Yosemite Conservancy says the Pacific dogwood "usually blooms in April and May, lining the Merced River with splashes of white and green." The white parts are bracts rather than petals.
+
+Below the park, the foothill bloom is in its last weeks. Mariposa County's tourism office puts the Hite Cove Trail, which starts at Savages Trading Post on Highway 140 about seven miles west of the El Portal entrance, at its best from roughly March through May. Its first three-quarters of a mile cross private land, parking is on the road shoulder, there is no cell service, and the county warns about ticks and snakes; the trail closes in summer for fire danger. The elevation-by-elevation calendar, and where else to look, is in the wildflowers guide.
+
+TRAILS
+
+### The Mist Trail reopens, and lives up to its name
+
+The lower Mist Trail along Vernal Fall closes in winter because of falling ice and rock. In the Park Service's dataset it reopened between March 19 and April 30 in each of the last seven years, and in mid-April in the last two: April 14 in 2024 and April 13 in 2025. The park's round-trip figures: 1.6 miles and about an hour to an hour and a half to the Vernal Fall footbridge, with 400 feet of climbing; 2.4 miles and about three hours to the top of Vernal Fall, with 1,000 feet; 5.4 miles and five to six hours to the top of Nevada Fall, with 2,000 feet.
+
+The park also says to "prepare for slippery footing and a tremendous amount of waterfall spray in spring and early summer," and that swimming near Emerald Pool and the Silver Apron is illegal and dangerous. In April that means a rain shell and boots with grip, and staying out of the water. Two related openings come later: the Ice Cut section of the John Muir Trail, the park's alternate route between the Valley and the falls, opened anywhere from April 11 (2022) to June 13 (2024) in the last five years, and the Half Dome cables normally go up the Friday before Memorial Day. The Mist Trail guide has the turnaround points and the safety talk.
+
+Four Mile Trail, the climb from the Valley floor toward Glacier Point, usually opens later. From 2016 to 2025 it opened in April three times (2016, 2018 and 2022) and in May or June in the other seven years. Check the park's trail conditions before planning on it.
+
+Half Dome homework. The preseason permit lottery takes applications March 1 to 31, and the Park Service emails results in mid-April. It costs $10 to apply and $10 a person if you win. The lottery page covers the daily lottery that follows.
+
+Vernal Fall at high water, the season the steps beside it run wet. Photo: Brandon Raines / Pexels
+
+#### When the lower Mist Trail reopened
+
+- 2019
+April 12.
+
+- 2020
+April 21.
+
+- 2021
+March 28.
+
+- 2022
+March 19.
+
+- 2023
+April 30.
+
+- 2024
+April 14.
+
+- 2025
+April 13.
+
+From the Park Service's historical trail dataset. In 2020 the trail opened in January, closed March 17, and reopened April 21.
+
+MARIPOSA GROVE
+
+### The sequoias are open; the road may not be
+
+The Park Service says Mariposa Grove Road is closed to cars from late November until at least April 1, and from about mid-April through November it is open only to vehicles with a disability placard. Everyone else parks at the Welcome Plaza, which has about 300 spaces and can fill by late morning, and either rides the shuttle or walks. The shuttle starts no earlier than April 15, "possibly later": in 2026 its posted season began May 3. With no shuttle, it is a two-mile walk each way on the Washburn Trail or the closed road.
+
+In the park's dataset, the road opened between April 15 and June 11 in each year from 2019 to 2025: April 15 in 2019, April 19 in 2022, and May 25, May 24 and May 10 in 2023, 2024 and 2025. So plan an April grove visit as a walk, and treat a shuttle as a bonus. Once in the grove, the Grizzly Giant Loop is two miles from the trailhead, about 1.5 to 2 hours. The Mariposa Grove guide covers the rest.
+
+MARIPOSA GROVE IN APRIL
+
+#### Plan to walk
+
+Road to carsClosed until at least April 1; then placard holders only
+
+ShuttleNo earlier than April 15; began May 3 in 2026
+
+Without itTwo miles each way from the Welcome Plaza
+
+ParkingAbout 300 spaces; can fill by late morning
+
+Grizzly Giant Loop2 miles, 1.5 to 2 hours
+
+HETCH HETCHY
+
+### The other valley, at its best
+
+The Park Service calls Hetch Hetchy "an ideal place for thundering spring waterfalls and wildflower displays." The Wapama Falls trail crosses O'Shaughnessy Dam, passes through the tunnel and runs 5 miles round trip with 507 feet of gain and loss, with views of both Tueeulala and Wapama falls. Watch for rattlesnakes, black bears and poison oak.
+
+The road is open from sunrise to sunset only, and vehicles or trailers over 25 feet long or 8 feet wide are not allowed on it. It is 38 miles from Yosemite Valley, about an hour and 15 minutes. The park warns that the lots can fill from mid-morning to late afternoon, mainly on weekends from spring through fall. Our Hetch Hetchy guide has the full day.
+
+Hetch Hetchy Reservoir and Kolana Rock. Photo: King of Hearts / Wikimedia Commons (CC BY-SA 3.0)
+
+- Daylight only.
+The road is open sunrise to sunset.
+
+- 25 feet and under.
+No vehicles or trailers over 25 feet long or 8 feet wide.
+
+- Wapama Falls.
+5 miles round trip, 507 feet of gain and loss.
+
+- Snakes and oak.
+Rattlesnakes, black bears and poison oak on the trail.
+
+CROWDS AND FEES
+
+### Busy weekends, light weekdays
+
+The Park Service's 2010 to 2024 monthly averages put April at 250,943 visits, against 160,225 in March, 372,595 in May and 624,559 in July. April is the month the climb toward summer begins, and the park's traffic guidance starts with it: from April through September, and on spring and fall weekends, the park advises arriving before 8 am, after which Valley parking is usually full, and names Saturdays and holiday weekends as the worst. Texting ynptraffic to 333111 gets the park's traffic alerts. The full monthly picture is in crowds by month, and when to visit weighs April against the rest of the year.
+
+No reservation, in 2026. The Park Service said Yosemite would not use a timed reservation system in 2026. Whether that holds for April 2027 is the park's call; check its reservations page before you go.
+
+Fees. The vehicle entrance fee is $35 for seven days, $30 for a motorcycle and $20 a person on foot or bicycle, with people 15 and under free. An annual Yosemite pass is $70. Non-US residents 16 and older pay a $100 fee on top of the entrance fee unless they hold an annual or America the Beautiful pass. The park's 2026 fee-free days included none in April, so do not plan around one; check the 2027 list when it is published.
+
+Easter. In years when Easter falls in April, the chapel in the Valley holds its Easter services; our worship guide has the schedule. Easter 2027 falls on March 28, so next April has no Easter weekend.
+
+#### Average visits, 2010 to 2024
+
+- March160,225
+- April250,943
+- May372,595
+- July624,559
+
+Source: National Park Service, Yosemite visitation statistics.
+
+ENTRANCE
+
+#### What it costs
+
+Private vehicle$35, seven days
+
+Motorcycle$30, seven days
+
+On foot or bicycle$20 a person, 15 and under free
+
+Non-US residents$100 more, age 16 and up, unless passholders
+
+ReservationNone in 2026
+
+CAMPING AND LODGING
+
+### The Valley fills back in
+
+Camping. Upper Pines, Camp 4, Hodgdon Meadow and Wawona are open all year. In 2026 the park's tentative dates opened Lower Pines and North Pines on April 21; Crane Flat waited until May 21. Most front-country sites book through Recreation.gov five months ahead on the 15th of the month, and Camp 4 goes by reservation one week ahead from April 15 to November 29. Sites are $36 a night; Camp 4 is $10 a person. Those were the 2026 dates; check the park's campground table for 2027. Night temperatures are the reason to read the camping guide before booking.
+
+Lodging. The Ahwahnee and Yosemite Valley Lodge are open all year. Curry Village and Housekeeping Camp are seasonal; Housekeeping Camp's 2026 season ran April 3 to October 12. The Wawona Hotel is closed while the Park Service assesses its condition, with no reopening date announced. The Park Service says in-park reservations open 366 days ahead. Housekeeping Camp vs Curry Village compares the two canvas camps; where to stay covers the rest.
+
+Bears are awake. The Park Service says that after bears leave their winter dens they feed largely on meadow grasses until berries ripen. Food storage rules apply at every campsite and parking lot, and the park asks drivers to keep to the speed limit, with signs posted where bears have been hit. The bear guide covers storage.
+
+#### Campgrounds in April, 2026 season
+
+Campground | Open | Booking | Fee
+
+Upper Pines | All year | Reservation, five months ahead on the 15th | $36
+Lower Pines | April 21 (2026) | Reservation, five months ahead on the 15th | $36
+North Pines | April 21 (2026) | Lottery, or five months ahead on the 15th | $36
+Camp 4 | All year | Reservation one week ahead, April 15 to November 29 | $10 a person
+Hodgdon Meadow | All year | Reservation from April 15 | $36
+Wawona | All year | Reservation, five months ahead on the 15th | $36
+
+Source: National Park Service campground table, tentative 2026 dates. Confirm for 2027.
+
+#### April rooms, before summer prices
+
+In-park rooms open 366 days ahead and book through the concessioner, not a search. Outside the park, the gateway towns are the fallback when the Valley is full, and an April weekend can fill it. The gateway towns comparison weighs all five.
+
+Search April lodging around Yosemite →
+Where to stay: every option compared
+
+Availability links are affiliate links. The recommendations do not change for them. Disclosure.
+
+THE PLAN
+
+### How to build an April trip
+
+Make it a Valley trip. Base in or near the Valley, give it two or three nights, and keep one day loose for the weather. Lower Yosemite Fall and the Valley loop are the first morning; a cold, clear morning is the one to be at the creek below the fall early.
+
+Add one big walk. If the Mist Trail has reopened, the Vernal Fall footbridge is the short version and the top of Vernal Fall the long one. Bring a rain shell either way.
+
+Add one side trip. Hetch Hetchy for spring waterfalls without the Valley's crowd, Mariposa Grove as a walk-in, or the Hite Cove bloom on the drive in on Highway 140.
+
+Come midweek if you can. The park names Saturdays and holiday weekends as the busiest days, and its arrive-before-8-am advice starts in April.
+
+Check the morning you drive. Road and chain status, the Mist Trail and the Mariposa Grove shuttle all change through the month. The conditions page collects the park's live feeds, and the park's line is 209/372-0200.
+
+- Waterfalls first.
+Yosemite Falls is roaring. Its peak is usually May or June.
+
+- One big walk.
+The Mist Trail, if it has reopened. Expect spray.
+
+- One side trip.
+Hetch Hetchy, Mariposa Grove on foot, or Hite Cove.
+
+- Chains in the trunk.
+Less common in April. Not gone.
+
+QUESTIONS
+
+### Yosemite in April, answered
+
+#### Sources
+
+- Weather and Climate, NPS Yosemite
+- Seasonal Opening and Closing Dates (road, trail and campground datasets), NPS Yosemite
+- Tioga and Glacier Point Roads, NPS Yosemite
+- Summer reopenings and early Tioga Road opening, NPS news release, May 13, 2026
+- Tire Chain Requirements, NPS Yosemite
+- Waterfalls, NPS Yosemite
+- Yosemite Falls, NPS
+- Frazil Ice, NPS Yosemite
+- Vernal and Nevada Falls (Mist Trail), NPS Yosemite
+- Half Dome Permits, NPS Yosemite
+- Mariposa Grove, NPS Yosemite
+- Hetch Hetchy, NPS Yosemite
+- Visitation, NPS Yosemite
+- Traffic and Parking, NPS Yosemite
+- Reservations, NPS Yosemite
+- Fees and Passes, NPS Yosemite
+- Campgrounds, NPS Yosemite
+- Lodging, NPS Yosemite
+- Bears, NPS Yosemite
+- Housekeeping Camp, Yosemite Hospitality
+- Dogwood, Yosemite Conservancy
+- Hite Cove, Mariposa County Tourism Bureau
+
+Is April a good time to visit Yosemite?
+For waterfalls and the Valley, yes. The Park Service says Yosemite Falls has roaring runoff from April through June, and April averaged about 251,000 visits from 2010 to 2024, about 40 percent of July. The trade is the high country: Tioga Road is almost always closed in April, and Glacier Point Road usually is.
+What is the weather like in Yosemite in April?
+The Park Service's 1991 to 2020 averages for Yosemite Valley are a high of 63°F and a low of 38°F, with 3.2 inches of precipitation. Tuolumne Meadows averages a high of 45°F and a low of 22°F. Snow and chain controls are less common than in winter but still possible.
+Is Tioga Road open in April?
+Almost never. The Park Service begins clearing Tioga Road on or about April 15, and the work usually takes one to two months. In the park's record back to 1980, the road opened in April once, on April 29, 1988.
+Is Glacier Point Road open in April?
+Sometimes. From 2011 to 2025 it opened in April or earlier in six years, most recently April 30, 2021. The Park Service's 2004 to 2023 median opening date is May 15.
+Is the Mist Trail open in April?
+Usually. The lower Mist Trail along Vernal Fall closes in winter for falling ice and rock, and it reopened by April 30 in each of the last seven years: April 13 in 2025, April 14 in 2024 and April 30 in 2023. Expect heavy spray and slippery steps.
+Do you need a reservation to enter Yosemite in April?
+Not in 2026: the Park Service said the park would not use a timed reservation system that year. Check the park's reservations page for 2027 before you go. The vehicle entrance fee is $35 for seven days.
+
+Some links in this piece are affiliate links. If you buy or book through one, The Talus Field may earn a small commission at no extra cost to you. The recommendations do not change for it. Full disclosure.
 
 ---
 
@@ -1089,7 +1993,7 @@ SIDE BY SIDE
 
 Both are on the Valley floor's east end, on the free shuttle loop. Housekeeping Camp is on the bank of the Merced River, west of Curry Village, at shuttle stop 12. Curry Village sits against the south wall, below Glacier Point, at stops 14 and 19, and the Mist Trail starts one stop on, at Happy Isles. The YARTS bus from Merced stops at Curry Village.
 
-Neither is a campground. The Park Service's 13 campgrounds book through Recreation.gov and are a separate system; the camping guide covers those. These two are concessioner lodging, which means a roof, a bed and a front desk, and a price that moves with the date.
+Neither is a campground. The Park Service's 13 campgrounds book through Recreation.gov and are a separate system; the camping guide covers those, and the campground reservations guide covers the 7 am release on the 15th. These two are concessioner lodging, which means a roof, a bed and a front desk, and a price that moves with the date.
 
 1 Housekeeping Camp, on the Merced2 Curry Village, below Glacier Point3 Yosemite Village and the Village StoreMap: National Park Service (public domain), cropped.
 
@@ -2557,7 +3461,7 @@ The end of the month. Several things stop together. The Mariposa Grove shuttle e
 
 ### Driving in: assume chains
 
-The Park Service's chain page says it without hedging: if you are visiting any location in Yosemite from November through March, you should expect chain requirements to be in effect, even if you only plan to visit Yosemite Valley and use the free shuttle. Any time chain controls are in effect, every vehicle must carry chains, four-wheel drives and rental cars included, whether or not the control level requires them on the tires. The speed limit inside a chain control area is 25 mph, and failing to put chains on when required can bring a citation of up to $5,000. Rental companies generally do not provide chains, and few businesses rent them, so buy a set that fits your tires before you leave a gateway town. The three control levels, and which cars each one exempts, are drawn out in the winter guide.
+The Park Service's chain page says it without hedging: if you are visiting any location in Yosemite from November through March, you should expect chain requirements to be in effect, even if you only plan to visit Yosemite Valley and use the free shuttle. Any time chain controls are in effect, every vehicle must carry chains, four-wheel drives and rental cars included, whether or not the control level requires them on the tires. The speed limit inside a chain control area is 25 mph, and failing to put chains on when required can bring a citation of up to $5,000. Rental companies generally do not provide chains, and few businesses rent them, so buy a set that fits your tires before you leave a gateway town. The three control levels, and which cars each one exempts, are drawn out in the winter guide, and what they mean for a rental car or an electric vehicle is in the tire chain guide.
 
 Route choice matters. The park says chains are required more often on the Wawona Road (Highway 41), the Big Oak Flat Road (Highway 120 from the west), and the Badger Pass Road than on the El Portal Road (Highway 140) and the roads inside the Valley, because the higher roads take more snow. Highway 140 through the Merced River canyon is also the one route YARTS runs all year, from Merced through Mariposa and El Portal into the Valley, and the park suggests parking at a YARTS stop below the chain control and riding in as the alternative to chaining up. The in-park road line, 209/372-0200 (then 1, then 1), carries the current chain requirements, and it is the call to make the morning you drive.
 
@@ -3892,7 +4796,7 @@ There is no entrance reservation to plan around. The park dropped its timed-entr
 
 ### Driving in: chains are the default
 
-The park's guidance is to expect chain requirements from November through March, which makes December squarely chain season. The rule that catches visitors is not the mounting but the carrying: when a chain control is in effect inside the park, every vehicle must have chains in it, four-wheel drives and rentals included, whether or not the control level requires them on the tires. Under R1, a car under 6,000 pounds with snow tires on at least two drive wheels may go without mounting them; under R2, only a four-wheel or all-wheel drive vehicle with snow tires on all four wheels is exempt from mounting; under R3, everyone chains up. The park lists a citation of up to $5,000 for failing to put chains on when required. The drawn version of that grid is in the winter guide.
+The park's guidance is to expect chain requirements from November through March, which makes December squarely chain season. The rule that catches visitors is not the mounting but the carrying: when a chain control is in effect inside the park, every vehicle must have chains in it, four-wheel drives and rentals included, whether or not the control level requires them on the tires. Under R1, a car under 6,000 pounds with snow tires on at least two drive wheels may go without mounting them; under R2, only a four-wheel or all-wheel drive vehicle with snow tires on all four wheels is exempt from mounting; under R3, everyone chains up. The park lists a citation of up to $5,000 for failing to put chains on when required. The drawn version of that grid is in the winter guide, and the rental-car, all-wheel drive and EV questions are answered in the tire chain guide.
 
 The road-conditions line inside the park is 209/372-0200, then 1, then 1, and it is the call to make the morning you drive in. Route choice matters in December: Highway 140 through the Merced River canyon is the lowest approach and the one most likely to take rain while the others take snow, and it is the one route YARTS buses run year-round, from Merced through Mariposa and El Portal. The entrance-by-entrance comparison is in the entrances guide.
 
@@ -4753,7 +5657,7 @@ And do not cancel a Mariposa room for a one-day closure. Rock work, a short fire
 
 ### Winter is the serious case
 
-Every closure above was a nuisance in summer and would have been something else in January. Highway 140 is the winter road because it is the low road: when it is shut in winter, the detours are the two approaches that climb higher and ice sooner, and the winter guide is blunt about what that means. From roughly November through March, chain control can go up on any road into the park, the law requires you to carry chains when it does, even in a four-wheel drive with snow tires, and rangers turn cars around at the checkpoints. A winter 140 closure therefore has a second question behind the first: not only can you get around, but is the car you are driving allowed up the road you are being sent to. Carry chains on any winter trip whatever the forecast says, so that a closure notice sends you to Oakhurst and not home.
+Every closure above was a nuisance in summer and would have been something else in January. Highway 140 is the winter road because it is the low road: when it is shut in winter, the detours are the two approaches that climb higher and ice sooner, and the winter guide is blunt about what that means. From roughly November through March, chain control can go up on any road into the park, the law requires you to carry chains when it does, even in a four-wheel drive with snow tires, and rangers turn cars around at the checkpoints. A winter 140 closure therefore has a second question behind the first: not only can you get around, but is the car you are driving allowed up the road you are being sent to. Carry chains on any winter trip whatever the forecast says, so that a closure notice sends you to Oakhurst and not home; the tire chain guide covers what each control level asks of your car.
 
 January 2017 is the case to remember. Rockfalls and snow closed 140 and 120 on the same morning and left Highway 41 as the only vehicle route into the Valley, with ranger convoys through the closed roads at set hours. A month later the storm damage had flipped it, and 140 was the only road in. Winter closures come in sets, and the road that is open at breakfast may not be the one that is open at dinner.
 
@@ -5424,7 +6328,7 @@ One expectation to manage: the firefall is a February event. The alignment that 
 
 ### The bloom is in the canyon, not the Valley
 
-The other thing March has that no other month quite matches is on the drive in, not in the park. The Merced River canyon along Highway 140 sits low enough that its spring arrives while the Valley is still flipping its coin, and by the middle of the month the canyon is usually in full color: redbud flaring magenta along the river, and the Hite Cove Trail, whose trailhead is on 140 at Savage's Trading Post, about seven miles outside the park, carrying one of the best poppy blooms in the Sierra foothills. The bloom there typically peaks around mid-March. Two cautions that the wildflower photos never carry: the trail is narrow across steep slopes with a poison oak understory, and parking is a handful of shoulder pullouts, so arrive early and check the trail's current status before you count on it. The Valley's own famous bloom, the dogwoods, holds until late April. The full elevation-by-elevation calendar is in the wildflowers guide.
+The other thing March has that no other month quite matches is on the drive in, not in the park. The Merced River canyon along Highway 140 sits low enough that its spring arrives while the Valley is still flipping its coin, and by the middle of the month the canyon is usually in full color: redbud flaring magenta along the river, and the Hite Cove Trail, whose trailhead is on 140 at Savage's Trading Post, about seven miles outside the park, carrying one of the best poppy blooms in the Sierra foothills. The bloom there typically peaks around mid-March. Two cautions that the wildflower photos never carry: the trail is narrow across steep slopes with a poison oak understory, and parking is a handful of shoulder pullouts, so arrive early and check the trail's current status before you count on it. The Valley's own famous bloom, the dogwoods, holds until late April, which is one reason April in Yosemite is the waterfall-and-flower month that follows this one. The full elevation-by-elevation calendar is in the wildflowers guide.
 
 ### Crowds, spring break, and the reservation question
 
@@ -5483,7 +6387,7 @@ Summary: First time camping in Yosemite? What the campground is really like: the
 
 The reservation is the part everyone warns you about, and it is the part everyone plans for. Five months out, seven in the morning, a browser tab and a fast finger. What nobody prepares you for is the four o'clock on a Thursday afternoon when you actually arrive: the site is smaller than the photo, the metal box by the picnic table is a different shape than you pictured, your cooler does not fit inside it, the family twenty feet away is having a conversation you can follow word for word, and you have about three hours of usable daylight to turn a car full of gear into a place to sleep.
 
-This is not the guide to which campground to book. That one already exists, and it covers all thirteen of them, the three booking windows, and the cancellation game. This is the other thing: what a night in a Yosemite campground is actually like, and which of its assumptions will catch you out the first time. I have been camping in this park for close to twenty years, and I have watched a great many first nights go sideways. Almost none of them went sideways for a reason anyone would call their fault. They went sideways because a campground is a set of unwritten conventions, and nobody hands you the list.
+This is not the guide to which campground to book. That one already exists, and it covers all thirteen of them, the booking windows, and the cancellation game. The release morning itself, the 15th at 7 am Pacific, has its own guide to Yosemite campground reservations. This is the other thing: what a night in a Yosemite campground is actually like, and which of its assumptions will catch you out the first time. I have been camping in this park for close to twenty years, and I have watched a great many first nights go sideways. Almost none of them went sideways for a reason anyone would call their fault. They went sideways because a campground is a set of unwritten conventions, and nobody hands you the list.
 
 ### Start by correcting the picture in your head
 
@@ -6168,7 +7072,7 @@ Watch the film: Big TreesYosemite Nature Notes · Episode 11Big TreesThe Park Se
 
 ### Winter, when the road closes
 
-Mariposa Grove Road closes to vehicles for the winter at the end of November and reopens when the snow allows, which has meant anywhere from early April onward in recent years. The reopening date moves with the snowpack and is not worth planning around more than a week out.
+Mariposa Grove Road closes to vehicles for the winter at the end of November and reopens when the snow allows, which has meant anywhere from early April onward in recent years. The reopening date moves with the snowpack and is not worth planning around more than a week out; Yosemite in April plans a spring grove visit as a walk for that reason.
 
 The grove itself does not close. The road and the trails stay open to foot travel, and walking, snowshoeing, or skiing the two miles up from the South Entrance makes a quiet February day. You will likely have the Grizzly Giant to yourself. Note that this is not a sanctioned snow-play area; the park's designated sledding hill is at Crane Flat, on the other side of the park. The winter guide has the rest of the cold-season picture.
 
@@ -6968,7 +7872,7 @@ On clear nights around the full moons of April, May, and June, the spray at the 
 
 ### The takeaway
 
-Plan a waterfall trip for April through June, with May as the bullseye. Those months also carry real crowds, which is a solvable problem covered in the 2026 crowd forecast. Before you drive, check current webcams and flow reality on the conditions page rather than trusting any photograph, including ours.
+Plan a waterfall trip for April through June, with May as the bullseye; the April guide covers what else is open at the start of that window. Those months also carry real crowds, which is a solvable problem covered in the 2026 crowd forecast. Before you drive, check current webcams and flow reality on the conditions page rather than trusting any photograph, including ours.
 
 And if your trip is already booked for August or September: adjust your expectations. Walk the Mist Trail for Vernal and Nevada, stand under Bridalveil, and save the Lower Yosemite Fall loop for a spring return. The rim falls return with the next spring's snowmelt.
 
@@ -7149,7 +8053,7 @@ It is the road past my house, but Highway 140 through the Merced River canyon is
 
 Chain control is the part of winter driving that surprises first-time visitors, so here it is. When conditions warrant, Caltrans and the park post chain requirements at checkpoints, in three levels. R1 means chains are required unless you have snow tires. R2 means chains are required unless you have four-wheel or all-wheel drive with snow tires. R3 means chains on everything, no exceptions, and in practice roads usually just close before R3 is posted.
 
-The detail that catches people: whenever chain control is in effect inside the park, you must carry chains even if your vehicle is exempt from putting them on. A 4WD truck with snow tires can drive through R2 without chains mounted, but the driver still needs a set in the vehicle, and rangers do check at the checkpoints. Rental car companies generally do not supply chains, and a rental is not exempt, so that problem is between you and the rental company, not one the checkpoint will solve for you. Chains can be bought at auto parts stores and gas stations in the gateway towns, Mariposa, Oakhurst, and Groveland; the park says businesses that rent them are hard to find. Practice putting them on once in a dry parking lot, not for the first time in a snowbank at night. The winter car kit covers the rest of what should be in the trunk.
+The detail that catches people: whenever chain control is in effect inside the park, you must carry chains even if your vehicle is exempt from putting them on. A 4WD truck with snow tires can drive through R2 without chains mounted, but the driver still needs a set in the vehicle, and rangers do check at the checkpoints. Rental car companies generally do not supply chains, and a rental is not exempt, so that problem is between you and the rental company, not one the checkpoint will solve for you. Chains can be bought at auto parts stores and gas stations in the gateway towns, Mariposa, Oakhurst, and Groveland; the park says businesses that rent them are hard to find. Practice putting them on once in a dry parking lot, not for the first time in a snowbank at night. The winter car kit covers the rest of what should be in the trunk, and the full guide to Yosemite tire chains covers rental contracts, all-wheel drive and electric vehicles.
 
 Chain control by level and vehicle, drawn from the rules in this article. Rental car companies generally do not supply chains, and rentals are not exempt.
 
@@ -7599,7 +8503,7 @@ The practical point: if you are visiting in March or early April, when the Valle
 
 ### April to June: the Valley floor, 4,000 feet
 
-The Valley bloom is the one most visitors actually see, and its centerpiece is a tree, not a meadow. The Pacific dogwood blooms from mid-April into May, an understory tree that spends most of the year invisible among the pines and then covers itself in broad white blossoms. Strictly speaking the white parts are bracts, modified leaves, not petals; the true flowers are the small greenish cluster at the center. The effect is the same either way: floating layers of white under the conifers, best along the Merced between Pohono Bridge and the chapel, and it happens to peak in the same weeks the waterfalls do. Late April and May in the Valley is dogwood over whitewater, and it is the best two-for-one in the park's calendar.
+The Valley bloom is the one most visitors actually see, and its centerpiece is a tree, not a meadow. The Pacific dogwood blooms from mid-April into May, an understory tree that spends most of the year invisible among the pines and then covers itself in broad white blossoms. Strictly speaking the white parts are bracts, modified leaves, not petals; the true flowers are the small greenish cluster at the center. The effect is the same either way: floating layers of white under the conifers, best along the Merced between Pohono Bridge and the chapel, and it happens to peak in the same weeks the waterfalls do. Late April and May in the Valley is dogwood over whitewater, and it is the best two-for-one in the park's calendar; our guide to Yosemite in April covers the roads and trails open in those weeks.
 
 The Valley meadows follow. Cook's Meadow and El Capitan Meadow green up in April and carry flowers into June: buttercups and violets early, then larkspur, cow parsnip standing shoulder high, milkweed that will feed monarch caterpillars in summer. None of it is a wall of color. Valley meadow blooms are patchy, mixed into tall grass, and better appreciated from the boardwalk at a walking pace than through a windshield. The flat paved loops through Cook's Meadow also make this the most accessible bloom in the park, a fair answer for anyone planning around limited hiking.
 
@@ -7952,7 +8856,7 @@ Related: cell service dies well before the park boundary on every approach. Down
 
 ### Winter changes the math
 
-From roughly November through March, and less often in October and April, chain control can go up on any road into the park, and the law requires you to carry chains when it does, even in a four-wheel drive with snow tires. Rangers turn cars around at the checkpoints. Highway 140 needs chains least often, which is why it is the standing winter recommendation. Highway 41 and 120 both climb higher and ice sooner. Buy chains that fit your car before you leave home (they are cheaper at a city auto-parts store than anywhere within a hundred miles of the park), and practice putting them on once in your driveway. Ten minutes in a dry driveway beats forty-five on the shoulder in a snowstorm.
+From roughly November through March, and less often in October and April, chain control can go up on any road into the park, and the law requires you to carry chains when it does, even in a four-wheel drive with snow tires. Rangers turn cars around at the checkpoints. Highway 140 needs chains least often, which is why it is the standing winter recommendation. Highway 41 and 120 both climb higher and ice sooner. Buy chains that fit your car before you leave home (they are cheaper at a city auto-parts store than anywhere within a hundred miles of the park), and practice putting them on once in your driveway. Ten minutes in a dry driveway beats forty-five on the shoulder in a snowstorm. What R1, R2 and R3 mean for a rental car, an all-wheel drive or an EV is in the tire chain guide.
 
 ### The gate itself
 
@@ -8295,7 +9199,7 @@ RELEASE DAY, STEP BY STEP
 
 Almost all of the work that decides the outcome happens before then.
 
-The campground's page on Recreation.gov states its own on-sale date and time. It is the authoritative version, and everything else, including this page, is a summary of it. If you are visiting for the first time, the first-timer's guide covers the broader logistics, and what your first night in one of these campgrounds is actually like covers the rest. Camping adds its own layer, and the reservation system is the first gate.
+The campground's page on Recreation.gov states its own on-sale date and time. It is the authoritative version, and everything else, including this page, is a summary of it. The reservations guide lays out the next eight release mornings and the rules that come with a site. If you are visiting for the first time, the first-timer's guide covers the broader logistics, and what your first night in one of these campgrounds is actually like covers the rest. Camping adds its own layer, and the reservation system is the first gate.
 
 - The week before
 Create the Recreation.gov account, confirm the email address and save a payment method. An account made at 6:58 a.m. will ask you to verify an email at 7:01.
@@ -9796,7 +10700,7 @@ November averages 31 on the July scale: the Valley close to empty, at the price 
 September averages 82 on the July scale, and the Park Service gated Labor Day weekend in 2025, so plan around that weekend and take the days after it. Late-season weekdays are also the best draw of the year in the Half Dome daily lottery. The last week of September is also the Yosemite Facelift, the park's biggest volunteer cleanup (September 23 to 27 in 2026), and it fits into a normal visit.
 
 - For 2027Spring, for the waterfalls
-Waterfalls at full volume against a fraction of summer's crowds. But this year proved that spring is where new growth lands first: March was up 45 percent. Expect next March to look like this year's April.
+Waterfalls at full volume against a fraction of summer's crowds. But this year proved that spring is where new growth lands first: March was up 45 percent. Expect next March to look like this year's April. Yosemite in April covers what is open that month.
 
 - If summer is what you haveA Tuesday or Wednesday, in by 7:30
 A well-run July weekday beats a badly run September Saturday. My no-reservations strategy piece covers the full playbook, and if it is your first visit, start here instead.
@@ -13956,6 +14860,8 @@ If you're driving to Yosemite from the east on Tioga Road, know that there is no
 Yosemite's roads include steep grades, tight switchbacks, extreme heat, and occasionally extreme cold. A basic roadside kit is not paranoia. It's common sense for a park where cell service is unreliable and the nearest tow truck might be in Mariposa.
 
 A portable jump starter. These are better than jumper cables because they don't require a second car, and dead batteries in Yosemite parking lots are absurdly common. Headlights left on, cold mornings at elevation, old batteries pushed past their limit. A good portable unit is the size of a paperback book and starts a car engine multiple times on a single charge.
+
+From November through March, tire chains sized to your tires. The Park Service requires every vehicle to carry them whenever chain controls are in effect, four-wheel drives and rentals included, and the tire chain guide explains the three control levels and what they mean for your car.
 
 A spare tire and the tools to change it, and the knowledge of how to use them. Roadside assistance might take hours to reach you in Yosemite, if it can reach you at all. Practice a tire change at home before the trip.
 
