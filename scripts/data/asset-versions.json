@@ -86,8 +86,8 @@
       "sha256": "c8b08d388d425153"
     },
     "/dist/bodies/mariposa-grove-how-to-visit.js": {
-      "v": 9,
-      "sha256": "a4e3107bee42242f"
+      "v": 10,
+      "sha256": "710df36d67fffa69"
     },
     "/dist/bodies/memorial-day-skip-the-valley-go-high-2026.js": {
       "v": 89,
@@ -158,8 +158,8 @@
       "sha256": "8017107ddb644835"
     },
     "/dist/bodies/when-to-visit-yosemite.js": {
-      "v": 14,
-      "sha256": "d0bc9805cd7b3e2c"
+      "v": 15,
+      "sha256": "5e8169c03040a520"
     },
     "/dist/bodies/where-to-eat-yosemite.js": {
       "v": 97,
@@ -253,6 +253,10 @@
       "v": 12,
       "sha256": "92ea8b63ed63e586"
     },
+    "/dist/bodies/yosemite-in-april.js": {
+      "v": 1,
+      "sha256": "96f56362620d7771"
+    },
     "/dist/bodies/yosemite-in-december.js": {
       "v": 5,
       "sha256": "d9247dab7481d76c"
@@ -274,8 +278,8 @@
       "sha256": "db25e1bc5a25dee4"
     },
     "/dist/bodies/yosemite-in-march.js": {
-      "v": 7,
-      "sha256": "b1a0e0e92bcfcf70"
+      "v": 8,
+      "sha256": "c4a3418d4146edca"
     },
     "/dist/bodies/yosemite-in-november.js": {
       "v": 5,
@@ -362,16 +366,16 @@
       "sha256": "5679ab664232d306"
     },
     "/dist/bodies/yosemite-waterfalls-guide.js": {
-      "v": 11,
-      "sha256": "d343b99b9b18af3d"
+      "v": 12,
+      "sha256": "dd23744c8d2f6664"
     },
     "/dist/bodies/yosemite-wilderness-permits-guide.js": {
       "v": 11,
       "sha256": "0a61c6fa8b583bef"
     },
     "/dist/bodies/yosemite-wildflowers-guide.js": {
-      "v": 9,
-      "sha256": "b5cad0e014dfad75"
+      "v": 10,
+      "sha256": "8cd272331f61882e"
     },
     "/dist/bodies/yosemite-wildlife-viewing-guide.js": {
       "v": 11,
