@@ -222,7 +222,7 @@ window.ARTICLE_BODIES["best-airport-for-yosemite"] = function BestAirportForYose
                   Yosemite has no airport of its own and none of the big international ones is close. <strong>Fresno</strong> is the nearest airport with real service, about 94 miles and two hours fifteen minutes from the Valley. <strong>San Francisco</strong> and <strong>Los Angeles</strong> are where most flights from abroad land, at four to five hours and six to seven hours respectively by the park's own figures, before you add a stop for food or a line at the gate.
                 </p>
                 <p>
-                  The trick most visitors miss: the long-haul flight decides the city, but it does not have to decide the airport. Fresno has nonstops from both SFO and LAX, and a connection that costs an hour in the air saves three or four on the road. It also puts you on the side of the park with the giant sequoias, which is a fine first morning.
+                  The trick most visitors miss: the long-haul flight decides the city, but it does not have to decide the airport. Fresno has nonstops from both SFO and LAX, and a connection that costs an hour in the air saves three or four on the road. It also puts you on the side of the park with the giant sequoias, which is a fine first morning. Fresno is also the airport for a trip that adds Sequoia and Kings Canyon, which the Park Service puts 1¼ hours from Fresno's airport at the Kings Canyon entrance; <a href="/articles/yosemite-sequoia-kings-canyon-trip">the three-park trip guide</a> has the route.
                 </p>
               </div>
             </div>

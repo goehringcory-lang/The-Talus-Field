@@ -194,6 +194,7 @@ window.ARTICLE_INTENT = {
   "yosemite-in-winter":                        { stage: ["before-booking", "dates-set"], who: ["first-trip"], topic: ["conditions", "transportation"] },
   "where-to-stay-in-yosemite":                 { stage: ["before-booking"], who: ["first-trip", "families", "accessible"], topic: ["lodging"] },
   "housekeeping-camp-vs-curry-village":        { stage: ["before-booking"], who: ["first-trip", "families"], topic: ["lodging"] },
+  "yosemite-sequoia-kings-canyon-trip":        { stage: ["before-booking", "dates-set"], who: ["first-trip", "families"], topic: ["transportation", "lodging", "conditions"] },
   "hotels-just-outside-yosemite":              { stage: ["before-booking"], who: ["first-trip", "families"], topic: ["lodging"] },
   "sentinel-dome-and-taft-point":              { stage: ["dates-set", "in-park"], who: ["photography", "families"], topic: ["trails"] },
   "yosemite-campground-reservations":          { stage: ["before-booking"], who: ["first-trip", "families"], topic: ["camping"] },

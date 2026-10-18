@@ -642,7 +642,7 @@ window.ARTICLE_BODIES["yosemite-gateway-towns-compared"] = function YosemiteGate
       <h2 id="sec-yosemite-and-sequoia-in-one-trip">Yosemite and Sequoia in one trip</h2>
 
       <p>
-        Base south. Oakhurst is the pivot between the two parks. The South Entrance is 20 to 25 minutes north on Highway 41. Sequoia is roughly two to two and a half hours south: Fresno, then Highway 180 to the Kings Canyon entrance and the Generals Highway into the park. Doing both from Mariposa or Groveland adds an hour to every leg. The usual shape is two nights in Oakhurst for Yosemite (one Valley day, one Mariposa Grove and Wawona day), then a drive to Three Rivers or the Kings Canyon side for the second park. Don't try Sequoia as a day trip from any Yosemite gateway. The round trip is five hours of driving before you've seen a single tree.
+        Base south. Oakhurst is the pivot between the two parks. The South Entrance is 20 to 25 minutes north on Highway 41. Sequoia is roughly two to two and a half hours south: Fresno, then Highway 180 to the Kings Canyon entrance and the Generals Highway into the park. Doing both from Mariposa or Groveland adds an hour to every leg. The usual shape is two nights in Oakhurst for Yosemite (one Valley day, one Mariposa Grove and Wawona day), then a drive to Three Rivers or the Kings Canyon side for the second park. Don't try Sequoia as a day trip from any Yosemite gateway. The round trip is five hours of driving before you've seen a single tree. <a href="/articles/yosemite-sequoia-kings-canyon-trip">Yosemite, Sequoia and Kings Canyon in one trip</a> has the Park Service's drive times, the two entrance passes and the winter road closure.
       </p>
 
       <h2 id="sec-common-questions">Common questions</h2>

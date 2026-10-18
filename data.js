@@ -110,6 +110,7 @@ window.planningSeriesFor = function (slug) {
 // verifies this map stays in sync with the files in bodies/.
 // ============================================================
 window.BODY_VERSIONS = {
+  "yosemite-sequoia-kings-canyon-trip": 1,
   "sentinel-dome-and-taft-point": 1,
   "yosemite-in-may": 1,
   "hotels-just-outside-yosemite": 1,
@@ -134,7 +135,7 @@ window.BODY_VERSIONS = {
   "yosemite-trees-identification-guide": 5,
   "tioga-road-stop-by-stop": 3,
   "yosemite-place-names-meanings": 2,
-  "best-airport-for-yosemite": 9,
+  "best-airport-for-yosemite": 10,
   "sustainable-yosemite-car-free-zero-waste": 6,
   "yosemite-in-december": 6,
   "wildfire-in-yosemite-during-your-trip": 6,
@@ -149,12 +150,12 @@ window.BODY_VERSIONS = {
   "yosemite-facelift-volunteer-guide": 9,
   "bracebridge-dinner-and-vintners-holidays": 11,
   "yosemite-fire-restrictions-explained": 10,
-  "yosemite-in-three-to-five-days": 12,
+  "yosemite-in-three-to-five-days": 13,
   "yosemite-winter-hikes": 7,
   "camping-in-yosemite-first-time": 7,
   "first-yosemite-backpacking-trip": 9,
   "yosemite-day-trip-from-bay-area": 6,
-  "mariposa-grove-how-to-visit": 10,
+  "mariposa-grove-how-to-visit": 11,
   "tuolumne-meadows-in-a-day": 13,
   "swimming-in-the-merced": 6,
   "yosemite-valley-parking-guide": 6,
@@ -183,7 +184,7 @@ window.BODY_VERSIONS = {
   "yosemite-bears-safety-guide": 127,
   "yosemite-heat-safety-guide": 12,
   "when-to-visit-yosemite": 15,
-  "yosemite-trip-cost-budget": 14,
+  "yosemite-trip-cost-budget": 15,
   "yosemite-in-september-2026": 8,
   "yosemite-in-june": 12,
   "cathedral-lakes-day-hike": 9,
@@ -198,7 +199,7 @@ window.BODY_VERSIONS = {
   "first-time-yosemite-overwhelm": 95,
   "yosemite-without-reservations-2026": 89,
   "yosemite-during-smoke-season": 82,
-  "yosemite-gateway-towns-compared": 113,
+  "yosemite-gateway-towns-compared": 114,
   "pack-your-car-for-yosemite": 89,
   "yosemite-for-non-hikers": 92,
   "yosemite-stargazing-where-to-look-up": 90,
@@ -1109,6 +1110,30 @@ window.ARTICLES = [
       eyebrow: "GLACIER POINT ROAD · SENTINEL DOME · TAFT POINT",
       focus: "50% 50%",
       actions: [["#sd-trailhead", "Distances and the trailhead"], ["#sd-safety", "Safety at Taft Point"]],
+    },
+  },
+  {
+    slug: "yosemite-sequoia-kings-canyon-trip",
+    aff: true,
+    cat: "planning",
+    title: "Yosemite, Sequoia and Kings Canyon in one trip: the route, the drive times, the passes and the seasons",
+    seoTitle: "Yosemite, Sequoia and Kings Canyon in One Trip: Route and Passes",
+    dek: "Three parks on one side of the Sierra, three and a half to four hours apart, with two entrance passes and a connecting road that closes every winter. The route through Fresno, the Park Service's drive times, what the passes cost and when one card beats two, four-day and six-day itineraries, the winter version, and where to sleep.",
+    seoDek: "Plan Yosemite, Sequoia and Kings Canyon together: the Highway 41 and 180 route, NPS drive times, entrance passes, itineraries, seasons and lodging.",
+    date: "October 18, 2026",
+    isoDate: "2026-10-18",
+    isoModified: "2026-10-18",
+    read: "11 min",
+    placeholder: "Giant sequoias along a trail in the Mariposa Grove",
+    image: "img/mariposa-grove-giants-trail.jpg",
+    credit: "Photo: Justin Vidamo / Wikimedia Commons (CC BY 2.0)",
+    // The /firefall layout for an article (page-article.jsx), as on the Mist
+    // Trail piece. The two buttons jump to the drive times and the
+    // itineraries.
+    feature: {
+      eyebrow: "THE ROUTE · DRIVE TIMES · PASSES · ITINERARIES · SEASONS",
+      focus: "50% 50%",
+      actions: [["#ys-drives", "Drive times"], ["#ys-plans", "Itineraries"]],
     },
   },
   {
@@ -2706,6 +2731,7 @@ window.START_HERE = [
 // Curate a piece when it earns real search impressions, when it anchors a
 // cluster, or when it is the destination that needs the equity.
 window.RELATED = {
+  "yosemite-sequoia-kings-canyon-trip": ["yosemite-in-three-to-five-days", "mariposa-grove-how-to-visit", "yosemite-gateway-towns-compared", "best-airport-for-yosemite", "yosemite-trip-cost-budget", "giant-sequoias-fire-adaptation"],
   "sentinel-dome-and-taft-point": ["glacier-point-how-to-visit", "glacier-point-road-open-2026", "yosemite-photography-spots", "yosemite-for-non-hikers", "four-mile-up-panorama-down", "mist-trail-the-real-guide"],
   "yosemite-in-may": ["yosemite-waterfalls-guide", "tioga-road-opening-weekend", "glacier-point-road-open-2026", "memorial-day-skip-the-valley-go-high-2026", "so-you-want-to-hike-half-dome", "yosemite-in-june"],
   "hotels-just-outside-yosemite": ["yosemite-gateway-towns-compared", "where-to-stay-in-yosemite", "wawona-yosemite-guide", "hetch-hetchy-the-other-yosemite-valley", "highway-140-closed-yosemite", "yosemite-shuttle-and-yarts"],
@@ -2742,7 +2768,7 @@ window.RELATED = {
   // The best airport for Yosemite: the arrival guide for visitors from abroad.
   // Onward to the entrances, the transit guide, the LA drive, the Bay Area
   // day-trip arithmetic, the gateway towns and the trip budget.
-  "best-airport-for-yosemite": ["getting-to-yosemite", "yosemite-shuttle-and-yarts", "yosemite-from-los-angeles", "yosemite-gateway-towns-compared", "yosemite-day-trip-from-bay-area", "yosemite-trip-cost-budget"],
+  "best-airport-for-yosemite": ["getting-to-yosemite", "yosemite-shuttle-and-yarts", "yosemite-from-los-angeles", "yosemite-gateway-towns-compared", "yosemite-trip-cost-budget", "yosemite-sequoia-kings-canyon-trip"],
   "sustainable-yosemite-car-free-zero-waste": ["yosemite-shuttle-and-yarts", "getting-to-yosemite", "yosemite-valley-parking-guide", "yosemite-camping-complete-guide", "yosemite-bears-safety-guide", "yosemite-trip-cost-budget"],
   // Yosemite in December: the evergreen month guide. Onward to the season
   // piece, the winter trails, the holiday dinner, the lodging and entrance
@@ -2775,11 +2801,11 @@ window.RELATED = {
 
   // Lodging and gateway towns
   "bracebridge-dinner-and-vintners-holidays": ["where-to-stay-in-yosemite", "christmas-and-new-years-in-yosemite", "yosemite-in-december", "thanksgiving-in-yosemite", "yosemite-gateway-towns-compared", "where-to-eat-yosemite"],
-  "yosemite-gateway-towns-compared": ["where-to-stay-in-yosemite", "hotels-just-outside-yosemite", "where-to-eat-yosemite", "yosemite-from-los-angeles", "yosemite-with-kids-no-reservations-2026", "highway-140-closed-yosemite"],
+  "yosemite-gateway-towns-compared": ["where-to-stay-in-yosemite", "hotels-just-outside-yosemite", "where-to-eat-yosemite", "yosemite-from-los-angeles", "yosemite-trip-cost-budget", "yosemite-sequoia-kings-canyon-trip"],
   "where-to-stay-in-yosemite": ["yosemite-gateway-towns-compared", "hotels-just-outside-yosemite", "housekeeping-camp-vs-curry-village", "yosemite-camping-complete-guide", "wawona-yosemite-guide", "christmas-and-new-years-in-yosemite"],
   "yosemite-camping-complete-guide": ["yosemite-campground-reservations", "camping-in-yosemite-first-time", "where-to-stay-in-yosemite", "first-yosemite-backpacking-trip", "yosemite-trip-cost-budget", "sustainable-yosemite-car-free-zero-waste"],
   "camping-in-yosemite-first-time": ["yosemite-camping-complete-guide", "yosemite-campground-reservations", "yosemite-bears-safety-guide", "is-bear-spray-allowed-in-yosemite", "where-to-stay-in-yosemite", "pets-in-yosemite"],
-  "yosemite-trip-cost-budget": ["where-to-stay-in-yosemite", "yosemite-gateway-towns-compared", "yosemite-camping-complete-guide", "where-to-eat-yosemite", "bracebridge-dinner-and-vintners-holidays"],
+  "yosemite-trip-cost-budget": ["where-to-stay-in-yosemite", "yosemite-gateway-towns-compared", "yosemite-camping-complete-guide", "where-to-eat-yosemite", "bracebridge-dinner-and-vintners-holidays", "yosemite-sequoia-kings-canyon-trip"],
 
   // Food
   "where-to-eat-yosemite": ["yosemite-gateway-towns-compared", "where-to-stay-in-yosemite", "swimming-in-the-merced", "yosemite-trip-cost-budget", "yosemite-in-one-or-two-days", "pack-your-car-for-yosemite"],
@@ -2820,7 +2846,7 @@ window.RELATED = {
   // First trips and timing
   "first-time-yosemite-overwhelm": ["yosemite-in-one-or-two-days", "when-to-visit-yosemite", "yosemite-gateway-towns-compared", "yosemite-without-reservations-2026", "yosemite-in-three-to-five-days", "pack-your-car-for-yosemite"],
   "yosemite-in-one-or-two-days": ["yosemite-in-three-to-five-days", "first-time-yosemite-overwhelm", "yosemite-valley-parking-guide", "yosemite-with-kids-no-reservations-2026", "yosemite-day-trip-from-bay-area", "where-to-eat-yosemite"],
-  "yosemite-in-three-to-five-days": ["yosemite-in-one-or-two-days", "tuolumne-meadows-in-a-day", "mist-trail-the-real-guide", "yosemite-gateway-towns-compared", "when-to-visit-yosemite"],
+  "yosemite-in-three-to-five-days": ["yosemite-in-one-or-two-days", "tuolumne-meadows-in-a-day", "mist-trail-the-real-guide", "yosemite-gateway-towns-compared", "when-to-visit-yosemite", "yosemite-sequoia-kings-canyon-trip"],
   "when-to-visit-yosemite": ["yosemite-without-reservations-2026", "yosemite-in-april", "yosemite-in-september-2026", "yosemite-in-fall", "yosemite-valley-parking-guide", "yosemite-crowds-by-month"],
   "yosemite-without-reservations-2026": ["when-to-visit-yosemite", "yosemite-valley-parking-guide", "yosemite-walk-up-and-day-of-permits", "yosemite-camping-complete-guide", "hetch-hetchy-the-other-yosemite-valley", "first-time-yosemite-overwhelm"],
 
@@ -2843,7 +2869,7 @@ window.RELATED = {
   // Doing and seeing
   "yosemite-photography-spots": ["yosemite-stargazing-where-to-look-up", "sentinel-dome-and-taft-point", "horsetail-fall-firefall", "four-mile-up-panorama-down", "yosemite-waterfalls-guide", "yosemite-in-fall"],
   "watching-climbers-el-capitan": ["yosemite-for-non-hikers", "yosemite-photography-spots", "yosemite-rockfall", "yosemite-valley-parking-guide", "where-to-propose-in-yosemite", "yosemite-ranger-programs"],
-  "mariposa-grove-how-to-visit": ["wawona-yosemite-guide", "giant-sequoias-fire-adaptation", "yosemite-accessibility-guide", "yosemite-gateway-towns-compared", "yosemite-for-non-hikers", "yosemite-tunnel-trees"],
+  "mariposa-grove-how-to-visit": ["wawona-yosemite-guide", "giant-sequoias-fire-adaptation", "yosemite-accessibility-guide", "yosemite-gateway-towns-compared", "yosemite-tunnel-trees", "yosemite-sequoia-kings-canyon-trip"],
   "yosemite-ranger-programs": ["yosemite-with-kids-no-reservations-2026", "yosemite-wildlife-viewing-guide", "yosemite-for-non-hikers", "yosemite-accessibility-guide", "yosemite-facelift-volunteer-guide", "yosemite-stargazing-tours-and-programs"],
   "where-to-propose-in-yosemite": ["yosemite-photography-spots", "yosemite-for-non-hikers", "where-to-eat-yosemite", "where-to-stay-in-yosemite", "yosemite-in-one-or-two-days", "worship-in-yosemite"],
   "working-in-yosemite": ["yosemite-ranger-programs", "yosemite-gateway-towns-compared", "yosemite-connecting-to-traditions", "yosemite-needs-a-reservation-system", "yosemite-in-winter"],

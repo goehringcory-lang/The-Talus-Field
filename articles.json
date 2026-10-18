@@ -190,6 +190,33 @@
     "related": ["glacier-point-how-to-visit", "glacier-point-road-open-2026", "yosemite-photography-spots", "yosemite-for-non-hikers", "four-mile-up-panorama-down", "mist-trail-the-real-guide"]
   },
   {
+    "slug": "yosemite-sequoia-kings-canyon-trip",
+    "cat": "planning",
+    "title": "Yosemite, Sequoia and Kings Canyon in one trip: the route, the drive times, the passes and the seasons",
+    "dek": "Three parks on one side of the Sierra, three and a half to four hours apart, with two entrance passes and a connecting road that closes every winter. The route through Fresno, the Park Service's drive times, what the passes cost and when one card beats two, four-day and six-day itineraries, the winter version, and where to sleep.",
+    "seoTitle": "Yosemite, Sequoia and Kings Canyon in One Trip: Route and Passes",
+    "seoDek": "Plan Yosemite, Sequoia and Kings Canyon together: the Highway 41 and 180 route, NPS drive times, entrance passes, itineraries, seasons and lodging.",
+    "date": "October 18, 2026",
+    "isoDate": "2026-10-18",
+    "isoModified": "2026-10-18",
+    "read": "11 min",
+    "image": "img/mariposa-grove-giants-trail.jpg",
+    "ogImage": { "url": "img/responsive/mariposa-grove-giants-trail-1600.jpg", "width": 1600, "height": 1083 },
+    "placeholder": "Giant sequoias along a trail in the Mariposa Grove",
+    "cover": true,
+    "wordCount": 3000,
+    "keywords": ["Yosemite Sequoia Kings Canyon itinerary", "Yosemite and Sequoia in one trip", "Yosemite to Sequoia drive time", "Yosemite to Kings Canyon distance", "how far is Sequoia from Yosemite", "Generals Highway winter closure", "Sequoia and Kings Canyon entrance fee", "America the Beautiful pass Yosemite Sequoia", "nonresident fee Yosemite Sequoia", "Yosemite Sequoia road trip", "Grant Grove from Yosemite", "Fresno airport Yosemite Sequoia"],
+    "faq": [
+      { "q": "How far is Sequoia National Park from Yosemite?", "a": "Yosemite's own driving table gives about 150 miles and 3 hours 30 minutes to Grant Grove in Kings Canyon by Highway 41, and about 175 miles and 4 hours to Lodgepole and Giant Forest in Sequoia by Highways 41 and 180. The table does not name its starting point. No road crosses the Sierra through Sequoia and Kings Canyon, so every route runs south through the Fresno area." },
+      { "q": "Does one pass cover Yosemite, Sequoia and Kings Canyon?", "a": "No single park pass does. Yosemite's $35 vehicle pass covers Yosemite for seven days. Sequoia and Kings Canyon share one $35 vehicle pass, good for one to seven days in both parks. The $80 America the Beautiful annual pass covers all three, and it waives the $100 per-person nonresident fee at both." },
+      { "q": "Can you visit Sequoia as a day trip from Yosemite?", "a": "Not sensibly. By the Park Service's figures the round trip to Giant Forest is about eight hours of driving before you walk to a single tree. Plan at least one night on the Sequoia and Kings Canyon side." },
+      { "q": "How many days do you need for Yosemite, Sequoia and Kings Canyon?", "a": "Four days is the shortest trip we would plan: two in Yosemite and two in Sequoia and Kings Canyon, with the long drive between them on day three. Five or six days adds Cedar Grove, the canyon floor of Kings Canyon, from May to early or mid-November." },
+      { "q": "Is the Generals Highway open in winter?", "a": "The stretch between Sequoia and Kings Canyon is usually closed from early January to mid-March, and whenever snow makes it impassable. The detour from Giant Forest to Grant Grove then runs about 118 miles and 3 hours by Highways 198, 216, 63 and 180. Chains can be required on park roads at any time." },
+      { "q": "Which park should you visit first?", "a": "Coming from San Francisco or Sacramento, see Yosemite first and leave by Highway 41 south. Coming from Los Angeles, enter Sequoia at Ash Mountain on Highway 198, drive north through Kings Canyon, and finish in Yosemite. Either way you drive the long middle leg only once." }
+    ],
+    "related": ["yosemite-in-three-to-five-days", "mariposa-grove-how-to-visit", "yosemite-gateway-towns-compared", "best-airport-for-yosemite", "yosemite-trip-cost-budget", "giant-sequoias-fire-adaptation"]
+  },
+  {
     "slug": "worship-in-yosemite",
     "cat": "planning",
     "title": "Worship in Yosemite: church services, Easter sunrise and weddings in the park",
@@ -664,7 +691,7 @@
       { "q": "What is the closest airport to Yosemite National Park?", "a": "Merced Yosemite Regional is the closest runway, 81 miles and about two hours from the Valley on Highway 140, but its only service is a 30-seat regional jet from LAX and Las Vegas that began in July 2026. Fresno Yosemite International is the closest real airport, 94 miles and two hours fifteen minutes away, with nonstops from SFO, LAX, Denver, Dallas, Phoenix, Seattle and other US hubs." },
       { "q": "How far is Fresno airport from Yosemite?", "a": "About 94 miles and two hours fifteen minutes to Yosemite Valley, and about an hour and a quarter to the South Entrance on Highway 41. In summer the YARTS Highway 41 bus leaves from the airport; the 2026 season ran May 22 to September 25." }
     ],
-    "related": ["getting-to-yosemite", "yosemite-shuttle-and-yarts", "yosemite-from-los-angeles", "yosemite-gateway-towns-compared", "yosemite-day-trip-from-bay-area", "yosemite-trip-cost-budget"]
+    "related": ["getting-to-yosemite", "yosemite-shuttle-and-yarts", "yosemite-from-los-angeles", "yosemite-gateway-towns-compared", "yosemite-trip-cost-budget", "yosemite-sequoia-kings-canyon-trip"]
   },
   {
     "slug": "sustainable-yosemite-car-free-zero-waste",
@@ -1057,7 +1084,7 @@
       { "q": "Do I need a reservation to enter Yosemite in 2026?", "a": "No. There is no day-use or peak-hours reservation in 2026. You need the $35 seven-day vehicle pass, and international visitors age 16 and up pay a $100 per-person surcharge in effect since January 1, 2026." },
       { "q": "Should I plan Half Dome into a three-to-five-day trip?", "a": "Only as an upgrade, never as the spine. Permits are a lottery, preseason in March or daily two days ahead, so build day four to be good without the summit and let a winning application improve it." }
     ],
-    "related": ["yosemite-in-one-or-two-days", "tuolumne-meadows-in-a-day", "mist-trail-the-real-guide", "yosemite-gateway-towns-compared", "when-to-visit-yosemite"]
+    "related": ["yosemite-in-one-or-two-days", "tuolumne-meadows-in-a-day", "mist-trail-the-real-guide", "yosemite-gateway-towns-compared", "when-to-visit-yosemite", "yosemite-sequoia-kings-canyon-trip"]
   },
   {
     "slug": "yosemite-winter-hikes",
@@ -1258,7 +1285,7 @@
       { "q": "How long do you need at the Mariposa Grove?", "a": "Two hours is an absolute floor, and that only buys the shuttle both ways and the Big Trees Loop, which is three tenths of a mile, paved and wheelchair accessible. Half a day is right for the Grizzly Giant Loop, about two miles, with time to stand around. A full day is the upper grove. Add about an hour and a quarter each way if you are driving from Yosemite Valley." },
       { "q": "Can you visit the Mariposa Grove in winter?", "a": "Yes, on foot. Mariposa Grove Road closes to vehicles at the end of November and reopens when the snow allows, which has meant anywhere from early April onward in recent years. The grove itself does not close: the road and trails stay open to foot travel, and walking, snowshoeing or skiing the two miles up from the South Entrance is one of the quietest good days available in Yosemite in February. Note that this is not a designated snow-play area; the park's sledding hill is at Crane Flat." }
     ],
-    "related": ["wawona-yosemite-guide", "giant-sequoias-fire-adaptation", "yosemite-accessibility-guide", "yosemite-gateway-towns-compared", "yosemite-for-non-hikers", "yosemite-tunnel-trees"]
+    "related": ["wawona-yosemite-guide", "giant-sequoias-fire-adaptation", "yosemite-accessibility-guide", "yosemite-gateway-towns-compared", "yosemite-tunnel-trees", "yosemite-sequoia-kings-canyon-trip"]
   },
   {
     "slug": "yosemite-valley-parking-guide",
@@ -1961,7 +1988,7 @@
       { "q": "What is the cheapest way to visit Yosemite?", "a": "Camp and bring your own food. A campsite plus a cooler stocked at a gateway-town grocery store before you enter keeps food to about $15 to $25 per person per day. The park itself is cheap: $35 to enter, free shuttles, free trails, and free ranger programs." },
       { "q": "How much should I budget for food in Yosemite?", "a": "A deli sandwich and a drink typically runs $18 to $25, a pizza at Curry Village $15 to $38, and a sit-down dinner $35 to $55 per person. The Ahwahnee dinner is prix fixe from $95. Bringing a cooler is the single biggest money-saver." }
     ],
-    "related": ["where-to-stay-in-yosemite", "yosemite-gateway-towns-compared", "yosemite-camping-complete-guide", "where-to-eat-yosemite", "bracebridge-dinner-and-vintners-holidays"]
+    "related": ["where-to-stay-in-yosemite", "yosemite-gateway-towns-compared", "yosemite-camping-complete-guide", "where-to-eat-yosemite", "bracebridge-dinner-and-vintners-holidays", "yosemite-sequoia-kings-canyon-trip"]
   },
   {
     "slug": "yosemite-in-september-2026",
@@ -2554,7 +2581,7 @@
       { "q": "Where should I stay to see Yosemite and Sequoia on one trip?", "a": "Oakhurst. The South Entrance is 20 to 25 minutes north, and the Kings Canyon entrance to Sequoia and Kings Canyon is roughly two to two and a half hours south by way of Fresno. Do not attempt Sequoia as a day trip from any Yosemite gateway." },
       { "q": "Do Yosemite gateway towns have reliable cell service?", "a": "Service is patchy in the gateways and unreliable to nonexistent through much of the park and approach roads. Download offline maps and reservation details before leaving town, and agree on a meeting point with your group." }
     ],
-    "related": ["where-to-stay-in-yosemite", "hotels-just-outside-yosemite", "where-to-eat-yosemite", "yosemite-from-los-angeles", "yosemite-with-kids-no-reservations-2026", "highway-140-closed-yosemite"]
+    "related": ["where-to-stay-in-yosemite", "hotels-just-outside-yosemite", "where-to-eat-yosemite", "yosemite-from-los-angeles", "yosemite-trip-cost-budget", "yosemite-sequoia-kings-canyon-trip"]
   },
   {
     "slug": "yosemite-during-smoke-season",
