@@ -122,8 +122,8 @@
       "sha256": "53659038cc23836b"
     },
     "/dist/bodies/swimming-in-the-merced.js": {
-      "v": 6,
-      "sha256": "a0e263ae01eb9cf0"
+      "v": 7,
+      "sha256": "b371d7a1b7f8ed07"
     },
     "/dist/bodies/thanksgiving-in-yosemite.js": {
       "v": 3,
@@ -138,8 +138,8 @@
       "sha256": "8bd26e23a6761368"
     },
     "/dist/bodies/tuolumne-meadows-in-a-day.js": {
-      "v": 13,
-      "sha256": "7a9e6baec4126a1d"
+      "v": 14,
+      "sha256": "ed5447653e497d12"
     },
     "/dist/bodies/watching-climbers-el-capitan.js": {
       "v": 8,
@@ -202,16 +202,16 @@
       "sha256": "3141e1acadb6d448"
     },
     "/dist/bodies/yosemite-crowds-by-month.js": {
-      "v": 1,
-      "sha256": "220966f5a311cdd9"
+      "v": 2,
+      "sha256": "28d5552bbdc01a86"
     },
     "/dist/bodies/yosemite-day-trip-from-bay-area.js": {
       "v": 6,
       "sha256": "ccee4530a5e32009"
     },
     "/dist/bodies/yosemite-during-smoke-season.js": {
-      "v": 82,
-      "sha256": "96020272132909d2"
+      "v": 83,
+      "sha256": "a5968fc82cdb5966"
     },
     "/dist/bodies/yosemite-facelift-volunteer-guide.js": {
       "v": 9,
@@ -246,8 +246,8 @@
       "sha256": "f52a1734f565adfc"
     },
     "/dist/bodies/yosemite-heat-safety-guide.js": {
-      "v": 12,
-      "sha256": "92ea8b63ed63e586"
+      "v": 13,
+      "sha256": "3f1f2bc73d3d5e65"
     },
     "/dist/bodies/yosemite-in-december.js": {
       "v": 4,
@@ -264,6 +264,10 @@
     "/dist/bodies/yosemite-in-january.js": {
       "v": 2,
       "sha256": "5b85e381285e7bb6"
+    },
+    "/dist/bodies/yosemite-in-july-and-august.js": {
+      "v": 1,
+      "sha256": "06ffa6c7de83ad6b"
     },
     "/dist/bodies/yosemite-in-june.js": {
       "v": 11,

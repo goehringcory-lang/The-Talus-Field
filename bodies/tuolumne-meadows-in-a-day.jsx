@@ -110,7 +110,7 @@ window.ARTICLE_BODIES["tuolumne-meadows-in-a-day"] = function TuolumneMeadowsInA
       <h2>The afternoon storm, which ends the day earlier than you want</h2>
 
       <p>
-        In July and August the Sierra high country builds thunderstorms out of a clear morning with startling speed. The pattern is reliable enough to plan around: clear at dawn, cumulus clouds building by late morning, and the possibility of lightning from early afternoon on.
+        In July and August the Sierra high country builds thunderstorms out of a clear morning with startling speed. The pattern is reliable enough to plan around: clear at dawn, cumulus clouds building by late morning, and the possibility of lightning from early afternoon on. The rest of the summer picture, Valley heat and August smoke included, is in <a href="/articles/yosemite-in-july-and-august">Yosemite in July and August</a>.
       </p>
 
       <p>

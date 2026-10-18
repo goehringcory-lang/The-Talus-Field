@@ -110,8 +110,9 @@ window.planningSeriesFor = function (slug) {
 // verifies this map stays in sync with the files in bodies/.
 // ============================================================
 window.BODY_VERSIONS = {
+  "yosemite-in-july-and-august": 1,
   "worship-in-yosemite": 1,
-  "yosemite-crowds-by-month": 1,
+  "yosemite-crowds-by-month": 2,
   "yosemite-san-francisco-bus": 2,
   "housekeeping-camp-vs-curry-village": 1,
   "yosemite-stargazing-tours-and-programs": 1,
@@ -148,8 +149,8 @@ window.BODY_VERSIONS = {
   "first-yosemite-backpacking-trip": 9,
   "yosemite-day-trip-from-bay-area": 6,
   "mariposa-grove-how-to-visit": 9,
-  "tuolumne-meadows-in-a-day": 13,
-  "swimming-in-the-merced": 6,
+  "tuolumne-meadows-in-a-day": 14,
+  "swimming-in-the-merced": 7,
   "yosemite-valley-parking-guide": 6,
   "yosemite-shuttle-and-yarts": 15,
   "yosemite-walk-up-and-day-of-permits": 9,
@@ -174,7 +175,7 @@ window.BODY_VERSIONS = {
   "where-to-propose-in-yosemite": 8,
   "is-bear-spray-allowed-in-yosemite": 6,
   "yosemite-bears-safety-guide": 127,
-  "yosemite-heat-safety-guide": 12,
+  "yosemite-heat-safety-guide": 13,
   "when-to-visit-yosemite": 14,
   "yosemite-trip-cost-budget": 14,
   "yosemite-in-september-2026": 8,
@@ -190,7 +191,7 @@ window.BODY_VERSIONS = {
   "mist-trail-the-real-guide": 96,
   "first-time-yosemite-overwhelm": 95,
   "yosemite-without-reservations-2026": 89,
-  "yosemite-during-smoke-season": 82,
+  "yosemite-during-smoke-season": 83,
   "yosemite-gateway-towns-compared": 112,
   "pack-your-car-for-yosemite": 88,
   "yosemite-for-non-hikers": 91,
@@ -937,6 +938,30 @@ window.KIT_REI = {
 // AffiliateDisclosure line under the byline, before the first link;
 // scripts/check-affiliate-links.mjs fails when the flag and the body disagree.
 window.ARTICLES = [
+  {
+    slug: "yosemite-in-july-and-august",
+    aff: true,
+    cat: "seasonal",
+    title: "Yosemite in July and August: heat, crowds, high country and smoke",
+    seoTitle: "Yosemite in July and August: Weather, Crowds and What's Open",
+    dek: "The two busiest months of the year, and the two when the most of the park is open. The Valley's 89-degree average and Tuolumne's 70, the crowd by month and by hour, the waterfalls that thin and the river that warms, the high-country season, August's smoke, and what to book how far ahead.",
+    seoDek: "Yosemite in July and August: Park Service weather averages, crowds and parking, waterfalls, Tioga Road and Tuolumne, smoke and fire rules, and booking windows.",
+    date: "October 18, 2026",
+    isoDate: "2026-10-18",
+    isoModified: "2026-10-18",
+    read: "10 min",
+    placeholder: "El Capitan across Yosemite Valley from the south rim in summer, the Valley floor far below",
+    image: "img/yosemite-valley-granite-summer-cory-goehring.jpg",
+    credit: "Photo: Cory Goehring",
+    // The /firefall layout for an article (page-article.jsx), as on the Mist
+    // Trail piece. The two buttons jump to the high country and to the
+    // July-or-August comparison.
+    feature: {
+      eyebrow: "WEATHER · CROWDS · WATERFALLS · TUOLUMNE · SMOKE",
+      focus: "50% 45%",
+      actions: [["#ja-high", "The high country"], ["#ja-months", "July or August"]],
+    },
+  },
   {
     slug: "worship-in-yosemite",
     aff: true,
@@ -2532,8 +2557,9 @@ window.START_HERE = [
 // Curate a piece when it earns real search impressions, when it anchors a
 // cluster, or when it is the destination that needs the equity.
 window.RELATED = {
+  "yosemite-in-july-and-august": ["yosemite-heat-safety-guide", "yosemite-during-smoke-season", "tuolumne-meadows-in-a-day", "swimming-in-the-merced", "yosemite-crowds-by-month", "yosemite-in-september-2026"],
   "worship-in-yosemite": ["thanksgiving-in-yosemite", "where-to-propose-in-yosemite", "yosemite-camping-complete-guide", "glacier-point-how-to-visit", "where-to-stay-in-yosemite", "bracebridge-dinner-and-vintners-holidays"],
-  "yosemite-crowds-by-month": ["when-to-visit-yosemite", "yosemite-valley-parking-guide", "yosemite-without-reservations-2026", "glacier-point-how-to-visit", "mariposa-grove-how-to-visit", "yosemite-needs-a-reservation-system"],
+  "yosemite-crowds-by-month": ["when-to-visit-yosemite", "yosemite-valley-parking-guide", "yosemite-without-reservations-2026", "yosemite-in-july-and-august", "mariposa-grove-how-to-visit", "yosemite-needs-a-reservation-system"],
   "yosemite-san-francisco-bus": ["yosemite-shuttle-and-yarts", "best-airport-for-yosemite", "yosemite-day-trip-from-bay-area", "sustainable-yosemite-car-free-zero-waste", "yosemite-in-one-or-two-days", "getting-to-yosemite"],
   // Housekeeping Camp vs Curry Village: the two canvas-roofed Valley stays.
   // Onward to every bed in the park, the campgrounds, the kitchens, the bear
@@ -2624,7 +2650,7 @@ window.RELATED = {
   "mist-trail-the-real-guide": ["yosemite-waterfalls-guide", "so-you-want-to-hike-half-dome", "four-mile-up-panorama-down", "yosemite-heat-safety-guide", "yosemite-valley-parking-guide", "yosemite-falls-trail"],
   "four-mile-up-panorama-down": ["mist-trail-the-real-guide", "yosemite-photography-spots", "so-you-want-to-hike-half-dome", "glacier-point-how-to-visit", "glacier-point-road-open-2026"],
   "cathedral-lakes-day-hike": ["tuolumne-meadows-in-a-day", "clouds-rest-hike", "tioga-road-opening-weekend", "so-you-want-to-hike-half-dome", "first-yosemite-backpacking-trip", "yosemite-wildflowers-guide"],
-  "tuolumne-meadows-in-a-day": ["cathedral-lakes-day-hike", "clouds-rest-hike", "tioga-road-opening-weekend", "yosemite-from-las-vegas", "yosemite-wildflowers-guide", "yosemite-stargazing-where-to-look-up"],
+  "tuolumne-meadows-in-a-day": ["cathedral-lakes-day-hike", "clouds-rest-hike", "tioga-road-opening-weekend", "yosemite-in-july-and-august", "yosemite-wildflowers-guide", "yosemite-stargazing-where-to-look-up"],
   "hetch-hetchy-the-other-yosemite-valley": ["yosemite-waterfalls-guide", "yosemite-without-reservations-2026", "yosemite-in-march", "yosemite-wildflowers-guide", "yosemite-glaciers-climate"],
   "yosemite-winter-hikes": ["yosemite-in-winter", "horsetail-fall-firefall", "yosemite-waterfalls-guide", "yosemite-for-non-hikers", "snowshoeing-in-yosemite", "yosemite-falls-trail"],
   "yosemite-waterfalls-guide": ["mist-trail-the-real-guide", "when-to-visit-yosemite", "hetch-hetchy-the-other-yosemite-valley", "yosemite-photography-spots", "water-ouzels-waterfalls", "yosemite-in-march"],
@@ -2643,18 +2669,18 @@ window.RELATED = {
   "yosemite-without-reservations-2026": ["when-to-visit-yosemite", "yosemite-valley-parking-guide", "yosemite-walk-up-and-day-of-permits", "yosemite-camping-complete-guide", "hetch-hetchy-the-other-yosemite-valley", "first-time-yosemite-overwhelm"],
 
   // Seasonal
-  "yosemite-in-june": ["when-to-visit-yosemite", "yosemite-waterfalls-guide", "tioga-road-opening-weekend", "yosemite-heat-safety-guide"],
+  "yosemite-in-june": ["when-to-visit-yosemite", "yosemite-waterfalls-guide", "tioga-road-opening-weekend", "yosemite-heat-safety-guide", "yosemite-in-july-and-august"],
   "yosemite-in-september-2026": ["when-to-visit-yosemite", "yosemite-in-fall", "tuolumne-meadows-in-a-day", "yosemite-during-smoke-season", "cathedral-lakes-day-hike", "mist-trail-the-real-guide"],
   "yosemite-in-fall": ["yosemite-in-october-2026", "yosemite-in-september-2026", "clouds-rest-hike", "when-to-visit-yosemite", "thanksgiving-in-yosemite", "yosemite-in-november"],
   "yosemite-in-winter": ["yosemite-winter-hikes", "yosemite-in-december", "horsetail-fall-firefall", "when-to-visit-yosemite", "yosemite-in-march", "badger-pass-ski-area"],
   "yosemite-in-march": ["yosemite-in-winter", "yosemite-waterfalls-guide", "horsetail-fall-firefall", "when-to-visit-yosemite", "yosemite-in-february", "yosemite-in-january"],
   "tioga-road-opening-weekend": ["cathedral-lakes-day-hike", "tuolumne-meadows-in-a-day", "yosemite-from-las-vegas", "memorial-day-skip-the-valley-go-high-2026", "yosemite-stargazing-where-to-look-up", "tioga-road-stop-by-stop"],
   "glacier-point-road-open-2026": ["four-mile-up-panorama-down", "glacier-point-how-to-visit", "yosemite-photography-spots", "yosemite-stargazing-where-to-look-up", "yosemite-for-non-hikers"],
-  "yosemite-heat-safety-guide": ["swimming-in-the-merced", "mist-trail-the-real-guide", "when-to-visit-yosemite", "yosemite-during-smoke-season", "yosemite-waterfalls-guide", "yosemite-falls-trail"],
-  "yosemite-during-smoke-season": ["yosemite-heat-safety-guide", "yosemite-fire-restrictions-explained", "when-to-visit-yosemite", "yosemite-in-fall", "giant-sequoias-fire-adaptation", "wildfire-in-yosemite-during-your-trip"],
+  "yosemite-heat-safety-guide": ["swimming-in-the-merced", "mist-trail-the-real-guide", "yosemite-in-july-and-august", "yosemite-during-smoke-season", "yosemite-waterfalls-guide", "yosemite-falls-trail"],
+  "yosemite-during-smoke-season": ["yosemite-heat-safety-guide", "yosemite-fire-restrictions-explained", "yosemite-in-july-and-august", "yosemite-in-fall", "giant-sequoias-fire-adaptation", "wildfire-in-yosemite-during-your-trip"],
   "yosemite-fire-restrictions-explained": ["yosemite-during-smoke-season", "wildfire-in-yosemite-during-your-trip", "yosemite-camping-complete-guide", "giant-sequoias-fire-adaptation", "yosemite-heat-safety-guide", "yosemite-facelift-volunteer-guide"],
   "memorial-day-skip-the-valley-go-high-2026": ["tioga-road-opening-weekend", "tuolumne-meadows-in-a-day", "when-to-visit-yosemite", "clouds-rest-hike", "hetch-hetchy-the-other-yosemite-valley", "cathedral-lakes-day-hike"],
-  "swimming-in-the-merced": ["yosemite-heat-safety-guide", "yosemite-with-kids-no-reservations-2026", "mist-trail-the-real-guide", "yosemite-waterfalls-guide", "yosemite-in-june", "yosemite-in-september-2026"],
+  "swimming-in-the-merced": ["yosemite-heat-safety-guide", "yosemite-with-kids-no-reservations-2026", "mist-trail-the-real-guide", "yosemite-in-july-and-august", "yosemite-in-june", "yosemite-in-september-2026"],
   "horsetail-fall-firefall": ["yosemite-in-winter", "yosemite-photography-spots", "yosemite-winter-hikes", "when-to-visit-yosemite", "yosemite-in-march"],
   "yosemite-stargazing-where-to-look-up": ["yosemite-stargazing-tours-and-programs", "tuolumne-meadows-in-a-day", "glacier-point-road-open-2026", "yosemite-photography-spots", "tioga-road-opening-weekend", "yosemite-in-fall"],
 
