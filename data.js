@@ -110,6 +110,7 @@ window.planningSeriesFor = function (slug) {
 // verifies this map stays in sync with the files in bodies/.
 // ============================================================
 window.BODY_VERSIONS = {
+  "hotels-just-outside-yosemite": 1,
   "worship-in-yosemite": 1,
   "yosemite-crowds-by-month": 1,
   "yosemite-san-francisco-bus": 2,
@@ -120,7 +121,7 @@ window.BODY_VERSIONS = {
   "yosemite-in-february": 2,
   "yosemite-in-january": 2,
   "yosemite-rockfall": 3,
-  "wawona-yosemite-guide": 2,
+  "wawona-yosemite-guide": 3,
   "yosemite-in-november": 4,
   "thanksgiving-in-yosemite": 3,
   "best-yosemite-backpacking-trips": 3,
@@ -162,7 +163,7 @@ window.BODY_VERSIONS = {
   "yosemite-photography-spots": 7,
   "horsetail-fall-firefall": 10,
   "yosemite-in-winter": 13,
-  "where-to-stay-in-yosemite": 20,
+  "where-to-stay-in-yosemite": 21,
   "yosemite-wildflowers-guide": 9,
   "watching-climbers-el-capitan": 8,
   "getting-to-yosemite": 14,
@@ -191,11 +192,11 @@ window.BODY_VERSIONS = {
   "first-time-yosemite-overwhelm": 95,
   "yosemite-without-reservations-2026": 89,
   "yosemite-during-smoke-season": 82,
-  "yosemite-gateway-towns-compared": 112,
+  "yosemite-gateway-towns-compared": 113,
   "pack-your-car-for-yosemite": 88,
   "yosemite-for-non-hikers": 91,
   "yosemite-stargazing-where-to-look-up": 90,
-  "hetch-hetchy-the-other-yosemite-valley": 83,
+  "hetch-hetchy-the-other-yosemite-valley": 84,
   "what-is-a-talus-field": 7,
   "yosemite-glaciers-climate": 84,
   "giant-sequoias-fire-adaptation": 80,
@@ -937,6 +938,30 @@ window.KIT_REI = {
 // AffiliateDisclosure line under the byline, before the first link;
 // scripts/check-affiliate-links.mjs fails when the flag and the body disagree.
 window.ARTICLES = [
+  {
+    slug: "hotels-just-outside-yosemite",
+    aff: true,
+    cat: "planning",
+    title: "Hotels just outside Yosemite: Rush Creek vs Tenaya vs Evergreen vs Yosemite View Lodge",
+    seoTitle: "Best Hotels Near Yosemite: Rush Creek, Tenaya, Evergreen, Yosemite View",
+    dek: "Four big lodges sit just outside four different gates, and the gate decides the trip. The drive to the Valley by the Park Service's own table, what each one has, which take dogs, which close in winter, which are on a bus line, and which to book for the Valley, the sequoias, Hetch Hetchy or the drive from the Bay Area.",
+    seoDek: "The best hotels near Yosemite compared: Rush Creek, Tenaya, Evergreen and Yosemite View Lodge by gate, drive time to the Valley, season, amenities and pets.",
+    date: "October 18, 2026",
+    isoDate: "2026-10-18",
+    isoModified: "2026-10-18",
+    read: "10 min",
+    placeholder: "A tunnel on Big Oak Flat Road, the Highway 120 drive in from Rush Creek and Evergreen",
+    image: "img/big-oak-flat-road-tunnel.jpg",
+    credit: "Photo: Famartin / Wikimedia Commons (CC BY-SA 3.0)",
+    // The /firefall layout for an article (page-article.jsx), as on the Mist
+    // Trail piece. The two buttons jump to the side-by-side cards and to the
+    // Park Service's drive-time table.
+    feature: {
+      eyebrow: "RUSH CREEK · TENAYA · EVERGREEN · YOSEMITE VIEW LODGE",
+      focus: "50% 50%",
+      actions: [["#hj-compare", "All four side by side"], ["#hj-drive", "Drive times to the Valley"]],
+    },
+  },
   {
     slug: "worship-in-yosemite",
     aff: true,
@@ -2532,6 +2557,7 @@ window.START_HERE = [
 // Curate a piece when it earns real search impressions, when it anchors a
 // cluster, or when it is the destination that needs the equity.
 window.RELATED = {
+  "hotels-just-outside-yosemite": ["yosemite-gateway-towns-compared", "where-to-stay-in-yosemite", "wawona-yosemite-guide", "hetch-hetchy-the-other-yosemite-valley", "highway-140-closed-yosemite", "yosemite-shuttle-and-yarts"],
   "worship-in-yosemite": ["thanksgiving-in-yosemite", "where-to-propose-in-yosemite", "yosemite-camping-complete-guide", "glacier-point-how-to-visit", "where-to-stay-in-yosemite", "bracebridge-dinner-and-vintners-holidays"],
   "yosemite-crowds-by-month": ["when-to-visit-yosemite", "yosemite-valley-parking-guide", "yosemite-without-reservations-2026", "glacier-point-how-to-visit", "mariposa-grove-how-to-visit", "yosemite-needs-a-reservation-system"],
   "yosemite-san-francisco-bus": ["yosemite-shuttle-and-yarts", "best-airport-for-yosemite", "yosemite-day-trip-from-bay-area", "sustainable-yosemite-car-free-zero-waste", "yosemite-in-one-or-two-days", "getting-to-yosemite"],
@@ -2545,7 +2571,7 @@ window.RELATED = {
   "yosemite-in-january": ["yosemite-in-winter", "yosemite-winter-hikes", "yosemite-in-december", "horsetail-fall-firefall", "mariposa-grove-how-to-visit", "yosemite-in-february"],
   "yosemite-rockfall": ["what-is-a-talus-field", "yosemite-glaciers-climate", "watching-climbers-el-capitan", "mist-trail-the-real-guide", "highway-140-closed-yosemite", "yosemite-place-names-meanings"],
   // Wawona: what is at Yosemite's south end, and how to spend a day there
-  "wawona-yosemite-guide": ["mariposa-grove-how-to-visit", "where-to-stay-in-yosemite", "where-to-eat-yosemite", "pets-in-yosemite", "wildfire-in-yosemite-during-your-trip", "yosemite-gateway-towns-compared"],
+  "wawona-yosemite-guide": ["mariposa-grove-how-to-visit", "where-to-stay-in-yosemite", "where-to-eat-yosemite", "pets-in-yosemite", "yosemite-gateway-towns-compared", "hotels-just-outside-yosemite"],
   // Yosemite in November: the evergreen month guide
   "yosemite-in-november": ["thanksgiving-in-yosemite", "yosemite-in-fall", "yosemite-in-winter", "yosemite-in-december", "mariposa-grove-how-to-visit", "bracebridge-dinner-and-vintners-holidays"],
   "thanksgiving-in-yosemite": ["where-to-stay-in-yosemite", "where-to-eat-yosemite", "yosemite-in-december", "bracebridge-dinner-and-vintners-holidays", "yosemite-in-november", "worship-in-yosemite"],
@@ -2593,8 +2619,8 @@ window.RELATED = {
 
   // Lodging and gateway towns
   "bracebridge-dinner-and-vintners-holidays": ["where-to-stay-in-yosemite", "yosemite-in-winter", "yosemite-in-december", "thanksgiving-in-yosemite", "yosemite-gateway-towns-compared", "where-to-eat-yosemite"],
-  "yosemite-gateway-towns-compared": ["where-to-stay-in-yosemite", "where-to-eat-yosemite", "yosemite-from-los-angeles", "yosemite-with-kids-no-reservations-2026", "highway-140-closed-yosemite", "yosemite-trip-cost-budget"],
-  "where-to-stay-in-yosemite": ["yosemite-gateway-towns-compared", "housekeeping-camp-vs-curry-village", "yosemite-camping-complete-guide", "wawona-yosemite-guide", "yosemite-trip-cost-budget", "where-to-eat-yosemite"],
+  "yosemite-gateway-towns-compared": ["where-to-stay-in-yosemite", "hotels-just-outside-yosemite", "where-to-eat-yosemite", "yosemite-from-los-angeles", "yosemite-with-kids-no-reservations-2026", "highway-140-closed-yosemite"],
+  "where-to-stay-in-yosemite": ["yosemite-gateway-towns-compared", "hotels-just-outside-yosemite", "housekeeping-camp-vs-curry-village", "yosemite-camping-complete-guide", "wawona-yosemite-guide", "yosemite-trip-cost-budget"],
   "yosemite-camping-complete-guide": ["camping-in-yosemite-first-time", "where-to-stay-in-yosemite", "first-yosemite-backpacking-trip", "yosemite-trip-cost-budget", "yosemite-facelift-volunteer-guide", "sustainable-yosemite-car-free-zero-waste"],
   "camping-in-yosemite-first-time": ["yosemite-camping-complete-guide", "yosemite-bears-safety-guide", "is-bear-spray-allowed-in-yosemite", "where-to-stay-in-yosemite", "pets-in-yosemite"],
   "yosemite-trip-cost-budget": ["where-to-stay-in-yosemite", "yosemite-gateway-towns-compared", "yosemite-camping-complete-guide", "where-to-eat-yosemite", "bracebridge-dinner-and-vintners-holidays"],
@@ -2625,7 +2651,7 @@ window.RELATED = {
   "four-mile-up-panorama-down": ["mist-trail-the-real-guide", "yosemite-photography-spots", "so-you-want-to-hike-half-dome", "glacier-point-how-to-visit", "glacier-point-road-open-2026"],
   "cathedral-lakes-day-hike": ["tuolumne-meadows-in-a-day", "clouds-rest-hike", "tioga-road-opening-weekend", "so-you-want-to-hike-half-dome", "first-yosemite-backpacking-trip", "yosemite-wildflowers-guide"],
   "tuolumne-meadows-in-a-day": ["cathedral-lakes-day-hike", "clouds-rest-hike", "tioga-road-opening-weekend", "yosemite-from-las-vegas", "yosemite-wildflowers-guide", "yosemite-stargazing-where-to-look-up"],
-  "hetch-hetchy-the-other-yosemite-valley": ["yosemite-waterfalls-guide", "yosemite-without-reservations-2026", "yosemite-in-march", "yosemite-wildflowers-guide", "yosemite-glaciers-climate"],
+  "hetch-hetchy-the-other-yosemite-valley": ["yosemite-waterfalls-guide", "yosemite-without-reservations-2026", "yosemite-in-march", "yosemite-wildflowers-guide", "yosemite-glaciers-climate", "hotels-just-outside-yosemite"],
   "yosemite-winter-hikes": ["yosemite-in-winter", "horsetail-fall-firefall", "yosemite-waterfalls-guide", "yosemite-for-non-hikers", "snowshoeing-in-yosemite", "yosemite-falls-trail"],
   "yosemite-waterfalls-guide": ["mist-trail-the-real-guide", "when-to-visit-yosemite", "hetch-hetchy-the-other-yosemite-valley", "yosemite-photography-spots", "water-ouzels-waterfalls", "yosemite-in-march"],
 
