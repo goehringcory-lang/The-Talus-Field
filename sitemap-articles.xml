@@ -35,7 +35,7 @@
   </url>
   <url>
     <loc>https://thetalusfieldjournal.com/section/trails</loc>
-    <lastmod>2026-10-17</lastmod>
+    <lastmod>2026-10-18</lastmod>
   </url>
   <url>
     <loc>https://thetalusfieldjournal.com/section/wildlife</loc>
@@ -177,6 +177,14 @@
   </url>
 
   <!-- Articles -->
+  <url>
+    <loc>https://thetalusfieldjournal.com/articles/easy-hikes-yosemite-valley</loc>
+    <lastmod>2026-10-18</lastmod>
+    <image:image>
+      <image:loc>https://thetalusfieldjournal.com/img/responsive/yosemite-falls-spring-blossoms-cory-goehring-og.jpg</image:loc>
+      <image:title>Upper Yosemite Fall framed by spring blossoms from the Valley floor</image:title>
+    </image:image>
+  </url>
   <url>
     <loc>https://thetalusfieldjournal.com/articles/worship-in-yosemite</loc>
     <lastmod>2026-10-18</lastmod>

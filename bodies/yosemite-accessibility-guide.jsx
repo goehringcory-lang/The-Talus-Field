@@ -20,7 +20,7 @@ window.ARTICLE_BODIES["yosemite-accessibility-guide"] = function YosemiteAccessi
       </p>
 
       <p>
-        <strong>Cook's Meadow and the Valley boardwalks.</strong> Flat boardwalk loops with Half Dome, Yosemite Falls, and Sentinel Rock arranged around you. This is the classic photographic geography of the park, at grade.
+        <strong>Cook's Meadow and the Valley boardwalks.</strong> Flat boardwalk loops with Half Dome, Yosemite Falls, and Sentinel Rock arranged around you. This is the classic photographic geography of the park, at grade. Our guide to <a href="/articles/easy-hikes-yosemite-valley">easy hikes in Yosemite Valley</a> lists the restrooms, water and shuttle stop for each of these walks.
       </p>
 
       <p>

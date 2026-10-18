@@ -38,7 +38,7 @@ window.ARTICLE_BODIES["yosemite-waterfalls-guide"] = function YosemiteWaterfalls
       </p>
 
       <p>
-        Two practical notes. First, the <strong>Lower Yosemite Fall loop</strong> is a one-mile paved trail, flat and wheelchair accessible, and it delivers one of the best waterfall views in the park for zero effort; I've written more about it in the <a href="/articles/yosemite-accessibility-guide">accessibility guide</a>. Second, in deep winter the base of the Upper Fall grows a <strong>frazil ice cone</strong>, a hill of frozen spray that can stand hundreds of feet tall by February. The fall in January is modest, but the cone is worth the walk.
+        Two practical notes. First, the <strong>Lower Yosemite Fall loop</strong> is a one-mile paved trail, flat and wheelchair accessible, and it delivers one of the best waterfall views in the park for zero effort; I've written more about it in the <a href="/articles/yosemite-accessibility-guide">accessibility guide</a>, and it heads our list of <a href="/articles/easy-hikes-yosemite-valley">easy hikes in Yosemite Valley</a>, beside Bridalveil Fall and Mirror Lake. Second, in deep winter the base of the Upper Fall grows a <strong>frazil ice cone</strong>, a hill of frozen spray that can stand hundreds of feet tall by February. The fall in January is modest, but the cone is worth the walk.
       </p>
 
       <h2>Bridalveil: the one that never quits</h2>

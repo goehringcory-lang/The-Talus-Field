@@ -117,6 +117,10 @@ window.ARTICLE_BODIES["yosemite-with-kids-no-reservations-2026"] = function Yose
       </p>
 
       <p>
+        For all four side by side, with the Park Service's distances, times, shuttle stops, restrooms and water, see our guide to <a href="/articles/easy-hikes-yosemite-valley">easy hikes in Yosemite Valley</a>.
+      </p>
+
+      <p>
         <strong>If you have the whole day and older kids.</strong> Two hikes off the beaten path are worth the drive. <strong>McGurk Meadow</strong> (1.6 miles round trip, flat, off Glacier Point Road) is a wildflower meadow with a historic sheepherder's cabin that kids find fascinating. <strong>Lukens Lake</strong> (1.6 miles round trip, about 200 feet of gain, off Tioga Road) is a shallow alpine lake warm enough to wade in by August, surrounded by wildflower meadows. Both are quiet and see a fraction of the Valley crowds. You'll need Glacier Point Road or Tioga Road to be open. Check conditions before driving up.
       </p>
 

@@ -13128,6 +13128,119 @@ html[data-nav-mode="pinned"] { scroll-padding-top: 62px; }
 /* The crawler fragment is not laid out as a grid. */
 #prerender-prose .wy-feature :is(.ff-split, .ff-facts, .wy-congs, .wy-seasons, .ff-rules) { display: block; }
 
+/* ── /articles/easy-hikes-yosemite-valley: the `.ez-*` pieces ─────────────
+   A feature article on the `.hp-event` tokens and the `.ff-*` kit, built like
+   the Mist Trail layer above. Its own pieces: the distance bars (five miles
+   to the track, a tick a mile), the trailhead table, the NPS Valley map with
+   pins (the non-hikers map's pattern), the walk photos, the day cards, the
+   season strip, the pack cards (the shared `.ff-rules`) and the sources
+   beside the questions. */
+.ez-feature .ff-split > * { min-width: 0; }
+.ez-prose { font: 17px/1.75 var(--sans); color: var(--hp-ink); max-width: 640px; }
+.ez-prose p { margin: 0 0 1.1em; }
+.ez-prose p:last-child { margin-bottom: 0; }
+.ez-prose strong { font-weight: 600; }
+.ez-prose a, .ez-feature .ff-alert a { color: inherit; text-decoration: underline; text-decoration-color: var(--hp-accent); text-decoration-thickness: 1px; text-underline-offset: 3px; }
+.ez-prose a:hover, .ez-feature .ff-alert a:hover { color: var(--hp-accent); }
+.ez-prose .dropcap::first-letter { font-family: var(--serif); font-weight: 400; font-size: 4.1em; float: left; line-height: 0.82; margin: 0.08em 0.1em 0 -0.03em; color: var(--hp-accent); }
+.ez-open .ez-prose { font: 19px/1.6 var(--serif); color: var(--ink-2); }
+.ez-open .ez-prose p:first-child { color: var(--hp-ink); }
+.ez-open .ff-short { position: sticky; top: 88px; }
+.hp-design a.ez-short__link { display: flex; align-items: center; justify-content: center; min-height: 48px; padding: 12px 18px; border: 1.5px solid rgba(247, 241, 225, 0.7); border-radius: 3px; font: 600 13px var(--sans); color: var(--hp-paper); text-align: center; }
+.hp-design a.ez-short__link:hover { background: var(--hp-paper); color: var(--hp-ink); }
+.ez-end { padding-block: 28px 0; }
+.ez-alert { margin-top: 20px; }
+.ez-lede { margin-bottom: 8px; }
+.hp-event .ez-sub { margin: 48px 0 16px; }
+
+/* The four, compared: the bars. */
+.ez-walks { list-style: none; margin: 28px 0 0; padding: 0; border-top: 2px solid var(--hp-ink); }
+.ez-walks > li { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) minmax(0, 1.6fr); gap: 24px; align-items: center; padding-block: 16px; border-bottom: 1px solid var(--hp-rule); }
+.ez-walks__name strong { display: block; font: 400 21px/1.2 var(--serif); color: var(--hp-ink); }
+.hp-design .ez-walks__name a { color: inherit; text-decoration: none; }
+.hp-design .ez-walks__name a:hover { color: var(--hp-accent); }
+.ez-walks__name span { display: block; margin-top: 3px; font: 600 13px var(--sans); color: var(--hp-muted); }
+.ez-walks__bar { position: relative; height: 14px; border-radius: 2px; background: repeating-linear-gradient(90deg, transparent 0, transparent calc(20% - 1px), var(--hp-rule) calc(20% - 1px), var(--hp-rule) 20%), #e8e6da; }
+.ez-walks__bar i { position: absolute; left: 0; top: 0; bottom: 0; border-radius: 2px; background: var(--hp-accent); }
+.ez-walks__facts { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px; margin: 0; }
+.ez-walks__facts dt { font: 600 10px var(--sans); letter-spacing: 1.4px; text-transform: uppercase; color: var(--hp-muted); }
+.ez-walks__facts dd { margin: 3px 0 0; font: 13px/1.45 var(--sans); color: var(--hp-ink); }
+
+/* The trailhead table. */
+.ez-basics { overflow-x: auto; }
+.ez-basics:focus-visible { outline: 2px solid var(--hp-accent); outline-offset: 2px; }
+.ez-basics table { width: 100%; border-collapse: collapse; font: 14px/1.5 var(--sans); color: var(--ink-2); }
+.ez-basics th, .ez-basics td { text-align: left; vertical-align: top; padding: 10px 12px 10px 0; border-bottom: 1px solid var(--hp-rule); }
+.ez-basics thead th { font: 600 10px var(--sans); letter-spacing: 1.4px; text-transform: uppercase; color: var(--hp-muted); border-bottom: 2px solid var(--hp-ink); }
+.ez-basics tbody th { font: 400 17px/1.3 var(--serif); color: var(--hp-ink); }
+
+/* The map: the NPS Valley map with pins. */
+.ez-map { margin: 28px 0 0; }
+.ez-map__scroll { overflow-x: auto; border: 1px solid var(--hp-rule); border-radius: 4px; background: #eef0e6; -webkit-overflow-scrolling: touch; }
+.ez-map__scroll:focus-visible { outline: 2px solid var(--hp-accent); outline-offset: 2px; }
+.ez-map__frame { position: relative; min-width: 980px; aspect-ratio: 2560 / 1000; }
+.ez-map__frame picture, .ez-map__img { display: block; width: 100%; height: 100%; object-fit: cover; }
+.ez-map__layer { position: absolute; inset: 0; pointer-events: none; }
+.ez-pin { position: absolute; width: 0; height: 0; }
+.ez-pin b { position: absolute; left: -13px; top: -13px; width: 26px; height: 26px; display: grid; place-items: center; border-radius: 50%; background: var(--ff-book, #8a3315); color: #fff; font: 700 13px var(--sans); border: 2.5px solid #fff; box-shadow: 0 1px 4px rgba(0, 0, 0, 0.4); }
+.ez-pin.is-side b { background: var(--hp-ink); }
+.ez-map figcaption { display: grid; gap: 10px; margin-top: 12px; font: 12px/1.5 var(--sans); color: var(--hp-muted); }
+.ez-map__key { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 6px 18px; font-weight: 600; color: var(--hp-ink); }
+.ez-map__key li { display: inline-flex; align-items: center; gap: 7px; }
+.ez-map__key b { display: inline-grid; place-items: center; width: 20px; height: 20px; border-radius: 50%; background: var(--ff-book, #8a3315); color: #fff; font: 700 11px var(--sans); }
+.ez-map__key .is-side b { background: var(--hp-ink); }
+.ez-after-map { margin-top: 40px; }
+
+/* The photos. */
+.ez-photo { margin: 0; }
+.ez-photo img { display: block; width: 100%; height: auto; border-radius: 4px; }
+.ez-photo figcaption { margin-top: 10px; font: 12px/1.5 var(--sans); color: var(--hp-muted); }
+
+/* A family day: the cards. Seasons: the strip. */
+.ez-days, .ez-seasons { list-style: none; margin: 8px 0 0; padding: 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; }
+.ez-days li, .ez-seasons li { background: var(--hp-card); border: 1px solid var(--hp-rule); border-top: 6px solid var(--hp-accent); border-radius: 4px; padding: 20px; display: grid; gap: 8px; align-content: start; }
+.ez-seasons li.is-mid { border-top-color: #c98a5a; }
+.ez-seasons li.is-late { border-top-color: var(--rule); }
+.ez-days span, .ez-seasons span { font: 700 11px var(--sans); letter-spacing: 1.2px; text-transform: uppercase; color: var(--hp-muted); }
+.ez-days strong, .ez-seasons strong { font: 400 24px/1.15 var(--serif); color: var(--hp-ink); }
+.ez-days p, .ez-seasons p { margin: 0; font: 14px/1.6 var(--sans); color: var(--ink-2); }
+.ez-days__prose, .ez-when { margin-top: 48px; }
+.ez-pack { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+
+/* The sources beside the questions. */
+.ez-sources { margin-top: 28px; }
+.hp-event .ez-sources h3 { font-size: 20px; margin-bottom: 8px; }
+.ez-sources ul { list-style: none; margin: 0; padding: 0; }
+.ez-sources li { padding-block: 8px; border-top: 1px solid var(--hp-rule); font: 13px var(--sans); }
+.ez-sources a { color: var(--hp-accent); }
+
+@media (max-width: 1100px) {
+  .ez-walks > li { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); }
+  .ez-walks__facts { grid-column: 1 / -1; }
+}
+@media (max-width: 880px) {
+  .ez-days, .ez-seasons { grid-template-columns: 1fr; }
+  .ez-open .ff-short { position: static; }
+  .ez-map { margin-inline: -20px; }
+  .ez-map__scroll { border-radius: 0; border-inline: 0; }
+  .ez-map figcaption { padding-inline: 20px; }
+}
+@media (max-width: 640px) {
+  .ez-walks > li { grid-template-columns: 1fr; gap: 10px; }
+  .ez-walks__facts { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .ez-pack { grid-template-columns: 1fr; }
+  .ez-basics thead { display: none; }
+  .ez-basics tr { display: block; padding-block: 12px; border-bottom: 1px solid var(--hp-rule); }
+  .ez-basics th, .ez-basics td { display: block; padding: 2px 0; border: 0; }
+  .ez-basics td::before { display: block; margin-top: 6px; font: 600 10px var(--sans); letter-spacing: 1.4px; text-transform: uppercase; color: var(--hp-muted); }
+  .ez-basics td:nth-of-type(1)::before { content: "Start"; }
+  .ez-basics td:nth-of-type(2)::before { content: "Parking"; }
+  .ez-basics td:nth-of-type(3)::before { content: "Restrooms"; }
+  .ez-basics td:nth-of-type(4)::before { content: "Water"; }
+}
+/* The crawler fragment is not laid out as a grid. */
+#prerender-prose .ez-feature :is(.ff-split, .ff-facts, .ez-walks > li, .ez-walks__facts, .ez-days, .ez-seasons, .ff-rules) { display: block; }
+
 /* ── /articles/yosemite-stargazing-tours-and-programs: the `.sg-*` pieces ──
    A feature article on the `.hp-event` tokens and the `.ff-*` kit, built like
    the Mist Trail layer above. Its own pieces: the program comparison table,

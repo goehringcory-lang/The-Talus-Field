@@ -1,5 +1,32 @@
 [
   {
+    "slug": "easy-hikes-yosemite-valley",
+    "cat": "trails",
+    "title": "Easy hikes in Yosemite Valley: four short walks, measured for families",
+    "dek": "Lower Yosemite Fall, Cook's Meadow, Bridalveil Fall and Mirror Lake, by the Park Service's own numbers: how far, how long, how much climb, where a stroller can go, where the toilets and the water are, which shuttle stop, and when the waterfalls run dry.",
+    "seoTitle": "Easy Hikes in Yosemite Valley: Distances for Families",
+    "seoDek": "Easy Yosemite Valley hikes for families: Lower Yosemite Fall, Cook's Meadow, Bridalveil Fall and Mirror Lake, with distances, times, strollers and shuttle stops.",
+    "date": "October 18, 2026",
+    "isoDate": "2026-10-18",
+    "isoModified": "2026-10-18",
+    "read": "10 min",
+    "image": "img/yosemite-falls-spring-blossoms-cory-goehring.jpg",
+    "ogImage": { "url": "img/responsive/yosemite-falls-spring-blossoms-cory-goehring-og.jpg", "width": 1200, "height": 630 },
+    "placeholder": "Upper Yosemite Fall framed by spring blossoms from the Valley floor",
+    "cover": true,
+    "wordCount": 2900,
+    "keywords": ["easy hikes in Yosemite Valley", "easy Yosemite hikes for families", "Yosemite hikes with kids", "stroller friendly Yosemite trails", "Lower Yosemite Fall trail distance", "Cook's Meadow loop", "Bridalveil Fall trail", "Mirror Lake trail Yosemite", "short hikes Yosemite Valley", "Yosemite Valley walks", "wheelchair accessible trails Yosemite Valley", "Yosemite shuttle stop trailheads"],
+    "faq": [
+      { "q": "What are the easiest hikes in Yosemite Valley?", "a": "The Park Service rates four Valley walks easy or close to it: Bridalveil Fall, 0.5 mile round trip with about 80 feet of climb; Lower Yosemite Fall, a 1-mile loop with about 50 feet; Cook's Meadow, a flat 1-mile loop; and Mirror Lake, 2 miles round trip to the lake with 100 feet, rated easy to moderate." },
+      { "q": "Which Yosemite Valley trails are good for strollers?", "a": "The Park Service allows strollers on the Lower Yosemite Fall loop, on the Cook's Meadow loop, and on the first paved mile of the Mirror Lake trail. Bridalveil Fall's page does not mention strollers; the paved trail has a wheelchair-accessible platform about halfway up, and the grade steepens beyond it." },
+      { "q": "How long does the Lower Yosemite Fall walk take?", "a": "About 30 minutes for the 1-mile loop, by the Park Service's estimate. It starts at Valleywide shuttle stop 6. There is no parking at the trailhead; use the Yosemite Village or Yosemite Falls parking areas." },
+      { "q": "Does Mirror Lake have water in it?", "a": "Only part of the year. The Park Service says Mirror Lake has little water much of the year and is fullest in spring and early summer, when snowmelt fills Tenaya Creek. The Yosemite Guide marks it dry in summer and fall." },
+      { "q": "Can you take the shuttle to Bridalveil Fall?", "a": "No. The Park Service says shuttle service is not available to the Bridalveil Fall area. Drive to the Bridalveil Fall parking area on Wawona Road, which often fills quickly in summer, or park along Southside Drive and walk about 0.75 mile round trip." },
+      { "q": "Is Lower Yosemite Fall dry in fall?", "a": "Often. The Park Service says the fall is often dry from late July or August through October. Bridalveil Fall flows year-round, so it is the surer waterfall walk late in the year." }
+    ],
+    "related": ["yosemite-with-kids-no-reservations-2026", "yosemite-for-non-hikers", "yosemite-waterfalls-guide", "yosemite-accessibility-guide", "yosemite-winter-hikes", "mist-trail-the-real-guide"]
+  },
+  {
     "slug": "worship-in-yosemite",
     "cat": "planning",
     "title": "Worship in Yosemite: church services, Easter sunrise and weddings in the park",
@@ -892,7 +919,7 @@
       { "q": "What is the best winter hike in Yosemite?", "a": "For effort against reward, Columbia Rock: about two miles round trip and 1,000 feet up the sunny south-facing wall. For solitude, the Wapama Falls trail at Hetch Hetchy, about five miles round trip. For the sight nobody expects, the two-mile walk up the closed road to the snowbound sequoias of the Mariposa Grove." },
       { "q": "Is Hetch Hetchy open for hiking in winter?", "a": "Usually. It sits below four thousand feet and is the corner of the park most likely to be snow-free all winter. The access road runs on posted gate hours, roughly sunrise to sunset, and snow can close it for days after a storm, so check conditions before the drive." }
     ],
-    "related": ["yosemite-in-winter", "horsetail-fall-firefall", "yosemite-waterfalls-guide", "yosemite-for-non-hikers", "snowshoeing-in-yosemite", "yosemite-falls-trail"]
+    "related": ["yosemite-in-winter", "horsetail-fall-firefall", "yosemite-waterfalls-guide", "easy-hikes-yosemite-valley", "snowshoeing-in-yosemite", "yosemite-falls-trail"]
   },
   {
     "slug": "yosemite-in-march",
@@ -1537,7 +1564,7 @@
       { "q": "Does Yosemite have ASL interpreters?", "a": "Yes. American Sign Language interpretation is available for ranger programs; in the off-season, request an interpreter at least two weeks ahead (yose_deaf_services@nps.gov, or 209-379-5250 by voice or text). A public videophone for Deaf visitors is in the lobby of Yosemite Valley Lodge, and the park's films run captioned." },
       { "q": "What is the Access Pass?", "a": "A free lifetime pass for U.S. citizens and permanent residents with a permanent disability. It admits the pass holder and everyone in the vehicle to every national park and federal recreation site, discounts about half the cost of most federal campgrounds, and replaces the $35 gate fee. It is available at the entrance station with documentation." }
     ],
-    "related": ["yosemite-for-non-hikers", "yosemite-shuttle-and-yarts", "mariposa-grove-how-to-visit", "yosemite-valley-parking-guide", "yosemite-ranger-programs"]
+    "related": ["yosemite-for-non-hikers", "yosemite-shuttle-and-yarts", "mariposa-grove-how-to-visit", "yosemite-valley-parking-guide", "yosemite-ranger-programs", "easy-hikes-yosemite-valley"]
   },
   {
     "slug": "pets-in-yosemite",
@@ -2001,7 +2028,7 @@
       { "q": "What age is appropriate for Yosemite with kids?", "a": "Any age with realistic expectations. Infants and toddlers do well in a carrier on short paved walks. Kids 4-7 can handle 2-3 miles on flat valley trails. By 8-10 most kids can manage the Mist Trail to Vernal Fall. Teenagers can handle summit hikes like Sentinel Dome and the full Mist Trail to Nevada Fall." },
       { "q": "Do I need reservations for Yosemite with kids in 2026?", "a": "No day-use vehicle reservation is required in 2026. Summer campground reservations on Recreation.gov book out months in advance and are essential. In-park lodging fills 6-12 months ahead. YARTS does not require advance booking, though popular runs fill on peak weekends." }
     ],
-    "related": ["yosemite-ranger-programs", "yosemite-for-non-hikers", "swimming-in-the-merced", "yosemite-bears-safety-guide", "camping-in-yosemite-first-time"]
+    "related": ["easy-hikes-yosemite-valley", "yosemite-ranger-programs", "yosemite-for-non-hikers", "swimming-in-the-merced", "yosemite-bears-safety-guide", "camping-in-yosemite-first-time"]
   },
   {
     "slug": "tioga-road-opening-weekend",
