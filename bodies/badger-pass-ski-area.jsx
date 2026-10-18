@@ -30,7 +30,7 @@ window.ARTICLE_BODIES["badger-pass-ski-area"] = function BadgerPassSkiAreaBody()
       </p>
 
       <p>
-        "Conditions permitting" is the load-bearing phrase. In February 2025 the concessioner and the Park Service announced that Badger Pass would not open at all for the 2024 to 2025 season: the snow had come too late, they said, to make a short season worthwhile, and season passes were refunded. The next winter it opened late and closed early. The Nordic center, which runs the cross-country and snowshoe trails, opened on Friday, January 9, 2026, the lifts followed on January 16, and the concessioner closed the area for the season on <strong>March 18, 2026</strong>, after a week of unseasonable warmth melted the snow. Neither winter came close to mid-December.
+        "Conditions permitting" is the load-bearing phrase. In February 2025 the concessioner and the Park Service announced that Badger Pass would not open at all for the 2024 to 2025 season: the snow had come too late, they said, to make a short season worthwhile, and season passes were refunded. The next winter it opened late and closed early. The Nordic center, which runs the cross-country and snowshoe trails, opened on Friday, January 9, 2026, the lifts followed on January 16, and the concessioner closed the area for the season on <strong>March 18, 2026</strong>, after a week of unseasonable warmth melted the snow. Neither winter came close to mid-December, which is the thing to know before you plan <a href="/articles/christmas-and-new-years-in-yosemite">a Christmas or New Year's trip</a> around the hill.
       </p>
 
       <p>

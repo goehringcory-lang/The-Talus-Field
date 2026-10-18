@@ -1,5 +1,32 @@
 [
   {
+    "slug": "christmas-and-new-years-in-yosemite",
+    "cat": "planning",
+    "title": "Christmas and New Year's in Yosemite: the holiday calendar, the rooms, the roads and Badger Pass",
+    "dek": "The busiest fortnight of the winter, night by night: the Bracebridge Dinner that ends three days before Christmas, the two New Year's Eve parties and what they cost, which hotels are open, what the snow closes, the chain rule every car must follow, and why Badger Pass is a maybe.",
+    "seoTitle": "Christmas and New Year's in Yosemite: Events, Lodging, Chains",
+    "seoDek": "Christmas and New Year's in Yosemite: Bracebridge dates, the Ahwahnee and Lodge New Year's Eve parties, holiday lodging, what is open, chains, and Badger Pass timing.",
+    "date": "October 18, 2026",
+    "isoDate": "2026-10-18",
+    "isoModified": "2026-10-18",
+    "read": "10 min",
+    "image": "img/yosemite-valley-winter-wall.jpg",
+    "ogImage": { "url": "img/responsive/yosemite-valley-winter-wall-1600.jpg", "width": 1600, "height": 1060 },
+    "placeholder": "Yosemite Valley's granite walls dusted with snow in winter",
+    "cover": true,
+    "wordCount": 2400,
+    "keywords": ["Christmas in Yosemite", "New Year's in Yosemite", "Yosemite New Year's Eve", "Ahwahnee New Year's Eve dinner dance", "Yosemite Valley Lodge New Year's Eve", "Bracebridge Dinner 2026 dates", "Yosemite over the holidays", "is Yosemite open on Christmas", "Yosemite chains in December", "Badger Pass opening date", "Curry Village December", "Yosemite holiday lodging"],
+    "faq": [
+      { "q": "Is Yosemite open on Christmas Day?", "a": "Yes. The Park Service says Yosemite is open 24 hours a day, 365 days a year. Yosemite Valley and Wawona are reachable by car all year, though Tioga Road and most of Glacier Point Road are closed by snow, and chains may be required on any day." },
+      { "q": "What is there to do in Yosemite for New Year's Eve?", "a": "Yosemite Hospitality lists two parties on December 31, 2026: the Ahwahnee's New Year's Eve Dinner Dance, 8:30 pm to 12:30 am, $299 for adults and $149 for children, and a party in the Mountain Room at Yosemite Valley Lodge, 6 pm to 12:30 am, $75 for adults and $40 for children under 12, with tickets sold on site the day of the party." },
+      { "q": "When is the Bracebridge Dinner in 2026?", "a": "Yosemite Hospitality lists eight nights at the Ahwahnee: December 8, 10, 12, 14, 16, 18, 20 and 22, 2026. There is no performance on Christmas Eve or Christmas Day. As of mid-October, December 12 was marked sold out." },
+      { "q": "Will Badger Pass be open for Christmas?", "a": "Nobody knows yet. The concessioner describes the season as mid-December to mid-March, conditions permitting, but Badger Pass did not open at all in the 2024 to 2025 winter and opened on January 16 in 2026. No 2026 to 2027 opening date had been announced as of October 18, 2026. Call the Snow Phone, 209-372-1000." },
+      { "q": "Do I need chains to visit Yosemite at Christmas?", "a": "You must carry them. When chain controls are in effect in the park, every vehicle must have chains in it, including four-wheel drives and rental cars, and failing to put them on when required can bring a citation of up to $5,000. The park strongly recommends chains from November through March." },
+      { "q": "Is Curry Village open over Christmas?", "a": "Yosemite Hospitality says Curry Village will not be open from November 29 through December 10, 2026, which leaves it open for the holiday weeks. Its heated tent cabins have heat in winter but no plumbing." }
+    ],
+    "related": ["bracebridge-dinner-and-vintners-holidays", "yosemite-in-december", "badger-pass-ski-area", "where-to-stay-in-yosemite", "thanksgiving-in-yosemite", "yosemite-in-winter"]
+  },
+  {
     "slug": "worship-in-yosemite",
     "cat": "planning",
     "title": "Worship in Yosemite: church services, Easter sunrise and weddings in the park",
@@ -160,7 +187,7 @@
       { "q": "Can you ski to Glacier Point in winter?", "a": "Yes. Beyond Badger Pass, Glacier Point Road is closed to cars and groomed in part for skiing and snowshoeing, 10.5 miles one way to Glacier Point, a 21-mile round trip. The Glacier Point Ski Hut did not open in 2025 to 2026 and had posted nothing about 2026 to 2027." },
       { "q": "Are there ski lessons for beginners at Badger Pass?", "a": "Yes. The Guaranteed Learn to Ski or Snowboard package is $154 for adults and $140 for children 7 to 12, with rental, helmet, a beginner lift ticket, and two group lessons, and a free return lesson if you do not ride the beginner run on the first day. Badger Pups lessons for ages 4 to 6 are $100 for one or $130 for two." }
     ],
-    "related": ["yosemite-in-winter", "snowshoeing-in-yosemite", "glacier-point-how-to-visit", "yosemite-in-january", "yosemite-in-february", "where-to-stay-in-yosemite"]
+    "related": ["yosemite-in-winter", "snowshoeing-in-yosemite", "glacier-point-how-to-visit", "yosemite-in-january", "christmas-and-new-years-in-yosemite", "where-to-stay-in-yosemite"]
   },
   {
     "slug": "snowshoeing-in-yosemite",
@@ -343,7 +370,7 @@
       { "q": "Is the Mariposa Grove shuttle running at Thanksgiving?", "a": "In 2026 the free shuttle from the Welcome Plaza runs through November, weather permitting, from 8 a.m. to 3:30 p.m., with the last bus leaving the grove at 5 p.m. From December 1 there is no shuttle and the way in is a two-mile walk with about 500 feet of gain." },
       { "q": "Does YARTS run on Thanksgiving?", "a": "YARTS lists Thanksgiving Day among the holidays on which it does not operate, but its Highway 140 page lists Thanksgiving Day as November 26, 2026." }
     ],
-    "related": ["where-to-stay-in-yosemite", "where-to-eat-yosemite", "yosemite-in-december", "bracebridge-dinner-and-vintners-holidays", "yosemite-in-november", "worship-in-yosemite"]
+    "related": ["where-to-stay-in-yosemite", "where-to-eat-yosemite", "yosemite-in-december", "bracebridge-dinner-and-vintners-holidays", "christmas-and-new-years-in-yosemite", "worship-in-yosemite"]
   },
   {
     "slug": "best-yosemite-backpacking-trips",
@@ -527,7 +554,7 @@
       { "q": "Can you camp in Yosemite in December?", "a": "Yes, at a short list of campgrounds. Upper Pines is the only campground on reservations all year: arrivals from November 15 through December 14 go on sale July 15, and arrivals from December 15 through January 14 go on sale August 15, at 7 a.m. Pacific. Camp 4, Wawona, and Hodgdon Meadow are first come, first served in winter." },
       { "q": "Is Curry Village open in December?", "a": "Not for the whole month. The concessioner currently lists Curry Village as not open from November 29 through December 10, 2026, with its winter rate starting December 13. The Ahwahnee and Yosemite Valley Lodge run through the month." }
     ],
-    "related": ["yosemite-in-winter", "yosemite-winter-hikes", "bracebridge-dinner-and-vintners-holidays", "where-to-stay-in-yosemite", "yosemite-in-january", "yosemite-in-november"]
+    "related": ["christmas-and-new-years-in-yosemite", "yosemite-in-winter", "yosemite-winter-hikes", "bracebridge-dinner-and-vintners-holidays", "where-to-stay-in-yosemite", "yosemite-in-january"]
   },
   {
     "slug": "wildfire-in-yosemite-during-your-trip",
@@ -815,7 +842,7 @@
       { "q": "When do Bracebridge Dinner tickets go on sale, and do they sell out?", "a": "Typically eight to nine months before the December performances, which lands around March or April. They have sold out every year since the dinner's 2024 return, so tickets bought in late summer for that same December are usually working the cancellation list rather than the original sale." },
       { "q": "When should I book Vintners' Holidays?", "a": "The lodging that Vintners' Holidays packages are built around books on the same 366-day advance window as any other Ahwahnee, Lodge, or Curry Village reservation. If you miss that window, check back regularly: cancellations happen continuously, with a real wave in the final weeks before any date." }
     ],
-    "related": ["where-to-stay-in-yosemite", "yosemite-in-winter", "yosemite-in-december", "thanksgiving-in-yosemite", "yosemite-gateway-towns-compared", "where-to-eat-yosemite"]
+    "related": ["where-to-stay-in-yosemite", "christmas-and-new-years-in-yosemite", "yosemite-in-december", "thanksgiving-in-yosemite", "yosemite-gateway-towns-compared", "where-to-eat-yosemite"]
   },
   {
     "slug": "yosemite-fire-restrictions-explained",
@@ -1410,7 +1437,7 @@
       { "q": "When is it easiest to get a room inside Yosemite?", "a": "Winter. The Ahwahnee, Yosemite Valley Lodge and a reduced Curry Village run all year, rates drop, and midweek availability in January is far better than in July. The concessioner's winter offers put the floor at the Ahwahnee from $389, the Lodge from $172 and Curry Village from $95 a night on select dates." },
       { "q": "Is Yosemite West inside the park?", "a": "No. Yosemite West is a private enclave of vacation homes just outside the park's southern boundary, reached through the park on Wawona Road. It has no restaurant, store, gas station or shuttle." }
     ],
-    "related": ["yosemite-gateway-towns-compared", "housekeeping-camp-vs-curry-village", "yosemite-camping-complete-guide", "wawona-yosemite-guide", "yosemite-trip-cost-budget", "where-to-eat-yosemite"]
+    "related": ["yosemite-gateway-towns-compared", "housekeeping-camp-vs-curry-village", "yosemite-camping-complete-guide", "wawona-yosemite-guide", "yosemite-trip-cost-budget", "christmas-and-new-years-in-yosemite"]
   },
   {
     "slug": "yosemite-wildflowers-guide",

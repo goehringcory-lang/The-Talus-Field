@@ -110,12 +110,13 @@ window.planningSeriesFor = function (slug) {
 // verifies this map stays in sync with the files in bodies/.
 // ============================================================
 window.BODY_VERSIONS = {
+  "christmas-and-new-years-in-yosemite": 1,
   "worship-in-yosemite": 1,
   "yosemite-crowds-by-month": 1,
   "yosemite-san-francisco-bus": 2,
   "housekeeping-camp-vs-curry-village": 1,
   "yosemite-stargazing-tours-and-programs": 1,
-  "badger-pass-ski-area": 2,
+  "badger-pass-ski-area": 3,
   "snowshoeing-in-yosemite": 2,
   "yosemite-in-february": 2,
   "yosemite-in-january": 2,
@@ -129,7 +130,7 @@ window.BODY_VERSIONS = {
   "yosemite-place-names-meanings": 2,
   "best-airport-for-yosemite": 9,
   "sustainable-yosemite-car-free-zero-waste": 6,
-  "yosemite-in-december": 4,
+  "yosemite-in-december": 5,
   "wildfire-in-yosemite-during-your-trip": 6,
   "yosemite-in-october-2026": 11,
   "yosemite-falls-trail": 4,
@@ -140,7 +141,7 @@ window.BODY_VERSIONS = {
   "highway-140-closed-yosemite": 4,
   "yosemite-from-los-angeles": 9,
   "yosemite-facelift-volunteer-guide": 9,
-  "bracebridge-dinner-and-vintners-holidays": 10,
+  "bracebridge-dinner-and-vintners-holidays": 11,
   "yosemite-fire-restrictions-explained": 10,
   "yosemite-in-three-to-five-days": 12,
   "yosemite-winter-hikes": 7,
@@ -937,6 +938,30 @@ window.KIT_REI = {
 // AffiliateDisclosure line under the byline, before the first link;
 // scripts/check-affiliate-links.mjs fails when the flag and the body disagree.
 window.ARTICLES = [
+  {
+    slug: "christmas-and-new-years-in-yosemite",
+    aff: true,
+    cat: "planning",
+    title: "Christmas and New Year's in Yosemite: the holiday calendar, the rooms, the roads and Badger Pass",
+    seoTitle: "Christmas and New Year's in Yosemite: Events, Lodging, Chains",
+    dek: "The busiest fortnight of the winter, night by night: the Bracebridge Dinner that ends three days before Christmas, the two New Year's Eve parties and what they cost, which hotels are open, what the snow closes, the chain rule every car must follow, and why Badger Pass is a maybe.",
+    seoDek: "Christmas and New Year's in Yosemite: Bracebridge dates, the Ahwahnee and Lodge New Year's Eve parties, holiday lodging, what is open, chains, and Badger Pass timing.",
+    date: "October 18, 2026",
+    isoDate: "2026-10-18",
+    isoModified: "2026-10-18",
+    read: "10 min",
+    placeholder: "Yosemite Valley's granite walls dusted with snow in winter",
+    image: "img/yosemite-valley-winter-wall.jpg",
+    credit: "Photo: Ahmed Radwan / Wikimedia Commons (CC0)",
+    // The /firefall layout for an article (page-article.jsx), as on the Mist
+    // Trail piece. The two buttons jump to the holiday calendar and to the
+    // Badger Pass record.
+    feature: {
+      eyebrow: "BRACEBRIDGE · CHRISTMAS · NEW YEAR'S EVE · BADGER PASS · CHAINS",
+      focus: "50% 50%",
+      actions: [["#cny-calendar", "The holiday calendar"], ["#cny-badger", "Badger Pass timing"]],
+    },
+  },
   {
     slug: "worship-in-yosemite",
     aff: true,
@@ -2532,6 +2557,7 @@ window.START_HERE = [
 // Curate a piece when it earns real search impressions, when it anchors a
 // cluster, or when it is the destination that needs the equity.
 window.RELATED = {
+  "christmas-and-new-years-in-yosemite": ["bracebridge-dinner-and-vintners-holidays", "yosemite-in-december", "badger-pass-ski-area", "where-to-stay-in-yosemite", "thanksgiving-in-yosemite", "yosemite-in-winter"],
   "worship-in-yosemite": ["thanksgiving-in-yosemite", "where-to-propose-in-yosemite", "yosemite-camping-complete-guide", "glacier-point-how-to-visit", "where-to-stay-in-yosemite", "bracebridge-dinner-and-vintners-holidays"],
   "yosemite-crowds-by-month": ["when-to-visit-yosemite", "yosemite-valley-parking-guide", "yosemite-without-reservations-2026", "glacier-point-how-to-visit", "mariposa-grove-how-to-visit", "yosemite-needs-a-reservation-system"],
   "yosemite-san-francisco-bus": ["yosemite-shuttle-and-yarts", "best-airport-for-yosemite", "yosemite-day-trip-from-bay-area", "sustainable-yosemite-car-free-zero-waste", "yosemite-in-one-or-two-days", "getting-to-yosemite"],
@@ -2539,7 +2565,7 @@ window.RELATED = {
   // Onward to every bed in the park, the campgrounds, the kitchens, the bear
   // rules, the trail at Curry's door and the first-time camper's guide.
   "housekeeping-camp-vs-curry-village": ["where-to-stay-in-yosemite", "yosemite-camping-complete-guide", "where-to-eat-yosemite", "yosemite-bears-safety-guide", "mist-trail-the-real-guide", "camping-in-yosemite-first-time"],
-  "badger-pass-ski-area": ["yosemite-in-winter",  "snowshoeing-in-yosemite",  "glacier-point-how-to-visit",  "yosemite-in-january",  "yosemite-in-february",  "where-to-stay-in-yosemite"],
+  "badger-pass-ski-area": ["yosemite-in-winter",  "snowshoeing-in-yosemite",  "glacier-point-how-to-visit",  "yosemite-in-january",  "christmas-and-new-years-in-yosemite",  "where-to-stay-in-yosemite"],
   "snowshoeing-in-yosemite": ["yosemite-in-winter",  "badger-pass-ski-area",  "yosemite-winter-hikes",  "mariposa-grove-how-to-visit",  "glacier-point-how-to-visit",  "yosemite-ranger-programs"],
   "yosemite-in-february": ["horsetail-fall-firefall",  "yosemite-in-winter",  "yosemite-in-january",  "yosemite-in-march",  "badger-pass-ski-area",  "mariposa-grove-how-to-visit"],
   "yosemite-in-january": ["yosemite-in-winter", "yosemite-winter-hikes", "yosemite-in-december", "horsetail-fall-firefall", "mariposa-grove-how-to-visit", "yosemite-in-february"],
@@ -2548,7 +2574,7 @@ window.RELATED = {
   "wawona-yosemite-guide": ["mariposa-grove-how-to-visit", "where-to-stay-in-yosemite", "where-to-eat-yosemite", "pets-in-yosemite", "wildfire-in-yosemite-during-your-trip", "yosemite-gateway-towns-compared"],
   // Yosemite in November: the evergreen month guide
   "yosemite-in-november": ["thanksgiving-in-yosemite", "yosemite-in-fall", "yosemite-in-winter", "yosemite-in-december", "mariposa-grove-how-to-visit", "bracebridge-dinner-and-vintners-holidays"],
-  "thanksgiving-in-yosemite": ["where-to-stay-in-yosemite", "where-to-eat-yosemite", "yosemite-in-december", "bracebridge-dinner-and-vintners-holidays", "yosemite-in-november", "worship-in-yosemite"],
+  "thanksgiving-in-yosemite": ["where-to-stay-in-yosemite", "where-to-eat-yosemite", "yosemite-in-december", "bracebridge-dinner-and-vintners-holidays", "christmas-and-new-years-in-yosemite", "worship-in-yosemite"],
   // The best Yosemite backpacking trips, in order: the permit, the pickup, and five routes
   "best-yosemite-backpacking-trips": ["first-yosemite-backpacking-trip", "yosemite-wilderness-permits-guide", "yosemite-walk-up-and-day-of-permits", "yosemite-bears-safety-guide", "tuolumne-meadows-in-a-day", "cathedral-lakes-day-hike"],
   // Yosemite trees: how to tell them apart, from the foothills to Tioga Pass
@@ -2565,7 +2591,7 @@ window.RELATED = {
   // Yosemite in December: the evergreen month guide. Onward to the season
   // piece, the winter trails, the holiday dinner, the lodging and entrance
   // guides, and the next month guide in the series.
-  "yosemite-in-december": ["yosemite-in-winter", "yosemite-winter-hikes", "bracebridge-dinner-and-vintners-holidays", "where-to-stay-in-yosemite", "yosemite-in-january", "yosemite-in-november"],
+  "yosemite-in-december": ["christmas-and-new-years-in-yosemite", "yosemite-in-winter", "yosemite-winter-hikes", "bracebridge-dinner-and-vintners-holidays", "where-to-stay-in-yosemite", "yosemite-in-january"],
   // A wildfire in Yosemite during your trip: the evergreen decision guide the
   // Dome Fire week asked for. Onward to smoke, the restrictions, the road it
   // closed and its hike-in alternative, the other closure guide, and the towns.
@@ -2592,9 +2618,9 @@ window.RELATED = {
   "yosemite-facelift-volunteer-guide": ["yosemite-in-september-2026", "yosemite-camping-complete-guide", "yosemite-ranger-programs", "yosemite-fire-restrictions-explained", "yosemite-shuttle-and-yarts"],
 
   // Lodging and gateway towns
-  "bracebridge-dinner-and-vintners-holidays": ["where-to-stay-in-yosemite", "yosemite-in-winter", "yosemite-in-december", "thanksgiving-in-yosemite", "yosemite-gateway-towns-compared", "where-to-eat-yosemite"],
+  "bracebridge-dinner-and-vintners-holidays": ["where-to-stay-in-yosemite", "christmas-and-new-years-in-yosemite", "yosemite-in-december", "thanksgiving-in-yosemite", "yosemite-gateway-towns-compared", "where-to-eat-yosemite"],
   "yosemite-gateway-towns-compared": ["where-to-stay-in-yosemite", "where-to-eat-yosemite", "yosemite-from-los-angeles", "yosemite-with-kids-no-reservations-2026", "highway-140-closed-yosemite", "yosemite-trip-cost-budget"],
-  "where-to-stay-in-yosemite": ["yosemite-gateway-towns-compared", "housekeeping-camp-vs-curry-village", "yosemite-camping-complete-guide", "wawona-yosemite-guide", "yosemite-trip-cost-budget", "where-to-eat-yosemite"],
+  "where-to-stay-in-yosemite": ["yosemite-gateway-towns-compared", "housekeeping-camp-vs-curry-village", "yosemite-camping-complete-guide", "wawona-yosemite-guide", "yosemite-trip-cost-budget", "christmas-and-new-years-in-yosemite"],
   "yosemite-camping-complete-guide": ["camping-in-yosemite-first-time", "where-to-stay-in-yosemite", "first-yosemite-backpacking-trip", "yosemite-trip-cost-budget", "yosemite-facelift-volunteer-guide", "sustainable-yosemite-car-free-zero-waste"],
   "camping-in-yosemite-first-time": ["yosemite-camping-complete-guide", "yosemite-bears-safety-guide", "is-bear-spray-allowed-in-yosemite", "where-to-stay-in-yosemite", "pets-in-yosemite"],
   "yosemite-trip-cost-budget": ["where-to-stay-in-yosemite", "yosemite-gateway-towns-compared", "yosemite-camping-complete-guide", "where-to-eat-yosemite", "bracebridge-dinner-and-vintners-holidays"],

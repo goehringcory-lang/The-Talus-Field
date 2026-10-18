@@ -6,8 +6,8 @@
       "sha256": "25638d073031315c"
     },
     "/dist/bodies/badger-pass-ski-area.js": {
-      "v": 2,
-      "sha256": "c32d299f9f6b1b98"
+      "v": 3,
+      "sha256": "02aec7866e1bf7de"
     },
     "/dist/bodies/best-airport-for-yosemite.js": {
       "v": 9,
@@ -18,8 +18,8 @@
       "sha256": "a76edec66dee5677"
     },
     "/dist/bodies/bracebridge-dinner-and-vintners-holidays.js": {
-      "v": 10,
-      "sha256": "db7520cc39b72969"
+      "v": 11,
+      "sha256": "c2f51bd0d2ac6a67"
     },
     "/dist/bodies/camping-in-yosemite-first-time.js": {
       "v": 6,
@@ -32,6 +32,10 @@
     "/dist/bodies/cell-service-in-yosemite.js": {
       "v": 5,
       "sha256": "cf9076e66dd0a9c9"
+    },
+    "/dist/bodies/christmas-and-new-years-in-yosemite.js": {
+      "v": 1,
+      "sha256": "612e20c25fe7d89f"
     },
     "/dist/bodies/clouds-rest-hike.js": {
       "v": 5,
@@ -250,8 +254,8 @@
       "sha256": "92ea8b63ed63e586"
     },
     "/dist/bodies/yosemite-in-december.js": {
-      "v": 4,
-      "sha256": "47cc3bc6c0b6309e"
+      "v": 5,
+      "sha256": "bedf31a74bfd7307"
     },
     "/dist/bodies/yosemite-in-fall.js": {
       "v": 12,
