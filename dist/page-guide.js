@@ -1336,7 +1336,7 @@ function GuideOfflineDemo() {
     className: "eyebrow"
   }, "Needs signal"), React.createElement("ul", null, React.createElement("li", null, "· The live park webcams"), React.createElement("li", null, "· Entrance waits and parking-lot status right now"), React.createElement("li", null, "· Fresh weather and program updates (the last sync stays readable)"), React.createElement("li", null, "· The Nature Notes archive links back to this site"), React.createElement("li", null, "· Calling or texting 911, like any call (a lodge or visitor center landline reaches dispatch when a phone cannot)")))), React.createElement("p", {
     className: "guide-offline__fineprint"
-  }, "The full download is about 70 MB. The 3D park map is about 25 MB of it, in pieces: a 7 MB overview of the whole park, then the Valley, Glacier Point and Wawona, Tioga Road and Tuolumne, and Hetch Hetchy at trailhead scale, each downloaded on its own."));
+  }, "The full download is about 70 MB. The 3D park map is about 22 MB of it, in pieces: a 7 MB overview of the whole park, then the Valley, Glacier Point and Wawona, Tioga Road and Tuolumne, and Hetch Hetchy at trailhead scale, each downloaded on its own."));
 }
 function GuideCompare({
   go
