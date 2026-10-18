@@ -369,7 +369,7 @@ window.ARTICLE_BODIES["yosemite-camping-complete-guide"] = function YosemiteCamp
             </p>
             <div className="cg-prose">
               <p>
-                The campground's page on Recreation.gov states its own on-sale date and time. It is the authoritative version, and everything else, including this page, is a summary of it. If you are visiting for the first time, the <a href="/articles/first-time-yosemite-overwhelm">first-timer's guide</a> covers the broader logistics, and <a href="/articles/camping-in-yosemite-first-time">what your first night in one of these campgrounds is actually like</a> covers the rest. Camping adds its own layer, and the reservation system is the first gate.
+                The campground's page on Recreation.gov states its own on-sale date and time. It is the authoritative version, and everything else, including this page, is a summary of it. <a href="/articles/yosemite-campground-reservations">The reservations guide</a> lays out the next eight release mornings and the rules that come with a site. If you are visiting for the first time, the <a href="/articles/first-time-yosemite-overwhelm">first-timer's guide</a> covers the broader logistics, and <a href="/articles/camping-in-yosemite-first-time">what your first night in one of these campgrounds is actually like</a> covers the rest. Camping adds its own layer, and the reservation system is the first gate.
               </p>
             </div>
           </div>
