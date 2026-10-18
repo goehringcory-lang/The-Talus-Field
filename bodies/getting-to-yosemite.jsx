@@ -58,7 +58,7 @@ window.ARTICLE_BODIES["getting-to-yosemite"] = function GettingToYosemiteBody() 
       <h2>Winter changes the math</h2>
 
       <p>
-        From roughly November through March, and less often in October and April, chain control can go up on any road into the park, and the law requires you to carry chains when it does, even in a four-wheel drive with snow tires. Rangers turn cars around at the checkpoints. Highway 140 needs chains least often, which is why it is the standing winter recommendation. Highway 41 and 120 both climb higher and ice sooner. Buy chains that fit your car before you leave home (they are cheaper at a city auto-parts store than anywhere within a hundred miles of the park), and practice putting them on once in your driveway. Ten minutes in a dry driveway beats forty-five on the shoulder in a snowstorm.
+        From roughly November through March, and less often in October and April, chain control can go up on any road into the park, and the law requires you to carry chains when it does, even in a four-wheel drive with snow tires. Rangers turn cars around at the checkpoints. Highway 140 needs chains least often, which is why it is the standing winter recommendation. Highway 41 and 120 both climb higher and ice sooner. Buy chains that fit your car before you leave home (they are cheaper at a city auto-parts store than anywhere within a hundred miles of the park), and practice putting them on once in your driveway. Ten minutes in a dry driveway beats forty-five on the shoulder in a snowstorm. What R1, R2 and R3 mean for a rental car, an all-wheel drive or an EV is in <a href="/articles/yosemite-tire-chains">the tire chain guide</a>.
       </p>
 
       <h2>The gate itself</h2>

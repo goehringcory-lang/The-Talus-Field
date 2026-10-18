@@ -8,11 +8,242 @@
 Publisher: The Talus Field (https://thetalusfieldjournal.com). Editor: Cory Goehring.
 Citation guidance and the annotated page index: https://thetalusfieldjournal.com/llms.txt
 Canonical article URL pattern: https://thetalusfieldjournal.com/articles/<slug>
-Contents: 94 articles. Most recent update: 2026-10-18.
+Contents: 95 articles. Most recent update: 2026-10-18.
 
 Not in this file: the Yosemite Nature Notes archive, all 512 issues of the
 National Park Service's Yosemite bulletin (1922-2003), transcribed in full
 as plain static HTML at https://thetalusfieldjournal.com/archive/.
+
+---
+
+## Tire chains in Yosemite: R1, R2 and R3, rental cars, AWD and EVs
+
+URL: https://thetalusfieldjournal.com/articles/yosemite-tire-chains
+Section: Planning. Published: 2026-10-18. Last updated: 2026-10-18.
+Summary: Yosemite tire chain rules: R1, R2 and R3 explained, the carry rule for AWD and 4WD, rental car chain policies, EV weight limits, and where to buy chains.
+
+Chain seasonNovember through March, sometimes October and April
+
+The carry ruleEvery vehicle, whenever control is on
+
+Speed limit25 mph in a chain control area
+
+CitationUp to $5,000
+On this pageR1, R2, R3
+The carry rule
+Rental cars
+EVs
+Buying and fitting
+Which road
+Questions
+
+Chains in Yosemite are not a matter of whether your car can handle the snow. They are a matter of what the sign at the checkpoint says and what is in your trunk. The Park Service says chains are often required on roads inside and outside the park from November through March, less often in October and April, and rarely in September or May, and that it is not possible to predict whether you will need them.
+
+The rule that catches people is the carrying rule. Whenever chain controls are in effect, every vehicle must have chains in it, four-wheel drives and rental cars included, even when the control level lets that vehicle drive on without mounting them. Inside the park these are federal rules; outside it, on Highways 41, 120 and 140 and the rest of California's mountain roads, they are state law, enforced by the California Highway Patrol.
+
+Below: what R1, R2 and R3 mean, which cars each one exempts, what that means for a rental car, an all-wheel drive and an electric vehicle, where to buy chains, and which road into the park needs them least.
+
+The short version
+
+- From November through March, carry chains on any trip, whatever you drive.
+- AWD and 4WD are not exempt from carrying them. Rentals are not exempt at all.
+- Heavy EVs can miss the R1 and R2 weight limits and have to chain up.
+- Call 209/372-0200, then 1, then 1, the morning you drive.
+The three levels, side by side ↓
+
+CHAIN CONTROL LEVELS
+
+### R1, R2 and R3, as the park defines them
+
+- R1Snow tires OK
+Chains on, unless the vehicle is under 6,000 lbs, has snow tires on at least two drive wheels, and is not towing.
+
+Exempt vehicles still carry chains.
+
+- R24WD or AWD with snow tires OK
+Chains on, unless the vehicle is under 6,500 lbs, has snow tires on all four wheels, has four-wheel or all-wheel drive engaged, and is not towing.
+
+Exempt vehicles still carry chains.
+
+- R3No exceptions
+Chains on the drive wheels of every vehicle.
+
+There is no exemption to claim.
+
+When conditions call for it, signs go up along the road naming the level, and a checkpoint follows. Caltrans says there is usually about a mile between the "Chains Required" signs and the checkpoint, which is the distance you have to find a place to pull completely off the road to the right and put chains on.
+
+R1. The Park Service exempts a vehicle under 6,000 pounds with snow tires on at least two drive wheels that is not towing. Everything else mounts chains.
+
+R2. The park exempts a four-wheel or all-wheel drive vehicle under 6,500 pounds, with snow tires on all four wheels, four-wheel drive engaged, and no trailer. Caltrans words its version without a weight figure: chains on all vehicles except four-wheel and all-wheel drive vehicles with snow-tread tires on all four wheels. Inside the park, go by the park's version.
+
+R3. Chains on all vehicles, no exceptions. The park says on the drive wheels.
+
+What counts as a snow tire. The park accepts tires marked M+S, for mud and snow, with at least 6/32 of an inch of tread. Caltrans lists the sidewall markings MS, M/S, M+S or the words MUD AND SNOW. Read your sidewalls and check the tread before you assume either way.
+
+What counts as a chain. The park accepts chains, cables and tire socks. Plastic devices, straps and other emergency alternatives do not meet the requirement.
+
+#### Who mounts, who only carries
+
+Level | 2WD, no snow tires | 2WD, snow tires on drive wheels | 4WD/AWD, snow tires on all four | Over the weight limit, or towing
+
+R1 | Mount | Carry | Carry | Mount
+R2 | Mount | Mount | Carry | Mount
+R3 | Mount | Mount | Mount | Mount
+
+"Carry" means the vehicle may drive on without chains mounted, but must have them on board. The weight limits are the park's: 6,000 lbs for R1, 6,500 lbs for R2. Chains go on the drive wheels.
+
+THE CARRY RULE, AWD AND 4WD
+
+### All-wheel drive gets you a pass, not an exemption
+
+The Park Service puts it plainly: when chain controls are in effect, all vehicles must have chains in their possession, including four-wheel drive and rental vehicles. Caltrans says the same for its roads: four-wheel and all-wheel drive vehicles must carry traction devices in chain control areas. The park adds that its chain requirements are strictly enforced.
+
+So an all-wheel drive car with proper snow tires can drive through R2 without stopping to chain up, but only with a set in the car, and it cannot drive through R3 without mounting them. An all-wheel drive car on tires that are not snow tires is a two-wheel drive car for the purpose of R2: it mounts chains.
+
+Know your drive wheels. Caltrans says chains go on the drive wheels and tells drivers to know whether their vehicle is front or rear wheel drive. For an all-wheel drive car, check the owner's manual for where chains go and which kind the maker allows. Caltrans does not recommend brands and points drivers to the vehicle maker's specifications.
+
+Under chains, slow down. The park's speed limit in a chain control area is 25 mph. Caltrans gives 25 or 30 mph for its roads, as posted.
+
+Big Oak Flat Road, the Highway 120 approach from the west, is one of the roads the park says needs chains more often than Highway 140. Photo: Famartin / Wikimedia Commons (CC BY-SA 3.0)
+
+RENTAL CARS
+
+### The checkpoint and the rental contract do not agree
+
+The Park Service says rental cars are not exempt from chain requirements, even with all-season tires. The rental company may see it differently. Enterprise's own help page says it "does not offer snow chains/traction devices," and that chains cannot be placed on its rental vehicles "unless required by state law." It also says a four-wheel or all-wheel drive vehicle can be requested at some locations but cannot be guaranteed.
+
+We could not read a current chain policy for the other major rental companies on their own sites, so we do not state one here. Policies can differ by company and by location, and the agreement you sign is the one that binds you.
+
+What to do about it. Before a winter trip, read the rental agreement's section on chains and traction devices, and ask at the counter what the location allows. Ask for an all-wheel drive vehicle and look at the tire sidewalls for an M+S mark before you leave the lot. Bring chains that fit the car you were actually given; the park says rental car companies generally do not provide chains, and chain rentals are rarely available.
+
+If the contract and the checkpoint cannot both be satisfied, do not drive the chain control. Wait for it to lift, stay on Highway 140, which needs chains least often, or leave the car at a YARTS stop outside the park and ride in. The entrances guide lays out each approach.
+
+#### At the rental counter
+
+- Ask
+Does this location allow chains or other traction devices on this car?
+
+- Ask
+Can I have an all-wheel or four-wheel drive vehicle? It is a request, not a guarantee.
+
+- Check
+The sidewalls: an M+S mark and at least 6/32 of an inch of tread.
+
+- Check
+Which wheels drive, and what chains the owner's manual allows.
+
+- Keep
+A copy of the policy you were given, in writing.
+
+A rental is never exempt from carrying. If chain controls are in effect inside the park, the car must have chains in it, whatever the contract says.
+
+ELECTRIC VEHICLES
+
+### The weight limit is the EV rule
+
+There is no separate chain rule for electric vehicles. There is a weight limit, and batteries are heavy. The R1 exemption ends at 6,000 pounds and the R2 exemption at 6,500. The Park Service says many battery-electric trucks and some large electric SUVs exceed those limits, so they need chains even with snow tires. Check your vehicle's weight against those figures before the trip, starting with the owner's manual.
+
+A lighter EV with snow tires is treated like any other car: under R1 it qualifies if its drive wheels have snow tires, and under R2 if it is all-wheel drive with snow tires on all four. Like any car, it must carry chains.
+
+Charging. The park lists Level 2 charging in Yosemite Valley, at Wawona, in the El Portal administrative area and at Tuolumne Meadows, all on J1772 connectors. Wawona has 24 chargers at 11 kW, next to the store, available around the clock; the Valley has stations at the Ahwahnee, Curry Village, Yosemite Valley Lodge, the Yosemite Falls day-use parking and the Welcome Center. The Tuolumne Meadows chargers sit on Tioga Road, which is usually closed by snow from sometime in November until late May or June. The park's pages list no fast chargers inside the park, so arrive with the charge you need to get back out.
+
+EV CHARGING IN THE PARK
+
+#### Level 2, J1772
+
+Yosemite ValleyThe Ahwahnee, Curry Village, Valley Lodge, Yosemite Falls parking, Welcome Center
+
+Wawona24 chargers, 11 kW, by the store
+
+El PortalTwo chargers by the market and gas station
+
+Tuolumne MeadowsFour chargers; Tioga Road closes in winter
+
+The park warns that charging spaces, like all parking, can be hard to get on busy days. Confirm locations on the park's EV charging page.
+
+BUYING AND FITTING
+
+### Buy them before the mountains, fit them before the storm
+
+Where to buy. The Park Service says most auto parts stores and gas stations in the communities near the park sell chains, and that the Village Garage in Yosemite Valley and the Wawona gas station carry a limited stock. Match the chains to your tire size; the size is printed on the sidewall. Rentals are rarely available.
+
+If you arrive without them. The park says you may need a tow truck to bring you chains, which can cost a few hundred dollars, is not covered by AAA, and can take several hours to arrive.
+
+Chain installers. On state highways you may meet people offering to put chains on for a fee. Caltrans says they are independent businesspeople, not Caltrans employees, and that they are not allowed to sell or rent chains. If you hire one, get a receipt and write the installer's badge number on it.
+
+Practice once. Fit the chains in a dry driveway or parking lot before the trip, so the roadside is not the first time. Caltrans suggests carrying a flashlight and chain repair links, and keeping the gas tank full in case a storm turns you around or holds you in traffic. The rest of what belongs in a winter trunk is in the car-packing guide.
+
+- Chains, cables, socks.
+The park accepts all three.
+
+- Not straps or plastic.
+Plastic devices, straps and emergency alternatives do not count.
+
+- Pull fully off.
+Caltrans: wait until you can pull completely off the road to the right.
+
+- Get a receipt.
+From any installer, with the badge number written on it.
+
+WHICH ROAD
+
+### Highway 140 needs chains least often
+
+The Park Service says the El Portal Road, Highway 140 through the Merced River canyon, is lower in elevation and has chain requirements less often than the other entrance roads. Wawona Road (Highway 41), Big Oak Flat Road (Highway 120 from the west) and Badger Pass Road need chains more often than 140, the roads within Yosemite Valley and the Hetch Hetchy Road. Highway 140 is also the YARTS route that runs in winter, and the park's own suggestion for drivers without chains is to park at a YARTS stop on 140 outside the park and ride the bus in; there is a fare.
+
+Less often is not never, and the low road has its own trouble. When it closes, the detours are the higher roads; the Highway 140 closure guide covers what has shut it and what that does to a winter trip. Tioga Road is usually closed by snow from sometime in November until late May or June, so there is no winter crossing of the Sierra through the park.
+
+Check the morning you drive. For roads inside the park, call 209/372-0200, then 1, then 1. For state highways outside it, call the Caltrans Highway Information Network at 800/427-7623 or check Caltrans QuickMap, which shows chain controls and closures. The month-by-month picture, including what else closes, is in the winter guide, the November guide and the December guide.
+
+The Merced River canyon, the Highway 140 approach, which the park says needs chains less often than the other roads in. Photo: Cory Goehring
+
+Road | Chains | Note
+
+El Portal Road (Highway 140) | Lower, so chains are required less often | Also the YARTS winter route; park at a stop outside the park and ride in
+Wawona Road (Highway 41) | Chains required more often | The way to Wawona, the Mariposa Grove and Badger Pass
+Badger Pass Road | Chains required more often | The ski area road off Wawona Road
+Big Oak Flat Road (Highway 120 west) | Chains required more often | The road from Groveland and the Bay Area
+Tioga Road (Highway 120 east) | Usually closed by snow from sometime in November until late May or June | No crossing of the Sierra this way in winter
+
+#### Sleep on the low road
+
+A winter night in Mariposa puts you on Highway 140, the approach the park says needs chains least often, and on the YARTS route into the Valley. Check what is open for your dates.
+
+Search lodging in Mariposa →
+Where to stay: every option compared
+
+Availability links are affiliate links. The recommendations do not change for them. Disclosure.
+
+QUESTIONS
+
+### Yosemite tire chains, answered
+
+#### Sources
+
+- Tire Chain Requirements, NPS Yosemite
+- Frequently Asked Questions about Visiting in Winter, NPS Yosemite
+- Current Conditions, NPS Yosemite
+- Electric Vehicle Charging, NPS Yosemite
+- Chain Controls, Caltrans
+- Winter Driving Tips, Caltrans
+- Rental car snow chains, Enterprise
+
+Do you need tire chains in Yosemite?
+Often, from November through March, and less often in October and April. Whenever a chain control is in effect, every vehicle in Yosemite must carry chains, including four-wheel drives and rental cars, even if the control level lets it drive without mounting them. Call 209/372-0200, then 1, then 1, for the current requirement.
+What do R1, R2 and R3 mean?
+They are the three chain control levels. In the park, R1 exempts vehicles under 6,000 pounds with snow tires on at least two drive wheels and no trailer. R2 exempts four-wheel or all-wheel drive vehicles under 6,500 pounds with snow tires on all four wheels, four-wheel drive engaged and no trailer. R3 means chains on the drive wheels of every vehicle, no exceptions.
+Does an AWD or 4WD car need chains in Yosemite?
+It must carry them whenever a chain control is in effect. Under R2 an all-wheel or four-wheel drive vehicle can go without mounting them only if it has snow tires on all four wheels and meets the park's weight and towing limits. Under R3 it mounts them like everyone else.
+Are rental cars exempt from chain controls in Yosemite?
+No. The Park Service says rental cars are not exempt, even with all-season tires. Rental companies may not supply chains or allow them: Enterprise says it does not offer chains and that chains cannot be placed on its rental vehicles unless required by state law. Read your own rental agreement and ask at the counter before you drive up.
+Do electric cars need chains in Yosemite?
+They follow the same rules as any vehicle, and weight matters. The R1 and R2 exemptions apply only under 6,000 and 6,500 pounds, and the Park Service says many battery-electric trucks and some large electric SUVs exceed those limits, so they need chains even with snow tires.
+What is the fine for not using chains in Yosemite?
+The Park Service says failing to put on chains when required can bring a citation of up to $5,000. A tow truck sent to bring you chains can cost a few hundred dollars, is not covered by AAA, and can take several hours.
+Where can I buy tire chains near Yosemite?
+At most auto parts stores and gas stations in the communities around the park. Inside the park the Village Garage in Yosemite Valley and the Wawona gas station carry a limited stock. The Park Service says rentals are rarely available. Buy chains sized to your tires.
+
+Some links in this piece are affiliate links. If you buy or book through one, The Talus Field may earn a small commission at no extra cost to you. The recommendations do not change for it. Full disclosure.
 
 ---
 
@@ -2287,7 +2518,7 @@ The end of the month. Several things stop together. The Mariposa Grove shuttle e
 
 ### Driving in: assume chains
 
-The Park Service's chain page says it without hedging: if you are visiting any location in Yosemite from November through March, you should expect chain requirements to be in effect, even if you only plan to visit Yosemite Valley and use the free shuttle. Any time chain controls are in effect, every vehicle must carry chains, four-wheel drives and rental cars included, whether or not the control level requires them on the tires. The speed limit inside a chain control area is 25 mph, and failing to put chains on when required can bring a citation of up to $5,000. Rental companies generally do not provide chains, and few businesses rent them, so buy a set that fits your tires before you leave a gateway town. The three control levels, and which cars each one exempts, are drawn out in the winter guide.
+The Park Service's chain page says it without hedging: if you are visiting any location in Yosemite from November through March, you should expect chain requirements to be in effect, even if you only plan to visit Yosemite Valley and use the free shuttle. Any time chain controls are in effect, every vehicle must carry chains, four-wheel drives and rental cars included, whether or not the control level requires them on the tires. The speed limit inside a chain control area is 25 mph, and failing to put chains on when required can bring a citation of up to $5,000. Rental companies generally do not provide chains, and few businesses rent them, so buy a set that fits your tires before you leave a gateway town. The three control levels, and which cars each one exempts, are drawn out in the winter guide, and what they mean for a rental car or an electric vehicle is in the tire chain guide.
 
 Route choice matters. The park says chains are required more often on the Wawona Road (Highway 41), the Big Oak Flat Road (Highway 120 from the west), and the Badger Pass Road than on the El Portal Road (Highway 140) and the roads inside the Valley, because the higher roads take more snow. Highway 140 through the Merced River canyon is also the one route YARTS runs all year, from Merced through Mariposa and El Portal into the Valley, and the park suggests parking at a YARTS stop below the chain control and riding in as the alternative to chaining up. The in-park road line, 209/372-0200 (then 1, then 1), carries the current chain requirements, and it is the call to make the morning you drive.
 
@@ -3622,7 +3853,7 @@ There is no entrance reservation to plan around. The park dropped its timed-entr
 
 ### Driving in: chains are the default
 
-The park's guidance is to expect chain requirements from November through March, which makes December squarely chain season. The rule that catches visitors is not the mounting but the carrying: when a chain control is in effect inside the park, every vehicle must have chains in it, four-wheel drives and rentals included, whether or not the control level requires them on the tires. Under R1, a car under 6,000 pounds with snow tires on at least two drive wheels may go without mounting them; under R2, only a four-wheel or all-wheel drive vehicle with snow tires on all four wheels is exempt from mounting; under R3, everyone chains up. The park lists a citation of up to $5,000 for failing to put chains on when required. The drawn version of that grid is in the winter guide.
+The park's guidance is to expect chain requirements from November through March, which makes December squarely chain season. The rule that catches visitors is not the mounting but the carrying: when a chain control is in effect inside the park, every vehicle must have chains in it, four-wheel drives and rentals included, whether or not the control level requires them on the tires. Under R1, a car under 6,000 pounds with snow tires on at least two drive wheels may go without mounting them; under R2, only a four-wheel or all-wheel drive vehicle with snow tires on all four wheels is exempt from mounting; under R3, everyone chains up. The park lists a citation of up to $5,000 for failing to put chains on when required. The drawn version of that grid is in the winter guide, and the rental-car, all-wheel drive and EV questions are answered in the tire chain guide.
 
 The road-conditions line inside the park is 209/372-0200, then 1, then 1, and it is the call to make the morning you drive in. Route choice matters in December: Highway 140 through the Merced River canyon is the lowest approach and the one most likely to take rain while the others take snow, and it is the one route YARTS buses run year-round, from Merced through Mariposa and El Portal. The entrance-by-entrance comparison is in the entrances guide.
 
@@ -4483,7 +4714,7 @@ And do not cancel a Mariposa room for a one-day closure. Rock work, a short fire
 
 ### Winter is the serious case
 
-Every closure above was a nuisance in summer and would have been something else in January. Highway 140 is the winter road because it is the low road: when it is shut in winter, the detours are the two approaches that climb higher and ice sooner, and the winter guide is blunt about what that means. From roughly November through March, chain control can go up on any road into the park, the law requires you to carry chains when it does, even in a four-wheel drive with snow tires, and rangers turn cars around at the checkpoints. A winter 140 closure therefore has a second question behind the first: not only can you get around, but is the car you are driving allowed up the road you are being sent to. Carry chains on any winter trip whatever the forecast says, so that a closure notice sends you to Oakhurst and not home.
+Every closure above was a nuisance in summer and would have been something else in January. Highway 140 is the winter road because it is the low road: when it is shut in winter, the detours are the two approaches that climb higher and ice sooner, and the winter guide is blunt about what that means. From roughly November through March, chain control can go up on any road into the park, the law requires you to carry chains when it does, even in a four-wheel drive with snow tires, and rangers turn cars around at the checkpoints. A winter 140 closure therefore has a second question behind the first: not only can you get around, but is the car you are driving allowed up the road you are being sent to. Carry chains on any winter trip whatever the forecast says, so that a closure notice sends you to Oakhurst and not home; the tire chain guide covers what each control level asks of your car.
 
 January 2017 is the case to remember. Rockfalls and snow closed 140 and 120 on the same morning and left Highway 41 as the only vehicle route into the Valley, with ranger convoys through the closed roads at set hours. A month later the storm damage had flipped it, and 140 was the only road in. Winter closures come in sets, and the road that is open at breakfast may not be the one that is open at dinner.
 
@@ -6879,7 +7110,7 @@ It is the road past my house, but Highway 140 through the Merced River canyon is
 
 Chain control is the part of winter driving that surprises first-time visitors, so here it is. When conditions warrant, Caltrans and the park post chain requirements at checkpoints, in three levels. R1 means chains are required unless you have snow tires. R2 means chains are required unless you have four-wheel or all-wheel drive with snow tires. R3 means chains on everything, no exceptions, and in practice roads usually just close before R3 is posted.
 
-The detail that catches people: whenever chain control is in effect inside the park, you must carry chains even if your vehicle is exempt from putting them on. A 4WD truck with snow tires can drive through R2 without chains mounted, but the driver still needs a set in the vehicle, and rangers do check at the checkpoints. Rental car companies generally do not supply chains, and a rental is not exempt, so that problem is between you and the rental company, not one the checkpoint will solve for you. Chains can be bought at auto parts stores and gas stations in the gateway towns, Mariposa, Oakhurst, and Groveland; the park says businesses that rent them are hard to find. Practice putting them on once in a dry parking lot, not for the first time in a snowbank at night. The winter car kit covers the rest of what should be in the trunk.
+The detail that catches people: whenever chain control is in effect inside the park, you must carry chains even if your vehicle is exempt from putting them on. A 4WD truck with snow tires can drive through R2 without chains mounted, but the driver still needs a set in the vehicle, and rangers do check at the checkpoints. Rental car companies generally do not supply chains, and a rental is not exempt, so that problem is between you and the rental company, not one the checkpoint will solve for you. Chains can be bought at auto parts stores and gas stations in the gateway towns, Mariposa, Oakhurst, and Groveland; the park says businesses that rent them are hard to find. Practice putting them on once in a dry parking lot, not for the first time in a snowbank at night. The winter car kit covers the rest of what should be in the trunk, and the full guide to Yosemite tire chains covers rental contracts, all-wheel drive and electric vehicles.
 
 Chain control by level and vehicle, drawn from the rules in this article. Rental car companies generally do not supply chains, and rentals are not exempt.
 
@@ -7682,7 +7913,7 @@ Related: cell service dies well before the park boundary on every approach. Down
 
 ### Winter changes the math
 
-From roughly November through March, and less often in October and April, chain control can go up on any road into the park, and the law requires you to carry chains when it does, even in a four-wheel drive with snow tires. Rangers turn cars around at the checkpoints. Highway 140 needs chains least often, which is why it is the standing winter recommendation. Highway 41 and 120 both climb higher and ice sooner. Buy chains that fit your car before you leave home (they are cheaper at a city auto-parts store than anywhere within a hundred miles of the park), and practice putting them on once in your driveway. Ten minutes in a dry driveway beats forty-five on the shoulder in a snowstorm.
+From roughly November through March, and less often in October and April, chain control can go up on any road into the park, and the law requires you to carry chains when it does, even in a four-wheel drive with snow tires. Rangers turn cars around at the checkpoints. Highway 140 needs chains least often, which is why it is the standing winter recommendation. Highway 41 and 120 both climb higher and ice sooner. Buy chains that fit your car before you leave home (they are cheaper at a city auto-parts store than anywhere within a hundred miles of the park), and practice putting them on once in your driveway. Ten minutes in a dry driveway beats forty-five on the shoulder in a snowstorm. What R1, R2 and R3 mean for a rental car, an all-wheel drive or an EV is in the tire chain guide.
 
 ### The gate itself
 
@@ -13686,6 +13917,8 @@ If you're driving to Yosemite from the east on Tioga Road, know that there is no
 Yosemite's roads include steep grades, tight switchbacks, extreme heat, and occasionally extreme cold. A basic roadside kit is not paranoia. It's common sense for a park where cell service is unreliable and the nearest tow truck might be in Mariposa.
 
 A portable jump starter. These are better than jumper cables because they don't require a second car, and dead batteries in Yosemite parking lots are absurdly common. Headlights left on, cold mornings at elevation, old batteries pushed past their limit. A good portable unit is the size of a paperback book and starts a car engine multiple times on a single charge.
+
+From November through March, tire chains sized to your tires. The Park Service requires every vehicle to carry them whenever chain controls are in effect, four-wheel drives and rentals included, and the tire chain guide explains the three control levels and what they mean for your car.
 
 A spare tire and the tools to change it, and the knowledge of how to use them. Roadside assistance might take hours to reach you in Yosemite, if it can reach you at all. Practice a tire change at home before the trip.
 
