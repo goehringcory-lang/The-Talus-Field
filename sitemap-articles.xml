@@ -35,7 +35,7 @@
   </url>
   <url>
     <loc>https://thetalusfieldjournal.com/section/trails</loc>
-    <lastmod>2026-10-17</lastmod>
+    <lastmod>2026-10-18</lastmod>
   </url>
   <url>
     <loc>https://thetalusfieldjournal.com/section/wildlife</loc>
@@ -223,6 +223,14 @@
     <image:image>
       <image:loc>https://thetalusfieldjournal.com/img/responsive/tunnel-view-valley-spring-1600.jpg</image:loc>
       <image:title>Yosemite Valley from Tunnel View in spring, the falls running</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://thetalusfieldjournal.com/articles/sentinel-dome-and-taft-point</loc>
+    <lastmod>2026-10-18</lastmod>
+    <image:image>
+      <image:loc>https://thetalusfieldjournal.com/img/responsive/taft-point-1600.jpg</image:loc>
+      <image:title>The cliff edge at Taft Point, El Capitan across the valley</image:title>
     </image:image>
   </url>
   <url>

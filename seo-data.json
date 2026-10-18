@@ -825,6 +825,49 @@
       }
     ]
   },
+  "sentinel-dome-and-taft-point": {
+    "wordCount": 2300,
+    "keywords": [
+      "Sentinel Dome hike",
+      "Taft Point hike",
+      "Sentinel Dome and Taft Point",
+      "Taft Point Yosemite",
+      "Sentinel Dome Yosemite",
+      "the Fissures Taft Point",
+      "Taft Point safety",
+      "Sentinel Dome Taft Point trailhead",
+      "Glacier Point Road hikes",
+      "Sentinel Dome Taft Point loop",
+      "Taft Point distance",
+      "Sentinel Dome elevation gain"
+    ],
+    "faq": [
+      {
+        "q": "How long is the Sentinel Dome hike?",
+        "a": "The Park Service's trailhead page lists Sentinel Dome at 2 miles round trip with 400 feet of elevation gain, one to two hours. The printed Yosemite Guide for summer 2026 gives 1.8 miles round trip from the same trailhead."
+      },
+      {
+        "q": "How long is the Taft Point hike?",
+        "a": "The Park Service lists Taft Point at 2.2 miles round trip with about 200 feet of elevation gain on the return, one to two hours. The printed Yosemite Guide for summer 2026 gives 2.4 miles round trip."
+      },
+      {
+        "q": "Is Taft Point dangerous?",
+        "a": "The trail is easy; the edge is not. The Fissures beside Taft Point are fractures in the granite with drops the park puts at up to 2,000 feet, and railings stand at only part of the overlook. Two visitors died in a fall of about 800 feet from Taft Point in October 2018. Stay back from any edge without a railing."
+      },
+      {
+        "q": "Can you do Sentinel Dome and Taft Point together?",
+        "a": "Yes. Both trails start from the same lot on Glacier Point Road, so you can walk one, come back, and walk the other, about 4.2 miles by the park's web figures. The park also says the two can be joined by the Pohono Trail into a longer loop; it did not publish a loop distance on the pages read for this article."
+      },
+      {
+        "q": "When can you hike Sentinel Dome and Taft Point?",
+        "a": "When Glacier Point Road is open to cars, which the Park Service puts at approximately late May through October or November, depending on conditions. The park says to expect trails to be snowy or wet in early spring. In winter the road is groomed for skiing beyond Badger Pass."
+      },
+      {
+        "q": "Are dogs allowed at Sentinel Dome or Taft Point?",
+        "a": "No. The Park Service says pets and bicycles are not allowed on these hiking trails."
+      }
+    ]
+  },
   "worship-in-yosemite": {
     "wordCount": 2400,
     "keywords": [
