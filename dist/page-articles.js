@@ -988,7 +988,7 @@ var SX_SEASONS = [{
   label: "Spring",
   months: "March to May",
   lead: "yosemite-in-march",
-  slugs: ["yosemite-in-march", "yosemite-waterfalls-guide", "tioga-road-opening-weekend", "glacier-point-road-open-2026", "memorial-day-skip-the-valley-go-high-2026"]
+  slugs: ["yosemite-in-march", "yosemite-in-april", "yosemite-waterfalls-guide", "tioga-road-opening-weekend", "glacier-point-road-open-2026", "memorial-day-skip-the-valley-go-high-2026"]
 }, {
   key: "summer",
   label: "Summer",

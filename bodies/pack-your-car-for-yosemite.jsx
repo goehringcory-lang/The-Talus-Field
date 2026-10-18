@@ -142,6 +142,10 @@ window.ARTICLE_BODIES["pack-your-car-for-yosemite"] = function PackYourCarForYos
       </p>
 
       <p>
+        From November through March, tire chains sized to your tires. The Park Service requires every vehicle to carry them whenever chain controls are in effect, four-wheel drives and rentals included, and <a href="/articles/yosemite-tire-chains">the tire chain guide</a> explains the three control levels and what they mean for your car.
+      </p>
+
+      <p>
         A spare tire and the tools to change it, and the knowledge of how to use them. Roadside assistance might take hours to reach you in Yosemite, if it can reach you at all. Practice a tire change at home before the trip.
       </p>
 

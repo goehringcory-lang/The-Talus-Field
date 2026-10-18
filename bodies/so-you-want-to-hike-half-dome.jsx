@@ -103,7 +103,7 @@ window.ARTICLE_BODIES["so-you-want-to-hike-half-dome"] = function SoYouWantToHik
       <h2>The permit problem</h2>
 
       <p>
-        You need a permit to hike past the subdome, seven days a week, whenever the cables are up. The cables typically go up the Friday before Memorial Day and come down the day after Columbus Day. No permit means a ranger turns you around. No exceptions.
+        You need a permit to hike past the subdome, seven days a week, whenever the cables are up. The cables typically go up the Friday before Memorial Day and come down the day after Columbus Day, which puts most of May before the cables; <a href="/articles/yosemite-in-may">our guide to Yosemite in May</a> covers what the rest of that month offers. No permit means a ranger turns you around. No exceptions.
       </p>
 
       <p>
