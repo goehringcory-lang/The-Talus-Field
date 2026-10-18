@@ -305,15 +305,20 @@ function askBlock(tag) {
 </aside>`;
 }
 
-// The Stay22 Script ("Let Me Allez"), the same block index.html carries,
-// pasted verbatim from the Stay22 dashboard (owner's call, October 2026): the
-// one script on these pages beside the JSON-LD. It loads async and converts
-// supported supplier links client-side; its hosts are in the CSP in _headers.
-// Keep the lmaID equal to index.html's.
+// The Stay22 Script ("Let Me Allez"), the same block index.html carries, from
+// the Stay22 dashboard (owner's call, October 2026): the one script on these
+// pages beside the JSON-LD. It loads async and converts supported supplier
+// links client-side; its hosts are in the CSP in _headers. The one added param,
+// excludes: ['expedia'] (verified in letmeallez.js), keeps it from rewriting
+// the site's direct Expedia Travel Creator links (expedia.com and its sister
+// domains in Stay22's expedia group: travelocity, orbitz, wotif...). Hotels.com
+// and Vrbo are deliberately not excluded: the site has no direct links to them.
+// If direct Hotels.com or Vrbo links are ever added through the Expedia
+// program, add 'hotelscom' and 'vrbo'. Keep the block equal to index.html's.
 const STAY22_SCRIPT = `  <script>
     (function (s, t, a, y, twenty, two) {
       s.Stay22 = s.Stay22 || {};
-      s.Stay22.params = { lmaID: '6ad44cfa7692614b773d1576' };
+      s.Stay22.params = { lmaID: '6ad44cfa7692614b773d1576', excludes: ['expedia'] };
       twenty = t.createElement(a);
       two = t.getElementsByTagName(a)[0];
       twenty.async = 1;

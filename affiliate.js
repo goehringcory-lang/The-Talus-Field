@@ -42,7 +42,10 @@ window.BOOKING_AFFILIATE_AID = "";
 // the Stay22 Script (Let Me Allez) site-wide in October 2026: an inline block
 // in the <head> of index.html and of every archive page (gen-archive.mjs),
 // with its hosts allow-listed in the CSP in _headers. It may convert
-// supported supplier links (Booking.com, Expedia, Hotels.com...) client-side.
+// supported supplier links (Booking.com, Hotels.com...) client-side; its
+// excludes: ['expedia'] param keeps the Expedia links above on the direct
+// Travel Creator program. Spark (Stay22's in-text auto-linking) and Nova are
+// on by default from the Stay22 Hub.
 window.STAY22_AFFILIATE_ID = "thetalusfield";
 // Hipcamp (private-land camping) tracking-link prefix from the affiliate
 // dashboard; the destination is appended as an encoded ?u= parameter,

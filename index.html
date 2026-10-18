@@ -27,16 +27,21 @@
   </script>
 
   <!--
-    Stay22 Script ("Let Me Allez"), pasted verbatim from the Stay22 dashboard
-    (owner's install, October 2026). It loads async and converts supported
-    supplier links (Booking.com, Expedia, Hotels.com...) client-side. Its hosts
-    are allow-listed in the CSP in _headers; the archive pages carry the same
-    block (scripts/gen-archive.mjs, STAY22_SCRIPT).
+    Stay22 Script ("Let Me Allez"), from the Stay22 dashboard (owner's install,
+    October 2026). It loads async and converts supported supplier links
+    client-side. The one added param, excludes: ['expedia'] (verified in
+    letmeallez.js), keeps it from rewriting the site's direct Expedia Travel
+    Creator links (expedia.com and its sister domains in Stay22's expedia group:
+    travelocity, orbitz, wotif...). Hotels.com and Vrbo are deliberately not
+    excluded: the site has no direct links to them. If direct Hotels.com or Vrbo
+    links are ever added through the Expedia program, add 'hotelscom' and 'vrbo'.
+    Its hosts are allow-listed in the CSP in _headers; the archive pages carry
+    the same block (scripts/gen-archive.mjs, STAY22_SCRIPT).
   -->
   <script>
     (function (s, t, a, y, twenty, two) {
       s.Stay22 = s.Stay22 || {};
-      s.Stay22.params = { lmaID: '6ad44cfa7692614b773d1576' };
+      s.Stay22.params = { lmaID: '6ad44cfa7692614b773d1576', excludes: ['expedia'] };
       twenty = t.createElement(a);
       two = t.getElementsByTagName(a)[0];
       twenty.async = 1;
@@ -551,7 +556,7 @@
 
 "/dist/page-kit.js": "08714e0e09",
 
-"/dist/page-legal.js": "9507e8851a",
+"/dist/page-legal.js": "89ca76dc9c",
 
 "/dist/page-map.js": "d412b489f0",
 
@@ -597,7 +602,7 @@
 
   <script src="/storage.js?v=af9b7d4db2" defer></script>
 
-  <script src="/affiliate.js?v=9601eccdbc" defer></script>
+  <script src="/affiliate.js?v=9c6aaaa9be" defer></script>
 
   <script src="/data.js?v=508c82bc98" defer></script>
 
