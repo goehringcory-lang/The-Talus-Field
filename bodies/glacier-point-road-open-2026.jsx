@@ -72,7 +72,7 @@ window.ARTICLE_BODIES["glacier-point-road-open-2026"] = function GlacierPointRoa
       </p>
 
       <p>
-        The second is the snow. Looking east from Glacier Point you see the Cathedral Range, Mount Hoffman, Mount Clark, and behind them the high peaks of the Clark Range. Even in this thin snowpack year (the snow survey sites at Tuolumne Meadows measured 37 percent of the April 1 average), the high country still looks like winter from up here. <a href="/articles/tioga-road-opening-weekend">Tioga Road</a> was still closed when this was written; it opened on May 15. The high lakes are still frozen. The Sentinel Range above Tenaya Canyon will hold snow for another six weeks. You are looking at country that is two months behind the Valley you just drove out of.
+        The second is the snow. Looking east from Glacier Point you see the Cathedral Range, Mount Hoffman, Mount Clark, and behind them the high peaks of the Clark Range. Even in this thin snowpack year (the snow survey sites at Tuolumne Meadows measured 37 percent of the April 1 average), the high country still looks like winter from up here. <a href="/articles/tioga-road-opening-weekend">Tioga Road</a> was still closed when this was written; it opened on May 15. Both roads' opening dates for every year since 2015 are in <a href="/articles/yosemite-in-may">the Yosemite in May guide</a>. The high lakes are still frozen. The Sentinel Range above Tenaya Canyon will hold snow for another six weeks. You are looking at country that is two months behind the Valley you just drove out of.
       </p>
 
       <p>
