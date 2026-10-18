@@ -563,6 +563,96 @@
       }
     ]
   },
+  "yosemite-tire-chains": {
+    "wordCount": 2600,
+    "keywords": [
+      "yosemite tire chains",
+      "Yosemite chain requirements",
+      "Yosemite chain control",
+      "R1 R2 R3 chain control",
+      "do I need chains in Yosemite",
+      "Yosemite chains rental car",
+      "rental car snow chains California",
+      "AWD chains Yosemite",
+      "4WD chains Yosemite",
+      "EV chains Yosemite",
+      "where to buy chains near Yosemite",
+      "Highway 140 chains"
+    ],
+    "faq": [
+      {
+        "q": "Do you need tire chains in Yosemite?",
+        "a": "Often, from November through March, and less often in October and April. Whenever a chain control is in effect, every vehicle in Yosemite must carry chains, including four-wheel drives and rental cars, even if the control level lets it drive without mounting them. Call 209/372-0200, then 1, then 1, for the current requirement."
+      },
+      {
+        "q": "What do R1, R2 and R3 mean?",
+        "a": "They are the three chain control levels. In the park, R1 exempts vehicles under 6,000 pounds with snow tires on at least two drive wheels and no trailer. R2 exempts four-wheel or all-wheel drive vehicles under 6,500 pounds with snow tires on all four wheels, four-wheel drive engaged and no trailer. R3 means chains on the drive wheels of every vehicle, no exceptions."
+      },
+      {
+        "q": "Does an AWD or 4WD car need chains in Yosemite?",
+        "a": "It must carry them whenever a chain control is in effect. Under R2 an all-wheel or four-wheel drive vehicle can go without mounting them only if it has snow tires on all four wheels and meets the park's weight and towing limits. Under R3 it mounts them like everyone else."
+      },
+      {
+        "q": "Are rental cars exempt from chain controls in Yosemite?",
+        "a": "No. The Park Service says rental cars are not exempt, even with all-season tires. Rental companies may not supply chains or allow them: Enterprise says it does not offer chains and that chains cannot be placed on its rental vehicles unless required by state law. Read your own rental agreement and ask at the counter before you drive up."
+      },
+      {
+        "q": "Do electric cars need chains in Yosemite?",
+        "a": "They follow the same rules as any vehicle, and weight matters. The R1 and R2 exemptions apply only under 6,000 and 6,500 pounds, and the Park Service says many battery-electric trucks and some large electric SUVs exceed those limits, so they need chains even with snow tires."
+      },
+      {
+        "q": "What is the fine for not using chains in Yosemite?",
+        "a": "The Park Service says failing to put on chains when required can bring a citation of up to $5,000. A tow truck sent to bring you chains can cost a few hundred dollars, is not covered by AAA, and can take several hours."
+      },
+      {
+        "q": "Where can I buy tire chains near Yosemite?",
+        "a": "At most auto parts stores and gas stations in the communities around the park. Inside the park the Village Garage in Yosemite Valley and the Wawona gas station carry a limited stock. The Park Service says rentals are rarely available. Buy chains sized to your tires."
+      }
+    ]
+  },
+  "yosemite-campground-reservations": {
+    "wordCount": 2800,
+    "keywords": [
+      "yosemite campground reservations",
+      "yosemite camping reservations",
+      "when do yosemite campground reservations open",
+      "yosemite campsite release 15th 7 am",
+      "recreation.gov yosemite",
+      "upper pines reservations",
+      "north pines lottery",
+      "yosemite first come first served campgrounds",
+      "camp 4 reservations",
+      "yosemite campground cancellation policy",
+      "tuolumne meadows campground reservations",
+      "how to get a yosemite campsite"
+    ],
+    "faq": [
+      {
+        "q": "When do Yosemite campground reservations open?",
+        "a": "Upper Pines, Lower Pines, North Pines, Wawona and Hodgdon Meadow release on Recreation.gov five months ahead, on the 15th of each month, one block of arrival dates at a time: on January 15, arrivals from May 15 to June 14 open. Half of Tuolumne Meadows releases two months ahead on the 15th. Crane Flat, Bridalveil Creek, Tamarack Flat, White Wolf, Yosemite Creek, Porcupine Flat and the other half of Tuolumne release two weeks ahead on a rolling daily window, and Camp 4 one week ahead."
+      },
+      {
+        "q": "What time do Yosemite campsites go on sale?",
+        "a": "7 am Pacific time. The Park Service says all non-lottery reservations are released at 7 am Pacific and sell out within minutes. Log in to Recreation.gov before then; you must be logged in to add a site to your cart."
+      },
+      {
+        "q": "How many Yosemite campground reservations can I make at once?",
+        "a": "Two. The Park Service says you may make only two reservations per website visit or phone call. Recreation.gov holds a site in your cart for 15 minutes, and asks you not to log in to the same account in more than one browser, tab or window."
+      },
+      {
+        "q": "Are there first-come, first-served campgrounds in Yosemite?",
+        "a": "Only from late fall to early spring. The Park Service says no first-come campgrounds are open from mid-April through October. In the off-season, Camp 4, Hodgdon Meadow and Wawona run first-come, first-served, and they can fill early on weekends and holidays. The campground status line is 209/372-0266."
+      },
+      {
+        "q": "What does it cost to cancel a Yosemite campsite?",
+        "a": "Per Recreation.gov's Upper Pines page: $10 more than 48 hours before arrival; $10 plus the first night's fee within 48 hours; a one-night reservation has no $10 fee but is not refundable inside 48 hours; and a no-show pays a $20 fee and loses the first night."
+      },
+      {
+        "q": "Is there a Yosemite campground lottery for 2027?",
+        "a": "None was announced as of October 18, 2026. North Pines ran a one-time Early Access Lottery for the 2026 season, with a $10 application fee, and the Park Service said it may consider expanding the idea to other campgrounds. Check the park's lottery page and the campground's Recreation.gov page before planning a release morning."
+      }
+    ]
+  },
   "yosemite-in-april": {
     "wordCount": 2900,
     "keywords": [

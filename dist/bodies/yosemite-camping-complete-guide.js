@@ -353,7 +353,9 @@ window.ARTICLE_BODIES["yosemite-camping-complete-guide"] = function YosemiteCamp
     className: "ff-lede"
   }, "Almost all of the work that decides the outcome happens before then."), React.createElement("div", {
     className: "cg-prose"
-  }, React.createElement("p", null, "The campground's page on Recreation.gov states its own on-sale date and time. It is the authoritative version, and everything else, including this page, is a summary of it. If you are visiting for the first time, the ", React.createElement("a", {
+  }, React.createElement("p", null, "The campground's page on Recreation.gov states its own on-sale date and time. It is the authoritative version, and everything else, including this page, is a summary of it. ", React.createElement("a", {
+    href: "/articles/yosemite-campground-reservations"
+  }, "The reservations guide"), " lays out the next eight release mornings and the rules that come with a site. If you are visiting for the first time, the ", React.createElement("a", {
     href: "/articles/first-time-yosemite-overwhelm"
   }, "first-timer's guide"), " covers the broader logistics, and ", React.createElement("a", {
     href: "/articles/camping-in-yosemite-first-time"

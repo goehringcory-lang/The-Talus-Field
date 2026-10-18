@@ -177,7 +177,7 @@ window.ARTICLE_BODIES["housekeeping-camp-vs-curry-village"] = function Housekeep
                   Both are on the Valley floor's east end, on the free shuttle loop. Housekeeping Camp is on the bank of the <strong>Merced River</strong>, west of Curry Village, at shuttle stop 12. Curry Village sits against the south wall, below Glacier Point, at stops 14 and 19, and the <a href="/articles/mist-trail-the-real-guide">Mist Trail</a> starts one stop on, at Happy Isles. The YARTS bus from Merced stops at Curry Village.
                 </p>
                 <p>
-                  Neither is a campground. The Park Service's 13 campgrounds book through Recreation.gov and are a separate system; <a href="/articles/yosemite-camping-complete-guide">the camping guide</a> covers those. These two are concessioner lodging, which means a roof, a bed and a front desk, and a price that moves with the date.
+                  Neither is a campground. The Park Service's 13 campgrounds book through Recreation.gov and are a separate system; <a href="/articles/yosemite-camping-complete-guide">the camping guide</a> covers those, and <a href="/articles/yosemite-campground-reservations">the campground reservations guide</a> covers the 7 am release on the 15th. These two are concessioner lodging, which means a roof, a bed and a front desk, and a price that moves with the date.
                 </p>
               </div>
             </div>

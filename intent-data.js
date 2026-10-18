@@ -194,8 +194,10 @@ window.ARTICLE_INTENT = {
   "yosemite-in-winter":                        { stage: ["before-booking", "dates-set"], who: ["first-trip"], topic: ["conditions", "transportation"] },
   "where-to-stay-in-yosemite":                 { stage: ["before-booking"], who: ["first-trip", "families", "accessible"], topic: ["lodging"] },
   "housekeeping-camp-vs-curry-village":        { stage: ["before-booking"], who: ["first-trip", "families"], topic: ["lodging"] },
-  "worship-in-yosemite":                       { stage: ["dates-set", "in-park"], who: [], topic: [] },
+  "yosemite-campground-reservations":          { stage: ["before-booking"], who: ["first-trip", "families"], topic: ["camping"] },
   "yosemite-in-april":                         { stage: ["before-booking", "dates-set"], who: ["first-trip"], topic: ["conditions", "trails", "camping", "lodging"] },
+  "worship-in-yosemite":                       { stage: ["dates-set", "in-park"], who: [], topic: [] },
+  "yosemite-tire-chains":                      { stage: ["dates-set", "week-before"], who: ["first-trip"], topic: ["transportation", "conditions"] },
   "thanksgiving-in-yosemite":                  { stage: ["before-booking", "dates-set"], who: [], topic: ["lodging", "camping", "food", "conditions", "transportation"] },
   "bracebridge-dinner-and-vintners-holidays":  { stage: ["before-booking"], who: ["non-hikers"], topic: ["lodging", "food", "conditions"] },
   "yosemite-wildflowers-guide":                { stage: ["dates-set"], who: ["photography", "non-hikers"], topic: ["conditions"] },
@@ -349,6 +351,8 @@ window.ARTICLE_MONTHS = {
   "tioga-road-opening-weekend": ["may", "jun"],
   "glacier-point-road-open-2026": ["may", "jun"],
   "yosemite-in-winter": ["nov", "dec", "jan", "feb", "mar"],
+  // "chains are often required on roads both inside and outside the park from November through March, less often in October and April"
+  "yosemite-tire-chains": ["oct", "nov", "dec", "jan", "feb", "mar", "apr"],
   // "Thanksgiving 2026 falls on Thursday, November 26": a holiday-weekend trip.
   "thanksgiving-in-yosemite": ["nov"],
   "bracebridge-dinner-and-vintners-holidays": ["nov", "dec"],
