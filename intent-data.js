@@ -194,6 +194,7 @@ window.ARTICLE_INTENT = {
   "yosemite-in-winter":                        { stage: ["before-booking", "dates-set"], who: ["first-trip"], topic: ["conditions", "transportation"] },
   "where-to-stay-in-yosemite":                 { stage: ["before-booking"], who: ["first-trip", "families", "accessible"], topic: ["lodging"] },
   "housekeeping-camp-vs-curry-village":        { stage: ["before-booking"], who: ["first-trip", "families"], topic: ["lodging"] },
+  "yosemite-in-july-and-august":               { stage: ["before-booking", "dates-set"], who: ["first-trip", "families"], topic: ["conditions", "lodging", "camping"] },
   "yosemite-sequoia-kings-canyon-trip":        { stage: ["before-booking", "dates-set"], who: ["first-trip", "families"], topic: ["transportation", "lodging", "conditions"] },
   "hotels-just-outside-yosemite":              { stage: ["before-booking"], who: ["first-trip", "families"], topic: ["lodging"] },
   "sentinel-dome-and-taft-point":              { stage: ["dates-set", "in-park"], who: ["photography", "families"], topic: ["trails"] },
@@ -332,6 +333,7 @@ window.INTENT_NO_TAGS = {
 //   a window, the entry does not belong in this table.
 window.ARTICLE_MONTHS = {
   // Road-dependent: "The Park Service's standing line is that Tioga Road is typically open to vehicles from late May or June until sometime in November; plowing usually begins around April 15, and the opening date moves with the snowpack."
+  "yosemite-in-july-and-august": ["jul", "aug"],
   "tioga-road-stop-by-stop": ["may", "jun", "jul", "aug", "sep", "oct"],
   // "Tioga Road is typically open from late May or June until sometime in November ... Treat these as summer and early fall trips."
   "best-yosemite-backpacking-trips": ["jun", "jul", "aug", "sep", "oct"],
@@ -605,10 +607,10 @@ window.TRIP_MONTHS = [
   { key: "jun", label: "Jun", name: "June",      tioga: "unsettled", glacier: "open",      read: "yosemite-in-june",
     arrive: "Be through the gate before 8 a.m., before 7 on a weekend. Never plan to arrive between 9 a.m. and 2 p.m. on a summer weekend, when the lines form and the Valley lots close behind you. Or arrive after 4 p.m. Text ynptraffic to 333111 for the park's live parking updates.",
     note: "Early summer. Strong falls at the start of the month, school-break crowds building. Tioga Road usually opens by now, but in a heavy snow year it stays closed into late June or early July." },
-  { key: "jul", label: "Jul", name: "July",      tioga: "open",      glacier: "open",      read: "yosemite-heat-safety-guide",
+  { key: "jul", label: "Jul", name: "July",      tioga: "open",      glacier: "open",      read: "yosemite-in-july-and-august",
     arrive: "Be through the gate before 8 a.m., before 7 on a weekend; any Tuesday or Wednesday through the gate before 7:30 beats a Saturday. Never plan to arrive between 9 a.m. and 2 p.m. on a summer weekend. Or arrive after 4 p.m. Text ynptraffic to 333111 for live parking updates.",
     note: "Full summer. Every road is typically open, the Valley runs hot and busy, and the big falls thin." },
-  { key: "aug", label: "Aug", name: "August",    tioga: "open",      glacier: "open",      read: "yosemite-during-smoke-season",
+  { key: "aug", label: "Aug", name: "August",    tioga: "open",      glacier: "open",      read: "yosemite-in-july-and-august",
     arrive: "Be through the gate before 8 a.m., before 7 on a weekend. Never plan to arrive between 9 a.m. and 2 p.m. on a summer weekend. Or arrive after 4 p.m. Text ynptraffic to 333111 for live parking updates.",
     note: "High summer. Hot in the Valley, the falls at a trickle, and the darkest skies of the year." },
   { key: "sep", label: "Sep", name: "September", tioga: "open",      glacier: "open",      read: "yosemite-in-september-2026",

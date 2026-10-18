@@ -20,7 +20,7 @@ window.ARTICLE_BODIES["swimming-in-the-merced"] = function SwimmingInTheMercedBo
       </p>
 
       <p>
-        As a rough guide: the swimming season runs from about mid-July into September, and in June the answer is almost always not yet. But the transition does not happen on a date: it moves several weeks in either direction with the snowpack. In a heavy year the river can still be running spring volumes well into July. What matters is the flow on the day you are standing there.
+        As a rough guide: the swimming season runs from about mid-July into September, and in June the answer is almost always not yet. But the transition does not happen on a date: it moves several weeks in either direction with the snowpack. In a heavy year the river can still be running spring volumes well into July. What matters is the flow on the day you are standing there. For the rest of a summer trip, from the heat to the high country, see <a href="/articles/yosemite-in-july-and-august">Yosemite in July and August</a>.
       </p>
 
       <h2>How to check before you get in</h2>

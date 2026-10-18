@@ -119,7 +119,7 @@ window.ARTICLE_BODIES["yosemite-crowds-by-month"] = function YosemiteCrowdsByMon
               <h2>The crowd calendar, from the Park Service's count</h2>
               <div className="wv-prose">
                 <p>
-                  The Park Service publishes the average number of visitors to Yosemite in each month, across 2010 to 2024. That fifteen-year average is the fairest single picture of the year, because it smooths out the fire closures, the Covid year and the reservation summers. The shape is simple: a long climb from January to a July peak, a slow fall through September, then a cliff in November.
+                  The Park Service publishes the average number of visitors to Yosemite in each month, across 2010 to 2024. That fifteen-year average is the fairest single picture of the year, because it smooths out the fire closures, the Covid year and the reservation summers. The shape is simple: a long climb from January to a July peak, a slow fall through September, then a cliff in November. If your dates are in the peak, <a href="/articles/yosemite-in-july-and-august">Yosemite in July and August</a> covers the heat, the high country and the smoke that come with it.
                 </p>
                 <p>
                   The last column puts each month on a scale where July is 100. The crowd label is mine, cut from that index: Peak at 80 and above, Busy from 55, Moderate from 35, Quiet below.

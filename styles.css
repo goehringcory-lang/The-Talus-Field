@@ -13754,6 +13754,84 @@ html[data-nav-mode="pinned"] { scroll-padding-top: 62px; }
 /* The crawler fragment is not laid out as a grid. */
 #prerender-prose .sd-feature :is(.ff-split, .ff-facts, .sd-hikes, .sd-seasons, .ff-rules) { display: block; }
 
+/* ── /articles/yosemite-in-july-and-august: the `.ja-*` pieces ─────────────
+   A feature article on the `.hp-event` tokens and the `.ff-*` kit, built like
+   the Mist Trail layer above. Its own pieces: the two-climate table, the
+   summer visits bars, the Tioga Road season card (the shared `.ff-inpark`),
+   the July and August cards, the habits (the shared `.ff-rules`), and the
+   sources beside the questions. */
+.ja-feature .ff-split > * { min-width: 0; }
+.ja-prose { font: 17px/1.75 var(--sans); color: var(--hp-ink); max-width: 640px; }
+.ja-prose p { margin: 0 0 1.1em; }
+.ja-prose p:last-child { margin-bottom: 0; }
+.ja-prose strong { font-weight: 600; }
+.ja-prose a, .ja-feature .ff-alert a { color: inherit; text-decoration: underline; text-decoration-color: var(--hp-accent); text-decoration-thickness: 1px; text-underline-offset: 3px; }
+.ja-prose a:hover, .ja-feature .ff-alert a:hover { color: var(--hp-accent); }
+.ja-prose .dropcap::first-letter { font-family: var(--serif); font-weight: 400; font-size: 4.1em; float: left; line-height: 0.82; margin: 0.08em 0.1em 0 -0.03em; color: var(--hp-accent); }
+.ja-open .ja-prose { font: 19px/1.6 var(--serif); color: var(--ink-2); }
+.ja-open .ja-prose p:first-child { color: var(--hp-ink); }
+.ja-open .ff-short { position: sticky; top: 88px; }
+.hp-design a.ja-short__link { display: flex; align-items: center; justify-content: center; min-height: 48px; padding: 12px 18px; border: 1.5px solid rgba(247, 241, 225, 0.7); border-radius: 3px; font: 600 13px var(--sans); color: var(--hp-paper); text-align: center; }
+.hp-design a.ja-short__link:hover { background: var(--hp-paper); color: var(--hp-ink); }
+.ja-end { padding-block: 28px 0; }
+.hp-event .ja-head { margin: 0 0 22px; }
+.ja-alert { margin-top: 20px; }
+
+/* Weather: the two-climate table. */
+.ja-table { width: 100%; border-collapse: collapse; font: 14px/1.5 var(--sans); color: var(--ink-2); }
+.ja-table th, .ja-table td { text-align: left; vertical-align: top; padding: 10px 12px 10px 0; border-bottom: 1px solid var(--hp-rule); }
+.ja-table thead th { font: 600 10px var(--sans); letter-spacing: 1.4px; text-transform: uppercase; color: var(--hp-muted); border-bottom: 2px solid var(--hp-ink); }
+.ja-table tbody th { font: 400 17px/1.3 var(--serif); color: var(--hp-ink); }
+
+/* Crowds: the summer visits bars. */
+.ja-visits { list-style: none; margin: 0; padding: 0; border-top: 2px solid var(--hp-ink); }
+.ja-visits li { display: grid; grid-template-columns: 96px 1fr 128px; gap: 14px; align-items: center; padding-block: 12px; border-bottom: 1px solid var(--hp-rule); }
+.ja-visits__m { font: 400 19px var(--serif); color: var(--hp-ink); }
+.ja-visits__bar { display: block; height: 10px; background: var(--hp-rule); border-radius: 2px; overflow: hidden; }
+.ja-visits__bar i { display: block; height: 100%; background: var(--rule); }
+.ja-visits li.is-glow .ja-visits__bar i { background: var(--hp-accent); }
+.ja-visits__v { font: 600 14px var(--sans); color: var(--hp-ink); text-align: right; }
+.ja-visits__v em { font-style: normal; font-weight: 400; color: var(--hp-muted); }
+
+/* The photos and the season card. */
+.ja-photo { margin: 0; }
+.ja-photo img { display: block; width: 100%; height: auto; border-radius: 4px; }
+.ja-photo figcaption { margin-top: 10px; font: 12px/1.5 var(--sans); color: var(--hp-muted); }
+.ja-season { margin-top: 24px; }
+.ja-stay { max-width: 560px; }
+
+/* July or August: the two cards and the habits. */
+.ja-months { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px; margin-top: 8px; }
+.ja-month { background: var(--hp-card); border: 1px solid var(--hp-rule); border-top: 6px solid var(--hp-accent); border-radius: 4px; padding: 24px; }
+.ja-month.is-august { border-top-color: #c98a5a; }
+.ja-month h3 { margin: 0 0 12px; font: 400 28px/1.15 var(--serif); color: var(--hp-ink); }
+.ja-month ul { margin: 0; padding: 0; list-style: none; border-top: 1px solid var(--hp-rule); }
+.ja-month li { padding-block: 9px; border-bottom: 1px solid var(--hp-rule); font: 15px/1.5 var(--sans); color: var(--ink-2); }
+.ja-choose { margin-top: 48px; }
+.ja-rules { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+
+/* The sources beside the questions. */
+.ja-sources { margin-top: 28px; }
+.hp-event .ja-sources h3 { font-size: 20px; margin-bottom: 8px; }
+.ja-sources ul { list-style: none; margin: 0; padding: 0; }
+.ja-sources li { padding-block: 8px; border-top: 1px solid var(--hp-rule); font: 13px var(--sans); }
+.ja-sources a { color: var(--hp-accent); }
+
+@media (max-width: 880px) {
+  .ja-open .ff-short { position: static; }
+}
+@media (max-width: 640px) {
+  .ja-months, .ja-rules { grid-template-columns: 1fr; }
+  .ja-visits li { grid-template-columns: 80px 1fr; }
+  .ja-visits__v { grid-column: 1 / -1; text-align: left; }
+  .ja-table thead { display: none; }
+  .ja-table tr { display: block; padding-block: 10px; border-bottom: 1px solid var(--hp-rule); }
+  .ja-table th, .ja-table td { display: block; padding: 2px 0; border: 0; }
+  .ja-table td::before { content: attr(data-label) ": "; font-weight: 600; color: var(--hp-ink); }
+}
+/* The crawler fragment is not laid out as a grid. */
+#prerender-prose .ja-feature :is(.ff-split, .ff-facts, .ja-months, .ff-rules) { display: block; }
+
 /* ── /articles/yosemite-stargazing-tours-and-programs: the `.sg-*` pieces ──
    A feature article on the `.hp-event` tokens and the `.ff-*` kit, built like
    the Mist Trail layer above. Its own pieces: the program comparison table,

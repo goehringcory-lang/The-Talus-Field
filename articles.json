@@ -217,6 +217,33 @@
     "related": ["yosemite-in-three-to-five-days", "mariposa-grove-how-to-visit", "yosemite-gateway-towns-compared", "best-airport-for-yosemite", "yosemite-trip-cost-budget", "giant-sequoias-fire-adaptation"]
   },
   {
+    "slug": "yosemite-in-july-and-august",
+    "cat": "seasonal",
+    "title": "Yosemite in July and August: heat, crowds, high country and smoke",
+    "dek": "The two busiest months of the year, and the two when the most of the park is open. The Valley's 89-degree average and Tuolumne's 70, the crowd by month and by hour, the waterfalls that thin and the river that warms, the high-country season, August's smoke, and what to book how far ahead.",
+    "seoTitle": "Yosemite in July and August: Weather, Crowds and What's Open",
+    "seoDek": "Yosemite in July and August: Park Service weather averages, crowds and parking, waterfalls, Tioga Road and Tuolumne, smoke and fire rules, and booking windows.",
+    "date": "October 18, 2026",
+    "isoDate": "2026-10-18",
+    "isoModified": "2026-10-18",
+    "read": "10 min",
+    "image": "img/yosemite-valley-granite-summer-cory-goehring.jpg",
+    "ogImage": { "url": "img/responsive/yosemite-valley-granite-summer-cory-goehring-1600.jpg", "width": 1600, "height": 721 },
+    "placeholder": "El Capitan across Yosemite Valley from the south rim in summer, the Valley floor far below",
+    "cover": true,
+    "wordCount": 2300,
+    "keywords": ["Yosemite in July", "Yosemite in August", "Yosemite in July and August", "Yosemite in summer", "Yosemite weather July", "Yosemite weather August", "Yosemite crowds summer", "Yosemite waterfalls in August", "Tioga Road in summer", "Tuolumne Meadows in July", "Yosemite smoke August", "Yosemite summer reservations"],
+    "faq": [
+      { "q": "How hot is Yosemite in July and August?", "a": "The Park Service's 1991 to 2020 averages put Yosemite Valley, at 4,000 feet, at a high of 89°F and a low of 57°F in both months. Tuolumne Meadows, at 8,600 feet, averages a high of 72°F in July and 70°F in August, with lows near 39°F and 37°F." },
+      { "q": "Is July or August busier in Yosemite?", "a": "July, by a little. The Park Service's monthly averages for 2010 to 2024 are 624,559 visits in July and 607,000 in August, each about 15 percent of the year. Saturdays and holiday weekends are the busiest days, and Valley parking is usually full after 8 am." },
+      { "q": "Do you need a reservation to enter Yosemite in summer?", "a": "Not in 2026: the Park Service said it would not use a timed entrance reservation system that year. It has not announced its plan for summer 2027, so check the park's reservations page before you go. The entrance fee is $35 per vehicle, valid for seven days." },
+      { "q": "Are the waterfalls running in July and August?", "a": "Thinly. The Park Service says peak runoff is usually in May or June, that Yosemite Falls flows roughly November through July, and that some falls are often only a trickle or completely dry by August." },
+      { "q": "Is Tioga Road open in July and August?", "a": "In a normal year, yes. The Park Service says Tioga Road is typically open to vehicles from late May or June until sometime in November. There is no gas in Tuolumne Meadows." },
+      { "q": "Is there smoke in Yosemite in August?", "a": "Often. The Park Service says smoky conditions are most common in August and September, and that bad air can last one to three weeks in a typical year. Check the park's air quality monitors before you go." }
+    ],
+    "related": ["yosemite-heat-safety-guide", "yosemite-during-smoke-season", "tuolumne-meadows-in-a-day", "swimming-in-the-merced", "yosemite-crowds-by-month", "yosemite-in-september-2026"]
+  },
+  {
     "slug": "worship-in-yosemite",
     "cat": "planning",
     "title": "Worship in Yosemite: church services, Easter sunrise and weddings in the park",
@@ -268,7 +295,7 @@
       { "q": "What are the busiest days in Yosemite?", "a": "Saturdays and holiday weekends, by the Park Service's own traffic page: Memorial Day, the Fourth of July, Labor Day, Thanksgiving week and the late-December holidays. Weekdays are less congested, though delays are possible on any day in summer." },
       { "q": "Do I need a reservation to enter Yosemite in 2026?", "a": "No. The Park Service says it will not use a timed reservation system in 2026, after requiring one in some form in 2021, 2022, 2024 and 2025. You still pay the entrance fee. Check nps.gov/yose before a 2027 trip; the park has not announced its plans for next year." }
     ],
-    "related": ["when-to-visit-yosemite", "yosemite-valley-parking-guide", "yosemite-without-reservations-2026", "glacier-point-how-to-visit", "mariposa-grove-how-to-visit", "yosemite-needs-a-reservation-system"]
+    "related": ["when-to-visit-yosemite", "yosemite-valley-parking-guide", "yosemite-without-reservations-2026", "yosemite-in-july-and-august", "mariposa-grove-how-to-visit", "yosemite-needs-a-reservation-system"]
   },
   {
     "slug": "yosemite-san-francisco-bus",
@@ -1235,7 +1262,7 @@
       { "q": "Why is cold water dangerous even for strong swimmers?", "a": "Because the dangerous part happens in the first minute, not the first hour. Going into cold water triggers an involuntary gasp followed by breathing you cannot control, and if your head is under at that moment you inhale water. Over the following minutes your hands and forearms stop doing what you ask of them, well before you feel dangerously cold. People do not drown in snowmelt because they are bad swimmers; they drown because the ability to swim is temporarily taken away from them. Get in gradually rather than jumping, and never enter cold water alone." },
       { "q": "Do you need a life jacket to raft the Merced River in Yosemite?", "a": "Children aged thirteen and under must wear one on the water at all times. Everyone must wear one when the Pohono Bridge gauge reads above four feet at eight in the morning. Boating is also restricted above Little Yosemite Valley and below El Capitan Bridge. That four-foot threshold is worth knowing even if you are only swimming: if the river is high enough that the Park Service has made flotation compulsory for rafters, it is not a swimming day." }
     ],
-    "related": ["yosemite-heat-safety-guide", "yosemite-with-kids-no-reservations-2026", "mist-trail-the-real-guide", "yosemite-waterfalls-guide", "yosemite-in-june", "yosemite-in-september-2026"]
+    "related": ["yosemite-heat-safety-guide", "yosemite-with-kids-no-reservations-2026", "mist-trail-the-real-guide", "yosemite-in-july-and-august", "yosemite-in-june", "yosemite-in-september-2026"]
   },
   {
     "slug": "tuolumne-meadows-in-a-day",
@@ -1260,7 +1287,7 @@
       { "q": "When is Tioga Road open?", "a": "Tioga Road opened on May 15 in 2026, unusually early. In a typical year it opens in late May or early June and closes with the first serious snow in late October or November. The date moves with the snowpack every year, so check current conditions rather than planning around an average." },
       { "q": "Are afternoon thunderstorms a problem in the Yosemite high country?", "a": "In July and August the high country builds thunderstorms out of a clear morning with startling speed: clear at dawn, cumulus stacking by late morning, lightning possible from early afternoon. Plan the day around it by doing the exposed thing first. Domes, summits and open granite in the morning; meadow, forest, lakeshore and lunch in the afternoon. Carry a rain shell even when the morning makes it look ridiculous." }
     ],
-    "related": ["cathedral-lakes-day-hike", "clouds-rest-hike", "tioga-road-opening-weekend", "yosemite-from-las-vegas", "yosemite-wildflowers-guide", "yosemite-stargazing-where-to-look-up"]
+    "related": ["cathedral-lakes-day-hike", "clouds-rest-hike", "tioga-road-opening-weekend", "yosemite-in-july-and-august", "yosemite-wildflowers-guide", "yosemite-stargazing-where-to-look-up"]
   },
   {
     "slug": "mariposa-grove-how-to-visit",
@@ -1937,7 +1964,7 @@
       { "q": "How do you stay safe from afternoon thunderstorms in Yosemite?", "a": "Be off exposed ridges, peaks, and open granite by noon. Sierra afternoon thunderstorms build like clockwork in July and August, often producing lightning by 1 PM. If you hear thunder above treeline you are already in strike range: get below treeline, off water, and crouch low with your feet together. The monsoon pattern runs from mid-July through September." },
       { "q": "How much cooler is Tuolumne Meadows than Yosemite Valley?", "a": "About 18 to 20 degrees cooler. When it is 90 degrees on the Valley floor, Tuolumne Meadows at 8,600 feet is around 72. Temperature drops roughly 3.5 degrees Fahrenheit for every thousand feet of elevation gain, which is why driving up Tioga Road is the single best heat escape in the park." }
     ],
-    "related": ["swimming-in-the-merced", "mist-trail-the-real-guide", "when-to-visit-yosemite", "yosemite-during-smoke-season", "yosemite-waterfalls-guide", "yosemite-falls-trail"]
+    "related": ["swimming-in-the-merced", "mist-trail-the-real-guide", "yosemite-in-july-and-august", "yosemite-during-smoke-season", "yosemite-waterfalls-guide", "yosemite-falls-trail"]
   },
   {
     "slug": "when-to-visit-yosemite",
@@ -2037,7 +2064,7 @@
       { "q": "How do I avoid the crowds in Yosemite in June 2026?", "a": "Go outside the Valley, which absorbs about 90 percent of visitors. With Tioga Road open the whole high country is available, and Cathedral Lakes, Hetch Hetchy, the Mariposa and Merced Groves, and Glacier Point Road are all far quieter than the Valley floor." },
       { "q": "What should I pack for Yosemite in June 2026?", "a": "Valley highs run 80 to 90 degrees and the high country is 15 to 20 degrees cooler. Carry at least two liters of water per person for any hike over four miles, sun protection, and a warm layer for elevation. Afternoon thunderstorms are possible in Tuolumne by late June." }
     ],
-    "related": ["when-to-visit-yosemite", "yosemite-waterfalls-guide", "tioga-road-opening-weekend", "yosemite-heat-safety-guide", "yosemite-in-may"]
+    "related": ["when-to-visit-yosemite", "yosemite-waterfalls-guide", "tioga-road-opening-weekend", "yosemite-heat-safety-guide", "yosemite-in-may", "yosemite-in-july-and-august"]
   },
   {
     "slug": "cathedral-lakes-day-hike",
@@ -2606,7 +2633,7 @@
       { "q": "What is a good alternative if Yosemite is too smoky?", "a": "The eastern Sierra often has better air when prevailing winds carry smoke away from the park. Mono Lake, Mammoth Lakes, and the June Lake Loop are worth checking. Smoke also typically clears after cold fronts, so monitoring the forecast 48-72 hours out gives you a real window to reschedule." },
       { "q": "Does wildfire smoke ruin a Yosemite trip?", "a": "Not necessarily. Haze produces warm, diffused light that photographers actively seek. On moderate-smoke days (AQI 50-100) most outdoor activities are fine for healthy adults. On heavy-smoke days (AQI 150+) strenuous outdoor exercise is not recommended, so use the time for indoor sites, driving routes, or the Ahwahnee." }
     ],
-    "related": ["yosemite-heat-safety-guide", "yosemite-fire-restrictions-explained", "when-to-visit-yosemite", "yosemite-in-fall", "giant-sequoias-fire-adaptation", "wildfire-in-yosemite-during-your-trip"]
+    "related": ["yosemite-heat-safety-guide", "yosemite-fire-restrictions-explained", "yosemite-in-july-and-august", "yosemite-in-fall", "giant-sequoias-fire-adaptation", "wildfire-in-yosemite-during-your-trip"]
   },
   {
     "slug": "yosemite-without-reservations-2026",
