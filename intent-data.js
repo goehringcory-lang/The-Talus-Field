@@ -195,6 +195,7 @@ window.ARTICLE_INTENT = {
   "where-to-stay-in-yosemite":                 { stage: ["before-booking"], who: ["first-trip", "families", "accessible"], topic: ["lodging"] },
   "housekeeping-camp-vs-curry-village":        { stage: ["before-booking"], who: ["first-trip", "families"], topic: ["lodging"] },
   "yosemite-campground-reservations":          { stage: ["before-booking"], who: ["first-trip", "families"], topic: ["camping"] },
+  "christmas-and-new-years-in-yosemite":       { stage: ["before-booking", "dates-set"], who: ["families", "non-hikers"], topic: ["lodging", "food", "conditions", "transportation"] },
   "yosemite-in-april":                         { stage: ["before-booking", "dates-set"], who: ["first-trip"], topic: ["conditions", "trails", "camping", "lodging"] },
   "worship-in-yosemite":                       { stage: ["dates-set", "in-park"], who: [], topic: [] },
   "yosemite-tire-chains":                      { stage: ["dates-set", "week-before"], who: ["first-trip"], topic: ["transportation", "conditions"] },
