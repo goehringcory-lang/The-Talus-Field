@@ -153,7 +153,7 @@ const seed: HikeT[] = [
     route: 'out-and-back',
     durationMin: 120,
     trailhead: 'Upper Yosemite Fall trailhead at Camp 4',
-    coord: [-119.6021, 37.742], // web-derived: Camp 4 trailhead; TODO verify on the ground
+    coord: [-119.6021, 37.742], // web-derived: Camp 4 trailhead; source-checked 2026-10-17: the USGS-derived track starts 8 m from this pin; NPS places "Upper Yosemite Fall Trailhead" (37.742769, -119.603251) is ~130 m WNW, so the pin stays with the trail geometry; TODO verify on the ground
     photo: { src: '/photos/hike-columbia-rock.jpg', alt: 'An early photograph of the head of the Valley from Columbia Rock, Half Dome at center.' },
     description:
       'The first mile of switchbacks on the Yosemite Falls Trail, ending at a perch with a railing, with Half Dome and Sentinel Rock across the valley. A sample of the full climb for a third of the effort.',
@@ -209,7 +209,7 @@ const seed: HikeT[] = [
     route: 'out-and-back',
     durationMin: 420,
     trailhead: 'Upper Yosemite Fall trailhead at Camp 4',
-    coord: [-119.6021, 37.742], // same pin as columbia-rock hike
+    coord: [-119.6021, 37.742], // same pin as columbia-rock hike; source-checked 2026-10-17: the track starts 8 m away, NPS places "Upper Yosemite Fall Trailhead" ~130 m WNW (the pin stays with the trail geometry)
     photo: { src: '/photos/hike-upper-yosemite-fall.jpg', alt: 'Upper Yosemite Fall leaving the rim over a snowy talus slope.' },
     description:
       'Dozens of switchbacks to the notch where the fall leaves the rim. Start early: the trail bakes by mid-morning.',
@@ -267,7 +267,7 @@ const seed: HikeT[] = [
     durationMin: 540,
     trailhead: 'Upper Yosemite Fall trailhead at Camp 4',
     stopId: 'eagle-peak',
-    coord: [-119.6021, 37.742], // Camp 4 start; the linked stop pins the summit
+    coord: [-119.6021, 37.742], // Camp 4 start; the linked stop pins the summit; source-checked 2026-10-17: the track starts 8 m away, NPS places "Upper Yosemite Fall Trailhead" ~130 m WNW (the pin stays with the trail geometry)
     photo: { src: '/photos/hike-eagle-peak.jpg', alt: 'The Three Brothers, Eagle Peak the highest of them.' },
     description:
       'The Yosemite Falls climb, then a few more quiet miles to the highest of the Three Brothers. A Half Dome-length day with far fewer people.',
@@ -450,7 +450,7 @@ const seed: HikeT[] = [
     route: 'out-and-back',
     durationMin: 120,
     trailhead: 'Mono Meadow lot, Glacier Point Road mile 10',
-    coord: [-119.5851, 37.6713], // OSM-derived: signed Mono Meadow trailhead pullout at Glacier Point Road mile 10 (the earlier web-derived pin sat 0.9 km west); TODO verify on the ground
+    coord: [-119.5851, 37.6713], // OSM-derived: signed Mono Meadow trailhead pullout at Glacier Point Road mile 10 (the earlier web-derived pin sat 0.9 km west); source-checked 2026-10-17: NPS places "Mono Meadow Trailhead" (37.671453, -119.584778) is 33 m away, the track start 4 m; TODO verify on the ground
     season: 'Glacier Point Road season',
     description:
       'Down through firs to a boggy meadow, then on to an opening with a clear shot of Mount Starr King and the Clark Range. Expect mud and log crossings all summer.',
@@ -574,7 +574,7 @@ const seed: HikeT[] = [
     durationMin: 120,
     trailhead: 'Tuolumne Grove lot at Crane Flat',
     stopId: 'tuolumne-grove-old-road',
-    coord: [-119.80561, 37.75826], // TODO: verify on the ground — moved 2026-09 to the trailhead lot (OSM; the tuolumne-grove-old-road pin); the NPS API point is the grove itself
+    coord: [-119.80561, 37.75826], // TODO: verify on the ground — moved 2026-09 to the trailhead lot (OSM; the tuolumne-grove-old-road pin); the NPS API point is the grove itself; source-checked 2026-10-17: OSM "Tuolumne Grove Trailhead" node 4156594198 is about 10 m away
     photo: { src: '/photos/hike-tuolumne-grove.jpg', alt: 'The walk-through tunnel tree in the Tuolumne Grove.' },
     description:
       'Down the Old Big Oak Flat Road to two dozen giant sequoias, including a walk-through tunnel tree. The climb is all on the return.',
@@ -600,13 +600,13 @@ const seed: HikeT[] = [
     title: 'Harden Lake',
     region: 'tuolumne',
     order: 3,
-    distanceMi: 5.6,
-    elevationGainFt: 300,
+    distanceMi: 5.8, // NPS "Harden Lake Trailhead" (checked 2026-10-17): 5.8 mi round trip
+    elevationGainFt: 390, // NPS: 390 ft, gained on the return
     difficulty: 'easy',
     route: 'out-and-back',
     durationMin: 180,
-    trailhead: 'White Wolf Lodge',
-    coord: [-119.6486, 37.8697], // web-derived: White Wolf road-end; TODO verify on the ground
+    trailhead: 'White Wolf, at the start of the old Tioga Road grade north of the lodge',
+    coord: [-119.649353, 37.872753], // NPS places API "Harden Lake Trailhead" (nps.gov/places/000/harden-lake-trailhead.htm), the start of the old Tioga Road grade north of White Wolf; the USGS-derived track in public/tracks/harden-lake.json starts 37 m away; moved 2026-10-17 from the White Wolf road-end ~345 m S; TODO verify on the ground
     season: 'Tioga Road season',
     description:
       'A nearly flat walk on old roadbed from White Wolf to a boulder-dotted lake in the forest. Wildflowers line the sandy stretches in early summer.',
@@ -816,12 +816,12 @@ const seed: HikeT[] = [
     region: 'tuolumne',
     order: 15,
     distanceMi: 4.8,
-    elevationGainFt: 900,
+    elevationGainFt: 1000, // NPS "Elizabeth Lake Trailhead" (checked 2026-10-17): 4.8 mi round trip, 1,000 ft
     difficulty: 'moderate',
     route: 'out-and-back',
     durationMin: 180,
     trailhead: 'Tuolumne Meadows Campground, at the back of the B loop',
-    coord: [-119.3554, 37.8712], // web-derived: trailhead inside the campground; TODO verify on the ground
+    coord: [-119.355807, 37.870604], // NPS places API "Elizabeth Lake Trailhead" (nps.gov/places/000/elizabeth-lake-trailhead.htm), back of the B loop in Tuolumne Meadows Campground; the track in public/tracks/elizabeth-lake.json starts within 1 m; moved 2026-10-17 ~75 m; TODO verify on the ground
     season: 'Tioga Road season',
     photo: { src: '/photos/hike-elizabeth-lake.jpg', alt: 'Unicorn Peak above the meadows near Elizabeth Lake, in a 1968 park photograph.' },
     description:
@@ -930,7 +930,7 @@ const seed: HikeT[] = [
     route: 'out-and-back',
     durationMin: 390,
     trailhead: 'Tioga Pass entrance station',
-    coord: [-119.2577, 37.9109], // web-derived: unsigned start at the Tioga Pass entrance; TODO verify on the ground
+    coord: [-119.2577, 37.9109], // web-derived: unsigned start at the Tioga Pass entrance; source-checked 2026-10-17: NPS places "Tioga Pass Entrance" 29 m, "Gaylor Lakes Trailhead" 90 m; TODO verify on the ground
     season: 'Tioga Road season',
     hazard:
       'The summit is 13,061 feet and the route above the meadows is an unsigned use path, not a maintained trail: altitude sickness, finding the way, and afternoon lightning are the real risks. Start early and turn around if weather builds.',

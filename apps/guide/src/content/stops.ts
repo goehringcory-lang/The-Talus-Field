@@ -549,7 +549,7 @@ const seed: StopInput[] = [
     region: 'valley',
     order: 17,
     kind: 'viewpoint',
-    coord: [-119.5871, 37.7488], // web-derived: Village Store / Welcome Center cluster, Yosemite Village; TODO: verify on the ground
+    coord: [-119.5871, 37.7488], // web-derived: Village Store / Welcome Center cluster, Yosemite Village; source-checked 2026-10-17: NPS places "Yosemite Exploration Center" 4 m; TODO: verify on the ground
     elevationFt: 4000,
     timeBudgetMin: 90,
     teaser:
@@ -1070,7 +1070,7 @@ const seed: StopInput[] = [
     region: 'glacier-mariposa',
     order: 7,
     kind: 'viewpoint',
-    coord: [-119.6560, 37.5366], // web-derived: Wawona Hotel front, Hwy 41 (Pioneer History Center is a 5-min walk north); TODO: verify on the ground
+    coord: [-119.6560, 37.5366], // web-derived: Wawona Hotel front, Hwy 41 (Pioneer History Center is a 5-min walk north); source-checked 2026-10-17: 13 m from the OSM lot in front of the hotel (way 164768959), NPS places "Wawona Hotel" 96 m; TODO: verify on the ground
     elevationFt: 4000,
     timeBudgetMin: 90,
     // Source: Yosemite Guide Vol 51 Issue 6 (July 15 - August 18, 2026);
@@ -1322,7 +1322,7 @@ const seed: StopInput[] = [
     order: 3,
     kind: 'trailhead',
     season: 'Tioga Road season',
-    coord: [-119.6486, 37.8697], // web-derived: White Wolf road-end (same pin as the harden-lake hike); TODO: verify on the ground
+    coord: [-119.6486, 37.8697], // web-derived: White Wolf road-end (the harden-lake hike shared this pin until 2026-10-17, when it moved to the NPS trailhead ~345 m N); source-checked 2026-10-17: NPS places "Lukens Lake Trailhead from White Wolf" 20 m, "White Wolf Lodge" 56 m; TODO: verify on the ground
     elevationFt: 8000,
     timeBudgetMin: 90,
     teaser:
@@ -1446,7 +1446,7 @@ const seed: StopInput[] = [
     order: 7,
     kind: 'trailhead',
     photos: [{ src: '/photos/cathedral-lakes.jpg', caption: 'Tuolumne high country, the landscape Cathedral Lakes sits in.' }],
-    coord: [-119.374706, 37.872634], // verified 2026-07, re-checked 2026-10-16: NPS API places "Cathedral Lakes Trailhead" (37.8726336506, -119.374706059), the Tuolumne Meadows Visitor Center lot the trailhead moved to in 2022; NOT the retired Tioga Road shoulder trailhead ~0.7 km west near Budd Creek
+    coord: [-119.374706, 37.872634], // verified 2026-07, re-checked 2026-10-16: NPS API places "Cathedral Lakes Trailhead" (37.8726336506, -119.374706059), the Tuolumne Meadows Visitor Center lot the trailhead moved to in 2022; NOT the retired Tioga Road shoulder trailhead ~0.7 km west near Budd Creek; re-checked 2026-10-17, still exact
     elevationFt: 8560,
     timeBudgetMin: 360,
     teaser:
