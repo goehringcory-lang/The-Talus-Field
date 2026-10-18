@@ -156,7 +156,7 @@ window.ARTICLE_BODIES["hetch-hetchy-the-other-yosemite-valley"] = function Hetch
       </p>
 
       <p>
-        <strong>It has fewer amenities.</strong> No food. No lodging in the immediate area. Limited bathrooms. The road has hours. Visitors used to the convenience of Yosemite Valley find Hetch Hetchy a different kind of trip.
+        <strong>It has fewer amenities.</strong> No food. No lodging inside the gate, though Evergreen Lodge sits about a mile outside the Hetch Hetchy entrance; <a href="/articles/hotels-just-outside-yosemite">the hotels just outside Yosemite</a> compares it with the other lodges at the park line. Limited bathrooms. The road has hours. Visitors used to the convenience of Yosemite Valley find Hetch Hetchy a different kind of trip.
       </p>
 
       <p>

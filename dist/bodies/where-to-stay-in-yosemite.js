@@ -391,7 +391,9 @@ window.ARTICLE_BODIES["where-to-stay-in-yosemite"] = function WhereToStayInYosem
     className: "eat-prose"
   }, React.createElement("p", null, "The ", React.createElement("strong", null, "Wawona Hotel"), ", near the South Entrance and the Mariposa Grove, has been ", React.createElement("strong", null, "closed since December 2, 2024"), ". A roof replacement turned up problems, and the Park Service ordered a comprehensive condition assessment of the buildings. Every building in the complex is closed to the public, the main building, the cottages and the pool included, and there is no anticipated reopening date. The park's printed guide calls it closed for renovation. Either way, it is not bookable, and its dining room is closed with it."), React.createElement("p", null, "It is a loss worth knowing about. The site has housed travelers since 1856, when it was a stage stop; the main building, with its white verandas, went up in 1879, and the hotel is a National Historic Landmark. From 2016 to 2019 it was called Big Trees Lodge. With it closed there is no concessioner bed on the Highway 41 side of the park, which puts more pressure on Fish Camp and Oakhurst in summer (", React.createElement("a", {
     href: "/articles/yosemite-gateway-towns-compared"
-  }, "the gateway towns compared"), ") and makes the private cabins below the only in-park beds near the grove.")), React.createElement("div", {
+  }, "the gateway towns compared"), ") and makes the private cabins below the only in-park beds near the grove. The big resort at that gate, Tenaya at Yosemite, is weighed against Rush Creek, Evergreen and Yosemite View Lodge in ", React.createElement("a", {
+    href: "/articles/hotels-just-outside-yosemite"
+  }, "the hotels just outside Yosemite"), ".")), React.createElement("div", {
     className: "wts-closed"
   }, React.createElement("p", {
     className: "wts-closed__head"

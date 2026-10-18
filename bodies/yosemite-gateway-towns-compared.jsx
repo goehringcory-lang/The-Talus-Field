@@ -507,7 +507,7 @@ window.ARTICLE_BODIES["yosemite-gateway-towns-compared"] = function YosemiteGate
       </p>
 
       <p>
-        <strong>The closer options on this corridor:</strong> the largest lodges on this side are not in Groveland itself but strung along Highway 120 east of it, and that matters on a Valley morning. <strong>Rush Creek Lodge</strong> sits on twenty wooded acres roughly half a mile from the Big Oak Flat entrance. Its sister property, the historic <strong>Evergreen Lodge</strong>, is about seven miles on, down Evergreen Road toward Hetch Hetchy, which makes it the closest bed to that corner of the park. <strong>Firefall Ranch</strong>, cottages and villas on a former stagecoach stop between Groveland and the gate, is the newest of the three. All three are priced well above a Groveland motel and book like it.
+        <strong>The closer options on this corridor:</strong> the largest lodges on this side are not in Groveland itself but strung along Highway 120 east of it, and that matters on a Valley morning. <strong>Rush Creek Lodge</strong> sits on twenty wooded acres roughly half a mile from the Big Oak Flat entrance. Its sister property, the historic <strong>Evergreen Lodge</strong>, is about seven miles on, down Evergreen Road toward Hetch Hetchy, which makes it the closest bed to that corner of the park. <strong>Firefall Ranch</strong>, cottages and villas on a former stagecoach stop between Groveland and the gate, is the newest of the three. All three are priced well above a Groveland motel and book like it. <a href="/articles/hotels-just-outside-yosemite">Our comparison of the hotels just outside Yosemite</a> sets Rush Creek and Evergreen against Tenaya and Yosemite View Lodge, gate by gate.
       </p>
 
       <p>
