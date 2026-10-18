@@ -186,7 +186,7 @@ window.ARTICLE_BODIES["where-to-propose-in-yosemite"] = function WhereToProposeI
       </p>
 
       <p>
-        <strong>The Yosemite Chapel.</strong> If you want the proposal to double as a location scouting trip, know that the Yosemite Chapel, built in 1879, is the oldest structure in the Valley and hosts weddings regularly. It sits in a meadow below Sentinel Rock with a view of the north wall. Weddings at the chapel require a Special Use Permit from the NPS and are booked well in advance. For couples thinking about what comes after the engagement, the chapel is worth a quiet visit.
+        <strong>The Yosemite Chapel.</strong> If you want the proposal to double as a location scouting trip, know that the Yosemite Chapel, built in 1879, is the oldest structure in the Valley and hosts weddings regularly. It sits in a meadow below Sentinel Rock with a view of the north wall. Weddings at the chapel require a Special Use Permit from the NPS and are booked well in advance. For couples thinking about what comes after the engagement, the chapel is worth a quiet visit. It is also home to Yosemite Community Church, which holds a service every Sunday morning, all year; our guide to <a href="/articles/worship-in-yosemite">worship in Yosemite</a> has the service times and how the church books chapel weddings.
       </p>
 
       <p>

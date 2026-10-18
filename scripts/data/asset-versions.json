@@ -166,8 +166,8 @@
       "sha256": "d339e4a44c5c15ae"
     },
     "/dist/bodies/where-to-propose-in-yosemite.js": {
-      "v": 7,
-      "sha256": "9c4fddef2b13f6b9"
+      "v": 8,
+      "sha256": "d4a4ffb443516e2d"
     },
     "/dist/bodies/where-to-stay-in-yosemite.js": {
       "v": 20,
@@ -180,6 +180,10 @@
     "/dist/bodies/working-in-yosemite.js": {
       "v": 80,
       "sha256": "6a99e42c7ad6f7c6"
+    },
+    "/dist/bodies/worship-in-yosemite.js": {
+      "v": 1,
+      "sha256": "4c2067ce069d95de"
     },
     "/dist/bodies/yosemite-accessibility-guide.js": {
       "v": 7,
