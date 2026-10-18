@@ -147,7 +147,11 @@ window.ARTICLE_BODIES["yosemite-in-fall"] = function YosemiteInFallBody() {
       <LodgingCta
         destination="Yosemite National Park"
         heading="Fall is when the rooms come back"
-        note="September through November is the availability window that summer does not have. Rates ease after Labor Day and midweek October is a different market from midweek July. If the plan is flexible enough to move around a storm, search your dates both inside the park and in the gateway towns before committing to either."
+        note={
+          <>
+            Fall's case is strongest midweek; book a weekend in the color weeks as early as you would a summer one. Groveland is the easier last-minute booking in shoulder season, but its Highway 120 approach is higher and gets chain controls the Highway 140 towns do not; Mariposa and El Portal are the low road in. Book flexible, for the reason above. <a href="/articles/yosemite-gateway-towns-compared">The gateway towns comparison</a> weighs all five.
+          </>
+        }
         list="article_cta"
         slug="yosemite-in-fall"
         cta="Search fall lodging around Yosemite →"

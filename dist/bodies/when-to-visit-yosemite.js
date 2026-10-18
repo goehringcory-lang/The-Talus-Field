@@ -609,7 +609,9 @@ window.ARTICLE_BODIES["when-to-visit-yosemite"] = function WhenToVisitYosemiteBo
   }), React.createElement("p", null, React.createElement("strong", null, "Days to plan around."), " Memorial Day weekend, the one weekend that backed up in 2026. Any summer Saturday arriving after 8:30 a.m. Labor Day weekend. The holiday week in late December if you are not staying in the park. The park says July 4 ran without significant delays this year, but a holiday Saturday is the day to leave the margin on.")), React.createElement(LodgingCta, {
     destination: "Yosemite National Park",
     heading: "Once the dates are chosen, the bed is next",
-    note: "Every pick above assumes you reach the gate early, and that depends on where you slept. Rooms inside the park open about a year ahead and go first; the gateway towns hold space longer. The full comparison of every option is one page over.",
+    note: React.createElement(React.Fragment, null, "Every pick above assumes you reach the gate early, and that depends on where you slept. Rooms inside the park open about a year ahead and go first, and the Valley campgrounds release five months ahead on the 15th. The month picks the town: Highway 140 through Mariposa and El Portal is the low, reliable road in winter, and Lee Vining is a base only while Tioga Road is open. ", React.createElement("a", {
+      href: "/articles/yosemite-gateway-towns-compared"
+    }, "The gateway towns comparison"), " has the rest."),
     list: "article_cta",
     slug: "when-to-visit-yosemite",
     cta: "Search Yosemite-area lodging →"

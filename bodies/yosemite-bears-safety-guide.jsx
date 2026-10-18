@@ -1,4 +1,4 @@
-/* global React, NatureNotesFilm */
+/* global React, NatureNotesFilm, LodgingCta, AffiliateNote */
 
 window.ARTICLE_BODIES = window.ARTICLE_BODIES || {};
 
@@ -260,6 +260,19 @@ window.ARTICLE_BODIES["yosemite-bears-safety-guide"] = function YosemiteBearsSaf
         For backcountry trips, bear canisters are required for all overnights. The park rents the Garcia Backpackers' Cache at its staffed wilderness permit stations; BearVault and several other models are NPS-approved if you bring your own. Place the canister at least 100 feet from your campsite, away from cliffs and water, and do not try to secure it with rocks or rope. That just gives the bear something to grip. The smooth container on open ground is the design. Trust it. And pack your canister efficiently. Put dense, calorie-rich food in first. Crush packaging to save space. A well-packed BV500 holds about five days of food for one person if you are not bringing a week's worth of luxury items. If you are <a href="/articles/first-time-yosemite-overwhelm">planning your first trip</a>, factor canister space into your meal planning from the start.
       </p>
 
+      <LodgingCta
+        destination="Yosemite National Park"
+        heading="Where you sleep changes the routine, not the rule"
+        note={
+          <>
+            A campsite or a Curry Village tent cabin comes with a steel bear box outside, and everything with a scent goes in it, every time, because canvas is not a barrier a bear respects. A hotel room is simpler: nothing scented stays in the car overnight, so it comes inside with you. A motel in a gateway town is outside the park's regulation but not outside bear country, since in fall the big males come down to El Portal for the acorns as well as to the Valley and Wawona (<a href="/articles/yosemite-in-fall">the fall guide</a>).
+          </>
+        }
+        list="article_cta"
+        slug="yosemite-bears-safety-guide"
+        cta="Search lodging around Yosemite →"
+      />
+
       <h2>Yosemite bear incidents: the data from 1998 to 2026</h2>
 
       <p>This is a conservation success story, and I wish I could end it there. I cannot.</p>
@@ -303,6 +316,8 @@ window.ARTICLE_BODIES["yosemite-bears-safety-guide"] = function YosemiteBearsSaf
       <p>
         The best bear encounter is the one where you see a cinnamon-colored bear in a meadow at dusk, watch it graze on grass for ten minutes from 50 yards away, and walk back to your campsite grinning. That's the wildlife encounter you came for. That's the one you will remember for the rest of your life. Not the one where you chased it for a photo and it bluff-charged you. Not the one where it tore into your car because you left a granola bar under the seat. The quiet one. The one where you let it be a bear.
       </p>
+
+      <AffiliateNote />
 
       <h3>Sources</h3>
       <ul style={{ fontSize: 14 }}>

@@ -1,4 +1,4 @@
-/* global React, HpPageHead, LodgingCta, HpGuideBand, HpLetter, FjLayout, FjPull, FjRidge, FjCard, FjPlate, AffiliateDisclosure */
+/* global React, HpPageHead, LodgingCta, AvailabilityLink, HpGuideBand, HpLetter, FjLayout, FjPull, FjRidge, FjCard, FjPlate, AffiliateDisclosure */
 
 // =============================================================================
 // DISTANCES — `/distances` route. The drive-time matrix.
@@ -233,13 +233,29 @@ function DistancesPage({ go }) {
           </p>
         </section>
 
+        {/* Base by entrance: each town is paired with the gate this page's
+            TO_VALLEY and OTHER_LEGS already pair it with, so the block adds no
+            figure the table above does not print. Town links carry per-town
+            slugs under the page's own aff_list. */}
         <LodgingCta
           destination="Yosemite National Park"
           heading="Book the drive you want"
-          note="The difference between a 25-minute morning and a 90-minute one is decided months earlier, when you pick the town. Availability moves fastest for the closest beds."
+          note={
+            <>
+              Pick the town by the entrance you will use most.{" "}
+              <AvailabilityLink destination="El Portal, California" list="page_distances" slug="el-portal" name="El Portal lodging search">El Portal</AvailabilityLink>{" "}
+              and Mariposa sit on Highway 140 into the Valley through Arch Rock;{" "}
+              <AvailabilityLink destination="Oakhurst, California" list="page_distances" slug="oakhurst" name="Oakhurst lodging search">Oakhurst</AvailabilityLink>{" "}
+              is the South Entrance and the Mariposa Grove;{" "}
+              <AvailabilityLink destination="Groveland, California" list="page_distances" slug="groveland" name="Groveland lodging search">Groveland</AvailabilityLink>{" "}
+              is Big Oak Flat, Hetch Hetchy and the Tuolumne side; and{" "}
+              <AvailabilityLink destination="Lee Vining, California" list="page_distances" slug="lee-vining" name="Lee Vining lodging search">Lee Vining</AvailabilityLink>{" "}
+              is Tuolumne Meadows, only while Tioga Pass is open. The difference between a 25-minute morning and a 90-minute one is decided when you book.
+            </>
+          }
           list="page_distances"
           slug="distances"
-          cta="Search lodging by town →"
+          cta="Search lodging around the park →"
         />
       </FjLayout>
 

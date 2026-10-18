@@ -498,16 +498,20 @@ function HalfDomeLotteryPage({
     "aria-label": "Lodging availability"
   }, React.createElement("p", {
     className: "hp-eyebrow"
-  }, "THE NIGHT BEFORE, AND THE NIGHT AFTER"), React.createElement("p", null, "The hike wants a pre-dawn start and gives back a ten-to-twelve-hour day. Driving in from Oakhurst at 3 a.m. and back out at 10 p.m. is how a permit gets wasted (", React.createElement(HomeLink, {
+  }, "THE NIGHT BEFORE, AND THE NIGHT AFTER"), React.createElement("p", null, "The hike starts at Happy Isles before dawn and gives back a ten-to-twelve-hour day, so sleep at the east end of the Valley if you can. Curry Village is the nearest roof to the trailhead, the Ahwahnee and Yosemite Valley Lodge are farther down the Valley floor, and all three book through the concessioner; Upper, Lower and North Pines are the campgrounds nearest it, released on Recreation.gov five months ahead (", React.createElement(HomeLink, {
+    go: go,
+    location: "half_dome_stay",
+    href: "/articles/yosemite-camping-complete-guide"
+  }, "the camping guide"), "). Failing those, El Portal is the closest town: 25 to 35 minutes to the Valley, plus 15 to 20 to the east end (", React.createElement(HomeLink, {
     go: go,
     location: "half_dome_stay",
     href: "/distances"
-  }, "every town's drive to the Valley"), "). A bed in the Valley or in El Portal is the difference, and the permit date is known far enough ahead to book one."), React.createElement(AvailabilityLink, {
-    destination: "Yosemite National Park",
+  }, "every town's drive"), "). Driving in from Oakhurst at 3 a.m. is how a permit gets wasted."), React.createElement(AvailabilityLink, {
+    destination: "El Portal, California",
     list: "page_half_dome",
-    slug: "half-dome-lottery",
+    slug: "el-portal",
     className: "ff-book"
-  }, "Search lodging near the trailhead\xA0↗"), React.createElement("p", {
+  }, "Search El Portal lodging\xA0↗"), React.createElement("p", {
     className: "ff-note"
   }, "Availability search on Expedia; we may earn a commission, and the advice is the same either way. ", React.createElement("a", {
     href: "/affiliate"

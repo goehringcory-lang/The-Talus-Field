@@ -321,14 +321,14 @@ function buildSitemap(merged, categories) {
     // band, so its lastmod tracks the edition stamp like /now does rather than
     // sitting at the date the page was written.
     ["/tioga-opening", nowLastmod()],
-    ["/half-dome-lottery", "2026-10-17"],
+    ["/half-dome-lottery", "2026-10-18"],
     ["/fall-color", "2026-10-17"],
     ["/moonbow", "2026-10-04"],
     ["/frazil-ice", "2026-10-04"],
-    ["/distances", "2026-10-17"],
+    ["/distances", "2026-10-18"],
     ["/dates", "2026-09-05"],
-    ["/international", "2026-10-17"],
-    ["/webcams", "2026-10-17"],
+    ["/international", "2026-10-18"],
+    ["/webcams", "2026-10-18"],
     ["/start-here", "2026-08-30"],
     ["/consult", "2026-07-15"],
     ["/widget", "2026-07-15"],

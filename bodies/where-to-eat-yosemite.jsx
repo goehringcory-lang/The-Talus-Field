@@ -1,4 +1,4 @@
-/* global React, NatureNotesFilm, EventIcon, ResponsiveImage */
+/* global React, NatureNotesFilm, EventIcon, ResponsiveImage, LodgingCta, AffiliateNote */
 
 window.ARTICLE_BODIES = window.ARTICLE_BODIES || {};
 
@@ -727,6 +727,19 @@ window.ARTICLE_BODIES["where-to-eat-yosemite"] = function WhereToEatYosemiteBody
             </div>
           </article>
         </div>
+
+        {/* Eat and sleep in one place: every kitchen named here is one this
+            body already lists. The Valley beds book through the concessioner,
+            so they carry no link; the search is Mariposa, the gateway this
+            section calls the one with the most restaurants. */}
+        <LodgingCta
+          destination="Mariposa, California"
+          heading="Eat and sleep in the same place"
+          note="In the Valley, a room at Yosemite Valley Lodge or Curry Village puts dinner a walk away: the Mountain Room and Base Camp Eatery at one, the Pizza Deck and the Seven Tents Pavilion at the other. Both book through the concessioner, not through a search. Outside the park, Mariposa has the most restaurants of the gateway towns, and El Portal's four are half an hour closer on a night the Valley kitchens have shut."
+          list="article_cta"
+          slug="where-to-eat-yosemite"
+          cta="Search Mariposa lodging →"
+        />
       </section>
 
       <section className="ff-band" id="sec-6-everything-that-exists-by-area" tabIndex={-1}>
@@ -1002,6 +1015,10 @@ window.ARTICLE_BODIES["where-to-eat-yosemite"] = function WhereToEatYosemiteBody
           </div>
         </div>
       </section>
+
+      <div className="hp-wrap fly-end">
+        <AffiliateNote />
+      </div>
     </div>
   );
 };

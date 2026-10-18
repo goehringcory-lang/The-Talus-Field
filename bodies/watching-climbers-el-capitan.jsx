@@ -1,4 +1,4 @@
-/* global React, NatureNotesFilm, EventIcon, ResponsiveImage */
+/* global React, NatureNotesFilm, EventIcon, ResponsiveImage, LodgingCta, AffiliateNote */
 
 window.ARTICLE_BODIES = window.ARTICLE_BODIES || {};
 
@@ -514,6 +514,18 @@ window.ARTICLE_BODIES["watching-climbers-el-capitan"] = function WatchingClimber
               <li className="is-glow"><span>Dusk</span><p>The headlamps come on, scattered across the face like early stars.</p></li>
               <li><span>A moonless night</span><p>Stay for the real stars.</p></li>
             </ol>
+            {/* The evening ends after dark, so the bed is the drive back. The
+                Lodge and Camp 4 book through the park's own systems and are
+                named without a link; El Portal's time is the published one to
+                the west end of the Valley, which is where the meadow is. */}
+            <LodgingCta
+              destination="El Portal, California"
+              heading="Stay for the headlamps, sleep close"
+              note="The show ends after dark, so the drive back is the part to plan. Yosemite Valley Lodge is the nearest room in the park to the meadow and books through the concessioner; Camp 4 runs on its own reservation system. Outside the boundary, El Portal is the closest town, 25 to 35 minutes from the west end of the Valley, where the meadow sits."
+              list="article_cta"
+              slug="watching-climbers-el-capitan"
+              cta="Search El Portal lodging →"
+            />
           </div>
         </div>
       </section>
@@ -589,6 +601,10 @@ window.ARTICLE_BODIES["watching-climbers-el-capitan"] = function WatchingClimber
           </div>
         </div>
       </section>
+
+      <div className="hp-wrap fly-end">
+        <AffiliateNote />
+      </div>
     </div>
   );
 };

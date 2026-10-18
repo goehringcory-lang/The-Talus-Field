@@ -40,7 +40,7 @@ function WebcamsPage({
     eyebrow: "LIVE VIEWS",
     title: "Yosemite webcams",
     intro: "The live cameras worth checking before you drive in, what each one actually shows, and how often it refreshes. Five load on this page. The rest are one link away, because the operators would rather you watched them at home."
-  }), React.createElement("section", {
+  }, React.createElement(AffiliateDisclosure, null)), React.createElement("section", {
     className: "hp-wrap hp-section hp-webcams__live"
   }, React.createElement(HpHeading, {
     go: go,
@@ -126,7 +126,19 @@ function WebcamsPage({
       e.preventDefault();
       go("distances");
     }
-  }, "the drive-time table"), ".")), React.createElement("section", {
+  }, "the drive-time table"), ".")), React.createElement(LodgingCta, {
+    destination: "El Portal, California",
+    heading: "If the cameras say go",
+    note: React.createElement(React.Fragment, null, "A clear Valley on two cameras is a reason to go soon, and the bed is the hard part at short notice. El Portal is the closest town, 25 to 35 minutes from the Valley on Highway 140, the low road that takes rain on the days the others take snow. In shoulder season,", " ", React.createElement(AvailabilityLink, {
+      destination: "Groveland, California",
+      list: "page_webcams",
+      slug: "groveland",
+      name: "Groveland lodging search"
+    }, "Groveland"), " ", "is the easier last-minute booking, 65 to 80 minutes out on Highway 120."),
+    list: "page_webcams",
+    slug: "el-portal",
+    cta: "Search El Portal lodging →"
+  }), React.createElement("section", {
     style: {
       marginTop: 48
     }
