@@ -748,7 +748,7 @@ const SX_SEASONS = [
   { key: "winter", label: "Winter", months: "December to February", lead: "yosemite-in-winter",
     slugs: ["yosemite-in-winter", "yosemite-in-december", "horsetail-fall-firefall", "bracebridge-dinner-and-vintners-holidays", "yosemite-winter-hikes"] },
   { key: "spring", label: "Spring", months: "March to May", lead: "yosemite-in-march",
-    slugs: ["yosemite-in-march", "yosemite-waterfalls-guide", "tioga-road-opening-weekend", "glacier-point-road-open-2026", "memorial-day-skip-the-valley-go-high-2026"] },
+    slugs: ["yosemite-in-march", "yosemite-in-april", "yosemite-waterfalls-guide", "tioga-road-opening-weekend", "glacier-point-road-open-2026", "memorial-day-skip-the-valley-go-high-2026"] },
   { key: "summer", label: "Summer", months: "June to August", lead: "yosemite-in-june",
     slugs: ["yosemite-in-june", "swimming-in-the-merced", "yosemite-heat-safety-guide", "yosemite-stargazing-where-to-look-up", "yosemite-during-smoke-season"] },
   { key: "fall", label: "Fall", months: "September to November", lead: "yosemite-in-fall",

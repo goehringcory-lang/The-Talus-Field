@@ -24,7 +24,7 @@ window.ARTICLE_BODIES["memorial-day-skip-the-valley-go-high-2026"] = function Me
       </p>
 
       <p>
-        We already got the preview. On Saturday, May 2, 2026, a normal early-May Saturday before the season had really started, the park's own alert reported every parking space in Yosemite Valley full by <strong>10:59 a.m.</strong> Memorial Day weekend is far busier than that. Saturday morning is the worst of it. The Park Service knows this; its advice for the weekend has been to spend the busiest hours anywhere but the Valley floor: Tuolumne Meadows, Wawona, Hetch Hetchy.
+        We already got the preview. On Saturday, May 2, 2026, a normal early-May Saturday before the season had really started, the park's own alert reported every parking space in Yosemite Valley full by <strong>10:59 a.m.</strong> Memorial Day weekend is far busier than that, the crowd that closes out <a href="/articles/yosemite-in-may">an otherwise calmer waterfall month</a>. Saturday morning is the worst of it. The Park Service knows this; its advice for the weekend has been to spend the busiest hours anywhere but the Valley floor: Tuolumne Meadows, Wawona, Hetch Hetchy.
       </p>
 
       <p>

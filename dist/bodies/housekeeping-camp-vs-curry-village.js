@@ -107,7 +107,9 @@ window.ARTICLE_BODIES["housekeeping-camp-vs-curry-village"] = function Housekeep
     href: "/articles/mist-trail-the-real-guide"
   }, "Mist Trail"), " starts one stop on, at Happy Isles. The YARTS bus from Merced stops at Curry Village."), React.createElement("p", null, "Neither is a campground. The Park Service's 13 campgrounds book through Recreation.gov and are a separate system; ", React.createElement("a", {
     href: "/articles/yosemite-camping-complete-guide"
-  }, "the camping guide"), " covers those. These two are concessioner lodging, which means a roof, a bed and a front desk, and a price that moves with the date."))), React.createElement(CampsMap, null)), React.createElement("div", {
+  }, "the camping guide"), " covers those, and ", React.createElement("a", {
+    href: "/articles/yosemite-campground-reservations"
+  }, "the campground reservations guide"), " covers the 7 am release on the 15th. These two are concessioner lodging, which means a roof, a bed and a front desk, and a price that moves with the date."))), React.createElement(CampsMap, null)), React.createElement("div", {
     className: "hk-compare-wrap"
   }, React.createElement("table", {
     className: "hk-compare"
