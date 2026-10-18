@@ -611,7 +611,7 @@ window.ARTICLE_BODIES["when-to-visit-yosemite"] = function WhenToVisitYosemiteBo
           <li>
             <span>For 2027</span>
             <strong>Spring, for the waterfalls</strong>
-            <p>Waterfalls at full volume against a fraction of summer's crowds. But this year proved that spring is where new growth lands first: March was up 45 percent. Expect next March to look like this year's April.</p>
+            <p>Waterfalls at full volume against a fraction of summer's crowds. But this year proved that spring is where new growth lands first: March was up 45 percent. Expect next March to look like this year's April. <a href="/articles/yosemite-in-april">Yosemite in April</a> covers what is open that month.</p>
           </li>
           <li>
             <span>If summer is what you have</span>

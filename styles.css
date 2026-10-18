@@ -13216,6 +13216,544 @@ html[data-nav-mode="pinned"] { scroll-padding-top: 62px; }
 /* The crawler fragment is not laid out as a grid. */
 #prerender-prose .wy-feature :is(.ff-split, .ff-facts, .wy-congs, .wy-seasons, .ff-rules) { display: block; }
 
+/* ── /articles/yosemite-tire-chains: the `.tc-*` pieces ───────────────────
+   A feature article on the `.hp-event` tokens and the `.ff-*` kit, built like
+   the Mist Trail layer above. Its own pieces: the three control-level cards,
+   the who-mounts grid, the rental counter checklist (the shared `.ff-hours`),
+   the EV charging card (the shared `.ff-inpark`), the fitting rules (the
+   shared `.ff-rules`), the roads table, and the sources beside the questions. */
+.tc-feature .ff-split > * { min-width: 0; }
+.tc-prose { font: 17px/1.75 var(--sans); color: var(--hp-ink); max-width: 640px; }
+.tc-prose p { margin: 0 0 1.1em; }
+.tc-prose p:last-child { margin-bottom: 0; }
+.tc-prose strong { font-weight: 600; }
+.tc-prose a, .tc-feature .ff-alert a { color: inherit; text-decoration: underline; text-decoration-color: var(--hp-accent); text-decoration-thickness: 1px; text-underline-offset: 3px; }
+.tc-prose a:hover, .tc-feature .ff-alert a:hover { color: var(--hp-accent); }
+.tc-prose .dropcap::first-letter { font-family: var(--serif); font-weight: 400; font-size: 4.1em; float: left; line-height: 0.82; margin: 0.08em 0.1em 0 -0.03em; color: var(--hp-accent); }
+.tc-open .tc-prose { font: 19px/1.6 var(--serif); color: var(--ink-2); }
+.tc-open .tc-prose p:first-child { color: var(--hp-ink); }
+.tc-open .ff-short { position: sticky; top: 88px; }
+.hp-design a.tc-short__link { display: flex; align-items: center; justify-content: center; min-height: 48px; padding: 12px 18px; border: 1.5px solid rgba(247, 241, 225, 0.7); border-radius: 3px; font: 600 13px var(--sans); color: var(--hp-paper); text-align: center; }
+.hp-design a.tc-short__link:hover { background: var(--hp-paper); color: var(--hp-ink); }
+.tc-end { padding-block: 28px 0; }
+.hp-event .tc-sched__head { margin: 0 0 22px; }
+.tc-alert { margin-top: 20px; }
+
+/* The three levels: cards, then the who-mounts grid. */
+.tc-levels { list-style: none; margin: 8px 0 0; padding: 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
+.tc-levels li { background: var(--hp-card); border: 1px solid var(--hp-rule); border-top: 6px solid var(--bt-open); border-radius: 4px; padding: 22px; display: grid; gap: 10px; align-content: start; }
+.tc-levels li.is-r2 { border-top-color: var(--bt-warn); }
+.tc-levels li.is-r3 { border-top-color: var(--hp-accent); }
+.tc-levels__code { font: 400 40px/1 var(--serif); color: var(--hp-ink); }
+.tc-levels strong { font: 700 11px var(--sans); letter-spacing: 1.2px; text-transform: uppercase; color: var(--hp-muted); }
+.tc-levels p { margin: 0; font: 15px/1.55 var(--sans); color: var(--ink-2); }
+.tc-levels p.tc-levels__carry { font-weight: 600; color: var(--hp-ink); }
+.tc-levels__prose { margin-top: 48px; }
+.tc-grid-wrap { overflow-x: auto; }
+.tc-grid { width: 100%; border-collapse: collapse; font: 14px/1.4 var(--sans); }
+.tc-grid th, .tc-grid td { padding: 10px 8px; border-bottom: 1px solid var(--hp-rule); text-align: center; vertical-align: middle; }
+.tc-grid thead th { font: 600 10px/1.35 var(--sans); letter-spacing: 1px; text-transform: uppercase; color: var(--hp-muted); border-bottom: 2px solid var(--hp-ink); }
+.tc-grid tbody th { font: 400 22px var(--serif); color: var(--hp-ink); text-align: left; }
+.tc-grid td.is-mount { background: var(--hp-accent); color: var(--hp-paper); font-weight: 600; }
+.tc-grid td.is-carry { background: var(--hp-card); color: var(--hp-ink); }
+.tc-grid__note { margin-top: 12px; }
+
+/* The photos and the EV card. */
+.tc-photo { margin: 0; }
+.tc-photo img { display: block; width: 100%; height: auto; border-radius: 4px; }
+.tc-photo figcaption { margin-top: 10px; font: 12px/1.5 var(--sans); color: var(--hp-muted); }
+.tc-ev { align-self: start; }
+.tc-rules { grid-template-columns: repeat(2, minmax(0, 1fr)); align-self: start; }
+
+/* The roads table and the lodging block. */
+.tc-routes { width: 100%; margin-top: 48px; border-collapse: collapse; font: 14px/1.5 var(--sans); color: var(--ink-2); }
+.tc-routes th, .tc-routes td { text-align: left; vertical-align: top; padding: 10px 12px 10px 0; border-bottom: 1px solid var(--hp-rule); }
+.tc-routes thead th { font: 600 10px var(--sans); letter-spacing: 1.4px; text-transform: uppercase; color: var(--hp-muted); border-bottom: 2px solid var(--hp-ink); }
+.tc-routes tbody th { font: 400 17px/1.3 var(--serif); color: var(--hp-ink); }
+.tc-stay { margin-top: 40px; max-width: 760px; }
+
+/* The sources beside the questions. */
+.tc-sources { margin-top: 28px; }
+.hp-event .tc-sources h3 { font-size: 20px; margin-bottom: 8px; }
+.tc-sources ul { list-style: none; margin: 0; padding: 0; }
+.tc-sources li { padding-block: 8px; border-top: 1px solid var(--hp-rule); font: 13px var(--sans); }
+.tc-sources a { color: var(--hp-accent); }
+
+@media (max-width: 880px) {
+  .tc-levels { grid-template-columns: 1fr; }
+  .tc-open .ff-short { position: static; }
+}
+@media (max-width: 640px) {
+  .tc-rules { grid-template-columns: 1fr; }
+  .tc-routes thead { display: none; }
+  .tc-routes tr { display: block; padding-block: 10px; border-bottom: 1px solid var(--hp-rule); }
+  .tc-routes th, .tc-routes td { display: block; padding: 2px 0; border: 0; }
+}
+/* The crawler fragment is not laid out as a grid. */
+#prerender-prose .tc-feature :is(.ff-split, .ff-facts, .tc-levels, .ff-rules) { display: block; }
+
+/* ── /articles/yosemite-campground-reservations: the `.cr-*` pieces ────────
+   A feature article on the `.hp-event` tokens and the `.ff-*` kit, built like
+   the Mist Trail layer above. Its own pieces: the four booking windows, the
+   thirteen-campground table, the release calendar and the morning steps (the
+   shared `.ff-hours`), the rules cards (the shared `.ff-rules`), the
+   cancellation card, the lottery card (the shared `.ff-inpark`), and the
+   sources beside the questions. */
+.cr-feature .ff-split > * { min-width: 0; }
+.cr-prose { font: 17px/1.75 var(--sans); color: var(--hp-ink); max-width: 640px; }
+.cr-prose p { margin: 0 0 1.1em; }
+.cr-prose p:last-child { margin-bottom: 0; }
+.cr-prose strong { font-weight: 600; }
+.cr-prose a { color: inherit; text-decoration: underline; text-decoration-color: var(--hp-accent); text-decoration-thickness: 1px; text-underline-offset: 3px; }
+.cr-prose a:hover { color: var(--hp-accent); }
+.cr-prose .dropcap::first-letter { font-family: var(--serif); font-weight: 400; font-size: 4.1em; float: left; line-height: 0.82; margin: 0.08em 0.1em 0 -0.03em; color: var(--hp-accent); }
+.cr-open .cr-prose { font: 19px/1.6 var(--serif); color: var(--ink-2); }
+.cr-open .cr-prose p:first-child { color: var(--hp-ink); }
+.cr-open .ff-short { position: sticky; top: 88px; }
+.hp-design a.cr-short__link { display: flex; align-items: center; justify-content: center; min-height: 48px; padding: 12px 18px; border: 1.5px solid rgba(247, 241, 225, 0.7); border-radius: 3px; font: 600 13px var(--sans); color: var(--hp-paper); text-align: center; }
+.hp-design a.cr-short__link:hover { background: var(--hp-paper); color: var(--hp-ink); }
+.cr-end { padding-block: 28px 0; }
+.hp-event .cr-head { margin: 0 0 22px; }
+.cr-after { margin-top: 48px; }
+
+/* The four windows. */
+.cr-windows { list-style: none; margin: 8px 0 0; padding: 0; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px; }
+.cr-windows li { background: var(--hp-card); border: 1px solid var(--hp-rule); border-top: 6px solid var(--hp-accent); border-radius: 4px; padding: 20px; display: grid; gap: 8px; align-content: start; }
+.cr-windows li.is-mid { border-top-color: #c98a5a; }
+.cr-windows li.is-soft { border-top-color: var(--bt-open); }
+.cr-windows span { font: 400 30px/1 var(--serif); color: var(--hp-ink); }
+.cr-windows strong { font: 700 11px var(--sans); letter-spacing: 1.2px; text-transform: uppercase; color: var(--hp-muted); }
+.cr-windows p { margin: 0; font: 14px/1.6 var(--sans); color: var(--ink-2); }
+.cr-windows p.cr-windows__camps { font-weight: 600; color: var(--hp-ink); }
+
+/* The thirteen. */
+.cr-tablewrap { overflow-x: auto; }
+.cr-table { width: 100%; border-collapse: collapse; font: 14px/1.5 var(--sans); color: var(--ink-2); }
+.cr-table th, .cr-table td { text-align: left; vertical-align: top; padding: 9px 10px 9px 0; border-bottom: 1px solid var(--hp-rule); }
+.cr-table thead th { font: 600 10px var(--sans); letter-spacing: 1.4px; text-transform: uppercase; color: var(--hp-muted); border-bottom: 2px solid var(--hp-ink); }
+.cr-table tbody th { font: 400 16px/1.3 var(--serif); color: var(--hp-ink); }
+
+/* The photos, the cancellation card, the lodging block. */
+.cr-photo { margin: 0 0 24px; }
+.cr-photo img { display: block; width: 100%; height: auto; border-radius: 4px; }
+.cr-photo figcaption { margin-top: 10px; font: 12px/1.5 var(--sans); color: var(--hp-muted); }
+.cr-policy { background: var(--hp-card); border: 1px solid var(--hp-rule); border-radius: 4px; padding: 22px; align-self: start; }
+.cr-policy dl { margin: 0; border-top: 2px solid var(--hp-ink); }
+.cr-policy dl div { display: grid; grid-template-columns: 1fr auto; gap: 12px; padding-block: 10px; border-bottom: 1px solid var(--hp-rule); }
+.cr-policy dt { font: 14px/1.4 var(--sans); color: var(--ink-2); }
+.cr-policy dd { margin: 0; font: 600 14px/1.4 var(--sans); color: var(--hp-ink); text-align: right; }
+.cr-rules { margin-top: 8px; }
+.cr-stay { margin-top: 8px; }
+
+/* The sources beside the questions. */
+.cr-sources { margin-top: 28px; }
+.hp-event .cr-sources h3 { font-size: 20px; margin-bottom: 8px; }
+.cr-sources ul { list-style: none; margin: 0; padding: 0; }
+.cr-sources li { padding-block: 8px; border-top: 1px solid var(--hp-rule); font: 13px var(--sans); }
+.cr-sources a { color: var(--hp-accent); }
+
+@media (max-width: 1100px) {
+  .cr-windows { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (max-width: 880px) {
+  .cr-open .ff-short { position: static; }
+}
+@media (max-width: 640px) {
+  .cr-windows { grid-template-columns: 1fr; }
+  .cr-table thead { display: none; }
+  .cr-table tr { display: block; padding-block: 10px; border-bottom: 1px solid var(--hp-rule); }
+  .cr-table th, .cr-table td { display: block; padding: 2px 0; border: 0; }
+}
+/* The crawler fragment is not laid out as a grid. */
+#prerender-prose .cr-feature :is(.ff-split, .ff-facts, .cr-windows, .ff-rules) { display: block; }
+
+/* ── /articles/yosemite-in-april: the `.ya-*` pieces ──────────────────────
+   A feature article on the `.hp-event` tokens and the `.ff-*` kit, built like
+   the Mist Trail layer above. Its own pieces: the weather and campground
+   tables, the five road cards marked by state, the early-opening and
+   waterfall lists (the shared `.ff-hours`), the grove and fee cards (the
+   shared `.ff-inpark`), the visitation bars, the Hetch Hetchy and plan cards
+   (the shared `.ff-rules`), and the sources beside the questions. */
+.ya-feature .ff-split > * { min-width: 0; }
+.ya-prose { font: 17px/1.75 var(--sans); color: var(--hp-ink); max-width: 640px; }
+.ya-prose p { margin: 0 0 1.1em; }
+.ya-prose p:last-child { margin-bottom: 0; }
+.ya-prose strong { font-weight: 600; }
+.ya-prose a, .ya-feature .ff-alert a { color: inherit; text-decoration: underline; text-decoration-color: var(--hp-accent); text-decoration-thickness: 1px; text-underline-offset: 3px; }
+.ya-prose a:hover, .ya-feature .ff-alert a:hover { color: var(--hp-accent); }
+.ya-prose .dropcap::first-letter { font-family: var(--serif); font-weight: 400; font-size: 4.1em; float: left; line-height: 0.82; margin: 0.08em 0.1em 0 -0.03em; color: var(--hp-accent); }
+.ya-open .ya-prose { font: 19px/1.6 var(--serif); color: var(--ink-2); }
+.ya-open .ya-prose p:first-child { color: var(--hp-ink); }
+.ya-open .ff-short { position: sticky; top: 88px; }
+.hp-design a.ya-short__link { display: flex; align-items: center; justify-content: center; min-height: 48px; padding: 12px 18px; border: 1.5px solid rgba(247, 241, 225, 0.7); border-radius: 3px; font: 600 13px var(--sans); color: var(--hp-paper); text-align: center; }
+.hp-design a.ya-short__link:hover { background: var(--hp-paper); color: var(--hp-ink); }
+.ya-end { padding-block: 28px 0; }
+.hp-event .ya-sub { margin: 0 0 18px; }
+.hp-event .ya-sub--gap { margin-top: 32px; }
+.ya-alert { margin-top: 20px; }
+.ya-single { max-width: 760px; }
+
+/* Tables: the weather averages and the campgrounds. */
+.ya-table { width: 100%; border-collapse: collapse; font: 14px/1.5 var(--sans); color: var(--ink-2); }
+.ya-table th, .ya-table td { text-align: left; vertical-align: top; padding: 10px 12px 10px 0; border-bottom: 1px solid var(--hp-rule); }
+.ya-table thead th { font: 600 10px var(--sans); letter-spacing: 1.4px; text-transform: uppercase; color: var(--hp-muted); border-bottom: 2px solid var(--hp-ink); }
+.ya-table tbody th { font: 400 17px/1.3 var(--serif); color: var(--hp-ink); }
+.ya-tablenote { margin-top: 10px; }
+
+/* The roads: five cards, colored by state. */
+.ya-roads { list-style: none; margin: 8px 0 0; padding: 0; display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 12px; }
+.ya-roads li { background: var(--hp-card); border: 1px solid var(--hp-rule); border-top: 6px solid var(--bt-open); border-radius: 4px; padding: 20px; display: grid; gap: 8px; align-content: start; }
+.ya-roads li.is-closed { border-top-color: var(--bt-closed); }
+.ya-roads li.is-maybe { border-top-color: var(--bt-warn); }
+.ya-roads span { font: 700 11px var(--sans); letter-spacing: 1.2px; text-transform: uppercase; color: var(--hp-muted); }
+.ya-roads strong { font: 400 22px/1.15 var(--serif); color: var(--hp-ink); }
+.ya-roads p { margin: 0; font: 14px/1.6 var(--sans); color: var(--ink-2); }
+.ya-roads__prose { margin-top: 48px; }
+
+/* Photos and cards. */
+.ya-photo { margin: 0 0 24px; }
+.ya-photo img { display: block; width: 100%; height: auto; border-radius: 4px; }
+.ya-photo figcaption { margin-top: 10px; font: 12px/1.5 var(--sans); color: var(--hp-muted); }
+.ya-falls { margin-bottom: 28px; }
+.ya-card { margin-top: 24px; }
+.ya-hetch, .ya-plan { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+
+/* Visitation: four bars on the July scale. */
+.ya-bars { list-style: none; margin: 0; padding: 0; display: grid; gap: 10px; }
+.ya-bars li { display: grid; grid-template-columns: 56px 1fr 72px; gap: 12px; align-items: center; font: 13px var(--sans); color: var(--ink-2); }
+.ya-bars b { display: block; height: 14px; background: var(--hp-rule); border-radius: 2px; }
+.ya-bars li.is-now b { background: var(--hp-accent); }
+.ya-bars li.is-now span { font-weight: 700; color: var(--hp-ink); }
+.ya-bars em { font-style: normal; text-align: right; }
+
+.ya-stay { margin-top: 40px; max-width: 760px; }
+
+/* The sources beside the questions. */
+.ya-sources { margin-top: 28px; }
+.hp-event .ya-sources h3 { font-size: 20px; margin-bottom: 8px; }
+.ya-sources ul { list-style: none; margin: 0; padding: 0; }
+.ya-sources li { padding-block: 8px; border-top: 1px solid var(--hp-rule); font: 13px var(--sans); }
+.ya-sources a { color: var(--hp-accent); }
+
+@media (max-width: 1100px) {
+  .ya-roads { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+}
+@media (max-width: 880px) {
+  .ya-roads { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .ya-open .ff-short { position: static; }
+}
+@media (max-width: 640px) {
+  .ya-roads, .ya-hetch, .ya-plan { grid-template-columns: 1fr; }
+  .ya-table thead { display: none; }
+  .ya-table tr { display: block; padding-block: 10px; border-bottom: 1px solid var(--hp-rule); }
+  .ya-table th, .ya-table td { display: block; padding: 2px 0; border: 0; }
+}
+/* The crawler fragment is not laid out as a grid. */
+#prerender-prose .ya-feature :is(.ff-split, .ff-facts, .ya-roads, .ff-rules) { display: block; }
+
+/* ── /articles/christmas-and-new-years-in-yosemite: the `.cny-*` pieces ───
+   A feature article on the `.hp-event` tokens and the `.ff-*` kit, built like
+   the Mist Trail layer above. Its own pieces: the holiday calendar (the
+   shared `.ff-hours`), the two New Year's Eve party cards, the photos, the
+   lodging card (the shared `.ff-inpark`), the what-is-open and chain-level
+   cards (the shared `.ff-rules`), the Badger Pass season strip, and the
+   sources beside the questions. */
+.cny-feature .ff-split > * { min-width: 0; }
+.cny-prose { font: 17px/1.75 var(--sans); color: var(--hp-ink); max-width: 640px; }
+.cny-prose p { margin: 0 0 1.1em; }
+.cny-prose p:last-child { margin-bottom: 0; }
+.cny-prose strong { font-weight: 600; }
+.cny-prose a, .cny-feature .ff-alert a { color: inherit; text-decoration: underline; text-decoration-color: var(--hp-accent); text-decoration-thickness: 1px; text-underline-offset: 3px; }
+.cny-prose a:hover, .cny-feature .ff-alert a:hover { color: var(--hp-accent); }
+.cny-prose .dropcap::first-letter { font-family: var(--serif); font-weight: 400; font-size: 4.1em; float: left; line-height: 0.82; margin: 0.08em 0.1em 0 -0.03em; color: var(--hp-accent); }
+.cny-open .cny-prose { font: 19px/1.6 var(--serif); color: var(--ink-2); }
+.cny-open .cny-prose p:first-child { color: var(--hp-ink); }
+.cny-open .ff-short { position: sticky; top: 88px; }
+.hp-design a.cny-short__link { display: flex; align-items: center; justify-content: center; min-height: 48px; padding: 12px 18px; border: 1.5px solid rgba(247, 241, 225, 0.7); border-radius: 3px; font: 600 13px var(--sans); color: var(--hp-paper); text-align: center; }
+.hp-design a.cny-short__link:hover { background: var(--hp-paper); color: var(--hp-ink); }
+.cny-end { padding-block: 28px 0; }
+.hp-event .cny-sched__head { margin: 0 0 22px; }
+.cny-alert { margin-top: 20px; }
+
+/* The two New Year's Eve parties. */
+.cny-parties { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px; margin-top: 48px; }
+.cny-party { background: var(--hp-card); border: 1px solid var(--hp-rule); border-top: 6px solid var(--hp-accent); border-radius: 4px; padding: 22px; display: grid; gap: 10px; align-content: start; }
+.cny-party__when { margin: 0; font: 700 11px var(--sans); letter-spacing: 1.2px; text-transform: uppercase; color: var(--hp-muted); }
+.cny-party dl { margin: 6px 0 0; border-top: 1px solid var(--hp-rule); }
+.cny-party dl div { padding-block: 9px; border-bottom: 1px solid var(--hp-rule); }
+.cny-party dt { font: 600 10px var(--sans); letter-spacing: 1.4px; text-transform: uppercase; color: var(--hp-muted); }
+.cny-party dd { margin: 4px 0 0; font: 14px/1.5 var(--sans); color: var(--hp-ink); }
+
+/* The photos and the lodging card. */
+.cny-photo { margin: 0; }
+.cny-photo img { display: block; width: 100%; height: auto; border-radius: 4px; }
+.cny-photo figcaption { margin-top: 10px; font: 12px/1.5 var(--sans); color: var(--hp-muted); }
+.cny-book { margin-top: 24px; }
+.cny-stay { margin-top: 40px; max-width: 760px; }
+
+/* What is open, and the chain levels. */
+.cny-status, .cny-levels { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+
+/* Badger Pass: the season strip. */
+.cny-seasons { list-style: none; margin: 8px 0 0; padding: 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; }
+.cny-seasons li { background: var(--hp-card); border: 1px solid var(--hp-rule); border-top: 6px solid var(--hp-accent); border-radius: 4px; padding: 20px; display: grid; gap: 8px; align-content: start; }
+.cny-seasons li.is-mid { border-top-color: #c98a5a; }
+.cny-seasons li.is-late { border-top-color: var(--rule); }
+.cny-seasons span { font: 700 11px var(--sans); letter-spacing: 1.2px; text-transform: uppercase; color: var(--hp-muted); }
+.cny-seasons strong { font: 400 24px/1.15 var(--serif); color: var(--hp-ink); }
+.cny-seasons p { margin: 0; font: 14px/1.6 var(--sans); color: var(--ink-2); }
+.cny-when { margin-top: 48px; }
+
+/* The sources beside the questions. */
+.cny-sources { margin-top: 28px; }
+.hp-event .cny-sources h3 { font-size: 20px; margin-bottom: 8px; }
+.cny-sources ul { list-style: none; margin: 0; padding: 0; }
+.cny-sources li { padding-block: 8px; border-top: 1px solid var(--hp-rule); font: 13px var(--sans); }
+.cny-sources a { color: var(--hp-accent); }
+
+@media (max-width: 880px) {
+  .cny-seasons { grid-template-columns: 1fr; }
+  .cny-open .ff-short { position: static; }
+}
+@media (max-width: 640px) {
+  .cny-parties, .cny-status, .cny-levels { grid-template-columns: 1fr; }
+}
+/* The crawler fragment is not laid out as a grid. */
+#prerender-prose .cny-feature :is(.ff-split, .ff-facts, .cny-parties, .cny-seasons, .ff-rules) { display: block; }
+
+/* ── /articles/hotels-just-outside-yosemite: the `.hj-*` pieces ───────────
+   A feature article on the `.hp-event` tokens and the `.ff-*` kit, built like
+   the Mist Trail and worship layers above. Its own pieces: the four lodge
+   cards (colored by side of the park), the per-lodge glance cards (the
+   shared `.ff-inpark`), the Park Service drive-time table, the season strip,
+   the winter rules and the "which to book" cards (the shared `.ff-rules`),
+   and the sources beside the questions. */
+.hj-feature .ff-split > * { min-width: 0; }
+.hj-prose { font: 17px/1.75 var(--sans); color: var(--hp-ink); max-width: 640px; }
+.hj-prose p { margin: 0 0 1.1em; }
+.hj-prose p:last-child { margin-bottom: 0; }
+.hj-prose strong { font-weight: 600; }
+.hj-prose a, .hj-feature .ff-alert a { color: inherit; text-decoration: underline; text-decoration-color: var(--hp-accent); text-decoration-thickness: 1px; text-underline-offset: 3px; }
+.hj-prose a:hover, .hj-feature .ff-alert a:hover { color: var(--hp-accent); }
+.hj-prose .dropcap::first-letter { font-family: var(--serif); font-weight: 400; font-size: 4.1em; float: left; line-height: 0.82; margin: 0.08em 0.1em 0 -0.03em; color: var(--hp-accent); }
+.hj-open .hj-prose { font: 19px/1.6 var(--serif); color: var(--ink-2); }
+.hj-open .hj-prose p:first-child { color: var(--hp-ink); }
+.hj-open .ff-short { position: sticky; top: 88px; }
+.hp-design a.hj-short__link { display: flex; align-items: center; justify-content: center; min-height: 48px; padding: 12px 18px; border: 1.5px solid rgba(247, 241, 225, 0.7); border-radius: 3px; font: 600 13px var(--sans); color: var(--hp-paper); text-align: center; }
+.hp-design a.hj-short__link:hover { background: var(--hp-paper); color: var(--hp-ink); }
+.hj-end { padding-block: 28px 0; }
+.hj-alert { margin-top: 0; align-self: start; }
+
+/* Side by side: four cards, the top rule colored by side of the park. */
+.hj-lodges { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 20px; margin-top: 8px; }
+.hj-lodge { background: var(--hp-card); border: 1px solid var(--hp-rule); border-top: 6px solid var(--hp-accent); border-radius: 4px; padding: 22px; display: grid; gap: 10px; align-content: start; }
+.hj-lodge.is-north { border-top-color: var(--bt-open); }
+.hj-lodge.is-south { border-top-color: #c98a5a; }
+.hj-lodge__place { margin: 0; font: 700 11px var(--sans); letter-spacing: 1.2px; text-transform: uppercase; color: var(--hp-muted); }
+.hp-event .hj-lodge h3 { margin: 0; }
+.hp-design .hj-lodge h3 a { color: var(--hp-ink); text-decoration: none; }
+.hp-design .hj-lodge h3 a:hover { color: var(--hp-accent); }
+.hj-lodge dl { margin: 6px 0 0; border-top: 1px solid var(--hp-rule); }
+.hj-lodge dl div { padding-block: 9px; border-bottom: 1px solid var(--hp-rule); }
+.hj-lodge dt { font: 600 10px var(--sans); letter-spacing: 1.4px; text-transform: uppercase; color: var(--hp-muted); }
+.hj-lodge dd { margin: 4px 0 0; font: 14px/1.5 var(--sans); color: var(--hp-ink); }
+.hj-compare__prose { margin-top: 48px; }
+
+/* The lodge sections: photo and glance card. */
+.hj-photo { margin: 0 0 24px; }
+.hj-photo img { display: block; width: 100%; height: auto; border-radius: 4px; }
+.hj-photo figcaption { margin-top: 10px; font: 12px/1.5 var(--sans); color: var(--hp-muted); }
+
+/* Drive times: the Park Service table. */
+.hp-event .hj-table__head { margin: 0 0 18px; }
+.hj-table { width: 100%; border-collapse: collapse; font: 14px/1.5 var(--sans); color: var(--ink-2); }
+.hj-table th, .hj-table td { text-align: left; vertical-align: top; padding: 10px 12px 10px 0; border-bottom: 1px solid var(--hp-rule); }
+.hj-table thead th { font: 600 10px var(--sans); letter-spacing: 1.4px; text-transform: uppercase; color: var(--hp-muted); border-bottom: 2px solid var(--hp-ink); }
+.hj-table tbody th { font: 400 17px/1.3 var(--serif); color: var(--hp-ink); }
+.hj-table td:nth-child(2), .hj-table td:nth-child(3) { white-space: nowrap; }
+
+/* Seasons: the strip and the rules. */
+.hj-seasons { list-style: none; margin: 8px 0 0; padding: 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; }
+.hj-seasons li { background: var(--hp-card); border: 1px solid var(--hp-rule); border-top: 6px solid var(--hp-accent); border-radius: 4px; padding: 20px; display: grid; gap: 8px; align-content: start; }
+.hj-seasons li.is-mid { border-top-color: #c98a5a; }
+.hj-seasons li.is-late { border-top-color: var(--bt-open); }
+.hj-seasons span { font: 700 11px var(--sans); letter-spacing: 1.2px; text-transform: uppercase; color: var(--hp-muted); }
+.hj-seasons strong { font: 400 24px/1.15 var(--serif); color: var(--hp-ink); }
+.hj-seasons p { margin: 0; font: 14px/1.6 var(--sans); color: var(--ink-2); }
+.hj-when { margin-top: 48px; }
+.hj-rules { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+
+/* Which to book: the four cards and the lodging block. */
+.hj-choose { margin-top: 8px; }
+.hj-choose__prose { margin-top: 48px; }
+.hj-stay { max-width: 560px; }
+
+/* The sources beside the questions. */
+.hj-sources { margin-top: 28px; }
+.hp-event .hj-sources h3 { font-size: 20px; margin-bottom: 8px; }
+.hj-sources ul { list-style: none; margin: 0; padding: 0; }
+.hj-sources li { padding-block: 8px; border-top: 1px solid var(--hp-rule); font: 13px var(--sans); }
+.hj-sources a { color: var(--hp-accent); }
+
+@media (max-width: 1100px) {
+  .hj-lodges { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (max-width: 880px) {
+  .hj-seasons { grid-template-columns: 1fr; }
+  .hj-open .ff-short { position: static; }
+}
+@media (max-width: 640px) {
+  .hj-lodges, .hj-rules { grid-template-columns: 1fr; }
+  .hj-table thead { display: none; }
+  .hj-table tr { display: block; padding-block: 10px; border-bottom: 1px solid var(--hp-rule); }
+  .hj-table th, .hj-table td { display: block; padding: 2px 0; border: 0; }
+}
+/* The crawler fragment is not laid out as a grid. */
+#prerender-prose .hj-feature :is(.ff-split, .ff-facts, .hj-lodges, .hj-seasons, .ff-rules) { display: block; }
+
+/* ── /articles/yosemite-in-may: the `.ym-*` pieces ────────────────────────
+   A feature article on the `.hp-event` tokens and the `.ff-*` kit, built like
+   the Mist Trail layer above. Its own pieces: the road record table, the
+   monthly averages table, the Saturday ladder (the shared `.ff-hours`), the
+   campground table, the week strip, the lodging block, and the sources beside
+   the questions. */
+.ym-feature .ff-split > * { min-width: 0; }
+.ym-prose { font: 17px/1.75 var(--sans); color: var(--hp-ink); max-width: 640px; }
+.ym-prose p { margin: 0 0 1.1em; }
+.ym-prose p:last-child { margin-bottom: 0; }
+.ym-prose strong { font-weight: 600; }
+.ym-prose a, .ym-feature .ff-alert a { color: inherit; text-decoration: underline; text-decoration-color: var(--hp-accent); text-decoration-thickness: 1px; text-underline-offset: 3px; }
+.ym-prose a:hover, .ym-feature .ff-alert a:hover { color: var(--hp-accent); }
+.ym-prose .dropcap::first-letter { font-family: var(--serif); font-weight: 400; font-size: 4.1em; float: left; line-height: 0.82; margin: 0.08em 0.1em 0 -0.03em; color: var(--hp-accent); }
+.ym-open .ym-prose { font: 19px/1.6 var(--serif); color: var(--ink-2); }
+.ym-open .ym-prose p:first-child { color: var(--hp-ink); }
+.ym-open .ff-short { position: sticky; top: 88px; }
+.hp-design a.ym-short__link { display: flex; align-items: center; justify-content: center; min-height: 48px; padding: 12px 18px; border: 1.5px solid rgba(247, 241, 225, 0.7); border-radius: 3px; font: 600 13px var(--sans); color: var(--hp-paper); text-align: center; }
+.hp-design a.ym-short__link:hover { background: var(--hp-paper); color: var(--hp-ink); }
+.ym-end { padding-block: 28px 0; }
+.hp-event .ym-sched__head { margin: 0 0 22px; }
+.ym-alert { margin-top: 20px; }
+
+/* The photos. */
+.ym-photo { margin: 0; }
+.ym-photo img { display: block; width: 100%; height: auto; border-radius: 4px; }
+.ym-photo figcaption { margin-top: 10px; font: 12px/1.5 var(--sans); color: var(--hp-muted); }
+
+/* The tables: the road record, the averages, the campgrounds. */
+.ym-roads, .ym-temps, .ym-camps { width: 100%; border-collapse: collapse; font: 14px/1.5 var(--sans); color: var(--ink-2); }
+.ym-roads th, .ym-roads td, .ym-temps th, .ym-temps td, .ym-camps th, .ym-camps td { text-align: left; vertical-align: top; padding: 9px 12px 9px 0; border-bottom: 1px solid var(--hp-rule); }
+.ym-roads thead th, .ym-temps thead th, .ym-camps thead th { font: 600 10px var(--sans); letter-spacing: 1.4px; text-transform: uppercase; color: var(--hp-muted); border-bottom: 2px solid var(--hp-ink); }
+.ym-roads tbody th, .ym-temps tbody th, .ym-camps tbody th { font: 400 17px/1.3 var(--serif); color: var(--hp-ink); }
+.ym-roads tr.is-may, .ym-temps tr.is-may { background: var(--hp-card); }
+.ym-roads tr.is-may td:nth-child(2) { color: var(--hp-ink); font-weight: 600; }
+.ym-temps caption { caption-side: top; text-align: left; margin-bottom: 12px; font: 600 10px var(--sans); letter-spacing: 1.6px; text-transform: uppercase; color: var(--hp-muted); }
+.ym-roads__note { margin-top: 14px; }
+
+/* Week by week: the strip. */
+.ym-weeks { list-style: none; margin: 8px 0 0; padding: 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; }
+.ym-weeks li { background: var(--hp-card); border: 1px solid var(--hp-rule); border-top: 6px solid var(--hp-accent); border-radius: 4px; padding: 20px; display: grid; gap: 8px; align-content: start; }
+.ym-weeks li.is-mid { border-top-color: #c98a5a; }
+.ym-weeks li.is-late { border-top-color: var(--rule); }
+.ym-weeks span { font: 700 11px var(--sans); letter-spacing: 1.2px; text-transform: uppercase; color: var(--hp-muted); }
+.ym-weeks strong { font: 400 24px/1.15 var(--serif); color: var(--hp-ink); }
+.ym-weeks p { margin: 0; font: 14px/1.6 var(--sans); color: var(--ink-2); }
+.ym-when { margin-top: 48px; }
+
+/* Where to sleep: the lodging block. */
+.ym-stay { margin-top: 40px; max-width: 760px; }
+
+/* The sources beside the questions. */
+.ym-sources { margin-top: 28px; }
+.hp-event .ym-sources h3 { font-size: 20px; margin-bottom: 8px; }
+.ym-sources ul { list-style: none; margin: 0; padding: 0; }
+.ym-sources li { padding-block: 8px; border-top: 1px solid var(--hp-rule); font: 13px var(--sans); }
+.ym-sources a { color: var(--hp-accent); }
+
+@media (max-width: 880px) {
+  .ym-weeks { grid-template-columns: 1fr; }
+  .ym-open .ff-short { position: static; }
+}
+@media (max-width: 640px) {
+  .ym-camps thead { display: none; }
+  .ym-camps tr { display: block; padding-block: 10px; border-bottom: 1px solid var(--hp-rule); }
+  .ym-camps th, .ym-camps td { display: block; padding: 2px 0; border: 0; }
+  .ym-temps th, .ym-temps td { padding-right: 8px; }
+}
+/* The crawler fragment is not laid out as a grid. */
+#prerender-prose .ym-feature :is(.ff-split, .ff-facts, .ym-weeks, .ff-rules) { display: block; }
+
+/* ── /articles/sentinel-dome-and-taft-point: the `.sd-*` pieces ───────────
+   A feature article on the `.hp-event` tokens and the `.ff-*` kit, built like
+   the Mist Trail layer above. Its own pieces: the trailhead at a glance (the
+   shared `.ff-hours`), the two hike cards, the season strip, the safety cards
+   (the shared `.ff-rules`), the carry card (the shared `.ff-inpark`), the
+   photos, the lodging block, and the sources beside the questions. */
+.sd-feature .ff-split > * { min-width: 0; }
+.sd-prose { font: 17px/1.75 var(--sans); color: var(--hp-ink); max-width: 640px; }
+.sd-prose p { margin: 0 0 1.1em; }
+.sd-prose p:last-child { margin-bottom: 0; }
+.sd-prose strong { font-weight: 600; }
+.sd-prose a, .sd-feature .ff-alert a, .sd-feature .ff-inpark a { color: inherit; text-decoration: underline; text-decoration-color: var(--hp-accent); text-decoration-thickness: 1px; text-underline-offset: 3px; }
+.sd-prose a:hover, .sd-feature .ff-alert a:hover, .sd-feature .ff-inpark a:hover { color: var(--hp-accent); }
+.sd-prose .dropcap::first-letter { font-family: var(--serif); font-weight: 400; font-size: 4.1em; float: left; line-height: 0.82; margin: 0.08em 0.1em 0 -0.03em; color: var(--hp-accent); }
+.sd-open .sd-prose { font: 19px/1.6 var(--serif); color: var(--ink-2); }
+.sd-open .sd-prose p:first-child { color: var(--hp-ink); }
+.sd-open .ff-short { position: sticky; top: 88px; }
+.hp-design a.sd-short__link { display: flex; align-items: center; justify-content: center; min-height: 48px; padding: 12px 18px; border: 1.5px solid rgba(247, 241, 225, 0.7); border-radius: 3px; font: 600 13px var(--sans); color: var(--hp-paper); text-align: center; }
+.hp-design a.sd-short__link:hover { background: var(--hp-paper); color: var(--hp-ink); }
+.sd-end { padding-block: 28px 0; }
+.hp-event .sd-sched__head { margin: 0 0 22px; }
+.sd-alert { margin-top: 28px; }
+
+/* The two hikes, as cards. */
+.sd-hikes { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px; margin-top: 44px; }
+.sd-hike { background: var(--hp-card); border: 1px solid var(--hp-rule); border-top: 6px solid var(--hp-accent); border-radius: 4px; padding: 24px; display: grid; gap: 10px; align-content: start; }
+.sd-hike h3 { margin: 0; }
+.sd-hike h3 a { color: var(--hp-ink); }
+.sd-hike h3 a:hover { color: var(--hp-accent); }
+.sd-hike__line { margin: 0; font: 15px/1.5 var(--sans); color: var(--ink-2); }
+.sd-hike dl { margin: 6px 0 0; border-top: 1px solid var(--hp-rule); }
+.sd-hike dl div { display: flex; justify-content: space-between; gap: 16px; padding-block: 9px; border-bottom: 1px solid var(--hp-rule); }
+.sd-hike dt { font: 600 10px var(--sans); letter-spacing: 1.4px; text-transform: uppercase; color: var(--hp-muted); padding-top: 3px; }
+.sd-hike dd { margin: 0; font: 14px/1.5 var(--sans); color: var(--hp-ink); text-align: right; }
+
+/* The photos. */
+.sd-photo { margin: 0; }
+.sd-photo img { display: block; width: 100%; height: auto; border-radius: 4px; }
+.sd-photo figcaption { margin-top: 10px; font: 12px/1.5 var(--sans); color: var(--hp-muted); }
+
+/* Seasons: the strip, the lodging block. */
+.sd-seasons { list-style: none; margin: 8px 0 0; padding: 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; }
+.sd-seasons li { background: var(--hp-card); border: 1px solid var(--hp-rule); border-top: 6px solid var(--hp-accent); border-radius: 4px; padding: 20px; display: grid; gap: 8px; align-content: start; }
+.sd-seasons li.is-mid { border-top-color: #c98a5a; }
+.sd-seasons li.is-late { border-top-color: var(--rule); }
+.sd-seasons span { font: 700 11px var(--sans); letter-spacing: 1.2px; text-transform: uppercase; color: var(--hp-muted); }
+.sd-seasons strong { font: 400 24px/1.15 var(--serif); color: var(--hp-ink); }
+.sd-seasons p { margin: 0; font: 14px/1.6 var(--sans); color: var(--ink-2); }
+.sd-when { margin-top: 48px; }
+.sd-stay { max-width: 760px; }
+
+/* Safety and the carry card. */
+.sd-rules { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.sd-pack { align-self: start; }
+
+/* The sources beside the questions. */
+.sd-sources { margin-top: 28px; }
+.hp-event .sd-sources h3 { font-size: 20px; margin-bottom: 8px; }
+.sd-sources ul { list-style: none; margin: 0; padding: 0; }
+.sd-sources li { padding-block: 8px; border-top: 1px solid var(--hp-rule); font: 13px var(--sans); }
+.sd-sources a { color: var(--hp-accent); }
+
+@media (max-width: 880px) {
+  .sd-seasons { grid-template-columns: 1fr; }
+  .sd-open .ff-short { position: static; }
+}
+@media (max-width: 640px) {
+  .sd-hikes, .sd-rules { grid-template-columns: 1fr; }
+}
+/* The crawler fragment is not laid out as a grid. */
+#prerender-prose .sd-feature :is(.ff-split, .ff-facts, .sd-hikes, .sd-seasons, .ff-rules) { display: block; }
+
 /* ── /articles/yosemite-stargazing-tours-and-programs: the `.sg-*` pieces ──
    A feature article on the `.hp-event` tokens and the `.ff-*` kit, built like
    the Mist Trail layer above. Its own pieces: the program comparison table,
