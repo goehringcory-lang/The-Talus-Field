@@ -116,6 +116,26 @@ for (const [from, to] of entries) {
   }
 }
 
+// --- trailing slashes ---------------------------------------------------------
+// A known route with a trailing slash 301s to its bare canonical, query intact.
+// The archive's directory URLs are canonical with the slash, and an unknown
+// path must keep its 404 rather than be bounced somewhere first.
+for (const [reqPath, want] of [
+  ["/kit/", "/kit"],
+  ["/articles/yosemite-in-fall/", "/articles/yosemite-in-fall"],
+  ["/kit/?utm_source=x", "/kit?utm_source=x"],
+]) {
+  const r = await call(`${APEX}${reqPath}`);
+  if (r.status !== 301 || r.location !== `${APEX}${want}`) {
+    fail(`trailing slash not stripped: ${reqPath} -> ${r.status} ${r.location} (expected 301 ${APEX}${want})`);
+  }
+}
+for (const reqPath of ["/archive/1945/", "/no-such-page/"]) {
+  const r = await call(`${APEX}${reqPath}`);
+  if (r.status === 301) fail(`trailing-slash path wrongly redirected: ${reqPath} -> ${r.location}`);
+  else if (r.assetsHit !== 1) fail(`request never reached normal handling: ${reqPath} (status ${r.status})`);
+}
+
 // --- the build-info route ---------------------------------------------------
 // /.well-known/talus-build.json is what the nightly deploy-parity check reads
 // to learn which catalog the live Worker bundle holds. It has to answer from
@@ -214,6 +234,7 @@ if (failures.length) {
 console.log(
   `check-edge-redirects: www canonicalization holds, 3 non-www host(s) untouched, ` +
     `${entries.length} REDIRECTS entr${entries.length === 1 ? "y" : "ies"} resolve, ` +
+    `trailing slashes strip on known routes only, ` +
     `the build-info route answers from the Worker, ` +
     `${totalLinks} related links across ${blocksWithLinks} article(s) reaching all ${reached.size} of them.`
 );

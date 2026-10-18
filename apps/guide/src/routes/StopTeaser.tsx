@@ -25,6 +25,7 @@ import {
 } from '../content/labels'
 import { PHOTO_CREDITS, formatCredit } from '../content/photoCredits'
 import PreviewChrome from '../components/PreviewChrome'
+import PrevNextNav from '../components/PrevNextNav'
 import Plate from '../components/Plate'
 import ResponsivePhoto from '../components/ResponsivePhoto'
 import StopCard from '../components/StopCard'
@@ -33,7 +34,22 @@ import PageHeader from '../components/ui/PageHeader'
 import { Chip } from '../components/ui/Chip'
 import { isPreviewStopId } from '../lib/storefront'
 import { useDocumentTitle } from '../lib/documentTitle'
-import { stopTeaserIntro, stopTeaserTitle } from '../lib/publicPages'
+import { adjacentIndexedStops, stopTeaserIntro, stopTeaserTitle } from '../lib/publicPages'
+
+// The indexed teasers chain to each other in reading order, so a crawler
+// landing on any one can walk the rest. Unlisted Secret Guide teasers get no
+// pager: they are not in the chain.
+function TeaserPager({ stopId }: { stopId: string }) {
+  const { prev, next } = adjacentIndexedStops(stopId)
+  if (!prev && !next) return null
+  return (
+    <PrevNextNav
+      prev={prev && { to: `/stop/${prev.id}`, title: prev.title }}
+      next={next && { to: `/stop/${next.id}`, title: next.title }}
+      ariaLabel="More stops in the guide"
+    />
+  )
+}
 
 export default function StopTeaser() {
   const params = useParams<{ stopId: string }>()
@@ -89,6 +105,7 @@ export default function StopTeaser() {
               Bought it already? Sign in
             </Button>
           </div>
+          <TeaserPager stopId={stop.id} />
         </main>
       </PreviewChrome>
     )
@@ -172,6 +189,8 @@ export default function StopTeaser() {
             </Button>
           </div>
         </section>
+
+        <TeaserPager stopId={stop.id} />
       </main>
     </PreviewChrome>
   )
