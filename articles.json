@@ -109,6 +109,33 @@
     "related": ["bracebridge-dinner-and-vintners-holidays", "yosemite-in-december", "badger-pass-ski-area", "where-to-stay-in-yosemite", "thanksgiving-in-yosemite", "yosemite-in-winter"]
   },
   {
+    "slug": "hotels-just-outside-yosemite",
+    "cat": "planning",
+    "title": "Hotels just outside Yosemite: Rush Creek vs Tenaya vs Evergreen vs Yosemite View Lodge",
+    "dek": "Four big lodges sit just outside four different gates, and the gate decides the trip. The drive to the Valley by the Park Service's own table, what each one has, which take dogs, which close in winter, which are on a bus line, and which to book for the Valley, the sequoias, Hetch Hetchy or the drive from the Bay Area.",
+    "seoTitle": "Best Hotels Near Yosemite: Rush Creek, Tenaya, Evergreen, Yosemite View",
+    "seoDek": "The best hotels near Yosemite compared: Rush Creek, Tenaya, Evergreen and Yosemite View Lodge by gate, drive time to the Valley, season, amenities and pets.",
+    "date": "October 18, 2026",
+    "isoDate": "2026-10-18",
+    "isoModified": "2026-10-18",
+    "read": "10 min",
+    "image": "img/big-oak-flat-road-tunnel.jpg",
+    "ogImage": { "url": "img/responsive/big-oak-flat-road-tunnel-1600.jpg", "width": 1600, "height": 1200 },
+    "placeholder": "A tunnel on Big Oak Flat Road, the Highway 120 drive in from Rush Creek and Evergreen",
+    "cover": true,
+    "wordCount": 3400,
+    "keywords": ["best hotels near Yosemite", "hotels just outside Yosemite", "Rush Creek Lodge vs Evergreen Lodge", "Tenaya at Yosemite", "Tenaya Lodge Yosemite", "Yosemite View Lodge", "Evergreen Lodge Yosemite", "Rush Creek Lodge Yosemite", "closest hotel to Yosemite Valley", "pet friendly hotels near Yosemite", "hotels near Yosemite south entrance", "hotels near Hetch Hetchy"],
+    "faq": [
+      { "q": "What is the best hotel just outside Yosemite?", "a": "It depends on the gate. For Yosemite Valley with the shortest drive, Yosemite View Lodge in El Portal, about 30 minutes from the Valley by the Park Service's count for El Portal. From the Bay Area on Highway 120, Rush Creek Lodge, half a mile from the Big Oak Flat entrance. For the Mariposa Grove and Wawona, Tenaya at Yosemite in Fish Camp. For Hetch Hetchy or a dog, Evergreen Lodge." },
+      { "q": "Which hotel is closest to Yosemite Valley?", "a": "Of these four, Yosemite View Lodge in El Portal on Highway 140, about 2 miles from the Arch Rock entrance. The Park Service lists El Portal at 14 miles and 30 minutes from Yosemite Valley." },
+      { "q": "How far is Rush Creek Lodge from Yosemite Valley?", "a": "The lodge says 30 minutes on average. The Park Service's table puts the Big Oak Flat entrance station, half a mile from the lodge, at 25 miles and 45 minutes from the Valley. Plan on the Park Service figure." },
+      { "q": "How far is Tenaya at Yosemite from the park entrance?", "a": "About two miles from the South Entrance on Highway 41, in Fish Camp. The Park Service lists Fish Camp at 39 miles and 1 hour 15 minutes from Yosemite Valley, so it suits the Mariposa Grove and Wawona better than a Valley-only trip." },
+      { "q": "Is Evergreen Lodge open in winter?", "a": "Mostly. The lodge describes a temporary six-week closure in January, reopening on Presidents Day weekend. Confirm dates with the lodge. Its sister property, Rush Creek Lodge, is open year-round." },
+      { "q": "Which hotels near Yosemite allow dogs?", "a": "Evergreen Lodge takes dogs in its Deluxe and Two Bedroom Family Cabins, up to two, for $85 a night with prior approval. Tenaya at Yosemite and Yosemite View Lodge are listed as pet friendly, without published terms we could read, so ask first. Rush Creek Lodge allows only registered service animals." }
+    ],
+    "related": ["yosemite-gateway-towns-compared", "where-to-stay-in-yosemite", "wawona-yosemite-guide", "hetch-hetchy-the-other-yosemite-valley", "highway-140-closed-yosemite", "yosemite-shuttle-and-yarts"]
+  },
+  {
     "slug": "worship-in-yosemite",
     "cat": "planning",
     "title": "Worship in Yosemite: church services, Easter sunrise and weddings in the park",
@@ -400,7 +427,7 @@
       { "q": "How do you combine Wawona and the Mariposa Grove in one day?", "a": "Do the grove first. Its Welcome Plaza by the South Entrance has about 300 parking spaces and may fill by late morning, so park early and take the free shuttle up. Then drive north to Wawona for the afternoon: lunch from the store, the covered bridge and the history center, and the Swinging Bridge or the meadow loop." },
       { "q": "Is Wawona open during the Dome Fire?", "a": "As of the park's October 11, 2026 update, the park was open and operating normally with exceptions: the country east of Wawona Road and south of Glacier Point Road was closed, along with the Buena Vista Trail, while the Chilnualna Falls Trail was open to the falls and Crescent Lake. Wawona Road, the town, the campground and the Mariposa Grove stayed open. Check the park's conditions page the morning you drive." }
     ],
-    "related": ["mariposa-grove-how-to-visit", "where-to-stay-in-yosemite", "where-to-eat-yosemite", "pets-in-yosemite", "wildfire-in-yosemite-during-your-trip", "yosemite-gateway-towns-compared"]
+    "related": ["mariposa-grove-how-to-visit", "where-to-stay-in-yosemite", "where-to-eat-yosemite", "pets-in-yosemite", "yosemite-gateway-towns-compared", "hotels-just-outside-yosemite"]
   },
   {
     "slug": "yosemite-in-november",
@@ -1519,7 +1546,7 @@
       { "q": "When is it easiest to get a room inside Yosemite?", "a": "Winter. The Ahwahnee, Yosemite Valley Lodge and a reduced Curry Village run all year, rates drop, and midweek availability in January is far better than in July. The concessioner's winter offers put the floor at the Ahwahnee from $389, the Lodge from $172 and Curry Village from $95 a night on select dates." },
       { "q": "Is Yosemite West inside the park?", "a": "No. Yosemite West is a private enclave of vacation homes just outside the park's southern boundary, reached through the park on Wawona Road. It has no restaurant, store, gas station or shuttle." }
     ],
-    "related": ["yosemite-gateway-towns-compared", "housekeeping-camp-vs-curry-village", "yosemite-camping-complete-guide", "wawona-yosemite-guide", "yosemite-trip-cost-budget", "christmas-and-new-years-in-yosemite"]
+    "related": ["yosemite-gateway-towns-compared", "hotels-just-outside-yosemite", "housekeeping-camp-vs-curry-village", "yosemite-camping-complete-guide", "wawona-yosemite-guide", "christmas-and-new-years-in-yosemite"]
   },
   {
     "slug": "yosemite-wildflowers-guide",
@@ -2360,7 +2387,7 @@
       { "q": "Why was Hetch Hetchy Valley flooded?", "a": "In 1913 Congress passed the Raker Act authorizing O'Shaughnessy Dam, despite John Muir's national campaign to protect the valley. San Francisco needed a reliable water supply, and the valley's remote location inside federal land made it the proposed reservoir site. Muir called it a desecration equal to flooding the Sistine Chapel." },
       { "q": "Can Hetch Hetchy be restored?", "a": "Engineering studies show the valley could be drained and would recover ecologically within decades. The political challenge is substantial: San Francisco still draws water and hydroelectric power from the reservoir. Replacement infrastructure would take years and billions of dollars. Restoration legislation is periodically introduced in Sacramento." }
     ],
-    "related": ["yosemite-waterfalls-guide", "yosemite-without-reservations-2026", "yosemite-in-march", "yosemite-wildflowers-guide", "yosemite-glaciers-climate"]
+    "related": ["yosemite-waterfalls-guide", "yosemite-without-reservations-2026", "yosemite-in-march", "yosemite-wildflowers-guide", "yosemite-glaciers-climate", "hotels-just-outside-yosemite"]
   },
   {
     "slug": "yosemite-stargazing-where-to-look-up",
@@ -2473,7 +2500,7 @@
       { "q": "Where should I stay to see Yosemite and Sequoia on one trip?", "a": "Oakhurst. The South Entrance is 20 to 25 minutes north, and the Kings Canyon entrance to Sequoia and Kings Canyon is roughly two to two and a half hours south by way of Fresno. Do not attempt Sequoia as a day trip from any Yosemite gateway." },
       { "q": "Do Yosemite gateway towns have reliable cell service?", "a": "Service is patchy in the gateways and unreliable to nonexistent through much of the park and approach roads. Download offline maps and reservation details before leaving town, and agree on a meeting point with your group." }
     ],
-    "related": ["where-to-stay-in-yosemite", "where-to-eat-yosemite", "yosemite-from-los-angeles", "yosemite-with-kids-no-reservations-2026", "highway-140-closed-yosemite", "yosemite-trip-cost-budget"]
+    "related": ["where-to-stay-in-yosemite", "hotels-just-outside-yosemite", "where-to-eat-yosemite", "yosemite-from-los-angeles", "yosemite-with-kids-no-reservations-2026", "highway-140-closed-yosemite"]
   },
   {
     "slug": "yosemite-during-smoke-season",

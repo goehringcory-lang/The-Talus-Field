@@ -739,6 +739,49 @@
       }
     ]
   },
+  "hotels-just-outside-yosemite": {
+    "wordCount": 3400,
+    "keywords": [
+      "best hotels near Yosemite",
+      "hotels just outside Yosemite",
+      "Rush Creek Lodge vs Evergreen Lodge",
+      "Tenaya at Yosemite",
+      "Tenaya Lodge Yosemite",
+      "Yosemite View Lodge",
+      "Evergreen Lodge Yosemite",
+      "Rush Creek Lodge Yosemite",
+      "closest hotel to Yosemite Valley",
+      "pet friendly hotels near Yosemite",
+      "hotels near Yosemite south entrance",
+      "hotels near Hetch Hetchy"
+    ],
+    "faq": [
+      {
+        "q": "What is the best hotel just outside Yosemite?",
+        "a": "It depends on the gate. For Yosemite Valley with the shortest drive, Yosemite View Lodge in El Portal, about 30 minutes from the Valley by the Park Service's count for El Portal. From the Bay Area on Highway 120, Rush Creek Lodge, half a mile from the Big Oak Flat entrance. For the Mariposa Grove and Wawona, Tenaya at Yosemite in Fish Camp. For Hetch Hetchy or a dog, Evergreen Lodge."
+      },
+      {
+        "q": "Which hotel is closest to Yosemite Valley?",
+        "a": "Of these four, Yosemite View Lodge in El Portal on Highway 140, about 2 miles from the Arch Rock entrance. The Park Service lists El Portal at 14 miles and 30 minutes from Yosemite Valley."
+      },
+      {
+        "q": "How far is Rush Creek Lodge from Yosemite Valley?",
+        "a": "The lodge says 30 minutes on average. The Park Service's table puts the Big Oak Flat entrance station, half a mile from the lodge, at 25 miles and 45 minutes from the Valley. Plan on the Park Service figure."
+      },
+      {
+        "q": "How far is Tenaya at Yosemite from the park entrance?",
+        "a": "About two miles from the South Entrance on Highway 41, in Fish Camp. The Park Service lists Fish Camp at 39 miles and 1 hour 15 minutes from Yosemite Valley, so it suits the Mariposa Grove and Wawona better than a Valley-only trip."
+      },
+      {
+        "q": "Is Evergreen Lodge open in winter?",
+        "a": "Mostly. The lodge describes a temporary six-week closure in January, reopening on Presidents Day weekend. Confirm dates with the lodge. Its sister property, Rush Creek Lodge, is open year-round."
+      },
+      {
+        "q": "Which hotels near Yosemite allow dogs?",
+        "a": "Evergreen Lodge takes dogs in its Deluxe and Two Bedroom Family Cabins, up to two, for $85 a night with prior approval. Tenaya at Yosemite and Yosemite View Lodge are listed as pet friendly, without published terms we could read, so ask first. Rush Creek Lodge allows only registered service animals."
+      }
+    ]
+  },
   "worship-in-yosemite": {
     "wordCount": 2400,
     "keywords": [

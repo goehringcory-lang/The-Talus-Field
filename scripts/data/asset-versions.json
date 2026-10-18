@@ -70,8 +70,8 @@
       "sha256": "a9a11671daaa5b52"
     },
     "/dist/bodies/hetch-hetchy-the-other-yosemite-valley.js": {
-      "v": 83,
-      "sha256": "0ca16ff738e5b223"
+      "v": 84,
+      "sha256": "4b411fec665909fb"
     },
     "/dist/bodies/highway-140-closed-yosemite.js": {
       "v": 5,
@@ -80,6 +80,10 @@
     "/dist/bodies/horsetail-fall-firefall.js": {
       "v": 10,
       "sha256": "f5262c0ec816fbc3"
+    },
+    "/dist/bodies/hotels-just-outside-yosemite.js": {
+      "v": 1,
+      "sha256": "9f0cc1dab221ec3b"
     },
     "/dist/bodies/housekeeping-camp-vs-curry-village.js": {
       "v": 2,
@@ -154,8 +158,8 @@
       "sha256": "27284b84a0cc792a"
     },
     "/dist/bodies/wawona-yosemite-guide.js": {
-      "v": 2,
-      "sha256": "ab8a5d856e231db9"
+      "v": 3,
+      "sha256": "ffd5670496093641"
     },
     "/dist/bodies/what-is-a-talus-field.js": {
       "v": 7,
@@ -174,8 +178,8 @@
       "sha256": "d4a4ffb443516e2d"
     },
     "/dist/bodies/where-to-stay-in-yosemite.js": {
-      "v": 20,
-      "sha256": "5ab085ac33718118"
+      "v": 21,
+      "sha256": "c4e890289409f54a"
     },
     "/dist/bodies/wildfire-in-yosemite-during-your-trip.js": {
       "v": 6,
@@ -246,8 +250,8 @@
       "sha256": "54de2cd4186b7384"
     },
     "/dist/bodies/yosemite-gateway-towns-compared.js": {
-      "v": 112,
-      "sha256": "aa9dd6eb79c8a6a4"
+      "v": 113,
+      "sha256": "dd53a2808fbcacb3"
     },
     "/dist/bodies/yosemite-glaciers-climate.js": {
       "v": 84,
