@@ -66,8 +66,8 @@
       "sha256": "fec042d9b4f6a956"
     },
     "/dist/bodies/glacier-point-road-open-2026.js": {
-      "v": 88,
-      "sha256": "a9a11671daaa5b52"
+      "v": 89,
+      "sha256": "cea0a7625bc87e6d"
     },
     "/dist/bodies/hetch-hetchy-the-other-yosemite-valley.js": {
       "v": 84,
@@ -98,8 +98,8 @@
       "sha256": "710df36d67fffa69"
     },
     "/dist/bodies/memorial-day-skip-the-valley-go-high-2026.js": {
-      "v": 89,
-      "sha256": "4107d2550c6e16bf"
+      "v": 90,
+      "sha256": "d00a374f70ce97e3"
     },
     "/dist/bodies/mist-trail-the-real-guide.js": {
       "v": 96,
@@ -122,8 +122,8 @@
       "sha256": "93a650926d62fe02"
     },
     "/dist/bodies/so-you-want-to-hike-half-dome.js": {
-      "v": 85,
-      "sha256": "9a178b3b466192b5"
+      "v": 86,
+      "sha256": "9363f8595a2f70ea"
     },
     "/dist/bodies/sustainable-yosemite-car-free-zero-waste.js": {
       "v": 6,
@@ -138,8 +138,8 @@
       "sha256": "c183821e1156ba85"
     },
     "/dist/bodies/tioga-road-opening-weekend.js": {
-      "v": 85,
-      "sha256": "e258f1700798bbb9"
+      "v": 86,
+      "sha256": "ab07259a26a6c762"
     },
     "/dist/bodies/tioga-road-stop-by-stop.js": {
       "v": 3,
@@ -282,12 +282,16 @@
       "sha256": "5b85e381285e7bb6"
     },
     "/dist/bodies/yosemite-in-june.js": {
-      "v": 11,
-      "sha256": "db25e1bc5a25dee4"
+      "v": 12,
+      "sha256": "7a483c3b900e9523"
     },
     "/dist/bodies/yosemite-in-march.js": {
       "v": 8,
       "sha256": "c4a3418d4146edca"
+    },
+    "/dist/bodies/yosemite-in-may.js": {
+      "v": 1,
+      "sha256": "78758374c587d855"
     },
     "/dist/bodies/yosemite-in-november.js": {
       "v": 5,

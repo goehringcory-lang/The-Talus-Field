@@ -110,6 +110,7 @@ window.planningSeriesFor = function (slug) {
 // verifies this map stays in sync with the files in bodies/.
 // ============================================================
 window.BODY_VERSIONS = {
+  "yosemite-in-may": 1,
   "hotels-just-outside-yosemite": 1,
   "christmas-and-new-years-in-yosemite": 1,
   "yosemite-in-april": 1,
@@ -183,15 +184,15 @@ window.BODY_VERSIONS = {
   "when-to-visit-yosemite": 15,
   "yosemite-trip-cost-budget": 14,
   "yosemite-in-september-2026": 8,
-  "yosemite-in-june": 11,
+  "yosemite-in-june": 12,
   "cathedral-lakes-day-hike": 9,
   "yosemite-needs-a-reservation-system": 84,
-  "memorial-day-skip-the-valley-go-high-2026": 89,
+  "memorial-day-skip-the-valley-go-high-2026": 90,
   "four-mile-up-panorama-down": 83,
   "yosemite-with-kids-no-reservations-2026": 86,
-  "tioga-road-opening-weekend": 85,
-  "so-you-want-to-hike-half-dome": 85,
-  "glacier-point-road-open-2026": 88,
+  "tioga-road-opening-weekend": 86,
+  "so-you-want-to-hike-half-dome": 86,
+  "glacier-point-road-open-2026": 89,
   "mist-trail-the-real-guide": 96,
   "first-time-yosemite-overwhelm": 95,
   "yosemite-without-reservations-2026": 89,
@@ -1059,6 +1060,30 @@ window.ARTICLES = [
       eyebrow: "RUSH CREEK · TENAYA · EVERGREEN · YOSEMITE VIEW LODGE",
       focus: "50% 50%",
       actions: [["#hj-compare", "All four side by side"], ["#hj-drive", "Drive times to the Valley"]],
+    },
+  },
+  {
+    slug: "yosemite-in-may",
+    aff: true,
+    cat: "seasonal",
+    title: "Yosemite in May: waterfalls at their peak, the high roads, and Memorial Day",
+    seoTitle: "Yosemite in May: Waterfalls, Weather, Tioga Road and Crowds",
+    dek: "The Park Service says the waterfalls are usually at their best in mid to late May. The weather, the Mist Trail at its wettest, every Tioga and Glacier Point Road opening since 2015, the Half Dome cables, Memorial Day weekend, and the campgrounds and lodges that are open this month.",
+    seoDek: "Yosemite in May: peak waterfalls, Valley weather, Tioga and Glacier Point Road opening dates since 2015, Half Dome cables, Memorial Day crowds, campgrounds.",
+    date: "October 18, 2026",
+    isoDate: "2026-10-18",
+    isoModified: "2026-10-18",
+    read: "10 min",
+    placeholder: "Yosemite Valley from Tunnel View in spring, the falls running",
+    image: "img/tunnel-view-valley-spring.jpg",
+    credit: "Photo: Kyle D / Wikimedia Commons (public domain)",
+    // The /firefall layout for an article (page-article.jsx), as on the Mist
+    // Trail piece. The two buttons jump to the waterfalls and to the road
+    // record.
+    feature: {
+      eyebrow: "WATERFALLS · TIOGA ROAD · GLACIER POINT · MEMORIAL DAY",
+      focus: "50% 50%",
+      actions: [["#ym-waterfalls", "The waterfalls"], ["#ym-roads", "When the high roads open"]],
     },
   },
   {
@@ -2656,6 +2681,7 @@ window.START_HERE = [
 // Curate a piece when it earns real search impressions, when it anchors a
 // cluster, or when it is the destination that needs the equity.
 window.RELATED = {
+  "yosemite-in-may": ["yosemite-waterfalls-guide", "tioga-road-opening-weekend", "glacier-point-road-open-2026", "memorial-day-skip-the-valley-go-high-2026", "so-you-want-to-hike-half-dome", "yosemite-in-june"],
   "hotels-just-outside-yosemite": ["yosemite-gateway-towns-compared", "where-to-stay-in-yosemite", "wawona-yosemite-guide", "hetch-hetchy-the-other-yosemite-valley", "highway-140-closed-yosemite", "yosemite-shuttle-and-yarts"],
   "christmas-and-new-years-in-yosemite": ["bracebridge-dinner-and-vintners-holidays", "yosemite-in-december", "badger-pass-ski-area", "where-to-stay-in-yosemite", "thanksgiving-in-yosemite", "yosemite-in-winter"],
   // Yosemite in April: the evergreen month guide
@@ -2773,17 +2799,17 @@ window.RELATED = {
   "yosemite-without-reservations-2026": ["when-to-visit-yosemite", "yosemite-valley-parking-guide", "yosemite-walk-up-and-day-of-permits", "yosemite-camping-complete-guide", "hetch-hetchy-the-other-yosemite-valley", "first-time-yosemite-overwhelm"],
 
   // Seasonal
-  "yosemite-in-june": ["when-to-visit-yosemite", "yosemite-waterfalls-guide", "tioga-road-opening-weekend", "yosemite-heat-safety-guide"],
+  "yosemite-in-june": ["when-to-visit-yosemite", "yosemite-waterfalls-guide", "tioga-road-opening-weekend", "yosemite-heat-safety-guide", "yosemite-in-may"],
   "yosemite-in-september-2026": ["when-to-visit-yosemite", "yosemite-in-fall", "tuolumne-meadows-in-a-day", "yosemite-during-smoke-season", "cathedral-lakes-day-hike", "mist-trail-the-real-guide"],
   "yosemite-in-fall": ["yosemite-in-october-2026", "yosemite-in-september-2026", "clouds-rest-hike", "when-to-visit-yosemite", "thanksgiving-in-yosemite", "yosemite-in-november"],
   "yosemite-in-winter": ["yosemite-winter-hikes", "yosemite-in-december", "yosemite-tire-chains", "horsetail-fall-firefall", "when-to-visit-yosemite", "badger-pass-ski-area"],
   "yosemite-in-march": ["yosemite-in-april", "yosemite-in-winter", "yosemite-waterfalls-guide", "horsetail-fall-firefall", "when-to-visit-yosemite", "yosemite-in-february"],
   "tioga-road-opening-weekend": ["cathedral-lakes-day-hike", "tuolumne-meadows-in-a-day", "yosemite-from-las-vegas", "memorial-day-skip-the-valley-go-high-2026", "yosemite-stargazing-where-to-look-up", "tioga-road-stop-by-stop"],
-  "glacier-point-road-open-2026": ["four-mile-up-panorama-down", "glacier-point-how-to-visit", "yosemite-photography-spots", "yosemite-stargazing-where-to-look-up", "yosemite-for-non-hikers"],
+  "glacier-point-road-open-2026": ["four-mile-up-panorama-down", "glacier-point-how-to-visit", "yosemite-photography-spots", "yosemite-stargazing-where-to-look-up", "yosemite-for-non-hikers", "yosemite-in-may"],
   "yosemite-heat-safety-guide": ["swimming-in-the-merced", "mist-trail-the-real-guide", "when-to-visit-yosemite", "yosemite-during-smoke-season", "yosemite-waterfalls-guide", "yosemite-falls-trail"],
   "yosemite-during-smoke-season": ["yosemite-heat-safety-guide", "yosemite-fire-restrictions-explained", "when-to-visit-yosemite", "yosemite-in-fall", "giant-sequoias-fire-adaptation", "wildfire-in-yosemite-during-your-trip"],
   "yosemite-fire-restrictions-explained": ["yosemite-during-smoke-season", "wildfire-in-yosemite-during-your-trip", "yosemite-camping-complete-guide", "giant-sequoias-fire-adaptation", "yosemite-heat-safety-guide", "yosemite-facelift-volunteer-guide"],
-  "memorial-day-skip-the-valley-go-high-2026": ["tioga-road-opening-weekend", "tuolumne-meadows-in-a-day", "when-to-visit-yosemite", "clouds-rest-hike", "hetch-hetchy-the-other-yosemite-valley", "cathedral-lakes-day-hike"],
+  "memorial-day-skip-the-valley-go-high-2026": ["tioga-road-opening-weekend", "tuolumne-meadows-in-a-day", "yosemite-in-may", "clouds-rest-hike", "hetch-hetchy-the-other-yosemite-valley", "cathedral-lakes-day-hike"],
   "swimming-in-the-merced": ["yosemite-heat-safety-guide", "yosemite-with-kids-no-reservations-2026", "mist-trail-the-real-guide", "yosemite-waterfalls-guide", "yosemite-in-june", "yosemite-in-september-2026"],
   "horsetail-fall-firefall": ["yosemite-in-winter", "yosemite-photography-spots", "yosemite-winter-hikes", "when-to-visit-yosemite", "yosemite-in-march"],
   "yosemite-stargazing-where-to-look-up": ["yosemite-stargazing-tours-and-programs", "tuolumne-meadows-in-a-day", "glacier-point-road-open-2026", "yosemite-photography-spots", "tioga-road-opening-weekend", "yosemite-in-fall"],

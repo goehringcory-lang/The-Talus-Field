@@ -2,7 +2,9 @@ window.ARTICLE_BODIES = window.ARTICLE_BODIES || {};
 window.ARTICLE_BODIES["tioga-road-opening-weekend"] = function TiogaRoadOpeningWeekend2026Body() {
   return React.createElement(React.Fragment, null, React.createElement("p", {
     className: "dropcap"
-  }, "Tioga Road (Highway 120) in Yosemite National Park opened Friday, May 15, 2026, at 8 a.m. That was well ahead of the Park Service's 2004 through 2023 average opening of May 31. ", React.createElement("a", {
+  }, "Tioga Road (Highway 120) in Yosemite National Park opened Friday, May 15, 2026, at 8 a.m. That was well ahead of the Park Service's 2004 through 2023 average opening of May 31; every opening since 2015 is in ", React.createElement("a", {
+    href: "/articles/yosemite-in-may"
+  }, "our guide to Yosemite in May"), ". ", React.createElement("a", {
     href: "/articles/glacier-point-road-open-2026"
   }, "Glacier Point Road had already opened on May 9"), ". ", React.createElement("a", {
     href: "/articles/yosemite-without-reservations-2026"

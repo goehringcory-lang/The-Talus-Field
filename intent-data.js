@@ -227,6 +227,7 @@ window.ARTICLE_INTENT = {
   "yosemite-trip-cost-budget":            { stage: ["before-booking"], who: ["first-trip", "families"], topic: ["lodging", "camping", "food", "transportation"] },
   "yosemite-in-october-2026":                   { stage: ["before-booking", "dates-set"], who: [], topic: ["conditions"] },
   "yosemite-in-september-2026":                 { stage: ["before-booking", "dates-set"], who: [], topic: ["conditions"] },
+  "yosemite-in-may":                      { stage: ["before-booking", "dates-set"], who: [], topic: ["conditions", "camping", "lodging"] },
   "yosemite-in-june":                     { stage: ["before-booking", "dates-set"], who: [], topic: ["conditions"] },
   // Month guide like the June piece: an empty `who` on purpose, because "what is
   // March like" is a question every traveler type asks in the same words.
@@ -337,6 +338,7 @@ window.ARTICLE_MONTHS = {
   "yosemite-in-october-2026": ["oct"],
   "yosemite-in-september-2026": ["sep"],
   "yosemite-facelift-volunteer-guide": ["sep"],
+  "yosemite-in-may": ["may"],
   "yosemite-in-june": ["jun"],
   "yosemite-in-march": ["mar"],
   "yosemite-in-april": ["apr"],
@@ -593,7 +595,7 @@ window.TRIP_MONTHS = [
   { key: "apr", label: "Apr", name: "April",     tioga: "closed",    glacier: "closed",    read: "yosemite-in-april",
     arrive: "Half of summer's crowds against full waterfalls. Midweek needs no gate strategy; on a weekend be through the entrance before mid-morning, when the Valley lots fill.",
     note: "The Valley greens up and the waterfalls build by the week. Tioga Road is still closed most years." },
-  { key: "may", label: "May", name: "May",       tioga: "unsettled", glacier: "unsettled", read: "yosemite-waterfalls-guide",
+  { key: "may", label: "May", name: "May",       tioga: "unsettled", glacier: "unsettled", read: "yosemite-in-may",
     arrive: "Memorial Day weekend behaves like July: Valley parking has filled as early as 8 a.m. Be through the gate before 8 that weekend; the rest of the month, before mid-morning on weekends.",
     note: "Peak waterfall month, and the last calmer weeks before summer. The high roads usually begin to open." },
   { key: "jun", label: "Jun", name: "June",      tioga: "unsettled", glacier: "open",      read: "yosemite-in-june",

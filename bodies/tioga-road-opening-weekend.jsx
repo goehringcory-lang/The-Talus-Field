@@ -6,7 +6,7 @@ window.ARTICLE_BODIES["tioga-road-opening-weekend"] = function TiogaRoadOpeningW
   return (
     <>
       <p className="dropcap">
-        Tioga Road (Highway 120) in Yosemite National Park opened Friday, May 15, 2026, at 8 a.m. That was well ahead of the Park Service's 2004 through 2023 average opening of May 31. <a href="/articles/glacier-point-road-open-2026">Glacier Point Road had already opened on May 9</a>. <a href="/articles/yosemite-without-reservations-2026">No day-use reservations are required to enter Yosemite this year</a>, just a standard entrance pass.
+        Tioga Road (Highway 120) in Yosemite National Park opened Friday, May 15, 2026, at 8 a.m. That was well ahead of the Park Service's 2004 through 2023 average opening of May 31; every opening since 2015 is in <a href="/articles/yosemite-in-may">our guide to Yosemite in May</a>. <a href="/articles/glacier-point-road-open-2026">Glacier Point Road had already opened on May 9</a>. <a href="/articles/yosemite-without-reservations-2026">No day-use reservations are required to enter Yosemite this year</a>, just a standard entrance pass.
       </p>
 
       <p>

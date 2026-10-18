@@ -136,6 +136,33 @@
     "related": ["yosemite-gateway-towns-compared", "where-to-stay-in-yosemite", "wawona-yosemite-guide", "hetch-hetchy-the-other-yosemite-valley", "highway-140-closed-yosemite", "yosemite-shuttle-and-yarts"]
   },
   {
+    "slug": "yosemite-in-may",
+    "cat": "seasonal",
+    "title": "Yosemite in May: waterfalls at their peak, the high roads, and Memorial Day",
+    "dek": "The Park Service says the waterfalls are usually at their best in mid to late May. The weather, the Mist Trail at its wettest, every Tioga and Glacier Point Road opening since 2015, the Half Dome cables, Memorial Day weekend, and the campgrounds and lodges that are open this month.",
+    "seoTitle": "Yosemite in May: Waterfalls, Weather, Tioga Road and Crowds",
+    "seoDek": "Yosemite in May: peak waterfalls, Valley weather, Tioga and Glacier Point Road opening dates since 2015, Half Dome cables, Memorial Day crowds, campgrounds.",
+    "date": "October 18, 2026",
+    "isoDate": "2026-10-18",
+    "isoModified": "2026-10-18",
+    "read": "10 min",
+    "image": "img/tunnel-view-valley-spring.jpg",
+    "ogImage": { "url": "img/responsive/tunnel-view-valley-spring-1600.jpg", "width": 1600, "height": 1200 },
+    "placeholder": "Yosemite Valley from Tunnel View in spring, the falls running",
+    "cover": true,
+    "wordCount": 2300,
+    "keywords": ["Yosemite in May", "Yosemite May weather", "Yosemite waterfalls May", "Is Tioga Road open in May", "Tioga Road opening dates", "Glacier Point Road opening May", "Half Dome cables Memorial Day", "Yosemite Memorial Day weekend", "Mist Trail in May", "Yosemite campgrounds open in May", "Yosemite dogwood bloom", "Yosemite in spring"],
+    "faq": [
+      { "q": "Is May a good time to visit Yosemite?", "a": "For waterfalls, yes. The Park Service says the waterfalls are usually at their best in mid to late May, and the Valley averages a high of 71°F and a low of 45°F. The trade is that Tioga Road and Glacier Point Road may still be closed by snow, and Memorial Day weekend is one of the busiest of the year." },
+      { "q": "Is Tioga Road open in May?", "a": "Sometimes. The Park Service says Tioga Road is typically open from late May or June, and that predicting the opening is not possible, even in late spring. In the twelve seasons from 2015 to 2026 it opened in May seven times, in June twice and in July three times. In 2026 it opened May 15." },
+      { "q": "Is Glacier Point Road open in May?", "a": "Usually by sometime in May, but not always. The Park Service gives late May as the approximate opening to cars. In its records it opened in May in 2017, 2019, 2024 and 2025, and on May 9 in 2026; in other years it opened earlier, later, or not at all because of construction." },
+      { "q": "Are the Half Dome cables up in May?", "a": "Usually for the last few days of the month. The Park Service says the cables usually go up the Friday before Memorial Day, subject to conditions, and a permit is required. In 2026 Half Dome opened May 15." },
+      { "q": "What is the weather like in Yosemite in May?", "a": "In Yosemite Valley the 1991 to 2020 May averages are a high of 71°F, a low of 45°F and 1.9 inches of precipitation. Tuolumne Meadows averages a high of 54°F and a low of 27°F. The park says tire chains are sometimes required even in spring." },
+      { "q": "Do you need a reservation to enter Yosemite in May?", "a": "Not in 2026: the Park Service announced it would not use a timed reservation system that year. Check the park's reservations page for any later year before you go. The entrance fee is $35 per private vehicle, good for seven days." }
+    ],
+    "related": ["yosemite-waterfalls-guide", "tioga-road-opening-weekend", "glacier-point-road-open-2026", "memorial-day-skip-the-valley-go-high-2026", "so-you-want-to-hike-half-dome", "yosemite-in-june"]
+  },
+  {
     "slug": "worship-in-yosemite",
     "cat": "planning",
     "title": "Worship in Yosemite: church services, Easter sunrise and weddings in the park",
@@ -1956,7 +1983,7 @@
       { "q": "How do I avoid the crowds in Yosemite in June 2026?", "a": "Go outside the Valley, which absorbs about 90 percent of visitors. With Tioga Road open the whole high country is available, and Cathedral Lakes, Hetch Hetchy, the Mariposa and Merced Groves, and Glacier Point Road are all far quieter than the Valley floor." },
       { "q": "What should I pack for Yosemite in June 2026?", "a": "Valley highs run 80 to 90 degrees and the high country is 15 to 20 degrees cooler. Carry at least two liters of water per person for any hike over four miles, sun protection, and a warm layer for elevation. Afternoon thunderstorms are possible in Tuolumne by late June." }
     ],
-    "related": ["when-to-visit-yosemite", "yosemite-waterfalls-guide", "tioga-road-opening-weekend", "yosemite-heat-safety-guide"]
+    "related": ["when-to-visit-yosemite", "yosemite-waterfalls-guide", "tioga-road-opening-weekend", "yosemite-heat-safety-guide", "yosemite-in-may"]
   },
   {
     "slug": "cathedral-lakes-day-hike",
@@ -2026,7 +2053,7 @@
       { "q": "What is open at Tuolumne Meadows on Memorial Day weekend 2026?", "a": "The road and the trailheads. The store, grill, and campground are still weeks from opening over the holiday (in 2026 the grill's season began June 13 and the campground's July 1), there is no gas past Crane Flat, and no reliable drinking water along Tioga Road that early, so bring everything and store it in a bear locker." },
       { "q": "Is Sentinel Dome accessible on Memorial Day weekend 2026?", "a": "Yes. The trailhead is on Glacier Point Road, which opened May 9, 2026. The roughly 2-mile round trip climbs about 400 feet to a bare granite summit at 8,122 feet with a 360-degree view, far less crowded than any Valley viewpoint on a holiday weekend." }
     ],
-    "related": ["tioga-road-opening-weekend", "tuolumne-meadows-in-a-day", "when-to-visit-yosemite", "clouds-rest-hike", "hetch-hetchy-the-other-yosemite-valley", "cathedral-lakes-day-hike"]
+    "related": ["tioga-road-opening-weekend", "tuolumne-meadows-in-a-day", "yosemite-in-may", "clouds-rest-hike", "hetch-hetchy-the-other-yosemite-valley", "cathedral-lakes-day-hike"]
   },
   {
     "slug": "where-to-eat-yosemite",
@@ -2216,7 +2243,7 @@
       { "q": "How long is the drive on Glacier Point Road?", "a": "The road runs from the gate at Chinquapin to the point. It is paved and well plowed, but the corners are tight and the light alternates fast between sun and shadow, so it drives slower than the distance suggests." },
       { "q": "What is the elevation of Glacier Point?", "a": "7,200 feet. The viewpoint sits on the valley rim, which is why Half Dome reads at eye level from it rather than above you." }
     ],
-    "related": ["four-mile-up-panorama-down", "glacier-point-how-to-visit", "yosemite-photography-spots", "yosemite-stargazing-where-to-look-up", "yosemite-for-non-hikers"]
+    "related": ["four-mile-up-panorama-down", "glacier-point-how-to-visit", "yosemite-photography-spots", "yosemite-stargazing-where-to-look-up", "yosemite-for-non-hikers", "yosemite-in-may"]
   },
   {
     "slug": "mist-trail-the-real-guide",
