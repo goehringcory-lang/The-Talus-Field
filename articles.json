@@ -28,6 +28,33 @@
     "related": ["yosemite-in-winter", "getting-to-yosemite", "highway-140-closed-yosemite", "pack-your-car-for-yosemite", "yosemite-in-november", "yosemite-in-december"]
   },
   {
+    "slug": "yosemite-campground-reservations",
+    "cat": "planning",
+    "title": "Yosemite campground reservations: the 15th, 7 am, and every other way to get a site",
+    "dek": "The Valley's campsites go on sale at 7 am Pacific on the 15th, five months ahead, and sell out within minutes. Which campground opens on which window, the next eight release mornings, what to do before 7:00, the rules that come with the site, the first-come campgrounds of the cold months, and the 2026 lottery.",
+    "seoTitle": "Yosemite Campground Reservations: When Sites Open and How",
+    "seoDek": "How Yosemite campground reservations work: the 15th-of-the-month 7 am PT release on Recreation.gov, the two-week and one-week windows, first-come sites and tips.",
+    "date": "October 18, 2026",
+    "isoDate": "2026-10-18",
+    "isoModified": "2026-10-18",
+    "read": "10 min",
+    "image": "img/upper-pines-campground.jpg",
+    "ogImage": { "url": "img/responsive/upper-pines-campground-1600.jpg", "width": 1600, "height": 900 },
+    "placeholder": "Tall trees over the sites of Upper Pines Campground on the Yosemite Valley floor",
+    "cover": true,
+    "wordCount": 2800,
+    "keywords": ["yosemite campground reservations", "yosemite camping reservations", "when do yosemite campground reservations open", "yosemite campsite release 15th 7 am", "recreation.gov yosemite", "upper pines reservations", "north pines lottery", "yosemite first come first served campgrounds", "camp 4 reservations", "yosemite campground cancellation policy", "tuolumne meadows campground reservations", "how to get a yosemite campsite"],
+    "faq": [
+      { "q": "When do Yosemite campground reservations open?", "a": "Upper Pines, Lower Pines, North Pines, Wawona and Hodgdon Meadow release on Recreation.gov five months ahead, on the 15th of each month, one block of arrival dates at a time: on January 15, arrivals from May 15 to June 14 open. Half of Tuolumne Meadows releases two months ahead on the 15th. Crane Flat, Bridalveil Creek, Tamarack Flat, White Wolf, Yosemite Creek, Porcupine Flat and the other half of Tuolumne release two weeks ahead on a rolling daily window, and Camp 4 one week ahead." },
+      { "q": "What time do Yosemite campsites go on sale?", "a": "7 am Pacific time. The Park Service says all non-lottery reservations are released at 7 am Pacific and sell out within minutes. Log in to Recreation.gov before then; you must be logged in to add a site to your cart." },
+      { "q": "How many Yosemite campground reservations can I make at once?", "a": "Two. The Park Service says you may make only two reservations per website visit or phone call. Recreation.gov holds a site in your cart for 15 minutes, and asks you not to log in to the same account in more than one browser, tab or window." },
+      { "q": "Are there first-come, first-served campgrounds in Yosemite?", "a": "Only from late fall to early spring. The Park Service says no first-come campgrounds are open from mid-April through October. In the off-season, Camp 4, Hodgdon Meadow and Wawona run first-come, first-served, and they can fill early on weekends and holidays. The campground status line is 209/372-0266." },
+      { "q": "What does it cost to cancel a Yosemite campsite?", "a": "Per Recreation.gov's Upper Pines page: $10 more than 48 hours before arrival; $10 plus the first night's fee within 48 hours; a one-night reservation has no $10 fee but is not refundable inside 48 hours; and a no-show pays a $20 fee and loses the first night." },
+      { "q": "Is there a Yosemite campground lottery for 2027?", "a": "None was announced as of October 18, 2026. North Pines ran a one-time Early Access Lottery for the 2026 season, with a $10 application fee, and the Park Service said it may consider expanding the idea to other campgrounds. Check the park's lottery page and the campground's Recreation.gov page before planning a release morning." }
+    ],
+    "related": ["yosemite-camping-complete-guide", "camping-in-yosemite-first-time", "housekeeping-camp-vs-curry-village", "yosemite-wilderness-permits-guide", "where-to-stay-in-yosemite", "yosemite-bears-safety-guide"]
+  },
+  {
     "slug": "worship-in-yosemite",
     "cat": "planning",
     "title": "Worship in Yosemite: church services, Easter sunrise and weddings in the park",
@@ -134,7 +161,7 @@
       { "q": "Was Curry Village called Half Dome Village?", "a": "Yes, from 2016 to 2019, during the trademark dispute with the park's former concessioner that also renamed the Ahwahnee. It has been Curry Village again since 2019, though some older pages and photos still use the other name." },
       { "q": "How do you book Housekeeping Camp or Curry Village?", "a": "Both are run by the park concessioner, Yosemite Hospitality, and book through travelyosemite.com. Reservations open 366 days ahead. The first night is charged at booking and refunded if you cancel at least seven days before arrival; Housekeeping Camp keeps a $15 fee on those cancellations." }
     ],
-    "related": ["where-to-stay-in-yosemite", "yosemite-camping-complete-guide", "where-to-eat-yosemite", "yosemite-bears-safety-guide", "mist-trail-the-real-guide", "camping-in-yosemite-first-time"]
+    "related": ["where-to-stay-in-yosemite", "yosemite-camping-complete-guide", "yosemite-campground-reservations", "yosemite-bears-safety-guide", "mist-trail-the-real-guide", "camping-in-yosemite-first-time"]
   },
   {
     "slug": "yosemite-stargazing-tours-and-programs",
@@ -970,7 +997,7 @@
       { "q": "What are the quiet hours and generator hours in Yosemite campgrounds?", "a": "Quiet hours run from 10 PM to 6 AM. Generators are permitted only from 7 to 9 in the morning, noon to 2, and 5 to 7 in the evening. Check-in and check-out are both around noon, which means your site may still be occupied if you arrive at eleven. In the summer months, wood fires in Yosemite Valley are restricted to evening hours for air quality." },
       { "q": "Do I still pay the park entrance fee if I have a camping reservation?", "a": "Yes. A campground reservation is not park entry. The entrance fee is $35 per vehicle, good for seven days, and the entrance stations are cashless. Budget for it separately." }
     ],
-    "related": ["yosemite-camping-complete-guide", "yosemite-bears-safety-guide", "is-bear-spray-allowed-in-yosemite", "where-to-stay-in-yosemite", "pets-in-yosemite"]
+    "related": ["yosemite-camping-complete-guide", "yosemite-campground-reservations", "yosemite-bears-safety-guide", "is-bear-spray-allowed-in-yosemite", "where-to-stay-in-yosemite", "pets-in-yosemite"]
   },
   {
     "slug": "first-yosemite-backpacking-trip",
@@ -1646,7 +1673,7 @@
       { "q": "What is Porcupine Flat campground like?", "a": "Porcupine Flat is a primitive campground right on the Tioga Road at 8,100 feet, about 20 minutes west of Tuolumne Meadows and about an hour and ten minutes from the Valley. It has 55 sites at $24 a night, vault toilets, no drinking water (Porcupine Creek is the only water source, so boil or treat it) and no cell service. Only four sites take a 24-foot RV. It books on the two-week rolling window and is one of the last campgrounds to fill on any given night; in 2026 it ran June 23 to October 11." },
       { "q": "Is there a lottery for Yosemite campgrounds?", "a": "Only once so far. North Pines ran a one-time Early Access Lottery for the 2026 season: applications ran November 24 to December 14, 2025, results went out December 22, and winners booked January 2 to February 1. Whatever they did not claim went back into the ordinary five-month releases. The Park Service said it may consider expanding the lottery to other campgrounds, so check the campground's page on Recreation.gov before you plan a release morning." }
     ],
-    "related": ["camping-in-yosemite-first-time", "where-to-stay-in-yosemite", "first-yosemite-backpacking-trip", "yosemite-trip-cost-budget", "yosemite-facelift-volunteer-guide", "sustainable-yosemite-car-free-zero-waste"]
+    "related": ["yosemite-campground-reservations", "camping-in-yosemite-first-time", "where-to-stay-in-yosemite", "first-yosemite-backpacking-trip", "yosemite-trip-cost-budget", "sustainable-yosemite-car-free-zero-waste"]
   },
   {
     "slug": "where-to-propose-in-yosemite",

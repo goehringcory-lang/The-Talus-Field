@@ -8,7 +8,7 @@
 Publisher: The Talus Field (https://thetalusfieldjournal.com). Editor: Cory Goehring.
 Citation guidance and the annotated page index: https://thetalusfieldjournal.com/llms.txt
 Canonical article URL pattern: https://thetalusfieldjournal.com/articles/<slug>
-Contents: 95 articles. Most recent update: 2026-10-18.
+Contents: 96 articles. Most recent update: 2026-10-18.
 
 Not in this file: the Yosemite Nature Notes archive, all 512 issues of the
 National Park Service's Yosemite bulletin (1922-2003), transcribed in full
@@ -242,6 +242,313 @@ What is the fine for not using chains in Yosemite?
 The Park Service says failing to put on chains when required can bring a citation of up to $5,000. A tow truck sent to bring you chains can cost a few hundred dollars, is not covered by AAA, and can take several hours.
 Where can I buy tire chains near Yosemite?
 At most auto parts stores and gas stations in the communities around the park. Inside the park the Village Garage in Yosemite Valley and the Wawona gas station carry a limited stock. The Park Service says rentals are rarely available. Buy chains sized to your tires.
+
+Some links in this piece are affiliate links. If you buy or book through one, The Talus Field may earn a small commission at no extra cost to you. The recommendations do not change for it. Full disclosure.
+
+---
+
+## Yosemite campground reservations: the 15th, 7 am, and every other way to get a site
+
+URL: https://thetalusfieldjournal.com/articles/yosemite-campground-reservations
+Section: Planning. Published: 2026-10-18. Last updated: 2026-10-18.
+Summary: How Yosemite campground reservations work: the 15th-of-the-month 7 am PT release on Recreation.gov, the two-week and one-week windows, first-come sites and tips.
+
+Valley releaseThe 15th, five months ahead
+
+On sale7 am Pacific, gone in minutes
+
+High countryTwo weeks ahead, every morning
+
+Per visitTwo reservations, 15-minute cart
+On this pageThe four windows
+Release calendar
+Release morning
+After you book
+First-come sites
+When it is full
+The lottery
+Questions
+
+Every reservable campsite in Yosemite books on Recreation.gov, and the ones most people want go on sale at 7 am Pacific on the 15th of the month, five months ahead. The Park Service's own word for them is "extremely difficult to get," and it says they sell out within minutes.
+
+That is one door of four. The high-country campgrounds open a new day every morning, two weeks out. Half of Tuolumne Meadows opens two months out. Camp 4 opens one week out. From late fall to early spring, three campgrounds drop reservations altogether and go first-come, first-served.
+
+This page is the mechanics: which campground sits behind which door, the next eight release mornings, what to do in the minutes around 7:00, the rules that come with the site, and the ways in once it is gone. For the campgrounds themselves, site by site, read the complete Yosemite camping guide.
+
+The short version
+
+- The Pines, Wawona and Hodgdon Meadow: the 15th, 7 am Pacific, five months ahead.
+- Want mid-July to mid-August 2027? Your morning is March 15.
+- Two reservations per visit. Log in early, one tab.
+- Missed it: the two-week campgrounds open a day every morning at 7.
+- No first-come camping from mid-April through October.
+Find your release morning ↓
+
+THE FOUR WINDOWS
+
+### Which campground opens when
+
+- 5 monthsOn the 15th
+Upper Pines, Lower Pines, North Pines, Wawona, Hodgdon Meadow
+
+One block of arrival dates, the 15th through the 14th, opens at 7 am Pacific on the 15th, five months out.
+
+- 2 monthsOn the 15th
+Half of Tuolumne Meadows
+
+Half the sites release two months ahead, on the 15th.
+
+- 2 weeksRolling, daily
+Crane Flat, Bridalveil Creek, Tamarack Flat, White Wolf, Yosemite Creek, Porcupine Flat, the other half of Tuolumne
+
+A new day opens every morning at 7 am Pacific.
+
+- 1 weekRolling, daily
+Camp 4, in its reservation season
+
+Seven days ahead, $10 a person a night.
+
+Five months, on the 15th. Upper Pines, Lower Pines and North Pines on the Valley floor, plus Wawona and Hodgdon Meadow, release one block of arrival dates at a time. Recreation.gov's Upper Pines page gives the example: "on January 15, arrival dates for the period May 15 to June 14 become available to reserve." So the block runs from the 15th to the 14th, and it opens on the 15th four months before its first night.
+
+Two months, on the 15th. Half the sites at Tuolumne Meadows, the park's biggest campground at 289 sites, release this way. The Park Service's table lists Tuolumne as "2 months ahead on 15th and 14 days ahead." Its Recreation.gov page does not spell out the split, so check the campground's own page for the exact block.
+
+Two weeks, rolling. Crane Flat, Bridalveil Creek, Tamarack Flat, White Wolf, Yosemite Creek, Porcupine Flat and the other half of Tuolumne open two weeks ahead, one new day every morning. They sit between 6,200 and 8,600 feet, and in 2026 they opened between May 21 and July 3, so their seasons are short and move every year.
+
+One week, rolling. Camp 4, a walk-in, tents-only campground in Yosemite Valley, releases one week before arrival during its reservation season. It costs $10 a person a night, and up to six people can be registered for a site per reservation transaction.
+
+The Park Service says all non-lottery reservations release at 7 am Pacific. Recreation.gov's Yosemite pages print the same hour as both "PT" and "PST." Read it as 7 am on the clock in California that morning.
+
+#### All thirteen, as the Park Service lists them for 2026
+
+Campground | Window | 2026 season | Sites | Night
+
+Upper Pines | 5 months | All year | 236 | $36
+Lower Pines | 5 months | Apr 21 to Oct 19 | 74 | $36
+North Pines | 5 months (2026: lottery first) | Apr 21 to Oct 26 | 81 | $36
+Wawona | 5 months | All year; reserved Apr 15 to Oct 26 (Loop A to Nov 29) | 95 | $36
+Hodgdon Meadow | 5 months | All year; reserved Apr 15 to Oct 26 | 100 | $36
+Tuolumne Meadows | Half 2 months, half 2 weeks | Jul 1 to Sep 27 | 289 | $36
+Crane Flat | 2 weeks | May 21 to Oct 12 | 148 | $36
+Bridalveil Creek | 2 weeks | Jul 3 to Aug 14, closed early | 110 | $36
+White Wolf | 2 weeks | Jul 2 to Sep 14 | 68 | $28
+Tamarack Flat | 2 weeks | Jun 22 to Oct 12 | 52 | $24
+Yosemite Creek | 2 weeks | Jul 1 to Sep 7 | 74 | $24
+Porcupine Flat | 2 weeks | Jun 23 to Oct 11 | 55 | $24
+Camp 4 | 1 week | All year; reserved Apr 15 to Nov 29 | 61 | $10 a person
+
+The park sets the seasons each year, and the 2027 dates were not published when this was written. Bridalveil Creek closed early in 2026 after a lightning strike.
+
+THE RELEASE CALENDAR
+
+### Count back to the 15th, four months before the block
+
+Find the block your first night falls in, then go back to the 15th four months before the block starts. A first night on the 1st to the 14th belongs to the block that began the month before. A trip from July 10 to 13, 2027 sits in the June 15 to July 14 block, so it opens on February 15. A trip from July 16 to 19 sits in the next block and opens on March 15.
+
+There is no earlier door. The block is set by your arrival date, so if a stay starts on the 14th, it opens a month before a stay that starts on the 15th. If you can slide a trip by a day or two across that line, you choose which morning you compete on.
+
+The calendar says which arrival dates open, not which campgrounds will be open on them. Lower and North Pines opened April 21 in 2026, and Wawona and Hodgdon Meadow took reservations from April 15; if 2027 runs the same way, the November 15 morning is an Upper Pines morning only. The three that open summer arrivals are February 15, March 15 and April 15. The park dates table carries the same rule.
+
+#### The next eight release mornings, 7 am Pacific
+
+- Sun, Nov 15, 2026
+Arrivals Mar 15 to Apr 14, 2027.
+
+- Tue, Dec 15, 2026
+Arrivals Apr 15 to May 14, 2027.
+
+- Fri, Jan 15, 2027
+Arrivals May 15 to Jun 14, 2027.
+
+- Mon, Feb 15, 2027
+Arrivals Jun 15 to Jul 14, 2027.
+
+- Mon, Mar 15, 2027
+Arrivals Jul 15 to Aug 14, 2027.
+
+- Thu, Apr 15, 2027
+Arrivals Aug 15 to Sep 14, 2027.
+
+- Sat, May 15, 2027
+Arrivals Sep 15 to Oct 14, 2027.
+
+- Tue, Jun 15, 2027
+Arrivals Oct 15 to Nov 14, 2027.
+
+Worked from Recreation.gov's example for the five-month campgrounds. Highlighted: the summer blocks. Confirm the on-sale date on the campground's Recreation.gov page.
+
+RELEASE MORNING
+
+### The work is done before 7:00
+
+Recreation.gov publishes its own tips for popular campgrounds, and they line up with the Park Service's. Make the account ahead of time. Log in "well before the sale begins"; on the Yosemite pages you cannot add a site to your cart without being logged in. Synchronize your clock to the Recreation.gov clock, which it links as Coordinated Universal Time.
+
+Then one tab. Recreation.gov says plainly: "Do NOT log in to multiple browsers, multiple tabs, or multiple windows using the same account." Once you click Add to Cart, the site is locked in your cart for 15 minutes, which is enough time to check out and not enough to keep browsing.
+
+The Park Service caps you at two reservations per website visit or phone call. Know which two before the clock turns, and have fallback dates written down. Recreation.gov also suggests trips that skip a Friday and Saturday night, and shoulder seasons, where you can.
+
+For a first trip, decide on a campground before you decide on a site. What a first night in a Yosemite campground is actually like covers what you are booking: the bear locker, the neighbors and the arrival hour.
+
+#### The morning, step by step
+
+- Days before
+Create the Recreation.gov account. Pick the campground, the dates, and two fallbacks.
+
+- The night before
+Open the campground's page and confirm its on-sale date and time.
+
+- Well before 7
+Log in. Sync to the Recreation.gov clock. One browser, one tab.
+
+- 7:00 Pacific
+Add a site that fits your party. It is held for 15 minutes. Check out.
+
+- The limit
+Two reservations per visit. Then you are done for the morning.
+
+- If you miss
+Set an Availability Alert on the campground and turn to the rolling windows.
+
+AFTER YOU BOOK
+
+### The rules that come with the site
+
+- Six people, two vehicles.
+A maximum of six people, children included, and two motor vehicles per site. Some sites take only one vehicle; the site details on Recreation.gov say which.
+
+- Noon, and 10 am.
+Check-in and checkout are at noon. Check in at the campground kiosk before 10 am the morning after your first night, or the reservation is cancelled.
+
+- Thirty nights a year.
+From May 1 to September 15, the limit is 14 nights, and only seven of those in Yosemite Valley or Wawona.
+
+- No resale.
+Recreation.gov says resale or auction of advance reservations is prohibited.
+
+Arriving late. Recreation.gov's Upper Pines page says a late arrival should call 209/372-8502, and that the reservation may be cancelled if the campground does not hear from you within 24 hours of your arrival date. An after-hours arrival signs in and returns to the kiosk the next morning to finish check-in.
+
+Sleeping in the car. The Park Service does not allow it anywhere in the park except a campsite you are registered for, and not along the side of the road. Camp 4 is walk-in and tents only, so not there either.
+
+The gate. The campsite does not cover the park entrance fee, which Recreation.gov notes is charged per vehicle and separately.
+
+Quiet hours run 10 pm to 6 am, and generators may run only from 7 to 9 am, noon to 2 pm, and 5 to 7 pm.
+
+#### What cancelling costs
+
+More than 48 hours out$10 transaction fee
+
+Within 48 hours$10 plus the first night
+
+One-night stay, within 48 hoursNo $10 fee, no refund
+
+No-show$20 plus the first night
+
+From Recreation.gov's Upper Pines and North Pines pages. Terms are set per campground; confirm them on your own reservation.
+
+FIRST-COME, FIRST-SERVED
+
+### Only in the cold months
+
+From mid-April through October, the Park Service says, "There are no first-come, first-served campgrounds open." Its advice for those months is blunt: "Do not arrive at Yosemite without a reservation." The only move then is to watch Recreation.gov for cancellations.
+
+Three campgrounds go first-come in the off-season. Hodgdon Meadow and Wawona are first-come, first-served from late October through early April. Camp 4 is first-come from mid-November through mid-April, the Park Service says, "usually until sometime in April," and its fee drops to $10 a night. All three can fill early on weekends and holidays, and Camp 4 "may fill early in the morning every day in spring and fall if weather is nice."
+
+This fall, the dates are later than usual. For 2026 the park extended Camp 4's reservation season to November 29 (the last reserved night is November 28) and Wawona's Loop A to November 29. Hodgdon Meadow's reservations ran through October 26, and Wawona's Loops B and C close for the season on October 26. The park's general reservations page still prints an older Camp 4 season, so the campground pages are the ones to trust. Call the campground status line, 209/372-0266, before you drive up on a hunch.
+
+The Camp 4 kiosk. Reserved one week ahead from April 15 to November 29 in 2026, first-come the rest of the year. Photo: Almonroth / Wikimedia Commons (CC BY-SA 3.0)
+
+- Hodgdon Meadow
+First-come from late October to early April.
+
+- Wawona
+First-come from late October to early April. Loop A reserved to Nov 29 in 2026.
+
+- Camp 4
+First-come from mid-November to mid-April. Reserved to Nov 29 in 2026.
+
+- Everything else
+Reservation only, or closed for winter.
+
+WHEN IT IS SOLD OUT
+
+### The other doors
+
+The rolling campgrounds. A sold-out 15th is not the end of summer. Every morning at 7, the two-week campgrounds open another day, from Crane Flat to the high-country half of Tuolumne Meadows. Their seasons are short, and the campgrounds sit between 6,200 and 8,600 feet.
+
+Cancellations. Recreation.gov's Availability Alerts send an email or notification when a site you are watching opens. Cancelling costs $10 until 48 hours before arrival. Flexible dates matter more than any tool: one fixed weekend is a long shot, a free week is not.
+
+Camp 4. One week out, every day, in its reservation season, and first-come in the cold months.
+
+A roof instead. Housekeeping Camp and Curry Village are not campgrounds. They are lodging run by the park's concessioner, Yosemite Hospitality, which takes its own reservations, and the Park Service says in-park lodging is available 366 days in advance. That is seven months before the campgrounds' first door. Housekeeping Camp against Curry Village compares the two canvas-roofed Valley stays.
+
+A wilderness permit. A night in the backcountry runs on its own quota and its own calendar; the wilderness permit guide covers it.
+
+Tuolumne Meadows, the park's largest campground, half on the two-month window and half on the two-week one. Photo: Dsdugan / Wikimedia Commons (CC0)
+
+#### When every campsite is gone
+
+Watch Recreation.gov for cancellations first, and look at Yosemite Hospitality's tent cabins, which open a year ahead. If you still have nowhere to sleep, a search shows the rooms left within driving distance of the gates.
+
+Search lodging around Yosemite →
+Where to stay: every option compared
+
+Availability links are affiliate links. The recommendations do not change for them. Disclosure.
+
+THE LOTTERY
+
+### North Pines tried one, once
+
+For the 2026 season, North Pines ran what the Park Service called a "one-time early access lottery." Applications ran November 24 to December 14, 2025, with a nonrefundable $10 fee, one application per person. Results came out December 22. Winners got a time slot between January 2 and February 1, 2026, to make one reservation, one continuous stay in one site, capped at seven nights, at $36 a night.
+
+What the winners did not take went back into the ordinary releases, starting with the February 15 on-sale. Sites at risk of flooding were held back until the park judged the risk low.
+
+As of October 18, 2026, we found no announcement of a lottery for 2027, at North Pines or anywhere else. The Park Service said it "may consider expanding it to other campgrounds" depending on visitor feedback. Last year's application window opened in late November, so check the park's lottery page and the campground's Recreation.gov page this November before you count on the 15th.
+
+2026 PILOT
+
+#### North Pines Early Access Lottery
+
+ApplicationsNov 24 to Dec 14, 2025
+
+Fee$10, nonrefundable
+
+ResultsDec 22, 2025
+
+Winners bookedJan 2 to Feb 1, 2026
+
+StayOne site, up to seven nights
+
+2027Not announced as of Oct 18, 2026
+
+QUESTIONS
+
+### Yosemite campground reservations, answered
+
+#### Sources
+
+- Campgrounds, NPS Yosemite
+- Campground Reservations, NPS Yosemite
+- Camp 4, NPS Yosemite
+- Camping Without a Reservation, NPS Yosemite
+- Campground Regulations, NPS Yosemite
+- North Pines Early Access Lottery, NPS Yosemite
+- Lodging, NPS Yosemite
+- Upper Pines Campground, Recreation.gov
+- North Pines Campground, Recreation.gov
+- Tips for Making Campsite Reservations at Popular Locations, Recreation.gov
+- Rules and Reservation Policies, Recreation.gov
+
+When do Yosemite campground reservations open?
+Upper Pines, Lower Pines, North Pines, Wawona and Hodgdon Meadow release on Recreation.gov five months ahead, on the 15th of each month, one block of arrival dates at a time: on January 15, arrivals from May 15 to June 14 open. Half of Tuolumne Meadows releases two months ahead on the 15th. Crane Flat, Bridalveil Creek, Tamarack Flat, White Wolf, Yosemite Creek, Porcupine Flat and the other half of Tuolumne release two weeks ahead on a rolling daily window, and Camp 4 one week ahead.
+What time do Yosemite campsites go on sale?
+7 am Pacific time. The Park Service says all non-lottery reservations are released at 7 am Pacific and sell out within minutes. Log in to Recreation.gov before then; you must be logged in to add a site to your cart.
+How many Yosemite campground reservations can I make at once?
+Two. The Park Service says you may make only two reservations per website visit or phone call. Recreation.gov holds a site in your cart for 15 minutes, and asks you not to log in to the same account in more than one browser, tab or window.
+Are there first-come, first-served campgrounds in Yosemite?
+Only from late fall to early spring. The Park Service says no first-come campgrounds are open from mid-April through October. In the off-season, Camp 4, Hodgdon Meadow and Wawona run first-come, first-served, and they can fill early on weekends and holidays. The campground status line is 209/372-0266.
+What does it cost to cancel a Yosemite campsite?
+Per Recreation.gov's Upper Pines page: $10 more than 48 hours before arrival; $10 plus the first night's fee within 48 hours; a one-night reservation has no $10 fee but is not refundable inside 48 hours; and a no-show pays a $20 fee and loses the first night.
+Is there a Yosemite campground lottery for 2027?
+None was announced as of October 18, 2026. North Pines ran a one-time Early Access Lottery for the 2026 season, with a $10 application fee, and the Park Service said it may consider expanding the idea to other campgrounds. Check the park's lottery page and the campground's Recreation.gov page before planning a release morning.
 
 Some links in this piece are affiliate links. If you buy or book through one, The Talus Field may earn a small commission at no extra cost to you. The recommendations do not change for it. Full disclosure.
 
@@ -1050,7 +1357,7 @@ SIDE BY SIDE
 
 Both are on the Valley floor's east end, on the free shuttle loop. Housekeeping Camp is on the bank of the Merced River, west of Curry Village, at shuttle stop 12. Curry Village sits against the south wall, below Glacier Point, at stops 14 and 19, and the Mist Trail starts one stop on, at Happy Isles. The YARTS bus from Merced stops at Curry Village.
 
-Neither is a campground. The Park Service's 13 campgrounds book through Recreation.gov and are a separate system; the camping guide covers those. These two are concessioner lodging, which means a roof, a bed and a front desk, and a price that moves with the date.
+Neither is a campground. The Park Service's 13 campgrounds book through Recreation.gov and are a separate system; the camping guide covers those, and the campground reservations guide covers the 7 am release on the 15th. These two are concessioner lodging, which means a roof, a bed and a front desk, and a price that moves with the date.
 
 1 Housekeeping Camp, on the Merced2 Curry Village, below Glacier Point3 Yosemite Village and the Village StoreMap: National Park Service (public domain), cropped.
 
@@ -5444,7 +5751,7 @@ Summary: First time camping in Yosemite? What the campground is really like: the
 
 The reservation is the part everyone warns you about, and it is the part everyone plans for. Five months out, seven in the morning, a browser tab and a fast finger. What nobody prepares you for is the four o'clock on a Thursday afternoon when you actually arrive: the site is smaller than the photo, the metal box by the picnic table is a different shape than you pictured, your cooler does not fit inside it, the family twenty feet away is having a conversation you can follow word for word, and you have about three hours of usable daylight to turn a car full of gear into a place to sleep.
 
-This is not the guide to which campground to book. That one already exists, and it covers all thirteen of them, the three booking windows, and the cancellation game. This is the other thing: what a night in a Yosemite campground is actually like, and which of its assumptions will catch you out the first time. I have been camping in this park for close to twenty years, and I have watched a great many first nights go sideways. Almost none of them went sideways for a reason anyone would call their fault. They went sideways because a campground is a set of unwritten conventions, and nobody hands you the list.
+This is not the guide to which campground to book. That one already exists, and it covers all thirteen of them, the booking windows, and the cancellation game. The release morning itself, the 15th at 7 am Pacific, has its own guide to Yosemite campground reservations. This is the other thing: what a night in a Yosemite campground is actually like, and which of its assumptions will catch you out the first time. I have been camping in this park for close to twenty years, and I have watched a great many first nights go sideways. Almost none of them went sideways for a reason anyone would call their fault. They went sideways because a campground is a set of unwritten conventions, and nobody hands you the list.
 
 ### Start by correcting the picture in your head
 
@@ -8256,7 +8563,7 @@ RELEASE DAY, STEP BY STEP
 
 Almost all of the work that decides the outcome happens before then.
 
-The campground's page on Recreation.gov states its own on-sale date and time. It is the authoritative version, and everything else, including this page, is a summary of it. If you are visiting for the first time, the first-timer's guide covers the broader logistics, and what your first night in one of these campgrounds is actually like covers the rest. Camping adds its own layer, and the reservation system is the first gate.
+The campground's page on Recreation.gov states its own on-sale date and time. It is the authoritative version, and everything else, including this page, is a summary of it. The reservations guide lays out the next eight release mornings and the rules that come with a site. If you are visiting for the first time, the first-timer's guide covers the broader logistics, and what your first night in one of these campgrounds is actually like covers the rest. Camping adds its own layer, and the reservation system is the first gate.
 
 - The week before
 Create the Recreation.gov account, confirm the email address and save a payment method. An account made at 6:58 a.m. will ask you to verify an email at 7:01.
