@@ -262,7 +262,9 @@ window.ARTICLE_BODIES["yosemite-for-non-hikers"] = function YosemiteForNonHikers
     className: "nh-chip is-" + tone
   }, TONES[tone]), React.createElement("p", null, note))))), React.createElement("p", {
     className: "ff-note"
-  }, "Sources: the Park Service's trail pages and Yosemite Guide for the lengths, and its 2022 accessibility guide for the Glacier Point path, the Lower Yosemite Fall west leg and the Grizzly Giant trail. Surfaces and closures change, so check the current Guide."))), React.createElement("section", {
+  }, "Sources: the Park Service's trail pages and Yosemite Guide for the lengths, and its 2022 accessibility guide for the Glacier Point path, the Lower Yosemite Fall west leg and the Grizzly Giant trail. Surfaces and closures change, so check the current Guide. For a group that wants to walk a little farther, our guide to ", React.createElement("a", {
+    href: "/articles/easy-hikes-yosemite-valley"
+  }, "easy hikes in Yosemite Valley"), " adds Mirror Lake and the restrooms, water and stroller rules for each walk."))), React.createElement("section", {
     className: "hp-wrap hp-section",
     id: "sec-2-before-you-go-the-logistics-that-actuall",
     tabIndex: -1

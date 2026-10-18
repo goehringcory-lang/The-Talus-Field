@@ -195,6 +195,7 @@ window.ARTICLE_INTENT = {
   "where-to-stay-in-yosemite":                 { stage: ["before-booking"], who: ["first-trip", "families", "accessible"], topic: ["lodging"] },
   "housekeeping-camp-vs-curry-village":        { stage: ["before-booking"], who: ["first-trip", "families"], topic: ["lodging"] },
   "yosemite-in-july-and-august":               { stage: ["before-booking", "dates-set"], who: ["first-trip", "families"], topic: ["conditions", "lodging", "camping"] },
+  "easy-hikes-yosemite-valley":                { stage: ["dates-set", "in-park"], who: ["families", "first-trip", "accessible"], topic: ["trails"] },
   "yosemite-sequoia-kings-canyon-trip":        { stage: ["before-booking", "dates-set"], who: ["first-trip", "families"], topic: ["transportation", "lodging", "conditions"] },
   "hotels-just-outside-yosemite":              { stage: ["before-booking"], who: ["first-trip", "families"], topic: ["lodging"] },
   "sentinel-dome-and-taft-point":              { stage: ["dates-set", "in-park"], who: ["photography", "families"], topic: ["trails"] },

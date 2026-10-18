@@ -110,6 +110,7 @@ window.planningSeriesFor = function (slug) {
 // verifies this map stays in sync with the files in bodies/.
 // ============================================================
 window.BODY_VERSIONS = {
+  "easy-hikes-yosemite-valley": 1,
   "yosemite-sequoia-kings-canyon-trip": 1,
   "sentinel-dome-and-taft-point": 1,
   "yosemite-in-may": 1,
@@ -152,7 +153,7 @@ window.BODY_VERSIONS = {
   "bracebridge-dinner-and-vintners-holidays": 11,
   "yosemite-fire-restrictions-explained": 10,
   "yosemite-in-three-to-five-days": 13,
-  "yosemite-winter-hikes": 7,
+  "yosemite-winter-hikes": 8,
   "camping-in-yosemite-first-time": 7,
   "first-yosemite-backpacking-trip": 9,
   "yosemite-day-trip-from-bay-area": 6,
@@ -167,7 +168,7 @@ window.BODY_VERSIONS = {
   "yosemite-wildlife-viewing-guide": 11,
   "showy-milkweed-yosemite-valley": 7,
   "yosemite-connecting-to-traditions": 5,
-  "yosemite-waterfalls-guide": 12,
+  "yosemite-waterfalls-guide": 13,
   "yosemite-photography-spots": 8,
   "horsetail-fall-firefall": 10,
   "yosemite-in-winter": 14,
@@ -176,7 +177,7 @@ window.BODY_VERSIONS = {
   "watching-climbers-el-capitan": 8,
   "getting-to-yosemite": 15,
   "yosemite-wilderness-permits-guide": 11,
-  "yosemite-accessibility-guide": 7,
+  "yosemite-accessibility-guide": 8,
   "pets-in-yosemite": 10,
   "yosemite-ranger-programs": 9,
   "yosemite-camping-complete-guide": 22,
@@ -192,7 +193,7 @@ window.BODY_VERSIONS = {
   "yosemite-needs-a-reservation-system": 84,
   "memorial-day-skip-the-valley-go-high-2026": 90,
   "four-mile-up-panorama-down": 83,
-  "yosemite-with-kids-no-reservations-2026": 86,
+  "yosemite-with-kids-no-reservations-2026": 87,
   "tioga-road-opening-weekend": 86,
   "so-you-want-to-hike-half-dome": 86,
   "glacier-point-road-open-2026": 90,
@@ -202,7 +203,7 @@ window.BODY_VERSIONS = {
   "yosemite-during-smoke-season": 83,
   "yosemite-gateway-towns-compared": 114,
   "pack-your-car-for-yosemite": 89,
-  "yosemite-for-non-hikers": 92,
+  "yosemite-for-non-hikers": 93,
   "yosemite-stargazing-where-to-look-up": 90,
   "hetch-hetchy-the-other-yosemite-valley": 84,
   "what-is-a-talus-field": 7,
@@ -1159,6 +1160,32 @@ window.ARTICLES = [
       eyebrow: "WEATHER · CROWDS · WATERFALLS · TUOLUMNE · SMOKE",
       focus: "50% 45%",
       actions: [["#ja-high", "The high country"], ["#ja-months", "July or August"]],
+    },
+  },
+  {
+    slug: "easy-hikes-yosemite-valley",
+    aff: true,
+    cat: "trails",
+    title: "Easy hikes in Yosemite Valley: four short walks, measured for families",
+    seoTitle: "Easy Hikes in Yosemite Valley: Distances for Families",
+    dek: "Lower Yosemite Fall, Cook's Meadow, Bridalveil Fall and Mirror Lake, by the Park Service's own numbers: how far, how long, how much climb, where a stroller can go, where the toilets and the water are, which shuttle stop, and when the waterfalls run dry.",
+    seoDek: "Easy Yosemite Valley hikes for families: Lower Yosemite Fall, Cook's Meadow, Bridalveil Fall and Mirror Lake, with distances, times, strollers and shuttle stops.",
+    date: "October 18, 2026",
+    isoDate: "2026-10-18",
+    isoModified: "2026-10-18",
+    read: "10 min",
+    placeholder: "Upper Yosemite Fall framed by spring blossoms from the Valley floor",
+    image: "img/yosemite-falls-spring-blossoms-cory-goehring.jpg",
+    credit: "Photo: Cory Goehring",
+    // The /firefall layout for an article (page-article.jsx), as on the Mist
+    // Trail piece. The photo is portrait; `focus` holds the band with the
+    // fall. The body's own Lower Yosemite Fall plate is a different photo,
+    // so the cover is not repeated. The two buttons jump to the side-by-side comparison and to
+    // the family day plans.
+    feature: {
+      eyebrow: "LOWER YOSEMITE FALL · COOK'S MEADOW · BRIDALVEIL FALL · MIRROR LAKE",
+      focus: "50% 40%",
+      actions: [["#ez-compare", "The four, compared"], ["#ez-days", "Plan a family day"]],
     },
   },
   {
@@ -2756,6 +2783,7 @@ window.START_HERE = [
 // Curate a piece when it earns real search impressions, when it anchors a
 // cluster, or when it is the destination that needs the equity.
 window.RELATED = {
+  "easy-hikes-yosemite-valley": ["yosemite-with-kids-no-reservations-2026", "yosemite-for-non-hikers", "yosemite-waterfalls-guide", "yosemite-accessibility-guide", "yosemite-winter-hikes", "mist-trail-the-real-guide"],
   "yosemite-sequoia-kings-canyon-trip": ["yosemite-in-three-to-five-days", "mariposa-grove-how-to-visit", "yosemite-gateway-towns-compared", "best-airport-for-yosemite", "yosemite-trip-cost-budget", "giant-sequoias-fire-adaptation"],
   "sentinel-dome-and-taft-point": ["glacier-point-how-to-visit", "glacier-point-road-open-2026", "yosemite-photography-spots", "yosemite-for-non-hikers", "four-mile-up-panorama-down", "mist-trail-the-real-guide"],
   "yosemite-in-may": ["yosemite-waterfalls-guide", "tioga-road-opening-weekend", "glacier-point-road-open-2026", "memorial-day-skip-the-valley-go-high-2026", "so-you-want-to-hike-half-dome", "yosemite-in-june"],
@@ -2860,13 +2888,13 @@ window.RELATED = {
   "cathedral-lakes-day-hike": ["tuolumne-meadows-in-a-day", "clouds-rest-hike", "tioga-road-opening-weekend", "so-you-want-to-hike-half-dome", "first-yosemite-backpacking-trip", "yosemite-wildflowers-guide"],
   "tuolumne-meadows-in-a-day": ["cathedral-lakes-day-hike", "clouds-rest-hike", "tioga-road-opening-weekend", "yosemite-in-july-and-august", "yosemite-wildflowers-guide", "yosemite-stargazing-where-to-look-up"],
   "hetch-hetchy-the-other-yosemite-valley": ["yosemite-waterfalls-guide", "yosemite-without-reservations-2026", "yosemite-in-march", "yosemite-wildflowers-guide", "yosemite-glaciers-climate", "hotels-just-outside-yosemite"],
-  "yosemite-winter-hikes": ["yosemite-in-winter", "horsetail-fall-firefall", "yosemite-waterfalls-guide", "yosemite-for-non-hikers", "snowshoeing-in-yosemite", "yosemite-falls-trail"],
+  "yosemite-winter-hikes": ["yosemite-in-winter", "horsetail-fall-firefall", "yosemite-waterfalls-guide", "easy-hikes-yosemite-valley", "snowshoeing-in-yosemite", "yosemite-falls-trail"],
   "yosemite-waterfalls-guide": ["mist-trail-the-real-guide", "when-to-visit-yosemite", "hetch-hetchy-the-other-yosemite-valley", "yosemite-photography-spots", "yosemite-in-april", "yosemite-in-march"],
 
   // Who the trip is for
   "yosemite-for-non-hikers": ["yosemite-accessibility-guide", "sentinel-dome-and-taft-point", "glacier-point-how-to-visit", "yosemite-photography-spots", "yosemite-in-one-or-two-days", "watching-climbers-el-capitan"],
-  "yosemite-accessibility-guide": ["yosemite-for-non-hikers", "yosemite-shuttle-and-yarts", "mariposa-grove-how-to-visit", "yosemite-valley-parking-guide", "yosemite-ranger-programs"],
-  "yosemite-with-kids-no-reservations-2026": ["yosemite-ranger-programs", "yosemite-for-non-hikers", "swimming-in-the-merced", "yosemite-bears-safety-guide", "camping-in-yosemite-first-time"],
+  "yosemite-accessibility-guide": ["yosemite-for-non-hikers", "yosemite-shuttle-and-yarts", "mariposa-grove-how-to-visit", "yosemite-valley-parking-guide", "yosemite-ranger-programs", "easy-hikes-yosemite-valley"],
+  "yosemite-with-kids-no-reservations-2026": ["easy-hikes-yosemite-valley", "yosemite-ranger-programs", "yosemite-for-non-hikers", "swimming-in-the-merced", "yosemite-bears-safety-guide", "camping-in-yosemite-first-time"],
   "pets-in-yosemite": ["wawona-yosemite-guide", "yosemite-for-non-hikers", "yosemite-accessibility-guide", "yosemite-camping-complete-guide", "yosemite-gateway-towns-compared", "yosemite-valley-parking-guide"],
 
   // First trips and timing

@@ -41,6 +41,10 @@
       "v": 5,
       "sha256": "ff4619e79f048dbd"
     },
+    "/dist/bodies/easy-hikes-yosemite-valley.js": {
+      "v": 1,
+      "sha256": "9d98c556217e1327"
+    },
     "/dist/bodies/first-time-yosemite-overwhelm.js": {
       "v": 95,
       "sha256": "40c8f3df78f87710"
@@ -198,8 +202,8 @@
       "sha256": "4c2067ce069d95de"
     },
     "/dist/bodies/yosemite-accessibility-guide.js": {
-      "v": 7,
-      "sha256": "d5371d4d7a9ff0b1"
+      "v": 8,
+      "sha256": "9dbcf82a44d0b0e9"
     },
     "/dist/bodies/yosemite-bears-safety-guide.js": {
       "v": 127,
@@ -242,8 +246,8 @@
       "sha256": "84a799e6c817ad3b"
     },
     "/dist/bodies/yosemite-for-non-hikers.js": {
-      "v": 92,
-      "sha256": "52908dba1f1904d8"
+      "v": 93,
+      "sha256": "78d6add0bf8ed83c"
     },
     "/dist/bodies/yosemite-from-las-vegas.js": {
       "v": 5,
@@ -390,8 +394,8 @@
       "sha256": "5679ab664232d306"
     },
     "/dist/bodies/yosemite-waterfalls-guide.js": {
-      "v": 12,
-      "sha256": "dd23744c8d2f6664"
+      "v": 13,
+      "sha256": "16eca3a74d7147c0"
     },
     "/dist/bodies/yosemite-wilderness-permits-guide.js": {
       "v": 11,
@@ -406,12 +410,12 @@
       "sha256": "bcc6937678739c62"
     },
     "/dist/bodies/yosemite-winter-hikes.js": {
-      "v": 7,
-      "sha256": "6cdd0ab8fe247f3d"
+      "v": 8,
+      "sha256": "3d6fa07250af0cb0"
     },
     "/dist/bodies/yosemite-with-kids-no-reservations-2026.js": {
-      "v": 86,
-      "sha256": "af75e61c5efcb2b0"
+      "v": 87,
+      "sha256": "62072754eb5912e1"
     },
     "/dist/bodies/yosemite-without-reservations-2026.js": {
       "v": 89,
