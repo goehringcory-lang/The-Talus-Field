@@ -11,7 +11,7 @@
 // buyers are bounced straight into the app.
 // =============================================================================
 
-import { Navigate } from 'react-router-dom'
+import { Link, Navigate } from 'react-router-dom'
 import { BUILD_DATE, EDITION_LABEL } from '../lib/buildInfo'
 import { formatLongDate } from '../utils/date'
 import { useAuth } from '../auth/useAuth'
@@ -33,7 +33,7 @@ import {
   PREVIEW_STOP_IDS,
   useGuidePrice,
 } from '../lib/storefront'
-import { PREVIEW_DOCUMENT_TITLE } from '../lib/publicPages'
+import { PREVIEW_DOCUMENT_TITLE, indexedStopGroups } from '../lib/publicPages'
 
 export default function Preview() {
   const { session } = useAuth()
@@ -49,6 +49,7 @@ export default function Preview() {
   const secretCount = getSecretGuideEntries().length
   const coreCount = REGIONS.reduce((n, r) => n + getStopsByRegion(r.id).length, 0)
   const sampleCount = regionSamples.length + (secretSample ? 1 : 0)
+  const stopGroups = indexedStopGroups()
 
   // A buyer following the editorial sample link should land in the app they
   // paid for, not on the pitch.
@@ -123,6 +124,30 @@ export default function Preview() {
               </Button>
             </div>
           </div>
+        </section>
+
+        {/* Every indexed teaser, as plain links. The sitemap lists them all and
+            this is the one page that reaches each in a hop; before it, all but
+            the sample stops had no inbound link a crawler could follow. The Secret Guide's other entries
+            stay off the list (see publicPages.ts). */}
+        <section className="page-section" aria-labelledby="preview-every-stop">
+          <h2 id="preview-every-stop" className="eyebrow" style={{ marginTop: 0 }}>
+            Every stop in the guide
+          </h2>
+          {stopGroups.map((group) => (
+            <div key={group.id} style={{ marginTop: 18 }}>
+              <h3 className="eyebrow" style={{ margin: '0 0 8px' }}>
+                {group.title}
+              </h3>
+              <ul className="link-list">
+                {group.stops.map((stop) => (
+                  <li key={stop.id}>
+                    <Link to={`/stop/${stop.id}`}>{stop.title}</Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ))}
         </section>
 
         <p className="page-footnote">

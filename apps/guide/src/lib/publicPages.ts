@@ -22,7 +22,6 @@ import {
   REGIONS,
   getRegionMeta,
   getSecretGuideEntries,
-  getStopById,
   getStopsByRegion,
   isSecretGuideEntry,
 } from '../content'
@@ -73,6 +72,40 @@ export function isIndexableStop(stop: GuideStopT): boolean {
   return !isSecretGuideEntry(stop) || isPreviewStopId(stop.id)
 }
 
+export type IndexedStopGroup = { id: string; title: string; stops: GuideStopT[] }
+
+/**
+ * The indexed teasers in reading order, grouped the way /preview lists them:
+ * each region's core stops, then the one Secret Guide sample. The sitemap,
+ * /preview's stop index and the teasers' prev/next all read this, so a page
+ * in the sitemap is never left without an inbound link.
+ */
+export function indexedStopGroups(): IndexedStopGroup[] {
+  const groups: IndexedStopGroup[] = REGIONS.map((r) => ({
+    id: r.id,
+    title: r.title,
+    stops: getStopsByRegion(r.id).filter(isIndexableStop),
+  }))
+  groups.push({
+    id: 'secret-guide',
+    title: 'The Secret Guide',
+    stops: getSecretGuideEntries().filter(isIndexableStop),
+  })
+  return groups.filter((g) => g.stops.length > 0)
+}
+
+export function indexedStops(): GuideStopT[] {
+  return indexedStopGroups().flatMap((g) => g.stops)
+}
+
+/** Neighbours in reading order; both undefined for a teaser that is not indexed. */
+export function adjacentIndexedStops(id: string): { prev?: GuideStopT; next?: GuideStopT } {
+  const order = indexedStops()
+  const i = order.findIndex((s) => s.id === id)
+  if (i < 0) return {}
+  return { prev: order[i - 1], next: order[i + 1] }
+}
+
 export function publicPages(): PublicPage[] {
   const pages: PublicPage[] = [
     {
@@ -83,13 +116,7 @@ export function publicPages(): PublicPage[] {
       image: '/photos/tunnel-view-panorama.jpg',
     },
   ]
-  const ids = [
-    ...REGIONS.flatMap((r) => getStopsByRegion(r.id).map((s) => s.id)),
-    ...getSecretGuideEntries().map((s) => s.id),
-  ]
-  for (const id of ids) {
-    const stop = getStopById(id)
-    if (!stop || !isIndexableStop(stop)) continue
+  for (const stop of indexedStops()) {
     pages.push({
       path: `/stop/${stop.id}`,
       title: stopTeaserTitle(stop),

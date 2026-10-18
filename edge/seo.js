@@ -288,7 +288,7 @@ const HUB_PROSE = {
     `<h2>Library</h2>` +
     `<p><a href="/articles">All articles</a> · <a href="/section/planning">Planning</a> · <a href="/section/trails">Trails and hikes</a> · <a href="/section/wildlife">Wildlife and nature</a> · <a href="/section/seasonal">Seasonal guides</a> · <a href="/archive/">The Nature Notes archive</a> · <a href="/films">Films</a> · <a href="/newsletter">The Sunday Letter</a> · <a href="/search">Search</a></p>` +
     `<h2>The Field Guide</h2>` +
-    `<p><a href="/guide">The Field Guide</a> · <a href="/partners">Group codes</a></p>` +
+    `<p><a href="/guide">The Field Guide</a> · <a href="https://guide.thetalusfieldjournal.com/preview">Free sample</a> · <a href="/partners">Group codes</a></p>` +
     `<h2>The journal</h2>` +
     `<p><a href="/about">About the journal</a> · <a href="/contact">Contact</a> · <a href="/places">The Directory</a> · <a href="/advertise">Advertise</a> · <a href="/media-kit">Media kit</a> · <a href="/widget">The conditions widget</a> · <a href="/privacy">Privacy</a> · <a href="/terms">Terms</a> · <a href="/affiliate">Affiliate disclosure</a></p>`,
   "/conditions": () =>
@@ -394,7 +394,7 @@ const HUB_PROSE = {
       "The Field Guide",
       "An offline web app for Yosemite, written and field-checked by a naturalist who lives in the park. 114 entries across the Valley, Glacier Point and Mariposa Grove, Tuolumne, and Hetch Hetchy, including the 70-entry Secret Guide, each with a tappable GPS coordinate and an honest time budget, the flagship stops with a swap for when the lot is full. All 57 in-park day hikes with GPS tracks, elevation profiles and a daylight reading: the latest start that gets you down with an hour of light in hand. Ranger and partner programs, listed for the dates of your trip. A trip planner that builds each day in driving order with real drive-time buffers, lists the lotteries, release mornings and road windows that apply to your dates, then saves the plan to your calendar as a file. A Help card that reads your GPS position in the form a dispatcher uses, a bearing compass that points at any stop, and a companion mode that names the entry you are passing and reads it aloud for the passenger, all of which run on GPS with no signal. The Help card also puts 911 one tap away by call or text, but the call or text itself still needs a cell signal, as any call does. One download of about 70 MB carries the whole guide, the photos on file and a 3D park map with every trail drawn on the terrain, so everything keeps working when cell service dies."
     ) +
-    `<p>The guide is on sale now: $3.99 once for 18 months of access on every personal device, no subscription, refunded in full within 30 days if it does not work as described. The journal's free tools cover a lot on their own: <a href="/map">the trip planner map</a>, <a href="/itineraries">itineraries</a>, and <a href="/checklist">the first-week checklist</a>.</p>`,
+    `<p>The guide is on sale now: $3.99 once for 18 months of access on every personal device, no subscription, refunded in full within 30 days if it does not work as described. The journal's free tools cover a lot on their own: <a href="/map">the trip planner map</a>, <a href="/itineraries">itineraries</a>, and <a href="/checklist">the first-week checklist</a>. Five entries from the guide can be read in full, with no account, in <a href="https://guide.thetalusfieldjournal.com/preview">the free sample</a>.</p>`,
   "/about": () =>
     hubProse(
       "About The Talus Field",
@@ -1701,6 +1701,10 @@ const REDIRECTS = {
   "/articles/yosemite-trip-cost-budget-2026": "/articles/yosemite-trip-cost-budget",
   "/articles/tioga-road-opening-weekend-2026": "/articles/tioga-road-opening-weekend",
   "/articles/bears-spring-emergence": "/articles/yosemite-bears-safety-guide",
+  // Never a real route: a slug of the gateway-towns article's title that
+  // Google picked up and kept requesting (Search Console, October 2026). It
+  // answered 404; the article it names is the obvious home.
+  "/articles/mariposa-vs-oakhurst-vs-groveland-best-town-stay-near-yosemite": "/articles/yosemite-gateway-towns-compared",
 };
 
 // The apex is the canonical host, and www is bound as a second custom domain
@@ -1780,6 +1784,17 @@ async function handleRequest({ request, next, env }) {
     // Carry the query string across: a retired slug arriving as
     // ?utm_source=newsletter must keep its attribution on the other side.
     return Response.redirect(`${SITE_ORIGIN}${redirectTarget}${url.search}`, 301);
+  }
+  // /kit/ and /articles/<slug>/ answered 200 with a canonical to the bare URL,
+  // leaving Google two URLs to reconcile per page. 301 them instead, but only
+  // onto a route we know, so an unknown /foo/ still gets its honest 404. The
+  // Nature Notes archive is exempt: its canonical URLs are trailing-slash
+  // directories served from real files.
+  if (url.pathname.length > 1 && url.pathname.endsWith("/") && !/^\/archive(\/|$)/.test(url.pathname)) {
+    const stripped = url.pathname.replace(/\/+$/, "") || "/";
+    if (stripped !== "/" && seoForPath(stripped, url.searchParams)) {
+      return Response.redirect(`${SITE_ORIGIN}${stripped}${url.search}`, 301);
+    }
   }
   if (url.pathname === BUILD_INFO_PATH) return buildInfoResponse(env);
   // Unknown SPA routes get a real 404 (with noindex + not-found prose) instead
