@@ -942,7 +942,7 @@ console.log('\n22. instant-access claim (/api/checkout/claim)')
   const rfw = await call('/api/stripe/webhook', { method: 'POST', body: refundBody, headers: { 'stripe-signature': await signWebhook(refundBody, env.STRIPE_WEBHOOK_SECRET as string) } })
   check('claimed purchase refunded', rfw.status === 200 && rfw.json.revoked === 'refunded@example.com', rfw)
   const rf2 = await claimCall('8.8.8.4', 'cs_claim_refunded')
-  check('re-claim of the refunded session -> 409', rf2.status === 409, rf2)
+  check('re-claim of the refunded session -> 409, tagged refunded', rf2.status === 409 && rf2.json.code === 'refunded', rf2)
   const refundedRec = JSON.parse((await buyers.get('buyer:refunded@example.com'))!)
   check('refunded record untouched by the replay', refundedRec.refundedAt > 0 && refundedRec.expiresAt <= Math.floor(Date.now() / 1000), refundedRec)
 
@@ -964,6 +964,54 @@ console.log('\n22. instant-access claim (/api/checkout/claim)')
   check('new token index present', (await buyers.get(`token:${patientNew.accessToken}`)) === 'patient@example.com')
   const staleEx = await call('/api/auth/exchange', { method: 'POST', body: JSON.stringify({ token: patientOld.accessToken }) })
   check('superseded magic link -> 401', staleEx.status === 401, staleEx)
+
+  // -- a refunded REPEAT purchase cannot be replayed either --
+  // An active buyer pays again (a second device, a double click): the webhook
+  // extends the record, which keeps provisionedSessionId on the FIRST
+  // session. Refunding the duplicate revokes the record, and the duplicate's
+  // session id must not re-provision it through the claim.
+  const dupNow = now - 120
+  const dupFirst = {
+    id: 'evt_dup_first', type: 'checkout.session.completed',
+    data: { object: { id: 'cs_dup_first', customer_details: { email: 'twice@example.com' }, metadata: { product: 'field_guide_2026', kind: 'purchase' }, created: dupNow } },
+  }
+  const dupSecond = {
+    id: 'evt_dup_second', type: 'checkout.session.completed',
+    data: { object: { id: 'cs_dup_second', customer_details: { email: 'twice@example.com' }, metadata: { product: 'field_guide_2026', kind: 'purchase' }, created: dupNow + 60 } },
+  }
+  for (const e of [dupFirst, dupSecond]) {
+    const b = JSON.stringify(e)
+    await call('/api/stripe/webhook', { method: 'POST', body: b, headers: { 'stripe-signature': await signWebhook(b, env.STRIPE_WEBHOOK_SECRET as string) } })
+  }
+  const dupRec = JSON.parse((await buyers.get('buyer:twice@example.com'))!)
+  check('repeat purchase extended the first record', dupRec.provisionedSessionId === 'cs_dup_first' && dupRec.expiresAt > dupNow + 548 * 86400, dupRec)
+  const dupRefund = {
+    id: 'evt_dup_refund', type: 'charge.refunded',
+    data: { object: { id: 'ch_dup_second', billing_details: { email: 'twice@example.com' }, metadata: { product: 'field_guide_2026', kind: 'purchase' } } },
+  }
+  const dupRefundBody = JSON.stringify(dupRefund)
+  await call('/api/stripe/webhook', { method: 'POST', body: dupRefundBody, headers: { 'stripe-signature': await signWebhook(dupRefundBody, env.STRIPE_WEBHOOK_SECRET as string) } })
+  stripeSessions.set('cs_dup_second', {
+    id: 'cs_dup_second', payment_status: 'paid', created: dupNow + 60,
+    metadata: { product: 'field_guide_2026', kind: 'purchase' }, customer_details: { email: 'twice@example.com' },
+  })
+  const dupClaim = await claimCall('8.8.8.5', 'cs_dup_second')
+  const dupAfter = JSON.parse((await buyers.get('buyer:twice@example.com'))!)
+  check('claim of a refunded repeat purchase -> 409, record stays revoked',
+    dupClaim.status === 409 && dupAfter.refundedAt > 0 && dupAfter.expiresAt <= Math.floor(Date.now() / 1000),
+    { status: dupClaim.status, rec: dupAfter })
+
+  // -- a purchase made AFTER a refund still claims before its webhook lands --
+  stripeSessions.set('cs_after_refund', {
+    id: 'cs_after_refund', payment_status: 'paid', created: Math.floor(Date.now() / 1000) + 5,
+    metadata: { product: 'field_guide_2026', kind: 'purchase' }, customer_details: { email: 'twice@example.com' },
+  })
+  const freshClaim = await claimCall('8.8.8.5', 'cs_after_refund')
+  const freshRec = JSON.parse((await buyers.get('buyer:twice@example.com'))!)
+  check('new purchase after a refund claims -> jwt, refund stamp cleared',
+    freshClaim.status === 200 && freshRec.provisionedSessionId === 'cs_after_refund' && freshRec.refundedAt == null,
+    { status: freshClaim.status, rec: freshRec })
+  await buyers.delete('buyer:twice@example.com')
 
   // -- rate limit (20/hour per hashed IP) --
   let last: Awaited<ReturnType<typeof call>> | null = null

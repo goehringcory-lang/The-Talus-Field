@@ -1,9 +1,10 @@
 import { useEffect, useRef, useState } from 'react'
 import { EDITION_LABEL } from '../lib/buildInfo'
 import { Link, useNavigate, useSearchParams } from 'react-router-dom'
-import { apiFetch } from '../lib/api'
+import { ApiError, apiFetch } from '../lib/api'
 import { useAuth } from '../auth/useAuth'
 import { isOnboarded } from '../lib/onboarding'
+import { SUPPORT_EMAIL } from '../lib/corrections'
 import Skeleton from '../components/ui/Skeleton'
 
 type ClaimResponse = { jwt: string }
@@ -20,6 +21,13 @@ export default function Claim() {
   const navigate = useNavigate()
   const { signIn } = useAuth()
   const [apiError, setApiError] = useState<string | null>(null)
+  // Whether the access email is still coming. True for the failures that
+  // leave the purchase intact (Stripe slow to answer, rate limit, a payment
+  // still settling, no connection): the webhook mails access regardless.
+  // False when the Worker says there is no paid purchase behind this id (an
+  // unknown or unfinished session, or one that was refunded), where promising
+  // an email would send the reader to an inbox that will stay empty.
+  const [emailFollows, setEmailFollows] = useState(true)
   const sessionId = params.get('session_id')
   // Derive the "missing id" case during render rather than setState in effect.
   const error = sessionId ? apiError : 'This page is missing its checkout reference.'
@@ -46,6 +54,14 @@ export default function Claim() {
         navigate(isOnboarded() ? '/' : '/welcome', { replace: true })
       })
       .catch((err) => {
+        const refunded =
+          err instanceof ApiError &&
+          typeof err.body === 'object' &&
+          err.body !== null &&
+          (err.body as { code?: unknown }).code === 'refunded'
+        const noPurchase =
+          err instanceof ApiError && (err.status === 400 || err.status === 402 || err.status === 404)
+        setEmailFollows(!refunded && !noPurchase)
         setApiError(err.message ?? 'Could not sign you in.')
       })
   }, [sessionId, signIn, navigate])
@@ -74,14 +90,25 @@ export default function Claim() {
             <>
               <h1 className="login-title">We couldn't open your guide automatically.</h1>
               <p className="login-intro">{error}</p>
-              <p className="login-intro" style={{ marginTop: 12 }}>
-                No harm done: your access email, with a sign-in link and a 6-digit code, is on
-                its way to the address you used at checkout. Check spam if nothing arrives in a
-                few minutes.
-              </p>
-              <p style={{ marginTop: 16 }}>
-                <Link to="/login">Sign in with your code instead →</Link>
-              </p>
+              {sessionId && emailFollows ? (
+                <>
+                  <p className="login-intro" style={{ marginTop: 12 }}>
+                    No harm done: your access email, with a sign-in link and a 6-digit code, is on
+                    its way to the address you used at checkout. Check spam if nothing arrives in a
+                    few minutes.
+                  </p>
+                  <p style={{ marginTop: 16 }}>
+                    <Link to="/login">Sign in with your code instead →</Link>
+                  </p>
+                </>
+              ) : (
+                <p className="login-intro" style={{ marginTop: 12 }}>
+                  If you paid and think this is wrong, email{' '}
+                  <a href={`mailto:${SUPPORT_EMAIL}?subject=Field%20Guide%20access`}>{SUPPORT_EMAIL}</a>{' '}
+                  and it will be sorted out. Already have a code?{' '}
+                  <Link to="/login">Sign in →</Link>
+                </p>
+              )}
             </>
           ) : (
             <>
