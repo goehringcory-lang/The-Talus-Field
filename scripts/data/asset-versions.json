@@ -6,24 +6,24 @@
       "sha256": "25638d073031315c"
     },
     "/dist/bodies/badger-pass-ski-area.js": {
-      "v": 2,
-      "sha256": "c32d299f9f6b1b98"
+      "v": 3,
+      "sha256": "02aec7866e1bf7de"
     },
     "/dist/bodies/best-airport-for-yosemite.js": {
-      "v": 9,
-      "sha256": "8b529a7a7eeee5c8"
+      "v": 10,
+      "sha256": "0db4572173fd3d54"
     },
     "/dist/bodies/best-yosemite-backpacking-trips.js": {
       "v": 3,
       "sha256": "a76edec66dee5677"
     },
     "/dist/bodies/bracebridge-dinner-and-vintners-holidays.js": {
-      "v": 10,
-      "sha256": "db7520cc39b72969"
+      "v": 11,
+      "sha256": "c2f51bd0d2ac6a67"
     },
     "/dist/bodies/camping-in-yosemite-first-time.js": {
-      "v": 6,
-      "sha256": "2b426eb0c906aba4"
+      "v": 7,
+      "sha256": "e5385e314da08a5d"
     },
     "/dist/bodies/cathedral-lakes-day-hike.js": {
       "v": 9,
@@ -32,6 +32,10 @@
     "/dist/bodies/cell-service-in-yosemite.js": {
       "v": 5,
       "sha256": "cf9076e66dd0a9c9"
+    },
+    "/dist/bodies/christmas-and-new-years-in-yosemite.js": {
+      "v": 1,
+      "sha256": "612e20c25fe7d89f"
     },
     "/dist/bodies/clouds-rest-hike.js": {
       "v": 5,
@@ -50,60 +54,68 @@
       "sha256": "affe5d593ff03435"
     },
     "/dist/bodies/getting-to-yosemite.js": {
-      "v": 14,
-      "sha256": "dc795f39d189a247"
+      "v": 15,
+      "sha256": "1ef949f38e4b10d4"
     },
     "/dist/bodies/giant-sequoias-fire-adaptation.js": {
       "v": 80,
       "sha256": "299a2a4456248426"
     },
     "/dist/bodies/glacier-point-how-to-visit.js": {
-      "v": 7,
-      "sha256": "fec042d9b4f6a956"
+      "v": 8,
+      "sha256": "ad851940704e8e48"
     },
     "/dist/bodies/glacier-point-road-open-2026.js": {
-      "v": 88,
-      "sha256": "a9a11671daaa5b52"
+      "v": 90,
+      "sha256": "347d8943833ebfe5"
     },
     "/dist/bodies/hetch-hetchy-the-other-yosemite-valley.js": {
-      "v": 83,
-      "sha256": "0ca16ff738e5b223"
+      "v": 84,
+      "sha256": "4b411fec665909fb"
     },
     "/dist/bodies/highway-140-closed-yosemite.js": {
-      "v": 4,
-      "sha256": "1e2240c48cceef82"
+      "v": 5,
+      "sha256": "be92752d87004319"
     },
     "/dist/bodies/horsetail-fall-firefall.js": {
       "v": 10,
       "sha256": "f5262c0ec816fbc3"
     },
-    "/dist/bodies/housekeeping-camp-vs-curry-village.js": {
+    "/dist/bodies/hotels-just-outside-yosemite.js": {
       "v": 1,
-      "sha256": "029629ebc7a4be1f"
+      "sha256": "9f0cc1dab221ec3b"
+    },
+    "/dist/bodies/housekeeping-camp-vs-curry-village.js": {
+      "v": 2,
+      "sha256": "038a429c78f91184"
     },
     "/dist/bodies/is-bear-spray-allowed-in-yosemite.js": {
       "v": 6,
       "sha256": "c8b08d388d425153"
     },
     "/dist/bodies/mariposa-grove-how-to-visit.js": {
-      "v": 9,
-      "sha256": "a4e3107bee42242f"
+      "v": 11,
+      "sha256": "1597ee2437add992"
     },
     "/dist/bodies/memorial-day-skip-the-valley-go-high-2026.js": {
-      "v": 89,
-      "sha256": "4107d2550c6e16bf"
+      "v": 90,
+      "sha256": "d00a374f70ce97e3"
     },
     "/dist/bodies/mist-trail-the-real-guide.js": {
       "v": 96,
       "sha256": "abd9debbfd35efbd"
     },
     "/dist/bodies/pack-your-car-for-yosemite.js": {
-      "v": 88,
-      "sha256": "f57ac5a387c379b9"
+      "v": 89,
+      "sha256": "0c86026e4a314f62"
     },
     "/dist/bodies/pets-in-yosemite.js": {
       "v": 10,
       "sha256": "138a8d8dae184c13"
+    },
+    "/dist/bodies/sentinel-dome-and-taft-point.js": {
+      "v": 1,
+      "sha256": "eed9e2d9b695542f"
     },
     "/dist/bodies/showy-milkweed-yosemite-valley.js": {
       "v": 7,
@@ -114,8 +126,8 @@
       "sha256": "93a650926d62fe02"
     },
     "/dist/bodies/so-you-want-to-hike-half-dome.js": {
-      "v": 85,
-      "sha256": "9a178b3b466192b5"
+      "v": 86,
+      "sha256": "9363f8595a2f70ea"
     },
     "/dist/bodies/sustainable-yosemite-car-free-zero-waste.js": {
       "v": 6,
@@ -130,8 +142,8 @@
       "sha256": "c183821e1156ba85"
     },
     "/dist/bodies/tioga-road-opening-weekend.js": {
-      "v": 85,
-      "sha256": "e258f1700798bbb9"
+      "v": 86,
+      "sha256": "ab07259a26a6c762"
     },
     "/dist/bodies/tioga-road-stop-by-stop.js": {
       "v": 3,
@@ -150,16 +162,16 @@
       "sha256": "27284b84a0cc792a"
     },
     "/dist/bodies/wawona-yosemite-guide.js": {
-      "v": 2,
-      "sha256": "ab8a5d856e231db9"
+      "v": 3,
+      "sha256": "ffd5670496093641"
     },
     "/dist/bodies/what-is-a-talus-field.js": {
       "v": 7,
       "sha256": "8017107ddb644835"
     },
     "/dist/bodies/when-to-visit-yosemite.js": {
-      "v": 14,
-      "sha256": "d0bc9805cd7b3e2c"
+      "v": 15,
+      "sha256": "5e8169c03040a520"
     },
     "/dist/bodies/where-to-eat-yosemite.js": {
       "v": 97,
@@ -170,8 +182,8 @@
       "sha256": "d4a4ffb443516e2d"
     },
     "/dist/bodies/where-to-stay-in-yosemite.js": {
-      "v": 20,
-      "sha256": "5ab085ac33718118"
+      "v": 21,
+      "sha256": "c4e890289409f54a"
     },
     "/dist/bodies/wildfire-in-yosemite-during-your-trip.js": {
       "v": 6,
@@ -193,9 +205,13 @@
       "v": 127,
       "sha256": "1953e0ab6aa56994"
     },
+    "/dist/bodies/yosemite-campground-reservations.js": {
+      "v": 1,
+      "sha256": "4e6dfe024ce2fe25"
+    },
     "/dist/bodies/yosemite-camping-complete-guide.js": {
-      "v": 21,
-      "sha256": "a1cc6a07c144dd45"
+      "v": 22,
+      "sha256": "ba4d276be465642a"
     },
     "/dist/bodies/yosemite-connecting-to-traditions.js": {
       "v": 5,
@@ -226,8 +242,8 @@
       "sha256": "84a799e6c817ad3b"
     },
     "/dist/bodies/yosemite-for-non-hikers.js": {
-      "v": 91,
-      "sha256": "8d9b89fd7d600e32"
+      "v": 92,
+      "sha256": "52908dba1f1904d8"
     },
     "/dist/bodies/yosemite-from-las-vegas.js": {
       "v": 5,
@@ -238,8 +254,8 @@
       "sha256": "54de2cd4186b7384"
     },
     "/dist/bodies/yosemite-gateway-towns-compared.js": {
-      "v": 112,
-      "sha256": "aa9dd6eb79c8a6a4"
+      "v": 114,
+      "sha256": "125271bcb8fc366b"
     },
     "/dist/bodies/yosemite-glaciers-climate.js": {
       "v": 84,
@@ -249,9 +265,13 @@
       "v": 13,
       "sha256": "3f1f2bc73d3d5e65"
     },
+    "/dist/bodies/yosemite-in-april.js": {
+      "v": 1,
+      "sha256": "96f56362620d7771"
+    },
     "/dist/bodies/yosemite-in-december.js": {
-      "v": 4,
-      "sha256": "47cc3bc6c0b6309e"
+      "v": 6,
+      "sha256": "5e9a10265ee5b17c"
     },
     "/dist/bodies/yosemite-in-fall.js": {
       "v": 12,
@@ -270,16 +290,20 @@
       "sha256": "06ffa6c7de83ad6b"
     },
     "/dist/bodies/yosemite-in-june.js": {
-      "v": 11,
-      "sha256": "db25e1bc5a25dee4"
+      "v": 12,
+      "sha256": "7a483c3b900e9523"
     },
     "/dist/bodies/yosemite-in-march.js": {
-      "v": 7,
-      "sha256": "b1a0e0e92bcfcf70"
+      "v": 8,
+      "sha256": "c4a3418d4146edca"
+    },
+    "/dist/bodies/yosemite-in-may.js": {
+      "v": 1,
+      "sha256": "78758374c587d855"
     },
     "/dist/bodies/yosemite-in-november.js": {
-      "v": 4,
-      "sha256": "3a5feaca724f4b79"
+      "v": 5,
+      "sha256": "ec91394db635ba9b"
     },
     "/dist/bodies/yosemite-in-october-2026.js": {
       "v": 11,
@@ -294,20 +318,20 @@
       "sha256": "90ca2c75f4d326f3"
     },
     "/dist/bodies/yosemite-in-three-to-five-days.js": {
-      "v": 12,
-      "sha256": "50d18256934bf86d"
+      "v": 13,
+      "sha256": "e775ac40088d17e2"
     },
     "/dist/bodies/yosemite-in-winter.js": {
-      "v": 13,
-      "sha256": "9850ea3548127981"
+      "v": 14,
+      "sha256": "84de5abe3c46c0fe"
     },
     "/dist/bodies/yosemite-needs-a-reservation-system.js": {
       "v": 84,
       "sha256": "54d95494547710e3"
     },
     "/dist/bodies/yosemite-photography-spots.js": {
-      "v": 7,
-      "sha256": "07a790cf31d92554"
+      "v": 8,
+      "sha256": "c93ba557ebd7cc08"
     },
     "/dist/bodies/yosemite-place-names-meanings.js": {
       "v": 2,
@@ -325,6 +349,10 @@
       "v": 2,
       "sha256": "622f3f906cd9c136"
     },
+    "/dist/bodies/yosemite-sequoia-kings-canyon-trip.js": {
+      "v": 1,
+      "sha256": "15237bc24a7c22c5"
+    },
     "/dist/bodies/yosemite-shuttle-and-yarts.js": {
       "v": 15,
       "sha256": "dd4aa5a8481a2728"
@@ -337,13 +365,17 @@
       "v": 90,
       "sha256": "7071bc35fe8f4e35"
     },
+    "/dist/bodies/yosemite-tire-chains.js": {
+      "v": 1,
+      "sha256": "b19a958731393690"
+    },
     "/dist/bodies/yosemite-trees-identification-guide.js": {
       "v": 5,
       "sha256": "44ccaf806343538b"
     },
     "/dist/bodies/yosemite-trip-cost-budget.js": {
-      "v": 14,
-      "sha256": "86168ffad6ac04e9"
+      "v": 15,
+      "sha256": "8a032116ce29193e"
     },
     "/dist/bodies/yosemite-tunnel-trees.js": {
       "v": 6,
@@ -358,16 +390,16 @@
       "sha256": "5679ab664232d306"
     },
     "/dist/bodies/yosemite-waterfalls-guide.js": {
-      "v": 11,
-      "sha256": "d343b99b9b18af3d"
+      "v": 12,
+      "sha256": "dd23744c8d2f6664"
     },
     "/dist/bodies/yosemite-wilderness-permits-guide.js": {
       "v": 11,
       "sha256": "0a61c6fa8b583bef"
     },
     "/dist/bodies/yosemite-wildflowers-guide.js": {
-      "v": 9,
-      "sha256": "b5cad0e014dfad75"
+      "v": 10,
+      "sha256": "8cd272331f61882e"
     },
     "/dist/bodies/yosemite-wildlife-viewing-guide.js": {
       "v": 11,

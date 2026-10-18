@@ -10,7 +10,7 @@ window.ARTICLE_BODIES["camping-in-yosemite-first-time"] = function CampingInYose
       </p>
 
       <p>
-        This is not the guide to which campground to book. <a href="/articles/yosemite-camping-complete-guide">That one already exists</a>, and it covers all thirteen of them, the three booking windows, and the cancellation game. This is the other thing: what a night in a Yosemite campground is actually like, and which of its assumptions will catch you out the first time. I have been camping in this park for close to twenty years, and I have watched a great many first nights go sideways. Almost none of them went sideways for a reason anyone would call their fault. They went sideways because a campground is a set of unwritten conventions, and nobody hands you the list.
+        This is not the guide to which campground to book. <a href="/articles/yosemite-camping-complete-guide">That one already exists</a>, and it covers all thirteen of them, the booking windows, and the cancellation game. The release morning itself, the 15th at 7 am Pacific, has <a href="/articles/yosemite-campground-reservations">its own guide to Yosemite campground reservations</a>. This is the other thing: what a night in a Yosemite campground is actually like, and which of its assumptions will catch you out the first time. I have been camping in this park for close to twenty years, and I have watched a great many first nights go sideways. Almost none of them went sideways for a reason anyone would call their fault. They went sideways because a campground is a set of unwritten conventions, and nobody hands you the list.
       </p>
 
       <h2>Start by correcting the picture in your head</h2>

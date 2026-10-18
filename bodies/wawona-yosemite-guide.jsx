@@ -161,7 +161,7 @@ window.ARTICLE_BODIES["wawona-yosemite-guide"] = function WawonaYosemiteGuideBod
       </p>
 
       <p>
-        Beyond that, the south end's beds are outside the gate, in Fish Camp, Oakhurst and Bass Lake, which put Wawona and the grove close and the Valley about an hour or more away. <a href="/articles/yosemite-gateway-towns-compared">The gateway towns comparison</a> weighs them against the other approaches.
+        Beyond that, the south end's beds are outside the gate, in Fish Camp, Oakhurst and Bass Lake, which put Wawona and the grove close and the Valley about an hour or more away. <a href="/articles/yosemite-gateway-towns-compared">The gateway towns comparison</a> weighs them against the other approaches, and the largest resort at this gate, Tenaya at Yosemite in Fish Camp, is in <a href="/articles/hotels-just-outside-yosemite">our comparison of the four big lodges just outside the park</a>.
       </p>
 
       <h2>Without a car, and in winter</h2>

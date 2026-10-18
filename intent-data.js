@@ -195,7 +195,14 @@ window.ARTICLE_INTENT = {
   "where-to-stay-in-yosemite":                 { stage: ["before-booking"], who: ["first-trip", "families", "accessible"], topic: ["lodging"] },
   "housekeeping-camp-vs-curry-village":        { stage: ["before-booking"], who: ["first-trip", "families"], topic: ["lodging"] },
   "yosemite-in-july-and-august":               { stage: ["before-booking", "dates-set"], who: ["first-trip", "families"], topic: ["conditions", "lodging", "camping"] },
+  "yosemite-sequoia-kings-canyon-trip":        { stage: ["before-booking", "dates-set"], who: ["first-trip", "families"], topic: ["transportation", "lodging", "conditions"] },
+  "hotels-just-outside-yosemite":              { stage: ["before-booking"], who: ["first-trip", "families"], topic: ["lodging"] },
+  "sentinel-dome-and-taft-point":              { stage: ["dates-set", "in-park"], who: ["photography", "families"], topic: ["trails"] },
+  "yosemite-campground-reservations":          { stage: ["before-booking"], who: ["first-trip", "families"], topic: ["camping"] },
+  "christmas-and-new-years-in-yosemite":       { stage: ["before-booking", "dates-set"], who: ["families", "non-hikers"], topic: ["lodging", "food", "conditions", "transportation"] },
+  "yosemite-in-april":                         { stage: ["before-booking", "dates-set"], who: ["first-trip"], topic: ["conditions", "trails", "camping", "lodging"] },
   "worship-in-yosemite":                       { stage: ["dates-set", "in-park"], who: [], topic: [] },
+  "yosemite-tire-chains":                      { stage: ["dates-set", "week-before"], who: ["first-trip"], topic: ["transportation", "conditions"] },
   "thanksgiving-in-yosemite":                  { stage: ["before-booking", "dates-set"], who: [], topic: ["lodging", "camping", "food", "conditions", "transportation"] },
   "bracebridge-dinner-and-vintners-holidays":  { stage: ["before-booking"], who: ["non-hikers"], topic: ["lodging", "food", "conditions"] },
   "yosemite-wildflowers-guide":                { stage: ["dates-set"], who: ["photography", "non-hikers"], topic: ["conditions"] },
@@ -223,6 +230,7 @@ window.ARTICLE_INTENT = {
   "yosemite-trip-cost-budget":            { stage: ["before-booking"], who: ["first-trip", "families"], topic: ["lodging", "camping", "food", "transportation"] },
   "yosemite-in-october-2026":                   { stage: ["before-booking", "dates-set"], who: [], topic: ["conditions"] },
   "yosemite-in-september-2026":                 { stage: ["before-booking", "dates-set"], who: [], topic: ["conditions"] },
+  "yosemite-in-may":                      { stage: ["before-booking", "dates-set"], who: [], topic: ["conditions", "camping", "lodging"] },
   "yosemite-in-june":                     { stage: ["before-booking", "dates-set"], who: [], topic: ["conditions"] },
   // Month guide like the June piece: an empty `who` on purpose, because "what is
   // March like" is a question every traveler type asks in the same words.
@@ -325,17 +333,21 @@ window.INTENT_NO_TAGS = {
 //   a window, the entry does not belong in this table.
 window.ARTICLE_MONTHS = {
   // Road-dependent: "The Park Service's standing line is that Tioga Road is typically open to vehicles from late May or June until sometime in November; plowing usually begins around April 15, and the opening date moves with the snowpack."
+  "yosemite-in-july-and-august": ["jul", "aug"],
   "tioga-road-stop-by-stop": ["may", "jun", "jul", "aug", "sep", "oct"],
   // "Tioga Road is typically open from late May or June until sometime in November ... Treat these as summer and early fall trips."
   "best-yosemite-backpacking-trips": ["jun", "jul", "aug", "sep", "oct"],
+  // "Glacier Point Road is open to cars approximately late May through October or November, depending on conditions."
+  "sentinel-dome-and-taft-point": ["jun", "jul", "aug", "sep", "oct"],
   // Seasonal essays and month guides.
   "yosemite-in-fall": ["sep", "oct", "nov"],
   "yosemite-in-october-2026": ["oct"],
   "yosemite-in-september-2026": ["sep"],
   "yosemite-facelift-volunteer-guide": ["sep"],
-  "yosemite-in-july-and-august": ["jul", "aug"],
+  "yosemite-in-may": ["may"],
   "yosemite-in-june": ["jun"],
   "yosemite-in-march": ["mar"],
+  "yosemite-in-april": ["apr"],
   "yosemite-in-november": ["nov"],
   "yosemite-in-december": ["dec"],
   "yosemite-in-january": ["jan"],
@@ -349,6 +361,8 @@ window.ARTICLE_MONTHS = {
   "tioga-road-opening-weekend": ["may", "jun"],
   "glacier-point-road-open-2026": ["may", "jun"],
   "yosemite-in-winter": ["nov", "dec", "jan", "feb", "mar"],
+  // "chains are often required on roads both inside and outside the park from November through March, less often in October and April"
+  "yosemite-tire-chains": ["oct", "nov", "dec", "jan", "feb", "mar", "apr"],
   // "Thanksgiving 2026 falls on Thursday, November 26": a holiday-weekend trip.
   "thanksgiving-in-yosemite": ["nov"],
   "bracebridge-dinner-and-vintners-holidays": ["nov", "dec"],
@@ -584,10 +598,10 @@ window.TRIP_MONTHS = [
   { key: "mar", label: "Mar", name: "March",     tioga: "closed",    glacier: "closed",    read: "yosemite-in-march",
     arrive: "Spring is the value play: waterfalls building against half of summer's crowds. No gate strategy needed midweek; weekends and spring-break weeks fill the Valley lots, so be in before mid-morning.",
     note: "Late winter, first runoff. Storms still land, the falls start to wake, and the crowds have not arrived." },
-  { key: "apr", label: "Apr", name: "April",     tioga: "closed",    glacier: "closed",    read: "yosemite-waterfalls-guide",
+  { key: "apr", label: "Apr", name: "April",     tioga: "closed",    glacier: "closed",    read: "yosemite-in-april",
     arrive: "Half of summer's crowds against full waterfalls. Midweek needs no gate strategy; on a weekend be through the entrance before mid-morning, when the Valley lots fill.",
     note: "The Valley greens up and the waterfalls build by the week. Tioga Road is still closed most years." },
-  { key: "may", label: "May", name: "May",       tioga: "unsettled", glacier: "unsettled", read: "yosemite-waterfalls-guide",
+  { key: "may", label: "May", name: "May",       tioga: "unsettled", glacier: "unsettled", read: "yosemite-in-may",
     arrive: "Memorial Day weekend behaves like July: Valley parking has filled as early as 8 a.m. Be through the gate before 8 that weekend; the rest of the month, before mid-morning on weekends.",
     note: "Peak waterfall month, and the last calmer weeks before summer. The high roads usually begin to open." },
   { key: "jun", label: "Jun", name: "June",      tioga: "unsettled", glacier: "open",      read: "yosemite-in-june",

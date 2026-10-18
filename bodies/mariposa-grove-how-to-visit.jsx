@@ -74,7 +74,7 @@ window.ARTICLE_BODIES["mariposa-grove-how-to-visit"] = function MariposaGroveHow
       <h2>The geography, which is the whole problem</h2>
 
       <p>
-        The grove sits in the park's southern corner, immediately inside the South Entrance on Highway 41. It is not near Yosemite Valley. From the Valley floor it is about an hour and a quarter of driving each way, which is the single most underestimated number in this article.
+        The grove sits in the park's southern corner, immediately inside the South Entrance on Highway 41. It is not near Yosemite Valley. From the Valley floor it is about an hour and a quarter of driving each way, which is the single most underestimated number in this article. For the same reason the grove is the natural stop on a day that leaves Yosemite for <a href="/articles/yosemite-sequoia-kings-canyon-trip">Sequoia and Kings Canyon</a>, south on Highway 41.
       </p>
 
       <p>
@@ -175,7 +175,7 @@ window.ARTICLE_BODIES["mariposa-grove-how-to-visit"] = function MariposaGroveHow
       <h2>Winter, when the road closes</h2>
 
       <p>
-        Mariposa Grove Road closes to vehicles for the winter at the end of November and reopens when the snow allows, which has meant anywhere from early April onward in recent years. The reopening date moves with the snowpack and is not worth planning around more than a week out.
+        Mariposa Grove Road closes to vehicles for the winter at the end of November and reopens when the snow allows, which has meant anywhere from early April onward in recent years. The reopening date moves with the snowpack and is not worth planning around more than a week out; <a href="/articles/yosemite-in-april">Yosemite in April</a> plans a spring grove visit as a walk for that reason.
       </p>
 
       <p>
