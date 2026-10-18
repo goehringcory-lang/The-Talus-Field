@@ -1405,7 +1405,7 @@ function GuideOfflineDemo() {
         </div>
       </div>
       <p className="guide-offline__fineprint">
-        The full download is about 70 MB. The 3D park map is about 25 MB of it, in pieces: a 7 MB overview of the whole park, then the Valley, Glacier Point and Wawona, Tioga Road and Tuolumne, and Hetch Hetchy at trailhead scale, each downloaded on its own.
+        The full download is about 70 MB. The 3D park map is about 22 MB of it, in pieces: a 7 MB overview of the whole park, then the Valley, Glacier Point and Wawona, Tioga Road and Tuolumne, and Hetch Hetchy at trailhead scale, each downloaded on its own.
       </p>
     </div>
   );

@@ -995,7 +995,7 @@ function seoForPath(pathname, searchParams) {
       faq: [
         {
           q: "What is a group code?",
-          a: "One code is one guest's full access to The Talus Field Guide: the entire stop library across the Valley, Glacier Point and Mariposa Grove, Tuolumne, and Hetch Hetchy, the 70-entry Secret Guide, the trip planner with calendar export, park programs and weather on their dates, and the roughly 50 MB offline download. Access runs 18 months from the day the guest redeems, on every device they own.",
+          a: "One code is one guest's full access to The Talus Field Guide: the entire stop library across the Valley, Glacier Point and Mariposa Grove, Tuolumne, and Hetch Hetchy, the 70-entry Secret Guide, the trip planner with calendar export, park programs and weather on their dates, and the offline download of about 70 MB. Access runs 18 months from the day the guest redeems, on every device they own.",
         },
         {
           q: "What do group codes cost?",
