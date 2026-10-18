@@ -27,6 +27,25 @@
   </script>
 
   <!--
+    Stay22 Script ("Let Me Allez"), pasted verbatim from the Stay22 dashboard
+    (owner's install, October 2026). It loads async and converts supported
+    supplier links (Booking.com, Expedia, Hotels.com...) client-side. Its hosts
+    are allow-listed in the CSP in _headers; the archive pages carry the same
+    block (scripts/gen-archive.mjs, STAY22_SCRIPT).
+  -->
+  <script>
+    (function (s, t, a, y, twenty, two) {
+      s.Stay22 = s.Stay22 || {};
+      s.Stay22.params = { lmaID: '6ad44cfa7692614b773d1576' };
+      twenty = t.createElement(a);
+      two = t.getElementsByTagName(a)[0];
+      twenty.async = 1;
+      twenty.src = y;
+      two.parentNode.insertBefore(twenty, two);
+    })(window, document, 'script', 'https://lma.stay22.com/letmeallez.js');
+  </script>
+
+  <!--
     AvantLink affiliate application: site ownership confirmation, pasted
     verbatim from the AvantLink dashboard (October 2026). AvantLink's checker
     reads this tag off the homepage; the browser never runs it (http on an
@@ -578,7 +597,7 @@
 
   <script src="/storage.js?v=af9b7d4db2" defer></script>
 
-  <script src="/affiliate.js?v=0250935635" defer></script>
+  <script src="/affiliate.js?v=9601eccdbc" defer></script>
 
   <script src="/data.js?v=508c82bc98" defer></script>
 

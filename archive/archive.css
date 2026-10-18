@@ -76,7 +76,7 @@
 
 /* The one ask: the design's letter card and form --------------------------- */
 /* The form posts to the API Worker, which subscribes through Buttondown's API
-   and redirects back to /newsletter. These pages load no JavaScript, and
+   and redirects back to /newsletter. These pages run no JavaScript of their own, and
    Buttondown's own embed form now puts a Turnstile check in front of every
    signup. The honeypot field stays out of sight and out of the tab order. */
 .arc-ask__hp { position: absolute; left: -10000px; width: 1px; height: 1px; overflow: hidden; }
