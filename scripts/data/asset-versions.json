@@ -22,8 +22,8 @@
       "sha256": "db7520cc39b72969"
     },
     "/dist/bodies/camping-in-yosemite-first-time.js": {
-      "v": 6,
-      "sha256": "2b426eb0c906aba4"
+      "v": 7,
+      "sha256": "e5385e314da08a5d"
     },
     "/dist/bodies/cathedral-lakes-day-hike.js": {
       "v": 9,
@@ -78,8 +78,8 @@
       "sha256": "f5262c0ec816fbc3"
     },
     "/dist/bodies/housekeeping-camp-vs-curry-village.js": {
-      "v": 1,
-      "sha256": "029629ebc7a4be1f"
+      "v": 2,
+      "sha256": "038a429c78f91184"
     },
     "/dist/bodies/is-bear-spray-allowed-in-yosemite.js": {
       "v": 6,
@@ -193,9 +193,13 @@
       "v": 127,
       "sha256": "1953e0ab6aa56994"
     },
+    "/dist/bodies/yosemite-campground-reservations.js": {
+      "v": 1,
+      "sha256": "4e6dfe024ce2fe25"
+    },
     "/dist/bodies/yosemite-camping-complete-guide.js": {
-      "v": 21,
-      "sha256": "a1cc6a07c144dd45"
+      "v": 22,
+      "sha256": "ba4d276be465642a"
     },
     "/dist/bodies/yosemite-connecting-to-traditions.js": {
       "v": 5,

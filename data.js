@@ -110,10 +110,11 @@ window.planningSeriesFor = function (slug) {
 // verifies this map stays in sync with the files in bodies/.
 // ============================================================
 window.BODY_VERSIONS = {
+  "yosemite-campground-reservations": 1,
   "worship-in-yosemite": 1,
   "yosemite-crowds-by-month": 1,
   "yosemite-san-francisco-bus": 2,
-  "housekeeping-camp-vs-curry-village": 1,
+  "housekeeping-camp-vs-curry-village": 2,
   "yosemite-stargazing-tours-and-programs": 1,
   "badger-pass-ski-area": 2,
   "snowshoeing-in-yosemite": 2,
@@ -144,7 +145,7 @@ window.BODY_VERSIONS = {
   "yosemite-fire-restrictions-explained": 10,
   "yosemite-in-three-to-five-days": 12,
   "yosemite-winter-hikes": 7,
-  "camping-in-yosemite-first-time": 6,
+  "camping-in-yosemite-first-time": 7,
   "first-yosemite-backpacking-trip": 9,
   "yosemite-day-trip-from-bay-area": 6,
   "mariposa-grove-how-to-visit": 9,
@@ -170,7 +171,7 @@ window.BODY_VERSIONS = {
   "yosemite-accessibility-guide": 7,
   "pets-in-yosemite": 10,
   "yosemite-ranger-programs": 9,
-  "yosemite-camping-complete-guide": 21,
+  "yosemite-camping-complete-guide": 22,
   "where-to-propose-in-yosemite": 8,
   "is-bear-spray-allowed-in-yosemite": 6,
   "yosemite-bears-safety-guide": 127,
@@ -937,6 +938,30 @@ window.KIT_REI = {
 // AffiliateDisclosure line under the byline, before the first link;
 // scripts/check-affiliate-links.mjs fails when the flag and the body disagree.
 window.ARTICLES = [
+  {
+    slug: "yosemite-campground-reservations",
+    aff: true,
+    cat: "planning",
+    title: "Yosemite campground reservations: the 15th, 7 am, and every other way to get a site",
+    seoTitle: "Yosemite Campground Reservations: When Sites Open and How",
+    dek: "The Valley's campsites go on sale at 7 am Pacific on the 15th, five months ahead, and sell out within minutes. Which campground opens on which window, the next eight release mornings, what to do before 7:00, the rules that come with the site, the first-come campgrounds of the cold months, and the 2026 lottery.",
+    seoDek: "How Yosemite campground reservations work: the 15th-of-the-month 7 am PT release on Recreation.gov, the two-week and one-week windows, first-come sites and tips.",
+    date: "October 18, 2026",
+    isoDate: "2026-10-18",
+    isoModified: "2026-10-18",
+    read: "10 min",
+    placeholder: "Tall trees over the sites of Upper Pines Campground on the Yosemite Valley floor",
+    image: "img/upper-pines-campground.jpg",
+    credit: "Photo: Andrew Burnham / Wikimedia Commons (CC BY-SA 3.0)",
+    // The /firefall layout for an article (page-article.jsx), as on the Mist
+    // Trail piece. The two buttons jump to the release calendar and to the
+    // first-come campgrounds.
+    feature: {
+      eyebrow: "RECREATION.GOV · THE 15TH · 7 AM PACIFIC · FIRST-COME",
+      focus: "50% 50%",
+      actions: [["#cr-calendar", "Your release morning"], ["#cr-first-come", "First-come sites"]],
+    },
+  },
   {
     slug: "worship-in-yosemite",
     aff: true,
@@ -2532,13 +2557,14 @@ window.START_HERE = [
 // Curate a piece when it earns real search impressions, when it anchors a
 // cluster, or when it is the destination that needs the equity.
 window.RELATED = {
+  "yosemite-campground-reservations": ["yosemite-camping-complete-guide", "camping-in-yosemite-first-time", "housekeeping-camp-vs-curry-village", "yosemite-wilderness-permits-guide", "where-to-stay-in-yosemite", "yosemite-bears-safety-guide"],
   "worship-in-yosemite": ["thanksgiving-in-yosemite", "where-to-propose-in-yosemite", "yosemite-camping-complete-guide", "glacier-point-how-to-visit", "where-to-stay-in-yosemite", "bracebridge-dinner-and-vintners-holidays"],
   "yosemite-crowds-by-month": ["when-to-visit-yosemite", "yosemite-valley-parking-guide", "yosemite-without-reservations-2026", "glacier-point-how-to-visit", "mariposa-grove-how-to-visit", "yosemite-needs-a-reservation-system"],
   "yosemite-san-francisco-bus": ["yosemite-shuttle-and-yarts", "best-airport-for-yosemite", "yosemite-day-trip-from-bay-area", "sustainable-yosemite-car-free-zero-waste", "yosemite-in-one-or-two-days", "getting-to-yosemite"],
   // Housekeeping Camp vs Curry Village: the two canvas-roofed Valley stays.
   // Onward to every bed in the park, the campgrounds, the kitchens, the bear
   // rules, the trail at Curry's door and the first-time camper's guide.
-  "housekeeping-camp-vs-curry-village": ["where-to-stay-in-yosemite", "yosemite-camping-complete-guide", "where-to-eat-yosemite", "yosemite-bears-safety-guide", "mist-trail-the-real-guide", "camping-in-yosemite-first-time"],
+  "housekeeping-camp-vs-curry-village": ["where-to-stay-in-yosemite", "yosemite-camping-complete-guide", "yosemite-campground-reservations", "yosemite-bears-safety-guide", "mist-trail-the-real-guide", "camping-in-yosemite-first-time"],
   "badger-pass-ski-area": ["yosemite-in-winter",  "snowshoeing-in-yosemite",  "glacier-point-how-to-visit",  "yosemite-in-january",  "yosemite-in-february",  "where-to-stay-in-yosemite"],
   "snowshoeing-in-yosemite": ["yosemite-in-winter",  "badger-pass-ski-area",  "yosemite-winter-hikes",  "mariposa-grove-how-to-visit",  "glacier-point-how-to-visit",  "yosemite-ranger-programs"],
   "yosemite-in-february": ["horsetail-fall-firefall",  "yosemite-in-winter",  "yosemite-in-january",  "yosemite-in-march",  "badger-pass-ski-area",  "mariposa-grove-how-to-visit"],
@@ -2595,8 +2621,8 @@ window.RELATED = {
   "bracebridge-dinner-and-vintners-holidays": ["where-to-stay-in-yosemite", "yosemite-in-winter", "yosemite-in-december", "thanksgiving-in-yosemite", "yosemite-gateway-towns-compared", "where-to-eat-yosemite"],
   "yosemite-gateway-towns-compared": ["where-to-stay-in-yosemite", "where-to-eat-yosemite", "yosemite-from-los-angeles", "yosemite-with-kids-no-reservations-2026", "highway-140-closed-yosemite", "yosemite-trip-cost-budget"],
   "where-to-stay-in-yosemite": ["yosemite-gateway-towns-compared", "housekeeping-camp-vs-curry-village", "yosemite-camping-complete-guide", "wawona-yosemite-guide", "yosemite-trip-cost-budget", "where-to-eat-yosemite"],
-  "yosemite-camping-complete-guide": ["camping-in-yosemite-first-time", "where-to-stay-in-yosemite", "first-yosemite-backpacking-trip", "yosemite-trip-cost-budget", "yosemite-facelift-volunteer-guide", "sustainable-yosemite-car-free-zero-waste"],
-  "camping-in-yosemite-first-time": ["yosemite-camping-complete-guide", "yosemite-bears-safety-guide", "is-bear-spray-allowed-in-yosemite", "where-to-stay-in-yosemite", "pets-in-yosemite"],
+  "yosemite-camping-complete-guide": ["yosemite-campground-reservations", "camping-in-yosemite-first-time", "where-to-stay-in-yosemite", "first-yosemite-backpacking-trip", "yosemite-trip-cost-budget", "sustainable-yosemite-car-free-zero-waste"],
+  "camping-in-yosemite-first-time": ["yosemite-camping-complete-guide", "yosemite-campground-reservations", "yosemite-bears-safety-guide", "is-bear-spray-allowed-in-yosemite", "where-to-stay-in-yosemite", "pets-in-yosemite"],
   "yosemite-trip-cost-budget": ["where-to-stay-in-yosemite", "yosemite-gateway-towns-compared", "yosemite-camping-complete-guide", "where-to-eat-yosemite", "bracebridge-dinner-and-vintners-holidays"],
 
   // Food

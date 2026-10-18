@@ -194,6 +194,7 @@ window.ARTICLE_INTENT = {
   "yosemite-in-winter":                        { stage: ["before-booking", "dates-set"], who: ["first-trip"], topic: ["conditions", "transportation"] },
   "where-to-stay-in-yosemite":                 { stage: ["before-booking"], who: ["first-trip", "families", "accessible"], topic: ["lodging"] },
   "housekeeping-camp-vs-curry-village":        { stage: ["before-booking"], who: ["first-trip", "families"], topic: ["lodging"] },
+  "yosemite-campground-reservations":          { stage: ["before-booking"], who: ["first-trip", "families"], topic: ["camping"] },
   "worship-in-yosemite":                       { stage: ["dates-set", "in-park"], who: [], topic: [] },
   "thanksgiving-in-yosemite":                  { stage: ["before-booking", "dates-set"], who: [], topic: ["lodging", "camping", "food", "conditions", "transportation"] },
   "bracebridge-dinner-and-vintners-holidays":  { stage: ["before-booking"], who: ["non-hikers"], topic: ["lodging", "food", "conditions"] },
