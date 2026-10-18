@@ -24,7 +24,7 @@ window.ARTICLE_BODIES["yosemite-trip-cost-budget"] = function YosemiteTripCostBu
       </p>
 
       <p>
-        If you're visiting more than one national park this year, or if you'll visit Yosemite more than twice, buy the <strong>America the Beautiful annual pass for $80</strong>. It covers every national park and federal recreation area in the country for a full year. 
+        If you're visiting more than one national park this year, or if you'll visit Yosemite more than twice, buy the <strong>America the Beautiful annual pass for $80</strong>. It covers every national park and federal recreation area in the country for a full year. Adding Sequoia and Kings Canyon, which charge their own $35 vehicle fee, is the most common way a Yosemite trip becomes a two-park year; <a href="/articles/yosemite-sequoia-kings-canyon-trip">the three-park trip guide</a> runs the numbers. 
       </p>
 
       <p>

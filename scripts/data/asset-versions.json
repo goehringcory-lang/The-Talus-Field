@@ -10,8 +10,8 @@
       "sha256": "c32d299f9f6b1b98"
     },
     "/dist/bodies/best-airport-for-yosemite.js": {
-      "v": 9,
-      "sha256": "8b529a7a7eeee5c8"
+      "v": 10,
+      "sha256": "0db4572173fd3d54"
     },
     "/dist/bodies/best-yosemite-backpacking-trips.js": {
       "v": 3,
@@ -86,8 +86,8 @@
       "sha256": "c8b08d388d425153"
     },
     "/dist/bodies/mariposa-grove-how-to-visit.js": {
-      "v": 9,
-      "sha256": "a4e3107bee42242f"
+      "v": 10,
+      "sha256": "025566042d8a2db7"
     },
     "/dist/bodies/memorial-day-skip-the-valley-go-high-2026.js": {
       "v": 89,
@@ -238,8 +238,8 @@
       "sha256": "54de2cd4186b7384"
     },
     "/dist/bodies/yosemite-gateway-towns-compared.js": {
-      "v": 112,
-      "sha256": "aa9dd6eb79c8a6a4"
+      "v": 113,
+      "sha256": "885ef05435731336"
     },
     "/dist/bodies/yosemite-glaciers-climate.js": {
       "v": 84,
@@ -290,8 +290,8 @@
       "sha256": "90ca2c75f4d326f3"
     },
     "/dist/bodies/yosemite-in-three-to-five-days.js": {
-      "v": 12,
-      "sha256": "50d18256934bf86d"
+      "v": 13,
+      "sha256": "e775ac40088d17e2"
     },
     "/dist/bodies/yosemite-in-winter.js": {
       "v": 13,
@@ -321,6 +321,10 @@
       "v": 2,
       "sha256": "622f3f906cd9c136"
     },
+    "/dist/bodies/yosemite-sequoia-kings-canyon-trip.js": {
+      "v": 1,
+      "sha256": "15237bc24a7c22c5"
+    },
     "/dist/bodies/yosemite-shuttle-and-yarts.js": {
       "v": 15,
       "sha256": "dd4aa5a8481a2728"
@@ -338,8 +342,8 @@
       "sha256": "44ccaf806343538b"
     },
     "/dist/bodies/yosemite-trip-cost-budget.js": {
-      "v": 14,
-      "sha256": "86168ffad6ac04e9"
+      "v": 15,
+      "sha256": "8a032116ce29193e"
     },
     "/dist/bodies/yosemite-tunnel-trees.js": {
       "v": 6,

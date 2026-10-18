@@ -178,6 +178,14 @@
 
   <!-- Articles -->
   <url>
+    <loc>https://thetalusfieldjournal.com/articles/yosemite-sequoia-kings-canyon-trip</loc>
+    <lastmod>2026-10-18</lastmod>
+    <image:image>
+      <image:loc>https://thetalusfieldjournal.com/img/responsive/mariposa-grove-giants-trail-1600.jpg</image:loc>
+      <image:title>Giant sequoias along a trail in the Mariposa Grove</image:title>
+    </image:image>
+  </url>
+  <url>
     <loc>https://thetalusfieldjournal.com/articles/worship-in-yosemite</loc>
     <lastmod>2026-10-18</lastmod>
     <image:image>
