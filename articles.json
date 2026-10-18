@@ -1,5 +1,32 @@
 [
   {
+    "slug": "worship-in-yosemite",
+    "cat": "planning",
+    "title": "Worship in Yosemite: church services, Easter sunrise and weddings in the park",
+    "dek": "One chapel, built in 1879, holds a service every Sunday of the year. The service times, the summer campground services, the Catholic and Latter-day Saints options and how sure anyone can be of them, the Easter sunrise service that is at Lower Pines and not Glacier Point, and what a wedding in the park takes.",
+    "seoTitle": "Worship in Yosemite: Church Services, Easter and Weddings",
+    "seoDek": "Church services in Yosemite: the Valley Chapel's Sunday times, campground services, Catholic Mass, the Lower Pines Easter sunrise service, and wedding permits.",
+    "date": "October 18, 2026",
+    "isoDate": "2026-10-18",
+    "isoModified": "2026-10-18",
+    "read": "9 min",
+    "image": "img/yosemite-valley-black-oaks-autumn.jpg",
+    "ogImage": { "url": "img/responsive/yosemite-valley-black-oaks-autumn-1600.jpg", "width": 1600, "height": 1184 },
+    "placeholder": "Black oaks in autumn color on the Yosemite Valley floor",
+    "cover": true,
+    "wordCount": 2400,
+    "keywords": ["worship in Yosemite", "church services in Yosemite", "Yosemite Valley Chapel service times", "Yosemite Community Church", "Easter sunrise service Yosemite", "Glacier Point Easter sunrise service", "Catholic Mass Yosemite", "Our Lady of the Snows Yosemite", "Yosemite campground church services", "Yosemite wedding permit", "Yosemite Chapel wedding", "Ahwahnee wedding"],
+    "faq": [
+      { "q": "Are there church services in Yosemite?", "a": "Yes. Yosemite Community Church, a nondenominational congregation, meets at the Yosemite Valley Chapel every Sunday: 9:15 am all year, plus 11 am from Memorial Day to Labor Day. Confirm times with the chapel at 209-372-4831 or in the current Yosemite Guide." },
+      { "q": "Is there an Easter sunrise service in Yosemite?", "a": "Yes. The chapel lists an Easter sunrise service at 7 am at Lower Pines Campground in Yosemite Valley, weather permitting, then Easter services at 9:15 and 11 am. There is no Easter sunrise service at Glacier Point: Glacier Point Road is normally closed by snow from November through late May or June." },
+      { "q": "Is there a Catholic Mass in Yosemite?", "a": "Directory listings show Our Lady of the Snows, a mission of Our Lady of the Sierra Parish in Oakhurst, with Sunday Mass at 10 am, served by visiting priests. The listings disagree on where it meets, so confirm the time and place with the parish in Oakhurst before you go." },
+      { "q": "Can you get married in Yosemite?", "a": "Yes, with a National Park Service special use permit, which is required for any wedding or commitment ceremony anywhere in the park. The application fee is $150 and nonrefundable. Apply up to one year ahead and more than 21 days before the date. The permit does not reserve a site." },
+      { "q": "How do you book a wedding at the Yosemite Valley Chapel?", "a": "The Yosemite Community Church secretary schedules every ceremony in the chapel, at 209-372-4831. An outside officiant is allowed. You still need the Park Service's special use permit." },
+      { "q": "Are there church services at Yosemite campgrounds?", "a": "The chapel lists Sunday services at 9 am in summer at Lower Pines, Wawona, White Wolf and Tuolumne campgrounds. Confirm with the chapel before you go." }
+    ],
+    "related": ["thanksgiving-in-yosemite", "where-to-propose-in-yosemite", "yosemite-camping-complete-guide", "glacier-point-how-to-visit", "where-to-stay-in-yosemite", "bracebridge-dinner-and-vintners-holidays"]
+  },
+  {
     "slug": "yosemite-crowds-by-month",
     "cat": "planning",
     "title": "Yosemite Crowds by Month: The Park Service's Count, the Busy Hours and Where It Piles Up",
@@ -316,7 +343,7 @@
       { "q": "Is the Mariposa Grove shuttle running at Thanksgiving?", "a": "In 2026 the free shuttle from the Welcome Plaza runs through November, weather permitting, from 8 a.m. to 3:30 p.m., with the last bus leaving the grove at 5 p.m. From December 1 there is no shuttle and the way in is a two-mile walk with about 500 feet of gain." },
       { "q": "Does YARTS run on Thanksgiving?", "a": "YARTS lists Thanksgiving Day among the holidays on which it does not operate, but its Highway 140 page lists Thanksgiving Day as November 26, 2026." }
     ],
-    "related": ["where-to-stay-in-yosemite", "where-to-eat-yosemite", "yosemite-in-winter", "yosemite-in-december", "bracebridge-dinner-and-vintners-holidays", "yosemite-in-november"]
+    "related": ["where-to-stay-in-yosemite", "where-to-eat-yosemite", "yosemite-in-december", "bracebridge-dinner-and-vintners-holidays", "yosemite-in-november", "worship-in-yosemite"]
   },
   {
     "slug": "best-yosemite-backpacking-trips",
@@ -1615,7 +1642,7 @@
       { "q": "Are decorations or drones allowed for a Yosemite proposal?", "a": "No. The National Park Service prohibits decorations, rose petals, candles, balloon arches, confetti, streamers, and signs staked into meadows. Drones are also banned and carry a fine of up to $5,000." },
       { "q": "When is the best time to propose in Yosemite?", "a": "Early morning and late afternoon beat midday at every popular viewpoint for light and crowds. Spring (late April through early June) brings peak waterfalls, October offers golden oaks and thin crowds, and mid-to-late February can deliver the Horsetail Fall Firefall near Valentine's Day. For night proposals, aim for a new moon in the high country from late May through September." }
     ],
-    "related": ["yosemite-photography-spots", "yosemite-for-non-hikers", "where-to-eat-yosemite", "where-to-stay-in-yosemite", "yosemite-in-one-or-two-days"]
+    "related": ["yosemite-photography-spots", "yosemite-for-non-hikers", "where-to-eat-yosemite", "where-to-stay-in-yosemite", "yosemite-in-one-or-two-days", "worship-in-yosemite"]
   },
   {
     "slug": "is-bear-spray-allowed-in-yosemite",

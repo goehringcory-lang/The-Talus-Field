@@ -13039,6 +13039,95 @@ html[data-nav-mode="pinned"] { scroll-padding-top: 62px; }
 /* The crawler fragment is not laid out as a grid. */
 #prerender-prose .mt-feature :is(.ff-split, .ff-facts, .mt-turns, .mt-wet, .mt-seasons, .ff-rules) { display: block; }
 
+/* ── /articles/worship-in-yosemite: the `.wy-*` pieces ────────────────────
+   A feature article on the `.hp-event` tokens and the `.ff-*` kit, built like
+   the Mist Trail layer above. Its own pieces: the chapel's week and Holy Week
+   (the shared `.ff-hours`), the chapel timeline, the four congregation cards
+   with how sure the page is of each, the season strip, the places table, the
+   permit card (the shared `.ff-inpark`), the wedding rules and the etiquette
+   cards (the shared `.ff-rules`), and the sources beside the questions. */
+.wy-feature .ff-split > * { min-width: 0; }
+.wy-prose { font: 17px/1.75 var(--sans); color: var(--hp-ink); max-width: 640px; }
+.wy-prose p { margin: 0 0 1.1em; }
+.wy-prose p:last-child { margin-bottom: 0; }
+.wy-prose strong { font-weight: 600; }
+.wy-prose a, .wy-feature .ff-alert a { color: inherit; text-decoration: underline; text-decoration-color: var(--hp-accent); text-decoration-thickness: 1px; text-underline-offset: 3px; }
+.wy-prose a:hover, .wy-feature .ff-alert a:hover { color: var(--hp-accent); }
+.wy-prose .dropcap::first-letter { font-family: var(--serif); font-weight: 400; font-size: 4.1em; float: left; line-height: 0.82; margin: 0.08em 0.1em 0 -0.03em; color: var(--hp-accent); }
+.wy-open .wy-prose { font: 19px/1.6 var(--serif); color: var(--ink-2); }
+.wy-open .wy-prose p:first-child { color: var(--hp-ink); }
+.wy-open .ff-short { position: sticky; top: 88px; }
+.hp-design a.wy-short__link { display: flex; align-items: center; justify-content: center; min-height: 48px; padding: 12px 18px; border: 1.5px solid rgba(247, 241, 225, 0.7); border-radius: 3px; font: 600 13px var(--sans); color: var(--hp-paper); text-align: center; }
+.hp-design a.wy-short__link:hover { background: var(--hp-paper); color: var(--hp-ink); }
+.wy-end { padding-block: 28px 0; }
+.hp-event .wy-sched__head { margin: 0 0 22px; }
+.wy-alert { margin-top: 20px; }
+
+/* The building: the timeline. */
+.wy-timeline { list-style: none; margin: 0; padding: 0; border-top: 2px solid var(--hp-ink); }
+.wy-timeline li { display: grid; grid-template-columns: 64px 1fr; gap: 16px; align-items: baseline; padding-block: 12px; border-bottom: 1px solid var(--hp-rule); }
+.wy-timeline span { font: 400 22px var(--serif); color: var(--hp-accent); }
+.wy-timeline p { margin: 0; font: 15px/1.5 var(--sans); color: var(--ink-2); }
+
+/* The photos. */
+.wy-photo { margin: 0; }
+.wy-photo img { display: block; width: 100%; height: auto; border-radius: 4px; }
+.wy-photo figcaption { margin-top: 10px; font: 12px/1.5 var(--sans); color: var(--hp-muted); }
+.wy-permit { margin-top: 24px; }
+
+/* Other congregations: four cards, marked by how the page knows. */
+.wy-congs { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 20px; margin-top: 8px; }
+.wy-cong { background: var(--hp-card); border: 1px solid var(--hp-rule); border-top: 6px solid var(--bt-open); border-radius: 4px; padding: 22px; display: grid; gap: 10px; align-content: start; }
+.wy-cong.is-confirm { border-top-color: var(--bt-warn); }
+.wy-cong__status { margin: 0; font: 700 11px var(--sans); letter-spacing: 1.2px; text-transform: uppercase; color: var(--hp-muted); }
+.wy-cong dl { margin: 6px 0 0; border-top: 1px solid var(--hp-rule); }
+.wy-cong dl div { padding-block: 9px; border-bottom: 1px solid var(--hp-rule); }
+.wy-cong dt { font: 600 10px var(--sans); letter-spacing: 1.4px; text-transform: uppercase; color: var(--hp-muted); }
+.wy-cong dd { margin: 4px 0 0; font: 14px/1.5 var(--sans); color: var(--hp-ink); }
+.wy-congs__prose { margin-top: 48px; }
+
+/* Seasons: the strip and the places table. */
+.wy-seasons { list-style: none; margin: 8px 0 0; padding: 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; }
+.wy-seasons li { background: var(--hp-card); border: 1px solid var(--hp-rule); border-top: 6px solid var(--hp-accent); border-radius: 4px; padding: 20px; display: grid; gap: 8px; align-content: start; }
+.wy-seasons li.is-mid { border-top-color: #c98a5a; }
+.wy-seasons li.is-late { border-top-color: var(--rule); }
+.wy-seasons span { font: 700 11px var(--sans); letter-spacing: 1.2px; text-transform: uppercase; color: var(--hp-muted); }
+.wy-seasons strong { font: 400 24px/1.15 var(--serif); color: var(--hp-ink); }
+.wy-seasons p { margin: 0; font: 14px/1.6 var(--sans); color: var(--ink-2); }
+.wy-when { margin-top: 48px; }
+.wy-places { width: 100%; border-collapse: collapse; font: 14px/1.5 var(--sans); color: var(--ink-2); }
+.wy-places th, .wy-places td { text-align: left; vertical-align: top; padding: 10px 12px 10px 0; border-bottom: 1px solid var(--hp-rule); }
+.wy-places thead th { font: 600 10px var(--sans); letter-spacing: 1.4px; text-transform: uppercase; color: var(--hp-muted); border-bottom: 2px solid var(--hp-ink); }
+.wy-places tbody th { font: 400 17px/1.3 var(--serif); color: var(--hp-ink); }
+
+/* Weddings and etiquette: the rules, the lodging block. */
+.wy-rules { margin-top: 48px; }
+.wy-stay { margin-top: 40px; max-width: 760px; }
+.wy-manners { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+
+/* The sources beside the questions. */
+.wy-sources { margin-top: 28px; }
+.hp-event .wy-sources h3 { font-size: 20px; margin-bottom: 8px; }
+.wy-sources ul { list-style: none; margin: 0; padding: 0; }
+.wy-sources li { padding-block: 8px; border-top: 1px solid var(--hp-rule); font: 13px var(--sans); }
+.wy-sources a { color: var(--hp-accent); }
+
+@media (max-width: 1100px) {
+  .wy-congs { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (max-width: 880px) {
+  .wy-seasons { grid-template-columns: 1fr; }
+  .wy-open .ff-short { position: static; }
+}
+@media (max-width: 640px) {
+  .wy-congs, .wy-manners { grid-template-columns: 1fr; }
+  .wy-places thead { display: none; }
+  .wy-places tr { display: block; padding-block: 10px; border-bottom: 1px solid var(--hp-rule); }
+  .wy-places th, .wy-places td { display: block; padding: 2px 0; border: 0; }
+}
+/* The crawler fragment is not laid out as a grid. */
+#prerender-prose .wy-feature :is(.ff-split, .ff-facts, .wy-congs, .wy-seasons, .ff-rules) { display: block; }
+
 /* ── /articles/yosemite-stargazing-tours-and-programs: the `.sg-*` pieces ──
    A feature article on the `.hp-event` tokens and the `.ff-*` kit, built like
    the Mist Trail layer above. Its own pieces: the program comparison table,

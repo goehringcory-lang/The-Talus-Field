@@ -110,6 +110,7 @@ window.planningSeriesFor = function (slug) {
 // verifies this map stays in sync with the files in bodies/.
 // ============================================================
 window.BODY_VERSIONS = {
+  "worship-in-yosemite": 1,
   "yosemite-crowds-by-month": 1,
   "yosemite-san-francisco-bus": 2,
   "housekeeping-camp-vs-curry-village": 1,
@@ -170,7 +171,7 @@ window.BODY_VERSIONS = {
   "pets-in-yosemite": 10,
   "yosemite-ranger-programs": 9,
   "yosemite-camping-complete-guide": 21,
-  "where-to-propose-in-yosemite": 7,
+  "where-to-propose-in-yosemite": 8,
   "is-bear-spray-allowed-in-yosemite": 6,
   "yosemite-bears-safety-guide": 127,
   "yosemite-heat-safety-guide": 12,
@@ -936,6 +937,30 @@ window.KIT_REI = {
 // AffiliateDisclosure line under the byline, before the first link;
 // scripts/check-affiliate-links.mjs fails when the flag and the body disagree.
 window.ARTICLES = [
+  {
+    slug: "worship-in-yosemite",
+    aff: true,
+    cat: "planning",
+    title: "Worship in Yosemite: church services, Easter sunrise and weddings in the park",
+    seoTitle: "Worship in Yosemite: Church Services, Easter and Weddings",
+    dek: "One chapel, built in 1879, holds a service every Sunday of the year. The service times, the summer campground services, the Catholic and Latter-day Saints options and how sure anyone can be of them, the Easter sunrise service that is at Lower Pines and not Glacier Point, and what a wedding in the park takes.",
+    seoDek: "Church services in Yosemite: the Valley Chapel's Sunday times, campground services, Catholic Mass, the Lower Pines Easter sunrise service, and wedding permits.",
+    date: "October 18, 2026",
+    isoDate: "2026-10-18",
+    isoModified: "2026-10-18",
+    read: "9 min",
+    placeholder: "Black oaks in autumn color on the Yosemite Valley floor",
+    image: "img/yosemite-valley-black-oaks-autumn.jpg",
+    credit: "Photo: Bernard Spragg / Wikimedia Commons (CC0)",
+    // The /firefall layout for an article (page-article.jsx), as on the Mist
+    // Trail piece. The two buttons jump to the chapel's Sunday schedule and
+    // to Easter week.
+    feature: {
+      eyebrow: "THE VALLEY CHAPEL · CAMPGROUNDS · EASTER · WEDDINGS",
+      focus: "50% 50%",
+      actions: [["#wy-chapel", "Sunday service times"], ["#wy-easter", "Easter sunrise"]],
+    },
+  },
   {
     slug: "yosemite-crowds-by-month",
     cat: "planning",
@@ -2507,6 +2532,7 @@ window.START_HERE = [
 // Curate a piece when it earns real search impressions, when it anchors a
 // cluster, or when it is the destination that needs the equity.
 window.RELATED = {
+  "worship-in-yosemite": ["thanksgiving-in-yosemite", "where-to-propose-in-yosemite", "yosemite-camping-complete-guide", "glacier-point-how-to-visit", "where-to-stay-in-yosemite", "bracebridge-dinner-and-vintners-holidays"],
   "yosemite-crowds-by-month": ["when-to-visit-yosemite", "yosemite-valley-parking-guide", "yosemite-without-reservations-2026", "glacier-point-how-to-visit", "mariposa-grove-how-to-visit", "yosemite-needs-a-reservation-system"],
   "yosemite-san-francisco-bus": ["yosemite-shuttle-and-yarts", "best-airport-for-yosemite", "yosemite-day-trip-from-bay-area", "sustainable-yosemite-car-free-zero-waste", "yosemite-in-one-or-two-days", "getting-to-yosemite"],
   // Housekeeping Camp vs Curry Village: the two canvas-roofed Valley stays.
@@ -2522,7 +2548,7 @@ window.RELATED = {
   "wawona-yosemite-guide": ["mariposa-grove-how-to-visit", "where-to-stay-in-yosemite", "where-to-eat-yosemite", "pets-in-yosemite", "wildfire-in-yosemite-during-your-trip", "yosemite-gateway-towns-compared"],
   // Yosemite in November: the evergreen month guide
   "yosemite-in-november": ["thanksgiving-in-yosemite", "yosemite-in-fall", "yosemite-in-winter", "yosemite-in-december", "mariposa-grove-how-to-visit", "bracebridge-dinner-and-vintners-holidays"],
-  "thanksgiving-in-yosemite": ["where-to-stay-in-yosemite", "where-to-eat-yosemite", "yosemite-in-winter", "yosemite-in-december", "bracebridge-dinner-and-vintners-holidays", "yosemite-in-november"],
+  "thanksgiving-in-yosemite": ["where-to-stay-in-yosemite", "where-to-eat-yosemite", "yosemite-in-december", "bracebridge-dinner-and-vintners-holidays", "yosemite-in-november", "worship-in-yosemite"],
   // The best Yosemite backpacking trips, in order: the permit, the pickup, and five routes
   "best-yosemite-backpacking-trips": ["first-yosemite-backpacking-trip", "yosemite-wilderness-permits-guide", "yosemite-walk-up-and-day-of-permits", "yosemite-bears-safety-guide", "tuolumne-meadows-in-a-day", "cathedral-lakes-day-hike"],
   // Yosemite trees: how to tell them apart, from the foothills to Tioga Pass
@@ -2637,7 +2663,7 @@ window.RELATED = {
   "watching-climbers-el-capitan": ["yosemite-for-non-hikers", "yosemite-photography-spots", "yosemite-rockfall", "yosemite-valley-parking-guide", "where-to-propose-in-yosemite", "yosemite-ranger-programs"],
   "mariposa-grove-how-to-visit": ["wawona-yosemite-guide", "giant-sequoias-fire-adaptation", "yosemite-accessibility-guide", "yosemite-gateway-towns-compared", "yosemite-for-non-hikers", "yosemite-tunnel-trees"],
   "yosemite-ranger-programs": ["yosemite-with-kids-no-reservations-2026", "yosemite-wildlife-viewing-guide", "yosemite-for-non-hikers", "yosemite-accessibility-guide", "yosemite-facelift-volunteer-guide", "yosemite-stargazing-tours-and-programs"],
-  "where-to-propose-in-yosemite": ["yosemite-photography-spots", "yosemite-for-non-hikers", "where-to-eat-yosemite", "where-to-stay-in-yosemite", "yosemite-in-one-or-two-days"],
+  "where-to-propose-in-yosemite": ["yosemite-photography-spots", "yosemite-for-non-hikers", "where-to-eat-yosemite", "where-to-stay-in-yosemite", "yosemite-in-one-or-two-days", "worship-in-yosemite"],
   "working-in-yosemite": ["yosemite-ranger-programs", "yosemite-gateway-towns-compared", "yosemite-connecting-to-traditions", "yosemite-needs-a-reservation-system", "yosemite-in-winter"],
   "yosemite-needs-a-reservation-system": ["when-to-visit-yosemite", "yosemite-without-reservations-2026", "yosemite-valley-parking-guide", "working-in-yosemite", "sustainable-yosemite-car-free-zero-waste"],
 

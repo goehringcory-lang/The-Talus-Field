@@ -178,6 +178,14 @@
 
   <!-- Articles -->
   <url>
+    <loc>https://thetalusfieldjournal.com/articles/worship-in-yosemite</loc>
+    <lastmod>2026-10-18</lastmod>
+    <image:image>
+      <image:loc>https://thetalusfieldjournal.com/img/responsive/yosemite-valley-black-oaks-autumn-1600.jpg</image:loc>
+      <image:title>Black oaks in autumn color on the Yosemite Valley floor</image:title>
+    </image:image>
+  </url>
+  <url>
     <loc>https://thetalusfieldjournal.com/articles/yosemite-crowds-by-month</loc>
     <lastmod>2026-10-17</lastmod>
     <image:image>
