@@ -1,4 +1,4 @@
-/* global React, HpPageHead, HpHeading, HpGuideBand, HpLetter, WebcamStrip, EntranceWaits */
+/* global React, HpPageHead, HpHeading, HpGuideBand, HpLetter, WebcamStrip, EntranceWaits, LodgingCta, AvailabilityLink, AffiliateDisclosure */
 
 // =============================================================================
 // WEBCAMS — `/webcams` route.
@@ -74,7 +74,9 @@ function WebcamsPage({ go }) {
         eyebrow="LIVE VIEWS"
         title="Yosemite webcams"
         intro="The live cameras worth checking before you drive in, what each one actually shows, and how often it refreshes. Five load on this page. The rest are one link away, because the operators would rather you watched them at home."
-      />
+      >
+        <AffiliateDisclosure />
+      </HpPageHead>
 
       <section className="hp-wrap hp-section hp-webcams__live">
         <HpHeading go={go} location="webcams" eyebrow="FOUR CAMERAS" title="Live now"
@@ -167,6 +169,27 @@ function WebcamsPage({ go }) {
             <a href="/distances" onClick={(e) => { e.preventDefault(); go("distances"); }}>the drive-time table</a>.
           </p>
         </section>
+
+        {/* The reader who checks a camera is deciding whether to go soon, so
+            the block answers the short-notice question with the two towns the
+            site's own data supports: El Portal is the closest (GATEWAYS in
+            page-stay.jsx, TO_VALLEY in page-distances.jsx), and Groveland is
+            the gateway article's "easier last-minute bookings in shoulder
+            season". Highway 140's weather line is /stay's corridor copy. */}
+        <LodgingCta
+          destination="El Portal, California"
+          heading="If the cameras say go"
+          note={
+            <>
+              A clear Valley on two cameras is a reason to go soon, and the bed is the hard part at short notice. El Portal is the closest town, 25 to 35 minutes from the Valley on Highway 140, the low road that takes rain on the days the others take snow. In shoulder season,{" "}
+              <AvailabilityLink destination="Groveland, California" list="page_webcams" slug="groveland" name="Groveland lodging search">Groveland</AvailabilityLink>{" "}
+              is the easier last-minute booking, 65 to 80 minutes out on Highway 120.
+            </>
+          }
+          list="page_webcams"
+          slug="el-portal"
+          cta="Search El Portal lodging →"
+        />
 
         <section style={{ marginTop: 48 }}>
           <p className="hp-eyebrow">ENTRANCE WAITS, LIVE</p>

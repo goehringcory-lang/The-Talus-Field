@@ -26,7 +26,16 @@ window.ARTICLE_BODIES["yosemite-in-september-2026"] = function YosemiteInSeptemb
     href: "/articles/yosemite-fire-restrictions-explained"
   }, "The restrictions piece"), " has the current rules and how to check them."), React.createElement("h2", null, "Crowds, and the Labor Day line"), React.createElement("p", null, "The month splits cleanly. Before Labor Day the Valley behaves like August: busy by mid-morning, worse at weekends, and parking gone in the three hubs by nine. After Labor Day it thins noticeably, and by the last week of the month a weekday morning in the Valley is quiet."), React.createElement("p", null, "If the dates are flexible at all, take the second half. The roads and cables are the same and the traffic is a fraction. That is the argument of ", React.createElement("a", {
     href: "/articles/when-to-visit-yosemite"
-  }, "the crowd forecast"), ", and September is where it pays best."), React.createElement("h2", null, "What is on in the evenings"), React.createElement("p", null, "The Conservation Heritage Center runs a free evening series through the month: poetry from Tahoe to Yosemite on the 11th, the legacy of the old Yosemite Village on the 12th, the park's mountain lions on the 18th and its bats on the 19th, all at 7:30 p.m. The Moonlight Tour runs its last trips of the season September 22 through 26, ticketed through the concessioner. Tom Killion's woodblocks are up at the Ansel Adams Gallery through September 26, free to walk through."), React.createElement("p", null, "Ranger programs continue through the month and thin as the seasonal staff leave. ", React.createElement("a", {
+  }, "the crowd forecast"), ", and September is where it pays best."), React.createElement(LodgingCta, {
+    destination: "Lee Vining, California",
+    heading: "Where to sleep for a high-country September",
+    note: React.createElement(React.Fragment, null, "The high country is the reason to come and the hardest place to sleep this month: White Wolf is closed for the season and Tuolumne Meadows Lodge's season ended September 13. Lee Vining, over the pass, is 30 minutes from the meadows while Tioga Road is open. For a Valley-first trip, the in-park rooms book through the concessioner about a year ahead, and ", React.createElement("a", {
+      href: "/articles/yosemite-gateway-towns-compared"
+    }, "the gateway towns comparison"), " covers the rest."),
+    list: "article_cta",
+    slug: "yosemite-in-september-2026",
+    cta: "Search Lee Vining lodging →"
+  }), React.createElement("h2", null, "What is on in the evenings"), React.createElement("p", null, "The Conservation Heritage Center runs a free evening series through the month: poetry from Tahoe to Yosemite on the 11th, the legacy of the old Yosemite Village on the 12th, the park's mountain lions on the 18th and its bats on the 19th, all at 7:30 p.m. The Moonlight Tour runs its last trips of the season September 22 through 26, ticketed through the concessioner. Tom Killion's woodblocks are up at the Ansel Adams Gallery through September 26, free to walk through."), React.createElement("p", null, "Ranger programs continue through the month and thin as the seasonal staff leave. ", React.createElement("a", {
     href: "/articles/yosemite-ranger-programs"
   }, "The programs piece"), " explains how to find the current schedule, and ", React.createElement("a", {
     href: "/now"
@@ -34,5 +43,5 @@ window.ARTICLE_BODIES["yosemite-in-september-2026"] = function YosemiteInSeptemb
     href: "/articles/first-time-yosemite-overwhelm"
   }, "Start with the basics"), " if this is your first visit, and ", React.createElement("a", {
     href: "/planning"
-  }, "plan the trip end to end"), " if you want the full framework."));
+  }, "plan the trip end to end"), " if you want the full framework."), React.createElement(AffiliateNote, null));
 };

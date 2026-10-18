@@ -1,4 +1,4 @@
-/* global React */
+/* global React, LodgingCta, AffiliateNote */
 
 window.ARTICLE_BODIES = window.ARTICLE_BODIES || {};
 
@@ -87,6 +87,19 @@ window.ARTICLE_BODIES["yosemite-in-september-2026"] = function YosemiteInSeptemb
         If the dates are flexible at all, take the second half. The roads and cables are the same and the traffic is a fraction. That is the argument of <a href="/articles/when-to-visit-yosemite">the crowd forecast</a>, and September is where it pays best.
       </p>
 
+      <LodgingCta
+        destination="Lee Vining, California"
+        heading="Where to sleep for a high-country September"
+        note={
+          <>
+            The high country is the reason to come and the hardest place to sleep this month: White Wolf is closed for the season and Tuolumne Meadows Lodge's season ended September 13. Lee Vining, over the pass, is 30 minutes from the meadows while Tioga Road is open. For a Valley-first trip, the in-park rooms book through the concessioner about a year ahead, and <a href="/articles/yosemite-gateway-towns-compared">the gateway towns comparison</a> covers the rest.
+          </>
+        }
+        list="article_cta"
+        slug="yosemite-in-september-2026"
+        cta="Search Lee Vining lodging →"
+      />
+
       <h2>What is on in the evenings</h2>
 
       <p>
@@ -106,6 +119,8 @@ window.ARTICLE_BODIES["yosemite-in-september-2026"] = function YosemiteInSeptemb
       <p>
         They are the same month. <a href="/articles/first-time-yosemite-overwhelm">Start with the basics</a> if this is your first visit, and <a href="/planning">plan the trip end to end</a> if you want the full framework.
       </p>
+
+      <AffiliateNote />
     </>
   );
 };

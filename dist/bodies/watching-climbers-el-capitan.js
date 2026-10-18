@@ -598,7 +598,14 @@ window.ARTICLE_BODIES["watching-climbers-el-capitan"] = function WatchingClimber
     className: "ff-hours"
   }, React.createElement("li", null, React.createElement("span", null, "Afternoon"), React.createElement("p", null, "In season, climbing rangers at the scopes, pointing out parties on the wall.")), React.createElement("li", null, React.createElement("span", null, "Late afternoon"), React.createElement("p", null, "Through a spotting scope, watch a team assemble a portaledge.")), React.createElement("li", null, React.createElement("span", null, "Sunset"), React.createElement("p", null, "The wall goes from gold to gray to black.")), React.createElement("li", {
     className: "is-glow"
-  }, React.createElement("span", null, "Dusk"), React.createElement("p", null, "The headlamps come on, scattered across the face like early stars.")), React.createElement("li", null, React.createElement("span", null, "A moonless night"), React.createElement("p", null, "Stay for the real stars.")))))), React.createElement("section", {
+  }, React.createElement("span", null, "Dusk"), React.createElement("p", null, "The headlamps come on, scattered across the face like early stars.")), React.createElement("li", null, React.createElement("span", null, "A moonless night"), React.createElement("p", null, "Stay for the real stars."))), React.createElement(LodgingCta, {
+    destination: "El Portal, California",
+    heading: "Stay for the headlamps, sleep close",
+    note: "The show ends after dark, so the drive back is the part to plan. Yosemite Valley Lodge is the nearest room in the park to the meadow and books through the concessioner; Camp 4 runs on its own reservation system. Outside the boundary, El Portal is the closest town, 25 to 35 minutes from the west end of the Valley, where the meadow sits.",
+    list: "article_cta",
+    slug: "watching-climbers-el-capitan",
+    cta: "Search El Portal lodging →"
+  })))), React.createElement("section", {
     className: "hp-wrap hp-section",
     id: "sec-7-spectator-etiquette",
     tabIndex: -1
@@ -658,5 +665,7 @@ window.ARTICLE_BODIES["watching-climbers-el-capitan"] = function WatchingClimber
   }, FAQ.map(([q, a], i) => React.createElement("details", {
     key: q,
     open: i < 2
-  }, React.createElement("summary", null, q), React.createElement("p", null, a)))))));
+  }, React.createElement("summary", null, q), React.createElement("p", null, a)))))), React.createElement("div", {
+    className: "hp-wrap fly-end"
+  }, React.createElement(AffiliateNote, null)));
 };

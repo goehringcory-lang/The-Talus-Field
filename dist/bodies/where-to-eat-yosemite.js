@@ -769,7 +769,14 @@ window.ARTICLE_BODIES["where-to-eat-yosemite"] = function WhereToEatYosemiteBody
     meta: "Lunch, dinner · $$ · Main Street, Groveland"
   }, "A building that went up before 1852 and became a saloon in 1896, with food, live music most weekends and karaoke on Thursdays. Groveland is a long half hour from the gate, so this is a dinner for people staying in town.")), React.createElement("p", {
     className: "eat-town__aside"
-  }, "Groveland is missing from the county list below because it's in Tuolumne County, not because there's nothing there."))))), React.createElement("section", {
+  }, "Groveland is missing from the county list below because it's in Tuolumne County, not because there's nothing there.")))), React.createElement(LodgingCta, {
+    destination: "Mariposa, California",
+    heading: "Eat and sleep in the same place",
+    note: "In the Valley, a room at Yosemite Valley Lodge or Curry Village puts dinner a walk away: the Mountain Room and Base Camp Eatery at one, the Pizza Deck and the Seven Tents Pavilion at the other. Both book through the concessioner, not through a search. Outside the park, Mariposa has the most restaurants of the gateway towns, and El Portal's four are half an hour closer on a night the Valley kitchens have shut.",
+    list: "article_cta",
+    slug: "where-to-eat-yosemite",
+    cta: "Search Mariposa lodging →"
+  })), React.createElement("section", {
     className: "ff-band",
     id: "sec-6-everything-that-exists-by-area",
     tabIndex: -1
@@ -1122,5 +1129,7 @@ window.ARTICLE_BODIES["where-to-eat-yosemite"] = function WhereToEatYosemiteBody
   }, FAQ.map(([q, a], i) => React.createElement("details", {
     key: q,
     open: i < 2
-  }, React.createElement("summary", null, q), React.createElement("p", null, a)))))));
+  }, React.createElement("summary", null, q), React.createElement("p", null, a)))))), React.createElement("div", {
+    className: "hp-wrap fly-end"
+  }, React.createElement(AffiliateNote, null)));
 };

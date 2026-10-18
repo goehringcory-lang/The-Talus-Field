@@ -442,12 +442,16 @@ function HalfDomeLotteryPage({ go }) {
             </aside>
             {/* A permit day is a pre-dawn start after a 10-to-12-hour day, which
                 makes the night before and the night after a real planning
-                problem, not an afterthought. The filled button is only ever an
-                Expedia search, as on /firefall. */}
+                problem, not an afterthought. The best beds for it are in the
+                park and book through the concessioner or Recreation.gov, so
+                they are named without a link (the /affiliate guardrail); the
+                one search is El Portal, the nearest town outside the boundary,
+                with the drive /distances publishes. The filled button is only
+                ever an Expedia search, as on /firefall. */}
             <aside className="ff-closing hd-stay" aria-label="Lodging availability">
               <p className="hp-eyebrow">THE NIGHT BEFORE, AND THE NIGHT AFTER</p>
-              <p>The hike wants a pre-dawn start and gives back a ten-to-twelve-hour day. Driving in from Oakhurst at 3 a.m. and back out at 10 p.m. is how a permit gets wasted (<HomeLink go={go} location="half_dome_stay" href="/distances">every town's drive to the Valley</HomeLink>). A bed in the Valley or in El Portal is the difference, and the permit date is known far enough ahead to book one.</p>
-              <AvailabilityLink destination="Yosemite National Park" list="page_half_dome" slug="half-dome-lottery" className="ff-book">Search lodging near the trailhead ↗</AvailabilityLink>
+              <p>The hike starts at Happy Isles before dawn and gives back a ten-to-twelve-hour day, so sleep at the east end of the Valley if you can. Curry Village is the nearest roof to the trailhead, the Ahwahnee and Yosemite Valley Lodge are farther down the Valley floor, and all three book through the concessioner; Upper, Lower and North Pines are the campgrounds nearest it, released on Recreation.gov five months ahead (<HomeLink go={go} location="half_dome_stay" href="/articles/yosemite-camping-complete-guide">the camping guide</HomeLink>). Failing those, El Portal is the closest town: 25 to 35 minutes to the Valley, plus 15 to 20 to the east end (<HomeLink go={go} location="half_dome_stay" href="/distances">every town's drive</HomeLink>). Driving in from Oakhurst at 3 a.m. is how a permit gets wasted.</p>
+              <AvailabilityLink destination="El Portal, California" list="page_half_dome" slug="el-portal" className="ff-book">Search El Portal lodging ↗</AvailabilityLink>
               <p className="ff-note">Availability search on Expedia; we may earn a commission, and the advice is the same either way. <a href="/affiliate">Disclosure.</a> Every option compared: <HomeLink go={go} location="half_dome_stay" href="/stay">where to stay</HomeLink>.</p>
             </aside>
           </div>

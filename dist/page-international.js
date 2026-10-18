@@ -176,7 +176,17 @@ function InternationalPage({
   }, "Start here"), ".")), React.createElement(LodgingCta, {
     destination: "Yosemite National Park",
     heading: "Book the bed before the flight",
-    note: "In-park rooms open a year ahead and gateway rooms fill months out for summer. One availability search around the park shows what your dates still hold.",
+    note: React.createElement(React.Fragment, null, "In-park rooms open a year ahead and gateway rooms fill months out for summer. Without a car, the base is the Valley itself, where the free shuttle covers the floor and the rooms book through the concessioner, or a town on Highway 140, the only corridor with a year-round bus into the park: YARTS calls at", " ", React.createElement(AvailabilityLink, {
+      destination: "Mariposa, California",
+      list: "page_international",
+      slug: "mariposa",
+      name: "Mariposa lodging search"
+    }, "Mariposa"), " ", "and", " ", React.createElement(AvailabilityLink, {
+      destination: "El Portal, California",
+      list: "page_international",
+      slug: "el-portal",
+      name: "El Portal lodging search"
+    }, "El Portal"), " ", "on the way up."),
     list: "page_international",
     slug: "international",
     cta: "Search lodging around Yosemite →"

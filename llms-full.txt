@@ -8,7 +8,7 @@
 Publisher: The Talus Field (https://thetalusfieldjournal.com). Editor: Cory Goehring.
 Citation guidance and the annotated page index: https://thetalusfieldjournal.com/llms.txt
 Canonical article URL pattern: https://thetalusfieldjournal.com/articles/<slug>
-Contents: 93 articles. Most recent update: 2026-10-17.
+Contents: 93 articles. Most recent update: 2026-10-18.
 
 Not in this file: the Yosemite Nature Notes archive, all 512 issues of the
 National Park Service's Yosemite bulletin (1922-2003), transcribed in full
@@ -5891,7 +5891,7 @@ Some links in this piece are affiliate links. If you buy or book through one, Th
 ## Yosemite in Fall: What Closes, and What You Get Instead
 
 URL: https://thetalusfieldjournal.com/articles/yosemite-in-fall
-Section: Seasonal Guides. Published: 2026-08-02. Last updated: 2026-08-02.
+Section: Seasonal Guides. Published: 2026-08-02. Last updated: 2026-10-18.
 Summary: Yosemite in fall: how September, October and November compare, when fall color peaks, when the Half Dome cables and Tioga Road close, and which week to pick.
 
 Every year around the second week of September, something happens in El Portal that I have come to use as a calendar. The traffic on Highway 140 thins out in the middle of the day. Not at 6 a.m., which is always quiet, and not at 8 p.m., but at 1 in the afternoon, the hour that in July is a slow-moving line of rental cars looking for parking two thousand feet above me. The park does not announce this. It just stops being crowded, the way a restaurant empties after the lunch rush, and for the next eight weeks Yosemite is a place you can walk around in.
@@ -5974,7 +5974,7 @@ Pick your week by which door matters most to you. If it is Half Dome, you are hi
 
 #### Fall is when the rooms come back
 
-September through November is the availability window that summer does not have. Rates ease after Labor Day and midweek October is a different market from midweek July. If the plan is flexible enough to move around a storm, search your dates both inside the park and in the gateway towns before committing to either.
+Fall's case is strongest midweek; book a weekend in the color weeks as early as you would a summer one. Groveland is the easier last-minute booking in shoulder season, but its Highway 120 approach is higher and gets chain controls the Highway 140 towns do not; Mariposa and El Portal are the low road in. Book flexible, for the reason above. The gateway towns comparison weighs all five.
 
 Search fall lodging around Yosemite →
 Where to stay: every option compared
@@ -7048,7 +7048,7 @@ Yosemite is not a superbloom park. If you have seen photographs of desert valley
 ## Watching Climbers on El Capitan: A Spectator's Guide
 
 URL: https://thetalusfieldjournal.com/articles/watching-climbers-el-capitan
-Section: Planning. Published: 2026-07-12. Last updated: 2026-10-17.
+Section: Planning. Published: 2026-07-12. Last updated: 2026-10-18.
 Summary: Where to watch climbers on El Capitan: the meadow or the bridge, why binoculars matter, the free Ask a Climber scopes, the dusk headlamps, and the best months.
 
 The wallAbout 3,000 vertical feet
@@ -7260,6 +7260,15 @@ The headlamps come on, scattered across the face like early stars.
 - A moonless night
 Stay for the real stars.
 
+#### Stay for the headlamps, sleep close
+
+The show ends after dark, so the drive back is the part to plan. Yosemite Valley Lodge is the nearest room in the park to the meadow and books through the concessioner; Camp 4 runs on its own reservation system. Outside the boundary, El Portal is the closest town, 25 to 35 minutes from the west end of the Valley, where the meadow sits.
+
+Search El Portal lodging →
+Where to stay: every option compared
+
+Availability links are affiliate links. The recommendations do not change for them. Disclosure.
+
 SPECTATOR ETIQUETTE
 
 ### Three rules, all easy
@@ -7309,6 +7318,8 @@ Why are there lights on El Capitan at night?
 Those are climbers' headlamps. Parties on multi-day routes sleep on the wall, on natural ledges or hanging portaledges, and at dusk their headlamps come on as they cook dinner and sort gear. Watching the wall light up from El Capitan Meadow is one of the best free evening shows in the park. Never shine a light at climbers from below; it ruins their night vision while they are managing ropes in the dark.
 Why is Camp 4 in Yosemite famous?
 Camp 4, the walk-in campground below the Valley's north wall, was the base camp of Yosemite climbing through its golden age, where the techniques and gear of modern big-wall climbing were worked out. It was added to the National Register of Historic Places in 2003.
+
+Some links in this piece are affiliate links. If you buy or book through one, The Talus Field may earn a small commission at no extra cost to you. The recommendations do not change for it. Full disclosure.
 
 ---
 
@@ -8500,7 +8511,7 @@ Bear spray is prohibited in Yosemite, classified among the park's prohibited wea
 ## Yosemite Bear Safety: What to Do When You See a Bear
 
 URL: https://thetalusfieldjournal.com/articles/yosemite-bears-safety-guide
-Section: Wildlife and Nature. Published: 2026-06-16. Last updated: 2026-10-01.
+Section: Wildlife and Nature. Published: 2026-06-16. Last updated: 2026-10-18.
 Summary: What to do if you see a bear in Yosemite: stand up, yell, never run. Only black bears live here, with no fatal attacks on record. Food storage rules and fines.
 
 You packed bear spray. You saw it on every packing list for every national park trip you've ever planned. It's sitting in the side pocket of your pack right now, and when you get to the Yosemite entrance station, a ranger is going to confiscate it. Bear spray is illegal in Yosemite, not merely discouraged. Possession and use are both prohibited. It is classified as a weapon under National Park Service regulations, alongside pellet guns and crossbows. This surprises roughly half the visitors I talk to on any given day.
@@ -8613,6 +8624,15 @@ The violation fine runs up to $5,000, and it is enforced. Rangers write citation
 
 For backcountry trips, bear canisters are required for all overnights. The park rents the Garcia Backpackers' Cache at its staffed wilderness permit stations; BearVault and several other models are NPS-approved if you bring your own. Place the canister at least 100 feet from your campsite, away from cliffs and water, and do not try to secure it with rocks or rope. That just gives the bear something to grip. The smooth container on open ground is the design. Trust it. And pack your canister efficiently. Put dense, calorie-rich food in first. Crush packaging to save space. A well-packed BV500 holds about five days of food for one person if you are not bringing a week's worth of luxury items. If you are planning your first trip, factor canister space into your meal planning from the start.
 
+#### Where you sleep changes the routine, not the rule
+
+A campsite or a Curry Village tent cabin comes with a steel bear box outside, and everything with a scent goes in it, every time, because canvas is not a barrier a bear respects. A hotel room is simpler: nothing scented stays in the car overnight, so it comes inside with you. A motel in a gateway town is outside the park's regulation but not outside bear country, since in fall the big males come down to El Portal for the acorns as well as to the Valley and Wawona (the fall guide).
+
+Search lodging around Yosemite →
+Where to stay: every option compared
+
+Availability links are affiliate links. The recommendations do not change for them. Disclosure.
+
 ### Yosemite bear incidents: the data from 1998 to 2026
 
 This is a conservation success story, and I wish I could end it there. I cannot.
@@ -8638,6 +8658,8 @@ I have watched people form a semicircle around a sow and two cubs in Cook's Mead
 The best thing you can do for Yosemite's bears is boring. Store your food properly. Drive slowly, especially at dawn and dusk when bears are most active on the roads. Give them space. Fifty yards, minimum. If a bear changes its behavior because of your presence, you are too close, and you are breaking the law.
 
 The best bear encounter is the one where you see a cinnamon-colored bear in a meadow at dusk, watch it graze on grass for ten minutes from 50 yards away, and walk back to your campsite grinning. That's the wildlife encounter you came for. That's the one you will remember for the rest of your life. Not the one where you chased it for a photo and it bluff-charged you. Not the one where it tore into your car because you left a granola bar under the seat. The quiet one. The one where you let it be a bear.
+
+Some links in this piece are affiliate links. If you buy or book through one, The Talus Field may earn a small commission at no extra cost to you. The recommendations do not change for it. Full disclosure.
 
 #### Sources
 
@@ -8787,7 +8809,7 @@ Some links in this piece are affiliate links. If you buy or book through one, Th
 ## Best Time to Visit Yosemite in 2026, by the Traffic Data
 
 URL: https://thetalusfieldjournal.com/articles/when-to-visit-yosemite
-Section: Planning. Published: 2026-06-11. Last updated: 2026-10-17.
+Section: Planning. Published: 2026-06-11. Last updated: 2026-10-18.
 Summary: When to visit Yosemite in 2026: a month-by-month crowd calendar from NPS data, what ending reservations changed, the seasonal roads, and the best days to go.
 
 ReservationsNone in 2026
@@ -9186,7 +9208,7 @@ Days to plan around. Memorial Day weekend, the one weekend that backed up in 202
 
 #### Once the dates are chosen, the bed is next
 
-Every pick above assumes you reach the gate early, and that depends on where you slept. Rooms inside the park open about a year ahead and go first; the gateway towns hold space longer. The full comparison of every option is one page over.
+Every pick above assumes you reach the gate early, and that depends on where you slept. Rooms inside the park open about a year ahead and go first, and the Valley campgrounds release five months ahead on the 15th. The month picks the town: Highway 140 through Mariposa and El Portal is the low, reliable road in winter, and Lee Vining is a base only while Tioga Road is open. The gateway towns comparison has the rest.
 
 Search Yosemite-area lodging →
 Where to stay: every option compared
@@ -9413,7 +9435,7 @@ Some links in this piece are affiliate links. If you buy or book through one, Th
 ## Yosemite in September 2026: What Closes, What Gets Better
 
 URL: https://thetalusfieldjournal.com/articles/yosemite-in-september-2026
-Section: Seasonal Guides. Published: 2026-08-25. Last updated: 2026-10-17.
+Section: Seasonal Guides. Published: 2026-08-25. Last updated: 2026-10-18.
 Summary: Yosemite in September 2026: dry waterfalls, the high country at its best, closing dates for pools, stores and shuttles, Mist Trail closures, and Half Dome odds.
 
 A man stopped me on the Valley loop in the first week of September last year, holding his phone up with a photograph of Yosemite Falls at full flood, and asked which trail got him to that. None of them, that month. The fall had been dry for six weeks. He had booked the trip in February off a photograph taken in May, which is the single most common way a Yosemite trip disappoints someone, and it is entirely avoidable.
@@ -9464,6 +9486,15 @@ The month splits cleanly. Before Labor Day the Valley behaves like August: busy 
 
 If the dates are flexible at all, take the second half. The roads and cables are the same and the traffic is a fraction. That is the argument of the crowd forecast, and September is where it pays best.
 
+#### Where to sleep for a high-country September
+
+The high country is the reason to come and the hardest place to sleep this month: White Wolf is closed for the season and Tuolumne Meadows Lodge's season ended September 13. Lee Vining, over the pass, is 30 minutes from the meadows while Tioga Road is open. For a Valley-first trip, the in-park rooms book through the concessioner about a year ahead, and the gateway towns comparison covers the rest.
+
+Search Lee Vining lodging →
+Where to stay: every option compared
+
+Availability links are affiliate links. The recommendations do not change for them. Disclosure.
+
 ### What is on in the evenings
 
 The Conservation Heritage Center runs a free evening series through the month: poetry from Tahoe to Yosemite on the 11th, the legacy of the old Yosemite Village on the 12th, the park's mountain lions on the 18th and its bats on the 19th, all at 7:30 p.m. The Moonlight Tour runs its last trips of the season September 22 through 26, ticketed through the concessioner. Tom Killion's woodblocks are up at the Ansel Adams Gallery through September 26, free to walk through.
@@ -9475,6 +9506,8 @@ Ranger programs continue through the month and thin as the seasonal staff leave.
 There is the September people book by accident, chasing a waterfall photograph into a month with no waterfalls, arriving to find the pool closed and the shuttle finished and the Mist Trail shut on a Tuesday. And there is the September people come back for: Tioga Road wide open, the meadows gold, the Valley emptying out after Labor Day, and the best Half Dome odds of the year.
 
 They are the same month. Start with the basics if this is your first visit, and plan the trip end to end if you want the full framework.
+
+Some links in this piece are affiliate links. If you buy or book through one, The Talus Field may earn a small commission at no extra cost to you. The recommendations do not change for it. Full disclosure.
 
 ---
 
@@ -9828,7 +9861,7 @@ Some links in this piece are affiliate links. If you buy or book through one, Th
 ## Where to eat in Yosemite: restaurants by area
 
 URL: https://thetalusfieldjournal.com/articles/where-to-eat-yosemite
-Section: Planning. Published: 2026-05-19. Last updated: 2026-10-17.
+Section: Planning. Published: 2026-05-19. Last updated: 2026-10-18.
 Summary: Yosemite restaurants by area: quick meals and sit-down dinners in the Valley, the Ahwahnee dress code, groceries, picnic areas, and food near each entrance.
 
 Most choiceYosemite Valley, by a long way
@@ -10356,6 +10389,15 @@ A building that went up before 1852 and became a saloon in 1896, with food, live
 
 Groveland is missing from the county list below because it's in Tuolumne County, not because there's nothing there.
 
+#### Eat and sleep in the same place
+
+In the Valley, a room at Yosemite Valley Lodge or Curry Village puts dinner a walk away: the Mountain Room and Base Camp Eatery at one, the Pizza Deck and the Seven Tents Pavilion at the other. Both book through the concessioner, not through a search. Outside the park, Mariposa has the most restaurants of the gateway towns, and El Portal's four are half an hour closer on a night the Valley kitchens have shut.
+
+Search Mariposa lodging →
+Where to stay: every option compared
+
+Availability links are affiliate links. The recommendations do not change for them. Disclosure.
+
 EVERYTHING THAT EXISTS, BY AREA
 
 ### The county's own list
@@ -10684,6 +10726,8 @@ Where should I eat near Yosemite?
 Choose restaurants near your route or lodging. The guide recommends 1850, Smokin Oak BBQ, and Tacos Sonora in Mariposa; South Gate Brewing Company and The Elderberry House in Oakhurst; and Latte Da Cafe in Lee Vining. On Highway 120, Rush Creek Lodge and Evergreen Lodge have full restaurants a few miles from the Big Oak Flat entrance. Check current hours before making a special trip.
 Do Yosemite picnic areas have water?
 Mostly not. The Park Service says only Lower Yosemite Fall and Church Bowl have drinking water and flush toilets; the other picnic areas have tables, vault toilets and, at most, grills. Bring water, and keep food within arm's reach.
+
+Some links in this piece are affiliate links. If you buy or book through one, The Talus Field may earn a small commission at no extra cost to you. The recommendations do not change for it. Full disclosure.
 
 ---
 
