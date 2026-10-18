@@ -1,5 +1,32 @@
 [
   {
+    "slug": "sentinel-dome-and-taft-point",
+    "cat": "trails",
+    "title": "Sentinel Dome and Taft Point: two short hikes from one Glacier Point Road trailhead",
+    "dek": "One parking lot, two walks of about two miles each: up to the bare top of Sentinel Dome, or out through forest to the unrailed rim at Taft Point and the Fissures. The Park Service's distances and the printed Guide's, the season the road allows, doing both, the storm rule on the dome, and what the edge at Taft Point asks of you.",
+    "seoTitle": "Sentinel Dome and Taft Point Hikes: Distance, Season, Safety",
+    "seoDek": "Sentinel Dome and Taft Point from the shared Glacier Point Road trailhead: NPS distances and elevation gain, season, combining both, and safety at the Fissures.",
+    "date": "October 18, 2026",
+    "isoDate": "2026-10-18",
+    "isoModified": "2026-10-18",
+    "read": "8 min",
+    "image": "img/taft-point.jpg",
+    "ogImage": { "url": "img/responsive/taft-point-1600.jpg", "width": 1600, "height": 1064 },
+    "placeholder": "The cliff edge at Taft Point, El Capitan across the valley",
+    "cover": true,
+    "wordCount": 2300,
+    "keywords": ["Sentinel Dome hike", "Taft Point hike", "Sentinel Dome and Taft Point", "Taft Point Yosemite", "Sentinel Dome Yosemite", "the Fissures Taft Point", "Taft Point safety", "Sentinel Dome Taft Point trailhead", "Glacier Point Road hikes", "Sentinel Dome Taft Point loop", "Taft Point distance", "Sentinel Dome elevation gain"],
+    "faq": [
+      { "q": "How long is the Sentinel Dome hike?", "a": "The Park Service's trailhead page lists Sentinel Dome at 2 miles round trip with 400 feet of elevation gain, one to two hours. The printed Yosemite Guide for summer 2026 gives 1.8 miles round trip from the same trailhead." },
+      { "q": "How long is the Taft Point hike?", "a": "The Park Service lists Taft Point at 2.2 miles round trip with about 200 feet of elevation gain on the return, one to two hours. The printed Yosemite Guide for summer 2026 gives 2.4 miles round trip." },
+      { "q": "Is Taft Point dangerous?", "a": "The trail is easy; the edge is not. The Fissures beside Taft Point are fractures in the granite with drops the park puts at up to 2,000 feet, and railings stand at only part of the overlook. Two visitors died in a fall of about 800 feet from Taft Point in October 2018. Stay back from any edge without a railing." },
+      { "q": "Can you do Sentinel Dome and Taft Point together?", "a": "Yes. Both trails start from the same lot on Glacier Point Road, so you can walk one, come back, and walk the other, about 4.2 miles by the park's web figures. The park also says the two can be joined by the Pohono Trail into a longer loop; it did not publish a loop distance on the pages read for this article." },
+      { "q": "When can you hike Sentinel Dome and Taft Point?", "a": "When Glacier Point Road is open to cars, which the Park Service puts at approximately late May through October or November, depending on conditions. The park says to expect trails to be snowy or wet in early spring. In winter the road is groomed for skiing beyond Badger Pass." },
+      { "q": "Are dogs allowed at Sentinel Dome or Taft Point?", "a": "No. The Park Service says pets and bicycles are not allowed on these hiking trails." }
+    ],
+    "related": ["glacier-point-how-to-visit", "glacier-point-road-open-2026", "yosemite-photography-spots", "yosemite-for-non-hikers", "four-mile-up-panorama-down", "mist-trail-the-real-guide"]
+  },
+  {
     "slug": "worship-in-yosemite",
     "cat": "planning",
     "title": "Worship in Yosemite: church services, Easter sunrise and weddings in the park",
@@ -658,7 +685,7 @@
       { "q": "Is there a bus to Glacier Point?", "a": "The park concessioner runs the Glacier Point Tour whenever the road is open. For the 2026 season it listed May 9 through October 12, departing Yosemite Valley Lodge at 8:30 am and 1:30 pm for a trip of about four hours. Round trip was $72.50 for adults and $50.50 for children two to twelve; the one-way hiker's ticket was $28.50 and $18.25. The bus does not pick up at the point, so the standard shape is bus up and walk down the Four Mile or Panorama Trail." },
       { "q": "Can you get to Glacier Point in winter?", "a": "Not by car. From roughly mid-December through March the first five miles of Glacier Point Road are plowed to Badger Pass and everything beyond is closed to cars and groomed for skiing and snowshoeing. Cross-country skiers can follow the road 10.5 miles one way, as a 21-mile day or an overnight. The concessioner's Glacier Point Ski Hut did not open for the 2025-26 winter, which it attributes to a lack of power; the alternative is camping with a wilderness permit from the Badger Pass Ranger Station. Tire chains may be required on the plowed section from late fall into early spring." }
     ],
-    "related": ["glacier-point-road-open-2026", "four-mile-up-panorama-down", "yosemite-for-non-hikers", "yosemite-stargazing-where-to-look-up", "yosemite-in-fall", "yosemite-in-winter"]
+    "related": ["glacier-point-road-open-2026", "sentinel-dome-and-taft-point", "four-mile-up-panorama-down", "yosemite-for-non-hikers", "yosemite-stargazing-where-to-look-up", "yosemite-in-fall"]
   },
   {
     "slug": "clouds-rest-hike",
@@ -1330,7 +1357,7 @@
       { "q": "Do you need a permit or tripod permission to photograph in Yosemite?", "a": "No permit is required for personal photography in the park. Tripods are fine as long as you avoid blocking rails and boardwalks and stay out of restored meadows." },
       { "q": "Is a phone camera good enough for Yosemite photography?", "a": "For almost everything, yes: Tunnel View, reflections, dogwoods, even alpenglow. Dedicated cameras still clearly win at long-lens detail on the big walls and at night, where moonbows and the Milky Way need a fast lens, a tripod, and long exposures." }
     ],
-    "related": ["yosemite-stargazing-where-to-look-up", "horsetail-fall-firefall", "four-mile-up-panorama-down", "yosemite-waterfalls-guide", "yosemite-in-fall", "watching-climbers-el-capitan"]
+    "related": ["yosemite-stargazing-where-to-look-up", "sentinel-dome-and-taft-point", "horsetail-fall-firefall", "four-mile-up-panorama-down", "yosemite-waterfalls-guide", "yosemite-in-fall"]
   },
   {
     "slug": "horsetail-fall-firefall",
@@ -2080,7 +2107,7 @@
       { "q": "How long is the drive on Glacier Point Road?", "a": "The road runs from the gate at Chinquapin to the point. It is paved and well plowed, but the corners are tight and the light alternates fast between sun and shadow, so it drives slower than the distance suggests." },
       { "q": "What is the elevation of Glacier Point?", "a": "7,200 feet. The viewpoint sits on the valley rim, which is why Half Dome reads at eye level from it rather than above you." }
     ],
-    "related": ["four-mile-up-panorama-down", "glacier-point-how-to-visit", "yosemite-photography-spots", "yosemite-stargazing-where-to-look-up", "yosemite-for-non-hikers"]
+    "related": ["four-mile-up-panorama-down", "sentinel-dome-and-taft-point", "glacier-point-how-to-visit", "yosemite-photography-spots", "yosemite-stargazing-where-to-look-up", "yosemite-for-non-hikers"]
   },
   {
     "slug": "mist-trail-the-real-guide",
@@ -2307,7 +2334,7 @@
       { "q": "Do I need a reservation to enter Yosemite?", "a": "Not in 2026. The Park Service says a reservation is not required to enter. You pay the entrance fee, $35 a vehicle for seven days, at the gate. Valley parking is the limit: the Park Service says lots are usually full after 9 a.m." },
       { "q": "How long does it take to drive through Yosemite?", "a": "There is no single figure, because the park is several drives. Glacier Point is about an hour from the Valley: 14 miles south on Wawona Road, then 16 on Glacier Point Road. Tioga Road is 46 miles across the park, climbing from 6,200 feet to nearly 10,000, with Tioga Pass at 9,945 feet. The Valley loop, with nine stops and lunch, takes three to four hours, and a stop you miss costs another trip around the one-way loop, twenty minutes or more in summer traffic." }
     ],
-    "related": ["yosemite-accessibility-guide", "glacier-point-how-to-visit", "yosemite-photography-spots", "yosemite-in-one-or-two-days", "watching-climbers-el-capitan", "yosemite-shuttle-and-yarts"]
+    "related": ["yosemite-accessibility-guide", "sentinel-dome-and-taft-point", "glacier-point-how-to-visit", "yosemite-photography-spots", "yosemite-in-one-or-two-days", "watching-climbers-el-capitan"]
   },
   {
     "slug": "pack-your-car-for-yosemite",

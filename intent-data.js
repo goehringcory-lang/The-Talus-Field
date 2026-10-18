@@ -195,6 +195,7 @@ window.ARTICLE_INTENT = {
   "where-to-stay-in-yosemite":                 { stage: ["before-booking"], who: ["first-trip", "families", "accessible"], topic: ["lodging"] },
   "housekeeping-camp-vs-curry-village":        { stage: ["before-booking"], who: ["first-trip", "families"], topic: ["lodging"] },
   "worship-in-yosemite":                       { stage: ["dates-set", "in-park"], who: [], topic: [] },
+  "sentinel-dome-and-taft-point":              { stage: ["dates-set", "in-park"], who: ["photography", "families"], topic: ["trails"] },
   "thanksgiving-in-yosemite":                  { stage: ["before-booking", "dates-set"], who: [], topic: ["lodging", "camping", "food", "conditions", "transportation"] },
   "bracebridge-dinner-and-vintners-holidays":  { stage: ["before-booking"], who: ["non-hikers"], topic: ["lodging", "food", "conditions"] },
   "yosemite-wildflowers-guide":                { stage: ["dates-set"], who: ["photography", "non-hikers"], topic: ["conditions"] },
@@ -327,6 +328,8 @@ window.ARTICLE_MONTHS = {
   "tioga-road-stop-by-stop": ["may", "jun", "jul", "aug", "sep", "oct"],
   // "Tioga Road is typically open from late May or June until sometime in November ... Treat these as summer and early fall trips."
   "best-yosemite-backpacking-trips": ["jun", "jul", "aug", "sep", "oct"],
+  // "Glacier Point Road is open to cars approximately late May through October or November, depending on conditions."
+  "sentinel-dome-and-taft-point": ["jun", "jul", "aug", "sep", "oct"],
   // Seasonal essays and month guides.
   "yosemite-in-fall": ["sep", "oct", "nov"],
   "yosemite-in-october-2026": ["oct"],

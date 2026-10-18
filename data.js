@@ -110,6 +110,7 @@ window.planningSeriesFor = function (slug) {
 // verifies this map stays in sync with the files in bodies/.
 // ============================================================
 window.BODY_VERSIONS = {
+  "sentinel-dome-and-taft-point": 1,
   "worship-in-yosemite": 1,
   "yosemite-crowds-by-month": 1,
   "yosemite-san-francisco-bus": 2,
@@ -134,7 +135,7 @@ window.BODY_VERSIONS = {
   "yosemite-in-october-2026": 11,
   "yosemite-falls-trail": 4,
   "cell-service-in-yosemite": 5,
-  "glacier-point-how-to-visit": 7,
+  "glacier-point-how-to-visit": 8,
   "clouds-rest-hike": 5,
   "yosemite-from-las-vegas": 5,
   "highway-140-closed-yosemite": 4,
@@ -159,7 +160,7 @@ window.BODY_VERSIONS = {
   "showy-milkweed-yosemite-valley": 7,
   "yosemite-connecting-to-traditions": 5,
   "yosemite-waterfalls-guide": 11,
-  "yosemite-photography-spots": 7,
+  "yosemite-photography-spots": 8,
   "horsetail-fall-firefall": 10,
   "yosemite-in-winter": 13,
   "where-to-stay-in-yosemite": 20,
@@ -186,14 +187,14 @@ window.BODY_VERSIONS = {
   "yosemite-with-kids-no-reservations-2026": 86,
   "tioga-road-opening-weekend": 85,
   "so-you-want-to-hike-half-dome": 85,
-  "glacier-point-road-open-2026": 88,
+  "glacier-point-road-open-2026": 89,
   "mist-trail-the-real-guide": 96,
   "first-time-yosemite-overwhelm": 95,
   "yosemite-without-reservations-2026": 89,
   "yosemite-during-smoke-season": 82,
   "yosemite-gateway-towns-compared": 112,
   "pack-your-car-for-yosemite": 88,
-  "yosemite-for-non-hikers": 91,
+  "yosemite-for-non-hikers": 92,
   "yosemite-stargazing-where-to-look-up": 90,
   "hetch-hetchy-the-other-yosemite-valley": 83,
   "what-is-a-talus-field": 7,
@@ -937,6 +938,30 @@ window.KIT_REI = {
 // AffiliateDisclosure line under the byline, before the first link;
 // scripts/check-affiliate-links.mjs fails when the flag and the body disagree.
 window.ARTICLES = [
+  {
+    slug: "sentinel-dome-and-taft-point",
+    aff: true,
+    cat: "trails",
+    title: "Sentinel Dome and Taft Point: two short hikes from one Glacier Point Road trailhead",
+    seoTitle: "Sentinel Dome and Taft Point Hikes: Distance, Season, Safety",
+    dek: "One parking lot, two walks of about two miles each: up to the bare top of Sentinel Dome, or out through forest to the unrailed rim at Taft Point and the Fissures. The Park Service's distances and the printed Guide's, the season the road allows, doing both, the storm rule on the dome, and what the edge at Taft Point asks of you.",
+    seoDek: "Sentinel Dome and Taft Point from the shared Glacier Point Road trailhead: NPS distances and elevation gain, season, combining both, and safety at the Fissures.",
+    date: "October 18, 2026",
+    isoDate: "2026-10-18",
+    isoModified: "2026-10-18",
+    read: "8 min",
+    placeholder: "The cliff edge at Taft Point, El Capitan across the valley",
+    image: "img/taft-point.jpg",
+    credit: "Photo: Cam Adams / Wikimedia Commons (CC0)",
+    // The /firefall layout for an article (page-article.jsx), as on the Mist
+    // Trail piece. The two buttons jump to the two hikes' numbers and to the
+    // safety section.
+    feature: {
+      eyebrow: "GLACIER POINT ROAD · SENTINEL DOME · TAFT POINT",
+      focus: "50% 50%",
+      actions: [["#sd-trailhead", "Distances and the trailhead"], ["#sd-safety", "Safety at Taft Point"]],
+    },
+  },
   {
     slug: "worship-in-yosemite",
     aff: true,
@@ -2532,6 +2557,7 @@ window.START_HERE = [
 // Curate a piece when it earns real search impressions, when it anchors a
 // cluster, or when it is the destination that needs the equity.
 window.RELATED = {
+  "sentinel-dome-and-taft-point": ["glacier-point-how-to-visit", "glacier-point-road-open-2026", "yosemite-photography-spots", "yosemite-for-non-hikers", "four-mile-up-panorama-down", "mist-trail-the-real-guide"],
   "worship-in-yosemite": ["thanksgiving-in-yosemite", "where-to-propose-in-yosemite", "yosemite-camping-complete-guide", "glacier-point-how-to-visit", "where-to-stay-in-yosemite", "bracebridge-dinner-and-vintners-holidays"],
   "yosemite-crowds-by-month": ["when-to-visit-yosemite", "yosemite-valley-parking-guide", "yosemite-without-reservations-2026", "glacier-point-how-to-visit", "mariposa-grove-how-to-visit", "yosemite-needs-a-reservation-system"],
   "yosemite-san-francisco-bus": ["yosemite-shuttle-and-yarts", "best-airport-for-yosemite", "yosemite-day-trip-from-bay-area", "sustainable-yosemite-car-free-zero-waste", "yosemite-in-one-or-two-days", "getting-to-yosemite"],
@@ -2583,7 +2609,7 @@ window.RELATED = {
   // depend on doing the phone work in the last town.
   "cell-service-in-yosemite": ["getting-to-yosemite", "so-you-want-to-hike-half-dome", "first-yosemite-backpacking-trip", "pack-your-car-for-yosemite", "yosemite-during-smoke-season", "where-to-stay-in-yosemite"],
   // The standing Glacier Point guide: the road, its season, the summer shuttle rule, the walks, the bus, winter.
-  "glacier-point-how-to-visit": ["glacier-point-road-open-2026", "four-mile-up-panorama-down", "yosemite-for-non-hikers", "yosemite-stargazing-where-to-look-up", "yosemite-in-fall", "yosemite-in-winter"],
+  "glacier-point-how-to-visit": ["glacier-point-road-open-2026", "sentinel-dome-and-taft-point", "four-mile-up-panorama-down", "yosemite-for-non-hikers", "yosemite-stargazing-where-to-look-up", "yosemite-in-fall"],
   // The Clouds Rest trail guide: the Half Dome alternative the catalog kept
   // recommending without a piece to send the reader to.
   "clouds-rest-hike": ["so-you-want-to-hike-half-dome", "tuolumne-meadows-in-a-day", "cathedral-lakes-day-hike", "yosemite-in-fall", "yosemite-wilderness-permits-guide", "first-yosemite-backpacking-trip"],
@@ -2630,7 +2656,7 @@ window.RELATED = {
   "yosemite-waterfalls-guide": ["mist-trail-the-real-guide", "when-to-visit-yosemite", "hetch-hetchy-the-other-yosemite-valley", "yosemite-photography-spots", "water-ouzels-waterfalls", "yosemite-in-march"],
 
   // Who the trip is for
-  "yosemite-for-non-hikers": ["yosemite-accessibility-guide", "glacier-point-how-to-visit", "yosemite-photography-spots", "yosemite-in-one-or-two-days", "watching-climbers-el-capitan", "yosemite-shuttle-and-yarts"],
+  "yosemite-for-non-hikers": ["yosemite-accessibility-guide", "sentinel-dome-and-taft-point", "glacier-point-how-to-visit", "yosemite-photography-spots", "yosemite-in-one-or-two-days", "watching-climbers-el-capitan"],
   "yosemite-accessibility-guide": ["yosemite-for-non-hikers", "yosemite-shuttle-and-yarts", "mariposa-grove-how-to-visit", "yosemite-valley-parking-guide", "yosemite-ranger-programs"],
   "yosemite-with-kids-no-reservations-2026": ["yosemite-ranger-programs", "yosemite-for-non-hikers", "swimming-in-the-merced", "yosemite-bears-safety-guide", "camping-in-yosemite-first-time"],
   "pets-in-yosemite": ["wawona-yosemite-guide", "yosemite-for-non-hikers", "yosemite-accessibility-guide", "yosemite-camping-complete-guide", "yosemite-gateway-towns-compared", "yosemite-valley-parking-guide"],
@@ -2649,7 +2675,7 @@ window.RELATED = {
   "yosemite-in-winter": ["yosemite-winter-hikes", "yosemite-in-december", "horsetail-fall-firefall", "when-to-visit-yosemite", "yosemite-in-march", "badger-pass-ski-area"],
   "yosemite-in-march": ["yosemite-in-winter", "yosemite-waterfalls-guide", "horsetail-fall-firefall", "when-to-visit-yosemite", "yosemite-in-february", "yosemite-in-january"],
   "tioga-road-opening-weekend": ["cathedral-lakes-day-hike", "tuolumne-meadows-in-a-day", "yosemite-from-las-vegas", "memorial-day-skip-the-valley-go-high-2026", "yosemite-stargazing-where-to-look-up", "tioga-road-stop-by-stop"],
-  "glacier-point-road-open-2026": ["four-mile-up-panorama-down", "glacier-point-how-to-visit", "yosemite-photography-spots", "yosemite-stargazing-where-to-look-up", "yosemite-for-non-hikers"],
+  "glacier-point-road-open-2026": ["four-mile-up-panorama-down", "sentinel-dome-and-taft-point", "glacier-point-how-to-visit", "yosemite-photography-spots", "yosemite-stargazing-where-to-look-up", "yosemite-for-non-hikers"],
   "yosemite-heat-safety-guide": ["swimming-in-the-merced", "mist-trail-the-real-guide", "when-to-visit-yosemite", "yosemite-during-smoke-season", "yosemite-waterfalls-guide", "yosemite-falls-trail"],
   "yosemite-during-smoke-season": ["yosemite-heat-safety-guide", "yosemite-fire-restrictions-explained", "when-to-visit-yosemite", "yosemite-in-fall", "giant-sequoias-fire-adaptation", "wildfire-in-yosemite-during-your-trip"],
   "yosemite-fire-restrictions-explained": ["yosemite-during-smoke-season", "wildfire-in-yosemite-during-your-trip", "yosemite-camping-complete-guide", "giant-sequoias-fire-adaptation", "yosemite-heat-safety-guide", "yosemite-facelift-volunteer-guide"],
@@ -2659,7 +2685,7 @@ window.RELATED = {
   "yosemite-stargazing-where-to-look-up": ["yosemite-stargazing-tours-and-programs", "tuolumne-meadows-in-a-day", "glacier-point-road-open-2026", "yosemite-photography-spots", "tioga-road-opening-weekend", "yosemite-in-fall"],
 
   // Doing and seeing
-  "yosemite-photography-spots": ["yosemite-stargazing-where-to-look-up", "horsetail-fall-firefall", "four-mile-up-panorama-down", "yosemite-waterfalls-guide", "yosemite-in-fall", "watching-climbers-el-capitan"],
+  "yosemite-photography-spots": ["yosemite-stargazing-where-to-look-up", "sentinel-dome-and-taft-point", "horsetail-fall-firefall", "four-mile-up-panorama-down", "yosemite-waterfalls-guide", "yosemite-in-fall"],
   "watching-climbers-el-capitan": ["yosemite-for-non-hikers", "yosemite-photography-spots", "yosemite-rockfall", "yosemite-valley-parking-guide", "where-to-propose-in-yosemite", "yosemite-ranger-programs"],
   "mariposa-grove-how-to-visit": ["wawona-yosemite-guide", "giant-sequoias-fire-adaptation", "yosemite-accessibility-guide", "yosemite-gateway-towns-compared", "yosemite-for-non-hikers", "yosemite-tunnel-trees"],
   "yosemite-ranger-programs": ["yosemite-with-kids-no-reservations-2026", "yosemite-wildlife-viewing-guide", "yosemite-for-non-hikers", "yosemite-accessibility-guide", "yosemite-facelift-volunteer-guide", "yosemite-stargazing-tours-and-programs"],
