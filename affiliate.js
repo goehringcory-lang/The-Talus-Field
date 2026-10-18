@@ -38,10 +38,11 @@ window.BOOKING_AFFILIATE_AID = "";
 // booking site Stay22 picks for them (dev.stay22.com/docs/allez). The site
 // uses the address form, through stay22SearchUrl below: a town search, never
 // a property, with a `campaign` per placement. The registry's `build` still
-// wraps an arbitrary lodging URL as `&link=`. Plain links only: the Stay22
-// site-wide script (Let Me Allez / LinkSwap) would rewrite the live Expedia,
-// Patagonia and Bookshop links, and the CSP in _headers allows no
-// third-party scripts.
+// wraps an arbitrary lodging URL as `&link=`. Separately, the owner installed
+// the Stay22 Script (Let Me Allez) site-wide in October 2026: an inline block
+// in the <head> of index.html and of every archive page (gen-archive.mjs),
+// with its hosts allow-listed in the CSP in _headers. It may convert
+// supported supplier links (Booking.com, Expedia, Hotels.com...) client-side.
 window.STAY22_AFFILIATE_ID = "thetalusfield";
 // Hipcamp (private-land camping) tracking-link prefix from the affiliate
 // dashboard; the destination is appended as an encoded ?u= parameter,
@@ -75,8 +76,8 @@ window.BOOKSHOP_LIST_URL = "https://bookshop.org/lists/yosemite-field-guides-a-n
 // evergreen creative with no printed rate or year (the /stay rules apply to
 // the pixels Expedia serves, and we cannot edit them). While either field is
 // empty, ExpediaBanner (components.jsx) renders nothing. Plain <img> + <a>
-// only: the CSP in _headers deliberately allows no third-party scripts or
-// iframes, and img-src already permits the hosted image. The component is not
+// only: the CSP in _headers allows no Expedia scripts or iframes, and img-src already
+// permits the hosted image. The component is not
 // in the gen-prerender.mjs sandbox; using it inside an article body would
 // mean mirroring it there first.
 window.EXPEDIA_BANNER = {
