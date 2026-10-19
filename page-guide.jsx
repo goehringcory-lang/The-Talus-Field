@@ -416,7 +416,7 @@ function GuideBuyBox({ go }) {
       </p>
 
       <p style={{ fontFamily: "var(--serif)", fontSize: 15, color: "var(--ink-2)", lineHeight: 1.55, margin: "12px 0 0" }}>
-        {terms.refund || "Refunded in full within 30 days if it does not work as described"}, per the{" "}
+        {terms.refund || "Refunded in full within 30 days, for any reason"}, per the{" "}
         <a
           href="/terms"
           onClick={(e) => {
@@ -1502,7 +1502,7 @@ function GuideTrust() {
           <strong>Updates included.</strong> Seasonal addenda and Secret Guide additions push silently during your 18 months.
         </div>
         <div>
-          <strong>30-day refund.</strong> If it does not work as described, it is refunded in full, per the terms.
+          <strong>30-day refund.</strong> If you are not satisfied for any reason, it is refunded in full, per the terms.
         </div>
       </div>
     </div>
@@ -1531,7 +1531,7 @@ function GuideAfterPurchase({ go }) {
         </li>
       </ol>
       <p className="guide-after__policy">
-        If the guide does not work as described, email <a href="mailto:cory@thetalusfieldjournal.com">cory@thetalusfieldjournal.com</a> within 30 days and it is refunded in full, per the{" "}
+        If you are not satisfied with the guide for any reason, email <a href="mailto:cory@thetalusfieldjournal.com">cory@thetalusfieldjournal.com</a> within 30 days and it is refunded in full, per the{" "}
         <a
           href="/terms"
           onClick={(e) => {
@@ -1578,7 +1578,7 @@ const GUIDE_FAQ = [
   },
   {
     q: "What is the refund policy?",
-    a: "If the guide does not work as described, email within 30 days of purchase and it is refunded in full. After a refund the access code is deactivated. The full policy is on the terms page.",
+    a: "If you are not satisfied with the guide for any reason, email within 30 days of purchase and it is refunded in full. After a refund the access code is deactivated. The full policy is on the terms page.",
   },
   {
     q: "What do I get that the free site doesn't already give me?",
@@ -1806,7 +1806,7 @@ function GuidePage({ go }) {
           <BuyNowButton location="guide_hero" />
           <p className="hp-terms">
             <LivePrice /> once · {terms.months || 18} months of access · No automatic renewal · {terms.updates || "Updates included during your access period"}.{" "}
-            {terms.refund || "Refunded in full within 30 days if it does not work as described"}, per the{" "}
+            {terms.refund || "Refunded in full within 30 days, for any reason"}, per the{" "}
             <a href="/terms" onClick={toTerms}>terms</a>.
           </p>
           <p className="hp-terms">
@@ -1956,8 +1956,8 @@ function GuidePage({ go }) {
             <h2>One small promise</h2>
 
             <p>
-              If the guide doesn't earn its place on your home screen, write to me and tell me why. I'd rather fix the trip that didn't work than pretend it did. The address is on the contact page, and if the guide does not work as described, the 30-day refund in the{" "}
-              <a href="/terms" onClick={toTerms}>terms</a> applies.
+              If the guide doesn't earn its place on your home screen, write to me and tell me why. I'd rather fix the trip that didn't work than pretend it did. The address is on the contact page, and the 30-day refund in the{" "}
+              <a href="/terms" onClick={toTerms}>terms</a> applies, whatever the reason.
             </p>
 
             <details className="guide-more">

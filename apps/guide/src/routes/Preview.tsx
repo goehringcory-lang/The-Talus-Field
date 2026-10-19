@@ -110,7 +110,7 @@ export default function Preview() {
               on file, and the offline park map are yours on every device you own. Updates
               are included during your access period, the Secret Guide included. A few
               entries still show a stand-in photo rather than the place itself. Refunded in
-              full within 30 days if it does not work as described.
+              full within 30 days, for any reason.
             </p>
             <div className="action-row">
               <Button href={GUIDE_CHECKOUT_URL} external>

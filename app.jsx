@@ -723,7 +723,7 @@ function buildSeo(route) {
         },
         {
           q: "What is the refund policy?",
-          a: "If the guide does not work as described, email within 30 days of purchase and it is refunded in full. After a refund the access code is deactivated. The full policy is on the terms page.",
+          a: "If you are not satisfied with the guide for any reason, email within 30 days of purchase and it is refunded in full. After a refund the access code is deactivated. The full policy is on the terms page.",
         },
         {
           q: "What do I get that the free site doesn't already give me?",

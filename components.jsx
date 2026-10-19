@@ -1648,8 +1648,8 @@ const GUIDE_TERMS = {
   months: 18,
   short: "One payment · 18 months of access · No automatic renewal",
   updates: "Updates included during your access period",
-  refund: "Refunded in full within 30 days if it does not work as described",
-  refundShort: "30-day refund if it does not work as described",
+  refund: "Refunded in full within 30 days, for any reason",
+  refundShort: "30-day refund, for any reason",
 };
 window.GUIDE_TERMS = GUIDE_TERMS;
 

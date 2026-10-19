@@ -396,7 +396,7 @@ const HUB_PROSE = {
       "The Field Guide",
       "An offline web app for Yosemite, written and field-checked by a naturalist who lives in the park. 114 entries across the Valley, Glacier Point and Mariposa Grove, Tuolumne, and Hetch Hetchy, including the 70-entry Secret Guide, each with a tappable GPS coordinate and an honest time budget, the flagship stops with a swap for when the lot is full. All 57 in-park day hikes with GPS tracks, elevation profiles and a daylight reading: the latest start that gets you down with an hour of light in hand. Ranger and partner programs, listed for the dates of your trip. A trip planner that builds each day in driving order with real drive-time buffers, lists the lotteries, release mornings and road windows that apply to your dates, then saves the plan to your calendar as a file. A Help card that reads your GPS position in the form a dispatcher uses, a bearing compass that points at any stop, and a companion mode that names the entry you are passing and reads it aloud for the passenger, all of which run on GPS with no signal. The Help card also puts 911 one tap away by call or text, but the call or text itself still needs a cell signal, as any call does. One download of about 70 MB carries the whole guide, the photos on file and a 3D park map with every trail drawn on the terrain, so everything keeps working when cell service dies."
     ) +
-    `<p>The guide is on sale now: $3.99 once for 18 months of access on every personal device, no subscription, refunded in full within 30 days if it does not work as described. The journal's free tools cover a lot on their own: <a href="/map">the trip planner map</a>, <a href="/itineraries">itineraries</a>, and <a href="/checklist">the first-week checklist</a>. Five entries from the guide can be read in full, with no account, in <a href="https://guide.thetalusfieldjournal.com/preview">the free sample</a>.</p>`,
+    `<p>The guide is on sale now: $3.99 once for 18 months of access on every personal device, no subscription, refunded in full within 30 days for any reason. The journal's free tools cover a lot on their own: <a href="/map">the trip planner map</a>, <a href="/itineraries">itineraries</a>, and <a href="/checklist">the first-week checklist</a>. Five entries from the guide can be read in full, with no account, in <a href="https://guide.thetalusfieldjournal.com/preview">the free sample</a>.</p>`,
   "/about": () =>
     hubProse(
       "About The Talus Field",
@@ -570,7 +570,7 @@ const HUB_PROSE = {
   "/terms": () =>
     hubProse(
       "Terms of Service",
-      "The terms that govern thetalusfieldjournal.com and the Field Guide app. The articles and the trip-planner map are free to browse. The Field Guide is a one-time purchase, not a subscription: 18 months of access on any device you sign in to, payment processed by Stripe, and a full refund within 30 days if it does not work as described."
+      "The terms that govern thetalusfieldjournal.com and the Field Guide app. The articles and the trip-planner map are free to browse. The Field Guide is a one-time purchase, not a subscription: 18 months of access on any device you sign in to, payment processed by Stripe, and a full refund within 30 days for any reason."
     ),
   "/affiliate": () =>
     hubProse(
@@ -930,7 +930,7 @@ function seoForPath(pathname, searchParams) {
         },
         {
           q: "What is the refund policy?",
-          a: "If the guide does not work as described, email within 30 days of purchase and it is refunded in full. After a refund the access code is deactivated. The full policy is on the terms page.",
+          a: "If you are not satisfied with the guide for any reason, email within 30 days of purchase and it is refunded in full. After a refund the access code is deactivated. The full policy is on the terms page.",
         },
         {
           q: "What do I get that the free site doesn't already give me?",
