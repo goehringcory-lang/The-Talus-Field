@@ -1,4 +1,13 @@
-/* global React, ResponsiveImage, HpPageHead, HpGuideBand, HpLetter */
+/* global React, ResponsiveImage, HpPageHead, HomeLink, HpGuideBand, HpLetter, EventIcon */
+
+// KIT: `/kit`. Since October 2026 it wears /firefall's system (`.hp-event`, the
+// `.ff-*` layout rules, EventIcon): a full-width cover, the fact row and jump
+// list, the tabbed checklists unchanged under them, a band on what the lists
+// are for, and a visible FAQ that mirrors the faq in edge/seo.js's "/kit"
+// entry word for word (change both). Every FAQ answer and every card restates
+// a note already printed on the lists below; nothing here is new advice.
+// The print stylesheet hides all of the new chrome, so Cmd+P still gives the
+// bare checklist.
 const { useState: useStateK, useCallback: useCallbackK } = React;
 
 // Ticked items persist here so a reader can plan over several sessions.
@@ -22,6 +31,19 @@ function loadKitChecked() {
 function saveKitChecked(ids) {
   window.safeStorage.setJSON(KIT_STORAGE_KEY, { v: KIT_STORAGE_VERSION, ids });
 }
+
+// Mirrored in edge/seo.js's "/kit" faq (the JSON-LD). Change both.
+const KIT_FAQ = [
+  ["What should I pack for a day hike in Yosemite?", "Start with a paper map and downloaded offline maps, because cell service dies past Crane Flat; a wide-brim sun hat and SPF 50 sunscreen, because granite reflects; a packable insulated jacket, because the Valley is warm at 10 a.m. and 40\u00b0F at the rim by 3 p.m.; a headlamp with a spare battery, because day hikes turn into night hikes; a water filter; twice the snacks you think you need; and cash in small bills, since parking is cash-only at several trailheads. The full day pack list is on this page."],
+  ["Is there cell service in Yosemite?", "Not reliably. Service dies past Crane Flat and the park has no reliable data connection, so download offline maps at home before you leave, and carry a paper map and a baseplate compass for when the phone is dead."],
+  ["Do I need a bear canister in Yosemite?", "For overnight backpacking, yes: a bear canister is required, along with a wilderness permit, which is required year-round. All food, trash and scented items go inside it. Yosemite rents Garcia jugs at the wilderness center. In a campground or a parking lot, all food and scented items go in the bear box, because the trunk is not bear-proof."],
+  ["Is bear spray allowed in Yosemite?", "No. Bear spray is not permitted in Yosemite. Do not bring it."],
+  ["Do I need tire chains in Yosemite?", "Carry them from November through April. They are required during chain controls and rangers check, so practice putting them on once at home."],
+  ["What should I wear in Yosemite?", "Layers. The Valley is warm at 10 a.m. and 40\u00b0F at the rim by 3 p.m., a synthetic insulated jacket still works if it gets wet, and a packable rain jacket earns its place because summer afternoon thunderstorms are not rare."],
+  ["Can I print the Yosemite packing list?", "Yes. Tick items off on the page, and your progress is saved in this browser, so you can close the tab and come back to it. Press Cmd+P or Ctrl+P for a clean printable copy of the list."],
+];
+
+const KIT_FACT_ICONS = ["walk", "bed", "car"];
 
 function KitPage({ go }) {
   const kit = window.KIT;
@@ -60,30 +82,60 @@ function KitPage({ go }) {
   }
 
   return (
-    <div className="page hp-kit">
+    <div className="page hp-tool hp-event hp-kit">
       <style>{`
         @media print {
-          header, footer, .hp-navigation, .hp-product, .hp-letter, .hp-kit__books, .kit__tabs, .kit__count, .kit__photo { display: none !important; }
+          header, footer, .hp-navigation, .hp-product, .hp-letter, .hp-kit__books, .kit__tabs, .kit__count, .kit__photo, .ff-cover, .ff-facts, .ff-toc, .ff-band, .kit-faq { display: none !important; }
           body { background: #fff !important; color: #000 !important; }
           a { color: #000 !important; text-decoration: none !important; }
           .kit-group { page-break-inside: avoid; }
         }
       `}</style>
 
-      <HpPageHead
-        go={go}
-        crumbs={[{ label: "Home", route: "home" }, { label: "Kit" }]}
-        eyebrow="KIT"
-        title="What to pack"
-        intro="Three packing checklists for a Yosemite trip: a day pack, what an overnight adds to it, and the full car load. Tick items off as you plan and pack. Your progress is saved in this browser, so you can close the tab and come back to it. Press Cmd+P or Ctrl+P for a clean printable copy."
-      >
-        <p className="hp-byline kit__aff-note">
-          Some gear here links to Patagonia through an affiliate link, marked with a star, and the book list at the end links to Bookshop.org the same way. If you buy through one, the site may earn a small commission at no extra cost to you. See the <a className="hp-inline" href="/affiliate" onClick={(e) => { e.preventDefault(); go("affiliate"); }}>Affiliate Disclosure</a>.
-        </p>
-      </HpPageHead>
+      <div className="ff-cover kit-cover">
+        <ResponsiveImage image="img/half-dome-subdome-hikers-heat.jpg" eager className="ff-cover__img"
+          alt="Two hikers with day packs and sun hats descending granite slabs above a forested canyon in the Yosemite high country"
+          sizes="100vw" />
+        <HpPageHead
+          go={go}
+          crumbs={[{ label: "Home", route: "home" }, { label: "Kit" }]}
+          eyebrow="PACKING CHECKLISTS · DAY PACK · OVERNIGHT · CAR LOAD"
+          title="What to pack for Yosemite"
+          intro="Three packing checklists for a Yosemite trip: a day pack, what an overnight adds to it, and the full car load. Tick items off as you plan and pack. Your progress is saved in this browser, so you can close the tab and come back to it. Press Cmd+P or Ctrl+P for a clean printable copy."
+          actions={<React.Fragment>
+            <HomeLink go={go} location="kit_head" className="hp-button" href="#kit-lists">Open the lists <span>↓</span></HomeLink>
+            <HomeLink go={go} location="kit_head" className="hp-link" href="#kit-faq">Packing questions ↓</HomeLink>
+          </React.Fragment>}
+        >
+          <p className="hp-byline kit__aff-note">
+            Some gear here links to Patagonia through an affiliate link, marked with a star, and the book list at the end links to Bookshop.org the same way. If you buy through one, the site may earn a small commission at no extra cost to you. See the <a className="hp-inline" href="/affiliate" onClick={(e) => { e.preventDefault(); go("affiliate"); }}>Affiliate Disclosure</a>.
+          </p>
+        </HpPageHead>
+        <p className="ff-cover__credit">Photo: Murray Foubister / Wikimedia Commons (CC BY-SA 2.0)</p>
+      </div>
+
+      <div className="hp-wrap">
+        <dl className="ff-facts">
+          {kit.lists.map((l, i) => (
+            <div key={l.slug}><EventIcon name={KIT_FACT_ICONS[i] || "check"} /><dt>{l.title}</dt><dd>{(l.groups || []).reduce((n, g) => n + (g.items || []).length, 0)} items</dd></div>
+          ))}
+          <div><EventIcon name="check" /><dt>Your ticks</dt><dd>Saved in this browser</dd></div>
+        </dl>
+        <nav className="ff-toc" aria-label="On this page">
+          <span>On this page</span>
+          {[
+            ["#kit-lists", "The lists"],
+            ["#kit-why", "What they prevent"],
+            ["#kit-books", "A field guide"],
+            ["#kit-faq", "Questions"],
+          ].map(([href, label]) => (
+            <HomeLink key={href} go={go} location="kit_toc" href={href}>{label}</HomeLink>
+          ))}
+        </nav>
+      </div>
 
       {/* Tab strip */}
-      <section className="hp-wrap hp-kit__tabs">
+      <section className="hp-wrap hp-kit__tabs" id="kit-lists" tabIndex={-1}>
         <div className="kit__tabs">
           {kit.lists.map((l) => (
             <button
@@ -218,8 +270,22 @@ function KitPage({ go }) {
         );
       })}
 
+      <section className="ff-band" id="kit-why" tabIndex={-1}>
+        <div className="hp-wrap hp-section">
+          <p className="hp-eyebrow">WHAT THE LISTS PREVENT</p>
+          <h2>Four mistakes the lists are written against</h2>
+          <ul className="ff-rules kit-why">
+            <li><EventIcon name="signal" size={26} /><strong>Counting on a signal</strong><p>Cell service dies past Crane Flat. Download offline maps at home and carry a paper map and a compass.</p></li>
+            <li><EventIcon name="therm" size={26} /><strong>Dressing for the Valley floor</strong><p>The Valley is warm at 10 a.m. and 40°F at the rim by 3 p.m. Pack an insulated layer and a rain jacket.</p></li>
+            <li><EventIcon name="no" size={26} /><strong>Trusting the trunk with food</strong><p>The trunk is not bear-proof. All food and scented items, deodorant, toothpaste, sunscreen and trash included, go in the bear box.</p></li>
+            <li><EventIcon name="snow" size={26} /><strong>Skipping the chains</strong><p>Carry tire chains from November through April. They are required during chain controls and rangers check. Practice once at home.</p></li>
+          </ul>
+          <p className="ff-note">Trip dates in hand? The <HomeLink go={go} location="kit_why" href="/conditions">conditions board</HomeLink> reads the weather and the gates the morning you drive in, and <HomeLink go={go} location="kit_why" href="/articles/when-to-visit-yosemite">when to visit</HomeLink> says what each month asks you to carry.</p>
+        </div>
+      </section>
+
       {/* The one thing in the pack that is not gear. */}
-      <section className="hp-wrap hp-reading hp-kit__books">
+      <section className="hp-wrap hp-reading hp-kit__books" id="kit-books" tabIndex={-1}>
         <div className="hp-reading__column">
           <window.BookshelfCard
             list="kit_bookshelf"
@@ -244,6 +310,22 @@ function KitPage({ go }) {
           href="/places"
           onClick={(e) => { e.preventDefault(); go("places"); }}
         >Open the directory →</a>
+      </section>
+
+      <section className="hp-wrap hp-section ff-split kit-faq" id="kit-faq" tabIndex={-1}>
+        <div>
+          <p className="hp-eyebrow">QUESTIONS</p>
+          <h2>Yosemite packing questions, answered</h2>
+          <p className="ff-lede">The rest of the preparation: <HomeLink go={go} location="kit_faq" href="/checklist">the first-week checklist</HomeLink>, <HomeLink go={go} location="kit_faq" href="/dates">the dates that decide a trip</HomeLink> and <HomeLink go={go} location="kit_faq" href="/articles/yosemite-bears-safety-guide">bear safety in the park</HomeLink>.</p>
+        </div>
+        <div className="ff-faq">
+          {KIT_FAQ.map(([q, a], i) => (
+            <details key={q} open={i < 2}>
+              <summary>{q}</summary>
+              <p>{a}</p>
+            </details>
+          ))}
+        </div>
       </section>
 
       {/* The purchase ask: kit readers are packing for confirmed dates. */}
