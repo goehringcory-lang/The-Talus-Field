@@ -20,6 +20,11 @@
 /* Landing ----------------------------------------------------------------- */
 .arc-landing, .arc-year, .arc-issue { padding-top: 40px; }
 .arc-landing__head, .arc-year__head { border-bottom: 1px solid var(--hp-rule); padding-bottom: 40px; }
+/* The 1925 masthead, re-inked in --ink on a transparent ground (made from the
+   scan's luminance), so it sits on the paper rather than in a white box. */
+.arc-masthead { margin: 0 0 36px; max-width: 720px; }
+.arc-masthead img { display: block; width: 100%; height: auto; }
+.arc-masthead figcaption { margin-top: 10px; font: 600 8px var(--sans); letter-spacing: 1.7px; text-transform: uppercase; color: var(--hp-muted); }
 .arc-stats { display: flex; gap: 40px; flex-wrap: wrap; margin: 28px 0 0; padding: 18px 0; border-block: 1px solid var(--hp-rule); }
 .arc-stats div { display: flex; flex-direction: column; }
 .arc-stats dt { font: 600 8px var(--sans); letter-spacing: 1.7px; text-transform: uppercase; color: var(--hp-accent); }
