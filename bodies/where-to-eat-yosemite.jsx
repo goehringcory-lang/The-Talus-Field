@@ -621,8 +621,8 @@ window.ARTICLE_BODIES["where-to-eat-yosemite"] = function WhereToEatYosemiteBody
       </section>
 
       <section className="hp-wrap hp-section" id="sec-5-restaurants-near-yosemite-the-gateway-to" tabIndex={-1}>
-        <p className="hp-eyebrow">RESTAURANTS NEAR YOSEMITE</p>
-        <h2>The gateway towns, and where to eat in each</h2>
+        <p className="hp-eyebrow">THE GATEWAY TOWNS</p>
+        <h2>Restaurants near Yosemite, town by town</h2>
         <p className="ff-lede">Where to base yourself is a bigger question than where to eat, and <a href="/articles/yosemite-gateway-towns-compared">the gateway towns comparison</a> answers it, with <a href="/distances">every town's drive time to the Valley</a> in one table. This is the food half.</p>
 
         <div className="eat-towns">

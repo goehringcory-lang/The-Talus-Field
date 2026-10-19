@@ -619,7 +619,7 @@ window.ARTICLE_BODIES["where-to-eat-yosemite"] = function WhereToEatYosemiteBody
     tabIndex: -1
   }, React.createElement("p", {
     className: "hp-eyebrow"
-  }, "RESTAURANTS NEAR YOSEMITE"), React.createElement("h2", null, "The gateway towns, and where to eat in each"), React.createElement("p", {
+  }, "THE GATEWAY TOWNS"), React.createElement("h2", null, "Restaurants near Yosemite, town by town"), React.createElement("p", {
     className: "ff-lede"
   }, "Where to base yourself is a bigger question than where to eat, and ", React.createElement("a", {
     href: "/articles/yosemite-gateway-towns-compared"

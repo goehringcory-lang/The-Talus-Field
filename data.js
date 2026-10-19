@@ -213,7 +213,7 @@ window.BODY_VERSIONS = {
   "water-ouzels-waterfalls": 82,
   "working-in-yosemite": 80,
   "yosemite-in-one-or-two-days": 96,
-  "where-to-eat-yosemite": 97,
+  "where-to-eat-yosemite": 98,
   "yosemite-in-march": 8,
 };
 
@@ -1924,6 +1924,11 @@ window.ARTICLES = [
     placeholder: "El Capitan across Yosemite Valley from the south rim in summer, the Valley floor far below",
     image: "img/yosemite-valley-granite-summer-cory-goehring.jpg",
     credit: "Photo: Cory Goehring",
+    // The article-end Field Guide band, in this article's terms (page-article.jsx).
+    guide: {
+      title: "The meadow, and the rest of the loop.",
+      intro: "The Field Guide pins the El Capitan Meadow pullouts and the rest of the Valley loop in driving order, each stop with its parking and timing notes. It works offline, which is most of the park.",
+    },
     // The /firefall layout for an article (page-article.jsx): a full-width
     // photo cover, and a body that lays out its own sections. `focus` is the
     // cover crop's object-position (El Capitan sits right of centre).
@@ -2105,6 +2110,11 @@ window.ARTICLES = [
     placeholder: "Vernal Fall at high water in late spring, the start of the park's heaviest months",
     image: "img/vernal-fall-high-water.jpg",
     credit: "Photo: Brandon Raines / Pexels",
+    // The article-end Field Guide band, in this article's terms (page-article.jsx).
+    guide: {
+      title: "The calendar picks the month. The guide runs the day.",
+      intro: "The Field Guide's front page shows the Valley forecast, the day's light and live entrance waits whenever there is signal. The stops, hikes and parking notes are stored on the phone, so the rest works with none.",
+    },
     // The /firefall layout for an article (page-article.jsx), as on the dining
     // piece: a full-width photo cover, and a body that lays out its own
     // sections. The two buttons jump to the crowd calendar and the gate clock.
@@ -2208,9 +2218,9 @@ window.ARTICLES = [
     aff: true,
     cat: "planning",
     title: "Where to eat in Yosemite: restaurants by area",
-    seoTitle: "Where to Eat in Yosemite: Restaurants, Groceries and Picnics",
+    seoTitle: "Where to Eat in Yosemite: Restaurants In and Near the Park",
     dek: "Quick meals and sit-down dinners in Yosemite Valley, the Ahwahnee's dress code, where to buy groceries, the places with no food at all, picnic areas, food near each entrance, and the seasonal kitchens that close while the roads are still open.",
-    seoDek: "Yosemite restaurants by area: quick meals and sit-down dinners in the Valley, the Ahwahnee dress code, groceries, picnic areas, and food near each entrance.",
+    seoDek: "Yosemite restaurants by area: quick meals and sit-down dinners in the Valley, the Ahwahnee dress code, groceries, and restaurants near each entrance town.",
     date: "May 19, 2026",
     isoDate: "2026-05-19",
     isoModified: "2026-10-18",
@@ -2218,6 +2228,11 @@ window.ARTICLES = [
     placeholder: "The Merced River at Cathedral Beach, one of the Valley's picnic areas",
     image: "img/cathedral-beach-quiet-picnic.jpg",
     credit: "Photo: Todd Petrie / Wikimedia Commons (CC BY 2.0)",
+    // The article-end Field Guide band, in this article's terms (page-article.jsx).
+    guide: {
+      title: "The hours, in your pocket.",
+      intro: "The Field Guide's dining directory carries fifty-one kitchens and stores in the park and the gateway towns, with in-park hours from the current Yosemite Guide edition and the days each town kitchen closes. It works offline, so the hours are there when you are deciding where lunch is.",
+    },
     // The /firefall layout for an article (page-article.jsx), as on the El
     // Capitan piece: a full-width photo cover, and a body that lays out its
     // own sections. The two buttons jump to the Valley and the table.
@@ -2506,6 +2521,11 @@ window.ARTICLES = [
     placeholder: "Lower Yosemite Fall through the pines, reached on a 1-mile paved loop",
     image: "img/lower-yosemite-fall-footbridge.jpg",
     credit: "Photo: James St. John / Wikimedia Commons (CC BY 2.0)",
+    // The article-end Field Guide band, in this article's terms (page-article.jsx).
+    guide: {
+      title: "Every stop on this page, with where to park.",
+      intro: "The Field Guide lays the roadside stops out in driving order, with how long each one takes, where to park, and what to do when the lot is full. It works offline, which is most of the park.",
+    },
     // The /firefall layout for an article (page-article.jsx), as on the dining
     // piece: a full-width photo cover, and a body that lays out its own
     // sections.
@@ -2537,7 +2557,7 @@ window.ARTICLES = [
     title: "Mariposa vs Oakhurst vs Groveland: Best Town to Stay Near Yosemite",
     seoTitle: "Oakhurst vs Mariposa vs Groveland: Best Base for Yosemite",
     dek: "El Portal for a shorter Valley drive, Mariposa for services, Oakhurst for the sequoias, Groveland for Highway 120, and Lee Vining for the high country in season.",
-    seoDek: "Oakhurst vs Mariposa vs Groveland, plus El Portal and Lee Vining: drive times to the Valley, the closest town to each entrance, winter, kids, and which to book.",
+    seoDek: "Mariposa is closer to Yosemite Valley, 60 to 75 minutes on Highway 140. Oakhurst is 20 to 25 minutes from the South Entrance. Plus Groveland and El Portal.",
     date: "April 26, 2026",
     isoDate: "2026-04-26",
     isoModified: "2026-10-17",
@@ -2545,6 +2565,11 @@ window.ARTICLES = [
     placeholder: "A mural in Mariposa, the gateway town on Highway 140",
     image: "img/mariposa-mural.jpg",
     credit: "Photo: Guywelch2000 / Wikimedia Commons (CC0)",
+    // The article-end Field Guide band, in this article's terms (page-article.jsx).
+    guide: {
+      title: "The town is settled. Now the day.",
+      intro: "The Field Guide is the in-park half of this plan: every stop in driving order with its parking notes, and a dining directory that covers the gateway towns as well as the park. It works offline, which is most of the park.",
+    },
   },
   {
     slug: "yosemite-during-smoke-season",

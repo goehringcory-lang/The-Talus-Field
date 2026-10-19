@@ -709,8 +709,8 @@ function ArticlePage({
   })))), tripIntent && React.createElement(HpGuideBand, {
     go: go,
     location: "article_end",
-    title: "The park, in your pocket.",
-    intro: "The app version of this journal: offline maps, GPS at the trailhead, and every stop with parking and timing notes. Works with no signal, which is most of the park.",
+    title: article.guide && article.guide.title || "The park, in your pocket.",
+    intro: article.guide && article.guide.intro || "The app version of this journal: offline maps, GPS at the trailhead, and every stop with parking and timing notes. Works with no signal, which is most of the park.",
     sample: true
   }), bookshelf && window.BookshelfCard && React.createElement("section", {
     className: "hp-wrap hp-reading hp-article__bookshelf"
