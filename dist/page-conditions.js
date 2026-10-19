@@ -319,6 +319,7 @@ function CondSeasonKit() {
     slug: season.id
   }));
 }
+var COND_FAQ = [["How do I check Yosemite conditions today?", "Use this page the morning you drive in: entrance wait estimates and Valley parking lot status from the National Park Service, live webcams, and National Weather Service point forecasts for Wawona, Yosemite Valley and Tuolumne Meadows. For whether a road is open, use the Park Bulletin or the NPS current conditions page, and in winter and spring call the recorded road line at 209-372-0200."], ["Is Yosemite open today?", "The park is open all year, but its roads are not all open all year. Tioga Road and Glacier Point Road close for snow in winter, and chain controls can apply on the highways in. Whether a gate or road is open right now is on the NPS current conditions page and the Park Bulletin; the recorded road line is 209-372-0200."], ["How long are the lines at the Yosemite entrance stations?", "It depends on the hour and the season. On a summer morning the arch at Highway 140 backs up first; by ten, all of the gates do. Live wait estimates for each gate are at the top of this page, and if they are already climbing at eight, an earlier start would have beaten them."], ["Is Yosemite Valley parking full?", "On busy summer days the Valley's lots limit the day, and a full lot is the usual reason a plan falls apart. Be through the gate before 8 a.m. or after 4 p.m. on a summer weekend. The live status of the Valley lots is on this page."], ["What is the weather in Yosemite?", "It depends on elevation, because the park spans nearly 11,000 feet. Wawona and Yosemite Valley sit at about 4,000 feet. Tuolumne Meadows is at 8,600 feet and runs 15 to 25 degrees colder than the Valley, and Tioga Pass tops the road at 9,945 feet. This page links the National Weather Service point forecast for each of the three places most trips go."], ["What should I pack for Yosemite's conditions?", "Dress for the highest point of your day, not the Valley floor. The gear list on this page changes with the month, and the packing checklists carry the full day pack, overnight and car lists."], ["Is there a phone number for Yosemite road conditions?", "Yes. The National Park Service's recorded road line is 209-372-0200. In winter and spring, call it before trusting any website, this one included."]];
 function ConditionsPage({
   go
 }) {
@@ -327,8 +328,16 @@ function ConditionsPage({
   var onWaits = useCallback(digest => setWaits(digest), []);
   var onLots = useCallback(digest => setLots(digest), []);
   return React.createElement("div", {
-    className: "page hp-design hp-conditions"
-  }, React.createElement(HpPageHead, {
+    className: "page hp-design hp-tool hp-event hp-conditions"
+  }, React.createElement("div", {
+    className: "ff-cover cd-cover"
+  }, React.createElement(ResponsiveImage, {
+    image: "img/tioga-road-above-tenaya-lake.jpg",
+    eager: true,
+    className: "ff-cover__img",
+    alt: "A car on Tioga Road above Tenaya Lake, with granite domes and a bank of summer cloud over the high country",
+    sizes: "100vw"
+  }), React.createElement(HpPageHead, {
     go: go,
     crumbs: [{
       label: "Home",
@@ -349,12 +358,41 @@ function ConditionsPage({
       location: "conditions_hero",
       className: "hp-link",
       href: "#cond-roads"
-    }, "Roads and closures ↓")),
-    aside: React.createElement(ConditionsReadout, {
-      waits: waits,
-      lots: lots
-    })
-  }, React.createElement(AffiliateDisclosure, null, "The seasonal gear list under the forecasts has Patagonia affiliate links. If you buy through one, The Talus Field may earn a commission at no extra cost to you.")), React.createElement("section", {
+    }, "Roads and closures ↓"))
+  }, React.createElement(AffiliateDisclosure, null, "The seasonal gear list under the forecasts has Patagonia affiliate links. If you buy through one, The Talus Field may earn a commission at no extra cost to you.")), React.createElement("p", {
+    className: "ff-cover__credit"
+  }, "Photo: U.S. National Archives (public domain)")), React.createElement("div", {
+    className: "hp-wrap"
+  }, React.createElement("dl", {
+    className: "ff-facts"
+  }, React.createElement("div", null, React.createElement(EventIcon, {
+    name: "clock"
+  }), React.createElement("dt", null, "Entrance waits"), React.createElement("dd", null, "Live, from the NPS")), React.createElement("div", null, React.createElement(EventIcon, {
+    name: "camera"
+  }), React.createElement("dt", null, "Webcams"), React.createElement("dd", null, "Live, on this page")), React.createElement("div", null, React.createElement(EventIcon, {
+    name: "therm"
+  }), React.createElement("dt", null, "Forecasts"), React.createElement("dd", null, "Three elevations")), React.createElement("div", null, React.createElement(EventIcon, {
+    name: "car"
+  }), React.createElement("dt", null, "Road line"), React.createElement("dd", null, "209-372-0200"))), React.createElement("nav", {
+    className: "ff-toc",
+    "aria-label": "On this page"
+  }, React.createElement("span", null, "On this page"), [["#cond-waits", "Entrance waits"], ["#cond-cams", "Webcams"], ["#cond-forecasts", "Forecasts"], ["#cond-parking", "Parking"], ["#cond-roads", "Roads"], ["#cond-faq", "Questions"]].map(([href, label]) => React.createElement(HomeLink, {
+    key: href,
+    go: go,
+    location: "conditions_toc",
+    href: href
+  }, label)))), React.createElement("section", {
+    className: "hp-wrap cd-now"
+  }, React.createElement("div", {
+    className: "cd-now__copy"
+  }, React.createElement("p", {
+    className: "hp-eyebrow"
+  }, "THE TWO NUMBERS THAT DECIDE THE MORNING"), React.createElement("p", {
+    className: "ff-lede"
+  }, "How long the gate line is, and whether the Valley still has a place to park. Both come straight from the National Park Service and refresh every five minutes; everything below them is a camera, a forecast, or a link to whoever does know.")), React.createElement(ConditionsReadout, {
+    waits: waits,
+    lots: lots
+  })), React.createElement("section", {
     className: "hp-wrap hp-section cond-section",
     id: "cond-waits",
     tabIndex: -1
@@ -372,8 +410,12 @@ function ConditionsPage({
   }, "Live wait estimates from the National Park Service, refreshed every few minutes. Summer mornings the arch at Highway 140 backs up first; by ten, all of them do. If the numbers below are already climbing at eight, you wanted to be inside an hour ago."), React.createElement(EntranceWaits, {
     variant: "board",
     onData: onWaits
-  })), React.createElement("section", {
-    className: "hp-wrap hp-section cond-section"
+  })), React.createElement("div", {
+    className: "ff-band"
+  }, React.createElement("section", {
+    className: "hp-wrap hp-section cond-section",
+    id: "cond-cams",
+    tabIndex: -1
   }, React.createElement(HpHeading, {
     go: go,
     location: "conditions",
@@ -381,12 +423,14 @@ function ConditionsPage({
     title: "Webcams",
     link: {
       href: "/webcams",
-      label: "All cameras, and how to read them ↗"
+      label: "All cameras, and how to read them ↗"
     }
   }), React.createElement(WebcamStrip, {
     variant: "board"
-  })), React.createElement("section", {
-    className: "hp-wrap hp-section cond-section"
+  }))), React.createElement("section", {
+    className: "hp-wrap hp-section cond-section",
+    id: "cond-forecasts",
+    tabIndex: -1
   }, React.createElement(HpHeading, {
     go: go,
     location: "conditions",
@@ -399,8 +443,13 @@ function ConditionsPage({
   }), React.createElement("p", {
     className: "hp-sub"
   }, "The park spans nearly 11,000 feet of elevation, so one forecast is never enough. These are National Weather Service point forecasts for the three places most trips actually go."), React.createElement(ConditionsElevation, null), React.createElement(CondSeasonKit, null)), React.createElement("div", {
+    className: "ff-band"
+  }, React.createElement("div", {
     className: "hp-wrap hp-section cond-section cond-split"
-  }, React.createElement("section", null, React.createElement(HpHeading, {
+  }, React.createElement("section", {
+    id: "cond-parking",
+    tabIndex: -1
+  }, React.createElement(HpHeading, {
     eyebrow: "04 / THE VALLEY LOTS",
     title: "Parking lots"
   }), React.createElement("p", {
@@ -452,7 +501,7 @@ function ConditionsPage({
       e.preventDefault();
       go("itineraries");
     }
-  }, "itineraries"), " ", "adjust to what is open."))), React.createElement("div", {
+  }, "itineraries"), " ", "adjust to what is open.")))), React.createElement("div", {
     className: "hp-wrap cond-dial"
   }, React.createElement("a", {
     className: "dialplate",
@@ -469,7 +518,36 @@ function ConditionsPage({
     className: "dialplate__digits"
   }, "209-372-0200"), React.createElement("span", {
     className: "dialplate__label"
-  }, "NPS recorded road line")))), React.createElement(HpGuideBand, {
+  }, "NPS recorded road line")))), React.createElement("section", {
+    className: "hp-wrap hp-section ff-split",
+    id: "cond-faq",
+    tabIndex: -1
+  }, React.createElement("div", null, React.createElement("p", {
+    className: "hp-eyebrow"
+  }, "QUESTIONS"), React.createElement("h2", null, "Yosemite conditions, answered"), React.createElement("p", {
+    className: "ff-lede"
+  }, "Planning further out? ", React.createElement(HomeLink, {
+    go: go,
+    location: "conditions_faq",
+    href: "/dates"
+  }, "The dates that decide a trip"), ", ", React.createElement(HomeLink, {
+    go: go,
+    location: "conditions_faq",
+    href: "/kit"
+  }, "the packing checklists"), ", ", React.createElement(HomeLink, {
+    go: go,
+    location: "conditions_faq",
+    href: "/distances"
+  }, "the drive-time table"), " and ", React.createElement(HomeLink, {
+    go: go,
+    location: "conditions_faq",
+    href: "/articles/when-to-visit-yosemite"
+  }, "when to visit"), " cover what a reading cannot.")), React.createElement("div", {
+    className: "ff-faq"
+  }, COND_FAQ.map(([q, a], i) => React.createElement("details", {
+    key: q,
+    open: i < 2
+  }, React.createElement("summary", null, q), React.createElement("p", null, a))))), React.createElement(HpGuideBand, {
     go: go,
     location: "conditions",
     title: "Past the entrance, this page stops loading.",

@@ -488,9 +488,9 @@ function buildSeo(route) {
       })),
     }));
     return {
-      title: `Packing checklists for Yosemite | ${SITE_NAME}`,
+      title: `Yosemite Packing List: day pack, overnight and car checklists | ${SITE_NAME}`,
       description:
-        "Three Yosemite packing checklists to tick off as you plan: a day pack, what an overnight adds, and the full car load. The small, easily forgotten things included.",
+        "Yosemite packing lists you can tick off and print: a day pack, an overnight backpack and the full car load, with the reason for every item. Saved in your browser.",
       canonical: url,
       ogType: "website",
       image: SITE_DEFAULT_IMAGE,
@@ -761,9 +761,9 @@ function buildSeo(route) {
       },
     },
     conditions: {
-      title: `Yosemite Conditions: webcams, waits, and weather | ${SITE_NAME}`,
+      title: `Yosemite Conditions Today: roads, webcams, waits, weather | ${SITE_NAME}`,
       description:
-        "Live Yosemite webcams, entrance wait times, and elevation-aware weather forecasts on one page. Check it the morning you drive in.",
+        "Yosemite conditions today: live entrance waits, Valley parking, webcams, forecasts for three elevations, and where to check roads. Check it the morning you drive in.",
       ogType: "website",
       breadcrumb: [["Home", `${SITE_ORIGIN}/`], ["Conditions", null]],
     },
@@ -854,7 +854,7 @@ function buildSeo(route) {
     webcams: {
       title: "Yosemite Webcams: Live Half Dome, Yosemite Falls, El Capitan",
       description:
-        "Live Yosemite webcams of Half Dome, Yosemite Falls, El Capitan and Wawona: what each one shows, the best hour to check it, and what to use for Tuolumne Meadows.",
+        "Live Yosemite webcams of Half Dome, Yosemite Falls, El Capitan, Wawona and the High Sierra: what each shows, the best hour to check it, and what to use for Tioga Road.",
       ogType: "website",
       breadcrumb: [["Home", `${SITE_ORIGIN}/`], ["Webcams", null]],
     },
