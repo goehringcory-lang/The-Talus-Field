@@ -23,8 +23,6 @@
 //      the prerendered fragment would carry a different tracking link than
 //      the SPA renders ("mirror any ID change", CLAUDE.md).
 //   6. A kit item whose aff is neither the dormant "#" nor a Patagonia link.
-//   7. A window.KIT_REI key that is not a dormant kit item, or a value that
-//      is neither a search query nor an https://www.rei.com/ URL.
 import fs from "node:fs";
 import path from "node:path";
 import { parse } from "@babel/parser";
@@ -33,7 +31,7 @@ import { ROOT, loadDataJs } from "./lib/catalog.mjs";
 
 const traverse = traverseMod.default || traverseMod;
 const REL = "sponsored noopener";
-// The kit's store CTAs also carry nofollow (October 2026, ahead of REI).
+// The kit's store CTAs also carry nofollow (October 2026).
 const REL_OK = new Set([REL, "sponsored nofollow noopener"]);
 const AFF_HREF_RE = /buildAffiliateLink|buildPatagoniaAffiliateLink|stay22SearchUrl|stay22\.com|pxf\.io|prf\.hn|bookshop\.org|BOOKSHOP_LIST_URL|search\.href|\.aff\b|EXPEDIA_BANNER|\bb\.href/;
 const BODY_AFF_RE = /<LodgingCta\b|<AvailabilityLink\b|<AffLink\b|<RecommendedCard\b|data-aff-network/;
@@ -108,7 +106,7 @@ for (const m of prerender.matchAll(/rel:\s*"([^"]*sponsored[^"]*)"/g)) {
 }
 
 // 3: body markup and the catalog flag agree.
-const { articles, kit, kitRei } = loadDataJs();
+const { articles, kit } = loadDataJs();
 const bySlug = new Map(articles.map((a) => [a.slug, a]));
 let flagged = 0;
 for (const [file, src] of sources) {
@@ -154,29 +152,9 @@ for (const list of (kit && kit.lists) || []) {
   }
 }
 
-// 7: the REI map names only dormant kit items, so a Patagonia item never
-// grows a second store and a renamed item never leaves a dead key behind.
-const kitById = new Map();
-for (const list of (kit && kit.lists) || []) for (const it of list.allItems || []) kitById.set(it.id, it);
-const rei = kitRei;
-let reiItems = 0;
-if (!rei) errors.push("window.KIT_REI not found in data.js");
-else for (const [id, q] of Object.entries(rei)) {
-  reiItems++;
-  const it = kitById.get(id);
-  if (!it) errors.push(`KIT_REI: "${id}" is not a kit item`);
-  else if (it.aff && it.aff !== "#") errors.push(`KIT_REI: "${id}" already links to Patagonia`);
-  if (!q || typeof q !== "string") errors.push(`KIT_REI: "${id}" has no search query`);
-  // A URL value is the destination as-is (page-kit.jsx tests this exact
-  // prefix); anything else URL-shaped would be searched for as text.
-  else if (/^[a-z][a-z0-9+.-]*:|^\/\/|^www\.|rei\.com/i.test(q) && !q.startsWith("https://www.rei.com/")) {
-    errors.push(`KIT_REI: "${id}" looks like a URL but is not https://www.rei.com/...: ${q}`);
-  }
-}
-
 if (errors.length) {
   for (const e of errors) console.error(`✗ ${e}`);
   console.error(`\n${errors.length} affiliate-link problem(s). The rules are the affiliate bullet in CLAUDE.md.`);
   process.exit(1);
 }
-console.log(`check-affiliate-links: ${jsxFiles.length} sources, ${flagged} flagged articles, ${kitLinks} kit links, ${reiItems} REI-mapped kit items; markup and disclosures consistent`);
+console.log(`check-affiliate-links: ${jsxFiles.length} sources, ${flagged} flagged articles, ${kitLinks} kit links; markup and disclosures consistent`);
