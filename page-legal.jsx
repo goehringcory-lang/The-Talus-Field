@@ -36,14 +36,14 @@ function LegalShell({ go, title, eyebrow, updated, sections, numberedHeads = tru
 
 function PrivacyPage({ go }) {
   return (
-    <LegalShell go={go} title="Privacy Policy" eyebrow="Legal" updated="July 8, 2026" sections={9} numberedHeads>
+    <LegalShell go={go} title="Privacy Policy" eyebrow="Legal" updated="October 19, 2026" sections={9} numberedHeads>
       <p>This privacy policy explains what information The Talus Field collects when you visit this website, subscribe to the newsletter, or use the Field Guide app, how that information is used, and the choices you have about it. It is written to comply with the General Data Protection Regulation (GDPR) and the California Consumer Privacy Act (CCPA).</p>
 
       <h2>1. Who we are</h2>
       <p>The Talus Field is an independent publication operated by Cory Goehring, based in El Portal, California. You can reach us at cory@thetalusfieldjournal.com.</p>
 
       <h2>2. What we collect</h2>
-      <p>When you visit the site, we collect anonymized analytics data: pages viewed, referrer, approximate location at the country level, browser and device type. We use this to understand which articles are useful and which are not. We do not collect IP addresses in identifiable form.</p>
+      <p>When you visit the site, Google Analytics collects usage data on our behalf: pages viewed, referrer, approximate location at the country level, browser and device type. We use this to understand which articles are useful and which are not. We do not collect IP addresses in identifiable form.</p>
       <p>When you subscribe to the newsletter, we collect your email address and the date you subscribed. We do not collect your name unless you provide it.</p>
       <p>When you contact us through the contact form, we collect the name, email, subject, and message you submit.</p>
       <p>When you buy and sign in to the Field Guide app, we collect the email address or username tied to your purchase and a record of that purchase. Payment is processed by Stripe, and we never see or store your card number. Your trip plan itself, the stops and dates you choose, is stored on your own device, not on our servers.</p>
@@ -59,8 +59,16 @@ function PrivacyPage({ go }) {
       <p>You can disconnect Google Calendar at any time from the Account page. Disconnecting removes the trip events we added to your Google calendar, revokes our authorization token, and deletes it from our server. You can also revoke our access directly from your Google account's security settings at <a href="https://myaccount.google.com/connections" target="_blank" rel="noopener noreferrer">myaccount.google.com/connections</a>.</p>
       <p>The Talus Field's use and transfer of information received from Google APIs adheres to the <a href="https://developers.google.com/terms/api-services-user-data-policy" target="_blank" rel="noopener noreferrer">Google API Services User Data Policy</a>, including the Limited Use requirements.</p>
 
-      <h2>5. Cookies</h2>
-      <p>This site uses a single first-party cookie to remember your reading preferences. It does not use advertising cookies, tracking cookies, or third-party cookies. We do not run advertisements.</p>
+      <h2>5. Cookies and browser storage</h2>
+      <p>The site's own code sets no cookies. It keeps a few things in your browser's local storage so they survive a reload: your saved trip, your packing-list ticks, whether you have subscribed or closed a signup box, and how far you got in an article. That storage stays on your device, and clearing this site's data in your browser removes it. The Field Guide app keeps your sign-in and your trip plan the same way.</p>
+      <p>Three outside services do set cookies or similar identifiers:</p>
+      <ul>
+        <li><strong>Google Analytics</strong> runs on every page and sets cookies (named <code>_ga</code>) that tell a returning browser from a new one. It is how the site counts page views and signups. Google describes its handling of that data at <a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer">policies.google.com/privacy</a>, and its <a href="https://tools.google.com/dlpage/gaoptout" target="_blank" rel="noopener noreferrer">opt-out browser add-on</a> stops Google Analytics on every site.</li>
+        <li><strong>Stay22</strong>'s script runs on every page and turns some lodging links into affiliate links, as the <a href="/affiliate">affiliate disclosure</a> explains. It may set cookies or similar identifiers so that a booking can be credited to this site.</li>
+        <li><strong>Affiliate partners</strong> (Expedia through Partnerize, Patagonia through Impact, and Bookshop.org) set cookies on their own sites when you follow a link there, which is how a purchase is credited to this site. Nothing of theirs is set before you click.</li>
+      </ul>
+      <p>The trip-planner map loads Google Maps, and Field Guide checkout runs on Stripe; each sets its own cookies under its own policy. Videos play from youtube-nocookie.com and load only when you press play. The site runs no ad network and sells no data about its readers.</p>
+      <p>You can block or delete any of these cookies in your browser's settings. The articles, the map, and the Field Guide all work without them.</p>
 
       <h2>6. Your rights (GDPR / CCPA)</h2>
       <p>You have the right to access, correct, export, or delete any personal information we hold about you. To exercise any of these rights, email cory@thetalusfieldjournal.com with the subject line "Data request." We respond within 30 days.</p>
