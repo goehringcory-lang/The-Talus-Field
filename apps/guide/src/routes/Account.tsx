@@ -163,7 +163,7 @@ function AccessStatusCard() {
             <p className="card__note" style={{ marginTop: 4 }}>
               Access began {formatAccessDate(me.purchasedAt)}.
               {nowMs - me.purchasedAt * 1000 <= 30 * 86_400_000 &&
-                ` If you paid for the guide and it does not work as described, email within 30 days of purchase (by ${formatAccessDate(
+                ` If you paid for the guide and are not satisfied for any reason, email within 30 days of purchase (by ${formatAccessDate(
                   me.purchasedAt + 30 * 86_400,
                 )}) and it is refunded in full.`}
             </p>

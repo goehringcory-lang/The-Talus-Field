@@ -115,12 +115,12 @@ function PrivacyPage({ go }) {
 
 function TermsPage({ go }) {
   return (
-    <LegalShell go={go} title="Terms of Service" eyebrow="Legal" updated="April 1, 2026" sections={8} numberedHeads>
+    <LegalShell go={go} title="Terms of Service" eyebrow="Legal" updated="October 19, 2026" sections={8} numberedHeads>
       <p>These terms govern your use of The Talus Field (thetalusfieldjournal.com) and the Field Guide app. By using either, you agree to them. The articles and the interactive trip-planner map on this site are free to browse. The Field Guide app is a paid product; its purchase terms are in section 1.</p>
 
       <h2>1. The Field Guide purchase</h2>
       <p>The Field Guide is a one-time purchase, not a subscription. Payment is processed by Stripe; we never see or store your card number. A purchase grants access to the Field Guide for 18 months from the purchase date, on any device you sign in to, including all updates published during that window. Access is for you and the people traveling with you, not for redistribution.</p>
-      <p>If the guide does not work as described, email cory@thetalusfieldjournal.com within 30 days of purchase and we will refund it in full. After a refund, your access code is deactivated.</p>
+      <p>If you are not satisfied with the guide for any reason, email cory@thetalusfieldjournal.com within 30 days of purchase and we will refund it in full. After a refund, your access code is deactivated.</p>
 
       <h2>2. Use of content</h2>
       <p>All articles, photographs, and other content on this site are copyrighted by Cory Goehring unless otherwise noted. You may quote up to 300 words in another work with a clear link back to the original article. You may not republish, syndicate, or train machine learning models on any content without written permission.</p>
