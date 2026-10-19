@@ -5,7 +5,7 @@
   <!-- Hub pages -->
   <url>
     <loc>https://thetalusfieldjournal.com/</loc>
-    <lastmod>2026-10-18</lastmod>
+    <lastmod>2026-10-19</lastmod>
     <image:image>
       <image:loc>https://thetalusfieldjournal.com/img/responsive/valley-view-sunset-rodrigo-soares-1600.jpg</image:loc>
       <image:title>El Capitan and Bridalveil Fall above the Merced River at sunset</image:title>
@@ -13,7 +13,7 @@
   </url>
   <url>
     <loc>https://thetalusfieldjournal.com/articles</loc>
-    <lastmod>2026-10-18</lastmod>
+    <lastmod>2026-10-19</lastmod>
   </url>
   <url>
     <loc>https://thetalusfieldjournal.com/planning</loc>
@@ -35,7 +35,7 @@
   </url>
   <url>
     <loc>https://thetalusfieldjournal.com/section/trails</loc>
-    <lastmod>2026-10-18</lastmod>
+    <lastmod>2026-10-19</lastmod>
   </url>
   <url>
     <loc>https://thetalusfieldjournal.com/section/wildlife</loc>
@@ -177,6 +177,14 @@
   </url>
 
   <!-- Articles -->
+  <url>
+    <loc>https://thetalusfieldjournal.com/articles/yosemite-backpacking-off-season</loc>
+    <lastmod>2026-10-19</lastmod>
+    <image:image>
+      <image:loc>https://thetalusfieldjournal.com/img/responsive/backcountry-camp-alpenglow-stephen-leonardi-1600.jpg</image:loc>
+      <image:title>A backpacking tent on granite at first light, alpenglow on the spires above camp</image:title>
+    </image:image>
+  </url>
   <url>
     <loc>https://thetalusfieldjournal.com/articles/yosemite-tire-chains</loc>
     <lastmod>2026-10-18</lastmod>
