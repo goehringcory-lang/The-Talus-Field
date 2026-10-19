@@ -843,13 +843,16 @@ function ArticlePage({ slug, go }) {
           It sits above the related rail since October 2026 (UX sales audit
           ticket 08): below it, a reader met six exits before the offer. A
           move, not a second offer; the location value is unchanged so the
-          before and after compare directly. */}
+          before and after compare directly. A catalog entry's optional
+          `guide` block ({ title, intro }) swaps in copy that ties the guide to
+          the article's own task (October 2026, the top-five search pass); it
+          is still the one band, and GA4's page path splits it by article. */}
       {tripIntent && (
         <HpGuideBand
           go={go}
           location="article_end"
-          title="The park, in your pocket."
-          intro="The app version of this journal: offline maps, GPS at the trailhead, and every stop with parking and timing notes. Works with no signal, which is most of the park."
+          title={(article.guide && article.guide.title) || "The park, in your pocket."}
+          intro={(article.guide && article.guide.intro) || "The app version of this journal: offline maps, GPS at the trailhead, and every stop with parking and timing notes. Works with no signal, which is most of the park."}
           sample
         />
       )}
