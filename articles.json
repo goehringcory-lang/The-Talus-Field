@@ -1,5 +1,31 @@
 [
   {
+    "slug": "yosemite-backpacking-off-season",
+    "cat": "trails",
+    "title": "Backpacking Yosemite in the off-season: self-registered permits, the October 15 parking rule, and where to start",
+    "dek": "From mid-October the wilderness permit gets easier and the trailheads get fewer. How self-registration works, why Tioga and Glacier Point Road trailheads stop working for overnights on October 15, the canister you can rent in only one place, and the low trailheads that carry a trip into November.",
+    "seoTitle": "Yosemite Backpacking in Fall and Winter: Permits and Trailheads",
+    "seoDek": "Backpacking Yosemite from October to April: free self-registered wilderness permits, the October 15 overnight parking ban, low trailheads, and snow camping.",
+    "date": "October 19, 2026",
+    "isoDate": "2026-10-19",
+    "isoModified": "2026-10-19",
+    "read": "11 min",
+    "image": "img/backcountry-camp-alpenglow-stephen-leonardi.jpg",
+    "ogImage": { "url": "img/responsive/backcountry-camp-alpenglow-stephen-leonardi-1600.jpg", "width": 1600, "height": 1067 },
+    "placeholder": "A backpacking tent on granite at first light, alpenglow on the spires above camp",
+    "wordCount": 2880,
+    "keywords": ["Yosemite backpacking in winter", "Yosemite backpacking November", "Yosemite wilderness permit self-registration", "Yosemite winter wilderness permit", "Tioga Road overnight parking October 15", "Glacier Point Road overnight parking", "Hetch Hetchy backpacking Rancheria Falls", "Little Yosemite Valley in winter", "Yosemite snow camping", "Yosemite bear canister rental winter"],
+    "faq": [
+      { "q": "Do you need a wilderness permit to backpack in Yosemite in winter?", "a": "Yes. A wilderness permit is required for every overnight stay in the Yosemite Wilderness every month of the year. What ends in October is the reservation system: the park's permit FAQ says that from approximately November through April permits are issued without reservations or fees, and you self-register at the permit station nearest your trailhead the day before or the day you start." },
+      { "q": "Can you park overnight on Tioga Road or Glacier Point Road in the fall?", "a": "No. From October 15, overnight parking is not allowed anywhere on Tioga Road or Glacier Point Road, including the parking lots reached from them. Trailheads like Sunrise Lakes, May Lake or Mono Meadow become day-hike trailheads until the roads close for winter, typically sometime in November." },
+      { "q": "Where can you start a backpacking trip in Yosemite in November?", "a": "From Yosemite Valley, Hetch Hetchy or Wawona. Hetch Hetchy, at 3,900 feet, has one of the longest hiking seasons in the park, and Rancheria Falls is 6.5 miles each way. From the Valley, Happy Isles to Little Yosemite Valley, the Yosemite Falls trail and the Snow Creek trail all work as off-season overnights." },
+      { "q": "Where can you rent a bear canister in Yosemite after the wilderness centers close?", "a": "Only at the Valley Welcome Center, open 9 a.m. to 5 p.m. Canisters are required in the wilderness all year, so a trip starting at Hetch Hetchy or Wawona without your own canister starts with a stop in the Valley." },
+      { "q": "Do wilderness permit quotas apply in winter?", "a": "Yes. Each trailhead keeps its daily quota all year. The park says most trailheads do not fill in the off-season, except the winter trailheads along Glacier Point Road, including the ski area, which can fill regularly." },
+      { "q": "Where can you camp in Yosemite in winter?", "a": "Winter backpackers camp at least one mile from any plowed road, not within a mile and a half of the Badger Pass Ski Area boundary, and not at Summit Meadow, Dewey Point or Glacier Point themselves. Camping is not allowed in the Tuolumne or Merced Groves, and in the Mariposa Grove only when its road is closed for winter and only above the Clothespin Tree." }
+    ],
+    "related": ["yosemite-wilderness-permits-guide", "best-yosemite-backpacking-trips", "hetch-hetchy-the-other-yosemite-valley", "snowshoeing-in-yosemite", "yosemite-walk-up-and-day-of-permits", "yosemite-in-november"]
+  },
+  {
     "slug": "yosemite-tire-chains",
     "cat": "planning",
     "title": "Tire chains in Yosemite: R1, R2 and R3, rental cars, AWD and EVs",
@@ -640,7 +666,7 @@
       { "q": "How hard is the Mount Hoffmann hike from May Lake?", "a": "Strenuous. The 10,850-foot summit is about two miles beyond the lake and roughly 1,500 feet higher, on an unofficial, unmarked spur rather than a maintained trail, following informal paths and cairns up alpine scree near the top. Start early and be off the summit before the afternoon clouds build." },
       { "q": "How far is it to Young Lakes?", "a": "About six miles from the Lembert Dome parking area, by the Dog Lake route or by the Glen Aulin trail. The park lists the trip at 13.6 miles round trip with 1,300 feet of gain, and going in one way and out the other makes a loop of about twelve miles. Permit demand is medium, there are no facilities, and fires are not allowed." }
     ],
-    "related": ["first-yosemite-backpacking-trip", "yosemite-wilderness-permits-guide", "yosemite-walk-up-and-day-of-permits", "yosemite-bears-safety-guide", "tuolumne-meadows-in-a-day", "cathedral-lakes-day-hike"]
+    "related": ["first-yosemite-backpacking-trip", "yosemite-wilderness-permits-guide", "yosemite-walk-up-and-day-of-permits", "yosemite-bears-safety-guide", "tuolumne-meadows-in-a-day", "yosemite-backpacking-off-season"]
   },
   {
     "slug": "yosemite-trees-identification-guide",
@@ -1418,7 +1444,7 @@
       { "q": "Do you still need a wilderness permit in winter?", "a": "From late October to mid-April the reservation season ends. A wilderness permit is still required, but you collect it in person the day before or the day you start, at the permit station nearest the trailhead, with no lottery and no Recreation.gov booking. Trailhead quotas technically remain, but most trailheads do not fill. It is the largest gap between how hard the park looks to get into and how easy it actually is, though the weather that opens the door also makes the walking serious." },
       { "q": "Can you camp in Yosemite without a reservation?", "a": "It is the hardest same-day problem in the park. Camp 4 is the Valley's walk-in campground, but during the reservation season its sites release on Recreation.gov on a rolling seven-day window at 7 a.m. Pacific rather than by a queue, reverting to first come, first served outside it. That is the shortest booking horizon of any campground in the park. Cancellations released continuously on Recreation.gov are the real inventory, especially in the evening. National forest campgrounds along every approach highway are the reliable fallback, and several are first come, first served." }
     ],
-    "related": ["yosemite-wilderness-permits-guide", "best-yosemite-backpacking-trips", "so-you-want-to-hike-half-dome", "first-yosemite-backpacking-trip", "yosemite-without-reservations-2026", "mist-trail-the-real-guide"]
+    "related": ["yosemite-wilderness-permits-guide", "best-yosemite-backpacking-trips", "so-you-want-to-hike-half-dome", "first-yosemite-backpacking-trip", "yosemite-without-reservations-2026", "yosemite-backpacking-off-season"]
   },
   {
     "slug": "yosemite-in-fall",
@@ -1783,7 +1809,7 @@
       { "q": "Can I climb Half Dome on a wilderness permit?", "a": "If your route plausibly passes Half Dome, you can request Half Dome access as an add-on to a wilderness permit for $10 per person, subject to its own daily cap. For many hikers this beats the day-hiker lottery odds." },
       { "q": "Is a bear canister required in the Yosemite Wilderness?", "a": "Yes. An approved bear-resistant food canister is required for overnight trips, carrying everything with a scent, from food to toothpaste. Rentals are inexpensive at the wilderness centers." }
     ],
-    "related": ["best-yosemite-backpacking-trips", "first-yosemite-backpacking-trip", "yosemite-walk-up-and-day-of-permits", "so-you-want-to-hike-half-dome", "yosemite-camping-complete-guide", "mist-trail-the-real-guide"]
+    "related": ["best-yosemite-backpacking-trips", "first-yosemite-backpacking-trip", "yosemite-walk-up-and-day-of-permits", "so-you-want-to-hike-half-dome", "yosemite-camping-complete-guide", "yosemite-backpacking-off-season"]
   },
   {
     "slug": "yosemite-accessibility-guide",

@@ -110,6 +110,7 @@ window.planningSeriesFor = function (slug) {
 // verifies this map stays in sync with the files in bodies/.
 // ============================================================
 window.BODY_VERSIONS = {
+  "yosemite-backpacking-off-season": 1,
   "easy-hikes-yosemite-valley": 1,
   "yosemite-sequoia-kings-canyon-trip": 1,
   "sentinel-dome-and-taft-point": 1,
@@ -133,7 +134,7 @@ window.BODY_VERSIONS = {
   "wawona-yosemite-guide": 3,
   "yosemite-in-november": 5,
   "thanksgiving-in-yosemite": 3,
-  "best-yosemite-backpacking-trips": 3,
+  "best-yosemite-backpacking-trips": 4,
   "yosemite-trees-identification-guide": 5,
   "tioga-road-stop-by-stop": 3,
   "yosemite-place-names-meanings": 2,
@@ -947,6 +948,21 @@ window.KIT_REI = {
 // AffiliateDisclosure line under the byline, before the first link;
 // scripts/check-affiliate-links.mjs fails when the flag and the body disagree.
 window.ARTICLES = [
+  {
+    slug: "yosemite-backpacking-off-season",
+    cat: "trails",
+    title: "Backpacking Yosemite in the off-season: self-registered permits, the October 15 parking rule, and where to start",
+    seoTitle: "Yosemite Backpacking in Fall and Winter: Permits and Trailheads",
+    dek: "From mid-October the wilderness permit gets easier and the trailheads get fewer. How self-registration works, why Tioga and Glacier Point Road trailheads stop working for overnights on October 15, the canister you can rent in only one place, and the low trailheads that carry a trip into November.",
+    seoDek: "Backpacking Yosemite from October to April: free self-registered wilderness permits, the October 15 overnight parking ban, low trailheads, and snow camping.",
+    date: "October 19, 2026",
+    isoDate: "2026-10-19",
+    isoModified: "2026-10-19",
+    read: "11 min",
+    placeholder: "A backpacking tent on granite at first light, alpenglow on the spires above camp",
+    image: "img/backcountry-camp-alpenglow-stephen-leonardi.jpg",
+    credit: "Photo: Stephen Leonardi / Pexels",
+  },
   {
     slug: "yosemite-tire-chains",
     aff: true,
@@ -2783,6 +2799,7 @@ window.START_HERE = [
 // Curate a piece when it earns real search impressions, when it anchors a
 // cluster, or when it is the destination that needs the equity.
 window.RELATED = {
+  "yosemite-backpacking-off-season": ["yosemite-wilderness-permits-guide", "best-yosemite-backpacking-trips", "hetch-hetchy-the-other-yosemite-valley", "snowshoeing-in-yosemite", "yosemite-walk-up-and-day-of-permits", "yosemite-in-november"],
   "easy-hikes-yosemite-valley": ["yosemite-with-kids-no-reservations-2026", "yosemite-for-non-hikers", "yosemite-waterfalls-guide", "yosemite-accessibility-guide", "yosemite-winter-hikes", "mist-trail-the-real-guide"],
   "yosemite-sequoia-kings-canyon-trip": ["yosemite-in-three-to-five-days", "mariposa-grove-how-to-visit", "yosemite-gateway-towns-compared", "best-airport-for-yosemite", "yosemite-trip-cost-budget", "giant-sequoias-fire-adaptation"],
   "sentinel-dome-and-taft-point": ["glacier-point-how-to-visit", "glacier-point-road-open-2026", "yosemite-photography-spots", "yosemite-for-non-hikers", "four-mile-up-panorama-down", "mist-trail-the-real-guide"],
@@ -2812,7 +2829,7 @@ window.RELATED = {
   "yosemite-in-november": ["thanksgiving-in-yosemite", "yosemite-in-fall", "yosemite-in-winter", "yosemite-in-december", "yosemite-tire-chains", "bracebridge-dinner-and-vintners-holidays"],
   "thanksgiving-in-yosemite": ["where-to-stay-in-yosemite", "where-to-eat-yosemite", "yosemite-in-december", "bracebridge-dinner-and-vintners-holidays", "christmas-and-new-years-in-yosemite", "worship-in-yosemite"],
   // The best Yosemite backpacking trips, in order: the permit, the pickup, and five routes
-  "best-yosemite-backpacking-trips": ["first-yosemite-backpacking-trip", "yosemite-wilderness-permits-guide", "yosemite-walk-up-and-day-of-permits", "yosemite-bears-safety-guide", "tuolumne-meadows-in-a-day", "cathedral-lakes-day-hike"],
+  "best-yosemite-backpacking-trips": ["first-yosemite-backpacking-trip", "yosemite-wilderness-permits-guide", "yosemite-walk-up-and-day-of-permits", "yosemite-bears-safety-guide", "tuolumne-meadows-in-a-day", "yosemite-backpacking-off-season"],
   // Yosemite trees: how to tell them apart, from the foothills to Tioga Pass
   "yosemite-trees-identification-guide": ["giant-sequoias-fire-adaptation", "yosemite-in-fall", "yosemite-wildflowers-guide", "mariposa-grove-how-to-visit", "tuolumne-meadows-in-a-day", "yosemite-wildlife-viewing-guide"],
   // Tioga Road, stop by stop: the drive and the history under it
@@ -2877,8 +2894,8 @@ window.RELATED = {
   "pack-your-car-for-yosemite": ["yosemite-bears-safety-guide", "camping-in-yosemite-first-time", "getting-to-yosemite", "yosemite-valley-parking-guide", "yosemite-tire-chains", "cell-service-in-yosemite"],
 
   // Permits
-  "yosemite-wilderness-permits-guide": ["best-yosemite-backpacking-trips", "first-yosemite-backpacking-trip", "yosemite-walk-up-and-day-of-permits", "so-you-want-to-hike-half-dome", "yosemite-camping-complete-guide", "mist-trail-the-real-guide"],
-  "yosemite-walk-up-and-day-of-permits": ["yosemite-wilderness-permits-guide", "best-yosemite-backpacking-trips", "so-you-want-to-hike-half-dome", "first-yosemite-backpacking-trip", "yosemite-without-reservations-2026", "mist-trail-the-real-guide"],
+  "yosemite-wilderness-permits-guide": ["best-yosemite-backpacking-trips", "first-yosemite-backpacking-trip", "yosemite-walk-up-and-day-of-permits", "so-you-want-to-hike-half-dome", "yosemite-camping-complete-guide", "yosemite-backpacking-off-season"],
+  "yosemite-walk-up-and-day-of-permits": ["yosemite-wilderness-permits-guide", "best-yosemite-backpacking-trips", "so-you-want-to-hike-half-dome", "first-yosemite-backpacking-trip", "yosemite-without-reservations-2026", "yosemite-backpacking-off-season"],
   "so-you-want-to-hike-half-dome": ["clouds-rest-hike", "mist-trail-the-real-guide", "yosemite-wilderness-permits-guide", "cathedral-lakes-day-hike", "four-mile-up-panorama-down", "yosemite-heat-safety-guide"],
   "first-yosemite-backpacking-trip": ["best-yosemite-backpacking-trips", "yosemite-wilderness-permits-guide", "yosemite-bears-safety-guide", "cathedral-lakes-day-hike", "yosemite-camping-complete-guide", "yosemite-walk-up-and-day-of-permits"],
 

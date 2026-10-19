@@ -14,8 +14,8 @@
       "sha256": "0db4572173fd3d54"
     },
     "/dist/bodies/best-yosemite-backpacking-trips.js": {
-      "v": 3,
-      "sha256": "a76edec66dee5677"
+      "v": 4,
+      "sha256": "17a6142900f5452e"
     },
     "/dist/bodies/bracebridge-dinner-and-vintners-holidays.js": {
       "v": 11,
@@ -204,6 +204,10 @@
     "/dist/bodies/yosemite-accessibility-guide.js": {
       "v": 8,
       "sha256": "9dbcf82a44d0b0e9"
+    },
+    "/dist/bodies/yosemite-backpacking-off-season.js": {
+      "v": 1,
+      "sha256": "3b1b09dba3511e0a"
     },
     "/dist/bodies/yosemite-bears-safety-guide.js": {
       "v": 127,

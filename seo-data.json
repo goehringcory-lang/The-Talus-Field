@@ -1,4 +1,45 @@
 {
+  "yosemite-backpacking-off-season": {
+    "wordCount": 2880,
+    "keywords": [
+      "Yosemite backpacking in winter",
+      "Yosemite backpacking November",
+      "Yosemite wilderness permit self-registration",
+      "Yosemite winter wilderness permit",
+      "Tioga Road overnight parking October 15",
+      "Glacier Point Road overnight parking",
+      "Hetch Hetchy backpacking Rancheria Falls",
+      "Little Yosemite Valley in winter",
+      "Yosemite snow camping",
+      "Yosemite bear canister rental winter"
+    ],
+    "faq": [
+      {
+        "q": "Do you need a wilderness permit to backpack in Yosemite in winter?",
+        "a": "Yes. A wilderness permit is required for every overnight stay in the Yosemite Wilderness every month of the year. What ends in October is the reservation system: the park's permit FAQ says that from approximately November through April permits are issued without reservations or fees, and you self-register at the permit station nearest your trailhead the day before or the day you start."
+      },
+      {
+        "q": "Can you park overnight on Tioga Road or Glacier Point Road in the fall?",
+        "a": "No. From October 15, overnight parking is not allowed anywhere on Tioga Road or Glacier Point Road, including the parking lots reached from them. Trailheads like Sunrise Lakes, May Lake or Mono Meadow become day-hike trailheads until the roads close for winter, typically sometime in November."
+      },
+      {
+        "q": "Where can you start a backpacking trip in Yosemite in November?",
+        "a": "From Yosemite Valley, Hetch Hetchy or Wawona. Hetch Hetchy, at 3,900 feet, has one of the longest hiking seasons in the park, and Rancheria Falls is 6.5 miles each way. From the Valley, Happy Isles to Little Yosemite Valley, the Yosemite Falls trail and the Snow Creek trail all work as off-season overnights."
+      },
+      {
+        "q": "Where can you rent a bear canister in Yosemite after the wilderness centers close?",
+        "a": "Only at the Valley Welcome Center, open 9 a.m. to 5 p.m. Canisters are required in the wilderness all year, so a trip starting at Hetch Hetchy or Wawona without your own canister starts with a stop in the Valley."
+      },
+      {
+        "q": "Do wilderness permit quotas apply in winter?",
+        "a": "Yes. Each trailhead keeps its daily quota all year. The park says most trailheads do not fill in the off-season, except the winter trailheads along Glacier Point Road, including the ski area, which can fill regularly."
+      },
+      {
+        "q": "Where can you camp in Yosemite in winter?",
+        "a": "Winter backpackers camp at least one mile from any plowed road, not within a mile and a half of the Badger Pass Ski Area boundary, and not at Summit Meadow, Dewey Point or Glacier Point themselves. Camping is not allowed in the Tuolumne or Merced Groves, and in the Mariposa Grove only when its road is closed for winter and only above the Clothespin Tree."
+      }
+    ]
+  },
   "housekeeping-camp-vs-curry-village": {
     "wordCount": 2400,
     "keywords": [

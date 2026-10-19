@@ -131,6 +131,7 @@ window.ARTICLE_INTENT = {
   "camping-in-yosemite-first-time":            { stage: ["before-booking", "dates-set", "week-before"], who: ["first-trip", "families"], topic: ["camping"] },
   "best-yosemite-backpacking-trips":           { stage: ["before-booking", "dates-set"], who: ["backpacking"], topic: ["permits", "trails"] },
   "first-yosemite-backpacking-trip":           { stage: ["dates-set", "week-before"], who: ["backpacking"], topic: ["conditions", "trails", "permits"] },
+  "yosemite-backpacking-off-season":           { stage: ["dates-set", "week-before"], who: ["backpacking"], topic: ["permits", "trails", "conditions"] },
   // The Los Angeles drive is a first-trip piece by construction (it is written
   // for someone who has never made the drive), and `lodging` is earned by the
   // "where to break the drive" section, which answers where to sleep on the
@@ -338,6 +339,8 @@ window.ARTICLE_MONTHS = {
   "tioga-road-stop-by-stop": ["may", "jun", "jul", "aug", "sep", "oct"],
   // "Tioga Road is typically open from late May or June until sometime in November ... Treat these as summer and early fall trips."
   "best-yosemite-backpacking-trips": ["jun", "jul", "aug", "sep", "oct"],
+  // "This piece covers the months from mid-October through April, when Yosemite's wilderness permits stop being a reservation problem and start being a weather and access problem."
+  "yosemite-backpacking-off-season": ["oct", "nov", "dec", "jan", "feb", "mar", "apr"],
   // "Glacier Point Road is open to cars approximately late May through October or November, depending on conditions."
   "sentinel-dome-and-taft-point": ["jun", "jul", "aug", "sep", "oct"],
   // Seasonal essays and month guides.

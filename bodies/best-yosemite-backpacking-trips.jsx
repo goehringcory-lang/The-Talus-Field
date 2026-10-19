@@ -216,7 +216,7 @@ window.ARTICLE_BODIES["best-yosemite-backpacking-trips"] = function BestYosemite
       <h2>The five trips, on the park's own map</h2>
 
       <p>
-        All five sit in the Tioga Road high country, which means they share a season: Tioga Road is typically open from late May or June until sometime in November, and the wilderness centers and trailhead parking close earlier than the road does. Overnight parking at May Lake ends October 15. Treat these as summer and early fall trips.
+        All five sit in the Tioga Road high country, which means they share a season: Tioga Road is typically open from late May or June until sometime in November, and the wilderness centers and trailhead parking close earlier than the road does. Overnight parking at May Lake ends October 15. Treat these as summer and early fall trips; after mid-October, <a href="/articles/yosemite-backpacking-off-season">the off-season trailheads</a> are in the Valley, at Hetch Hetchy and at Wawona.
       </p>
 
       <figure className="npsmap" style={{ margin: "30px 0 34px" }}>
