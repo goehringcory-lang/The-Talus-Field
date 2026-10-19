@@ -36,22 +36,50 @@ function LegalShell({ go, title, eyebrow, updated, sections, numberedHeads = tru
 
 function PrivacyPage({ go }) {
   return (
-    <LegalShell go={go} title="Privacy Policy" eyebrow="Legal" updated="July 8, 2026" sections={9} numberedHeads>
-      <p>This privacy policy explains what information The Talus Field collects when you visit this website, subscribe to the newsletter, or use the Field Guide app, how that information is used, and the choices you have about it. It is written to comply with the General Data Protection Regulation (GDPR) and the California Consumer Privacy Act (CCPA).</p>
+    <LegalShell go={go} title="Privacy Policy" eyebrow="Legal" updated="October 19, 2026" sections={11} numberedHeads>
+      <p>This privacy policy explains what information The Talus Field collects when you visit this website, subscribe to the newsletter, or use the Field Guide app, how that information is used, who handles it for us, how long it is kept, and the choices you have about it. It also sets out the rights the General Data Protection Regulation (GDPR) and the California Consumer Privacy Act (CCPA) give you, and how to use them.</p>
 
       <h2>1. Who we are</h2>
       <p>The Talus Field is an independent publication operated by Cory Goehring, based in El Portal, California. You can reach us at cory@thetalusfieldjournal.com.</p>
 
       <h2>2. What we collect</h2>
-      <p>When you visit the site, we collect anonymized analytics data: pages viewed, referrer, approximate location at the country level, browser and device type. We use this to understand which articles are useful and which are not. We do not collect IP addresses in identifiable form.</p>
-      <p>When you subscribe to the newsletter, we collect your email address and the date you subscribed. We do not collect your name unless you provide it.</p>
+      <p>When you visit the site, Google Analytics collects usage data on our behalf: pages viewed, referrer, approximate location at the country level, browser and device type. We use this to understand which articles are useful and which are not. We do not collect IP addresses in identifiable form.</p>
+      <p>When you subscribe to the newsletter, we collect your email address, the date you subscribed, and a tag naming the form you used. Signups for road alerts and date reminders go on the same list with their own tags. We do not collect your name unless you provide it.</p>
+      <p>When you ask us to email you something, a trip from the map, a trip plan, an itinerary, or the packing checklist, we use the address to send it. If that address is not already on the newsletter, sending it also subscribes you, and every letter has a one-click unsubscribe link.</p>
       <p>When you contact us through the contact form, we collect the name, email, subject, and message you submit.</p>
-      <p>When you buy and sign in to the Field Guide app, we collect the email address or username tied to your purchase and a record of that purchase. Payment is processed by Stripe, and we never see or store your card number. Your trip plan itself, the stops and dates you choose, is stored on your own device, not on our servers.</p>
+      <p>When you buy and sign in to the Field Guide app, we collect the email address tied to your purchase and a record of that purchase: when you bought, when your access ends, any promo code you redeemed, and whether the purchase was refunded. Payment is processed by Stripe, and we never see or store your card number.</p>
+      <p>When you are signed in, the app keeps a copy of your trip plan (the stops, dates, and notes you choose) on our server, so the same plan appears on your phone and your laptop. If you turn on notifications, we store your device's push address, your trip dates, and the reminders you asked for. If you answer the in-app survey, your answers are emailed to us.</p>
 
       <h2>3. How we use it</h2>
-      <p>Email addresses are used to send the newsletter and only the newsletter. We do not sell, rent, share, or otherwise transfer your email address to any third party. Analytics are used to make the site better. Contact form submissions are used to write you back. Field Guide purchase records are used to confirm your access when you sign in.</p>
+      <p>We do not sell or rent your information, and we do not share your email address with anyone for their own use. The providers in section 4 handle it only to run the service for us.</p>
+      <p>Newsletter addresses are used to send the newsletter and the alerts you signed up for. Field Guide email addresses are used to send your sign-in links, to confirm your access, and to remind you before your access ends. The synced trip plan and push address are used to show your plan on each device you sign in to and to send the reminders you asked for. Analytics are used to make the site better. Contact form messages and survey answers are used to write you back and to improve the guide.</p>
+      <p>Under the GDPR, the legal basis for each is: your consent for the newsletter and alerts, which you can withdraw by unsubscribing; the performance of our agreement with you for the Field Guide, its sync, its reminders, and anything you asked us to email; and our legitimate interest in understanding how the site is used and in answering the messages you send.</p>
 
-      <h2>4. The Field Guide app and calendar sync</h2>
+      <h2>4. Who handles it for us</h2>
+      <p>A few service providers process information on our behalf, each only for the job listed:</p>
+      <ul>
+        <li><strong>Cloudflare</strong> hosts the site and the Field Guide, and stores Field Guide purchase records, synced trip plans, and push addresses.</li>
+        <li><strong>Stripe</strong> processes Field Guide payments.</li>
+        <li><strong>Buttondown</strong> holds the newsletter list and sends the newsletter.</li>
+        <li><strong>Resend</strong> sends sign-in links, renewal reminders, the emails you ask the site to send, and contact form and survey messages to our inbox.</li>
+        <li><strong>Purelymail</strong> hosts our email inbox, where those messages arrive.</li>
+        <li><strong>Google</strong> provides Google Analytics, the maps on the trip planner, and, only if you connect it, Google Calendar (section 6).</li>
+        <li>Your browser's push service (run by Apple, Google, or Mozilla, depending on the browser) delivers notifications, if you turn them on.</li>
+      </ul>
+      <p>The Talus Field is based in the United States, and these providers store and process information there. If you use the site from the European Union or the United Kingdom, your information is transferred to the United States.</p>
+
+      <h2>5. How long we keep it</h2>
+      <ul>
+        <li><strong>Newsletter address:</strong> until you unsubscribe.</li>
+        <li><strong>Field Guide purchase record:</strong> until you ask us to delete it. Stripe keeps its own record of the payment, as payment processors must.</li>
+        <li><strong>Synced trip plan:</strong> 400 days after you last change it, or until you ask us to delete it.</li>
+        <li><strong>Push address and reminders:</strong> one year after the app last renews them, or until you turn notifications off.</li>
+        <li><strong>Google Calendar authorization:</strong> until you disconnect it (section 6).</li>
+        <li><strong>Contact form messages and survey answers:</strong> in our inbox as ordinary correspondence, until you ask us to delete them. A survey answer that fails to send is held on our server for at most 30 days until it is delivered.</li>
+        <li><strong>Analytics:</strong> Google Analytics keeps event-level data for no more than 14 months.</li>
+      </ul>
+
+      <h2>6. The Field Guide app and calendar sync</h2>
       <p>The Field Guide app can add your trip plan to your personal calendar. Two options exist, and both are off until you turn them on from the app's Account page.</p>
       <p>The Apple Calendar option publishes your trip as a private subscription link that Apple Calendar reads on its own schedule. That link contains only the events in your trip plan.</p>
       <p>If you connect Google Calendar, you grant The Talus Field permission to manage events on your Google Calendar (the <code>calendar.events</code> scope) and to see the email address of the Google account you connect. We use this access for one purpose only: to create, update, and remove the trip events you build in the app, in your primary Google calendar. We do not read your existing calendar events, we do not access any other Google data, and we do not use this access for advertising or for any purpose beyond syncing your trip.</p>
@@ -59,19 +87,27 @@ function PrivacyPage({ go }) {
       <p>You can disconnect Google Calendar at any time from the Account page. Disconnecting removes the trip events we added to your Google calendar, revokes our authorization token, and deletes it from our server. You can also revoke our access directly from your Google account's security settings at <a href="https://myaccount.google.com/connections" target="_blank" rel="noopener noreferrer">myaccount.google.com/connections</a>.</p>
       <p>The Talus Field's use and transfer of information received from Google APIs adheres to the <a href="https://developers.google.com/terms/api-services-user-data-policy" target="_blank" rel="noopener noreferrer">Google API Services User Data Policy</a>, including the Limited Use requirements.</p>
 
-      <h2>5. Cookies</h2>
-      <p>This site uses a single first-party cookie to remember your reading preferences. It does not use advertising cookies, tracking cookies, or third-party cookies. We do not run advertisements.</p>
+      <h2>7. Cookies and browser storage</h2>
+      <p>The site's own code sets no cookies. It keeps a few things in your browser's local storage so they survive a reload: your saved trip, your packing-list ticks, whether you have subscribed or closed a signup box, and how far you got in an article. That storage stays on your device, and clearing this site's data in your browser removes it. The Field Guide app keeps your sign-in and its working copy of your trip plan the same way.</p>
+      <p>Three outside services do set cookies or similar identifiers:</p>
+      <ul>
+        <li><strong>Google Analytics</strong> runs on every page and sets cookies (named <code>_ga</code>) that tell a returning browser from a new one. It is how the site counts page views and signups. Google describes its handling of that data at <a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer">policies.google.com/privacy</a>, and its <a href="https://tools.google.com/dlpage/gaoptout" target="_blank" rel="noopener noreferrer">opt-out browser add-on</a> stops Google Analytics on every site.</li>
+        <li><strong>Stay22</strong>'s script runs on every page and turns some lodging links into affiliate links, as the <a href="/affiliate">affiliate disclosure</a> explains. It may set cookies or similar identifiers so that a booking can be credited to this site.</li>
+        <li><strong>Affiliate partners</strong> (Expedia through Partnerize, Patagonia through Impact, and Bookshop.org) set cookies on their own sites when you follow a link there, which is how a purchase is credited to this site. Nothing of theirs is set before you click.</li>
+      </ul>
+      <p>The trip-planner map loads Google Maps, and Field Guide checkout runs on Stripe; each sets its own cookies under its own policy. Videos play from youtube-nocookie.com and load only when you press play. The site runs no ad network and sells no data about its readers.</p>
+      <p>You can block or delete any of these cookies in your browser's settings. The articles, the map, and the Field Guide all work without them.</p>
 
-      <h2>6. Your rights (GDPR / CCPA)</h2>
-      <p>You have the right to access, correct, export, or delete any personal information we hold about you. To exercise any of these rights, email cory@thetalusfieldjournal.com with the subject line "Data request." We respond within 30 days.</p>
+      <h2>8. Your rights (GDPR / CCPA)</h2>
+      <p>You have the right to access, correct, export, or delete any personal information we hold about you, and to object to or restrict how we use it. To exercise any of these rights, email cory@thetalusfieldjournal.com with the subject line "Data request." We respond within 30 days. If you are in the European Union or the United Kingdom and are not satisfied with our answer, you can also complain to your local data protection authority.</p>
 
-      <h2>7. Children</h2>
+      <h2>9. Children</h2>
       <p>This site is not directed at children under 13. We do not knowingly collect information from children.</p>
 
-      <h2>8. Changes</h2>
+      <h2>10. Changes</h2>
       <p>If this policy changes in any meaningful way, the change will be announced in the newsletter and the "last updated" date above will change.</p>
 
-      <h2>9. Questions</h2>
+      <h2>11. Questions</h2>
       <p>Email cory@thetalusfieldjournal.com.</p>
     </LegalShell>
   );
