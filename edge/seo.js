@@ -565,7 +565,7 @@ const HUB_PROSE = {
   "/privacy": () =>
     hubProse(
       "Privacy Policy",
-      "What The Talus Field collects when you visit the site, subscribe to the newsletter, or use the Field Guide app, how it is used, and the choices you have, written to comply with the GDPR and the CCPA. The Talus Field is an independent publication operated by Cory Goehring, reachable at cory@thetalusfieldjournal.com."
+      "What The Talus Field collects when you visit the site, subscribe to the newsletter, or use the Field Guide app, how it is used, who handles it, how long it is kept, and the rights the GDPR and the CCPA give you. The Talus Field is an independent publication operated by Cory Goehring, reachable at cory@thetalusfieldjournal.com."
     ),
   "/terms": () =>
     hubProse(
