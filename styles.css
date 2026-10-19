@@ -7895,15 +7895,8 @@ html[data-nav-mode="pinned"] { scroll-padding-top: 62px; }
 }
 
 /* ── /webcams (page-webcams.jsx) ───────────────────────────────────────── */
-.hp-webcams__live { padding-bottom: 0; }
+.hp-webcams .hp-webcams__live { padding-bottom: 56px; }
 .hp-webcams__live .cam-grid { margin-top: 30px; }
-.hp-webcams__high { padding-bottom: 0; }
-.hp-webcams__highbody { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 40px; margin-top: 30px; align-items: start; }
-.hp-webcams__highbody .cam-grid { grid-template-columns: minmax(0, 1fr); }
-.hp-webcams__highbody .prose p:first-child { margin-top: 0; }
-@media (max-width: 760px) {
-  .hp-webcams__highbody { grid-template-columns: minmax(0, 1fr); gap: 24px; }
-}
 
 /* ── /places (page-places.jsx) ─────────────────────────────────────────── */
 .hp-places__block { border-top: 1px solid var(--hp-rule); }
@@ -14857,3 +14850,48 @@ html[data-nl-bar] .totop { bottom: calc(76px + env(safe-area-inset-bottom)); }
   .hp-mediakit__stats dd { font-size: 24pt; }
   .hp-mediakit a.hp-inline[href^="http"]::after, .hp-mediakit a[href^="mailto:"]::after { content: " (" attr(href) ")"; font-size: 9pt; }
 }
+
+/* ── /webcams (page-webcams.jsx): the October 2026 redesign ────────────────
+   On /firefall's system: the cover, fact row, jump list, bands, numbered
+   checks, source list and FAQ are the shared `.ff-*` rules; this layer adds
+   the five camera cards and the high-country strip. */
+.wc-cover .ff-cover__img { object-position: 50% 38%; }
+.wc-cover .ff-cover__credit { padding: 2px 6px; border-radius: 2px; background: rgba(8, 14, 22, 0.55); }
+.wc-high .cam-grid { grid-template-columns: minmax(0, 1fr); margin-top: 0; }
+.wc-high .hp-eyebrow { margin: 14px 0 0; }
+.wc-high .hp-eyebrow a { color: var(--hp-accent); }
+.wc-cams { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 20px; }
+.wc-cams li { background: var(--hp-card); border: 1px solid var(--hp-rule); border-radius: 4px; padding: 22px; display: grid; gap: 10px; align-content: start; }
+.wc-cams h3 { margin: 0; font-size: 24px; }
+.wc-cams p { margin: 0; font: 14px/1.6 var(--sans); color: var(--ink-2); }
+.wc-cams .wc-cams__from, .wc-cams .wc-cams__best { display: flex; gap: 8px; align-items: flex-start; font-size: 13px; color: var(--hp-muted); }
+.wc-cams .ff-icon { color: var(--hp-accent); margin-top: 2px; }
+.wc-cams__best b { font-weight: 600; letter-spacing: 1.4px; text-transform: uppercase; font-size: 10px; color: var(--hp-ink); margin-right: 4px; }
+.wc-rules p a { color: var(--hp-accent); text-decoration: underline; text-underline-offset: 2px; }
+.wc-sources { margin-top: 0; }
+@media (max-width: 1000px) { .wc-cams { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 640px) { .wc-cams { grid-template-columns: 1fr; } .wc-cover .ff-cover__img { object-position: 50% 30%; } }
+
+/* ── /conditions (page-conditions.jsx): the October 2026 cover pass ────────
+   The board keeps its own layer (`.hp-conditions`, above); this one adds the
+   /firefall cover, the readout strip under the fact row, and the bands. */
+.cd-cover .ff-cover__img { object-position: 50% 45%; }
+.cd-cover .ff-cover__credit { padding: 2px 6px; border-radius: 2px; background: rgba(8, 14, 22, 0.55); }
+.hp-design .cd-cover h1 em { color: #f0a36b; }
+.cd-now { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 440px); gap: 56px; align-items: center; padding-block: 48px; }
+.cd-now .hp-eyebrow { margin: 0 0 12px; }
+.cd-now .ff-lede { margin: 0; }
+.hp-conditions .ff-band .cond-section + .cond-section { border-top: 0; }
+@media (max-width: 880px) { .cd-now { grid-template-columns: minmax(0, 1fr); gap: 28px; padding-block: 32px; } }
+
+/* ── /kit (page-kit.jsx): the October 2026 cover pass ──────────────────────
+   The tabbed checklists keep their own layer (`.kit-*`, above); this one adds
+   the /firefall cover and the band under the lists. Hidden in print. */
+.kit-cover .ff-cover__img { object-position: 50% 62%; }
+.kit-cover .ff-cover__credit { padding: 2px 6px; border-radius: 2px; background: rgba(8, 14, 22, 0.55); }
+.hp-design .kit-cover .kit__aff-note { color: rgba(247, 241, 225, 0.78); max-width: 520px; }
+.hp-design .kit-cover .kit__aff-note a { color: #fbf6ea; }
+.kit-why { margin-top: 8px; }
+.hp-kit .kit-faq { padding-top: 56px; }
+@media (max-width: 760px) { .kit-cover .ff-cover__img { object-position: 40% 55%; } }
+.hp-conditions .cond-dial { padding-top: 56px; }

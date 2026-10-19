@@ -301,7 +301,7 @@ function buildSitemap(merged, categories) {
 
   const staticPages = [
     ["/about", "2026-04-01"],
-    ["/kit", "2026-04-26"],
+    ["/kit", "2026-10-19"],
     ["/films", "2026-06-10"],
     ["/places", "2026-04-26"],
     ["/advertise", "2026-10-17"],
@@ -314,7 +314,7 @@ function buildSitemap(merged, categories) {
     ...(GUIDE_LISTED ? [["/guide", "2026-07-31"]] : []),
     ["/map", "2026-06-10"],
     ["/itineraries", "2026-07-12"],
-    ["/conditions", "2026-07-12"],
+    ["/conditions", "2026-10-19"],
     ["/stay", "2026-08-31"],
     ["/firefall", "2026-07-17"],
     // /tioga-opening reads the current bulletin edition for its live status
@@ -328,7 +328,7 @@ function buildSitemap(merged, categories) {
     ["/distances", "2026-10-18"],
     ["/dates", "2026-09-05"],
     ["/international", "2026-10-18"],
-    ["/webcams", "2026-10-18"],
+    ["/webcams", "2026-10-19"],
     ["/start-here", "2026-08-30"],
     ["/consult", "2026-07-15"],
     ["/widget", "2026-07-15"],

@@ -227,8 +227,8 @@ const HUB_PROSE = {
     `<p>The reasoning behind each line item lives in <a href="/planning">the Planning Guide</a>; the packing details live in <a href="/kit">the kit lists</a>.</p>`,
   "/kit": () =>
     hubProse(
-      "What to pack",
-      "Three packing checklists for a Yosemite trip: a day pack, what an overnight adds to it, and the full car load."
+      "What to pack for Yosemite",
+      "Three packing checklists for a Yosemite trip: a day pack, what an overnight adds to it, and the full car load. Tick items off as you pack; your progress is saved in your browser, and the page prints clean."
     ) +
     kit.lists
       .map(
@@ -296,6 +296,8 @@ const HUB_PROSE = {
       "Yosemite conditions: webcams, waits, and weather",
       "The morning-of page: live Yosemite webcams, current entrance wait times, and elevation-aware National Weather Service point forecasts for Wawona, the Valley, and the high country, all on one page. Bookmark it and check it the morning you drive in."
     ) +
+    `<p>The park spans nearly 11,000 feet of elevation, so one forecast is never enough: Wawona and Yosemite Valley sit at about 4,000 feet, Tuolumne Meadows at 8,600 feet and 15 to 25 degrees colder, and Tioga Pass tops the road at 9,945 feet. Live entrance wait estimates and Valley parking lot status come from the National Park Service and refresh every five minutes.</p>` +
+    `<p>Road status changes faster than any page can promise, so the page links its sources rather than guessing: the <a href="/now">Park Bulletin</a>, the NPS current conditions page and the Yosemite Guide. In winter and spring, call the NPS recorded road line, 209-372-0200, before trusting any website. Packing for what you find: <a href="/kit">the packing checklists</a>; the drive in: <a href="/distances">the drive-time table</a>; the cameras in detail: <a href="/webcams">Yosemite webcams</a>.</p>` +
     `<p>For what the conditions mean for a plan, see <a href="/itineraries">the itineraries</a> and <a href="/planning">the Planning Guide</a>.</p>`,
   "/now": () => {
     // The current edition ships to non-JS crawlers as prose: this page's value
@@ -787,10 +789,43 @@ function seoForPath(pathname, searchParams) {
       // Kept in sync with the client entry in app.jsx buildSeo (the kit
       // branch) and the page's own h1/dek in page-kit.jsx — this side went
       // stale once and served a title the page never showed.
-      title: `Packing checklists for Yosemite | ${SITE_NAME}`,
+      title: `Yosemite Packing List: day pack, overnight and car checklists | ${SITE_NAME}`,
       description:
-        "Three Yosemite packing checklists to tick off as you plan: a day pack, what an overnight adds, and the full car load. The small, easily forgotten things included.",
+        "Yosemite packing lists you can tick off and print: a day pack, an overnight backpack and the full car load, with the reason for every item. Saved in your browser.",
       breadcrumb: [["Home", `${SITE_ORIGIN}/`], ["Kit", null]],
+      // Edge-only FAQ: the client entry in app.jsx carries none. It mirrors
+      // KIT_FAQ in page-kit.jsx word for word; every answer restates a note on
+      // the lists themselves.
+      faq: [
+        {
+          q: "What should I pack for a day hike in Yosemite?",
+          a: "Start with a paper map and downloaded offline maps, because cell service dies past Crane Flat; a wide-brim sun hat and SPF 50 sunscreen, because granite reflects; a packable insulated jacket, because the Valley is warm at 10 a.m. and 40\u00b0F at the rim by 3 p.m.; a headlamp with a spare battery, because day hikes turn into night hikes; a water filter; twice the snacks you think you need; and cash in small bills, since parking is cash-only at several trailheads. The full day pack list is on this page.",
+        },
+        {
+          q: "Is there cell service in Yosemite?",
+          a: "Not reliably. Service dies past Crane Flat and the park has no reliable data connection, so download offline maps at home before you leave, and carry a paper map and a baseplate compass for when the phone is dead.",
+        },
+        {
+          q: "Do I need a bear canister in Yosemite?",
+          a: "For overnight backpacking, yes: a bear canister is required, along with a wilderness permit, which is required year-round. All food, trash and scented items go inside it. Yosemite rents Garcia jugs at the wilderness center. In a campground or a parking lot, all food and scented items go in the bear box, because the trunk is not bear-proof.",
+        },
+        {
+          q: "Is bear spray allowed in Yosemite?",
+          a: "No. Bear spray is not permitted in Yosemite. Do not bring it.",
+        },
+        {
+          q: "Do I need tire chains in Yosemite?",
+          a: "Carry them from November through April. They are required during chain controls and rangers check, so practice putting them on once at home.",
+        },
+        {
+          q: "What should I wear in Yosemite?",
+          a: "Layers. The Valley is warm at 10 a.m. and 40\u00b0F at the rim by 3 p.m., a synthetic insulated jacket still works if it gets wet, and a packable rain jacket earns its place because summer afternoon thunderstorms are not rare.",
+        },
+        {
+          q: "Can I print the Yosemite packing list?",
+          a: "Yes. Tick items off on the page, and your progress is saved in this browser, so you can close the tab and come back to it. Press Cmd+P or Ctrl+P for a clean printable copy of the list.",
+        },
+      ],
       // One ItemList per packing list. Matches the @graph app.jsx builds
       // client-side from window.KIT, so JS and non-JS crawlers see the same
       // entities. Sourced from the kit.json mirror.
@@ -964,10 +999,43 @@ function seoForPath(pathname, searchParams) {
       breadcrumb: [["Home", `${SITE_ORIGIN}/`], ["Site index", null]],
     },
     "/conditions": {
-      title: `Yosemite Conditions: webcams, waits, and weather | ${SITE_NAME}`,
+      title: `Yosemite Conditions Today: roads, webcams, waits, weather | ${SITE_NAME}`,
       description:
-        "Live Yosemite webcams, entrance wait times, and elevation-aware weather forecasts on one page. Check it the morning you drive in.",
+        "Yosemite conditions today: live entrance waits, Valley parking, webcams, forecasts for three elevations, and where to check roads. Check it the morning you drive in.",
       breadcrumb: [["Home", `${SITE_ORIGIN}/`], ["Conditions", null]],
+      // Edge-only FAQ: the client entry in app.jsx carries none, so this copy
+      // survives hydration on direct loads. It mirrors COND_FAQ in
+      // page-conditions.jsx word for word and states standing facts only.
+      faq: [
+        {
+          q: "How do I check Yosemite conditions today?",
+          a: "Use this page the morning you drive in: entrance wait estimates and Valley parking lot status from the National Park Service, live webcams, and National Weather Service point forecasts for Wawona, Yosemite Valley and Tuolumne Meadows. For whether a road is open, use the Park Bulletin or the NPS current conditions page, and in winter and spring call the recorded road line at 209-372-0200.",
+        },
+        {
+          q: "Is Yosemite open today?",
+          a: "The park is open all year, but its roads are not all open all year. Tioga Road and Glacier Point Road close for snow in winter, and chain controls can apply on the highways in. Whether a gate or road is open right now is on the NPS current conditions page and the Park Bulletin; the recorded road line is 209-372-0200.",
+        },
+        {
+          q: "How long are the lines at the Yosemite entrance stations?",
+          a: "It depends on the hour and the season. On a summer morning the arch at Highway 140 backs up first; by ten, all of the gates do. Live wait estimates for each gate are at the top of this page, and if they are already climbing at eight, an earlier start would have beaten them.",
+        },
+        {
+          q: "Is Yosemite Valley parking full?",
+          a: "On busy summer days the Valley's lots limit the day, and a full lot is the usual reason a plan falls apart. Be through the gate before 8 a.m. or after 4 p.m. on a summer weekend. The live status of the Valley lots is on this page.",
+        },
+        {
+          q: "What is the weather in Yosemite?",
+          a: "It depends on elevation, because the park spans nearly 11,000 feet. Wawona and Yosemite Valley sit at about 4,000 feet. Tuolumne Meadows is at 8,600 feet and runs 15 to 25 degrees colder than the Valley, and Tioga Pass tops the road at 9,945 feet. This page links the National Weather Service point forecast for each of the three places most trips go.",
+        },
+        {
+          q: "What should I pack for Yosemite's conditions?",
+          a: "Dress for the highest point of your day, not the Valley floor. The gear list on this page changes with the month, and the packing checklists carry the full day pack, overnight and car lists.",
+        },
+        {
+          q: "Is there a phone number for Yosemite road conditions?",
+          a: "Yes. The National Park Service's recorded road line is 209-372-0200. In winter and spring, call it before trusting any website, this one included.",
+        },
+      ],
     },
     "/now": {
       title: `The Park Bulletin: what's happening in Yosemite right now | ${SITE_NAME}`,
@@ -1175,7 +1243,7 @@ function seoForPath(pathname, searchParams) {
     "/webcams": {
       title: "Yosemite Webcams: Live Half Dome, Yosemite Falls, El Capitan",
       description:
-        "Live Yosemite webcams of Half Dome, Yosemite Falls, El Capitan and Wawona: what each one shows, the best hour to check it, and what to use for Tuolumne Meadows.",
+        "Live Yosemite webcams of Half Dome, Yosemite Falls, El Capitan, Wawona and the High Sierra: what each shows, the best hour to check it, and what to use for Tioga Road.",
       breadcrumb: [["Home", `${SITE_ORIGIN}/`], ["Webcams", null]],
       faq: [
         {
@@ -1189,6 +1257,18 @@ function seoForPath(pathname, searchParams) {
         {
           q: "Why does the Yosemite Falls webcam show no waterfall?",
           a: "Because there is no waterfall. Yosemite Falls is fed by snowmelt from a shallow basin above the rim and is usually dry by late August, staying dry until the first storms of November. The camera is working; the fall is seasonal.",
+        },
+        {
+          q: "Which Yosemite webcam is best for checking the weather?",
+          a: "Half Dome, for the Valley: if the dome is in cloud, the Valley is having a day. Check El Capitan beside it, which is wide enough to show haze and smoke. Neither says anything about the high country, because the Valley floor sits at 4,000 feet and Tuolumne Meadows at 8,600; for snow on the peaks above Tioga Road, use the High Sierra camera.",
+        },
+        {
+          q: "How often do the Yosemite webcams update?",
+          a: "They are still images, not video, and they refresh on the order of minutes rather than seconds. A page reload will not always change the picture, and nothing on them will show you a bear walking past.",
+        },
+        {
+          q: "Can I see Tioga Road on a webcam?",
+          a: "Not the road itself from the park's cameras. Caltrans QuickMap carries highway cameras along SR-120 and US-395 near Lee Vining, including Conway Summit, which is the east-side check. Whether Tioga Road is open is on the NPS current conditions page, and how the season works is on the Tioga opening page.",
         },
       ],
     },

@@ -1,4 +1,4 @@
-/* global React, ResponsiveImage, WebcamStrip, EntranceWaits, ParkingNow, HomeLink, HpPageHead, HpHeading, HpGuideBand, HpLetter, RecommendedCard, AffiliateDisclosure */
+/* global React, ResponsiveImage, WebcamStrip, EntranceWaits, ParkingNow, HomeLink, HpPageHead, HpHeading, HpGuideBand, HpLetter, RecommendedCard, AffiliateDisclosure, EventIcon */
 
 // =============================================================================
 // CONDITIONS — `/conditions` route. The bookmarkable "is it worth driving in
@@ -32,9 +32,14 @@
 // listener in app.jsx, so there is no tracking markup here.
 //
 // Since September 2026 the board is built on the homepage's design system
-// (the Hp* components in components.jsx): a design page head with the readout as
-// its aside, one design section per reading, and the shared Field Guide band
-// and letter for the two asks.
+// (the Hp* components in components.jsx): a design page head, one design
+// section per reading, and the shared Field Guide band and letter for the two
+// asks. Since October 2026 it wears /firefall's system as well (`.hp-event`,
+// the `.ff-*` layout rules, EventIcon): a full-width cover, the fact row and
+// jump list, the readout on its own strip under them, alternating bands, and a
+// visible FAQ that mirrors the faq in edge/seo.js's "/conditions" entry word
+// for word (change both; the JSON-LD must match what a reader can see). The
+// FAQ states standing facts only, never a reading, so rule 1 still holds.
 // =============================================================================
 
 const { useState, useMemo, useCallback, useRef: useRefC, useLayoutEffect: useLayoutEffectC } = React;
@@ -313,6 +318,17 @@ function CondSeasonKit() {
   );
 }
 
+// Mirrored in edge/seo.js's "/conditions" faq (the JSON-LD). Change both.
+const COND_FAQ = [
+  ["How do I check Yosemite conditions today?", "Use this page the morning you drive in: entrance wait estimates and Valley parking lot status from the National Park Service, live webcams, and National Weather Service point forecasts for Wawona, Yosemite Valley and Tuolumne Meadows. For whether a road is open, use the Park Bulletin or the NPS current conditions page, and in winter and spring call the recorded road line at 209-372-0200."],
+  ["Is Yosemite open today?", "The park is open all year, but its roads are not all open all year. Tioga Road and Glacier Point Road close for snow in winter, and chain controls can apply on the highways in. Whether a gate or road is open right now is on the NPS current conditions page and the Park Bulletin; the recorded road line is 209-372-0200."],
+  ["How long are the lines at the Yosemite entrance stations?", "It depends on the hour and the season. On a summer morning the arch at Highway 140 backs up first; by ten, all of the gates do. Live wait estimates for each gate are at the top of this page, and if they are already climbing at eight, an earlier start would have beaten them."],
+  ["Is Yosemite Valley parking full?", "On busy summer days the Valley's lots limit the day, and a full lot is the usual reason a plan falls apart. Be through the gate before 8 a.m. or after 4 p.m. on a summer weekend. The live status of the Valley lots is on this page."],
+  ["What is the weather in Yosemite?", "It depends on elevation, because the park spans nearly 11,000 feet. Wawona and Yosemite Valley sit at about 4,000 feet. Tuolumne Meadows is at 8,600 feet and runs 15 to 25 degrees colder than the Valley, and Tioga Pass tops the road at 9,945 feet. This page links the National Weather Service point forecast for each of the three places most trips go."],
+  ["What should I pack for Yosemite's conditions?", "Dress for the highest point of your day, not the Valley floor. The gear list on this page changes with the month, and the packing checklists carry the full day pack, overnight and car lists."],
+  ["Is there a phone number for Yosemite road conditions?", "Yes. The National Park Service's recorded road line is 209-372-0200. In winter and spring, call it before trusting any website, this one included."],
+];
+
 function ConditionsPage({ go }) {
   const [waits, setWaits] = useState(null);
   const [lots, setLots] = useState(null);
@@ -323,23 +339,60 @@ function ConditionsPage({ go }) {
   const onLots = useCallback((digest) => setLots(digest), []);
 
   return (
-    <div className="page hp-design hp-conditions">
-      <HpPageHead
-        go={go}
-        crumbs={[{ label: "Home", route: "home" }, { label: "Conditions" }]}
-        eyebrow="CONDITIONS / LIVE FROM THE PARK"
-        title={<>The park,<br /><em>right now.</em></>}
-        intro="Live webcams, entrance waits, and the forecasts that matter, on one page. Check it the morning you drive in, not the week before. Roads and crowds change faster than your plans do."
-        actions={<>
-          <HomeLink go={go} location="conditions_hero" className="hp-button" href="#cond-waits">Entrance waits &nbsp; ↓</HomeLink>
-          <HomeLink go={go} location="conditions_hero" className="hp-link" href="#cond-roads">Roads and closures ↓</HomeLink>
-        </>}
-        aside={<ConditionsReadout waits={waits} lots={lots} />}
-      >
-        <AffiliateDisclosure>
-          The seasonal gear list under the forecasts has Patagonia affiliate links. If you buy through one, The Talus Field may earn a commission at no extra cost to you.
-        </AffiliateDisclosure>
-      </HpPageHead>
+    <div className="page hp-design hp-tool hp-event hp-conditions">
+      <div className="ff-cover cd-cover">
+        <ResponsiveImage image="img/tioga-road-above-tenaya-lake.jpg" eager className="ff-cover__img"
+          alt="A car on Tioga Road above Tenaya Lake, with granite domes and a bank of summer cloud over the high country"
+          sizes="100vw" />
+        <HpPageHead
+          go={go}
+          crumbs={[{ label: "Home", route: "home" }, { label: "Conditions" }]}
+          eyebrow="CONDITIONS / LIVE FROM THE PARK"
+          title={<>The park,<br /><em>right now.</em></>}
+          intro="Live webcams, entrance waits, and the forecasts that matter, on one page. Check it the morning you drive in, not the week before. Roads and crowds change faster than your plans do."
+          actions={<>
+            <HomeLink go={go} location="conditions_hero" className="hp-button" href="#cond-waits">Entrance waits &nbsp; ↓</HomeLink>
+            <HomeLink go={go} location="conditions_hero" className="hp-link" href="#cond-roads">Roads and closures ↓</HomeLink>
+          </>}
+        >
+          <AffiliateDisclosure>
+            The seasonal gear list under the forecasts has Patagonia affiliate links. If you buy through one, The Talus Field may earn a commission at no extra cost to you.
+          </AffiliateDisclosure>
+        </HpPageHead>
+        <p className="ff-cover__credit">Photo: U.S. National Archives (public domain)</p>
+      </div>
+
+      <div className="hp-wrap">
+        <dl className="ff-facts">
+          <div><EventIcon name="clock" /><dt>Entrance waits</dt><dd>Live, from the NPS</dd></div>
+          <div><EventIcon name="camera" /><dt>Webcams</dt><dd>Live, on this page</dd></div>
+          <div><EventIcon name="therm" /><dt>Forecasts</dt><dd>Three elevations</dd></div>
+          <div><EventIcon name="car" /><dt>Road line</dt><dd>209-372-0200</dd></div>
+        </dl>
+        <nav className="ff-toc" aria-label="On this page">
+          <span>On this page</span>
+          {[
+            ["#cond-waits", "Entrance waits"],
+            ["#cond-cams", "Webcams"],
+            ["#cond-forecasts", "Forecasts"],
+            ["#cond-parking", "Parking"],
+            ["#cond-roads", "Roads"],
+            ["#cond-faq", "Questions"],
+          ].map(([href, label]) => (
+            <HomeLink key={href} go={go} location="conditions_toc" href={href}>{label}</HomeLink>
+          ))}
+        </nav>
+      </div>
+
+      {/* The readout: it fetches nothing of its own (rule 2), it only shows
+          what the two board feeds below hand up. */}
+      <section className="hp-wrap cd-now">
+        <div className="cd-now__copy">
+          <p className="hp-eyebrow">THE TWO NUMBERS THAT DECIDE THE MORNING</p>
+          <p className="ff-lede">How long the gate line is, and whether the Valley still has a place to park. Both come straight from the National Park Service and refresh every five minutes; everything below them is a camera, a forecast, or a link to whoever does know.</p>
+        </div>
+        <ConditionsReadout waits={waits} lots={lots} />
+      </section>
 
       {/* Entrance waits. The board variant of the shared component: one
           column block per gate, with the wait set large enough to read at
@@ -355,15 +408,17 @@ function ConditionsPage({ go }) {
 
       {/* Webcams. The strongest argument on the page is a picture of the
           weather, so the board variant runs them two up instead of four. */}
-      <section className="hp-wrap hp-section cond-section">
-        <HpHeading go={go} location="conditions" eyebrow="02 / SEE IT FOR YOURSELF" title="Webcams" link={{ href: "/webcams", label: "All cameras, and how to read them ↗" }} />
-        <WebcamStrip variant="board" />
-      </section>
+      <div className="ff-band">
+        <section className="hp-wrap hp-section cond-section" id="cond-cams" tabIndex={-1}>
+          <HpHeading go={go} location="conditions" eyebrow="02 / SEE IT FOR YOURSELF" title="Webcams" link={{ href: "/webcams", label: "All cameras, and how to read them ↗" }} />
+          <WebcamStrip variant="board" />
+        </section>
+      </div>
 
       {/* Forecasts. The elevation chart is the point: two stations share the
           valley floor and one sits nearly a mile above them, which is the
           whole reason a single forecast for "Yosemite" is useless. */}
-      <section className="hp-wrap hp-section cond-section">
+      <section className="hp-wrap hp-section cond-section" id="cond-forecasts" tabIndex={-1}>
         <HpHeading go={go} location="conditions" eyebrow="03 / THREE ELEVATIONS" title="Forecasts" link={{ href: "https://www.weather.gov/hnx/", label: "National Weather Service ↗" }} />
         <p className="hp-sub">
           The park spans nearly 11,000 feet of elevation, so one forecast is never enough. These are National Weather Service point forecasts for the three places most trips actually go.
@@ -374,8 +429,9 @@ function ConditionsPage({ go }) {
       </section>
 
       {/* Parking and the sources for everything this page cannot read. */}
+      <div className="ff-band">
       <div className="hp-wrap hp-section cond-section cond-split">
-        <section>
+        <section id="cond-parking" tabIndex={-1}>
           <HpHeading eyebrow="04 / THE VALLEY LOTS" title="Parking lots" />
           <p className="hp-sub">
             With no entry reservation in 2026, the Valley's lots limit a summer day: on the first busy Saturday of the season all Valley parking was full before noon. Be through the gate before 8 a.m. or after 4 p.m. on a summer weekend. Live lot status from the National Park Service appears here when the park publishes it.
@@ -411,6 +467,7 @@ function ConditionsPage({ go }) {
           </p>
         </section>
       </div>
+      </div>
 
       {/* The recorded line. It outranks every website in winter and spring,
           including this one, so it gets the weight that says so. */}
@@ -428,6 +485,22 @@ function ConditionsPage({ go }) {
           </span>
         </a>
       </div>
+
+      <section className="hp-wrap hp-section ff-split" id="cond-faq" tabIndex={-1}>
+        <div>
+          <p className="hp-eyebrow">QUESTIONS</p>
+          <h2>Yosemite conditions, answered</h2>
+          <p className="ff-lede">Planning further out? <HomeLink go={go} location="conditions_faq" href="/dates">The dates that decide a trip</HomeLink>, <HomeLink go={go} location="conditions_faq" href="/kit">the packing checklists</HomeLink>, <HomeLink go={go} location="conditions_faq" href="/distances">the drive-time table</HomeLink> and <HomeLink go={go} location="conditions_faq" href="/articles/when-to-visit-yosemite">when to visit</HomeLink> cover what a reading cannot.</p>
+        </div>
+        <div className="ff-faq">
+          {COND_FAQ.map(([q, a], i) => (
+            <details key={q} open={i < 2}>
+              <summary>{q}</summary>
+              <p>{a}</p>
+            </details>
+          ))}
+        </div>
+      </section>
 
       {/* The two asks, made once each, in the homepage's order: the paid
           thing first, the free one second. The honest angle for the guide is
