@@ -53,7 +53,35 @@ bucket_name = "talus-photo-inbox"
 binding = "MAP_TILES"
 bucket_name = "talus-map-tiles"
 
-# Two daily runs, branched on controller.cron in index.ts:
+# Entrance-gate wait log (lib/gateWaits.ts, GET /api/gate-waits/export):
+# one row per gate per */10 cron run. D1, not KV, because the free plan's
+# 1,000 KV writes a day are already spent by GUIDE_BUYERS/GUIDE_PROGRAMS.
+#
+# !!! database_id BELOW IS A PLACEHOLDER. Do not merge this block as is. !!!
+# A placeholder id DOES break the unattended Workers Build: the build's
+# typecheck and tests pass (they never contact Cloudflare), then
+# `wrangler deploy` uploads the binding and the API rejects a database id that
+# does not exist, so the deploy fails and nothing ships, including whatever
+# else was in the merge. The previous version keeps serving (the only signs
+# are the Deployments tab and the nightly parity check), and every later API
+# merge fails the same way until the id is real. So, BEFORE merging, from a
+# machine logged in to the account:
+#   cd workers
+#   npx wrangler d1 create talus-gate-waits
+#     -> paste the printed database_id over the placeholder below, commit
+#   npx wrangler d1 migrations apply talus-gate-waits --remote
+# The code tolerates a missing binding (the cron logs and skips, the export
+# 503s), but not a binding that names a database that is not there.
+# Local dev: `npx wrangler d1 migrations apply talus-gate-waits --local`.
+[[d1_databases]]
+binding = "GATE_WAITS"
+database_name = "talus-gate-waits"
+database_id = "00000000-0000-0000-0000-000000000000" # PLACEHOLDER: replace before merge
+migrations_dir = "migrations"
+
+# Three runs, branched on controller.cron in index.ts:
+#   */10 * * * * — the gate-wait logger alone (one NPS feed fetch, one D1
+#     batch, 144 runs a day). Branched first so it never reruns the daily jobs.
 #   0 10 * * * (~2-3am Pacific)  — data refresh (NPS programs, weather,
 #     conditions feeds) plus the renewal EMAIL sweep. Quiet-hours work only.
 #   0 15 * * * (7-8am Pacific year round) — the push sweep alone. Notices are
@@ -62,7 +90,7 @@ bucket_name = "talus-map-tiles"
 # The programs route also self-heals: if KV is missing or >48h old it fetches
 # NPS live and backfills.
 [triggers]
-crons = ["0 10 * * *", "0 15 * * *"]
+crons = ["0 10 * * *", "0 15 * * *", "*/10 * * * *"]
 
 # APP_BASE_URL is the PWA's public origin. It feeds every buyer-facing link
 # the Worker emits: the magic-link (`${APP_BASE_URL}/open?token=`), the access

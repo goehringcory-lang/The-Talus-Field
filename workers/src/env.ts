@@ -19,6 +19,11 @@ export type Env = {
   // tile per URL by routes/maptiles.ts. Optional: without it /vt and /dem 503.
   MAP_TILES?: R2Bucket
 
+  // D1 log of entrance-gate waits (lib/gateWaits.ts): one row per gate per
+  // ten-minute cron run, read by GET /api/gate-waits/export. Optional: without
+  // it the cron run logs and skips and the export 503s.
+  GATE_WAITS?: D1Database
+
   // Vars (wrangler.toml [vars])
   APP_BASE_URL: string         // PWA origin; e.g. https://guide.thetalusfieldjournal.com
   EDITORIAL_BASE_URL: string   // e.g. https://thetalusfieldjournal.com

@@ -10,7 +10,7 @@ import type { Env } from '../env'
 // lib/weather.ts. The feed is undocumented and can move or change shape —
 // every consumer must treat null as "render nothing", never as an error.
 
-const WAITS_URL =
+export const WAITS_URL =
   'https://npsvms-338365424831-us-west-1-an.s3.us-west-1.amazonaws.com/yose/transit-time/display/public/waits.json'
 const WAITS_KEY = 'waits:v1'
 const FRESH_MS = 5 * 60 * 1000
@@ -28,7 +28,7 @@ export type WaitsRecord = {
 
 // Mirror of parseWaitsSummary in components.jsx: find the "summary" key and
 // bracket-match its array out of a truncated JSON document.
-function parseWaitsSummary(text: string): WaitsSummaryEntry[] | null {
+export function parseWaitsSummary(text: string): WaitsSummaryEntry[] | null {
   const key = text.indexOf('"summary"')
   if (key === -1) return null
   const start = text.indexOf('[', key)
@@ -47,6 +47,21 @@ function parseWaitsSummary(text: string): WaitsSummaryEntry[] | null {
     }
   }
   return null
+}
+
+// One Range fetch of the feed's head, parsed to the summary array. Throws on
+// a non-2xx, a timeout, or a document with no summary; no retries, no cache.
+// Shared by getWaits (behind its KV cache) and the gate-wait logger
+// (lib/gateWaits.ts), which wants exactly one fetch per cron run.
+export async function fetchWaitsSummary(timeoutMs: number): Promise<WaitsSummaryEntry[]> {
+  const res = await fetch(WAITS_URL, {
+    headers: { Range: 'bytes=0-8191' },
+    signal: AbortSignal.timeout(timeoutMs),
+  })
+  if (!res.ok) throw new Error(`waits.json HTTP ${res.status}`)
+  const summary = parseWaitsSummary(await res.text())
+  if (!summary || summary.length === 0) throw new Error('waits.json summary not found')
+  return summary
 }
 
 async function readCached(env: Env): Promise<WaitsRecord | null> {
@@ -91,13 +106,7 @@ export async function getWaits(env: Env): Promise<WaitsRecord | null> {
   }
 
   try {
-    const res = await fetch(WAITS_URL, {
-      headers: { Range: 'bytes=0-8191' },
-      signal: AbortSignal.timeout(10_000),
-    })
-    if (!res.ok) throw new Error(`waits.json HTTP ${res.status}`)
-    const summary = parseWaitsSummary(await res.text())
-    if (!summary || summary.length === 0) throw new Error('waits.json summary not found')
+    const summary = await fetchWaitsSummary(10_000)
     const record: WaitsRecord = { fetchedAt: new Date().toISOString(), summary }
     await env.GUIDE_PROGRAMS.put(WAITS_KEY, JSON.stringify(record))
     return record
