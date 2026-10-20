@@ -858,6 +858,18 @@ const seed: StopInput[] = [
       'Sentinel Fall, Staircase Falls, Royal Arch Cascade, Lehamite, and at the west end Silver Strand and Widow\'s Tears: the valley\'s second set of waterfalls, running a few weeks each spring beside famous neighbors.',
     body:
       'March through May, and the days after any hard rain, several short-lived falls run beside the famous ones. Look up at the walls between landmarks on any valley-floor walk. By July most are dry.\n\nSentinel Fall drops roughly 2,000 feet in stages from the wall west of Sentinel Rock; see it from Southside Drive near Sentinel Beach. Staircase Falls comes down 1,300 feet of granite steps on the wall behind Curry Village. Royal Arch Cascade streams down the wall near the Ahwahnee after rain. Lehamite Falls drops 1,180 feet out of Indian Canyon about a mile east of Yosemite Falls.\n\nThe west end has two more, visible from [Tunnel View](/stop/tunnel-view) or [Artist Point](/stop/artist-point) with no extra miles. Look right of Bridalveil at the south wall west of the fall. Silver Strand Falls drops off the rim where Meadow Brook goes over, the westernmost waterfall in the valley. One drainage over is Widow\'s Tears, a slender plunge of well over a thousand feet that runs for only a few weeks of hard snowmelt. The name is Victorian humor: a widow\'s tears, the saying went, are the first to stop. Binoculars help; after a storm both can run at once.\n\nThe Ledge Trail to Glacier Point and the Sierra Point overlook above Happy Isles both appear on old postcards. The first was still open in the 1940s before the park abandoned it; the park let the second go after rockfall in the 1970s. Both are closed for cause, with fatalities behind the decision. The scramble to the summit of Sentinel Rock belongs to climbers. This guide gives directions to none of them.',
+    history: {
+      note:
+        'On June 22, 1940, ranger naturalist Lloyd P. Parratt was leading a hiking ' +
+        'party up the Ledge Trail to Glacier Point when the group stopped just short ' +
+        'of Staircase Fall. Beside the trail stood a golden-cup oak with a granite ' +
+        'boulder, 36 by 18 by 16 inches, lodged in its main crotch. The tree was ' +
+        'growing around the rock from both sides; its two main branches were about ' +
+        '8 inches through.',
+      volume: 20,
+      number: 2,
+      issueDate: 'February 1941',
+    },
   },
 
   // ===========================================================================
@@ -1120,6 +1132,18 @@ const seed: StopInput[] = [
       'The Pohono Trail past Dewey Point: 9 to 10.5 miles round trip for a view of the west valley from above, Bridalveil straight below its rim, and very few people.',
     body:
       'From the McGurk Meadow trailhead on Glacier Point Road, Dewey Point is 7.6 miles round trip by the Park Service\'s count, and Crocker and Stanford add more along the rim. Crocker is half a mile past Dewey, Stanford another six tenths past that, along the Pohono Trail through rim forest with open granite at each point. Dewey sees a handful of hikers a day; the other two see fewer.\n\nThe views: Bridalveil Fall from directly over its rim, Ribbon Fall\'s full 1,612 feet in spring, El Capitan in profile. Turn around at whichever point suits the group.\n\nJune through October, whenever Glacier Point Road is open. Carry water for the full distance; there is none on the rim.',
+    history: {
+      note:
+        'In July 1942 ranger-naturalist Willis A. Evans walked readers down the ' +
+        'Pohono Trail, 17 miles from Glacier Point to Inspiration Point. He put lunch ' +
+        'at the crossing of upper Bridalveil Creek, listed snow plants, red columbine ' +
+        'and monkshood along the way, and wrote that Dewey, Crocker, and Stanford ' +
+        'Points all furnished magnificent views over their sections of the valley. ' +
+        'He proposed calling it the valley rim\'s most scenic trail.',
+      volume: 21,
+      number: 7,
+      issueDate: 'July 1942',
+    },
   },
   {
     id: 'mcgurk-meadow',
@@ -1173,6 +1197,18 @@ const seed: StopInput[] = [
       'A flat walk in lodgepole forest along the creek that becomes Bridalveil Fall, with very few people. Good for a tired day.',
     body:
       'A flat walk in lodgepole forest along Bridalveil Creek, meadows on the first half, creek on the second, with very few people. Start near the Bridalveil Creek campground turnoff on Glacier Point Road; two to four miles out and back is the usual shape. No climb. Dippers (the water ouzels from Mirror Lake) feed in the riffles, the shallow, fast stretches. This is the creek that becomes Bridalveil Fall a few miles north.\n\nJune through October, early summer for the meadow bloom. Mosquitoes are heavy in June; bring repellent or come in August.',
+    history: {
+      note:
+        'Near midday on June 23, 1943, Georgie Ware was standing by the creek in the ' +
+        'Bridalveil Creek Campground when an animal new to Ware paused on the far ' +
+        'bank near the unoccupied ranger cabin, looked around, and went on up the ' +
+        'creek at an easy pace. Grinnell and Storer\'s Animal Life in the Yosemite ' +
+        'matched the description: a Pacific fisher. Nature Notes printed the ' +
+        'sighting that September.',
+      volume: 22,
+      number: 9,
+      issueDate: 'September 1943',
+    },
   },
   {
     id: 'ostrander-lake',
