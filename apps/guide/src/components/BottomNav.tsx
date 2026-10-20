@@ -23,6 +23,8 @@ export default function BottomNav() {
     pathname === '/programs' ||
     pathname === '/hikes' ||
     pathname.startsWith('/hike/') ||
+    pathname === '/backpacking' ||
+    pathname.startsWith('/backpacking/') ||
     pathname === '/today' ||
     pathname === '/this-week' ||
     pathname === '/saved' ||

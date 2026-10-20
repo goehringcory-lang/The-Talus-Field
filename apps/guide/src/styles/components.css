@@ -1644,3 +1644,38 @@ a.masthead-offline:hover { color: var(--ink); }
   color: var(--ink-3);
   font-variant-numeric: tabular-nums;
 }
+
+/* ===== Day hikes | Backpacking (HikeModeToggle.tsx), under the Plan tabs ===== */
+
+.hike-mode {
+  display: inline-flex;
+  border: 1px solid var(--rule-soft);
+  border-radius: var(--radius);
+  margin: calc(-1 * var(--s3)) 0 var(--s5);
+  overflow: hidden;
+}
+.hike-mode__opt {
+  display: inline-flex;
+  align-items: center;
+  min-height: 40px;
+  padding: 0 var(--s4);
+  font: 600 11px/1 var(--mono);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ink-2);
+  text-decoration: none;
+}
+.hike-mode__opt + .hike-mode__opt {
+  border-left: 1px solid var(--rule-soft);
+}
+.hike-mode__opt[aria-current='page'] {
+  background: var(--ink);
+  color: var(--paper);
+}
+.hike-mode__opt:focus-visible {
+  outline: 2px solid var(--moss);
+  outline-offset: -2px;
+}
+@media (hover: hover) {
+  .hike-mode__opt:not([aria-current='page']):hover { color: var(--ink); }
+}

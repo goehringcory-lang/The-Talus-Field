@@ -15,6 +15,7 @@ import { precachePhotoUrls, type PhotoFormat } from '../utils/photo'
 import { OFFLINE_REGIONS, overviewTiles, regionTiles, type OfflineRegionId, type TileAddress } from '../map/regions'
 import { TILESET } from '../map/tiles.generated'
 import { ROADS_URL, TRAILS_URL } from '../map/mapData.generated'
+import { BACKPACKING_BYTES, BACKPACKING_URL } from '../map/backpacking.generated'
 import { API_BASE } from '../lib/api'
 
 export const RUNTIME_CACHE = 'tfg-runtime'
@@ -152,11 +153,12 @@ function mapPacks(): Pack[] {
   const overview: Pack = {
     id: MAP_OVERVIEW_PACK_ID,
     label: 'Park map: overview',
-    detail: 'The whole park in 3D at driving scale, every label, and the road network trip routes follow. Needed by each area below.',
+    detail: 'The whole park in 3D at driving scale, every label, the road network trip routes follow, and the backpacking routes. Needed by each area below.',
     cacheName: TILES_CACHE,
     // The road graph rides here: every area's trip routes are drawn from it.
-    urls: [...MAP_ASSET_URLS, ROADS_URL, TRAILS_URL, ...overviewTiles().map(mapTileUrl)],
-    approxBytes: (TILESET.packs.overview?.bytes ?? 0) + MAP_ASSET_BYTES + ROADS_BYTES,
+    // So do the backpacking routes, which the map and the trip pages share.
+    urls: [...MAP_ASSET_URLS, ROADS_URL, TRAILS_URL, BACKPACKING_URL, ...overviewTiles().map(mapTileUrl)],
+    approxBytes: (TILESET.packs.overview?.bytes ?? 0) + MAP_ASSET_BYTES + ROADS_BYTES + BACKPACKING_BYTES,
     tolerateMissing: 0.02,
   }
   const regions = OFFLINE_REGIONS.map<Pack>((r) => ({

@@ -19,6 +19,12 @@ export type ChangelogEntryT = z.infer<typeof ChangelogEntry>
 
 const seed: ChangelogEntryT[] = [
   {
+    date: '2026-10-19',
+    lines: [
+      'Backpacking: ten overnight routes, from a first night at May Lake to the Grand Canyon of the Tuolumne. Each trip lays out its nights, the legal camp for every one of them, every place to fill a bottle with its mile mark, the longest dry stretch, and the exact permit trailhead to apply for. Find them under Hikes, and on the map\u2019s new Backpacking tab, where each route is drawn day by day. Each trip exports a GPX with its camps and water.',
+    ],
+  },
+  {
     date: '2026-10-13',
     lines: [
       'Easier to use with a screen reader or a keyboard: every button and chip is named by what it shows, the "+ Add" buttons on hikes and programs no longer sit inside the row’s own button, and the map and the printable plan have proper page structure.',

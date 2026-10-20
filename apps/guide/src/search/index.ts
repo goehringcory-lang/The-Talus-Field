@@ -18,6 +18,7 @@ import {
 import { HUNTS, type HuntT } from '../content/hunts'
 import { KIND_LABELS, WILDLIFE, type WildlifeEntryT } from '../content/wildlife'
 import { DEADLINES } from '../content/deadlines'
+import { BACKPACK_TRIPS } from '../content/backpacking'
 import { REGION_SHORT } from '../content'
 
 export type SearchHit = {
@@ -28,6 +29,7 @@ export type SearchHit = {
     | 'Tools'
     | 'Stops'
     | 'Hikes'
+    | 'Backpacking'
     | 'Secret Guide'
     | 'Essentials'
     | 'Places on the map'
@@ -152,6 +154,24 @@ function buildEntries(): Entry[] {
       titleText: h.title.toLowerCase(),
       swapText: h.trailhead.toLowerCase(),
       bodyText: h.description.toLowerCase(),
+    })
+  }
+
+  // The backpacking trips. The camps, the water and the permit trailhead are
+  // indexed at swap weight, so "young lakes" and "glen aulin water" both land
+  // on the trip page that answers them.
+  for (const t of BACKPACK_TRIPS) {
+    const places = [...t.camps.map((c) => c.name), ...t.water.map((w) => w.name), t.permit.trailhead, t.trailhead.name]
+    entries.push({
+      id: `backpacking-${t.id}`,
+      url: `/backpacking/${t.id}`,
+      title: t.title,
+      section: 'Backpacking',
+      eyebrow: `${REGION_LABEL[t.region] ?? t.region} · ${t.nightsMin === t.nightsMax ? t.nightsMin : `${t.nightsMin}\u2013${t.nightsMax}`} ${t.nightsMax === 1 ? 'night' : 'nights'}`,
+      titleText: `${t.title} backpacking overnight`.toLowerCase(),
+      swapText: places.join(' ').toLowerCase(),
+      bodyText: `${t.teaser} ${t.description}`.toLowerCase(),
+      snippetText: `${t.teaser} ${t.description}`,
     })
   }
 

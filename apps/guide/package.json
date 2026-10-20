@@ -16,6 +16,7 @@
     "audit:candidates": "jiti scripts/fact-audit-candidates.ts",
     "map:tiles": "jiti scripts/gen-map-tiles.ts",
     "map:data": "jiti scripts/gen-map-data.ts",
+    "map:backpacking": "jiti scripts/gen-backpacking-routes.ts",
     "check:build": "node scripts/check-build-determinism.mjs",
     "test": "vitest run"
   },
