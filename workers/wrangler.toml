@@ -129,7 +129,8 @@ PROMO_CODES = "TALUS30:30"
 # and digits, uppercased, so "talus-abcd-efgh" and "TALUSABCDEFGH" match).
 # One entry per line. The plaintext codes never enter the repo. To add one,
 # hash it and append; to revoke an unused one, delete its line. October 2026:
-# ten 548-day (full 18-month) codes for the owner to hand out.
+# ten 548-day (full 18-month) codes for the owner to hand out, plus one more
+# (Oct 20) for a partner prospect.
 SINGLE_USE_CODES = """
 45b3a6cd3461ba91d99e22ee77e027d54c052c1fbd6027fa7f8bd92a0426e21a:548
 7aab476a356a148637abf9db03d3c5fd6ba377f252187bd97e8c7ada70ecee88:548
@@ -141,6 +142,7 @@ e14d1fa5b6242cd38118d2248bdbb9ccc34aeb97ad05b00c486497eb41a4e709:548
 9733f397619731c123f1af485e5c66c81a5494d8d6bba959735d7b263f15ebb7:548
 754f9a7ae6eb5584ecca4a7e735a843cfd99b3332e492c3093284ddc0598551d:548
 5eaaaa9d3403306bf615a20c1d0d4528f725d7886c95f1567fe9c04e081fd818:548
+29b678a5a8d21c11cd961681b622afd17476192902d14bf7d556de6f37ee9b67:548
 """
 
 # Routes the Worker to api.thetalusfieldjournal.com.
