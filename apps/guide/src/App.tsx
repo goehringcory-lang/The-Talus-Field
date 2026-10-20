@@ -23,6 +23,8 @@ const Programs = lazy(() => import('./routes/Programs'))
 const Hikes = lazy(() => import('./routes/Hikes'))
 const Dining = lazy(() => import('./routes/Dining'))
 const HikeDetail = lazy(() => import('./routes/HikeDetail'))
+const Backpacking = lazy(() => import('./routes/Backpacking'))
+const BackpackTrip = lazy(() => import('./routes/BackpackTrip'))
 const Trip = lazy(() => import('./routes/Trip'))
 const RegionPlan = lazy(() => import('./routes/RegionPlan'))
 const Today = lazy(() => import('./routes/Today'))
@@ -205,6 +207,22 @@ export default function App() {
             element={
               <RequireAuth>
                 <Hikes />
+              </RequireAuth>
+            }
+          />
+          <Route
+            path="/backpacking"
+            element={
+              <RequireAuth>
+                <Backpacking />
+              </RequireAuth>
+            }
+          />
+          <Route
+            path="/backpacking/:tripId"
+            element={
+              <RequireAuth>
+                <BackpackTrip />
               </RequireAuth>
             }
           />

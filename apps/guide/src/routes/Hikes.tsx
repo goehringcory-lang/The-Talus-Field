@@ -8,6 +8,7 @@
 import { useEffect, useMemo, useState } from 'react'
 import { Link } from 'react-router-dom'
 import GatedChrome from '../components/GatedChrome'
+import HikeModeToggle from '../components/HikeModeToggle'
 import PlanTabs from '../components/PlanTabs'
 import TrackSparkline from '../components/TrackSparkline'
 import Button from '../components/ui/Button'
@@ -238,6 +239,7 @@ export default function Hikes() {
     <GatedChrome>
       <main className="wrap wrap--narrow page">
         <PlanTabs active="hikes" />
+        <HikeModeToggle active="day" />
         <PageHeader
           eyebrow="Trails by region"
           title="Day hikes"

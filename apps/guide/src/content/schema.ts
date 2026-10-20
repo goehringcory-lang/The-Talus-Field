@@ -257,6 +257,115 @@ export type HikeT = z.infer<typeof Hike>
 
 export const Hikes = z.array(Hike)
 
+// Backpacking trips (/backpacking, the map's Backpacking tab; October 2026).
+// One entry per multi-day route: the nights, where each night is legally
+// spent, and every dependable refill on the way. Coordinates and figures are
+// sourced on the line that carries them (NPS, USGS GNIS, OpenStreetMap), and
+// the route itself is never drawn here: gen-backpacking-routes.ts routes it
+// over USGS/NPS (or OSM) trail linework between the spec's waypoints and
+// measures every camp and water source against that line, so a coordinate
+// that sits off the route fails the build's report rather than the hiker.
+const Coord = z.tuple([z.number(), z.number()]) // [lng, lat]
+
+export const BackpackCamp = z.object({
+  id: z.string(),
+  name: z.string(),
+  // designated: a named backpackers' camp the park requires you to use there
+  // (bear boxes, usually a toilet). zone: the commonly used, legal camping
+  // area for that night, where the 4-mile, 1-mile and 100-foot rules allow it.
+  kind: z.enum(['designated', 'zone']),
+  coord: Coord,
+  elevFt: z.number(),
+  facilities: z.string().optional(), // "Bear boxes, composting toilet, no piped water"
+  rules: z.string(),                 // why camping is legal here, and what is required
+})
+export type BackpackCampT = z.infer<typeof BackpackCamp>
+
+export const BackpackWater = z.object({
+  id: z.string(),
+  name: z.string(),
+  kind: z.enum(['lake', 'river', 'creek', 'spring', 'tap']),
+  coord: Coord,                      // where the trail meets the water, not the lake's centre
+  // reliable: carries water through a normal summer. seasonal: can dry or
+  // dwindle by late summer, and the note says when.
+  reliability: z.enum(['reliable', 'seasonal']),
+  note: z.string().optional(),
+})
+export type BackpackWaterT = z.infer<typeof BackpackWater>
+
+export const BackpackDay = z.object({
+  from: z.string(),
+  to: z.string(),
+  campId: z.string().nullable(),     // the night's camp; null on the walk out
+  // A layover day starts and ends at the same camp; its walking is the side
+  // trip named here (routed separately in the spec), not the main line.
+  sideTripId: z.string().optional(),
+  summary: z.string(),               // 1-3 plain sentences, house voice
+})
+export type BackpackDayT = z.infer<typeof BackpackDay>
+
+export const BackpackTrip = z.object({
+  id: z.string(),
+  title: z.string(),
+  region: RegionEnum,
+  order: z.number(),                 // reading order on /backpacking: first trip first
+  level: z.enum(['first-trip', 'moderate', 'strenuous']),
+  nightsMin: z.number().int().min(1),
+  nightsMax: z.number().int().min(1),
+  route: HikeRoute,
+  distanceMi: z.number(),            // published total, the generator's check figure
+  elevationGainFt: z.number(),       // published total climbing, likewise
+  highPointFt: z.number(),
+  season: z.string(),                // chip-length: "Tioga Road season, July to early October"
+  teaser: z.string(),                // one line for the list and the map pane
+  description: z.string(),           // 2-4 plain sentences
+  permit: z.object({
+    trailhead: z.string(),           // the exact Recreation.gov trailhead name
+    quota: z.number().optional(),    // people per day, when the park publishes it
+    note: z.string(),
+  }),
+  trailhead: z.object({ name: z.string(), coord: Coord, parking: z.string() }),
+  exit: z.object({ name: z.string(), coord: Coord, parking: z.string() }).optional(),
+  transport: z.string().optional(),  // getting back to the car on a one-way trip
+  days: z.array(BackpackDay).min(2),
+  camps: z.array(BackpackCamp).min(1),
+  water: z.array(BackpackWater).min(1),
+  sideTrips: z.array(z.object({ id: z.string(), name: z.string(), note: z.string() })).optional(),
+  hazards: z.array(z.string()),
+  hikeId: z.string().optional(),     // the day hike that shares this trailhead and first miles
+  sources: z.array(z.object({ label: z.string(), url: z.string().url() })).min(1),
+  photo: z
+    .object({
+      src: z.string().regex(/^\/photos\/[a-z0-9-]+\.jpg$/),
+      alt: z.string(),
+    })
+    .optional(),
+})
+export type BackpackTripT = z.infer<typeof BackpackTrip>
+
+export const BackpackTrips = z.array(BackpackTrip).superRefine((trips, ctx) => {
+  for (const t of trips) {
+    const campIds = new Set(t.camps.map((c) => c.id))
+    const sideIds = new Set((t.sideTrips ?? []).map((s) => s.id))
+    const nights = t.days.filter((d) => d.campId !== null).length
+    if (nights < t.nightsMin || nights > t.nightsMax) {
+      ctx.addIssue({ code: 'custom', message: `${t.id}: ${nights} nights in days, outside ${t.nightsMin}-${t.nightsMax}` })
+    }
+    if (t.days[t.days.length - 1].campId !== null) {
+      ctx.addIssue({ code: 'custom', message: `${t.id}: the last day must walk out (campId null)` })
+    }
+    for (const d of t.days) {
+      if (d.campId && !campIds.has(d.campId)) ctx.addIssue({ code: 'custom', message: `${t.id}: unknown camp ${d.campId}` })
+      if (d.sideTripId && !sideIds.has(d.sideTripId)) ctx.addIssue({ code: 'custom', message: `${t.id}: unknown side trip ${d.sideTripId}` })
+    }
+    const ids = [...t.camps.map((c) => c.id), ...t.water.map((w) => w.id)]
+    if (new Set(ids).size !== ids.length) ctx.addIssue({ code: 'custom', message: `${t.id}: duplicate camp or water id` })
+    if ((t.route === 'one-way') !== !!t.exit) {
+      ctx.addIssue({ code: 'custom', message: `${t.id}: a one-way trip needs an exit, and only a one-way trip has one` })
+    }
+  }
+})
+
 // Dining directory (/dining): every food and drink option inside the park
 // plus the gateway-town places worth knowing, grouped by area. Distinct from
 // Stops on purpose — a dining venue is a service (hours, price tier, season),

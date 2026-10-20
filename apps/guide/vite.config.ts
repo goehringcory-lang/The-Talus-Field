@@ -102,13 +102,17 @@ async function mapTilesVersion(): Promise<string> {
 }
 
 // The map's content-hashed data files (src/map/mapData.generated.ts: the road
-// graph and the trails), so activate can drop superseded copies from the tile
-// cache.
+// graph and the trails; src/map/backpacking.generated.ts: the backpacking
+// routes), so activate can drop superseded copies from the tile cache.
 async function mapDataUrls(): Promise<string[]> {
-  const source = await readFile(resolve('src/map/mapData.generated.ts'), 'utf8')
+  // The backpacking routes (src/map/backpacking.generated.ts, written by
+  // scripts/gen-backpacking-routes.ts) are a map data file too.
+  const source =
+    (await readFile(resolve('src/map/mapData.generated.ts'), 'utf8')) +
+    (await readFile(resolve('src/map/backpacking.generated.ts'), 'utf8'))
   const urls = [...source.matchAll(/^export const [A-Z_]+_URL = '(\/map\/[a-z]+-[0-9a-f]+\.json)'$/gm)].map((m) => m[1])
-  if (!urls.some((u) => u.startsWith('/map/roads-')) || !urls.some((u) => u.startsWith('/map/trails-'))) {
-    throw new Error('ROADS_URL / TRAILS_URL not found in src/map/mapData.generated.ts')
+  if (!['roads', 'trails', 'backpacking'].every((name) => urls.some((u) => u.startsWith(`/map/${name}-`)))) {
+    throw new Error('ROADS_URL / TRAILS_URL / BACKPACKING_URL not found in the map data modules')
   }
   return urls.sort()
 }

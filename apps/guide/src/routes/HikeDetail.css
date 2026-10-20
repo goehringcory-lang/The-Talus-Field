@@ -159,6 +159,19 @@
   stroke-width: 2;
   stroke-linejoin: round;
 }
+.elev__camp line {
+  stroke: var(--ink-2);
+  stroke-width: 1;
+  stroke-dasharray: 3 3;
+}
+.elev__camp path {
+  fill: var(--ink);
+}
+.elev__water {
+  fill: var(--water, #1b6fa8);
+  stroke: var(--paper);
+  stroke-width: 1;
+}
 .elev__high {
   fill: var(--moss);
   stroke: var(--paper);

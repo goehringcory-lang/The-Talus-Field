@@ -67,6 +67,7 @@
      One pair per scheme, so every panel, spec strip and readout grid on the
      app draws the same rule without restating a colour. */
   --panel: #fffdf7;
+  --water: #1b6fa8; /* backpacking water sources, page and map (map/theme.ts waterColor) */
   --panel-edge: #d6dacf;
 
   /* The one dark band on a light page (the Park Bulletin link on Home): deep
@@ -1213,6 +1214,7 @@ select:focus-visible {
     --gold:      #d7b879;
     --danger:    #e2825c;
     --panel:     #1c2823;
+    --water:     #7cc4ef;
     --panel-edge: #2f4038;
     --band: #0c1411;
     --band-ink: #f1ead6;
@@ -1247,6 +1249,7 @@ select:focus-visible {
   --gold:      #d7b879;
   --danger:    #e2825c;
   --panel:     #1c2823;
+  --water:     #7cc4ef;
   --panel-edge: #2f4038;
   --band: #0c1411;
   --band-ink: #f1ead6;

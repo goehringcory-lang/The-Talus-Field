@@ -14,6 +14,9 @@ type Props = {
   /** [mi, ft] over the full walked route (out-and-backs already mirrored). */
   profile: [number, number][]
   highPointMi?: number
+  /** Backpacking trips: each night's camp (a dashed rule and its night
+   * number) and each water source (a drop on the floor of the chart). */
+  marks?: { mi: number; kind: 'camp' | 'water'; label: string }[]
 }
 
 const H = 200
@@ -31,7 +34,7 @@ function niceStep(range: number, target: number): number {
   return mag * 10
 }
 
-export default function ElevationProfile({ profile, highPointMi }: Props) {
+export default function ElevationProfile({ profile, highPointMi, marks }: Props) {
   const wrapRef = useRef<HTMLDivElement | null>(null)
   const [width, setWidth] = useState(640)
   const [scrub, setScrub] = useState<number | null>(null) // index into profile
@@ -206,6 +209,19 @@ export default function ElevationProfile({ profile, highPointMi }: Props) {
               {formatElevation(Math.round(highPt[1]))}
             </text>
           </g>
+        )}
+        {marks?.map((m) =>
+          m.kind === 'camp' ? (
+            <g key={`c-${m.mi}`} className="elev__camp">
+              <title>{m.label}</title>
+              <line x1={x(m.mi)} x2={x(m.mi)} y1={PAD_T} y2={H - PAD_B} />
+              <path d={`M${x(m.mi)},${PAD_T - 1} l6,9 h-12 z`} />
+            </g>
+          ) : (
+            <circle key={`w-${m.mi}`} className="elev__water" cx={x(m.mi)} cy={H - PAD_B - 4} r={3.2}>
+              <title>{m.label}</title>
+            </circle>
+          ),
         )}
         {scrubPt && (
           <g>

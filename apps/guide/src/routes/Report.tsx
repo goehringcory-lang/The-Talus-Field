@@ -1,5 +1,5 @@
 // =============================================================================
-// /report — tell the guide it is wrong. ?type=stop|hike|dining|place|app and
+// /report — tell the guide it is wrong. ?type=stop|hike|backpacking|dining|place|app and
 // ?id= name the entry; the page says which one it is about, offers the five
 // kinds of problem a field guide actually has, and can attach one GPS reading,
 // taken only when the reader taps for it (the Help card and compass rule: no
@@ -15,6 +15,7 @@ import Button from '../components/ui/Button'
 import PageHeader from '../components/ui/PageHeader'
 import { ChipButton } from '../components/ui/Chip'
 import { AMENITIES, DINING, getHikeById, getStopById } from '../content'
+import { getBackpackTripById } from '../content/backpacking'
 import { useAuth } from '../auth/useAuth'
 import { BUILD_DATE } from '../lib/buildInfo'
 import { correctionMailto, sendCorrection, type SendResult } from '../lib/corrections'
@@ -33,6 +34,10 @@ function subjectOf(type: string | null, id: string | null): { title: string; bac
   if (type === 'hike') {
     const h = getHikeById(id)
     return h ? { title: h.title, back: `/hike/${h.id}` } : null
+  }
+  if (type === 'backpacking') {
+    const t = getBackpackTripById(id)
+    return t ? { title: t.title, back: `/backpacking/${t.id}` } : null
   }
   if (type === 'dining') {
     const v = DINING.find((x) => x.id === id)

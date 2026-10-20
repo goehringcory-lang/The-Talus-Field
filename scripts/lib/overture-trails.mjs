@@ -23,7 +23,12 @@ import path from 'node:path'
 import { asyncBufferFromUrl, parquetMetadataAsync, parquetRead } from 'hyparquet'
 import { compressors } from 'hyparquet-compressors'
 
-const RELEASE = '2026-06-17.0'
+// Overture keeps only its latest releases on S3; a pinned release that has
+// rolled off answers the listing with nothing ("returned no parquet files").
+// 2026-06-17.0 rolled off by October 2026. Bump to a release listed under
+// s3://overturemaps-us-west-2/release/ when that happens again; the cache file
+// is keyed by release, so the old pull is never mixed in.
+const RELEASE = '2026-09-23.1'
 const BUCKET = 'https://overturemaps-us-west-2.s3.us-west-2.amazonaws.com'
 const PREFIX = `release/${RELEASE}/theme=transportation/type=segment/`
 

@@ -346,6 +346,28 @@
   }
 }
 
+/* Five tabs since the Backpacking tab (October 2026). Below 430px the two
+ * long labels shorten ("Points", "Info"), and the bar scrolls on its own if a
+ * large text setting still overflows it, so the page never scrolls sideways. */
+.map-tabbar__short {
+  display: none;
+}
+@media (max-width: 430px) {
+  .map-tabbar {
+    overflow-x: auto;
+    scrollbar-width: none;
+  }
+  .map-tabbar__tab {
+    white-space: nowrap;
+  }
+  .map-tabbar__long {
+    display: none;
+  }
+  .map-tabbar__short {
+    display: inline;
+  }
+}
+
 .map-tabbar__tab[aria-pressed='true'] {
   color: var(--ink);
   border-bottom-color: var(--moss);
@@ -1727,3 +1749,130 @@
 /* Attribution links are underlined: in the attribution line's own colour
  * they were told apart by nothing (axe link-in-text-block). */
 .maplibregl-ctrl-attrib a { text-decoration: underline; text-underline-offset: 2px; }
+
+/* ---------------------------------------------------------------------------
+ * The Backpacking pane (map/BackpackPanel.tsx). It is a .map-pane--trip as
+ * well, so it docks and collapses exactly as the trip pane does; these rules
+ * are only what the trip list and the night-by-night entries add.
+ * ------------------------------------------------------------------------- */
+
+.bp-panel__trips {
+  list-style: none;
+  margin: 12px 0 0;
+  padding: 0;
+  border-top: 1px solid var(--rule-soft);
+}
+.bp-trip {
+  display: grid;
+  gap: 2px;
+  width: 100%;
+  min-height: 44px;
+  padding: 10px 2px;
+  text-align: left;
+  background: none;
+  border: 0;
+  border-bottom: 1px solid var(--rule-soft);
+  color: var(--ink);
+  cursor: pointer;
+}
+.bp-trip__title {
+  font-family: var(--display);
+  font-size: 18px;
+  line-height: 1.2;
+}
+.bp-trip__meta {
+  font: 11px/1.4 var(--mono);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--moss);
+}
+.bp-trip__teaser {
+  font-size: 13px;
+  line-height: 1.45;
+  color: var(--ink-2);
+}
+@media (hover: hover) {
+  .bp-trip:hover .bp-trip__title { text-decoration: underline; text-underline-offset: 3px; }
+}
+.bp-panel__back {
+  min-height: 36px;
+  padding: 0;
+  margin-bottom: 4px;
+  background: none;
+  border: 0;
+  font: 600 11px/1 var(--mono);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--moss);
+  cursor: pointer;
+}
+.bp-panel__meta {
+  margin: -4px 0 12px;
+  font: 12px/1.5 var(--mono);
+  color: var(--ink-2);
+}
+.bp-panel__dry {
+  margin: 0 0 12px;
+  padding: 8px 10px;
+  border-left: 3px solid var(--water);
+  background: var(--paper-2);
+  font-size: 13px;
+  line-height: 1.45;
+  color: var(--ink-2);
+}
+.bp-panel__mark {
+  flex: none;
+}
+.bp-day__route {
+  font-family: var(--sans);
+  font-size: 13px;
+  font-weight: 400;
+  color: var(--ink-2);
+  margin-left: 6px;
+}
+.bp-day__numbers {
+  margin: 0 0 4px 20px;
+  font: 12px/1.4 var(--mono);
+  color: var(--ink-2);
+}
+.bp-day__entries {
+  list-style: none;
+  margin: 0 0 6px;
+  padding: 0;
+}
+.bp-entry {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+  min-height: 44px;
+  padding: 4px 6px;
+  text-align: left;
+  background: none;
+  border: 0;
+  border-radius: var(--radius);
+  color: var(--ink);
+  cursor: pointer;
+}
+.bp-entry--focused {
+  background: var(--paper-2);
+  box-shadow: inset 2px 0 0 var(--ink);
+}
+.bp-entry:focus-visible,
+.bp-trip:focus-visible,
+.bp-panel__back:focus-visible {
+  outline: 2px solid var(--moss);
+  outline-offset: 1px;
+}
+.bp-entry__main {
+  display: grid;
+  min-width: 0;
+}
+.bp-entry__name {
+  font-size: 14px;
+  font-weight: 600;
+}
+.bp-entry__meta {
+  font: 11px/1.4 var(--mono);
+  color: var(--ink-2);
+}

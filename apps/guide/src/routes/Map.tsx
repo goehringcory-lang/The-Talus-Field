@@ -1,11 +1,12 @@
 // =============================================================================
 // /map route — three-tab map experience for the Field Guide PWA.
 //
-// Tabs: GPS points / Itineraries / Information.
+// Tabs: GPS points / Itineraries / My trip / Backpacking / Information.
 // The MapLibre instance is created once on mount and lives inside a div that
 // is never unmounted (panes overlay it via absolute positioning + visibility
 // toggling). State is reflected in the URL:
-//   /map?tab=points|itineraries|info&itinerary=1day|2day|3day&stop=<id>
+//   /map?tab=points|itineraries|trip|backpacking|info&itinerary=1day|2day|3day&stop=<id>
+//   /map?tab=backpacking&route=<trip id>   one backpacking trip, night by night
 //
 // The basemap is a self-hosted vector map on 3D terrain (map/style.ts: the
 // Worker's /vt and /dem tiles, first-party glyphs), served cache-first by the
@@ -72,7 +73,7 @@ import { useRoadReader } from '../alerts/roadState'
 import { daysInWindow, seedItinerary, shortDay } from '../trip/seedItinerary'
 import { useArmToConfirm } from '../utils/useArmToConfirm'
 import { todayIso } from '../utils/date'
-import { RoadGraph, type Pt, type RoadGraphFile } from '../map/roadGraph'
+import { RoadGraph, decodePolyline, type Pt, type RoadGraphFile } from '../map/roadGraph'
 import { ROADS_URL } from '../map/mapData.generated'
 import { buildTripDays, dayColor, tripLegsGeojson, tripStopsGeojson, type DayEnd, type TripDay, type TripLeg, type TripStop } from '../map/tripLayer'
 import { PROGRAM_POINT_ICON, TRIP_KIND_LABEL, addTripIcons } from '../map/tripIcons'
@@ -88,13 +89,30 @@ import { HIDE_AFTER_MS as PARKING_HIDE_MS } from '../parking/staleness'
 import { useParking } from '../parking/useParking'
 import { compactStamp } from '../utils/relativeStamp'
 import { useOnline } from '../utils/useOnline'
+import { BACKPACK_TRIPS, getBackpackTripById } from '../content/backpacking'
+import { decodeRoute, loadRoutes, sliceByMiles, type BackpackRouteT } from '../backpacking/routes'
+import BackpackPanel from '../map/BackpackPanel'
+import {
+  BP_LINE_LAYER,
+  BP_OVERVIEW_LAYER,
+  BP_POINT_LAYER,
+  addBackpackIcons,
+  ensureBackpackLayers,
+  overviewGeojson,
+  recolorBackpack,
+  setBackpackData,
+  setBackpackDay,
+  setBackpackVisible,
+  tripGeojson,
+} from '../map/backpackLayer'
+import { waterColor } from '../map/theme'
 import './Map.css'
 import { useDocumentTitle } from '../lib/documentTitle'
 
-type Tab = 'points' | 'itineraries' | 'trip' | 'info'
+type Tab = 'points' | 'itineraries' | 'trip' | 'backpacking' | 'info'
 
 function isTab(value: string | null | undefined): value is Tab {
-  return value === 'points' || value === 'itineraries' || value === 'trip' || value === 'info'
+  return value === 'points' || value === 'itineraries' || value === 'trip' || value === 'backpacking' || value === 'info'
 }
 
 const DAY_RE = /^\d{4}-\d{2}-\d{2}$/
@@ -111,6 +129,7 @@ type UrlState = {
   planned: boolean
   day: string | null // the trip day shown alone on the My trip tab (?day=)
   trail: string | null // the trail whose card is open (?trail=)
+  route: string | null // the backpacking trip drawn on the Backpacking tab (?route=)
 }
 
 const ALL_KINDS = Object.keys(KIND_STYLES) as MapPinKind[]
@@ -142,6 +161,8 @@ function readUrlState(): UrlState {
     planned: params.get('planned') === '1',
     day: DAY_RE.test(params.get('day') ?? '') ? params.get('day') : null,
     trail: params.get('trail') && hasTrack(params.get('trail')!) ? params.get('trail') : null,
+    // Only a trip in the catalog: an unknown id round-trips away.
+    route: getBackpackTripById(params.get('route') ?? '') ? params.get('route') : null,
   }
 }
 
@@ -156,6 +177,7 @@ function writeUrlState(next: UrlState) {
   if (next.planned) params.set('planned', '1')
   if (next.tab === 'trip' && next.day) params.set('day', next.day)
   if (next.trail) params.set('trail', next.trail)
+  if (next.tab === 'backpacking' && next.route) params.set('route', next.route)
   // The camera rides along untouched: it is written on its own schedule (on
   // moveend, see CAMERA below), and a state write must not drop it.
   const cam = new URLSearchParams(window.location.search).get('cam')
@@ -1152,11 +1174,32 @@ export default function Map() {
   }, [])
   const [roadGraph, setRoadGraph] = useState<RoadGraph | null>(null)
   const [graphState, setGraphState] = useState<'loading' | 'ready' | 'failed'>('loading')
+
+  // --- The backpacking layer (Backpacking tab) -----------------------------
+  // One trip's route day by day with its camps and water, or every route in
+  // the ink until one is chosen. The routes file loads the first time the tab
+  // opens (the overview pack keeps it offline).
+  const [bpTripId, setBpTripId] = useState<string | null>(initial.route)
+  const [bpDay, setBpDay] = useState<number | null>(null)
+  const [bpFocus, setBpFocus] = useState<string | null>(null)
+  const [bpRoutes, setBpRoutes] = useState<Record<string, BackpackRouteT> | null>(null)
+  const [bpState, setBpState] = useState<'loading' | 'ready' | 'failed'>('loading')
+  const [bpExpanded, setBpExpanded] = useState(false)
+  const selectBpTrip = useCallback((id: string | null) => {
+    setBpTripId(id)
+    setBpDay(null)
+    setBpFocus(null)
+    if (id) setBpExpanded(true)
+  }, [])
   // Bumped when the colour scheme changes, so the day colours re-read tokens.
   const [schemeTick, setSchemeTick] = useState(0)
   const colors = useMemo(() => {
     void schemeTick
     return dayColors()
+  }, [schemeTick])
+  const bpWaterColor = useMemo(() => {
+    void schemeTick
+    return waterColor()
   }, [schemeTick])
   const tripDays = useMemo(() => buildTripDays(plan, roadGraph, dayEnd), [plan, roadGraph, dayEnd])
   const tripDaysRef = useRef<TripDay[]>(tripDays)
@@ -1371,8 +1414,9 @@ export default function Map() {
       planned: plannedOnly,
       day: selectedDay,
       trail: selectedTrailId,
+      route: bpTripId,
     })
-  }, [tab, selectedItinerary, selectedStopId, kindFilter, showSecret, trackHikeId, plannedOnly, selectedDay, selectedTrailId])
+  }, [tab, selectedItinerary, selectedStopId, kindFilter, showSecret, trackHikeId, plannedOnly, selectedDay, selectedTrailId, bpTripId])
 
   // Restore from URL on every router navigation: back/forward (the router
   // owns popstate) and bottom-nav "Map" re-taps that push a bare /map over a
@@ -1392,6 +1436,7 @@ export default function Map() {
       setPlannedOnly(next.planned)
       setTrackHikeId(next.hike)
       setSelectedDay(next.day)
+      setBpTripId(next.route)
       selectStop(next.stop)
     })
     return () => {
@@ -1549,6 +1594,7 @@ export default function Map() {
     // them, and the first frame after asks for them here.
     map.on('styleimagemissing', (e) => {
       if (e.id.startsWith('trip-')) addTripIcons(map, dayColors(), tripCasing(), accentColor())
+      if (e.id.startsWith('bp-')) addBackpackIcons(map)
     })
 
     // Follow the reader's colour scheme (Account's theme card, or the device
@@ -1907,11 +1953,132 @@ export default function Map() {
     // doing what the pins do.
     setTrailFilter(
       map,
-      { ...trailFilter, visible: trailFilter.visible && tab !== 'trip' },
+      { ...trailFilter, visible: trailFilter.visible && tab !== 'trip' && tab !== 'backpacking' },
       selectedTrailId,
       plannedOnly ? plannedHikeIds : null,
     )
   }, [trailsReady, trailFilter, selectedTrailId, schemeTick, tab, plannedOnly, plannedHikeIds])
+
+  // --- Backpacking: load, draw, frame, tap ---------------------------------
+  useEffect(() => {
+    if (tab !== 'backpacking' || bpRoutes) return
+    let cancelled = false
+    loadRoutes().then(
+      (routes) => {
+        if (cancelled) return
+        setBpRoutes(routes)
+        setBpState('ready')
+      },
+      () => {
+        if (!cancelled) setBpState('failed')
+      },
+    )
+    return () => {
+      cancelled = true
+    }
+  }, [tab, bpRoutes])
+
+  const bpTrip = bpTripId ? getBackpackTripById(bpTripId) : undefined
+  useEffect(() => {
+    const map = mapRef.current
+    // A lost WebGL context nulls map.style until it is restored.
+    if (!map || !mapReady || !map.style) return
+    ensureBackpackLayers(map)
+    addBackpackIcons(map)
+    recolorBackpack(map)
+    const active = tab === 'backpacking'
+    if (active && bpRoutes) {
+      const route = bpTrip ? bpRoutes[bpTrip.id] : undefined
+      const empty: GeoJSON.FeatureCollection = { type: 'FeatureCollection', features: [] }
+      const one = bpTrip && route ? tripGeojson(bpTrip, route) : { lines: empty, side: empty, pins: empty }
+      setBackpackData(map, { overview: bpTrip ? empty : overviewGeojson(BACKPACK_TRIPS, bpRoutes), ...one })
+    }
+    setBackpackVisible(map, active)
+    setBackpackDay(map, bpDay, bpFocus)
+  }, [mapReady, tab, bpRoutes, bpTrip, bpDay, bpFocus, schemeTick])
+
+  // Frame the chosen trip (or day, or every route) once per choice, after
+  // the pane has drawn, so overlayPadding measures the pane it must clear.
+  const bpFitRef = useRef<string | null>(null)
+  useEffect(() => {
+    const map = mapRef.current
+    if (tab !== 'backpacking') {
+      bpFitRef.current = null
+      return
+    }
+    if (!map || !mapReady || !bpRoutes) return
+    const key = `${bpTripId ?? 'all'}:${bpDay ?? 'all'}`
+    if (bpFitRef.current === key) return
+    bpFitRef.current = key
+    const bounds = new maplibregl.LngLatBounds()
+    const ids = bpTripId ? [bpTripId] : BACKPACK_TRIPS.map((t) => t.id)
+    for (const id of ids) {
+      const route = bpRoutes[id]
+      if (!route) continue
+      const decoded = decodeRoute(id, route)
+      const day = bpTripId && bpDay ? route.days[bpDay - 1] : undefined
+      for (const p of day ? sliceByMiles(decoded, day.startMi, day.endMi) : decoded.line) bounds.extend(p)
+      // A chosen trip frames its camps and side trips too: a camp a few
+      // hundred feet off the line, or Half Dome above Little Yosemite Valley,
+      // would otherwise sit on the edge of the frame or outside it.
+      const trip = bpTripId ? getBackpackTripById(id) : undefined
+      if (trip) {
+        const days = day ? [trip.days[bpDay! - 1]] : trip.days
+        for (const d of days) {
+          const camp = d.campId ? trip.camps.find((c) => c.id === d.campId) : undefined
+          if (camp) bounds.extend(camp.coord)
+          const side = d.sideTripId ? route.sideTrips[d.sideTripId] : undefined
+          if (side) for (const p of decodePolyline(side.line)) bounds.extend(p)
+        }
+      }
+    }
+    if (bounds.isEmpty()) return
+    const frame = requestAnimationFrame(() => frameBounds(map, bounds, is3dRef.current, { maxZoom: 14 }))
+    return () => cancelAnimationFrame(frame)
+  }, [mapReady, tab, bpRoutes, bpTripId, bpDay])
+
+  const focusBpPoint = useCallback((id: string, coord: [number, number]) => {
+    setBpFocus(id)
+    const map = mapRef.current
+    if (!map) return
+    map.easeTo({ center: coord, zoom: Math.max(map.getZoom(), 13.5) })
+  }, [])
+
+  useEffect(() => {
+    const map = mapRef.current
+    if (!map || !mapReady || !map.style) return
+    ensureBackpackLayers(map)
+    const onRoute = (e: maplibregl.MapLayerMouseEvent) => {
+      const id = e.features?.[0]?.properties?.tripId as string | undefined
+      if (id) selectBpTrip(id)
+    }
+    const onPin = (e: maplibregl.MapLayerMouseEvent) => {
+      const f = e.features?.[0]
+      const id = f?.properties?.id as string | undefined
+      if (!id || f?.geometry.type !== 'Point') return
+      setBpFocus(id)
+      setBpExpanded(true)
+      // The pane row for this pin, brought into view: the list is the pin's
+      // text, and on a phone it is the only place its details are written.
+      requestAnimationFrame(() => document.querySelector('.bp-entry--focused')?.scrollIntoView({ block: 'nearest' }))
+    }
+    const pointer = () => (map.getCanvas().style.cursor = 'pointer')
+    const plain = () => (map.getCanvas().style.cursor = '')
+    map.on('click', BP_OVERVIEW_LAYER, onRoute)
+    map.on('click', BP_POINT_LAYER, onPin)
+    for (const id of [BP_OVERVIEW_LAYER, BP_POINT_LAYER, BP_LINE_LAYER]) {
+      map.on('mouseenter', id, pointer)
+      map.on('mouseleave', id, plain)
+    }
+    return () => {
+      map.off('click', BP_OVERVIEW_LAYER, onRoute)
+      map.off('click', BP_POINT_LAYER, onPin)
+      for (const id of [BP_OVERVIEW_LAYER, BP_POINT_LAYER, BP_LINE_LAYER]) {
+        map.off('mouseenter', id, pointer)
+        map.off('mouseleave', id, plain)
+      }
+    }
+  }, [mapReady, selectBpTrip])
 
   // Program meeting points: a layer of their own, the programs feed for the
   // trip's dates grouped by where they meet.
@@ -2695,7 +2862,8 @@ export default function Map() {
             aria-pressed={tab === 'points'}
             onClick={() => handleTab('points')}
           >
-            GPS points
+            <span className="map-tabbar__long">GPS points</span>
+            <span className="map-tabbar__short">Points</span>
           </button>
           <button
             type="button"
@@ -2716,17 +2884,26 @@ export default function Map() {
           <button
             type="button"
             className="map-tabbar__tab"
+            aria-pressed={tab === 'backpacking'}
+            onClick={() => handleTab('backpacking')}
+          >
+            Backpacking
+          </button>
+          <button
+            type="button"
+            className="map-tabbar__tab"
             aria-pressed={tab === 'info'}
             onClick={() => handleTab('info')}
           >
-            Information
+            <span className="map-tabbar__long">Information</span>
+            <span className="map-tabbar__short">Info</span>
           </button>
         </div>
 
         <div
           // Hidden on the trip view as well: its pins are the plan's, which
           // these chips do not narrow.
-          className={`map-filterbar${tab === 'info' || tab === 'trip' ? ' map-filterbar--hidden' : ''}`}
+          className={`map-filterbar${tab === 'info' || tab === 'trip' || tab === 'backpacking' ? ' map-filterbar--hidden' : ''}`}
           role="group"
           aria-label="Filter pins"
         >
@@ -2859,7 +3036,9 @@ export default function Map() {
             className="map-page__map"
             data-zoom-band={zoomBand}
             data-kinds={kindFilter ? 'some' : 'all'}
-            data-trip-view={tab === 'trip' || undefined}
+            // The backpacking view hides the browse pins too: its own pins
+            // are drawn on the map, and the DOM markers would take their taps.
+            data-trip-view={tab === 'trip' || tab === 'backpacking' || undefined}
           />
 
           <div className="map-view-controls" role="group" aria-label="Map view controls">
@@ -3103,6 +3282,24 @@ export default function Map() {
               graphState={roadGraph ? 'ready' : graphState}
               expanded={tripExpanded}
               onToggleExpanded={() => setTripExpanded((v) => !v)}
+            />
+          </aside>
+
+          <aside className="map-pane map-pane--trip map-pane--backpacking" aria-hidden={tab !== 'backpacking'} aria-label="Backpacking trips">
+            <BackpackPanel
+              trips={BACKPACK_TRIPS}
+              routes={bpRoutes}
+              state={bpState}
+              tripId={bpTripId}
+              onSelectTrip={selectBpTrip}
+              day={bpDay}
+              onSelectDay={setBpDay}
+              focusId={bpFocus}
+              onFocus={focusBpPoint}
+              colors={colors}
+              waterColor={bpWaterColor}
+              expanded={bpExpanded}
+              onToggleExpanded={() => setBpExpanded((v) => !v)}
             />
           </aside>
 

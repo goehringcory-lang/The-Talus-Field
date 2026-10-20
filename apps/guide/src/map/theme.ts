@@ -245,6 +245,20 @@ export function tripCasing(): string {
   return token('--paper', '#f8f5ed')
 }
 
+/** The ink (tokens.css --ink): the backpacking layer's trailhead marks and its overview lines. */
+export function inkColor(): string {
+  return token('--ink', '#233e35')
+}
+
+/**
+ * Water on the backpacking layer. Its own hue, held apart from the day
+ * palette (the first day is Okabe-Ito blue), and the drop shape carries the
+ * meaning anyway: a solid drop is reliable water, a hollow one seasonal.
+ */
+export function waterColor(scheme: Scheme = resolvedScheme()): string {
+  return token('--water', scheme === 'granite' ? '#7cc4ef' : '#1b6fa8')
+}
+
 /**
  * The tilt a whole day (or the whole trip) is framed at. Gentler than the
  * opening camera: fitBounds frames a flat plane, and at 50-60 degrees a ridge
