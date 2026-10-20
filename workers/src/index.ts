@@ -8,6 +8,7 @@ import { flow } from './routes/flow'
 import { checkout } from './routes/checkout'
 import { contact } from './routes/contact'
 import { feedback } from './routes/feedback'
+import { gateWaits } from './routes/gateWaits'
 import { indexnow } from './routes/indexnow'
 import { ingestNpsWindow, programs } from './routes/programs'
 import { mapTiles } from './routes/maptiles'
@@ -32,6 +33,7 @@ import { watchRoads } from './lib/roads'
 import { sweepRenewals } from './lib/renewals'
 import { retryQueuedFeedback } from './lib/feedbackQueue'
 import { sweepPush } from './lib/pushSweep'
+import { logGateWaits } from './lib/gateWaits'
 import {
   currentMonthLabel,
   getInventoryCount,
@@ -192,6 +194,8 @@ app.route('/api/auth', auth)
 app.route('/api/checkout', checkout)
 app.route('/api/contact', contact)
 app.route('/api/feedback', feedback)
+// Raw export of the entrance-gate wait log (routes/gateWaits.ts); no page.
+app.route('/api/gate-waits', gateWaits)
 app.route('/api/indexnow', indexnow)
 app.route('/api/photos', photos)
 app.route('/api/programs', programs)
@@ -210,7 +214,10 @@ app.route('/api/waitlist', waitlist)
 app.route('/api/waits', waits)
 app.route('/api/weather', weather)
 
-// Two daily crons ([triggers] in wrangler.toml), branched by schedule:
+// Three crons ([triggers] in wrangler.toml), branched by schedule:
+//   */10 * * * * — the entrance-gate wait logger alone (lib/gateWaits.ts):
+//     one feed fetch, one D1 batch, nothing else. It must return before the
+//     daily branch below, or every ten minutes would rerun the data refresh.
 //   0 15 * * * — the push sweep alone, timed so notices land in the park's
 //     morning (7-8am Pacific; sweepPush's own 6-11am gate backstops it).
 //   0 10 * * * (and any manually triggered run) — refresh the KV program
@@ -219,12 +226,17 @@ app.route('/api/weather', weather)
 //     statuses against last night's snapshot (lib/roads.ts), and run the
 //     renewal EMAIL sweep (emails can send in quiet hours; buzzes cannot).
 const PUSH_SWEEP_CRON = '0 15 * * *'
+const GATE_WAITS_CRON = '*/10 * * * *'
 
 async function scheduled(
   controller: ScheduledController,
   env: Env,
   ctx: ExecutionContext,
 ): Promise<void> {
+  if (controller.cron === GATE_WAITS_CRON) {
+    ctx.waitUntil(logGateWaits(env, controller.scheduledTime))
+    return
+  }
   if (controller.cron === PUSH_SWEEP_CRON) {
     ctx.waitUntil(
       sweepPush(env).catch((err) => {
