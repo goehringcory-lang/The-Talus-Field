@@ -57,8 +57,9 @@ bucket_name = "talus-map-tiles"
 # one row per gate per */10 cron run. D1, not KV, because the free plan's
 # 1,000 KV writes a day are already spent by GUIDE_BUYERS/GUIDE_PROGRAMS.
 #
-# !!! database_id BELOW IS A PLACEHOLDER. Do not merge this block as is. !!!
-# A placeholder id DOES break the unattended Workers Build: the build's
+# database_id below is the real talus-gate-waits database (created 2026-10-20,
+# migration 0001 applied). A wrong/placeholder id breaks the Workers Build:
+# the build's
 # typecheck and tests pass (they never contact Cloudflare), then
 # `wrangler deploy` uploads the binding and the API rejects a database id that
 # does not exist, so the deploy fails and nothing ships, including whatever
@@ -76,7 +77,7 @@ bucket_name = "talus-map-tiles"
 [[d1_databases]]
 binding = "GATE_WAITS"
 database_name = "talus-gate-waits"
-database_id = "00000000-0000-0000-0000-000000000000" # PLACEHOLDER: replace before merge
+database_id = "8ab9d512-eb9b-43d4-9938-df8a72508d8d"
 migrations_dir = "migrations"
 
 # Three runs, branched on controller.cron in index.ts:
