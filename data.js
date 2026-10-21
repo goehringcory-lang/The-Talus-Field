@@ -168,7 +168,7 @@ window.BODY_VERSIONS = {
   "yosemite-tunnel-trees": 6,
   "yosemite-wildlife-viewing-guide": 11,
   "showy-milkweed-yosemite-valley": 7,
-  "yosemite-connecting-to-traditions": 5,
+  "yosemite-connecting-to-traditions": 6,
   "yosemite-waterfalls-guide": 13,
   "yosemite-photography-spots": 8,
   "horsetail-fall-firefall": 10,
@@ -1809,7 +1809,7 @@ window.ARTICLES = [
     seoDek: "Yosemite's free Connecting to Traditions demonstrations, July to October 2026: basket weaving, beadwork, acorn, and knapping at the Yosemite Museum.",
     date: "July 16, 2026",
     isoDate: "2026-07-16",
-    isoModified: "2026-07-16",
+    isoModified: "2026-10-21",
     read: "3 min",
     placeholder: "The Connecting to Traditions cultural demonstration program flyer, a partially woven Native basket above the summer and fall schedule",
     image: "img/connecting-to-traditions-flyer.jpg",
@@ -2815,7 +2815,7 @@ window.RELATED = {
   "water-ouzels-waterfalls": ["yosemite-waterfalls-guide", "yosemite-wildlife-viewing-guide", "mist-trail-the-real-guide", "swimming-in-the-merced", "showy-milkweed-yosemite-valley"],
   "yosemite-tunnel-trees": ["giant-sequoias-fire-adaptation", "mariposa-grove-how-to-visit", "yosemite-connecting-to-traditions", "what-is-a-talus-field", "yosemite-needs-a-reservation-system"],
   "showy-milkweed-yosemite-valley": ["yosemite-wildflowers-guide", "yosemite-wildlife-viewing-guide", "water-ouzels-waterfalls", "swimming-in-the-merced", "giant-sequoias-fire-adaptation"],
-  "yosemite-connecting-to-traditions": ["yosemite-tunnel-trees", "yosemite-ranger-programs", "working-in-yosemite", "mariposa-grove-how-to-visit", "yosemite-wildlife-viewing-guide", "yosemite-place-names-meanings"],
+  "yosemite-connecting-to-traditions": ["yosemite-tunnel-trees", "yosemite-ranger-programs", "working-in-yosemite", "yosemite-trees-identification-guide", "yosemite-wildlife-viewing-guide", "yosemite-place-names-meanings"],
   // The stargazing programs: who takes you out under the sky and what it
   // costs. Onward to doing it alone (the stargazing guide), the road and the
   // rim the star parties need, the free ranger schedule, and the season.
