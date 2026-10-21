@@ -76,6 +76,36 @@ var SEARCH_PAGES = [{
   dek: "When the high country actually opens, how the plowing works, and what is worth doing the first week it is passable.",
   kind: "Page"
 }, {
+  route: "road-status",
+  title: "Yosemite road status: is it open?",
+  dek: "Where to check whether Tioga Road, Glacier Point Road and Highways 41, 120 and 140 are open today, and how each road usually behaves through the year.",
+  kind: "Page"
+}, {
+  route: "is-tioga-road-open",
+  title: "Is Tioga Road open?",
+  dek: "Where to check today, and the park's own pattern: typically open from late May or June until sometime in November.",
+  kind: "Page"
+}, {
+  route: "is-glacier-point-road-open",
+  title: "Is Glacier Point Road open?",
+  dek: "Where to check today, and the park's own pattern: plowed only to Badger Pass in winter.",
+  kind: "Page"
+}, {
+  route: "is-highway-41-open",
+  title: "Is Highway 41 open?",
+  dek: "The Wawona Road through the South Entrance: where to check today, and its winter chain controls.",
+  kind: "Page"
+}, {
+  route: "is-highway-120-open",
+  title: "Is Highway 120 open?",
+  dek: "The Big Oak Flat Road from Groveland: where to check today, and where it becomes Tioga Road.",
+  kind: "Page"
+}, {
+  route: "is-highway-140-open",
+  title: "Is Highway 140 open?",
+  dek: "The El Portal Road through the Merced River canyon: Caltrans outside the park, the park inside.",
+  kind: "Page"
+}, {
   route: "half-dome-lottery",
   title: "The Half Dome lottery",
   dek: "How the cable permit lottery works, the real odds, and what to climb instead.",

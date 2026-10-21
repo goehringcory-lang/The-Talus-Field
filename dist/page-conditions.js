@@ -501,7 +501,13 @@ function ConditionsPage({
       e.preventDefault();
       go("itineraries");
     }
-  }, "itineraries"), " ", "adjust to what is open.")))), React.createElement("div", {
+  }, "itineraries"), " ", "adjust to what is open. Road by road, where to check each one and how it usually behaves through the year:", " ", React.createElement("a", {
+    href: "/road-status",
+    onClick: e => {
+      e.preventDefault();
+      go("road-status");
+    }
+  }, "is it open?"))))), React.createElement("div", {
     className: "hp-wrap cond-dial"
   }, React.createElement("a", {
     className: "dialplate",
