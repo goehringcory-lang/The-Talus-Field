@@ -41,7 +41,7 @@ window.ARTICLE_BODIES["glacier-point-how-to-visit"] = function GlacierPointHowTo
       <h2>The road, mile by mile</h2>
 
       <p>
-        Glacier Point is about <strong>30 miles and an hour from Yosemite Valley</strong>, and about an hour from Wawona. From the Valley you take the Wawona Road, which is Highway 41 inside the park, south for about 14 miles to the Chinquapin junction, then turn onto Glacier Point Road and follow it about <strong>16 miles</strong> to the end. There is no regular shuttle between the Valley and the point: you drive, you ride the paid tour bus, or you walk up.
+        Glacier Point is about <strong>30 miles and an hour from Yosemite Valley</strong>, and about an hour from Wawona. From the Valley you take the Wawona Road, which is Highway 41 inside the park, south for about 9 miles to the Chinquapin junction, then turn onto Glacier Point Road and follow it about <strong>16 miles</strong> to the end. There is no regular shuttle between the Valley and the point: you drive, you ride the paid tour bus, or you walk up.
       </p>
 
       <p>

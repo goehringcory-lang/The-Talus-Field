@@ -79,7 +79,7 @@ window.ARTICLE_BODIES["yosemite-for-non-hikers"] = function YosemiteForNonHikers
     ["Do I need a reservation to enter Yosemite?",
       "Not in 2026. The Park Service says a reservation is not required to enter. You pay the entrance fee, $35 a vehicle for seven days, at the gate. Valley parking is the limit: the Park Service says lots are usually full after 9 a.m."],
     ["How long does it take to drive through Yosemite?",
-      "There is no single figure, because the park is several drives. Glacier Point is about an hour from the Valley: 14 miles south on Wawona Road, then 16 on Glacier Point Road. Tioga Road is 46 miles across the park, climbing from 6,200 feet to nearly 10,000, with Tioga Pass at 9,945 feet. The Valley loop, with nine stops and lunch, takes three to four hours, and a stop you miss costs another trip around the one-way loop, twenty minutes or more in summer traffic."],
+      "There is no single figure, because the park is several drives. Glacier Point is about an hour from the Valley: 9 miles south on Wawona Road, then 16 on Glacier Point Road. Tioga Road is 46 miles across the park, climbing from 6,200 feet to nearly 10,000, with Tioga Pass at 9,945 feet. The Valley loop, with nine stops and lunch, takes three to four hours, and a stop you miss costs another trip around the one-way loop, twenty minutes or more in summer traffic."],
   ];
 
   // ── The Valley on the NPS's own map ────────────────────────────────────────
@@ -512,7 +512,7 @@ window.ARTICLE_BODIES["yosemite-for-non-hikers"] = function YosemiteForNonHikers
               </header>
               <dl className="nh-drive__facts">
                 <div><dt>Season</dt><dd>Open to cars about late May through October or November, depending on snow</dd></div>
-                <div><dt>The drive</dt><dd>About an hour from the Valley: 14 miles south on Wawona Road, then 16 on Glacier Point Road</dd></div>
+                <div><dt>The drive</dt><dd>About an hour from the Valley: 9 miles south on Wawona Road, then 16 on Glacier Point Road</dd></div>
                 <div><dt>The walk</dt><dd>A short paved path, about 300 yards each way</dd></div>
                 <div><dt>Height</dt><dd>About 3,200 feet above the Valley floor</dd></div>
               </dl>
