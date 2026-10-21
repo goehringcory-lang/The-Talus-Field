@@ -2145,6 +2145,38 @@ const KEEP_GOING = {
     { key: "a:tioga-road-stop-by-stop", label: "Tioga Road, stop by stop", note: "Every turnout from Crane Flat to the pass" },
     { key: "conditions", label: "Conditions", note: "Webcams, entrance waits, forecasts" },
   ] },
+  // --- The road-status pages: the official sources first, then the hub ---
+  "road-status": { links: [
+    { key: "conditions", label: "Conditions", note: "Webcams, entrance waits, forecasts" },
+    { key: "now", label: "The Park Bulletin", note: "The week's closures and roadwork" },
+    { key: "tioga-opening", label: "Tioga Road opening", note: "How the spring opening works" },
+    { key: "distances", label: "Drive times", note: "How far the Valley is from each gateway" },
+  ] },
+  "is-tioga-road-open": { links: [
+    { key: "tioga-opening", label: "Tioga Road opening", note: "How the spring opening works" },
+    { key: "road-status", label: "Road status", note: "Every park road, and where to check it" },
+    { key: "conditions", label: "Conditions", note: "Webcams, entrance waits, forecasts" },
+  ] },
+  "is-glacier-point-road-open": { links: [
+    { key: "a:glacier-point-how-to-visit", label: "How to visit Glacier Point", note: "The season, the shuttle rule, the best hours" },
+    { key: "road-status", label: "Road status", note: "Every park road, and where to check it" },
+    { key: "conditions", label: "Conditions", note: "Webcams, entrance waits, forecasts" },
+  ] },
+  "is-highway-41-open": { links: [
+    { key: "a:getting-to-yosemite", label: "The five entrances", note: "Which highway fits which trip" },
+    { key: "road-status", label: "Road status", note: "Every park road, and where to check it" },
+    { key: "distances", label: "Drive times", note: "Oakhurst and Fish Camp to the Valley" },
+  ] },
+  "is-highway-120-open": { links: [
+    { key: "a:getting-to-yosemite", label: "The five entrances", note: "Which highway fits which trip" },
+    { key: "road-status", label: "Road status", note: "Every park road, and where to check it" },
+    { key: "distances", label: "Drive times", note: "Groveland to the Valley" },
+  ] },
+  "is-highway-140-open": { links: [
+    { key: "a:highway-140-closed-yosemite", label: "When Highway 140 is closed", note: "The detours, and what to do with the room" },
+    { key: "road-status", label: "Road status", note: "Every park road, and where to check it" },
+    { key: "distances", label: "Drive times", note: "El Portal and Mariposa to the Valley" },
+  ] },
   "half-dome-lottery": { links: [
     { key: "tioga-opening", label: "Tioga Road opening", note: "When the high country opens" },
     { key: "firefall", label: "Firefall", note: "Whether the light is worth the trip" },

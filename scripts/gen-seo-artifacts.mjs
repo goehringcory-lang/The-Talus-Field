@@ -321,6 +321,13 @@ function buildSitemap(merged, categories) {
     // band, so its lastmod tracks the edition stamp like /now does rather than
     // sitting at the date the page was written.
     ["/tioga-opening", nowLastmod()],
+    // The road-status pages: lastmod is RD_CHECKED in page-road-status.jsx.
+    ["/road-status", "2026-10-21"],
+    ["/is-tioga-road-open", "2026-10-21"],
+    ["/is-glacier-point-road-open", "2026-10-21"],
+    ["/is-highway-41-open", "2026-10-21"],
+    ["/is-highway-120-open", "2026-10-21"],
+    ["/is-highway-140-open", "2026-10-21"],
     ["/half-dome-lottery", "2026-10-18"],
     ["/fall-color", "2026-10-17"],
     ["/moonbow", "2026-10-04"],

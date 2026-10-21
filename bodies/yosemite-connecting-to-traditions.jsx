@@ -6,13 +6,13 @@ window.ARTICLE_BODIES["yosemite-connecting-to-traditions"] = function YosemiteCo
   return (
     <>
       <p className="dropcap">
-        The Park Service runs a summer and fall series at the Yosemite Museum called Connecting to Traditions, and it is one of the few places in the park to learn from Indigenous practitioners directly. Indigenous artists demonstrate basket weaving, beadwork, acorn preparation, and stone tool knapping, the living practices of the peoples who have tended this valley for thousands of years, long before it was a park. The demonstrations are free and open to all. The 2026 series ended with its October 14 to 15 session, and the 2027 dates had not been published as of mid-October 2026.
+        The Park Service hosts a series of cultural demonstrations at the Yosemite Museum, run in 2026 as Connecting to Traditions from July into October, and it is one of the few places in the park to learn from Indigenous practitioners directly. Indigenous artists demonstrate basket weaving, beadwork, acorn preparation, and stone tool knapping, the living practices of the peoples who have tended this valley for thousands of years, long before it was a park or was <a href="/articles/yosemite-place-names-meanings">named Yosemite</a>. The demonstrations are free and open to all. The 2026 series ended with its October 14 to 15 session, and the 2027 dates had not been published as of October 21, 2026.
       </p>
 
       <h2>The 2026 schedule</h2>
 
       <p>
-        Demonstrations take place at or just outside the Yosemite Museum in Yosemite Village, next to the visitor center, <a href="/articles/yosemite-shuttle-and-yarts">shuttle stop 5</a>. Times were posted at the Museum rather than fixed in advance. Everything here was free.
+        Demonstrations take place at or just outside the Yosemite Museum in Yosemite Village, or in the Indian Village behind it, next to the visitor center, <a href="/articles/yosemite-shuttle-and-yarts">shuttle stop 5</a>. Times were posted at the Museum rather than fixed in advance. Everything here was free.
       </p>
 
       <ul>
@@ -31,7 +31,7 @@ window.ARTICLE_BODIES["yosemite-connecting-to-traditions"] = function YosemiteCo
       <h2>Why this is worth your afternoon</h2>
 
       <p>
-        Yosemite has seven traditionally associated tribes, and the land you drive through was shaped by them: the black oaks kept open for acorns, the meadows <a href="/articles/giant-sequoias-fire-adaptation">burned to keep them meadows</a>, the plant materials gathered and worked into baskets so fine they hold water. Most visitors move through all of that without ever meeting the people who carry it. Connecting to Traditions closes that gap. You get to stand a few feet from a weaver splitting sedge root or a knapper striking a blade from obsidian, and you get to ask questions of the tribal members doing the work.
+        Yosemite has seven traditionally associated tribes, and the land you drive through was shaped by them: the <a href="/articles/yosemite-trees-identification-guide">black oaks kept open for acorns</a>, the meadows <a href="/articles/giant-sequoias-fire-adaptation">burned to keep them meadows</a>, the plant materials gathered and worked into baskets so fine they hold water. Most visitors move through all of that without ever meeting the people who carry it. Connecting to Traditions closes that gap. You get to stand a few feet from a weaver splitting sedge root or a knapper striking a blade from obsidian, and you get to ask questions of the tribal members doing the work.
       </p>
 
       <p>

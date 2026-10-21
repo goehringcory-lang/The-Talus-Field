@@ -11,7 +11,7 @@ function routeToPath(route) {
   if (route.startsWith("a:")) return `/articles/${route.slice(2)}`;
   return `/${route}`;
 }
-var STATIC_ROUTE_KEYS = new Set(["home", "articles", "planning", "checklist", "about", "kit", "places", "advertise", "newsletter", "contact", "privacy", "terms", "affiliate", "guide", "map", "films", "itineraries", "conditions", "now", "firefall", "stay", "consult", "widget", "partners", "search", "tioga-opening", "half-dome-lottery", "explore", "distances", "webcams", "start-here", "dates", "international", "fall-color", "moonbow", "frazil-ice", "media-kit"]);
+var STATIC_ROUTE_KEYS = new Set(["home", "articles", "planning", "checklist", "about", "kit", "places", "advertise", "newsletter", "contact", "privacy", "terms", "affiliate", "guide", "map", "films", "itineraries", "conditions", "now", "firefall", "stay", "consult", "widget", "partners", "search", "tioga-opening", "half-dome-lottery", "explore", "distances", "webcams", "start-here", "dates", "international", "fall-color", "moonbow", "frazil-ice", "media-kit", "road-status", "is-tioga-road-open", "is-glacier-point-road-open", "is-highway-41-open", "is-highway-120-open", "is-highway-140-open"]);
 function pathToRoute(pathname) {
   var path = (pathname || "/").replace(/\/+$/, "") || "/";
   if (path === "/") return "home";
@@ -154,6 +154,30 @@ var PAGE_MODULES = {
   "tioga-opening": {
     scripts: ["/dist/page-tioga-opening.js"],
     globals: ["TiogaOpeningPage"]
+  },
+  "road-status": {
+    scripts: ["/dist/page-road-status.js"],
+    globals: ["RoadStatusPage", "RoadPage"]
+  },
+  "is-tioga-road-open": {
+    scripts: ["/dist/page-road-status.js"],
+    globals: ["RoadStatusPage", "RoadPage"]
+  },
+  "is-glacier-point-road-open": {
+    scripts: ["/dist/page-road-status.js"],
+    globals: ["RoadStatusPage", "RoadPage"]
+  },
+  "is-highway-41-open": {
+    scripts: ["/dist/page-road-status.js"],
+    globals: ["RoadStatusPage", "RoadPage"]
+  },
+  "is-highway-120-open": {
+    scripts: ["/dist/page-road-status.js"],
+    globals: ["RoadStatusPage", "RoadPage"]
+  },
+  "is-highway-140-open": {
+    scripts: ["/dist/page-road-status.js"],
+    globals: ["RoadStatusPage", "RoadPage"]
   },
   "half-dome-lottery": {
     scripts: ["/dist/page-half-dome-lottery.js"],
@@ -721,6 +745,42 @@ function buildSeo(route) {
       description: "How the Tioga Road opening actually works: why the date is announced only days ahead, what is really open in week one, and how to drive the early season well. By a park resident.",
       ogType: "website",
       breadcrumb: [["Home", `${SITE_ORIGIN}/`], ["Tioga opening", null]]
+    },
+    "road-status": {
+      title: `Yosemite Road Status: Is It Open, and Where to Check | ${SITE_NAME}`,
+      description: "Where to check if Tioga Road, Glacier Point Road and Highways 41, 120 and 140 into Yosemite are open today, and how each road usually behaves.",
+      ogType: "website",
+      breadcrumb: [["Home", `${SITE_ORIGIN}/`], ["Road status", null]]
+    },
+    "is-tioga-road-open": {
+      title: `Is Tioga Road Open? Where to Check, and Its Usual Season | ${SITE_NAME}`,
+      description: "Where to check if Yosemite's Tioga Road is open today, and the park's own pattern for it: typically open from late May or June until November.",
+      ogType: "website",
+      breadcrumb: [["Home", `${SITE_ORIGIN}/`], ["Road status", `${SITE_ORIGIN}/road-status`], ["Tioga Road", null]]
+    },
+    "is-glacier-point-road-open": {
+      title: `Is Glacier Point Road Open? Where to Check, and Its Usual Season | ${SITE_NAME}`,
+      description: "Where to check if Glacier Point Road is open today, and the park's pattern: plowed only to Badger Pass in winter, open from about late May to November.",
+      ogType: "website",
+      breadcrumb: [["Home", `${SITE_ORIGIN}/`], ["Road status", `${SITE_ORIGIN}/road-status`], ["Glacier Point Road", null]]
+    },
+    "is-highway-41-open": {
+      title: `Is Highway 41 to Yosemite Open? Wawona Road Status and Chains | ${SITE_NAME}`,
+      description: "Where to check if Highway 41, the Wawona Road through Yosemite's South Entrance, is open today, and what winter does to it: chain controls.",
+      ogType: "website",
+      breadcrumb: [["Home", `${SITE_ORIGIN}/`], ["Road status", `${SITE_ORIGIN}/road-status`], ["Highway 41", null]]
+    },
+    "is-highway-120-open": {
+      title: `Is Highway 120 to Yosemite Open? Big Oak Flat Road Status | ${SITE_NAME}`,
+      description: "Where to check if Highway 120 into Yosemite is open today: the Big Oak Flat Road from Groveland, its winter chain controls, and Tioga Road beyond Crane Flat.",
+      ogType: "website",
+      breadcrumb: [["Home", `${SITE_ORIGIN}/`], ["Road status", `${SITE_ORIGIN}/road-status`], ["Highway 120", null]]
+    },
+    "is-highway-140-open": {
+      title: `Is Highway 140 to Yosemite Open? El Portal Road Status | ${SITE_NAME}`,
+      description: "Where to check if Highway 140 through the Merced River canyon is open today: Caltrans for the canyon, the park for the El Portal Road.",
+      ogType: "website",
+      breadcrumb: [["Home", `${SITE_ORIGIN}/`], ["Road status", `${SITE_ORIGIN}/road-status`], ["Highway 140", null]]
     },
     "half-dome-lottery": {
       title: "Half Dome Lottery: Permit Odds, Daily Lottery and Strategy",
@@ -1303,6 +1363,15 @@ function App() {
   } else if (route === "tioga-opening") {
     page = React.createElement(window.TiogaOpeningPage, {
       go: go
+    });
+  } else if (route === "road-status") {
+    page = React.createElement(window.RoadStatusPage, {
+      go: go
+    });
+  } else if (route.startsWith("is-") && route.endsWith("-open")) {
+    page = React.createElement(window.RoadPage, {
+      go: go,
+      route: route
     });
   } else if (route === "half-dome-lottery") {
     page = React.createElement(window.HalfDomeLotteryPage, {

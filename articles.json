@@ -1561,19 +1561,19 @@
     "seoDek": "Yosemite's free Connecting to Traditions demonstrations, July to October 2026: basket weaving, beadwork, acorn, and knapping at the Yosemite Museum.",
     "date": "July 16, 2026",
     "isoDate": "2026-07-16",
-    "isoModified": "2026-07-16",
+    "isoModified": "2026-10-21",
     "read": "3 min",
     "image": "img/connecting-to-traditions-flyer.jpg",
     "ogImage": { "url": "img/responsive/connecting-to-traditions-flyer-og.jpg", "width": 1200, "height": 630 },
     "placeholder": "The Connecting to Traditions cultural demonstration program flyer, a partially woven Native basket above the summer and fall schedule",
-    "wordCount": 470,
+    "wordCount": 491,
     "keywords": ["Connecting to Traditions Yosemite", "Yosemite cultural demonstrations", "Yosemite Museum basket weaving", "Yosemite Indigenous artists", "Yosemite Native American programs", "Yosemite traditionally associated tribes", "Yosemite Museum Yosemite Village"],
     "faq": [
       { "q": "What is the Connecting to Traditions program in Yosemite?", "a": "Connecting to Traditions is a free cultural demonstration series at the Yosemite Museum where Indigenous artists demonstrate traditional and contemporary crafts, including basket weaving, beadwork, acorn preparation, and stone tool knapping. It is open to all." },
-      { "q": "Where and when do the Yosemite cultural demonstrations take place?", "a": "At or just outside the Yosemite Museum in Yosemite Village, next to the visitor center at shuttle stop 5. Demonstrations run from July through October; times are posted at the Museum rather than fixed in advance, and the schedule is subject to change." },
+      { "q": "Where and when do the Yosemite cultural demonstrations take place?", "a": "At or just outside the Yosemite Museum in Yosemite Village, or in the Indian Village behind it, next to the visitor center at shuttle stop 5. The 2026 series ran from July through October; times were posted at the Museum rather than fixed in advance." },
       { "q": "Are the Connecting to Traditions demonstrations free?", "a": "Yes. The demonstrations are free and open to all. Standard Yosemite National Park entrance fees still apply to enter the park." }
     ],
-    "related": ["yosemite-tunnel-trees", "yosemite-ranger-programs", "working-in-yosemite", "mariposa-grove-how-to-visit", "yosemite-wildlife-viewing-guide", "yosemite-place-names-meanings"]
+    "related": ["yosemite-tunnel-trees", "yosemite-ranger-programs", "working-in-yosemite", "yosemite-trees-identification-guide", "yosemite-wildlife-viewing-guide", "yosemite-place-names-meanings"]
   },
   {
     "slug": "yosemite-waterfalls-guide",
