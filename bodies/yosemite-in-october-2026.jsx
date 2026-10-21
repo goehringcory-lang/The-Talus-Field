@@ -16,7 +16,7 @@ window.ARTICLE_BODIES["yosemite-in-october-2026"] = function YosemiteInOctober20
       <h2 id="sec-0-glacier-point-road-is-closed-and-the-fir">Glacier Point Road is open again, until winter closes it</h2>
 
       <p>
-        The <strong>Dome Fire</strong> was reported on the morning of September 15, about a quarter mile north of Chilnualna Falls, and its cause is not settled. On September 30 the local press reported a Forest Service finding that an abandoned campfire started it; on October 6 the Forest Service withdrew that finding without giving a reason, and the federal incident page, InciWeb, lists the cause as undetermined. By the morning of September 25 it had burned <strong>4,258 acres at 17 percent containment</strong>. Two helicopter pilots were killed fighting it on September 20.
+        The <strong>Dome Fire</strong> was reported on the morning of September 15, about a quarter mile north of Chilnualna Falls, and its cause is not settled. On September 30 the local press reported a Forest Service finding that an abandoned campfire started it; on October 6 the Forest Service withdrew that finding without giving a reason, and the federal incident page, InciWeb, lists the cause as undetermined. By the morning of September 25 it had burned <strong>4,258 acres at 17 percent containment</strong>. Cal Fire listed it as fully contained on October 17. Two helicopter pilots were killed fighting it on September 20.
       </p>
 
       <p>
@@ -24,7 +24,7 @@ window.ARTICLE_BODIES["yosemite-in-october-2026"] = function YosemiteInOctober20
       </p>
 
       <p>
-        The country around the fire is closed until further notice under the park's October 17 order: the area east of Wawona Road and south of Glacier Point Road, north of Wawona and out to Buena Vista Creek, which takes in the <strong>Ostrander Lake, Mono Meadow and Buena Vista trails</strong> and every trail that leaves Glacier Point Road heading south or east. The <strong>Chilnualna Falls trail</strong> has reopened from the trailhead to the falls and Crescent Lake.
+        The country around the fire is closed until further notice under the park's October 19 order: the area east of Wawona Road and south of Glacier Point Road, north of Wawona and out to Buena Vista Creek, which takes in the <strong>Ostrander Lake, Mono Meadow and Buena Vista trails</strong> and every trail that leaves Glacier Point Road heading south or east. The <strong>Chilnualna Falls trail</strong> has reopened from the trailhead to the falls and Crescent Lake.
       </p>
 
       <p>
