@@ -461,7 +461,7 @@ function TiogaOpeningPage({ go }) {
           <div>
             <p className="hp-eyebrow">QUESTIONS</p>
             <h2>Tioga Road questions, answered</h2>
-            <p className="ff-lede">The week's park-wide picture, roads, closures and hours, is on <HomeLink go={go} location="tioga_faq" href="/now">the Park Bulletin</HomeLink>, and live webcams and forecasts are on <HomeLink go={go} location="tioga_faq" href="/conditions">the conditions page</HomeLink>. Road conditions by phone or text: text "ynptraffic" to 333111.</p>
+            <p className="ff-lede">The week's park-wide picture, roads, closures and hours, is on <HomeLink go={go} location="tioga_faq" href="/now">the Park Bulletin</HomeLink>, and live webcams and forecasts are on <HomeLink go={go} location="tioga_faq" href="/conditions">the conditions page</HomeLink>. Road conditions by phone or text: text "ynptraffic" to 333111. Every official source for the road, in one place: <HomeLink go={go} location="tioga_faq" href="/is-tioga-road-open">is Tioga Road open?</HomeLink></p>
           </div>
           <div className="ff-faq">
             {TIOGA_FAQ.map(([q, a], i) => (

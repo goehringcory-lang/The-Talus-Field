@@ -151,6 +151,17 @@ function hubProse(h1, intro, extraHtml) {
   return `<h1>${escapeHtmlText(h1)}</h1><p>${escapeHtmlText(intro)}</p>${extraHtml || ""}`;
 }
 
+// The official-sources paragraph every road-status page opens with
+// (page-road-status.jsx's RdOfficial). Caltrans only where a state highway
+// is involved.
+function roadProseSources(caltrans) {
+  return (
+    `<p>Check the official status before you drive: <a href="https://www.nps.gov/yose/planyourvisit/conditions.htm">NPS current conditions</a>, or the park's 24-hour road and weather line, 209-372-0200 (press 1, then 1).` +
+    (caltrans ? ` For state highways outside the park: <a href="https://roads.dot.ca.gov/">Caltrans road conditions</a> and <a href="https://quickmap.dot.ca.gov/">QuickMap</a>.` : "") +
+    ` Last checked: October 21, 2026.</p>`
+  );
+}
+
 // Curated onward links for an article, appended to its injected prose.
 //
 // The prerendered fragments carry an article's in-body links, but nothing
@@ -280,7 +291,7 @@ const HUB_PROSE = {
     `<h2>Hikes &amp; permits</h2>` +
     `<p><a href="/half-dome-lottery">The Half Dome lottery</a> · <a href="/section/trails">Trails and hikes</a></p>` +
     `<h2>Conditions</h2>` +
-    `<p><a href="/conditions">Conditions and road alerts</a> · <a href="/now">The Park Bulletin</a> · <a href="/webcams">Webcams</a> · <a href="/tioga-opening">The Tioga Road opening</a></p>` +
+    `<p><a href="/conditions">Conditions and road alerts</a> · <a href="/now">The Park Bulletin</a> · <a href="/webcams">Webcams</a> · <a href="/tioga-opening">The Tioga Road opening</a> · <a href="/road-status">Road status: is it open?</a></p>` +
     `<h2>Seasons</h2>` +
     `<p><a href="/dates">Dates that matter</a> · <a href="/section/seasonal">Seasonal guides</a> · <a href="/fall-color">Fall color</a> · <a href="/firefall">Firefall</a> · <a href="/moonbow">The moonbow</a> · <a href="/frazil-ice">Frazil ice</a></p>` +
     `<h2>Map</h2>` +
@@ -486,7 +497,45 @@ const HUB_PROSE = {
       "The Tioga Road Opening",
       "Every spring, plow crews cut Highway 120 out of the snowpack and the highest road in Yosemite comes back. There is no fixed opening date: the long-term average is the end of May, light years have opened in mid-May, heavy years run into June or later, and the park announces the date only days ahead. In week one the road is open but the services are not: no potable water, nothing to buy, no gas between Crane Flat and Lee Vining, and the famous high trails still under snow. The early season rewards drivers, photographers, and modest walkers."
     ) +
-    `<p>The reliable early stops are Olmsted Point, Tenaya Lake's east beach, the Tuolumne Meadows pullouts, Pothole Dome, and Soda Springs. The full day-by-day version: <a href="/articles/tioga-road-opening-weekend">the opening-weekend field guide</a>. Current status: <a href="/now">the Park Bulletin</a> and the NPS Tioga Road page.</p>`,
+    `<p>The reliable early stops are Olmsted Point, Tenaya Lake's east beach, the Tuolumne Meadows pullouts, Pothole Dome, and Soda Springs. The full day-by-day version: <a href="/articles/tioga-road-opening-weekend">the opening-weekend field guide</a>. Current status: <a href="/now">the Park Bulletin</a> and the NPS Tioga Road page. Where to check every park road: <a href="/is-tioga-road-open">is Tioga Road open?</a> and <a href="/road-status">Yosemite road status</a>.</p>`,
+  // The road-status pages: the same official-sources paragraph on each, then
+  // the road's own pattern, restating page-road-status.jsx. No live status.
+  "/road-status": () =>
+    hubProse(
+      "Is it open? Yosemite road status",
+      "Five roads decide most Yosemite trips: Tioga Road, Glacier Point Road, and Highways 41, 120 and 140 into Yosemite Valley. Tioga Road and Glacier Point Road close for snow every winter; the three highways into the Valley have no seasonal closure, but chain controls, rockslides and fire close or slow them without warning. None of these pages reports whether a road is open today."
+    ) + roadProseSources(true) +
+    `<p>Road by road: <a href="/is-tioga-road-open">Is Tioga Road open?</a> · <a href="/is-glacier-point-road-open">Is Glacier Point Road open?</a> · <a href="/is-highway-41-open">Is Highway 41 (Wawona Road) open?</a> · <a href="/is-highway-120-open">Is Highway 120 (Big Oak Flat Road) open?</a> · <a href="/is-highway-140-open">Is Highway 140 (El Portal Road) open?</a> The spring opening in depth: <a href="/tioga-opening">the Tioga Road opening</a>. Live webcams and entrance waits: <a href="/conditions">the conditions page</a>.</p>`,
+  "/is-tioga-road-open": () =>
+    hubProse(
+      "Is Tioga Road open?",
+      "Tioga Road, Highway 120 east of Crane Flat over Tioga Pass at 9,945 feet, is Yosemite's seasonal road over the Sierra. The National Park Service says it is typically open to vehicles from late May or June until sometime in November. Plowing usually begins around April 15, the opening date moves with the snowpack, and the park announces it a day or two ahead; in 2026 it opened May 15. It closes for the season with the first storm that sticks. This page does not report whether it is open today."
+    ) + roadProseSources(true) +
+    `<p>There is no gas between Crane Flat and Lee Vining and almost no cell signal. How the spring opening works and what is open in week one: <a href="/tioga-opening">the Tioga Road opening</a>. Every turnout: <a href="/articles/tioga-road-stop-by-stop">Tioga Road, stop by stop</a>. The other roads: <a href="/road-status">Yosemite road status</a>.</p>`,
+  "/is-glacier-point-road-open": () =>
+    hubProse(
+      "Is Glacier Point Road open?",
+      "The National Park Service's standing language is that Glacier Point Road is open to cars from approximately late May through October or November. In winter it is plowed only to Badger Pass, five miles in, and it is not possible to drive to Glacier Point. Plowing begins around April 15, most openings fall in May (in 2026, May 9), overnight parking on the road is prohibited from October 15, and the road closes after the first significant snowfall, usually in November. This page does not report whether it is open today."
+    ) + roadProseSources(false) +
+    `<p>From mid-May to September, between 10 a.m. and 4:30 p.m., when the Glacier Point lot fills, cars are stopped at Badger Pass and a free shuttle runs to the point. The full guide: <a href="/articles/glacier-point-how-to-visit">how to visit Glacier Point</a>. The other roads: <a href="/road-status">Yosemite road status</a>.</p>`,
+  "/is-highway-41-open": () =>
+    hubProse(
+      "Is Highway 41 open?",
+      "Highway 41, the Wawona Road, enters Yosemite at the South Entrance from Oakhurst and Fish Camp and runs past Wawona and through the Wawona Tunnel to Tunnel View. It has no seasonal closure; its winter pattern is chain control. The National Park Service says chains are often required from November through March, and names Wawona Road among the roads that need them more often than Highway 140. This page does not report whether it is open today."
+    ) + roadProseSources(true) +
+    `<p>Read next: <a href="/articles/getting-to-yosemite">the five entrances, compared</a> · <a href="/articles/yosemite-tire-chains">tire chains in Yosemite</a> · <a href="/articles/wawona-yosemite-guide">Wawona</a>. The other roads: <a href="/road-status">Yosemite road status</a>.</p>`,
+  "/is-highway-120-open": () =>
+    hubProse(
+      "Is Highway 120 open?",
+      "Highway 120 enters Yosemite from the west at the Big Oak Flat Entrance, past Groveland, and becomes the Big Oak Flat Road down to the Valley. It has no seasonal closure, but the National Park Service names Big Oak Flat Road among the roads that need chains more often than Highway 140. East of Crane Flat the same highway is Tioga Road, which closes for snow every winter. This page does not report whether either is open today."
+    ) + roadProseSources(true) +
+    `<p>The seasonal half: <a href="/is-tioga-road-open">is Tioga Road open?</a> Read next: <a href="/articles/getting-to-yosemite">the five entrances, compared</a> · <a href="/articles/yosemite-tire-chains">tire chains in Yosemite</a>. The other roads: <a href="/road-status">Yosemite road status</a>.</p>`,
+  "/is-highway-140-open": () =>
+    hubProse(
+      "Is Highway 140 open?",
+      "Highway 140 follows the Merced River canyon from Mariposa through El Portal to the Arch Rock Entrance, and inside the park it is the El Portal Road. The National Park Service says it is lower in elevation and has chain requirements less often than the other entrance roads. It closes for rockslides and fires without a schedule, and a closure outside the park appears on Caltrans's list, not the park's. This page does not report whether it is open today."
+    ) + roadProseSources(true) +
+    `<p>What to do when it closes: <a href="/articles/highway-140-closed-yosemite">when Highway 140 is closed</a>. Read next: <a href="/articles/getting-to-yosemite">the five entrances, compared</a>. The other roads: <a href="/road-status">Yosemite road status</a>.</p>`,
   "/webcams": () =>
     hubProse(
       "Yosemite Webcams",
@@ -1237,6 +1286,126 @@ function seoForPath(pathname, searchParams) {
         {
           q: "Do I need a reservation to drive Tioga Road?",
           a: "A standard park entrance pass is required. Whether a day-use reservation system also applies changes year to year; check the NPS Yosemite site for the current season's rules before you commit.",
+        },
+      ],
+    },
+    // The road-status pages (page-road-status.jsx, October 2026). No live
+    // status anywhere, here or on the page: each points at the NPS conditions
+    // page, the park's road line and Caltrans. Titles and descriptions are
+    // byte-identical to app.jsx's buildSeo; each faq mirrors the page's own
+    // (RD_HUB_FAQ, and `faq` on each ROADS entry); change both. Edge-only
+    // FAQ, as on /tioga-opening.
+    "/road-status": {
+      title: `Yosemite Road Status: Is It Open, and Where to Check | ${SITE_NAME}`,
+      description:
+        "Where to check if Tioga Road, Glacier Point Road and Highways 41, 120 and 140 into Yosemite are open today, and how each road usually behaves.",
+      breadcrumb: [["Home", `${SITE_ORIGIN}/`], ["Road status", null]],
+      hero: { image: "img/tioga-road-above-tenaya-lake.jpg", cover: true },
+      faq: [
+        {
+          q: "Which Yosemite roads close for the winter?",
+          a: "Two close for the season: Tioga Road, which the park says is typically open from late May or June until sometime in November, and Glacier Point Road beyond Badger Pass, open to cars from about late May through October or November. The three highways into Yosemite Valley, 41, 120 from the west and 140, have no seasonal closure; their winter pattern is chain control.",
+        },
+        {
+          q: "How do I check whether a Yosemite road is open today?",
+          a: "Use the National Park Service's current conditions page, or call the park's 24-hour road and weather line, 209-372-0200 (press 1, then 1). For Highways 41, 120 and 140 outside the park, check Caltrans at roads.dot.ca.gov or QuickMap.",
+        },
+        {
+          q: "Which road into Yosemite needs chains least often?",
+          a: "Highway 140, the El Portal Road. The park says it is lower in elevation and has chain requirements less often than the other entrance roads, and names Wawona Road, Big Oak Flat Road and Badger Pass Road among those that need them more often.",
+        },
+      ],
+    },
+    "/is-tioga-road-open": {
+      title: `Is Tioga Road Open? Where to Check, and Its Usual Season | ${SITE_NAME}`,
+      description:
+        "Where to check if Yosemite's Tioga Road is open today, and the park's own pattern for it: typically open from late May or June until November.",
+      breadcrumb: [["Home", `${SITE_ORIGIN}/`], ["Road status", `${SITE_ORIGIN}/road-status`], ["Tioga Road", null]],
+      hero: { image: "img/tioga-road-above-tenaya-lake.jpg", cover: true },
+      faq: [
+        {
+          q: "Is Tioga Road open right now?",
+          a: "This page does not say, on purpose. Check the National Park Service's current conditions page, or call the park's 24-hour road and weather line, 209-372-0200 (press 1, then 1). Both come from the park; a website that copies them can be out of date by the time you read it.",
+        },
+        {
+          q: "When does Tioga Road usually open and close?",
+          a: "The Park Service says it is typically open to vehicles from late May or June until sometime in November. Plowing usually begins around April 15, the opening date moves with the snowpack, and the park announces it a day or two ahead. In 2026 it opened May 15.",
+        },
+        {
+          q: "Can I drive across Yosemite to the east side when Tioga Road is closed?",
+          a: "No. Tioga Pass is the park's only eastern entrance, so while Tioga Road is closed there is no drive across the park to Lee Vining and US 395.",
+        },
+      ],
+    },
+    "/is-glacier-point-road-open": {
+      title: `Is Glacier Point Road Open? Where to Check, and Its Usual Season | ${SITE_NAME}`,
+      description:
+        "Where to check if Glacier Point Road is open today, and the park's pattern: plowed only to Badger Pass in winter, open from about late May to November.",
+      breadcrumb: [["Home", `${SITE_ORIGIN}/`], ["Road status", `${SITE_ORIGIN}/road-status`], ["Glacier Point Road", null]],
+      hero: { image: "img/clark-range-view-glacier-point-road.jpg", cover: true },
+      faq: [
+        {
+          q: "Is Glacier Point Road open right now?",
+          a: "This page does not say, on purpose. Check the National Park Service's current conditions page, or call the park's 24-hour road and weather line, 209-372-0200 (press 1, then 1). Both come from the park; a website that copies them can be out of date by the time you read it.",
+        },
+        {
+          q: "When does Glacier Point Road usually open and close?",
+          a: "The Park Service's standing language is that the road is open to cars from approximately late May through October or November. Plowing begins around April 15, most openings fall in May, and the road closes after the first significant snowfall, usually in November. In 2026 it opened May 9.",
+        },
+        {
+          q: "Can you drive to Glacier Point in winter?",
+          a: "No. In winter the road is plowed only as far as Badger Pass, five miles in, and the rest is closed to cars and groomed for skiing and snowshoeing.",
+        },
+      ],
+    },
+    "/is-highway-41-open": {
+      title: `Is Highway 41 to Yosemite Open? Wawona Road Status and Chains | ${SITE_NAME}`,
+      description:
+        "Where to check if Highway 41, the Wawona Road through Yosemite's South Entrance, is open today, and what winter does to it: chain controls.",
+      breadcrumb: [["Home", `${SITE_ORIGIN}/`], ["Road status", `${SITE_ORIGIN}/road-status`], ["Highway 41", null]],
+      hero: { image: "img/tunnel-view-valley-spring.jpg", cover: true },
+      faq: [
+        {
+          q: "Is Highway 41 into Yosemite open right now?",
+          a: "This page does not say, on purpose. Inside the park, check the National Park Service's current conditions page or call the park's 24-hour road and weather line, 209-372-0200 (press 1, then 1). Outside the park, check Caltrans at roads.dot.ca.gov and enter 41.",
+        },
+        {
+          q: "Does Highway 41 close for the winter?",
+          a: "It has no seasonal closure like Tioga Road's or Glacier Point Road's. The winter pattern is chain control: the park names the Wawona Road among the roads that need chains more often, with chain requirements common from November through March.",
+        },
+      ],
+    },
+    "/is-highway-120-open": {
+      title: `Is Highway 120 to Yosemite Open? Big Oak Flat Road Status | ${SITE_NAME}`,
+      description:
+        "Where to check if Highway 120 into Yosemite is open today: the Big Oak Flat Road from Groveland, its winter chain controls, and Tioga Road beyond Crane Flat.",
+      breadcrumb: [["Home", `${SITE_ORIGIN}/`], ["Road status", `${SITE_ORIGIN}/road-status`], ["Highway 120", null]],
+      hero: { image: "img/big-oak-flat-road-tunnel.jpg", cover: true },
+      faq: [
+        {
+          q: "Is Highway 120 into Yosemite open right now?",
+          a: "This page does not say, on purpose. Inside the park, check the National Park Service's current conditions page or call the park's 24-hour road and weather line, 209-372-0200 (press 1, then 1). Outside the park, check Caltrans at roads.dot.ca.gov and enter 120.",
+        },
+        {
+          q: "Is Highway 120 the same as Tioga Road?",
+          a: "Partly. From the west, Highway 120 is the Big Oak Flat Road, which has no seasonal closure but often needs chains in winter. East of Crane Flat the same highway is Tioga Road, which closes for snow every winter.",
+        },
+      ],
+    },
+    "/is-highway-140-open": {
+      title: `Is Highway 140 to Yosemite Open? El Portal Road Status | ${SITE_NAME}`,
+      description:
+        "Where to check if Highway 140 through the Merced River canyon is open today: Caltrans for the canyon, the park for the El Portal Road.",
+      breadcrumb: [["Home", `${SITE_ORIGIN}/`], ["Road status", `${SITE_ORIGIN}/road-status`], ["Highway 140", null]],
+      hero: { image: "img/merced-canyon-road-cory-goehring.jpg", cover: true },
+      faq: [
+        {
+          q: "Is Highway 140 into Yosemite open right now?",
+          a: "This page does not say, on purpose. Outside the park, check Caltrans at roads.dot.ca.gov and enter 140, or QuickMap. Inside the park, check the National Park Service's current conditions page or call the park's 24-hour road and weather line, 209-372-0200 (press 1, then 1).",
+        },
+        {
+          q: "Does Highway 140 need chains in winter?",
+          a: "Less often than the other entrance roads. The park says the El Portal Road is lower in elevation and has chain requirements less often, but whenever a chain control is in effect every vehicle must carry chains, four-wheel drives and rentals included.",
         },
       ],
     },

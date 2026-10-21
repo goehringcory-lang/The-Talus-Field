@@ -463,7 +463,8 @@ function ConditionsPage({ go }) {
             <a href="/planning" onClick={(e) => { e.preventDefault(); go("planning"); }}>planning guide</a>{" "}
             covers the seasonal calendar, and the{" "}
             <a href="/itineraries" onClick={(e) => { e.preventDefault(); go("itineraries"); }}>itineraries</a>{" "}
-            adjust to what is open.
+            adjust to what is open. Road by road, where to check each one and how it usually behaves through the year:{" "}
+            <a href="/road-status" onClick={(e) => { e.preventDefault(); go("road-status"); }}>is it open?</a>
           </p>
         </section>
       </div>

@@ -118,6 +118,10 @@ function ExplorePage({
     route: "tioga-opening",
     name: "The Tioga Road opening",
     note: "When the high country actually opens, how the plowing schedule works, and what is worth doing in the first week it is passable."
+  }, {
+    route: "road-status",
+    name: "Road status: is it open?",
+    note: "Tioga Road, Glacier Point Road and Highways 41, 120 and 140, one page each: where to check whether the road is open today, and how it usually behaves through the year."
   }];
   var seasons = [{
     route: "dates",

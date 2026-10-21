@@ -479,7 +479,11 @@ function TiogaOpeningPage({
     go: go,
     location: "tioga_faq",
     href: "/conditions"
-  }, "the conditions page"), ". Road conditions by phone or text: text \"ynptraffic\" to 333111.")), React.createElement("div", {
+  }, "the conditions page"), ". Road conditions by phone or text: text \"ynptraffic\" to 333111. Every official source for the road, in one place: ", React.createElement(HomeLink, {
+    go: go,
+    location: "tioga_faq",
+    href: "/is-tioga-road-open"
+  }, "is Tioga Road open?"))), React.createElement("div", {
     className: "ff-faq"
   }, TIOGA_FAQ.map(([q, a], i) => React.createElement("details", {
     key: q,

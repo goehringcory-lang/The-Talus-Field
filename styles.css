@@ -14895,3 +14895,46 @@ html[data-nl-bar] .totop { bottom: calc(76px + env(safe-area-inset-bottom)); }
 .hp-kit .kit-faq { padding-top: 56px; }
 @media (max-width: 760px) { .kit-cover .ff-cover__img { object-position: 40% 55%; } }
 .hp-conditions .cond-dial { padding-top: 56px; }
+
+/* ── Road status (page-road-status.jsx): /road-status and the five
+   /is-…-open pages, October 2026 ──────────────────────────────────────────
+   On the event-page system (`hp-event` + `.ff-*`); this layer adds the
+   official-status box under the cover, the pattern ledger with its source
+   links, the read-next list and the road cards. No status colours: the pages
+   never say a road is open or closed. */
+.rd-cover .ff-cover__credit { padding: 2px 6px; border-radius: 2px; background: rgba(8, 14, 22, 0.55); }
+.rd-official { margin-top: 40px; padding: 28px 32px; border: 2px solid var(--hp-ink); border-radius: 4px; background: var(--hp-card); }
+.rd-official__head .hp-eyebrow { display: flex; align-items: center; gap: 8px; margin: 0 0 10px; color: var(--hp-accent); }
+.rd-official__head h2 { margin: 0 0 10px; }
+.rd-official__head .ff-lede { margin: 0; max-width: 720px; }
+.rd-official__list { list-style: none; margin: 22px 0 0; padding: 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
+.rd-official__list a { display: grid; gap: 6px; height: 100%; padding: 16px 18px; border: 1px solid var(--hp-rule); border-radius: 4px; background: var(--hp-paper); text-decoration: none; }
+.rd-official__list a:hover { border-color: var(--hp-ink); }
+.rd-official__list strong { font: 600 17px var(--sans); color: var(--hp-accent); }
+.rd-official__list span { font: 14px/1.5 var(--sans); color: var(--ink-2); }
+.rd-official__map { margin: 14px 0 0; }
+.rd-checked { margin: 18px 0 0; padding-top: 14px; border-top: 1px solid var(--hp-rule); font: 13px/1.5 var(--sans); color: var(--hp-muted); }
+.rd-checked strong { color: var(--hp-ink); }
+.rd-pattern { list-style: none; margin: 32px 0 0; padding: 0; border-top: 2px solid var(--hp-ink); }
+.rd-pattern li { display: grid; grid-template-columns: 220px minmax(0, 1fr) 240px; gap: 24px; align-items: baseline; padding: 18px 0; border-bottom: 1px solid var(--hp-rule); }
+.rd-pattern span { font: 600 12px var(--sans); letter-spacing: 1.2px; text-transform: uppercase; color: var(--hp-muted); }
+.rd-pattern p { margin: 0; font: 16px/1.6 var(--sans); color: var(--ink-2); }
+.rd-src { font: 13px/1.4 var(--sans); color: var(--hp-accent); text-decoration: underline; text-underline-offset: 2px; }
+.rd-reads { margin-top: 40px; }
+.rd-reads ul { list-style: none; margin: 14px 0 0; padding: 0; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); column-gap: 32px; }
+.rd-reads li a { display: grid; gap: 4px; padding-block: 14px; border-top: 1px solid var(--hp-rule); text-decoration: none; }
+.rd-reads li a strong { font: 600 15px var(--sans); color: var(--hp-accent); }
+.rd-reads li a span { font: 13px/1.5 var(--sans); color: var(--hp-muted); }
+.rd-roads { list-style: none; margin: 32px 0 20px; padding: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 20px; }
+.rd-roads a { display: grid; gap: 8px; align-content: start; height: 100%; padding: 22px; border: 1px solid var(--hp-rule); border-radius: 4px; background: var(--hp-card); text-decoration: none; }
+.rd-roads a:hover { border-color: var(--hp-ink); }
+.rd-roads__kind { font: 600 11px var(--sans); letter-spacing: 1.2px; text-transform: uppercase; color: var(--hp-muted); }
+.rd-roads strong { font: 400 24px/1.15 var(--serif); color: var(--hp-ink); }
+.rd-roads em { font: italic 15px var(--serif); color: var(--ink-2); }
+.rd-roads__sum { font: 14px/1.6 var(--sans); color: var(--ink-2); }
+@media (max-width: 880px) {
+  .rd-official { padding: 22px 20px; }
+  .rd-official__list { grid-template-columns: minmax(0, 1fr); }
+  .rd-pattern li { grid-template-columns: minmax(0, 1fr); gap: 6px; }
+  .rd-reads ul { grid-template-columns: minmax(0, 1fr); }
+}
