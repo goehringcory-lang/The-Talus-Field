@@ -80,6 +80,7 @@ window.INTENT_FACETS = [
 
 // Per-article tags. Keyed by the slug in window.ARTICLES.
 window.ARTICLE_INTENT = {
+  "yosemite-weather-by-month":                 { stage: ["before-booking", "dates-set", "week-before"], who: ["first-trip"], topic: ["conditions"] },
   "badger-pass-ski-area": { stage: ["dates-set", "in-park"], who: ["families"], topic: ["conditions", "transportation"] },
   "snowshoeing-in-yosemite": { stage: ["dates-set", "in-park"], who: ["families", "backpacking"], topic: ["trails", "permits"] },
   "yosemite-in-february": { stage: ["before-booking", "dates-set"], who: [], topic: ["conditions", "transportation", "lodging", "camping"] },

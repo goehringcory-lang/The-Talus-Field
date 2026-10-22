@@ -74,22 +74,24 @@ listicle) × revenue adjacency (lodging, camping, gear, or a Field Guide
 region). Pick one. Evergreen slug, no year, sentence-case title in the
 recent colon style, one of the four categories.
 
-### Standing head-term list (September 2026; verify, then prune)
+### Standing head-term list (October 2026; verify, then prune)
 
-- The evergreen month guides not yet written: February, April, May,
-  July, August, October (the catalog has January, March, November, December,
-  fall, winter, the dated September and October editions, and June,
-  whose `yosemite-in-june` the monthly edition refreshes in place each
-  May: never write a second June guide).
-- Sentinel Dome and Taft Point: the loop most first-timers should do
-  instead of the Mist Trail on a crowded day.
-- Badger Pass: skiing and snowshoeing for people who are not skiers.
+- The evergreen October guide, `yosemite-in-october` (the catalog has every
+  other evergreen month: January through May, `yosemite-in-july-and-august`,
+  November and December, plus fall, winter, and the dated September and
+  October editions; `yosemite-in-june` is refreshed in place by the monthly
+  edition each May: never write a second June guide).
 - Biking the Valley loop; rafting the Merced (the swimming piece exists).
-- Yosemite elevation, altitude, and the weather by month as one reference.
-- The Valley without a car: the free shuttle as an itinerary.
+- The Valley without a car: the free shuttle as an itinerary, if the
+  car-free piece does not cover it.
 - Yosemite with a baby or toddler, if the kids piece does not cover it.
 - The Yosemite Museum, the Indian Village, the Ansel Adams Gallery, and
   the chapel: the rainy-day and non-hiker Valley afternoon.
+
+Closed in October 2026: the February, April, May and July-and-August guides,
+Sentinel Dome and Taft Point, and Badger Pass (the October 17 and 18 batch),
+and the weather-by-month and elevation reference
+(`yosemite-weather-by-month`).
 
 ## Phase 2 — Write, check, integrate, ship
 

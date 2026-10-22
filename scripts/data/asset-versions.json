@@ -294,8 +294,8 @@
       "sha256": "5b85e381285e7bb6"
     },
     "/dist/bodies/yosemite-in-july-and-august.js": {
-      "v": 1,
-      "sha256": "06ffa6c7de83ad6b"
+      "v": 2,
+      "sha256": "eac7b87df6538a0b"
     },
     "/dist/bodies/yosemite-in-june.js": {
       "v": 12,
@@ -400,6 +400,10 @@
     "/dist/bodies/yosemite-waterfalls-guide.js": {
       "v": 13,
       "sha256": "16eca3a74d7147c0"
+    },
+    "/dist/bodies/yosemite-weather-by-month.js": {
+      "v": 1,
+      "sha256": "66318748f7f8204c"
     },
     "/dist/bodies/yosemite-wilderness-permits-guide.js": {
       "v": 11,

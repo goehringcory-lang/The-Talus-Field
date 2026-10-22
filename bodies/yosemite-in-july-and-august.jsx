@@ -138,7 +138,7 @@ window.ARTICLE_BODIES["yosemite-in-july-and-august"] = function YosemiteInJulyAn
               <h2>Two climates, one road apart</h2>
               <div className="ja-prose">
                 <p>
-                  The Park Service's 1991 to 2020 averages put Yosemite Valley, at 4,000 feet, at a high of 89°F and a low of 57°F in both July and August, with almost no rain: 0.3 inches in July and 0.2 in August. Tuolumne Meadows, at 8,600 feet, averages 72°F in July and 70°F in August, and drops to the high thirties at night. The park gets 95 percent of its precipitation between October and May.
+                  The Park Service's <a href="/articles/yosemite-weather-by-month">1991 to 2020 averages</a> put Yosemite Valley, at 4,000 feet, at a high of 89°F and a low of 57°F in both July and August, with almost no rain: 0.3 inches in July and 0.2 in August. Tuolumne Meadows, at 8,600 feet, averages 72°F in July and 70°F in August, and drops to the high thirties at night. The park gets 95 percent of its precipitation between October and May.
                 </p>
 
                 <p>
