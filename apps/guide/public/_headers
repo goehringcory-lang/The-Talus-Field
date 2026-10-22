@@ -28,6 +28,15 @@ https://:version.:project.pages.dev/*
 /assets/*
   Cache-Control: public, max-age=31536000, immutable
 
+# Digital Asset Links for the Android app (FieldGuideAndroid): Chrome and the
+# Play verifier read this to trust the Trusted Web Activity with this origin,
+# which is what hides the URL bar and lets magic links open in the app. It
+# must be JSON, and fresh, since a new signing-key fingerprint has to land.
+/.well-known/assetlinks.json
+  Content-Type: application/json
+  Cache-Control: public, max-age=300
+  Access-Control-Allow-Origin: *
+
 # Fonts and brand marks never change without a rename; track JSONs carry a
 # content-hash ?v= (TRACKS_VERSION) that turns the URL over on change. Without
 # these, every cold launch revalidates four woff2 files and the logo over
