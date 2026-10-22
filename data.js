@@ -110,6 +110,7 @@ window.planningSeriesFor = function (slug) {
 // verifies this map stays in sync with the files in bodies/.
 // ============================================================
 window.BODY_VERSIONS = {
+  "yosemite-weather-by-month": 1,
   "yosemite-backpacking-off-season": 1,
   "easy-hikes-yosemite-valley": 1,
   "yosemite-sequoia-kings-canyon-trip": 1,
@@ -120,7 +121,7 @@ window.BODY_VERSIONS = {
   "yosemite-in-april": 1,
   "yosemite-tire-chains": 1,
   "yosemite-campground-reservations": 1,
-  "yosemite-in-july-and-august": 1,
+  "yosemite-in-july-and-august": 2,
   "worship-in-yosemite": 1,
   "yosemite-crowds-by-month": 2,
   "yosemite-san-francisco-bus": 2,
@@ -781,6 +782,21 @@ window.KIT.lists.forEach((l) => {
 // AffiliateDisclosure line under the byline, before the first link;
 // scripts/check-affiliate-links.mjs fails when the flag and the body disagree.
 window.ARTICLES = [
+  {
+    slug: "yosemite-weather-by-month",
+    cat: "planning",
+    title: "Yosemite weather by month: the Valley, Tuolumne Meadows, and the 4,600 feet between them",
+    seoTitle: "Yosemite Weather by Month: Valley and High Country Averages",
+    dek: "The park runs from about 2,000 feet to about 13,000, and one forecast cannot describe it. The Park Service's monthly averages for Yosemite Valley and Tuolumne Meadows side by side, what each month's weather does to the roads, the waterfalls and the trails, and the three hazards the table leaves out: afternoon lightning, altitude and smoke.",
+    seoDek: "Yosemite weather by month: NPS average highs, lows and precipitation for Yosemite Valley and Tuolumne Meadows, plus roads, chains, storms and altitude.",
+    date: "October 22, 2026",
+    isoDate: "2026-10-22",
+    isoModified: "2026-10-22",
+    read: "10 min",
+    placeholder: "Half Dome down the length of Yosemite Valley under summer cumulus",
+    image: "img/half-dome-valley-cumulus.jpg",
+    credit: "Photo: elijahjcobb / Pexels",
+  },
   {
     slug: "yosemite-backpacking-off-season",
     cat: "trails",
@@ -2657,6 +2673,7 @@ window.START_HERE = [
 // Curate a piece when it earns real search impressions, when it anchors a
 // cluster, or when it is the destination that needs the equity.
 window.RELATED = {
+  "yosemite-weather-by-month": ["when-to-visit-yosemite", "yosemite-crowds-by-month", "yosemite-tire-chains", "yosemite-heat-safety-guide", "yosemite-during-smoke-season", "tuolumne-meadows-in-a-day"],
   "yosemite-backpacking-off-season": ["yosemite-wilderness-permits-guide", "best-yosemite-backpacking-trips", "hetch-hetchy-the-other-yosemite-valley", "snowshoeing-in-yosemite", "yosemite-walk-up-and-day-of-permits", "yosemite-in-november"],
   "easy-hikes-yosemite-valley": ["yosemite-with-kids-no-reservations-2026", "yosemite-for-non-hikers", "yosemite-waterfalls-guide", "yosemite-accessibility-guide", "yosemite-winter-hikes", "mist-trail-the-real-guide"],
   "yosemite-sequoia-kings-canyon-trip": ["yosemite-in-three-to-five-days", "mariposa-grove-how-to-visit", "yosemite-gateway-towns-compared", "best-airport-for-yosemite", "yosemite-trip-cost-budget", "giant-sequoias-fire-adaptation"],
@@ -2670,7 +2687,7 @@ window.RELATED = {
   "yosemite-campground-reservations": ["yosemite-camping-complete-guide", "camping-in-yosemite-first-time", "housekeeping-camp-vs-curry-village", "yosemite-wilderness-permits-guide", "where-to-stay-in-yosemite", "yosemite-bears-safety-guide"],
   "yosemite-in-july-and-august": ["yosemite-heat-safety-guide", "yosemite-during-smoke-season", "tuolumne-meadows-in-a-day", "swimming-in-the-merced", "yosemite-crowds-by-month", "yosemite-in-september-2026"],
   "worship-in-yosemite": ["thanksgiving-in-yosemite", "where-to-propose-in-yosemite", "yosemite-camping-complete-guide", "glacier-point-how-to-visit", "where-to-stay-in-yosemite", "bracebridge-dinner-and-vintners-holidays"],
-  "yosemite-crowds-by-month": ["when-to-visit-yosemite", "yosemite-valley-parking-guide", "yosemite-without-reservations-2026", "yosemite-in-july-and-august", "mariposa-grove-how-to-visit", "yosemite-needs-a-reservation-system"],
+  "yosemite-crowds-by-month": ["when-to-visit-yosemite", "yosemite-valley-parking-guide", "yosemite-without-reservations-2026", "yosemite-in-july-and-august", "yosemite-weather-by-month", "yosemite-needs-a-reservation-system"],
   "yosemite-san-francisco-bus": ["yosemite-shuttle-and-yarts", "best-airport-for-yosemite", "yosemite-day-trip-from-bay-area", "sustainable-yosemite-car-free-zero-waste", "yosemite-in-one-or-two-days", "getting-to-yosemite"],
   // Housekeeping Camp vs Curry Village: the two canvas-roofed Valley stays.
   // Onward to every bed in the park, the campgrounds, the kitchens, the bear
@@ -2776,7 +2793,7 @@ window.RELATED = {
   "first-time-yosemite-overwhelm": ["yosemite-in-one-or-two-days", "when-to-visit-yosemite", "yosemite-gateway-towns-compared", "yosemite-without-reservations-2026", "yosemite-in-three-to-five-days", "pack-your-car-for-yosemite"],
   "yosemite-in-one-or-two-days": ["yosemite-in-three-to-five-days", "first-time-yosemite-overwhelm", "yosemite-valley-parking-guide", "yosemite-with-kids-no-reservations-2026", "yosemite-day-trip-from-bay-area", "where-to-eat-yosemite"],
   "yosemite-in-three-to-five-days": ["yosemite-in-one-or-two-days", "tuolumne-meadows-in-a-day", "mist-trail-the-real-guide", "yosemite-gateway-towns-compared", "when-to-visit-yosemite", "yosemite-sequoia-kings-canyon-trip"],
-  "when-to-visit-yosemite": ["yosemite-without-reservations-2026", "yosemite-in-april", "yosemite-in-september-2026", "yosemite-in-fall", "yosemite-valley-parking-guide", "yosemite-crowds-by-month"],
+  "when-to-visit-yosemite": ["yosemite-without-reservations-2026", "yosemite-in-april", "yosemite-in-september-2026", "yosemite-in-fall", "yosemite-weather-by-month", "yosemite-crowds-by-month"],
   "yosemite-without-reservations-2026": ["when-to-visit-yosemite", "yosemite-valley-parking-guide", "yosemite-walk-up-and-day-of-permits", "yosemite-camping-complete-guide", "hetch-hetchy-the-other-yosemite-valley", "first-time-yosemite-overwhelm"],
 
   // Seasonal
@@ -2787,7 +2804,7 @@ window.RELATED = {
   "yosemite-in-march": ["yosemite-in-april", "yosemite-in-winter", "yosemite-waterfalls-guide", "horsetail-fall-firefall", "when-to-visit-yosemite", "yosemite-in-february"],
   "tioga-road-opening-weekend": ["cathedral-lakes-day-hike", "tuolumne-meadows-in-a-day", "yosemite-from-las-vegas", "memorial-day-skip-the-valley-go-high-2026", "yosemite-stargazing-where-to-look-up", "tioga-road-stop-by-stop"],
   "glacier-point-road-open-2026": ["four-mile-up-panorama-down", "sentinel-dome-and-taft-point", "glacier-point-how-to-visit", "yosemite-photography-spots", "yosemite-stargazing-where-to-look-up", "yosemite-in-may"],
-  "yosemite-heat-safety-guide": ["swimming-in-the-merced", "mist-trail-the-real-guide", "yosemite-in-july-and-august", "yosemite-during-smoke-season", "yosemite-waterfalls-guide", "yosemite-falls-trail"],
+  "yosemite-heat-safety-guide": ["swimming-in-the-merced", "mist-trail-the-real-guide", "yosemite-in-july-and-august", "yosemite-during-smoke-season", "yosemite-waterfalls-guide", "yosemite-weather-by-month"],
   "yosemite-during-smoke-season": ["yosemite-heat-safety-guide", "yosemite-fire-restrictions-explained", "yosemite-in-july-and-august", "yosemite-in-fall", "giant-sequoias-fire-adaptation", "wildfire-in-yosemite-during-your-trip"],
   "yosemite-fire-restrictions-explained": ["yosemite-during-smoke-season", "wildfire-in-yosemite-during-your-trip", "yosemite-camping-complete-guide", "giant-sequoias-fire-adaptation", "yosemite-heat-safety-guide", "yosemite-facelift-volunteer-guide"],
   "memorial-day-skip-the-valley-go-high-2026": ["tioga-road-opening-weekend", "tuolumne-meadows-in-a-day", "yosemite-in-may", "clouds-rest-hike", "hetch-hetchy-the-other-yosemite-valley", "cathedral-lakes-day-hike"],

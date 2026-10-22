@@ -9,13 +9,23 @@
     <copyright>© 2026 The Talus Field</copyright>
     <managingEditor>cory@thetalusfieldjournal.com (Cory Goehring)</managingEditor>
     <webMaster>cory@thetalusfieldjournal.com (Cory Goehring)</webMaster>
-    <lastBuildDate>Mon, 19 Oct 2026 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Thu, 22 Oct 2026 00:00:00 +0000</lastBuildDate>
     <image>
       <url>https://thetalusfieldjournal.com/img/talus-field-mark.png</url>
       <title>The Talus Field</title>
       <link>https://thetalusfieldjournal.com/</link>
     </image>
 
+    <item>
+      <title>Yosemite weather by month: the Valley, Tuolumne Meadows, and the 4,600 feet between them</title>
+      <link>https://thetalusfieldjournal.com/articles/yosemite-weather-by-month</link>
+      <guid isPermaLink="true">https://thetalusfieldjournal.com/articles/yosemite-weather-by-month</guid>
+      <pubDate>Thu, 22 Oct 2026 00:00:00 +0000</pubDate>
+      <dc:creator>Cory Goehring</dc:creator>
+      <category>Planning</category>
+      <description>The park runs from about 2,000 feet to about 13,000, and one forecast cannot describe it. The Park Service's monthly averages for Yosemite Valley and Tuolumne Meadows side by side, what each month's weather does to the roads, the waterfalls and the trails, and the three hazards the table leaves out: afternoon lightning, altitude and smoke.</description>
+      <media:content url="https://thetalusfieldjournal.com/img/responsive/half-dome-valley-cumulus-og.jpg" medium="image" />
+    </item>
     <item>
       <title>Backpacking Yosemite in the off-season: self-registered permits, the October 15 parking rule, and where to start</title>
       <link>https://thetalusfieldjournal.com/articles/yosemite-backpacking-off-season</link>
