@@ -23,7 +23,15 @@ window.ARTICLE_BODIES["yosemite-shuttle-and-yarts"] = function YosemiteShuttleAn
       stops: ["Mammoth Lakes", "Lee Vining", "Tuolumne Meadows", "Yosemite Valley"], entrance: "Tioga Pass Entrance" },
   ];
   function YartsCorridors() {
-    const srcs = (ext) => [800, 1200, 1600].map((w) => "/img/responsive/nps-yosemite-park-map-" + w + "." + ext + " " + w + "w").join(", ");
+    // Whole srcset strings, not a concatenated prefix: Googlebot lifted the bare
+    // "/img/responsive/nps-yosemite-park-map-" literal out of the bundle and
+    // reported it as a 404 (Search Console, October 2026).
+    const SRCSETS = {
+      avif: "/img/responsive/nps-yosemite-park-map-800.avif 800w, /img/responsive/nps-yosemite-park-map-1200.avif 1200w, /img/responsive/nps-yosemite-park-map-1600.avif 1600w",
+      webp: "/img/responsive/nps-yosemite-park-map-800.webp 800w, /img/responsive/nps-yosemite-park-map-1200.webp 1200w, /img/responsive/nps-yosemite-park-map-1600.webp 1600w",
+      jpg: "/img/responsive/nps-yosemite-park-map-800.jpg 800w, /img/responsive/nps-yosemite-park-map-1200.jpg 1200w, /img/responsive/nps-yosemite-park-map-1600.jpg 1600w",
+    };
+    const srcs = (ext) => SRCSETS[ext];
     const sizes = "(max-width: 760px) 100vw, 680px";
     return (
       <div className="npsmap__frame">

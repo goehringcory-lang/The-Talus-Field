@@ -81,7 +81,12 @@ var MAP_ENTRANCES = [{
 function GatewayMap() {
   var W = 1920,
     H = 1970;
-  var srcs = ext => [800, 1200, 1600].map(w => "/img/responsive/nps-yosemite-park-map-" + w + "." + ext + " " + w + "w").join(", ");
+  var SRCSETS = {
+    avif: "/img/responsive/nps-yosemite-park-map-800.avif 800w, /img/responsive/nps-yosemite-park-map-1200.avif 1200w, /img/responsive/nps-yosemite-park-map-1600.avif 1600w",
+    webp: "/img/responsive/nps-yosemite-park-map-800.webp 800w, /img/responsive/nps-yosemite-park-map-1200.webp 1200w, /img/responsive/nps-yosemite-park-map-1600.webp 1600w",
+    jpg: "/img/responsive/nps-yosemite-park-map-800.jpg 800w, /img/responsive/nps-yosemite-park-map-1200.jpg 1200w, /img/responsive/nps-yosemite-park-map-1600.jpg 1600w"
+  };
+  var srcs = ext => SRCSETS[ext];
   return React.createElement("figure", {
     className: "npsmap gwmap"
   }, React.createElement("div", {
