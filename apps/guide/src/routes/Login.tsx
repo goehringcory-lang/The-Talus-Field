@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { EDITION_LABEL } from '../lib/buildInfo'
 import type { FormEvent } from 'react'
-import { useLocation, useNavigate } from 'react-router-dom'
+import { Link, useLocation, useNavigate } from 'react-router-dom'
 import { apiFetch, ApiError } from '../lib/api'
 import { useAuth } from '../auth/useAuth'
 import { getAccessEndedAt } from '../auth/storage'
@@ -10,7 +10,8 @@ import { PHOTO_CREDITS, formatCredit } from '../content/photoCredits'
 import Plate from '../components/Plate'
 import ResponsivePhoto from '../components/ResponsivePhoto'
 import Button from '../components/ui/Button'
-import { GUIDE_BUY_URL, useGuidePrice } from '../lib/storefront'
+import { GUIDE_BUY_URL, buyLinkProps, useGuidePrice } from '../lib/storefront'
+import { isAndroidApp } from '../lib/playBilling'
 
 type LoginResponse = { jwt: string }
 
@@ -213,7 +214,15 @@ export default function Login() {
               {/* The renewal pitch only makes sense for a lapsed purchase. An
                   operator session's shorter JWT expiring lands here too, so
                   fall back to neutral copy unless the last /me said buyer. */}
-              {readCachedMe()?.kind === 'buyer' ? (
+              {readCachedMe()?.kind === 'buyer' && isAndroidApp() ? (
+                // The Play Store build: renewal is a Play purchase, and the
+                // emailed renewal links (Stripe) are not offered in the app.
+                <>
+                  Your access period ended {formatEndedDate(accessEndedAt)}.{' '}
+                  <Link to="/buy?renew=1">Renew for 18 more months</Link> with the same email,
+                  and your trips and saved stops carry over.
+                </>
+              ) : readCachedMe()?.kind === 'buyer' ? (
                 <>
                   Your access period ended {formatEndedDate(accessEndedAt)}. The cheapest way
                   back is the one-click renewal link in the reminder emails we sent as the
@@ -314,7 +323,7 @@ export default function Login() {
             <Button variant="ghost" to="/preview">
               Read the free sample →
             </Button>
-            <Button variant="quiet" href={GUIDE_BUY_URL} external>
+            <Button variant="quiet" {...buyLinkProps(GUIDE_BUY_URL)}>
               Get the guide
             </Button>
           </div>

@@ -29,6 +29,7 @@ import PageHeader from '../components/ui/PageHeader'
 import {
   GUIDE_BUY_URL,
   GUIDE_CHECKOUT_URL,
+  buyLinkProps,
   PREVIEW_SECRET_SPOT_ID,
   PREVIEW_STOP_IDS,
   useGuidePrice,
@@ -113,10 +114,10 @@ export default function Preview() {
               full within 30 days, for any reason.
             </p>
             <div className="action-row">
-              <Button href={GUIDE_CHECKOUT_URL} external>
+              <Button {...buyLinkProps(GUIDE_CHECKOUT_URL)}>
                 Get the guide · {price} →
               </Button>
-              <Button variant="quiet" href={GUIDE_BUY_URL} external>
+              <Button variant="quiet" {...buyLinkProps(GUIDE_BUY_URL)}>
                 See everything included
               </Button>
               <Button variant="quiet" to="/login">

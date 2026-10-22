@@ -1,7 +1,7 @@
 import type { ReactNode } from 'react'
 import { Link, useLocation } from 'react-router-dom'
 import Button from './ui/Button'
-import { GUIDE_CHECKOUT_URL, useGuidePrice } from '../lib/storefront'
+import { GUIDE_CHECKOUT_URL, buyLinkProps, useGuidePrice } from '../lib/storefront'
 
 type Props = {
   children: ReactNode
@@ -51,7 +51,7 @@ export default function PreviewChrome({ children }: Props) {
           <span className="preview-bar__price">{price}</span>
           <span className="preview-bar__note">One payment · 18 months · No renewal</span>
         </div>
-        <Button href={GUIDE_CHECKOUT_URL} external>
+        <Button {...buyLinkProps(GUIDE_CHECKOUT_URL)}>
           Get the guide →
         </Button>
       </div>

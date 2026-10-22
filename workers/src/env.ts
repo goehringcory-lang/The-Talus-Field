@@ -37,12 +37,22 @@ export type Env = {
   // One-time codes for POST /api/redeem, "SHA256HEX:DAYS" comma-separated.
   // Only the hash of each code is stored; see wrangler.toml.
   SINGLE_USE_CODES?: string
+  // The Android app's Google Play listing (routes/play.ts): its package name
+  // and the two in-app products, matching what the Play Console defines.
+  PLAY_PACKAGE_NAME?: string
+  PLAY_PRODUCT_ID?: string          // the guide, at GUIDE_PRICE_CENTS
+  PLAY_RENEWAL_PRODUCT_ID?: string  // the renewal, at GUIDE_RENEWAL_PRICE_CENTS
 
   // Secrets (wrangler secret put)
   STRIPE_SECRET_KEY: string
   STRIPE_WEBHOOK_SECRET: string
   MAGIC_LINK_SIGNING_SECRET: string
   RESEND_API_KEY: string
+
+  // Google Play Developer API service-account key (the whole JSON file),
+  // for verifying, consuming and refund-checking the Android app's purchases.
+  // Optional: without it /api/play/verify 503s and the voided sweep skips.
+  PLAY_SERVICE_ACCOUNT_JSON?: string
 
   // Buttondown API key for /api/subscribe (the Sunday letter signup).
   // Optional so a missing secret degrades to the page's Buttondown-tab

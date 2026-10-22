@@ -18,7 +18,8 @@ import { resetInstallDismissal } from '../lib/install'
 import { THEME_LABEL, THEME_NOTE, THEME_OPTIONS, useTheme } from '../lib/theme'
 import { isStandalonePWA } from '../utils/platform'
 import { useLandOnHash } from '../utils/useLandOnHash'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
+import { isAndroidApp } from '../lib/playBilling'
 import { CHANGELOG } from '../content/changelog'
 import { SUPPORT_EMAIL } from '../lib/corrections'
 
@@ -58,6 +59,7 @@ function readRenewOutcome(): 'success' | 'cancel' | null {
 // renew button (JWT-gated POST /api/checkout/renew -> Stripe); the price
 // comes live from /api/inventory so it stays edited in one place.
 function AccessStatusCard() {
+  const navigate = useNavigate()
   const [me, setMe] = useState<MeT | null>(() => readCachedMe())
   // Skeleton only for the first online visit (no cache, fetch in flight);
   // offline with no cache keeps the card omitted instead of loading forever.
@@ -113,6 +115,11 @@ function AccessStatusCard() {
   }, [inRenewWindow])
 
   async function startRenewal() {
+    // The Play Store build renews through Google Play (routes/PlayBuy.tsx).
+    if (isAndroidApp()) {
+      navigate('/buy?renew=1')
+      return
+    }
     setRenewBusy(true)
     setRenewError(null)
     try {

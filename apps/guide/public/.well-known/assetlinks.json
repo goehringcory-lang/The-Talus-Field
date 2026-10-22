@@ -1,0 +1,12 @@
+[
+  {
+    "relation": ["delegate_permission/common.handle_all_urls"],
+    "target": {
+      "namespace": "android_app",
+      "package_name": "com.thetalusfieldjournal.guide",
+      "sha256_cert_fingerprints": [
+        "4A:AB:DA:C0:C8:66:D7:F4:9B:B6:AB:9F:22:53:C0:6C:C1:47:59:B9:00:31:D6:48:DA:3E:95:54:91:1B:2D:36"
+      ]
+    }
+  }
+]

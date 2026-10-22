@@ -1,4 +1,4 @@
-import { lazy, Suspense, useLayoutEffect, useState } from 'react'
+import { lazy, Suspense, useEffect, useLayoutEffect, useState } from 'react'
 import { Routes, Route, Navigate, useLocation } from 'react-router-dom'
 import { AuthProvider, RequireAuth } from './auth/AuthGate'
 import { useAuth } from './auth/useAuth'
@@ -8,11 +8,14 @@ import Login from './routes/Login'
 import InstallPrompt from './components/InstallPrompt'
 import UpdateBanner from './components/UpdateBanner'
 import ScrollToTop from './components/ScrollToTop'
+import { recoverPlayPurchases } from './lib/playBilling'
 
 // Heavy routes lazy-loaded so /login doesn't download Map / Google Maps glue.
 const Home = lazy(() => import('./routes/Home'))
 const Map = lazy(() => import('./routes/Map'))
 const Account = lazy(() => import('./routes/Account'))
+// The Android app's Play Billing checkout (lib/playBilling.ts).
+const PlayBuy = lazy(() => import('./routes/PlayBuy'))
 const Region = lazy(() => import('./routes/Region'))
 const StopDetail = lazy(() => import('./routes/StopDetail'))
 const Essentials = lazy(() => import('./routes/Essentials'))
@@ -105,10 +108,24 @@ function DropPrerender() {
   return null
 }
 
+// The Play Store build only: a Play purchase whose verification never reached
+// the Worker (the connection dropped as the payment sheet closed) is finished
+// at the next launch, and signs the buyer in. A no-op everywhere else.
+function PlayRecovery() {
+  const { signIn } = useAuth()
+  useEffect(() => {
+    void recoverPlayPurchases().then((res) => {
+      if (res) signIn(res.jwt)
+    })
+  }, [signIn])
+  return null
+}
+
 export default function App() {
   return (
     <AuthProvider>
       <ScrollToTop />
+      <PlayRecovery />
       <UpdateBanner />
       {/* Visible fallback: on a slow connection a lazy chunk can take seconds,
           and a blank screen reads as broken. */}
@@ -124,6 +141,9 @@ export default function App() {
           {/* Newsletter promo-code redemption: public on purpose, the code is
               the gate. The newsletter links here as /redeem?code=… */}
           <Route path="/redeem" element={<Redeem />} />
+          {/* The Play Store build's checkout: public, since buying is how a
+              reader gets an account; a signed-in buyer renews from it. */}
+          <Route path="/buy" element={<PlayBuy />} />
           <Route
             path="/"
             element={

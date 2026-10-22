@@ -462,13 +462,16 @@ export async function sendRenewalNotice(
 // reassurance that nothing else changed (same sign-in, same devices).
 export async function sendRenewalConfirmation(
   env: Env,
-  args: { to: string; expiresAt: number },
+  // Who sends the payment receipt: Stripe for the web checkout, Google Play
+  // for the Android app's purchases.
+  args: { to: string; expiresAt: number; receiptFrom?: 'Stripe' | 'Google Play' },
 ): Promise<void> {
   if (!env.RESEND_API_KEY) {
     throw new Error('RESEND_API_KEY not configured')
   }
 
   const { to, expiresAt } = args
+  const receiptFrom = args.receiptFrom ?? 'Stripe'
   const endDate = formatAccessDate(expiresAt)
 
   const text = [
@@ -477,7 +480,7 @@ export async function sendRenewalConfirmation(
     `Your Field Guide access now runs through ${endDate}.`,
     `Nothing else changes: same sign-in, same devices, same trips and downloads.`,
     ``,
-    `Stripe sends your payment receipt separately.`,
+    `${receiptFrom} sends your payment receipt separately.`,
     `— Cory`,
   ].join('\n')
 
@@ -496,7 +499,7 @@ export async function sendRenewalConfirmation(
           <td style="border-top:1px solid #2a2118;padding:24px 0 0;">
             <p style="font-family:${serif};font-size:17px;line-height:1.55;color:#14110c;margin:0 0 18px;">You're renewed.</p>
             <p style="font-family:${serif};font-size:15px;line-height:1.55;color:#14110c;margin:0 0 14px;">Your Field Guide access now runs through <strong>${endDate}</strong>. Nothing else changes: same sign-in, same devices, same trips and downloads.</p>
-            <p style="font-family:${sans};font-size:13px;color:#50402e;margin:0 0 6px;">Stripe sends your payment receipt separately.</p>
+            <p style="font-family:${sans};font-size:13px;color:#50402e;margin:0 0 6px;">${receiptFrom} sends your payment receipt separately.</p>
             <p style="font-family:${sans};font-size:13px;color:#50402e;margin:0;">&mdash; Cory</p>
           </td>
         </tr>

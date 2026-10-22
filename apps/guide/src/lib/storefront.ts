@@ -4,7 +4,7 @@
 //
 // The guide is SOLD on the editorial site, not here. Every buy action is a
 // link out to thetalusfieldjournal.com/guide, where the Stripe checkout
-// lives. This module only knows the price, read from the
+// lives, except inside the Android app, where it is /buy (buyLinkProps). This module only knows the price, read from the
 // same unauthenticated /api/inventory the editorial buy box reads, so the
 // number is still edited in exactly one place (GUIDE_PRICE_CENTS in
 // workers/wrangler.toml).
@@ -12,6 +12,7 @@
 
 import { useEffect, useState } from 'react'
 import { apiFetch } from './api'
+import { isAndroidApp } from './playBilling'
 
 // The editorial /guide page: the buy box, the pitch, the checkout.
 export const GUIDE_BUY_URL = 'https://thetalusfieldjournal.com/guide'
@@ -22,6 +23,14 @@ export const GUIDE_BUY_URL = 'https://thetalusfieldjournal.com/guide'
 // on load; the reader still presses the button. GUIDE_BUY_URL stays the
 // "see everything included" link.
 export const GUIDE_CHECKOUT_URL = `${GUIDE_BUY_URL}?buy=preview#guide-buy`
+
+// The props for a buy Button. Inside the Android app (the Play Store build)
+// every buy action goes to /buy, the Play Billing checkout, because an app
+// Play distributes may not send readers to a web checkout; everywhere else it
+// links out to the editorial page as before.
+export function buyLinkProps(url: string): { to: string } | { href: string; external: true } {
+  return isAndroidApp() ? { to: '/buy' } : { href: url, external: true }
+}
 
 // The free sample: one stop per region (REGIONS order) plus one Secret Guide
 // entry, rendered in full by /preview and readable signed-out on /stop/:id.

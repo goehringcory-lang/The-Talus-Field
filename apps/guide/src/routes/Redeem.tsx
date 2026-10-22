@@ -7,7 +7,7 @@ import { PHOTO_CREDITS, formatCredit } from '../content/photoCredits'
 import Plate from '../components/Plate'
 import ResponsivePhoto from '../components/ResponsivePhoto'
 import Button from '../components/ui/Button'
-import { GUIDE_BUY_URL, useGuidePrice } from '../lib/storefront'
+import { GUIDE_BUY_URL, buyLinkProps, useGuidePrice } from '../lib/storefront'
 
 // Public redemption page for the shared newsletter codes and the one-time
 // access codes (POST /api/redeem).
@@ -218,7 +218,7 @@ export default function Redeem() {
             <Button variant="ghost" to="/preview">
               Read the free sample →
             </Button>
-            <Button variant="quiet" href={GUIDE_BUY_URL} external>
+            <Button variant="quiet" {...buyLinkProps(GUIDE_BUY_URL)}>
               Get the guide
             </Button>
           </div>
