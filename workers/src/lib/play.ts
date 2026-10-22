@@ -1,17 +1,16 @@
 import jwt from '@tsndr/cloudflare-worker-jwt'
 import type { Env } from '../env'
-import { getBuyer, putBuyer } from './kv'
-import { EIGHTEEN_MONTHS_SECONDS } from './provision'
 
-// Google Play Developer API client for the Android app's purchases (the
-// Trusted Web Activity in the FieldGuideAndroid project). The app sells the
-// guide through Play Billing, reached from the PWA by the Digital Goods API;
-// the purchase token it gets back is verified here, server to server, before
-// a buyer record exists. Auth is a service account linked to the Play
-// Console, whose JSON key is the PLAY_SERVICE_ACCOUNT_JSON secret.
+// Google Play Integrity for the Android app (the FieldGuideAndroid project, a
+// Trusted Web Activity over the PWA). The app is a paid download: owning it on
+// Google Play is the purchase. At first launch and about monthly after, the
+// app asks Play for an integrity token over a nonce from GET /api/play/nonce,
+// and POST /api/play/unlock decodes it here, server to server, before it
+// signs the install in. Auth is a service account in the Google Cloud project
+// linked to the app in the Play Console; its JSON key is the
+// PLAY_SERVICE_ACCOUNT_JSON secret.
 
-const SCOPE = 'https://www.googleapis.com/auth/androidpublisher'
-const API = 'https://androidpublisher.googleapis.com/androidpublisher/v3/applications'
+const SCOPE = 'https://www.googleapis.com/auth/playintegrity'
 
 type ServiceAccount = { client_email: string; private_key: string; token_uri?: string }
 
@@ -46,165 +45,63 @@ async function accessToken(env: Env): Promise<string> {
   return body.access_token
 }
 
-// The fields of a ProductPurchase this Worker reads.
-// https://developers.google.com/android-publisher/api-ref/rest/v3/purchases.products
-export type ProductPurchase = {
-  purchaseState?: number // 0 purchased, 1 canceled, 2 pending
-  consumptionState?: number // 0 not consumed, 1 consumed
-  orderId?: string
-  purchaseTimeMillis?: string
+// The fields of a decoded integrity verdict this Worker reads.
+// https://developer.android.com/google/play/integrity/verdicts
+export type IntegrityPayload = {
+  requestDetails?: { requestPackageName?: string; nonce?: string; timestampMillis?: string }
+  appIntegrity?: { appRecognitionVerdict?: string; packageName?: string }
+  accountDetails?: { appLicensingVerdict?: string }
 }
 
-function productUrl(env: Env, productId: string, token: string): string {
-  return `${API}/${encodeURIComponent(env.PLAY_PACKAGE_NAME ?? '')}/purchases/products/${encodeURIComponent(productId)}/tokens/${encodeURIComponent(token)}`
-}
-
-// null when Google does not know the token for this product (a forged or
-// mistyped token, or one for another app), so the route can answer 404.
-export async function getProductPurchase(
+// null when Google refuses the token as malformed or not this app's.
+export async function decodeIntegrityToken(
   env: Env,
-  productId: string,
   token: string,
-): Promise<ProductPurchase | null> {
-  const res = await fetch(productUrl(env, productId, token), {
-    headers: { Authorization: `Bearer ${await accessToken(env)}` },
-  })
-  if (res.status === 400 || res.status === 404 || res.status === 410) return null
-  if (!res.ok) throw new Error(`Play purchases.products.get failed (${res.status}): ${await res.text()}`)
-  return (await res.json()) as ProductPurchase
-}
-
-// The two products settle differently on Play's side. The guide itself is
-// acknowledged and never consumed: it stays owned by the reader's Google
-// account, so Play's listPurchases hands its token back on a reinstall or a
-// new phone, and that token is the account (no email). The renewal is
-// consumed, so it can be bought again 18 months later. Either way Play
-// requires the settle within three days or it refunds the purchase itself.
-export async function acknowledgeProductPurchase(
-  env: Env,
-  productId: string,
-  token: string,
-): Promise<void> {
-  const res = await fetch(`${productUrl(env, productId, token)}:acknowledge`, {
+): Promise<IntegrityPayload | null> {
+  const url = `https://playintegrity.googleapis.com/v1/${encodeURIComponent(env.PLAY_PACKAGE_NAME ?? '')}:decodeIntegrityToken`
+  const res = await fetch(url, {
     method: 'POST',
     headers: { Authorization: `Bearer ${await accessToken(env)}`, 'Content-Type': 'application/json' },
-    body: '{}',
+    body: JSON.stringify({ integrity_token: token }),
   })
-  if (!res.ok) throw new Error(`Play acknowledge failed (${res.status}): ${await res.text()}`)
+  if (res.status === 400 || res.status === 404) return null
+  if (!res.ok) throw new Error(`Play Integrity decode failed (${res.status}): ${await res.text()}`)
+  const body = (await res.json()) as { tokenPayloadExternal?: IntegrityPayload }
+  return body.tokenPayloadExternal ?? null
 }
 
-export async function consumeProductPurchase(
-  env: Env,
-  productId: string,
-  token: string,
-): Promise<void> {
-  const res = await fetch(`${productUrl(env, productId, token)}:consume`, {
-    method: 'POST',
-    headers: { Authorization: `Bearer ${await accessToken(env)}` },
-  })
-  if (!res.ok) throw new Error(`Play consume failed (${res.status}): ${await res.text()}`)
+// One-time nonces: issued by GET /api/play/nonce, spent by the unlock, ten
+// minutes to live. They stop a token captured from one unlock (it travels in
+// a URL) from being replayed.
+const NONCE_KEY = (nonce: string) => `playNonce:${nonce}`
+export const NONCE_TTL_SECONDS = 600
+
+export async function issueNonce(env: Env): Promise<string> {
+  const bytes = new Uint8Array(32)
+  crypto.getRandomValues(bytes)
+  const nonce = btoa(String.fromCharCode(...bytes)).replace(/\+/g, '-').replace(/\//g, '_').replace(/=+$/, '')
+  await env.GUIDE_BUYERS.put(NONCE_KEY(nonce), '1', { expirationTtl: NONCE_TTL_SECONDS })
+  return nonce
 }
 
-// The purchase token is long and opaque; KV keys use its hash.
-export async function hashPurchaseToken(token: string): Promise<string> {
-  const digest = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(`play:${token}`))
-  return [...new Uint8Array(digest)].map((b) => b.toString(16).padStart(2, '0')).join('')
+export async function spendNonce(env: Env, nonce: string): Promise<boolean> {
+  if (!(await env.GUIDE_BUYERS.get(NONCE_KEY(nonce)))) return false
+  await env.GUIDE_BUYERS.delete(NONCE_KEY(nonce))
+  return true
 }
 
-// What the verify route records per purchase token: which account it belongs
-// to, so the token can sign that account in again (a reinstall, a new phone)
-// and can never be presented for another one, and whether Play has been told
-// (acknowledged or consumed), so a retry finishes a settle that failed.
-export type PlayPurchaseRecord = {
-  account: string
-  orderId: string
-  productId: string
-  settled: boolean
+// An app owner's account: one per install (Play Integrity names no user, and
+// the app makes a random install id the first time it runs). It is the JWT
+// sub and the buyer record's key, kept in the record's `email` field, which
+// every reader of a buyer record treats as the account id. It has no
+// address, so nothing may email it; senders check for an @.
+const INSTALL_ID_RE = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/
+
+export function playAppAccountId(installId: string): string | null {
+  const id = installId.trim().toLowerCase()
+  return INSTALL_ID_RE.test(id) ? `playapp:${id}` : null
 }
 
-export const PLAY_PURCHASE_KEY = (tokenHash: string) => `playPurchase:${tokenHash}`
-const PLAY_ORDER_KEY = (orderId: string) => `playOrder:${orderId}`
-const PLAY_VOIDED_KEY = (orderId: string) => `playVoided:${orderId}`
-
-export async function getPlayPurchase(env: Env, tokenHash: string): Promise<PlayPurchaseRecord | null> {
-  const raw = await env.GUIDE_BUYERS.get(PLAY_PURCHASE_KEY(tokenHash))
-  if (!raw) return null
-  try {
-    return JSON.parse(raw) as PlayPurchaseRecord
-  } catch {
-    return null
-  }
-}
-
-export async function putPlayPurchase(
-  env: Env,
-  tokenHash: string,
-  record: PlayPurchaseRecord,
-): Promise<void> {
-  await env.GUIDE_BUYERS.put(PLAY_PURCHASE_KEY(tokenHash), JSON.stringify(record))
-  // The voided-purchases sweep knows orders by id, not by token.
-  await env.GUIDE_BUYERS.put(PLAY_ORDER_KEY(record.orderId), record.account)
-}
-
-// --- Refunds ----------------------------------------------------------------
-// Play has no webhook this Worker can take without Pub/Sub, so refunds and
-// chargebacks are read nightly from the Voided Purchases API (the last three
-// days, so a missed night is caught by the next). The Stripe refund rule
-// carries over: a refund of the purchase that provisioned the record revokes
-// access; a refund of a purchase that only extended an active record takes
-// those 18 months back off. Anything else is logged for a manual look.
-
-type VoidedPurchase = { orderId?: string; purchaseToken?: string }
-
-export async function sweepPlayVoided(env: Env): Promise<void> {
-  if (!playConfigured(env)) return
-  const startTime = Date.now() - 3 * 24 * 60 * 60 * 1000
-  const url = `${API}/${encodeURIComponent(env.PLAY_PACKAGE_NAME ?? '')}/purchases/voidedpurchases?startTime=${startTime}`
-  const res = await fetch(url, { headers: { Authorization: `Bearer ${await accessToken(env)}` } })
-  if (!res.ok) throw new Error(`Play voidedpurchases failed (${res.status}): ${await res.text()}`)
-  const body = (await res.json()) as { voidedPurchases?: VoidedPurchase[] }
-  for (const voided of body.voidedPurchases ?? []) {
-    if (!voided.orderId) continue
-    await revokePlayOrder(env, voided.orderId)
-  }
-}
-
-export async function revokePlayOrder(env: Env, orderId: string): Promise<void> {
-  if (await env.GUIDE_BUYERS.get(PLAY_VOIDED_KEY(orderId))) return
-  const account = await env.GUIDE_BUYERS.get(PLAY_ORDER_KEY(orderId))
-  const buyer = account ? await getBuyer(env, account) : null
-  const eventId = playEventId(orderId)
-  const now = Math.floor(Date.now() / 1000)
-  if (!buyer) {
-    console.error('play refund for an unknown order, revoke manually', { orderId })
-  } else if (buyer.provisionedSessionId === eventId) {
-    await putBuyer(env, { ...buyer, expiresAt: now, refundedAt: now })
-  } else if (buyer.lastExtensionEventId === eventId) {
-    const { lastExtensionEventId: _dropped, ...kept } = buyer
-    await putBuyer(env, { ...kept, expiresAt: Math.max(now, buyer.expiresAt - EIGHTEEN_MONTHS_SECONDS) })
-  } else {
-    console.error('play refund matches neither the provision nor the last extension, check manually', {
-      orderId,
-      account,
-    })
-  }
-  await env.GUIDE_BUYERS.put(PLAY_VOIDED_KEY(orderId), '1')
-}
-
-// The id a Play order carries wherever a Stripe session or event id would:
-// provisionedSessionId, lastExtensionEventId, and the HMAC credential seed.
-export function playEventId(orderId: string): string {
-  return `play:${orderId}`
-}
-
-// A Play buyer's account id, when they bought in the app without being signed
-// in: the guide purchase's order id. It is the JWT sub and the buyer record's
-// key (in the `email` field, which every reader of a buyer record treats as
-// the account id); nothing may email it, so senders check for an @.
-export function playAccountId(orderId: string): string {
-  return `play:${orderId.toLowerCase()}`
-}
-
-export function isEmailAccount(account: string): boolean {
-  return account.includes('@')
+export function isPlayAppAccount(sub: string): boolean {
+  return sub.startsWith('playapp:')
 }

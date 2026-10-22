@@ -35,6 +35,7 @@
 // 410) deletes the record — that is the normal end of a device's life here.
 // =============================================================================
 
+import { isPlayAppAccount } from './play'
 import type { Env } from '../env'
 import {
   deletePushSubscription,
@@ -265,7 +266,15 @@ export async function sweepPush(env: Env): Promise<void> {
       ? { kind: 'operator' }
       : buyer.refundedAt != null
         ? { kind: 'refunded' }
-        : { kind: 'buyer', daysToExpiry: (buyer.expiresAt - nowSeconds) / 86400 }
+        : {
+            kind: 'buyer',
+            // The Android app's owners (playapp:, lib/play.ts) keep the guide
+            // for as long as they own the app; their expiry is only the
+            // session's next refresh, so they are never sent a renewal notice.
+            daysToExpiry: isPlayAppAccount(sub)
+              ? Number.POSITIVE_INFINITY
+              : (buyer.expiresAt - nowSeconds) / 86400,
+          }
     statusCache.set(sub, value)
     return value
   }

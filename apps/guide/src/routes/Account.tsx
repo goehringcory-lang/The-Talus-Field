@@ -18,8 +18,8 @@ import { resetInstallDismissal } from '../lib/install'
 import { THEME_LABEL, THEME_NOTE, THEME_OPTIONS, useTheme } from '../lib/theme'
 import { isStandalonePWA } from '../utils/platform'
 import { useLandOnHash } from '../utils/useLandOnHash'
-import { Link, useNavigate } from 'react-router-dom'
-import { accountLabel, isAndroidApp } from '../lib/playBilling'
+import { Link } from 'react-router-dom'
+import { accountLabel, isAndroidApp, isPlayAppAccount } from '../lib/androidApp'
 import { CHANGELOG } from '../content/changelog'
 import { SUPPORT_EMAIL } from '../lib/corrections'
 
@@ -59,7 +59,6 @@ function readRenewOutcome(): 'success' | 'cancel' | null {
 // renew button (JWT-gated POST /api/checkout/renew -> Stripe); the price
 // comes live from /api/inventory so it stays edited in one place.
 function AccessStatusCard() {
-  const navigate = useNavigate()
   const [me, setMe] = useState<MeT | null>(() => readCachedMe())
   // Skeleton only for the first online visit (no cache, fetch in flight);
   // offline with no cache keeps the card omitted instead of loading forever.
@@ -115,11 +114,6 @@ function AccessStatusCard() {
   }, [inRenewWindow])
 
   async function startRenewal() {
-    // The Play Store build renews through Google Play (routes/PlayBuy.tsx).
-    if (isAndroidApp()) {
-      navigate('/buy?renew=1')
-      return
-    }
     setRenewBusy(true)
     setRenewError(null)
     try {
@@ -152,6 +146,16 @@ function AccessStatusCard() {
       <span className="eyebrow" style={{ display: 'block', marginBottom: 8 }}>Access</span>
       {me.kind === 'operator' ? (
         <div className="card__value">Operator access</div>
+      ) : isPlayAppAccount(me.email) ? (
+        // The Android app (lib/androidApp.ts): the expiry on the record is
+        // only the session's next refresh, which the app does by itself.
+        <>
+          <div className="card__value">Yours for as long as you own the app</div>
+          <p className="card__note" style={{ marginTop: 4 }}>
+            Bought on Google Play. It opens on any Android phone signed in to the same Google
+            account; the app checks with Google Play about once a month when it has a signal.
+          </p>
+        </>
       ) : me.expired ? (
         <>
           <div className="card__value">Ended {formatAccessDate(me.expiresAt)}</div>
@@ -188,7 +192,8 @@ function AccessStatusCard() {
           {renewOutcome === 'cancel' && (
             <p className="card__note">Checkout was cancelled. Nothing was charged.</p>
           )}
-          {inRenewWindow && renewOutcome !== 'success' && (
+          {/* No web checkout inside the Play Store build (lib/androidApp.ts). */}
+          {inRenewWindow && renewOutcome !== 'success' && !isAndroidApp() && (
             <>
               <div style={{ marginTop: 10 }}>
                 <Button onClick={startRenewal} disabled={renewBusy}>

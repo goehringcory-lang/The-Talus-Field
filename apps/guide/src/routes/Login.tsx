@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { EDITION_LABEL } from '../lib/buildInfo'
 import type { FormEvent } from 'react'
-import { Link, useLocation, useNavigate } from 'react-router-dom'
+import { useLocation, useNavigate } from 'react-router-dom'
 import { apiFetch, ApiError } from '../lib/api'
 import { useAuth } from '../auth/useAuth'
 import { getAccessEndedAt } from '../auth/storage'
@@ -11,7 +11,7 @@ import Plate from '../components/Plate'
 import ResponsivePhoto from '../components/ResponsivePhoto'
 import Button from '../components/ui/Button'
 import { GUIDE_BUY_URL, buyLinkProps, useGuidePrice } from '../lib/storefront'
-import { isAndroidApp } from '../lib/playBilling'
+import { UNLOCK_INTENT_URL, isAndroidApp } from '../lib/androidApp'
 
 type LoginResponse = { jwt: string }
 
@@ -215,12 +215,12 @@ export default function Login() {
                   operator session's shorter JWT expiring lands here too, so
                   fall back to neutral copy unless the last /me said buyer. */}
               {readCachedMe()?.kind === 'buyer' && isAndroidApp() ? (
-                // The Play Store build: renewal is a Play purchase, and the
-                // emailed renewal links (Stripe) are not offered in the app.
+                // The Play Store build: the emailed renewal links (Stripe) are
+                // not offered in the app, and owning the app opens the guide.
                 <>
-                  Your access period ended {formatEndedDate(accessEndedAt)}.{' '}
-                  <Link to="/buy?renew=1">Renew for 18 more months</Link>, and your trips and
-                  saved stops carry over.
+                  Your website access ended {formatEndedDate(accessEndedAt)}. This app opens
+                  the guide for as long as you own it on Google Play: tap{' '}
+                  <a href={UNLOCK_INTENT_URL}>Open the guide</a>.
                 </>
               ) : readCachedMe()?.kind === 'buyer' ? (
                 <>
@@ -240,6 +240,20 @@ export default function Login() {
                 <>Your session ended {formatEndedDate(accessEndedAt)}. Sign in again to continue.</>
               )}
             </p>
+          </div>
+        )}
+
+        {/* The Play Store build: owning the app is the purchase, so the
+            first thing offered is the Google Play check (lib/androidApp.ts);
+            the code form below stays for website buyers. */}
+        {isAndroidApp() && (
+          <div className="card" style={{ marginBottom: 28 }}>
+            <p className="card__note" style={{ marginTop: 0 }}>
+              Bought the app on Google Play? It opens the guide for as long as you own it.
+            </p>
+            <a className="btn" href={UNLOCK_INTENT_URL}>
+              Open the guide
+            </a>
           </div>
         )}
 
@@ -326,13 +340,6 @@ export default function Login() {
             <Button variant="quiet" {...buyLinkProps(GUIDE_BUY_URL)}>
               Get the guide
             </Button>
-            {/* The Play Store build: a Google Play purchase has no code to
-                type; /buy finds it on the reader's Google account. */}
-            {isAndroidApp() && (
-              <Button variant="quiet" to="/buy">
-                Bought it on Google Play? Restore
-              </Button>
-            )}
           </div>
         </section>
 

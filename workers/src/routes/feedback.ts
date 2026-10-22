@@ -99,8 +99,8 @@ async function describeAccount(
   sub: string,
 ): Promise<{ account: string; purchasedAt: string | null }> {
   try {
-    // Email accounts, and the Android app's Google Play accounts (play:<order>).
-    const isBuyerSub = sub.includes('@') || sub.startsWith('play:')
+    // Email accounts, and the Android app's installs (playapp:<install id>).
+    const isBuyerSub = sub.includes('@') || sub.startsWith('playapp:')
     const buyer = isBuyerSub ? await getBuyer(env, sub) : null
     if (!buyer) {
       return {

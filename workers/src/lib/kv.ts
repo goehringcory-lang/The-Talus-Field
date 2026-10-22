@@ -81,7 +81,8 @@ const DEV_LOGIN_ATTEMPTS_KEY = (username: string) =>
   `devLoginAttempts:${username.toLowerCase()}`
 const CHECKOUT_ATTEMPTS_KEY = (ipHash: string) => `checkoutAttempts:${ipHash}`
 const CLAIM_ATTEMPTS_KEY = (ipHash: string) => `claimAttempts:${ipHash}`
-const PLAY_VERIFY_ATTEMPTS_KEY = (ipHash: string) => `playVerifyAttempts:${ipHash}`
+const PLAY_NONCE_ATTEMPTS_KEY = (ipHash: string) => `playNonceAttempts:${ipHash}`
+const PLAY_UNLOCK_ATTEMPTS_KEY = (ipHash: string) => `playUnlockAttempts:${ipHash}`
 const PUSH_SUB_KEY = (endpointHash: string) => `push:${endpointHash}`
 const PUSH_PENDING_KEY = (endpointHash: string) => `pushPending:${endpointHash}`
 const PUSH_NOTICE_KEY = (endpointHash: string, stage: string) =>
@@ -231,8 +232,12 @@ export async function recordClaimAttempt(env: Env, ipHash: string): Promise<numb
   return incrementFixedWindow(env, CLAIM_ATTEMPTS_KEY(ipHash))
 }
 
-export async function recordPlayVerifyAttempt(env: Env, ipHash: string): Promise<number> {
-  return incrementFixedWindow(env, PLAY_VERIFY_ATTEMPTS_KEY(ipHash))
+export async function recordPlayNonceAttempt(env: Env, ipHash: string): Promise<number> {
+  return incrementFixedWindow(env, PLAY_NONCE_ATTEMPTS_KEY(ipHash))
+}
+
+export async function recordPlayUnlockAttempt(env: Env, ipHash: string): Promise<number> {
+  return incrementFixedWindow(env, PLAY_UNLOCK_ATTEMPTS_KEY(ipHash))
 }
 
 // "Email this trip" sends a real email per call, so the window is tight.

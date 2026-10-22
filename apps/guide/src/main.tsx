@@ -11,7 +11,7 @@ import { startPushSync } from './push/push'
 import { startCorrectionsOutbox } from './lib/corrections'
 import { applyTheme, readTheme } from './lib/theme'
 import { readSessionFromStorage } from './auth/storage'
-import { markAndroidLaunch } from './lib/playBilling'
+import { markAndroidLaunch } from './lib/androidApp'
 
 // First, before anything paints: a pinned colour scheme has to be on <html>
 // ahead of the first frame, or the app flashes the device's scheme and then
@@ -19,8 +19,8 @@ import { markAndroidLaunch } from './lib/playBilling'
 applyTheme(readTheme())
 
 // Before render, while the launch referrer is still the shell's: note that
-// this tab is the Play Store build (lib/playBilling.ts), which swaps every
-// buy action for the Play Billing checkout.
+// this tab is the Play Store build (lib/androidApp.ts), where buy actions
+// point at the app's Play Store page instead of the web checkout.
 markAndroidLaunch()
 
 // Before render: Chrome can fire beforeinstallprompt at any moment after

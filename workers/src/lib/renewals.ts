@@ -63,8 +63,8 @@ export async function sweepRenewals(env: Env): Promise<void> {
       // Refunded buyers are not invited back; already-expired buyers lapsed
       // before the sweep existed (or ignored it) — don't email the past.
       if (buyer.refundedAt != null) continue
-      // A Google Play account (lib/play.ts) has no address; its renewal
-      // heads-ups go by push alone.
+      // The Android app's installs (playapp:, lib/play.ts) have no address
+      // and nothing to renew: they own the guide as long as they own the app.
       if (!buyer.email.includes('@')) continue
       const secondsLeft = buyer.expiresAt - nowSeconds
       if (secondsLeft <= 0) continue

@@ -7,7 +7,6 @@ import { auth } from './routes/auth'
 import { flow } from './routes/flow'
 import { checkout } from './routes/checkout'
 import { play } from './routes/play'
-import { sweepPlayVoided } from './lib/play'
 import { contact } from './routes/contact'
 import { feedback } from './routes/feedback'
 import { gateWaits } from './routes/gateWaits'
@@ -227,8 +226,7 @@ app.route('/api/weather', weather)
 //     cache from the NPS Events API so /api/programs answers from KV, give
 //     the weather and conditions records a daily floor, diff the road
 //     statuses against last night's snapshot (lib/roads.ts), and run the
-//     renewal EMAIL sweep (emails can send in quiet hours; buzzes cannot),
-//     and read the Android app's Play refunds (lib/play.ts).
+//     renewal EMAIL sweep (emails can send in quiet hours; buzzes cannot).
 const PUSH_SWEEP_CRON = '0 15 * * *'
 const GATE_WAITS_CRON = '*/10 * * * *'
 
@@ -284,13 +282,6 @@ async function scheduled(
   ctx.waitUntil(
     sweepRenewals(env).catch((err) => {
       console.error('scheduled: renewal sweep failed', err)
-    }),
-  )
-  // Refunds of the Android app's Play purchases (lib/play.ts); Play has no
-  // webhook this Worker takes, so they are read nightly.
-  ctx.waitUntil(
-    sweepPlayVoided(env).catch((err) => {
-      console.error('scheduled: play voided sweep failed', err)
     }),
   )
   ctx.waitUntil(

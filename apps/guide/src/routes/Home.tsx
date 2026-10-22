@@ -44,7 +44,7 @@ import Button from '../components/ui/Button'
 import Callout from '../components/ui/Callout'
 import FeedbackSurvey from '../components/FeedbackSurvey'
 import { noteSurveyVisit, shouldAskSurvey } from '../lib/survey'
-import { accountLabel } from '../lib/playBilling'
+import { accountLabel } from '../lib/androidApp'
 import './Home.css'
 
 const BEFORE_YOU_GO_DISMISS_KEY = 'tfg.beforeYouGo.dismissed'
