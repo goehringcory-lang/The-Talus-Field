@@ -219,8 +219,8 @@ export default function Login() {
                 // emailed renewal links (Stripe) are not offered in the app.
                 <>
                   Your access period ended {formatEndedDate(accessEndedAt)}.{' '}
-                  <Link to="/buy?renew=1">Renew for 18 more months</Link> with the same email,
-                  and your trips and saved stops carry over.
+                  <Link to="/buy?renew=1">Renew for 18 more months</Link>, and your trips and
+                  saved stops carry over.
                 </>
               ) : readCachedMe()?.kind === 'buyer' ? (
                 <>
@@ -326,6 +326,13 @@ export default function Login() {
             <Button variant="quiet" {...buyLinkProps(GUIDE_BUY_URL)}>
               Get the guide
             </Button>
+            {/* The Play Store build: a Google Play purchase has no code to
+                type; /buy finds it on the reader's Google account. */}
+            {isAndroidApp() && (
+              <Button variant="quiet" to="/buy">
+                Bought it on Google Play? Restore
+              </Button>
+            )}
           </div>
         </section>
 

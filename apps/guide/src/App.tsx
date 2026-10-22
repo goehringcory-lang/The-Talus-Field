@@ -108,16 +108,18 @@ function DropPrerender() {
   return null
 }
 
-// The Play Store build only: a Play purchase whose verification never reached
-// the Worker (the connection dropped as the payment sheet closed) is finished
-// at the next launch, and signs the buyer in. A no-op everywhere else.
+// The Play Store build only. Signed out, it signs the reader in from the
+// Google Play purchase their Google account holds (a reinstall, a new phone);
+// signed in, it only finishes a renewal the Worker never recorded. Once per
+// launch; a no-op everywhere else.
 function PlayRecovery() {
-  const { signIn } = useAuth()
+  const { session, signIn } = useAuth()
+  const [signedInAtLaunch] = useState(() => session !== null)
   useEffect(() => {
-    void recoverPlayPurchases().then((res) => {
+    void recoverPlayPurchases(signedInAtLaunch).then((res) => {
       if (res) signIn(res.jwt)
     })
-  }, [signIn])
+  }, [signedInAtLaunch, signIn])
   return null
 }
 

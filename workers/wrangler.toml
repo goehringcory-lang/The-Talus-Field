@@ -116,7 +116,9 @@ GUIDE_PRODUCT_TAG = "field_guide_2026"
 # The Android app on Google Play (FieldGuideAndroid, a Trusted Web Activity
 # over this PWA) sells through Play Billing, verified by /api/play/verify.
 # The two product ids must match the managed products created in the Play
-# Console (both consumable, priced to match the two prices above), and the
+# Console (both one-time products, priced to match the two prices above;
+# the guide is acknowledged and kept as the account's key, the renewal
+# consumed), and the
 # route also needs the PLAY_SERVICE_ACCOUNT_JSON secret; without it it 503s.
 PLAY_PACKAGE_NAME = "com.thetalusfieldjournal.guide"
 PLAY_PRODUCT_ID = "field_guide_18mo"

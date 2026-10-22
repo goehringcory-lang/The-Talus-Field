@@ -114,64 +114,78 @@ export async function playPrice(productId: PlayProductId): Promise<string | null
   }
 }
 
-// --- Purchase ---------------------------------------------------------------
+// --- Purchase and restore ---------------------------------------------------
+// There is no email in this flow: the Google Play purchase is the account.
+// The guide product is acknowledged, never consumed, so Play keeps listing
+// its token for the reader's Google account, and that token signs them in on
+// a reinstall or a new phone (the Worker's /api/play/verify). The renewal is
+// consumed; it names its account by the session or, for a lapsed buyer, by
+// that same guide token sent as previousToken.
 
-export type PlayVerifyResponse = { jwt: string; expiresAt: number; extended?: boolean }
-
-// A purchase that Play completed but the Worker has not yet recorded (the
-// connection dropped after the payment sheet closed). Kept so the next launch
-// can finish it: Play refunds a purchase nobody acknowledges within 3 days.
-const PENDING_KEY = 'tfg.playPending'
-type PendingPurchase = { productId: PlayProductId; purchaseToken: string; email: string }
-
-function readPending(): PendingPurchase[] {
-  try {
-    const parsed = JSON.parse(localStorage.getItem(PENDING_KEY) ?? '[]') as unknown
-    return Array.isArray(parsed) ? (parsed as PendingPurchase[]) : []
-  } catch {
-    return []
-  }
+export type PlayVerifyResponse = {
+  jwt: string
+  expiresAt: number
+  extended?: boolean
+  restored?: boolean
 }
 
-function writePending(list: PendingPurchase[]): void {
-  try {
-    if (list.length) localStorage.setItem(PENDING_KEY, JSON.stringify(list))
-    else localStorage.removeItem(PENDING_KEY)
-  } catch {
-    /* storage-blocked: the server-side retry path still covers it */
-  }
-}
-
-function verifyOnServer(p: PendingPurchase): Promise<PlayVerifyResponse> {
-  return apiFetch<PlayVerifyResponse>(
-    '/api/play/verify',
-    { method: 'POST', body: JSON.stringify(p) },
-    { timeoutMs: 30_000 },
-  )
-}
-
-async function verifyAndForget(p: PendingPurchase): Promise<PlayVerifyResponse> {
-  writePending([...readPending().filter((x) => x.purchaseToken !== p.purchaseToken), p])
-  const res = await verifyOnServer(p)
-  writePending(readPending().filter((x) => x.purchaseToken !== p.purchaseToken))
-  return res
-}
-
+// The guide was bought on this Google account, but its 18 months are over:
+// the caller offers the renewal.
+export class PlayExpired extends Error {}
 export class PlayCancelled extends Error {}
 
-// Runs the whole purchase: an unconsumed earlier purchase of the same product
-// is finished instead of charged again (Play refuses a second purchase of an
-// unconsumed product anyway), otherwise Play's payment sheet opens. The email
-// names the account; a signed-in session overrides it on the server.
-export async function buyOnPlay(
-  productId: PlayProductId,
-  email: string,
-): Promise<PlayVerifyResponse> {
+function verifyOnServer(body: {
+  productId: PlayProductId
+  purchaseToken: string
+  previousToken?: string
+}): Promise<PlayVerifyResponse> {
+  return apiFetch<PlayVerifyResponse>(
+    '/api/play/verify',
+    { method: 'POST', body: JSON.stringify(body) },
+    { timeoutMs: 30_000 },
+  ).catch((err: unknown) => {
+    const code = (err as { body?: { code?: unknown } })?.body?.code
+    if (code === 'expired') throw new PlayExpired('expired')
+    throw err
+  })
+}
+
+type Owned = { guide?: string; renewal?: string }
+
+async function ownedTokens(service: DigitalGoodsService): Promise<Owned> {
+  const list = await service.listPurchases().catch(() => [] as PlayPurchaseDetails[])
+  return {
+    guide: list.find((p) => p.itemId === PLAY_PRODUCTS.guide)?.purchaseToken,
+    renewal: list.find((p) => p.itemId === PLAY_PRODUCTS.renewal)?.purchaseToken,
+  }
+}
+
+// A renewal Play completed but the Worker never recorded (the connection
+// dropped as the sheet closed) is still listed until it is consumed.
+async function finishRenewal(owned: Owned): Promise<PlayVerifyResponse | null> {
+  if (!owned.renewal) return null
+  return verifyOnServer({
+    productId: PLAY_PRODUCTS.renewal,
+    purchaseToken: owned.renewal,
+    previousToken: owned.guide,
+  })
+}
+
+// The purchase, from tap to signed in. A guide already owned on this Google
+// account is restored rather than charged again (Play would refuse a second
+// purchase of it anyway); throws PlayExpired when that copy's time is up.
+export async function buyOnPlay(productId: PlayProductId): Promise<PlayVerifyResponse> {
   const service = await digitalGoods()
   if (!service) throw new Error('Google Play Billing is not available on this device.')
+  const owned = await ownedTokens(service)
 
-  const owned = (await service.listPurchases().catch(() => [])).find((p) => p.itemId === productId)
-  if (owned) return verifyAndForget({ productId, purchaseToken: owned.purchaseToken, email })
+  if (productId === PLAY_PRODUCTS.guide && owned.guide) {
+    return verifyOnServer({ productId, purchaseToken: owned.guide })
+  }
+  if (productId === PLAY_PRODUCTS.renewal && owned.renewal) {
+    const finished = await finishRenewal(owned)
+    if (finished) return finished
+  }
 
   const request = new PaymentRequest(
     [{ supportedMethods: PLAY_METHOD, data: { sku: productId } }],
@@ -192,7 +206,11 @@ export async function buyOnPlay(
     throw new Error('Google Play did not return a purchase.')
   }
   try {
-    const res = await verifyAndForget({ productId, purchaseToken, email })
+    const res = await verifyOnServer({
+      productId,
+      purchaseToken,
+      previousToken: productId === PLAY_PRODUCTS.renewal ? owned.guide : undefined,
+    })
     await response.complete('success')
     return res
   } catch (err) {
@@ -201,17 +219,53 @@ export async function buyOnPlay(
   }
 }
 
-// At launch inside the shell: finish any purchase the Worker never recorded.
-// Returns the sign-in when one was finished, so the caller can apply it.
-export async function recoverPlayPurchases(): Promise<PlayVerifyResponse | null> {
-  if (!isAndroidApp()) return null
-  let signedIn: PlayVerifyResponse | null = null
-  for (const pending of readPending()) {
-    try {
-      signedIn = await verifyAndForget(pending)
-    } catch {
-      /* still offline or still refused; the next launch tries again */
-    }
+export type RestoreResult =
+  | { kind: 'signed-in'; res: PlayVerifyResponse }
+  | { kind: 'expired' }
+  | { kind: 'none' }
+
+// Sign in from the purchases Play holds for this Google account: the
+// reinstall, the new phone, the cleared browser. Finishes an unrecorded
+// renewal first, so a lapsed buyer whose renewal went through comes back in.
+export async function restorePlayPurchase(): Promise<RestoreResult> {
+  const service = await digitalGoods()
+  if (!service) return { kind: 'none' }
+  const owned = await ownedTokens(service)
+  try {
+    const renewed = await finishRenewal(owned)
+    if (renewed) return { kind: 'signed-in', res: renewed }
+    if (!owned.guide) return { kind: 'none' }
+    return { kind: 'signed-in', res: await verifyOnServer({ productId: PLAY_PRODUCTS.guide, purchaseToken: owned.guide }) }
+  } catch (err) {
+    if (err instanceof PlayExpired) return { kind: 'expired' }
+    throw err
   }
-  return signedIn
+}
+
+// At launch inside the shell. Signed out, it restores whatever Play holds.
+// Signed in, it only finishes an unrecorded renewal: restoring the guide
+// token could switch a web buyer who signed in with their code over to
+// another account.
+export async function recoverPlayPurchases(signedIn: boolean): Promise<PlayVerifyResponse | null> {
+  if (!isAndroidApp()) return null
+  try {
+    if (signedIn) {
+      const service = await digitalGoods()
+      return service ? await finishRenewal(await ownedTokens(service)) : null
+    }
+    const result = await restorePlayPurchase()
+    return result.kind === 'signed-in' ? result.res : null
+  } catch {
+    return null // offline or refused; the next launch tries again
+  }
+}
+
+// Account labels: a Play account's id is its order number, which means
+// nothing to a reader.
+export function isPlayAccount(sub: string | undefined): boolean {
+  return !!sub && sub.startsWith('play:')
+}
+
+export function accountLabel(sub: string | undefined): string {
+  return isPlayAccount(sub) ? 'Your Google Play purchase' : (sub ?? '')
 }

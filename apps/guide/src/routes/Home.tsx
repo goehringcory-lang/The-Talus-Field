@@ -44,6 +44,7 @@ import Button from '../components/ui/Button'
 import Callout from '../components/ui/Callout'
 import FeedbackSurvey from '../components/FeedbackSurvey'
 import { noteSurveyVisit, shouldAskSurvey } from '../lib/survey'
+import { accountLabel } from '../lib/playBilling'
 import './Home.css'
 
 const BEFORE_YOU_GO_DISMISS_KEY = 'tfg.beforeYouGo.dismissed'
@@ -476,7 +477,7 @@ export default function Home() {
         <SurveyAsk />
 
         <p className="page-footnote">
-          Signed in as <strong>{session?.username}</strong>. <Link to="/account">Account →</Link>
+          Signed in as <strong>{accountLabel(session?.username)}</strong>. <Link to="/account">Account →</Link>
         </p>
       </main>
     </GatedChrome>

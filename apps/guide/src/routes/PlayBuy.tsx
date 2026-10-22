@@ -1,5 +1,4 @@
 import { useEffect, useState } from 'react'
-import type { FormEvent } from 'react'
 import { Link, useNavigate, useSearchParams } from 'react-router-dom'
 import { EDITION_LABEL } from '../lib/buildInfo'
 import { ApiError } from '../lib/api'
@@ -11,19 +10,21 @@ import { GUIDE_CHECKOUT_URL } from '../lib/storefront'
 import {
   PLAY_PRODUCTS,
   PlayCancelled,
+  PlayExpired,
   buyOnPlay,
   isAndroidApp,
   playBillingAvailable,
   playPrice,
+  restorePlayPurchase,
 } from '../lib/playBilling'
 
 // /buy: the Android app's checkout (lib/playBilling.ts). Every buy and renew
 // action in the Play Store build lands here instead of the editorial /guide
-// page, because an app Play distributes sells through Play. The reader names
-// the account's email first (Play does not share the payer's address, and
-// the email is how the guide reaches a second device), then Play's own
-// payment sheet takes over. ?renew=1 sells the renewal product to a buyer
-// whose access is ending or has ended.
+// page, because an app Play distributes sells through Play. There is no
+// email: one tap opens Play's payment sheet, and the guide opens the moment
+// the Worker has verified the purchase, which is also the reader's account
+// from then on (restored from their Google account on a reinstall or a new
+// phone). ?renew=1 sells the renewal to a buyer whose time is ending or over.
 //
 // Opened in an ordinary browser, the page has nothing to sell and points at
 // the web checkout instead.
@@ -38,13 +39,9 @@ export default function PlayBuy() {
   // null while asking Play; false when Play Billing cannot be reached.
   const [available, setAvailable] = useState<boolean | null>(inApp ? null : false)
   const [price, setPrice] = useState<string | null>(null)
-  // A signed-in buyer renews their own account; the server reads it off the
-  // session, so the field only pre-fills and is not editable.
-  const signedInEmail = session && session.username.includes('@') ? session.username : null
-  const [email, setEmail] = useState(signedInEmail ?? '')
-  const [confirm, setConfirm] = useState(signedInEmail ?? '')
-  const [busy, setBusy] = useState(false)
+  const [busy, setBusy] = useState<'buy' | 'restore' | null>(null)
   const [error, setError] = useState<string | null>(null)
+  const [note, setNote] = useState<string | null>(null)
 
   useEffect(() => {
     if (!inApp) return
@@ -59,39 +56,55 @@ export default function PlayBuy() {
     }
   }, [inApp, productId])
 
-  async function onSubmit(e: FormEvent) {
-    e.preventDefault()
-    const typed = email.trim().toLowerCase()
-    if (!signedInEmail && typed !== confirm.trim().toLowerCase()) {
-      setError('The two email addresses do not match.')
+  function signedIn(jwt: string) {
+    signIn(jwt)
+    navigate(isOnboarded() ? '/' : '/welcome', { replace: true })
+  }
+
+  function explain(err: unknown) {
+    if (err instanceof PlayCancelled) return
+    if (err instanceof PlayExpired) {
+      // The guide is on this Google account, but its 18 months are over.
+      navigate('/buy?renew=1', { replace: true })
+      setNote('This Google account bought the guide, and its 18 months have ended. Renew to carry on where you left off.')
       return
     }
-    setBusy(true)
+    if (err instanceof ApiError && (err.body as { code?: unknown })?.code === 'pending') {
+      setError('Google Play is still confirming the payment. Open the app again in a few minutes and your guide will be ready.')
+    } else if (err instanceof ApiError && err.status === 409) {
+      setError(err.message)
+    } else if (err instanceof ApiError) {
+      setError(`${err.message} If Google Play charged you, the app finishes it the next time it opens online.`)
+    } else {
+      setError('No connection to finish the purchase. If Google Play charged you, the app finishes it the next time it opens online.')
+    }
+  }
+
+  async function buy() {
+    setBusy('buy')
     setError(null)
     try {
-      const res = await buyOnPlay(productId, typed)
-      signIn(res.jwt)
-      navigate(isOnboarded() ? '/' : '/welcome', { replace: true })
+      signedIn((await buyOnPlay(productId)).jwt)
     } catch (err) {
-      if (err instanceof PlayCancelled) {
-        setError(null)
-      } else if (err instanceof ApiError && (err.body as { code?: unknown })?.code === 'pending') {
-        setError(
-          'Google Play is still confirming the payment. Open the app again in a few minutes and your guide will be ready.',
-        )
-      } else if (err instanceof ApiError && err.status === 409) {
-        setError(err.message)
-      } else if (err instanceof ApiError) {
-        setError(
-          `${err.message} Your purchase is safe: the app finishes it the next time it opens with a connection.`,
-        )
-      } else {
-        setError(
-          'No connection to finish the purchase. If Google Play charged you, the app finishes it the next time it opens online.',
-        )
-      }
+      explain(err)
     } finally {
-      setBusy(false)
+      setBusy(null)
+    }
+  }
+
+  async function restore() {
+    setBusy('restore')
+    setError(null)
+    setNote(null)
+    try {
+      const result = await restorePlayPurchase()
+      if (result.kind === 'signed-in') signedIn(result.res.jwt)
+      else if (result.kind === 'expired') explain(new PlayExpired('expired'))
+      else setError('This Google account has no Field Guide purchase. Bought it on the website? Sign in with your email code instead.')
+    } catch (err) {
+      explain(err)
+    } finally {
+      setBusy(null)
     }
   }
 
@@ -119,7 +132,7 @@ export default function PlayBuy() {
           <p className="login-intro">
             {renew
               ? 'Eighteen more months, added to the end of your current access. Trips, saved stops, downloads and sign-in all carry over.'
-              : 'One payment, 18 months of access, no automatic renewal: four regional guides, the Secret Guide, and an offline topo map of the park, on every device you own.'}
+              : 'One payment, 18 months of access, no automatic renewal: four regional guides, the Secret Guide, and an offline topo map of the park, on any Android phone signed in to your Google account.'}
           </p>
         </div>
 
@@ -142,53 +155,14 @@ export default function PlayBuy() {
             </p>
           </div>
         ) : (
-          <form onSubmit={onSubmit} className="form-stack">
-            {signedInEmail ? (
-              <p className="card__note" style={{ margin: 0 }}>
-                For <strong>{signedInEmail}</strong>.
+          <div className="form-stack">
+            {note && (
+              <p className="card__note" role="status" style={{ margin: 0 }}>
+                {note}
               </p>
-            ) : (
-              <>
-                <label className="field">
-                  Your email
-                  <input
-                    className="input"
-                    type="text"
-                    required
-                    autoComplete="email"
-                    autoCapitalize="none"
-                    autoCorrect="off"
-                    spellCheck={false}
-                    inputMode="email"
-                    enterKeyHint="next"
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                  />
-                </label>
-                <label className="field">
-                  Email again
-                  <input
-                    className="input"
-                    type="text"
-                    required
-                    autoComplete="email"
-                    autoCapitalize="none"
-                    autoCorrect="off"
-                    spellCheck={false}
-                    inputMode="email"
-                    enterKeyHint="go"
-                    value={confirm}
-                    onChange={(e) => setConfirm(e.target.value)}
-                  />
-                </label>
-                <p className="card__note" style={{ margin: 0 }}>
-                  Your sign-in link and a 6-digit code go to this address, for opening the guide
-                  on your other devices.
-                </p>
-              </>
             )}
-            <Button type="submit" disabled={busy || available === null}>
-              {busy ? (
+            <Button onClick={() => void buy()} disabled={busy !== null || available === null}>
+              {busy === 'buy' ? (
                 <>
                   <span className="spinner" aria-hidden="true" />
                   Opening Google Play…
@@ -197,7 +171,17 @@ export default function PlayBuy() {
                 `${renew ? 'Renew' : 'Buy'} with Google Play${price ? ` · ${price}` : ''}`
               )}
             </Button>
-          </form>
+            <p className="card__note" style={{ margin: 0 }}>
+              Paid with your Google account, and kept with it: the guide opens as soon as Google
+              Play confirms, and comes back on its own if you reinstall or move to a new Android
+              phone.
+            </p>
+            {!session && (
+              <Button variant="quiet" onClick={() => void restore()} disabled={busy !== null || available === null}>
+                {busy === 'restore' ? 'Looking for your purchase…' : 'Already bought it on Google Play? Restore'}
+              </Button>
+            )}
+          </div>
         )}
 
         {error && (
@@ -210,7 +194,7 @@ export default function PlayBuy() {
           Questions about a purchase:{' '}
           <a href={`mailto:${SUPPORT_EMAIL}?subject=Field%20Guide%20purchase`}>{SUPPORT_EMAIL}</a>.{' '}
           {!renew && !session && !(inApp && available === false) && (
-            <Link to="/login">Already bought it? Sign in →</Link>
+            <Link to="/login">Bought it on the website? Sign in →</Link>
           )}
         </p>
       </main>

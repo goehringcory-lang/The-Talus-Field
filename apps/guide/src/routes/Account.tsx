@@ -19,7 +19,7 @@ import { THEME_LABEL, THEME_NOTE, THEME_OPTIONS, useTheme } from '../lib/theme'
 import { isStandalonePWA } from '../utils/platform'
 import { useLandOnHash } from '../utils/useLandOnHash'
 import { Link, useNavigate } from 'react-router-dom'
-import { isAndroidApp } from '../lib/playBilling'
+import { accountLabel, isAndroidApp } from '../lib/playBilling'
 import { CHANGELOG } from '../content/changelog'
 import { SUPPORT_EMAIL } from '../lib/corrections'
 
@@ -539,7 +539,7 @@ export default function Account() {
         <div className="card-stack card-stack--boxed">
           <div className="card">
             <span className="eyebrow" style={{ display: 'block', marginBottom: 8 }}>Signed in as</span>
-            <div className="card__value">{session?.username}</div>
+            <div className="card__value">{accountLabel(session?.username)}</div>
           </div>
 
           <AccessStatusCard />

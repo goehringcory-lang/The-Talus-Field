@@ -74,10 +74,25 @@ export async function getProductPurchase(
   return (await res.json()) as ProductPurchase
 }
 
-// Both products are consumable on Play's side: the guide is 18 months of
-// access, not a permanent unlock, so a buyer must be able to buy it again
-// when it lapses. Consuming also acknowledges, which Play requires within
-// three days or it refunds the purchase on its own.
+// The two products settle differently on Play's side. The guide itself is
+// acknowledged and never consumed: it stays owned by the reader's Google
+// account, so Play's listPurchases hands its token back on a reinstall or a
+// new phone, and that token is the account (no email). The renewal is
+// consumed, so it can be bought again 18 months later. Either way Play
+// requires the settle within three days or it refunds the purchase itself.
+export async function acknowledgeProductPurchase(
+  env: Env,
+  productId: string,
+  token: string,
+): Promise<void> {
+  const res = await fetch(`${productUrl(env, productId, token)}:acknowledge`, {
+    method: 'POST',
+    headers: { Authorization: `Bearer ${await accessToken(env)}`, 'Content-Type': 'application/json' },
+    body: '{}',
+  })
+  if (!res.ok) throw new Error(`Play acknowledge failed (${res.status}): ${await res.text()}`)
+}
+
 export async function consumeProductPurchase(
   env: Env,
   productId: string,
@@ -96,14 +111,15 @@ export async function hashPurchaseToken(token: string): Promise<string> {
   return [...new Uint8Array(digest)].map((b) => b.toString(16).padStart(2, '0')).join('')
 }
 
-// What the verify route records per purchase token, so a retry from the app
-// (a dropped connection after the payment sheet closed) is idempotent and a
-// token can never be presented for a second email.
+// What the verify route records per purchase token: which account it belongs
+// to, so the token can sign that account in again (a reinstall, a new phone)
+// and can never be presented for another one, and whether Play has been told
+// (acknowledged or consumed), so a retry finishes a settle that failed.
 export type PlayPurchaseRecord = {
-  email: string
+  account: string
   orderId: string
   productId: string
-  consumed: boolean
+  settled: boolean
 }
 
 export const PLAY_PURCHASE_KEY = (tokenHash: string) => `playPurchase:${tokenHash}`
@@ -127,7 +143,7 @@ export async function putPlayPurchase(
 ): Promise<void> {
   await env.GUIDE_BUYERS.put(PLAY_PURCHASE_KEY(tokenHash), JSON.stringify(record))
   // The voided-purchases sweep knows orders by id, not by token.
-  await env.GUIDE_BUYERS.put(PLAY_ORDER_KEY(record.orderId), record.email)
+  await env.GUIDE_BUYERS.put(PLAY_ORDER_KEY(record.orderId), record.account)
 }
 
 // --- Refunds ----------------------------------------------------------------
@@ -155,8 +171,8 @@ export async function sweepPlayVoided(env: Env): Promise<void> {
 
 export async function revokePlayOrder(env: Env, orderId: string): Promise<void> {
   if (await env.GUIDE_BUYERS.get(PLAY_VOIDED_KEY(orderId))) return
-  const email = await env.GUIDE_BUYERS.get(PLAY_ORDER_KEY(orderId))
-  const buyer = email ? await getBuyer(env, email) : null
+  const account = await env.GUIDE_BUYERS.get(PLAY_ORDER_KEY(orderId))
+  const buyer = account ? await getBuyer(env, account) : null
   const eventId = playEventId(orderId)
   const now = Math.floor(Date.now() / 1000)
   if (!buyer) {
@@ -169,7 +185,7 @@ export async function revokePlayOrder(env: Env, orderId: string): Promise<void> 
   } else {
     console.error('play refund matches neither the provision nor the last extension, check manually', {
       orderId,
-      email,
+      account,
     })
   }
   await env.GUIDE_BUYERS.put(PLAY_VOIDED_KEY(orderId), '1')
@@ -179,4 +195,16 @@ export async function revokePlayOrder(env: Env, orderId: string): Promise<void> 
 // provisionedSessionId, lastExtensionEventId, and the HMAC credential seed.
 export function playEventId(orderId: string): string {
   return `play:${orderId}`
+}
+
+// A Play buyer's account id, when they bought in the app without being signed
+// in: the guide purchase's order id. It is the JWT sub and the buyer record's
+// key (in the `email` field, which every reader of a buyer record treats as
+// the account id); nothing may email it, so senders check for an @.
+export function playAccountId(orderId: string): string {
+  return `play:${orderId.toLowerCase()}`
+}
+
+export function isEmailAccount(account: string): boolean {
+  return account.includes('@')
 }
