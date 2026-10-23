@@ -175,6 +175,11 @@ function ExplorePage({ go }) {
       name: "Road status: is it open?",
       note: "Tioga Road, Glacier Point Road and Highways 41, 120 and 140, one page each: where to check whether the road is open today, and how it usually behaves through the year.",
     },
+    {
+      route: "are-yosemite-waterfalls-running",
+      name: "Are the waterfalls running?",
+      note: "The live Merced River gauge below Vernal and Nevada Falls, and when each major fall usually peaks, thins and goes dry.",
+    },
   ];
 
   // The masthead's Seasons menu: the calendar, the section, the events.

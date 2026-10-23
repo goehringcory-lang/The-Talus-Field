@@ -464,7 +464,9 @@ function ConditionsPage({ go }) {
             covers the seasonal calendar, and the{" "}
             <a href="/itineraries" onClick={(e) => { e.preventDefault(); go("itineraries"); }}>itineraries</a>{" "}
             adjust to what is open. Road by road, where to check each one and how it usually behaves through the year:{" "}
-            <a href="/road-status" onClick={(e) => { e.preventDefault(); go("road-status"); }}>is it open?</a>
+            <a href="/road-status" onClick={(e) => { e.preventDefault(); go("road-status"); }}>is it open?</a>{" "}
+            The live Merced River gauge below Vernal and Nevada Falls, and each fall's usual season:{" "}
+            <a href="/are-yosemite-waterfalls-running" onClick={(e) => { e.preventDefault(); go("are-yosemite-waterfalls-running"); }}>are the waterfalls running?</a>
           </p>
         </section>
       </div>

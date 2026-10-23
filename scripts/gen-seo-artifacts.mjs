@@ -328,6 +328,8 @@ function buildSitemap(merged, categories) {
     ["/is-highway-41-open", "2026-10-21"],
     ["/is-highway-120-open", "2026-10-21"],
     ["/is-highway-140-open", "2026-10-21"],
+    // The waterfalls page: the date its seasonal copy was last written.
+    ["/are-yosemite-waterfalls-running", "2026-10-22"],
     ["/half-dome-lottery", "2026-10-18"],
     ["/fall-color", "2026-10-17"],
     ["/moonbow", "2026-10-04"],

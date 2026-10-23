@@ -72,6 +72,7 @@ const PAGE_FILES = [
   "page-firefall.jsx",
   "page-tioga-opening.jsx",
   "page-road-status.jsx",
+  "page-waterfalls-running.jsx",
   "page-half-dome-lottery.jsx",
   "page-fall-color.jsx",
   "page-moonbow.jsx",

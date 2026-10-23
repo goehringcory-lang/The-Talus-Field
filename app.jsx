@@ -32,6 +32,7 @@ const STATIC_ROUTE_KEYS = new Set([
   "fall-color", "moonbow", "frazil-ice", "media-kit",
   "road-status", "is-tioga-road-open", "is-glacier-point-road-open",
   "is-highway-41-open", "is-highway-120-open", "is-highway-140-open",
+  "are-yosemite-waterfalls-running",
 ]);
 
 function pathToRoute(pathname) {
@@ -131,6 +132,7 @@ const PAGE_MODULES = {
   "is-highway-41-open": { scripts: ["/dist/page-road-status.js"], globals: ["RoadStatusPage", "RoadPage"] },
   "is-highway-120-open": { scripts: ["/dist/page-road-status.js"], globals: ["RoadStatusPage", "RoadPage"] },
   "is-highway-140-open": { scripts: ["/dist/page-road-status.js"], globals: ["RoadStatusPage", "RoadPage"] },
+  "are-yosemite-waterfalls-running": { scripts: ["/dist/page-waterfalls-running.js"], globals: ["WaterfallsRunningPage"] },
   "half-dome-lottery": { scripts: ["/dist/page-half-dome-lottery.js"], globals: ["HalfDomeLotteryPage"] },
   "fall-color": { scripts: ["/dist/page-fall-color.js"], globals: ["FallColorPage"] },
   moonbow: { scripts: ["/dist/page-moonbow.js"], globals: ["MoonbowPage"] },
@@ -872,6 +874,15 @@ function buildSeo(route) {
       ogType: "website",
       breadcrumb: [["Home", `${SITE_ORIGIN}/`], ["Road status", `${SITE_ORIGIN}/road-status`], ["Highway 140", null]],
     },
+    // page-waterfalls-running.jsx. Title and description byte-identical to
+    // edge/seo.js; the edge copy carries the faq.
+    "are-yosemite-waterfalls-running": {
+      title: `Are Yosemite's Waterfalls Running? Live Merced River Flow | ${SITE_NAME}`,
+      description:
+        "The live Merced River reading at Happy Isles, below Vernal and Nevada Falls, and when each Yosemite waterfall usually peaks, thins and goes dry.",
+      ogType: "website",
+      breadcrumb: [["Home", `${SITE_ORIGIN}/`], ["Are the waterfalls running?", null]],
+    },
     "half-dome-lottery": {
       // No brand suffix; see the note in edge/seo.js. Same for webcams and
       // distances.
@@ -1531,6 +1542,8 @@ function App() {
     page = <window.RoadStatusPage go={go} />;
   } else if (route.startsWith("is-") && route.endsWith("-open")) {
     page = <window.RoadPage go={go} route={route} />;
+  } else if (route === "are-yosemite-waterfalls-running") {
+    page = <window.WaterfallsRunningPage go={go} />;
   } else if (route === "half-dome-lottery") {
     page = <window.HalfDomeLotteryPage go={go} />;
   } else if (route === "fall-color") {

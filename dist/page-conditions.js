@@ -507,7 +507,13 @@ function ConditionsPage({
       e.preventDefault();
       go("road-status");
     }
-  }, "is it open?"))))), React.createElement("div", {
+  }, "is it open?"), " ", "The live Merced River gauge below Vernal and Nevada Falls, and each fall's usual season:", " ", React.createElement("a", {
+    href: "/are-yosemite-waterfalls-running",
+    onClick: e => {
+      e.preventDefault();
+      go("are-yosemite-waterfalls-running");
+    }
+  }, "are the waterfalls running?"))))), React.createElement("div", {
     className: "hp-wrap cond-dial"
   }, React.createElement("a", {
     className: "dialplate",

@@ -106,6 +106,11 @@ var SEARCH_PAGES = [{
   dek: "The El Portal Road through the Merced River canyon: Caltrans outside the park, the park inside.",
   kind: "Page"
 }, {
+  route: "are-yosemite-waterfalls-running",
+  title: "Are Yosemite's waterfalls running?",
+  dek: "The live Merced River reading below Vernal and Nevada Falls, and when each major fall usually peaks and goes dry.",
+  kind: "Page"
+}, {
   route: "half-dome-lottery",
   title: "The Half Dome lottery",
   dek: "How the cable permit lottery works, the real odds, and what to climb instead.",

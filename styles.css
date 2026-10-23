@@ -14938,3 +14938,65 @@ html[data-nl-bar] .totop { bottom: calc(76px + env(safe-area-inset-bottom)); }
   .rd-pattern li { grid-template-columns: minmax(0, 1fr); gap: 6px; }
   .rd-reads ul { grid-template-columns: minmax(0, 1fr); }
 }
+
+/* ── Are the waterfalls running? (page-waterfalls-running.jsx):
+   /are-yosemite-waterfalls-running, October 2026 ─────────────────────────────
+   On the event-page system (`hp-event` + `.ff-*`), modelled on the road-status
+   layer; this layer adds the live gauge box under the cover, the fall ledger,
+   the month grid and the read-next list. The live box keeps one min-height in
+   all three states (loading, live, silent) so nothing below it moves. The
+   month shades are a visual aid only; each cell prints its word. */
+.wf-cover .ff-cover__credit { padding: 2px 6px; border-radius: 2px; background: rgba(8, 14, 22, 0.55); }
+.wf-live { margin-top: 40px; padding: 28px 32px; border: 2px solid var(--hp-ink); border-radius: 4px; background: var(--hp-card); }
+.wf-live__head .hp-eyebrow { display: flex; align-items: center; gap: 8px; margin: 0 0 10px; color: var(--hp-accent); }
+.wf-live__head h2 { margin: 0; }
+.wf-live__body { margin-top: 22px; display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: 32px; align-items: start; }
+.wf-live__read { min-height: 150px; padding: 20px 22px; border: 1px solid var(--hp-rule); border-radius: 4px; background: var(--hp-paper); }
+.wf-live__band { margin: 0; font: 400 44px/1.05 var(--serif); color: var(--hp-ink); }
+.wf-live__band span { color: var(--hp-muted); }
+.wf-live__read.is-loading .wf-live__band, .wf-live__read.is-silent .wf-live__band { font-size: 28px; color: var(--hp-muted); }
+.wf-live__cfs { margin: 10px 0 0; font: 15px/1.5 var(--sans); color: var(--ink-2); }
+.wf-live__cfs strong { font: 600 20px var(--sans); color: var(--hp-ink); }
+.wf-live__when { margin: 10px 0 0; font: 13px/1.5 var(--sans); color: var(--hp-muted); }
+.wf-live__notes p { margin: 0 0 12px; font: 15px/1.6 var(--sans); color: var(--ink-2); }
+.wf-live__notes strong { color: var(--hp-ink); }
+.wf-live__src { padding-top: 12px; border-top: 1px solid var(--hp-rule); font-size: 13px !important; color: var(--hp-muted) !important; }
+.wf-src { font: 13px/1.4 var(--sans); color: var(--hp-accent); text-decoration: underline; text-underline-offset: 2px; white-space: nowrap; }
+.wf-falls { list-style: none; margin: 32px 0 20px; padding: 0; border-top: 2px solid var(--hp-ink); }
+.wf-falls li { display: grid; grid-template-columns: 220px 300px minmax(0, 1fr); gap: 24px; align-items: baseline; padding: 18px 0; border-bottom: 1px solid var(--hp-rule); }
+.wf-falls__name { display: grid; gap: 4px; }
+.wf-falls__name strong { font: 400 22px/1.2 var(--serif); color: var(--hp-ink); }
+.wf-falls__name span { font: 600 12px var(--sans); letter-spacing: 1.2px; text-transform: uppercase; color: var(--hp-muted); }
+.wf-falls dl { margin: 0; display: grid; gap: 6px; }
+.wf-falls dl div { display: grid; grid-template-columns: 76px minmax(0, 1fr); gap: 8px; }
+.wf-falls dt { font: 600 11px/1.9 var(--sans); letter-spacing: 1.2px; text-transform: uppercase; color: var(--hp-muted); }
+.wf-falls dd { margin: 0; font: 15px/1.5 var(--sans); color: var(--hp-ink); }
+.wf-falls p { margin: 0; font: 15px/1.6 var(--sans); color: var(--ink-2); }
+.wf-months { margin: 28px 0 32px; overflow-x: auto; }
+.wf-months table { width: 100%; min-width: 860px; border-collapse: separate; border-spacing: 3px; table-layout: fixed; }
+.wf-months th { font: 600 12px var(--sans); letter-spacing: 1px; text-transform: uppercase; color: var(--hp-muted); text-align: center; padding: 6px 2px; }
+.wf-months th[scope="row"] { width: 150px; text-align: left; font: 400 16px/1.2 var(--serif); letter-spacing: 0; text-transform: none; color: var(--hp-ink); }
+.wf-months thead th:first-child { width: 150px; }
+.wf-months th.is-now { color: var(--hp-accent); }
+.wf-months td { padding: 10px 4px; border-radius: 3px; font: 12px/1.3 var(--sans); text-align: center; vertical-align: middle; color: var(--hp-ink); }
+.wf-months td.wf-lv4 { background: var(--hp-ink); color: var(--hp-paper); font-weight: 600; }
+.wf-months td.wf-lv3 { background: color-mix(in oklab, var(--hp-ink) 62%, var(--hp-paper)); color: var(--hp-paper); }
+.wf-months td.wf-lv2 { background: color-mix(in oklab, var(--hp-ink) 30%, var(--hp-paper)); }
+.wf-months td.wf-lv1 { background: color-mix(in oklab, var(--hp-ink) 12%, var(--hp-paper)); }
+.wf-months td.wf-lv0 { background: var(--hp-paper); border: 1px dashed var(--hp-rule); color: var(--hp-muted); }
+.wf-months td.is-now { outline: 2px solid var(--hp-accent); outline-offset: 1px; }
+.wf-reads ul { list-style: none; margin: 14px 0 0; padding: 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); column-gap: 32px; }
+.wf-reads li a { display: grid; gap: 4px; padding-block: 14px; border-top: 1px solid var(--hp-rule); text-decoration: none; }
+.wf-reads li a strong { font: 600 15px var(--sans); color: var(--hp-accent); }
+.wf-reads li a span { font: 13px/1.5 var(--sans); color: var(--hp-muted); }
+@media (max-width: 1080px) {
+  .wf-falls li { grid-template-columns: 200px minmax(0, 1fr); }
+  .wf-falls li > p { grid-column: 1 / -1; }
+}
+@media (max-width: 880px) {
+  .wf-live { padding: 22px 20px; }
+  .wf-live__body { grid-template-columns: minmax(0, 1fr); gap: 20px; }
+  .wf-live__band { font-size: 36px; }
+  .wf-falls li { grid-template-columns: minmax(0, 1fr); gap: 8px; }
+  .wf-reads ul { grid-template-columns: minmax(0, 1fr); }
+}

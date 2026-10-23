@@ -291,7 +291,7 @@ const HUB_PROSE = {
     `<h2>Hikes &amp; permits</h2>` +
     `<p><a href="/half-dome-lottery">The Half Dome lottery</a> · <a href="/section/trails">Trails and hikes</a></p>` +
     `<h2>Conditions</h2>` +
-    `<p><a href="/conditions">Conditions and road alerts</a> · <a href="/now">The Park Bulletin</a> · <a href="/webcams">Webcams</a> · <a href="/tioga-opening">The Tioga Road opening</a> · <a href="/road-status">Road status: is it open?</a></p>` +
+    `<p><a href="/conditions">Conditions and road alerts</a> · <a href="/now">The Park Bulletin</a> · <a href="/webcams">Webcams</a> · <a href="/tioga-opening">The Tioga Road opening</a> · <a href="/road-status">Road status: is it open?</a> · <a href="/are-yosemite-waterfalls-running">Are the waterfalls running?</a></p>` +
     `<h2>Seasons</h2>` +
     `<p><a href="/dates">Dates that matter</a> · <a href="/section/seasonal">Seasonal guides</a> · <a href="/fall-color">Fall color</a> · <a href="/firefall">Firefall</a> · <a href="/moonbow">The moonbow</a> · <a href="/frazil-ice">Frazil ice</a></p>` +
     `<h2>Map</h2>` +
@@ -536,6 +536,15 @@ const HUB_PROSE = {
       "Highway 140 follows the Merced River canyon from Mariposa through El Portal to the Arch Rock Entrance, and inside the park it is the El Portal Road. The National Park Service says it is lower in elevation and has chain requirements less often than the other entrance roads. It closes for rockslides and fires without a schedule, and a closure outside the park appears on Caltrans's list, not the park's. This page does not report whether it is open today."
     ) + roadProseSources(true) +
     `<p>What to do when it closes: <a href="/articles/highway-140-closed-yosemite">when Highway 140 is closed</a>. Read next: <a href="/articles/getting-to-yosemite">the five entrances, compared</a>. The other roads: <a href="/road-status">Yosemite road status</a>.</p>`,
+  // The waterfalls page (page-waterfalls-running.jsx): the seasonal copy only.
+  // The live gauge reading loads in the browser and is never baked here.
+  "/are-yosemite-waterfalls-running": () =>
+    hubProse(
+      "Are Yosemite's waterfalls running?",
+      "Most of Yosemite's waterfalls are snowmelt events: they peak in spring, and most are over by midsummer. The page carries the live reading of the Merced River at Happy Isles, U.S. Geological Survey gauge 11264500, which sits below Vernal and Nevada Falls. Those two are river falls and run in every month of the year; the creek-fed falls off the Valley rim, Yosemite Falls among them, have no live gauge, so the page lays out each fall's usual year instead."
+    ) +
+    `<p>The Park Service says peak runoff typically happens in May or June, and narrows the best weeks to mid to late May. Yosemite Falls, 2,425 feet, thins through July and is often gone entirely by late August. Bridalveil Fall runs all year, a drifting ribbon by October. Ribbon Fall exists for roughly April through June; Sentinel Fall is gone by July. At Hetch Hetchy, Wapama Falls peaks April into May. The park's naturalists recorded Yosemite Falls stopping between August 15 and August 21 in each year from 1947 to 1951 (<a href="/archive/1953/vol-32-no-12/">Yosemite Nature Notes, December 1953</a>).</p>` +
+    `<p>Fall by fall and month by month: <a href="/articles/yosemite-waterfalls-guide">Yosemite waterfalls by month</a>. The peak month: <a href="/articles/yosemite-in-may">Yosemite in May</a>. The falls on camera: <a href="/webcams">Yosemite webcams</a>. On spring full-moon nights: <a href="/moonbow">the moonbow</a>.</p>`,
   "/webcams": () =>
     hubProse(
       "Yosemite Webcams",
@@ -1406,6 +1415,34 @@ function seoForPath(pathname, searchParams) {
         {
           q: "Does Highway 140 need chains in winter?",
           a: "Less often than the other entrance roads. The park says the El Portal Road is lower in elevation and has chain requirements less often, but whenever a chain control is in effect every vehicle must carry chains, four-wheel drives and rentals included.",
+        },
+      ],
+    },
+    // The waterfalls page (page-waterfalls-running.jsx, October 2026). Title
+    // and description byte-identical to app.jsx's buildSeo; the faq mirrors
+    // the page's WF_FAQ. Change both.
+    "/are-yosemite-waterfalls-running": {
+      title: `Are Yosemite's Waterfalls Running? Live Merced River Flow | ${SITE_NAME}`,
+      description:
+        "The live Merced River reading at Happy Isles, below Vernal and Nevada Falls, and when each Yosemite waterfall usually peaks, thins and goes dry.",
+      breadcrumb: [["Home", `${SITE_ORIGIN}/`], ["Are the waterfalls running?", null]],
+      hero: { image: "img/upper-yosemite-fall-spring-flow.jpg", cover: true },
+      faq: [
+        {
+          q: "Are Yosemite's waterfalls running right now?",
+          a: "The live reading at the top of this page is the Merced River at Happy Isles, USGS gauge 11264500, below Vernal and Nevada Falls. Those two are river falls and flow in every month of the year. The creek-fed falls off the Valley rim, Yosemite Falls among them, have no live gauge here: by the calendar, Yosemite Falls is often gone by late August, dry through September and October, and can roar back for a day or two after a big autumn rain.",
+        },
+        {
+          q: "When are Yosemite's waterfalls at their peak?",
+          a: "The Park Service says peak runoff typically happens in May or June, and its spring page narrows that to mid to late May. April through June is the waterfall window, with May at its center; the whole schedule shifts a few weeks earlier after a low-snow winter and later after a heavy one.",
+        },
+        {
+          q: "Which Yosemite waterfalls flow all year?",
+          a: "Bridalveil Fall, which thins to a drifting ribbon by October but never quits, and Vernal and Nevada Falls, which sit on the main stem of the Merced River. The park says Chilnualna Fall in Wawona flows year-round too, and Illilouette Fall holds water well into fall most years.",
+        },
+        {
+          q: "When does Yosemite Falls dry up?",
+          a: "In a typical year it thins through July and is often gone entirely by late August; in a big snow year it may last into September, and in a lean one it can quit in early August. The park's naturalists recorded it stopping between August 15 and August 21 in each year from 1947 to 1951.",
         },
       ],
     },

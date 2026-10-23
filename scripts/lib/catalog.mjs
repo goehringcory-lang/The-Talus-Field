@@ -56,6 +56,7 @@ export const STATIC_ROUTES = [
   "/is-highway-41-open",
   "/is-highway-120-open",
   "/is-highway-140-open",
+  "/are-yosemite-waterfalls-running",
   "/half-dome-lottery",
   "/fall-color",
   "/moonbow",
