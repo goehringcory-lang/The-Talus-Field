@@ -113,13 +113,14 @@ function counter(file, constName) {
 const points = counter("itineraries-data.js", "POINTS_URL");
 if (points) add(points.url, points.version, points.url.replace(/^\//, ""), "itineraries-data.js POINTS_URL");
 
-// bulletin.json is fetched from two pages, each with its own const. They
+// bulletin.json is fetched from three pages, each with its own const. They
 // must all carry the same ?v=: the file is served with a long TTL, so a page
 // reading it under a stale number renders the previous edition beside the other page
 // rendering the current one.
 const BULLETIN_READERS = [
   ["page-now.jsx", "BULLETIN_URL"],
   ["page-tioga-opening.jsx", "TIOGA_BULLETIN_URL"],
+  ["page-smoke-today.jsx", "SMOKE_BULLETIN_URL"],
 ];
 const bulletinReaders = BULLETIN_READERS.map(([file, name]) => ({ file, name, hit: counter(file, name) })).filter(
   (r) => r.hit

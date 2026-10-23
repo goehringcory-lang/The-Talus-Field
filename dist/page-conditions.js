@@ -507,7 +507,13 @@ function ConditionsPage({
       e.preventDefault();
       go("road-status");
     }
-  }, "is it open?"))))), React.createElement("div", {
+  }, "is it open?"), " ", "The air near the Valley, and what the number means for a hike:", " ", React.createElement("a", {
+    href: "/yosemite-smoke-today",
+    onClick: e => {
+      e.preventDefault();
+      go("yosemite-smoke-today");
+    }
+  }, "smoke today"), ".")))), React.createElement("div", {
     className: "hp-wrap cond-dial"
   }, React.createElement("a", {
     className: "dialplate",

@@ -291,7 +291,7 @@ const HUB_PROSE = {
     `<h2>Hikes &amp; permits</h2>` +
     `<p><a href="/half-dome-lottery">The Half Dome lottery</a> · <a href="/section/trails">Trails and hikes</a></p>` +
     `<h2>Conditions</h2>` +
-    `<p><a href="/conditions">Conditions and road alerts</a> · <a href="/now">The Park Bulletin</a> · <a href="/webcams">Webcams</a> · <a href="/tioga-opening">The Tioga Road opening</a> · <a href="/road-status">Road status: is it open?</a></p>` +
+    `<p><a href="/conditions">Conditions and road alerts</a> · <a href="/now">The Park Bulletin</a> · <a href="/webcams">Webcams</a> · <a href="/tioga-opening">The Tioga Road opening</a> · <a href="/road-status">Road status: is it open?</a> · <a href="/yosemite-smoke-today">Smoke today</a></p>` +
     `<h2>Seasons</h2>` +
     `<p><a href="/dates">Dates that matter</a> · <a href="/section/seasonal">Seasonal guides</a> · <a href="/fall-color">Fall color</a> · <a href="/firefall">Firefall</a> · <a href="/moonbow">The moonbow</a> · <a href="/frazil-ice">Frazil ice</a></p>` +
     `<h2>Map</h2>` +
@@ -536,6 +536,30 @@ const HUB_PROSE = {
       "Highway 140 follows the Merced River canyon from Mariposa through El Portal to the Arch Rock Entrance, and inside the park it is the El Portal Road. The National Park Service says it is lower in elevation and has chain requirements less often than the other entrance roads. It closes for rockslides and fires without a schedule, and a closure outside the park appears on Caltrans's list, not the park's. This page does not report whether it is open today."
     ) + roadProseSources(true) +
     `<p>What to do when it closes: <a href="/articles/highway-140-closed-yosemite">when Highway 140 is closed</a>. Read next: <a href="/articles/getting-to-yosemite">the five entrances, compared</a>. The other roads: <a href="/road-status">Yosemite road status</a>.</p>`,
+  // Restates page-smoke-today.jsx without its live reading. The fire line is
+  // the page's SmkFire: the bulletin edition's fire headline tile, only while
+  // the edition carries one and has not ended.
+  "/yosemite-smoke-today": () => {
+    const ed = bulletin.edition || {};
+    const ended = ed.end && new Date().toISOString().slice(0, 10) > ed.end;
+    const tile = !ended && Array.isArray(bulletin.headlines)
+      ? bulletin.headlines.find((h) => /\bfire\b/i.test((h && h.label) || ""))
+      : null;
+    const fire = tile
+      ? `<p>${escapeHtmlText(tile.label)}${tile.status ? `: ${escapeHtmlText(tile.status)}.` : "."} The closures and the park's latest word are in <a href="/now">the Park Bulletin</a>.</p>`
+      : "";
+    return (
+      hubProse(
+        "Is there smoke in Yosemite today?",
+        "This page shows the latest air-quality reading near Yosemite Valley from AirNow, the EPA's air-quality service: the highest pollutant reading for the reporting area nearest the Valley, within 50 miles, with the area and hour it came from. The area that answers is not always inside the park, and smoke varies from one part of the park to the next."
+      ) + fire +
+      `<p>Check the official sources before you drive: the <a href="https://fire.airnow.gov/">AirNow Fire and Smoke Map</a>, the park's <a href="https://www.nps.gov/yose/learn/nature/aqmonitoring.htm">air quality and smoke monitoring page</a>, and <a href="https://www.nps.gov/yose/planyourvisit/conditions.htm">NPS current conditions</a>. Last checked: October 22, 2026.</p>` +
+      `<h2>What the number means</h2>` +
+      `<p>0 to 50, Good: a normal park day. 51 to 100, Moderate: generally fine; people with severe asthma or other respiratory conditions should be cautious. 101 to 150, Unhealthy for sensitive groups: shorter, lower-effort walks. 151 to 200, Unhealthy: skip strenuous hikes and try the high country. 201 to 300, Very Unhealthy: don't hike. 301 and up, Hazardous: don't be outside.</p>` +
+      `<h2>Where the smoke sits</h2>` +
+      `<p>Yosemite Valley, a granite trough with its floor at about 4,000 feet, often has the worst air in the park. Glacier Point and Tuolumne Meadows, above about 7,500 feet, are sometimes above the smoke, though not always. Fire season runs from roughly July through November, according to the Park Service. The full guide: <a href="/articles/yosemite-during-smoke-season">visiting Yosemite during smoke season</a>. When a fire comes close: <a href="/articles/wildfire-in-yosemite-during-your-trip">a wildfire during your trip</a>. Webcams and entrance waits: <a href="/conditions">the conditions page</a>.</p>`
+    );
+  },
   "/webcams": () =>
     hubProse(
       "Yosemite Webcams",
@@ -1406,6 +1430,35 @@ function seoForPath(pathname, searchParams) {
         {
           q: "Does Highway 140 need chains in winter?",
           a: "Less often than the other entrance roads. The park says the El Portal Road is lower in elevation and has chain requirements less often, but whenever a chain control is in effect every vehicle must carry chains, four-wheel drives and rentals included.",
+        },
+      ],
+    },
+    // /yosemite-smoke-today (page-smoke-today.jsx, October 2026). The page's
+    // one live number is the AirNow reading from /api/air; nothing here
+    // carries it. Title and description byte-identical to app.jsx's buildSeo;
+    // the faq mirrors the page's SMK_FAQ. Change both.
+    "/yosemite-smoke-today": {
+      title: `Yosemite Smoke Today: Air Quality Now, and What It Means | ${SITE_NAME}`,
+      description:
+        "The latest AirNow air-quality reading near Yosemite Valley, the official smoke sources to check, and what each AQI band means for a day in the park.",
+      breadcrumb: [["Home", `${SITE_ORIGIN}/`], ["Conditions", `${SITE_ORIGIN}/conditions`], ["Smoke today", null]],
+      hero: { image: "img/tunnel-view-ferguson-fire-smoke.jpg", cover: true },
+      faq: [
+        {
+          q: "Is there smoke in Yosemite today?",
+          a: "The reading at the top of this page is AirNow's latest for the reporting area nearest Yosemite Valley, within 50 miles, as this site's API last read it. It names the area and the hour, and it disappears when it is more than a day old. For monitor-by-monitor readings in and near the park, check fire.airnow.gov; for park-specific smoke updates and closures, check the National Park Service's air quality and current conditions pages.",
+        },
+        {
+          q: "Where in Yosemite is the air usually cleanest during a fire?",
+          a: "Often the high country. Yosemite Valley traps smoke, and Glacier Point and Tuolumne Meadows, above about 7,500 feet, are sometimes above it. Not always: during the Dome Fire the park's forecasts had Tuolumne under the same rating as the Valley on some days, so read the day's forecast by area.",
+        },
+        {
+          q: "What AQI is too high for a hike in Yosemite?",
+          a: "At 101 to 150, unhealthy for sensitive groups, pick shorter, lower-effort walks. At 151 to 200, unhealthy, skip strenuous hikes. Above 200, don't hike. Older adults and anyone with a respiratory or heart condition should treat 100 as the line, not 150, and children call for more caution still.",
+        },
+        {
+          q: "When is smoke season in Yosemite?",
+          a: "Fire season runs from roughly July through November, according to the Park Service, and into June in dry years.",
         },
       ],
     },

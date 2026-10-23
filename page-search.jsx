@@ -50,6 +50,7 @@ const SEARCH_PAGES = [
   { route: "is-highway-41-open", title: "Is Highway 41 open?", dek: "The Wawona Road through the South Entrance: where to check today, and its winter chain controls.", kind: "Page" },
   { route: "is-highway-120-open", title: "Is Highway 120 open?", dek: "The Big Oak Flat Road from Groveland: where to check today, and where it becomes Tioga Road.", kind: "Page" },
   { route: "is-highway-140-open", title: "Is Highway 140 open?", dek: "The El Portal Road through the Merced River canyon: Caltrans outside the park, the park inside.", kind: "Page" },
+  { route: "yosemite-smoke-today", title: "Yosemite smoke today", dek: "The latest AirNow air-quality reading near Yosemite Valley, the official smoke sources to check, and what each AQI band means for a day in the park.", kind: "Page" },
   { route: "half-dome-lottery", title: "The Half Dome lottery", dek: "How the cable permit lottery works, the real odds, and what to climb instead.", kind: "Page" },
   { route: "fall-color", title: "Yosemite fall color", dek: "When the leaves turn, band by band from the Tioga Road aspens to the Valley's maples and black oaks, where to look, and what ends the season.", kind: "Page" },
   { route: "moonbow", title: "The Yosemite moonbow", dek: "Rainbows by moonlight at Lower Yosemite Fall: the spring full-moon nights, how the geometry sets the hour, and where to stand.", kind: "Page" },

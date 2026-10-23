@@ -106,6 +106,11 @@ var SEARCH_PAGES = [{
   dek: "The El Portal Road through the Merced River canyon: Caltrans outside the park, the park inside.",
   kind: "Page"
 }, {
+  route: "yosemite-smoke-today",
+  title: "Yosemite smoke today",
+  dek: "The latest AirNow air-quality reading near Yosemite Valley, the official smoke sources to check, and what each AQI band means for a day in the park.",
+  kind: "Page"
+}, {
   route: "half-dome-lottery",
   title: "The Half Dome lottery",
   dek: "How the cable permit lottery works, the real odds, and what to climb instead.",
