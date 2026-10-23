@@ -249,7 +249,8 @@ const FOOTER = siteFooter();
 //      form is a plain POST to Buttondown with target="_blank": the reader
 //      keeps their place in the issue and the confirmation opens beside it.
 //      There is no GA4 on these pages either, which is exactly why the
-//      Buttondown `tag` is distinct per surface (`archive`, `archive-index`).
+//      Buttondown `tag` is distinct per surface (`archive`, `archive-index`,
+//      `archive-topics` for the topic hubs and their index).
 //      That tag is the only attribution this surface will ever have.
 //   3. The guide line states a COUNTED fact, not a claim. The number comes
 //      from the guide's own content through the same regex the citation guard
@@ -412,19 +413,26 @@ function scanCredit(issue) {
   return `Transcribed from <a href="${esc(issue.sourceUrl)}" rel="noopener nofollow" target="_blank">${esc(issue.pdfFilename)}</a>. Spelling, punctuation, and the original headlines are left as printed.`;
 }
 
-function renderIssue(issue, prev, next) {
-  const title = `Yosemite Nature Notes, ${issue.dateDisplay} (Vol. ${issue.volume}, No. ${issue.number})`;
-  const description = issueDescription(issue);
-
-  // Anchor ids have to be unique inside one page: the same headline can appear
-  // twice in an issue ("NOTES AND COMMENT" runs as a standing column).
+// The anchor id of every heading block in an issue, by block index (null for
+// paragraphs). Ids have to be unique inside one page: the same headline can
+// appear twice in an issue ("NOTES AND COMMENT" runs as a standing column).
+// The topic hubs deep-link into issues with these same ids, so this is the one
+// place they are minted.
+function headingAnchors(issue) {
   const used = new Map();
-  const anchorFor = (text) => {
-    const base = slugify(text) || "section";
+  return issue.blocks.map((block) => {
+    if (block.type !== "heading") return null;
+    const base = slugify(block.text) || "section";
     const n = (used.get(base) || 0) + 1;
     used.set(base, n);
     return n === 1 ? base : `${base}-${n}`;
-  };
+  });
+}
+
+function renderIssue(issue, prev, next) {
+  const title = `Yosemite Nature Notes, ${issue.dateDisplay} (Vol. ${issue.volume}, No. ${issue.number})`;
+  const description = issueDescription(issue);
+  const anchors = headingAnchors(issue);
 
   // The transcription usually opens with the printed masthead line — "Volume 1
   // July 10, 1922 Number 1 W. B. Lewis, Superintendent." — which duplicates the
@@ -442,7 +450,7 @@ function renderIssue(issue, prev, next) {
   const parts = [];
   issue.blocks.forEach((block, idx) => {
     if (block.type === "heading") {
-      const id = anchorFor(block.text);
+      const id = anchors[idx];
       contents.push({ id, text: block.text });
       parts.push(`<h2 id="${id}" class="arc-h2">${esc(block.text)}</h2>`);
     } else if (isColophon(block, idx)) {
@@ -578,7 +586,7 @@ ${rows}
 // Landing page
 // ---------------------------------------------------------------------------
 
-function renderLanding(issues, decades) {
+function renderLanding(issues, decades, topics) {
   const years = groupByYear(issues);
   const first = issues[0];
   const last = issues[issues.length - 1];
@@ -626,6 +634,15 @@ function renderLanding(issues, decades) {
   <section class="arc-browse">
     <h2 class="arc-h2">Browse by decade</h2>
 ${decadeBlocks}
+  </section>
+
+  <section class="arc-bytopic">
+    <h2 class="arc-h2">Browse by topic</h2>
+    <p class="arc-bytopic__note">Short passages on one subject, quoted as printed from ${TOPIC_YEARS[0]} to ${TOPIC_YEARS[1]}, each linked to the issue it came from.</p>
+    <div class="arc-yearchips">${topics
+      .map((t) => `<a class="arc-yearchip" href="${t.path}">${esc(t.name)}<span>${t.quotes.length}</span></a>`)
+      .join("")}</div>
+    <p class="arc-back"><a href="/archive/topics/">Every topic →</a></p>
   </section>
 
   <section class="arc-about" id="about">
@@ -695,6 +712,301 @@ ${decadeBlocks}
 }
 
 // ---------------------------------------------------------------------------
+// Topic hubs
+// ---------------------------------------------------------------------------
+// /archive/topics/<slug>/ gathers one subject (black bears, the Big Trees,
+// Tuolumne Meadows...) out of the run: short passages quoted from the issues,
+// each linked to the section of the issue it sits in, then the bulletin's own
+// headlines on that subject, each linked the same way. /archive/topics/ lists
+// them. The curation lives in scripts/data/nature-notes-topics.json; read its
+// _comment before adding a hub.
+//
+// Three rules hold the hubs up, and they are why a hub carries no prose of
+// its own about its subject:
+//   1. QUOTES ONLY, VERBATIM. Every passage is a contiguous run of one
+//      paragraph of the named issue, exactly as this generator prints it on
+//      the issue page. resolveTopic() refuses to build a hub whose quote it
+//      cannot find, and check-archive-citations.mjs re-reads the published
+//      issue page for every quote, so a transcription fix that changes a
+//      quoted passage fails the build instead of leaving a misquote up.
+//   2. NOTHING THE ISSUES DO NOT SAY. The page's own copy is templated and
+//      restricted to what the generator can count: how many passages, how
+//      many issues, which years, which headlines. No summary of what the
+//      naturalists "found", no dates or figures typed by hand.
+//   3. THE ISSUE IS THE SOURCE. Each quote and headline links to its issue
+//      page at the heading it ran under (headingAnchors(), the ids the issue
+//      page itself uses), and carries the issue's printed date, with the
+//      archive's "(year inferred)" marker where the cover gave none.
+//
+// The hubs are archive pages, not SPA routes: same shell, same one ask (tag
+// `archive-topics`), same sitemap. Like every archive page they never invoke
+// the Worker, so edge/seo.js has nothing to say about them.
+
+const TOPIC_DATA = JSON.parse(fs.readFileSync(path.join(__dirname, "data", "nature-notes-topics.json"), "utf8"));
+const TOPIC_YEARS = TOPIC_DATA.years;
+
+// A headline as the hub prints it: the masthead line the extractor sometimes
+// glued to the first headline ("VOL. XXI NOVEMBER, 1942 NO. 11 LITTLE CHANGE
+// IN YOSEMITE'S GLACIERS") is dropped, as is stray punctuation in front. The
+// link still goes to the full headline's anchor on the issue page.
+function cleanHeadline(text) {
+  return String(text)
+    .replace(/^[^A-Za-z0-9"]+/, "")
+    .replace(/^VOL\.?\s+[IVXLC]+\.?\s+[A-Z]+,?\s+\d{4},?\s+NO\.?\s*\d+\s+/, "")
+    .replace(/^NO\.?\s*\d+\s+/, "")
+    .trim();
+}
+
+// Headlines past this length are photo captions and cover blurbs the
+// extractor read as headings, not headlines.
+const MAX_HEADLINE = 90;
+
+function resolveTopic(topic, issues) {
+  const bySlug = new Map(issues.map((i) => [i.slug, i]));
+  const order = new Map(issues.map((i, idx) => [i.slug, idx]));
+  const inRange = (issue) => issue.year >= TOPIC_YEARS[0] && issue.year <= TOPIC_YEARS[1];
+  // The anchor of the nearest heading above the quoted paragraph, so the link
+  // lands on the passage. Its text is not printed as the quote's headline: the
+  // extractor turned some column fragments into headings ("ADVANCES SHOWN"),
+  // and a caption naming one would mislabel the passage.
+  const anchorAbove = (issue, blockIdx, anchors) => {
+    for (let k = blockIdx; k >= 0; k--) {
+      if (issue.blocks[k].type === "heading") return anchors[k];
+    }
+    return null;
+  };
+
+  const seen = new Set();
+  const quotes = topic.quotes.map((q) => {
+    const issue = bySlug.get(q.issue);
+    if (!issue) throw new Error(`nature-notes-topics.json ${topic.slug}: no issue ${q.issue}`);
+    if (!inRange(issue)) {
+      throw new Error(`nature-notes-topics.json ${topic.slug}: ${q.issue} (${issue.year}) is outside ${TOPIC_YEARS.join("-")}`);
+    }
+    if (seen.has(q.issue)) throw new Error(`nature-notes-topics.json ${topic.slug}: ${q.issue} is quoted twice`);
+    seen.add(q.issue);
+    const text = String(q.text).trim();
+    const idx = issue.blocks.findIndex((b) => b.type === "para" && b.text.includes(text));
+    if (idx === -1) {
+      throw new Error(
+        `nature-notes-topics.json ${topic.slug}: quote not found verbatim in a paragraph of ${q.issue}: "${truncate(text, 80)}"`
+      );
+    }
+    return { issue, text, anchor: anchorAbove(issue, idx, headingAnchors(issue)) };
+  });
+  quotes.sort((a, b) => order.get(a.issue.slug) - order.get(b.issue.slug));
+
+  const re = new RegExp(topic.headlines);
+  const exclude = new Set(topic.exclude || []);
+  const headlines = [];
+  for (const issue of issues) {
+    if (!inRange(issue)) continue;
+    const anchors = headingAnchors(issue);
+    const shown = new Set();
+    issue.blocks.forEach((b, idx) => {
+      if (b.type !== "heading") return;
+      const text = cleanHeadline(b.text);
+      if (!text || text.length > MAX_HEADLINE || !re.test(text) || exclude.has(text) || shown.has(text)) return;
+      shown.add(text);
+      headlines.push({ issue, text, anchor: anchors[idx] });
+    });
+  }
+
+  const years = [...quotes.map((q) => q.issue.year), ...headlines.map((h) => h.issue.year)];
+  const quoteYears = quotes.map((q) => q.issue.year);
+  return {
+    ...topic,
+    path: `/archive/topics/${topic.slug}/`,
+    quotes,
+    headlines,
+    span: [Math.min(...years), Math.max(...years)],
+    quoteSpan: [Math.min(...quoteYears), Math.max(...quoteYears)],
+  };
+}
+
+const yearSpan = ([a, b]) => (a === b ? String(a) : `${a}–${b}`);
+const plural = (n, one, many) => `${n} ${n === 1 ? one : many}`;
+
+// The issue's printed date, honest about the covers that gave none.
+function issueDateText(issue) {
+  return issue.date.confidence === "stated" ? issue.dateDisplay : `${issue.dateDisplay} (year inferred)`;
+}
+
+const anchored = (issue, anchor) => (anchor ? `${issue.path}#${anchor}` : issue.path);
+
+function renderTopic(topic, allTopics) {
+  const title = `${topic.title}, ${yearSpan(topic.span)}`;
+  const issueCount = new Set(topic.quotes.map((q) => q.issue.slug)).size;
+  const description = truncate(
+    `${plural(topic.quotes.length, "passage", "passages")} on ${topic.name.toLowerCase()} quoted as printed in Yosemite Nature Notes, ${yearSpan(topic.quoteSpan)}, each linked to its issue, and ${plural(topic.headlines.length, "headline", "headlines")} the bulletin ran on ${topic.headlineNoun}.`,
+    175
+  );
+
+  const quotes = topic.quotes
+    .map(
+      (q) => `<li class="arc-quote">
+  <blockquote cite="${ORIGIN}${anchored(q.issue, q.anchor)}"><p>${esc(q.text)}</p></blockquote>
+  <p class="arc-quote__src"><a href="${anchored(q.issue, q.anchor)}">${esc(issueDateText(q.issue))}</a> · Vol. ${q.issue.volume}, No. ${q.issue.number}</p>
+</li>`
+    )
+    .join("\n");
+
+  const headlines = topic.headlines.length
+    ? `<ol class="arc-heads">
+${topic.headlines
+  .map(
+    (h) =>
+      `<li><a href="${anchored(h.issue, h.anchor)}"><span class="arc-heads__date">${esc(issueDateText(h.issue))}</span><span class="arc-heads__h">${esc(titleCase(h.text))}</span></a></li>`
+  )
+  .join("\n")}
+  </ol>`
+    : `<p class="arc-lede">No headline in these years matched.</p>`;
+
+  const reads = (topic.reads || [])
+    .map(
+      ([href, label, note]) =>
+        `<li><a href="${esc(href)}"><span class="arc-reads__label">${esc(label)}</span><span class="arc-reads__note">${esc(note)}</span></a></li>`
+    )
+    .join("\n");
+  const others = allTopics
+    .filter((t) => t.slug !== topic.slug)
+    .map((t) => `<a class="arc-yearchip" href="${t.path}">${esc(t.name)}<span>${t.quotes.length}</span></a>`)
+    .join("");
+
+  const body = `<div class="hp-wrap arc-topic">
+  <header class="arc-topic__head">
+    <p class="arc-eyebrow">The Nature Notes archive · Topics</p>
+    <h1 class="arc-title">${esc(title)}</h1>
+    <p class="arc-lede">
+      Every passage below is quoted from <em>Yosemite Nature Notes</em> as it was printed,
+      spelling and punctuation included, and links to the place in the issue it came from.
+      Under them are the bulletin's own headlines on ${esc(topic.headlineNoun)} from
+      ${TOPIC_YEARS[0]} to ${TOPIC_YEARS[1]}, each linked the same way.
+    </p>
+  </header>
+  <dl class="arc-facts">
+    <div><dt>Passages</dt><dd>${topic.quotes.length}</dd></div>
+    <div><dt>Issues quoted</dt><dd>${issueCount}</dd></div>
+    <div><dt>Quoted from</dt><dd>${yearSpan(topic.quoteSpan)}</dd></div>
+    <div><dt>Headlines</dt><dd>${topic.headlines.length}</dd></div>
+  </dl>
+  <nav class="arc-jump" aria-label="On this page">
+    <a href="#passages">In the bulletin's words</a>
+    <a href="#headlines">The headlines</a>
+    <a href="#read-on">Read on</a>
+  </nav>
+
+  <section class="arc-topic__sec" aria-labelledby="passages">
+    <h2 class="arc-h2" id="passages">In the bulletin's words</h2>
+    <ol class="arc-quotes">
+${quotes}
+    </ol>
+  </section>
+
+  <section class="arc-topic__sec" aria-labelledby="headlines">
+    <h2 class="arc-h2" id="headlines">The headlines, ${TOPIC_YEARS[0]}–${TOPIC_YEARS[1]}</h2>
+    ${headlines}
+  </section>
+
+  <section class="arc-topic__sec" aria-labelledby="read-on">
+    <h2 class="arc-h2" id="read-on">Read on</h2>
+    ${reads ? `<ul class="arc-reads">\n${reads}\n    </ul>` : ""}
+    <h3 class="arc-topic__h3">More from the archive by topic</h3>
+    <div class="arc-yearchips">${others}</div>
+    <p class="arc-back"><a href="/archive/topics/">Every topic</a> · <a href="/archive/">The whole archive</a></p>
+  </section>
+
+  ${askBlock("archive-topics")}
+</div>`;
+
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "CollectionPage",
+    name: title,
+    url: `${ORIGIN}${topic.path}`,
+    description,
+    inLanguage: "en-US",
+    isPartOf: { "@type": "CollectionPage", name: "The Yosemite Nature Notes Archive", url: `${ORIGIN}/archive/` },
+    hasPart: topic.quotes.map((q) => ({
+      "@type": "PublicationIssue",
+      name: `Yosemite Nature Notes, ${q.issue.dateDisplay} (Vol. ${q.issue.volume}, No. ${q.issue.number})`,
+      url: `${ORIGIN}${q.issue.path}`,
+      datePublished: q.issue.iso,
+    })),
+  };
+
+  return page({
+    title: `${title} | The Talus Field`,
+    description,
+    canonical: topic.path,
+    crumbs: [
+      { label: "Archive", href: "/archive/" },
+      { label: "Topics", href: "/archive/topics/" },
+      { label: topic.name },
+    ],
+    body,
+    jsonLd,
+  });
+}
+
+function renderTopicsIndex(topics) {
+  const cards = topics
+    .map((t) => {
+      const lead = t.quotes[0];
+      return `<li class="arc-topiccard">
+  <h2 class="arc-topiccard__h"><a href="${t.path}">${esc(t.name)}</a></h2>
+  <p class="arc-topiccard__meta">${plural(t.quotes.length, "passage", "passages")} · ${plural(t.headlines.length, "headline", "headlines")} · ${yearSpan(t.span)}</p>
+  <blockquote class="arc-topiccard__q" cite="${ORIGIN}${anchored(lead.issue, lead.anchor)}"><p>${esc(lead.text)}</p></blockquote>
+  <p class="arc-quote__src"><a href="${anchored(lead.issue, lead.anchor)}">${esc(issueDateText(lead.issue))}</a> · Vol. ${lead.issue.volume}, No. ${lead.issue.number}</p>
+</li>`;
+    })
+    .join("\n");
+
+  const passages = topics.reduce((n, t) => n + t.quotes.length, 0);
+  const title = `Topics in Yosemite Nature Notes, ${TOPIC_YEARS[0]}–${TOPIC_YEARS[1]}`;
+  const description = truncate(
+    `${topics.map((t) => t.name).join(", ")}: ${passages} passages quoted as printed in Yosemite Nature Notes, ${TOPIC_YEARS[0]} to ${TOPIC_YEARS[1]}, each linked to the issue it came from.`,
+    175
+  );
+
+  const body = `<div class="hp-wrap arc-topic">
+  <header class="arc-topic__head">
+    <p class="arc-eyebrow">The Nature Notes archive</p>
+    <h1 class="arc-title">${esc(title)}</h1>
+    <p class="arc-lede">
+      ${topics.length} subjects from the bulletin's own pages: short passages quoted as printed,
+      each linked to the issue it came from, and the headlines it ran on each subject. For
+      everything else, <a href="/archive/">browse the whole run by year</a>.
+    </p>
+  </header>
+  <ol class="arc-topiccards">
+${cards}
+  </ol>
+  ${askBlock("archive-topics")}
+</div>`;
+
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "CollectionPage",
+    name: title,
+    url: `${ORIGIN}/archive/topics/`,
+    description,
+    inLanguage: "en-US",
+    isPartOf: { "@type": "CollectionPage", name: "The Yosemite Nature Notes Archive", url: `${ORIGIN}/archive/` },
+    hasPart: topics.map((t) => ({ "@type": "CollectionPage", name: t.title, url: `${ORIGIN}${t.path}` })),
+  };
+
+  return page({
+    title: `${title} | The Talus Field`,
+    description,
+    canonical: "/archive/topics/",
+    crumbs: [{ label: "Archive", href: "/archive/" }, { label: "Topics" }],
+    body,
+    jsonLd,
+  });
+}
+
+// ---------------------------------------------------------------------------
 // Stylesheet
 // ---------------------------------------------------------------------------
 // Own file rather than an addition to styles.css: nothing else on the site
@@ -755,6 +1067,42 @@ const ARCHIVE_CSS = `/* Generated by scripts/gen-archive.mjs — edit that file,
 .arc-list__vol { font: 600 8px var(--sans); letter-spacing: 1.7px; text-transform: uppercase; color: var(--hp-accent); }
 .arc-list__heads { margin: 8px 0 0; font-size: 12px; color: var(--hp-muted); line-height: 1.7; }
 
+/* Topic hubs: /firefall's fact row and jump list, in archive type ---------- */
+.arc-topic { padding-top: 40px; }
+.arc-topic__head { border-bottom: 1px solid var(--hp-rule); padding-bottom: 32px; }
+.arc-facts { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); margin: 0; border-bottom: 1px solid var(--hp-rule); }
+.arc-facts > div { padding: 20px 24px 20px 0; }
+.arc-facts > div + div { padding-left: 24px; border-left: 1px solid var(--hp-rule); }
+.arc-facts dt { font: 600 9px var(--sans); letter-spacing: 1.6px; text-transform: uppercase; color: var(--hp-muted); }
+.arc-facts dd { margin: 6px 0 0; font: 400 26px/1.1 var(--serif); color: var(--hp-ink); }
+.arc-jump { display: flex; flex-wrap: wrap; gap: 8px 24px; padding: 16px 0; border-bottom: 1px solid var(--hp-rule); font: 600 11px var(--sans); }
+.arc-jump a { border-bottom: 1px solid #a7afa4; padding-bottom: 3px; }
+.arc-jump a:hover { color: var(--hp-accent); border-color: var(--hp-accent); }
+.arc-quotes, .arc-heads, .arc-reads, .arc-topiccards { list-style: none; margin: 0; padding: 0; max-width: 680px; }
+.arc-quote { border-top: 1px solid var(--hp-rule); padding: 24px 0; }
+.arc-quote blockquote, .arc-topiccard__q { margin: 0; padding-left: 18px; border-left: 2px solid var(--hp-accent); }
+.arc-quote blockquote p, .arc-topiccard__q p { margin: 0; font: 400 21px/1.45 var(--serif); color: var(--hp-ink); }
+.arc-quote__src { margin: 10px 0 0 20px; font-size: 11px; color: var(--hp-muted); }
+.arc-quote__src a { color: var(--hp-ink); border-bottom: 1px solid #a7afa4; }
+.arc-heads li { border-top: 1px solid var(--hp-rule); }
+.arc-heads a { display: flex; gap: 16px; align-items: baseline; flex-wrap: wrap; padding: 12px 0; }
+.arc-heads a:hover .arc-heads__h { color: var(--hp-accent); }
+.arc-heads__date { flex: 0 0 150px; font: 600 9px var(--sans); letter-spacing: 1.4px; text-transform: uppercase; color: var(--hp-accent); }
+.arc-heads__h { flex: 1; min-width: 0; font: 400 18px/1.3 var(--serif); }
+.arc-reads li { border-top: 1px solid var(--hp-rule); }
+.arc-reads a { display: flex; flex-direction: column; padding: 14px 0; }
+.arc-reads__label { font: 400 21px/1.2 var(--serif); }
+.arc-reads a:hover .arc-reads__label { color: var(--hp-accent); }
+.arc-reads__note { font-size: 12px; color: var(--hp-muted); margin-top: 4px; }
+.arc-topic__h3 { font: 600 9px var(--sans); letter-spacing: 1.7px; text-transform: uppercase; color: var(--hp-accent); margin: 36px 0 12px; }
+.arc-topiccards { margin-top: 32px; max-width: none; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); column-gap: 48px; }
+.arc-topiccard { border-top: 1px solid var(--hp-rule); padding: 24px 0 28px; }
+.arc-topiccard__h { font: 400 32px/1.05 var(--serif); letter-spacing: -.6px; margin: 0 0 6px; }
+.arc-topiccard__h a:hover { color: var(--hp-accent); }
+.arc-topiccard__meta { font: 600 8px var(--sans); letter-spacing: 1.7px; text-transform: uppercase; color: var(--hp-muted); margin: 0 0 16px; }
+.arc-topiccard__q p { font-size: 18px; }
+.arc-bytopic__note { max-width: 680px; font-size: 13px; line-height: 1.85; color: var(--hp-muted); }
+
 /* Issue ------------------------------------------------------------------- */
 .arc-issue__head { border-bottom: 1px solid var(--hp-rule); padding-bottom: 32px; }
 .arc-meta { font-size: 11px; color: var(--hp-muted); margin: 6px 0 0; }
@@ -809,6 +1157,12 @@ const ARCHIVE_CSS = `/* Generated by scripts/gen-archive.mjs — edit that file,
   .arc-title { font-size: 44px; letter-spacing: -1px; }
   .arc-h2 { font-size: 32px; }
   .arc-list { grid-template-columns: 1fr; }
+  .arc-facts { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .arc-facts > div:nth-child(3) { padding-left: 0; border-left: 0; }
+  .arc-facts > div:nth-child(n + 3) { border-top: 1px solid var(--hp-rule); }
+  .arc-topiccards { grid-template-columns: 1fr; }
+  .arc-heads__date { flex-basis: 100%; }
+  .arc-quote blockquote p { font-size: 19px; }
   .arc-toc ol { columns: 1; }
   .arc-prose { font-size: 16px; }
   .arc-ask { padding: 24px 22px; }
@@ -842,13 +1196,15 @@ const ARCHIVE_CSS = `/* Generated by scripts/gen-archive.mjs — edit that file,
 // The issue's own 1922-1954 date is not lost. It is the visible dateline on
 // each page and the datePublished of its PublicationIssue JSON-LD, which is
 // where a publication date belongs.
-const ARCHIVE_CONTENT_UPDATED = "2026-10-17";
+const ARCHIVE_CONTENT_UPDATED = "2026-10-22";
 
-function renderSitemap(issues, years) {
+function renderSitemap(issues, years, topics) {
   // No changefreq and no priority: Google has ignored both for years, and they
   // were 1,000+ lines of bytes carrying no signal.
   const urls = [
     { loc: "/archive/" },
+    { loc: "/archive/topics/" },
+    ...topics.map((t) => ({ loc: t.path })),
     ...years.map((y) => ({ loc: `/archive/${y.year}/` })),
     ...issues.map((i) => ({ loc: i.path })),
   ];
@@ -873,7 +1229,7 @@ ${body}
 // Report
 // ---------------------------------------------------------------------------
 
-function renderReport(issues) {
+function renderReport(issues, topics) {
   const inferred = issues.filter((i) => i.date.confidence === "inferred");
   const byPrecision = issues.reduce((a, i) => {
     a[i.date.precision] = (a[i.date.precision] || 0) + 1;
@@ -890,7 +1246,11 @@ Generated by \`scripts/gen-archive.mjs\`. Regenerate with
 - Issues: **${issues.length}**
 - Span: **${issues[0].year}–${issues[issues.length - 1].year}**
 - Words transcribed: **${words.toLocaleString()}**
-- Pages emitted: ${issues.length} issues + ${groupByYear(issues).length} year indexes + 1 landing
+- Pages emitted: ${issues.length} issues + ${groupByYear(issues).length} year indexes + 1 landing + ${topics.length} topic hubs + 1 topics index
+
+## Topic hubs
+
+${topics.map((t) => `- \`${t.path}\`: ${t.quotes.length} quotes, ${t.headlines.length} headlines, ${yearSpan(t.span)}`).join("\n")}
 
 ## Date confidence
 
@@ -935,10 +1295,13 @@ function collectFiles() {
   const decades = groupByDecade(issues);
   const years = groupByYear(issues);
   const files = new Map();
+  const topics = TOPIC_DATA.topics.map((t) => resolveTopic(t, issues));
 
   files.set("archive.css", ARCHIVE_CSS);
-  files.set("index.html", renderLanding(issues, decades));
-  files.set("sitemap.xml", renderSitemap(issues, years));
+  files.set("index.html", renderLanding(issues, decades, topics));
+  files.set("sitemap.xml", renderSitemap(issues, years, topics));
+  files.set("topics/index.html", renderTopicsIndex(topics));
+  for (const t of topics) files.set(`topics/${t.slug}/index.html`, renderTopic(t, topics));
 
   years.forEach(({ year, issues: list }, idx) => {
     const prev = years[idx - 1] ? years[idx - 1].year : null;
@@ -953,10 +1316,10 @@ function collectFiles() {
     );
   });
 
-  return { issues, files };
+  return { issues, topics, files };
 }
 
-const { issues, files } = collectFiles();
+const { issues, topics, files } = collectFiles();
 
 if (CHECK) {
   const stale = [];
@@ -993,7 +1356,7 @@ if (CHECK) {
     fs.writeFileSync(abs, content);
   }
   fs.mkdirSync(path.dirname(REPORT), { recursive: true });
-  fs.writeFileSync(REPORT, renderReport(issues));
+  fs.writeFileSync(REPORT, renderReport(issues, topics));
   console.log(
     `gen-archive: wrote ${files.size} files to /archive ` +
       `(${issues.length} issues, ${issues[0].year}–${issues[issues.length - 1].year}).`

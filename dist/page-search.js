@@ -71,6 +71,11 @@ var SEARCH_PAGES = [{
   dek: "The park's own bulletin, Yosemite Nature Notes: 511 issues transcribed from the scans, with year indexes.",
   kind: "Archive"
 }, {
+  path: "/archive/topics/",
+  title: "Nature Notes archive topics",
+  dek: "Black bears, mule deer, giant sequoias, glaciers, Tuolumne Meadows and the water ouzel in the park's own bulletin, 1922 to 1954: short quoted passages, each linked to its issue.",
+  kind: "Archive"
+}, {
   route: "tioga-opening",
   title: "The Tioga Road opening",
   dek: "When the high country actually opens, how the plowing works, and what is worth doing the first week it is passable.",
@@ -109,6 +114,11 @@ var SEARCH_PAGES = [{
   route: "are-yosemite-waterfalls-running",
   title: "Are Yosemite's waterfalls running?",
   dek: "The live Merced River reading below Vernal and Nevada Falls, and when each major fall usually peaks and goes dry.",
+  kind: "Page"
+}, {
+  route: "yosemite-smoke-today",
+  title: "Yosemite smoke today",
+  dek: "The latest AirNow air-quality reading near Yosemite Valley, the official smoke sources to check, and what each AQI band means for a day in the park.",
   kind: "Page"
 }, {
   route: "half-dome-lottery",

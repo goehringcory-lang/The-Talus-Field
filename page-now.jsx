@@ -35,9 +35,9 @@
 //
 // BULLETIN_URL carries its own cache-buster, like POINTS_URL on the map page:
 // bump the ?v= when bulletin.json changes, or readers behind the CDN keep the
-// last edition. HOME_BULLETIN_URL (page-home.jsx) and TIOGA_BULLETIN_URL
-// (page-tioga-opening.jsx) share the number; check-asset-freshness.mjs fails
-// the build if the three disagree.
+// last edition. TIOGA_BULLETIN_URL (page-tioga-opening.jsx) and
+// SMOKE_BULLETIN_URL (page-smoke-today.jsx) share the number;
+// check-asset-freshness.mjs fails the build if the three disagree.
 // =============================================================================
 const BULLETIN_URL = "/bulletin.json?v=23";
 

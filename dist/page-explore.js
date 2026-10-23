@@ -126,6 +126,10 @@ function ExplorePage({
     route: "are-yosemite-waterfalls-running",
     name: "Are the waterfalls running?",
     note: "The live Merced River gauge below Vernal and Nevada Falls, and when each major fall usually peaks, thins and goes dry."
+  }, {
+    route: "yosemite-smoke-today",
+    name: "Smoke today",
+    note: "The latest AirNow air-quality reading near Yosemite Valley, the official smoke sources, and what each AQI band means for a day in the park."
   }];
   var seasons = [{
     route: "dates",
@@ -163,6 +167,11 @@ function ExplorePage({
     name: "The Nature Notes archive",
     count: "511 issues",
     note: "The park's own bulletin, Yosemite Nature Notes, transcribed from the scans: the issues from 1922 to 2003, roughly 1.87 million words, with year indexes and its own search-engine sitemap."
+  }, {
+    href: "/archive/topics/",
+    name: "Nature Notes by topic",
+    count: "6 topics",
+    note: "Black bears, mule deer, giant sequoias, glaciers, Tuolumne Meadows and the water ouzel, gathered from the bulletin's pages, 1922 to 1954: short passages quoted as printed, each linked to its issue, and the headlines it ran on each."
   }, {
     route: "films",
     name: "Films",

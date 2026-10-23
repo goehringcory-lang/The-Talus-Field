@@ -466,7 +466,9 @@ function ConditionsPage({ go }) {
             adjust to what is open. Road by road, where to check each one and how it usually behaves through the year:{" "}
             <a href="/road-status" onClick={(e) => { e.preventDefault(); go("road-status"); }}>is it open?</a>{" "}
             The live Merced River gauge below Vernal and Nevada Falls, and each fall's usual season:{" "}
-            <a href="/are-yosemite-waterfalls-running" onClick={(e) => { e.preventDefault(); go("are-yosemite-waterfalls-running"); }}>are the waterfalls running?</a>
+            <a href="/are-yosemite-waterfalls-running" onClick={(e) => { e.preventDefault(); go("are-yosemite-waterfalls-running"); }}>are the waterfalls running?</a>{" "}
+            The air near the Valley, and what the number means for a hike:{" "}
+            <a href="/yosemite-smoke-today" onClick={(e) => { e.preventDefault(); go("yosemite-smoke-today"); }}>smoke today</a>.
           </p>
         </section>
       </div>
