@@ -1,0 +1,163 @@
+{
+  "_comment": "The Nature Notes topic hubs (/archive/topics/), read by scripts/gen-archive.mjs and checked by scripts/check-archive-citations.mjs. Every quote is copied verbatim from one paragraph of the issue named by `issue` (its archive slug), spelling and punctuation as printed: the generator refuses to build a hub whose quote it cannot find in that issue, and the citation check re-reads the published page. No ellipses, no splicing, no paraphrase. `headlines` is a regex over the bulletin's capitalised headlines from the hub's years; `exclude` drops matches that are not about the topic (exact headline text after the masthead prefix is stripped). `headlineNoun` finishes the lede's sentence 'the bulletin's own headlines on ...', so it must describe what the filtered list actually holds. `reads` are onward links to the site's own pages.",
+  "years": [1922, 1954],
+  "topics": [
+    {
+      "slug": "black-bears",
+      "name": "Black bears",
+      "title": "Black bears in Yosemite Nature Notes",
+      "headlineNoun": "the park's bears",
+      "headlines": "\\bBEARS?\\b|\\bBRUIN\\b",
+      "exclude": [
+        "TREES BEAR A STONY LOAD",
+        "THE DEATH OF TWO GRIZZLY BEARS",
+        "THE \"PANDA BEAR\" OF THE SQUIRREL WORLD"
+      ],
+      "reads": [
+        ["/articles/yosemite-bears-safety-guide", "Yosemite bear safety", "What to do when you see a bear"],
+        ["/articles/is-bear-spray-allowed-in-yosemite", "Is bear spray allowed in Yosemite?", "No, and here is why"],
+        ["/articles/yosemite-wildlife-viewing-guide", "Yosemite wildlife", "What lives here, and where to see it"]
+      ],
+      "quotes": [
+        { "issue": "vol-1-no-1", "text": "Many visitors to the Bear Pits have been well rewarded this year. At dusk or after dark is the time when they are usually seen, but this season they are even to be seen in broad daylight and are becoming very tame" },
+        { "issue": "vol-2-no-12", "text": "Bears have been so numerous this past summer that few people have left the park without seeing a real live bear." },
+        { "issue": "vol-2-no-14", "text": "Old timers in the Yosemite declare that there has never been a time when bears were so numerous in the Valley." },
+        { "issue": "vol-4-no-1", "text": "For example, few records have been made of observations on hibernating bears in a truly wild state; at any rate, such records pertaining to certain individual animals, with accurate dates, have been difficult to obtain." },
+        { "issue": "vol-7-no-2", "text": "Our most recent game laws have legalized the slaughter of Black Bears the year round. Now let all loyal Californians unite their voices in one insistent demand that the last of our bears be given adequate protection." },
+        { "issue": "vol-17-no-11", "text": "The trapping of park bears in a humane manner is accomplished through the use of a large, galvanized-iron cylinder, mounted on trailer wheels." },
+        { "issue": "vol-18-no-10", "text": "A female American Black Bear (Ursus Americanus) gave birth to four cubs." },
+        { "issue": "vol-21-no-8", "text": "During the summer of 1939, while on duty at Glacier Point, I had an exceptionally fine opportunity to observe these animals, for during that season the garbage truck hauled its load to the disposal pit each morning between 7 and 8 a.m." },
+        { "issue": "vol-31-no-5", "text": "It has been estimated that Yosemite Valley is able to support only about three or four bears on their natural forage." },
+        { "issue": "vol-32-no-8", "text": "Bear trees are those whose trunks exhibit claw marks; these are usually long, deep, and vertical, but occasionally may be diagonal or horizontal." }
+      ]
+    },
+    {
+      "slug": "mule-deer",
+      "name": "Mule deer",
+      "title": "Mule deer in Yosemite Nature Notes",
+      "headlineNoun": "deer and fawns",
+      "headlines": "\\bDEER\\b|\\bFAWNS?\\b",
+      "exclude": [
+        "S. FAWN",
+        "FAWNS ESCAPE EAGLE'S ATTACK"
+      ],
+      "reads": [
+        ["/articles/yosemite-wildlife-viewing-guide", "Yosemite wildlife", "The Valley's deer, coyotes and bobcats, and when to look"],
+        ["/articles/mariposa-grove-how-to-visit", "Mariposa Grove", "How to visit Yosemite's giant sequoias"]
+      ],
+      "quotes": [
+        { "issue": "vol-1-no-2", "text": "Mule deer are often to be seen near the public camps. A fawn, lost from its mother, was recently taken to the Rangers' Clubhouse where it has found a good home. It should be remembered that this is the only species of deer found in the Park." },
+        { "issue": "vol-2-no-10", "text": "The apple orchards of Yosemite furnish an attraction for California's finest game mammal, the mule deer." },
+        { "issue": "vol-4-no-9", "text": "We urge that all baby deer be left where found. The seeming desertion on the part of the mother is but her natural way of awaiting the time when the fawns have gained sufficient strength to follow her about." },
+        { "issue": "vol-5-no-7", "text": "On the morning trip twenty-seven deer were counted, among them a doe and two fawns, not more than two or three days old; very few bucks were seen. On the return trip, however, between 6 and 8 in the evening, fifty-four were counted and among them many fine antlered bucks." },
+        { "issue": "vol-11-no-11", "text": "I went out after water at 5:30 a.m. and saw a freak buck come in to the feeding pan that we keep for our flock of seven pet deer." },
+        { "issue": "vol-12-no-3", "text": "Deer tracks were most numerous, being especially abundant on the warm north canyon wall." },
+        { "issue": "vol-21-no-9", "text": "Along the streams the California Dogwood and the California Filbert (Hazel nut) have been heavily browsed as high as the deer can reach, in fact many of the plants have been killed by over-browsing." },
+        { "issue": "vol-22-no-3", "text": "The breeding season in Yosemite generally occurs in December and January, following which the antlers are shed. The majority of bucks drop their antlers in late January or February, although individuals have at times been observed still having antlers as late as mid-March." }
+      ]
+    },
+    {
+      "slug": "giant-sequoias",
+      "name": "Giant sequoias",
+      "title": "Giant sequoias in Yosemite Nature Notes",
+      "headlineNoun": "the Big Trees",
+      "headlines": "\\bSEQUOIAS?\\b|\\bBIG TREES?\\b|\\bGRIZZLY GIANT\\b",
+      "exclude": [
+        "BIG TREES. SANTA WHAT BECOMES OF SONG GRUZ.",
+        "JOHN H. WEGNER, NEW CHIEF RANGER—SEQUOIA-KINGS CANYON NATIONAL PARKS",
+        "SEQUOIA MUSEUM FURNITURE",
+        "ARROW INDICATES WHERE NEST WAS LOCATED IN CAVITY OF LIMB. A WINDFALL FROM THE GRIZZLY GIANT"
+      ],
+      "reads": [
+        ["/articles/mariposa-grove-how-to-visit", "Mariposa Grove", "How to visit Yosemite's giant sequoias"],
+        ["/articles/giant-sequoias-fire-adaptation", "Why giant sequoias thrive where other trees burn", "The bark, the cones and the fire"]
+      ],
+      "quotes": [
+        { "issue": "vol-1-no-1", "text": "The cross section of a wind felled Giant Sequoia which is on exhibition at the Museum is daily proving of great interest to visitors. The section is 9 feet in diameter. It was cut 40 feet from the base of a 14-foot tree." },
+        { "issue": "vol-3-no-9", "text": "Both have scale like leaves, but on the Incense Cedar these are on flattened branchlets, while on the Big Tree the branchlets are cylindrical." },
+        { "issue": "vol-10-no-3", "text": "Visitors to Mariposa Grove next summer will see another fallen sequoia, which was blown down during the severe windstorm of November 22, 1930." },
+        { "issue": "vol-12-no-3", "text": "It is an accepted and proven fact that big trees are unusually resistant to forest fires, yet nearly every sequoia in the Mariposa Grove has been severely scarred by fire." },
+        { "issue": "vol-17-no-9", "text": "At 7:00 p.m. on April 7, 1935, two days after a wind storm, the two hundred thirty-three foot Utah tree fell through the calm air of the Mariposa Grove to the forest floor. Twelve hundred days later its fallen trunk waved a small banner of green foliage as a last sign of its life processes." },
+        { "issue": "vol-20-no-2", "text": "On June 1, 1940, a heavy cloud mass moved down from the high Sierra crest, and filled the Mariposa Grove with a dense fog (pea soup) that made driving difficult and hazardous." },
+        { "issue": "vol-23-no-9", "text": "In 1935 a careful study was made by engineers and the lean of the Grizzly Giant was accurately determined to be approximately 18 feet." },
+        { "issue": "vol-26-no-8", "text": "In one hour he had cut down 284 cones, making a total of 376 cones in about an hour and a half." },
+        { "issue": "vol-28-no-1", "text": "It would take weeks of burning, fed by fallen branches of other trees, for a fire to penetrate the great thickness of its asbestos-like bark and reach the living tissues beneath." }
+      ]
+    },
+    {
+      "slug": "glaciers",
+      "name": "Glaciers",
+      "title": "Yosemite's glaciers in Yosemite Nature Notes",
+      "headlineNoun": "glaciers",
+      "headlines": "\\bGLACIER(?!\\s+POINT)",
+      "exclude": [
+        "LYELL GLACIER GOLDEN EAGLE FLIGHT"
+      ],
+      "reads": [
+        ["/articles/yosemite-glaciers-climate", "Yosemite's disappearing glaciers", "Lyell, Maclure and what the ice records"],
+        ["/articles/tuolumne-meadows-in-a-day", "Tuolumne Meadows in a day", "A high-country plan"]
+      ],
+      "quotes": [
+        { "issue": "vol-3-no-12", "text": "On the north side of Mt. Lyell there is to be seen a cirque yet occupied by a living glacier, the snout of the once mighty ice tongue that played a part in excavating the Hetch Hetchy." },
+        { "issue": "vol-11-no-1", "text": "Scarcely a half-hour goes by during the day that one does not hear the rumble and crash of falling rocks either from the cliffs flanking the glacier on three sides, or from the moraines themselves." },
+        { "issue": "vol-14-no-12", "text": "From data so far accumulated we believe that the maximum movement of the Lyell glacier is not over seven feet per year, or one-fourth inch per day average." },
+        { "issue": "vol-18-no-12", "text": "Results indicate that all these glaciers are now in a period of recession." },
+        { "issue": "vol-21-no-11", "text": "A 98-foot recession has been recorded for the Maclure Glacier from 1932 to 1939, and the east lobe of the Conness Glacier retreated 331 feet during the same seven-year period." },
+        { "issue": "vol-26-no-10", "text": "However, it is generally agreed by those who visited the glaciers this summer that they reached their lowest ebb this year." },
+        { "issue": "vol-28-no-11", "text": "The effect of this light snow in the high country was very obviously reflected in the condition of the glaciers during the summer of 1949." },
+        { "issue": "vol-31-no-2", "text": "It was obvious that Dana Glacier had suffered severe reduction in volume since the last previous survey." },
+        { "issue": "vol-33-no-11", "text": "As the park naturalists of the 1953 glacier-survey field party were measuring the surface of Lyell's west lobe on the afternoon of September 28, their attention was drawn to a large number of shallow, worm-shaped grooves in the thin crust of 2-day-old snow." }
+      ]
+    },
+    {
+      "slug": "tuolumne-meadows",
+      "name": "Tuolumne Meadows",
+      "title": "Tuolumne Meadows in Yosemite Nature Notes",
+      "headlineNoun": "Tuolumne",
+      "headlines": "\\bTUOLUMNE\\b",
+      "exclude": [
+        "HETCH HETCHY, THE TUOLUMNE'S YOSEMITE"
+      ],
+      "reads": [
+        ["/articles/tuolumne-meadows-in-a-day", "Tuolumne Meadows in a day", "A high-country plan"],
+        ["/articles/cathedral-lakes-day-hike", "Cathedral Lakes", "The high-country day worth the drive"],
+        ["/is-tioga-road-open", "Is Tioga Road open?", "Where to check, and the road's usual season"]
+      ],
+      "quotes": [
+        { "issue": "vol-1-no-3", "text": "Last year one was even seen in the Sierra Club Camp near Soda Springs and this year one has been observed just above Tuolumne Meadows Lodge. This rabbit turns white during the winter and develops snow shoes like the snowshoe rabbit." },
+        { "issue": "vol-3-no-13", "text": "In that region around Tuolumne Meadows, where the type of rock known as Cathedral Granite abounds, the planing action of the ice has produced remarkable mosaics." },
+        { "issue": "vol-4-no-12", "text": "A further venture has been made in stationing a nature guide in Tuolumne Meadows. Through the cooperation of the Sierra Club this added member of the educational staff is salaried and presented with the picturesque Parsons Memorial Lodge as museum quarters." },
+        { "issue": "vol-6-no-3", "text": "At Tenaya lake eight and a half feet of snow was found. On the summit above Cathedral creek the gauge indicated nine feet; at Tuolumne Meadows, five feet, and at Tioga pass, one and a half feet." },
+        { "issue": "vol-11-no-12", "text": "This would indicate a hibernation period of eight months for this squirrel for last winter at Tuolumne Meadows, at 8600 feet elevation." },
+        { "issue": "vol-19-no-3", "text": "However, the summer of 1939, this species proved to be quite common in the vicinity of Tuolumne Meadows. At Soda Springs I observed a pair feeding upon lodgepole cones." },
+        { "issue": "vol-25-no-11", "text": "Shortly before sundown on July 30, I happened upon three of these weasels playing in front of the Tuolumne Meadows Ranger Station." },
+        { "issue": "vol-26-no-6", "text": "Following the long, snowy, high Sierran winter, the Tioga Road is ordinarily not open to public travel until about the middle or latter part of June. The opening on May 24th during the current season was therefore one of only four May openings during nineteen consecutive years (1928-1947)." },
+        { "issue": "vol-29-no-7", "text": "But least of any was the naturalist himself prepared to meet the sky pilot flourishing in abundance on the very summit of the mountain at 13,050 feet altitude." }
+      ]
+    },
+    {
+      "slug": "water-ouzel",
+      "name": "The water ouzel",
+      "title": "The water ouzel in Yosemite Nature Notes",
+      "headlineNoun": "the water ouzel",
+      "headlines": "\\bOUZELS?\\b|\\bDIPPER\\b",
+      "exclude": [],
+      "reads": [
+        ["/articles/water-ouzels-waterfalls", "Water ouzels", "How the American dipper lives in a waterfall"],
+        ["/films", "Films", "The Park Service's Yosemite Nature Notes film series"]
+      ],
+      "quotes": [
+        { "issue": "vol-1-no-1", "text": "The Nature Guides have been leading crowds every Monday morning to see a Water Ouzel's nest which is located on Tenaya Creek about forty yards beyond the Iron Spring." },
+        { "issue": "vol-2-no-1", "text": "The pair of water ouzels which have annually built their nest on Tenaya Creek, affording many visitors a chance to see this interesting species, have again remodeled the nest and set up housekeeping." },
+        { "issue": "vol-3-no-7", "text": "With feathers fluffed out he poured forth a wonderful varied song of notes and trills almost to be compared to the sounds of rushing water. To describe this varied song is hopeless." },
+        { "issue": "vol-5-no-5", "text": "Although the bird is without webbed feet it has thick, oily plumage and is expert at swimming and diving beneath the surface of the water. Caddis fly larvae, secured from the bottom of a stream, form a basic food supply." },
+        { "issue": "vol-5-no-6", "text": "Groups of as high as eighty people have followed a nature guide to the site and, seated upon the bank of the stream, have watched the parent ouzels feed their young." },
+        { "issue": "vol-10-no-8", "text": "One was observed, however, by the stream which empties into Merced lake, flying into the air as high as 40 feet and snapping at insects in gathering food to feed a youngster nearby" },
+        { "issue": "vol-11-no-6", "text": "I discovered a practically completed nest of water ouzels at El Portal, February 29 this year, which is certainly a very early record. This is the third year of occupancy of this same nest at this location." },
+        { "issue": "vol-17-no-8", "text": "From El Portal to Happy Isles a distance of about twenty miles along the Merced River there are always to be found about the same number of nesting pairs." },
+        { "issue": "vol-20-no-8", "text": "The ouzel's nest on Tenaya Creek was washed away by the downpour, and flood waters coming down the Merced River swept away the ouzel nest under the Sentinel Bridge." },
+        { "issue": "vol-31-no-1", "text": "When a dipper emerges from the stream he alights on a rock and bobs vigorously before flying off, or upon alighting from a flight will do so, and the spotted sandpiper does the same." }
+      ]
+    }
+  ]
+}

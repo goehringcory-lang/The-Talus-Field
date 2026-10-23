@@ -52,6 +52,42 @@
 .arc-list__vol { font: 600 8px var(--sans); letter-spacing: 1.7px; text-transform: uppercase; color: var(--hp-accent); }
 .arc-list__heads { margin: 8px 0 0; font-size: 12px; color: var(--hp-muted); line-height: 1.7; }
 
+/* Topic hubs: /firefall's fact row and jump list, in archive type ---------- */
+.arc-topic { padding-top: 40px; }
+.arc-topic__head { border-bottom: 1px solid var(--hp-rule); padding-bottom: 32px; }
+.arc-facts { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); margin: 0; border-bottom: 1px solid var(--hp-rule); }
+.arc-facts > div { padding: 20px 24px 20px 0; }
+.arc-facts > div + div { padding-left: 24px; border-left: 1px solid var(--hp-rule); }
+.arc-facts dt { font: 600 9px var(--sans); letter-spacing: 1.6px; text-transform: uppercase; color: var(--hp-muted); }
+.arc-facts dd { margin: 6px 0 0; font: 400 26px/1.1 var(--serif); color: var(--hp-ink); }
+.arc-jump { display: flex; flex-wrap: wrap; gap: 8px 24px; padding: 16px 0; border-bottom: 1px solid var(--hp-rule); font: 600 11px var(--sans); }
+.arc-jump a { border-bottom: 1px solid #a7afa4; padding-bottom: 3px; }
+.arc-jump a:hover { color: var(--hp-accent); border-color: var(--hp-accent); }
+.arc-quotes, .arc-heads, .arc-reads, .arc-topiccards { list-style: none; margin: 0; padding: 0; max-width: 680px; }
+.arc-quote { border-top: 1px solid var(--hp-rule); padding: 24px 0; }
+.arc-quote blockquote, .arc-topiccard__q { margin: 0; padding-left: 18px; border-left: 2px solid var(--hp-accent); }
+.arc-quote blockquote p, .arc-topiccard__q p { margin: 0; font: 400 21px/1.45 var(--serif); color: var(--hp-ink); }
+.arc-quote__src { margin: 10px 0 0 20px; font-size: 11px; color: var(--hp-muted); }
+.arc-quote__src a { color: var(--hp-ink); border-bottom: 1px solid #a7afa4; }
+.arc-heads li { border-top: 1px solid var(--hp-rule); }
+.arc-heads a { display: flex; gap: 16px; align-items: baseline; flex-wrap: wrap; padding: 12px 0; }
+.arc-heads a:hover .arc-heads__h { color: var(--hp-accent); }
+.arc-heads__date { flex: 0 0 150px; font: 600 9px var(--sans); letter-spacing: 1.4px; text-transform: uppercase; color: var(--hp-accent); }
+.arc-heads__h { flex: 1; min-width: 0; font: 400 18px/1.3 var(--serif); }
+.arc-reads li { border-top: 1px solid var(--hp-rule); }
+.arc-reads a { display: flex; flex-direction: column; padding: 14px 0; }
+.arc-reads__label { font: 400 21px/1.2 var(--serif); }
+.arc-reads a:hover .arc-reads__label { color: var(--hp-accent); }
+.arc-reads__note { font-size: 12px; color: var(--hp-muted); margin-top: 4px; }
+.arc-topic__h3 { font: 600 9px var(--sans); letter-spacing: 1.7px; text-transform: uppercase; color: var(--hp-accent); margin: 36px 0 12px; }
+.arc-topiccards { margin-top: 32px; max-width: none; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); column-gap: 48px; }
+.arc-topiccard { border-top: 1px solid var(--hp-rule); padding: 24px 0 28px; }
+.arc-topiccard__h { font: 400 32px/1.05 var(--serif); letter-spacing: -.6px; margin: 0 0 6px; }
+.arc-topiccard__h a:hover { color: var(--hp-accent); }
+.arc-topiccard__meta { font: 600 8px var(--sans); letter-spacing: 1.7px; text-transform: uppercase; color: var(--hp-muted); margin: 0 0 16px; }
+.arc-topiccard__q p { font-size: 18px; }
+.arc-bytopic__note { max-width: 680px; font-size: 13px; line-height: 1.85; color: var(--hp-muted); }
+
 /* Issue ------------------------------------------------------------------- */
 .arc-issue__head { border-bottom: 1px solid var(--hp-rule); padding-bottom: 32px; }
 .arc-meta { font-size: 11px; color: var(--hp-muted); margin: 6px 0 0; }
@@ -106,6 +142,12 @@
   .arc-title { font-size: 44px; letter-spacing: -1px; }
   .arc-h2 { font-size: 32px; }
   .arc-list { grid-template-columns: 1fr; }
+  .arc-facts { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .arc-facts > div:nth-child(3) { padding-left: 0; border-left: 0; }
+  .arc-facts > div:nth-child(n + 3) { border-top: 1px solid var(--hp-rule); }
+  .arc-topiccards { grid-template-columns: 1fr; }
+  .arc-heads__date { flex-basis: 100%; }
+  .arc-quote blockquote p { font-size: 19px; }
   .arc-toc ol { columns: 1; }
   .arc-prose { font-size: 16px; }
   .arc-ask { padding: 24px 22px; }

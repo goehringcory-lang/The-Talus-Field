@@ -98,10 +98,64 @@ if (!fs.existsSync(ARCHIVE_DIR)) {
   process.exit(1);
 }
 
+// --- The topic hubs (/archive/topics/) --------------------------------------
+// Each quote in scripts/data/nature-notes-topics.json must still be printed,
+// word for word, on the published page of the issue it names, and the hub must
+// carry it and link to that issue. gen-archive.mjs refuses to build a hub whose
+// quote it cannot find in the parsed issue; this re-reads what actually ships,
+// independently of the generator, so a transcription fix that changes a quoted
+// passage, or a hub page left stale on disk, fails here.
+const TOPICS_FILE = path.join(ROOT, "scripts/data/nature-notes-topics.json");
+const esc = (s) =>
+  String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
+
+// Issue slug -> /archive/<year>/<slug>/ on disk.
+const issueDirs = new Map();
+for (const year of fs.readdirSync(ARCHIVE_DIR)) {
+  if (!/^\d{4}$/.test(year)) continue;
+  for (const slug of fs.readdirSync(path.join(ARCHIVE_DIR, year))) {
+    if (/^vol-\d+-no-\d+$/.test(slug)) issueDirs.set(slug, `/archive/${year}/${slug}/`);
+  }
+}
+
+let quotes = 0;
+const { topics = [] } = JSON.parse(fs.readFileSync(TOPICS_FILE, "utf8"));
+if (!topics.length) errors.push("nature-notes-topics.json lists no topics");
+if (!fs.existsSync(path.join(ARCHIVE_DIR, "topics", "index.html"))) {
+  errors.push("/archive/topics/ does not exist on disk");
+}
+for (const topic of topics) {
+  const hubFile = path.join(ARCHIVE_DIR, "topics", topic.slug, "index.html");
+  if (!fs.existsSync(hubFile)) {
+    errors.push(`topic ${topic.slug}: /archive/topics/${topic.slug}/ does not exist`);
+    continue;
+  }
+  const hub = fs.readFileSync(hubFile, "utf8");
+  for (const q of topic.quotes) {
+    quotes++;
+    const where = issueDirs.get(q.issue);
+    const label = `topic ${topic.slug}, ${q.issue}`;
+    if (!where) {
+      errors.push(`${label}: no archive page for that issue`);
+      continue;
+    }
+    const text = esc(String(q.text).trim());
+    const issueHtml = fs.readFileSync(path.join(ROOT, where.slice(1), "index.html"), "utf8");
+    if (!issueHtml.includes(text)) {
+      errors.push(`${label}: quote is not printed on ${where}: "${q.text.slice(0, 70)}…"`);
+    }
+    if (!hub.includes(text)) errors.push(`${label}: quote is missing from the hub page`);
+    if (!hub.includes(`href="${where}`)) errors.push(`${label}: the hub does not link to ${where}`);
+  }
+}
+
 if (errors.length) {
-  console.error(`check-archive-citations: ${errors.length} bad citation(s) of ${checked}:\n`);
+  console.error(`check-archive-citations: ${errors.length} bad citation(s) of ${checked + quotes}:\n`);
   for (const e of errors) console.error(`  ${e}`);
   process.exit(1);
 }
 
-console.log(`check-archive-citations: ${checked} Nature Notes citation(s) resolve.`);
+console.log(
+  `check-archive-citations: ${checked} Nature Notes citation(s) resolve; ` +
+    `${quotes} topic-hub quote(s) are verbatim on their issue pages.`,
+);
