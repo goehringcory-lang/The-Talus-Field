@@ -34,22 +34,22 @@
     "four-mile-trailhead": "2026-10-16",
     "yosemite-village": "2026-10-16",
     "ahwahnee-hotel": "2026-10-16",
-    "sentinel-bridge-sunset": "2026-09-24",
-    "curry-village": "2026-09-24",
-    "curry-village-pizza": "2026-09-24",
+    "sentinel-bridge-sunset": "2026-10-23",
+    "curry-village": "2026-10-23",
+    "curry-village-pizza": "2026-10-23",
     "artist-point": "2026-09-24",
     "yosemite-point": "2026-09-24",
     "eagle-peak": "2026-09-24",
     "snow-creek-trail": "2026-09-24",
     "three-chutes-falls": "2026-09-24",
     "valley-ephemeral-falls": "2026-09-24",
-    "glacier-point-road-drive": "2026-09-24",
-    "sentinel-dome": "2026-09-24",
-    "taft-point": "2026-09-24",
-    "washburn-point": "2026-09-24",
-    "glacier-point": "2026-09-24",
-    "mariposa-grove": "2026-09-24",
-    "wawona-hotel-history-center": "2026-09-24",
+    "glacier-point-road-drive": "2026-10-23",
+    "sentinel-dome": "2026-10-23",
+    "taft-point": "2026-10-23",
+    "washburn-point": "2026-10-23",
+    "glacier-point": "2026-10-23",
+    "mariposa-grove": "2026-10-23",
+    "wawona-hotel-history-center": "2026-10-23",
     "crocker-stanford-points": "2026-09-24",
     "mcgurk-meadow": "2026-09-24",
     "bridalveil-creek-trail": "2026-09-24",
@@ -156,5 +156,18 @@
     "ansel-adams-camera-walk": "2026-10-16",
     "happy-isles-art-class": "2026-10-16"
   },
-  "queue": []
+  "queue": [
+    {
+      "id": "glacier-point-road-drive",
+      "file": "stops.ts",
+      "added": "2026-10-23",
+      "note": "Road miles in the body (Pothole Meadows mile 10, Sentinel Dome / Taft Point trailhead mile 13.6, Washburn Point mile 15.5) have no primary source: the NPS Glacier Point, Glacier Point Road hikes and trailhead pages give none. Hedged as approximate; settle against an NPS or FHWA road log, and the same 13.6 in hikes.ts trailhead fields and amenities."
+    },
+    {
+      "id": "taft-point",
+      "file": "stops.ts",
+      "added": "2026-10-23",
+      "note": "The railing at the tip and the Fissures' 2,000-foot depth rest on no page that loaded: nps.gov/yose/planyourvisit/taftpointtrail.htm and sentineldometrail.htm read 'currently being worked on' on 2026-10-23. Re-read when they return."
+    }
+  ]
 }

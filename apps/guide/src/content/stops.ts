@@ -888,7 +888,7 @@ const seed: StopInput[] = [
     teaser:
       'Sixteen miles from Chinquapin to Glacier Point, and the road is the experience: Pothole Meadows, the Sentinel Dome lot, Washburn Point. Give it three or four hours.',
     body:
-      'Sixteen miles from the Chinquapin junction to Glacier Point. Plan three to four hours for the round trip with stops, not one. The road is closed November through May (sometimes longer); in winter, swap this region for a Hetch Hetchy day.\n\nStops on the way: Pothole Meadows (mile 10) for early-summer wildflowers, the Sentinel Dome / Taft Point trailhead (mile 13.6), and Washburn Point (mile 15.5), whose view of Half Dome and of Vernal and Nevada Falls is arguably better than Glacier Point\'s.',
+      'Sixteen miles from the Chinquapin junction to Glacier Point. Plan three to four hours for the round trip with stops, not one. The road is typically open late May through October or November, depending on snow; when it is closed, swap this region for a Hetch Hetchy day.\n\nStops on the way, at approximate road miles from the junction: Pothole Meadows (mile 10) for early-summer wildflowers, the Sentinel Dome / Taft Point trailhead (mile 13.6), and Washburn Point (mile 15.5), whose view of Half Dome and of Vernal and Nevada Falls is arguably better than Glacier Point\'s.',
     photos: [{ src: '/photos/mcgurk-meadow.jpg', caption: 'Lower McGurk Meadow, one of the Glacier Point Road meadows the drive passes.' }],
     history: {
       note:
