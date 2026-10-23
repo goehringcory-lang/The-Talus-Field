@@ -236,6 +236,12 @@ function ExplorePage({ go }) {
       note: "The park's own bulletin, Yosemite Nature Notes, transcribed from the scans: the issues from 1922 to 2003, roughly 1.87 million words, with year indexes and its own search-engine sitemap.",
     },
     {
+      href: "/archive/topics/",
+      name: "Nature Notes by topic",
+      count: "6 topics",
+      note: "Black bears, mule deer, giant sequoias, glaciers, Tuolumne Meadows and the water ouzel, gathered from the bulletin's pages, 1922 to 1954: short passages quoted as printed, each linked to its issue, and the headlines it ran on each.",
+    },
+    {
       route: "films",
       name: "Films",
       count: films.length ? plural(films.length, "film", "films") : null,

@@ -71,6 +71,11 @@ var SEARCH_PAGES = [{
   dek: "The park's own bulletin, Yosemite Nature Notes: 511 issues transcribed from the scans, with year indexes.",
   kind: "Archive"
 }, {
+  path: "/archive/topics/",
+  title: "Nature Notes archive topics",
+  dek: "Black bears, mule deer, giant sequoias, glaciers, Tuolumne Meadows and the water ouzel in the park's own bulletin, 1922 to 1954: short quoted passages, each linked to its issue.",
+  kind: "Archive"
+}, {
   route: "tioga-opening",
   title: "The Tioga Road opening",
   dek: "When the high country actually opens, how the plowing works, and what is worth doing the first week it is passable.",
