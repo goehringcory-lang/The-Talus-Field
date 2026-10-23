@@ -10,7 +10,8 @@ import { PHOTO_CREDITS, formatCredit } from '../content/photoCredits'
 import Plate from '../components/Plate'
 import ResponsivePhoto from '../components/ResponsivePhoto'
 import Button from '../components/ui/Button'
-import { GUIDE_BUY_URL, useGuidePrice } from '../lib/storefront'
+import { GUIDE_BUY_URL, buyLinkProps, useGuidePrice } from '../lib/storefront'
+import { UNLOCK_INTENT_URL, isAndroidApp } from '../lib/androidApp'
 
 type LoginResponse = { jwt: string }
 
@@ -213,7 +214,15 @@ export default function Login() {
               {/* The renewal pitch only makes sense for a lapsed purchase. An
                   operator session's shorter JWT expiring lands here too, so
                   fall back to neutral copy unless the last /me said buyer. */}
-              {readCachedMe()?.kind === 'buyer' ? (
+              {readCachedMe()?.kind === 'buyer' && isAndroidApp() ? (
+                // The Play Store build: the emailed renewal links (Stripe) are
+                // not offered in the app, and owning the app opens the guide.
+                <>
+                  Your website access ended {formatEndedDate(accessEndedAt)}. This app opens
+                  the guide for as long as you own it on Google Play: tap{' '}
+                  <a href={UNLOCK_INTENT_URL}>Open the guide</a>.
+                </>
+              ) : readCachedMe()?.kind === 'buyer' ? (
                 <>
                   Your access period ended {formatEndedDate(accessEndedAt)}. The cheapest way
                   back is the one-click renewal link in the reminder emails we sent as the
@@ -231,6 +240,20 @@ export default function Login() {
                 <>Your session ended {formatEndedDate(accessEndedAt)}. Sign in again to continue.</>
               )}
             </p>
+          </div>
+        )}
+
+        {/* The Play Store build: owning the app is the purchase, so the
+            first thing offered is the Google Play check (lib/androidApp.ts);
+            the code form below stays for website buyers. */}
+        {isAndroidApp() && (
+          <div className="card" style={{ marginBottom: 28 }}>
+            <p className="card__note" style={{ marginTop: 0 }}>
+              Bought the app on Google Play? It opens the guide for as long as you own it.
+            </p>
+            <a className="btn" href={UNLOCK_INTENT_URL}>
+              Open the guide
+            </a>
           </div>
         )}
 
@@ -314,7 +337,7 @@ export default function Login() {
             <Button variant="ghost" to="/preview">
               Read the free sample →
             </Button>
-            <Button variant="quiet" href={GUIDE_BUY_URL} external>
+            <Button variant="quiet" {...buyLinkProps(GUIDE_BUY_URL)}>
               Get the guide
             </Button>
           </div>

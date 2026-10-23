@@ -113,6 +113,12 @@ GUIDE_PRICE_CENTS = "399"
 # open to every buyer, every month.
 GUIDE_RENEWAL_PRICE_CENTS = "249"
 GUIDE_PRODUCT_TAG = "field_guide_2026"
+# The Android app on Google Play (FieldGuideAndroid, a Trusted Web Activity
+# over this PWA) is a paid download: owning it is the purchase. Its installs
+# are unlocked by /api/play/unlock from a Play Integrity verdict naming this
+# package; the route also needs the PLAY_SERVICE_ACCOUNT_JSON secret and 503s
+# without it.
+PLAY_PACKAGE_NAME = "com.thetalusfieldjournal.guide"
 # Shared promo codes for POST /api/redeem (the newsletter's free-access door):
 # "CODE:DAYS", comma-separated for several at once. Each code grants a normal
 # buyer record for DAYS days, one redemption per (code, email) ever. Codes are

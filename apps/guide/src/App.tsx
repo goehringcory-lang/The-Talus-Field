@@ -13,6 +13,8 @@ import ScrollToTop from './components/ScrollToTop'
 const Home = lazy(() => import('./routes/Home'))
 const Map = lazy(() => import('./routes/Map'))
 const Account = lazy(() => import('./routes/Account'))
+// The Android app's landing after Google Play vouches for it (lib/androidApp.ts).
+const Unlock = lazy(() => import('./routes/Unlock'))
 const Region = lazy(() => import('./routes/Region'))
 const StopDetail = lazy(() => import('./routes/StopDetail'))
 const Essentials = lazy(() => import('./routes/Essentials'))
@@ -124,6 +126,9 @@ export default function App() {
           {/* Newsletter promo-code redemption: public on purpose, the code is
               the gate. The newsletter links here as /redeem?code=… */}
           <Route path="/redeem" element={<Redeem />} />
+          {/* The Play Store build's unlock: public, since it is how an app
+              owner gets a session (lib/androidApp.ts). */}
+          <Route path="/unlock" element={<Unlock />} />
           <Route
             path="/"
             element={

@@ -6,6 +6,7 @@ import { air } from './routes/air'
 import { auth } from './routes/auth'
 import { flow } from './routes/flow'
 import { checkout } from './routes/checkout'
+import { play } from './routes/play'
 import { contact } from './routes/contact'
 import { feedback } from './routes/feedback'
 import { gateWaits } from './routes/gateWaits'
@@ -198,6 +199,7 @@ app.route('/api/feedback', feedback)
 app.route('/api/gate-waits', gateWaits)
 app.route('/api/indexnow', indexnow)
 app.route('/api/photos', photos)
+app.route('/api/play', play)
 app.route('/api/programs', programs)
 app.route('/api/push', push)
 app.route('/api/redeem', redeem)
