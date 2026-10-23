@@ -2635,6 +2635,25 @@ var KEEP_GOING = {
       note: "Groveland to the Valley"
     }]
   },
+  "yosemite-smoke-today": {
+    links: [{
+      key: "a:yosemite-during-smoke-season",
+      label: "Visiting during smoke season",
+      note: "The geography of smoke, and the decision tree"
+    }, {
+      key: "a:wildfire-in-yosemite-during-your-trip",
+      label: "A wildfire during your trip",
+      note: "What closes, and what to do with the bookings"
+    }, {
+      key: "conditions",
+      label: "Conditions",
+      note: "Webcams, entrance waits, forecasts"
+    }, {
+      key: "now",
+      label: "The Park Bulletin",
+      note: "The week's closures from the park's own newspaper"
+    }]
+  },
   "is-highway-140-open": {
     links: [{
       key: "a:highway-140-closed-yosemite",

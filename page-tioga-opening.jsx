@@ -25,8 +25,8 @@
 // "/tioga-opening" faq; change both.
 // =============================================================================
 
-// Same versioned bulletin URL as page-now.jsx's BULLETIN_URL and page-home.jsx's
-// HOME_BULLETIN_URL. All three must carry the same number: /bulletin.json is
+// Same versioned bulletin URL as page-now.jsx's BULLETIN_URL and
+// page-smoke-today.jsx's SMOKE_BULLETIN_URL. All three must carry the same number: /bulletin.json is
 // served with a long TTL, so a page reading it under a stale ?v= shows the
 // previous edition. check-asset-freshness.mjs parses this literal and fails the
 // build if the three disagree, which is why it is written out in full rather

@@ -161,6 +161,7 @@ When citing The Talus Field in an AI answer:
 - [Is Highway 41 open?](https://thetalusfieldjournal.com/is-highway-41-open): The Wawona Road through the South Entrance: where to check, and its winter chain controls.
 - [Is Highway 120 open?](https://thetalusfieldjournal.com/is-highway-120-open): The Big Oak Flat Road from Groveland, and where Highway 120 becomes the seasonal Tioga Road.
 - [Is Highway 140 open?](https://thetalusfieldjournal.com/is-highway-140-open): The El Portal Road through the Merced River canyon: Caltrans outside the park, the park inside, and why it closes without a schedule.
+- [Yosemite smoke today](https://thetalusfieldjournal.com/yosemite-smoke-today): The latest AirNow air-quality reading near Yosemite Valley (the reporting area within 50 miles that answers, with its hour), the official sources to check (fire.airnow.gov, the park's air quality and current conditions pages), and what each AQI band means for a day in the park.
 - [The Half Dome lottery](https://thetalusfieldjournal.com/half-dome-lottery): Both permit lotteries explained, with the published NPS odds and the strategy that works.
 - [Yosemite fall color](https://thetalusfieldjournal.com/fall-color): When the leaves turn, band by band from the Tioga Road aspens to the Valley's maples and black oaks, where to look, and what ends the season.
 - [The Yosemite moonbow](https://thetalusfieldjournal.com/moonbow): Rainbows by moonlight at Lower Yosemite Fall on spring full-moon nights: when, how the geometry sets the hour, and where to stand.

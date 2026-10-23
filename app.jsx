@@ -32,6 +32,7 @@ const STATIC_ROUTE_KEYS = new Set([
   "fall-color", "moonbow", "frazil-ice", "media-kit",
   "road-status", "is-tioga-road-open", "is-glacier-point-road-open",
   "is-highway-41-open", "is-highway-120-open", "is-highway-140-open",
+  "yosemite-smoke-today",
 ]);
 
 function pathToRoute(pathname) {
@@ -131,6 +132,7 @@ const PAGE_MODULES = {
   "is-highway-41-open": { scripts: ["/dist/page-road-status.js"], globals: ["RoadStatusPage", "RoadPage"] },
   "is-highway-120-open": { scripts: ["/dist/page-road-status.js"], globals: ["RoadStatusPage", "RoadPage"] },
   "is-highway-140-open": { scripts: ["/dist/page-road-status.js"], globals: ["RoadStatusPage", "RoadPage"] },
+  "yosemite-smoke-today": { scripts: ["/dist/page-smoke-today.js"], globals: ["SmokeTodayPage"] },
   "half-dome-lottery": { scripts: ["/dist/page-half-dome-lottery.js"], globals: ["HalfDomeLotteryPage"] },
   "fall-color": { scripts: ["/dist/page-fall-color.js"], globals: ["FallColorPage"] },
   moonbow: { scripts: ["/dist/page-moonbow.js"], globals: ["MoonbowPage"] },
@@ -872,6 +874,15 @@ function buildSeo(route) {
       ogType: "website",
       breadcrumb: [["Home", `${SITE_ORIGIN}/`], ["Road status", `${SITE_ORIGIN}/road-status`], ["Highway 140", null]],
     },
+    // /yosemite-smoke-today (page-smoke-today.jsx). Title and description
+    // byte-identical to edge/seo.js; the faq is edge-only, as on the road pages.
+    "yosemite-smoke-today": {
+      title: `Yosemite Smoke Today: Air Quality Now, and What It Means | ${SITE_NAME}`,
+      description:
+        "The latest AirNow air-quality reading near Yosemite Valley, the official smoke sources to check, and what each AQI band means for a day in the park.",
+      ogType: "website",
+      breadcrumb: [["Home", `${SITE_ORIGIN}/`], ["Conditions", `${SITE_ORIGIN}/conditions`], ["Smoke today", null]],
+    },
     "half-dome-lottery": {
       // No brand suffix; see the note in edge/seo.js. Same for webcams and
       // distances.
@@ -1529,6 +1540,8 @@ function App() {
     page = <window.TiogaOpeningPage go={go} />;
   } else if (route === "road-status") {
     page = <window.RoadStatusPage go={go} />;
+  } else if (route === "yosemite-smoke-today") {
+    page = <window.SmokeTodayPage go={go} />;
   } else if (route.startsWith("is-") && route.endsWith("-open")) {
     page = <window.RoadPage go={go} route={route} />;
   } else if (route === "half-dome-lottery") {

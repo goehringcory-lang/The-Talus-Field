@@ -464,7 +464,9 @@ function ConditionsPage({ go }) {
             covers the seasonal calendar, and the{" "}
             <a href="/itineraries" onClick={(e) => { e.preventDefault(); go("itineraries"); }}>itineraries</a>{" "}
             adjust to what is open. Road by road, where to check each one and how it usually behaves through the year:{" "}
-            <a href="/road-status" onClick={(e) => { e.preventDefault(); go("road-status"); }}>is it open?</a>
+            <a href="/road-status" onClick={(e) => { e.preventDefault(); go("road-status"); }}>is it open?</a>{" "}
+            The air near the Valley, and what the number means for a hike:{" "}
+            <a href="/yosemite-smoke-today" onClick={(e) => { e.preventDefault(); go("yosemite-smoke-today"); }}>smoke today</a>.
           </p>
         </section>
       </div>
