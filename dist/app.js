@@ -11,7 +11,7 @@ function routeToPath(route) {
   if (route.startsWith("a:")) return `/articles/${route.slice(2)}`;
   return `/${route}`;
 }
-var STATIC_ROUTE_KEYS = new Set(["home", "articles", "planning", "checklist", "about", "kit", "places", "advertise", "newsletter", "contact", "privacy", "terms", "affiliate", "guide", "map", "films", "itineraries", "conditions", "now", "firefall", "stay", "consult", "widget", "partners", "search", "tioga-opening", "half-dome-lottery", "explore", "distances", "webcams", "start-here", "dates", "international", "fall-color", "moonbow", "frazil-ice", "media-kit", "road-status", "is-tioga-road-open", "is-glacier-point-road-open", "is-highway-41-open", "is-highway-120-open", "is-highway-140-open", "yosemite-smoke-today"]);
+var STATIC_ROUTE_KEYS = new Set(["home", "articles", "planning", "checklist", "about", "kit", "places", "advertise", "newsletter", "contact", "privacy", "terms", "affiliate", "guide", "map", "films", "itineraries", "conditions", "now", "firefall", "stay", "consult", "widget", "partners", "search", "tioga-opening", "half-dome-lottery", "explore", "distances", "webcams", "start-here", "dates", "international", "fall-color", "moonbow", "frazil-ice", "media-kit", "road-status", "is-tioga-road-open", "is-glacier-point-road-open", "is-highway-41-open", "is-highway-120-open", "is-highway-140-open", "are-yosemite-waterfalls-running", "yosemite-smoke-today"]);
 function pathToRoute(pathname) {
   var path = (pathname || "/").replace(/\/+$/, "") || "/";
   if (path === "/") return "home";
@@ -178,6 +178,10 @@ var PAGE_MODULES = {
   "is-highway-140-open": {
     scripts: ["/dist/page-road-status.js"],
     globals: ["RoadStatusPage", "RoadPage"]
+  },
+  "are-yosemite-waterfalls-running": {
+    scripts: ["/dist/page-waterfalls-running.js"],
+    globals: ["WaterfallsRunningPage"]
   },
   "yosemite-smoke-today": {
     scripts: ["/dist/page-smoke-today.js"],
@@ -786,6 +790,12 @@ function buildSeo(route) {
       ogType: "website",
       breadcrumb: [["Home", `${SITE_ORIGIN}/`], ["Road status", `${SITE_ORIGIN}/road-status`], ["Highway 140", null]]
     },
+    "are-yosemite-waterfalls-running": {
+      title: `Are Yosemite's Waterfalls Running? Live Merced River Flow | ${SITE_NAME}`,
+      description: "The live Merced River reading at Happy Isles, below Vernal and Nevada Falls, and when each Yosemite waterfall usually peaks, thins and goes dry.",
+      ogType: "website",
+      breadcrumb: [["Home", `${SITE_ORIGIN}/`], ["Are the waterfalls running?", null]]
+    },
     "yosemite-smoke-today": {
       title: `Yosemite Smoke Today: Air Quality Now, and What It Means | ${SITE_NAME}`,
       description: "The latest AirNow air-quality reading near Yosemite Valley, the official smoke sources to check, and what each AQI band means for a day in the park.",
@@ -1386,6 +1396,10 @@ function App() {
     page = React.createElement(window.RoadPage, {
       go: go,
       route: route
+    });
+  } else if (route === "are-yosemite-waterfalls-running") {
+    page = React.createElement(window.WaterfallsRunningPage, {
+      go: go
     });
   } else if (route === "half-dome-lottery") {
     page = React.createElement(window.HalfDomeLotteryPage, {

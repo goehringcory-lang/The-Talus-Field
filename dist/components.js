@@ -2669,6 +2669,25 @@ var KEEP_GOING = {
       note: "El Portal and Mariposa to the Valley"
     }]
   },
+  "are-yosemite-waterfalls-running": {
+    links: [{
+      key: "a:yosemite-waterfalls-guide",
+      label: "The waterfalls guide",
+      note: "Every major fall, month by month"
+    }, {
+      key: "webcams",
+      label: "Webcams",
+      note: "Yosemite Falls on camera"
+    }, {
+      key: "moonbow",
+      label: "Moonbow",
+      note: "The same falls on full-moon nights"
+    }, {
+      key: "conditions",
+      label: "Conditions",
+      note: "Webcams, entrance waits, forecasts"
+    }]
+  },
   "half-dome-lottery": {
     links: [{
       key: "tioga-opening",

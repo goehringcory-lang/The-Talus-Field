@@ -507,7 +507,13 @@ function ConditionsPage({
       e.preventDefault();
       go("road-status");
     }
-  }, "is it open?"), " ", "The air near the Valley, and what the number means for a hike:", " ", React.createElement("a", {
+  }, "is it open?"), " ", "The live Merced River gauge below Vernal and Nevada Falls, and each fall's usual season:", " ", React.createElement("a", {
+    href: "/are-yosemite-waterfalls-running",
+    onClick: e => {
+      e.preventDefault();
+      go("are-yosemite-waterfalls-running");
+    }
+  }, "are the waterfalls running?"), " ", "The air near the Valley, and what the number means for a hike:", " ", React.createElement("a", {
     href: "/yosemite-smoke-today",
     onClick: e => {
       e.preventDefault();

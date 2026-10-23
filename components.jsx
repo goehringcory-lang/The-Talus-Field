@@ -2183,6 +2183,13 @@ const KEEP_GOING = {
     { key: "road-status", label: "Road status", note: "Every park road, and where to check it" },
     { key: "distances", label: "Drive times", note: "El Portal and Mariposa to the Valley" },
   ] },
+  // --- Are the waterfalls running? The month guide first, then the cams ---
+  "are-yosemite-waterfalls-running": { links: [
+    { key: "a:yosemite-waterfalls-guide", label: "The waterfalls guide", note: "Every major fall, month by month" },
+    { key: "webcams", label: "Webcams", note: "Yosemite Falls on camera" },
+    { key: "moonbow", label: "Moonbow", note: "The same falls on full-moon nights" },
+    { key: "conditions", label: "Conditions", note: "Webcams, entrance waits, forecasts" },
+  ] },
   "half-dome-lottery": { links: [
     { key: "tioga-opening", label: "Tioga Road opening", note: "When the high country opens" },
     { key: "firefall", label: "Firefall", note: "Whether the light is worth the trip" },

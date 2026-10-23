@@ -111,6 +111,11 @@ var SEARCH_PAGES = [{
   dek: "The El Portal Road through the Merced River canyon: Caltrans outside the park, the park inside.",
   kind: "Page"
 }, {
+  route: "are-yosemite-waterfalls-running",
+  title: "Are Yosemite's waterfalls running?",
+  dek: "The live Merced River reading below Vernal and Nevada Falls, and when each major fall usually peaks and goes dry.",
+  kind: "Page"
+}, {
   route: "yosemite-smoke-today",
   title: "Yosemite smoke today",
   dek: "The latest AirNow air-quality reading near Yosemite Valley, the official smoke sources to check, and what each AQI band means for a day in the park.",
