@@ -4,7 +4,9 @@
 // kinds of problem a field guide actually has, and can attach one GPS reading,
 // taken only when the reader taps for it (the Help card and compass rule: no
 // location prompt on open). Sending goes through lib/corrections.ts, which
-// queues the report on the device when there is no signal.
+// queues the report on the device when there is no signal. A session with no
+// email behind it (the Play Store app's playapp: accounts, a dev login) asks
+// for one, because the contact route needs an address to reply to.
 // =============================================================================
 
 import { useState } from 'react'
@@ -53,6 +55,10 @@ function subjectOf(type: string | null, id: string | null): { title: string; bac
 
 type Fix = { lat: number; lng: number; accuracyM: number }
 
+// The contact route's own check (workers/src/routes/contact.ts), so a typo is
+// caught here rather than answered with the "did not go through" note.
+const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+
 export default function Report() {
   useDocumentTitle('Report a problem')
   const { session } = useAuth()
@@ -67,7 +73,9 @@ export default function Report() {
   const [busy, setBusy] = useState(false)
   const [result, setResult] = useState<SendResult | null>(null)
 
-  const email = session?.username && session.username.includes('@') ? session.username : ''
+  const sessionEmail = session?.username && session.username.includes('@') ? session.username : ''
+  const [typedEmail, setTypedEmail] = useState('')
+  const email = sessionEmail || (EMAIL_RE.test(typedEmail.trim()) ? typedEmail.trim() : '')
   const about = subject ? `${subject.title} (${type ?? 'stop'} ${id})` : 'the app'
   const kindLabel = KINDS.find((k) => k.id === kind)?.label ?? kind
   const body = [
@@ -182,10 +190,24 @@ export default function Report() {
               )}
             </div>
 
-            {!email && (
-              <p className="card__note">
-                This session has no email address to reply to. Use the email link below instead.
-              </p>
+            {!sessionEmail && (
+              <label className="field">
+                Your email, so we can reply
+                <input
+                  className="field-control"
+                  type="email"
+                  required
+                  autoComplete="email"
+                  autoCapitalize="none"
+                  autoCorrect="off"
+                  spellCheck={false}
+                  inputMode="email"
+                  maxLength={254}
+                  pattern={EMAIL_RE.source.slice(1, -1)}
+                  value={typedEmail}
+                  onChange={(e) => setTypedEmail(e.target.value)}
+                />
+              </label>
             )}
             {result === 'rejected' && (
               <p className="card__note" role="alert" style={{ color: 'var(--danger)' }}>
@@ -194,7 +216,7 @@ export default function Report() {
             )}
 
             <div className="action-row">
-              <Button type="submit" disabled={busy || !email || text.trim().length === 0}>
+              <Button type="submit" disabled={busy || text.trim().length === 0}>
                 {busy ? 'Sending…' : 'Send report'}
               </Button>
               <a className="more-link" href={correctionMailto(`Field Guide: ${about}`, body)}>
