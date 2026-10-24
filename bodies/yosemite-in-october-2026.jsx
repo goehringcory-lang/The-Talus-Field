@@ -59,10 +59,10 @@ window.ARTICLE_BODIES["yosemite-in-october-2026"] = function YosemiteInOctober20
         motif={<MotifTrees />}
       />
 
-      <h2>Tioga Road: open, on the weather's schedule</h2>
+      <h2 id="sec-2-tioga-road-open-on-the-weather-s-schedul">Tioga Road: open again after the first storm</h2>
 
       <p>
-        Tioga Road is open, and in most years it stays open through October. In the last ten years it closed for the season in November eight times. The two exceptions are worth knowing: <strong>October 21 in 2021 and October 31 in 2022</strong>. The park does not set the date; the first storm that puts snow on the pass does. When it closes, there is no way through the park to Highway 395.
+        Tioga Road closed for snow at 5 p.m. on October 21, the same date as 2021's season closure, and reopened at 2 p.m. on Friday, October 23. The park called the closure temporary, and the season closure is still to come; in most years the road stays open through October. In the last ten years it closed for the season in November eight times. The two exceptions are worth knowing: <strong>October 21 in 2021 and October 31 in 2022</strong>. The park does not set the date; the first storm that puts snow on the pass does. When it closes, there is no way through the park to Highway 395.
       </p>
 
       <p>

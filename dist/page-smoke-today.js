@@ -3,7 +3,7 @@ var SMK_AIR_URL = (typeof window !== "undefined" && window.GUIDE_API_BASE || "ht
 var SMK_REFRESH_MS = 15 * 60 * 1000;
 var SMK_WARN_MS = 3 * 60 * 60 * 1000;
 var SMK_HIDE_MS = 24 * 60 * 60 * 1000;
-var SMOKE_BULLETIN_URL = "/bulletin.json?v=23";
+var SMOKE_BULLETIN_URL = "/bulletin.json?v=24";
 var SMK_FIRE_AIRNOW = "https://fire.airnow.gov/";
 var SMK_NPS_AIR = "https://www.nps.gov/yose/learn/nature/aqmonitoring.htm";
 var SMK_NPS_CONDITIONS = "https://www.nps.gov/yose/planyourvisit/conditions.htm";

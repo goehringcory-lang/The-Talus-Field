@@ -8,7 +8,7 @@
 Publisher: The Talus Field (https://thetalusfieldjournal.com). Editor: Cory Goehring.
 Citation guidance and the annotated page index: https://thetalusfieldjournal.com/llms.txt
 Canonical article URL pattern: https://thetalusfieldjournal.com/articles/<slug>
-Contents: 106 articles. Most recent update: 2026-10-22.
+Contents: 106 articles. Most recent update: 2026-10-24.
 
 Not in this file: the Yosemite Nature Notes archive, all 512 issues of the
 National Park Service's Yosemite bulletin (1922-2003), transcribed in full
@@ -6798,7 +6798,7 @@ Some links in this piece are affiliate links. If you buy or book through one, Th
 ## Yosemite in October 2026: A Fire, a Closed Road, and the Last Weeks of the High Country
 
 URL: https://thetalusfieldjournal.com/articles/yosemite-in-october-2026
-Section: Seasonal Guides. Published: 2026-09-25. Last updated: 2026-10-21.
+Section: Seasonal Guides. Published: 2026-09-25. Last updated: 2026-10-24.
 Summary: Yosemite in October 2026: the Dome Fire and Glacier Point Road closure, Tioga Road's last weeks, Half Dome cable dates, Mist Trail closures, closing dates.
 
 October is usually the easy month to write about: the crowds are gone, Tioga Road is still open, the oaks turn, and the only real question is whether the first storm comes early. October 2026 starts with a different question. A wildfire has been burning northeast of Wawona since mid-September, it closed Glacier Point Road from the evening of September 23 to the morning of October 10, and the mornings in the Valley have been smoky. The month is still worth the trip, with a different plan than last year's.
@@ -6827,9 +6827,9 @@ The Mariposa Grove is open, and its free shuttle runs every 15 minutes from 8 a.
 
 Photo: Darold Massaro / Wikimedia Commons (CC0)
 
-### Tioga Road: open, on the weather's schedule
+### Tioga Road: open again after the first storm
 
-Tioga Road is open, and in most years it stays open through October. In the last ten years it closed for the season in November eight times. The two exceptions are worth knowing: October 21 in 2021 and October 31 in 2022. The park does not set the date; the first storm that puts snow on the pass does. When it closes, there is no way through the park to Highway 395.
+Tioga Road closed for snow at 5 p.m. on October 21, the same date as 2021's season closure, and reopened at 2 p.m. on Friday, October 23. The park called the closure temporary, and the season closure is still to come; in most years the road stays open through October. In the last ten years it closed for the season in November eight times. The two exceptions are worth knowing: October 21 in 2021 and October 31 in 2022. The park does not set the date; the first storm that puts snow on the pass does. When it closes, there is no way through the park to Highway 395.
 
 The high country is at its emptiest now, and it has no services to speak of. The Tuolumne Meadows Visitor Center closes September 27, the store, grill and buses are already done for the year, and the wilderness center closes October 14. There has never been gas at Tuolumne. The Crane Flat store closes October 25, but its pumps stay open year-round, card only. From October 15 there is no overnight parking on Tioga Road. Of the campgrounds along the road, Porcupine Flat closes October 11 and Tamarack Flat and Crane Flat October 12.
 
