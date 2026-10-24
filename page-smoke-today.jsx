@@ -47,7 +47,7 @@ const SMK_HIDE_MS = 24 * 60 * 60 * 1000;
 // page-tioga-opening.jsx's TIOGA_BULLETIN_URL. All three must carry the same
 // number; check-asset-freshness.mjs parses this literal and fails the build if
 // they disagree, which is why it is written out in full.
-const SMOKE_BULLETIN_URL = "/bulletin.json?v=23";
+const SMOKE_BULLETIN_URL = "/bulletin.json?v=24";
 
 const SMK_FIRE_AIRNOW = "https://fire.airnow.gov/";
 const SMK_NPS_AIR = "https://www.nps.gov/yose/learn/nature/aqmonitoring.htm";
