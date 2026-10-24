@@ -12,17 +12,17 @@ window.ARTICLE_BODIES["yosemite-fire-restrictions-explained"] = function Yosemit
   const T_BIG = { fontFamily: "var(--serif)", fontSize: 19, fill: "var(--ink)" };
 
   // The elevation ladder: what each band of the park allows under the
-  // current Stage 1 order, with the stove rule that holds at every height.
+  // 2026 Stage 1 order, with the stove rule that holds at every height.
   function FireLadder() {
     const W = 600, X = 120, BW = W - X;
     const bands = [
       { y: 30, h: 104, fill: "var(--paper-2)", stroke: "var(--ink-3)", tag: "NO FIRES, EVER", lines: ["Above 9,600 feet: a standing, year-round", "wilderness rule, not a fire-danger rule.", "Wood is scarce and slow to regenerate."] },
-      { y: 134, h: 118, fill: "var(--moss)", stroke: "var(--moss)", tag: "WOOD FIRES IN EXISTING RINGS", dark: true, lines: ["8,000 to 9,600 feet, in the wilderness.", "The one band where a wood campfire is", "legal now: most of the high country."] },
+      { y: 134, h: 118, fill: "var(--moss)", stroke: "var(--moss)", tag: "WOOD FIRES IN EXISTING RINGS", dark: true, lines: ["8,000 to 9,600 feet, in the wilderness.", "The one band where a wood campfire was", "legal under Stage 1: most of the high country."] },
       { y: 252, h: 190, fill: "var(--paper)", stroke: "var(--rust)", tag: "NO WOOD OR CHARCOAL FIRES", lines: ["Below 8,000 feet, parkwide. Twig stoves", "included. The Valley, Wawona and the", "areas most visitors camp in.", "Exempt: designated frontcountry", "campgrounds and picnic areas, and", "residential areas (El Portal and Foresta:", "charcoal only)."] },
     ];
     return (
       <svg viewBox={`0 0 ${W} 520`} style={SVG_STYLE} role="img"
-        aria-label="Yosemite's Stage 1 fire restrictions by elevation. Above 9,600 feet, no fires at any time, under a standing year-round wilderness regulation, because wood is scarce and slow to regenerate. From 8,000 to 9,600 feet, in the wilderness, wood campfires are allowed in existing fire rings; this is most of the high country. Below 8,000 feet, parkwide, no wood or charcoal fires, twig stoves included; this covers the Valley, Wawona and the areas most visitors camp in. Exempt below 8,000 feet: designated frontcountry campgrounds and picnic areas, and residential areas, where El Portal and Foresta allow charcoal only. At every elevation, stoves burning pressurized gas, liquid fuel, propane or alcohol are permitted.">
+        aria-label="Yosemite's 2026 Stage 1 fire restrictions by elevation, in effect from August 7, 2026 until the park lifted them in October. Above 9,600 feet, no fires at any time, under a standing year-round wilderness regulation, because wood is scarce and slow to regenerate. From 8,000 to 9,600 feet, in the wilderness, wood campfires were allowed in existing fire rings; this is most of the high country. Below 8,000 feet, parkwide, no wood or charcoal fires, twig stoves included; this covers the Valley, Wawona and the areas most visitors camp in. Exempt below 8,000 feet: designated frontcountry campgrounds and picnic areas, and residential areas, where El Portal and Foresta allowed charcoal only. At every elevation, stoves burning pressurized gas, liquid fuel, propane or alcohol are permitted.">
         {bands.map((b) => (
           <g key={b.tag}>
             <rect x={X} y={b.y} width={BW} height={b.h} fill={b.fill} stroke={b.stroke} strokeWidth="1.5" />
@@ -52,35 +52,43 @@ window.ARTICLE_BODIES["yosemite-fire-restrictions-explained"] = function Yosemit
   return (
     <>
       <p className="dropcap">
-        You bought a bundle of firewood at the gas station in Mariposa, because that is what you do before a Yosemite camping trip. You get to the site, unload the cooler, and find a ranger notice zip-tied to the fire ring: no wood fires until further notice. The bundle rides home unopened. Yosemite is under Stage 1 fire restrictions right now. Every summer a fresh set of visitors arrives not knowing the rules changed since they last camped here, or that rules ever change at all.
+        You bought a bundle of firewood at the gas station in Mariposa, because that is what you do before a Yosemite camping trip. You get to the site, unload the cooler, and find a ranger notice zip-tied to the fire ring: no wood fires until further notice. The bundle rides home unopened. Yosemite was under Stage 1 fire restrictions from August 7, 2026 until this October, and it will be again the next time a summer turns hot and dry. Every summer a fresh set of visitors arrives not knowing the rules changed since they last camped here, or that rules ever change at all.
       </p>
 
       <p>
         The restrictions are not complicated once someone lays them out, but nobody hands you the list at the entrance station. Here is what is banned, what still works, why the line sits where it does, and how to check whether any of this has changed by the time your trip starts.
       </p>
 
-      <h2>What is in effect right now</h2>
+      <h2 id="sec-0-what-is-in-effect-right-now">What is in effect now: the normal rules only</h2>
 
       <p>
-        Yosemite implemented Stage 1 fire restrictions at 12:01 a.m. on Friday, August 7, 2026, parkwide below 8,000 feet in elevation. The park cited hot, dry weather, low fuel moisture, and windy conditions raising the potential for fast wildfire growth, on the recommendation of the Yosemite Fire Program. The restrictions apply <strong>until further notice</strong>, which in practice means until conditions improve enough for the park to lift them, not on a fixed calendar date.
+        <strong>No seasonal fire restrictions are in effect.</strong> The park's fire restrictions page, last updated October 22, 2026, lists none, and neither does its current conditions page: only the normal fire regulations that apply all year. The park has not published the day it lifted the 2026 order; it had been lifted by October 22.
       </p>
 
       <p>
-        This is separate from, and layered on top of, the small lightning-caused fires that made news partway through August. An early-morning storm on August 12 started eight fires in the park, including ones near Aspen Valley, Dewey Point, and Wawona Road; the largest reported was a couple of acres. None triggered evacuations or site closures. They did not cause the ban. They came from the same dry conditions that triggered the restrictions a few days earlier, and they help explain why the park is in no hurry to lift it.
+        That order took effect at 12:01 a.m. on Friday, August 7, 2026, parkwide below 8,000 feet in elevation. The park cited hot, dry weather, low fuel moisture, and windy conditions raising the potential for fast wildfire growth, on the recommendation of the Yosemite Fire Program. It applied <strong>until further notice</strong>, which in practice meant until conditions improved enough for the park to lift it, not a fixed calendar date.
+      </p>
+
+      <p>
+        The normal regulations, from the park's fire restrictions page, are the rules today. Fires are allowed only in grates, grills, existing fire rings, stoves and barbecue grills, must be attended, and must be put out completely. In Yosemite Valley campgrounds, picnic areas and Housekeeping Camp, and at Hodgdon Meadow Campground, fires are allowed only between 5 and 10 p.m. In the wilderness, campfires are allowed only in existing fire rings below 9,600 feet, and not within 100 feet of a trail or water, on top of Half Dome or El Capitan, in the Upper and Lower Cathedral Lakes basins, or within a quarter mile of the Kibbie Lake shoreline; at Little Yosemite Valley and the High Sierra Camp campgrounds, only in the rings the park provides. Burning giant sequoia material, leaves, needles, cones, or wet or green wood is prohibited, and fireworks always are.
+      </p>
+
+      <p>
+        This is separate from, and layered on top of, the small lightning-caused fires that made news partway through August. An early-morning storm on August 12 started eight fires in the park, including ones near Aspen Valley, Dewey Point, and Wawona Road; the largest reported was a couple of acres. None triggered evacuations or site closures. They did not cause the ban. They came from the same dry conditions that triggered the restrictions a few days earlier, and they help explain why the park kept the order in place into October.
       </p>
 
       <p>
         The restrictions were in force when this fall's fire began. The <strong>Dome Fire</strong> was reported on the morning of September 15, about a quarter mile north of Chilnualna Falls above Wawona. What started it is not established: on September 30 the local press reported a Forest Service finding of an abandoned campfire, on October 6 the Forest Service withdrew that finding without giving a reason, and the federal incident page, InciWeb, lists the cause as undetermined. The fire closed Glacier Point Road in late September, until it reopened on October 10, and it has closed the Ostrander Lake Trail and everything south of it, and two helicopter pilots were killed fighting it on September 20. <a href="/now">The Park Bulletin</a> carries the closures as they stand, and <a href="/articles/yosemite-in-october-2026">Yosemite in October 2026</a> covers what the fire means for a trip this month.
       </p>
 
-      <h2>What is actually banned</h2>
+      <h2 id="sec-1-what-is-actually-banned">What Stage 1 bans when it is in effect</h2>
 
       <p>
-        Below 8,000 feet, parkwide: <strong>no building, maintaining, attending, or using a wood or charcoal fire</strong>, including twig stoves, the small backpacking stoves that burn sticks instead of fuel. That covers a campfire at your site, a charcoal grill, a hibachi, anything that burns solid fuel.
+        Under the 2026 order, below 8,000 feet, parkwide: <strong>no building, maintaining, attending, or using a wood or charcoal fire</strong>, including twig stoves, the small backpacking stoves that burn sticks instead of fuel. That covers a campfire at your site, a charcoal grill, a hibachi, anything that burns solid fuel.
       </p>
 
       <p>
-        <strong>Smoking is restricted too.</strong> Anywhere in the park, smoking is prohibited except inside an enclosed vehicle, inside a campground or picnic area where wood and charcoal fires are otherwise permitted, in a posted designated smoking area, or while stopped in a barren or cleared spot at least three feet across. That is a real change from ordinary conditions, and it catches people who assume the fire rules and the smoking rules are the same thing. They are related, but the smoking rule is broader.
+        <strong>Smoking is restricted too.</strong> Under that order, anywhere in the park, smoking is prohibited except inside an enclosed vehicle, inside a campground or picnic area where wood and charcoal fires are otherwise permitted, in a posted designated smoking area, or while stopped in a barren or cleared spot at least three feet across. That is a real change from ordinary conditions, and it catches people who assume the fire rules and the smoking rules are the same thing. They are related, but the smoking rule is broader.
       </p>
 
       <h2>What still works</h2>
@@ -94,17 +102,17 @@ window.ARTICLE_BODIES["yosemite-fire-restrictions-explained"] = function Yosemit
       </p>
 
       <p>
-        <strong>Above 8,000 feet, in the wilderness, campfires are allowed in existing fire rings, up to 9,600 feet.</strong> That upper bound is a standing, year-round wilderness regulation rather than a fire-danger rule: above 9,600 feet, wood is scarce and slow to regenerate at that elevation, so fires are prohibited there regardless of fire restrictions. The 8,000-to-9,600-foot band is the one place in the park right now where a wood campfire, built in a ring that already exists, is legal. That is most of the high country above Tuolumne Meadows and along the Sierra crest, and almost none of the Valley, Wawona, or the areas most visitors camp in.
+        <strong>Above 8,000 feet, in the wilderness, campfires are allowed in existing fire rings, up to 9,600 feet.</strong> That upper bound is a standing, year-round wilderness regulation rather than a fire-danger rule: above 9,600 feet, wood is scarce and slow to regenerate at that elevation, so fires are prohibited there regardless of fire restrictions. Under the 2026 order, the 8,000-to-9,600-foot band was the one place in the wilderness where a wood campfire, built in a ring that already exists, was legal. That is most of the high country above Tuolumne Meadows and along the Sierra crest, and almost none of the Valley, Wawona, or the areas most visitors camp in.
       </p>
 
       <figure>
         <FireLadder />
-        <figcaption>The Stage 1 restrictions in effect since August 7, 2026, by elevation, drawn from this article. The 8,000-foot line is set each season and can move; the park's fire restrictions page has the current text.</figcaption>
+        <figcaption>The Stage 1 restrictions in effect from August 7, 2026 until the park lifted them in October, by elevation, drawn from this article. With no restrictions in force, wilderness fires are allowed in existing rings anywhere below 9,600 feet, with the exceptions above. The 8,000-foot line is set each season and can move; the park's fire restrictions page has the current text.</figcaption>
       </figure>
 
 
       <Placeholder
-        caption="The high country above Tuolumne Meadows. The band between 8,000 and 9,600 feet is the only ground in the park where a wood fire, built in a ring that already exists, is still legal"
+        caption="The high country above Tuolumne Meadows. The band between 8,000 and 9,600 feet was the only wilderness ground where a wood fire, built in a ring that already exists, stayed legal under the 2026 restrictions"
         image="img/tuolumne-high-country-cory-goehring.jpg"
         credit="Photo: Cory Goehring"
         tag="PLATE I"
@@ -120,7 +128,7 @@ window.ARTICLE_BODIES["yosemite-fire-restrictions-explained"] = function Yosemit
       </p>
 
       <p>
-        The two stack. Designated frontcountry campgrounds are exempt from the Stage 1 wood and charcoal ban, so a Valley or Hodgdon Meadow ring can still hold a fire right now, but only inside the 5 to 10 p.m. window. A Valley picnic area follows the same hours if its fire grates are open to wood or charcoal.
+        The two stack. Designated frontcountry campgrounds are exempt from the Stage 1 wood and charcoal ban, so a Valley or Hodgdon Meadow ring could still hold a fire under the 2026 order, but only inside the 5 to 10 p.m. window. A Valley picnic area follows the same hours if its fire grates are open to wood or charcoal.
       </p>
 
       <h2>Why the line sits at 8,000 feet, and why it moves</h2>
@@ -130,7 +138,7 @@ window.ARTICLE_BODIES["yosemite-fire-restrictions-explained"] = function Yosemit
       </p>
 
       <p>
-        The number itself is not fixed. It reflects that year's conditions and gets set, and can be reset, by the park's fire managers as the season develops. In some past seasons the working elevation line has sat lower, closer to 6,000 feet, when conditions were more severe or a fire was actively burning nearby. In 2026 it is 8,000 feet. The mechanism is what stays constant: check the current line before you assume last year's trip rules still apply.
+        The number itself is not fixed. It reflects that year's conditions and gets set, and can be reset, by the park's fire managers as the season develops. In some past seasons the working elevation line has sat lower, closer to 6,000 feet, when conditions were more severe or a fire was actively burning nearby. In 2026 it was 8,000 feet. The mechanism is what stays constant: check the current line before you assume last year's trip rules still apply.
       </p>
 
       <h2>How to check before you drive up</h2>
@@ -146,19 +154,19 @@ window.ARTICLE_BODIES["yosemite-fire-restrictions-explained"] = function Yosemit
       <h2>What this means for your specific trip</h2>
 
       <p>
-        <strong>Car camping in a Valley or Wawona campground.</strong> Bring a camp stove. Firewood bought at the gate is of no use right now. Marshmallows can be toasted over a canister stove, and a lot of campers do this anyway once they realize a stove is faster and does not leave you smelling like smoke in the tent.
+        <strong>Car camping in a Valley or Wawona campground.</strong> With no restrictions in force, the campground fire ring is usable, inside the 5 to 10 p.m. window in the Valley and at Hodgdon Meadow. Bring a camp stove anyway: it is faster, it does not leave you smelling like smoke in the tent, and restrictions can return with little notice.
       </p>
 
       <p>
-        <strong>Backpacking above 8,000 feet.</strong> You can build a fire in an existing ring, below 9,600 feet, if your route takes you that high. Most first and second nights out of trailheads at Hetch Hetchy, the Valley or Wawona start below that line, so plan on your stove for at least the early part of most routes. <a href="/articles/first-yosemite-backpacking-trip">The backpacking guide</a> covers permits, bear canisters, and the rest of what the paperwork does not tell you.
+        <strong>Backpacking.</strong> With no restrictions in force, a wood fire is legal in an existing ring anywhere below 9,600 feet, outside the places the standing rules exclude. Under Stage 1 the floor rises to 8,000 feet, and most first and second nights out of trailheads at Hetch Hetchy, the Valley or Wawona start below that line, so the stove carries the early part of most routes. <a href="/articles/first-yosemite-backpacking-trip">The backpacking guide</a> covers permits, bear canisters, and the rest of what the paperwork does not tell you.
       </p>
 
       <p>
-        <strong>A day trip with a picnic.</strong> Grills in designated picnic areas are exempt, so a charcoal grill at a developed picnic site still works. A campfire ring you find along a trail or a beach that is not in a designated campground or picnic area does not count as an exemption, restrictions or not.
+        <strong>A day trip with a picnic.</strong> Grills in designated picnic areas are exempt even under Stage 1, so a charcoal grill at a developed picnic site still works. A campfire ring you find along a trail or a beach that is not in a designated campground or picnic area does not count as an exemption, restrictions or not.
       </p>
 
       <p>
-        <strong>Smoking anywhere in the park.</strong> Car, permitted campground, posted smoking area, or a stopped-and-cleared spot at least three feet across. Nowhere else. During restrictions, "permitted campground" now specifically means one where fires are still allowed under the current rules, which narrows the list.
+        <strong>Smoking anywhere in the park.</strong> Under the normal rules: not in public buildings, not within 25 feet of a building other than a single-family residence, and not while moving on a trail (stop, and stay put until it is out). Under Stage 1: car, permitted campground, posted smoking area, or a stopped-and-cleared spot at least three feet across. Nowhere else. During restrictions, "permitted campground" specifically means one where fires are still allowed under the current rules, which narrows the list.
       </p>
 
       <h2>This is a different question from whether your trip will be smoky</h2>
@@ -180,7 +188,7 @@ window.ARTICLE_BODIES["yosemite-fire-restrictions-explained"] = function Yosemit
       <h2>When restrictions usually lift</h2>
 
       <p>
-        Restrictions like this one typically go into effect in July, after a stretch of hot, dry weather has pushed fuel moisture down, and they come off when temperatures drop and real rain falls, not on a schedule. Recent examples: fire restrictions were rescinded on September 21, 2022 after a cooling, wetter pattern moved in, and on October 20, 2021 after a combination of rain, snow, and cooler temperatures reduced the danger enough for the park to lift them. Most years land somewhere in that window: sometime after Labor Day, before Halloween, tied to whichever storm actually delivers.
+        Restrictions like this one typically go into effect in July, after a stretch of hot, dry weather has pushed fuel moisture down, and they come off when temperatures drop and real rain falls, not on a schedule. Recent examples: fire restrictions were rescinded on September 21, 2022 after a cooling, wetter pattern moved in, and on October 20, 2021 after a combination of rain, snow, and cooler temperatures reduced the danger enough for the park to lift them. Most years land somewhere in that window: sometime after Labor Day, before Halloween, tied to whichever storm actually delivers. In 2026 the order that took effect on August 7 had been lifted by October 22.
       </p>
 
       <p>
@@ -190,7 +198,7 @@ window.ARTICLE_BODIES["yosemite-fire-restrictions-explained"] = function Yosemit
       <h2>The practical version</h2>
 
       <p>
-        Check the fire restrictions page in the days before you leave, not when you booked. Pack a camp stove regardless of what the restrictions say on the day you check, because conditions can tighten between booking and arrival. If a wood fire at 9 p.m. under the stars was the whole point of the trip for you, that experience is currently available only above 8,000 feet, in an existing ring, and it returns everywhere else when the park lifts the restrictions. Until then, cook on a stove.
+        Check the fire restrictions page in the days before you leave, not when you booked. Pack a camp stove regardless of what the restrictions say on the day you check, because conditions can tighten between booking and arrival. If a wood fire at 9 p.m. under the stars was the whole point of the trip for you, the 2026 restrictions are lifted, so it is back in the campground rings and in the wilderness below 9,600 feet, under the standing rules. The next time Stage 1 is set, it retreats to existing rings between 8,000 and 9,600 feet, and below that line the stove does the cooking until the park lifts the order.
       </p>
 
       <h3>Sources</h3>
